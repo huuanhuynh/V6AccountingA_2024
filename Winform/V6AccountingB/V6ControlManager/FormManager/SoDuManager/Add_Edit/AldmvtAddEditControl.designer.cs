@@ -118,7 +118,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6TabControl1.Margin = new System.Windows.Forms.Padding(5);
             this.v6TabControl1.Name = "v6TabControl1";
             this.v6TabControl1.SelectedIndex = 0;
-            this.v6TabControl1.Size = new System.Drawing.Size(889, 330);
+            this.v6TabControl1.Size = new System.Drawing.Size(889, 211);
             this.v6TabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -137,7 +137,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage1.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage1.Size = new System.Drawing.Size(881, 298);
+            this.tabPage1.Size = new System.Drawing.Size(881, 179);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 
@@ -324,7 +324,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage2.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage2.Size = new System.Drawing.Size(881, 298);
+            this.tabPage2.Size = new System.Drawing.Size(881, 179);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tự định nghĩa";
             // 
@@ -341,10 +341,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtGC_TD3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtGC_TD3.HoverColor = System.Drawing.Color.Yellow;
             this.txtGC_TD3.LeaveColor = System.Drawing.Color.White;
-            this.txtGC_TD3.Location = new System.Drawing.Point(209, 270);
+            this.txtGC_TD3.Location = new System.Drawing.Point(625, 51);
             this.txtGC_TD3.Margin = new System.Windows.Forms.Padding(5);
             this.txtGC_TD3.Name = "txtGC_TD3";
-            this.txtGC_TD3.Size = new System.Drawing.Size(619, 23);
+            this.txtGC_TD3.Size = new System.Drawing.Size(251, 23);
             this.txtGC_TD3.TabIndex = 125;
             // 
             // txtGC_TD2
@@ -360,10 +360,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtGC_TD2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtGC_TD2.HoverColor = System.Drawing.Color.Yellow;
             this.txtGC_TD2.LeaveColor = System.Drawing.Color.White;
-            this.txtGC_TD2.Location = new System.Drawing.Point(209, 246);
+            this.txtGC_TD2.Location = new System.Drawing.Point(625, 27);
             this.txtGC_TD2.Margin = new System.Windows.Forms.Padding(5);
             this.txtGC_TD2.Name = "txtGC_TD2";
-            this.txtGC_TD2.Size = new System.Drawing.Size(619, 23);
+            this.txtGC_TD2.Size = new System.Drawing.Size(251, 23);
             this.txtGC_TD2.TabIndex = 124;
             // 
             // txtGC_TD1
@@ -379,10 +379,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtGC_TD1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtGC_TD1.HoverColor = System.Drawing.Color.Yellow;
             this.txtGC_TD1.LeaveColor = System.Drawing.Color.White;
-            this.txtGC_TD1.Location = new System.Drawing.Point(209, 222);
+            this.txtGC_TD1.Location = new System.Drawing.Point(625, 3);
             this.txtGC_TD1.Margin = new System.Windows.Forms.Padding(5);
             this.txtGC_TD1.Name = "txtGC_TD1";
-            this.txtGC_TD1.Size = new System.Drawing.Size(619, 23);
+            this.txtGC_TD1.Size = new System.Drawing.Size(251, 23);
             this.txtGC_TD1.TabIndex = 123;
             // 
             // lblGCDN3
@@ -392,7 +392,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblGCDN3.AutoSize = true;
-            this.lblGCDN3.Location = new System.Drawing.Point(53, 273);
+            this.lblGCDN3.Location = new System.Drawing.Point(521, 54);
             this.lblGCDN3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblGCDN3.Name = "lblGCDN3";
             this.lblGCDN3.Size = new System.Drawing.Size(93, 17);
@@ -406,7 +406,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblGCDN2.AutoSize = true;
-            this.lblGCDN2.Location = new System.Drawing.Point(53, 249);
+            this.lblGCDN2.Location = new System.Drawing.Point(521, 30);
             this.lblGCDN2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblGCDN2.Name = "lblGCDN2";
             this.lblGCDN2.Size = new System.Drawing.Size(93, 17);
@@ -420,7 +420,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblGCDN1.AutoSize = true;
-            this.lblGCDN1.Location = new System.Drawing.Point(53, 225);
+            this.lblGCDN1.Location = new System.Drawing.Point(521, 6);
             this.lblGCDN1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblGCDN1.Name = "lblGCDN1";
             this.lblGCDN1.Size = new System.Drawing.Size(93, 17);
@@ -439,10 +439,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtMaS3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaS3.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaS3.LeaveColor = System.Drawing.Color.White;
-            this.txtMaS3.Location = new System.Drawing.Point(628, 54);
+            this.txtMaS3.Location = new System.Drawing.Point(380, 51);
             this.txtMaS3.Margin = new System.Windows.Forms.Padding(5);
             this.txtMaS3.Name = "txtMaS3";
-            this.txtMaS3.Size = new System.Drawing.Size(200, 23);
+            this.txtMaS3.Size = new System.Drawing.Size(120, 23);
             this.txtMaS3.TabIndex = 107;
             // 
             // txtMaS2
@@ -457,10 +457,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtMaS2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaS2.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaS2.LeaveColor = System.Drawing.Color.White;
-            this.txtMaS2.Location = new System.Drawing.Point(628, 30);
+            this.txtMaS2.Location = new System.Drawing.Point(380, 27);
             this.txtMaS2.Margin = new System.Windows.Forms.Padding(5);
             this.txtMaS2.Name = "txtMaS2";
-            this.txtMaS2.Size = new System.Drawing.Size(200, 23);
+            this.txtMaS2.Size = new System.Drawing.Size(120, 23);
             this.txtMaS2.TabIndex = 105;
             // 
             // txtMaS1
@@ -475,10 +475,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtMaS1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaS1.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaS1.LeaveColor = System.Drawing.Color.White;
-            this.txtMaS1.Location = new System.Drawing.Point(628, 6);
+            this.txtMaS1.Location = new System.Drawing.Point(380, 3);
             this.txtMaS1.Margin = new System.Windows.Forms.Padding(5);
             this.txtMaS1.Name = "txtMaS1";
-            this.txtMaS1.Size = new System.Drawing.Size(200, 23);
+            this.txtMaS1.Size = new System.Drawing.Size(120, 23);
             this.txtMaS1.TabIndex = 103;
             // 
             // txtSLS6
@@ -493,10 +493,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtSLS6.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtSLS6.HoverColor = System.Drawing.Color.Yellow;
             this.txtSLS6.LeaveColor = System.Drawing.Color.White;
-            this.txtSLS6.Location = new System.Drawing.Point(628, 198);
+            this.txtSLS6.Location = new System.Drawing.Point(625, 147);
             this.txtSLS6.Margin = new System.Windows.Forms.Padding(5);
             this.txtSLS6.Name = "txtSLS6";
-            this.txtSLS6.Size = new System.Drawing.Size(200, 23);
+            this.txtSLS6.Size = new System.Drawing.Size(120, 23);
             this.txtSLS6.TabIndex = 119;
             this.txtSLS6.Text = "0,000";
             this.txtSLS6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -504,7 +504,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSLS5
             // 
@@ -518,10 +518,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtSLS5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtSLS5.HoverColor = System.Drawing.Color.Yellow;
             this.txtSLS5.LeaveColor = System.Drawing.Color.White;
-            this.txtSLS5.Location = new System.Drawing.Point(628, 174);
+            this.txtSLS5.Location = new System.Drawing.Point(380, 147);
             this.txtSLS5.Margin = new System.Windows.Forms.Padding(5);
             this.txtSLS5.Name = "txtSLS5";
-            this.txtSLS5.Size = new System.Drawing.Size(200, 23);
+            this.txtSLS5.Size = new System.Drawing.Size(120, 23);
             this.txtSLS5.TabIndex = 117;
             this.txtSLS5.Text = "0,000";
             this.txtSLS5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -529,7 +529,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSLS4
             // 
@@ -543,10 +543,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtSLS4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtSLS4.HoverColor = System.Drawing.Color.Yellow;
             this.txtSLS4.LeaveColor = System.Drawing.Color.White;
-            this.txtSLS4.Location = new System.Drawing.Point(628, 150);
+            this.txtSLS4.Location = new System.Drawing.Point(108, 147);
             this.txtSLS4.Margin = new System.Windows.Forms.Padding(5);
             this.txtSLS4.Name = "txtSLS4";
-            this.txtSLS4.Size = new System.Drawing.Size(200, 23);
+            this.txtSLS4.Size = new System.Drawing.Size(120, 23);
             this.txtSLS4.TabIndex = 115;
             this.txtSLS4.Text = "0,000";
             this.txtSLS4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -554,7 +554,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // lblSLS6
             // 
@@ -563,7 +563,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSLS6.AutoSize = true;
-            this.lblSLS6.Location = new System.Drawing.Point(468, 201);
+            this.lblSLS6.Location = new System.Drawing.Point(521, 150);
             this.lblSLS6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblSLS6.Name = "lblSLS6";
             this.lblSLS6.Size = new System.Drawing.Size(46, 17);
@@ -577,7 +577,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSLS5.AutoSize = true;
-            this.lblSLS5.Location = new System.Drawing.Point(468, 177);
+            this.lblSLS5.Location = new System.Drawing.Point(273, 150);
             this.lblSLS5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblSLS5.Name = "lblSLS5";
             this.lblSLS5.Size = new System.Drawing.Size(46, 17);
@@ -591,7 +591,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSLS4.AutoSize = true;
-            this.lblSLS4.Location = new System.Drawing.Point(468, 153);
+            this.lblSLS4.Location = new System.Drawing.Point(10, 150);
             this.lblSLS4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblSLS4.Name = "lblSLS4";
             this.lblSLS4.Size = new System.Drawing.Size(46, 17);
@@ -605,7 +605,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNgayS9.AutoSize = true;
-            this.lblNgayS9.Location = new System.Drawing.Point(468, 129);
+            this.lblNgayS9.Location = new System.Drawing.Point(273, 126);
             this.lblNgayS9.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblNgayS9.Name = "lblNgayS9";
             this.lblNgayS9.Size = new System.Drawing.Size(62, 17);
@@ -619,7 +619,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNgayS8.AutoSize = true;
-            this.lblNgayS8.Location = new System.Drawing.Point(468, 105);
+            this.lblNgayS8.Location = new System.Drawing.Point(273, 102);
             this.lblNgayS8.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblNgayS8.Name = "lblNgayS8";
             this.lblNgayS8.Size = new System.Drawing.Size(62, 17);
@@ -633,7 +633,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNgayS7.AutoSize = true;
-            this.lblNgayS7.Location = new System.Drawing.Point(468, 81);
+            this.lblNgayS7.Location = new System.Drawing.Point(273, 78);
             this.lblNgayS7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblNgayS7.Name = "lblNgayS7";
             this.lblNgayS7.Size = new System.Drawing.Size(62, 17);
@@ -647,7 +647,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMaS3.AutoSize = true;
-            this.lblMaS3.Location = new System.Drawing.Point(468, 57);
+            this.lblMaS3.Location = new System.Drawing.Point(273, 54);
             this.lblMaS3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblMaS3.Name = "lblMaS3";
             this.lblMaS3.Size = new System.Drawing.Size(48, 17);
@@ -661,7 +661,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMaS2.AutoSize = true;
-            this.lblMaS2.Location = new System.Drawing.Point(468, 33);
+            this.lblMaS2.Location = new System.Drawing.Point(273, 30);
             this.lblMaS2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblMaS2.Name = "lblMaS2";
             this.lblMaS2.Size = new System.Drawing.Size(48, 17);
@@ -675,7 +675,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMaS1.AutoSize = true;
-            this.lblMaS1.Location = new System.Drawing.Point(468, 9);
+            this.lblMaS1.Location = new System.Drawing.Point(273, 6);
             this.lblMaS1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblMaS1.Name = "lblMaS1";
             this.lblMaS1.Size = new System.Drawing.Size(48, 17);
@@ -696,10 +696,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dateNgayS9.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgayS9.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dateNgayS9.LeaveColor = System.Drawing.Color.White;
-            this.dateNgayS9.Location = new System.Drawing.Point(628, 126);
+            this.dateNgayS9.Location = new System.Drawing.Point(380, 123);
             this.dateNgayS9.Margin = new System.Windows.Forms.Padding(5);
             this.dateNgayS9.Name = "dateNgayS9";
-            this.dateNgayS9.Size = new System.Drawing.Size(200, 23);
+            this.dateNgayS9.Size = new System.Drawing.Size(120, 23);
             this.dateNgayS9.StringValue = "__/__/____";
             this.dateNgayS9.TabIndex = 113;
             this.dateNgayS9.Text = "__/__/____";
@@ -718,10 +718,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dateNgayS8.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgayS8.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dateNgayS8.LeaveColor = System.Drawing.Color.White;
-            this.dateNgayS8.Location = new System.Drawing.Point(628, 102);
+            this.dateNgayS8.Location = new System.Drawing.Point(380, 99);
             this.dateNgayS8.Margin = new System.Windows.Forms.Padding(5);
             this.dateNgayS8.Name = "dateNgayS8";
-            this.dateNgayS8.Size = new System.Drawing.Size(200, 23);
+            this.dateNgayS8.Size = new System.Drawing.Size(120, 23);
             this.dateNgayS8.StringValue = "__/__/____";
             this.dateNgayS8.TabIndex = 111;
             this.dateNgayS8.Text = "__/__/____";
@@ -740,10 +740,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dateNgayS7.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgayS7.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dateNgayS7.LeaveColor = System.Drawing.Color.White;
-            this.dateNgayS7.Location = new System.Drawing.Point(628, 78);
+            this.dateNgayS7.Location = new System.Drawing.Point(380, 75);
             this.dateNgayS7.Margin = new System.Windows.Forms.Padding(5);
             this.dateNgayS7.Name = "dateNgayS7";
-            this.dateNgayS7.Size = new System.Drawing.Size(200, 23);
+            this.dateNgayS7.Size = new System.Drawing.Size(120, 23);
             this.dateNgayS7.StringValue = "__/__/____";
             this.dateNgayS7.TabIndex = 109;
             this.dateNgayS7.Text = "__/__/____";
@@ -760,10 +760,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtMA_TD3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMA_TD3.HoverColor = System.Drawing.Color.Yellow;
             this.txtMA_TD3.LeaveColor = System.Drawing.Color.White;
-            this.txtMA_TD3.Location = new System.Drawing.Point(209, 54);
+            this.txtMA_TD3.Location = new System.Drawing.Point(108, 51);
             this.txtMA_TD3.Margin = new System.Windows.Forms.Padding(5);
             this.txtMA_TD3.Name = "txtMA_TD3";
-            this.txtMA_TD3.Size = new System.Drawing.Size(200, 23);
+            this.txtMA_TD3.Size = new System.Drawing.Size(120, 23);
             this.txtMA_TD3.TabIndex = 89;
             // 
             // txtMA_TD2
@@ -778,10 +778,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtMA_TD2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMA_TD2.HoverColor = System.Drawing.Color.Yellow;
             this.txtMA_TD2.LeaveColor = System.Drawing.Color.White;
-            this.txtMA_TD2.Location = new System.Drawing.Point(209, 30);
+            this.txtMA_TD2.Location = new System.Drawing.Point(108, 27);
             this.txtMA_TD2.Margin = new System.Windows.Forms.Padding(5);
             this.txtMA_TD2.Name = "txtMA_TD2";
-            this.txtMA_TD2.Size = new System.Drawing.Size(200, 23);
+            this.txtMA_TD2.Size = new System.Drawing.Size(120, 23);
             this.txtMA_TD2.TabIndex = 87;
             // 
             // txtMA_TD1
@@ -789,17 +789,17 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtMA_TD1.AccessibleName = "MA_TD1";
             this.txtMA_TD1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtMA_TD1.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMA_TD1.BackColor = System.Drawing.Color.White;
             this.txtMA_TD1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMA_TD1.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMA_TD1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMA_TD1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMA_TD1.HoverColor = System.Drawing.Color.Yellow;
             this.txtMA_TD1.LeaveColor = System.Drawing.Color.White;
-            this.txtMA_TD1.Location = new System.Drawing.Point(209, 6);
+            this.txtMA_TD1.Location = new System.Drawing.Point(108, 3);
             this.txtMA_TD1.Margin = new System.Windows.Forms.Padding(5);
             this.txtMA_TD1.Name = "txtMA_TD1";
-            this.txtMA_TD1.Size = new System.Drawing.Size(200, 23);
+            this.txtMA_TD1.Size = new System.Drawing.Size(120, 23);
             this.txtMA_TD1.TabIndex = 85;
             // 
             // txtSLDN3
@@ -814,10 +814,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtSLDN3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtSLDN3.HoverColor = System.Drawing.Color.Yellow;
             this.txtSLDN3.LeaveColor = System.Drawing.Color.White;
-            this.txtSLDN3.Location = new System.Drawing.Point(209, 198);
+            this.txtSLDN3.Location = new System.Drawing.Point(625, 123);
             this.txtSLDN3.Margin = new System.Windows.Forms.Padding(5);
             this.txtSLDN3.Name = "txtSLDN3";
-            this.txtSLDN3.Size = new System.Drawing.Size(200, 23);
+            this.txtSLDN3.Size = new System.Drawing.Size(120, 23);
             this.txtSLDN3.TabIndex = 101;
             this.txtSLDN3.Text = "0,000";
             this.txtSLDN3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -825,7 +825,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSLDN2
             // 
@@ -839,10 +839,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtSLDN2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtSLDN2.HoverColor = System.Drawing.Color.Yellow;
             this.txtSLDN2.LeaveColor = System.Drawing.Color.White;
-            this.txtSLDN2.Location = new System.Drawing.Point(209, 174);
+            this.txtSLDN2.Location = new System.Drawing.Point(625, 99);
             this.txtSLDN2.Margin = new System.Windows.Forms.Padding(5);
             this.txtSLDN2.Name = "txtSLDN2";
-            this.txtSLDN2.Size = new System.Drawing.Size(200, 23);
+            this.txtSLDN2.Size = new System.Drawing.Size(120, 23);
             this.txtSLDN2.TabIndex = 99;
             this.txtSLDN2.Text = "0,000";
             this.txtSLDN2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -850,7 +850,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSLDN1
             // 
@@ -864,10 +864,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtSLDN1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtSLDN1.HoverColor = System.Drawing.Color.Yellow;
             this.txtSLDN1.LeaveColor = System.Drawing.Color.White;
-            this.txtSLDN1.Location = new System.Drawing.Point(209, 150);
+            this.txtSLDN1.Location = new System.Drawing.Point(625, 75);
             this.txtSLDN1.Margin = new System.Windows.Forms.Padding(5);
             this.txtSLDN1.Name = "txtSLDN1";
-            this.txtSLDN1.Size = new System.Drawing.Size(200, 23);
+            this.txtSLDN1.Size = new System.Drawing.Size(120, 23);
             this.txtSLDN1.TabIndex = 97;
             this.txtSLDN1.Text = "0,000";
             this.txtSLDN1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -875,7 +875,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // dateNgayDN3
             // 
@@ -891,10 +891,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dateNgayDN3.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgayDN3.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dateNgayDN3.LeaveColor = System.Drawing.Color.White;
-            this.dateNgayDN3.Location = new System.Drawing.Point(209, 126);
+            this.dateNgayDN3.Location = new System.Drawing.Point(108, 123);
             this.dateNgayDN3.Margin = new System.Windows.Forms.Padding(5);
             this.dateNgayDN3.Name = "dateNgayDN3";
-            this.dateNgayDN3.Size = new System.Drawing.Size(200, 23);
+            this.dateNgayDN3.Size = new System.Drawing.Size(120, 23);
             this.dateNgayDN3.StringValue = "__/__/____";
             this.dateNgayDN3.TabIndex = 95;
             this.dateNgayDN3.Text = "__/__/____";
@@ -913,10 +913,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dateNgayDN2.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgayDN2.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dateNgayDN2.LeaveColor = System.Drawing.Color.White;
-            this.dateNgayDN2.Location = new System.Drawing.Point(209, 102);
+            this.dateNgayDN2.Location = new System.Drawing.Point(108, 99);
             this.dateNgayDN2.Margin = new System.Windows.Forms.Padding(5);
             this.dateNgayDN2.Name = "dateNgayDN2";
-            this.dateNgayDN2.Size = new System.Drawing.Size(200, 23);
+            this.dateNgayDN2.Size = new System.Drawing.Size(120, 23);
             this.dateNgayDN2.StringValue = "__/__/____";
             this.dateNgayDN2.TabIndex = 93;
             this.dateNgayDN2.Text = "__/__/____";
@@ -935,10 +935,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dateNgayDN1.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgayDN1.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dateNgayDN1.LeaveColor = System.Drawing.Color.White;
-            this.dateNgayDN1.Location = new System.Drawing.Point(209, 78);
+            this.dateNgayDN1.Location = new System.Drawing.Point(108, 75);
             this.dateNgayDN1.Margin = new System.Windows.Forms.Padding(5);
             this.dateNgayDN1.Name = "dateNgayDN1";
-            this.dateNgayDN1.Size = new System.Drawing.Size(200, 23);
+            this.dateNgayDN1.Size = new System.Drawing.Size(120, 23);
             this.dateNgayDN1.StringValue = "__/__/____";
             this.dateNgayDN1.TabIndex = 91;
             this.dateNgayDN1.Text = "__/__/____";
@@ -950,7 +950,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSLDN3.AutoSize = true;
-            this.lblSLDN3.Location = new System.Drawing.Point(53, 201);
+            this.lblSLDN3.Location = new System.Drawing.Point(521, 126);
             this.lblSLDN3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblSLDN3.Name = "lblSLDN3";
             this.lblSLDN3.Size = new System.Drawing.Size(61, 17);
@@ -964,7 +964,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSLDN2.AutoSize = true;
-            this.lblSLDN2.Location = new System.Drawing.Point(53, 177);
+            this.lblSLDN2.Location = new System.Drawing.Point(521, 102);
             this.lblSLDN2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblSLDN2.Name = "lblSLDN2";
             this.lblSLDN2.Size = new System.Drawing.Size(61, 17);
@@ -978,7 +978,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSLDN1.AutoSize = true;
-            this.lblSLDN1.Location = new System.Drawing.Point(53, 153);
+            this.lblSLDN1.Location = new System.Drawing.Point(521, 78);
             this.lblSLDN1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblSLDN1.Name = "lblSLDN1";
             this.lblSLDN1.Size = new System.Drawing.Size(61, 17);
@@ -992,7 +992,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNgayDN3.AutoSize = true;
-            this.lblNgayDN3.Location = new System.Drawing.Point(53, 129);
+            this.lblNgayDN3.Location = new System.Drawing.Point(10, 126);
             this.lblNgayDN3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblNgayDN3.Name = "lblNgayDN3";
             this.lblNgayDN3.Size = new System.Drawing.Size(77, 17);
@@ -1006,7 +1006,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNgayDN2.AutoSize = true;
-            this.lblNgayDN2.Location = new System.Drawing.Point(53, 105);
+            this.lblNgayDN2.Location = new System.Drawing.Point(10, 102);
             this.lblNgayDN2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblNgayDN2.Name = "lblNgayDN2";
             this.lblNgayDN2.Size = new System.Drawing.Size(77, 17);
@@ -1020,7 +1020,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNgayDN1.AutoSize = true;
-            this.lblNgayDN1.Location = new System.Drawing.Point(53, 81);
+            this.lblNgayDN1.Location = new System.Drawing.Point(10, 78);
             this.lblNgayDN1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblNgayDN1.Name = "lblNgayDN1";
             this.lblNgayDN1.Size = new System.Drawing.Size(77, 17);
@@ -1034,7 +1034,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMaDN3.AutoSize = true;
-            this.lblMaDN3.Location = new System.Drawing.Point(53, 57);
+            this.lblMaDN3.Location = new System.Drawing.Point(10, 54);
             this.lblMaDN3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblMaDN3.Name = "lblMaDN3";
             this.lblMaDN3.Size = new System.Drawing.Size(63, 17);
@@ -1048,7 +1048,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMaDN2.AutoSize = true;
-            this.lblMaDN2.Location = new System.Drawing.Point(53, 33);
+            this.lblMaDN2.Location = new System.Drawing.Point(10, 30);
             this.lblMaDN2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblMaDN2.Name = "lblMaDN2";
             this.lblMaDN2.Size = new System.Drawing.Size(63, 17);
@@ -1062,7 +1062,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMaDN1.AutoSize = true;
-            this.lblMaDN1.Location = new System.Drawing.Point(53, 9);
+            this.lblMaDN1.Location = new System.Drawing.Point(10, 6);
             this.lblMaDN1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblMaDN1.Name = "lblMaDN1";
             this.lblMaDN1.Size = new System.Drawing.Size(63, 17);
@@ -1077,7 +1077,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage3.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage3.Size = new System.Drawing.Size(881, 298);
+            this.tabPage3.Size = new System.Drawing.Size(881, 179);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
             // 
@@ -1088,11 +1088,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabChiTiet);
             this.tabControl1.Controls.Add(this.tabKhac);
-            this.tabControl1.Location = new System.Drawing.Point(7, 343);
+            this.tabControl1.Location = new System.Drawing.Point(7, 220);
             this.tabControl1.MinimumSize = new System.Drawing.Size(0, 150);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(887, 219);
+            this.tabControl1.Size = new System.Drawing.Size(887, 342);
             this.tabControl1.TabIndex = 4;
             this.tabControl1.Enter += new System.EventHandler(this.tabControl1_Enter);
             // 
@@ -1105,7 +1105,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabChiTiet.Location = new System.Drawing.Point(4, 25);
             this.tabChiTiet.Name = "tabChiTiet";
             this.tabChiTiet.Padding = new System.Windows.Forms.Padding(3);
-            this.tabChiTiet.Size = new System.Drawing.Size(879, 190);
+            this.tabChiTiet.Size = new System.Drawing.Size(879, 313);
             this.tabChiTiet.TabIndex = 0;
             this.tabChiTiet.Tag = "canceldata";
             this.tabChiTiet.Text = "Chi tiết";
@@ -1165,7 +1165,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(875, 137);
+            this.dataGridView1.Size = new System.Drawing.Size(875, 260);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.Tag = "cancelall";
             this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);

@@ -4892,7 +4892,114 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             }
         }
 
-        
+        private void txtSLSP_V6LostFocus(object sender)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+
+        private void txtSLSP_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Mode != V6Mode.Add) return;
+
+                if (txtSLSP.Value != 0)
+                {
+                    detail1.MODE = V6Mode.View;
+
+                    DataTable aldmvt = Invoice.GetDinhMucVatTu(_sttRec, txtMaKh.Text, txtMadvcs.Text);
+
+                    //var initFilter = GetSoCt0InitFilter();
+                    var f = new FilterView(aldmvt, "MA_SP", "ALDMVT", txtMaSanPhamPH, "");
+                    f.MultiSeletion = false;
+                    //f.ChoseEvent += f_ChoseEvent;
+                    
+                    if (f.ViewData.Count > 0)
+                    {
+                        if (f.ShowDialog(this) == DialogResult.OK)
+                        {
+                            f_ChoseEvent(f.SelectedRowData);
+                        }
+                    }
+                    else
+                    {
+                        ShowParentMessage("GetDinhMucVatTu " + V6Text.NoData);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".txtSLSP_Leave", ex);
+            }
+        }
+
+        void f_ChoseEvent(SortedDictionary<string, object> data)
+        {
+            var mabpht = data["MA_BPHT"].ToString().Trim();
+            var masp = data["MA_SP"].ToString().Trim();
+            DateTime? ngayhl = ObjectAndString.ObjectToDate(data["NGAY_HL"]);
+
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@sl_sp",txtSLSP.Value),
+                new SqlParameter("@ma_bpht", mabpht),
+                new SqlParameter("@ma_sp", masp),
+                new SqlParameter("@Ngay_hl", ObjectAndString.ObjectToString(ngayhl, "yyyyMMdd")),
+                new SqlParameter("@Ngay_ct", dateNgayCT.Date.Date),
+                new SqlParameter("@User_id", V6Login.UserId),
+                new SqlParameter("@OutputInsert", ""),
+            };
+            var ds_aldmvtct = V6BusinessHelper.ExecuteProcedure("VPA_GET_ALDMVTCT", plist);
+            if (ds_aldmvtct == null || ds_aldmvtct.Tables.Count == 0)
+            {
+                ShowParentMessage(V6Text.NoData);
+                return;
+            }
+
+            while (AD.Rows.Count > 0)
+            {
+                AD.Rows.RemoveAt(0);
+            }
+
+            DataTable aldmvtct = ds_aldmvtct.Tables[0];
+
+            for (int i = 0; i < aldmvtct.Rows.Count; i++)
+            {
+                DataRow data_row = aldmvtct.Rows[i];
+
+                string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
+                string data_maBpht = data_row["Ma_bpht"].ToString().Trim().ToUpper();
+                string data_maSp = data_row["Ma_sp"].ToString().Trim().ToUpper();
+                string data_dVt1 = data_row["Dvt1"].ToString().Trim().ToUpper();
+
+                if (data_maVt == "") continue;
+
+                decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["SO_LUONG"]);
+                var dic = detail1.GetData();
+
+                dic["MA_BPHT"] = data_maBpht;
+                dic["MA_SP"] = data_maSp;
+                dic["MA_VT"] = data_maVt;
+                dic["TEN_VT"] = data_row["TEN_VT"];
+                dic["TK_VT"] = data_row["TK_VT"];
+                dic["DVT1"] = data_dVt1;
+                dic["SO_LUONG1"] = data_soLuong;
+                dic["SO_LUONG"] = data_soLuong;
+                dic["HE_SO1"] = data_row["HE_SO1"];
+
+                All_Objects["data_row"] = data_row;
+                All_Objects["data"] = dic;
+                InvokeFormEvent("FIXDINHMUCVATTU");
+                XuLyThemDetail(dic);
+            }
+        }
 
     }
 }

@@ -4095,18 +4095,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     return false;
                 }
 
-                if (txtManx.Text.Trim() == "")
-                {
-                    this.ShowWarningMessage("Chưa nhập tài khoản!");
-                    txtManx.Focus();
-                    return false;
-                }
-                if (txtManx.Int_Data("Loai_tk") == 0)
-                {
-                    this.ShowWarningMessage("Tài khoản không phải chi tiết!");
-                    txtManx.Focus();
-                    return false;
-                }
+                //if (txtManx.Text.Trim() == "")
+                //{
+                //    this.ShowWarningMessage("Chưa nhập tài khoản!");
+                //    txtManx.Focus();
+                //    return false;
+                //}
+                //if (txtManx.Int_Data("Loai_tk") == 0)
+                //{
+                //    this.ShowWarningMessage("Tài khoản không phải chi tiết!");
+                //    txtManx.Focus();
+                //    return false;
+                //}
                 if (cboKieuPost.SelectedIndex == -1)
                 {
                     this.ShowWarningMessage("Chưa chọn kiểu post!");
@@ -4219,11 +4219,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         {
             try
             {
-                if (_tkDt.Int_Data("Loai_tk") == 0)
-                {
-                    this.ShowWarningMessage("Tài khoản không phải chi tiết !");
-                    return false;
-                }
+                //if (_tkDt.Int_Data("Loai_tk") == 0)
+                //{
+                //    this.ShowWarningMessage("Tài khoản không phải chi tiết !");
+                //    return false;
+                //}
 
                 string errors = ValidateDetailData(Invoice, data);
                 if (!string.IsNullOrEmpty(errors))

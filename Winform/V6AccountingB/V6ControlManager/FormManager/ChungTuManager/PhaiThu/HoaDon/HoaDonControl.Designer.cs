@@ -243,6 +243,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.v6Label5 = new V6Controls.V6Label();
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label1 = new V6Controls.V6Label();
+            this.tabThongTin = new System.Windows.Forms.TabPage();
+            this.v6DateTimePick1 = new V6Controls.V6DateTimePicker();
+            this.v6Label48 = new V6Controls.V6Label();
+            this.txtDiaChi2 = new V6Controls.V6VvarTextBox();
+            this.v6VvarTextBox3 = new V6Controls.V6VvarTextBox();
+            this.lblNgayNoHD = new V6Controls.V6Label();
+            this.lblHTTT = new V6Controls.V6Label();
+            this.txtNgayNoHD = new V6Controls.V6NumberTextBox();
+            this.txtMaPTVC = new V6Controls.V6VvarTextBox();
+            this.lblPTVC = new V6Controls.V6Label();
+            this.lblDiaChi2 = new V6Controls.V6Label();
             this.menuChucNang.SuspendLayout();
             this.menuDetail1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -258,6 +269,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.group3.SuspendLayout();
             this.group2.SuspendLayout();
             this.group1.SuspendLayout();
+            this.tabThongTin.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridViewTextBoxColumn1
@@ -753,6 +765,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.tabControl1.Controls.Add(this.tabChiTiet);
             this.tabControl1.Controls.Add(this.tabKhac);
             this.tabControl1.Controls.Add(this.tabChiTietBoSung);
+            this.tabControl1.Controls.Add(this.tabThongTin);
             this.tabControl1.Location = new System.Drawing.Point(3, 175);
             this.tabControl1.MinimumSize = new System.Drawing.Size(0, 150);
             this.tabControl1.Name = "tabControl1";
@@ -1061,7 +1074,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // TxtT_TIENVCNT
             // 
@@ -1086,7 +1099,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6Label26
             // 
@@ -1299,7 +1312,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSL_UD2
             // 
@@ -1324,7 +1337,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSL_UD1
             // 
@@ -1349,7 +1362,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // label16
             // 
@@ -1788,7 +1801,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtTongGiam
             // 
@@ -1815,7 +1828,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtTongCk
             // 
@@ -1842,7 +1855,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtTongThue
             // 
@@ -1869,7 +1882,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtTongThanhToan
             // 
@@ -2021,7 +2034,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             0,
             0,
             0,
-            196608});
+            0});
             this.txtTongGiamNt.V6LostFocus += new V6Controls.ControlEventHandle(this.txtTongGiamNt_V6LostFocus);
             // 
             // lblT_THUE_NT
@@ -2056,7 +2069,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             0,
             0,
             0,
-            196608});
+            0});
             this.txtTongCkNt.V6LostFocus += new V6Controls.ControlEventHandle(this.txtTongCkNt_V6LostFocus);
             // 
             // lblT_CK_NT
@@ -2242,7 +2255,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             0,
             0,
             0,
-            131072});
+            0});
             // 
             // cboChuyenData
             // 
@@ -2328,7 +2341,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             0,
             0,
             0,
-            131072});
+            0});
             // 
             // txtTongSoLuong1
             // 
@@ -2357,7 +2370,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             0,
             0,
             0,
-            131072});
+            0});
             // 
             // cboKieuPost
             // 
@@ -2518,7 +2531,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             0,
             0,
             0,
-            131072});
+            0});
             this.txtThueSuat.V6LostFocus += new V6Controls.ControlEventHandle(this.txtThueSuat_V6LostFocus);
             // 
             // txtPtCk
@@ -2544,7 +2557,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             0,
             0,
             0,
-            131072});
+            0});
             this.txtPtCk.V6LostFocus += new V6Controls.ControlEventHandle(this.txtPtCk_V6LostFocus);
             // 
             // btnChucNang
@@ -2943,7 +2956,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             0,
             0,
             0,
-            196608});
+            0});
             this.txtTyGia.V6LostFocus += new V6Controls.ControlEventHandle(this.txtTyGia_V6LostFocus);
             // 
             // cboMaNt
@@ -3533,6 +3546,168 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.v6Label1.TabIndex = 0;
             this.v6Label1.Text = "Số nội bộ";
             // 
+            // tabThongTin
+            // 
+            this.tabThongTin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTin.Controls.Add(this.v6DateTimePick1);
+            this.tabThongTin.Controls.Add(this.v6Label48);
+            this.tabThongTin.Controls.Add(this.txtDiaChi2);
+            this.tabThongTin.Controls.Add(this.v6VvarTextBox3);
+            this.tabThongTin.Controls.Add(this.lblNgayNoHD);
+            this.tabThongTin.Controls.Add(this.lblHTTT);
+            this.tabThongTin.Controls.Add(this.txtNgayNoHD);
+            this.tabThongTin.Controls.Add(this.txtMaPTVC);
+            this.tabThongTin.Controls.Add(this.lblPTVC);
+            this.tabThongTin.Controls.Add(this.lblDiaChi2);
+            this.tabThongTin.Location = new System.Drawing.Point(4, 22);
+            this.tabThongTin.Name = "tabThongTin";
+            this.tabThongTin.Padding = new System.Windows.Forms.Padding(3);
+            this.tabThongTin.Size = new System.Drawing.Size(885, 194);
+            this.tabThongTin.TabIndex = 5;
+            this.tabThongTin.Text = "TT nhận hàng & PTTT";
+            // 
+            // v6DateTimePick1
+            // 
+            this.v6DateTimePick1.AccessibleName = "TG_NHAN";
+            this.v6DateTimePick1.CustomFormat = "HH:mm dd/MM/yyyy";
+            this.v6DateTimePick1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6DateTimePick1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.v6DateTimePick1.HoverColor = System.Drawing.Color.Yellow;
+            this.v6DateTimePick1.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.v6DateTimePick1.LeaveColor = System.Drawing.Color.White;
+            this.v6DateTimePick1.Location = new System.Drawing.Point(134, 107);
+            this.v6DateTimePick1.Name = "v6DateTimePick1";
+            this.v6DateTimePick1.Size = new System.Drawing.Size(130, 20);
+            this.v6DateTimePick1.TabIndex = 9;
+            this.v6DateTimePick1.UseTime = true;
+            // 
+            // v6Label48
+            // 
+            this.v6Label48.AccessibleDescription = "ASOCTSORL00126";
+            this.v6Label48.AutoSize = true;
+            this.v6Label48.Location = new System.Drawing.Point(0, 111);
+            this.v6Label48.Name = "v6Label48";
+            this.v6Label48.Size = new System.Drawing.Size(64, 13);
+            this.v6Label48.TabIndex = 8;
+            this.v6Label48.Text = "T.gian nhận";
+            // 
+            // txtDiaChi2
+            // 
+            this.txtDiaChi2.AccessibleName = "DIA_CHI2";
+            this.txtDiaChi2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDiaChi2.BackColor = System.Drawing.SystemColors.Window;
+            this.txtDiaChi2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtDiaChi2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDiaChi2.CheckNotEmpty = true;
+            this.txtDiaChi2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtDiaChi2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtDiaChi2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtDiaChi2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtDiaChi2.LeaveColor = System.Drawing.Color.White;
+            this.txtDiaChi2.Location = new System.Drawing.Point(134, 4);
+            this.txtDiaChi2.Name = "txtDiaChi2";
+            this.txtDiaChi2.Size = new System.Drawing.Size(744, 20);
+            this.txtDiaChi2.TabIndex = 1;
+            this.txtDiaChi2.VVar = "DIA_CHI2";
+            // 
+            // v6VvarTextBox3
+            // 
+            this.v6VvarTextBox3.AccessibleName = "MA_HTTT";
+            this.v6VvarTextBox3.BackColor = System.Drawing.SystemColors.Window;
+            this.v6VvarTextBox3.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6VvarTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.v6VvarTextBox3.CheckNotEmpty = true;
+            this.v6VvarTextBox3.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6VvarTextBox3.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6VvarTextBox3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6VvarTextBox3.HoverColor = System.Drawing.Color.Yellow;
+            this.v6VvarTextBox3.LeaveColor = System.Drawing.Color.White;
+            this.v6VvarTextBox3.Location = new System.Drawing.Point(134, 55);
+            this.v6VvarTextBox3.Name = "v6VvarTextBox3";
+            this.v6VvarTextBox3.Size = new System.Drawing.Size(100, 20);
+            this.v6VvarTextBox3.TabIndex = 5;
+            this.v6VvarTextBox3.VVar = "MA_HTTT";
+            // 
+            // lblNgayNoHD
+            // 
+            this.lblNgayNoHD.AutoSize = true;
+            this.lblNgayNoHD.Location = new System.Drawing.Point(0, 83);
+            this.lblNgayNoHD.Name = "lblNgayNoHD";
+            this.lblNgayNoHD.Size = new System.Drawing.Size(105, 13);
+            this.lblNgayNoHD.TabIndex = 6;
+            this.lblNgayNoHD.Text = "Số ngày lấy hóa đơn";
+            // 
+            // lblHTTT
+            // 
+            this.lblHTTT.AutoSize = true;
+            this.lblHTTT.Location = new System.Drawing.Point(0, 58);
+            this.lblHTTT.Name = "lblHTTT";
+            this.lblHTTT.Size = new System.Drawing.Size(107, 13);
+            this.lblHTTT.TabIndex = 4;
+            this.lblHTTT.Text = "Hình thức thanh toán";
+            // 
+            // txtNgayNoHD
+            // 
+            this.txtNgayNoHD.AccessibleDescription = "";
+            this.txtNgayNoHD.AccessibleName = "NGAY_NOHD";
+            this.txtNgayNoHD.BackColor = System.Drawing.SystemColors.Window;
+            this.txtNgayNoHD.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtNgayNoHD.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNgayNoHD.DecimalPlaces = 0;
+            this.txtNgayNoHD.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtNgayNoHD.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNgayNoHD.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtNgayNoHD.HoverColor = System.Drawing.Color.Yellow;
+            this.txtNgayNoHD.LeaveColor = System.Drawing.Color.White;
+            this.txtNgayNoHD.Location = new System.Drawing.Point(134, 81);
+            this.txtNgayNoHD.Name = "txtNgayNoHD";
+            this.txtNgayNoHD.Size = new System.Drawing.Size(100, 20);
+            this.txtNgayNoHD.TabIndex = 7;
+            this.txtNgayNoHD.Text = "0";
+            this.txtNgayNoHD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtNgayNoHD.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // txtMaPTVC
+            // 
+            this.txtMaPTVC.AccessibleName = "MA_PTVC";
+            this.txtMaPTVC.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaPTVC.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaPTVC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMaPTVC.CheckNotEmpty = true;
+            this.txtMaPTVC.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaPTVC.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaPTVC.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaPTVC.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaPTVC.LeaveColor = System.Drawing.Color.White;
+            this.txtMaPTVC.Location = new System.Drawing.Point(134, 29);
+            this.txtMaPTVC.Name = "txtMaPTVC";
+            this.txtMaPTVC.Size = new System.Drawing.Size(100, 20);
+            this.txtMaPTVC.TabIndex = 3;
+            this.txtMaPTVC.VVar = "MA_HTVC";
+            // 
+            // lblPTVC
+            // 
+            this.lblPTVC.AutoSize = true;
+            this.lblPTVC.Location = new System.Drawing.Point(0, 32);
+            this.lblPTVC.Name = "lblPTVC";
+            this.lblPTVC.Size = new System.Drawing.Size(118, 13);
+            this.lblPTVC.TabIndex = 2;
+            this.lblPTVC.Text = "Phương thức giao hàng";
+            // 
+            // lblDiaChi2
+            // 
+            this.lblDiaChi2.AutoSize = true;
+            this.lblDiaChi2.Location = new System.Drawing.Point(0, 6);
+            this.lblDiaChi2.Name = "lblDiaChi2";
+            this.lblDiaChi2.Size = new System.Drawing.Size(114, 13);
+            this.lblDiaChi2.TabIndex = 0;
+            this.lblDiaChi2.Text = "Địa chỉ giao / lấy hàng";
+            // 
             // HoaDonControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3592,6 +3767,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.group2.PerformLayout();
             this.group1.ResumeLayout(false);
             this.group1.PerformLayout();
+            this.tabThongTin.ResumeLayout(false);
+            this.tabThongTin.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3803,5 +3980,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private System.Windows.Forms.ToolStripMenuItem thayThe2toolStripMenuItem;
         private NumberSoluong txtTongSoLuong;
         private V6Label lblKieuPostColor;
+        private System.Windows.Forms.TabPage tabThongTin;
+        private V6DateTimePicker v6DateTimePick1;
+        private V6Label v6Label48;
+        private V6VvarTextBox txtDiaChi2;
+        private V6VvarTextBox v6VvarTextBox3;
+        private V6Label lblNgayNoHD;
+        private V6Label lblHTTT;
+        private V6NumberTextBox txtNgayNoHD;
+        private V6VvarTextBox txtMaPTVC;
+        private V6Label lblPTVC;
+        private V6Label lblDiaChi2;
     }
 }

@@ -380,6 +380,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 GrayText = "Tk chi phí"
             };
             tk_cp_i.FilterStart = true;
+            tk_cp_i.SetInitFilter("Loai_tk = 1");
+            
             he_so = new NumberSoluong()
             {
                 AccessibleName = "he_so",
@@ -416,7 +418,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 VVar = "MA_VT",                
                 GrayText = "Mã sản phẩm"
             };
-            ma_sp.SetInitFilter("Loai_vt='51'");
+            ma_sp.SetInitFilter("Loai_vt='55'");
 
 
             var dynamicControlList = new SortedDictionary<int, Control>();

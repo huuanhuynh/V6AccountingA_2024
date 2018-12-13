@@ -32,15 +32,49 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.menuChucNang = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ChonDonHangMuaMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.TroGiupMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.chonTuExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xuLyKhacToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thayTheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thayThe2toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblNameT = new V6Controls.V6Label();
+            this.btnViewInfoData = new System.Windows.Forms.Button();
+            this.Txtma_nk = new V6Controls.V6ColorTextBox();
+            this.TxtLoai_pb = new V6Controls.V6ColorTextBox();
+            this.btnHuy = new System.Windows.Forms.Button();
+            this.TxtTk_i = new V6Controls.V6VvarTextBox();
+            this.Txtma_kh_i = new V6Controls.V6VvarTextBox();
+            this.btnFirst = new System.Windows.Forms.Button();
+            this.txtMa_ct = new V6Controls.V6ColorTextBox();
+            this.btnPrevious = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.txtLoaiCt = new V6Controls.V6ColorTextBox();
+            this.btnLast = new System.Windows.Forms.Button();
+            this.btnQuayRa = new System.Windows.Forms.Button();
+            this.btnXem = new System.Windows.Forms.Button();
+            this.btnXoa = new System.Windows.Forms.Button();
+            this.btnSua = new System.Windows.Forms.Button();
+            this.btnIn = new System.Windows.Forms.Button();
+            this.btnCopy = new System.Windows.Forms.Button();
+            this.btnMoi = new System.Windows.Forms.Button();
+            this.btnLuu = new System.Windows.Forms.Button();
+            this.btnTim = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabChiTiet = new System.Windows.Forms.TabPage();
             this.detail1 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
@@ -99,6 +133,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.txtNGAY_UD3 = new V6Controls.V6DateTimeColor();
             this.txtNGAY_UD2 = new V6Controls.V6DateTimeColor();
             this.txtNGAY_UD1 = new V6Controls.V6DateTimeColor();
+            this.tabThongTin = new System.Windows.Forms.TabPage();
+            this.v6DateTimePick1 = new V6Controls.V6DateTimePicker();
+            this.v6Label48 = new V6Controls.V6Label();
+            this.txtDiaChi2 = new V6Controls.V6VvarTextBox();
+            this.txtMaHTTT = new V6Controls.V6VvarTextBox();
+            this.lblNgayNoHD = new V6Controls.V6Label();
+            this.lblHTTT = new V6Controls.V6Label();
+            this.txtNgayNoHD = new V6Controls.V6NumberTextBox();
+            this.txtMaPTVC = new V6Controls.V6VvarTextBox();
+            this.lblPTVC = new V6Controls.V6Label();
+            this.lblDiaChi2 = new V6Controls.V6Label();
             this.group5 = new System.Windows.Forms.GroupBox();
             this.panelVND = new System.Windows.Forms.Panel();
             this.txtTongTien0 = new V6Controls.V6NumberTextBox();
@@ -120,17 +165,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.txtTongThanhToanNt = new V6Controls.NumberTienNt();
             this.v6Label4 = new V6Controls.V6Label();
             this.group4 = new System.Windows.Forms.GroupBox();
+            this.lblKieuPostColor = new V6Controls.V6Label();
             this.txtTongSoLuong = new V6Controls.NumberSoluong();
             this.cboChuyenData = new V6Controls.Controls.V6IndexComboBox();
             this.v6Label28 = new V6Controls.V6Label();
             this.btnChucNang = new V6Controls.Controls.DropDownButton();
-            this.menuChucNang = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ChonDonHangMuaMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.TroGiupMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.chonTuExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.xuLyKhacToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.thayTheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.thayThe2toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TxtT_cp_nt = new V6Controls.V6NumberTextBox();
             this.TxtT_cp = new V6Controls.V6NumberTextBox();
             this.chkSuaTien = new V6Controls.V6CheckBox();
@@ -154,6 +193,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.v6Label33 = new V6Controls.V6Label();
             this.v6Label31 = new V6Controls.V6Label();
             this.v6Label19 = new V6Controls.V6Label();
+            this.lblDocSoTien = new V6Controls.V6Label();
             this.group3 = new System.Windows.Forms.GroupBox();
             this.txtMadvcs = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox4 = new V6Controls.V6ColorTextBox();
@@ -176,9 +216,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.txtDiaChi = new V6Controls.V6ColorTextBox();
             this.v6Label11 = new V6Controls.V6Label();
             this.v6Label10 = new V6Controls.V6Label();
-            this.TxtLoai_pb = new V6Controls.V6ColorTextBox();
-            this.TxtTk_i = new V6Controls.V6VvarTextBox();
-            this.Txtma_kh_i = new V6Controls.V6VvarTextBox();
             this.group2 = new System.Windows.Forms.GroupBox();
             this.txtSoSeri0 = new V6Controls.V6ColorTextBox();
             this.txtManx = new V6Controls.V6VvarTextBox();
@@ -199,32 +236,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label1 = new V6Controls.V6Label();
             this.txtSoPhieu = new V6Controls.V6ColorTextBox();
-            this.txtMa_ct = new V6Controls.V6ColorTextBox();
-            this.txtLoaiCt = new V6Controls.V6ColorTextBox();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblDocSoTien = new V6Controls.V6Label();
-            this.btnHuy = new System.Windows.Forms.Button();
-            this.btnFirst = new System.Windows.Forms.Button();
-            this.btnPrevious = new System.Windows.Forms.Button();
-            this.btnNext = new System.Windows.Forms.Button();
-            this.btnLast = new System.Windows.Forms.Button();
-            this.btnQuayRa = new System.Windows.Forms.Button();
-            this.btnXem = new System.Windows.Forms.Button();
-            this.btnXoa = new System.Windows.Forms.Button();
-            this.btnSua = new System.Windows.Forms.Button();
-            this.btnIn = new System.Windows.Forms.Button();
-            this.btnCopy = new System.Windows.Forms.Button();
-            this.btnMoi = new System.Windows.Forms.Button();
-            this.btnLuu = new System.Windows.Forms.Button();
-            this.btnTim = new System.Windows.Forms.Button();
-            this.Txtma_nk = new V6Controls.V6ColorTextBox();
-            this.btnViewInfoData = new System.Windows.Forms.Button();
-            this.lblNameT = new V6Controls.V6Label();
-            this.lblKieuPostColor = new V6Controls.V6Label();
+            this.menuChucNang.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -233,15 +245,427 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.tabChiPhi.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.tabKhac.SuspendLayout();
+            this.tabThongTin.SuspendLayout();
             this.group5.SuspendLayout();
             this.panelVND.SuspendLayout();
             this.panelNT.SuspendLayout();
             this.group4.SuspendLayout();
-            this.menuChucNang.SuspendLayout();
             this.group3.SuspendLayout();
             this.group2.SuspendLayout();
             this.group1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // menuChucNang
+            // 
+            this.menuChucNang.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ChonDonHangMuaMenu,
+            this.TroGiupMenu,
+            this.chonTuExcelToolStripMenuItem,
+            this.xuLyKhacToolStripMenuItem,
+            this.thayTheToolStripMenuItem,
+            this.thayThe2toolStripMenuItem});
+            this.menuChucNang.Name = "menuChucNang";
+            this.menuChucNang.Size = new System.Drawing.Size(185, 136);
+            // 
+            // ChonDonHangMuaMenu
+            // 
+            this.ChonDonHangMuaMenu.Name = "ChonDonHangMuaMenu";
+            this.ChonDonHangMuaMenu.Size = new System.Drawing.Size(184, 22);
+            this.ChonDonHangMuaMenu.Text = "Chọn đơn hàng mua";
+            this.ChonDonHangMuaMenu.Visible = false;
+            // 
+            // TroGiupMenu
+            // 
+            this.TroGiupMenu.Name = "TroGiupMenu";
+            this.TroGiupMenu.Size = new System.Drawing.Size(184, 22);
+            this.TroGiupMenu.Text = "Trợ giúp";
+            this.TroGiupMenu.Click += new System.EventHandler(this.TroGiupMenu_Click);
+            // 
+            // chonTuExcelToolStripMenuItem
+            // 
+            this.chonTuExcelToolStripMenuItem.Name = "chonTuExcelToolStripMenuItem";
+            this.chonTuExcelToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.chonTuExcelToolStripMenuItem.Text = "Chọn từ excel";
+            this.chonTuExcelToolStripMenuItem.Click += new System.EventHandler(this.chonTuExcelToolStripMenuItem_Click);
+            // 
+            // xuLyKhacToolStripMenuItem
+            // 
+            this.xuLyKhacToolStripMenuItem.Name = "xuLyKhacToolStripMenuItem";
+            this.xuLyKhacToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.xuLyKhacToolStripMenuItem.Text = "Xử lý khác";
+            this.xuLyKhacToolStripMenuItem.Click += new System.EventHandler(this.xuLyKhacToolStripMenuItem_Click);
+            // 
+            // thayTheToolStripMenuItem
+            // 
+            this.thayTheToolStripMenuItem.Name = "thayTheToolStripMenuItem";
+            this.thayTheToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.thayTheToolStripMenuItem.Text = "Thay thế";
+            this.thayTheToolStripMenuItem.Click += new System.EventHandler(this.thayTheToolStripMenuItem_Click);
+            // 
+            // thayThe2toolStripMenuItem
+            // 
+            this.thayThe2toolStripMenuItem.Name = "thayThe2toolStripMenuItem";
+            this.thayThe2toolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.thayThe2toolStripMenuItem.Text = "Sửa nhiều dòng";
+            this.thayThe2toolStripMenuItem.Click += new System.EventHandler(this.thayThe2toolStripMenuItem_Click);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "MA_VT";
+            this.dataGridViewTextBoxColumn1.Frozen = true;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Mã vật tư";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "TEN_VT";
+            this.dataGridViewTextBoxColumn2.Frozen = true;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Tên vật tư";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "UID";
+            this.dataGridViewTextBoxColumn3.HeaderText = "UID";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "STT_REC";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Rec";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "STT_REC0";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Rec0";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Visible = false;
+            // 
+            // lblNameT
+            // 
+            this.lblNameT.AccessibleDescription = "";
+            this.lblNameT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNameT.Location = new System.Drawing.Point(355, 157);
+            this.lblNameT.Name = "lblNameT";
+            this.lblNameT.Size = new System.Drawing.Size(540, 18);
+            this.lblNameT.TabIndex = 29;
+            this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnViewInfoData
+            // 
+            this.btnViewInfoData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnViewInfoData.Image = global::V6ControlManager.Properties.Resources.Help;
+            this.btnViewInfoData.Location = new System.Drawing.Point(867, 557);
+            this.btnViewInfoData.Name = "btnViewInfoData";
+            this.btnViewInfoData.Size = new System.Drawing.Size(30, 23);
+            this.btnViewInfoData.TabIndex = 28;
+            this.btnViewInfoData.UseVisualStyleBackColor = true;
+            this.btnViewInfoData.Click += new System.EventHandler(this.btnViewInfoData_Click);
+            // 
+            // Txtma_nk
+            // 
+            this.Txtma_nk.AccessibleName = "MA_NK";
+            this.Txtma_nk.BackColor = System.Drawing.Color.White;
+            this.Txtma_nk.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.Txtma_nk.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Txtma_nk.EnterColor = System.Drawing.Color.PaleGreen;
+            this.Txtma_nk.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.Txtma_nk.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.Txtma_nk.HoverColor = System.Drawing.Color.Yellow;
+            this.Txtma_nk.LeaveColor = System.Drawing.Color.White;
+            this.Txtma_nk.Location = new System.Drawing.Point(695, 525);
+            this.Txtma_nk.Name = "Txtma_nk";
+            this.Txtma_nk.Size = new System.Drawing.Size(11, 20);
+            this.Txtma_nk.TabIndex = 23;
+            this.Txtma_nk.Visible = false;
+            // 
+            // TxtLoai_pb
+            // 
+            this.TxtLoai_pb.AccessibleName = "loai_pb";
+            this.TxtLoai_pb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtLoai_pb.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtLoai_pb.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TxtLoai_pb.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtLoai_pb.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtLoai_pb.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.TxtLoai_pb.HoverColor = System.Drawing.Color.Yellow;
+            this.TxtLoai_pb.LeaveColor = System.Drawing.Color.White;
+            this.TxtLoai_pb.Location = new System.Drawing.Point(728, 524);
+            this.TxtLoai_pb.Name = "TxtLoai_pb";
+            this.TxtLoai_pb.Size = new System.Drawing.Size(11, 20);
+            this.TxtLoai_pb.TabIndex = 25;
+            this.TxtLoai_pb.Visible = false;
+            this.TxtLoai_pb.TextChanged += new System.EventHandler(this.TxtLoai_pb_TextChanged);
+            // 
+            // btnHuy
+            // 
+            this.btnHuy.AccessibleDescription = "APOCTPOAC00029";
+            this.btnHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnHuy.Enabled = false;
+            this.btnHuy.Image = global::V6ControlManager.Properties.Resources.Cancel24;
+            this.btnHuy.Location = new System.Drawing.Point(287, 547);
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.Size = new System.Drawing.Size(74, 32);
+            this.btnHuy.TabIndex = 19;
+            this.btnHuy.Text = "&Hủy bỏ";
+            this.btnHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
+            // 
+            // TxtTk_i
+            // 
+            this.TxtTk_i.AccessibleName = "tk_i";
+            this.TxtTk_i.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtTk_i.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtTk_i.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TxtTk_i.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtTk_i.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtTk_i.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.TxtTk_i.HoverColor = System.Drawing.Color.Yellow;
+            this.TxtTk_i.LeaveColor = System.Drawing.Color.White;
+            this.TxtTk_i.Location = new System.Drawing.Point(713, 525);
+            this.TxtTk_i.Name = "TxtTk_i";
+            this.TxtTk_i.Size = new System.Drawing.Size(11, 20);
+            this.TxtTk_i.TabIndex = 27;
+            this.TxtTk_i.Visible = false;
+            this.TxtTk_i.VVar = "ma_nx";
+            // 
+            // Txtma_kh_i
+            // 
+            this.Txtma_kh_i.AccessibleName = "ma_kh_i";
+            this.Txtma_kh_i.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Txtma_kh_i.BackColor = System.Drawing.SystemColors.Window;
+            this.Txtma_kh_i.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.Txtma_kh_i.BrotherFields = "ten_kh,dia_chi,ma_so_thue";
+            this.Txtma_kh_i.CheckNotEmpty = true;
+            this.Txtma_kh_i.EnterColor = System.Drawing.Color.PaleGreen;
+            this.Txtma_kh_i.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.Txtma_kh_i.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.Txtma_kh_i.HoverColor = System.Drawing.Color.Yellow;
+            this.Txtma_kh_i.LeaveColor = System.Drawing.Color.White;
+            this.Txtma_kh_i.Location = new System.Drawing.Point(672, 525);
+            this.Txtma_kh_i.Name = "Txtma_kh_i";
+            this.Txtma_kh_i.Size = new System.Drawing.Size(11, 20);
+            this.Txtma_kh_i.TabIndex = 26;
+            this.Txtma_kh_i.Visible = false;
+            this.Txtma_kh_i.VVar = "ma_kh";
+            // 
+            // btnFirst
+            // 
+            this.btnFirst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFirst.Image = global::V6ControlManager.Properties.Resources.First;
+            this.btnFirst.Location = new System.Drawing.Point(751, 557);
+            this.btnFirst.Name = "btnFirst";
+            this.btnFirst.Size = new System.Drawing.Size(30, 23);
+            this.btnFirst.TabIndex = 15;
+            this.btnFirst.UseVisualStyleBackColor = true;
+            this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
+            // 
+            // txtMa_ct
+            // 
+            this.txtMa_ct.AccessibleName = "Ma_ct";
+            this.txtMa_ct.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMa_ct.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMa_ct.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMa_ct.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMa_ct.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMa_ct.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMa_ct.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMa_ct.LeaveColor = System.Drawing.Color.White;
+            this.txtMa_ct.Location = new System.Drawing.Point(779, 526);
+            this.txtMa_ct.Name = "txtMa_ct";
+            this.txtMa_ct.Size = new System.Drawing.Size(43, 20);
+            this.txtMa_ct.TabIndex = 3;
+            this.txtMa_ct.Visible = false;
+            // 
+            // btnPrevious
+            // 
+            this.btnPrevious.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrevious.Image = global::V6ControlManager.Properties.Resources.Back;
+            this.btnPrevious.Location = new System.Drawing.Point(780, 557);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(30, 23);
+            this.btnPrevious.TabIndex = 16;
+            this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNext.Image = global::V6ControlManager.Properties.Resources.Forward;
+            this.btnNext.Location = new System.Drawing.Point(809, 557);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(30, 23);
+            this.btnNext.TabIndex = 17;
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // txtLoaiCt
+            // 
+            this.txtLoaiCt.AccessibleName = "loai_ct";
+            this.txtLoaiCt.BackColor = System.Drawing.SystemColors.Window;
+            this.txtLoaiCt.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtLoaiCt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLoaiCt.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtLoaiCt.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtLoaiCt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtLoaiCt.HoverColor = System.Drawing.Color.Yellow;
+            this.txtLoaiCt.LeaveColor = System.Drawing.Color.White;
+            this.txtLoaiCt.Location = new System.Drawing.Point(745, 526);
+            this.txtLoaiCt.Name = "txtLoaiCt";
+            this.txtLoaiCt.Size = new System.Drawing.Size(28, 20);
+            this.txtLoaiCt.TabIndex = 3;
+            this.txtLoaiCt.Visible = false;
+            // 
+            // btnLast
+            // 
+            this.btnLast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLast.Image = global::V6ControlManager.Properties.Resources.Last;
+            this.btnLast.Location = new System.Drawing.Point(838, 557);
+            this.btnLast.Name = "btnLast";
+            this.btnLast.Size = new System.Drawing.Size(30, 23);
+            this.btnLast.TabIndex = 18;
+            this.btnLast.UseVisualStyleBackColor = true;
+            this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
+            // 
+            // btnQuayRa
+            // 
+            this.btnQuayRa.AccessibleDescription = "APOCTPOAR00040";
+            this.btnQuayRa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnQuayRa.Image = global::V6ControlManager.Properties.Resources.BackArrow24;
+            this.btnQuayRa.Location = new System.Drawing.Point(578, 547);
+            this.btnQuayRa.Name = "btnQuayRa";
+            this.btnQuayRa.Size = new System.Drawing.Size(76, 32);
+            this.btnQuayRa.TabIndex = 14;
+            this.btnQuayRa.Text = "&Quay ra";
+            this.btnQuayRa.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnQuayRa.UseVisualStyleBackColor = true;
+            this.btnQuayRa.Click += new System.EventHandler(this.btnQuayRa_Click);
+            // 
+            // btnXem
+            // 
+            this.btnXem.AccessibleDescription = "APOCTPOAR00038";
+            this.btnXem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXem.Enabled = false;
+            this.btnXem.Image = global::V6ControlManager.Properties.Resources.Document24;
+            this.btnXem.Location = new System.Drawing.Point(432, 547);
+            this.btnXem.Name = "btnXem";
+            this.btnXem.Size = new System.Drawing.Size(70, 32);
+            this.btnXem.TabIndex = 12;
+            this.btnXem.Text = "Xem";
+            this.btnXem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXem.UseVisualStyleBackColor = true;
+            this.btnXem.Click += new System.EventHandler(this.btnXem_Click);
+            // 
+            // btnXoa
+            // 
+            this.btnXoa.AccessibleDescription = "APOCTPOAR00037";
+            this.btnXoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXoa.Enabled = false;
+            this.btnXoa.Image = global::V6ControlManager.Properties.Resources.DeleteXred24;
+            this.btnXoa.Location = new System.Drawing.Point(361, 547);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Size = new System.Drawing.Size(70, 32);
+            this.btnXoa.TabIndex = 11;
+            this.btnXoa.Text = "&Xóa";
+            this.btnXoa.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
+            // 
+            // btnSua
+            // 
+            this.btnSua.AccessibleDescription = "APOCTPOAR00036";
+            this.btnSua.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSua.Enabled = false;
+            this.btnSua.Image = global::V6ControlManager.Properties.Resources.Edit24;
+            this.btnSua.Location = new System.Drawing.Point(289, 547);
+            this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(70, 32);
+            this.btnSua.TabIndex = 10;
+            this.btnSua.Text = "&Sửa";
+            this.btnSua.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
+            // 
+            // btnIn
+            // 
+            this.btnIn.AccessibleDescription = "APOCTPOAR00035";
+            this.btnIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnIn.Enabled = false;
+            this.btnIn.Image = global::V6ControlManager.Properties.Resources.Print24;
+            this.btnIn.Location = new System.Drawing.Point(217, 547);
+            this.btnIn.Name = "btnIn";
+            this.btnIn.Size = new System.Drawing.Size(70, 32);
+            this.btnIn.TabIndex = 9;
+            this.btnIn.Text = "&In";
+            this.btnIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnIn.UseVisualStyleBackColor = true;
+            this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
+            // 
+            // btnCopy
+            // 
+            this.btnCopy.AccessibleDescription = "APOCTPOAR00046";
+            this.btnCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCopy.Enabled = false;
+            this.btnCopy.Image = global::V6ControlManager.Properties.Resources.Copy24;
+            this.btnCopy.Location = new System.Drawing.Point(146, 547);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.Size = new System.Drawing.Size(70, 32);
+            this.btnCopy.TabIndex = 8;
+            this.btnCopy.Text = "Copy";
+            this.btnCopy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCopy.UseVisualStyleBackColor = true;
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
+            // 
+            // btnMoi
+            // 
+            this.btnMoi.AccessibleDescription = "APOCTPOAR00034";
+            this.btnMoi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnMoi.Enabled = false;
+            this.btnMoi.Image = global::V6ControlManager.Properties.Resources.Add24;
+            this.btnMoi.Location = new System.Drawing.Point(75, 547);
+            this.btnMoi.Name = "btnMoi";
+            this.btnMoi.Size = new System.Drawing.Size(70, 32);
+            this.btnMoi.TabIndex = 7;
+            this.btnMoi.Text = "&Mới";
+            this.btnMoi.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnMoi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnMoi.UseVisualStyleBackColor = true;
+            this.btnMoi.Click += new System.EventHandler(this.btnMoi_Click);
+            // 
+            // btnLuu
+            // 
+            this.btnLuu.AccessibleDescription = "APOCTPOAR00033";
+            this.btnLuu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLuu.Enabled = false;
+            this.btnLuu.Image = global::V6ControlManager.Properties.Resources.Save24;
+            this.btnLuu.Location = new System.Drawing.Point(4, 547);
+            this.btnLuu.Name = "btnLuu";
+            this.btnLuu.Size = new System.Drawing.Size(70, 32);
+            this.btnLuu.TabIndex = 6;
+            this.btnLuu.Text = "&Lưu";
+            this.btnLuu.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
+            // 
+            // btnTim
+            // 
+            this.btnTim.AccessibleDescription = "APOCTPOAR00039";
+            this.btnTim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnTim.Enabled = false;
+            this.btnTim.Image = global::V6ControlManager.Properties.Resources.Search24;
+            this.btnTim.Location = new System.Drawing.Point(503, 547);
+            this.btnTim.Name = "btnTim";
+            this.btnTim.Size = new System.Drawing.Size(74, 32);
+            this.btnTim.TabIndex = 13;
+            this.btnTim.Text = "&Tìm";
+            this.btnTim.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnTim.UseVisualStyleBackColor = true;
+            this.btnTim.Click += new System.EventHandler(this.btnTim_Click);
             // 
             // tabControl1
             // 
@@ -252,6 +676,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.tabControl1.Controls.Add(this.tabVAT);
             this.tabControl1.Controls.Add(this.tabChiPhi);
             this.tabControl1.Controls.Add(this.tabKhac);
+            this.tabControl1.Controls.Add(this.tabThongTin);
             this.tabControl1.Location = new System.Drawing.Point(8, 160);
             this.tabControl1.MinimumSize = new System.Drawing.Size(0, 150);
             this.tabControl1.Name = "tabControl1";
@@ -303,20 +728,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle37.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle37;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle38.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle38.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle38;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MA_VT,
@@ -328,15 +753,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle39.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle39;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(875, 136);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
-            this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
+            this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             // 
             // MA_VT
             // 
@@ -419,27 +844,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle40.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle40;
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle41.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle41.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle41.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle41.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle41.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle41.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle41;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(2, 52);
             this.dataGridView2.MultiSelect = false;
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle42.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle42;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView2.Size = new System.Drawing.Size(875, 136);
             this.dataGridView2.TabIndex = 3;
@@ -491,7 +916,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             0,
             0,
             0,
-            196608});
+            0});
             this.TxtT_cp_nt_ao.V6LostFocus += new V6Controls.ControlEventHandle(this.TxtT_cp_nt_ao_V6LostFocus);
             this.TxtT_cp_nt_ao.TextChanged += new System.EventHandler(this.Txt_ao_TextChanged);
             // 
@@ -533,7 +958,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             0,
             0,
             0,
-            196608});
+            0});
             this.TxtT_cp_ao.TextChanged += new System.EventHandler(this.Txt_ao_TextChanged);
             // 
             // v6Label37
@@ -616,20 +1041,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             // 
             this.dataGridView3.AllowUserToAddRows = false;
             this.dataGridView3.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle43.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle43;
             this.dataGridView3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView3.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle44.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle44.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle44.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle44.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle44.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle44.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle44;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn6,
@@ -641,8 +1066,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.dataGridView3.MultiSelect = false;
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.ReadOnly = true;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView3.RowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle45.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView3.RowsDefaultCellStyle = dataGridViewCellStyle45;
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView3.Size = new System.Drawing.Size(875, 136);
             this.dataGridView3.TabIndex = 2;
@@ -927,7 +1352,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSL_UD2
             // 
@@ -952,7 +1377,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSL_UD1
             // 
@@ -977,7 +1402,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // label16
             // 
@@ -1225,6 +1650,168 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.txtNGAY_UD1.TabIndex = 134;
             this.txtNGAY_UD1.Text = "__/__/____";
             // 
+            // tabThongTin
+            // 
+            this.tabThongTin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTin.Controls.Add(this.v6DateTimePick1);
+            this.tabThongTin.Controls.Add(this.v6Label48);
+            this.tabThongTin.Controls.Add(this.txtDiaChi2);
+            this.tabThongTin.Controls.Add(this.txtMaHTTT);
+            this.tabThongTin.Controls.Add(this.lblNgayNoHD);
+            this.tabThongTin.Controls.Add(this.lblHTTT);
+            this.tabThongTin.Controls.Add(this.txtNgayNoHD);
+            this.tabThongTin.Controls.Add(this.txtMaPTVC);
+            this.tabThongTin.Controls.Add(this.lblPTVC);
+            this.tabThongTin.Controls.Add(this.lblDiaChi2);
+            this.tabThongTin.Location = new System.Drawing.Point(4, 22);
+            this.tabThongTin.Name = "tabThongTin";
+            this.tabThongTin.Padding = new System.Windows.Forms.Padding(3);
+            this.tabThongTin.Size = new System.Drawing.Size(879, 188);
+            this.tabThongTin.TabIndex = 4;
+            this.tabThongTin.Text = "TT nhận hàng & PTTT";
+            // 
+            // v6DateTimePick1
+            // 
+            this.v6DateTimePick1.AccessibleName = "TG_NHAN";
+            this.v6DateTimePick1.CustomFormat = "HH:mm dd/MM/yyyy";
+            this.v6DateTimePick1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6DateTimePick1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.v6DateTimePick1.HoverColor = System.Drawing.Color.Yellow;
+            this.v6DateTimePick1.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.v6DateTimePick1.LeaveColor = System.Drawing.Color.White;
+            this.v6DateTimePick1.Location = new System.Drawing.Point(134, 107);
+            this.v6DateTimePick1.Name = "v6DateTimePick1";
+            this.v6DateTimePick1.Size = new System.Drawing.Size(130, 20);
+            this.v6DateTimePick1.TabIndex = 9;
+            this.v6DateTimePick1.UseTime = true;
+            // 
+            // v6Label48
+            // 
+            this.v6Label48.AccessibleDescription = "ASOCTSORL00126";
+            this.v6Label48.AutoSize = true;
+            this.v6Label48.Location = new System.Drawing.Point(0, 111);
+            this.v6Label48.Name = "v6Label48";
+            this.v6Label48.Size = new System.Drawing.Size(64, 13);
+            this.v6Label48.TabIndex = 8;
+            this.v6Label48.Text = "T.gian nhận";
+            // 
+            // txtDiaChi2
+            // 
+            this.txtDiaChi2.AccessibleName = "DIA_CHI2";
+            this.txtDiaChi2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDiaChi2.BackColor = System.Drawing.SystemColors.Window;
+            this.txtDiaChi2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtDiaChi2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDiaChi2.CheckNotEmpty = true;
+            this.txtDiaChi2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtDiaChi2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtDiaChi2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtDiaChi2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtDiaChi2.LeaveColor = System.Drawing.Color.White;
+            this.txtDiaChi2.Location = new System.Drawing.Point(134, 4);
+            this.txtDiaChi2.Name = "txtDiaChi2";
+            this.txtDiaChi2.Size = new System.Drawing.Size(738, 20);
+            this.txtDiaChi2.TabIndex = 1;
+            this.txtDiaChi2.VVar = "DIA_CHI2";
+            // 
+            // txtMaHTTT
+            // 
+            this.txtMaHTTT.AccessibleName = "MA_HTTT";
+            this.txtMaHTTT.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaHTTT.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaHTTT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMaHTTT.CheckNotEmpty = true;
+            this.txtMaHTTT.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaHTTT.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaHTTT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaHTTT.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaHTTT.LeaveColor = System.Drawing.Color.White;
+            this.txtMaHTTT.Location = new System.Drawing.Point(134, 55);
+            this.txtMaHTTT.Name = "txtMaHTTT";
+            this.txtMaHTTT.Size = new System.Drawing.Size(100, 20);
+            this.txtMaHTTT.TabIndex = 5;
+            this.txtMaHTTT.VVar = "MA_HTTT";
+            // 
+            // lblNgayNoHD
+            // 
+            this.lblNgayNoHD.AutoSize = true;
+            this.lblNgayNoHD.Location = new System.Drawing.Point(0, 83);
+            this.lblNgayNoHD.Name = "lblNgayNoHD";
+            this.lblNgayNoHD.Size = new System.Drawing.Size(105, 13);
+            this.lblNgayNoHD.TabIndex = 6;
+            this.lblNgayNoHD.Text = "Số ngày lấy hóa đơn";
+            // 
+            // lblHTTT
+            // 
+            this.lblHTTT.AutoSize = true;
+            this.lblHTTT.Location = new System.Drawing.Point(0, 58);
+            this.lblHTTT.Name = "lblHTTT";
+            this.lblHTTT.Size = new System.Drawing.Size(107, 13);
+            this.lblHTTT.TabIndex = 4;
+            this.lblHTTT.Text = "Hình thức thanh toán";
+            // 
+            // txtNgayNoHD
+            // 
+            this.txtNgayNoHD.AccessibleDescription = "";
+            this.txtNgayNoHD.AccessibleName = "NGAY_NOHD";
+            this.txtNgayNoHD.BackColor = System.Drawing.SystemColors.Window;
+            this.txtNgayNoHD.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtNgayNoHD.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNgayNoHD.DecimalPlaces = 0;
+            this.txtNgayNoHD.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtNgayNoHD.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNgayNoHD.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtNgayNoHD.HoverColor = System.Drawing.Color.Yellow;
+            this.txtNgayNoHD.LeaveColor = System.Drawing.Color.White;
+            this.txtNgayNoHD.Location = new System.Drawing.Point(134, 81);
+            this.txtNgayNoHD.Name = "txtNgayNoHD";
+            this.txtNgayNoHD.Size = new System.Drawing.Size(100, 20);
+            this.txtNgayNoHD.TabIndex = 7;
+            this.txtNgayNoHD.Text = "0";
+            this.txtNgayNoHD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtNgayNoHD.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // txtMaPTVC
+            // 
+            this.txtMaPTVC.AccessibleName = "MA_PTVC";
+            this.txtMaPTVC.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaPTVC.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaPTVC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMaPTVC.CheckNotEmpty = true;
+            this.txtMaPTVC.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaPTVC.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaPTVC.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaPTVC.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaPTVC.LeaveColor = System.Drawing.Color.White;
+            this.txtMaPTVC.Location = new System.Drawing.Point(134, 29);
+            this.txtMaPTVC.Name = "txtMaPTVC";
+            this.txtMaPTVC.Size = new System.Drawing.Size(100, 20);
+            this.txtMaPTVC.TabIndex = 3;
+            this.txtMaPTVC.VVar = "MA_HTVC";
+            // 
+            // lblPTVC
+            // 
+            this.lblPTVC.AutoSize = true;
+            this.lblPTVC.Location = new System.Drawing.Point(0, 32);
+            this.lblPTVC.Name = "lblPTVC";
+            this.lblPTVC.Size = new System.Drawing.Size(118, 13);
+            this.lblPTVC.TabIndex = 2;
+            this.lblPTVC.Text = "Phương thức giao hàng";
+            // 
+            // lblDiaChi2
+            // 
+            this.lblDiaChi2.AutoSize = true;
+            this.lblDiaChi2.Location = new System.Drawing.Point(0, 6);
+            this.lblDiaChi2.Name = "lblDiaChi2";
+            this.lblDiaChi2.Size = new System.Drawing.Size(114, 13);
+            this.lblDiaChi2.TabIndex = 0;
+            this.lblDiaChi2.Text = "Địa chỉ giao / lấy hàng";
+            // 
             // group5
             // 
             this.group5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -1274,7 +1861,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtTongGiam
             // 
@@ -1301,7 +1888,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtTongCk
             // 
@@ -1328,7 +1915,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtTongThue
             // 
@@ -1355,7 +1942,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtTongThanhToan
             // 
@@ -1464,7 +2051,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             0,
             0,
             0,
-            196608});
+            0});
             this.txtTongGiamNt.V6LostFocus += new V6Controls.ControlEventHandle(this.txtTongGiamNt_V6LostFocus);
             // 
             // v6Label23
@@ -1500,7 +2087,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             0,
             0,
             0,
-            196608});
+            0});
             this.txtTongCkNt.V6LostFocus += new V6Controls.ControlEventHandle(this.txtTongCkNt_V6LostFocus);
             // 
             // v6Label22
@@ -1654,6 +2241,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.group4.TabIndex = 4;
             this.group4.TabStop = false;
             // 
+            // lblKieuPostColor
+            // 
+            this.lblKieuPostColor.AutoSize = true;
+            this.lblKieuPostColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKieuPostColor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblKieuPostColor.Location = new System.Drawing.Point(65, 10);
+            this.lblKieuPostColor.Name = "lblKieuPostColor";
+            this.lblKieuPostColor.Size = new System.Drawing.Size(57, 13);
+            this.lblKieuPostColor.TabIndex = 41;
+            this.lblKieuPostColor.Text = "KieuPost";
+            // 
             // txtTongSoLuong
             // 
             this.txtTongSoLuong.AccessibleDescription = "";
@@ -1680,7 +2278,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             0,
             0,
             0,
-            131072});
+            0});
             // 
             // cboChuyenData
             // 
@@ -1723,60 +2321,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.btnChucNang.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnChucNang.UseVisualStyleBackColor = true;
             // 
-            // menuChucNang
-            // 
-            this.menuChucNang.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ChonDonHangMuaMenu,
-            this.TroGiupMenu,
-            this.chonTuExcelToolStripMenuItem,
-            this.xuLyKhacToolStripMenuItem,
-            this.thayTheToolStripMenuItem,
-            this.thayThe2toolStripMenuItem});
-            this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(185, 136);
-            // 
-            // ChonDonHangMuaMenu
-            // 
-            this.ChonDonHangMuaMenu.Name = "ChonDonHangMuaMenu";
-            this.ChonDonHangMuaMenu.Size = new System.Drawing.Size(184, 22);
-            this.ChonDonHangMuaMenu.Text = "Chọn đơn hàng mua";
-            this.ChonDonHangMuaMenu.Visible = false;
-            // 
-            // TroGiupMenu
-            // 
-            this.TroGiupMenu.Name = "TroGiupMenu";
-            this.TroGiupMenu.Size = new System.Drawing.Size(184, 22);
-            this.TroGiupMenu.Text = "Trợ giúp";
-            this.TroGiupMenu.Click += new System.EventHandler(this.TroGiupMenu_Click);
-            // 
-            // chonTuExcelToolStripMenuItem
-            // 
-            this.chonTuExcelToolStripMenuItem.Name = "chonTuExcelToolStripMenuItem";
-            this.chonTuExcelToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.chonTuExcelToolStripMenuItem.Text = "Chọn từ excel";
-            this.chonTuExcelToolStripMenuItem.Click += new System.EventHandler(this.chonTuExcelToolStripMenuItem_Click);
-            // 
-            // xuLyKhacToolStripMenuItem
-            // 
-            this.xuLyKhacToolStripMenuItem.Name = "xuLyKhacToolStripMenuItem";
-            this.xuLyKhacToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.xuLyKhacToolStripMenuItem.Text = "Xử lý khác";
-            this.xuLyKhacToolStripMenuItem.Click += new System.EventHandler(this.xuLyKhacToolStripMenuItem_Click);
-            // 
-            // thayTheToolStripMenuItem
-            // 
-            this.thayTheToolStripMenuItem.Name = "thayTheToolStripMenuItem";
-            this.thayTheToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.thayTheToolStripMenuItem.Text = "Thay thế";
-            this.thayTheToolStripMenuItem.Click += new System.EventHandler(this.thayTheToolStripMenuItem_Click);
-            // 
-            // thayThe2toolStripMenuItem
-            // 
-            this.thayThe2toolStripMenuItem.Name = "thayThe2toolStripMenuItem";
-            this.thayThe2toolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.thayThe2toolStripMenuItem.Text = "Sửa nhiều dòng";
-            this.thayThe2toolStripMenuItem.Click += new System.EventHandler(this.thayThe2toolStripMenuItem_Click);
-            // 
             // TxtT_cp_nt
             // 
             this.TxtT_cp_nt.AccessibleDescription = "";
@@ -1804,7 +2348,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // TxtT_cp
             // 
@@ -1833,7 +2377,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // chkSuaTien
             // 
@@ -1876,7 +2420,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             0,
             0,
             0,
-            131072});
+            0});
             // 
             // cboKieuPost
             // 
@@ -2032,7 +2576,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             0,
             0,
             0,
-            131072});
+            0});
             this.txtThueSuat.V6LostFocus += new V6Controls.ControlEventHandle(this.txtThueSuat_V6LostFocus);
             // 
             // txtPtCk
@@ -2058,7 +2602,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             0,
             0,
             0,
-            131072});
+            0});
             this.txtPtCk.V6LostFocus += new V6Controls.ControlEventHandle(this.txtPtCk_V6LostFocus);
             // 
             // btnChonPX
@@ -2148,6 +2692,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.v6Label19.Size = new System.Drawing.Size(46, 13);
             this.v6Label19.TabIndex = 6;
             this.v6Label19.Text = "Mã thuế";
+            // 
+            // lblDocSoTien
+            // 
+            this.lblDocSoTien.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDocSoTien.Location = new System.Drawing.Point(12, 525);
+            this.lblDocSoTien.Name = "lblDocSoTien";
+            this.lblDocSoTien.Size = new System.Drawing.Size(877, 15);
+            this.lblDocSoTien.TabIndex = 13;
+            this.lblDocSoTien.Text = "0";
+            this.lblDocSoTien.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // group3
             // 
@@ -2297,7 +2851,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             0,
             0,
             0,
-            196608});
+            0});
             this.txtTyGia.V6LostFocus += new V6Controls.ControlEventHandle(this.txtTyGia_V6LostFocus);
             // 
             // v6VvarTextBox1
@@ -2518,62 +3072,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.v6Label10.Size = new System.Drawing.Size(82, 13);
             this.v6Label10.TabIndex = 3;
             this.v6Label10.Text = "Mã khách hàng";
-            // 
-            // TxtLoai_pb
-            // 
-            this.TxtLoai_pb.AccessibleName = "loai_pb";
-            this.TxtLoai_pb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtLoai_pb.BackColor = System.Drawing.SystemColors.Window;
-            this.TxtLoai_pb.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtLoai_pb.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtLoai_pb.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtLoai_pb.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtLoai_pb.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtLoai_pb.LeaveColor = System.Drawing.Color.White;
-            this.TxtLoai_pb.Location = new System.Drawing.Point(728, 524);
-            this.TxtLoai_pb.Name = "TxtLoai_pb";
-            this.TxtLoai_pb.Size = new System.Drawing.Size(11, 20);
-            this.TxtLoai_pb.TabIndex = 25;
-            this.TxtLoai_pb.Visible = false;
-            this.TxtLoai_pb.TextChanged += new System.EventHandler(this.TxtLoai_pb_TextChanged);
-            // 
-            // TxtTk_i
-            // 
-            this.TxtTk_i.AccessibleName = "tk_i";
-            this.TxtTk_i.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtTk_i.BackColor = System.Drawing.SystemColors.Window;
-            this.TxtTk_i.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtTk_i.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtTk_i.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtTk_i.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtTk_i.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtTk_i.LeaveColor = System.Drawing.Color.White;
-            this.TxtTk_i.Location = new System.Drawing.Point(713, 525);
-            this.TxtTk_i.Name = "TxtTk_i";
-            this.TxtTk_i.Size = new System.Drawing.Size(11, 20);
-            this.TxtTk_i.TabIndex = 27;
-            this.TxtTk_i.Visible = false;
-            this.TxtTk_i.VVar = "ma_nx";
-            // 
-            // Txtma_kh_i
-            // 
-            this.Txtma_kh_i.AccessibleName = "ma_kh_i";
-            this.Txtma_kh_i.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Txtma_kh_i.BackColor = System.Drawing.SystemColors.Window;
-            this.Txtma_kh_i.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.Txtma_kh_i.BrotherFields = "ten_kh,dia_chi,ma_so_thue";
-            this.Txtma_kh_i.CheckNotEmpty = true;
-            this.Txtma_kh_i.EnterColor = System.Drawing.Color.PaleGreen;
-            this.Txtma_kh_i.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.Txtma_kh_i.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.Txtma_kh_i.HoverColor = System.Drawing.Color.Yellow;
-            this.Txtma_kh_i.LeaveColor = System.Drawing.Color.White;
-            this.Txtma_kh_i.Location = new System.Drawing.Point(672, 525);
-            this.Txtma_kh_i.Name = "Txtma_kh_i";
-            this.Txtma_kh_i.Size = new System.Drawing.Size(11, 20);
-            this.Txtma_kh_i.TabIndex = 26;
-            this.Txtma_kh_i.Visible = false;
-            this.Txtma_kh_i.VVar = "ma_kh";
             // 
             // group2
             // 
@@ -2858,329 +3356,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.txtSoPhieu.TabIndex = 2;
             this.txtSoPhieu.TextChanged += new System.EventHandler(this.txtSoPhieu_TextChanged);
             // 
-            // txtMa_ct
-            // 
-            this.txtMa_ct.AccessibleName = "Ma_ct";
-            this.txtMa_ct.BackColor = System.Drawing.SystemColors.Window;
-            this.txtMa_ct.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtMa_ct.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMa_ct.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtMa_ct.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtMa_ct.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtMa_ct.HoverColor = System.Drawing.Color.Yellow;
-            this.txtMa_ct.LeaveColor = System.Drawing.Color.White;
-            this.txtMa_ct.Location = new System.Drawing.Point(779, 526);
-            this.txtMa_ct.Name = "txtMa_ct";
-            this.txtMa_ct.Size = new System.Drawing.Size(43, 20);
-            this.txtMa_ct.TabIndex = 3;
-            this.txtMa_ct.Visible = false;
-            // 
-            // txtLoaiCt
-            // 
-            this.txtLoaiCt.AccessibleName = "loai_ct";
-            this.txtLoaiCt.BackColor = System.Drawing.SystemColors.Window;
-            this.txtLoaiCt.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtLoaiCt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtLoaiCt.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtLoaiCt.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtLoaiCt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtLoaiCt.HoverColor = System.Drawing.Color.Yellow;
-            this.txtLoaiCt.LeaveColor = System.Drawing.Color.White;
-            this.txtLoaiCt.Location = new System.Drawing.Point(745, 526);
-            this.txtLoaiCt.Name = "txtLoaiCt";
-            this.txtLoaiCt.Size = new System.Drawing.Size(28, 20);
-            this.txtLoaiCt.TabIndex = 3;
-            this.txtLoaiCt.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "MA_VT";
-            this.dataGridViewTextBoxColumn1.Frozen = true;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Mã vật tư";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "TEN_VT";
-            this.dataGridViewTextBoxColumn2.Frozen = true;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Tên vật tư";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "UID";
-            this.dataGridViewTextBoxColumn3.HeaderText = "UID";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "STT_REC";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Rec";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "STT_REC0";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Rec0";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Visible = false;
-            // 
-            // lblDocSoTien
-            // 
-            this.lblDocSoTien.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDocSoTien.Location = new System.Drawing.Point(12, 525);
-            this.lblDocSoTien.Name = "lblDocSoTien";
-            this.lblDocSoTien.Size = new System.Drawing.Size(877, 15);
-            this.lblDocSoTien.TabIndex = 13;
-            this.lblDocSoTien.Text = "0";
-            this.lblDocSoTien.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // btnHuy
-            // 
-            this.btnHuy.AccessibleDescription = "APOCTPOAC00029";
-            this.btnHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnHuy.Enabled = false;
-            this.btnHuy.Image = global::V6ControlManager.Properties.Resources.Cancel24;
-            this.btnHuy.Location = new System.Drawing.Point(287, 547);
-            this.btnHuy.Name = "btnHuy";
-            this.btnHuy.Size = new System.Drawing.Size(74, 32);
-            this.btnHuy.TabIndex = 19;
-            this.btnHuy.Text = "&Hủy bỏ";
-            this.btnHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnHuy.UseVisualStyleBackColor = true;
-            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
-            // 
-            // btnFirst
-            // 
-            this.btnFirst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFirst.Image = global::V6ControlManager.Properties.Resources.First;
-            this.btnFirst.Location = new System.Drawing.Point(751, 557);
-            this.btnFirst.Name = "btnFirst";
-            this.btnFirst.Size = new System.Drawing.Size(30, 23);
-            this.btnFirst.TabIndex = 15;
-            this.btnFirst.UseVisualStyleBackColor = true;
-            this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
-            // 
-            // btnPrevious
-            // 
-            this.btnPrevious.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrevious.Image = global::V6ControlManager.Properties.Resources.Back;
-            this.btnPrevious.Location = new System.Drawing.Point(780, 557);
-            this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(30, 23);
-            this.btnPrevious.TabIndex = 16;
-            this.btnPrevious.UseVisualStyleBackColor = true;
-            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
-            // 
-            // btnNext
-            // 
-            this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNext.Image = global::V6ControlManager.Properties.Resources.Forward;
-            this.btnNext.Location = new System.Drawing.Point(809, 557);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(30, 23);
-            this.btnNext.TabIndex = 17;
-            this.btnNext.UseVisualStyleBackColor = true;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-            // 
-            // btnLast
-            // 
-            this.btnLast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLast.Image = global::V6ControlManager.Properties.Resources.Last;
-            this.btnLast.Location = new System.Drawing.Point(838, 557);
-            this.btnLast.Name = "btnLast";
-            this.btnLast.Size = new System.Drawing.Size(30, 23);
-            this.btnLast.TabIndex = 18;
-            this.btnLast.UseVisualStyleBackColor = true;
-            this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
-            // 
-            // btnQuayRa
-            // 
-            this.btnQuayRa.AccessibleDescription = "APOCTPOAR00040";
-            this.btnQuayRa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnQuayRa.Image = global::V6ControlManager.Properties.Resources.BackArrow24;
-            this.btnQuayRa.Location = new System.Drawing.Point(578, 547);
-            this.btnQuayRa.Name = "btnQuayRa";
-            this.btnQuayRa.Size = new System.Drawing.Size(76, 32);
-            this.btnQuayRa.TabIndex = 14;
-            this.btnQuayRa.Text = "&Quay ra";
-            this.btnQuayRa.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnQuayRa.UseVisualStyleBackColor = true;
-            this.btnQuayRa.Click += new System.EventHandler(this.btnQuayRa_Click);
-            // 
-            // btnXem
-            // 
-            this.btnXem.AccessibleDescription = "APOCTPOAR00038";
-            this.btnXem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnXem.Enabled = false;
-            this.btnXem.Image = global::V6ControlManager.Properties.Resources.Document24;
-            this.btnXem.Location = new System.Drawing.Point(432, 547);
-            this.btnXem.Name = "btnXem";
-            this.btnXem.Size = new System.Drawing.Size(70, 32);
-            this.btnXem.TabIndex = 12;
-            this.btnXem.Text = "Xem";
-            this.btnXem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnXem.UseVisualStyleBackColor = true;
-            this.btnXem.Click += new System.EventHandler(this.btnXem_Click);
-            // 
-            // btnXoa
-            // 
-            this.btnXoa.AccessibleDescription = "APOCTPOAR00037";
-            this.btnXoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnXoa.Enabled = false;
-            this.btnXoa.Image = global::V6ControlManager.Properties.Resources.DeleteXred24;
-            this.btnXoa.Location = new System.Drawing.Point(361, 547);
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(70, 32);
-            this.btnXoa.TabIndex = 11;
-            this.btnXoa.Text = "&Xóa";
-            this.btnXoa.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnXoa.UseVisualStyleBackColor = true;
-            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
-            // 
-            // btnSua
-            // 
-            this.btnSua.AccessibleDescription = "APOCTPOAR00036";
-            this.btnSua.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSua.Enabled = false;
-            this.btnSua.Image = global::V6ControlManager.Properties.Resources.Edit24;
-            this.btnSua.Location = new System.Drawing.Point(289, 547);
-            this.btnSua.Name = "btnSua";
-            this.btnSua.Size = new System.Drawing.Size(70, 32);
-            this.btnSua.TabIndex = 10;
-            this.btnSua.Text = "&Sửa";
-            this.btnSua.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSua.UseVisualStyleBackColor = true;
-            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
-            // 
-            // btnIn
-            // 
-            this.btnIn.AccessibleDescription = "APOCTPOAR00035";
-            this.btnIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnIn.Enabled = false;
-            this.btnIn.Image = global::V6ControlManager.Properties.Resources.Print24;
-            this.btnIn.Location = new System.Drawing.Point(217, 547);
-            this.btnIn.Name = "btnIn";
-            this.btnIn.Size = new System.Drawing.Size(70, 32);
-            this.btnIn.TabIndex = 9;
-            this.btnIn.Text = "&In";
-            this.btnIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnIn.UseVisualStyleBackColor = true;
-            this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
-            // 
-            // btnCopy
-            // 
-            this.btnCopy.AccessibleDescription = "APOCTPOAR00046";
-            this.btnCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCopy.Enabled = false;
-            this.btnCopy.Image = global::V6ControlManager.Properties.Resources.Copy24;
-            this.btnCopy.Location = new System.Drawing.Point(146, 547);
-            this.btnCopy.Name = "btnCopy";
-            this.btnCopy.Size = new System.Drawing.Size(70, 32);
-            this.btnCopy.TabIndex = 8;
-            this.btnCopy.Text = "Copy";
-            this.btnCopy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCopy.UseVisualStyleBackColor = true;
-            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
-            // 
-            // btnMoi
-            // 
-            this.btnMoi.AccessibleDescription = "APOCTPOAR00034";
-            this.btnMoi.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnMoi.Enabled = false;
-            this.btnMoi.Image = global::V6ControlManager.Properties.Resources.Add24;
-            this.btnMoi.Location = new System.Drawing.Point(75, 547);
-            this.btnMoi.Name = "btnMoi";
-            this.btnMoi.Size = new System.Drawing.Size(70, 32);
-            this.btnMoi.TabIndex = 7;
-            this.btnMoi.Text = "&Mới";
-            this.btnMoi.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnMoi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnMoi.UseVisualStyleBackColor = true;
-            this.btnMoi.Click += new System.EventHandler(this.btnMoi_Click);
-            // 
-            // btnLuu
-            // 
-            this.btnLuu.AccessibleDescription = "APOCTPOAR00033";
-            this.btnLuu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnLuu.Enabled = false;
-            this.btnLuu.Image = global::V6ControlManager.Properties.Resources.Save24;
-            this.btnLuu.Location = new System.Drawing.Point(4, 547);
-            this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(70, 32);
-            this.btnLuu.TabIndex = 6;
-            this.btnLuu.Text = "&Lưu";
-            this.btnLuu.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnLuu.UseVisualStyleBackColor = true;
-            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
-            // 
-            // btnTim
-            // 
-            this.btnTim.AccessibleDescription = "APOCTPOAR00039";
-            this.btnTim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnTim.Enabled = false;
-            this.btnTim.Image = global::V6ControlManager.Properties.Resources.Search24;
-            this.btnTim.Location = new System.Drawing.Point(503, 547);
-            this.btnTim.Name = "btnTim";
-            this.btnTim.Size = new System.Drawing.Size(74, 32);
-            this.btnTim.TabIndex = 13;
-            this.btnTim.Text = "&Tìm";
-            this.btnTim.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnTim.UseVisualStyleBackColor = true;
-            this.btnTim.Click += new System.EventHandler(this.btnTim_Click);
-            // 
-            // Txtma_nk
-            // 
-            this.Txtma_nk.AccessibleName = "MA_NK";
-            this.Txtma_nk.BackColor = System.Drawing.Color.White;
-            this.Txtma_nk.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.Txtma_nk.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Txtma_nk.EnterColor = System.Drawing.Color.PaleGreen;
-            this.Txtma_nk.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.Txtma_nk.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.Txtma_nk.HoverColor = System.Drawing.Color.Yellow;
-            this.Txtma_nk.LeaveColor = System.Drawing.Color.White;
-            this.Txtma_nk.Location = new System.Drawing.Point(695, 525);
-            this.Txtma_nk.Name = "Txtma_nk";
-            this.Txtma_nk.Size = new System.Drawing.Size(11, 20);
-            this.Txtma_nk.TabIndex = 23;
-            this.Txtma_nk.Visible = false;
-            // 
-            // btnViewInfoData
-            // 
-            this.btnViewInfoData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnViewInfoData.Image = global::V6ControlManager.Properties.Resources.Help;
-            this.btnViewInfoData.Location = new System.Drawing.Point(867, 557);
-            this.btnViewInfoData.Name = "btnViewInfoData";
-            this.btnViewInfoData.Size = new System.Drawing.Size(30, 23);
-            this.btnViewInfoData.TabIndex = 28;
-            this.btnViewInfoData.UseVisualStyleBackColor = true;
-            this.btnViewInfoData.Click += new System.EventHandler(this.btnViewInfoData_Click);
-            // 
-            // lblNameT
-            // 
-            this.lblNameT.AccessibleDescription = "";
-            this.lblNameT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNameT.Location = new System.Drawing.Point(221, 157);
-            this.lblNameT.Name = "lblNameT";
-            this.lblNameT.Size = new System.Drawing.Size(674, 18);
-            this.lblNameT.TabIndex = 29;
-            this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblKieuPostColor
-            // 
-            this.lblKieuPostColor.AutoSize = true;
-            this.lblKieuPostColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblKieuPostColor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblKieuPostColor.Location = new System.Drawing.Point(65, 10);
-            this.lblKieuPostColor.Name = "lblKieuPostColor";
-            this.lblKieuPostColor.Size = new System.Drawing.Size(57, 13);
-            this.lblKieuPostColor.TabIndex = 41;
-            this.lblKieuPostColor.Text = "KieuPost";
-            // 
             // DonDatHangMuaControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3219,6 +3394,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.Size = new System.Drawing.Size(899, 583);
             this.Load += new System.EventHandler(this.Form_Load);
             this.VisibleChanged += new System.EventHandler(this.HoaDonBanHangKiemPhieuXuat_VisibleChanged);
+            this.menuChucNang.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabChiTiet.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -3229,6 +3405,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.tabKhac.ResumeLayout(false);
             this.tabKhac.PerformLayout();
+            this.tabThongTin.ResumeLayout(false);
+            this.tabThongTin.PerformLayout();
             this.group5.ResumeLayout(false);
             this.panelVND.ResumeLayout(false);
             this.panelVND.PerformLayout();
@@ -3236,7 +3414,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.panelNT.PerformLayout();
             this.group4.ResumeLayout(false);
             this.group4.PerformLayout();
-            this.menuChucNang.ResumeLayout(false);
             this.group3.ResumeLayout(false);
             this.group3.PerformLayout();
             this.group2.ResumeLayout(false);
@@ -3434,5 +3611,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
         private System.Windows.Forms.ToolStripMenuItem thayThe2toolStripMenuItem;
         private NumberSoluong txtTongSoLuong;
         private V6Label lblKieuPostColor;
+        private System.Windows.Forms.TabPage tabThongTin;
+        private V6VvarTextBox txtDiaChi2;
+        private V6VvarTextBox txtMaHTTT;
+        private V6Label lblNgayNoHD;
+        private V6Label lblHTTT;
+        private V6NumberTextBox txtNgayNoHD;
+        private V6VvarTextBox txtMaPTVC;
+        private V6Label lblPTVC;
+        private V6Label lblDiaChi2;
+        private V6DateTimePicker v6DateTimePick1;
+        private V6Label v6Label48;
     }
 }

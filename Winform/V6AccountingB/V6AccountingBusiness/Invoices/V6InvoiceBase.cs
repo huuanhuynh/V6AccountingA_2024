@@ -271,6 +271,18 @@ namespace V6AccountingBusiness.Invoices
                 "Ma_ct=@mact", "", "Kieu_post", new SqlParameter("@mact", Mact)).Data;
         }
 
+        public DataTable GetDinhMucVatTu(string sttRec, string makh, string madvcs)
+        {
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@stt_rec", sttRec), 
+                new SqlParameter("@ma_kh", makh), 
+                new SqlParameter("@ma_dvcs", madvcs)
+            };
+            var result = V6BusinessHelper.ExecuteProcedure("AINCTIXA_INIT_ALDMVT", plist).Tables[0];
+            return result;
+        }
+
         /// <summary>
         /// Các trường động,, cho lọc AM
         /// </summary>
