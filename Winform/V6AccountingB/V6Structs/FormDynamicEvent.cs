@@ -35,6 +35,9 @@
 
         public const string BEFOREADD = "BEFOREADD";
         public const string BEFOREEDIT = "BEFOREEDIT";
+        /// <summary>
+        /// BEFOREINSERTORUPDATE
+        /// </summary>
         public const string BEFORESAVE = "BEFORESAVE";
         public const string BEFOREDELETE = "BEFOREDELETE";
         public const string BEFORELOADDATA = "BEFORELOADDATA";

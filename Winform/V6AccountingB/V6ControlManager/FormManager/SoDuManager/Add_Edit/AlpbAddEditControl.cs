@@ -615,5 +615,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         }
 
+        private void dataGridView1_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
+        {
+            e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        }
+
     }
 }

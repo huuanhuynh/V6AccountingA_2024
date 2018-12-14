@@ -132,7 +132,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtGhiChu
             // 
@@ -146,7 +146,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtGhiChu.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtGhiChu.HoverColor = System.Drawing.Color.Yellow;
             this.txtGhiChu.LeaveColor = System.Drawing.Color.White;
-            this.txtGhiChu.Location = new System.Drawing.Point(166, 239);
+            this.txtGhiChu.Location = new System.Drawing.Point(170, 239);
             this.txtGhiChu.Margin = new System.Windows.Forms.Padding(4);
             this.txtGhiChu.Name = "txtGhiChu";
             this.txtGhiChu.Size = new System.Drawing.Size(697, 23);
@@ -174,7 +174,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtMaNt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaNt.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaNt.LeaveColor = System.Drawing.Color.White;
-            this.txtMaNt.Location = new System.Drawing.Point(166, 49);
+            this.txtMaNt.Location = new System.Drawing.Point(170, 49);
             this.txtMaNt.Name = "txtMaNt";
             this.txtMaNt.Size = new System.Drawing.Size(202, 23);
             this.txtMaNt.TabIndex = 3;
@@ -348,7 +348,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox2
             // 
@@ -376,7 +376,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // label14
             // 

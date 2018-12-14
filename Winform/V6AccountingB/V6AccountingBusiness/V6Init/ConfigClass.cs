@@ -54,6 +54,42 @@ namespace V6Init
         }
     }
 
+    public class AlctConfig : Config
+    {
+        public AlctConfig(IDictionary<string, object> data)
+            : base(data)
+        {
+        }
+
+        public AlctConfig()
+        {
+            NoInfo = true;
+            Error = true;
+        }
+
+        public string TableNameAM
+        {
+            get
+            {
+                return GetString("m_phdbf");
+            }
+        }
+        public string TableNameAD
+        {
+            get
+            {
+                return GetString("m_ctdbf");
+            }
+        }
+        public string TableNameADlist
+        {
+            get
+            {
+                return GetString("m_list_ct");
+            }
+        }
+    }
+
     public class AldmConfig : Config
     {
         public AldmConfig(IDictionary<string, object> data)
@@ -291,6 +327,35 @@ namespace V6Init
 
     public class ConfigManager
     {
+        public static AlctConfig GetAlctConfig(string ma_ct)
+        {
+            AlctConfig config = new AlctConfig();
+            try
+            {
+                SqlParameter[] plist = { new SqlParameter("@p", ma_ct) };
+                var executeResult = V6BusinessHelper.Select("Alct", "*", "Ma_ct=@p", "", "", plist);
+
+                if (executeResult.Data != null && executeResult.Data.Rows.Count > 0)
+                {
+                    var tbl = executeResult.Data;
+                    var row = tbl.Rows[0];
+                    config = new AlctConfig(row.ToDataDictionary());
+                }
+                else
+                {
+                    config.NoInfo = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                config.Error = true;
+                Logger.WriteToLog(String.Format("{0}.{1} {2}",
+                    MethodBase.GetCurrentMethod().DeclaringType,
+                    MethodBase.GetCurrentMethod().Name, ex.Message));
+            }
+            return config;
+        }
+
         public static AldmConfig GetAldmConfig(string ma_dm)
         {
             AldmConfig lstConfig = new AldmConfig();

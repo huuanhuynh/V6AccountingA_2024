@@ -192,7 +192,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dateNgayHL.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgayHL.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dateNgayHL.LeaveColor = System.Drawing.Color.White;
-            this.dateNgayHL.Location = new System.Drawing.Point(187, 63);
+            this.dateNgayHL.Location = new System.Drawing.Point(179, 63);
             this.dateNgayHL.Margin = new System.Windows.Forms.Padding(5);
             this.dateNgayHL.Name = "dateNgayHL";
             this.dateNgayHL.Size = new System.Drawing.Size(135, 23);
@@ -325,7 +325,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage2.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage2.Size = new System.Drawing.Size(881, 298);
+            this.tabPage2.Size = new System.Drawing.Size(889, 298);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tự định nghĩa";
             // 
@@ -505,7 +505,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSLS5
             // 
@@ -530,7 +530,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSLS4
             // 
@@ -555,7 +555,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // lblSLS6
             // 
@@ -826,7 +826,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSLDN2
             // 
@@ -851,7 +851,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSLDN1
             // 
@@ -876,7 +876,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // dateNgayDN3
             // 
@@ -1078,7 +1078,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage3.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage3.Size = new System.Drawing.Size(881, 298);
+            this.tabPage3.Size = new System.Drawing.Size(889, 298);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
             // 
@@ -1170,6 +1170,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.Tag = "cancelall";
             this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
+            this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
             this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             // 
             // MA_VT

@@ -2025,5 +2025,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             V6ControlFormHelper.SetStatusText("F8 xóa 1 dòng");
             V6ControlFormHelper.SetStatusText2("F8 xóa 1 dòng");
         }
+
+        private void dataGridView1_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
+        {
+            e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        }
     }
 }

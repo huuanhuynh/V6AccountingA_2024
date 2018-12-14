@@ -6172,8 +6172,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     }
                 }
 
-                var check_ton = ValidateData_Master_CheckTon(Invoice, dateNgayCT.Date, null);
-                if (!check_ton) return false;
+                //var check_ton = ValidateData_Master_CheckTon(Invoice, dateNgayCT.Date, null);
+                //if (!check_ton) return false;
                 
 
                 //OK

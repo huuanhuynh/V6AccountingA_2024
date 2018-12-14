@@ -465,7 +465,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             this.TxtDu_co00.Visible = false;
             this.TxtDu_co00.V6LostFocus += new V6Controls.ControlEventHandle(this.TxtDu_co00_V6LostFocus);
             // 
@@ -735,7 +735,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSLS5
             // 
@@ -760,7 +760,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSLS4
             // 
@@ -785,7 +785,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // lblSLS6
             // 
@@ -1056,7 +1056,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSLDN2
             // 
@@ -1081,7 +1081,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSLDN1
             // 
@@ -1106,7 +1106,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // dateNgayDN3
             // 
@@ -1398,6 +1398,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dataGridView1.Size = new System.Drawing.Size(875, 138);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
+            this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
             this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             // 
             // MA_VT

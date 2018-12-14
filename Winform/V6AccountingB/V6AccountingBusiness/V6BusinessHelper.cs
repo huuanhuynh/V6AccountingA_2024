@@ -1033,14 +1033,6 @@ namespace V6AccountingBusiness
 
         
 
-        public static string GetAMname(DataRow alct)
-        {
-            return alct["m_phdbf"].ToString().Trim();
-        }
-
-        
-
-
         public static V6TableStruct V6Struct1
         {
             get

@@ -13,11 +13,16 @@ using V6Tools.V6Convert;
 namespace V6Controls
 {
     /// <summary>
+    /// Lớp kế thừa, sử dụng cho trường hợp dùng Ngày tháng có giờ phút...
+    /// </summary>
+    public class V6DateTimeFullPicker : V6DateTimePicker { }
+
+    /// <summary>
     /// DateTimePicker có thêm tính năng.
     /// <para>Thuộc tính ReadOnly.</para>
     /// <para>Khi ReadOnly chỉ có thể dùng hàm SetData để thay đổi giá trị.</para>
     /// </summary>
-    public class V6DateTimePicker:DateTimePicker
+    public class V6DateTimePicker : DateTimePicker
     {
         ///// <summary>
         ///// Thuộc tính che, chỉ cả ngày và giờ khi UseTime=true.

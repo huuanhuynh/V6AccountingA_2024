@@ -388,7 +388,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox2
             // 
@@ -416,7 +416,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // label14
             // 
@@ -479,7 +479,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabChiTiet.Location = new System.Drawing.Point(4, 25);
             this.tabChiTiet.Name = "tabChiTiet";
             this.tabChiTiet.Padding = new System.Windows.Forms.Padding(3);
-            this.tabChiTiet.Size = new System.Drawing.Size(879, 318);
+            this.tabChiTiet.Size = new System.Drawing.Size(890, 329);
             this.tabChiTiet.TabIndex = 0;
             this.tabChiTiet.Tag = "canceldata";
             this.tabChiTiet.Text = "Chi tiết";
@@ -542,6 +542,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dataGridView1.Size = new System.Drawing.Size(875, 265);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
+            this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
             this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             // 
             // MA_VT

@@ -216,9 +216,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.lblSO_KHUNG = new V6Controls.V6Label();
             this.txtMauSon = new V6Controls.V6ColorTextBox();
             this.txtModel = new V6Controls.V6ColorTextBox();
-            this.v6DateTimePick3 = new V6Controls.V6DateTimePicker();
-            this.v6DateTimePick2 = new V6Controls.V6DateTimePicker();
-            this.v6DateTimePick1 = new V6Controls.V6DateTimePicker();
+            this.v6DateTimePick3 = new V6Controls.V6DateTimeFullPicker();
+            this.v6DateTimePick2 = new V6Controls.V6DateTimeFullPicker();
+            this.v6DateTimePick1 = new V6Controls.V6DateTimeFullPicker();
             this.txtDoiXe = new V6Controls.V6ColorTextBox();
             this.txtHangSx = new V6Controls.V6ColorTextBox();
             this.txtLoaiXe = new V6Controls.V6ColorTextBox();
@@ -3707,9 +3707,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         private V6Label lblSO_KM_TRUOC;
         private V6Label lblSO_KM;
         private V6VvarTextBox txtvMaNhomVv;
-        private V6DateTimePicker v6DateTimePick3;
-        private V6DateTimePicker v6DateTimePick2;
-        private V6DateTimePicker v6DateTimePick1;
+        private V6DateTimeFullPicker v6DateTimePick3;
+        private V6DateTimeFullPicker v6DateTimePick2;
+        private V6DateTimeFullPicker v6DateTimePick1;
         private V6Label v6Label50;
         private V6Label v6Label49;
         private V6Label v6Label48;

@@ -1426,6 +1426,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             ",ma_bp_i,ma_bpht_i,ma_vv_i,tk_kh_i,tk_cp_i,he_so,ma_phi,ma_td_i,ma_td2_i,ma_td3_i,ma_sp,";// from ADCTTSBP
         private void gView2_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
         {
+            e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
             try
             {
                 var field = e.Column.DataPropertyName.ToLower();
@@ -1434,8 +1435,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 //bool test_contains = "gt_kh_ky".Contains("ky") sai
                 if (field.ToUpper() == "KY")
                     e.Column.Visible = false;
-
-
 
             }
             catch

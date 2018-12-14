@@ -37,6 +37,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                     FormControl = new AlpbAddEditControl();
                     break;
                 case V6TableName.Aldmvt:
+                case V6TableName.V_Aldmvt:
                     FormControl = new AldmvtAddEditControl();
                     break;
                 case V6TableName.Acosxlt_aldmvt:

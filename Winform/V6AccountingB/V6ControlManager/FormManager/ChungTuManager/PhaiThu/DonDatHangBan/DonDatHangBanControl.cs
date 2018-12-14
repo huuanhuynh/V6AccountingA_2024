@@ -5203,6 +5203,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
         }
 
+        private void txtDiaChi2_Enter(object sender, EventArgs e)
+        {
+            if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+            {
+                if (txtDiaChi2.ReadOnly) return;
+                var data = txtMaKh.Data;
+                if (data == null)
+                {
+                    this.ShowWarningMessage("Chưa chọn mã khách hàng!", 300);
+                    return;
+                }
+                txtDiaChi2.ParentData = data.ToDataDictionary();
+                txtDiaChi2.SetInitFilter(string.Format("MA_KH='{0}'", txtMaKh.Text));
+            }
+        }
+
 
     }
 }

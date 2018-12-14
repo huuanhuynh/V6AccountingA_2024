@@ -31,7 +31,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private void MyInit()
         {
             _maCt = "S05";
-            _table2Name = "V_Aldmvtct";
+            _table2Name = "Aldmvtct";
             txtMaCt.Text = _maCt;
 
             //TxtTk.SetInitFilter("loai_tk=1 and tk_cn=1");
@@ -320,41 +320,26 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             return -1;
         }
 
-
-        
-
         public override void ValidateData()
         {
             var errors = "";
             if (txtMaSp.Text.Trim() == "") errors += "Chưa nhập mã sản phẩm!\r\n";
             if (txtMaBpht.Text.Trim() == "") errors += "Chưa nhập mã!\r\n";
-            if (Mode == V6Mode.Edit)
+            
+            AldmConfig config = ConfigManager.GetAldmConfig(TableName.ToString());
+            if (config != null && config.HaveInfo && !string.IsNullOrEmpty(config.KEY))
             {
-                bool b = V6BusinessHelper.IsValidTwoCode_OneDate(TableName.ToString(), 0, "MA_BPHT",txtMaBpht.Text.Trim(), DataOld["MA_BPHT"].ToString(),
-                     "MA_SP",txtMaSp.Text.Trim(), DataOld["MA_SP"].ToString(),
-                     "NGAY_HL", dateNgayHL.Value.ToString(), DataOld["NGAY_HL"].ToString());
-                if (!b)
-                    throw new Exception("Không được sửa mã đã tồn tại: "
-                                                    + "MA_SP = " + txtMaSp.Text.Trim());
+                var key_list = ObjectAndString.SplitString(config.KEY);
+                errors += CheckValid(TableName.ToString(), key_list);
             }
-            else if (Mode == V6Mode.Add)
-            {
-                
-                bool b = V6BusinessHelper.IsValidTwoCode_OneDate(TableName.ToString(), 1, "MA_BPHT", txtMaBpht.Text.Trim(), DataOld["MA_BPHT"].ToString(),
-                     "MA_SP", txtMaSp.Text.Trim(), DataOld["MA_SP"].ToString(),
-                     "NGAY_HL", dateNgayHL.Value.ToString(), DataOld["NGAY_HL"].ToString());
-
-                if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
-                                                    + "MA_SP = " + txtMaSp.Text.Trim());
-            }
-           
 
             if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
             {
                 errors += "Chưa hoàn tất chi tiết!\r\n";
             }
 
+            errors += ValidateMasterData(_maCt);
+            
             if (errors.Length > 0) throw new Exception(errors);
 
             V6ControlFormHelper.UpdateDKlistAll(DataDic, new[] { "MA_SP", "MA_BPHT", "MA_CT" }, AD);
@@ -528,6 +513,12 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             try
             {
                 if (data == null) return false;
+                string errors = ValidateDetailData(_maCt, _table2Struct, data);
+                if (!string.IsNullOrEmpty(errors))
+                {
+                    this.ShowWarningMessage(errors);
+                    return false;
+                }
             }
             catch (Exception ex)
             {
@@ -612,6 +603,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 detail1.AutoFocus();
             }
+        }
+
+        private void dataGridView1_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
+        {
+            e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
         }
 
 

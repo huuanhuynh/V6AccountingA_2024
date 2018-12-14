@@ -32,9 +32,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabChiTiet = new System.Windows.Forms.TabPage();
             this.detail1 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
@@ -45,6 +45,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.STT_REC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.STT_REC0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabKhac = new System.Windows.Forms.TabPage();
+            this.TxtT_TIENVC = new V6Controls.V6NumberTextBox();
+            this.TxtT_TIENVCNT = new V6Controls.V6NumberTextBox();
+            this.v6Label27 = new V6Controls.V6Label();
             this.Txtma_td_ph = new V6Controls.V6VvarTextBox();
             this.v6Label14 = new V6Controls.V6Label();
             this.TxtL_AM_INFO = new V6Controls.V6ColorTextBox();
@@ -210,9 +213,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnTim = new System.Windows.Forms.Button();
             this.lblNameT = new V6Controls.V6Label();
-            this.TxtT_TIENVC = new V6Controls.V6NumberTextBox();
-            this.TxtT_TIENVCNT = new V6Controls.V6NumberTextBox();
-            this.v6Label27 = new V6Controls.V6Label();
+            this.tabThongTin = new System.Windows.Forms.TabPage();
+            this.v6DateTimePick1 = new V6Controls.V6DateTimeFullPicker();
+            this.v6Label48 = new V6Controls.V6Label();
+            this.txtDiaChi2 = new V6Controls.V6VvarTextBox();
+            this.lblNgayNoHD = new V6Controls.V6Label();
+            this.txtNgayNoHD = new V6Controls.V6NumberTextBox();
+            this.txtMaPTVC = new V6Controls.V6VvarTextBox();
+            this.lblPTVC = new V6Controls.V6Label();
+            this.lblDiaChi2 = new V6Controls.V6Label();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -225,6 +234,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.group3.SuspendLayout();
             this.group2.SuspendLayout();
             this.group1.SuspendLayout();
+            this.tabThongTin.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -234,6 +244,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabChiTiet);
             this.tabControl1.Controls.Add(this.tabKhac);
+            this.tabControl1.Controls.Add(this.tabThongTin);
             this.tabControl1.Location = new System.Drawing.Point(8, 175);
             this.tabControl1.MinimumSize = new System.Drawing.Size(0, 150);
             this.tabControl1.Name = "tabControl1";
@@ -286,20 +297,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MA_VT,
@@ -311,8 +322,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(875, 142);
             this.dataGridView1.TabIndex = 1;
@@ -411,6 +422,66 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.tabKhac.Size = new System.Drawing.Size(879, 194);
             this.tabKhac.TabIndex = 1;
             this.tabKhac.Text = "Khác";
+            // 
+            // TxtT_TIENVC
+            // 
+            this.TxtT_TIENVC.AccessibleDescription = "";
+            this.TxtT_TIENVC.AccessibleName = "T_TIENVC";
+            this.TxtT_TIENVC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtT_TIENVC.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtT_TIENVC.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TxtT_TIENVC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtT_TIENVC.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtT_TIENVC.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtT_TIENVC.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.TxtT_TIENVC.HoverColor = System.Drawing.Color.Yellow;
+            this.TxtT_TIENVC.LeaveColor = System.Drawing.Color.White;
+            this.TxtT_TIENVC.Location = new System.Drawing.Point(151, 169);
+            this.TxtT_TIENVC.Name = "TxtT_TIENVC";
+            this.TxtT_TIENVC.Size = new System.Drawing.Size(136, 20);
+            this.TxtT_TIENVC.TabIndex = 165;
+            this.TxtT_TIENVC.Text = "0,000";
+            this.TxtT_TIENVC.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TxtT_TIENVC.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // TxtT_TIENVCNT
+            // 
+            this.TxtT_TIENVCNT.AccessibleDescription = "";
+            this.TxtT_TIENVCNT.AccessibleName = "T_TIENVCNT";
+            this.TxtT_TIENVCNT.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtT_TIENVCNT.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TxtT_TIENVCNT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtT_TIENVCNT.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtT_TIENVCNT.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtT_TIENVCNT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.TxtT_TIENVCNT.HoverColor = System.Drawing.Color.Yellow;
+            this.TxtT_TIENVCNT.LeaveColor = System.Drawing.Color.White;
+            this.TxtT_TIENVCNT.Location = new System.Drawing.Point(14, 169);
+            this.TxtT_TIENVCNT.Name = "TxtT_TIENVCNT";
+            this.TxtT_TIENVCNT.Size = new System.Drawing.Size(132, 20);
+            this.TxtT_TIENVCNT.TabIndex = 164;
+            this.TxtT_TIENVCNT.Tag = "readonly";
+            this.TxtT_TIENVCNT.Text = "0,000";
+            this.TxtT_TIENVCNT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TxtT_TIENVCNT.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // v6Label27
+            // 
+            this.v6Label27.AccessibleDescription = "ASOCTSOAL00110";
+            this.v6Label27.AutoSize = true;
+            this.v6Label27.Location = new System.Drawing.Point(11, 152);
+            this.v6Label27.Name = "v6Label27";
+            this.v6Label27.Size = new System.Drawing.Size(64, 13);
+            this.v6Label27.TabIndex = 163;
+            this.v6Label27.Text = "Vận chuyển";
             // 
             // Txtma_td_ph
             // 
@@ -2966,71 +3037,144 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.lblNameT.AccessibleDescription = "";
             this.lblNameT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNameT.Location = new System.Drawing.Point(112, 173);
+            this.lblNameT.Location = new System.Drawing.Point(221, 173);
             this.lblNameT.Name = "lblNameT";
-            this.lblNameT.Size = new System.Drawing.Size(778, 18);
+            this.lblNameT.Size = new System.Drawing.Size(669, 18);
             this.lblNameT.TabIndex = 21;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // TxtT_TIENVC
+            // tabThongTin
             // 
-            this.TxtT_TIENVC.AccessibleDescription = "";
-            this.TxtT_TIENVC.AccessibleName = "T_TIENVC";
-            this.TxtT_TIENVC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtT_TIENVC.BackColor = System.Drawing.SystemColors.Window;
-            this.TxtT_TIENVC.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtT_TIENVC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtT_TIENVC.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtT_TIENVC.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtT_TIENVC.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtT_TIENVC.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtT_TIENVC.LeaveColor = System.Drawing.Color.White;
-            this.TxtT_TIENVC.Location = new System.Drawing.Point(151, 169);
-            this.TxtT_TIENVC.Name = "TxtT_TIENVC";
-            this.TxtT_TIENVC.Size = new System.Drawing.Size(136, 20);
-            this.TxtT_TIENVC.TabIndex = 165;
-            this.TxtT_TIENVC.Text = "0,000";
-            this.TxtT_TIENVC.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.TxtT_TIENVC.Value = new decimal(new int[] {
+            this.tabThongTin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTin.Controls.Add(this.v6DateTimePick1);
+            this.tabThongTin.Controls.Add(this.v6Label48);
+            this.tabThongTin.Controls.Add(this.txtDiaChi2);
+            this.tabThongTin.Controls.Add(this.lblNgayNoHD);
+            this.tabThongTin.Controls.Add(this.txtNgayNoHD);
+            this.tabThongTin.Controls.Add(this.txtMaPTVC);
+            this.tabThongTin.Controls.Add(this.lblPTVC);
+            this.tabThongTin.Controls.Add(this.lblDiaChi2);
+            this.tabThongTin.Location = new System.Drawing.Point(4, 22);
+            this.tabThongTin.Name = "tabThongTin";
+            this.tabThongTin.Padding = new System.Windows.Forms.Padding(3);
+            this.tabThongTin.Size = new System.Drawing.Size(879, 194);
+            this.tabThongTin.TabIndex = 6;
+            this.tabThongTin.Text = "TT giao hàng & PTTT";
+            // 
+            // v6DateTimePick1
+            // 
+            this.v6DateTimePick1.AccessibleName = "TG_NHAN";
+            this.v6DateTimePick1.CustomFormat = "HH:mm dd/MM/yyyy";
+            this.v6DateTimePick1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6DateTimePick1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.v6DateTimePick1.HoverColor = System.Drawing.Color.Yellow;
+            this.v6DateTimePick1.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.v6DateTimePick1.LeaveColor = System.Drawing.Color.White;
+            this.v6DateTimePick1.Location = new System.Drawing.Point(134, 107);
+            this.v6DateTimePick1.Name = "v6DateTimePick1";
+            this.v6DateTimePick1.Size = new System.Drawing.Size(130, 20);
+            this.v6DateTimePick1.TabIndex = 9;
+            this.v6DateTimePick1.UseTime = true;
+            // 
+            // v6Label48
+            // 
+            this.v6Label48.AutoSize = true;
+            this.v6Label48.Location = new System.Drawing.Point(0, 111);
+            this.v6Label48.Name = "v6Label48";
+            this.v6Label48.Size = new System.Drawing.Size(60, 13);
+            this.v6Label48.TabIndex = 8;
+            this.v6Label48.Text = "T.gian giao";
+            // 
+            // txtDiaChi2
+            // 
+            this.txtDiaChi2.AccessibleName = "DIA_CHI2";
+            this.txtDiaChi2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDiaChi2.BackColor = System.Drawing.SystemColors.Window;
+            this.txtDiaChi2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtDiaChi2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDiaChi2.CheckNotEmpty = true;
+            this.txtDiaChi2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtDiaChi2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtDiaChi2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtDiaChi2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtDiaChi2.LeaveColor = System.Drawing.Color.White;
+            this.txtDiaChi2.Location = new System.Drawing.Point(134, 4);
+            this.txtDiaChi2.Name = "txtDiaChi2";
+            this.txtDiaChi2.Size = new System.Drawing.Size(738, 20);
+            this.txtDiaChi2.TabIndex = 1;
+            this.txtDiaChi2.VVar = "DIA_CHI2";
+            this.txtDiaChi2.Enter += new System.EventHandler(this.txtDiaChi2_Enter);
+            // 
+            // lblNgayNoHD
+            // 
+            this.lblNgayNoHD.AutoSize = true;
+            this.lblNgayNoHD.Location = new System.Drawing.Point(0, 83);
+            this.lblNgayNoHD.Name = "lblNgayNoHD";
+            this.lblNgayNoHD.Size = new System.Drawing.Size(105, 13);
+            this.lblNgayNoHD.TabIndex = 6;
+            this.lblNgayNoHD.Text = "Số ngày lấy hóa đơn";
+            // 
+            // txtNgayNoHD
+            // 
+            this.txtNgayNoHD.AccessibleDescription = "";
+            this.txtNgayNoHD.AccessibleName = "NGAY_NOHD";
+            this.txtNgayNoHD.BackColor = System.Drawing.SystemColors.Window;
+            this.txtNgayNoHD.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtNgayNoHD.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNgayNoHD.DecimalPlaces = 0;
+            this.txtNgayNoHD.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtNgayNoHD.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNgayNoHD.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtNgayNoHD.HoverColor = System.Drawing.Color.Yellow;
+            this.txtNgayNoHD.LeaveColor = System.Drawing.Color.White;
+            this.txtNgayNoHD.Location = new System.Drawing.Point(134, 81);
+            this.txtNgayNoHD.Name = "txtNgayNoHD";
+            this.txtNgayNoHD.Size = new System.Drawing.Size(100, 20);
+            this.txtNgayNoHD.TabIndex = 7;
+            this.txtNgayNoHD.Text = "0";
+            this.txtNgayNoHD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtNgayNoHD.Value = new decimal(new int[] {
             0,
             0,
             0,
             0});
             // 
-            // TxtT_TIENVCNT
+            // txtMaPTVC
             // 
-            this.TxtT_TIENVCNT.AccessibleDescription = "";
-            this.TxtT_TIENVCNT.AccessibleName = "T_TIENVCNT";
-            this.TxtT_TIENVCNT.BackColor = System.Drawing.SystemColors.Window;
-            this.TxtT_TIENVCNT.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtT_TIENVCNT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtT_TIENVCNT.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtT_TIENVCNT.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtT_TIENVCNT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtT_TIENVCNT.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtT_TIENVCNT.LeaveColor = System.Drawing.Color.White;
-            this.TxtT_TIENVCNT.Location = new System.Drawing.Point(14, 169);
-            this.TxtT_TIENVCNT.Name = "TxtT_TIENVCNT";
-            this.TxtT_TIENVCNT.Size = new System.Drawing.Size(132, 20);
-            this.TxtT_TIENVCNT.TabIndex = 164;
-            this.TxtT_TIENVCNT.Tag = "readonly";
-            this.TxtT_TIENVCNT.Text = "0,000";
-            this.TxtT_TIENVCNT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.TxtT_TIENVCNT.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
+            this.txtMaPTVC.AccessibleName = "MA_PTVC";
+            this.txtMaPTVC.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaPTVC.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaPTVC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMaPTVC.CheckNotEmpty = true;
+            this.txtMaPTVC.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaPTVC.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaPTVC.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaPTVC.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaPTVC.LeaveColor = System.Drawing.Color.White;
+            this.txtMaPTVC.Location = new System.Drawing.Point(134, 29);
+            this.txtMaPTVC.Name = "txtMaPTVC";
+            this.txtMaPTVC.Size = new System.Drawing.Size(100, 20);
+            this.txtMaPTVC.TabIndex = 3;
+            this.txtMaPTVC.VVar = "MA_HTVC";
             // 
-            // v6Label27
+            // lblPTVC
             // 
-            this.v6Label27.AccessibleDescription = "ASOCTSOAL00110";
-            this.v6Label27.AutoSize = true;
-            this.v6Label27.Location = new System.Drawing.Point(11, 152);
-            this.v6Label27.Name = "v6Label27";
-            this.v6Label27.Size = new System.Drawing.Size(64, 13);
-            this.v6Label27.TabIndex = 163;
-            this.v6Label27.Text = "Vận chuyển";
+            this.lblPTVC.AutoSize = true;
+            this.lblPTVC.Location = new System.Drawing.Point(0, 32);
+            this.lblPTVC.Name = "lblPTVC";
+            this.lblPTVC.Size = new System.Drawing.Size(118, 13);
+            this.lblPTVC.TabIndex = 2;
+            this.lblPTVC.Text = "Phương thức giao hàng";
+            // 
+            // lblDiaChi2
+            // 
+            this.lblDiaChi2.AutoSize = true;
+            this.lblDiaChi2.Location = new System.Drawing.Point(0, 6);
+            this.lblDiaChi2.Name = "lblDiaChi2";
+            this.lblDiaChi2.Size = new System.Drawing.Size(114, 13);
+            this.lblDiaChi2.TabIndex = 0;
+            this.lblDiaChi2.Text = "Địa chỉ giao / lấy hàng";
             // 
             // DonDatHangBanControl
             // 
@@ -3086,6 +3230,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.group2.PerformLayout();
             this.group1.ResumeLayout(false);
             this.group1.PerformLayout();
+            this.tabThongTin.ResumeLayout(false);
+            this.tabThongTin.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3271,5 +3417,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         private V6NumberTextBox TxtT_TIENVC;
         private V6NumberTextBox TxtT_TIENVCNT;
         private V6Label v6Label27;
+        private System.Windows.Forms.TabPage tabThongTin;
+        private V6DateTimeFullPicker v6DateTimePick1;
+        private V6Label v6Label48;
+        private V6VvarTextBox txtDiaChi2;
+        private V6Label lblNgayNoHD;
+        private V6NumberTextBox txtNgayNoHD;
+        private V6VvarTextBox txtMaPTVC;
+        private V6Label lblPTVC;
+        private V6Label lblDiaChi2;
     }
 }

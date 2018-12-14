@@ -1430,7 +1430,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try
             {
-                if (V6Options.M_CHK_XUAT != "0") return true;
+                if (V6Options.M_CHK_XUAT == "0") return true;
 
                 var M_CHECK_SAVE_STOCK = V6Options.GetValue("M_CHECK_SAVE_STOCK");
                 string message = "";
@@ -1789,8 +1789,13 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     var data_makho = row["Ma_kho"].ToString().Trim();
                     var data_soluong = ObjectAndString.ObjectToDecimal(row["Ton00"]);
                     //
-                    if (data_soluong != 0 && c_mavt == data_mavt && c_makho == data_makho)
+                    if (item.Value < 0) // gõ âm thoải mái.
                     {
+                        DoNothing();
+                    }
+                    else if (c_mavt == data_mavt && c_makho == data_makho)
+                    {
+                       
                         if (data_soluong < item.Value)
                         {
                             message += string.Format("Kho:{2}  Vật tư:{3}  Tồn:{0}  Xuất:{1}\n",

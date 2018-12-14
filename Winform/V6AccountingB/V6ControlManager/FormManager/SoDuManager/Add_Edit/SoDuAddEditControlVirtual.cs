@@ -708,6 +708,29 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         
         public bool DoInsertOrUpdate(bool showMessage = true)
         {
+            try
+            {
+                FixFormData();
+                DataDic = GetData();
+                All_Objects["data"] = DataDic;
+                All_Objects["dataOld"] = DataOld;
+                ValidateData();
+                //InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
+                //InvokeFormEvent("BEFOREINSERTORUPDATE");
+                //string checkV6Valid = CheckV6Valid(DataDic, TableName.ToString());
+                //if (!string.IsNullOrEmpty(checkV6Valid))
+                //{
+                //    this.ShowInfoMessage(checkV6Valid);
+                //    return false;
+                //}
+            }
+            catch (Exception ex)
+            {
+                this.ShowInfoMessage(ex.Message);
+                this.WriteExLog(GetType() + ".DoInsertOrUpdate ValidateData", ex);
+                return false;
+            }
+
             if (Mode==V6Mode.Edit)
             {
                 try
@@ -813,7 +836,130 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         /// <returns></returns>
         public virtual void ValidateData()
         {
-          
+            // Code mẫu cho hàm check động ValidateMasterData.
+            string error = ValidateMasterData(_maCt);
+            if(!string.IsNullOrEmpty(error)) throw new Exception(error);
+        }
+
+        protected string ValidateMasterData(string maCt)
+        {
+            string error = "";
+            var v6validConfig = ConfigManager.GetV6ValidConfig(maCt, 1);
+
+            if (v6validConfig != null && v6validConfig.HaveInfo)
+            {
+                var a_fields = v6validConfig.A_field.Split(',');
+                foreach (string field in a_fields)
+                {
+                    var control = V6ControlFormHelper.GetControlByAccessibleName(this, field);
+                    if (control is V6DateTimeColor)
+                    {
+                        if (((V6DateTimeColor)control).Value == null)
+                        {
+                            string message = "Chưa nhập giá trị: " + field;
+                            error += message + "\n";
+                            this.ShowWarningMessage(message);
+                            control.Focus();
+                        }
+                    }
+                    else if (control is V6NumberTextBox)
+                    {
+                        if (((V6NumberTextBox)control).Value == 0)
+                        {
+                            string message = "Chưa nhập giá trị: " + field;
+                            error += message + "\n";
+                            this.ShowWarningMessage(message);
+                            control.Focus();
+                        }
+                    }
+                    else if (control is TextBox)
+                    {
+                        if (string.IsNullOrEmpty(control.Text))
+                        {
+                            string message = "Chưa nhập giá trị: " + field;
+                            error += message + "\n";
+                            this.ShowWarningMessage(message);
+                            control.Focus();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                V6ControlFormHelper.SetStatusText("No V6Valid info!");
+            }
+            return error;
+        }
+
+        /// <summary>
+        /// <para>Kiểm tra dữ liệu chi tiết hợp lệ quy định trong V6Valid.</para>
+        /// <para>Nếu hợp lệ trả về rỗng hoặc null, Nếu ko trả về message.</para>
+        /// </summary>
+        /// <param name="table2Struct">Cấu trúc bảng chi tiết.</param>
+        /// <param name="data"></param>
+        /// <param name="maCt"></param>
+        /// <returns>Nếu hợp lệ trả về rỗng hoặc null, Nếu ko trả về message.</returns>
+        protected string ValidateDetailData(string maCt, V6TableStruct table2Struct, SortedDictionary<string, object> data)
+        {
+            string error = "";
+            try
+            {
+                var config = ConfigManager.GetV6ValidConfig(maCt, 2);
+
+                if (config != null && config.HaveInfo)
+                {
+                    //Trường bắt buột nhập dữ liệu.
+                    var a_fields = ObjectAndString.SplitString(config.A_field);
+                    foreach (string field in a_fields)
+                    {
+                        string FIELD = field.Trim().ToUpper();
+                        if (!data.ContainsKey(FIELD))
+                        {
+                            //error += string.Format("{0}: [{1}]\n", V6Text.NoData, FIELD);
+                            continue;
+                        }
+
+                        V6ColumnStruct columnS = table2Struct[FIELD];
+                        object value = data[FIELD];
+                        if (ObjectAndString.IsDateTimeType(columnS.DataType))
+                        {
+                            if (value == null) error += V6Text.NoInput + " [" + FIELD + "]\n";
+                        }
+                        else if (ObjectAndString.IsNumberType(columnS.DataType))
+                        {
+                            if (ObjectAndString.ObjectToDecimal(value) == 0) error += V6Text.NoInput + " [" + FIELD + "]\n";
+                        }
+                        else // string
+                        {
+                            if (("" + value).Trim() == "") error += V6Text.NoInput + " [" + FIELD + "]\n";
+                        }
+                    }
+
+                    //Trường vvar
+                    var a_field2s = ObjectAndString.SplitString(config.A_field2);
+                    foreach (string field2 in a_field2s)
+                    {
+                        var vvar = GetControlByAccessibleName(field2) as V6VvarTextBox;
+                        if (vvar != null)
+                        {
+                            if (vvar.CheckNotEmpty && vvar.CheckOnLeave && !vvar.ExistRowInTable(true))
+                            {
+                                error += V6Text.Wrong + " [" + field2 + "]\n";
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    ShowMainMessage("No V6Valid info!");
+                }
+            }
+            catch (Exception ex)
+            {
+                //error += ex.Message;//Lỗi chương trình không liên quan lỗi nhập liệu
+                this.WriteExLog(GetType() + ".ValidateData_Detail " + _sttRec, ex);
+            }
+            return error;
         }
 
         /// <summary>
@@ -860,6 +1006,66 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
 
         }
+
+        //protected void CreateFormProgram()
+        //{
+        //    try
+        //    {
+        //        //DMETHOD
+        //        if (_aldmConfig.NoInfo || string.IsNullOrEmpty(_aldmConfig.DMETHOD))
+        //        {
+        //            //this.ShowWarningMessage("No column name [DMETHOD]");
+        //            return;
+        //        }
+        //        string using_text = "";
+        //        string method_text = "";
+        //        //foreach (DataRow dataRow in Invoice.Alct1.Rows)
+        //        {
+        //            var xml = _aldmConfig.DMETHOD;
+        //            if (xml == "") return;
+        //            DataSet ds = new DataSet();
+        //            ds.ReadXml(new StringReader(xml));
+        //            if (ds.Tables.Count <= 0) return;
+        //            var data = ds.Tables[0];
+        //            foreach (DataRow event_row in data.Rows)
+        //            {
+        //                var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
+        //                var method_name = event_row["method"].ToString().Trim();
+        //                Event_Methods[EVENT_NAME] = method_name;
+        //                using_text += data.Columns.Contains("using") ? event_row["using"] : "";
+        //                method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
+        //            }
+        //        }
+        //    Build:
+        //        Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + _aldmConfig.MA_DM, using_text, method_text);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        this.WriteExLog(GetType() + ".CreateProgram0", ex);
+        //    }
+        //}
+
+        ///// <summary>
+        ///// Gọi hàm động theo tên event đã định nghĩa.
+        ///// </summary>
+        ///// <param name="eventName"></param>
+        ///// <returns></returns>
+        //public object InvokeFormEvent(string eventName)
+        //{
+        //    try // Dynamic invoke
+        //    {
+        //        if (Event_Methods.ContainsKey(eventName))
+        //        {
+        //            var method_name = Event_Methods[eventName];
+        //            return V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+        //        }
+        //    }
+        //    catch (Exception ex1)
+        //    {
+        //        this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
+        //    }
+        //    return null;
+        //}
 
         /// <summary>
         /// Kiểm tra dữ liệu để thêm hoặc sửa, Trả về chuỗi lỗi, nếu hợp lệ trả về null hoặc rỗng.

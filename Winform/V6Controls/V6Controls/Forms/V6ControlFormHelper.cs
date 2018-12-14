@@ -741,6 +741,9 @@ namespace V6Controls.Forms
                     case "D1": // Not null
                         c = CreateDateTimePicker(fcolumn, fcaption, width, fstatus, carry);
                         break;
+                    case "D2": // Not null + time
+                        c = CreateDateTimeFullPicker(fcolumn, fcaption, width, fstatus, carry);
+                        break;
                     #endregion
                 }
                 if (c != temp_control)
@@ -881,6 +884,9 @@ namespace V6Controls.Forms
                         break;
                     case "D1": // Not null
                         c = CreateDateTimePicker(fcolumn, fcaption, width, fstatus, carry);
+                        break;
+                    case "D2": // Not null + time
+                        c = CreateDateTimeFullPicker(fcolumn, fcaption, width, fstatus, carry);
                         break;
                     #endregion
                 }
@@ -1788,7 +1794,7 @@ namespace V6Controls.Forms
                 if (disable) txt.Enabled = false;
                 if (enable) txt.Enabled = true;
             }
-            else if (control is V6DateTimePicker)
+            else if (control is V6DateTimePicker) // && V6DateTimeFullPicker
             {
                 var dat = control as V6DateTimePicker;
                 dat.ReadOnly = (readOnly || readonl2);
@@ -2719,6 +2725,21 @@ namespace V6Controls.Forms
                 Name = accessibleName,
                 AccessibleName = accessibleName,
                 Carry = carry,
+                //Text = caption,
+                TextTitle = caption,
+                Width = width,
+                Visible = visible,
+                Tag = visible ? null : "hide"
+            };
+        }
+        public static V6DateTimePicker CreateDateTimeFullPicker(string accessibleName, string caption, int width, bool visible, bool carry = false)
+        {
+            return new V6DateTimePicker
+            {
+                Name = accessibleName,
+                AccessibleName = accessibleName,
+                Carry = carry,
+                CustomFormat = "HH:mm dd/MM/yyyy",
                 //Text = caption,
                 TextTitle = caption,
                 Width = width,
@@ -6160,7 +6181,7 @@ namespace V6Controls.Forms
                     var txt = control as TextBox;
                     txt.ReadOnly = readOnly;
                 }
-                else if (control is V6DateTimePicker)
+                else if (control is V6DateTimePicker) // && V6DateTimeFullPicker
                 {
                     var dat = control as V6DateTimePicker;
                     dat.ReadOnly = readOnly;
@@ -6323,7 +6344,7 @@ namespace V6Controls.Forms
             {
                 ((V6LookupProc)control).SetValue(value);
             }
-            else if (control is V6DateTimePicker)
+            else if (control is V6DateTimePicker) // && V6DateTimeFullPicker
             {
                 var object_to_date = ObjectAndString.ObjectToFullDateTime(value);
                 ((V6DateTimePicker)control).SetValue(object_to_date);
@@ -6438,6 +6459,11 @@ namespace V6Controls.Forms
                 //return color.Value;
                 return;
             }
+            else if (control is V6DateTimeFullPicker)
+            {
+                d[cNAME] = ((V6DateTimeFullPicker)control).Value;
+                return;
+            }
             else if (control is V6DateTimePicker)
             {
                 d[cNAME] = ((V6DateTimePicker)control).Date;
@@ -6447,7 +6473,6 @@ namespace V6Controls.Forms
             else if (control is DateTimePicker)
             {
                 d[cNAME] = ((DateTimePicker)control).Value;
-                //return ((DateTimePicker)control).Value;
                 return;
             }
             else if (control is V6IndexComboBox)
@@ -6558,6 +6583,10 @@ namespace V6Controls.Forms
             {
                 var color = control as V6DateTimeColor;
                 return color.Value;
+            }
+            else if (control is V6DateTimeFullPicker)
+            {
+                return ((V6DateTimeFullPicker)control).Value;
             }
             else if (control is V6DateTimePicker)
             {

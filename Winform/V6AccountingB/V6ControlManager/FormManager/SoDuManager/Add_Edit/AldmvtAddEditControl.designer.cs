@@ -1169,6 +1169,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.Tag = "cancelall";
             this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
+            this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
             this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             // 
             // MA_VT
@@ -1218,7 +1219,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabKhac.Location = new System.Drawing.Point(4, 25);
             this.tabKhac.Name = "tabKhac";
             this.tabKhac.Padding = new System.Windows.Forms.Padding(3);
-            this.tabKhac.Size = new System.Drawing.Size(879, 190);
+            this.tabKhac.Size = new System.Drawing.Size(879, 313);
             this.tabKhac.TabIndex = 1;
             this.tabKhac.Text = "Khác";
             // 

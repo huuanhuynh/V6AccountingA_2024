@@ -134,7 +134,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.txtNGAY_UD2 = new V6Controls.V6DateTimeColor();
             this.txtNGAY_UD1 = new V6Controls.V6DateTimeColor();
             this.tabThongTin = new System.Windows.Forms.TabPage();
-            this.v6DateTimePick1 = new V6Controls.V6DateTimePicker();
+            this.v6DateTimePick1 = new V6Controls.V6DateTimeFullPicker();
             this.v6Label48 = new V6Controls.V6Label();
             this.txtDiaChi2 = new V6Controls.V6VvarTextBox();
             this.txtMaHTTT = new V6Controls.V6VvarTextBox();
@@ -1687,7 +1687,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             // 
             // v6Label48
             // 
-            this.v6Label48.AccessibleDescription = "ASOCTSORL00126";
             this.v6Label48.AutoSize = true;
             this.v6Label48.Location = new System.Drawing.Point(0, 111);
             this.v6Label48.Name = "v6Label48";
@@ -3623,7 +3622,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
         private V6VvarTextBox txtMaHTVC;
         private V6Label lblPTVC;
         private V6Label lblDiaChi2;
-        private V6DateTimePicker v6DateTimePick1;
+        private V6DateTimeFullPicker v6DateTimePick1;
         private V6Label v6Label48;
     }
 }

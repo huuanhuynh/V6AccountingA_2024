@@ -316,34 +316,43 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             var errors = "";
             if (txtMaYtcp.Text.Trim() == "") errors += "Chưa nhập mã YTCP!\r\n";
             if (txtMaBpht.Text.Trim() == "") errors += "Chưa nhập mã!\r\n";
-            if (Mode == V6Mode.Edit)
+            //if (Mode == V6Mode.Edit)
+            //{
+            //    bool b = V6BusinessHelper.IsValidTwoCode_Full(TableName.ToString(), 0, "MA_YTCP",
+            //     txtMaYtcp.Text.Trim(), DataOld["MA_YTCP"].ToString(),
+            //     "MA_BPHT",
+            //     txtMaBpht.Text.Trim(), DataOld["MA_BPHT"].ToString()
+            //     );
+            //    if (!b)
+            //        throw new Exception("Không được sửa mã đã tồn tại: "
+            //                                        + "MA_YTCP = " + txtMaYtcp.Text.Trim() + ",MA_BPHT = " + txtMaBpht.Text.Trim());
+            //}
+            //else if (Mode == V6Mode.Add)
+            //{
+            //    bool b = V6BusinessHelper.IsValidTwoCode_Full(TableName.ToString(), 1, "MA_YTCP",
+            //     txtMaYtcp.Text.Trim(), txtMaYtcp.Text.Trim(),
+            //     "MA_BPHT",
+            //     txtMaBpht.Text.Trim(), txtMaBpht.Text.Trim()
+            //     );
+            //    if (!b)
+            //        throw new Exception("Không được thêm mã đã tồn tại: "
+            //                                        + "MA_YTCP = " + txtMaYtcp.Text.Trim() + ",MA_BPHT = " + txtMaBpht.Text.Trim());
+            //}
+
+
+            AldmConfig config = ConfigManager.GetAldmConfig(TableName.ToString());
+            if (config != null && config.HaveInfo && !string.IsNullOrEmpty(config.KEY))
             {
-                bool b = V6BusinessHelper.IsValidTwoCode_Full(TableName.ToString(), 0, "MA_YTCP",
-                 txtMaYtcp.Text.Trim(), DataOld["MA_YTCP"].ToString(),
-                 "MA_BPHT",
-                 txtMaBpht.Text.Trim(), DataOld["MA_BPHT"].ToString()
-                 );
-                if (!b)
-                    throw new Exception("Không được sửa mã đã tồn tại: "
-                                                    + "MA_YTCP = " + txtMaYtcp.Text.Trim() + ",MA_BPHT = " + txtMaBpht.Text.Trim());
+                var key_list = ObjectAndString.SplitString(config.KEY);
+                errors += CheckValid(TableName.ToString(), key_list);
             }
-            else if (Mode == V6Mode.Add)
-            {
-                bool b = V6BusinessHelper.IsValidTwoCode_Full(TableName.ToString(), 1, "MA_YTCP",
-                 txtMaYtcp.Text.Trim(), txtMaYtcp.Text.Trim(),
-                 "MA_BPHT",
-                 txtMaBpht.Text.Trim(), txtMaBpht.Text.Trim()
-                 );
-                if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
-                                                    + "MA_YTCP = " + txtMaYtcp.Text.Trim() + ",MA_BPHT = " + txtMaBpht.Text.Trim());
-            }
-            
 
             if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
             {
                 errors += "Chưa hoàn tất chi tiết!\r\n";
             }
+
+            errors += ValidateMasterData(_maCt);
 
             if (errors.Length > 0) throw new Exception(errors);
 
@@ -518,6 +527,12 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             try
             {
                 if (data == null) return false;
+                string errors = ValidateDetailData(_maCt, _table2Struct, data);
+                if (!string.IsNullOrEmpty(errors))
+                {
+                    this.ShowWarningMessage(errors);
+                    return false;
+                }
             }
             catch (Exception ex)
             {
@@ -602,6 +617,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 detail1.AutoFocus();
             }
+        }
+
+        private void dataGridView1_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
+        {
+            e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
         }
 
 
