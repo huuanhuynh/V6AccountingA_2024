@@ -30,6 +30,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VatTuAddEditForm));
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
@@ -204,19 +205,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox2 = new V6Controls.V6NumberTextBox();
             this.v6NumberTextBox1 = new V6Controls.V6NumberTextBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.txtFileName2 = new V6Controls.V6ColorTextBox();
-            this.txtFileName1 = new V6Controls.V6ColorTextBox();
-            this.btnXemFile2 = new V6Controls.Controls.V6FormButton();
+            this.btnChonFile2 = new V6Controls.Controls.FileButton();
+            this.btnChonFile1 = new V6Controls.Controls.FileButton();
             this.btnXemPDF2 = new V6Controls.Controls.V6FormButton();
-            this.btnXemFile = new V6Controls.Controls.V6FormButton();
             this.btnXemPDF = new V6Controls.Controls.V6FormButton();
-            this.btnXoaFile2 = new V6Controls.Controls.V6FormButton();
             this.btnXoaPDF2 = new V6Controls.Controls.V6FormButton();
-            this.btnXoaFile = new V6Controls.Controls.V6FormButton();
             this.btnXoaPDF = new V6Controls.Controls.V6FormButton();
-            this.btnChonFile2 = new V6Controls.Controls.V6FormButton();
             this.btnChonPDF2 = new V6Controls.Controls.V6FormButton();
-            this.btnChonFile = new V6Controls.Controls.V6FormButton();
             this.btnChonPDF = new V6Controls.Controls.V6FormButton();
             this.ptbPHOTOGRAPH = new System.Windows.Forms.PictureBox();
             this.btnXoahinh = new System.Windows.Forms.Button();
@@ -2968,19 +2963,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.tabPage7.AccessibleDescription = "ADDEDITT00004";
             this.tabPage7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage7.Controls.Add(this.txtFileName2);
-            this.tabPage7.Controls.Add(this.txtFileName1);
-            this.tabPage7.Controls.Add(this.btnXemFile2);
-            this.tabPage7.Controls.Add(this.btnXemPDF2);
-            this.tabPage7.Controls.Add(this.btnXemFile);
-            this.tabPage7.Controls.Add(this.btnXemPDF);
-            this.tabPage7.Controls.Add(this.btnXoaFile2);
-            this.tabPage7.Controls.Add(this.btnXoaPDF2);
-            this.tabPage7.Controls.Add(this.btnXoaFile);
-            this.tabPage7.Controls.Add(this.btnXoaPDF);
             this.tabPage7.Controls.Add(this.btnChonFile2);
+            this.tabPage7.Controls.Add(this.btnChonFile1);
+            this.tabPage7.Controls.Add(this.btnXemPDF2);
+            this.tabPage7.Controls.Add(this.btnXemPDF);
+            this.tabPage7.Controls.Add(this.btnXoaPDF2);
+            this.tabPage7.Controls.Add(this.btnXoaPDF);
             this.tabPage7.Controls.Add(this.btnChonPDF2);
-            this.tabPage7.Controls.Add(this.btnChonFile);
             this.tabPage7.Controls.Add(this.btnChonPDF);
             this.tabPage7.Controls.Add(this.ptbPHOTOGRAPH);
             this.tabPage7.Controls.Add(this.btnXoahinh);
@@ -3032,55 +3021,39 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Thông tin khác";
             // 
-            // txtFileName2
+            // btnChonFile2
             // 
-            this.txtFileName2.AccessibleName = "FILE_NAME2";
-            this.txtFileName2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtFileName2.BackColor = System.Drawing.Color.White;
-            this.txtFileName2.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtFileName2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtFileName2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtFileName2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtFileName2.HoverColor = System.Drawing.Color.Yellow;
-            this.txtFileName2.LeaveColor = System.Drawing.Color.White;
-            this.txtFileName2.Location = new System.Drawing.Point(295, 332);
-            this.txtFileName2.Margin = new System.Windows.Forms.Padding(4);
-            this.txtFileName2.Name = "txtFileName2";
-            this.txtFileName2.Size = new System.Drawing.Size(20, 23);
-            this.txtFileName2.TabIndex = 59;
-            this.txtFileName2.Visible = false;
+            this.btnChonFile2.AccessibleName = "FILE_NAME2";
+            this.btnChonFile2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnChonFile2.Image = ((System.Drawing.Image)(resources.GetObject("btnChonFile2.Image")));
+            this.btnChonFile2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChonFile2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnChonFile2.Location = new System.Drawing.Point(201, 317);
+            this.btnChonFile2.Name = "btnChonFile2";
+            this.btnChonFile2.ReadOnly = false;
+            this.btnChonFile2.Size = new System.Drawing.Size(187, 32);
+            this.btnChonFile2.TabIndex = 60;
+            this.btnChonFile2.Text = "Chọn file 2";
+            this.btnChonFile2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnChonFile2.UseVisualStyleBackColor = true;
+            this.btnChonFile2.AfterProcess += new System.EventHandler<V6Controls.Controls.FileButton.Event_Args>(this.btnChonFile1_AfterProcess);
             // 
-            // txtFileName1
+            // btnChonFile1
             // 
-            this.txtFileName1.AccessibleName = "FILE_NAME1";
-            this.txtFileName1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtFileName1.BackColor = System.Drawing.Color.White;
-            this.txtFileName1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtFileName1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtFileName1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtFileName1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtFileName1.HoverColor = System.Drawing.Color.Yellow;
-            this.txtFileName1.LeaveColor = System.Drawing.Color.White;
-            this.txtFileName1.Location = new System.Drawing.Point(295, 311);
-            this.txtFileName1.Margin = new System.Windows.Forms.Padding(4);
-            this.txtFileName1.Name = "txtFileName1";
-            this.txtFileName1.Size = new System.Drawing.Size(20, 23);
-            this.txtFileName1.TabIndex = 60;
-            this.txtFileName1.Visible = false;
-            // 
-            // btnXemFile2
-            // 
-            this.btnXemFile2.AccessibleName = "";
-            this.btnXemFile2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnXemFile2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnXemFile2.Location = new System.Drawing.Point(200, 335);
-            this.btnXemFile2.Name = "btnXemFile2";
-            this.btnXemFile2.Size = new System.Drawing.Size(90, 24);
-            this.btnXemFile2.TabIndex = 51;
-            this.btnXemFile2.Text = "Xem file2";
-            this.btnXemFile2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnXemFile2.UseVisualStyleBackColor = true;
-            this.btnXemFile2.Click += new System.EventHandler(this.btnXemFile2_Click);
+            this.btnChonFile1.AccessibleName = "FILE_NAME1";
+            this.btnChonFile1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnChonFile1.Image = ((System.Drawing.Image)(resources.GetObject("btnChonFile1.Image")));
+            this.btnChonFile1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChonFile1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnChonFile1.Location = new System.Drawing.Point(8, 317);
+            this.btnChonFile1.Name = "btnChonFile1";
+            this.btnChonFile1.ReadOnly = false;
+            this.btnChonFile1.Size = new System.Drawing.Size(187, 32);
+            this.btnChonFile1.TabIndex = 59;
+            this.btnChonFile1.Text = "Chọn file 1";
+            this.btnChonFile1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnChonFile1.UseVisualStyleBackColor = true;
+            this.btnChonFile1.AfterProcess += new System.EventHandler<V6Controls.Controls.FileButton.Event_Args>(this.btnChonFile1_AfterProcess);
             // 
             // btnXemPDF2
             // 
@@ -3096,20 +3069,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.btnXemPDF2.UseVisualStyleBackColor = true;
             this.btnXemPDF2.Click += new System.EventHandler(this.btnXemPDF2_Click);
             // 
-            // btnXemFile
-            // 
-            this.btnXemFile.AccessibleName = "";
-            this.btnXemFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnXemFile.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnXemFile.Location = new System.Drawing.Point(200, 311);
-            this.btnXemFile.Name = "btnXemFile";
-            this.btnXemFile.Size = new System.Drawing.Size(90, 24);
-            this.btnXemFile.TabIndex = 53;
-            this.btnXemFile.Text = "Xem file";
-            this.btnXemFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnXemFile.UseVisualStyleBackColor = true;
-            this.btnXemFile.Click += new System.EventHandler(this.btnXemFile_Click);
-            // 
             // btnXemPDF
             // 
             this.btnXemPDF.AccessibleName = "";
@@ -3123,20 +3082,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.btnXemPDF.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnXemPDF.UseVisualStyleBackColor = true;
             this.btnXemPDF.Click += new System.EventHandler(this.btnXemPDF_Click);
-            // 
-            // btnXoaFile2
-            // 
-            this.btnXoaFile2.AccessibleName = "";
-            this.btnXoaFile2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnXoaFile2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnXoaFile2.Location = new System.Drawing.Point(104, 335);
-            this.btnXoaFile2.Name = "btnXoaFile2";
-            this.btnXoaFile2.Size = new System.Drawing.Size(90, 24);
-            this.btnXoaFile2.TabIndex = 55;
-            this.btnXoaFile2.Text = "Xóa file2";
-            this.btnXoaFile2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnXoaFile2.UseVisualStyleBackColor = true;
-            this.btnXoaFile2.Click += new System.EventHandler(this.btnXoaFile2_Click);
             // 
             // btnXoaPDF2
             // 
@@ -3152,20 +3097,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.btnXoaPDF2.UseVisualStyleBackColor = true;
             this.btnXoaPDF2.Click += new System.EventHandler(this.btnXoaPDF2_Click);
             // 
-            // btnXoaFile
-            // 
-            this.btnXoaFile.AccessibleName = "";
-            this.btnXoaFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnXoaFile.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnXoaFile.Location = new System.Drawing.Point(104, 311);
-            this.btnXoaFile.Name = "btnXoaFile";
-            this.btnXoaFile.Size = new System.Drawing.Size(90, 24);
-            this.btnXoaFile.TabIndex = 57;
-            this.btnXoaFile.Text = "Xóa file";
-            this.btnXoaFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnXoaFile.UseVisualStyleBackColor = true;
-            this.btnXoaFile.Click += new System.EventHandler(this.btnXoaFile_Click);
-            // 
             // btnXoaPDF
             // 
             this.btnXoaPDF.AccessibleName = "";
@@ -3180,20 +3111,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.btnXoaPDF.UseVisualStyleBackColor = true;
             this.btnXoaPDF.Click += new System.EventHandler(this.btnXoaPDF_Click);
             // 
-            // btnChonFile2
-            // 
-            this.btnChonFile2.AccessibleName = "";
-            this.btnChonFile2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnChonFile2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnChonFile2.Location = new System.Drawing.Point(8, 335);
-            this.btnChonFile2.Name = "btnChonFile2";
-            this.btnChonFile2.Size = new System.Drawing.Size(90, 24);
-            this.btnChonFile2.TabIndex = 47;
-            this.btnChonFile2.Text = "Chọn file2";
-            this.btnChonFile2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnChonFile2.UseVisualStyleBackColor = true;
-            this.btnChonFile2.Click += new System.EventHandler(this.btnChonFile2_Click);
-            // 
             // btnChonPDF2
             // 
             this.btnChonPDF2.AccessibleName = "";
@@ -3207,20 +3124,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.btnChonPDF2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnChonPDF2.UseVisualStyleBackColor = true;
             this.btnChonPDF2.Click += new System.EventHandler(this.btnChonPDF2_Click);
-            // 
-            // btnChonFile
-            // 
-            this.btnChonFile.AccessibleName = "";
-            this.btnChonFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnChonFile.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnChonFile.Location = new System.Drawing.Point(8, 311);
-            this.btnChonFile.Name = "btnChonFile";
-            this.btnChonFile.Size = new System.Drawing.Size(90, 24);
-            this.btnChonFile.TabIndex = 49;
-            this.btnChonFile.Text = "Chọn file";
-            this.btnChonFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnChonFile.UseVisualStyleBackColor = true;
-            this.btnChonFile.Click += new System.EventHandler(this.btnChonFile_Click);
             // 
             // btnChonPDF
             // 
@@ -4375,19 +4278,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Label label41;
-        private V6ColorTextBox txtFileName2;
-        private V6ColorTextBox txtFileName1;
-        protected V6FormButton btnXemFile2;
         protected V6FormButton btnXemPDF2;
-        protected V6FormButton btnXemFile;
         protected V6FormButton btnXemPDF;
-        protected V6FormButton btnXoaFile2;
         protected V6FormButton btnXoaPDF2;
-        protected V6FormButton btnXoaFile;
         protected V6FormButton btnXoaPDF;
-        protected V6FormButton btnChonFile2;
         protected V6FormButton btnChonPDF2;
-        protected V6FormButton btnChonFile;
         protected V6FormButton btnChonPDF;
+        protected FileButton btnChonFile1;
+        protected FileButton btnChonFile2;
     }
 }

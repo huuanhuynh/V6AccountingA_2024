@@ -311,40 +311,40 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
         
-        private void ChonFile(string fileFilter, string FIELD, TextBox txtFileName)
-        {
-            try
-            {
-                var filePath = V6ControlFormHelper.ChooseOpenFile(this, fileFilter);
-                if (filePath == null) return;
+        //private void ChonFile(string fileFilter, string FIELD, TextBox txtFileName)
+        //{
+        //    try
+        //    {
+        //        var filePath = V6ControlFormHelper.ChooseOpenFile(this, fileFilter);
+        //        if (filePath == null) return;
 
-                var _setting = new H.Setting(Path.Combine(V6Login.StartupPath, "Setting.ini"));
-                var info = new V6IOInfo()
-                {
-                    FileName = filePath,
-                    FTP_IP = _setting.GetSetting("FTP_IP"),
-                    FTP_USER = _setting.GetSetting("FTP_USER"),
-                    FTP_EPASS = _setting.GetSetting("FTP_EPASS"),
-                    FTP_SUBFOLDER = _setting.GetSetting("FTP_V6DOCSFOLDER"),
-                };
-                V6FileIO.CopyToVPN(info);
+        //        var _setting = new H.Setting(Path.Combine(V6Login.StartupPath, "Setting.ini"));
+        //        var info = new V6IOInfo()
+        //        {
+        //            FileName = filePath,
+        //            FTP_IP = _setting.GetSetting("FTP_IP"),
+        //            FTP_USER = _setting.GetSetting("FTP_USER"),
+        //            FTP_EPASS = _setting.GetSetting("FTP_EPASS"),
+        //            FTP_SUBFOLDER = _setting.GetSetting("FTP_V6DOCSFOLDER"),
+        //        };
+        //        V6FileIO.CopyToVPN(info);
 
-                txtFileName.Text = Path.GetFileName(filePath);
-                var data = new SortedDictionary<string, object> { { FIELD, txtFileName1.Text } };
-                var keys = new SortedDictionary<string, object> { { "MA_KH", txtMaKH.Text } };
+        //        txtFileName.Text = Path.GetFileName(filePath);
+        //        var data = new SortedDictionary<string, object> { { FIELD, txtFileName1.Text } };
+        //        var keys = new SortedDictionary<string, object> { { "MA_KH", txtMaKH.Text } };
 
-                var result = V6BusinessHelper.UpdateTable(V6TableName.Alkhct1.ToString(), data, keys);
+        //        var result = V6BusinessHelper.UpdateTable(V6TableName.Alkhct1.ToString(), data, keys);
 
-                if (result == 1)
-                {
-                    ShowTopLeftMessage(V6Text.Updated + FIELD);
-                }
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".ChonPDF " + FIELD, ex);
-            }
-        }
+        //        if (result == 1)
+        //        {
+        //            ShowTopLeftMessage(V6Text.Updated + FIELD);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        this.WriteExLog(GetType() + ".ChonPDF " + FIELD, ex);
+        //    }
+        //}
         
         private void XoaHinh()
         {
@@ -512,16 +512,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             ChonPDF("PDF2", "PDF files|*.PDF");
         }
-
-        private void btnChonFile_Click(object sender, EventArgs e)
-        {
-            ChonFile("All files|*.*", "FILE_NAME1", txtFileName1);
-        }
-
-        private void btnChonFile2_Click(object sender, EventArgs e)
-        {
-            ChonFile("All files|*.*", "FILE_NAME2", txtFileName2);
-        }
         
         private void btnXoaPDF_Click(object sender, EventArgs e)
         {
@@ -533,16 +523,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             XoaPDF("PDF2");
         }
 
-        private void btnXoaFile_Click(object sender, EventArgs e)
-        {
-            txtFileName1.Clear();
-        }
-
-        private void btnXoaFile2_Click(object sender, EventArgs e)
-        {
-            txtFileName2.Clear();
-        }
-
         private void btnXemPDF_Click(object sender, EventArgs e)
         {
             XemPDF("PDF1");
@@ -552,17 +532,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             XemPDF("PDF2");
         }
-
-        private void btnXemFile_Click(object sender, EventArgs e)
-        {
-            XemFile(txtFileName1.Text);
-        }
-
-        private void btnXemFile2_Click(object sender, EventArgs e)
-        {
-            XemFile(txtFileName2.Text);
-        }
-
+        
         private void btnChonFile0_AfterProcess(object sender, FileButton.Event_Args e)
         {
             try

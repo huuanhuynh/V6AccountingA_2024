@@ -31,7 +31,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private void MyInit()
         {
             _maCt = "S05";
-            _table2Name = "Aldmvtct";
+            _table2Name = "V_Aldmvtct";
             txtMaCt.Text = _maCt;
 
             //TxtTk.SetInitFilter("loai_tk=1 and tk_cn=1");

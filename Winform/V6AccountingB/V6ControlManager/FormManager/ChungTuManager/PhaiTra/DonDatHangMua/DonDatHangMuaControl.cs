@@ -64,6 +64,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
             txtMaKh.Upper();
             txtManx.Upper();
+            txtDiaChi2.DisableUpperLower();
 
             txtMa_sonb.Upper();
             if (V6Login.MadvcsCount == 1)
@@ -75,6 +76,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 txtMa_sonb.SetInitFilter("dbo.VFV_InList0('" + Invoice.Mact + "',MA_CTNB,'" + ",')=1");
             }
 
+            txtDiaChi2.SetInitFilter(string.Format("MA_KH='{0}'", txtMaKh.Text));
             //V6ControlFormHelper.CreateGridViewStruct(dataGridView1, adStruct);
             
             var dataGridViewColumn = dataGridView1.Columns["UID"];
@@ -736,11 +738,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 var data = txtMaKh.Data;
                 if (data == null)
                 {
+                    txtDiaChi2.ParentData = null;
                     txtMaSoThue.Text = "";
                     txtTenKh.Text = "";
                     txtDiaChi.Text = "";
                     return;
                 }
+
+                txtDiaChi2.ParentData = data.ToDataDictionary();
+                txtDiaChi2.SetInitFilter(string.Format("MA_KH='{0}'", txtMaKh.Text));
                 var mst = (data["ma_so_thue"] ?? "").ToString().Trim();
                 txtMaSoThue.Text = mst;
                 txtTenKh.Text = (data["ten_kh"] ?? "").ToString().Trim();
@@ -4229,6 +4235,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             else
             {
                 lblKieuPostColor.Visible = false;
+            }
+        }
+
+        private void txtDiaChi2_Enter(object sender, EventArgs e)
+        {
+            if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+            {
+                if (txtDiaChi2.ReadOnly) return;
+                var data = txtMaKh.Data;
+                if (data == null)
+                {
+                    this.ShowWarningMessage("Chưa chọn mã khách hàng!", 300);
+                    return;
+                }
+                txtDiaChi2.ParentData = data.ToDataDictionary();
+                txtDiaChi2.SetInitFilter(string.Format("MA_KH='{0}'", txtMaKh.Text));
             }
         }
     }

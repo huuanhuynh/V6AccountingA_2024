@@ -211,7 +211,15 @@ namespace V6Structs
         Hrjobexperience,
         Hrjobexperience2,
         Alvitrict,
-        Abhhvt
+        Abhhvt,
+        V_Aldmvt,
+        V_Aldmvtct,
+        V_Acosxlt_aldmvt,
+        V_Acosxlsx_aldmvt,
+        V_Acosxlt_aldmvtct,
+        V_Acosxlsx_aldmvtct,
+        Acosxlt_aldmvtct,
+        Acosxlsx_aldmvtct
     }
 
     public static class V6TableHelper
@@ -552,6 +560,18 @@ namespace V6Structs
                     return V6TableName.Alreport;
                 case "alnhvitri":
                     return V6TableName.Alnhvitri;
+                case "V_Aldmvt":
+                    return V6TableName.V_Aldmvt;
+                case "V_Aldmvtct":
+                    return V6TableName.V_Aldmvtct;
+                case "V_Acosxlsx_aldmvt":
+                    return V6TableName.V_Acosxlsx_aldmvt;
+                case "V_Acosxlsx_aldmvtct":
+                    return V6TableName.V_Acosxlsx_aldmvtct;
+                case "V_Acosxlt_aldmvt":
+                    return V6TableName.V_Acosxlt_aldmvt;
+                case "V_Acosxlt_aldmvtct":
+                    return V6TableName.V_Acosxlt_aldmvtct;
   
                 default:
                     try
@@ -790,6 +810,12 @@ namespace V6Structs
                 case V6TableName.Alreport1: result = "ma_bc"; break;
                 case V6TableName.Alreport: result = "ma_bc"; break;
                 case V6TableName.Alnhvitri: result = "ma_nh"; break;
+                case V6TableName.V_Aldmvt: result = "ma_bpht"; break;
+                case V6TableName.V_Aldmvtct: result = "ma_bpht"; break;
+                case V6TableName.V_Acosxlt_aldmvt: result = "ma_bpht"; break;
+                case V6TableName.V_Acosxlsx_aldmvt: result = "ma_bpht"; break;
+                case V6TableName.V_Acosxlt_aldmvtct: result = "ma_bpht"; break;
+                case V6TableName.V_Acosxlsx_aldmvtct: result = "ma_bpht"; break;
                 default:
                     result = "";
                     break;
@@ -855,15 +881,7 @@ namespace V6Structs
                 case V6TableName.Aldmpbph:
                     return lang == "V" ? "Danh mục " : "  list";
 
-                case V6TableName.Aldmvt:
-                    return lang == "V" ? "Danh mục định mức vật tư" : " list";
-
-                case V6TableName.Aldmvtct:
-                    return lang == "V" ? "Danh mục định mức vật tư ct" : " list";
-                case V6TableName.Acosxlt_aldmvt:
-                    return lang == "V" ? "Danh mục định mức vật tư ct" : " list";
-                case V6TableName.Acosxlsx_aldmvt:
-                    return lang == "V" ? "Danh mục định mức vật tư ct SPDH" : " list";
+             
                 case V6TableName.Aldvcs:
                     return lang == "V" ? "Danh mục đơn vị cơ sở " : " Agent  list";
 
@@ -1295,6 +1313,27 @@ namespace V6Structs
                     return lang == "V" ? "Danh mục thêm mới báo cáo ( V6 Advance)" : " Add new reports list( V6 Advance)";
                 case V6TableName.Alnhvitri:
                     return lang == "V" ? "Danh mục nhóm vị trí" : " Location list";
+
+                case V6TableName.Aldmvt:
+                case V6TableName.Acosxlt_aldmvt:
+                case V6TableName.Acosxlsx_aldmvt:
+                case V6TableName.V_Aldmvt:
+                case V6TableName.V_Acosxlsx_aldmvt:
+                case V6TableName.V_Acosxlt_aldmvt:
+                    return lang == "V" ? "Danh mục định mức vật tư" : " Bill of Material";
+
+                case V6TableName.Aldmvtct:
+                case V6TableName.Acosxlt_aldmvtct:
+                case V6TableName.Acosxlsx_aldmvtct:
+                case V6TableName.V_Aldmvtct:
+                case V6TableName.V_Acosxlsx_aldmvtct:
+                case V6TableName.V_Acosxlt_aldmvtct:
+
+                    return lang == "V" ? "Danh mục định mức vật tư ct" : " Bill of Material details";
+
+
+               
+
                 default:
                     
                     return "...";
