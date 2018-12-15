@@ -744,6 +744,9 @@ namespace V6Controls.Forms
                     case "D2": // Not null + time
                         c = CreateDateTimeFullPicker(fcolumn, fcaption, width, fstatus, carry);
                         break;
+                    case "D3": // Date + time null
+                        c = CreateDateTimePickerNull(fcolumn, fcaption, width, fstatus, carry);
+                        break;
                     #endregion
                 }
                 if (c != temp_control)
@@ -887,6 +890,9 @@ namespace V6Controls.Forms
                         break;
                     case "D2": // Not null + time
                         c = CreateDateTimeFullPicker(fcolumn, fcaption, width, fstatus, carry);
+                        break;
+                    case "D3": // Not null + time
+                        c = CreateDateTimePickerNull(fcolumn, fcaption, width, fstatus, carry);
                         break;
                     #endregion
                 }
@@ -1802,6 +1808,7 @@ namespace V6Controls.Forms
                 if (enable) dat.Enabled = true;
             }
             else if (control is DateTimePicker
+                || control is V6DateTimePickerNull
                 || control is CheckBox
                 || control is RadioButton
                 || control is ComboBox
@@ -2742,6 +2749,20 @@ namespace V6Controls.Forms
                 CustomFormat = "HH:mm dd/MM/yyyy",
                 //Text = caption,
                 TextTitle = caption,
+                Width = width,
+                Visible = visible,
+                Tag = visible ? null : "hide"
+            };
+        }
+        public static V6DateTimePickerNull CreateDateTimePickerNull(string accessibleName, string caption, int width, bool visible, bool carry = false)
+        {
+            return new V6DateTimePickerNull
+            {
+                Name = accessibleName,
+                AccessibleName = accessibleName,
+                //Carry = carry,
+                //Text = caption,
+                //TextTitle = caption,
                 Width = width,
                 Visible = visible,
                 Tag = visible ? null : "hide"
@@ -6188,6 +6209,7 @@ namespace V6Controls.Forms
                     //dat.Enabled = !readOnly;
                 }
                 else if (control is DateTimePicker
+                    || control is V6DateTimePickerNull
                     || control is CheckBox
                     || control is RadioButton
                     || control is ComboBox
@@ -6349,6 +6371,11 @@ namespace V6Controls.Forms
                 var object_to_date = ObjectAndString.ObjectToFullDateTime(value);
                 ((V6DateTimePicker)control).SetValue(object_to_date);
             }
+            else if (control is V6DateTimePickerNull)
+            {
+                var object_to_date = ObjectAndString.ObjectToDate(value);
+                ((V6DateTimePickerNull)control).Value = object_to_date;
+            }
             else if (control is DateTimePicker)
             {
                 var object_to_date = ObjectAndString.ObjectToFullDateTime(value);
@@ -6449,14 +6476,12 @@ namespace V6Controls.Forms
             else if (control is V6NumberTextBox)
             {
                 d[cNAME] = ((V6NumberTextBox)control).Value;
-                //return ((V6NumberTextBox)control).Value;
                 return;
             }
             if (control is V6DateTimeColor)
             {
                 var color = control as V6DateTimeColor;
                 d[cNAME] = color.Value;
-                //return color.Value;
                 return;
             }
             else if (control is V6DateTimeFullPicker)
@@ -6467,7 +6492,11 @@ namespace V6Controls.Forms
             else if (control is V6DateTimePicker)
             {
                 d[cNAME] = ((V6DateTimePicker)control).Date;
-                //return ((V6DateTimePick)control).Value;
+                return;
+            }
+            else if (control is V6DateTimePickerNull)
+            {
+                d[cNAME] = ((V6DateTimePickerNull)control).Value;
                 return;
             }
             else if (control is DateTimePicker)
@@ -6478,7 +6507,6 @@ namespace V6Controls.Forms
             else if (control is V6IndexComboBox)
             {
                 d[cNAME] = ((V6IndexComboBox)control).SelectedIndex;
-                //return ((V6IndexComboBox)control).SelectedIndex;
                 return;
             }
             else if (control is V6ComboBox)
@@ -6591,6 +6619,10 @@ namespace V6Controls.Forms
             else if (control is V6DateTimePicker)
             {
                 return ((V6DateTimePicker)control).Date;
+            }
+            else if (control is V6DateTimePickerNull)
+            {
+                return ((V6DateTimePickerNull)control).Value;
             }
             else if (control is DateTimePicker)
             {
