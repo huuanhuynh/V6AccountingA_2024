@@ -4,11 +4,11 @@ using V6AccountingBusiness;
 using V6Init;
 using V6Tools;
 
-namespace V6ControlManager.FormManager.ReportManager.Filter
+namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
 {
-    public partial class AAPPR_SOA1: FilterBase
+    public partial class AAPPR_POH1: FilterBase
     {
-        public AAPPR_SOA1()
+        public AAPPR_POH1()
         {
             InitializeComponent();
             F3 = true;
@@ -27,8 +27,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 txtMaDvcs.Enabled = false;
             }
-            TxtMa_ct.Text = "SOA";
-            TxtMa_ct.Enabled = false;
+            txtMa_ct.Text = "POH";
+            txtMa_ct.Enabled = false;
             TxtXtag.Enabled = false;
 
             ctDenSo.Enabled = false;
@@ -40,7 +40,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             cboKieuPost.DisplayMember = V6Setting.IsVietnamese ? "Ten_post" : "Ten_post2";
             cboKieuPost.DataSource = V6BusinessHelper.Select("AlPost", "Kieu_post,Ten_post,Ten_post2",
                                 "Ma_ct=@mact", "", "Kieu_post",
-                                new SqlParameter("@mact", TxtMa_ct.Text)).Data;
+                                new SqlParameter("@mact", txtMa_ct.Text)).Data;
             cboKieuPost.ValueMember = "kieu_post";
             cboKieuPost.DisplayMember = V6Setting.IsVietnamese ? "Ten_post" : "Ten_post2";
             
@@ -74,7 +74,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             var result = new List<SqlParameter>();
             result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));
             result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.YYYYMMDD));
-            result.Add(new SqlParameter("@ma_ct", TxtMa_ct.Text.Trim()));
+            result.Add(new SqlParameter("@ma_ct", txtMa_ct.Text.Trim()));
             var and = radAnd.Checked;
             
             var cKey = "";

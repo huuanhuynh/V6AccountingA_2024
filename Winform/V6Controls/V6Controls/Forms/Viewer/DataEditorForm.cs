@@ -27,6 +27,13 @@ namespace V6Controls.Forms.Viewer
         private IDictionary<string, object> _defaultData = null;
         private bool newRowNeeded;
         private bool _updateDatabase;
+        public sealed override string Text
+        {
+            get { return base.Text; }
+            set { base.Text = value; }
+        }
+
+        public bool HaveChange { get; set; }
 
         /// <summary>
         /// Khởi tạo from chỉnh sữa dữ liệu.
@@ -71,12 +78,7 @@ namespace V6Controls.Forms.Viewer
             RefreshOwner();
         }
 
-        public sealed override string Text
-        {
-            get { return base.Text; }
-            set { base.Text = value; }
-        }
-
+        
         private void MyInit()
         {
             try
@@ -467,6 +469,7 @@ namespace V6Controls.Forms.Viewer
         {
             try
             {
+                HaveChange = true;
                 if (data == null) return;
                 DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
                 V6ControlFormHelper.UpdateGridViewRow(row, data);
@@ -531,6 +534,7 @@ namespace V6Controls.Forms.Viewer
                 var result = V6BusinessHelper.Insert(_tableName, data);
                 if (result)
                 {
+                    HaveChange = true;
                     toolStripStatusLabel1.Text = string.Format("{0} {1}", _tableName, V6Text.AddSuccess);
                     
                     var selectResult = V6BusinessHelper.Select(_tableName, keys, "*");
@@ -572,6 +576,7 @@ namespace V6Controls.Forms.Viewer
                     var result = V6BusinessHelper.Delete(_tableName, keys);
                     if (result > 0)
                     {
+                        HaveChange = true;
                         dataGridView1.Rows.RemoveAt(rowIndex);
                         toolStripStatusLabel1.Text = string.Format("{0} {1} {2}", _tableName, V6Text.DeleteSuccess, delete_info);
                     }
@@ -627,6 +632,7 @@ namespace V6Controls.Forms.Viewer
                 var result = V6BusinessHelper.UpdateSimple(_tableName, updateData, keys);
                 if (result > 0)
                 {
+                    HaveChange = true;
                     toolStripStatusLabel1.Text = string.Format("{0} {1} {2}", _tableName, V6Text.EditSuccess, update_info);
                 }
             }

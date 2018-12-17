@@ -349,8 +349,7 @@ namespace V6Controls
             
         }
         private bool _detroysenkey = false;
-        public bool Carry;
-
+        
         public void DestroySendkey()
         {
             _detroysenkey = true;
@@ -437,6 +436,31 @@ namespace V6Controls
             this.BackColor = _previousColor;
         }
 
-        
+        /// <summary>
+        /// Bật chức năng mang theo giá trị được gán cuối cùng
+        /// </summary>
+        [DefaultValue(false)]
+        [Description("Bật chức năng mang theo giá trị được gán cuối cùng và được dùng bởi 2 hàm SetCarryValues UseCarryValues trong V6ControlFormHelper.")]
+        public bool Carry { get; set; }
+        /// <summary>
+        /// Giá trị đang mang theo - kiểu string
+        /// </summary>
+        protected DateTime Carry_Value;
+        /// <summary>
+        /// Mang theo giá trị hiện tại của control.
+        /// </summary>
+        public virtual void CarryValue()
+        {
+            if (Carry)
+                Carry_Value = Value;
+        }
+        /// <summary>
+        /// Gán lại giá trị lên control bằng value đã mang theo.
+        /// </summary>
+        public void UseCarry()
+        {
+            if (Carry)
+                Value = Carry_Value;
+        }
     }
 }

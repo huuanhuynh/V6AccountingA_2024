@@ -19,6 +19,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return new AAPPR_XULY_ALL(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AAPPR_SOA1":
                     return new AAPPR_SOA1(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                case "AAPPR_POH1":
+                    return new AAPPR_POH1(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "XLSALKH":
                     return new XLSALKH_Control(itemId, program, program, reportFile, program, reportCaption2);
                 case "XLSALVT":

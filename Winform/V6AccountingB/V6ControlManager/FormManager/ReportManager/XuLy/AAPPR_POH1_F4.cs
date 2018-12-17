@@ -13,7 +13,7 @@ using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
-    public partial class AAPPR_SOA1_F4 : V6FormControl
+    public partial class AAPPR_POH1_F4 : V6FormControl
     {
         #region Biến toàn cục
 
@@ -37,7 +37,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         
         #endregion 
-        public AAPPR_SOA1_F4()
+        public AAPPR_POH1_F4()
         {
             InitializeComponent();
         }
@@ -48,7 +48,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// <param name="stt_rec"></param>
         /// <param name="am"></param>
         /// <param name="fields">FIELD1:Label1:vvar:checkonleave:allwayupdate,FIELD2....</param>
-        public AAPPR_SOA1_F4(string stt_rec, DataRow am, string fields)
+        public AAPPR_POH1_F4(string stt_rec, DataRow am, string fields)
         {
             _sttRec = stt_rec;
             _am = am;
@@ -196,10 +196,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     SqlParameter[] plist =
                     {
                         new SqlParameter("@Stt_rec", _sttRec),
-                        new SqlParameter("@Ma_ct", "SOA"),
+                        new SqlParameter("@Ma_ct", "POH"),
                         new SqlParameter("@user_id", V6Login.UserId),
                     };
-                    V6BusinessHelper.ExecuteProcedure("AAPPR_SOA1_UPDATE", plist);
+                    V6BusinessHelper.ExecuteProcedure("AAPPR_POH1_UPDATE", plist);
                     Dispose();
                 }
                 else

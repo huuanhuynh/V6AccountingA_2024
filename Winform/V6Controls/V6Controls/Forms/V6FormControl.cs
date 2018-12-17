@@ -148,16 +148,17 @@ namespace V6Controls.Forms
                     {
                         if (++f12count == 3)
                         {
-                            //var method_info = GetType().GetMethod("V6F12Execute");
                             if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
                             {
                                 V6F12Execute();
                                 f12count = 0;
+                                return true;
                             }
                             else
                             {
                                 f12count = 0;
                                 //V6F12ExecuteUndo();
+                                return false;
                             }
                         }
                     }

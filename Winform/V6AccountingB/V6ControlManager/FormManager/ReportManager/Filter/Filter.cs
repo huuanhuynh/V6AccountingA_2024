@@ -673,6 +673,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     result = new XLSHRGENERAL2();
                 break; case "AAPPR_SOA1":
                     result = new AAPPR_SOA1();
+                break; case "AAPPR_POH1":
+                    result = new AAPPR_POH1();
                 break; case "AAPPR_SOA_IN1":
                     result = new AAPPR_SOA_IN1();
                 break; case "AAPPR_SOC_IN1":

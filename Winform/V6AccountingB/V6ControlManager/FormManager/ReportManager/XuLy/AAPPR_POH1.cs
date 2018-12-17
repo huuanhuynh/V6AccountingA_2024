@@ -7,6 +7,7 @@ using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6Controls;
 using V6Controls.Forms;
+using V6Controls.Forms.Viewer;
 using V6Init;
 using V6Structs;
 using V6Tools;
@@ -14,9 +15,9 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
-    public class AAPPR_SOA1 : XuLyBase
+    public class AAPPR_POH1 : XuLyBase
     {
-        public AAPPR_SOA1(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
+        public AAPPR_POH1(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
             dataGridView1.Control_S = true;
@@ -24,7 +25,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F4: Bổ sung thông tin., F9. Bổ sung thông tin nhiều chứng từ ");
+            V6ControlFormHelper.SetStatusText2("F4: Bổ sung thông tin. Ctrl+F4: Sửa chi tiết. F9: Bổ sung thông tin nhiều chứng từ.");
         }
 
         protected override void MakeReport2()
@@ -45,7 +46,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                AAPPR_SOA1_F9 form = new AAPPR_SOA1_F9();
+                AAPPR_POH1_F9 form = new AAPPR_POH1_F9();
                 if (form.ShowDialog(this) != DialogResult.OK)
                 {
                     return;
@@ -104,7 +105,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 new SqlParameter("@Ma_ct", "SOA"),
                                 new SqlParameter("@user_id", V6Login.UserId),
                             };
-                            V6BusinessHelper.ExecuteProcedure("AAPPR_SOA1_UPDATE", plist);
+                            V6BusinessHelper.ExecuteProcedure("AAPPR_POH1_UPDATE", plist);
                         }
                         //else
                         //{
@@ -150,6 +151,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected override void XuLyBoSungThongTinChungTuF4()
         {
+            if ((ModifierKeys & Keys.Control) == Keys.Control)
+            {
+                XuLySuaThongTinChungTuChiTiet();
+                return;
+            }
+
             try
             {
                 if (dataGridView1.CurrentRow != null)
@@ -188,7 +195,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                                 string extra_infor = "";
                                 if (EXTRA_INFOR.ContainsKey("FIELDS_F4")) extra_infor = EXTRA_INFOR["FIELDS_F4"];
-                                var hoaDonForm = new AAPPR_SOA1_F4(selectedSttRec, am.Rows[0], extra_infor);
+                                var hoaDonForm = new AAPPR_POH1_F4(selectedSttRec, am.Rows[0], extra_infor);
 
                                 f.Controls.Add(hoaDonForm);
                                 hoaDonForm.Disposed += delegate
@@ -214,13 +221,47 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        V6Invoice81 invoice = new V6Invoice81();
+        private void XuLySuaThongTinChungTuChiTiet()
+        {
+            try
+            {
+                // Sua nhieu dong
+                var cRow = dataGridView1.CurrentRow;
+                if (cRow == null) return;
+
+                string showFields = invoice.EXTRA_INFOR.ContainsKey("ADFIELDS") ? invoice.EXTRA_INFOR["ADFIELDS"] : "";
+                string keyFields = "UID"; // "STT_REC,STT_REC0"
+                string tableName = invoice.AD_TableName;// invoice.Mact + "_REPLACE";
+                var f = new DataEditorForm(this, dataGridView2.DataSource, tableName, showFields, keyFields, V6Text.Edit + " " + V6TableHelper.V6TableCaption(tableName, V6Setting.Language), false, false, true, true);
+                All_Objects["dataGridView"] = f.DataGridView;
+                InvokeFormEvent(FormDynamicEvent.SUANHIEUDONG);
+                f.ShowDialog(this);
+                if (f.HaveChange)
+                {
+                    //this.ShowMessage("HaveChange");
+                    _sttRec = cRow.Cells["STT_REC"].Value.ToString();
+                    SqlParameter[] plist =
+                    {
+                        new SqlParameter("@Stt_rec", _sttRec), 
+                        new SqlParameter("@Ma_ct", "POH"), 
+                        new SqlParameter("@user_id", V6Login.UserId), 
+                    };
+                    V6BusinessHelper.ExecuteProcedure("AAPPR_POH1_UPDATE_AD", plist);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".XuLySuaThongTinChungTuChiTiet", ex);
+            }
+        }
+
+        V6Invoice92 invoice = new V6Invoice92();
         protected override void ViewDetails(DataGridViewRow row)
         {
             try
             {
                 var sttRec = row.Cells["Stt_rec"].Value.ToString().Trim();
-                var data = invoice.LoadAd81(sttRec);
+                var data = invoice.LoadAD(sttRec);
                 dataGridView2.DataSource = data;
                 _tbl2 = data;
                 if (data == null)

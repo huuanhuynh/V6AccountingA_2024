@@ -1854,6 +1854,12 @@
     <Compile Include="FormManager\ReportManager\Filter\Sms\XASENDSMS.Designer.cs">
       <DependentUpon>XASENDSMS.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_POH1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_POH1.Designer.cs">
+      <DependentUpon>AAPPR_POH1.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\Xuly\AINVTBAR5.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -3552,10 +3558,10 @@
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_SOA_IN1.Designer.cs">
       <DependentUpon>AAPPR_SOA_IN1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\AAPPR_SOA1.cs">
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_SOA1.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\AAPPR_SOA1.Designer.cs">
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_SOA1.Designer.cs">
       <DependentUpon>AAPPR_SOA1.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AGLCD1.cs">
@@ -4162,6 +4168,21 @@
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_CA1_IN1.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_POH1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_POH1_F4.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_POH1_F4.designer.cs">
+      <DependentUpon>AAPPR_POH1_F4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_POH1_F9.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_POH1_F9.designer.cs">
+      <DependentUpon>AAPPR_POH1_F9.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA2.cs">
       <SubType>UserControl</SubType>
@@ -6195,6 +6216,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Sms\XASENDSMS.resx">
       <DependentUpon>XASENDSMS.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AAPPR_POH1.resx">
+      <DependentUpon>AAPPR_POH1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AINVTBAR5.resx">
       <DependentUpon>AINVTBAR5.cs</DependentUpon>
     </EmbeddedResource>
@@ -7047,7 +7071,7 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_SOA_IN1.resx">
       <DependentUpon>AAPPR_SOA_IN1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_SOA1.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AAPPR_SOA1.resx">
       <DependentUpon>AAPPR_SOA1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AGLCD1.resx">
@@ -7328,6 +7352,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_IND_F4.resx">
       <DependentUpon>AAPPR_IND_F4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_POH1_F4.resx">
+      <DependentUpon>AAPPR_POH1_F4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_POH1_F9.resx">
+      <DependentUpon>AAPPR_POH1_F9.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_SOA1_F9.resx">
       <DependentUpon>AAPPR_SOA1_F9.cs</DependentUpon>

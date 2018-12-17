@@ -100,6 +100,7 @@ namespace V6ControlManager.FormManager.SoDuManager.FirstFilter
 
         private void btnCopyDinhMuc_Click(object sender, EventArgs e)
         {
+            if (this.ShowConfirmMessage(V6Text.ExecuteConfirm) == DialogResult.Yes)
             CopyDinhMuc();
         }
 

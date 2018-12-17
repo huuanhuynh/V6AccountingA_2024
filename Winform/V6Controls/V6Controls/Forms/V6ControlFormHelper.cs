@@ -1931,6 +1931,17 @@ namespace V6Controls.Forms
                         //Gồm cả vvar, number va date (override)
                         box.UseCarry();
                     }
+                    var box2 = control as V6DateTimePicker;
+                    if (box2 != null)
+                    {
+                        box2.UseCarry();
+                    }
+                    var box3 = control as V6DateTimePickerNull;
+                    if (box3 != null)
+                    {
+                        box3.UseCarry();
+                    }
+
                     #endregion gán giá trị
                 }
 
@@ -2739,9 +2750,9 @@ namespace V6Controls.Forms
                 Tag = visible ? null : "hide"
             };
         }
-        public static V6DateTimePicker CreateDateTimeFullPicker(string accessibleName, string caption, int width, bool visible, bool carry = false)
+        public static V6DateTimeFullPicker CreateDateTimeFullPicker(string accessibleName, string caption, int width, bool visible, bool carry = false)
         {
-            return new V6DateTimePicker
+            return new V6DateTimeFullPicker
             {
                 Name = accessibleName,
                 AccessibleName = accessibleName,
@@ -2760,7 +2771,7 @@ namespace V6Controls.Forms
             {
                 Name = accessibleName,
                 AccessibleName = accessibleName,
-                //Carry = carry,
+                Carry = carry,
                 //Text = caption,
                 //TextTitle = caption,
                 Width = width,

@@ -57,8 +57,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (Event_Methods.ContainsKey(eventName))
                 {
+                    V6ControlFormHelper.SetStatusText("InvokeFormEvent:" + eventName);
                     var method_name = Event_Methods[eventName];
                     return V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
+                }
+                else
+                {
+                    V6ControlFormHelper.SetStatusText("InvokeFormEvent:" + eventName + "(No code)");
                 }
             }
             catch (Exception ex1)
@@ -137,19 +142,29 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private void GetExtraInfor()
         {
-            _extraInfor = new SortedDictionary<string, string>();
-            string s = MauInSelectedRow["EXTRA_INFOR"].ToString().Trim();
-            if (s != "")
+            if (DesignMode) return;
+
+            try
             {
-                var sss = s.Split(';');
-                foreach (string ss in sss)
+                if(MauInSelectedRow == null) throw new Exception("Không có thông tin mẫu.");
+                _extraInfor = new SortedDictionary<string, string>();
+                string s = MauInSelectedRow["EXTRA_INFOR"].ToString().Trim();
+                if (s != "")
                 {
-                    int indexOf = ss.IndexOf(":", StringComparison.Ordinal);
-                    if (indexOf > 0)
+                    var sss = s.Split(';');
+                    foreach (string ss in sss)
                     {
-                        _extraInfor[ss.Substring(0, indexOf).ToUpper()] = ss.Substring(indexOf + 1);
+                        int indexOf = ss.IndexOf(":", StringComparison.Ordinal);
+                        if (indexOf > 0)
+                        {
+                            _extraInfor[ss.Substring(0, indexOf).ToUpper()] = ss.Substring(indexOf + 1);
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".GetExtraInfor", ex);
             }
         }
 
@@ -837,7 +852,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 XuLyHienThiFormSuaChungTuF3();
             }
-            else if (keyData == Keys.F4 && FilterControl.F4)
+            else if ((keyData & Keys.F4) == Keys.F4 && FilterControl.F4)
             {
                 XuLyBoSungThongTinChungTuF4();
             }
@@ -1127,6 +1142,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (ViewDetail && row != null && _oldIndex != row.Index)
                 {
                     _oldIndex = row.Index;
+                    if (dataGridView1.Columns.Contains("STT_REC"))
+                    {
+                        _sttRec = row.Cells["STT_REC"].Value.ToString();
+                    }
                     UpdateGridView2(row);
                 }
             }

@@ -1,4 +1,4 @@
-﻿namespace V6ControlManager.FormManager.ReportManager.Filter
+﻿namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
 {
     partial class AAPPR_SOA1
     {
@@ -29,12 +29,15 @@
         private void InitializeComponent()
         {
             this.v6Label9 = new V6Controls.V6Label();
-            this.TxtMa_ct = new V6Controls.V6VvarTextBox();
+            this.txtMa_ct = new V6Controls.V6VvarTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dateNgay_ct2 = new V6Controls.V6DateTimePicker();
             this.dateNgay_ct1 = new V6Controls.V6DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lineNH_KH9 = new V6ReportControls.FilterLineVvarTextBox();
+            this.lineNH_KH8 = new V6ReportControls.FilterLineVvarTextBox();
+            this.lineNH_KH7 = new V6ReportControls.FilterLineVvarTextBox();
             this.lineMa_xuly = new V6ReportControls.FilterLineVvarTextBox();
             this.filterLineVvarTextBox5 = new V6ReportControls.FilterLineVvarTextBox();
             this.filterLineVvarTextBox2 = new V6ReportControls.FilterLineVvarTextBox();
@@ -66,9 +69,6 @@
             this.chkMa_bp = new V6Controls.V6CheckBox();
             this.chkMa_nvien = new V6Controls.V6CheckBox();
             this.chkGc_ud1 = new V6Controls.V6CheckBox();
-            this.lineNH_KH9 = new V6ReportControls.FilterLineVvarTextBox();
-            this.lineNH_KH8 = new V6ReportControls.FilterLineVvarTextBox();
-            this.lineNH_KH7 = new V6ReportControls.FilterLineVvarTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,22 +82,22 @@
             this.v6Label9.TabIndex = 4;
             this.v6Label9.Text = "Mã  chứng từ";
             // 
-            // TxtMa_ct
+            // txtMa_ct
             // 
-            this.TxtMa_ct.AccessibleName = "MA_CT";
-            this.TxtMa_ct.BackColor = System.Drawing.SystemColors.Window;
-            this.TxtMa_ct.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtMa_ct.CheckNotEmpty = true;
-            this.TxtMa_ct.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtMa_ct.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtMa_ct.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtMa_ct.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtMa_ct.LeaveColor = System.Drawing.Color.White;
-            this.TxtMa_ct.Location = new System.Drawing.Point(112, 46);
-            this.TxtMa_ct.Name = "TxtMa_ct";
-            this.TxtMa_ct.Size = new System.Drawing.Size(100, 20);
-            this.TxtMa_ct.TabIndex = 2;
-            this.TxtMa_ct.VVar = "MA_CT";
+            this.txtMa_ct.AccessibleName = "MA_CT";
+            this.txtMa_ct.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMa_ct.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMa_ct.CheckNotEmpty = true;
+            this.txtMa_ct.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMa_ct.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMa_ct.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMa_ct.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMa_ct.LeaveColor = System.Drawing.Color.White;
+            this.txtMa_ct.Location = new System.Drawing.Point(112, 46);
+            this.txtMa_ct.Name = "txtMa_ct";
+            this.txtMa_ct.Size = new System.Drawing.Size(100, 20);
+            this.txtMa_ct.TabIndex = 2;
+            this.txtMa_ct.VVar = "MA_CT";
             // 
             // label2
             // 
@@ -176,6 +176,42 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
+            // 
+            // lineNH_KH9
+            // 
+            this.lineNH_KH9.AccessibleDescription = "FILTERL00019";
+            this.lineNH_KH9.AccessibleName2 = "NH_KH9";
+            this.lineNH_KH9.Caption = "Nhóm khách hàng 9";
+            this.lineNH_KH9.FieldName = "NH_KH9";
+            this.lineNH_KH9.Location = new System.Drawing.Point(4, 383);
+            this.lineNH_KH9.Name = "lineNH_KH9";
+            this.lineNH_KH9.Size = new System.Drawing.Size(294, 22);
+            this.lineNH_KH9.TabIndex = 21;
+            this.lineNH_KH9.Vvar = "NH_KH";
+            // 
+            // lineNH_KH8
+            // 
+            this.lineNH_KH8.AccessibleDescription = "FILTERL00018";
+            this.lineNH_KH8.AccessibleName2 = "NH_KH8";
+            this.lineNH_KH8.Caption = "Nhóm khách hàng 8";
+            this.lineNH_KH8.FieldName = "NH_KH8";
+            this.lineNH_KH8.Location = new System.Drawing.Point(4, 361);
+            this.lineNH_KH8.Name = "lineNH_KH8";
+            this.lineNH_KH8.Size = new System.Drawing.Size(294, 22);
+            this.lineNH_KH8.TabIndex = 20;
+            this.lineNH_KH8.Vvar = "NH_KH";
+            // 
+            // lineNH_KH7
+            // 
+            this.lineNH_KH7.AccessibleDescription = "FILTERL00017";
+            this.lineNH_KH7.AccessibleName2 = "NH_KH7";
+            this.lineNH_KH7.Caption = "Nhóm khách hàng 7";
+            this.lineNH_KH7.FieldName = "NH_KH7";
+            this.lineNH_KH7.Location = new System.Drawing.Point(4, 339);
+            this.lineNH_KH7.Name = "lineNH_KH7";
+            this.lineNH_KH7.Size = new System.Drawing.Size(294, 22);
+            this.lineNH_KH7.TabIndex = 19;
+            this.lineNH_KH7.Vvar = "NH_KH";
             // 
             // lineMa_xuly
             // 
@@ -562,40 +598,6 @@
             this.chkGc_ud1.Text = "Thiếu GC";
             this.chkGc_ud1.UseVisualStyleBackColor = true;
             // 
-            // lineNH_KH9
-            // 
-            this.lineNH_KH9.AccessibleDescription = "FILTERL00019"; this.lineNH_KH9.AccessibleName2 = "NH_KH9";
-            this.lineNH_KH9.Caption = "Nhóm khách hàng 9";
-            this.lineNH_KH9.FieldName = "NH_KH9";
-            this.lineNH_KH9.Location = new System.Drawing.Point(4, 383);
-            this.lineNH_KH9.Name = "lineNH_KH9";
-            this.lineNH_KH9.Size = new System.Drawing.Size(294, 22);
-            this.lineNH_KH9.TabIndex = 21;
-            this.lineNH_KH9.Vvar = "NH_KH";
-            // 
-            // lineNH_KH8
-            // 
-            this.lineNH_KH8.AccessibleDescription = "FILTERL00018"; this.lineNH_KH8.AccessibleName2 = "NH_KH8";
-            this.lineNH_KH8.Caption = "Nhóm khách hàng 8";
-            this.lineNH_KH8.FieldName = "NH_KH8";
-            this.lineNH_KH8.Location = new System.Drawing.Point(4, 361);
-            this.lineNH_KH8.Name = "lineNH_KH8";
-            this.lineNH_KH8.Size = new System.Drawing.Size(294, 22);
-            this.lineNH_KH8.TabIndex = 20;
-            this.lineNH_KH8.Vvar = "NH_KH";
-            // 
-            // lineNH_KH7
-            // 
-            this.lineNH_KH7.AccessibleDescription = "FILTERL00017";
-            this.lineNH_KH7.AccessibleName2 = "NH_KH7";
-            this.lineNH_KH7.Caption = "Nhóm khách hàng 7";
-            this.lineNH_KH7.FieldName = "NH_KH7";
-            this.lineNH_KH7.Location = new System.Drawing.Point(4, 339);
-            this.lineNH_KH7.Name = "lineNH_KH7";
-            this.lineNH_KH7.Size = new System.Drawing.Size(294, 22);
-            this.lineNH_KH7.TabIndex = 19;
-            this.lineNH_KH7.Vvar = "NH_KH";
-            // 
             // AAPPR_SOA1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -616,7 +618,7 @@
             this.Controls.Add(this.TxtXtag);
             this.Controls.Add(this.v6Label2);
             this.Controls.Add(this.v6Label9);
-            this.Controls.Add(this.TxtMa_ct);
+            this.Controls.Add(this.txtMa_ct);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dateNgay_ct2);
@@ -646,7 +648,7 @@
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox4;
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox3;
         private V6Controls.V6Label v6Label9;
-        private V6Controls.V6VvarTextBox TxtMa_ct;
+        private V6Controls.V6VvarTextBox txtMa_ct;
         private V6Controls.V6Label v6Label2;
         private V6Controls.V6Label v6Label3;
         private V6Controls.V6Label v6Label4;
