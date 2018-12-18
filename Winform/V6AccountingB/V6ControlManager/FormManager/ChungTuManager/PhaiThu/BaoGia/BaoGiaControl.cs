@@ -114,9 +114,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         #endregion contructor
 
         #region ==== Khởi tạo Detail Form ====
-        private V6ColorTextBox _dvt;
+        private V6ColorTextBox _dvt, txtPTEN_KHC, txtPONG_BAC, txtPDIEN_THOAIC;
         private V6CheckTextBox _tang, _xuat_dd;
-        private V6VvarTextBox _maVt, _dvt1, _maKho, _maKhoI, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo, _mavvi, _ma_thue_i, _tk_thue_i;
+        private V6VvarTextBox _maVt, _dvt1, _maKho, _maKhoI, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo, _mavvi, _ma_thue_i, _tk_thue_i, txtPMA_KHC;
         private V6NumberTextBox _soLuong1, _soLuong, _heSo1, _giaNt2, _giaNt21, _tien2, _tienNt2, _ck, _ckNt, _gia2, _gia21, _thue_nt, _thue;
         private V6NumberTextBox _ton13, _gia, _gia_nt, _tien, _tienNt, _pt_cki, _thue_suat_i, _ggNt, _gg;
         private V6NumberTextBox _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4, _tien_vcNt, _tien_vc;
@@ -139,6 +139,57 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
                 switch (NAME)
                 {
+                    case "PMA_KHC":
+                        txtPMA_KHC = control as V6VvarTextBox;
+                        if (txtPMA_KHC != null)
+                        {
+                            txtPMA_KHC.TextChanged += delegate(object sender, EventArgs args)
+                            {
+                                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                                {
+                                    if (txtPMA_KHC.Text.Trim() == "")
+                                    {
+                                        V6ControlFormHelper.SetControlReadOnly(txtPTEN_KHC, false);
+                                        V6ControlFormHelper.SetControlReadOnly(txtPONG_BAC, false);
+                                        V6ControlFormHelper.SetControlReadOnly(txtPDIEN_THOAIC, false);
+                                    }
+                                    else
+                                    {
+                                        V6ControlFormHelper.SetControlReadOnly(txtPTEN_KHC, true);
+                                        V6ControlFormHelper.SetControlReadOnly(txtPONG_BAC, true);
+                                        V6ControlFormHelper.SetControlReadOnly(txtPDIEN_THOAIC, true);
+                                    }
+                                }
+                            };
+
+                            txtPMA_KHC.V6LostFocus += delegate(object sender)
+                            {
+                                var data = txtPMA_KHC.Data;
+                                if (data != null)
+                                {
+                                    SetControlValue(txtPTEN_KHC, data["TEN_KH"]);
+                                    SetControlValue(txtPONG_BAC, data["DOI_TAC"]);
+                                    SetControlValue(txtPDIEN_THOAIC, data["DIEN_THOAI"]);
+                                }
+                                else
+                                {
+                                    SetControlValue(txtPTEN_KHC, null);
+                                    SetControlValue(txtPONG_BAC, null);
+                                    SetControlValue(txtPDIEN_THOAIC, null);
+                                }
+                            };
+                        }
+                        break;
+                    case "PTEN_KHC":
+                        txtPTEN_KHC = control as V6ColorTextBox;
+                        break;
+                    case "PONG_BAC":
+                        txtPONG_BAC = control as V6ColorTextBox;
+                        break;
+                    case "PDIEN_THOAIC":
+                        txtPDIEN_THOAIC = control as V6ColorTextBox;
+                        break;
+
                     case "MA_VT":
                         _maVt = (V6VvarTextBox) control;
                         _maVt.Upper();
@@ -1325,6 +1376,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     _hs_qd2.Value = 0;
                     _ma_thue_i.Text = "";
                     _thue_suat_i.Value = 0;
+                    SetControlValue(txtPMA_KHC, null);
                 }
                 else
                 {
@@ -1332,6 +1384,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     _tkGv.Text = (data["tk_gv"] ?? "").ToString().Trim();
                     _tkCkI.Text = (data["tk_ck"] ?? "").ToString().Trim();
                     _tkVt.Text = (data["tk_vt"] ?? "").ToString().Trim();
+                    //SetControlValue(txtPMA_KHC, data["PMA_KHC"]);
+                    txtPMA_KHC.ChangeText(data["PMA_KHC"].ToString());
 
                     if (M_SOA_MULTI_VAT == "1")
                     {

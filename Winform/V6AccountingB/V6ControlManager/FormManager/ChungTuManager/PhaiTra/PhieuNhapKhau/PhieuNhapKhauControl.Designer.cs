@@ -193,6 +193,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.chkSuaPtck = new V6Controls.V6CheckBox();
             this.lblKieuPostColor = new V6Controls.V6Label();
             this.group3 = new System.Windows.Forms.GroupBox();
+            this.txtSoDH = new V6Controls.V6VvarTextBox();
+            this.lblSoDH = new V6Controls.V6Label();
             this.txtMaHttt = new V6Controls.V6VvarTextBox();
             this.v6Label42 = new V6Controls.V6Label();
             this.txtMadvcs = new V6Controls.V6VvarTextBox();
@@ -2731,6 +2733,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             // 
             this.group3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.group3.Controls.Add(this.txtSoDH);
+            this.group3.Controls.Add(this.lblSoDH);
             this.group3.Controls.Add(this.txtMaHttt);
             this.group3.Controls.Add(this.v6Label42);
             this.group3.Controls.Add(this.txtMadvcs);
@@ -2760,6 +2764,34 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.group3.TabIndex = 2;
             this.group3.TabStop = false;
             // 
+            // txtSoDH
+            // 
+            this.txtSoDH.AccessibleName = "SO_DH";
+            this.txtSoDH.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSoDH.BackColor = System.Drawing.SystemColors.Window;
+            this.txtSoDH.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtSoDH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSoDH.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtSoDH.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtSoDH.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtSoDH.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtSoDH.HoverColor = System.Drawing.Color.Yellow;
+            this.txtSoDH.LeaveColor = System.Drawing.Color.White;
+            this.txtSoDH.Location = new System.Drawing.Point(689, 10);
+            this.txtSoDH.Name = "txtSoDH";
+            this.txtSoDH.Size = new System.Drawing.Size(75, 20);
+            this.txtSoDH.TabIndex = 29;
+            // 
+            // lblSoDH
+            // 
+            this.lblSoDH.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSoDH.AutoSize = true;
+            this.lblSoDH.Location = new System.Drawing.Point(634, 12);
+            this.lblSoDH.Name = "lblSoDH";
+            this.lblSoDH.Size = new System.Drawing.Size(39, 13);
+            this.lblSoDH.TabIndex = 28;
+            this.lblSoDH.Text = "Số ĐH";
+            // 
             // txtMaHttt
             // 
             this.txtMaHttt.AccessibleName = "ma_httt";
@@ -2784,7 +2816,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.v6Label42.AccessibleDescription = "APOCTPOBL00024";
             this.v6Label42.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.v6Label42.AutoSize = true;
-            this.v6Label42.Location = new System.Drawing.Point(648, 57);
+            this.v6Label42.Location = new System.Drawing.Point(634, 57);
             this.v6Label42.Name = "v6Label42";
             this.v6Label42.Size = new System.Drawing.Size(36, 13);
             this.v6Label42.TabIndex = 27;
@@ -2922,9 +2954,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.v6VvarTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6VvarTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6VvarTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox1.Location = new System.Drawing.Point(688, 76);
+            this.v6VvarTextBox1.Location = new System.Drawing.Point(689, 76);
             this.v6VvarTextBox1.Name = "v6VvarTextBox1";
-            this.v6VvarTextBox1.Size = new System.Drawing.Size(65, 20);
+            this.v6VvarTextBox1.Size = new System.Drawing.Size(75, 20);
             this.v6VvarTextBox1.TabIndex = 19;
             this.v6VvarTextBox1.VVar = "ma_bp";
             // 
@@ -2972,7 +3004,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.v6Label8.AccessibleDescription = "APOCTPOBL00068";
             this.v6Label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.v6Label8.AutoSize = true;
-            this.v6Label8.Location = new System.Drawing.Point(648, 79);
+            this.v6Label8.Location = new System.Drawing.Point(634, 79);
             this.v6Label8.Name = "v6Label8";
             this.v6Label8.Size = new System.Drawing.Size(41, 13);
             this.v6Label8.TabIndex = 18;
@@ -2983,7 +3015,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.v6Label17.AccessibleDescription = "APOCTPOBL00043";
             this.v6Label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.v6Label17.AutoSize = true;
-            this.v6Label17.Location = new System.Drawing.Point(643, 32);
+            this.v6Label17.Location = new System.Drawing.Point(634, 32);
             this.v6Label17.Name = "v6Label17";
             this.v6Label17.Size = new System.Drawing.Size(36, 13);
             this.v6Label17.TabIndex = 13;
@@ -4122,5 +4154,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         private V6Controls.Controls.GridView.V6NumberDataGridViewColumn CP;
         private V6Controls.Controls.GridView.V6NumberDataGridViewColumn NK_NT;
         private V6Controls.Controls.GridView.V6NumberDataGridViewColumn NK;
+        private V6VvarTextBox txtSoDH;
+        private V6Label lblSoDH;
     }
 }

@@ -58,7 +58,6 @@
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label4 = new V6Controls.V6Label();
             this.TxtXtag = new V6Controls.V6VvarTextBox();
-            this.cboKieuPost = new V6Controls.V6ComboBox();
             this.v6Label1 = new V6Controls.V6Label();
             this.chkHoaDonDaIn = new V6Controls.V6CheckBox();
             this.ctDenSo = new V6Controls.V6VvarTextBox();
@@ -69,6 +68,7 @@
             this.chkMa_bp = new V6Controls.V6CheckBox();
             this.chkMa_nvien = new V6Controls.V6CheckBox();
             this.chkGc_ud1 = new V6Controls.V6CheckBox();
+            this.cboMa_xuly = new V6Controls.V6ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -98,6 +98,7 @@
             this.txtMa_ct.Size = new System.Drawing.Size(100, 20);
             this.txtMa_ct.TabIndex = 2;
             this.txtMa_ct.VVar = "MA_CT";
+            this.txtMa_ct.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMa_ct_V6LostFocus);
             // 
             // label2
             // 
@@ -453,24 +454,6 @@
             this.TxtXtag.Size = new System.Drawing.Size(18, 20);
             this.TxtXtag.TabIndex = 3;
             // 
-            // cboKieuPost
-            // 
-            this.cboKieuPost.AccessibleName = "KIEU_POST";
-            this.cboKieuPost.BackColor = System.Drawing.SystemColors.Window;
-            this.cboKieuPost.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboKieuPost.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboKieuPost.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboKieuPost.FormattingEnabled = true;
-            this.cboKieuPost.Items.AddRange(new object[] {
-            "0 - Chưa cập nhập",
-            "1 - Cập nhập tất cả",
-            "2 - Chỉ cập nhập vào kho"});
-            this.cboKieuPost.Location = new System.Drawing.Point(114, 96);
-            this.cboKieuPost.Name = "cboKieuPost";
-            this.cboKieuPost.Size = new System.Drawing.Size(170, 21);
-            this.cboKieuPost.TabIndex = 4;
-            this.cboKieuPost.Visible = false;
-            // 
             // v6Label1
             // 
             this.v6Label1.AccessibleDescription = "FILTERL00010";
@@ -481,7 +464,6 @@
             this.v6Label1.Size = new System.Drawing.Size(89, 13);
             this.v6Label1.TabIndex = 10;
             this.v6Label1.Text = "Xử lý chứng từ";
-            this.v6Label1.Visible = false;
             // 
             // chkHoaDonDaIn
             // 
@@ -490,9 +472,9 @@
             this.chkHoaDonDaIn.AutoSize = true;
             this.chkHoaDonDaIn.Location = new System.Drawing.Point(118, 118);
             this.chkHoaDonDaIn.Name = "chkHoaDonDaIn";
-            this.chkHoaDonDaIn.Size = new System.Drawing.Size(95, 17);
+            this.chkHoaDonDaIn.Size = new System.Drawing.Size(96, 17);
             this.chkHoaDonDaIn.TabIndex = 5;
-            this.chkHoaDonDaIn.Text = "Hóa đơn đã in";
+            this.chkHoaDonDaIn.Text = "Chứng từ đã in";
             this.chkHoaDonDaIn.UseVisualStyleBackColor = true;
             // 
             // ctDenSo
@@ -598,10 +580,28 @@
             this.chkGc_ud1.Text = "Thiếu GC";
             this.chkGc_ud1.UseVisualStyleBackColor = true;
             // 
+            // cboMa_xuly
+            // 
+            this.cboMa_xuly.AccessibleName = "MA_XULY1";
+            this.cboMa_xuly.BackColor = System.Drawing.SystemColors.Window;
+            this.cboMa_xuly.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboMa_xuly.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboMa_xuly.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.cboMa_xuly.FormattingEnabled = true;
+            this.cboMa_xuly.Items.AddRange(new object[] {
+            "0 - Chưa cập nhập",
+            "1 - Cập nhập tất cả",
+            "2 - Chỉ cập nhập vào kho"});
+            this.cboMa_xuly.Location = new System.Drawing.Point(119, 96);
+            this.cboMa_xuly.Name = "cboMa_xuly";
+            this.cboMa_xuly.Size = new System.Drawing.Size(170, 21);
+            this.cboMa_xuly.TabIndex = 29;
+            // 
             // AAPPR_POH1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cboMa_xuly);
             this.Controls.Add(this.chkGc_ud1);
             this.Controls.Add(this.chkMa_nvien);
             this.Controls.Add(this.chkMa_bp);
@@ -611,7 +611,6 @@
             this.Controls.Add(this.chkLike);
             this.Controls.Add(this.ctTuSo);
             this.Controls.Add(this.v6Label8);
-            this.Controls.Add(this.cboKieuPost);
             this.Controls.Add(this.v6Label1);
             this.Controls.Add(this.v6Label3);
             this.Controls.Add(this.v6Label4);
@@ -653,7 +652,6 @@
         private V6Controls.V6Label v6Label3;
         private V6Controls.V6Label v6Label4;
         private V6Controls.V6VvarTextBox TxtXtag;
-        private V6Controls.V6ComboBox cboKieuPost;
         private V6Controls.V6Label v6Label1;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_kh6;
         private V6ReportControls.FilterLineVvarTextBox Txtnh_kh5;
@@ -676,5 +674,6 @@
         private V6ReportControls.FilterLineVvarTextBox lineNH_KH9;
         private V6ReportControls.FilterLineVvarTextBox lineNH_KH8;
         private V6ReportControls.FilterLineVvarTextBox lineNH_KH7;
+        private V6Controls.V6ComboBox cboMa_xuly;
     }
 }

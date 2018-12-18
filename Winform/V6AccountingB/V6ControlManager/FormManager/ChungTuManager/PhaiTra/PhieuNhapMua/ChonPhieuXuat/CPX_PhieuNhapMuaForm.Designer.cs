@@ -827,6 +827,7 @@
             this.maKhach.Name = "maKhach";
             this.maKhach.Size = new System.Drawing.Size(132, 20);
             this.maKhach.TabIndex = 3;
+            this.maKhach.VVar = "MA_KH";
             // 
             // maThue
             // 

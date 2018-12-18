@@ -963,7 +963,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // taiKhoanNo
             // 
@@ -1057,11 +1057,10 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // maKhach
             // 
-            this.maKhach.AccessibleName = "ma_kh";
             this.maKhach.BackColor = System.Drawing.SystemColors.Window;
             this.maKhach.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.maKhach.Enabled = false;
@@ -1074,6 +1073,7 @@
             this.maKhach.Name = "maKhach";
             this.maKhach.Size = new System.Drawing.Size(132, 20);
             this.maKhach.TabIndex = 3;
+            this.maKhach.VVar = "MA_KH";
             // 
             // maThue
             // 

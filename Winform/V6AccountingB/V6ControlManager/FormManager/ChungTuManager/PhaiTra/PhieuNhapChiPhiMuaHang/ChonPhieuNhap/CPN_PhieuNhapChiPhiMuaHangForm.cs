@@ -188,9 +188,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 this.ShowErrorMessage(GetType() + ".Tìm chứng từ lỗi:\n" + ex.Message);
             }
         }
-
-
-
+        
         private void SearchThread()
         {
             //ReadyFor
@@ -201,7 +199,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             flagSearchFinish = false;
             flagSearchSuccess = false;
             btnNhan.Enabled = false;
-
+            PrepareThread();
             new Thread(DoSearch)
             {
                 IsBackground = true
@@ -242,6 +240,38 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             {
                 //lblStatus
             }
+        }
+
+        private string _where0Time = "", _where1AM = "", _where2AD = "", _w3NhomVt = "", _w4Dvcs = "";
+
+        private void PrepareThread()
+        {
+            var stru = _hoaDonForm.Invoice.AMStruct;
+            _where0Time = locThoiGian1GetFilterSql(stru, "", "like");
+            _where1AM = locThongTin1GetFilterSql(stru, "", "like");
+        }
+
+        private void DoSearch()
+        {
+            try
+            {
+                tAM = _hoaDonForm.Invoice.SearchPhieuNhap(_where0Time, _where1AM);
+                //    .SearchAM(where0Time, where1AM, where2AD, w3NhomVt, w4Dvcs);
+                if (tAM != null && tAM.Rows.Count > 0)
+                {
+                    flagSearchSuccess = true;
+                }
+                else
+                {
+                    exMessage = V6Text.NoInvoiceFound;
+                }
+            }
+            catch (Exception ex)
+            {
+                exMessage = ex.Message;
+                flagSearchSuccess = false;
+            }
+            flagSearchFinish = true;
         }
 
         public string locThoiGian1GetFilterSql(V6TableStruct tableStruct, string tableLable,
@@ -363,37 +393,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
             return result;
         }
-
-        private void DoSearch()
-        {
-            try
-            {
-                var stru = _hoaDonForm.Invoice.AMStruct;
-                var where0Time = locThoiGian1GetFilterSql(stru, "", "like");
-                var where1AM = locThongTin1GetFilterSql(stru, "", "like");
-                
-                tAM = _hoaDonForm.Invoice.SearchPhieuNhap(where0Time, where1AM);
-                //    .SearchAM(where0Time, where1AM, where2AD, w3NhomVt, w4Dvcs);
-                if (tAM != null && tAM.Rows.Count > 0)
-                {
-                    flagSearchSuccess = true;
-                }
-                else
-                {
-                    exMessage = V6Text.NoInvoiceFound;
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                exMessage = ex.Message;
-                flagSearchSuccess = false;
-            }
-            flagSearchFinish = true;
-        }
-
-
 
         private void Huy()
         {

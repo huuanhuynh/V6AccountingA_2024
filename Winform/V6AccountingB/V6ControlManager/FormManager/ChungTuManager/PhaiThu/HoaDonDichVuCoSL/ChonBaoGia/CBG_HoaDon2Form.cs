@@ -171,7 +171,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
             flagSearchFinish = false;
             flagSearchSuccess = false;
             btnNhan.Enabled = false;
-
+            PrepareThread();
             new Thread(DoSearch)
             {
                 IsBackground = true
@@ -212,6 +212,46 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
             {
                 //lblStatus
             }
+        }
+
+        private string _where0Time = "", _where1AM = "", _where2AD = "", _w3NhomVt = "", _w4Dvcs = "";
+
+        private void PrepareThread()
+        {
+            var stru = Invoice.AMStruct;
+            _where0Time = GetFilterSql_ThoiGian(stru, "", "like");
+            _where1AM = GetFilterSql_ThongTin(stru, "", "like");
+            var w1 = GetAMFilterSql_TuyChon();
+            if (w1.Length > 0)
+                _where1AM += (_where1AM.Length > 0 ? " and " : "") + w1;
+
+            var stru2 = Invoice.ADStruct;
+            _where2AD = GetFilterSql_TTChiTiet(stru2, "", "like");
+            _w3NhomVt = GetNhVtFilterSql_TuyChon("", "like");
+            var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
+            _w4Dvcs = GetDvcsFilterSql_TuyChon(struDvcs, "", "like");
+        }
+
+        private void DoSearch()
+        {
+            try
+            {
+                tAM = Invoice.SearchBaoGia(_where0Time, _where1AM, _where2AD, _w3NhomVt, _w4Dvcs);
+                if (tAM != null && tAM.Rows.Count > 0)
+                {
+                    flagSearchSuccess = true;
+                }
+                else
+                {
+                    exMessage = V6Text.NoInvoiceFound;
+                }
+            }
+            catch (Exception ex)
+            {
+                exMessage = ex.Message;
+                flagSearchSuccess = false;
+            }
+            flagSearchFinish = true;
         }
 
         public string GetFilterSql_ThoiGian(V6TableStruct tableStruct, string tableLable,
@@ -415,45 +455,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
             };
             var result = SqlGenerator.GenWhere2(tableStruct, keys, oper, and, tableLable);
             return result;
-        }
-
-        private void DoSearch()
-        {
-            try
-            {
-                var stru = Invoice.AMStruct;
-                var where0Time = GetFilterSql_ThoiGian(stru, "", "like");
-                var where1AM = GetFilterSql_ThongTin(stru, "", "like");
-                var w1 = GetAMFilterSql_TuyChon();
-                if (w1.Length > 0)
-                    where1AM += (where1AM.Length > 0 ? " and " : "") + w1;
-
-                var stru2 = Invoice.ADStruct;
-                var where2AD = GetFilterSql_TTChiTiet(stru2, "", "like");
-
-                var w3NhomVt = GetNhVtFilterSql_TuyChon("", "like");
-
-                var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
-                var w4Dvcs = GetDvcsFilterSql_TuyChon(struDvcs, "", "like");
-
-                tAM = Invoice.SearchBaoGia(where0Time, where1AM, where2AD, w3NhomVt, w4Dvcs);
-                if (tAM != null && tAM.Rows.Count > 0)
-                {
-                    flagSearchSuccess = true;
-                }
-                else
-                {
-                    exMessage = V6Text.NoInvoiceFound;
-                }
-
-                
-            }
-            catch (Exception ex)
-            {
-                exMessage = ex.Message;
-                flagSearchSuccess = false;
-            }
-            flagSearchFinish = true;
         }
 
         private void Huy()

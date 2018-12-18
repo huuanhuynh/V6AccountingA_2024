@@ -19,7 +19,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
         public string GetFilterSql(V6TableStruct tableStruct, string tableLable,
             string oper = "=", bool and = true)
         {
-            V6Setting.M_ngay_ct1 = dateDenNgay.Date;
+            V6Setting.M_ngay_ct1 = dateTuNgay.Date;
             V6Setting.M_ngay_ct2 = dateDenNgay.Date;
 
             var result = "";

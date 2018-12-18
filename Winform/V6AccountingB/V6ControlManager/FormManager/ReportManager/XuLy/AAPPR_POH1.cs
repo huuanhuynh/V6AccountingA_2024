@@ -242,9 +242,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     _sttRec = cRow.Cells["STT_REC"].Value.ToString();
                     SqlParameter[] plist =
                     {
-                        new SqlParameter("@Stt_rec", _sttRec), 
-                        new SqlParameter("@Ma_ct", "POH"), 
-                        new SqlParameter("@user_id", V6Login.UserId), 
+                        new SqlParameter("@Stt_rec", _sttRec),
+                        new SqlParameter("@Ma_ct", "POH"),
+                        new SqlParameter("@user_id", V6Login.UserId),
+                        new SqlParameter("@Set_ma_xuly", FilterControl.Kieu_post),
                     };
                     V6BusinessHelper.ExecuteProcedure("AAPPR_POH1_UPDATE_AD", plist);
                 }

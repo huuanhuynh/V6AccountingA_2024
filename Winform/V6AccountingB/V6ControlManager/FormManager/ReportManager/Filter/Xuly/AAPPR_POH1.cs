@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using V6AccountingBusiness;
+using V6Controls;
 using V6Init;
 using V6Tools;
 
@@ -32,19 +34,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
             TxtXtag.Enabled = false;
 
             ctDenSo.Enabled = false;
-            chkHoaDonDaIn.Checked = true;
-            chkMa_bp.Checked = true;
-            chkMa_nvien.Checked = true;
+            chkHoaDonDaIn.Checked = false;
+            chkMa_bp.Checked = false;
+            chkMa_nvien.Checked = false;
             chkGc_ud1.Checked = false;
-            cboKieuPost.ValueMember = "kieu_post";
-            cboKieuPost.DisplayMember = V6Setting.IsVietnamese ? "Ten_post" : "Ten_post2";
-            cboKieuPost.DataSource = V6BusinessHelper.Select("AlPost", "Kieu_post,Ten_post,Ten_post2",
-                                "Ma_ct=@mact", "", "Kieu_post",
-                                new SqlParameter("@mact", txtMa_ct.Text)).Data;
-            cboKieuPost.ValueMember = "kieu_post";
-            cboKieuPost.DisplayMember = V6Setting.IsVietnamese ? "Ten_post" : "Ten_post2";
             
-            cboKieuPost.SelectedValue = "2";
+            LoadComboboxSource(txtMa_ct.Text);
 
             Txtnh_kh1.VvarTextBox.SetInitFilter("loai_nh=1");
             Txtnh_kh2.VvarTextBox.SetInitFilter("loai_nh=2");
@@ -57,11 +52,32 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
             lineNH_KH9.VvarTextBox.SetInitFilter("loai_nh=9");
         }
 
+        private void LoadComboboxSource(string maCt)
+        {
+            try
+            {
+                cboMa_xuly.ValueMember = "MA_XULY1";
+                cboMa_xuly.DisplayMember = V6Setting.IsVietnamese ? "Ten_xuly" : "Ten_xuly2";
+                cboMa_xuly.DataSource = V6BusinessHelper.Select("Alxuly", "ma_xuly as MA_XULY1,Ten_xuly,Ten_xuly2",
+                                    "Ma_ct=@mact and Status = '1'", "", "Ma_xuly",
+                                    new SqlParameter("@mact", maCt)).Data;
+                cboMa_xuly.ValueMember = "MA_XULY1";
+                cboMa_xuly.DisplayMember = V6Setting.IsVietnamese ? "Ten_xuly" : "Ten_xuly2";
+
+                string selectValue = (V6BusinessHelper.ExecuteScalar("Select MA_XULY from ALXULY where Ma_ct=@mact and Status = '1' And SL_TD2=1", new SqlParameter("@mact", maCt)) + "").Trim();
+                if (selectValue != "") cboMa_xuly.SelectedValue = selectValue;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadComboboxSource", ex);
+            }
+        }
+
         public override string Kieu_post
         {
             get
             {
-                return cboKieuPost.SelectedValue.ToString().Trim();
+                return cboMa_xuly.SelectedValue.ToString().Trim();
             }
         }
 
@@ -205,8 +221,14 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
             ctDenSo.Enabled = !chkLike.Checked;
         }
 
-       
-
+        private void txtMa_ct_V6LostFocus(object sender)
+        {
+            if (IsReady)
+            {
+                LoadComboboxSource(txtMa_ct.Text);
+                lineMa_xuly.VvarTextBox.SetInitFilter(string.Format("Ma_ct='{0}'", txtMa_ct.Text.Trim()));
+            }
+        }
         
     }
 }

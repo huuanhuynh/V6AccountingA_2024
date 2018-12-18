@@ -1794,10 +1794,10 @@
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_SOA2.Designer.cs">
       <DependentUpon>AAPPR_SOA2.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\AAPPR_XULY_ALL_Filter.cs">
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_XULY_ALL_Filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\AAPPR_XULY_ALL_Filter.Designer.cs">
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_XULY_ALL_Filter.Designer.cs">
       <DependentUpon>AAPPR_XULY_ALL_Filter.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_XULY_SOA.cs">
@@ -6186,7 +6186,7 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_SOA2.resx">
       <DependentUpon>AAPPR_SOA2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_XULY_ALL_Filter.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AAPPR_XULY_ALL_Filter.resx">
       <DependentUpon>AAPPR_XULY_ALL_Filter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_XULY_SOA.resx">

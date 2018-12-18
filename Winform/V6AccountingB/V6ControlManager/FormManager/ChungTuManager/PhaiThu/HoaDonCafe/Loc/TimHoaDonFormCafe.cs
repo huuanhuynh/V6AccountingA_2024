@@ -181,7 +181,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
             flagSearchFinish = false;
             flagSearchSuccess = false;
             btnNhan.Enabled = false;
-
+            PrepareThread();
             new Thread(DoSearch)
             {
                 IsBackground = true
@@ -195,27 +195,30 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
         private string exMessage = "";
         private DataTable tempAM;
 
+        private string _where0Time = "", _where1AM = "", _where2AD = "", _w3NhomVt = "", _w4Dvcs = "";
+
+        private void PrepareThread()
+        {
+            var stru = _formChungTu.Invoice.AMStruct;
+            _where0Time = locThoiGian1.GetFilterSql(stru, "", "like");
+
+            _where1AM = locThongTin1.GetFilterSql(_formChungTu.Invoice, stru, "", "start");
+            var w1 = GetAMFilterSql_TuyChon();
+            if (w1.Length > 0)
+                _where1AM += (_where1AM.Length > 0 ? " and " : "") + w1;
+
+            var stru2 = _formChungTu.Invoice.ADStruct;
+            _where2AD = locThongTinChiTiet1.GetFilterSql(stru2, "", "like");
+            _w3NhomVt = GetNhVtFilterSql_TuyChon("", "like");
+            var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
+            _w4Dvcs = GetDvcsFilterSql_TuyChon(struDvcs, "", "like");
+        }
+
         private void DoSearch()
         {
             try
             {
-                var stru = _formChungTu.Invoice.AMStruct;
-                var where0Time = locThoiGian1.GetFilterSql(stru, "", "like");
-
-                var where1AM = locThongTin1.GetFilterSql(_formChungTu.Invoice, stru, "", "start");
-                var w1 = GetAMFilterSql_TuyChon();
-                if (w1.Length > 0)
-                    where1AM += (where1AM.Length > 0 ? " and " : "") + w1;
-
-                var stru2 = _formChungTu.Invoice.ADStruct;
-                var where2AD = locThongTinChiTiet1.GetFilterSql(stru2, "", "like");
-
-                var w3NhomVt = GetNhVtFilterSql_TuyChon("", "like");
-
-                var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
-                var w4Dvcs = GetDvcsFilterSql_TuyChon(struDvcs, "", "like");
-
-                tempAM = _formChungTu.Invoice.SearchAM(where0Time, where1AM, where2AD, w3NhomVt, w4Dvcs);
+                tempAM = _formChungTu.Invoice.SearchAM(_where0Time, _where1AM, _where2AD, _w3NhomVt, _w4Dvcs);
                 if (tempAM != null && tempAM.Rows.Count > 0)
                 {
                     flagSearchSuccess = true;
@@ -224,8 +227,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
                 {
                     exMessage = V6Text.NoInvoiceFound;
                 }
-
-
             }
             catch (Exception ex)
             {

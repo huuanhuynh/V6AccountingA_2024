@@ -85,14 +85,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtNGAY_UD2 = new V6Controls.V6DateTimeColor();
             this.txtNGAY_UD1 = new V6Controls.V6DateTimeColor();
             this.tabThongTin = new System.Windows.Forms.TabPage();
-            this.v6DateTimePick1 = new V6Controls.V6DateTimeFullPicker();
-            this.v6Label48 = new V6Controls.V6Label();
+            this.dateTG_NHAN = new V6Controls.Controls.V6DateTimePickerNull();
+            this.lblTG_NHAN = new V6Controls.V6Label();
             this.txtDiaChi2 = new V6Controls.V6VvarTextBox();
-            this.lblNgayNoHD = new V6Controls.V6Label();
+            this.lblNGAY_NOHD = new V6Controls.V6Label();
             this.txtNgayNoHD = new V6Controls.V6NumberTextBox();
             this.txtMaPTVC = new V6Controls.V6VvarTextBox();
-            this.lblPTVC = new V6Controls.V6Label();
-            this.lblDiaChi2 = new V6Controls.V6Label();
+            this.lblMA_HTVC = new V6Controls.V6Label();
+            this.lblDIA_CHI2 = new V6Controls.V6Label();
             this.group5 = new System.Windows.Forms.GroupBox();
             this.panelVND = new System.Windows.Forms.Panel();
             this.txtTongTien2 = new V6Controls.V6NumberTextBox();
@@ -150,6 +150,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.v6Label31 = new V6Controls.V6Label();
             this.v6Label19 = new V6Controls.V6Label();
             this.group3 = new System.Windows.Forms.GroupBox();
+            this.txtSoDH = new V6Controls.V6VvarTextBox();
+            this.lblSoDH = new V6Controls.V6Label();
             this.btnApGia = new V6Controls.Controls.V6FormButton();
             this.v6Label36 = new V6Controls.V6Label();
             this.Txtten_vtthue = new V6Controls.V6ColorTextBox();
@@ -222,7 +224,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnTim = new System.Windows.Forms.Button();
             this.lblNameT = new V6Controls.V6Label();
-            this.dateTG_NHAN = new V6Controls.Controls.V6DateTimePickerNull();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -1095,14 +1096,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             this.tabThongTin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabThongTin.Controls.Add(this.dateTG_NHAN);
-            this.tabThongTin.Controls.Add(this.v6DateTimePick1);
-            this.tabThongTin.Controls.Add(this.v6Label48);
+            this.tabThongTin.Controls.Add(this.lblTG_NHAN);
             this.tabThongTin.Controls.Add(this.txtDiaChi2);
-            this.tabThongTin.Controls.Add(this.lblNgayNoHD);
+            this.tabThongTin.Controls.Add(this.lblNGAY_NOHD);
             this.tabThongTin.Controls.Add(this.txtNgayNoHD);
             this.tabThongTin.Controls.Add(this.txtMaPTVC);
-            this.tabThongTin.Controls.Add(this.lblPTVC);
-            this.tabThongTin.Controls.Add(this.lblDiaChi2);
+            this.tabThongTin.Controls.Add(this.lblMA_HTVC);
+            this.tabThongTin.Controls.Add(this.lblDIA_CHI2);
             this.tabThongTin.Location = new System.Drawing.Point(4, 22);
             this.tabThongTin.Name = "tabThongTin";
             this.tabThongTin.Padding = new System.Windows.Forms.Padding(3);
@@ -1110,29 +1110,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.tabThongTin.TabIndex = 6;
             this.tabThongTin.Text = "TT giao hàng & PTTT";
             // 
-            // v6DateTimePick1
+            // dateTG_NHAN
             // 
-            this.v6DateTimePick1.AccessibleName = "TG_NHAN0";
-            this.v6DateTimePick1.CustomFormat = "HH:mm dd/MM/yyyy";
-            this.v6DateTimePick1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6DateTimePick1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.v6DateTimePick1.HoverColor = System.Drawing.Color.Yellow;
-            this.v6DateTimePick1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.v6DateTimePick1.LeaveColor = System.Drawing.Color.White;
-            this.v6DateTimePick1.Location = new System.Drawing.Point(134, 79);
-            this.v6DateTimePick1.Name = "v6DateTimePick1";
-            this.v6DateTimePick1.Size = new System.Drawing.Size(130, 20);
-            this.v6DateTimePick1.TabIndex = 9;
-            this.v6DateTimePick1.UseTime = true;
+            this.dateTG_NHAN.AccessibleName = "TG_NHAN";
+            this.dateTG_NHAN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.dateTG_NHAN.CodeForm = null;
+            this.dateTG_NHAN.Location = new System.Drawing.Point(134, 79);
+            this.dateTG_NHAN.Name = "dateTG_NHAN";
+            this.dateTG_NHAN.Size = new System.Drawing.Size(150, 20);
+            this.dateTG_NHAN.TabIndex = 10;
+            this.dateTG_NHAN.Value = null;
             // 
-            // v6Label48
+            // lblTG_NHAN
             // 
-            this.v6Label48.AutoSize = true;
-            this.v6Label48.Location = new System.Drawing.Point(0, 83);
-            this.v6Label48.Name = "v6Label48";
-            this.v6Label48.Size = new System.Drawing.Size(60, 13);
-            this.v6Label48.TabIndex = 8;
-            this.v6Label48.Text = "T.gian giao";
+            this.lblTG_NHAN.AutoSize = true;
+            this.lblTG_NHAN.Location = new System.Drawing.Point(0, 83);
+            this.lblTG_NHAN.Name = "lblTG_NHAN";
+            this.lblTG_NHAN.Size = new System.Drawing.Size(60, 13);
+            this.lblTG_NHAN.TabIndex = 8;
+            this.lblTG_NHAN.Text = "T.gian giao";
             // 
             // txtDiaChi2
             // 
@@ -1155,14 +1151,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtDiaChi2.VVar = "DIA_CHI2";
             this.txtDiaChi2.Enter += new System.EventHandler(this.txtDiaChi2_Enter);
             // 
-            // lblNgayNoHD
+            // lblNGAY_NOHD
             // 
-            this.lblNgayNoHD.AutoSize = true;
-            this.lblNgayNoHD.Location = new System.Drawing.Point(0, 55);
-            this.lblNgayNoHD.Name = "lblNgayNoHD";
-            this.lblNgayNoHD.Size = new System.Drawing.Size(106, 13);
-            this.lblNgayNoHD.TabIndex = 6;
-            this.lblNgayNoHD.Text = "Số ngày gửi hóa đơn";
+            this.lblNGAY_NOHD.AutoSize = true;
+            this.lblNGAY_NOHD.Location = new System.Drawing.Point(0, 55);
+            this.lblNGAY_NOHD.Name = "lblNGAY_NOHD";
+            this.lblNGAY_NOHD.Size = new System.Drawing.Size(106, 13);
+            this.lblNGAY_NOHD.TabIndex = 6;
+            this.lblNGAY_NOHD.Text = "Số ngày gửi hóa đơn";
             // 
             // txtNgayNoHD
             // 
@@ -1207,23 +1203,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtMaPTVC.TabIndex = 3;
             this.txtMaPTVC.VVar = "MA_HTVC";
             // 
-            // lblPTVC
+            // lblMA_HTVC
             // 
-            this.lblPTVC.AutoSize = true;
-            this.lblPTVC.Location = new System.Drawing.Point(0, 32);
-            this.lblPTVC.Name = "lblPTVC";
-            this.lblPTVC.Size = new System.Drawing.Size(118, 13);
-            this.lblPTVC.TabIndex = 2;
-            this.lblPTVC.Text = "Phương thức giao hàng";
+            this.lblMA_HTVC.AutoSize = true;
+            this.lblMA_HTVC.Location = new System.Drawing.Point(0, 32);
+            this.lblMA_HTVC.Name = "lblMA_HTVC";
+            this.lblMA_HTVC.Size = new System.Drawing.Size(118, 13);
+            this.lblMA_HTVC.TabIndex = 2;
+            this.lblMA_HTVC.Text = "Phương thức giao hàng";
             // 
-            // lblDiaChi2
+            // lblDIA_CHI2
             // 
-            this.lblDiaChi2.AutoSize = true;
-            this.lblDiaChi2.Location = new System.Drawing.Point(0, 6);
-            this.lblDiaChi2.Name = "lblDiaChi2";
-            this.lblDiaChi2.Size = new System.Drawing.Size(90, 13);
-            this.lblDiaChi2.TabIndex = 0;
-            this.lblDiaChi2.Text = "Địa chỉ giao hàng";
+            this.lblDIA_CHI2.AutoSize = true;
+            this.lblDIA_CHI2.Location = new System.Drawing.Point(0, 6);
+            this.lblDIA_CHI2.Name = "lblDIA_CHI2";
+            this.lblDIA_CHI2.Size = new System.Drawing.Size(90, 13);
+            this.lblDIA_CHI2.TabIndex = 0;
+            this.lblDIA_CHI2.Text = "Địa chỉ giao hàng";
             // 
             // group5
             // 
@@ -2125,6 +2121,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             this.group3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.group3.Controls.Add(this.txtSoDH);
+            this.group3.Controls.Add(this.lblSoDH);
             this.group3.Controls.Add(this.btnApGia);
             this.group3.Controls.Add(this.v6Label36);
             this.group3.Controls.Add(this.Txtten_vtthue);
@@ -2157,6 +2155,34 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.group3.TabIndex = 2;
             this.group3.TabStop = false;
             // 
+            // txtSoDH
+            // 
+            this.txtSoDH.AccessibleName = "SO_DH";
+            this.txtSoDH.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSoDH.BackColor = System.Drawing.SystemColors.Window;
+            this.txtSoDH.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtSoDH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSoDH.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtSoDH.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtSoDH.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtSoDH.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtSoDH.HoverColor = System.Drawing.Color.Yellow;
+            this.txtSoDH.LeaveColor = System.Drawing.Color.White;
+            this.txtSoDH.Location = new System.Drawing.Point(682, 9);
+            this.txtSoDH.Name = "txtSoDH";
+            this.txtSoDH.Size = new System.Drawing.Size(75, 20);
+            this.txtSoDH.TabIndex = 14;
+            // 
+            // lblSoDH
+            // 
+            this.lblSoDH.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSoDH.AutoSize = true;
+            this.lblSoDH.Location = new System.Drawing.Point(627, 11);
+            this.lblSoDH.Name = "lblSoDH";
+            this.lblSoDH.Size = new System.Drawing.Size(39, 13);
+            this.lblSoDH.TabIndex = 13;
+            this.lblSoDH.Text = "Số ĐH";
+            // 
             // btnApGia
             // 
             this.btnApGia.AccessibleDescription = "ASOCTSOAH00051";
@@ -2165,7 +2191,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.btnApGia.Location = new System.Drawing.Point(765, 72);
             this.btnApGia.Name = "btnApGia";
             this.btnApGia.Size = new System.Drawing.Size(60, 22);
-            this.btnApGia.TabIndex = 23;
+            this.btnApGia.TabIndex = 26;
             this.btnApGia.TabStop = false;
             this.btnApGia.Text = "Mã giá";
             this.toolTipV6FormControl.SetToolTip(this.btnApGia, "Áp giá bán");
@@ -2176,10 +2202,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             this.v6Label36.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.v6Label36.AutoSize = true;
-            this.v6Label36.Location = new System.Drawing.Point(624, 77);
+            this.v6Label36.Location = new System.Drawing.Point(627, 77);
             this.v6Label36.Name = "v6Label36";
             this.v6Label36.Size = new System.Drawing.Size(28, 13);
-            this.v6Label36.TabIndex = 17;
+            this.v6Label36.TabIndex = 24;
             this.v6Label36.Text = "ABC";
             // 
             // Txtten_vtthue
@@ -2198,7 +2224,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.Txtten_vtthue.Location = new System.Drawing.Point(92, 94);
             this.Txtten_vtthue.Name = "Txtten_vtthue";
             this.Txtten_vtthue.Size = new System.Drawing.Size(527, 20);
-            this.Txtten_vtthue.TabIndex = 11;
+            this.Txtten_vtthue.TabIndex = 12;
             // 
             // v6ColorTextBox4
             // 
@@ -2216,7 +2242,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.v6ColorTextBox4.Location = new System.Drawing.Point(682, 75);
             this.v6ColorTextBox4.Name = "v6ColorTextBox4";
             this.v6ColorTextBox4.Size = new System.Drawing.Size(75, 20);
-            this.v6ColorTextBox4.TabIndex = 18;
+            this.v6ColorTextBox4.TabIndex = 25;
             // 
             // v6Label34
             // 
@@ -2225,7 +2251,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.v6Label34.Location = new System.Drawing.Point(3, 97);
             this.v6Label34.Name = "v6Label34";
             this.v6Label34.Size = new System.Drawing.Size(77, 13);
-            this.v6Label34.TabIndex = 22;
+            this.v6Label34.TabIndex = 11;
             this.v6Label34.Text = "Tên hàng VAT";
             // 
             // txtMadvcs
@@ -2244,7 +2270,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtMadvcs.Location = new System.Drawing.Point(92, 9);
             this.txtMadvcs.Name = "txtMadvcs";
             this.txtMadvcs.Size = new System.Drawing.Size(100, 20);
-            this.txtMadvcs.TabIndex = 5;
+            this.txtMadvcs.TabIndex = 1;
             this.txtMadvcs.VVar = "ma_dvcs";
             this.txtMadvcs.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMadvcs_V6LostFocus);
             // 
@@ -2264,7 +2290,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.v6ColorTextBox3.Location = new System.Drawing.Point(198, 9);
             this.v6ColorTextBox3.Name = "v6ColorTextBox3";
             this.v6ColorTextBox3.Size = new System.Drawing.Size(420, 20);
-            this.v6ColorTextBox3.TabIndex = 21;
+            this.v6ColorTextBox3.TabIndex = 2;
             this.v6ColorTextBox3.Tag = "disable";
             // 
             // v6Label18
@@ -2274,7 +2300,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.v6Label18.Location = new System.Drawing.Point(3, 12);
             this.v6Label18.Name = "v6Label18";
             this.v6Label18.Size = new System.Drawing.Size(58, 13);
-            this.v6Label18.TabIndex = 20;
+            this.v6Label18.TabIndex = 0;
             this.v6Label18.Text = "Mã đơn vị ";
             // 
             // v6NumberTextBox1
@@ -2294,7 +2320,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.v6NumberTextBox1.Location = new System.Drawing.Point(831, 53);
             this.v6NumberTextBox1.Name = "v6NumberTextBox1";
             this.v6NumberTextBox1.Size = new System.Drawing.Size(55, 20);
-            this.v6NumberTextBox1.TabIndex = 18;
+            this.v6NumberTextBox1.TabIndex = 23;
             this.v6NumberTextBox1.Text = "0";
             this.v6NumberTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox1.Value = new decimal(new int[] {
@@ -2319,7 +2345,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtTyGia.Location = new System.Drawing.Point(786, 32);
             this.txtTyGia.Name = "txtTyGia";
             this.txtTyGia.Size = new System.Drawing.Size(100, 20);
-            this.txtTyGia.TabIndex = 15;
+            this.txtTyGia.TabIndex = 19;
             this.txtTyGia.Text = "0,000";
             this.txtTyGia.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTyGia.Value = new decimal(new int[] {
@@ -2344,7 +2370,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.cboMaNt.Location = new System.Drawing.Point(682, 31);
             this.cboMaNt.Name = "cboMaNt";
             this.cboMaNt.Size = new System.Drawing.Size(98, 21);
-            this.cboMaNt.TabIndex = 10;
+            this.cboMaNt.TabIndex = 18;
             this.cboMaNt.TabStop = false;
             this.cboMaNt.SelectedValueChanged += new System.EventHandler(this.cboMaNt_SelectedValueChanged);
             // 
@@ -2364,7 +2390,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtMaHttt.Location = new System.Drawing.Point(682, 53);
             this.txtMaHttt.Name = "txtMaHttt";
             this.txtMaHttt.Size = new System.Drawing.Size(75, 20);
-            this.txtMaHttt.TabIndex = 17;
+            this.txtMaHttt.TabIndex = 21;
             this.txtMaHttt.VVar = "ma_httt";
             // 
             // txtMaGia
@@ -2383,7 +2409,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtMaGia.Location = new System.Drawing.Point(831, 74);
             this.txtMaGia.Name = "txtMaGia";
             this.txtMaGia.Size = new System.Drawing.Size(56, 20);
-            this.txtMaGia.TabIndex = 19;
+            this.txtMaGia.TabIndex = 27;
             this.txtMaGia.VVar = "ma_gia";
             this.txtMaGia.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMaGia_V6LostFocus);
             // 
@@ -2402,7 +2428,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtMaKh.Location = new System.Drawing.Point(92, 30);
             this.txtMaKh.Name = "txtMaKh";
             this.txtMaKh.Size = new System.Drawing.Size(100, 20);
-            this.txtMaKh.TabIndex = 6;
+            this.txtMaKh.TabIndex = 4;
             this.txtMaKh.VVar = "ma_kh";
             this.txtMaKh.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMaKh_V6LostFocus);
             // 
@@ -2411,10 +2437,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.v6Label17.AccessibleDescription = "ASOCTSOAL00036";
             this.v6Label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.v6Label17.AutoSize = true;
-            this.v6Label17.Location = new System.Drawing.Point(643, 34);
+            this.v6Label17.Location = new System.Drawing.Point(627, 34);
             this.v6Label17.Name = "v6Label17";
             this.v6Label17.Size = new System.Drawing.Size(36, 13);
-            this.v6Label17.TabIndex = 14;
+            this.v6Label17.TabIndex = 17;
             this.v6Label17.Text = "Tỷ giá";
             // 
             // v6Label16
@@ -2424,7 +2450,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.v6Label16.Location = new System.Drawing.Point(766, 13);
             this.v6Label16.Name = "v6Label16";
             this.v6Label16.Size = new System.Drawing.Size(58, 13);
-            this.v6Label16.TabIndex = 12;
+            this.v6Label16.TabIndex = 15;
             this.v6Label16.Text = "Chiết khấu";
             // 
             // v6Label15
@@ -2435,7 +2461,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.v6Label15.Location = new System.Drawing.Point(783, 55);
             this.v6Label15.Name = "v6Label15";
             this.v6Label15.Size = new System.Drawing.Size(44, 13);
-            this.v6Label15.TabIndex = 10;
+            this.v6Label15.TabIndex = 22;
             this.v6Label15.Text = "Hạn TT";
             // 
             // chkLoaiChietKhau
@@ -2446,7 +2472,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.chkLoaiChietKhau.Location = new System.Drawing.Point(830, 12);
             this.chkLoaiChietKhau.Name = "chkLoaiChietKhau";
             this.chkLoaiChietKhau.Size = new System.Drawing.Size(56, 17);
-            this.chkLoaiChietKhau.TabIndex = 13;
+            this.chkLoaiChietKhau.TabIndex = 16;
             this.chkLoaiChietKhau.TabStop = false;
             this.chkLoaiChietKhau.Text = "chung";
             this.chkLoaiChietKhau.UseVisualStyleBackColor = true;
@@ -2456,10 +2482,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             this.v6Label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.v6Label13.AutoSize = true;
-            this.v6Label13.Location = new System.Drawing.Point(624, 56);
+            this.v6Label13.Location = new System.Drawing.Point(627, 56);
             this.v6Label13.Name = "v6Label13";
             this.v6Label13.Size = new System.Drawing.Size(36, 13);
-            this.v6Label13.TabIndex = 6;
+            this.v6Label13.TabIndex = 20;
             this.v6Label13.Text = "HTTT";
             // 
             // v6ColorTextBox9
@@ -2487,7 +2513,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.v6Label12.Location = new System.Drawing.Point(3, 75);
             this.v6Label12.Name = "v6Label12";
             this.v6Label12.Size = new System.Drawing.Size(48, 13);
-            this.v6Label12.TabIndex = 4;
+            this.v6Label12.TabIndex = 9;
             this.v6Label12.Text = "Diễn giải";
             // 
             // txtMaSoThue
@@ -2505,7 +2531,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtMaSoThue.Location = new System.Drawing.Point(515, 51);
             this.txtMaSoThue.Name = "txtMaSoThue";
             this.txtMaSoThue.Size = new System.Drawing.Size(103, 20);
-            this.txtMaSoThue.TabIndex = 9;
+            this.txtMaSoThue.TabIndex = 8;
             this.txtMaSoThue.Tag = "";
             // 
             // txtTenKh
@@ -2524,7 +2550,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtTenKh.Location = new System.Drawing.Point(198, 30);
             this.txtTenKh.Name = "txtTenKh";
             this.txtTenKh.Size = new System.Drawing.Size(420, 20);
-            this.txtTenKh.TabIndex = 7;
+            this.txtTenKh.TabIndex = 5;
             this.txtTenKh.Tag = "";
             // 
             // txtDiaChi
@@ -2543,7 +2569,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtDiaChi.Location = new System.Drawing.Point(92, 51);
             this.txtDiaChi.Name = "txtDiaChi";
             this.txtDiaChi.Size = new System.Drawing.Size(417, 20);
-            this.txtDiaChi.TabIndex = 8;
+            this.txtDiaChi.TabIndex = 7;
             // 
             // v6Label11
             // 
@@ -2552,7 +2578,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.v6Label11.Location = new System.Drawing.Point(3, 54);
             this.v6Label11.Name = "v6Label11";
             this.v6Label11.Size = new System.Drawing.Size(40, 13);
-            this.v6Label11.TabIndex = 2;
+            this.v6Label11.TabIndex = 6;
             this.v6Label11.Text = "Địa chỉ";
             // 
             // v6Label10
@@ -2562,7 +2588,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.v6Label10.Location = new System.Drawing.Point(3, 33);
             this.v6Label10.Name = "v6Label10";
             this.v6Label10.Size = new System.Drawing.Size(82, 13);
-            this.v6Label10.TabIndex = 0;
+            this.v6Label10.TabIndex = 3;
             this.v6Label10.Text = "Mã khách hàng";
             // 
             // group2
@@ -3178,17 +3204,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.lblNameT.TabIndex = 21;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dateTG_NHAN
-            // 
-            this.dateTG_NHAN.AccessibleName = "TG_NHAN";
-            this.dateTG_NHAN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.dateTG_NHAN.CodeForm = null;
-            this.dateTG_NHAN.Location = new System.Drawing.Point(270, 79);
-            this.dateTG_NHAN.Name = "dateTG_NHAN";
-            this.dateTG_NHAN.Size = new System.Drawing.Size(150, 20);
-            this.dateTG_NHAN.TabIndex = 10;
-            this.dateTG_NHAN.Value = null;
-            // 
             // DonDatHangBanControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3431,14 +3446,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         private V6NumberTextBox TxtT_TIENVCNT;
         private V6Label v6Label27;
         private System.Windows.Forms.TabPage tabThongTin;
-        private V6DateTimeFullPicker v6DateTimePick1;
-        private V6Label v6Label48;
+        private V6Label lblTG_NHAN;
         private V6VvarTextBox txtDiaChi2;
-        private V6Label lblNgayNoHD;
+        private V6Label lblNGAY_NOHD;
         private V6NumberTextBox txtNgayNoHD;
         private V6VvarTextBox txtMaPTVC;
-        private V6Label lblPTVC;
-        private V6Label lblDiaChi2;
+        private V6Label lblMA_HTVC;
+        private V6Label lblDIA_CHI2;
         private V6DateTimePickerNull dateTG_NHAN;
+        private V6VvarTextBox txtSoDH;
+        private V6Label lblSoDH;
     }
 }
