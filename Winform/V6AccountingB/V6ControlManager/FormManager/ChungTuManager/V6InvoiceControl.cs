@@ -62,6 +62,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 M_ROUND_GIA_NT = V6Setting.RoundGiaNt;
                 M_SOA_HT_KM_CK = V6Options.GetValue("M_SOA_HT_KM_CK");
                 M_SOA_MULTI_VAT = V6Options.GetValue("M_SOA_MULTI_VAT");
+                M_POA_MULTI_VAT = V6Options.GetValue("M_POA_MULTI_VAT");
                 M_CAL_SL_QD_ALL = V6Options.GetValue("M_CAL_SL_QD_ALL");
                 //var lbl = new Label();
                 //lbl.Text = MaCt;
@@ -168,6 +169,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         protected int M_ROUND_GIA_NT;
         public string M_SOA_HT_KM_CK;
         public string M_SOA_MULTI_VAT;
+        public string M_POA_MULTI_VAT;
         public string M_CAL_SL_QD_ALL;
 
         /// <summary>
@@ -638,6 +640,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
             
         }
 
+        /// <summary>
+        /// <para>Gán InitFilter cho các control được chỉ định trong V6Options.M_V6_ADV_FILTER</para>
+        /// <para>Field:TableName:1 => lấy initfilter từ V6Login theo TableName.</para>
+        /// <para>Field:TableName:1 => nếu là 1 sẽ gắn thêm [Status] &lt;&gt; '0'</para>
+        /// </summary>
         protected void SetInitFilterAll()
         {
             if (V6Setting.IsDesignTime) return;
@@ -798,8 +805,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 {
                     if (parent is ChungTuChungContainer)
                     {
-                        ((ChungTuChungContainer)parent)
-                            .ShowMessage(message);
+                        ((ChungTuChungContainer)parent).ShowMessage(message);
                         return;
                     }
                     else
@@ -1072,7 +1078,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try
             {
-                string message = "";
+                string message;
                 if (V6BusinessHelper.CheckNgayCt(maCt, dateNgayCT.Value, out message))
                 {
                     ShowParentMessage("");
@@ -1352,7 +1358,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         FixTyGia(AD, row, ty_gia, "PS_NO", "PS_NO_NT", M_ROUND);
                         FixTyGia(AD, row, ty_gia, "PS_CO", "PS_CO_NT", M_ROUND);
                     }
-                    HD_Detail detailControl = this.GetControlByName("detail1") as HD_Detail;
+                    HD_Detail detailControl = GetControlByName("detail1") as HD_Detail;
                     if (detailControl != null && (detailControl.MODE == V6Mode.Add || detailControl.MODE == V6Mode.Edit))
                     {
                         //...
@@ -1387,7 +1393,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         FixTyGia(AD2, row, ty_gia, "t_thue", "t_thue_nt", M_ROUND);
                         FixTyGia(AD2, row, ty_gia, "t_tt", "t_tt_nt", M_ROUND);
                     }
-                    HD_Detail detailControl = this.GetControlByName("detail2") as HD_Detail;
+                    HD_Detail detailControl = GetControlByName("detail2") as HD_Detail;
                     if (detailControl != null && (detailControl.MODE == V6Mode.Add || detailControl.MODE == V6Mode.Edit))
                     {
                         FixTyGiaDetail(AD2, detailControl, ty_gia, "t_tien", "t_tien_nt", M_ROUND);
@@ -1403,7 +1409,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         FixTyGia(AD3, row, ty_gia, "PS_NO", "PS_NO_NT", M_ROUND);
                         FixTyGia(AD3, row, ty_gia, "PS_CO", "PS_CO_NT", M_ROUND);
                     }
-                    HD_Detail detailControl = this.GetControlByName("detail3") as HD_Detail;
+                    HD_Detail detailControl = GetControlByName("detail3") as HD_Detail;
                     if (detailControl != null && (detailControl.MODE == V6Mode.Add || detailControl.MODE == V6Mode.Edit))
                     {
                         FixTyGiaDetail(AD3, detailControl, ty_gia, "PS_NO", "PS_NO_NT", M_ROUND);
@@ -1449,8 +1455,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         case '3':
                             message = CheckMakhoMavtMaloMavitri(Invoice, ngayCt, maKhoX);
                             if (!string.IsNullOrEmpty(message)) goto ThongBao;
-                            break;
-                        default:
                             break;
                     }
                 }
@@ -2269,9 +2273,12 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
                             if (invoice.ADStruct.ContainsKey(FIELD) && AD.Columns.Contains(FIELD))
                             {
-                                object resetValue = null;
+                                object resetValue;
                                 V6ColumnStruct struct0 = invoice.ADStruct[FIELD];
-                                if (struct0.AllowNull) resetValue = DBNull.Value;
+                                if (struct0.AllowNull)
+                                {
+                                    resetValue = DBNull.Value;
+                                }
                                 else
                                 {
                                     switch (struct0.sql_data_type_string)
@@ -2300,6 +2307,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                                             break;
                                     }
                                 }
+
                                 foreach (DataRow dataRow in AD.Rows)
                                 {
                                     dataRow[field] = resetValue;

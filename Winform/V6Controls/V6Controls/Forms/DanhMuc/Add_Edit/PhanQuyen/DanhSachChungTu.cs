@@ -21,26 +21,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
         }
         private DataTable L_Alct;
         
-
         private void AddItems()
         {
-            var where = "";
-            where = "1=1";
-            
-            L_Alct = V6BusinessHelper.Select("ALCT", "Ma_ct,Ten_ct,Ten_ct2",where, "", "MA_CT").Data;
+            var where = "POST2=1";
+            L_Alct = V6BusinessHelper.Select("ALCT", "Ma_ct,Ten_ct,Ten_ct2", where, "", "MA_CT").Data;
             var data1 = GetAlct1();
             foreach (DataRow row in data1.Rows)
             {
                 MakeList1(row);
             }
         }
-
       
         private void MakeList1(DataRow row)
         {
-            var text = "";
-            text = V6Setting.Language=="V" ? row["Ten_ct"].ToString().Trim() : row["Ten_ct2"].ToString().Trim();
-            
+            var text = V6Setting.Language=="V" ? row["Ten_ct"].ToString().Trim() : row["Ten_ct2"].ToString().Trim();
             var Ma_ct = row["Ma_ct"].ToString().Trim();
             TreeListViewItem item = new TreeListViewItem(text);
             item.Name = Ma_ct;

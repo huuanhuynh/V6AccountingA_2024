@@ -1826,6 +1826,31 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             TinhTienNt0();
         }
 
+        /// <summary>
+        /// Tính tiền nt, tính giá nt
+        /// </summary>
+        private void TinhTienNt()
+        {
+            try
+            {
+                //Tuanmh 19/12/2016 Chua Kiem tra Null
+
+                _tienNt.Value = _tienNt0.Value + _cpNt.Value - _ckNt.Value - _ggNt.Value + _tien_vcNt.Value;
+                _tien.Value = _tien0.Value + _cp.Value - _ck.Value - _gg.Value + _tien_vc.Value;
+
+                if (_maNt == _mMaNt0)
+                {
+                    _tien0.Value = _tienNt0.Value;
+                    _tien.Value = _tienNt.Value;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".TinhTienNt " + _sttRec, ex);
+            }
+            TinhGiaNt();
+        }
+
         private void TinhTienNt0()
         {
             try
@@ -1855,31 +1880,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             {
                 this.ShowErrorException(GetType() + ".TinhTienNt0 " + _sttRec, ex);
             }
-        }
-
-        /// <summary>
-        /// Tính tiền nt, tính giá nt
-        /// </summary>
-        private void TinhTienNt()
-        {
-            try
-            {
-                //Tuanmh 19/12/2016 Chua Kiem tra Null
-                
-                _tienNt.Value = _tienNt0.Value + _cpNt.Value - _ckNt.Value - _ggNt.Value + _tien_vcNt.Value;
-                _tien.Value = _tien0.Value + _cp.Value - _ck.Value - _gg.Value + _tien_vc.Value;
-
-                if (_maNt == _mMaNt0)
-                {
-                    _tien0.Value = _tienNt0.Value;
-                    _tien.Value = _tienNt.Value;
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(GetType() + ".TinhTienNt " + _sttRec, ex);
-            }
-            TinhGiaNt();
         }
 
         private void TinhGiaNt()

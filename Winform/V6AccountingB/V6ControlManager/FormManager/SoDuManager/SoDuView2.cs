@@ -606,10 +606,14 @@ namespace V6ControlManager.FormManager.SoDuManager
         {
             get
             {
-                string load_table2 = _aldmConfig2.TABLE_NAME;
-                if (!string.IsNullOrEmpty(_aldmConfig2.TABLE_VIEW) && V6BusinessHelper.IsExistDatabaseTable(_aldmConfig2.TABLE_VIEW))
+                string load_table2 = _alctConfig.TableNameAD;
+                if (_aldmConfig2.HaveInfo)
                 {
-                    load_table2 = _aldmConfig2.TABLE_VIEW;
+                    load_table2 = _aldmConfig2.TABLE_NAME;
+                    if (!string.IsNullOrEmpty(_aldmConfig2.TABLE_VIEW) && V6BusinessHelper.IsExistDatabaseTable(_aldmConfig2.TABLE_VIEW))
+                    {
+                        load_table2 = _aldmConfig2.TABLE_VIEW;
+                    }
                 }
                 return load_table2;
             }
