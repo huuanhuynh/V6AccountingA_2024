@@ -481,7 +481,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 _pList = new List<SqlParameter>();
-                _pList.AddRange(FilterControl.GetFilterParameters());
+                _pList.AddRange(FilterControl.GetFilterParameters() ?? new List<SqlParameter>());
                 
                 return true;
             }
@@ -512,24 +512,27 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             All_Objects["_plist"] = _pList;
             object beforeLoadData = InvokeFormEvent(FormDynamicEvent.BEFORELOADDATA);
+            if (beforeLoadData != null && !(bool)beforeLoadData)
+            {
+                _message = V6Text.CheckInfor;
+                Data_Loading = false;
+                return;
+            }
+            LoadData0();
+            _dataLoading = false;
+        }
+
+        protected virtual void LoadData0()
+        {
             try
             {
-                if (beforeLoadData != null && !(bool)beforeLoadData)
-                {
-                    _message = V6Text.CheckInfor;
-                    Data_Loading = false;
-                    return;
-                }
-
-                _dataLoading = true;
-                _dataLoaded = false;
                 _ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure, _pList.ToArray());
                 if (_ds.Tables.Count > 0)
                 {
                     _tbl = _ds.Tables[0];
                     _tbl.TableName = "DataTable1";
                 }
-                
+
                 //if (this is AAPPR_SOA1)
                 //{
                 //    DoNothing();
@@ -544,7 +547,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     _tbl2 = null;
                 }
-                
+
                 _dataLoaded = true;
             }
             catch (Exception ex)
@@ -556,7 +559,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 _ds = null;
                 _dataLoaded = false;
             }
-            _dataLoading = false;
         }
 
         void TinhToan()
@@ -590,6 +592,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (Load_Data)
                 {
                     CheckForIllegalCrossThreadCalls = false;
+                    _dataLoading = true;
+                    _dataLoaded = false;
                     var tLoadData = new Thread(LoadData);
                     tLoadData.Start();
                     timerViewReport.Start();
@@ -607,52 +611,64 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected bool Load_Data = true;
         protected virtual void timerViewReport_Tick(object sender, EventArgs e)
         {
-            if (_dataLoaded)
-            {
-                timerViewReport.Stop();
-                btnNhan.Image = btnNhanImage;
-                ii = 0;
-                try
-                {
-                    FilterControl.LoadDataFinish(_ds);
-                    All_Objects["_ds"] = _ds;
-                    InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
-                    if (Load_Data)
-                    {
-                        dataGridView1.SetFrozen(0);
-                        dataGridView1.DataSource = null;
-                        dataGridView1.DataSource = _tbl;
-                        
-                        FormatGridViewBase();
-                        FormatGridViewExtern();
-                        dataGridView1.Focus();
-                    }
-                    else
-                    {
-                        //Thong bao tinh toan xong
-                        V6ControlFormHelper.ShowMessage(V6Text.Finish);
-                    }
-                    _dataLoaded = false;
-                }
-                catch (Exception ex)
-                {
-                    timerViewReport.Stop();
-
-                    _dataLoaded = false;
-                    this.ShowErrorException(GetType() + ".TimerView", ex);
-                }
-            }
-            else if (_dataLoading)
+            if (_dataLoading)
             {
                 btnNhan.Image = waitingImages.Images[ii++];
                 if (ii >= waitingImages.Images.Count) ii = 0;
             }
             else
             {
-                timerViewReport.Stop();
-                btnNhan.Image = btnNhanImage;
-                ShowMainMessage(_message);
+                if (_dataLoaded)
+                {
+                    timerViewReport.Stop();
+                    btnNhan.Image = btnNhanImage;
+                    ii = 0;
+                    try
+                    {
+                        FilterControl.LoadDataFinish(_ds);
+                        All_Objects["_ds"] = _ds;
+                        InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
+                        if (Load_Data)
+                        {
+                            dataGridView1.SetFrozen(0);
+                            dataGridView1.DataSource = null;
+                            dataGridView1.DataSource = _tbl;
+
+                            FormatGridViewBase();
+                            FormatGridViewExtern();
+                            dataGridView1.Focus();
+                        }
+                        else
+                        {
+                            //Thong bao tinh toan xong
+                            V6ControlFormHelper.ShowMessage(V6Text.Finish);
+                        }
+                        LoadDataFinish();
+                        _dataLoaded = false;
+                    }
+                    catch (Exception ex)
+                    {
+                        timerViewReport.Stop();
+
+                        _dataLoaded = false;
+                        this.ShowErrorException(GetType() + ".TimerView", ex);
+                    }
+                }
+                else
+                {
+                    timerViewReport.Stop();
+                    btnNhan.Image = btnNhanImage;
+                    ShowMainMessage(_message);
+                }
             }
+        }
+
+        /// <summary>
+        /// Hàm ảo để override khi cần thiết.
+        /// </summary>
+        protected virtual void LoadDataFinish()
+        {
+            
         }
 
         /// <summary>

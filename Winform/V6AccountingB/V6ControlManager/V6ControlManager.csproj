@@ -1794,6 +1794,12 @@
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_SOA2.Designer.cs">
       <DependentUpon>AAPPR_SOA2.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSSOH2_Filter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSSOH2_Filter.Designer.cs">
+      <DependentUpon>XLSSOH2_Filter.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_XULY_ALL_Filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -4334,6 +4340,12 @@
     <Compile Include="FormManager\ReportManager\XuLy\ImportXls\V6IMPORT2XLS.Designer.cs">
       <DependentUpon>V6IMPORT2XLS.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSSOH2_GenData_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSSOH2_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\NhanSu\StickNoteCellView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -6186,6 +6198,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_SOA2.resx">
       <DependentUpon>AAPPR_SOA2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSSOH2_Filter.resx">
+      <DependentUpon>XLSSOH2_Filter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AAPPR_XULY_ALL_Filter.resx">
       <DependentUpon>AAPPR_XULY_ALL_Filter.cs</DependentUpon>
     </EmbeddedResource>
@@ -7460,6 +7475,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\V6IMPORT2XLS_Container.resx">
       <DependentUpon>V6IMPORT2XLS_Container.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSSOH2_GenData_Control.resx">
+      <DependentUpon>XLSSOH2_GenData_Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSSOH2_Control.resx">
+      <DependentUpon>XLSSOH2_Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\NhanSu\StickNoteCellView.resx">
       <DependentUpon>StickNoteCellView.cs</DependentUpon>

@@ -32,22 +32,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabChiTiet = new System.Windows.Forms.TabPage();
             this.detail1 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
@@ -57,7 +57,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.UID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.STT_REC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.STT_REC0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabVAT = new System.Windows.Forms.TabPage();
+            this.tabThue = new System.Windows.Forms.TabPage();
             this.detail2 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
             this.dataGridView2 = new V6Controls.V6ColorDataGridView();
             this.tabChiPhi = new System.Windows.Forms.TabPage();
@@ -145,7 +145,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.txtTongThueNt = new V6Controls.NumberTienNt();
             this.txtTongThanhToanNt = new V6Controls.NumberTienNt();
             this.v6Label4 = new V6Controls.V6Label();
-            this.chkSuaTienThue = new V6Controls.V6CheckBox();
+            this.chkT_THUE_NT = new V6Controls.V6CheckBox();
             this.chkSuaTienCk = new V6Controls.V6CheckBox();
             this.txtTongGiam = new V6Controls.V6NumberTextBox();
             this.txtTongGiamNt = new V6Controls.V6NumberTextBox();
@@ -274,7 +274,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.tabVAT.SuspendLayout();
+            this.tabThue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabChiPhi.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3ChiPhi)).BeginInit();
@@ -298,7 +298,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabChiTiet);
-            this.tabControl1.Controls.Add(this.tabVAT);
+            this.tabControl1.Controls.Add(this.tabThue);
             this.tabControl1.Controls.Add(this.tabChiPhi);
             this.tabControl1.Controls.Add(this.tabKhac);
             this.tabControl1.Controls.Add(this.tabChiTietBoSung);
@@ -309,6 +309,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.tabControl1.Size = new System.Drawing.Size(887, 214);
             this.tabControl1.TabIndex = 3;
             this.tabControl1.Tag = "";
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             this.tabControl1.SizeChanged += new System.EventHandler(this.tabControl1_SizeChanged);
             this.tabControl1.Enter += new System.EventHandler(this.tabControl1_Enter);
             // 
@@ -354,20 +355,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle20;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle21;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MA_VT,
@@ -379,8 +380,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle22;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(875, 136);
             this.dataGridView1.TabIndex = 1;
@@ -429,19 +430,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.STT_REC0.ReadOnly = true;
             this.STT_REC0.Visible = false;
             // 
-            // tabVAT
+            // tabThue
             // 
-            this.tabVAT.AccessibleDescription = "APOCTPOBL00035";
-            this.tabVAT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabVAT.Controls.Add(this.detail2);
-            this.tabVAT.Controls.Add(this.dataGridView2);
-            this.tabVAT.Location = new System.Drawing.Point(4, 22);
-            this.tabVAT.Name = "tabVAT";
-            this.tabVAT.Padding = new System.Windows.Forms.Padding(3);
-            this.tabVAT.Size = new System.Drawing.Size(879, 188);
-            this.tabVAT.TabIndex = 1;
-            this.tabVAT.Tag = "cancelall";
-            this.tabVAT.Text = "Thuế GTGT";
+            this.tabThue.AccessibleDescription = "APOCTPOBL00035";
+            this.tabThue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThue.Controls.Add(this.detail2);
+            this.tabThue.Controls.Add(this.dataGridView2);
+            this.tabThue.Location = new System.Drawing.Point(4, 22);
+            this.tabThue.Name = "tabThue";
+            this.tabThue.Padding = new System.Windows.Forms.Padding(3);
+            this.tabThue.Size = new System.Drawing.Size(879, 188);
+            this.tabThue.TabIndex = 1;
+            this.tabThue.Tag = "cancelall";
+            this.tabThue.Text = "Thuế GTGT";
             // 
             // detail2
             // 
@@ -470,27 +471,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(2, 52);
             this.dataGridView2.MultiSelect = false;
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle19;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView2.Size = new System.Drawing.Size(875, 136);
             this.dataGridView2.TabIndex = 3;
@@ -753,20 +754,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             // 
             this.dataGridView3ChiPhi.AllowUserToAddRows = false;
             this.dataGridView3ChiPhi.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView3ChiPhi.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle23.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView3ChiPhi.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle23;
             this.dataGridView3ChiPhi.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView3ChiPhi.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView3ChiPhi.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView3ChiPhi.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle24;
             this.dataGridView3ChiPhi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3ChiPhi.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn6,
@@ -782,8 +783,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.dataGridView3ChiPhi.MultiSelect = false;
             this.dataGridView3ChiPhi.Name = "dataGridView3ChiPhi";
             this.dataGridView3ChiPhi.ReadOnly = true;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView3ChiPhi.RowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle29.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView3ChiPhi.RowsDefaultCellStyle = dataGridViewCellStyle29;
             this.dataGridView3ChiPhi.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView3ChiPhi.Size = new System.Drawing.Size(875, 136);
             this.dataGridView3ChiPhi.TabIndex = 14;
@@ -837,8 +838,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             // CP_NT
             // 
             this.CP_NT.DataPropertyName = "CP_NT";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.CP_NT.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.CP_NT.DefaultCellStyle = dataGridViewCellStyle25;
             this.CP_NT.HeaderText = "Chi phí NT";
             this.CP_NT.Name = "CP_NT";
             this.CP_NT.ReadOnly = true;
@@ -846,8 +847,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             // CP
             // 
             this.CP.DataPropertyName = "CP";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.CP.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.CP.DefaultCellStyle = dataGridViewCellStyle26;
             this.CP.HeaderText = "Chi phí";
             this.CP.Name = "CP";
             this.CP.ReadOnly = true;
@@ -855,8 +856,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             // NK_NT
             // 
             this.NK_NT.DataPropertyName = "NK_NT";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.NK_NT.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.NK_NT.DefaultCellStyle = dataGridViewCellStyle27;
             this.NK_NT.HeaderText = "Nhập khẩu NT";
             this.NK_NT.Name = "NK_NT";
             this.NK_NT.ReadOnly = true;
@@ -864,8 +865,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             // NK
             // 
             this.NK.DataPropertyName = "NK";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.NK.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.NK.DefaultCellStyle = dataGridViewCellStyle28;
             this.NK.HeaderText = "Nhập khẩu";
             this.NK.Name = "NK";
             this.NK.ReadOnly = true;
@@ -1446,20 +1447,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             // 
             this.dataGridView3.AllowUserToAddRows = false;
             this.dataGridView3.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle30.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle30;
             this.dataGridView3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView3.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle31.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle31;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn11,
@@ -1471,8 +1472,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.dataGridView3.MultiSelect = false;
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.ReadOnly = true;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView3.RowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle32.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView3.RowsDefaultCellStyle = dataGridViewCellStyle32;
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView3.Size = new System.Drawing.Size(875, 136);
             this.dataGridView3.TabIndex = 11;
@@ -1732,7 +1733,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.panelNT.Controls.Add(this.txtTongThueNt);
             this.panelNT.Controls.Add(this.txtTongThanhToanNt);
             this.panelNT.Controls.Add(this.v6Label4);
-            this.panelNT.Controls.Add(this.chkSuaTienThue);
+            this.panelNT.Controls.Add(this.chkT_THUE_NT);
             this.panelNT.Controls.Add(this.chkSuaTienCk);
             this.panelNT.Location = new System.Drawing.Point(5, 11);
             this.panelNT.Name = "panelNT";
@@ -1976,21 +1977,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.v6Label4.TabIndex = 0;
             this.v6Label4.Text = "Tiền hàng";
             // 
-            // chkSuaTienThue
+            // chkT_THUE_NT
             // 
-            this.chkSuaTienThue.AccessibleDescription = "APOCTPOBH00062";
-            this.chkSuaTienThue.AccessibleName = "sua_thue";
-            this.chkSuaTienThue.AutoSize = true;
-            this.chkSuaTienThue.Enabled = false;
-            this.chkSuaTienThue.Location = new System.Drawing.Point(71, 113);
-            this.chkSuaTienThue.Name = "chkSuaTienThue";
-            this.chkSuaTienThue.Size = new System.Drawing.Size(43, 17);
-            this.chkSuaTienThue.TabIndex = 10;
-            this.chkSuaTienThue.TabStop = false;
-            this.chkSuaTienThue.Tag = "disable";
-            this.chkSuaTienThue.Text = "sửa";
-            this.chkSuaTienThue.UseVisualStyleBackColor = true;
-            this.chkSuaTienThue.CheckedChanged += new System.EventHandler(this.chkSuaTienThue_CheckedChanged);
+            this.chkT_THUE_NT.AccessibleDescription = "APOCTPOBH00062";
+            this.chkT_THUE_NT.AccessibleName = "sua_thue";
+            this.chkT_THUE_NT.AutoSize = true;
+            this.chkT_THUE_NT.Enabled = false;
+            this.chkT_THUE_NT.Location = new System.Drawing.Point(71, 113);
+            this.chkT_THUE_NT.Name = "chkT_THUE_NT";
+            this.chkT_THUE_NT.Size = new System.Drawing.Size(43, 17);
+            this.chkT_THUE_NT.TabIndex = 10;
+            this.chkT_THUE_NT.TabStop = false;
+            this.chkT_THUE_NT.Tag = "disable";
+            this.chkT_THUE_NT.Text = "sửa";
+            this.chkT_THUE_NT.UseVisualStyleBackColor = true;
+            this.chkT_THUE_NT.CheckedChanged += new System.EventHandler(this.chkSuaTienThue_CheckedChanged);
             // 
             // chkSuaTienCk
             // 
@@ -3809,9 +3810,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.lblNameT.AccessibleDescription = "";
             this.lblNameT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblNameT.Location = new System.Drawing.Point(362, 157);
+            this.lblNameT.Location = new System.Drawing.Point(396, 157);
             this.lblNameT.Name = "lblNameT";
-            this.lblNameT.Size = new System.Drawing.Size(529, 18);
+            this.lblNameT.Size = new System.Drawing.Size(495, 18);
             this.lblNameT.TabIndex = 29;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -3902,7 +3903,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.tabControl1.ResumeLayout(false);
             this.tabChiTiet.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.tabVAT.ResumeLayout(false);
+            this.tabThue.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tabChiPhi.ResumeLayout(false);
             this.tabChiPhi.PerformLayout();
@@ -3943,7 +3944,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         private System.Windows.Forms.GroupBox group5;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabChiTiet;
-        private System.Windows.Forms.TabPage tabVAT;
+        private System.Windows.Forms.TabPage tabThue;
         private V6DateTimePicker dateNgayCT;
         private V6Controls.V6ColorDataGridView dataGridView1;
         private V6Label v6Label4;
@@ -4024,7 +4025,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         private V6Controls.V6ComboBox cboMaNt;
         private V6NumberTextBox txtTyGia;
         private V6Controls.V6CheckBox chkSuaTienCk;
-        private V6Controls.V6CheckBox chkSuaTienThue;
+        private V6Controls.V6CheckBox chkT_THUE_NT;
         private NumberSoluong txtTongSoLuong1;
         private V6Label lblDocSoTien;
         private V6ColorTextBox txtMa_ct;

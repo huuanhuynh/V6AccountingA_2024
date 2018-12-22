@@ -252,8 +252,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                         _soLuong1 = (V6NumberTextBox)control;
                         _soLuong1.V6LostFocus += delegate
                         {
-                            TinhTienNt0();
-                            Tinh_thue_ct();
+                            CheckSoLuong1();
                         };
                         _soLuong1.V6LostFocusNoChange += delegate
                         {

@@ -660,6 +660,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     result = new XLSIXA_Filter();
                 break; case "XLSSOA":
                     result = new XLSSOA_Filter();
+
+                break; case "XLSSOH2":
+                    result = new XLSSOH2_Filter();
                 break; case "XLSTA1":
                     result = new XLSTA1_Filter();
                 break; case "XLSCA1":
