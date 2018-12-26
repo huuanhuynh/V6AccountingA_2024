@@ -1137,6 +1137,28 @@ namespace V6AccountingBusiness
             var sResult = String.Format(formatText, value);
             return sResult;
         }
+
+        public static string GetNewSoCt_date(string maCt, DateTime date, string type, out string ma_sonb)
+        {
+            ma_sonb = "";
+            SqlParameter[] prlist =
+            {
+                new SqlParameter("@Ma_ct", maCt),
+                new SqlParameter("@Ngay_ct", date.Date),
+                new SqlParameter("@Type", type),
+            };
+            var result = SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_GetNewSoct_Date", prlist);
+            if (result.Tables.Count == 0) return "";
+            var data = result.Tables[0];
+            if (data.Rows.Count == 0) return "";
+            ma_sonb = data.Rows[0]["MA_SONB"].ToString().Trim();
+            var formatText = data.Rows[0]["TRANSFORM"].ToString().Trim();
+            if (formatText == "") return "";
+            var value = ObjectAndString.ObjectToDecimal(data.Rows[0]["SO_CT"]);
+            var sResult = String.Format(formatText, value);
+            
+            return sResult;
+        }
         
 
         /// <summary>

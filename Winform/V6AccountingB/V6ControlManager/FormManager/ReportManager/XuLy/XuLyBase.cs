@@ -627,6 +627,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         FilterControl.LoadDataFinish(_ds);
                         All_Objects["_ds"] = _ds;
+                        All_Objects["_tbl"] = _tbl;
+                        All_Objects["_tbl2"] = _tbl2;
                         InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
                         if (Load_Data)
                         {

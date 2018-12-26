@@ -8,6 +8,8 @@ using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
+using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang;
+using V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.ChonDonHangBan;
 using V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.Loc;
 using V6Controls;
 using V6Controls.Forms;
@@ -4820,6 +4822,61 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 }
                 txtDiaChi2.ParentData = data.ToDataDictionary();
                 txtDiaChi2.SetInitFilter(string.Format("MA_KH='{0}'", txtMaKh.Text));
+            }
+        }
+
+        private void ChonDonHangMuaMenu_Click(object sender, EventArgs e)
+        {
+            ChucNang_ChonDonHang();
+        }
+        private void ChucNang_ChonDonHang()
+        {
+            try
+            {
+                if (NotAddEdit) return;
+
+               
+                var ma_dvcs = txtMadvcs.Text.Trim();
+                var message = "";
+                if ( ma_dvcs != "")
+                {
+                    CDH_DonHangBanForm chon = new CDH_DonHangBanForm(dateNgayCT.Date, txtMadvcs.Text, "");
+                    chon.AcceptSelectEvent += chon_AcceptSelectEvent;
+                    chon.ShowDialog(this);
+                }
+                else
+                {
+                    
+                    if (ma_dvcs == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã đơn vị." : "Agent ID needs to enter!";
+                    this.ShowWarningMessage(message);
+                    if (ma_dvcs == "") txtMadvcs.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".ChucNang_ChonDonHang " + _sttRec, ex);
+            }
+        }
+        void chon_AcceptSelectEvent(List<SortedDictionary<string, object>> selectedDataList)
+        {
+            try
+            {
+                detail1.MODE = V6Mode.View;
+                AD.Rows.Clear();
+                int addCount = 0, failCount = 0;
+                foreach (SortedDictionary<string, object> data in selectedDataList)
+                {
+                    var newData = new SortedDictionary<string, object>(data);
+                    
+                    if (XuLyThemDetail(newData)) addCount++;
+                    else failCount++;
+                }
+                V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed {1}.", addCount, failCount));
+                
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
     }

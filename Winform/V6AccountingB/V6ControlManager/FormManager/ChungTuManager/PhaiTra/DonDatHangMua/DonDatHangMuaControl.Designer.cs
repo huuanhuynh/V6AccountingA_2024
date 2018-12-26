@@ -104,6 +104,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabKhac = new System.Windows.Forms.TabPage();
+            this.txtT_TIENVC = new V6Controls.V6NumberTextBox();
+            this.txtT_TIENVCNT = new V6Controls.V6NumberTextBox();
+            this.v6Label26 = new V6Controls.V6Label();
             this.txtGhiChuChung = new V6Controls.V6ColorTextBox();
             this.txtSoCtKemt = new V6Controls.V6ColorTextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -238,9 +241,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label1 = new V6Controls.V6Label();
             this.txtSoPhieu = new V6Controls.V6ColorTextBox();
-            this.txtT_TIENVC = new V6Controls.V6NumberTextBox();
-            this.txtT_TIENVCNT = new V6Controls.V6NumberTextBox();
-            this.v6Label26 = new V6Controls.V6Label();
             this.menuChucNang.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
@@ -270,47 +270,48 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.thayTheToolStripMenuItem,
             this.thayThe2toolStripMenuItem});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(185, 136);
+            this.menuChucNang.Size = new System.Drawing.Size(181, 158);
             // 
             // ChonDonHangMuaMenu
             // 
             this.ChonDonHangMuaMenu.Name = "ChonDonHangMuaMenu";
-            this.ChonDonHangMuaMenu.Size = new System.Drawing.Size(184, 22);
-            this.ChonDonHangMuaMenu.Text = "Chọn đơn hàng mua";
+            this.ChonDonHangMuaMenu.Size = new System.Drawing.Size(180, 22);
+            this.ChonDonHangMuaMenu.Text = "Chọn đơn hàng bán";
             this.ChonDonHangMuaMenu.Visible = false;
+            this.ChonDonHangMuaMenu.Click += new System.EventHandler(this.ChonDonHangMuaMenu_Click);
             // 
             // TroGiupMenu
             // 
             this.TroGiupMenu.Name = "TroGiupMenu";
-            this.TroGiupMenu.Size = new System.Drawing.Size(184, 22);
+            this.TroGiupMenu.Size = new System.Drawing.Size(180, 22);
             this.TroGiupMenu.Text = "Trợ giúp";
             this.TroGiupMenu.Click += new System.EventHandler(this.TroGiupMenu_Click);
             // 
             // chonTuExcelToolStripMenuItem
             // 
             this.chonTuExcelToolStripMenuItem.Name = "chonTuExcelToolStripMenuItem";
-            this.chonTuExcelToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.chonTuExcelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.chonTuExcelToolStripMenuItem.Text = "Chọn từ excel";
             this.chonTuExcelToolStripMenuItem.Click += new System.EventHandler(this.chonTuExcelToolStripMenuItem_Click);
             // 
             // xuLyKhacToolStripMenuItem
             // 
             this.xuLyKhacToolStripMenuItem.Name = "xuLyKhacToolStripMenuItem";
-            this.xuLyKhacToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.xuLyKhacToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.xuLyKhacToolStripMenuItem.Text = "Xử lý khác";
             this.xuLyKhacToolStripMenuItem.Click += new System.EventHandler(this.xuLyKhacToolStripMenuItem_Click);
             // 
             // thayTheToolStripMenuItem
             // 
             this.thayTheToolStripMenuItem.Name = "thayTheToolStripMenuItem";
-            this.thayTheToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.thayTheToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.thayTheToolStripMenuItem.Text = "Thay thế";
             this.thayTheToolStripMenuItem.Click += new System.EventHandler(this.thayTheToolStripMenuItem_Click);
             // 
             // thayThe2toolStripMenuItem
             // 
             this.thayThe2toolStripMenuItem.Name = "thayThe2toolStripMenuItem";
-            this.thayThe2toolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.thayThe2toolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.thayThe2toolStripMenuItem.Text = "Sửa nhiều dòng";
             this.thayThe2toolStripMenuItem.Click += new System.EventHandler(this.thayThe2toolStripMenuItem_Click);
             // 
@@ -1161,6 +1162,66 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.tabKhac.Size = new System.Drawing.Size(879, 188);
             this.tabKhac.TabIndex = 3;
             this.tabKhac.Text = "Khác";
+            // 
+            // txtT_TIENVC
+            // 
+            this.txtT_TIENVC.AccessibleDescription = "";
+            this.txtT_TIENVC.AccessibleName = "T_TIENVC";
+            this.txtT_TIENVC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtT_TIENVC.BackColor = System.Drawing.SystemColors.Window;
+            this.txtT_TIENVC.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtT_TIENVC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtT_TIENVC.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtT_TIENVC.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtT_TIENVC.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtT_TIENVC.HoverColor = System.Drawing.Color.Yellow;
+            this.txtT_TIENVC.LeaveColor = System.Drawing.Color.White;
+            this.txtT_TIENVC.Location = new System.Drawing.Point(733, 55);
+            this.txtT_TIENVC.Name = "txtT_TIENVC";
+            this.txtT_TIENVC.Size = new System.Drawing.Size(136, 20);
+            this.txtT_TIENVC.TabIndex = 162;
+            this.txtT_TIENVC.Text = "0,000";
+            this.txtT_TIENVC.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtT_TIENVC.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // txtT_TIENVCNT
+            // 
+            this.txtT_TIENVCNT.AccessibleDescription = "";
+            this.txtT_TIENVCNT.AccessibleName = "T_TIENVCNT";
+            this.txtT_TIENVCNT.BackColor = System.Drawing.SystemColors.Window;
+            this.txtT_TIENVCNT.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtT_TIENVCNT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtT_TIENVCNT.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtT_TIENVCNT.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtT_TIENVCNT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtT_TIENVCNT.HoverColor = System.Drawing.Color.Yellow;
+            this.txtT_TIENVCNT.LeaveColor = System.Drawing.Color.White;
+            this.txtT_TIENVCNT.Location = new System.Drawing.Point(597, 55);
+            this.txtT_TIENVCNT.Name = "txtT_TIENVCNT";
+            this.txtT_TIENVCNT.Size = new System.Drawing.Size(132, 20);
+            this.txtT_TIENVCNT.TabIndex = 161;
+            this.txtT_TIENVCNT.Tag = "readonly";
+            this.txtT_TIENVCNT.Text = "0,000";
+            this.txtT_TIENVCNT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtT_TIENVCNT.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // v6Label26
+            // 
+            this.v6Label26.AccessibleDescription = "ASOCTSOAL00110";
+            this.v6Label26.AutoSize = true;
+            this.v6Label26.Location = new System.Drawing.Point(653, 38);
+            this.v6Label26.Name = "v6Label26";
+            this.v6Label26.Size = new System.Drawing.Size(64, 13);
+            this.v6Label26.TabIndex = 160;
+            this.v6Label26.Text = "Vận chuyển";
             // 
             // txtGhiChuChung
             // 
@@ -3391,66 +3452,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.txtSoPhieu.Size = new System.Drawing.Size(100, 20);
             this.txtSoPhieu.TabIndex = 2;
             this.txtSoPhieu.TextChanged += new System.EventHandler(this.txtSoPhieu_TextChanged);
-            // 
-            // txtT_TIENVC
-            // 
-            this.txtT_TIENVC.AccessibleDescription = "";
-            this.txtT_TIENVC.AccessibleName = "T_TIENVC";
-            this.txtT_TIENVC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtT_TIENVC.BackColor = System.Drawing.SystemColors.Window;
-            this.txtT_TIENVC.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtT_TIENVC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtT_TIENVC.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtT_TIENVC.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtT_TIENVC.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtT_TIENVC.HoverColor = System.Drawing.Color.Yellow;
-            this.txtT_TIENVC.LeaveColor = System.Drawing.Color.White;
-            this.txtT_TIENVC.Location = new System.Drawing.Point(733, 55);
-            this.txtT_TIENVC.Name = "txtT_TIENVC";
-            this.txtT_TIENVC.Size = new System.Drawing.Size(136, 20);
-            this.txtT_TIENVC.TabIndex = 162;
-            this.txtT_TIENVC.Text = "0,000";
-            this.txtT_TIENVC.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtT_TIENVC.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            // 
-            // txtT_TIENVCNT
-            // 
-            this.txtT_TIENVCNT.AccessibleDescription = "";
-            this.txtT_TIENVCNT.AccessibleName = "T_TIENVCNT";
-            this.txtT_TIENVCNT.BackColor = System.Drawing.SystemColors.Window;
-            this.txtT_TIENVCNT.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtT_TIENVCNT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtT_TIENVCNT.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtT_TIENVCNT.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtT_TIENVCNT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtT_TIENVCNT.HoverColor = System.Drawing.Color.Yellow;
-            this.txtT_TIENVCNT.LeaveColor = System.Drawing.Color.White;
-            this.txtT_TIENVCNT.Location = new System.Drawing.Point(597, 55);
-            this.txtT_TIENVCNT.Name = "txtT_TIENVCNT";
-            this.txtT_TIENVCNT.Size = new System.Drawing.Size(132, 20);
-            this.txtT_TIENVCNT.TabIndex = 161;
-            this.txtT_TIENVCNT.Tag = "readonly";
-            this.txtT_TIENVCNT.Text = "0,000";
-            this.txtT_TIENVCNT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtT_TIENVCNT.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            // 
-            // v6Label26
-            // 
-            this.v6Label26.AccessibleDescription = "ASOCTSOAL00110";
-            this.v6Label26.AutoSize = true;
-            this.v6Label26.Location = new System.Drawing.Point(653, 38);
-            this.v6Label26.Name = "v6Label26";
-            this.v6Label26.Size = new System.Drawing.Size(64, 13);
-            this.v6Label26.TabIndex = 160;
-            this.v6Label26.Text = "Vận chuyển";
             // 
             // DonDatHangMuaControl
             // 

@@ -590,6 +590,18 @@
     <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonDonHang\CDH_HoaDonKetQua.Designer.cs">
       <DependentUpon>CDH_HoaDonKetQua.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiTra\DonDatHangMua\ChonDonHangBan\CDH_DonHangBanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiTra\DonDatHangMua\ChonDonHangBan\CDH_DonHangBanForm.Designer.cs">
+      <DependentUpon>CDH_DonHangBanForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiTra\DonDatHangMua\ChonDonHangBan\CDH_DonHangBanKetQua.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiTra\DonDatHangMua\ChonDonHangBan\CDH_DonHangBanKetQua.Designer.cs">
+      <DependentUpon>CDH_DonHangBanKetQua.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiTra\DonDatHangMua\Loc\LocKetQuaDonDatHangMua.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -5608,6 +5620,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDon\Loc\LocThoiGianHoaDon.resx">
       <DependentUpon>LocThoiGianHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\DonDatHangMua\ChonDonHangBan\CDH_DonHangBanForm.resx">
+      <DependentUpon>CDH_DonHangBanForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\DonDatHangMua\ChonDonHangBan\CDH_DonHangBanKetQua.resx">
+      <DependentUpon>CDH_DonHangBanKetQua.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\DonDatHangMua\Loc\LocKetQuaDonDatHangMua.resx">
       <DependentUpon>LocKetQuaDonDatHangMua.cs</DependentUpon>
