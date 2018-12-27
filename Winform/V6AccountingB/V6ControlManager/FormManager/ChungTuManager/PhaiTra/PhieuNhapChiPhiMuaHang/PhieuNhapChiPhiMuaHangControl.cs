@@ -3090,10 +3090,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     }
                     AD.Rows.Add(newRow);
                     dataGridView1.DataSource = AD;
-                    TinhTongThanhToan(GetType() + "." + MethodBase.GetCurrentMethod().Name);
                     
-                    //hoaDonDetail1.SetFormControlsReadOnly(true, false);
-                    //hoaDonDetail1.MODE = V6Mode.View;
                     if (AD.Rows.Count > 0)
                     {
                         var cIndex = AD.Rows.Count - 1;
@@ -3112,8 +3109,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
+            TinhTongThanhToan(GetType() + "." + MethodBase.GetCurrentMethod().Name);
             return true;
         }
+
         private bool XuLyThemDetail2(SortedDictionary<string, object> data)
         {
             if (NotAddEdit)
@@ -3150,19 +3149,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     }
                     AD2.Rows.Add(newRow);
                     dataGridView2.DataSource = AD2;
-                    TinhTongThanhToan("xu ly them detail2");
                 }
                 else
                 {
                     this.ShowWarningMessage(V6Text.CheckData + error);
-                    return false;//Loi phat hien, return false
+                    return false;
                 }
-
             }
             catch (Exception ex)
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
+            TinhTongThanhToan("xu ly them detail2");
             return true;
         }
 
@@ -3208,10 +3206,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                                 }
                             }
                             dataGridView1.DataSource = AD;
-                            TinhTongThanhToan("xy ly sua detail");
-
-                            //hoaDonDetail1.SetFormControlsReadOnly(true, false);
-                            //hoaDonDetail1.MODE = V6Mode.View;
                         }
                         else
                         {
@@ -3229,6 +3223,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
+            TinhTongThanhToan("xy ly sua detail");
             return true;
         }
 
@@ -3274,7 +3269,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                                 }
                             }
                             dataGridView2.DataSource = AD2;
-                            TinhTongThanhToan("xy ly sua detail2");
                         }
                         else
                         {
@@ -3292,6 +3286,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
+            TinhTongThanhToan("xy ly sua detail2");
             return true;
         }
 

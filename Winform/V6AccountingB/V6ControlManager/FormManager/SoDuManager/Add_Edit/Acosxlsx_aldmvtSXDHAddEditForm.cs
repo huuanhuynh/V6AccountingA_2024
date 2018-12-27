@@ -430,7 +430,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     this.ShowWarningMessage(V6Text.CheckData + error);
                     return false;
                 }
-
             }
             catch (Exception ex)
             {

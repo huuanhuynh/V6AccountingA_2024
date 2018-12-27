@@ -3369,7 +3369,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                     AD.Rows.Add(newRow);
                     dataGridView1.DataSource = AD;
                     success = true;
-                    TinhTongThanhToan(GetType() + "." + MethodBase.GetCurrentMethod().Name);
                     
                     if (AD.Rows.Count > 0)
                     {
@@ -3387,6 +3386,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);                
             }
+            TinhTongThanhToan(GetType() + "." + MethodBase.GetCurrentMethod().Name);
             return success;
         }
 
@@ -3431,7 +3431,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                                 }
                             }
                             dataGridView1.DataSource = AD;
-                            TinhTongThanhToan("xy ly sua detail");
+                            
                         }
                         else
                         {
@@ -3449,6 +3449,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
+            TinhTongThanhToan("xy ly sua detail");
             return true;
         }
 

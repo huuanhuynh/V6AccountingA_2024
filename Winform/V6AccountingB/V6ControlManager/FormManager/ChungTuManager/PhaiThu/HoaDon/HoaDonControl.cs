@@ -1057,7 +1057,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                                 }
                             }
                             dataGridView3.DataSource = AD3;
-                            TinhTongThanhToan("xy ly sua detail3");
                         }
                         else
                         {
@@ -1075,6 +1074,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
+            TinhTongThanhToan("xy ly sua detail3");
             return true;
         }
 
@@ -1111,8 +1111,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     }
                     AD3.Rows.Add(newRow);
                     dataGridView3.DataSource = AD3;
-                    TinhTongThanhToan("xu ly them detail3");
-
+                    
                     if (AD3.Rows.Count > 0)
                     {
                         var cIndex = AD3.Rows.Count - 1;
@@ -1129,8 +1128,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
+            TinhTongThanhToan("xu ly them detail3");
             return true;
         }
+
         private bool ValidateData_Detail3(SortedDictionary<string, object> data)
         {
             try
@@ -5554,8 +5555,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             this.ShowWarningMessage(message);
                         }
                     }
-                Next1:
-                    TinhTongThanhToan(GetType() + "." + MethodBase.GetCurrentMethod().Name);
                     
                     if (dataGridView1.Rows.Count > 0)
                     {
@@ -5573,6 +5572,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
+        Next1:
+            TinhTongThanhToan(GetType() + "." + MethodBase.GetCurrentMethod().Name);
             return true;
         }
         
@@ -5639,8 +5640,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                                     this.ShowWarningMessage(message);
                                 }
                             }
-                        Next1:
-                            TinhTongThanhToan("xy ly sua detail");
                         }
                         else
                         {
@@ -5658,6 +5657,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
+
+        Next1:
+            TinhTongThanhToan("xy ly sua detail");
+
             return true;
         }
 
