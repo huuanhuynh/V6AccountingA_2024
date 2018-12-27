@@ -33,7 +33,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.Chon
             try
             {
                 string grd_show = "", grd_format = "", grd_header = "";
-                var data = V6BusinessHelper.Select("ALDM", "*", "ma_dm='AMAD91A'").Data;
+                var data = V6BusinessHelper.Select("ALDM", "*", "ma_dm='AMAD91B'").Data;
                 if (data.Rows.Count > 0)
                 {
                     var row = data.Rows[0];

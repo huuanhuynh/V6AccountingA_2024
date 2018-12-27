@@ -423,6 +423,61 @@ namespace V6AccountingBusiness.Invoices
             }
             return null;
         }
+        public DataTable SearchDonHangBanAll(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)
+        {
+            if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
+            if (where1AM.Length > 0) where1AM = "And " + where1AM;
+
+            var whereAD_Nhvt_Dvcs = "";
+            if (where2AD.Length > 0 || where3NhVt.Length > 0 || where4Dvcs.Length > 0)
+            {
+                if (where2AD.Length > 0) where2AD = "And " + where2AD;
+                if (where3NhVt.Length > 0) where3NhVt = "And " + where3NhVt;
+                if (where4Dvcs.Length > 0)
+                    where4Dvcs
+                        = string.Format(" And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
+
+
+                whereAD_Nhvt_Dvcs = string.Format("\n Where d.Stt_rec in (SELECT Stt_rec FROM AD91 WHERE Ma_ct = 'SOH' {0} {2}"
+                                     + (where3NhVt.Length == 0 ? "{3}" : "\n	And Ma_vt IN (SELECT Ma_vt FROM Alvt WHERE 1 = 1 {3})")
+                                     + "\n		{4})"
+                    , where0Ngay, "1", where2AD, where3NhVt, where4Dvcs);
+            }
+            else
+            {
+                whereAD_Nhvt_Dvcs = "";
+            }
+
+            var sql = string.Format("Select ' ' Tag,  v.ten_vt,v.tk_tl , d.*, d.STT_REC AS STT_RECDH, d.STT_REC0 AS STT_REC0DH "
+                //"Select a.*, b.Ma_so_thue, b.Ten_kh AS Ten_kh,f.Ten_nvien AS Ten_nvien,g.Ten_httt AS Ten_httt"
+                + "\nFROM AD91 d "//" LEFT JOIN Alkh b ON d.Ma_kh=b.Ma_kh "
+                //+ "\n LEFT JOIN alhttt AS g ON a.Ma_httt = g.Ma_httt "
+                + "\n LEFT JOIN Alvt v ON v.Ma_vt = d.Ma_vt "
+                + "\n  JOIN (SELECT Stt_rec FROM AM91 WHERE Ma_ct = 'SOH'" + "\n {0} {1}) AS m ON d.Stt_rec = m.Stt_rec"
+                + "\n {2}"
+                + "\n ORDER BY d.ngay_ct, d.so_ct, d.stt_rec",
+                where0Ngay, where1AM, whereAD_Nhvt_Dvcs);
+
+            //var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql).Tables[0];
+            //return tbl;
+
+
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@sType",  "S"),
+	            new SqlParameter("@dFrom",  ngayCt.ToString("yyyyMMdd")),
+	            new SqlParameter("@cTableAM", "AM91"), 
+	            new SqlParameter("@cTableAD", "AD91"), 
+	            new SqlParameter("@cKey1AM", where0Ngay), 
+	            new SqlParameter("@cKey2AM", where1AM), 
+	            new SqlParameter("@cKey1AD", whereAD_Nhvt_Dvcs), 
+	            new SqlParameter("@cKey2AD", ""),
+	            new SqlParameter("@Advance", ""), 
+	            new SqlParameter("@Advance2", "")
+            };
+            var tbl = V6BusinessHelper.ExecuteProcedure("VPA_GET_ALL_SOH", plist).Tables[0];
+            return tbl;
+        }
 
     }
 

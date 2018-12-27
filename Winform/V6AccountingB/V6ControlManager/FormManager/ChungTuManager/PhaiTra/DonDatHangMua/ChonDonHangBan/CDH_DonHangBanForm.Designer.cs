@@ -789,7 +789,6 @@
             this.maKhach.AccessibleName = "";
             this.maKhach.BackColor = System.Drawing.SystemColors.Window;
             this.maKhach.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.maKhach.Enabled = false;
             this.maKhach.EnterColor = System.Drawing.Color.PaleGreen;
             this.maKhach.ForeColor = System.Drawing.SystemColors.WindowText;
             this.maKhach.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1195,7 +1194,6 @@
             this.txtMaDVCS.AccessibleName = "ma_dvcs";
             this.txtMaDVCS.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaDVCS.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtMaDVCS.Enabled = false;
             this.txtMaDVCS.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaDVCS.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMaDVCS.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1374,7 +1372,7 @@
             this.lblDocSoTien.Text = "0";
             this.lblDocSoTien.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // CDH_HoaDonForm
+            // CDH_DonHangBanForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1385,7 +1383,7 @@
             this.Controls.Add(this.btnHuy);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(600, 400);
-            this.Name = "CDH_HoaDonForm";
+            this.Name = "CDH_DonHangBanForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Tìm chứng từ";
             this.Load += new System.EventHandler(this.Form_Load);

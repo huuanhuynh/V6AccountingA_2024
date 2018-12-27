@@ -63,7 +63,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.Chon
             panelFilter1.AddMultiFilterLine(Invoice.AMStruct, Invoice.ADV_AM);
             panelFilter2.AddMultiFilterLine(Invoice.ADStruct, Invoice.ADV_AD);
 
-            maKhach.Text = _ma_kh;
+            //maKhach.Text = _ma_kh;
             txtMaDVCS.Text = _ma_dvcs;
 
             //_locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
@@ -243,7 +243,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.Chon
         {
             try
             {
-                tAM = Invoice.SearchDonHang(_ngayCt, _where0Time, _where1AM, _where2AD, _w3NhomVt, _w4Dvcs);
+                tAM = Invoice.SearchDonHangBanAll(_ngayCt, _where0Time, _where1AM, _where2AD, _w3NhomVt, _w4Dvcs);
                 if (tAM != null && tAM.Rows.Count > 0)
                 {
                     flagSearchSuccess = true;
