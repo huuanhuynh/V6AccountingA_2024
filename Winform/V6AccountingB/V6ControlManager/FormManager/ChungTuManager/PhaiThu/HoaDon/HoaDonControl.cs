@@ -72,6 +72,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private void MyInit()
         {
+            //InitDebug();
             LoadTag(1, Invoice.Mact, Invoice.Mact, m_itemId, "");
             LoadTag(Invoice, detail1.Controls);
             
@@ -142,6 +143,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             LoadAll();
             InvokeFormEvent(FormDynamicEvent.INIT);
             V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
+        }
+
+        private void InitDebug()
+        {
+            try
+            {
+                tabKhac.VisibleChanged += (sender, args) =>
+                {
+                    DoNothing();
+                };
+                lblMaKH.VisibleChanged += (sender, args) =>
+                {
+                    DoNothing();
+                };
+            }
+            catch (Exception ex)
+            {
+                DoNothing();
+            }
         }
 
         #endregion contructor
@@ -5706,6 +5726,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         #region ==== AM Events ====
         private void Form_Load(object sender, EventArgs e)
         {
+            LoadTag(1, Invoice.Mact, Invoice.Mact, m_itemId, "");
             SetStatus2Text();
             btnMoi.Focus();
         }

@@ -5036,6 +5036,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         #region ==== AM Events ====
         private void Form_Load(object sender, EventArgs e)
         {
+            LoadTag(1, Invoice.Mact, Invoice.Mact, m_itemId, "");
             SetStatus2Text();
             btnMoi.Focus();
         }
@@ -5941,7 +5942,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
         private void txtMaKh_V6LostFocus(object sender)
         {
-            if (txtMa_kh_i_ao.Text.Trim() == "") txtMa_kh_i_ao.Text = txtMaKh.Text;
+            txtMa_kh_i_ao.Text = txtMaKh.Text;
             XuLyChonMaKhachHang();
         }
 

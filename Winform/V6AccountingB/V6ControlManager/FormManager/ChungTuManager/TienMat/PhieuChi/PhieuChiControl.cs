@@ -3740,6 +3740,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         #region ==== AM Events ====
         private void Form_Load(object sender, EventArgs e)
         {
+            LoadTag(1, Invoice.Mact, Invoice.Mact, m_itemId, "");
             SetStatus2Text();
             btnMoi.Focus();
         }

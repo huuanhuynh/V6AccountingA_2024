@@ -2076,7 +2076,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.MinimumSize = new System.Drawing.Size(600, 450);
             this.Name = "PhieuNhapKhoControl";
             this.Size = new System.Drawing.Size(899, 630);
-            this.Load += new System.EventHandler(this.PhieuNhapKhoControl_Load);
+            this.Load += new System.EventHandler(this.Form_Load);
             this.VisibleChanged += new System.EventHandler(this.PhieuNhapKhoControl_VisibleChanged);
             this.tabControl1.ResumeLayout(false);
             this.tabChiTiet.ResumeLayout(false);

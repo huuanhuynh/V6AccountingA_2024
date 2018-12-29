@@ -146,6 +146,16 @@ namespace V6Controls.Forms
             var visible = !checkTagString.Contains(";hide;");
             if (checkTagString.Contains(";invisible;")) visible = false;
             control.Visible = visible;
+            TabPage tab = control as TabPage;
+            if (tab != null && visible == false)
+            {
+                //((TabControl)tab.Parent).TabPages.Remove(tab);
+                var listControl = GetAllControls(tab);
+                foreach (Control control1 in listControl)
+                {
+                    control1.AddTagString("hide");
+                }
+            }
             var textbox = control as TextBox;
             if (textbox != null)
             {

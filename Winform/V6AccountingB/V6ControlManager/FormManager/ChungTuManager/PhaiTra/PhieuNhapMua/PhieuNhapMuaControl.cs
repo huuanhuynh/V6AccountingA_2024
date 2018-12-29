@@ -4821,7 +4821,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
         }
 
-        private bool XuLyThemDetail(SortedDictionary<string, object> data)
+        private bool XuLyThemDetail(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -5133,6 +5133,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         #region ==== AM Events ====
         private void Form_Load(object sender, EventArgs e)
         {
+            LoadTag(1, Invoice.Mact, Invoice.Mact, m_itemId, "");
             SetStatus2Text();
             btnMoi.Focus();
         }
@@ -6012,7 +6013,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
         private void txtMaKh_V6LostFocus(object sender)
         {
-            if (TxtMa_kh_i_ao.Text.Trim() == "") TxtMa_kh_i_ao.Text = txtMaKh.Text;
+            TxtMa_kh_i_ao.Text = txtMaKh.Text;
             XuLyChonMaKhachHang();
         }
 

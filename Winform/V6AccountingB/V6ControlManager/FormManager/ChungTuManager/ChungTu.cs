@@ -11,6 +11,7 @@ using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL;
+using V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY;
 using V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua;
 using V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichVu;
 using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMuaHang;
@@ -21,6 +22,7 @@ using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC;
 using V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi;
 using V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu;
 using V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan;
+using V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho;
@@ -237,6 +239,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     return new PhieuXuatDieuChuyenControl(maCt, itemId, sttRec) { Name = itemId };
                 case "IND":
                     return new PhieuNhapKhoControl(maCt, itemId, sttRec) { Name = itemId };
+                case "INY":
+                    return new DeNghiNhapKhoINY_Control(maCt, itemId, sttRec) { Name = itemId };
+                case "IXY":
+                    return new DeNghiXuatKhoIXYControl(maCt, itemId, sttRec) { Name = itemId };
                 #endregion tồn kho
 
                 #region ==== Tiền mặt ====

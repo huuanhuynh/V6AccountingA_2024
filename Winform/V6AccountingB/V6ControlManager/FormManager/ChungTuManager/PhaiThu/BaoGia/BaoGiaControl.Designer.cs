@@ -3499,7 +3499,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.MinimumSize = new System.Drawing.Size(600, 450);
             this.Name = "BaoGiaControl";
             this.Size = new System.Drawing.Size(899, 600);
-            this.Load += new System.EventHandler(this.BaoGiaBanHangKiemPhieuXuat_Load);
+            this.Load += new System.EventHandler(this.Form_Load);
             this.VisibleChanged += new System.EventHandler(this.BaoGiaBanHangKiemPhieuXuat_VisibleChanged);
             this.tabControl1.ResumeLayout(false);
             this.tabChiTiet.ResumeLayout(false);

@@ -7,16 +7,16 @@ using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 
-namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.ChonDonHangBan
+namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY.ChonDonHangBan
 {
-    public partial class CDH_DonHangBanKetQua : LocKetQuaBase
+    public partial class CDHB_DeNghiNhapKhoINYKetQua : LocKetQuaBase
     {
-        public CDH_DonHangBanKetQua()
+        public CDHB_DeNghiNhapKhoINYKetQua()
         {
             InitializeComponent();
         }
 
-        public CDH_DonHangBanKetQua(V6InvoiceBase invoice)
+        public CDHB_DeNghiNhapKhoINYKetQua(V6InvoiceBase invoice)
         {
             InitializeComponent();
             _invoice = invoice;

@@ -2095,7 +2095,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.MinimumSize = new System.Drawing.Size(600, 450);
             this.Name = "PhieuKeToanControl";
             this.Size = new System.Drawing.Size(899, 583);
-            this.Load += new System.EventHandler(this.PhieuKeToan_Load);
+            this.Load += new System.EventHandler(this.Form_Load);
             this.VisibleChanged += new System.EventHandler(this.PhieuKeToan_VisibleChanged);
             this.tabControl1.ResumeLayout(false);
             this.tabChiTiet.ResumeLayout(false);

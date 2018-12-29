@@ -2372,7 +2372,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.MinimumSize = new System.Drawing.Size(600, 450);
             this.Name = "PhieuXuatKhoControl";
             this.Size = new System.Drawing.Size(899, 630);
-            this.Load += new System.EventHandler(this.PhieuXuatKhoControl_Load);
+            this.Load += new System.EventHandler(this.Form_Load);
             this.VisibleChanged += new System.EventHandler(this.PhieuXuatKhoControl_VisibleChanged);
             this.tabControl1.ResumeLayout(false);
             this.tabChiTiet.ResumeLayout(false);

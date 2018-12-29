@@ -3237,7 +3237,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.MinimumSize = new System.Drawing.Size(600, 450);
             this.Name = "DonDatHangBanControl";
             this.Size = new System.Drawing.Size(899, 586);
-            this.Load += new System.EventHandler(this.DonDatHangBanBanHangKiemPhieuXuat_Load);
+            this.Load += new System.EventHandler(this.Form_Load);
             this.VisibleChanged += new System.EventHandler(this.DonDatHangBanBanHangKiemPhieuXuat_VisibleChanged);
             this.tabControl1.ResumeLayout(false);
             this.tabChiTiet.ResumeLayout(false);

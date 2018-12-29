@@ -1,6 +1,6 @@
-﻿namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.ChonDonHangBan
+﻿namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY.ChonDonHangBan
 {
-    partial class CDH_DonHangBanKetQua
+    partial class CDHB_DeNghiNhapKhoINYKetQua
     {
         /// <summary> 
         /// Required designer variable.

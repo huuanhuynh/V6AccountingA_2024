@@ -15,11 +15,11 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.ChonDonHangBan
 {
-    public partial class CDH_DonHangBanForm : V6Form
+    public partial class CDHB_DonDatHangMuaForm : V6Form
     {
         V6Invoice91 Invoice = new V6Invoice91();
         //private readonly HoaDonControl _PhieuNhapMuaForm;
-        private CDH_DonHangBanKetQua _locKetQua;
+        private CDHB_DonDatHangMuaKetQua _locKetQua;
         private string _ma_dvcs, _ma_kh;
         private DateTime _ngayCt;
         //private bool __ready = false;
@@ -39,12 +39,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.Chon
                 _viewMode = value;
             }
         }
-        public CDH_DonHangBanForm()
+        public CDHB_DonDatHangMuaForm()
         {
             InitializeComponent();
         }
 
-        public CDH_DonHangBanForm(DateTime ngayCt, string ma_dvcs, string ma_kh)
+        public CDHB_DonDatHangMuaForm(DateTime ngayCt, string ma_dvcs, string ma_kh)
         {
             InitializeComponent();
             //_PhieuNhapMuaForm = phieuNhapMuaForm;
@@ -77,7 +77,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.Chon
         {
             try
             {
-                _locKetQua = new CDH_DonHangBanKetQua(Invoice)
+                _locKetQua = new CDHB_DonDatHangMuaKetQua(Invoice)
                 {Dock = DockStyle.Fill, Visible = false};
                 panel1.Controls.Add(_locKetQua);
             }

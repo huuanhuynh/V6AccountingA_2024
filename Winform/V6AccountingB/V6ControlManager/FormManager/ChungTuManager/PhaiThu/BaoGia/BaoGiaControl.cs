@@ -1384,7 +1384,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     _tkGv.Text = (data["tk_gv"] ?? "").ToString().Trim();
                     _tkCkI.Text = (data["tk_ck"] ?? "").ToString().Trim();
                     _tkVt.Text = (data["tk_vt"] ?? "").ToString().Trim();
-                    //SetControlValue(txtPMA_KHC, data["PMA_KHC"]);
                     txtPMA_KHC.ChangeText(data["PMA_KHC"].ToString());
 
                     if (M_SOA_MULTI_VAT == "1")
@@ -4028,8 +4027,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         #endregion details
 
         #region ==== AM Events ====
-        private void BaoGiaBanHangKiemPhieuXuat_Load(object sender, EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
+            LoadTag(1, Invoice.Mact, Invoice.Mact, m_itemId, "");
             SetStatus2Text();
             btnMoi.Focus();
         }
