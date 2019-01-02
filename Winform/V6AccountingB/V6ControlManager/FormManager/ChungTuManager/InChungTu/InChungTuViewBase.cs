@@ -2209,7 +2209,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             catch (Exception ex)
             {
                 PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
-                this.ShowErrorMessage(GetType() + ".Print: " + ex.Message, "InChungTuViewBase");
+                this.ShowErrorException(GetType() + ".Print_Click", ex);
             }
         }
 

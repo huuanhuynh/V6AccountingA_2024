@@ -277,7 +277,7 @@ namespace V6AccountingBusiness.Invoices
         public DataTable LoadAD(string sttRec)
         {
             //c=AD, d=Alvt, e=ABVT13
-            string sql = "SELECT c.*,d.Ten_vt AS Ten_vt, c.So_luong1*0 as Ton13 FROM " + AD_TableName
+            string sql = "SELECT c.*,d.Ten_vt AS Ten_vt, c.So_luong1*0 as Ton13 " + ADSELECTMORE + " FROM " + AD_TableName
                 + " c LEFT JOIN Alvt d ON c.Ma_vt= d.Ma_vt Where c.stt_rec = @rec Order by c.stt_rec0";
             var listParameters = new SqlParameter("@rec", sttRec);
             var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql, listParameters).Tables[0];
@@ -438,6 +438,40 @@ namespace V6AccountingBusiness.Invoices
 
             var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql).Tables[0];
             return tbl;
+        }
+
+        public DataRow GetGiaMua(string field, string mact, DateTime ngayct,
+            string mant, string mavt, string dvt1, string makh, string magia)
+        {
+            try
+            {
+
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@cField", field),
+                    new SqlParameter("@cVCID", mact),
+                    new SqlParameter("@dPrice", ngayct),
+                    new SqlParameter("@cFC", mant),
+                    new SqlParameter("@cItem", mavt),
+                    new SqlParameter("@cUOM", dvt1),
+                    new SqlParameter("@cCust", makh),
+                    new SqlParameter("@cMaGia", magia)
+                };
+
+                var resultData = SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_GetPOHIDPrice", plist).Tables[0];
+                if (resultData != null && resultData.Rows.Count >= 1)
+                {
+                    return resultData.Rows[0];
+                }
+                else
+                {
+                    throw new Exception("GetGiaMua return null.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("V6Invoice92 GetGiaMua " + ex.Message);
+            }
         }
     }
 

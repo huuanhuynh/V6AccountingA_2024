@@ -688,12 +688,19 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void MyInit()
         {
-            if (V6Login.IsAdmin) chkHienTatCa.Enabled = true;
-            rCurrent.Text = V6Login.SelectedLanguageName;
-            if (V6Login.SelectedLanguage == "V" || V6Login.SelectedLanguage == "E") rCurrent.Visible = false;
-            CreateFormProgram();
-            CreateFormControls();
-            InvokeFormEvent(FormDynamicEvent.INIT);
+            try
+            {
+                if (V6Login.IsAdmin) chkHienTatCa.Enabled = true;
+                rCurrent.Text = V6Login.SelectedLanguageName;
+                if (V6Login.SelectedLanguage == "V" || V6Login.SelectedLanguage == "E") rCurrent.Visible = false;
+                CreateFormProgram();
+                CreateFormControls();
+                InvokeFormEvent(FormDynamicEvent.INIT);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".Init", ex);
+            }
         }
 
         private void MyInit2()

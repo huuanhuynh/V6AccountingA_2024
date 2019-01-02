@@ -104,22 +104,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     cKey = cKey + " and ( Xtag='2'  OR Kieu_post='2' )";
                     break;
             }
-            if (chkHoaDonDaIn.Checked)
-            {
-                cKey = cKey + " and [Sl_in] > 0";
-            }
-            else
-            {
-                cKey = cKey + " and [Sl_in] = 0";
-            }
-            if (Chkpx_dain.Checked)
-            {
-                cKey = cKey + " and [Sl_in] > 1";
-            }
-            else
-            {
-                cKey = cKey + " and [Sl_in] = 1";
-            }
+
+            cKey += chkHoaDonDaIn.Checked ? " and [Sl_in] > 0" : " and [Sl_in] = 0";
+            cKey += Chkpx_dain.Checked ? " and [Sl_in] > 1" : " and [Sl_in] = 1";
 
             // Tu so den so
             var tu_so = ctTuSo.Text.Trim().Replace("'", "");

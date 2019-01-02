@@ -170,6 +170,8 @@
             this.v6ColorTextBox13 = new V6Controls.V6ColorTextBox();
             this.label37 = new System.Windows.Forms.Label();
             this.v6ColorTextBox12 = new V6Controls.V6ColorTextBox();
+            this.txtADSELECTMORE = new V6Controls.V6ColorTextBox();
+            this.lblADSELECTMORE = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -841,10 +843,12 @@
             this.tabPage2.Controls.Add(this.lblResetCopy);
             this.tabPage2.Controls.Add(this.txtResetCopy);
             this.tabPage2.Controls.Add(this.cboKieuPost);
+            this.tabPage2.Controls.Add(this.lblADSELECTMORE);
             this.tabPage2.Controls.Add(this.lblThongTinThem);
             this.tabPage2.Controls.Add(this.v6VvarTextBox7);
             this.tabPage2.Controls.Add(this.label60);
             this.tabPage2.Controls.Add(this.txtform);
+            this.tabPage2.Controls.Add(this.txtADSELECTMORE);
             this.tabPage2.Controls.Add(this.txtExtraInfo);
             this.tabPage2.Controls.Add(this.label44);
             this.tabPage2.Controls.Add(this.v6VvarTextBox4);
@@ -2263,7 +2267,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             this.v6NumberTextBox3.Visible = false;
             // 
             // v6ColorTextBox14
@@ -2345,6 +2349,36 @@
             this.v6ColorTextBox12.Size = new System.Drawing.Size(135, 23);
             this.v6ColorTextBox12.TabIndex = 1;
             this.v6ColorTextBox12.Visible = false;
+            // 
+            // txtADSELECTMORE
+            // 
+            this.txtADSELECTMORE.AccessibleName = "M_GC_TD1";
+            this.txtADSELECTMORE.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtADSELECTMORE.BackColor = System.Drawing.Color.White;
+            this.txtADSELECTMORE.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtADSELECTMORE.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtADSELECTMORE.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtADSELECTMORE.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtADSELECTMORE.HoverColor = System.Drawing.Color.Yellow;
+            this.txtADSELECTMORE.LeaveColor = System.Drawing.Color.White;
+            this.txtADSELECTMORE.Location = new System.Drawing.Point(196, 306);
+            this.txtADSELECTMORE.Margin = new System.Windows.Forms.Padding(4);
+            this.txtADSELECTMORE.Name = "txtADSELECTMORE";
+            this.txtADSELECTMORE.Size = new System.Drawing.Size(538, 23);
+            this.txtADSELECTMORE.TabIndex = 17;
+            this.txtADSELECTMORE.Visible = false;
+            // 
+            // lblADSELECTMORE
+            // 
+            this.lblADSELECTMORE.AutoSize = true;
+            this.lblADSELECTMORE.Location = new System.Drawing.Point(23, 312);
+            this.lblADSELECTMORE.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblADSELECTMORE.Name = "lblADSELECTMORE";
+            this.lblADSELECTMORE.Size = new System.Drawing.Size(121, 17);
+            this.lblADSELECTMORE.TabIndex = 16;
+            this.lblADSELECTMORE.Text = "ADSELECTMORE";
+            this.lblADSELECTMORE.Visible = false;
             // 
             // AlctAddEditFrom
             // 
@@ -2516,5 +2550,7 @@
         private V6ColorTextBox txtExtraInfo;
         private System.Windows.Forms.Label lblResetCopy;
         private V6ColorTextBox txtResetCopy;
+        private System.Windows.Forms.Label lblADSELECTMORE;
+        private V6ColorTextBox txtADSELECTMORE;
     }
 }

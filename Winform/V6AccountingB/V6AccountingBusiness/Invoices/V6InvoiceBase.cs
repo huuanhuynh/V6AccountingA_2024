@@ -74,6 +74,14 @@ namespace V6AccountingBusiness.Invoices
                 return Alct["m_ktdbf"].ToString().Trim();
             }
         }
+        
+        public string ADSELECTMORE
+        {
+            get
+            {
+                return Alct["M_GC_TD1"].ToString().Trim();
+            }
+        }
 
         public int SoLien
         {
