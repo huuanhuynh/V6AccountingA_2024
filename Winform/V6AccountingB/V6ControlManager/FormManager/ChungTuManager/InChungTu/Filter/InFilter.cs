@@ -31,6 +31,8 @@
                     return new APOCTPOC();
                 case "APOCTPOH":
                     return new APOCTPOH();
+                case "APOCTINY"://94
+                    return new APOCTINY();
 
                 case "AINCTIND"://74
                     return new AINCTIND();
@@ -43,6 +45,8 @@
 
                 case "ASOCTSOH":
                     return new ASOCTSOH();
+                case "ASOCTIXY"://95
+                    return new ASOCTIXY();
 
                 case "ASOCTSOA"://81
                     return new ASOCTSOA();

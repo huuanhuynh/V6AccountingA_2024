@@ -161,6 +161,12 @@
     <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\AARCTAR1.designer.cs">
       <DependentUpon>AARCTAR1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\APOCTINY.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\APOCTINY.designer.cs">
+      <DependentUpon>APOCTINY.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\APOCTPOH.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -172,6 +178,12 @@
     </Compile>
     <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\ASOCTSOC.designer.cs">
       <DependentUpon>ASOCTSOC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\ASOCTIXY.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\ASOCTIXY.designer.cs">
+      <DependentUpon>ASOCTIXY.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\ASOCTSOH.cs">
       <SubType>UserControl</SubType>
@@ -5479,11 +5491,17 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\AARCTAR1.resx">
       <DependentUpon>AARCTAR1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\APOCTINY.resx">
+      <DependentUpon>APOCTINY.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\APOCTPOH.resx">
       <DependentUpon>APOCTPOH.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\ASOCTSOC.resx">
       <DependentUpon>ASOCTSOC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\ASOCTIXY.resx">
+      <DependentUpon>ASOCTIXY.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\ASOCTSOH.resx">
       <DependentUpon>ASOCTSOH.cs</DependentUpon>
