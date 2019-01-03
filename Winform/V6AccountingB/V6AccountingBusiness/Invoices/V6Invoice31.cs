@@ -293,10 +293,10 @@ namespace V6AccountingBusiness.Invoices
             return tbl;
         }
 
-        public DataTable LoadAD(string sttRec)
+        public override DataTable LoadAD(string sttRec)
         {
             //c=AD, d=Alvt, e=ABVT13
-            string sql = "SELECT c.*,d.Ten_tk AS Ten_tk FROM " + AD_TableName
+            string sql = "SELECT c.*,d.Ten_tk AS Ten_tk" + ADSELECTMORE + " FROM " + AD_TableName
                 + " c LEFT JOIN Altk d ON c.Tk_vt= d.Tk Where c.stt_rec = @rec Order by c.stt_rec0";
             var listParameters = new SqlParameter("@rec", sttRec);
             var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql, listParameters).Tables[0];

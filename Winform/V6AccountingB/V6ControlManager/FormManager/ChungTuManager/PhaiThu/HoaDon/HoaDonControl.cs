@@ -18,7 +18,6 @@ using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuNhap;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuXuat;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc;
 using V6Controls;
-using V6Controls.Controls;
 using V6Controls.Forms;
 using V6Controls.Structs;
 using V6Init;

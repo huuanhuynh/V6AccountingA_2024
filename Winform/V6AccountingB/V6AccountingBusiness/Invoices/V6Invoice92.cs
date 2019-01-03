@@ -252,7 +252,7 @@ namespace V6AccountingBusiness.Invoices
             if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
             if (where1AM.Length > 0) where1AM = "And " + where1AM;
             var p2Template =
-                "\n--{0}{1}\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD_TableName + " WHERE Ma_ct = '" + Mact + "' {0} {2}"
+                "\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD_TableName + " WHERE Ma_ct = '" + Mact + "' {0} {2}"
                 + (where3NhVt.Length == 0 ? "{3}" : "\n	And Ma_vt IN (SELECT Ma_vt FROM Alvt WHERE 1 = 1 {3})")
                 + "\n		{4})";//" And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 {4})"
             if (where2AD.Length > 0 || where3NhVt.Length > 0 || where4Dvcs.Length > 0)
@@ -274,10 +274,10 @@ namespace V6AccountingBusiness.Invoices
             return tbl;
         }
         
-        public DataTable LoadAD(string sttRec)
+        public override DataTable LoadAD(string sttRec)
         {
             //c=AD, d=Alvt, e=ABVT13
-            string sql = "SELECT c.*,d.Ten_vt AS Ten_vt, c.So_luong1*0 as Ton13 " + ADSELECTMORE + " FROM " + AD_TableName
+            string sql = "SELECT c.*,d.Ten_vt AS Ten_vt, c.So_luong1*0 as Ton13" + ADSELECTMORE + " FROM " + AD_TableName
                 + " c LEFT JOIN Alvt d ON c.Ma_vt= d.Ma_vt Where c.stt_rec = @rec Order by c.stt_rec0";
             var listParameters = new SqlParameter("@rec", sttRec);
             var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql, listParameters).Tables[0];

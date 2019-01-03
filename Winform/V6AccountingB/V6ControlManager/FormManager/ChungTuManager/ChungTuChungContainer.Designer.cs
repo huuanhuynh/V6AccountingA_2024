@@ -111,6 +111,7 @@
             this.tsMessage.Size = new System.Drawing.Size(758, 33);
             this.tsMessage.TabIndex = 0;
             this.tsMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tsMessage.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.tsMessage_MouseDoubleClick);
             // 
             // ChungTuChungContainer
             // 

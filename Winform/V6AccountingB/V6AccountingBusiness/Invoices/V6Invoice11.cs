@@ -284,10 +284,10 @@ namespace V6AccountingBusiness.Invoices
             return tbl;
         }
 
-        public DataTable LoadAD(string sttRec)
+        public override DataTable LoadAD(string sttRec)
         {
             //c=AD, d=Alvt, e=ABVT13
-            string sql = "SELECT c.*,d.Ten_tk AS Ten_tk, k.Ten_kh as Ten_kh_i FROM " + AD_TableName
+            string sql = "SELECT c.*,d.Ten_tk AS Ten_tk, k.Ten_kh as Ten_kh_i" + ADSELECTMORE + " FROM " + AD_TableName
                 + " c LEFT JOIN Altk d ON c.Tk_i= d.Tk "
                 + " LEFT JOIN Alkh k ON c.MA_KH_I= k.MA_KH "
                 + " Where c.stt_rec = @rec Order by c.stt_rec0";

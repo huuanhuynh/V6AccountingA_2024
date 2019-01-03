@@ -214,6 +214,46 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
+        public void DoFullScreen()
+        {
+            try
+            {
+                var container = Parent;
+                var child = this;
+                if (container is Form)
+                {
+                    ((Form)container).Close();
+                }
+                else
+                {
+
+                    var f = new V6Form
+                    {
+                        WindowState = FormWindowState.Maximized,
+                        ShowInTaskbar = false,
+                        FormBorderStyle = FormBorderStyle.None
+                    };
+                    f.Controls.Add(child);
+                    f.FormClosing += (se, a) =>
+                    {
+                        if (child.IsDisposed) return;
+                        container.Controls.Add(child);
+                        tsFull.Image = Properties.Resources.ZoomIn24;
+                        toolTip1.SetToolTip(tsFull, V6Text.ZoomIn);
+                    };
+
+                    tsFull.Image = Properties.Resources.ZoomOut24;
+                    toolTip1.SetToolTip(tsFull, V6Text.ZoomOut);
+
+                    f.ShowDialog(container);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoFullScreen", ex);
+            }
+        }
+
         void _timerHideMessage_Tick(object sender, EventArgs e)
         {
             _timeCount++;
@@ -232,35 +272,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         private void btnFullScreen_Click(object sender, EventArgs e)
         {
-            var container = Parent;
-            var child = this;
-            if (container is Form)
-            {
-                ((Form)container).Close();
-            }
-            else
-            {
-                
-                var f  = new V6Form
-                {
-                    WindowState = FormWindowState.Maximized,
-                    ShowInTaskbar = false,
-                    FormBorderStyle = FormBorderStyle.None
-                };
-                f.Controls.Add(child);
-                f.FormClosing += (se, a) =>
-                {
-                    if (child.IsDisposed) return;
-                    container.Controls.Add(child);
-                    tsFull.Image = Properties.Resources.ZoomIn24;
-                    toolTip1.SetToolTip(tsFull, V6Text.ZoomIn);
-                };
-                
-                tsFull.Image = Properties.Resources.ZoomOut24;
-                toolTip1.SetToolTip(tsFull, V6Text.ZoomOut);
-
-                f.ShowDialog(container);
-            }
+            DoFullScreen();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -286,6 +298,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             currentTabIndex = tabControl1.SelectedIndex;
+        }
+
+        private void tsMessage_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            DoFullScreen();
         }
     }
 }

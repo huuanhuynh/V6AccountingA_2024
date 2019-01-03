@@ -309,9 +309,9 @@ namespace V6AccountingBusiness.Invoices
             return tbl;
         }
 
-        public DataTable LoadAD(string sttRec)
+        public override DataTable LoadAD(string sttRec)
         {
-            string sql = "SELECT c.*,d.Ten_tk AS Ten_tk_i,k.Ten_kh AS Ten_kh_i FROM " + AD_TableName
+            string sql = "SELECT c.*,d.Ten_tk AS Ten_tk_i,k.Ten_kh AS Ten_kh_i" + ADSELECTMORE + " FROM " + AD_TableName
                 + " c LEFT JOIN Altk d ON c.tk_i= d.tk LEFT JOIN Alkh k ON c.ma_kh_i= k.ma_kh "
                 + " Where c.stt_rec = @rec Order by c.stt_rec0";
             SqlParameter[] listParameters = { new SqlParameter("@rec", sttRec) };
