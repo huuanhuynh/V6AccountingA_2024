@@ -129,7 +129,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.txtNGAY_UD2 = new V6Controls.V6DateTimeColor();
             this.txtNGAY_UD1 = new V6Controls.V6DateTimeColor();
             this.tabThongTin = new System.Windows.Forms.TabPage();
-            this.dateTG_NHAN = new V6Controls.Controls.V6DateTimePickerNull();
+            this.dateTG_NHAN = new V6Controls.Controls.V6DateTimeFullPickerNull();
             this.lblTG_NHAN = new V6Controls.V6Label();
             this.txtDiaChi2 = new V6Controls.V6VvarTextBox();
             this.txtMaHTTT = new V6Controls.V6VvarTextBox();
@@ -3729,7 +3729,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
         private V6Label lblMA_HTVC;
         private V6Label lblDIA_CHI2;
         private V6Label lblTG_NHAN;
-        private V6DateTimePickerNull dateTG_NHAN;
+        private V6DateTimeFullPickerNull dateTG_NHAN;
         private V6VvarTextBox txtSoDH;
         private V6Label lblSoDH;
         private V6NumberTextBox txtT_TIENVC;

@@ -108,11 +108,11 @@
     <Compile Include="Controls\GridView\V6VvarDataGridViewColumn.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\V6DateTimePickerNull.cs">
+    <Compile Include="Controls\V6DateTimeFullPickerNull.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\V6DateTimePickerNull.Designer.cs">
-      <DependentUpon>V6DateTimePickerNull.cs</DependentUpon>
+    <Compile Include="Controls\V6DateTimeFullPickerNull.Designer.cs">
+      <DependentUpon>V6DateTimeFullPickerNull.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\V6MenuHideYN.cs">
       <SubType>Form</SubType>
@@ -1478,8 +1478,8 @@
     <EmbeddedResource Include="Controls\Lookup\LookupButtonDataViewForm.resx">
       <DependentUpon>LookupButtonDataViewForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\V6DateTimePickerNull.resx">
-      <DependentUpon>V6DateTimePickerNull.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\V6DateTimeFullPickerNull.resx">
+      <DependentUpon>V6DateTimeFullPickerNull.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\BangCanDoiTaiChinhForm.resx">
       <DependentUpon>BangCanDoiTaiChinhForm.cs</DependentUpon>

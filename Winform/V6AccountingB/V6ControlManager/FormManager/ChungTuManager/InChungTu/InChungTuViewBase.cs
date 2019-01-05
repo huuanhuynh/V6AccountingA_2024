@@ -157,7 +157,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         }
 
         private DataSet _ds;
-        private DataTable _tbl, _tbl1, _tbl2, _tbl3;
+        private DataTable _tbl_AD, _tbl2_AM, _tbl2, _tbl3;
         //private V6TableStruct _tStruct;
         /// <summary>
         /// Dùng cho procedure chính (program?)
@@ -1105,13 +1105,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     flag = 2;
                 }
 
-                if (!_tbl.Columns.Contains(checkField))
+                if (!_tbl_AD.Columns.Contains(checkField))
                 {
-                    checkField = _tbl.Columns.Contains("DIEN_GIAII") ? "DIEN_GIAII" : _tbl.Columns[0].ColumnName;
+                    checkField = _tbl_AD.Columns.Contains("DIEN_GIAII") ? "DIEN_GIAII" : _tbl_AD.Columns[0].ColumnName;
                 }
                 flag = 3;
                 float fontSize = ((TextObject) DuongNgang).Font.Size;
-                int crossLineNum = CalculateCrossLine(_tbl, checkField, dropMax, lineHeight, fontSize)
+                int crossLineNum = CalculateCrossLine(_tbl_AD, checkField, dropMax, lineHeight, fontSize)
                                        + (int)numCrossAdd.Value;
                 if (ROW_MAX > 0 && crossLineNum > ROW_MAX * 2)
                 {
@@ -1367,18 +1367,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 FilterControl.LoadDataFinish(_ds);
                 if (_ds.Tables.Count > 0)
                 {
-                    _tbl = _ds.Tables[0];
-                    _tbl.TableName = "DataTable1";
+                    _tbl_AD = _ds.Tables[0];
+                    _tbl_AD.TableName = "DataTable1";
                 }
                 if (_ds.Tables.Count > 1)
                 {
-                    _tbl1 = _ds.Tables[1];
-                    _tbl1.TableName = "DataTable2";
-                    if (_tbl1.Rows.Count > 0) FilterControl.Call1(_tbl1.Rows[0]);
+                    _tbl2_AM = _ds.Tables[1];
+                    _tbl2_AM.TableName = "DataTable2";
+                    if (_tbl2_AM.Rows.Count > 0) FilterControl.Call1(_tbl2_AM.Rows[0]);
                 }
                 else
                 {
-                    _tbl1 = null;
+                    _tbl2_AM = null;
                 }
                 
                 _dataLoaded = true;
@@ -1386,8 +1386,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".LoadData Error\n" + ex.Message, "InChungTuViewBase");
-                _tbl = null;
-                _tbl1 = null;
+                _tbl_AD = null;
+                _tbl2_AM = null;
                 _ds = null;
                 _dataLoaded = false;
             }
@@ -1438,8 +1438,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 {
                     dataGridView1.SetFrozen(0);
                     dataGridView1.DataSource = null;
-                    dataGridView1.DataSource = _tbl;
-                    dataGridView1.DataSource = _tbl1;
+                    dataGridView1.DataSource = _tbl_AD;
+                    dataGridView1.DataSource = _tbl2_AM;
                     FormatGridView();
                     
                     ViewReport();
@@ -1480,7 +1480,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
                     dataGridView1.SetFrozen(0);
                     dataGridView1.DataSource = null;
-                    dataGridView1.DataSource = _tbl;
+                    dataGridView1.DataSource = _tbl_AD;
                     
                     FormatGridView();
                     ViewReport();
@@ -1530,7 +1530,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
 
                 //Header
-                var fieldList = (from DataColumn column in _tbl.Columns select column.ColumnName).ToList();
+                var fieldList = (from DataColumn column in _tbl_AD.Columns select column.ColumnName).ToList();
 
                 var fieldDic = CorpLan2.GetFieldsHeader(fieldList);
                 for (int i = 0; i < dataGridView1.ColumnCount; i++)
@@ -1611,7 +1611,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
         private void exportToExcel_Click(object sender, EventArgs e)
         {
-            if (_tbl == null)
+            if (_tbl_AD == null)
             {
                 ShowTopLeftMessage(V6Text.NoData);
                 return;
@@ -1623,7 +1623,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 {
                     try
                     {   
-                        V6Tools.V6Export.ExportData.ToExcel(_tbl, save.FileName, Name, true);
+                        V6Tools.V6Export.ExportData.ToExcel(_tbl_AD, save.FileName, Name, true);
                     }
                     catch (Exception ex)
                     {
@@ -1738,7 +1738,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         }
         private void printGrid_Click(object sender, EventArgs e)
         {
-            if (_tbl == null)
+            if (_tbl_AD == null)
             {
                 ShowTopLeftMessage(V6Text.NoData);
                 return;
@@ -2126,7 +2126,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
         private void ExporttoExceltemplate_Click(object sender, EventArgs e)
         {
-            V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, _tbl, _tbl1, ReportDocumentParameters,
+            V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, _tbl_AD, _tbl2_AM, ReportDocumentParameters,
               MAU, LAN, ReportFile, ExcelTemplateFileFull, ReportTitle);
         }
 

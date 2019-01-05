@@ -10,13 +10,15 @@ using V6Controls.Forms;
 
 namespace V6Controls.Controls
 {
-    public partial class V6DateTimePickerNull : V6Control
+    public partial class V6DateTimeFullPickerNull : V6Control
     {
         public DateTime? Value
         {
             get { return GetThisValue(); }
             set { SetThisValue(value); }
         }
+
+        public V6DateTimeFullPicker DateControl { get { return date1; } }
 
         private void SetThisValue(DateTime? value)
         {
@@ -36,7 +38,7 @@ namespace V6Controls.Controls
             return chkUSE.Checked ? date1.Value : (DateTime?) null;
         }
 
-        public V6DateTimePickerNull()
+        public V6DateTimeFullPickerNull()
         {
             InitializeComponent();
         }

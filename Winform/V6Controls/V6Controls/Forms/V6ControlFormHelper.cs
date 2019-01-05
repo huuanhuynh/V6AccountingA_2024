@@ -755,7 +755,7 @@ namespace V6Controls.Forms
                         c = CreateDateTimeFullPicker(fcolumn, fcaption, width, fstatus, carry);
                         break;
                     case "D3": // Date + time null
-                        c = CreateDateTimePickerNull(fcolumn, fcaption, width, fstatus, carry);
+                        c = CreateDateTimeFullPickerNull(fcolumn, fcaption, width, fstatus, carry);
                         break;
                     #endregion
                 }
@@ -901,8 +901,8 @@ namespace V6Controls.Forms
                     case "D2": // Not null + time
                         c = CreateDateTimeFullPicker(fcolumn, fcaption, width, fstatus, carry);
                         break;
-                    case "D3": // Not null + time
-                        c = CreateDateTimePickerNull(fcolumn, fcaption, width, fstatus, carry);
+                    case "D3": // null + time
+                        c = CreateDateTimeFullPickerNull(fcolumn, fcaption, width, fstatus, carry);
                         break;
                     #endregion
                 }
@@ -1818,7 +1818,7 @@ namespace V6Controls.Forms
                 if (enable) dat.Enabled = true;
             }
             else if (control is DateTimePicker
-                || control is V6DateTimePickerNull
+                || control is V6DateTimeFullPickerNull
                 || control is CheckBox
                 || control is RadioButton
                 || control is ComboBox
@@ -1946,7 +1946,7 @@ namespace V6Controls.Forms
                     {
                         box2.UseCarry();
                     }
-                    var box3 = control as V6DateTimePickerNull;
+                    var box3 = control as V6DateTimeFullPickerNull;
                     if (box3 != null)
                     {
                         box3.UseCarry();
@@ -2775,9 +2775,9 @@ namespace V6Controls.Forms
                 Tag = visible ? null : "hide"
             };
         }
-        public static V6DateTimePickerNull CreateDateTimePickerNull(string accessibleName, string caption, int width, bool visible, bool carry = false)
+        public static V6DateTimeFullPickerNull CreateDateTimeFullPickerNull(string accessibleName, string caption, int width, bool visible, bool carry = false)
         {
-            return new V6DateTimePickerNull
+            return new V6DateTimeFullPickerNull
             {
                 Name = accessibleName,
                 AccessibleName = accessibleName,
@@ -6230,7 +6230,7 @@ namespace V6Controls.Forms
                     //dat.Enabled = !readOnly;
                 }
                 else if (control is DateTimePicker
-                    || control is V6DateTimePickerNull
+                    || control is V6DateTimeFullPickerNull
                     || control is CheckBox
                     || control is RadioButton
                     || control is ComboBox
@@ -6392,10 +6392,10 @@ namespace V6Controls.Forms
                 var object_to_date = ObjectAndString.ObjectToFullDateTime(value);
                 ((V6DateTimePicker)control).SetValue(object_to_date);
             }
-            else if (control is V6DateTimePickerNull)
+            else if (control is V6DateTimeFullPickerNull)
             {
                 var object_to_date = ObjectAndString.ObjectToDate(value);
-                ((V6DateTimePickerNull)control).Value = object_to_date;
+                ((V6DateTimeFullPickerNull)control).Value = object_to_date;
             }
             else if (control is DateTimePicker)
             {
@@ -6515,9 +6515,9 @@ namespace V6Controls.Forms
                 d[cNAME] = ((V6DateTimePicker)control).Date;
                 return;
             }
-            else if (control is V6DateTimePickerNull)
+            else if (control is V6DateTimeFullPickerNull)
             {
-                d[cNAME] = ((V6DateTimePickerNull)control).Value;
+                d[cNAME] = ((V6DateTimeFullPickerNull)control).Value;
                 return;
             }
             else if (control is DateTimePicker)
@@ -6641,9 +6641,9 @@ namespace V6Controls.Forms
             {
                 return ((V6DateTimePicker)control).Date;
             }
-            else if (control is V6DateTimePickerNull)
+            else if (control is V6DateTimeFullPickerNull)
             {
-                return ((V6DateTimePickerNull)control).Value;
+                return ((V6DateTimeFullPickerNull)control).Value;
             }
             else if (control is DateTimePicker)
             {

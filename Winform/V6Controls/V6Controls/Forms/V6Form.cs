@@ -188,6 +188,26 @@ namespace V6Controls.Forms
             return V6ControlFormHelper.GetFormDataDictionary(this);
         }
 
+        /// <summary>
+        /// Tìm kiếm và trả về control nằm trong control này hoặc chính nó nếu trùng tên (ko phân biệt hoa thường).
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public Control GetControlByName(string name)
+        {
+            return V6ControlFormHelper.GetControlByName(this, name);
+        }
+
+        /// <summary>
+        /// Tìm kiếm và trả về control nằm trong control này hoặc chính nó nếu trùng accessibleName (ko phân biệt hoa thường).
+        /// </summary>
+        /// <param name="accessibleName"></param>
+        /// <returns></returns>
+        public Control GetControlByAccessibleName(string accessibleName)
+        {
+            return V6ControlFormHelper.GetControlByAccessibleName(this, accessibleName);
+        }
+
         #region ==== SHOW HIDE MESSAGE ====
 
         public void ShowMainMessage(string message)

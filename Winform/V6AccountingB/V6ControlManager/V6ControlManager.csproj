@@ -3918,6 +3918,12 @@
     <Compile Include="FormManager\ReportManager\Filter\Xuly\AMAP01Filter.designer.cs">
       <DependentUpon>AMAP01Filter.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\CapNhapBoSung\INPUT_ALL\AAPPR_INPUT_ALL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\CapNhapBoSung\INPUT_ALL\AAPPR_INPUT_ALL.Designer.cs">
+      <DependentUpon>AAPPR_INPUT_ALL.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\Xuly\ZACOSXLT_TINHGIA_Filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -4283,19 +4289,19 @@
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_CA1_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_POH1.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\CapNhapBoSung\POH1\AAPPR_POH1.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_POH1_F4.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\CapNhapBoSung\POH1\AAPPR_POH1_F4.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_POH1_F4.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\CapNhapBoSung\POH1\AAPPR_POH1_F4.designer.cs">
       <DependentUpon>AAPPR_POH1_F4.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_POH1_F9.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\CapNhapBoSung\POH1\AAPPR_POH1_F9.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_POH1_F9.designer.cs">
+    <Compile Include="FormManager\ReportManager\XuLy\CapNhapBoSung\POH1\AAPPR_POH1_F9.designer.cs">
       <DependentUpon>AAPPR_POH1_F9.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA2.cs">
@@ -4306,6 +4312,9 @@
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA1_F9.designer.cs">
       <DependentUpon>AAPPR_SOA1_F9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOC_IN1_Many.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_XULY_ALL.cs">
       <SubType>UserControl</SubType>
@@ -4378,6 +4387,21 @@
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AINVITRI05.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\CapNhapBoSung\INPUT_ALL\AAPPR_INPUT_ALL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\CapNhapBoSung\INPUT_ALL\AAPPR_INPUT_ALL_F4.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\CapNhapBoSung\INPUT_ALL\AAPPR_INPUT_ALL_F4.designer.cs">
+      <DependentUpon>AAPPR_INPUT_ALL_F4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\CapNhapBoSung\INPUT_ALL\AAPPR_INPUT_ALL_F9.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\CapNhapBoSung\INPUT_ALL\AAPPR_INPUT_ALL_F9.designer.cs">
+      <DependentUpon>AAPPR_INPUT_ALL_F9.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\HPAYROLLCALC.cs">
       <SubType>UserControl</SubType>
@@ -7371,6 +7395,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AMAP01Filter.resx">
       <DependentUpon>AMAP01Filter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\CapNhapBoSung\INPUT_ALL\AAPPR_INPUT_ALL.resx">
+      <DependentUpon>AAPPR_INPUT_ALL.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\ZACOSXLT_TINHGIA_Filter.resx">
       <DependentUpon>ZACOSXLT_TINHGIA_Filter.cs</DependentUpon>
     </EmbeddedResource>
@@ -7530,10 +7557,10 @@
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_IND_F4.resx">
       <DependentUpon>AAPPR_IND_F4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_POH1_F4.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\CapNhapBoSung\POH1\AAPPR_POH1_F4.resx">
       <DependentUpon>AAPPR_POH1_F4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_POH1_F9.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\CapNhapBoSung\POH1\AAPPR_POH1_F9.resx">
       <DependentUpon>AAPPR_POH1_F9.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_SOA1_F9.resx">
@@ -7583,6 +7610,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINVTBAR2_Control.resx">
       <DependentUpon>AINVTBAR2_Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\CapNhapBoSung\INPUT_ALL\AAPPR_INPUT_ALL_F4.resx">
+      <DependentUpon>AAPPR_INPUT_ALL_F4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\CapNhapBoSung\INPUT_ALL\AAPPR_INPUT_ALL_F9.resx">
+      <DependentUpon>AAPPR_INPUT_ALL_F9.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\HPAYROLLCALC.resx">
       <DependentUpon>HPAYROLLCALC.cs</DependentUpon>
@@ -8199,6 +8232,7 @@
     <Folder Include="FormManager\KhoHangManager\Draw\NewFolder1\" />
     <Folder Include="FormManager\Other\" />
     <Folder Include="FormManager\ReportManager\Add_Edit\" />
+    <Folder Include="FormManager\ReportManager\Filter\Report\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\V6Logo_5x4.png" />

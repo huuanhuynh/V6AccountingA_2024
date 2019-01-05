@@ -230,7 +230,7 @@ namespace V6Controls
             }
             catch (Exception ex)
             {
-                V6ControlFormHelper.ShowErrorMessage("KeyDown" + ex.Message);
+                V6ControlFormHelper.ShowErrorException("KeyDown", ex);
             }
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace V6Controls.Controls
 {
-    partial class V6DateTimePickerNull
+    partial class V6DateTimeFullPickerNull
     {
         /// <summary> 
         /// Required designer variable.
@@ -88,7 +88,7 @@
             this.Controls.Add(this.chkUSE);
             this.Controls.Add(this.date1);
             this.Controls.Add(this.txtSoCtKemt);
-            this.Name = "V6DateTimePickerNull";
+            this.Name = "V6DateTimeFullPickerNull";
             this.Size = new System.Drawing.Size(150, 20);
             this.ResumeLayout(false);
             this.PerformLayout();
