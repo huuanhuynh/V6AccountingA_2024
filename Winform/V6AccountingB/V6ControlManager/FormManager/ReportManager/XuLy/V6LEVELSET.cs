@@ -295,13 +295,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 switch (maCt.ToUpper().Trim())
                 {
                     case "SOA":
-                        data = new V6Invoice81().LoadAd81(sttRec);
+                        data = new V6Invoice81().LoadAD(sttRec);
                         break;
                     case "SOC":
                         data = new V6Invoice83().LoadAD(sttRec);
                         break;
                     case "POA":
-                        data = new V6Invoice81().LoadAd81(sttRec);
+                        data = new V6Invoice81().LoadAD(sttRec);
                         break;
                     case "SOH":
                         data = new V6Invoice91().LoadAD(sttRec);

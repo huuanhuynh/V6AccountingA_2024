@@ -118,7 +118,7 @@ namespace V6ControlManager.FormManager.ToolManager
                     var amData = loadAM.Rows[0].ToDataDictionary();
                     amData["NGAY_CT"] = DateTime.Now;
                     var oldSttRec = amData["STT_REC"].ToString().Trim();
-                    var loadAD = invoice.LoadAd81(oldSttRec);
+                    var loadAD = invoice.LoadAD(oldSttRec);
 
                     for (int i = 0; i < num81; i++)
                     {
@@ -198,7 +198,7 @@ namespace V6ControlManager.FormManager.ToolManager
                     var amData = loadAM.Rows[0].ToDataDictionary();
                     amData["NGAY_CT"] = DateTime.Now;
                     var oldSttRec = amData["STT_REC"].ToString().Trim();
-                    var loadAD = invoice.LoadAd81(oldSttRec);
+                    var loadAD = invoice.LoadAD(oldSttRec);
 
                     for (int i = 0; i < num81u; i++)
                     {

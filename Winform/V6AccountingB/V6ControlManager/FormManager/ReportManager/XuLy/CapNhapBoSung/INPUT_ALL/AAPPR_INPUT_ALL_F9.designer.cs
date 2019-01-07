@@ -36,9 +36,6 @@
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
-            this.TxtMa_nvien = new V6Controls.V6VvarTextBox();
-            this.TxtMa_bp = new V6Controls.V6VvarTextBox();
-            this.lblBPNV = new V6Controls.V6Label();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -99,74 +96,20 @@
             this.btnNhan.UseVisualStyleBackColor = true;
             this.btnNhan.Click += new System.EventHandler(this.btnNhan_Click);
             // 
-            // TxtMa_nvien
-            // 
-            this.TxtMa_nvien.AccessibleName = "ma_nvien";
-            this.TxtMa_nvien.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtMa_nvien.BackColor = System.Drawing.SystemColors.Window;
-            this.TxtMa_nvien.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtMa_nvien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtMa_nvien.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtMa_nvien.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtMa_nvien.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtMa_nvien.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtMa_nvien.LeaveColor = System.Drawing.Color.White;
-            this.TxtMa_nvien.Location = new System.Drawing.Point(209, 4);
-            this.TxtMa_nvien.Name = "TxtMa_nvien";
-            this.TxtMa_nvien.Size = new System.Drawing.Size(91, 20);
-            this.TxtMa_nvien.TabIndex = 2;
-            this.TxtMa_nvien.VVar = "ma_nvien";
-            // 
-            // TxtMa_bp
-            // 
-            this.TxtMa_bp.AccessibleName = "ma_bp";
-            this.TxtMa_bp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtMa_bp.BackColor = System.Drawing.SystemColors.Window;
-            this.TxtMa_bp.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtMa_bp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtMa_bp.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtMa_bp.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtMa_bp.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtMa_bp.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtMa_bp.LeaveColor = System.Drawing.Color.White;
-            this.TxtMa_bp.Location = new System.Drawing.Point(91, 4);
-            this.TxtMa_bp.Name = "TxtMa_bp";
-            this.TxtMa_bp.Size = new System.Drawing.Size(97, 20);
-            this.TxtMa_bp.TabIndex = 1;
-            this.TxtMa_bp.VVar = "ma_bp";
-            // 
-            // lblBPNV
-            // 
-            this.lblBPNV.AccessibleDescription = "XULYL00046";
-            this.lblBPNV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblBPNV.AutoSize = true;
-            this.lblBPNV.Location = new System.Drawing.Point(2, 7);
-            this.lblBPNV.Name = "lblBPNV";
-            this.lblBPNV.Size = new System.Drawing.Size(41, 13);
-            this.lblBPNV.TabIndex = 0;
-            this.lblBPNV.Text = "BP/NV";
-            // 
             // AAPPR_INPUT_ALL_F9
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(543, 158);
-            this.Controls.Add(this.TxtMa_nvien);
-            this.Controls.Add(this.TxtMa_bp);
-            this.Controls.Add(this.lblBPNV);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
             this.Name = "AAPPR_INPUT_ALL_F9";
             this.Load += new System.EventHandler(this.Form_Load);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
-            this.Controls.SetChildIndex(this.lblBPNV, 0);
-            this.Controls.SetChildIndex(this.TxtMa_bp, 0);
-            this.Controls.SetChildIndex(this.TxtMa_nvien, 0);
             this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -179,9 +122,6 @@
         private System.Windows.Forms.Timer timerViewReport;
         protected System.Windows.Forms.Button btnNhan;
         protected System.Windows.Forms.Button btnHuy;
-        public V6Controls.V6VvarTextBox TxtMa_nvien;
-        public V6Controls.V6VvarTextBox TxtMa_bp;
-        private V6Controls.V6Label lblBPNV;
 
 
 

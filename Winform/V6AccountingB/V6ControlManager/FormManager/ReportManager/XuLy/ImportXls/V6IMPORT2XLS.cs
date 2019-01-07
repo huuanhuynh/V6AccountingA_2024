@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Threading;
@@ -371,15 +370,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         Thread t;
                         switch (_selected_ma_ct)
                         {
+                            case "POA":
+                                Invoice = new V6Invoice71();
+                                break;
                             case "SOA":
                                 Invoice = new V6Invoice81();
+                                break;
+                            case "SOH":
+                                Invoice = new V6Invoice91();
                                 break;
                             default:
                                 this.ShowWarningMessage(V6Text.NotSupported + " " + _selected_ma_ct);
                                 return;
-                                // Code danh mục.
-                                t = new Thread(F9Thread);
-                                break;
                         }
 
                         t = new Thread(F9Thread_SOA);
@@ -415,173 +417,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private string f9Message = "";
         private string f9MessageAll = "";
         private string[] check_field_list = {};
-        private void F9Thread()
-        {
-            try
-            {
-                f9Running = true;
-                f9MessageAll = "";
-
-                if (_data == null)
-                {
-                    f9MessageAll = "Dữ liệu không hợp lệ!";
-                    goto End;
-                }
-
-                int stt = 0;
-                total = _data.Rows.Count;
-                var id_list = IDS_CHECK.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-
-                for (int i = 0; i < total; i++)
-                {
-                    DataRow row = _data.Rows[i];
-                    index = i;
-                    stt++;
-                    try
-                    {
-                        // Bỏ qua các dòng có đánh dấu khác Insert.
-                        if (_data.Columns.Contains(EXCEL_STATUS))
-                        {
-                            var row_status = row[EXCEL_STATUS].ToString().Trim();
-                            if (row_status != STATUS_INSERT)
-                            {
-                                continue;
-                            }
-                        }
-
-                        // Kiểm tra có các cột cần thiết
-                        var check_ok = true;
-                        foreach (string field in check_field_list)
-                        {
-                            if (row[field] == null || row[field] == DBNull.Value || row[field].ToString().Trim() == "")
-                            {
-                                check_ok = false;
-                                break;
-                            }
-                        }
-                        // Nếu kiểm tra ok thì thực hiện F9
-                        if (check_ok)
-                        {
-                            var dataDic = row.ToDataDictionary();
-                            
-                            var keys = new SortedDictionary<string, object>();
-                            foreach (string id in id_list)
-                            {
-                                keys.Add(id, row[id]);
-                            }
-                            var ID0 = dataDic[id_list[0].ToUpper()].ToString().Trim();
-                            string ID_FIELD1, ID_FIELD2;
-                            string ID1, ID2;
-                            var exist = false;
-                            switch (TYPE_CHECK)
-                            {
-                                case "AL":
-                                    exist = V6BusinessHelper.CheckDataExistStruct(_selected_ma_ct , keys);
-                                    break;
-                                case "00":// All
-                                    exist = false;
-                                    break;
-                                case "01":// OneCode
-                                    exist = _categories.IsExistOneCode_List(_selected_ma_ct, id_list[0], ID0);
-                                    break;
-                                case "02"://TwoCode
-                                    ID_FIELD1 = id_list[1].ToUpper();
-                                    ID1 = dataDic[ID_FIELD1].ToString().Trim();
-                                    exist = _categories.IsExistTwoCode_List(_selected_ma_ct, id_list[0], ID0, ID_FIELD1, ID1);
-                                    break;
-                                case "03"://ThreeCode
-                                    ID_FIELD1 = id_list[1];
-                                    ID_FIELD2 = id_list[2].ToUpper();
-                                    ID1 = dataDic[ID_FIELD1].ToString().Trim();
-                                    ID2 = dataDic[ID_FIELD2].ToString().Trim();
-                                    exist = V6BusinessHelper.IsExistThreeCode_List(_selected_ma_ct,
-                                        id_list[0], ID0, ID_FIELD1, ID1, ID_FIELD2, ID2);
-                                    break;
-                                
-                            }
-                            
-                            if (chkChiNhapMaMoi.Checked) //Chỉ cập nhập mã mới.
-                            {
-                                if (!exist)
-                                {
-                                    InvokeBeforeInsert(dataDic);
-                                    if (V6BusinessHelper.Insert(_selected_ma_ct, dataDic))
-                                    {
-                                        if (_selected_ma_ct.ToUpper() == "ALVT")
-                                        {
-                                            var ma_vt_new = dataDic["MA_VT"].ToString().Trim();
-                                            UpdateAlqddvt(ma_vt_new, ma_vt_new);
-                                        }
-                                        remove_list_d.Add(row);
-                                    }
-                                    else
-                                    {
-                                        var s = string.Format("Dòng {0,3}-ID:{1} thêm không được", stt, ID0);
-                                        f9Message += s;
-                                        f9MessageAll += s;
-                                    }
-                                }
-                                else
-                                {
-                                    f9Message += "Skip " + ID0;
-                                }
-                            }
-                            else
-                            {
-                                if (exist) //Xóa cũ thêm mới.
-                                {
-                                    keys = new SortedDictionary<string, object> ();
-                                    foreach (string field in id_list)
-                                    {
-                                        keys.Add(field.ToUpper(), row[field]);
-                                    }
-                                    _categories.Delete(_selected_ma_ct, keys);
-                                }
-
-                                InvokeBeforeInsert(dataDic);
-                                if (V6BusinessHelper.Insert(_selected_ma_ct, dataDic))
-                                {
-                                    if (_selected_ma_ct.ToUpper() == "ALVT")
-                                    {
-                                        var ma_vt_new = dataDic["MA_VT"].ToString().Trim();
-                                        UpdateAlqddvt(ma_vt_new, ma_vt_new);
-                                    }
-                                    remove_list_d.Add(row);
-                                }
-                                else
-                                {
-                                    var s = string.Format("Dòng {0,3}-ID:{1} thêm không được", stt, ID0);
-                                    f9Message += s;
-                                    f9MessageAll += s;
-                                }
-                            }
-
-                        }
-                        else
-                        {
-                            var s = "Dòng " + stt + " không có đủ " + CHECK_FIELDS;
-                            f9Message += s;
-                            f9MessageAll += s;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        f9Message += "Dòng " + stt + ": " + ex.Message;
-                        f9MessageAll += "Dòng " + stt + ": " + ex.Message;
-                    }
-
-                }
-            }
-            catch (Exception ex)
-            {
-                f9Message += ex.Message;
-                f9MessageAll += ex.Message;
-            }
-
-        End:
-            f9Running = false;
-        }
-
+        
         V6InvoiceBase Invoice = null;
         private IDictionary<string, object> AM_DATA;
         private bool chkAutoSoCt_Checked;
@@ -649,7 +485,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     var data_rows = item.Value;
                     try
                     {
-                        AM_DATA = GET_AM_Data(data_rows, "SO_LUONG,SO_LUONG1,TIEN_NT2,TIEN_NT,TIEN2,TIEN,THUE_NT,THUE,CK_NT,CK,GG_NT,GG", "MA_NX");
+                        switch (_selected_ma_ct)
+                        {
+                            case "SOA":
+                                AM_DATA = GET_AM_Data(data_rows, "SO_LUONG,SO_LUONG1,TIEN_NT2,TIEN_NT,TIEN2,TIEN,THUE_NT,THUE,CK_NT,CK,GG_NT,GG", "MA_NX");
+                                break;
+                            case "SOH":
+                                AM_DATA = GET_AM_Data(data_rows, "SO_LUONG,SO_LUONG1,TIEN_NT2,TIEN_NT,TIEN2,TIEN,THUE_NT,THUE,CK_NT,CK,GG_NT,GG", "MA_NX");
+                                break;
+                            default:
+
+                                break;
+                        }
 
                         var sttRec = V6BusinessHelper.GetNewSttRec(Invoice.Mact);
                         if (chkAutoSoCt_Checked) // Tự động tạo số chứng từ.
@@ -663,7 +510,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         AM_DATA["STT_REC"] = sttRec;
                         var AD1_List = GET_AD1_List(data_rows, sttRec);
 
-                        if (Invoice.InsertInvoice(AM_DATA, AD1_List, new List<IDictionary<string, object>>()))//!!!!!!!!
+                        if (Invoice.InsertInvoice(AM_DATA, AD1_List))
                         {
                             f9Message += "Đã thêm: " + item.Key;
                             //Danh dau xóa data.
@@ -688,6 +535,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             catch (Exception ex)
             {
                 f9Message = "F9Thread: " + ex.Message;
+                f9MessageAll += f9Message;
             }
             //
 
@@ -991,7 +839,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     + (f9Message.Length > 0 ? "Error: " : "")
                     + f9Message);
 
-                ShowMainMessage("F9 " + V6Text.Finish);
+                ShowMainMessage("F9 " + V6Text.Finish + " " + f9MessageAll);
 
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {

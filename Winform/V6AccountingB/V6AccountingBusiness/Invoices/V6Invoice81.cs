@@ -27,7 +27,12 @@ namespace V6AccountingBusiness.Invoices
 
         public override string Name { get { return "Hóa đơn"; } }
 
-        
+        public override bool InsertInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> ad1List)
+        {
+            // Gọi lại ngay hàm bên dưới với chi tiết khác = rỗng.
+            return InsertInvoice(amData, ad1List, new List<IDictionary<string, object>>());
+        }
+
         public override bool InsertInvoice(
             IDictionary<string, object> amData,
             List<IDictionary<string, object>> adList,
@@ -439,15 +444,15 @@ namespace V6AccountingBusiness.Invoices
             var tbl = V6BusinessHelper.ExecuteProcedure("VPA_GET_STOCK_SOA", plist).Tables[0];
             return tbl;
         }
-
+        
         /// <summary>
         /// Lấy dữ liệu chi tiết theo sttRec
         /// </summary>
         /// <param name="sttRec"></param>
         /// <returns></returns>
-        public DataTable LoadAd81(string sttRec)
+        public override DataTable LoadAD(string sttRec)
         {
-            string sql = "SELECT c.*,d.Ten_vt AS Ten_vt, c.So_luong1*0 as Ton13 FROM [" + AD_TableName
+            string sql = "SELECT c.*,d.Ten_vt AS Ten_vt, c.So_luong1*0 as Ton13" + ADSELECTMORE + " FROM [" + AD_TableName
                 + "] c LEFT JOIN Alvt d ON c.Ma_vt= d.Ma_vt  Where c.stt_rec = @rec Order by c.stt_rec0";
             var listParameters = new SqlParameter("@rec", sttRec);
             var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql, listParameters).Tables[0];

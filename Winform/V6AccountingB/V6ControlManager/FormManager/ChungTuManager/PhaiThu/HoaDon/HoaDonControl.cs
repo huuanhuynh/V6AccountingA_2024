@@ -4375,7 +4375,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             if (ADTables.ContainsKey(sttRec)) AD = ADTables[sttRec].Copy();
             else
             {
-                ADTables.Add(sttRec, Invoice.LoadAd81(sttRec));
+                ADTables.Add(sttRec, Invoice.LoadAD(sttRec));
                 AD = ADTables[sttRec].Copy();
             }
             //Load AD3

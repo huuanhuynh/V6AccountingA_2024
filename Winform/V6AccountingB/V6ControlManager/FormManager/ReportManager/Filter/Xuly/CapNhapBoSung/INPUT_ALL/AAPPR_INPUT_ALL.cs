@@ -30,7 +30,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
                 txtMaDvcs.Enabled = false;
             }
             txtMa_ct.Text = "POH";
-            txtMa_ct.Enabled = false;
+            txtMa_ct.Enabled = true;//??
             TxtXtag.Enabled = false;
 
             ctDenSo.Enabled = false;
@@ -50,12 +50,15 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
             lineNH_KH7.VvarTextBox.SetInitFilter("loai_nh=7");
             lineNH_KH8.VvarTextBox.SetInitFilter("loai_nh=8");
             lineNH_KH9.VvarTextBox.SetInitFilter("loai_nh=9");
+
+            Ready();
         }
 
         private void LoadComboboxSource(string maCt)
         {
             try
             {
+                ObjectDictionary["MA_CT"] = maCt;
                 cboMa_xuly.ValueMember = "MA_XULY1";
                 cboMa_xuly.DisplayMember = V6Setting.IsVietnamese ? "Ten_xuly" : "Ten_xuly2";
                 cboMa_xuly.DataSource = V6BusinessHelper.Select("Alxuly", "ma_xuly as MA_XULY1,Ten_xuly,Ten_xuly2",

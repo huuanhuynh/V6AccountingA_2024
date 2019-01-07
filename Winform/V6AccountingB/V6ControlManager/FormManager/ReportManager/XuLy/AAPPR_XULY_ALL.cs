@@ -268,7 +268,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     switch (ma_ct)
                     {
                         case "SOA":
-                            data = invoice.LoadAd81(sttRec);
+                            data = invoice.LoadAD(sttRec);
                             break;
                         case "SOB":
                             data = new V6Invoice82().LoadAD(sttRec);

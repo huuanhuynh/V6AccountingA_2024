@@ -222,7 +222,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 var sttRec = row.Cells["Stt_rec"].Value.ToString().Trim();
-                var data = invoice.LoadAd81(sttRec);
+                var data = invoice.LoadAD(sttRec);
                 dataGridView2.DataSource = data;
             }
             catch (Exception ex)

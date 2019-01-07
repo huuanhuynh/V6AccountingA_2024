@@ -32,16 +32,66 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected override void MakeReport2()
         {
             Load_Data = true;//Thay đổi cờ.
+            ResetInvoice();
             base.MakeReport2();
         }
-        
+
+        private void ResetInvoice()
+        {
+            try
+            {
+                string ma_ct = FilterControl.ObjectDictionary["MA_CT"].ToString();
+                switch (ma_ct)
+                {
+                    case "SOA":
+                        invoice = new V6Invoice81();
+                        break;
+                    case "POA":
+                        invoice = new V6Invoice71();
+                        break;
+                    case "POH":
+                        invoice = new V6Invoice92();
+                        break;
+                    case "SOH":
+                        invoice = new V6Invoice91();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ResetInvoice", ex);
+            }
+        }
+
+        private IDictionary<string, string> GetExtraInfor(string infoText)
+        {
+            var _extraInfor = new SortedDictionary<string, string>();
+            if (infoText != "")
+            {
+                var sss = infoText.Split(';');
+                foreach (string ss in sss)
+                {
+                    //var ss1 = ss.Split(':');
+                    //if (ss1.Length > 1)
+                    //{
+                    //    _extraInfor[ss1[0].ToUpper()] = ss1[1];
+                    //}
+                    int indexOf = ss.IndexOf(":", StringComparison.Ordinal);
+                    if (indexOf > 0)
+                    {
+                        _extraInfor[ss.Substring(0, indexOf).ToUpper()] = ss.Substring(indexOf + 1);
+                    }
+                }
+            }
+            return _extraInfor;
+        }
         
         #region ==== Xử lý F9 ====
         
         private bool f9Running;
         private string f9Error = "";
         private string f9ErrorAll = "";
-        private string TxtMa_bp_Text, TxtMa_nvien_Text;
+        //private string TxtMa_bp_Text, TxtMa_nvien_Text;
         private AAPPR_INPUT_ALL_F9 form_f9;
 
         protected override void XuLyF9()
@@ -54,18 +104,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return;
                 }
                 string extra_infor = "";
-                if (EXTRA_INFOR.ContainsKey("FIELDS_F9")) extra_infor = EXTRA_INFOR["FIELDS_F9"];
+                AlctConfig alctConfig = ConfigManager.GetAlctConfig(FilterControl.ObjectDictionary["MA_CT"].ToString());
+                var extra_infors = GetExtraInfor(alctConfig.GetString("EXTRA_INFOR"));
+                if (extra_infors.ContainsKey("FIELDS_F9")) extra_infor = extra_infors["FIELDS_F9"];
                 form_f9 = new AAPPR_INPUT_ALL_F9(extra_infor);
                 if (form_f9.ShowDialog(this) != DialogResult.OK)
                 {
                     return;
                 }
-                TxtMa_bp_Text = form_f9.TxtMa_bp.Text.Trim();
-                TxtMa_nvien_Text = form_f9.TxtMa_nvien.Text.Trim();
-                if (TxtMa_bp_Text == "" && TxtMa_nvien_Text == "")
-                {
-                    return;
-                }
+                //TxtMa_bp_Text = form_f9.TxtMa_bp.Text.Trim();
+                //TxtMa_nvien_Text = form_f9.TxtMa_nvien.Text.Trim();
+                //if (TxtMa_bp_Text == "" && TxtMa_nvien_Text == "")
+                //{
+                //    return;
+                //}
 
                 Timer tF9 = new Timer();
                 tF9.Interval = 500;
@@ -101,8 +153,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var am = new SortedDictionary<string, object>();
                         string c_sttRec = row.Cells["STT_REC"].Value.ToString().Trim();
                         _message = "F9: " + c_sttRec;
-                        if (TxtMa_bp_Text != "") am["MA_BP"] = TxtMa_bp_Text;
-                        if (TxtMa_nvien_Text != "") am["MA_NVIEN"] = TxtMa_nvien_Text;
+                        //if (TxtMa_bp_Text != "") am["MA_BP"] = TxtMa_bp_Text;
+                        //if (TxtMa_nvien_Text != "") am["MA_NVIEN"] = TxtMa_nvien_Text;
                         // thêm giá trị động vào am data.
                         string LFields = "", LValues = "";
                         foreach (KeyValuePair<string, object> item in form_f9.ListValue)
@@ -121,7 +173,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             SqlParameter[] plist =
                             {
                                 new SqlParameter("@Stt_rec", c_sttRec),
-                                new SqlParameter("@Ma_ct", "SOA"),
+                                new SqlParameter("@Ma_ct", FilterControl.ObjectDictionary["MA_CT"]),
                                 new SqlParameter("@Set_ma_xuly", V6Login.UserId),
                                 new SqlParameter("@LFields", LFields),//Giá trị các trường động cách nhau bằng ;
                                 new SqlParameter("@LValues", LValues),
@@ -278,7 +330,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        V6Invoice92 invoice = new V6Invoice92();
+        V6InvoiceBase invoice = null;
         protected override void ViewDetails(DataGridViewRow row)
         {
             try

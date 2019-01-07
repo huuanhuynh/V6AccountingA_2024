@@ -1164,6 +1164,6 @@ namespace V6AccountingBusiness.Invoices
                 Logger.WriteToLog(string.Format("Mact {0} stt_rec {1} TRANSACTION COMMITTED.", Mact, stt_rec));
             }
         }
-        
+
     }
 }

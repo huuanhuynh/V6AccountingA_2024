@@ -52,6 +52,12 @@ namespace V6AccountingBusiness.Invoices
                     "VPA_GET_AUTO_COLUMN_GT", pList).Tables[0];
         }
 
+        public override bool InsertInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> ad1List)
+        {
+            // Gọi lại ngay hàm bên dưới với chi tiết khác = rỗng.
+            return InsertInvoice(amData, ad1List, new List<IDictionary<string, object>>(), new List<IDictionary<string, object>>());
+        }
+
         public bool InsertInvoice(IDictionary<string, object> amData,
             List<IDictionary<string, object>> adList,
             List<IDictionary<string, object>> adList2,

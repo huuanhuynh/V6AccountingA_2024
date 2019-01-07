@@ -66,7 +66,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 // Phân tích danh sách Field
                 string[] sss = ObjectAndString.SplitString(_fields);
 
-                int top = TxtMa_bp.Top;
+                int top = 5;
                 foreach (string s in sss)
                 {
                     string[] ss = s.Split(':');
@@ -100,7 +100,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             continue;
                         }
 
-                        top += 25;
                         Control txt = new TextBox(){Text = "error"};
                         if (type.StartsWith("N"))
                         {
@@ -111,7 +110,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 BorderStyle = BorderStyle.FixedSingle,
                                 Name = "txt" + field,
                                 Top = top,
-                                Left = TxtMa_bp.Left,
+                                Left = 5,
                                 Width = 400,
 
                                 DecimalPlaces = decimal_place,
@@ -135,7 +134,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                         BorderStyle = BorderStyle.FixedSingle,
                                         Name = "txt" + field,
                                         Top = top,
-                                        Left = TxtMa_bp.Left,
+                                        Left = 100,
                                         Width = 400,
                                     };
                                     var d0 = txt as V6DateTimeColor;
@@ -152,7 +151,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                         //BorderStyle = BorderStyle.FixedSingle,
                                         Name = "txt" + field,
                                         Top = top,
-                                        Left = TxtMa_bp.Left,
+                                        Left = 100,
                                         Width = 400,
                                     };
                                     var d1 = txt as V6DateTimePicker;
@@ -169,7 +168,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                         //BorderStyle = BorderStyle.FixedSingle,
                                         Name = "txt" + field,
                                         Top = top,
-                                        Left = TxtMa_bp.Left,
+                                        Left = 100,
                                         Width = 400,
                                     };
                                     var d2 = txt as V6DateTimeFullPicker;
@@ -186,7 +185,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                         BorderStyle = BorderStyle.FixedSingle,
                                         Name = "txt" + field,
                                         Top = top,
-                                        Left = TxtMa_bp.Left,
+                                        Left = 100,
                                         Width = 400,
                                     };
                                     var d3 = txt as V6DateTimeFullPickerNull;
@@ -209,7 +208,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 BorderStyle = BorderStyle.FixedSingle,
                                 Name = "txt" + field,
                                 Top = top,
-                                Left = TxtMa_bp.Left,
+                                Left = 100,
                                 Width = 400,
                             };
                             var vvar = txt as V6VvarTextBox;
@@ -228,10 +227,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             Name = "lbl" + field,
                             Text = label,
                             Top = top,
-                            Left = lblBPNV.Left,
+                            Left = 5,
                         };
                         this.Controls.Add(txt);
                         this.Controls.Add(lbl);
+                        top += 25;
                         this.Height += 25;
                     }
                 }
