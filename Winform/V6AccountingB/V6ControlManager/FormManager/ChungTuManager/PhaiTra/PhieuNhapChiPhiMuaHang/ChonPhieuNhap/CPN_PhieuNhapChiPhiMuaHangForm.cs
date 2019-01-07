@@ -18,9 +18,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
     {
         private readonly PhieuNhapChiPhiMuaHangControl _hoaDonForm;
         private CPNKetQuaPhieuNhapMua _locKetQua;
-        public delegate void AcceptSelectDataList(List<SortedDictionary<string, object>> selectedDataList, bool multiSelect, SortedDictionary<string, object> amData);
+        public delegate void AcceptSelectDataList(List<IDictionary<string, object>> selectedDataList, bool multiSelect, IDictionary<string, object> amData);
         public event AcceptSelectDataList AcceptSelectEvent;
-        protected virtual void OnAcceptSelectEvent(List<SortedDictionary<string, object>> selecteddatalist, bool multiSelect, SortedDictionary<string, object> amData)
+        protected virtual void OnAcceptSelectEvent(List<IDictionary<string, object>> selecteddatalist, bool multiSelect, IDictionary<string, object> amData)
         {
             var handler = AcceptSelectEvent;
             if (handler != null) handler(selecteddatalist, multiSelect, amData);
@@ -123,7 +123,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             {
                 if (_locKetQua != null && _locKetQua.Visible)
                 {
-                    var listData = new List<SortedDictionary<string, object>>();
+                    var listData = new List<IDictionary<string, object>>();
                     var amData = new SortedDictionary<string,object>();
                     
                     if (_multiSelect)
@@ -158,7 +158,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     if (listData.Count > 0)
                     {
                         // Tuanmh 22/03/2016 Cp_nt,Cp=0     //
-                        foreach (SortedDictionary<string, object> dic in listData)
+                        foreach (IDictionary<string, object> dic in listData)
                         {
                             dic["CP_NT"] = 0;
                             dic["CP"] = 0;

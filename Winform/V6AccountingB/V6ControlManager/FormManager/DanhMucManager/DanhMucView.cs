@@ -176,7 +176,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             SelectResult = new V6SelectResult();
             SelectResult.SortField = sort;
 
-            _aldmConfig = ConfigManager.GetAldmConfigByTableName(_tableName);
+            _aldmConfig = ConfigManager.GetAldmConfig(_tableName);
             if (aldm)
             {
                 if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(_aldmConfig.ORDER))
@@ -689,7 +689,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         /// Khi sửa thành công, cập nhập lại dòng được sửa, chưa kiểm ok cancel.
         /// </summary>
         /// <param name="data">Dữ liệu đã sửa</param>
-        private void f_UpdateSuccess(SortedDictionary<string, object> data)
+        private void f_UpdateSuccess(IDictionary<string, object> data)
         {
             try
             {
@@ -749,7 +749,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
         }
 
-        private void f_DoChangeCodeFinish(SortedDictionary<string, object> data)
+        private void f_DoChangeCodeFinish(IDictionary<string, object> data)
         {
             ReLoad();
         }
@@ -1623,7 +1623,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         }
 
         //Reload
-        private void f_InsertSuccess(SortedDictionary<string, object> data)
+        private void f_InsertSuccess(IDictionary<string, object> data)
         {
             try
             {
@@ -1636,7 +1636,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         }
 
 
-        private SortedDictionary<string, object> _data = new SortedDictionary<string, object>();
+        private IDictionary<string, object> _data = new SortedDictionary<string, object>();
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (V6Login.UserRight.AllowEdit("", _tableName.ToUpper() + "6"))

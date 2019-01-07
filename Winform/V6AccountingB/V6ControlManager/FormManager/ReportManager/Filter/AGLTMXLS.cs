@@ -222,7 +222,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
         }
 
-        void f_InsertSuccess(SortedDictionary<string, object> dataDic)
+        void f_InsertSuccess(IDictionary<string, object> dataDic)
         {
             try
             {
@@ -294,7 +294,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         }
 
-        private void f_UpdateSuccess(SortedDictionary<string, object> dataDic)
+        private void f_UpdateSuccess(IDictionary<string, object> dataDic)
         {
             try
             {

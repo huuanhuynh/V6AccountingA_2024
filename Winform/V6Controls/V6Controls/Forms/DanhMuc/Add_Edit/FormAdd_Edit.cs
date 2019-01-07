@@ -14,8 +14,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public AddEditControlVirtual FormControl;
         private readonly V6TableName _tableName = V6TableName.Notable;
         private V6Mode _mode;
-        private SortedDictionary<string, object> _keys;
-        private SortedDictionary<string, object> _data;
+        private IDictionary<string, object> _keys;
+        private IDictionary<string, object> _data;
         private readonly string _tableNameString;
         //private string _tableView;//use _aldmConfig;
         
@@ -53,8 +53,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// <param name="keys">Khóa để sửa, dùng để load oldData nếu tham số (data) null.</param>
         /// <param name="data">Dữ liệu cũ sẽ gán lên form. Nếu null load bằng keys nếu có.</param>
         public FormAddEdit(V6TableName tableName, V6Mode mode = V6Mode.Add,
-            SortedDictionary<string, object> keys = null,
-            SortedDictionary<string, object> data = null)
+            IDictionary<string, object> keys = null,
+            IDictionary<string, object> data = null)
         {
             _tableName = tableName;
             _tableNameString = tableName.ToString();
@@ -75,8 +75,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// <param name="keys">Khóa lấy dữ liệu</param>
         /// <param name="data">Hoặc dữ liệu có sẵn</param>
         public FormAddEdit(string tableName, V6Mode mode = V6Mode.Add,
-            SortedDictionary<string, object> keys = null,
-            SortedDictionary<string, object> data = null)
+            IDictionary<string, object> keys = null,
+            IDictionary<string, object> data = null)
         {
             _tableNameString = tableName;
             _tableName = V6TableHelper.ToV6TableName(_tableNameString);

@@ -854,7 +854,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         
         public FilterBase FilterControl { get; set; }
-        public SortedDictionary<string, object> SelectedRowData { get; set; }
+        public IDictionary<string, object> SelectedRowData { get; set; }
         
         private void AddFilterControl(string program)
         {
@@ -903,7 +903,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
-        public SortedDictionary<string, object> ReportDocumentParameters; 
+        public IDictionary<string, object> ReportDocumentParameters; 
         /// <summary>
         /// Lưu ý: chạy sau khi add dataSource để tránh lỗi nhập parameter value
         /// </summary>

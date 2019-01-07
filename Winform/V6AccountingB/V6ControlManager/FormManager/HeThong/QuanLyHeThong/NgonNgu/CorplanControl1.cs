@@ -252,7 +252,7 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu
             }
         }
 
-        private void UpdateOneRow(SortedDictionary<string, object> dataDic, SortedDictionary<string, object> keys, Button button)
+        private void UpdateOneRow(IDictionary<string, object> dataDic, SortedDictionary<string, object> keys, Button button)
         {
             try
             {

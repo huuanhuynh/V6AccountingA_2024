@@ -21,9 +21,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private string _rptFile;
         private ReportDocument _rpDoc;
         private DataTable _tbl, _tbl2;
-        private SortedDictionary<string, object> _rptParameters;
+        private IDictionary<string, object> _rptParameters;
         public ChartReportForm(FilterBase filter, string rptFile, DataTable tbl, DataTable tbl2,
-            SortedDictionary<string, object> reportDocumentParameters)
+            IDictionary<string, object> reportDocumentParameters)
         {
             V6ControlFormHelper.AddLastAction(GetType() + " " + rptFile);
             InitializeComponent();

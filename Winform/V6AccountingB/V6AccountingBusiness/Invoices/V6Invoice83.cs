@@ -26,10 +26,10 @@ namespace V6AccountingBusiness.Invoices
         }
 
         public override string Name { get { return "Phiếu bán lẻ"; } }
-        
-        public bool InsertInvoice(SortedDictionary<string, object> amData,
-            List<SortedDictionary<string, object>> adList,
-            List<SortedDictionary<string, object>> adList3,
+
+        public bool InsertInvoice(IDictionary<string, object> amData,
+            List<IDictionary<string, object>> adList,
+            List<IDictionary<string, object>> adList3,
             bool post)
         {
             object stt_rec = amData["STT_REC"];
@@ -55,7 +55,7 @@ namespace V6AccountingBusiness.Invoices
 
                 insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, insert_am_sql) > 0;
 
-                foreach (SortedDictionary<string, object> adRow in adList)
+                foreach (IDictionary<string, object> adRow in adList)
                 {
                     var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, ADStruct, adRow);
                     int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql);
@@ -67,7 +67,7 @@ namespace V6AccountingBusiness.Invoices
                     }
                     j += (execute > 0 ? 1 : 0);
                 }
-                foreach (SortedDictionary<string, object> adRow in adList3)
+                foreach (IDictionary<string, object> adRow in adList3)
                 {
                     var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, AD3Struct, adRow);
                     int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql);
@@ -212,11 +212,11 @@ namespace V6AccountingBusiness.Invoices
             
             return false;
         }
-        
-        public bool UpdateInvoice(SortedDictionary<string, object> amData,
-            List<SortedDictionary<string, object>> adList,
-            List<SortedDictionary<string, object>> adList3,
-            SortedDictionary<string,object> keys, bool post)
+
+        public bool UpdateInvoice(IDictionary<string, object> amData,
+            List<IDictionary<string, object>> adList,
+            List<IDictionary<string, object>> adList3,
+            IDictionary<string, object> keys, bool post)
         {
             object stt_rec = amData["STT_REC"];
             var insert_success = false;
@@ -238,7 +238,7 @@ namespace V6AccountingBusiness.Invoices
 
 
                 //Insert AD
-                foreach (SortedDictionary<string, object> adRow in adList)
+                foreach (IDictionary<string, object> adRow in adList)
                 {
                     var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, ADStruct, adRow, false);
                     int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql);
@@ -251,7 +251,7 @@ namespace V6AccountingBusiness.Invoices
                     j += (execute > 0 ? 1 : 0);
                 }
                 //Insert AD3
-                foreach (SortedDictionary<string, object> adRow in adList3)
+                foreach (IDictionary<string, object> adRow in adList3)
                 {
                     var ad3Sql = SqlGenerator.GenInsertAMSql(V6Login.UserId, AD3Struct, adRow);
                     int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, ad3Sql);

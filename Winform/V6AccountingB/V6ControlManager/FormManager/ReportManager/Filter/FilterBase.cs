@@ -73,7 +73,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         protected string Alreport_advance = "";
 
         //Các biến xài tùy ý.
-        public SortedDictionary<string, object> ObjectDictionary = new SortedDictionary<string, object>();
+        public IDictionary<string, object> ObjectDictionary = new SortedDictionary<string, object>();
         public event StringValueChanged String1ValueChanged;
         public event CheckValueChanged Check1ValueChanged;
 
@@ -174,12 +174,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// <summary>
         /// Tham số thêm cho file rpt
         /// </summary>
-        public SortedDictionary<string, object> RptExtraParameters { get; set; }
+        public IDictionary<string, object> RptExtraParameters { get; set; }
         /// <summary>
         /// Chứa dữ liệu gán vào từ hàm GetFilterData của lớp cha
         /// </summary>
-        public SortedDictionary<string, object> ParentFilterData { get; set; }
-        public SortedDictionary<string, object> FilterData { get; set; }
+        public IDictionary<string, object> ParentFilterData { get; set; }
+        public IDictionary<string, object> FilterData { get; set; }
 
         protected delegate void SetParentAllRowHandle(DataGridView DataGridView1);
         protected event SetParentAllRowHandle SetParentAllRowEvent;

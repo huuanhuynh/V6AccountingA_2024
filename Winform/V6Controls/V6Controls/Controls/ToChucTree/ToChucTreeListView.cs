@@ -140,7 +140,7 @@ namespace V6Controls.Controls.ToChucTree
         /// Dữ liệu của dòng đang chọn.
         /// </summary>
         [Browsable(false)]
-        public SortedDictionary<string, object> SelectedItemData
+        public IDictionary<string, object> SelectedItemData
         {
             get
             {
@@ -214,7 +214,7 @@ namespace V6Controls.Controls.ToChucTree
         //    }
         //    return false;
         //}
-        public SortedDictionary<string, object> GetItemData(TreeListViewItem item)
+        public IDictionary<string, object> GetItemData(TreeListViewItem item)
         {
             try
             {
@@ -447,7 +447,7 @@ namespace V6Controls.Controls.ToChucTree
             AddNewNode(newRow);
         }
 
-        public void AddData(ICollection<SortedDictionary<string, object>> data)
+        public void AddData(ICollection<IDictionary<string, object>> data)
         {
             if (_data == null)
             {

@@ -552,7 +552,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// <param name="keys">Nếu data null thì load bằng keys</param>
         /// <param name="data">Gán dữ liệu này lên form</param>
         public override void InitValues(V6TableName tableName, V6Mode mode,
-            SortedDictionary<string, object> keys, SortedDictionary<string, object> data)
+            IDictionary<string, object> keys, IDictionary<string, object> data)
         {
             //TableName = tableName;
             Mode = mode;

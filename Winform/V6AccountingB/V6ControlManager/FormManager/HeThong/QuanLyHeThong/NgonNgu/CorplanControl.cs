@@ -76,7 +76,7 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu
             }
         }
 
-        private void GenOneLine(SortedDictionary<string, object> row, int index)
+        private void GenOneLine(IDictionary<string, object> row, int index)
         {
             try
             {
@@ -304,7 +304,7 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu
             }
         }
 
-        private void UpdateOneRow(SortedDictionary<string, object> dataDic, SortedDictionary<string, object> keys, Button button)
+        private void UpdateOneRow(IDictionary<string, object> dataDic, SortedDictionary<string, object> keys, Button button)
         {
             try
             {
@@ -399,7 +399,7 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu
                         _currentRowData.AddRange(dic, true);
 
                         //var cID = dic["ID"].ToString().Trim().ToUpper();
-                        var someData = new SortedDictionary<string, object>();
+                        IDictionary<string, object> someData = new SortedDictionary<string, object>();
                         for (int i = 0; i < langs.Length; i++)
                         {
                             string lang = langs[i];

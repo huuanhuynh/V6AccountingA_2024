@@ -2686,8 +2686,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         #region ==== Add Thread ====
         private bool flagAddFinish, flagAddSuccess;
-        private SortedDictionary<string, object> addDataAM;
-        private List<SortedDictionary<string, object>> addDataAD;
+        private IDictionary<string, object> addDataAM;
+        private List<IDictionary<string, object>> addDataAD;
         private string addErrorMessage = "";
 
         private void DoAddThread()
@@ -2801,7 +2801,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         #region ==== Edit Thread ====
         private bool flagEditFinish, flagEditSuccess;
-        private List<SortedDictionary<string, object>> editDataAD;
+        private List<IDictionary<string, object>> editDataAD;
         private string editErrorMessage = "";
 
         private void DoEditThread()
@@ -2831,7 +2831,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 var am_U_ID0 = AM.Rows[CurrentIndex]["User_id0"];
 
                 editDataAD = dataGridView1.GetData(_sttRec);
-                foreach (SortedDictionary<string, object> adRow in editDataAD)
+                foreach (IDictionary<string, object> adRow in editDataAD)
                 {
                     adRow["DATE0"] = am_DATE0;
                     adRow["TIME0"] = am_TIME0;
@@ -3613,7 +3613,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         }
 
         
-        private bool XuLySuaDetail(SortedDictionary<string, object> data)
+        private bool XuLySuaDetail(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -3795,7 +3795,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         {
             XuLyDetailClickAdd();
         }
-        private void DonDatHangBanDetail1_AddHandle(SortedDictionary<string,object> data)
+        private void DonDatHangBanDetail1_AddHandle(IDictionary<string,object> data)
         {
             if (ValidateData_Detail(data))
             {
@@ -3804,7 +3804,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
             throw new Exception(V6Text.ValidateFail);
         }
-        private void DonDatHangBanDetail1_EditHandle(SortedDictionary<string,object> data)
+        private void DonDatHangBanDetail1_EditHandle(IDictionary<string,object> data)
         {
             dataGridView1.UnLock();
             if (ValidateData_Detail(data))
@@ -4216,7 +4216,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             return false;
         }
 
-        private bool ValidateData_Detail(SortedDictionary<string, object> data)
+        private bool ValidateData_Detail(IDictionary<string, object> data)
         {
             try
             {
@@ -5161,14 +5161,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
         }
 
-        void chon_AcceptSelectEvent(List<SortedDictionary<string, object>> selectedDataList)
+        void chon_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList)
         {
             try
             {
                 detail1.MODE = V6Mode.View;
                 AD.Rows.Clear();
                 int addCount = 0, failCount = 0;
-                foreach (SortedDictionary<string, object> data in selectedDataList)
+                foreach (IDictionary<string, object> data in selectedDataList)
                 {
                     var newData = new SortedDictionary<string, object>(data);
                     if (_m_Ma_td == "1" && Txtma_td_ph.Text != "")

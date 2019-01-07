@@ -18,19 +18,19 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     {
         #region Biến toàn cục
 
-        protected SortedDictionary<string, object> _data;
+        protected IDictionary<string, object> _data;
         protected V6Mode _mode;
         protected string _stt_rec, _text,_uid;
         protected string _tableName = "APDMO";
 
         public event HandleResultData InsertSuccessEvent;
-        protected virtual void OnInsertSuccessEvent(SortedDictionary<string, object> datadic)
+        protected virtual void OnInsertSuccessEvent(IDictionary<string, object> datadic)
         {
             var handler = InsertSuccessEvent;
             if (handler != null) handler(datadic);
         }
         public event HandleResultData UpdateSuccessEvent;
-        protected virtual void OnUpdateSuccessEvent(SortedDictionary<string, object> datadic)
+        protected virtual void OnUpdateSuccessEvent(IDictionary<string, object> datadic)
         {
             var handler = UpdateSuccessEvent;
             if (handler != null) handler(datadic);
@@ -58,7 +58,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             InitializeComponent();
         }
 
-        public APDMO_F3F4(V6Mode mode, string stt_rec, SortedDictionary<string, object> data)
+        public APDMO_F3F4(V6Mode mode, string stt_rec, IDictionary<string, object> data)
         {
             _mode = mode;
             _stt_rec = stt_rec;

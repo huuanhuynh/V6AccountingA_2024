@@ -40,18 +40,18 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         /// <summary>
         /// Data đưa vào để edit.
         /// </summary>
-        protected SortedDictionary<string, object> DataOld { get; set; }
+        protected IDictionary<string, object> DataOld { get; set; }
         public DataTable AD{get; set; }
         
         /// <summary>
         /// Dùng khi gọi form update, chứa giá trị cũ trước khi update.
         /// </summary>
-        private SortedDictionary<string, object> _keys= new SortedDictionary<string, object>();
+        private IDictionary<string, object> _keys = new SortedDictionary<string, object>();
         /// <summary>
         /// Chứa data dùng để insert hoặc edit.
         /// </summary>
-        public SortedDictionary<string, object> DataDic { get; set; }
-        public SortedDictionary<string, object> DataDic2 { get; set; }
+        public IDictionary<string, object> DataDic { get; set; }
+        public IDictionary<string, object> DataDic2 { get; set; }
 
         protected DataGridViewRow _gv1EditingRow;
         protected DataGridViewRow _gv2EditingRow;
@@ -104,7 +104,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         /// <param name="keys">Nếu data null thì load bằng keys</param>
         /// <param name="data">Gán dữ liệu này lên form</param>
         public void MyInit(V6TableName tableName, V6Mode mode,
-            SortedDictionary<string, object> keys, SortedDictionary<string, object> data)
+            IDictionary<string, object> keys, IDictionary<string, object> data)
         {
             TableName = tableName;
             Mode = mode;
@@ -899,7 +899,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         /// <param name="data"></param>
         /// <param name="maCt"></param>
         /// <returns>Nếu hợp lệ trả về rỗng hoặc null, Nếu ko trả về message.</returns>
-        protected string ValidateDetailData(string maCt, V6TableStruct table2Struct, SortedDictionary<string, object> data)
+        protected string ValidateDetailData(string maCt, V6TableStruct table2Struct, IDictionary<string, object> data)
         {
             string error = "";
             try

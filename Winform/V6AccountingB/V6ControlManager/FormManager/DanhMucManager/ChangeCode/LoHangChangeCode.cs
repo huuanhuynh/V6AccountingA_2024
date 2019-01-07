@@ -14,7 +14,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
 {
     public partial class LoHangChangeCode : ChangeCodeBase0
     {
-        protected SortedDictionary<string, object> Data;
+        protected IDictionary<string, object> Data;
 
         public string AccessibleNameOldCode
         {
@@ -32,7 +32,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
             InitializeComponent();
         }
 
-        public LoHangChangeCode(SortedDictionary<string, object> data)
+        public LoHangChangeCode(IDictionary<string, object> data)
         {
             Data = data;
             InitializeComponent();

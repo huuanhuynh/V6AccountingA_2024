@@ -760,7 +760,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
-        private SortedDictionary<string, object> ReportDocumentParameters;
+        private IDictionary<string, object> ReportDocumentParameters;
 
         /// <summary>
         /// Lưu ý: chạy sau khi add dataSource để tránh lỗi nhập parameter value

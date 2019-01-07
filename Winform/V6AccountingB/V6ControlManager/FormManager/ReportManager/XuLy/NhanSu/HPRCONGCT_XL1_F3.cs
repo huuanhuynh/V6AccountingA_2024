@@ -30,13 +30,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         protected string _tableName = "PRCONG2";
 
         public event HandleResultData InsertSuccessEvent;
-        protected virtual void OnInsertSuccessEvent(SortedDictionary<string, object> datadic)
+        protected virtual void OnInsertSuccessEvent(IDictionary<string, object> datadic)
         {
             var handler = InsertSuccessEvent;
             if (handler != null) handler(datadic);
         }
         public event HandleResultData UpdateSuccessEvent;
-        protected virtual void OnUpdateSuccessEvent(SortedDictionary<string, object> datadic)
+        protected virtual void OnUpdateSuccessEvent(IDictionary<string, object> datadic)
         {
             var handler = UpdateSuccessEvent;
             if (handler != null) handler(datadic);

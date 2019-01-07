@@ -182,7 +182,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return;
                 }
 
-                var currentRowData = new SortedDictionary<string, object>();
+                IDictionary<string, object> currentRowData = new SortedDictionary<string, object>();
 
 
                 var new_like_stt_rec = V6BusinessHelper.GetNewLikeSttRec("S07", "Khoa_ctgs", "M");

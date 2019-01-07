@@ -10,9 +10,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 {
     public partial class ThongTinSucKhoe : V6FormControl
     {
-        public SortedDictionary<string, object> DataOld;
-        public SortedDictionary<string, object> DataDic { get; set; }
-        public SortedDictionary<string, object> _keys = new SortedDictionary<string, object>();
+        public IDictionary<string, object> DataOld;
+        public IDictionary<string, object> DataDic { get; set; }
+        public IDictionary<string, object> _keys = new SortedDictionary<string, object>();
         public ThongTinSucKhoe()
         {
             InitializeComponent();

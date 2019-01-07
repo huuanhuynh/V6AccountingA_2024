@@ -127,7 +127,7 @@ namespace V6ControlManager.FormManager.ToolManager
                         amData["SO_CT"] = newSttRec.Right(12);
                         var adData = loadAD.ToListDataDictionary(newSttRec);
 
-                        if (invoice.InsertInvoice(amData, adData, new List<SortedDictionary<string, object>>()))
+                        if (invoice.InsertInvoice(amData, adData, new List<IDictionary<string, object>>()))
                         {
                             log81 += newSttRec + "\r\n";
                         }
@@ -206,7 +206,7 @@ namespace V6ControlManager.FormManager.ToolManager
                         //amData["STT_REC"] = newSttRec;
                         var adData = loadAD.ToListDataDictionary();
                         var keys = new SortedDictionary<string, object> { { "STT_REC", oldSttRec } };
-                        if (invoice.UpdateInvoice(amData, adData, new List<SortedDictionary<string, object>>(), keys))
+                        if (invoice.UpdateInvoice(amData, adData, new List<IDictionary<string, object>>(), keys))
                         {
                             log81u += "Update ok " + oldSttRec + "\r\n";
                         }

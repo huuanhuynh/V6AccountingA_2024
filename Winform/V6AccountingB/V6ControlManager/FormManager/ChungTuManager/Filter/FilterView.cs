@@ -21,7 +21,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
     {
         //public string CONSTRING = "";
         public string DataField { get; set; }
-        public SortedDictionary<string, object> SelectedRowData = null; 
+        public IDictionary<string, object> SelectedRowData = null; 
         
         private string Ma_dm;
         

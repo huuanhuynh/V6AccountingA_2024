@@ -136,7 +136,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        void hoaDonForm_UpdateSuccessEvent(SortedDictionary<string, object> data)
+        void hoaDonForm_UpdateSuccessEvent(IDictionary<string, object> data)
         {
             try
             {

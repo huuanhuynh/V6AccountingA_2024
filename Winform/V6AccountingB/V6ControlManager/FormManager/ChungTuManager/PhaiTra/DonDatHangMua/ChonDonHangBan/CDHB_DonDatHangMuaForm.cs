@@ -25,7 +25,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.Chon
         //private bool __ready = false;
         private bool _viewMode;
         //private List<string> _orderListAD;
-        public delegate void AcceptSelectDataList(List<SortedDictionary<string, object>> selectedDataList);
+        public delegate void AcceptSelectDataList(List<IDictionary<string, object>> selectedDataList);
         public event AcceptSelectDataList AcceptSelectEvent;
 
         public bool ViewMode
@@ -521,7 +521,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.Chon
             _locKetQua.Refresh0(_locKetQua.dataGridView1);
         }
 
-        protected virtual void OnAcceptSelectEvent(List<SortedDictionary<string, object>> selecteddatalist)
+        protected virtual void OnAcceptSelectEvent(List<IDictionary<string, object>> selecteddatalist)
         {
             var handler = AcceptSelectEvent;
             if (handler != null) handler(selecteddatalist);

@@ -32,11 +32,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// <summary>
         /// Data đưa vào để edit. (data cũ, gán ban đầu lên form)
         /// </summary>
-        public SortedDictionary<string,object> DataOld { get; set; }
+        public IDictionary<string, object> DataOld { get; set; }
         /// <summary>
         /// Dùng khi gọi form update, chứa giá trị cũ trước khi update.
         /// </summary>
-        public SortedDictionary<string, object> _keys = new SortedDictionary<string, object>();
+        public IDictionary<string, object> _keys = new SortedDictionary<string, object>();
 
         protected Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
         /// <summary>
@@ -126,7 +126,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// <param name="keys">Nếu data null thì load bằng keys</param>
         /// <param name="data">Gán dữ liệu này lên form</param>
         public virtual void InitValues(V6TableName tableName, V6Mode mode,
-            SortedDictionary<string, object> keys, SortedDictionary<string, object> data)
+            IDictionary<string, object> keys, IDictionary<string, object> data)
         {
             TableName = tableName;
             _aldmConfig = ConfigManager.GetAldmConfig(TableName.ToString());

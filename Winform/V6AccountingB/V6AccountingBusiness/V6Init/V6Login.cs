@@ -714,7 +714,7 @@ namespace V6Init
         /// Nếu M_COMPANY_BY_MA_DVCS = 1 và CountDVCS = 1 thay thế các M_TEN... = DataDVCS
         /// </summary>
         /// <param name="reportDocumentParameters"></param>
-        public static void SetCompanyInfo(SortedDictionary<string, object> reportDocumentParameters)
+        public static void SetCompanyInfo(IDictionary<string, object> reportDocumentParameters)
         {
             var M_COMPANY_BY_MA_DVCS = V6Options.ContainsKey("M_COMPANY_BY_MA_DVCS") ? V6Options.GetValue("M_COMPANY_BY_MA_DVCS").Trim() : "";
             if (M_COMPANY_BY_MA_DVCS == "1" && MadvcsCount == 1)

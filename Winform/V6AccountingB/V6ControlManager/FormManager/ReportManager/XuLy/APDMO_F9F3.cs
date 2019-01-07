@@ -16,7 +16,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private string _stt_rec, _text, _uid;
         
         public event HandleResultData UpdateSuccessEvent;
-        protected virtual void OnUpdateSuccessEvent(SortedDictionary<string, object> datadic)
+        protected virtual void OnUpdateSuccessEvent(IDictionary<string, object> datadic)
         {
             var handler = UpdateSuccessEvent;
             if (handler != null) handler(datadic);

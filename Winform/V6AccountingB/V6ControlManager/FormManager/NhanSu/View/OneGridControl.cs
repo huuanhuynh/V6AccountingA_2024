@@ -257,7 +257,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
         /// Khi sửa thành công, cập nhập lại dòng được sửa, chưa kiểm ok cancel.
         /// </summary>
         /// <param name="data">Dữ liệu đã sửa</param>
-        private void f_UpdateSuccess(SortedDictionary<string, object> data)
+        private void f_UpdateSuccess(IDictionary<string, object> data)
         {
             try
             {
@@ -277,7 +277,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
             ReLoad();
         }
 
-        private void f_InsertSuccess(SortedDictionary<string, object> data)
+        private void f_InsertSuccess(IDictionary<string, object> data)
         {
             try
             {

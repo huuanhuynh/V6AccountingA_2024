@@ -460,7 +460,7 @@ namespace V6Controls.Controls
         /// Khi sửa thành công, cập nhập lại dòng được sửa, chưa kiểm ok cancel.
         /// </summary>
         /// <param name="data">Dữ liệu đã sửa</param>
-        private void f_UpdateSuccess(SortedDictionary<string, object> data)
+        private void f_UpdateSuccess(IDictionary<string, object> data)
         {
             try
             {
@@ -1150,13 +1150,13 @@ namespace V6Controls.Controls
         }
         
         //Reload
-        private void f_InsertSuccess(SortedDictionary<string, object> data)
+        private void f_InsertSuccess(IDictionary<string, object> data)
         {
             ReLoad();
         }
 
 
-        private SortedDictionary<string, object> _data = new SortedDictionary<string, object>();
+        private IDictionary<string, object> _data = new SortedDictionary<string, object>();
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (V6Login.UserRight.AllowEdit("", _tableName.ToUpper() + "6"))

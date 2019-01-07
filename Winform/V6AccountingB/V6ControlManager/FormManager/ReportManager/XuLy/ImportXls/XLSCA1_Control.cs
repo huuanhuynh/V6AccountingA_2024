@@ -204,7 +204,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private string f9Message = "";
         private string f9MessageAll = "";
         V6Invoice51 Invoice = new V6Invoice51();
-        private SortedDictionary<string, object> AM_DATA;
+        private IDictionary<string, object> AM_DATA;
         private void F9Thread()
         {
             try
@@ -275,7 +275,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         AM_DATA["STT_REC"] = sttRec;
                         var AD1_List = GET_AD1_List(data_rows, sttRec);
 
-                        if (Invoice.InsertInvoice(AM_DATA, AD1_List, new List<SortedDictionary<string, object>>(), new List<SortedDictionary<string, object>>()))//!!!!!!!!
+                        if (Invoice.InsertInvoice(AM_DATA, AD1_List, new List<IDictionary<string, object>>(), new List<IDictionary<string, object>>()))//!!!!!!!!
                         {
                             f9Message += "Đã thêm: " + item.Key;
                             //Danh dau xóa data.
@@ -307,7 +307,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
 
 
-        private SortedDictionary<string, object> GET_AM_Data(List<DataRow> dataRows, string sumColumns, string maxColumns)
+        private IDictionary<string, object> GET_AM_Data(List<DataRow> dataRows, string sumColumns, string maxColumns)
         {
             try
             {
@@ -353,7 +353,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
 
                 //Thêm dữ liệu khác.
-                var AM = am_row.ToDataDictionary();
+                IDictionary<string, object> AM = am_row.ToDataDictionary();
                 AM["IMTYPE"] = "X";
                 AM["MA_CT"] = Invoice.Mact;
                 //AM["MA_NX"] = "111";
@@ -458,15 +458,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 return AM;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                this.WriteExLog(GetType() + ".GET_AM_Data", ex);
                 return null;
             }
         }
 
-        private List<SortedDictionary<string, object>> GET_AD1_List(List<DataRow> dataRows, string sttRec)
+        private List<IDictionary<string, object>> GET_AD1_List(List<DataRow> dataRows, string sttRec)
         {
-            var result = new List<SortedDictionary<string, object>>();
+            var result = new List<IDictionary<string, object>>();
             for (int i = 0; i < dataRows.Count; i++)
             {
                 var one = dataRows[i].ToDataDictionary(sttRec);

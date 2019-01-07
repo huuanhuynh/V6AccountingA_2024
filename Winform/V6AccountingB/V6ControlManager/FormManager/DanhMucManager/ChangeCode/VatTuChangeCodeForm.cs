@@ -8,7 +8,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
 {
     public class VatTuChangeCodeForm : ChangeCodeFormBase
     {
-        public VatTuChangeCodeForm(SortedDictionary<string, object> data)
+        public VatTuChangeCodeForm(IDictionary<string, object> data)
             : base(data)
         {
             InitializeComponent();

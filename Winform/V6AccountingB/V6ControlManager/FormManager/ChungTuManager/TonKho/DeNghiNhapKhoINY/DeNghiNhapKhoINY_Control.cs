@@ -2564,8 +2564,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
 
         #region ==== Add Thread ====
         private bool flagAddFinish, flagAddSuccess;
-        private SortedDictionary<string, object> addDataAM;
-        private List<SortedDictionary<string, object>> addDataAD, addDataAD2;
+        private IDictionary<string, object> addDataAM;
+        private List<IDictionary<string, object>> addDataAD, addDataAD2;
         private string addErrorMessage = "";
 
         /// <summary>
@@ -2681,7 +2681,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
 
         #region ==== Edit Thread ====
         private bool flagEditFinish, flagEditSuccess;
-        private List<SortedDictionary<string, object>> editDataAD, editDataAD2;
+        private List<IDictionary<string, object>> editDataAD, editDataAD2;
         private string editErrorMessage = "";
 
         private void DoEditThread()
@@ -2711,14 +2711,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                 var am_U_ID0 = AM.Rows[CurrentIndex]["User_id0"];
 
                 editDataAD = dataGridView1.GetData(_sttRec);
-                foreach (SortedDictionary<string, object> adRow in editDataAD)
+                foreach (IDictionary<string, object> adRow in editDataAD)
                 {
                     adRow["DATE0"] = am_DATE0;
                     adRow["TIME0"] = am_TIME0;
                     adRow["USER_ID0"] = am_U_ID0;
                 }
                 editDataAD2 = dataGridView2.GetData(_sttRec);
-                foreach (SortedDictionary<string, object> adRow in editDataAD2)
+                foreach (IDictionary<string, object> adRow in editDataAD2)
                 {
                     adRow["DATE0"] = am_DATE0;
                     adRow["TIME0"] = am_TIME0;
@@ -3518,7 +3518,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             return true;
         }
 
-        private bool XuLyThemDetail2(SortedDictionary<string, object> data)
+        private bool XuLyThemDetail2(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -3570,7 +3570,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
         }
 
         
-        private bool XuLySuaDetail(SortedDictionary<string, object> data)
+        private bool XuLySuaDetail(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -3633,7 +3633,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
         }
 
         
-        private bool XuLySuaDetail2(SortedDictionary<string, object> data)
+        private bool XuLySuaDetail2(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -3863,7 +3863,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             XuLyDetail2ClickAdd(sender);
         }
 
-        private void hoaDonDetail1_AddHandle(SortedDictionary<string,object> data)
+        private void hoaDonDetail1_AddHandle(IDictionary<string,object> data)
         {
             if (ValidateData_Detail(data))
             {
@@ -3872,7 +3872,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             }
             throw new Exception(V6Text.ValidateFail);
         }
-        private void hoaDonDetail2_AddHandle(SortedDictionary<string,object> data)
+        private void hoaDonDetail2_AddHandle(IDictionary<string,object> data)
         {
             if (ValidateData_Detail2(data))
             {
@@ -3943,7 +3943,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        private void hoaDonDetail1_EditHandle(SortedDictionary<string, object> data)
+        private void hoaDonDetail1_EditHandle(IDictionary<string, object> data)
         {
             dataGridView1.UnLock();
             if (ValidateData_Detail(data))
@@ -3953,7 +3953,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             }
             throw new Exception(V6Text.ValidateFail);
         }
-        private void hoaDonDetail2_EditHandle(SortedDictionary<string,object> data)
+        private void hoaDonDetail2_EditHandle(IDictionary<string,object> data)
         {
             if (ValidateData_Detail2(data))
             {
@@ -4658,7 +4658,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
 
         }
 
-        private bool ValidateData_Detail(SortedDictionary<string, object> data)
+        private bool ValidateData_Detail(IDictionary<string, object> data)
         {
             try
             {
@@ -4682,7 +4682,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             return true;
         }
 
-        private bool ValidateData_Detail2(SortedDictionary<string, object> data)
+        private bool ValidateData_Detail2(IDictionary<string, object> data)
         {
             try
             {
@@ -5046,14 +5046,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             }
         }
 
-        void chon_AcceptSelectEvent(List<SortedDictionary<string, object>> selectedDataList)
+        void chon_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList)
         {
             try
             {
                 detail1.MODE = V6Mode.View;
                 AD.Rows.Clear();
                 int addCount = 0, failCount = 0;
-                foreach (SortedDictionary<string, object> data in selectedDataList)
+                foreach (IDictionary<string, object> data in selectedDataList)
                 {
                     var newData = new SortedDictionary<string, object>(data);
                     All_Objects["data"] = newData;

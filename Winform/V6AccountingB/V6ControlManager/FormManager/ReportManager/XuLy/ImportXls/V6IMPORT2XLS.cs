@@ -231,7 +231,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 FixData();
                 All_Objects["_data"] = _data;
-                V6ControlsHelper.InvokeMethodDynamic(XLS_program, MA_IMEX + "AFTERFIXDATA", All_Objects);
+                string methodName = MA_IMEX + "AFTERFIXDATA";
+                SetStatusText(methodName);
+                V6ControlsHelper.InvokeMethodDynamic(XLS_program, methodName, All_Objects);
                 dataGridView1.DataSource = _data;
                 CheckDataInGridView(STATUS_INSERT);
             }
@@ -370,7 +372,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         switch (_selected_ma_ct)
                         {
                             case "SOA":
-                                t = new Thread(F9Thread_SOA);
+                                Invoice = new V6Invoice81();
                                 break;
                             default:
                                 this.ShowWarningMessage(V6Text.NotSupported + " " + _selected_ma_ct);
@@ -379,7 +381,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 t = new Thread(F9Thread);
                                 break;
                         }
-                        
+
+                        t = new Thread(F9Thread_SOA);
                         t.SetApartmentState(ApartmentState.STA);
                         CheckForIllegalCrossThreadCalls = false;
                         t.IsBackground = true;
@@ -579,8 +582,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             f9Running = false;
         }
 
-        V6Invoice81 Invoice81 = new V6Invoice81();
-        private SortedDictionary<string, object> AM_DATA;
+        V6InvoiceBase Invoice = null;
+        private IDictionary<string, object> AM_DATA;
+        private bool chkAutoSoCt_Checked;
         private void F9Thread_SOA()
         {
             try
@@ -603,10 +607,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         dateMax = date;
                     }
                     string so_ct = row["SO_CT"].ToString().Trim().ToUpper();
+                    string ma_kh = row["MA_KH"].ToString().Trim().ToUpper();
                     string ngay_ct = date.ToString("yyyyMMdd");
                     if (so_ct != "" && ngay_ct != "")
                     {
-                        var key = so_ct + ":" + ngay_ct;
+                        var key = string.Format("[{0}]_[{1}]_[{2}]", so_ct, ngay_ct, ma_kh);
                         if (data_dictionary.ContainsKey(key))
                         {
                             data_dictionary[key].Add(row);
@@ -631,7 +636,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         new SqlParameter("@Ngay_ct1", dateMin.Value.ToString("yyyyMMdd")),
                         new SqlParameter("@Ngay_ct2", dateMax.Value.ToString("yyyyMMdd")),
-                        new SqlParameter("@Ma_ct", Invoice81.Mact),
+                        new SqlParameter("@Ma_ct", Invoice.Mact),
                         new SqlParameter("@UserID", V6Login.UserId),
                         new SqlParameter("@KeyAM", "IMTYPE='X'")
                     };
@@ -646,11 +651,19 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         AM_DATA = GET_AM_Data(data_rows, "SO_LUONG,SO_LUONG1,TIEN_NT2,TIEN_NT,TIEN2,TIEN,THUE_NT,THUE,CK_NT,CK,GG_NT,GG", "MA_NX");
 
-                        var sttRec = V6BusinessHelper.GetNewSttRec(Invoice81.Mact);
+                        var sttRec = V6BusinessHelper.GetNewSttRec(Invoice.Mact);
+                        if (chkAutoSoCt_Checked) // Tự động tạo số chứng từ.
+                        {
+                            string ma_sonb;
+                            DateTime ngay_ct = ObjectAndString.ObjectToFullDateTime(AM_DATA["NGAY_CT"]);
+                            var so_ct = V6BusinessHelper.GetNewSoCt_date(Invoice.Mact, ngay_ct, "1", out ma_sonb);
+                            AM_DATA["SO_CT"] = so_ct;
+                            AM_DATA["MA_SONB"] = ma_sonb;
+                        }
                         AM_DATA["STT_REC"] = sttRec;
                         var AD1_List = GET_AD1_List(data_rows, sttRec);
 
-                        if (Invoice81.InsertInvoice(AM_DATA, AD1_List, new List<SortedDictionary<string, object>>()))//!!!!!!!!
+                        if (Invoice.InsertInvoice(AM_DATA, AD1_List, new List<IDictionary<string, object>>()))//!!!!!!!!
                         {
                             f9Message += "Đã thêm: " + item.Key;
                             //Danh dau xóa data.
@@ -661,8 +674,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         }
                         else
                         {
-                            f9Message += item.Key + ": " + "Thêm lỗi " + Invoice81.V6Message;
-                            f9MessageAll += item.Key + ": " + "Thêm lỗi " + Invoice81.V6Message;
+                            f9Message += item.Key + ": " + "Thêm lỗi " + Invoice.V6Message;
+                            f9MessageAll += item.Key + ": " + "Thêm lỗi " + Invoice.V6Message;
                         }
                     }
                     catch (Exception ex)
@@ -682,7 +695,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
 
 
-        private SortedDictionary<string, object> GET_AM_Data(List<DataRow> dataRows, string sumColumns, string maxColumns)
+        private IDictionary<string, object> GET_AM_Data(List<DataRow> dataRows, string sumColumns, string maxColumns)
         {
             try
             {
@@ -730,7 +743,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //Thêm dữ liệu khác.
                 var AM = am_row.ToDataDictionary();
                 AM["IMTYPE"] = "X";
-                AM["MA_CT"] = Invoice81.Mact;
+                AM["MA_CT"] = Invoice.Mact;
                 //AM["MA_NX"] = "111";
                 //AM["MA_NT"] = "VND";
                 //AM["TY_GIA"] = 1;
@@ -833,19 +846,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 return AM;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                this.WriteExLog(GetType() + ".GET_AM_Data", ex);
                 return null;
             }
         }
 
-        private List<SortedDictionary<string, object>> GET_AD1_List(List<DataRow> dataRows, string sttRec)
+        private List<IDictionary<string, object>> GET_AD1_List(List<DataRow> dataRows, string sttRec)
         {
-            var result = new List<SortedDictionary<string, object>>();
+            List<IDictionary<string, object>> result = new List<IDictionary<string, object>>();
             for (int i = 0; i < dataRows.Count; i++)
             {
                 var one = dataRows[i].ToDataDictionary(sttRec);
-                one["MA_CT"] = Invoice81.Mact;
+                one["MA_CT"] = Invoice.Mact;
                 one["STT_REC0"] = ("00000" + (i + 1)).Right(5);
                 if (one.ContainsKey("SO_LUONG1")) one["SO_LUONG"] = one["SO_LUONG1"];
 
@@ -928,7 +942,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// Gọi hàm động sửa dữ liệu trước khi thêm vào csdl.
         /// </summary>
         /// <param name="dataDic"></param>
-        private void InvokeBeforeInsert(SortedDictionary<string, object> dataDic)
+        private void InvokeBeforeInsert(IDictionary<string, object> dataDic)
         {
             try
             {
@@ -1260,6 +1274,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void btnXemMauExcel_Click(object sender, EventArgs e)
         {
             V6ControlFormHelper.OpenExcelTemplate(_selected_ma_ct + "_ALL.XLS", "IMPORT_EXCEL");
+        }
+
+        private void chkAutoSoCt_CheckedChanged(object sender, EventArgs e)
+        {
+            chkAutoSoCt_Checked = chkAutoSoCt.Checked;
         }
 
 

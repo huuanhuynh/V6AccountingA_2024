@@ -422,7 +422,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
         
-        protected SortedDictionary<string, object> PreparingDataAM(V6InvoiceBase invoice)
+        protected IDictionary<string, object> PreparingDataAM(V6InvoiceBase invoice)
         {
             var addDataAM = GetData();
             addDataAM["STT_REC"] = _sttRec;
@@ -1149,7 +1149,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <param name="Invoice"></param>
         /// <param name="data"></param>
         /// <returns>Nếu hợp lệ trả về rỗng hoặc null, Nếu ko trả về message.</returns>
-        protected string ValidateDetailData(V6InvoiceBase Invoice, SortedDictionary<string, object> data)
+        protected string ValidateDetailData(V6InvoiceBase Invoice, IDictionary<string, object> data)
         {
             string error = "";
             try

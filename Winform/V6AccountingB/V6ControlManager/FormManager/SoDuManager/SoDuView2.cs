@@ -430,7 +430,7 @@ namespace V6ControlManager.FormManager.SoDuManager
         /// <summary>
         /// Khi đóng form sửa, cập nhập lại dòng được sửa, chưa kiểm ok cancel.
         /// </summary>
-        void f_UpdateSuccess(SoDuAddEditControlVirtual sender, SortedDictionary<string, object> data)
+        void f_UpdateSuccess(SoDuAddEditControlVirtual sender, IDictionary<string, object> data)
         {
             if (data == null) return;
             DataGridViewRow row = null;
@@ -1007,13 +1007,13 @@ namespace V6ControlManager.FormManager.SoDuManager
         }
 
         //Reload
-        void f_InsertSuccess(SoDuAddEditControlVirtual sender, SortedDictionary<string, object> dataDic)
+        void f_InsertSuccess(SoDuAddEditControlVirtual sender, IDictionary<string, object> datadic)
         {
             ReLoad();
         }
 
 
-        private SortedDictionary<string, object> _data = new SortedDictionary<string, object>();
+        private IDictionary<string, object> _data = new SortedDictionary<string, object>();
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (V6Login.UserRight.AllowEdit("", "B" + _maCt))
@@ -1277,7 +1277,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                 this.ShowErrorMessage(ex.Message, "DanhMucView DoChangeCode");
             }
         }
-        private void f_DoChangeCodeFinish(SortedDictionary<string, object> data)
+        private void f_DoChangeCodeFinish(IDictionary<string, object> data)
         {
             if (ADTables.ContainsKey(CurrentSttRec))
             {

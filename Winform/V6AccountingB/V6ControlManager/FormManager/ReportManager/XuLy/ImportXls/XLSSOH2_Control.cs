@@ -173,7 +173,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private string f9Message = "";
         private string f9MessageAll = "";
         V6Invoice91 Invoice = new V6Invoice91();
-        private SortedDictionary<string, object> AM_DATA;
+        private IDictionary<string, object> AM_DATA;
         private void F9Thread()
         {
             try
@@ -182,7 +182,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 f9MessageAll = "";
 
                 //Gom chi tiet theo SO_CT va NGAY_CT
-                Dictionary<string, List<SortedDictionary<string, object>>> data_dictionary = new Dictionary<string, List<SortedDictionary<string, object>>>();
+                Dictionary<string, List<IDictionary<string, object>>> data_dictionary = new Dictionary<string, List<IDictionary<string, object>>>();
                 DateTime? dateMin = null, dateMax = null;
 
                 // Duyệt qua từng cột MA_KH (có giá trị là số lượng.
@@ -250,7 +250,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             }
                             else
                             {
-                                data_dictionary.Add(key, new List<SortedDictionary<string, object>> { rowData });
+                                data_dictionary.Add(key, new List<IDictionary<string, object>> { rowData });
                             }
                         }
                         else
@@ -277,7 +277,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
 
                 //Xử lý từng nhóm dữ liệu
-                foreach (KeyValuePair<string, List<SortedDictionary<string, object>>> item in data_dictionary)
+                foreach (KeyValuePair<string, List<IDictionary<string, object>>> item in data_dictionary)
                 {
                     var data_rows = item.Value;
                     try
@@ -320,7 +320,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
 
 
-        private SortedDictionary<string, object> GET_AM_Data(List<SortedDictionary<string, object>> dataRows, string sumColumns, string maxColumns)
+        private IDictionary<string, object> GET_AM_Data(List<IDictionary<string, object>> dataRows, string sumColumns, string maxColumns)
         {
             try
             {
@@ -471,15 +471,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 return AM;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                this.WriteExLog(GetType() + ".GET_AM_Data", ex);
                 return null;
             }
         }
 
-        private List<SortedDictionary<string, object>> GET_AD1_List(List<SortedDictionary<string, object>> dataRows, string sttRec)
+        private List<IDictionary<string, object>> GET_AD1_List(List<IDictionary<string, object>> dataRows, string sttRec)
         {
-            var result = new List<SortedDictionary<string, object>>();
+            var result = new List<IDictionary<string, object>>();
             for (int i = 0; i < dataRows.Count; i++)
             {
                 var one = dataRows[i];//.ToDataDictionary(sttRec);

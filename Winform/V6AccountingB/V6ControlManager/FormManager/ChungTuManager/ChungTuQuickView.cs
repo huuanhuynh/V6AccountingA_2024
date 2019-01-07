@@ -21,7 +21,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         public event HandleData SelectedIndexChanged;
         public bool EnableChangeInvoice { get; set; }
 
-        protected virtual void OnSelectedIndexChanged(SortedDictionary<string, object> data)
+        protected virtual void OnSelectedIndexChanged(IDictionary<string, object> data)
         {
             var handler = SelectedIndexChanged;
             if (handler != null) handler(data);

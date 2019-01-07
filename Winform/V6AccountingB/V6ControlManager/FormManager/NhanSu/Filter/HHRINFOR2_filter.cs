@@ -65,7 +65,7 @@ namespace V6ControlManager.FormManager.NhanSu.Filter
         }
 
 
-        //public override void SetData(SortedDictionary<string, object> data)
+        //public override void SetData(IDictionary<string, object> data)
         //{
         //    //base.SetData(data);
         //}

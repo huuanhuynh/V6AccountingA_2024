@@ -182,7 +182,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private string f9Error = "";
         private string f9ErrorAll = "";
         V6Invoice71 Invoice = new V6Invoice71();
-        private SortedDictionary<string, object> AM_DATA; 
+        private IDictionary<string, object> AM_DATA; 
         private void F9Thread()
         {
             try
@@ -257,7 +257,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var AD1_List = GET_AD1_List(data_rows, sttRec);
                         var AD2_List = GET_AD2_List(data_rows, sttRec);
 
-                        if (Invoice.InsertInvoice(AM_DATA, AD1_List, AD2_List, new List<SortedDictionary<string, object>>()))//!!!!!!!!
+                        if (Invoice.InsertInvoice(AM_DATA, AD1_List, AD2_List, new List<IDictionary<string, object>>()))//!!!!!!!!
                         {
                             f9Error += "Đã thêm: " + item.Key;
                             //Danh dau xóa data.
@@ -289,7 +289,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
 
 
-        private SortedDictionary<string, object> GET_AM_Data(List<DataRow> dataRows, string sumColumns, string maxColumns)
+        private IDictionary<string, object> GET_AM_Data(List<DataRow> dataRows, string sumColumns, string maxColumns)
         {
             try
             {
@@ -414,9 +414,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private List<SortedDictionary<string, object>> GET_AD1_List(List<DataRow> dataRows, string sttRec)
+        private List<IDictionary<string, object>> GET_AD1_List(List<DataRow> dataRows, string sttRec)
         {
-            var result = new List<SortedDictionary<string, object>>();
+            var result = new List<IDictionary<string, object>>();
             for (int i = 0; i < dataRows.Count; i++)
             {
                 var one = dataRows[i].ToDataDictionary(sttRec);
@@ -502,9 +502,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// <param name="dataRows"></param>
         /// <param name="sttRec"></param>
         /// <returns></returns>
-        private List<SortedDictionary<string, object>> GET_AD2_List(List<DataRow> dataRows, string sttRec)
+        private List<IDictionary<string, object>> GET_AD2_List(List<DataRow> dataRows, string sttRec)
         {
-            var result = new List<SortedDictionary<string, object>>();
+            var result = new List<IDictionary<string, object>>();
             var newRow = new SortedDictionary<string,object>();
             newRow["SO_CT"] = AM_DATA["SO_CT"];
             newRow["NGAY_CT"] = AM_DATA["NGAY_CT"];

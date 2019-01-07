@@ -322,7 +322,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             return d;
         }
 
-        public void SetData(SortedDictionary<string, object> d)
+        public void SetData(IDictionary<string, object> d)
         {
             try
             {

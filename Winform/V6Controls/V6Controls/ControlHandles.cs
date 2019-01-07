@@ -10,14 +10,14 @@ namespace V6Controls
     /// </summary>
     /// <param name="data"></param>
     /// <returns></returns>
-    public delegate void HandleData(SortedDictionary<string, object> data);
+    public delegate void HandleData(IDictionary<string, object> data);
     public delegate void DataTableHandler(DataTable table);
     public delegate void DataSelectHandler(string idList, List<IDictionary<string, object>> dataList);
     /// <summary>
     /// Xử lý dữ liệu kết quả (nếu muốn)
     /// </summary>
     /// <param name="dataDic"></param>
-    public delegate void HandleResultData(SortedDictionary<string, object> dataDic);
+    public delegate void HandleResultData(IDictionary<string, object> dataDic);
     
     public delegate void ControlEventHandle(object sender);//EventHandler(s,e);
     public delegate void SimpleHandle();

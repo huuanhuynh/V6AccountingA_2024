@@ -18,13 +18,13 @@ namespace V6AccountingBusiness
         }
         
         #region === SELECT ====
-        
-        public V6SelectResult Select(V6TableName tableName, SortedDictionary<string, object> keys = null)
+
+        public V6SelectResult Select(V6TableName tableName, IDictionary<string, object> keys = null)
         {
             return Select(tableName.ToString(), keys);
         }
 
-        public V6SelectResult Select(string tableName, SortedDictionary<string, object> keys = null)
+        public V6SelectResult Select(string tableName, IDictionary<string, object> keys = null)
         {
             if (!V6Login.UserRight.AllowSelect(tableName)) return new V6SelectResult();
             SqlParameter[] plist;
@@ -119,7 +119,7 @@ namespace V6AccountingBusiness
         /// <param name="data">key toàn UPPER</param>
         /// <param name="keys"></param>
         /// <returns></returns>
-        public int Update(V6TableName tableName, SortedDictionary<string, object> data, SortedDictionary<string, object> keys)
+        public int Update(V6TableName tableName, IDictionary<string, object> data, IDictionary<string, object> keys)
         {
             return Update(tableName.ToString(), data, keys);
         }
@@ -132,7 +132,7 @@ namespace V6AccountingBusiness
         /// <param name="keys"></param>
         /// <param name="transaction"></param>
         /// <returns></returns>
-        public int Update(string tableName, SortedDictionary<string, object> data, SortedDictionary<string, object> keys, SqlTransaction transaction = null)
+        public int Update(string tableName, IDictionary<string, object> data, IDictionary<string, object> keys, SqlTransaction transaction = null)
         {
             var structTable = V6SqlconnectHelper.GetTableStruct(tableName);
             var sql = SqlGenerator.GenUpdateSql(V6Login.UserId, tableName, structTable, data, keys);
@@ -145,12 +145,12 @@ namespace V6AccountingBusiness
         #endregion edit
 
         #region ==== DELETE ====
-        public int Delete(V6TableName tableName, SortedDictionary<string, object> keys)
+        public int Delete(V6TableName tableName, IDictionary<string, object> keys)
         {
             return Delete(tableName.ToString(), keys);
         }
 
-        public int Delete(string tableName, SortedDictionary<string, object> keys)
+        public int Delete(string tableName, IDictionary<string, object> keys)
         {
             if (keys == null || keys.Count == 0)
             {
@@ -159,12 +159,12 @@ namespace V6AccountingBusiness
             return Delete(V6Login.UserId, tableName, keys);
         }
 
-        public int Delete(SqlTransaction tran, V6TableName tableName, SortedDictionary<string, object> keys)
+        public int Delete(SqlTransaction tran, V6TableName tableName, IDictionary<string, object> keys)
         {
             return Delete(tran, tableName.ToString(), keys);
         }
 
-        public int Delete(SqlTransaction tran, string tableName, SortedDictionary<string, object> keys)
+        public int Delete(SqlTransaction tran, string tableName, IDictionary<string, object> keys)
         {
             if (keys == null || keys.Count == 0)
             {
@@ -173,7 +173,7 @@ namespace V6AccountingBusiness
             return Delete(V6Login.UserId, tableName, keys, tran);
         }
 
-        public int Delete(int userId, string tableName, SortedDictionary<string, object> keys, SqlTransaction transaction = null)
+        public int Delete(int userId, string tableName, IDictionary<string, object> keys, SqlTransaction transaction = null)
         {
             var structTable = V6SqlconnectHelper.GetTableStruct(tableName);
             var sql = SqlGenerator.GenDeleteSql(structTable, keys);

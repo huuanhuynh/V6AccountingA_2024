@@ -15,20 +15,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     {
         #region Biến toàn cục
 
-        protected SortedDictionary<string, object> _data;
+        protected IDictionary<string, object> _data;
         protected V6Mode _mode;
         protected string _text, _uID;
         //protected string _uid;
         protected string _tableName = "Acosxlt_cogtsp";
 
         public event HandleResultData InsertSuccessEvent;
-        protected virtual void OnInsertSuccessEvent(SortedDictionary<string, object> datadic)
+        protected virtual void OnInsertSuccessEvent(IDictionary<string, object> datadic)
         {
             var handler = InsertSuccessEvent;
             if (handler != null) handler(datadic);
         }
         public event HandleResultData UpdateSuccessEvent;
-        protected virtual void OnUpdateSuccessEvent(SortedDictionary<string, object> datadic)
+        protected virtual void OnUpdateSuccessEvent(IDictionary<string, object> datadic)
         {
             var handler = UpdateSuccessEvent;
             if (handler != null) handler(datadic);
@@ -56,7 +56,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             InitializeComponent();
         }
 
-        public ZACOSXLT_TINHGIA_F3(V6Mode mode, string uID, SortedDictionary<string, object> data)
+        public ZACOSXLT_TINHGIA_F3(V6Mode mode, string uID, IDictionary<string, object> data)
         {
             _mode = mode;
             _uID = uID;

@@ -143,7 +143,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected int _oldIndex = -1;
 
-        protected virtual void OnUpdateSuccessEvent(SortedDictionary<string, object> datadic)
+        protected virtual void OnUpdateSuccessEvent(IDictionary<string, object> datadic)
         {
             var handler = UpdateSuccessEvent;
             if (handler != null) handler(datadic);

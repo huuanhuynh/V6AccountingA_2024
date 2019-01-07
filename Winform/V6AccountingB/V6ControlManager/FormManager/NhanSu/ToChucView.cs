@@ -137,7 +137,7 @@ namespace V6ControlManager.FormManager.NhanSu
                 int fSort = ObjectAndString.ObjectToInt(selectedItemData["FSORT"]);
                 string tableName = "";
 
-                var someData = new SortedDictionary<string, object>();
+                IDictionary<string, object> someData = new SortedDictionary<string, object>();
                 someData["STATUS"] = 1;
                 if (fSort == 9 || toChucTreeListView1.SelectedItems[0].Items.Count == 0)
                 {
@@ -234,7 +234,7 @@ namespace V6ControlManager.FormManager.NhanSu
                 var selectedItemData = toChucTreeListView1.SelectedItemData;
                 int fSort = ObjectAndString.ObjectToInt(selectedItemData["FSORT"]);
                 string tableName;
-                var someData = new SortedDictionary<string, object>();
+                IDictionary<string, object> someData = new SortedDictionary<string, object>();
 
                 if (fSort == 9)
                 {
@@ -304,7 +304,7 @@ namespace V6ControlManager.FormManager.NhanSu
                 var selectedItemData = toChucTreeListView1.SelectedItemData;
                 int fSort = ObjectAndString.ObjectToInt(selectedItemData["FSORT"]);
                 string tableName;
-                var someData = new SortedDictionary<string, object>();
+                IDictionary<string, object> someData = new SortedDictionary<string, object>();
 
                 if (fSort == 9)
                 {
@@ -371,7 +371,7 @@ namespace V6ControlManager.FormManager.NhanSu
         /// Khi sửa thành công, cập nhập lại dòng được sửa, chưa kiểm ok cancel.
         /// </summary>
         /// <param name="data">Dữ liệu đã sửa</param>
-        private void f_UpdateSuccess(SortedDictionary<string, object> data)
+        private void f_UpdateSuccess(IDictionary<string, object> data)
         {
             try
             {
@@ -400,7 +400,7 @@ namespace V6ControlManager.FormManager.NhanSu
                 var selectedItemData = toChucTreeListView1.SelectedItemData;
                 int fSort = ObjectAndString.ObjectToInt(selectedItemData["FSORT"]);
                 string tableName;
-                var someData = new SortedDictionary<string, object>();
+                IDictionary<string, object> someData = new SortedDictionary<string, object>();
                 //AldmConfig aldm_config = new AldmConfig();
                 //V6lookupConfig v6lookup_config = new V6lookupConfig();
                 
@@ -465,7 +465,7 @@ namespace V6ControlManager.FormManager.NhanSu
             }
         }
 
-        private void f_DoChangeCodeFinish(SortedDictionary<string, object> data)
+        private void f_DoChangeCodeFinish(IDictionary<string, object> data)
         {
             ReLoad();
         }
@@ -682,7 +682,7 @@ namespace V6ControlManager.FormManager.NhanSu
                 var selectedItemData = toChucTreeListView1.SelectedItemData;
                 int fSort = ObjectAndString.ObjectToInt(selectedItemData["FSORT"]);
                 string tableName;
-                var someData = new SortedDictionary<string, object>();
+                IDictionary<string, object> someData = new SortedDictionary<string, object>();
 
                 if (fSort == 9)
                 {
@@ -746,7 +746,7 @@ namespace V6ControlManager.FormManager.NhanSu
                 var selectedItemData = toChucTreeListView1.SelectedItemData;
                 int fSort = ObjectAndString.ObjectToInt(selectedItemData["FSORT"]);
                 string tableName;
-                var someData = new SortedDictionary<string, object>();
+                IDictionary<string, object> someData = new SortedDictionary<string, object>();
                 AldmConfig aldm_config = new AldmConfig();
                 V6lookupConfig v6lookup_config = new V6lookupConfig();
                 string reportFile = "", reportTitle = "", reportTitle2 = "";
@@ -989,14 +989,14 @@ namespace V6ControlManager.FormManager.NhanSu
         }
 
         //Reload
-        private void f_InsertSuccess(SortedDictionary<string, object> data)
+        private void f_InsertSuccess(IDictionary<string, object> data)
         {
             ReLoad();
             //treeListViewAuto1.AddData(data);
         }
 
 
-        private SortedDictionary<string, object> _data = new SortedDictionary<string, object>();
+        private IDictionary<string, object> _data = new SortedDictionary<string, object>();
         private void btnSua_Click(object sender, EventArgs e)
         {
             DoEdit();

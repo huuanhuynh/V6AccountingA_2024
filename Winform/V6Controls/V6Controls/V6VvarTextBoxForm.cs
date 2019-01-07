@@ -278,7 +278,7 @@ namespace V6Controls
             }
         }
 
-        void f_UpdateSuccessEvent(SortedDictionary<string, object> data)
+        void f_UpdateSuccessEvent(IDictionary<string, object> data)
         {
             try
             {
@@ -492,7 +492,7 @@ namespace V6Controls
             }
         }
 
-        void f_InsertSuccessEvent(SortedDictionary<string, object> dataDic)
+        void f_InsertSuccessEvent(IDictionary<string, object> dataDic)
         {
             try
             {

@@ -578,7 +578,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// Gọi hàm động sửa dữ liệu trước khi thêm vào csdl.
         /// </summary>
         /// <param name="dataDic"></param>
-        private void InvokeBeforeInsert(SortedDictionary<string, object> dataDic)
+        private void InvokeBeforeInsert(IDictionary<string, object> dataDic)
         {
             try
             {

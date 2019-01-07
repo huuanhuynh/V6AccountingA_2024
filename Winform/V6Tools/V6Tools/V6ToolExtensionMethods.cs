@@ -307,12 +307,12 @@ namespace V6Tools
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static List<SortedDictionary<string, object>> ToListDataDictionary(this DataTable data)
+        public static List<IDictionary<string, object>> ToListDataDictionary(this DataTable data)
         {
             return (from DataRow row in data.Rows select row.ToDataDictionary()).ToList();
         }
 
-        public static SortedDictionary<string, DataRow> ToRowDictionary(this DataTable data, string keyField)
+        public static IDictionary<string, DataRow> ToRowDictionary(this DataTable data, string keyField)
         {
             if (!data.Columns.Contains(keyField))
                 throw new Exception(string.Format("No keyField [{0}] column.", keyField));
@@ -340,7 +340,7 @@ namespace V6Tools
             return newData;
         }
 
-        public static List<SortedDictionary<string, object>> ToListDataDictionary(this List<DataRow> data)
+        public static List<IDictionary<string, object>> ToListDataDictionary(this List<DataRow> data)
         {
             return (from DataRow row in data select row.ToDataDictionary()).ToList();
         }
@@ -351,17 +351,17 @@ namespace V6Tools
         /// <param name="data"></param>
         /// <param name="sttRec"></param>
         /// <returns></returns>
-        public static List<SortedDictionary<string, object>> ToListDataDictionary(this DataTable data, string sttRec)
+        public static List<IDictionary<string, object>> ToListDataDictionary(this DataTable data, string sttRec)
         {
             return (from DataRow row in data.Rows select row.ToDataDictionary(sttRec)).ToList();
         }
 
-        public static List<SortedDictionary<string, object>> ToListDataDictionary(this List<DataRow> data, string sttRec)
+        public static List<IDictionary<string, object>> ToListDataDictionary(this List<DataRow> data, string sttRec)
         {
             return (from DataRow row in data select row.ToDataDictionary(sttRec)).ToList();
         }
 
-        public static SortedDictionary<string, object> DataRowToDataDictionary(DataRow row)
+        public static IDictionary<string, object> DataRowToDataDictionary(DataRow row)
         {
             var DataDic = new SortedDictionary<string, object>();
             if (row == null) return DataDic;
@@ -371,7 +371,7 @@ namespace V6Tools
             }
             return DataDic;
         }
-        public static SortedDictionary<string, object> DataGridViewRowToDataDictionary(DataGridViewRow row)
+        public static IDictionary<string, object> DataGridViewRowToDataDictionary(DataGridViewRow row)
         {
             if (row == null) return null;
             var DataDic = new SortedDictionary<string, object>();
@@ -381,16 +381,16 @@ namespace V6Tools
             }
             return DataDic;
         }
-        public static SortedDictionary<string, object> ToDataDictionary(this DataRow row)
+        public static IDictionary<string, object> ToDataDictionary(this DataRow row)
         {
             return DataRowToDataDictionary(row);
         }
-        public static SortedDictionary<string, object> ToDataDictionary(this DataGridViewRow row)
+        public static IDictionary<string, object> ToDataDictionary(this DataGridViewRow row)
         {
             return DataGridViewRowToDataDictionary(row);
         }
 
-        public static SortedDictionary<string, object> DataRowToDataDictionary(DataRow row, string sttRec)
+        public static IDictionary<string, object> DataRowToDataDictionary(DataRow row, string sttRec)
         {
             var DataDic = new SortedDictionary<string, object>();
             if (row == null) return DataDic;
@@ -401,7 +401,7 @@ namespace V6Tools
             DataDic["STT_REC"] = sttRec;
             return DataDic;
         }
-        public static SortedDictionary<string, object> ToDataDictionary(this DataRow row, string sttRec)
+        public static IDictionary<string, object> ToDataDictionary(this DataRow row, string sttRec)
         {
             return DataRowToDataDictionary(row, sttRec);
             var DataDic = new SortedDictionary<string, object>();

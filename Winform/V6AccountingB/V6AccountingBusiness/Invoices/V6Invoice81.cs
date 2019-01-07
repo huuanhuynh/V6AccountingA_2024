@@ -28,10 +28,10 @@ namespace V6AccountingBusiness.Invoices
         public override string Name { get { return "Hóa đơn"; } }
 
         
-        public bool InsertInvoice(
-            SortedDictionary<string, object> amData,
-            List<SortedDictionary<string, object>> adList,
-            List<SortedDictionary<string, object>> adList3)
+        public override bool InsertInvoice(
+            IDictionary<string, object> amData,
+            List<IDictionary<string, object>> adList,
+            List<IDictionary<string, object>> adList3)
         {
             object stt_rec = amData["STT_REC"];
             bool insert_success = false;
@@ -55,7 +55,7 @@ namespace V6AccountingBusiness.Invoices
                 SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAMSql);
 
                 insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, insert_am_sql) > 0;
-                foreach (SortedDictionary<string, object> adRow in adList)
+                foreach (IDictionary<string, object> adRow in adList)
                 {
                     var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, ADStruct, adRow);
                     int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql);
@@ -67,7 +67,7 @@ namespace V6AccountingBusiness.Invoices
                     }
                     j += (execute > 0 ? 1 : 0);
                 }
-                foreach (SortedDictionary<string, object> adRow in adList3)
+                foreach (IDictionary<string, object> adRow in adList3)
                 {
                     var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, AD3Struct, adRow);
                     int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql);
@@ -185,10 +185,10 @@ namespace V6AccountingBusiness.Invoices
 
 
         public bool UpdateInvoice(
-            SortedDictionary<string, object> amData,
-            List<SortedDictionary<string, object>> adList,
-            List<SortedDictionary<string, object>> adList3,
-            SortedDictionary<string, object> keys)
+            IDictionary<string, object> amData,
+            List<IDictionary<string, object>> adList,
+            List<IDictionary<string, object>> adList3,
+            IDictionary<string, object> keys)
         {
             #region === Local variable ===
             object stt_rec = amData["STT_REC"];

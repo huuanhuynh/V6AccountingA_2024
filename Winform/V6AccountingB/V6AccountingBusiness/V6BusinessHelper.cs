@@ -898,7 +898,7 @@ namespace V6AccountingBusiness
         {
             return Insert(tableName.ToString(), dataDictionary);
         }
-        public static bool Insert(SqlTransaction transaction, V6TableName tableName, SortedDictionary<string, object> dataDictionary)
+        public static bool Insert(SqlTransaction transaction, V6TableName tableName, IDictionary<string, object> dataDictionary)
         {
             return Insert(transaction, tableName.ToString(), dataDictionary);
         }
@@ -910,7 +910,7 @@ namespace V6AccountingBusiness
             return result > 0;
         }
 
-        public static bool Insert(SqlTransaction transaction, string tableName, SortedDictionary<string, object> dataDictionary)
+        public static bool Insert(SqlTransaction transaction, string tableName, IDictionary<string, object> dataDictionary)
         {
             V6TableStruct tableStruct = GetTableStruct(tableName);
             string sql = SqlGenerator.GenInsertSql(V6Login.UserId, tableName, tableStruct, dataDictionary);
@@ -955,8 +955,8 @@ namespace V6AccountingBusiness
         /// <param name="dataDictionary">Lưu ý key UPPER</param>
         /// <param name="keys">Lưu ý key UPPER</param>
         /// <returns>-2:No columns</returns>
-        public static int UpdateSimple(string tableName, SortedDictionary<string, object> dataDictionary,
-            SortedDictionary<string, object> keys)
+        public static int UpdateSimple(string tableName, IDictionary<string, object> dataDictionary,
+            IDictionary<string, object> keys)
         {
             V6TableStruct tableStruct = GetTableStruct(tableName);
             string sql = "";

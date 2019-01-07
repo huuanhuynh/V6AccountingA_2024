@@ -70,9 +70,9 @@ namespace V6Controls
         /// </summary>
         /// <param name="grid"></param>
         /// <returns></returns>
-        public static List<SortedDictionary<string, object>> GetData(this DataGridView grid)
+        public static List<IDictionary<string, object>> GetData(this DataGridView grid)
         {
-            var result = new List<SortedDictionary<string, object>>();
+            var result = new List<IDictionary<string, object>>();
             for (int i = 0; i < grid.RowCount; i++)
             {
                 if (grid.Rows[i].IsNewRow) continue;
@@ -87,9 +87,9 @@ namespace V6Controls
         /// <param name="grid"></param>
         /// <param name="sttRec">Gán vào trường STT_REC</param>
         /// <returns></returns>
-        public static List<SortedDictionary<string, object>> GetData(this DataGridView grid, string sttRec)
+        public static List<IDictionary<string, object>> GetData(this DataGridView grid, string sttRec)
         {
-            var result = new List<SortedDictionary<string, object>>();
+            var result = new List<IDictionary<string, object>>();
             for (int i = 0; i < grid.RowCount; i++)
             {
                 if (grid.Rows[i].IsNewRow) continue;
@@ -106,9 +106,9 @@ namespace V6Controls
         /// <param name="grid"></param>
         /// <param name="sttRec"></param>
         /// <returns></returns>
-        public static List<SortedDictionary<string, object>> GetDataDictionaryList_Auto(this DataGridView grid, string sttRec)
+        public static List<IDictionary<string, object>> GetDataDictionaryList_Auto(this DataGridView grid, string sttRec)
         {
-            var result = new List<SortedDictionary<string, object>>();
+            var result = new List<IDictionary<string, object>>();
             for (int i = 0; i < grid.Rows.Count; i++)
             {
                 if (grid.Rows[i].IsNewRow) continue;
@@ -183,9 +183,9 @@ namespace V6Controls
             return false;
         }
 
-        public static List<SortedDictionary<string, object>> GetSelectedData(this DataGridView grid)
+        public static List<IDictionary<string, object>> GetSelectedData(this DataGridView grid)
         {
-            var result = new List<SortedDictionary<string, object>>();
+            var result = new List<IDictionary<string, object>>();
 
             for (int i = 0; i < grid.Rows.Count; i++)
             {
@@ -205,7 +205,7 @@ namespace V6Controls
             return result;
         }
 
-        public static SortedDictionary<string, object> GetCurrentRowData(this DataGridView grid)
+        public static IDictionary<string, object> GetCurrentRowData(this DataGridView grid)
         {
             DataGridViewRow crow = grid.CurrentRow;
             if (crow != null)

@@ -6,7 +6,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
 {
     public static class ChangeCodeManager
     {
-        public static ChangeCodeBase0 GetChangeCodeControl(string tableName, SortedDictionary<string, object> data)
+        public static ChangeCodeBase0 GetChangeCodeControl(string tableName, IDictionary<string, object> data)
         {
             var name = V6TableHelper.ToV6TableName(tableName);
             

@@ -9,7 +9,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
 {
     public class TaiKhoanChangeCodeForm : ChangeCodeFormBase
     {
-        public TaiKhoanChangeCodeForm(SortedDictionary<string, object> data)
+        public TaiKhoanChangeCodeForm(IDictionary<string, object> data)
             : base(data)
         {
             InitializeComponent();

@@ -845,17 +845,6 @@ namespace V6AccountingBusiness.Invoices
             return V6BusinessHelper.GetStockAll(Mact, mavt_in, makho_in, sttRec, ngayct);
         }
 
-        //public virtual bool InsertInvoice(SortedDictionary<string, object> am, List<SortedDictionary<string, object>> adList)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public virtual bool UpdateInvoice(SortedDictionary<string, object> am, List<SortedDictionary<string, object>> adList,
-        //    SortedDictionary<string, object> keys)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public virtual DataTable GetSoct0_All_Cust(string sttRec, string trim, string filterString)
         {
             throw new NotImplementedException();
@@ -1078,10 +1067,10 @@ namespace V6AccountingBusiness.Invoices
         /// <param name="dataList">Dữ liệu sẽ thêm.</param>
         /// <param name="isnew">Tạo phiếu mới.</param>
         /// <returns>Số dòng thêm được.</returns>
-        protected int InsertADlist(string name, SqlTransaction transaction, List<SortedDictionary<string, object>> dataList, bool isnew)
+        protected int InsertADlist(string name, SqlTransaction transaction, List<IDictionary<string, object>> dataList, bool isnew)
         {
             int j = 0;
-            foreach (SortedDictionary<string, object> adRow in dataList)
+            foreach (IDictionary<string, object> adRow in dataList)
             {
                 if (InsertIntoTransaction(name, transaction, ADStruct, adRow, false))
                 {
@@ -1098,10 +1087,10 @@ namespace V6AccountingBusiness.Invoices
         /// <param name="dataList">Dữ liệu sẽ thêm.</param>
         /// <param name="isnew">Tạo phiếu mới.</param>
         /// <returns>Số dòng thêm được.</returns>
-        protected int InsertAD2list(string name, SqlTransaction transaction, List<SortedDictionary<string, object>> dataList, bool isnew)
+        protected int InsertAD2list(string name, SqlTransaction transaction, List<IDictionary<string, object>> dataList, bool isnew)
         {
             int j = 0;
-            foreach (SortedDictionary<string, object> adRow in dataList)
+            foreach (IDictionary<string, object> adRow in dataList)
             {
                 if (InsertIntoTransaction(name, transaction, AD2Struct, adRow, false))
                 {
@@ -1118,10 +1107,10 @@ namespace V6AccountingBusiness.Invoices
         /// <param name="dataList">Dữ liệu sẽ thêm.</param>
         /// <param name="isnew">Tạo phiếu mới.</param>
         /// <returns>Số dòng thêm được.</returns>
-        protected int InsertAD3list(string name, SqlTransaction transaction, List<SortedDictionary<string, object>> dataList, bool isnew)
+        protected int InsertAD3list(string name, SqlTransaction transaction, List<IDictionary<string, object>> dataList, bool isnew)
         {
             int j = 0;
-            foreach (SortedDictionary<string, object> adRow in dataList)
+            foreach (IDictionary<string, object> adRow in dataList)
             {
                 if (InsertIntoTransaction(name, transaction, AD3Struct, adRow, false))
                 {
@@ -1144,6 +1133,28 @@ namespace V6AccountingBusiness.Invoices
                     Mact, stt_rec, stt_rec0, execute, insertSql));
             }
             return execute > 0;
+        }
+
+        /// <summary>
+        /// Thêm chứng từ.
+        /// </summary>
+        /// <param name="amData">Dữ liệu thông tin chính.</param>
+        /// <param name="ad1List">Dữ liệu thông tin chi tiết<para>Đối với invoie chưa có hàm nhiều bảng chi tiết thì sẽ gọi lại hàm có nhiều chi tiết nhưng với dữ liệu rỗng.</para></param>
+        /// <returns></returns>
+        public virtual bool InsertInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> ad1List)
+        {
+            throw new NotImplementedException("No override method.");
+        }
+        /// <summary>
+        /// Thêm chứng từ.
+        /// </summary>
+        /// <param name="amData">Dữ liệu thông tin chính.</param>
+        /// <param name="ad1List">Dữ liệu thông tin chi tiết</param>
+        /// <param name="ad2List">Tùy vào thể hiện mà đây có thể là dữ liệu của AD2 (gt) hoặc AD3(kt)</param>
+        /// <returns></returns>
+        public virtual bool InsertInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> ad1List, List<IDictionary<string, object>> ad2List)
+        {
+            throw new NotImplementedException("No override method.");
         }
 
         protected void WriteLogTransactionComplete(object stt_rec)

@@ -3131,8 +3131,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
         #region ==== Add Thread ====
         private bool flagAddFinish, flagAddSuccess;
-        private SortedDictionary<string, object> addDataAM;
-        private List<SortedDictionary<string, object>> addDataAD;
+        private IDictionary<string, object> addDataAM;
+        private List<IDictionary<string, object>> addDataAD;
         private string addErrorMessage = "";
 
         private void DoAddThread()
@@ -3245,7 +3245,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
         #region ==== Edit Thread ====
         private bool flagEditFinish, flagEditSuccess;
-        private List<SortedDictionary<string, object>> editDataAD;
+        private List<IDictionary<string, object>> editDataAD;
         private string editErrorMessage = "";
 
         private void DoEditThread()
@@ -3275,7 +3275,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 var am_U_ID0 = AM.Rows[CurrentIndex]["User_id0"];
 
                 editDataAD = dataGridView1.GetData(_sttRec);
-                foreach (SortedDictionary<string, object> adRow in editDataAD)
+                foreach (IDictionary<string, object> adRow in editDataAD)
                 {
                     adRow["DATE0"] = am_DATE0;
                     adRow["TIME0"] = am_TIME0;
@@ -3972,7 +3972,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
         }
 
-        private bool XuLyThemDetail(SortedDictionary<string, object> data)
+        private bool XuLyThemDetail(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -4028,7 +4028,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         }
 
         
-        private bool XuLySuaDetail(SortedDictionary<string, object> data)
+        private bool XuLySuaDetail(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -4208,7 +4208,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         {
             XuLyDetailClickAdd();
         }
-        private void detail1_AddHandle(SortedDictionary<string,object> data)
+        private void detail1_AddHandle(IDictionary<string,object> data)
         {
             if (ValidateData_Detail(data))
             {
@@ -4217,7 +4217,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
             throw new Exception(V6Text.ValidateFail);
         }
-        private void detail1_EditHandle(SortedDictionary<string,object> data)
+        private void detail1_EditHandle(IDictionary<string,object> data)
         {
             dataGridView1.UnLock();
             if (ValidateData_Detail(data))
@@ -4524,7 +4524,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
         }
 
-        private bool ValidateData_Detail(SortedDictionary<string, object> data)
+        private bool ValidateData_Detail(IDictionary<string, object> data)
         {
             try
             {

@@ -25,7 +25,7 @@ namespace V6AccountingBusiness.Invoices
         
         private string _name = "Phiếu xuất kho";
 
-        public bool InsertInvoice(SortedDictionary<string, object> amData, List<SortedDictionary<string, object>> adList)
+        public bool InsertInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> adList)
         {
             object stt_rec = amData["STT_REC"];
             var insert_success = false;
@@ -132,9 +132,9 @@ namespace V6AccountingBusiness.Invoices
             }
             return false;
         }
-        
-        public bool UpdateInvoice(SortedDictionary<string, object> am, List<SortedDictionary<string, object>> adList,
-            SortedDictionary<string,object> keys)
+
+        public bool UpdateInvoice(IDictionary<string, object> am, List<IDictionary<string, object>> adList,
+            IDictionary<string, object> keys)
         {
             object stt_rec = am["STT_REC"];
             bool insert_success = false;

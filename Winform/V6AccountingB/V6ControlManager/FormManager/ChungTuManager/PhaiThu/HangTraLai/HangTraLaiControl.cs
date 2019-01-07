@@ -1043,7 +1043,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         private bool co_chon_phieu_xuat { get; set; }
         private bool chonpx_flag = false;
         private string _chon_px = "";
-        void chonpx_AcceptSelectEvent(List<SortedDictionary<string, object>> selectedDataList)
+        void chonpx_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList)
         {
             chonpx_flag = true;
             try
@@ -1051,7 +1051,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 detail1.MODE = V6Mode.View;
                 AD.Rows.Clear();
                 int addCount = 0, failCount = 0;
-                foreach (SortedDictionary<string, object> data in selectedDataList)
+                foreach (IDictionary<string, object> data in selectedDataList)
                 {
                     if (!theo_hoa_don)
                     {
@@ -2813,8 +2813,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
         #region ==== Add Thread ====
         private bool flagAddFinish, flagAddSuccess;
-        private SortedDictionary<string, object> addDataAM;
-        private List<SortedDictionary<string, object>> addDataAD;
+        private IDictionary<string, object> addDataAM;
+        private List<IDictionary<string, object>> addDataAD;
         private string addErrorMessage = "";
 
         private void DoAddThread()
@@ -2932,7 +2932,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
         #region ==== Edit Thread ====
         private bool flagEditFinish, flagEditSuccess;
-        private List<SortedDictionary<string, object>> editDataAD;
+        private List<IDictionary<string, object>> editDataAD;
         private string editErrorMessage = "";
 
         private void DoEditThread()
@@ -2967,7 +2967,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 var am_U_ID0 = AM.Rows[CurrentIndex]["User_id0"];
 
                 editDataAD = dataGridView1.GetData(_sttRec);
-                foreach (SortedDictionary<string, object> adRow in editDataAD)
+                foreach (IDictionary<string, object> adRow in editDataAD)
                 {
                     adRow["DATE0"] = am_DATE0;
                     adRow["TIME0"] = am_TIME0;
@@ -3678,7 +3678,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
         }
 
-        private bool XuLyThemDetail(SortedDictionary<string, object> data)
+        private bool XuLyThemDetail(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -3735,7 +3735,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         }
 
         
-        private bool XuLySuaDetail(SortedDictionary<string, object> data)
+        private bool XuLySuaDetail(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -3916,7 +3916,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         {
             XuLyDetailClickAdd();
         }
-        private void HoaDonDetail1_AddHandle(SortedDictionary<string,object> data)
+        private void HoaDonDetail1_AddHandle(IDictionary<string,object> data)
         {
             if (ValidateData_Detail(data))
             {
@@ -3925,7 +3925,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
             throw new Exception(V6Text.ValidateFail);
         }
-        private void HoaDonDetail1_EditHandle(SortedDictionary<string,object> data)
+        private void HoaDonDetail1_EditHandle(IDictionary<string,object> data)
         {
             dataGridView1.UnLock();
             if (ValidateData_Detail(data))
@@ -4366,7 +4366,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             return false;
         }
 
-        private bool ValidateData_Detail(SortedDictionary<string, object> data)
+        private bool ValidateData_Detail(IDictionary<string, object> data)
         {
             try
             {

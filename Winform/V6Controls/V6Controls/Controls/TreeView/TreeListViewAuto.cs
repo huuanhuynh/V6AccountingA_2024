@@ -133,7 +133,7 @@ namespace V6Controls.Controls.TreeView
         /// Dữ liệu của dòng đang chọn.
         /// </summary>
         [Browsable(false)]
-        public SortedDictionary<string, object> SelectedItemData
+        public IDictionary<string, object> SelectedItemData
         {
             get
             {
@@ -158,7 +158,7 @@ namespace V6Controls.Controls.TreeView
             }
         }
 
-        private SortedDictionary<string, object> GetItemData(TreeListViewItem item)
+        private IDictionary<string, object> GetItemData(TreeListViewItem item)
         {
             try
             {
@@ -169,7 +169,7 @@ namespace V6Controls.Controls.TreeView
                 Logger.WriteToLog("TreeListViewAuto " + ex.Message, Application.ProductName);
             }
 
-            var result = new SortedDictionary<string, object>();
+            IDictionary<string, object> result = new SortedDictionary<string, object>();
             if (item.Level > 0)
             {
                 result = GetItemData(item.Parent);
@@ -314,7 +314,7 @@ namespace V6Controls.Controls.TreeView
             AddTreeRow(newRow);
         }
 
-        public void AddData(ICollection<SortedDictionary<string, object>> data)
+        public void AddData(ICollection<IDictionary<string, object>> data)
         {
             if (_data == null)
             {

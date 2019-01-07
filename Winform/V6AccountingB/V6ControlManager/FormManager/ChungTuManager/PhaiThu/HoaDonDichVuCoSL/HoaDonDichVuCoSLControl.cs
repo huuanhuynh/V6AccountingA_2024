@@ -1027,7 +1027,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             }
         }
 
-        private void Detail3_AddHandle(SortedDictionary<string, object> data)
+        private void Detail3_AddHandle(IDictionary<string, object> data)
         {
             if (ValidateData_Detail3(data))
             {
@@ -1037,7 +1037,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             throw new Exception(V6Text.ValidateFail);
         }
 
-        private void Detail3_EditHandle(SortedDictionary<string, object> data)
+        private void Detail3_EditHandle(IDictionary<string, object> data)
         {
             if (ValidateData_Detail3(data))
             {
@@ -1046,7 +1046,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             }
             throw new Exception(V6Text.ValidateFail);
         }
-        private bool XuLySuaDetail3(SortedDictionary<string, object> data)
+        private bool XuLySuaDetail3(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -1108,7 +1108,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             return true;
         }
 
-        private bool XuLyThemDetail3(SortedDictionary<string, object> data)
+        private bool XuLyThemDetail3(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -1162,7 +1162,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             return true;
         }
 
-        private bool ValidateData_Detail3(SortedDictionary<string, object> data)
+        private bool ValidateData_Detail3(IDictionary<string, object> data)
         {
             try
             {
@@ -4482,8 +4482,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
 
         #region ==== Add Thread ====
         private bool flagAddFinish, flagAddSuccess;
-        private SortedDictionary<string, object> addDataAM;
-        private List<SortedDictionary<string, object>> addDataAD, addDataAD3;
+        private IDictionary<string, object> addDataAM;
+        private List<IDictionary<string, object>> addDataAD, addDataAD3;
         private string addErrorMessage = "";
 
         private void DoAddThread()
@@ -4599,7 +4599,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         #region ==== Edit Thread ====
         private bool flagEditFinish, flagEditSuccess;
         //private SortedDictionary<string, object> editDataAM;
-        private List<SortedDictionary<string, object>> editDataAD, editDataAD3;
+        private List<IDictionary<string, object>> editDataAD, editDataAD3;
         private string editErrorMessage = "";
 
         private void DoEditThread()
@@ -4629,14 +4629,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 var am_U_ID0 = AM.Rows[CurrentIndex]["User_id0"];
 
                 editDataAD = dataGridView1.GetData(_sttRec);
-                foreach (SortedDictionary<string, object> adRow in editDataAD)
+                foreach (IDictionary<string, object> adRow in editDataAD)
                 {
                     adRow["DATE0"] = am_DATE0;
                     adRow["TIME0"] = am_TIME0;
                     adRow["USER_ID0"] = am_U_ID0;
                 }
                 editDataAD3 = dataGridView3.GetData(_sttRec);
-                foreach (SortedDictionary<string, object> adRow in editDataAD3)
+                foreach (IDictionary<string, object> adRow in editDataAD3)
                 {
                     adRow["DATE0"] = am_DATE0;
                     adRow["TIME0"] = am_TIME0;
@@ -5515,7 +5515,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         }
 
         
-        private bool XuLySuaDetail(SortedDictionary<string, object> data)
+        private bool XuLySuaDetail(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -5721,7 +5721,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         {
             XuLyDetailClickAdd();
         }
-        private void HoaDonDichVuCoSLDetail1_AddHandle(SortedDictionary<string,object> data)
+        private void HoaDonDichVuCoSLDetail1_AddHandle(IDictionary<string,object> data)
         {
             if (ValidateData_Detail(data))
             {
@@ -5730,7 +5730,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             }
             throw new Exception(V6Text.ValidateFail);
         }
-        private void HoaDonDichVuCoSLDetail1_EditHandle(SortedDictionary<string,object> data)
+        private void HoaDonDichVuCoSLDetail1_EditHandle(IDictionary<string,object> data)
         {
             dataGridView1.UnLock();
             if (ValidateData_Detail(data))
@@ -6187,7 +6187,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             return false;
         }
 
-        private bool ValidateData_Detail(SortedDictionary<string, object> data)
+        private bool ValidateData_Detail(IDictionary<string, object> data)
         {
             try
             {
@@ -6356,14 +6356,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             }
         }
 
-        void chon_AcceptSelectEvent(List<SortedDictionary<string, object>> selectedDataList)
+        void chon_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList)
         {
             try
             {
                 detail1.MODE = V6Mode.View;
                 AD.Rows.Clear();
                 int addCount = 0, failCount = 0;
-                foreach (SortedDictionary<string, object> data in selectedDataList)
+                foreach (IDictionary<string, object> data in selectedDataList)
                 {
                     var newData = new SortedDictionary<string, object>(data);
                     if (_m_Ma_td == "1" && Txtma_td_ph.Text != "")
@@ -6964,14 +6964,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             }
         }
 
-        void chonpn_AcceptSelectEvent(List<SortedDictionary<string, object>> selectedDataList)
+        void chonpn_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList)
         {
             try
             {
                 detail1.MODE = V6Mode.View;
                 AD.Rows.Clear();
                 int addCount = 0, failCount = 0;
-                foreach (SortedDictionary<string, object> data in selectedDataList)
+                foreach (IDictionary<string, object> data in selectedDataList)
                 {
                     var newData = new SortedDictionary<string, object>(data);
                     if (!data.ContainsKey("GIA_NT21") && data.ContainsKey("MA_VT") && data.ContainsKey("DVT1"))

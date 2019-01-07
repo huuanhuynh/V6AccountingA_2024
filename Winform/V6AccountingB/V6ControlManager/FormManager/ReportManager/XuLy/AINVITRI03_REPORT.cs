@@ -377,7 +377,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return;
                 }
 
-                var currentRowData = new SortedDictionary<string, object>();
+                IDictionary<string, object> currentRowData = new SortedDictionary<string, object>();
 
                 currentRowData["MA_KH"] = txtMaKh.Text;
                 currentRowData["NAM"] = dateYear.Date.Year;

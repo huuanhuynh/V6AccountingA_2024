@@ -149,7 +149,7 @@ namespace V6ControlManager.FormManager.NhanSu
                 {
                     if (CurrentTable != V6TableName.None)
                     {
-                        var data = new SortedDictionary<string, object>();
+                        IDictionary<string, object> data = new SortedDictionary<string, object>();
                         if (treeListViewAuto1.SelectedItems.Count>0)
                         {
                             data = treeListViewAuto1.SelectedItemData;
@@ -163,7 +163,7 @@ namespace V6ControlManager.FormManager.NhanSu
                                 && data.ContainsKey("ORGUNIT_ID") && data["ORGUNIT_ID"] != null && data["ORGUNIT_ID"].ToString() != "")
                             {
                                 //Xử lý lại phần someData trong Add/Edit
-                                var someData = new SortedDictionary<string, object>();
+                                IDictionary<string, object> someData = new SortedDictionary<string, object>();
                                 someData["STT_REC"] = "";
                                 someData["ORGUNIT_ID"] = data["ORGUNIT_ID"];
                                 //someData["POSITION_ID"] = data["POSITION_ID"];
@@ -186,7 +186,7 @@ namespace V6ControlManager.FormManager.NhanSu
                         }
                         else
                         {
-                            var someData = new SortedDictionary<string, object>();
+                            IDictionary<string, object> someData = new SortedDictionary<string, object>();
                             someData["STT_REC"] = data["STT_REC"];
 
                             var f = new FormAddEdit(CurrentTable, V6Mode.Add, null, someData);
@@ -237,7 +237,7 @@ namespace V6ControlManager.FormManager.NhanSu
                 {
                     if (CurrentTable != V6TableName.None)
                     {
-                        var data = new SortedDictionary<string, object>();
+                        IDictionary<string, object> data = new SortedDictionary<string, object>();
                         if (treeListViewAuto1.SelectedItems.Count > 0)
                         {
                             data = treeListViewAuto1.SelectedItemData;
@@ -374,7 +374,7 @@ namespace V6ControlManager.FormManager.NhanSu
         /// Khi sửa thành công, cập nhập lại dòng được sửa, chưa kiểm ok cancel.
         /// </summary>
         /// <param name="data">Dữ liệu đã sửa</param>
-        private void f_UpdateSuccess(SortedDictionary<string, object> data)
+        private void f_UpdateSuccess(IDictionary<string, object> data)
         {
             try
             {
@@ -411,7 +411,7 @@ namespace V6ControlManager.FormManager.NhanSu
                         if (treeListViewAuto1.SelectedItems[0] != null)
                             //&& treeListViewAuto1.SelectedItems[0].Level == treeListViewAuto1.MaxLevel)
                         {
-                            var data = new SortedDictionary<string, object>();
+                            IDictionary<string, object> data = new SortedDictionary<string, object>();
                             data.AddRange(treeListViewAuto1.SelectedItems[0].ToNhanSuDictionary());
 
                             var f = DanhMucManager.ChangeCode.ChangeCodeManager.GetChangeCodeControl(_tableName, data);
@@ -439,7 +439,7 @@ namespace V6ControlManager.FormManager.NhanSu
             }
         }
 
-        private void f_DoChangeCodeFinish(SortedDictionary<string, object> data)
+        private void f_DoChangeCodeFinish(IDictionary<string, object> data)
         {
             ReLoad();
         }
@@ -801,14 +801,14 @@ namespace V6ControlManager.FormManager.NhanSu
         }
 
         //Reload
-        private void f_InsertSuccess(SortedDictionary<string, object> data)
+        private void f_InsertSuccess(IDictionary<string, object> data)
         {
             ReLoad();
             //treeListViewAuto1.AddData(data);
         }
 
 
-        private SortedDictionary<string, object> _data = new SortedDictionary<string, object>();
+        private IDictionary<string, object> _data = new SortedDictionary<string, object>();
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (V6Login.UserRight.AllowEdit("", CurrentTable.ToString().ToUpper() + "6"))

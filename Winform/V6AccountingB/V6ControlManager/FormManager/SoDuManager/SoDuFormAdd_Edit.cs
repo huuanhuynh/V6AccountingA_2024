@@ -12,7 +12,7 @@ namespace V6ControlManager.FormManager.SoDuManager
     {
         public SoDuAddEditControlVirtual FormControl;
         private V6TableName _tableName;
-        public delegate void SoDuSuccessHandleData(SoDuAddEditControlVirtual sender, SortedDictionary<string, object> dataDic);
+        public delegate void SoDuSuccessHandleData(SoDuAddEditControlVirtual sender, IDictionary<string, object> datadic);
 
         public event SoDuSuccessHandleData InsertSuccessEvent;
         public event SoDuSuccessHandleData UpdateSuccessEvent;
@@ -24,8 +24,8 @@ namespace V6ControlManager.FormManager.SoDuManager
         }
 
         public SoDuFormAddEdit(V6TableName tableName, V6Mode mode = V6Mode.Add,
-            SortedDictionary<string, object> keys = null,
-            SortedDictionary<string, object> data = null)
+            IDictionary<string, object> keys = null,
+            IDictionary<string, object> data = null)
         {
             InitializeComponent();
             
@@ -67,13 +67,13 @@ namespace V6ControlManager.FormManager.SoDuManager
             Close();
         }
 
-        protected virtual void OnInsertSuccessEvent(SoDuAddEditControlVirtual sender, SortedDictionary<string, object> datadic)
+        protected virtual void OnInsertSuccessEvent(SoDuAddEditControlVirtual sender, IDictionary<string, object> datadic)
         {
             var handler = InsertSuccessEvent;
             if (handler != null) handler(sender, datadic);
         }
 
-        protected virtual void OnUpdateSuccessEvent(SoDuAddEditControlVirtual sender, SortedDictionary<string, object> datadic)
+        protected virtual void OnUpdateSuccessEvent(SoDuAddEditControlVirtual sender, IDictionary<string, object> datadic)
         {
             var handler = UpdateSuccessEvent;
             if (handler != null) handler(sender, datadic);

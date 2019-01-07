@@ -21,7 +21,6 @@ namespace V6Controls
         public V6VvarTextBox()
         {
             InitializeComponent();
-            //GotFocus += V6VvarTextBox_GotFocus;
             //_upper = true;
         }
 
@@ -35,7 +34,6 @@ namespace V6Controls
             this.Enter += new System.EventHandler(this.V6VvarTextBox_Enter);
             this.GotFocus += new System.EventHandler(this.V6VvarTextBox_GotFocus);
             this.ResumeLayout(false);
-
         }
 
         void V6VvarTextBox_GotFocus(object sender, EventArgs e)
@@ -78,7 +76,7 @@ namespace V6Controls
         /// </summary>
         private string _text_data = "";
         private DataRow _data;
-        private Form _frm;
+        //private Form _frm;
 
         /// <summary>
         /// Dữ liệu liên quan khi chọn mã
@@ -88,7 +86,9 @@ namespace V6Controls
             get
             {
                 if (_data != null && _text_data == Text)
+                {
                     return _data;
+                }
                 else
                 {
                     ExistRowInTable(Text);

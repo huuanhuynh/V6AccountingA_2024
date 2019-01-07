@@ -12,7 +12,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
 {
     public class AllChangeCodeForm : ChangeCodeFormBase
     {
-        public AllChangeCodeForm(SortedDictionary<string, object> data, string codedm)
+        public AllChangeCodeForm(IDictionary<string, object> data, string codedm)
             : base(data)
         {
 

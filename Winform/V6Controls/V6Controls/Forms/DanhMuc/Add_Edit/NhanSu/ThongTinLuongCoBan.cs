@@ -11,9 +11,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 {
     public partial class ThongTinLuongCoBan : V6FormControl
     {
-        public SortedDictionary<string, object> DataOld;
-        public SortedDictionary<string, object> DataDic { get; set; }
-        public SortedDictionary<string, object> _keys = new SortedDictionary<string, object>();
+        public IDictionary<string, object> DataOld;
+        public IDictionary<string, object> DataDic { get; set; }
+        public IDictionary<string, object> _keys = new SortedDictionary<string, object>();
         public Control button = null;
         public ThongTinLuongCoBan()
         {
@@ -31,7 +31,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             buttonHuy.Enabled = false;
         }
        
-        public  void LoadData(string stt_rec)
+        public void LoadData(string stt_rec)
         {
             try
             {

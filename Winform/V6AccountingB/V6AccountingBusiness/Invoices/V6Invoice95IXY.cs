@@ -24,7 +24,7 @@ namespace V6AccountingBusiness.Invoices
 
         public override string Name { get { return "Đề nghị xuất kho"; } }
         
-        public bool InsertInvoice(SortedDictionary<string, object> amData, List<SortedDictionary<string, object>> adList)
+        public bool InsertInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> adList)
         {
             var stt_rec = amData["STT_REC"];
             var insert_success = false;
@@ -112,7 +112,7 @@ namespace V6AccountingBusiness.Invoices
             return false;
         }
 
-        public bool UpdateInvoice(SortedDictionary<string, object> amData, List<SortedDictionary<string, object>> adList,
+        public bool UpdateInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> adList,
             SortedDictionary<string,object> keys )
         {
             var stt_rec = amData["STT_REC"];

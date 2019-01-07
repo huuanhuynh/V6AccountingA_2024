@@ -192,7 +192,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     var data_rows = item.Value;
                     try
                     {
-                        SortedDictionary<string, object> AM = GET_AM_Data(data_rows, "SO_LUONG1,TIEN_NT0", "");
+                        IDictionary<string, object> AM = GET_AM_Data(data_rows, "SO_LUONG1,TIEN_NT0", "");
                         var sttRec = V6BusinessHelper.GetNewSttRec(Invoice.Mact);
                         AM["STT_REC"] = sttRec;
                         var AD1_List = GET_AD1_List(data_rows, sttRec);
@@ -229,7 +229,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
 
 
-        private SortedDictionary<string, object> GET_AM_Data(List<DataRow> dataRows, string sumColumns, string maxColumns)
+        private IDictionary<string, object> GET_AM_Data(List<DataRow> dataRows, string sumColumns, string maxColumns)
         {
             try
             {
@@ -313,9 +313,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private List<SortedDictionary<string, object>> GET_AD1_List(List<DataRow> dataRows, string sttRec)
+        private List<IDictionary<string, object>> GET_AD1_List(List<DataRow> dataRows, string sttRec)
         {
-            var result = new List<SortedDictionary<string, object>>();
+            var result = new List<IDictionary<string, object>>();
             for (int i = 0; i < dataRows.Count; i++)
             {
                 var one = dataRows[i].ToDataDictionary(sttRec);
@@ -327,9 +327,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             return result;
         }
 
-        private List<SortedDictionary<string, object>> GET_AD2_List(List<DataRow> dataRows, string sttRec)
+        private List<IDictionary<string, object>> GET_AD2_List(List<DataRow> dataRows, string sttRec)
         {
-            var result = new List<SortedDictionary<string, object>>();
+            List<IDictionary<string, object>> result = new List<IDictionary<string, object>>();
             for (int i = 0; i < dataRows.Count; i++)
             {
                 var one = dataRows[i].ToDataDictionary(sttRec);

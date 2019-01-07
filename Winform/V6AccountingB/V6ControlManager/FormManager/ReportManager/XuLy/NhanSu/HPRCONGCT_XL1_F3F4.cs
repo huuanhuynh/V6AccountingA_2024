@@ -17,20 +17,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
     {
         #region Biến toàn cục
 
-        protected SortedDictionary<string, object> _data;
+        protected IDictionary<string, object> _data;
         protected V6Mode _mode;
         //protected string _text;
         //protected string _uid;
         protected string _tableName = "PRCONG2";
 
         public event HandleResultData InsertSuccessEvent;
-        protected virtual void OnInsertSuccessEvent(SortedDictionary<string, object> datadic)
+        protected virtual void OnInsertSuccessEvent(IDictionary<string, object> datadic)
         {
             var handler = InsertSuccessEvent;
             if (handler != null) handler(datadic);
         }
         public event HandleResultData UpdateSuccessEvent;
-        protected virtual void OnUpdateSuccessEvent(SortedDictionary<string, object> datadic)
+        protected virtual void OnUpdateSuccessEvent(IDictionary<string, object> datadic)
         {
             var handler = UpdateSuccessEvent;
             if (handler != null) handler(datadic);
@@ -58,7 +58,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             InitializeComponent();
         }
 
-        public HPRCONGCT_XL1_F3F4(V6Mode mode, SortedDictionary<string, object> data)
+        public HPRCONGCT_XL1_F3F4(V6Mode mode, IDictionary<string, object> data)
         {
             _mode = mode;
             

@@ -21,13 +21,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         protected V6Mode _mode;
 
         public event HandleResultData InsertSuccessEvent;
-        protected virtual void OnInsertSuccessEvent(SortedDictionary<string, object> datadic)
+        protected virtual void OnInsertSuccessEvent(IDictionary<string, object> datadic)
         {
             var handler = InsertSuccessEvent;
             if (handler != null) handler(datadic);
         }
         public event HandleResultData UpdateSuccessEvent;
-        protected virtual void OnUpdateSuccessEvent(SortedDictionary<string, object> datadic)
+        protected virtual void OnUpdateSuccessEvent(IDictionary<string, object> datadic)
         {
             var handler = UpdateSuccessEvent;
             if (handler != null) handler(datadic);
@@ -199,7 +199,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 }
 
                 DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
-                var currentRowData = new SortedDictionary<string, object>();
+                IDictionary<string, object> currentRowData = new SortedDictionary<string, object>();
                 if (row != null) currentRowData = row.ToDataDictionary();
                 currentRowData["MA_NVIEN"] = Ma_nvien;
                 currentRowData["NGAY"] = Ngay;

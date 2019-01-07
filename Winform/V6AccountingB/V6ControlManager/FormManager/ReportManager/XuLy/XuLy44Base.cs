@@ -975,8 +975,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
 
                 string stt_rec = row.Cells["STT_REC"].ToString();
-                SortedDictionary<string, object> key = new SortedDictionary<string, object>();
-                SortedDictionary<string, object> data = row.ToDataDictionary();
+                IDictionary<string, object> key = new SortedDictionary<string, object>();
+                IDictionary<string, object> data = row.ToDataDictionary();
 
                 key["STT_REC"] = stt_rec;
                 FormAddEdit f = new FormAddEdit("ARS82", V6Mode.Edit, key, data);

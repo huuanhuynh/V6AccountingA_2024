@@ -1187,7 +1187,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
         }
 
-        private SortedDictionary<string, object> ReportDocumentParameters; 
+        private IDictionary<string, object> ReportDocumentParameters; 
         /// <summary>
         /// Lưu ý: chạy sau khi add dataSource để tránh lỗi nhập parameter value
         /// </summary>

@@ -167,7 +167,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         private string f9ErrorAll = "";
         private string[] check_list = { };
 
-        private bool CheckValidDSCot(SortedDictionary<string, object> currentRow, string dsFields)
+        private bool CheckValidDSCot(IDictionary<string, object> currentRow, string dsFields)
         {
             string[] columns = dsFields.Split(',');
             bool result = false;

@@ -33,7 +33,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter
         /// <summary>
         /// Tham số thêm cho file rpt
         /// </summary>
-        public SortedDictionary<string, object> RptExtraParameters { get; set; } 
+        public IDictionary<string, object> RptExtraParameters { get; set; } 
 
         /// <summary>
         /// Lấy danh sach tham so

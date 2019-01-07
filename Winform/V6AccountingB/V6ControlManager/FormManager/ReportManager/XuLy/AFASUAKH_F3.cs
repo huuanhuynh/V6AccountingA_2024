@@ -14,7 +14,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     {
         #region Biến toàn cục
 
-        protected SortedDictionary<string, object> _data;
+        protected IDictionary<string, object> _data;
         protected string _text;
         //protected string _reportFileF5, _reportTitleF5, _reportTitle2F5;
         public event HandleResultData UpdateSuccessEvent;
@@ -41,7 +41,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             InitializeComponent();
         }
 
-        public AFASUAKH_F3(string stt_rec, SortedDictionary<string,object> data)
+        public AFASUAKH_F3(string stt_rec, IDictionary<string,object> data)
         {
             _sttRec = stt_rec;
             _data = data;
@@ -139,7 +139,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected int _oldIndex = -1;
 
-        protected virtual void OnUpdateSuccessEvent(SortedDictionary<string, object> datadic)
+        protected virtual void OnUpdateSuccessEvent(IDictionary<string, object> datadic)
         {
             var handler = UpdateSuccessEvent;
             if (handler != null) handler(datadic);

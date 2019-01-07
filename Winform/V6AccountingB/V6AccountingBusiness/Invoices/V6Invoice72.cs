@@ -52,11 +52,11 @@ namespace V6AccountingBusiness.Invoices
             return SqlConnect.ExecuteDataset(CommandType.StoredProcedure,
                     "VPA_GET_AUTO_COLUMN_GT", pList).Tables[0];
         }
-        
-        public bool InsertInvoice(SortedDictionary<string, object> amData,
-            List<SortedDictionary<string, object>> adList,
-            List<SortedDictionary<string, object>> adList2,
-            List<SortedDictionary<string, object>> adList3)
+
+        public bool InsertInvoice(IDictionary<string, object> amData,
+            List<IDictionary<string, object>> adList,
+            List<IDictionary<string, object>> adList2,
+            List<IDictionary<string, object>> adList3)
         {
             object stt_rec = amData["STT_REC"];
             bool insert_success = false;
@@ -165,11 +165,11 @@ namespace V6AccountingBusiness.Invoices
         /// <param name="adList3">Dữ liệu bảng chi tiết 3.</param>
         /// <param name="keys">STT_REC</param>
         /// <returns></returns>
-        public bool UpdateInvoice(SortedDictionary<string, object> amData,
-            List<SortedDictionary<string, object>> adList,
-            List<SortedDictionary<string, object>> adList2,
-            List<SortedDictionary<string, object>> adList3,
-            SortedDictionary<string,object> keys )
+        public bool UpdateInvoice(IDictionary<string, object> amData,
+            List<IDictionary<string, object>> adList,
+            List<IDictionary<string, object>> adList2,
+            List<IDictionary<string, object>> adList3,
+            IDictionary<string, object> keys)
         {
             object stt_rec = amData["STT_REC"];
             bool insert_success = false;

@@ -325,7 +325,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        void f_InsertSuccessEvent(SortedDictionary<string, object> dataDic)
+        void f_InsertSuccessEvent(IDictionary<string, object> dataDic)
         {
             _ma_xuly = dataDic["MA_XULY"].ToString().Trim();
             Timer tF9 = new Timer();

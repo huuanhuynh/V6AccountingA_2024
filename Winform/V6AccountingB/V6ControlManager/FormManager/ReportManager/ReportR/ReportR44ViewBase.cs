@@ -838,7 +838,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         
         public ReportFilter44Base FilterControl { get; set; }
         public ReportFilter44Base ParentFilterControl { get; set; }
-        public SortedDictionary<string, object> SelectedRowData { get; set; }
+        public IDictionary<string, object> SelectedRowData { get; set; }
 
         
         public void btnNhan_Click(object sender, EventArgs e)
@@ -880,7 +880,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
-        public SortedDictionary<string, object> ReportDocumentParameters;
+        public IDictionary<string, object> ReportDocumentParameters;
 
         /// <summary>
         /// Lưu ý: chạy sau khi add dataSource để tránh lỗi nhập parameter value

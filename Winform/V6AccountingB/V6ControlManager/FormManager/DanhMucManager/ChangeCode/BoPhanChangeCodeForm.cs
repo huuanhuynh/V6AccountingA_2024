@@ -8,7 +8,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
 {
     public class BoPhanChangeCodeForm : ChangeCodeFormBase
     {
-        public BoPhanChangeCodeForm(SortedDictionary<string, object> data)
+        public BoPhanChangeCodeForm(IDictionary<string, object> data)
             : base(data)
         {
             InitializeComponent();

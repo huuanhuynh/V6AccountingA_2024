@@ -773,8 +773,8 @@ namespace V6ControlManager.FormManager.ReportManager
         /// </summary>
         public DataSet DataSet { get; set; }
 
-        public SortedDictionary<string, object> FilterControlFilterData { get; set; }
-        public SortedDictionary<string, object> FilterData { get; set; }
+        public IDictionary<string, object> FilterControlFilterData { get; set; }
+        public IDictionary<string, object> FilterData { get; set; }
         public bool AutoRun { get; set; }
     }
 }

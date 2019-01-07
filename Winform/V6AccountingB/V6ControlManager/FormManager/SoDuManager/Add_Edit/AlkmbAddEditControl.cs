@@ -500,26 +500,26 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     if (ok)
                     {
                         var adList = AD.ToListDataDictionary(txtSttRec.Text);
-                        foreach (SortedDictionary<string, object> row in adList)
+                        foreach (IDictionary<string, object> row in adList)
                         {
                             ok = ok && V6BusinessHelper.Insert(TRANSACTION, V6TableHelper.ToV6TableName(_table2Name), row);
                         }
                         if (!ok) goto fail;
                         adList = data3.ToListDataDictionary(txtSttRec.Text);
-                        foreach (SortedDictionary<string, object> row in adList)
+                        foreach (IDictionary<string, object> row in adList)
                         {
                             ok = ok && V6BusinessHelper.Insert(TRANSACTION, _table3Name, row);
                         }
                         if (!ok) goto fail;
 
                         adList = data4.ToListDataDictionary(txtSttRec.Text);
-                        foreach (SortedDictionary<string, object> row in adList)
+                        foreach (IDictionary<string, object> row in adList)
                         {
                             ok = ok && V6BusinessHelper.Insert(TRANSACTION, _table4Name, row);
                         }
                         
                         adList = data5.ToListDataDictionary(txtSttRec.Text);
-                        foreach (SortedDictionary<string, object> row in adList)
+                        foreach (IDictionary<string, object> row in adList)
                         {
                             ok = ok && V6BusinessHelper.Insert(TRANSACTION, _table5Name, row);
                         }
@@ -587,25 +587,25 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
                     //Insert AD
                     var adList = AD.ToListDataDictionary(txtSttRec.Text);
-                    foreach (SortedDictionary<string, object> adRow in adList)
+                    foreach (IDictionary<string, object> adRow in adList)
                     {
                         var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, _table2Struct, adRow, false);
                         j += (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql) > 0 ? 1 : 0);
                     }
                     var adList3 = data3.ToListDataDictionary(txtSttRec.Text);
-                    foreach (SortedDictionary<string, object> adRow in adList3)
+                    foreach (IDictionary<string, object> adRow in adList3)
                     {
                         var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, _table3Struct, adRow, false);
                         k += (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql) > 0 ? 1 : 0);
                     }
                     var adList4 = data4.ToListDataDictionary(txtSttRec.Text);
-                    foreach (SortedDictionary<string, object> adRow in adList4)
+                    foreach (IDictionary<string, object> adRow in adList4)
                     {
                         var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, _table4Struct, adRow, false);
                         l += (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql) > 0 ? 1 : 0);
                     }
                     var adList5 = data5.ToListDataDictionary(txtSttRec.Text);
-                    foreach (SortedDictionary<string, object> adRow in adList5)
+                    foreach (IDictionary<string, object> adRow in adList5)
                     {
                         var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, _table5Struct, adRow, false);
                         l += (SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql) > 0 ? 1 : 0);
@@ -833,7 +833,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
         }
 
-        private bool XuLyThemDetail(SortedDictionary<string, object> data)
+        private bool XuLyThemDetail(IDictionary<string, object> data)
         {
             if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
             {
@@ -894,7 +894,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             return true;
         }
 
-        private bool XuLyThemDetail3(SortedDictionary<string, object> data)
+        private bool XuLyThemDetail3(IDictionary<string, object> data)
         {
             if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
             {
@@ -954,7 +954,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             return true;
         }
 
-        private bool XuLySuaDetail(SortedDictionary<string, object> data)
+        private bool XuLySuaDetail(IDictionary<string, object> data)
         {
             if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
             {
@@ -1015,7 +1015,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             return true;
         }
 
-        private bool XuLySuaDetail3(SortedDictionary<string, object> data)
+        private bool XuLySuaDetail3(IDictionary<string, object> data)
         {
             if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
             {
@@ -1148,7 +1148,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
         }
 
-        private bool ValidateData_Detail(SortedDictionary<string, object> data)
+        private bool ValidateData_Detail(IDictionary<string, object> data)
         {
             try
             {
@@ -1161,7 +1161,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             return true;
         }
 
-        private bool ValidateData_Detail3(SortedDictionary<string, object> dic)
+        private bool ValidateData_Detail3(IDictionary<string, object> dic)
         {
             try
             {
@@ -1185,7 +1185,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             XuLyDetailClickAdd();
         }
 
-        private void detail1_AddHandle(SortedDictionary<string, object> data)
+        private void detail1_AddHandle(IDictionary<string, object> data)
         {
             GenMoreDetails(data);
             if (ValidateData_Detail(data))
@@ -1224,7 +1224,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             XuLyXoaDetail();
         }
 
-        private void detail1_EditHandle(SortedDictionary<string, object> data)
+        private void detail1_EditHandle(IDictionary<string, object> data)
         {
             GenMoreDetails(data);
             if (ValidateData_Detail(data))
@@ -1519,7 +1519,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
         }
 
-        private void detail3_AddHandle(SortedDictionary<string, object> dataDic)
+        private void detail3_AddHandle(IDictionary<string, object> dataDic)
         {
             if (ValidateData_Detail3(dataDic) && XuLyThemDetail3(dataDic))
             {
@@ -1527,7 +1527,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
             throw new Exception(V6Text.AddFail);
         }
-        private void detail3_EditHandle(SortedDictionary<string, object> data)
+        private void detail3_EditHandle(IDictionary<string, object> data)
         {
             if (ValidateData_Detail3(data))
             {
@@ -1685,7 +1685,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
         }
 
-        private bool XuLyThemDetail4(SortedDictionary<string, object> data)
+        private bool XuLyThemDetail4(IDictionary<string, object> data)
         {
             if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
             {
@@ -1740,7 +1740,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             return true;
         }
         
-        private bool XuLyThemDetail5(SortedDictionary<string, object> data)
+        private bool XuLyThemDetail5(IDictionary<string, object> data)
         {
             if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
             {

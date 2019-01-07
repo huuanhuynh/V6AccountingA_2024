@@ -6,7 +6,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
 {
     public class KhachHangChangeCodeForm : ChangeCodeFormBase
     {
-        public KhachHangChangeCodeForm(SortedDictionary<string, object> data)
+        public KhachHangChangeCodeForm(IDictionary<string, object> data)
             : base(data)
         {
             InitializeComponent();
