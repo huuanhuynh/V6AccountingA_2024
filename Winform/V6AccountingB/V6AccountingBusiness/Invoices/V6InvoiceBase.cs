@@ -35,6 +35,7 @@ namespace V6AccountingBusiness.Invoices
         protected V6TableStruct _amStruct, _adStruct, _ad2Struct, _ad3Struct;
         protected DataTable _alnt, _alct1, _alct3, _alpost;
         protected DataRow _alct, _alctct;
+        protected AlctConfig _alctConfig;
         
         /// <summary>
         /// Tên bảng dữ liệu AM
@@ -166,6 +167,25 @@ namespace V6AccountingBusiness.Invoices
                     // ignored
                 }
                 return _alct;
+            }
+        }
+
+        public AlctConfig AlctConfig
+        {
+            get
+            {
+                try
+                {
+                    if (_alctConfig == null || _alctConfig.NoInfo)
+                    {
+                        _alctConfig = new AlctConfig(Alct.ToDataDictionary());
+                    }
+                }
+                catch
+                {
+                    // ignored
+                }
+                return _alctConfig;
             }
         }
         
@@ -334,17 +354,6 @@ namespace V6AccountingBusiness.Invoices
             }
         }
 
-        public string GRDS_AM
-        {
-            get
-            {
-                if (Alct != null)
-                {
-                    return _alct["GRDS_AM"].ToString().Trim();
-                }
-                return "";
-            }
-        }
         public string GRDS_AD
         {
             get
@@ -356,17 +365,7 @@ namespace V6AccountingBusiness.Invoices
                 return "";
             }
         }
-        public string GRDF_AM
-        {
-            get
-            {
-                if (Alct != null)
-                {
-                    return _alct["GRDF_AM"].ToString().Trim();
-                }
-                return "";
-            }
-        }
+        
         public string GRDF_AD
         {
             get

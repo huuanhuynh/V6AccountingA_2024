@@ -273,6 +273,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
             // 
             // v6Label3
             // 
+            this.v6Label3.AccessibleDescription = "SEARCHF00014";
             this.v6Label3.AutoSize = true;
             this.v6Label3.Location = new System.Drawing.Point(4, 190);
             this.v6Label3.Name = "v6Label3";
@@ -282,6 +283,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
             // 
             // v6Label2
             // 
+            this.v6Label2.AccessibleDescription = "SEARCHF00013";
             this.v6Label2.AutoSize = true;
             this.v6Label2.Location = new System.Drawing.Point(4, 170);
             this.v6Label2.Name = "v6Label2";
@@ -291,6 +293,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
             // 
             // v6Label4
             // 
+            this.v6Label4.AccessibleDescription = "SEARCHF00012";
             this.v6Label4.AutoSize = true;
             this.v6Label4.Location = new System.Drawing.Point(4, 150);
             this.v6Label4.Name = "v6Label4";
@@ -358,7 +361,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // maBoPhan
             // 
@@ -441,7 +444,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
             this.maNhanVien.TabIndex = 14;
             this.maNhanVien.VVar = "MA_NVIEN";
             // 
-            // maDonVi
+            // txtMaDVCS
             // 
             this.txtMaDVCS.AccessibleName = "ma_dvcs";
             this.txtMaDVCS.BackColor = System.Drawing.SystemColors.Window;
@@ -478,7 +481,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // maKhach
             // 

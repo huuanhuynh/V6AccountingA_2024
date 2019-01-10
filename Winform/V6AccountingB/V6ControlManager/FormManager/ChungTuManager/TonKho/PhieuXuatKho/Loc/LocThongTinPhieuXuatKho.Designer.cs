@@ -295,6 +295,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.Loc
             // 
             // v6Label3
             // 
+            this.v6Label3.AccessibleDescription = "SEARCHF00014";
             this.v6Label3.AutoSize = true;
             this.v6Label3.Location = new System.Drawing.Point(4, 191);
             this.v6Label3.Name = "v6Label3";
@@ -304,6 +305,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.Loc
             // 
             // v6Label2
             // 
+            this.v6Label2.AccessibleDescription = "SEARCHF00013";
             this.v6Label2.AutoSize = true;
             this.v6Label2.Location = new System.Drawing.Point(4, 171);
             this.v6Label2.Name = "v6Label2";
@@ -313,6 +315,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.Loc
             // 
             // v6Label4
             // 
+            this.v6Label4.AccessibleDescription = "SEARCHF00012";
             this.v6Label4.AutoSize = true;
             this.v6Label4.Location = new System.Drawing.Point(4, 151);
             this.v6Label4.Name = "v6Label4";
@@ -361,7 +364,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.Loc
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtMaDVCS
             // 
@@ -463,7 +466,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.Loc
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // maKhach
             // 

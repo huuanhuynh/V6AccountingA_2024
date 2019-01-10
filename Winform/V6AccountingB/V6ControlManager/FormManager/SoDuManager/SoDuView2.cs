@@ -746,10 +746,10 @@ namespace V6ControlManager.FormManager.SoDuManager
         private void SetFormatGridView()
         {
             V6InvoiceBase _invoice = new V6InvoiceBase(_maCt);
-            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, _invoice.GRDS_AM, _invoice.GRDF_AM,
-                        V6Setting.IsVietnamese ? _invoice.GRDHV_AM : _invoice.GRDHE_AM);
-            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, _invoice.GRDS_AD, _invoice.GRDF_AD,
-                        V6Setting.IsVietnamese ? _invoice.GRDHV_AD : _invoice.GRDHE_AD);
+            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, _invoice.AlctConfig.GRDS_AM, _invoice.AlctConfig.GRDF_AM,
+                        V6Setting.IsVietnamese ? _invoice.AlctConfig.GRDHV_AM : _invoice.AlctConfig.GRDHE_AM);
+            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, _invoice.AlctConfig.GRDS_AD, _invoice.AlctConfig.GRDF_AD,
+                        V6Setting.IsVietnamese ? _invoice.AlctConfig.GRDHV_AD : _invoice.AlctConfig.GRDHE_AD);
 
         }
         //private void SetFormatGridView()

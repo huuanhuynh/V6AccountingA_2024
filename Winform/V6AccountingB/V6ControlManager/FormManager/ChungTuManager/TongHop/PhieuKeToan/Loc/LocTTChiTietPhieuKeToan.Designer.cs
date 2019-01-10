@@ -284,6 +284,7 @@
             // 
             // v6Label5
             // 
+            this.v6Label5.AccessibleDescription = "SEARCHF00014";
             this.v6Label5.AutoSize = true;
             this.v6Label5.Location = new System.Drawing.Point(5, 218);
             this.v6Label5.Name = "v6Label5";
@@ -293,6 +294,7 @@
             // 
             // v6Label6
             // 
+            this.v6Label6.AccessibleDescription = "SEARCHF00013";
             this.v6Label6.AutoSize = true;
             this.v6Label6.Location = new System.Drawing.Point(5, 198);
             this.v6Label6.Name = "v6Label6";
@@ -302,6 +304,7 @@
             // 
             // v6Label7
             // 
+            this.v6Label7.AccessibleDescription = "SEARCHF00012";
             this.v6Label7.AutoSize = true;
             this.v6Label7.Location = new System.Drawing.Point(5, 178);
             this.v6Label7.Name = "v6Label7";

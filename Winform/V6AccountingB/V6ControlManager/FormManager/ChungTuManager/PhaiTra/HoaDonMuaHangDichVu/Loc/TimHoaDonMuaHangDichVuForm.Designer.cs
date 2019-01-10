@@ -87,6 +87,7 @@
             // 
             // lblStatusDescription
             // 
+            this.lblStatusDescription.AccessibleDescription = ".";
             this.lblStatusDescription.Location = new System.Drawing.Point(137, 74);
             this.lblStatusDescription.Name = "lblStatusDescription";
             this.lblStatusDescription.Size = new System.Drawing.Size(616, 31);
@@ -176,6 +177,7 @@
             // 
             // v6Label21
             // 
+            this.v6Label21.AccessibleDescription = "SEARCHL00045";
             this.v6Label21.AutoSize = true;
             this.v6Label21.Location = new System.Drawing.Point(6, 74);
             this.v6Label21.Name = "v6Label21";
@@ -185,6 +187,7 @@
             // 
             // v6Label20
             // 
+            this.v6Label20.AccessibleDescription = "SEARCHL00044";
             this.v6Label20.AutoSize = true;
             this.v6Label20.Location = new System.Drawing.Point(6, 48);
             this.v6Label20.Name = "v6Label20";
@@ -194,6 +197,7 @@
             // 
             // v6Label6
             // 
+            this.v6Label6.AccessibleDescription = ".";
             this.v6Label6.AutoSize = true;
             this.v6Label6.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.v6Label6.Location = new System.Drawing.Point(282, 48);
@@ -205,6 +209,7 @@
             // 
             // v6Label7
             // 
+            this.v6Label7.AccessibleDescription = ".";
             this.v6Label7.AutoSize = true;
             this.v6Label7.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.v6Label7.Location = new System.Drawing.Point(282, 22);
@@ -216,6 +221,7 @@
             // 
             // v6Label8
             // 
+            this.v6Label8.AccessibleDescription = ".";
             this.v6Label8.AutoSize = true;
             this.v6Label8.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.v6Label8.Location = new System.Drawing.Point(6, 22);
@@ -311,6 +317,7 @@
             this.Activated += new System.EventHandler(this.TimHoaDonMuaHangDichVuForm_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TimHoaDonMuaHangDichVuForm_FormClosing);
             this.Load += new System.EventHandler(this.TimHoaDonForm_Load);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.panel1, 0);

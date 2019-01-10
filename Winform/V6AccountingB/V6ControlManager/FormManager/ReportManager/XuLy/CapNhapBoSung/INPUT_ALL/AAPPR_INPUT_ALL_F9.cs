@@ -34,7 +34,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             MyInit();
         }
 
-        public Dictionary<string, object> ListValue { get; set; }
+        public Dictionary<string, ListValueItem> ListValue { get; set; }
+        public class ListValueItem
+        {
+            public string Field { get; set; }
+            public object Value { get; set; }
+            public string type { get; set; }
+        }
 
         private void MyInit()
         {
@@ -62,7 +68,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                ListValue = new Dictionary<string, object>();
+                ListValue = new Dictionary<string, ListValueItem>();
                 // Phân tích danh sách Field
                 string[] sss = ObjectAndString.SplitString(_fields);
 
@@ -72,7 +78,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     string[] ss = s.Split(':');
                     if (ss[0].Trim().Length > 0)
                     {
-                        string field = ss[0];
+                        string FIELD = ss[0].ToUpper();
                         string label = ss[0];
                         string type = "";
                         List<string> options = new List<string>();
@@ -89,11 +95,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             }
                         }
                         
-                        _fieldDic.Add(field, label);
+                        _fieldDic.Add(FIELD, label);
 
                         // Tạo input cùng label
                         //Kiem tra
-                        Control c = this.GetControlByAccessibleName(field);
+                        Control c = this.GetControlByAccessibleName(FIELD);
                         if (c != null)
                         {
                             V6ControlFormHelper.SetControlReadOnly(c, false);
@@ -106,9 +112,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             int decimal_place = ObjectAndString.ObjectToInt(type.Substring(1));
                             txt = new V6NumberTextBox()
                             {
-                                AccessibleName = field,
+                                AccessibleName = FIELD,
                                 BorderStyle = BorderStyle.FixedSingle,
-                                Name = "txt" + field,
+                                Name = "txt" + FIELD,
                                 Top = top,
                                 Left = 5,
                                 Width = 400,
@@ -119,9 +125,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             var num = txt as V6NumberTextBox;
                             num.TextChanged += (sender, args) =>
                             {
-                                ListValue[field.ToUpper()] = num.Value;
+                                ListValue[FIELD].Value = num.Value;
                             };
-                            ListValue[field.ToUpper()] = num.Text;
+                            ListValue[FIELD] = new ListValueItem()
+                            {
+                                Field = FIELD,
+                                Value = num.Value,
+                                type = "N"
+                            };
                         }
                         else if(type.StartsWith("D"))
                         {
@@ -130,9 +141,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 case "D0": // Allow null
                                     txt = new V6DateTimeColor()
                                     {
-                                        AccessibleName = field,
+                                        AccessibleName = FIELD,
                                         BorderStyle = BorderStyle.FixedSingle,
-                                        Name = "txt" + field,
+                                        Name = "txt" + FIELD,
                                         Top = top,
                                         Left = 100,
                                         Width = 400,
@@ -140,16 +151,21 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     var d0 = txt as V6DateTimeColor;
                                     d0.TextChanged += (sender, args) =>
                                     {
-                                        ListValue[field.ToUpper()] = d0.Value;
+                                        ListValue[FIELD].Value = ObjectAndString.ObjectToString(d0.Value, "yyyyMMdd");
                                     };
-                                    ListValue[field.ToUpper()] = d0.Value;
+                                    ListValue[FIELD] = new ListValueItem()
+                                    {
+                                        Field = FIELD,
+                                        Value = ObjectAndString.ObjectToString(d0.Value, "yyyyMMdd"),
+                                        type = "D0"
+                                    };
                                     break;
                                 case "D1": // Not null
                                     txt = new V6DateTimePicker()
                                     {
-                                        AccessibleName = field,
+                                        AccessibleName = FIELD,
                                         //BorderStyle = BorderStyle.FixedSingle,
-                                        Name = "txt" + field,
+                                        Name = "txt" + FIELD,
                                         Top = top,
                                         Left = 100,
                                         Width = 400,
@@ -157,43 +173,58 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     var d1 = txt as V6DateTimePicker;
                                     d1.TextChanged += (sender, args) =>
                                     {
-                                        ListValue[field.ToUpper()] = d1.Value;
+                                        ListValue[FIELD].Value = ObjectAndString.ObjectToString(d1.Value, "yyyyMMdd");
                                     };
-                                    ListValue[field.ToUpper()] = d1.Value;
+                                    ListValue[FIELD] = new ListValueItem()
+                                    {
+                                        Field = FIELD,
+                                        Value = ObjectAndString.ObjectToString(d1.Value, "yyyyMMdd"),
+                                        type = "D1"
+                                    };
                                     break;
                                 case "D2": // Not null + time
                                     txt = new V6DateTimeFullPicker()
                                     {
-                                        AccessibleName = field,
+                                        AccessibleName = FIELD,
                                         //BorderStyle = BorderStyle.FixedSingle,
-                                        Name = "txt" + field,
+                                        Name = "txt" + FIELD,
                                         Top = top,
                                         Left = 100,
                                         Width = 400,
                                     };
                                     var d2 = txt as V6DateTimeFullPicker;
-                                    d2.TextChanged += (sender, args) =>
+                                    d2.ValueChanged += (sender, args) =>
                                     {
-                                        ListValue[field.ToUpper()] = d2.Value;
+                                        ListValue[FIELD].Value = ObjectAndString.ObjectToString(d2.Value, "yyyy-MM-dd HH:mm:ss");
                                     };
-                                    ListValue[field.ToUpper()] = d2.Value;
+                                    ListValue[FIELD] = new ListValueItem()
+                                    {
+                                        Field = FIELD,
+                                        Value = ObjectAndString.ObjectToString(d2.Value, "yyyy-MM-dd HH:mm:ss"),
+                                        type = "D2"
+                                    };
                                     break;
                                 case "D3": // null + time
                                     txt = new V6DateTimeFullPickerNull()
                                     {
-                                        AccessibleName = field,
+                                        AccessibleName = FIELD,
                                         BorderStyle = BorderStyle.FixedSingle,
-                                        Name = "txt" + field,
+                                        Name = "txt" + FIELD,
                                         Top = top,
                                         Left = 100,
                                         Width = 400,
                                     };
                                     var d3 = txt as V6DateTimeFullPickerNull;
-                                    d3.DateControl.TextChanged += (sender, args) =>
+                                    d3.DateControl.ValueChanged += (sender, args) =>
                                     {
-                                        ListValue[field.ToUpper()] = d3.Value;
+                                        ListValue[FIELD].Value = ObjectAndString.ObjectToString(d3.Value, "yyyy-MM-dd HH:mm:ss");
                                     };
-                                    ListValue[field.ToUpper()] = d3.Value;
+                                    ListValue[FIELD] = new ListValueItem()
+                                    {
+                                        Field = FIELD,
+                                        Value = ObjectAndString.ObjectToString(d3.Value, "yyyy-MM-dd HH:mm:ss"),
+                                        type = "D3"
+                                    };
                                     break;
                                 default:
                                     break;
@@ -204,9 +235,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         {
                             txt = new V6VvarTextBox()
                             {
-                                AccessibleName = field,
+                                AccessibleName = FIELD,
                                 BorderStyle = BorderStyle.FixedSingle,
-                                Name = "txt" + field,
+                                Name = "txt" + FIELD,
                                 Top = top,
                                 Left = 100,
                                 Width = 400,
@@ -214,17 +245,23 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             var vvar = txt as V6VvarTextBox;
                             if(options.Count > 0) vvar.VVar = options[0];
                             if(options.Count > 1) vvar.CheckOnLeave = ObjectAndString.ObjectToBool(options[1]);
-                            if(options.Count > 2) vvar.F2 = ObjectAndString.ObjectToBool(options[2]);
+                            if(options.Count > 2) vvar.CheckNotEmpty = ObjectAndString.ObjectToBool(options[2]);
+                            if(options.Count > 3) vvar.F2 = ObjectAndString.ObjectToBool(options[3]);
                             vvar.TextChanged += (sender, args) =>
                             {
-                                ListValue[field.ToUpper()] = vvar.Text;
+                                ListValue[FIELD].Value = vvar.Text;
                             };
-                            ListValue[field.ToUpper()] = txt.Text;
+                            ListValue[FIELD] = new ListValueItem()
+                            {
+                                Field = FIELD,
+                                Value = vvar.Text,
+                                type = "C"
+                            };
                         }
 
                         V6Label lbl = new V6Label()
                         {
-                            Name = "lbl" + field,
+                            Name = "lbl" + FIELD,
                             Text = label,
                             Top = top,
                             Left = 5,

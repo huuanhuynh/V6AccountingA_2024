@@ -676,7 +676,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// <summary>
         /// Hàm format luôn chạy trong base sau khi set dữ liệu cho grid 1.
         /// </summary>
-        protected void FormatGridViewBase()
+        protected virtual void FormatGridViewBase()
         {
             //Header
             if (_tbl != null)

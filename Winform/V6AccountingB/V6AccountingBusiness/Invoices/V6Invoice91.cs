@@ -15,6 +15,9 @@ namespace V6AccountingBusiness.Invoices
     /// </summary>
     public class V6Invoice91 : V6InvoiceBase
     {
+        /// <summary>
+        /// SOH: Đơn đặt hàng bán
+        /// </summary>
         public V6Invoice91() : base("SOH") { }
 
         public override string PrintReportProcedure

@@ -15,6 +15,9 @@ namespace V6AccountingBusiness.Invoices
     /// </summary>
     public class V6Invoice81 : V6InvoiceBase
     {
+        /// <summary>
+        /// SOA: Hóa đơn bán hàng kiêm phiếu xuất
+        /// </summary>
         public V6Invoice81():base("SOA", "00SOA")
         {
             

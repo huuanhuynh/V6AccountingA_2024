@@ -95,6 +95,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.TxtTk_i_ao = new V6Controls.V6VvarTextBox();
             this.TxtMa_kh_i_ao = new V6Controls.V6VvarTextBox();
             this.dataGridView3ChiPhi = new V6Controls.V6ColorDataGridView();
+            this.MA_VT_CP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TEN_VT_CP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UID_CP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.STT_REC_CP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.STT_REC0_CP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabKhac = new System.Windows.Forms.TabPage();
             this.txtT_TIENVC = new V6Controls.V6NumberTextBox();
             this.txtT_TIENVCNT = new V6Controls.V6NumberTextBox();
@@ -235,11 +240,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label1 = new V6Controls.V6Label();
             this.txtSoPhieu = new V6Controls.V6ColorTextBox();
-            this.MA_VT_CP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TEN_VT_CP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UID_CP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.STT_REC_CP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.STT_REC0_CP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuChucNang.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
@@ -1066,6 +1066,46 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.dataGridView3ChiPhi.Tag = "cancelall";
             this.dataGridView3ChiPhi.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView3_ColumnAdded);
             // 
+            // MA_VT_CP
+            // 
+            this.MA_VT_CP.DataPropertyName = "MA_VT";
+            this.MA_VT_CP.Frozen = true;
+            this.MA_VT_CP.HeaderText = "Mã vật tư";
+            this.MA_VT_CP.Name = "MA_VT_CP";
+            this.MA_VT_CP.ReadOnly = true;
+            // 
+            // TEN_VT_CP
+            // 
+            this.TEN_VT_CP.DataPropertyName = "TEN_VT";
+            this.TEN_VT_CP.Frozen = true;
+            this.TEN_VT_CP.HeaderText = "Tên vật tư";
+            this.TEN_VT_CP.Name = "TEN_VT_CP";
+            this.TEN_VT_CP.ReadOnly = true;
+            // 
+            // UID_CP
+            // 
+            this.UID_CP.DataPropertyName = "UID";
+            this.UID_CP.HeaderText = "UID";
+            this.UID_CP.Name = "UID_CP";
+            this.UID_CP.ReadOnly = true;
+            this.UID_CP.Visible = false;
+            // 
+            // STT_REC_CP
+            // 
+            this.STT_REC_CP.DataPropertyName = "STT_REC";
+            this.STT_REC_CP.HeaderText = "Rec";
+            this.STT_REC_CP.Name = "STT_REC_CP";
+            this.STT_REC_CP.ReadOnly = true;
+            this.STT_REC_CP.Visible = false;
+            // 
+            // STT_REC0_CP
+            // 
+            this.STT_REC0_CP.DataPropertyName = "STT_REC0";
+            this.STT_REC0_CP.HeaderText = "Rec0";
+            this.STT_REC0_CP.Name = "STT_REC0_CP";
+            this.STT_REC0_CP.ReadOnly = true;
+            this.STT_REC0_CP.Visible = false;
+            // 
             // tabKhac
             // 
             this.tabKhac.AccessibleDescription = "APOCTPOAR00044";
@@ -1667,6 +1707,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             // 
             // tabThongTin
             // 
+            this.tabThongTin.AccessibleDescription = "APOCTPOAR00048";
             this.tabThongTin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabThongTin.Controls.Add(this.dateTG_NHAN);
             this.tabThongTin.Controls.Add(this.lblTG_NHAN);
@@ -1698,6 +1739,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             // 
             // lblTG_NHAN
             // 
+            this.lblTG_NHAN.AccessibleDescription = "APOCTPOAL00074";
             this.lblTG_NHAN.AutoSize = true;
             this.lblTG_NHAN.Location = new System.Drawing.Point(0, 111);
             this.lblTG_NHAN.Name = "lblTG_NHAN";
@@ -1745,6 +1787,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             // 
             // lblNGAY_NOHD
             // 
+            this.lblNGAY_NOHD.AccessibleDescription = "APOCTPOAL00073";
             this.lblNGAY_NOHD.AutoSize = true;
             this.lblNGAY_NOHD.Location = new System.Drawing.Point(0, 83);
             this.lblNGAY_NOHD.Name = "lblNGAY_NOHD";
@@ -1754,6 +1797,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             // 
             // lblMA_HTTT
             // 
+            this.lblMA_HTTT.AccessibleDescription = "APOCTPOAL00072";
             this.lblMA_HTTT.AutoSize = true;
             this.lblMA_HTTT.Location = new System.Drawing.Point(0, 58);
             this.lblMA_HTTT.Name = "lblMA_HTTT";
@@ -1789,7 +1833,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             // txtMaHTVC
             // 
             this.txtMaHTVC.AccessibleName = "MA_HTVC";
-            this.txtMaHTVC.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaHTVC.BackColor = System.Drawing.Color.White;
             this.txtMaHTVC.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaHTVC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMaHTVC.CheckNotEmpty = true;
@@ -1806,6 +1850,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             // 
             // lblMA_HTVC
             // 
+            this.lblMA_HTVC.AccessibleDescription = "APOCTPOAL00070";
             this.lblMA_HTVC.AutoSize = true;
             this.lblMA_HTVC.Location = new System.Drawing.Point(0, 13);
             this.lblMA_HTVC.Name = "lblMA_HTVC";
@@ -1815,6 +1860,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             // 
             // lblDIA_CHI2
             // 
+            this.lblDIA_CHI2.AccessibleDescription = "APOCTPOAL00071";
             this.lblDIA_CHI2.AutoSize = true;
             this.lblDIA_CHI2.Location = new System.Drawing.Point(0, 34);
             this.lblDIA_CHI2.Name = "lblDIA_CHI2";
@@ -3433,46 +3479,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.txtSoPhieu.Size = new System.Drawing.Size(100, 20);
             this.txtSoPhieu.TabIndex = 1;
             this.txtSoPhieu.TextChanged += new System.EventHandler(this.txtSoPhieu_TextChanged);
-            // 
-            // MA_VT_CP
-            // 
-            this.MA_VT_CP.DataPropertyName = "MA_VT";
-            this.MA_VT_CP.Frozen = true;
-            this.MA_VT_CP.HeaderText = "Mã vật tư";
-            this.MA_VT_CP.Name = "MA_VT_CP";
-            this.MA_VT_CP.ReadOnly = true;
-            // 
-            // TEN_VT_CP
-            // 
-            this.TEN_VT_CP.DataPropertyName = "TEN_VT";
-            this.TEN_VT_CP.Frozen = true;
-            this.TEN_VT_CP.HeaderText = "Tên vật tư";
-            this.TEN_VT_CP.Name = "TEN_VT_CP";
-            this.TEN_VT_CP.ReadOnly = true;
-            // 
-            // UID_CP
-            // 
-            this.UID_CP.DataPropertyName = "UID";
-            this.UID_CP.HeaderText = "UID";
-            this.UID_CP.Name = "UID_CP";
-            this.UID_CP.ReadOnly = true;
-            this.UID_CP.Visible = false;
-            // 
-            // STT_REC_CP
-            // 
-            this.STT_REC_CP.DataPropertyName = "STT_REC";
-            this.STT_REC_CP.HeaderText = "Rec";
-            this.STT_REC_CP.Name = "STT_REC_CP";
-            this.STT_REC_CP.ReadOnly = true;
-            this.STT_REC_CP.Visible = false;
-            // 
-            // STT_REC0_CP
-            // 
-            this.STT_REC0_CP.DataPropertyName = "STT_REC0";
-            this.STT_REC0_CP.HeaderText = "Rec0";
-            this.STT_REC0_CP.Name = "STT_REC0_CP";
-            this.STT_REC0_CP.ReadOnly = true;
-            this.STT_REC0_CP.Visible = false;
             // 
             // DonDatHangMuaControl
             // 

@@ -43,8 +43,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 {
                     grid1.DataSource = AM;
                     V6ControlFormHelper.FormatGridViewAndHeader(
-                        grid1, _invoice.GRDS_AM, _invoice.GRDF_AM,
-                        V6Setting.IsVietnamese ? _invoice.GRDHV_AM : _invoice.GRDHE_AM);
+                        grid1, _invoice.AlctConfig.GRDS_AM, _invoice.AlctConfig.GRDF_AM,
+                        V6Setting.IsVietnamese ? _invoice.AlctConfig.GRDHV_AM : _invoice.AlctConfig.GRDHE_AM);
                     if (_grid1 != null)
                         V6ControlFormHelper.FormatGridViewHideColumns(_grid1, _invoice.Mact);
                 }
@@ -52,8 +52,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 {
                     grid2.DataSource = AD;
                     V6ControlFormHelper.FormatGridViewAndHeader(
-                        grid2, _invoice.GRDS_AD, _invoice.GRDF_AD,
-                        V6Setting.IsVietnamese ? _invoice.GRDHV_AD : _invoice.GRDHE_AD);
+                        grid2, _invoice.AlctConfig.GRDS_AD, _invoice.AlctConfig.GRDF_AD,
+                        V6Setting.IsVietnamese ? _invoice.AlctConfig.GRDHV_AD : _invoice.AlctConfig.GRDHE_AD);
                     if(_grid2 != null)
                     V6ControlFormHelper.FormatGridViewHideColumns(_grid2, _invoice.Mact);
                 }
@@ -122,16 +122,16 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     if (_grid1 != null)
                     {
                         V6ControlFormHelper.FormatGridViewAndHeader(
-                            _grid1, _invoice.GRDS_AM, _invoice.GRDF_AM,
-                            V6Setting.IsVietnamese ? _invoice.GRDHV_AM : _invoice.GRDHE_AM);
+                            _grid1, _invoice.AlctConfig.GRDS_AM, _invoice.AlctConfig.GRDF_AM,
+                            V6Setting.IsVietnamese ? _invoice.AlctConfig.GRDHV_AM : _invoice.AlctConfig.GRDHE_AM);
 
                         V6ControlFormHelper.FormatGridViewHideColumns(_grid1, _invoice.Mact);
                     }
                     if (_grid2 != null)
                     {
                         V6ControlFormHelper.FormatGridViewAndHeader(
-                            _grid2, _invoice.GRDS_AD, _invoice.GRDF_AD,
-                            V6Setting.IsVietnamese ? _invoice.GRDHV_AD : _invoice.GRDHE_AD);
+                            _grid2, _invoice.AlctConfig.GRDS_AD, _invoice.AlctConfig.GRDF_AD,
+                            V6Setting.IsVietnamese ? _invoice.AlctConfig.GRDHV_AD : _invoice.AlctConfig.GRDHE_AD);
                         
                         V6ControlFormHelper.FormatGridViewHideColumns(_grid2, _invoice.Mact);
                     }

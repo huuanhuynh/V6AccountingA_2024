@@ -14,6 +14,9 @@ namespace V6AccountingBusiness.Invoices
     /// </summary>
     public class V6Invoice71: V6InvoiceBase
     {
+        /// <summary>
+        /// POA: Phiếu nhập mua
+        /// </summary>
         public V6Invoice71() : base("POA") { }
 
         public override string PrintReportProcedure

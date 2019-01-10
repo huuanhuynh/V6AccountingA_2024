@@ -97,6 +97,7 @@
             this.txtMa_ct.Name = "txtMa_ct";
             this.txtMa_ct.Size = new System.Drawing.Size(100, 20);
             this.txtMa_ct.TabIndex = 2;
+            this.txtMa_ct.UseChangeTextOnSetFormData = true;
             this.txtMa_ct.VVar = "MA_CT";
             this.txtMa_ct.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMa_ct_V6LostFocus);
             // 

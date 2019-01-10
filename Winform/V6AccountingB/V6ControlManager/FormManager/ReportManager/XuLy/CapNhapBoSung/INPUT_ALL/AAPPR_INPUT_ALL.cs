@@ -10,7 +10,6 @@ using V6Controls.Forms;
 using V6Controls.Forms.Viewer;
 using V6Init;
 using V6Structs;
-using V6Tools;
 using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
@@ -85,7 +84,19 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             return _extraInfor;
         }
-        
+
+        public override void FormatGridViewExtern()
+        {
+            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, invoice.AlctConfig.GRDS_AM, invoice.AlctConfig.GRDF_AM,
+                V6Setting.IsVietnamese ? invoice.AlctConfig.GRDHV_AM : invoice.AlctConfig.GRDHE_AM);
+        }
+
+        protected override void FormatGridView2()
+        {
+            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, invoice.AlctConfig.GRDS_AD, invoice.AlctConfig.GRDF_AD,
+                V6Setting.IsVietnamese ? invoice.AlctConfig.GRDHV_AD : invoice.AlctConfig.GRDHE_AD);
+        }
+
         #region ==== Xử lý F9 ====
         
         private bool f9Running;
@@ -108,6 +119,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var extra_infors = GetExtraInfor(alctConfig.GetString("EXTRA_INFOR"));
                 if (extra_infors.ContainsKey("FIELDS_F9")) extra_infor = extra_infors["FIELDS_F9"];
                 form_f9 = new AAPPR_INPUT_ALL_F9(extra_infor);
+                All_Objects["FORM_F9"] = form_f9;
+                All_Objects["MA_CT"] = FilterControl.ObjectDictionary["MA_CT"];
+                InvokeFormEvent(FormDynamicEvent.F9);
                 if (form_f9.ShowDialog(this) != DialogResult.OK)
                 {
                     return;
@@ -156,27 +170,30 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         //if (TxtMa_bp_Text != "") am["MA_BP"] = TxtMa_bp_Text;
                         //if (TxtMa_nvien_Text != "") am["MA_NVIEN"] = TxtMa_nvien_Text;
                         // thêm giá trị động vào am data.
-                        string LFields = "", LValues = "";
-                        foreach (KeyValuePair<string, object> item in form_f9.ListValue)
+                        string LFields = "", LValues = "", LTypes = "";
+                        foreach (KeyValuePair<string, AAPPR_INPUT_ALL_F9.ListValueItem> item in form_f9.ListValue)
                         {
-                            am[item.Key] = item.Value;
-                            LFields += ";" + item.Key;
-                            LValues += ";" + ObjectAndString.ObjectToString(item.Value, "yyyyMMdd");
+                            am[item.Key] = item.Value.Value;
+                            LFields += ";" + item.Value.Field;
+                            LValues += ";" + ObjectAndString.ObjectToString(item.Value.Value, "yyyyMMdd");
+                            LTypes += ";" + item.Value.type;
                         }
                         if (LFields.Length > 0) LFields = LFields.Substring(1);
                         if (LValues.Length > 0) LValues = LValues.Substring(1);
-
-                        var keys = new SortedDictionary<string, object> {{"Stt_rec", c_sttRec}};
-                        var result = V6BusinessHelper.UpdateSimple(V6TableName.Am81, am, keys);
-                        if (result == 1)
+                        if (LTypes.Length > 0) LTypes = LTypes.Substring(1);
+                        
+                        //var keys = new SortedDictionary<string, object> {{"Stt_rec", c_sttRec}};
+                        //var result = V6BusinessHelper.UpdateSimple(invoice.AM_TableName, am, keys);
+                        //if (result == 1)
                         {
                             SqlParameter[] plist =
                             {
                                 new SqlParameter("@Stt_rec", c_sttRec),
                                 new SqlParameter("@Ma_ct", FilterControl.ObjectDictionary["MA_CT"]),
-                                new SqlParameter("@Set_ma_xuly", V6Login.UserId),
+                                new SqlParameter("@Set_ma_xuly", FilterControl.Kieu_post),
                                 new SqlParameter("@LFields", LFields),//Giá trị các trường động cách nhau bằng ;
                                 new SqlParameter("@LValues", LValues),
+                                new SqlParameter("@LTypes", LTypes),
                                 new SqlParameter("@user_id", V6Login.UserId),
                             };
                             V6BusinessHelper.ExecuteProcedure("AAPPR_INPUT_ALLF9", plist);

@@ -52,14 +52,14 @@ namespace V6Controls.Controls.Label
             try
             {
                 listView1.Items.Add(new ListViewItem(new[] {V6Setting.IsVietnamese ? "Tên đối tượng" : "Object Name", _label.Name}));
-                listView1.Items.Add(new ListViewItem(new[] {V6Setting.IsVietnamese ? "Thiết kế" : "Design text", _label.Text}));
+                listView1.Items.Add(new ListViewItem(new[] {V6Setting.IsVietnamese ? "Giá trị" : "Text", _label.Text}));
                 listView1.Items.Add(new ListViewItem(new[] {"AccessibleDescription", _label.AccessibleDescription}));
 
                 row = CorpLan.GetRow(_label.AccessibleDescription);
                 if (row != null)
                 {
                     listView1.Items.Add(new ListViewItem(new[] {"DefaultText", row["D"].ToString()}));
-                    listView1.Items.Add(new ListViewItem(new[] { "VietText", string.Format("{0} ({1})", row["V"], ObjectAndString.ObjectToBool(row["CHANGE_V"]) ? "✓" : "  ") }));
+                    listView1.Items.Add(new ListViewItem(new[] { "VietText", string.Format("{0} ({1})", row["V"], ObjectAndString.ObjectToBool(row["CHANGE_V"]) ? "áp dụng" : "không áp dụng") }));
                     listView1.Items.Add(new ListViewItem(new[] {"EngText", row["E"].ToString()}));
                     if(row.Table.Columns.Contains(V6Setting.Language))
                     listView1.Items.Add(new ListViewItem(new[] {"SelectedLang", row[V6Setting.Language].ToString()}));

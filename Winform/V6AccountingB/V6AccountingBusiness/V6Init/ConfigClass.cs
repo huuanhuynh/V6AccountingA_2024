@@ -66,7 +66,7 @@ namespace V6Init
             NoInfo = true;
             Error = true;
         }
-
+        
         public string TableNameAM
         {
             get
@@ -88,6 +88,112 @@ namespace V6Init
                 return GetString("m_list_ct");
             }
         }
+
+        public string MODULE_ID { get { return GetString("MODULE_ID"); } }
+        public string MA_PHAN_HE { get { return GetString("MA_PHAN_HE"); } }
+        public string MA_CT { get { return GetString("MA_CT"); } }
+        public string TEN_CT { get { return GetString("TEN_CT"); } }
+        public string TEN_CT2 { get { return GetString("TEN_CT2"); } }
+        public string MA_CT_ME { get { return GetString("MA_CT_ME"); } }
+        public string SO_CT { get { return GetString("SO_CT"); } }
+        public string M_MA_NK { get { return GetString("M_MA_NK"); } }
+        public string M_MA_GD { get { return GetString("M_MA_GD"); } }
+        public string M_MA_TD { get { return GetString("M_MA_TD"); } }
+        public string MA_NT { get { return GetString("MA_NT"); } }
+        public string TIEU_DE_CT { get { return GetString("TIEU_DE_CT"); } }
+        public string TIEU_DE2 { get { return GetString("TIEU_DE2"); } }
+        public string SO_LIEN { get { return GetString("SO_LIEN"); } }
+        public string MA_CT_IN { get { return GetString("MA_CT_IN"); } }
+        public string FORM { get { return GetString("FORM"); } }
+        public string STT_CT_NKC { get { return GetString("STT_CT_NKC"); } }
+        public string STT_CTNTXT { get { return GetString("STT_CTNTXT"); } }
+        public string CT_NXT { get { return GetString("CT_NXT"); } }
+        public string M_PHDBF { get { return GetString("M_PHDBF"); } }
+        public string M_CTDBF { get { return GetString("M_CTDBF"); } }
+        public string M_STATUS { get { return GetString("M_STATUS"); } }
+        public string POST_TYPE { get { return GetString("POST_TYPE"); } }
+        public string M_SL_CT0 { get { return GetString("M_SL_CT0"); } }
+        public string M_TRUNG_SO { get { return GetString("M_TRUNG_SO"); } }
+        public string M_LOC_NSD { get { return GetString("M_LOC_NSD"); } }
+        public string M_ONG_BA { get { return GetString("M_ONG_BA"); } }
+        public string M_NGAY_CT { get { return GetString("M_NGAY_CT"); } }
+        public string PROCEDUR { get { return GetString("PROCEDUR"); } }
+        public string DATE2 { get { return GetString("DATE2"); } }
+        public string TIME2 { get { return GetString("TIME2"); } }
+        public string USER_ID2 { get { return GetString("USER_ID2"); } }
+        public string STT { get { return GetString("STT"); } }
+        public string M_MA_TD2 { get { return GetString("M_MA_TD2"); } }
+        public string M_MA_TD3 { get { return GetString("M_MA_TD3"); } }
+        public string M_NGAY_TD1 { get { return GetString("M_NGAY_TD1"); } }
+        public string M_SL_TD1 { get { return GetString("M_SL_TD1"); } }
+        public string M_SL_TD2 { get { return GetString("M_SL_TD2"); } }
+        public string M_SL_TD3 { get { return GetString("M_SL_TD3"); } }
+        public string M_GC_TD1 { get { return GetString("M_GC_TD1"); } }
+        public string M_GC_TD2 { get { return GetString("M_GC_TD2"); } }
+        public string M_GC_TD3 { get { return GetString("M_GC_TD3"); } }
+        public string POST2 { get { return GetString("POST2"); } }
+        public string POST3 { get { return GetString("POST3"); } }
+        public string M_NGAY_TD2 { get { return GetString("M_NGAY_TD2"); } }
+        public string M_NGAY_TD3 { get { return GetString("M_NGAY_TD3"); } }
+        public string DK_CTGS { get { return GetString("DK_CTGS"); } }
+        public string KH_YN { get { return GetString("KH_YN"); } }
+        public string CC_YN { get { return GetString("CC_YN"); } }
+        public string NV_YN { get { return GetString("NV_YN"); } }
+        public string MA_CT_OLD { get { return GetString("MA_CT_OLD"); } }
+        public string M_PH_OLD { get { return GetString("M_PH_OLD"); } }
+        public string M_BP_BH { get { return GetString("M_BP_BH"); } }
+        public string M_MA_NVIEN { get { return GetString("M_MA_NVIEN"); } }
+        public string M_MA_VV { get { return GetString("M_MA_VV"); } }
+        public string M_MA_HD { get { return GetString("M_MA_HD"); } }
+        public string M_MA_KU { get { return GetString("M_MA_KU"); } }
+        public string M_MA_PHI { get { return GetString("M_MA_PHI"); } }
+        public string M_MA_VITRI { get { return GetString("M_MA_VITRI"); } }
+        public string M_MA_LO { get { return GetString("M_MA_LO"); } }
+        public string M_MA_BPHT { get { return GetString("M_MA_BPHT"); } }
+        public string M_MA_SP { get { return GetString("M_MA_SP"); } }
+        public string M_K_POST { get { return GetString("M_K_POST"); } }
+        public string TK_NO { get { return GetString("TK_NO"); } }
+        public string TK_CO { get { return GetString("TK_CO"); } }
+        public string M_MA_LNX { get { return GetString("M_MA_LNX"); } }
+        public string M_HSD { get { return GetString("M_HSD"); } }
+        public string M_MA_SONB { get { return GetString("M_MA_SONB"); } }
+        public string M_SXOA_NSD { get { return GetString("M_SXOA_NSD"); } }
+        public string SIZE_CT { get { return GetString("SIZE_CT"); } }
+        public string THEM_IN { get { return GetString("THEM_IN"); } }
+        public string PHANDAU { get { return GetString("PHANDAU"); } }
+        public string PHANCUOI { get { return GetString("PHANCUOI"); } }
+        public string DINHDANG { get { return GetString("DINHDANG"); } }
+        public string UID { get { return GetString("UID"); } }
+        public string M_GTDBF { get { return GetString("M_GTDBF"); } }
+        public string ADV_AM { get { return GetString("ADV_AM"); } }
+        public string ADV_AD { get { return GetString("ADV_AD"); } }
+        public string DROP_MAX { get { return GetString("DROP_MAX"); } }
+        public string M_KTDBF { get { return GetString("M_KTDBF"); } }
+        public string GRDS_AM { get { return GetString("GRDS_AM"); } }
+        public string GRDF_AM { get { return GetString("GRDF_AM"); } }
+        public string GRDS_AD { get { return GetString("GRDS_AD"); } }
+        public string GRDF_AD { get { return GetString("GRDF_AD"); } }
+        public string GRDHV_AM { get { return GetString("GRDHV_AM"); } }
+        public string GRDHE_AM { get { return GetString("GRDHE_AM"); } }
+        public string GRDHV_AD { get { return GetString("GRDHV_AD"); } }
+        public string GRDHE_AD { get { return GetString("GRDHE_AD"); } }
+        public string GRDT_AM { get { return GetString("GRDT_AM"); } }
+        public string GRDT_AD { get { return GetString("GRDT_AD"); } }
+        public string TYPE_VIEW { get { return GetString("TYPE_VIEW"); } }
+        public string GRDS_Q1 { get { return GetString("GRDS_Q1"); } }
+        public string GRDF_Q1 { get { return GetString("GRDF_Q1"); } }
+        public string GRDHV_Q1 { get { return GetString("GRDHV_Q1"); } }
+        public string GRDHE_Q1 { get { return GetString("GRDHE_Q1"); } }
+        public string MA_POST { get { return GetString("MA_POST"); } }
+        public string NGAY_KS_KY { get { return GetString("NGAY_KS_KY"); } }
+        public string AM_TEMPLATE { get { return GetString("AM_TEMPLATE"); } }
+        public string AD_TEMPLATE { get { return GetString("AD_TEMPLATE"); } }
+        public string MMETHOD { get { return GetString("MMETHOD"); } }
+        public string M_LIST_CT { get { return GetString("M_LIST_CT"); } }
+        public string WRITE_LOG { get { return GetString("WRITE_LOG"); } }
+        public string EXTRA_INFOR { get { return GetString("EXTRA_INFOR"); } }
+
+
     }
 
     public class AldmConfig : Config
