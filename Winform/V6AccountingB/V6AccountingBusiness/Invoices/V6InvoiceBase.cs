@@ -75,6 +75,32 @@ namespace V6AccountingBusiness.Invoices
                 return Alct["m_ktdbf"].ToString().Trim();
             }
         }
+
+        /// <summary>
+        /// Cộng thêm vào phần search select trong hàm SearchAM
+        /// </summary>
+        public string AMSELECTMORE
+        {
+            get
+            {
+                string m_gc_td2 = AlctConfig.M_GC_TD2;
+                string[] ss = m_gc_td2.Split(';');
+                return ss[0];
+            }
+        }
+        
+        /// <summary>
+        /// Cộng thêm vào phần search select JOIN trong hàm SearchAM
+        /// </summary>
+        public string AMJOINMORE
+        {
+            get
+            {
+                string m_gc_td2 = AlctConfig.M_GC_TD2;
+                var ss = m_gc_td2.Split(';');
+                return ss.Length>1 ? ss[1] : null;
+            }
+        }
         
         /// <summary>
         /// Cộng thêm vào phần select trong hàm LoadAD

@@ -67,6 +67,7 @@
             // 
             // grbTuyChon
             // 
+            this.grbTuyChon.AccessibleDescription = "SEARCHG00003";
             this.grbTuyChon.Controls.Add(this.lblStatusDescription);
             this.grbTuyChon.Controls.Add(this.chkNSD);
             this.grbTuyChon.Controls.Add(this.txtNhomVT3);

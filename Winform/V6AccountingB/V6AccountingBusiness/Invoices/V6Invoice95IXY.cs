@@ -199,7 +199,9 @@ namespace V6AccountingBusiness.Invoices
         {
             string template =
                 "Select a.*, b.Ma_so_thue, b.Ten_kh AS Ten_kh,f.Ten_nvien AS Ten_nvien,g.Ten_httt AS Ten_httt"
-                + "\nFROM "+AM_TableName+" a LEFT JOIN Alkh b ON a.Ma_kh=b.Ma_kh LEFT JOIN alnvien f ON a.Ma_nvien=f.Ma_nvien"
+                + AMSELECTMORE
+                + "\nFROM "+AM_TableName+" a LEFT JOIN Alkh b ON a.Ma_kh=b.Ma_kh LEFT JOIN alnvien f ON a.Ma_nvien=f.Ma_nvien "
+                + AMJOINMORE
                 + "\n LEFT JOIN alhttt AS g ON a.Ma_httt = g.Ma_httt  JOIN "
                 + "\n (SELECT Stt_rec FROM " + AM_TableName + " WHERE Ma_ct = '" + Mact + "'"
                 + "\n {0} {1} {2}) AS m ON a.Stt_rec = m.Stt_rec"
@@ -227,42 +229,6 @@ namespace V6AccountingBusiness.Invoices
             var sql = string.Format(template, where0Ngay, where1AM, p2Template);
             var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql).Tables[0];
             return tbl;
-        }
-
-        public DataTable SearchAM(SortedDictionary<string,object> keys, SortedDictionary<string,object> keys_adv)
-            //where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)
-        {
-            //string template =
-            //    "Select a.*, b.Ma_so_thue, b.Ten_kh AS Ten_kh,f.Ten_nvien AS Ten_nvien,g.Ten_httt AS Ten_httt"
-            //    + "\nFROM " + AM + " a LEFT JOIN Alkh b ON a.Ma_kh=b.Ma_kh LEFT JOIN alnvien f ON a.Ma_nvien=f.Ma_nvien"
-            //    + "\n LEFT JOIN alhttt AS g ON a.Ma_httt = g.Ma_httt  JOIN "
-            //    + "\n (SELECT Stt_rec FROM " + AM + " WHERE Ma_ct = '" + Mact + "'"
-            //    + "\n {0} {1} {2}) AS m ON a.Stt_rec = m.Stt_rec"
-            //    + "\n ORDER BY a.ngay_ct, a.so_ct, a.stt_rec";
-            //if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
-            //if (where1AM.Length > 0) where1AM = "And " + where1AM;
-            //var p2Template =
-            //    "\n--{0}{1}\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD + " WHERE Ma_ct = '" + Mact + "' {0} {2}"
-            //    + (where3NhVt.Length==0?"{3}":"\n	And Ma_vt IN (SELECT Ma_vt FROM Alvt WHERE 1 = 1 {3})")
-            //    + "\n		{4})";//" And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 {4})"
-            //if (where2AD.Length > 0 || where3NhVt.Length > 0 || where4Dvcs.Length > 0)
-            //{
-            //    if (where2AD.Length > 0) where2AD = "And " + where2AD;
-            //    if (where3NhVt.Length > 0) where3NhVt = "And " + where3NhVt;
-            //    if (where4Dvcs.Length > 0) where4Dvcs
-            //        = string.Format("	And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
-
-            //    p2Template = string.Format(p2Template, where0Ngay, "", where2AD, where3NhVt, where4Dvcs);
-            //}
-            //else
-            //{
-            //    p2Template = "";
-            //}
-
-            //var sql = string.Format(template, where0Ngay, where1AM, p2Template);
-            //var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql).Tables[0];
-            //return tbl;
-            return null;
         }
 
         public override DataTable LoadAD(string sttRec)

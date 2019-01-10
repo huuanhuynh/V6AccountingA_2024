@@ -14,6 +14,9 @@ namespace V6AccountingBusiness.Invoices
     /// </summary>
     public class V6Invoice84 : V6InvoiceBase
     {
+        /// <summary>
+        /// IXA: Phiếu xuất kho
+        /// </summary>
         public V6Invoice84() : base("IXA") { }
 
         public override string PrintReportProcedure
@@ -25,7 +28,7 @@ namespace V6AccountingBusiness.Invoices
         
         private string _name = "Phiếu xuất kho";
 
-        public bool InsertInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> adList)
+        public override bool InsertInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> adList)
         {
             object stt_rec = amData["STT_REC"];
             var insert_success = false;
@@ -48,7 +51,7 @@ namespace V6AccountingBusiness.Invoices
 
                 insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, insert_am_sql) > 0;
 
-                foreach (SortedDictionary<string, object> adRow in adList)
+                foreach (IDictionary<string, object> adRow in adList)
                 {
                     var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, ADStruct, adRow);
                     int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql);
@@ -221,7 +224,9 @@ namespace V6AccountingBusiness.Invoices
 
             string template =
                 "Select a.*, b.Ma_so_thue, b.Ten_kh AS Ten_kh,f.Ten_nvien AS Ten_nvien"
-                + "\nFROM "+AM_TableName+" a LEFT JOIN Alkh b ON a.Ma_kh=b.Ma_kh LEFT JOIN alnvien f ON a.Ma_nvien=f.Ma_nvien"
+                + AMSELECTMORE
+                + "\nFROM "+AM_TableName+" a LEFT JOIN Alkh b ON a.Ma_kh=b.Ma_kh LEFT JOIN alnvien f ON a.Ma_nvien=f.Ma_nvien "
+                + AMJOINMORE
                 + "\n JOIN (SELECT Stt_rec FROM " + AM_TableName + " WHERE Ma_ct = '" + Mact + "'"
                 + "\n {0} {1} {2}) AS m ON a.Stt_rec = m.Stt_rec"
                 + "\n ORDER BY a.ngay_ct, a.so_ct, a.stt_rec";

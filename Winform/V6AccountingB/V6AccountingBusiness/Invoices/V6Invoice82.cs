@@ -11,10 +11,13 @@ using V6Tools;
 namespace V6AccountingBusiness.Invoices
 {
     /// <summary>
-    /// SOB: Hóa đơn bán hàng kiêm phiếu xuất
+    /// SOB: Hóa đơn dịch vụ có số lượng
     /// </summary>
     public class V6Invoice82 : V6InvoiceBase
     {
+        /// <summary>
+        /// SOB: Hóa đơn dịch vụ có số lượng
+        /// </summary>
         public V6Invoice82():base("SOB", "00SOB")
         {
             
@@ -27,7 +30,7 @@ namespace V6AccountingBusiness.Invoices
 
         public override string Name { get { return "Hóa đơn dịch vụ có số lượng"; } }
 
-        public bool InsertInvoice(IDictionary<string, object> amData,
+        public override bool InsertInvoice(IDictionary<string, object> amData,
             List<IDictionary<string, object>> adList,
             List<IDictionary<string, object>> adList3)
         {
@@ -54,7 +57,7 @@ namespace V6AccountingBusiness.Invoices
 
                 insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, insert_am_sql) > 0;
 
-                foreach (SortedDictionary<string, object> adRow in adList)
+                foreach (IDictionary<string, object> adRow in adList)
                 {
                     var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, ADStruct, adRow);
                     int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql);
@@ -66,7 +69,7 @@ namespace V6AccountingBusiness.Invoices
                     }
                     j += (execute > 0 ? 1 : 0);
                 }
-                foreach (SortedDictionary<string, object> adRow in adList3)
+                foreach (IDictionary<string, object> adRow in adList3)
                 {
                     var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, AD3Struct, adRow);
                     int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql);
@@ -199,7 +202,7 @@ namespace V6AccountingBusiness.Invoices
                 insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, amSql) > 0;
                 
                 //Insert AD
-                foreach (SortedDictionary<string, object> adRow in adList)
+                foreach (IDictionary<string, object> adRow in adList)
                 {
                     var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, ADStruct, adRow, false);
                     int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql);
@@ -212,7 +215,7 @@ namespace V6AccountingBusiness.Invoices
                     j += (execute > 0 ? 1 : 0);
                 }
                 //Insert AD3
-                foreach (SortedDictionary<string, object> adRow in adList3)
+                foreach (IDictionary<string, object> adRow in adList3)
                 {
                     var ad3Sql = SqlGenerator.GenInsertAMSql(V6Login.UserId, AD3Struct, adRow);
                     int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, ad3Sql);
@@ -338,7 +341,9 @@ namespace V6AccountingBusiness.Invoices
             
             string template =
                 "Select a.*, b.Ma_so_thue, b.Dien_thoai, b.Ten_kh AS Ten_kh,f.Ten_nvien AS Ten_nvien,g.Ten_httt AS Ten_httt"
-                + "\nFROM " + AM_TableName + " a LEFT JOIN Alkh b ON a.Ma_kh=b.Ma_kh LEFT JOIN alnvien f ON a.Ma_nvien=f.Ma_nvien"
+                + AMSELECTMORE
+                + "\nFROM " + AM_TableName + " a LEFT JOIN Alkh b ON a.Ma_kh=b.Ma_kh LEFT JOIN alnvien f ON a.Ma_nvien=f.Ma_nvien "
+                + AMJOINMORE
                 + "\n LEFT JOIN alhttt AS g ON a.Ma_httt = g.Ma_httt  JOIN "
                 + "\n (SELECT Stt_rec FROM " + AM_TableName + " WHERE Ma_ct = '" + Mact + "'"
                 + "\n {0} {1} {2}) AS m ON a.Stt_rec = m.Stt_rec"

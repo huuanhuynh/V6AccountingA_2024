@@ -253,7 +253,9 @@ namespace V6AccountingBusiness.Invoices
         {
             string template =
                 "Select a.*,f.Ten_nvien AS Ten_nvien"
-                + "\nFROM "+AM_TableName+" a  LEFT JOIN alnvien f ON a.Ma_nvien=f.Ma_nvien"
+                + AMSELECTMORE
+                + "\nFROM "+AM_TableName+" a  LEFT JOIN alnvien f ON a.Ma_nvien=f.Ma_nvien "
+                + AMJOINMORE
                 + "\n JOIN "
                 + "\n (SELECT Stt_rec FROM " + AM_TableName + " WHERE Ma_ct = '" + Mact + "'"
                 + "\n {0} {1} {2}) AS m ON a.Stt_rec = m.Stt_rec"

@@ -221,7 +221,7 @@ namespace V6AccountingBusiness.Invoices
                 //Update AM
                 insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, amSql) > 0;
                 //Insert AD
-                foreach (SortedDictionary<string, object> adRow in adList)
+                foreach (IDictionary<string, object> adRow in adList)
                 {
                     var adSql = SqlGenerator.GenInsertAMSql(V6Login.UserId, ADStruct, adRow, false);
                     int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, adSql);
@@ -234,7 +234,7 @@ namespace V6AccountingBusiness.Invoices
                     j += (execute > 0 ? 1 : 0);
                 }
                 //Insert AD3
-                foreach (SortedDictionary<string, object> adRow in adList3)
+                foreach (IDictionary<string, object> adRow in adList3)
                 {
                     var ad3Sql = SqlGenerator.GenInsertAMSql(V6Login.UserId, AD3Struct, adRow);
                     int execute = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, ad3Sql);
@@ -372,7 +372,9 @@ namespace V6AccountingBusiness.Invoices
         {
             string template =
                 "Select a.*, b.Ma_so_thue, b.Dien_thoai, b.Ten_kh AS Ten_kh,f.Ten_nvien AS Ten_nvien,g.Ten_httt AS Ten_httt"
-                + "\nFROM " + AM_TableName + " a LEFT JOIN Alkh b ON a.Ma_kh=b.Ma_kh LEFT JOIN alnvien f ON a.Ma_nvien=f.Ma_nvien"
+                + AMSELECTMORE
+                + "\nFROM " + AM_TableName + " a LEFT JOIN Alkh b ON a.Ma_kh=b.Ma_kh LEFT JOIN alnvien f ON a.Ma_nvien=f.Ma_nvien "
+                + AMJOINMORE
                 + "\n LEFT JOIN alhttt AS g ON a.Ma_httt = g.Ma_httt  JOIN "
                 + "\n (SELECT Stt_rec FROM " + AM_TableName + " WHERE Ma_ct = '" + Mact + "'"
                 + "\n {0} {1} {2}) AS m ON a.Stt_rec = m.Stt_rec"
