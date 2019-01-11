@@ -3015,7 +3015,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             try
             {
                 V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
-                if(IsViewingAnInvoice)
+                if (!IsViewingAnInvoice) return;
                 if (V6Login.UserRight.AllowEdit("", Invoice.CodeMact))
                 {
                     if (Mode == V6Mode.View)
@@ -3024,10 +3024,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                         var row = AM.Rows[CurrentIndex];
                         if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), (row["Xtag"]??"").ToString().Trim()))
                         {
-                            Mode = V6Mode.Edit;
-                            detail1.MODE = V6Mode.View;
-                            detail2.MODE = V6Mode.View;
-                            txtMa_sonb.Focus();
+                            //Tuanmh 24/07/2016 Check Debit Amount
+                            bool check_edit = 
+                                CheckEditAll(Invoice, cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
+                                    txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
+                                    txtManx.Text.Trim(), dateNgayCT.Date, txtTongThanhToan.Value, "E");
+
+                            if (check_edit == true)
+                            {
+                                Mode = V6Mode.Edit;
+                                detail1.MODE = V6Mode.View;
+                                detail2.MODE = V6Mode.View;
+                                txtMa_sonb.Focus();
+                            }
                         }
                         else
                         {
@@ -3050,14 +3059,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
         {
             try
             {
-                if(IsViewingAnInvoice)
+                if (!IsViewingAnInvoice) return;
                 if (V6Login.UserRight.AllowDelete("", Invoice.CodeMact))
                 {
                     var row = AM.Rows[CurrentIndex];
                     // Tuanmh 16/02/2016 Check level
                     if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), (row["Xtag"]??"").ToString().Trim()))
                     {
-                        DoDeleteThread();
+                        //Tuanmh 24/07/2016 Check Debit Amount
+                        bool check_edit =
+                            CheckEditAll(Invoice, cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
+                                txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
+                                txtManx.Text.Trim(), dateNgayCT.Date, txtTongThanhToan.Value, "D");
+
+                        if (check_edit)
+                        {
+                            DoDeleteThread();
+                        }
                     }
                     else
                     {
@@ -3079,24 +3097,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
         {
             try
             {
-                if(IsViewingAnInvoice)
+                if (!IsViewingAnInvoice) return;
                 if (V6Login.UserRight.AllowCopy("", Invoice.CodeMact))
                 {
-                    if (Mode == V6Mode.View)
+                    if (string.IsNullOrEmpty(_sttRec))
                     {
-                        if (string.IsNullOrEmpty(_sttRec))
-                        {
-                            this.ShowWarningMessage("Chưa chọn phiếu nhập.");
-                        }
-                        else
-                        {
-                            GetSttRec(Invoice.Mact);
-                            SetNewValues();
-                            V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
-                            Mode = V6Mode.Add;
-                            detail1.MODE = V6Mode.View;
-                            txtMa_sonb.Focus();
-                        }
+                        this.ShowWarningMessage("Chưa chọn phiếu nhập.");
+                    }
+                    else
+                    {
+                        GetSttRec(Invoice.Mact);
+                        SetNewValues();
+                        V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
+                        Mode = V6Mode.Add;
+                        detail1.MODE = V6Mode.View;
+                        txtMa_sonb.Focus();
                     }
                 }
                 else
@@ -3129,43 +3144,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                 this.ShowErrorException(GetType() + ".SetNewValues " + _sttRec, ex);
             }
         }
-
-        private void In()
-        {
-            try
-            {
-                if(IsViewingAnInvoice)
-                if (V6Login.UserRight.AllowPrint("", Invoice.CodeMact))
-                {
-                    var program = Invoice.PrintReportProcedure;
-                    var repFile = Invoice.Alct["FORM"].ToString().Trim();
-                    var repTitle = Invoice.Alct["TIEU_DE_CT"].ToString().Trim();
-                    var repTitle2 = Invoice.Alct["TIEU_DE2"].ToString().Trim();
-
-                    var c = new InChungTuViewBase(Invoice, program, program, repFile, repTitle, repTitle2,
-                        "", "", "", _sttRec);
-                    c.TTT = txtTongThanhToan.Value;
-                    c.TTT_NT = txtTongThanhToanNt.Value;
-                    c.MA_NT = _maNt;
-                    c.Dock = DockStyle.Fill;
-                    c.PrintSuccess += (sender, stt_rec, hoadon_nd51) =>
-                    {
-                        if (hoadon_nd51 == 1) Invoice.IncreaseSl_inAM(stt_rec, AM_current);
-                        if (!sender.IsDisposed) sender.Dispose();
-                    };
-                    c.ShowToForm(this, V6Text.PrintPOH, true);
-                }
-                else
-                {
-                    V6ControlFormHelper.NoRightWarning();
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
-
+        
         private Tim_DeNghiNhapKhoINY_Form _timForm;
         private void Xem()
         {

@@ -2202,8 +2202,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             if (AM_old != null)
             {
                 txtMa_sonb.Text = AM_old["Ma_sonb"].ToString().Trim();
-                if (TxtSo_ct.Text.Trim()=="")
-                        TxtSo_ct.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text);
+                if (txtSoPhieu.Text.Trim()=="")
+                        txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text);
 
             }
         }
@@ -3112,7 +3112,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
                     GetSttRec(Invoice.Mact);
 
-                    V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + TxtSo_ct.Text);
+                    V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
 
                     //GetSoPhieu();
                     GetM_ma_nt0();
@@ -3139,7 +3139,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         {
             try
             {
-                V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + TxtSo_ct.Text);
+                V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
                 if (IsViewingAnInvoice)
                 {
                     if (V6Login.UserRight.AllowEdit("", Invoice.CodeMact))
@@ -3150,9 +3150,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                             var row = AM.Rows[CurrentIndex];
                             if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), (row["Xtag"]??"").ToString().Trim()))
                             {
-                                Mode = V6Mode.Edit;
-                                detail1.MODE = V6Mode.View;
-                                txtMa_sonb.Focus();
+                                //Tuanmh 24/07/2016 Check Debit Amount
+                                bool check_edit = 
+                                CheckEditAll(Invoice, cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
+                                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
+                                        txtManx.Text.Trim(), dateNgayCT.Date, txtTongThanhToan.Value, "E");
+
+                                if (check_edit == true)
+                                {
+                                    Mode = V6Mode.Edit;
+                                    detail1.MODE = V6Mode.View;
+                                    txtMa_sonb.Focus();
+                                }
                             }
                             else
                             {
@@ -3176,25 +3185,32 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         {
             try
             {
-                if (IsViewingAnInvoice)
+                if (!IsViewingAnInvoice) return;
+                if (V6Login.UserRight.AllowDelete("", Invoice.CodeMact))
                 {
-                    if (V6Login.UserRight.AllowDelete("", Invoice.CodeMact))
+                    var row = AM.Rows[CurrentIndex];
+                    // Tuanmh 16/02/2016 Check level
+                    if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), (row["Xtag"]??"").ToString().Trim()))
                     {
-                        var row = AM.Rows[CurrentIndex];
-                        // Tuanmh 16/02/2016 Check level
-                        if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), (row["Xtag"]??"").ToString().Trim()))
+                        //Tuanmh 24/07/2016 Check Debit Amount
+                        bool check_edit =
+                            CheckEditAll(Invoice, cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
+                                txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
+                                txtManx.Text.Trim(), dateNgayCT.Date, txtTongThanhToan.Value, "D");
+
+                        if (check_edit)
                         {
                             DoDeleteThread();
-                        }
-                        else
-                        {
-                            V6ControlFormHelper.NoRightWarning();
                         }
                     }
                     else
                     {
                         V6ControlFormHelper.NoRightWarning();
                     }
+                }
+                else
+                {
+                    V6ControlFormHelper.NoRightWarning();
                 }
             }
             catch (Exception ex)
@@ -3207,7 +3223,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         {
             try
             {
-                if(IsViewingAnInvoice)
+                if (!IsViewingAnInvoice) return;
                 if (V6Login.UserRight.AllowCopy("", Invoice.CodeMact))
                 {
                     if (Mode == V6Mode.View)
@@ -3220,7 +3236,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         {
                             GetSttRec(Invoice.Mact);
                             SetNewValues();
-                            V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + TxtSo_ct.Text);
+                            V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
                             Mode = V6Mode.Add;
                             detail1.MODE = V6Mode.View;
                             txtMa_sonb.Focus();
@@ -3242,7 +3258,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         {
             try
             {
-                TxtSo_ct.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text);
+                txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text);
                 dateNgayCT.SetValue(V6Setting.M_SV_DATE);
                 dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
                 ResetAMADbyConfig(Invoice);
@@ -3516,18 +3532,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             var p = GetParentTabPage();
             if (p != null)
             {
-                TxtSo_ct.Text = ((TabControl)p.Parent).TabPages.Count.ToString();
+                txtSoPhieu.Text = ((TabControl)p.Parent).TabPages.Count.ToString();
             }
             else
             {
-                TxtSo_ct.Text = "01";    
+                txtSoPhieu.Text = "01";    
             }
         }
 
         private void GetSoPhieu()
         {
             //TxtSo_ct.Text = V6BusinessHelper.GetSoCT("M", "", Invoice.Mact, "", V6LoginInfo.UserId);
-            TxtSo_ct.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text);
+            txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text);
         }
 
         private void SetTabPageText(string text)
@@ -3979,10 +3995,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         private void txtSoCt_TextChanged(object sender, EventArgs e)
         {
-            SetTabPageText(TxtSo_ct.Text);
+            SetTabPageText(txtSoPhieu.Text);
 
             if(Mode == V6Mode.Add || Mode == V6Mode.Edit)
-                V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + TxtSo_ct.Text);
+                V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
         }
 
         private void DonDatHangBanBanHangKiemPhieuXuat_VisibleChanged(object sender, EventArgs e)
@@ -4128,7 +4144,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 //Tuanmh 16/02/2016 Check Voucher Is exist 
                 {
                     DataTable DataCheckVC = Invoice.GetCheck_VC_Save(cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
-                        TxtSo_ct.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec);
+                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec);
                     if (DataCheckVC != null && DataCheckVC.Rows.Count > 0)
                     {
                         var chkso_ct = DataCheckVC.Rows[0]["chkso_ct"].ToString();
@@ -4164,7 +4180,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     }
 
                     DataTable DataCheck_Save_All = Invoice.GetCheck_Save_All(cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
-                        TxtSo_ct.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec, txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
+                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec, txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
                         txtManx.Text.Trim(), dateNgayCT.Date, txtMa_ct.Text, txtTongThanhToan.Value, mode_vc, V6Login.UserId);
 
 

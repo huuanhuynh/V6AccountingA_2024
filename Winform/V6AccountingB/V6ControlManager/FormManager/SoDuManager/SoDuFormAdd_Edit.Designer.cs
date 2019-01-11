@@ -48,6 +48,7 @@
             // 
             // btnInfos
             // 
+            this.btnInfos.AccessibleDescription = "ADDEDITL00247";
             this.btnInfos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInfos.Location = new System.Drawing.Point(275, 221);
             this.btnInfos.Name = "btnInfos";
@@ -91,6 +92,7 @@
             // 
             // SoDuFormAddEdit
             // 
+            this._sttRec = ".";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;

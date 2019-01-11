@@ -1796,7 +1796,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             try
             {
                 V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
-                if(IsViewingAnInvoice)
+                if (!IsViewingAnInvoice) return;
                 if (V6Login.UserRight.AllowEdit("", Invoice.CodeMact))
                 {
                     if (Mode == V6Mode.View)
@@ -1805,10 +1805,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                         var row = AM.Rows[CurrentIndex];
                         if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), (row["Xtag"]??"").ToString().Trim()))
                         {
-                            Mode = V6Mode.Edit;
-                            detail1.MODE = V6Mode.View;
-                            detail2.MODE = V6Mode.View;
-                            txtMa_sonb.Focus();
+                            //Tuanmh 24/07/2016 Check Debit Amount
+                            bool check_edit = 
+                                CheckEditAll(Invoice, cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
+                                    txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMadvcs.Text.Trim(), "",
+                                    "", dateNgayCT.Date, txtTongTien.Value, "E");
+
+                            if (check_edit == true)
+                            {
+                                Mode = V6Mode.Edit;
+                                detail1.MODE = V6Mode.View;
+                                detail2.MODE = V6Mode.View;
+                                txtMa_sonb.Focus();
+                            }
                         }
                         else
                         {
@@ -1831,14 +1840,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
         {
             try
             {
-                if(IsViewingAnInvoice)
+                if (!IsViewingAnInvoice) return;
                 if (V6Login.UserRight.AllowDelete("", Invoice.CodeMact))
                 {
                     var row = AM.Rows[CurrentIndex];
                     // Tuanmh 16/02/2016 Check level
                     if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), (row["Xtag"]??"").ToString().Trim()))
                     {
-                        DoDeleteThread();
+                        //Tuanmh 24/07/2016 Check Debit Amount
+                        bool check_edit =
+                            CheckEditAll(Invoice, cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
+                                txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMadvcs.Text.Trim(), "",
+                                "", dateNgayCT.Date, txtTongTien.Value, "D"); // !!!!! txtTongThanhToan
+
+                        if (check_edit)
+                        {
+                            DoDeleteThread();
+                        }
                     }
                     else
                     {
@@ -1860,7 +1878,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
         {
             try
             {
-                if(IsViewingAnInvoice)
+                if (!IsViewingAnInvoice) return;
                 if (V6Login.UserRight.AllowCopy("", Invoice.CodeMact))
                 {
                     if (Mode == V6Mode.View)
@@ -1915,7 +1933,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
         {
             try
             {
-                if(IsViewingAnInvoice)
+                if (!IsViewingAnInvoice) return;
                 if (V6Login.UserRight.AllowPrint("", Invoice.CodeMact))
                 {
                     var program = Invoice.PrintReportProcedure;

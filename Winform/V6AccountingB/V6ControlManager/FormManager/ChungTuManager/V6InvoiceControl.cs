@@ -1873,8 +1873,57 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
+        public bool CheckEditAll(V6InvoiceBase Invoice, string status, string kieupost, string soct_sophieu, string ma_sonb,
+            string ma_dvcs, string makh, string manx, DateTime ngayct_date, decimal tongThanhToan_Value, string mode_E_D)
+        {
+            //Tuanmh 24/07/2016 Check Debit Amount
+            DataTable DataCheck_Edit_All =
+                Invoice.GetCheck_Edit_All(status, kieupost, soct_sophieu, ma_sonb, _sttRec, ma_dvcs, makh,
+                    manx, ngayct_date, Invoice.Mact, tongThanhToan_Value, mode_E_D, V6Login.UserId);
+
+            bool check_edit = true;
+
+            if (DataCheck_Edit_All != null && DataCheck_Edit_All.Rows.Count > 0)
+            {
+                var chksave_all = DataCheck_Edit_All.Rows[0]["chksave_all"].ToString();
+                var chk_yn = DataCheck_Edit_All.Rows[0]["chk_yn"].ToString();
+                var mess = DataCheck_Edit_All.Rows[0]["mess"].ToString().Trim();
+                var mess2 = DataCheck_Edit_All.Rows[0]["mess2"].ToString().Trim();
+                var message = V6Setting.IsVietnamese ? mess : mess2;
+
+                switch (chksave_all)
+                {
+                    case "00":
+                    case "04":
+                        // Save: OK --Loai_kh in ALKH
+                        // Save: OK --Thau
+                        check_edit = true;
+                        break;
+                    case "01":
+                    case "02":
+                    case "03":
+
+                        if (message != "") this.ShowWarningMessage(message);
+                        if (chk_yn == "0")
+                        {
+                            check_edit = false;
+                        }
+                        break;
+
+                    case "06":
+                    case "07":
+                    case "08":
+                        // Save but mess
+                        if (message != "") this.ShowInfoMessage(message);
+                        check_edit = true;
+                        break;
+                }
+            }
+            return check_edit;
+        }
+
         /// <summary>
-        /// Kiểm tra được phép in hay không.
+        /// VPA_CHECK_PRINT_ALL Kiểm tra được phép in hay không.
         /// </summary>
         /// <param name="Invoice"></param>
         /// <returns></returns>

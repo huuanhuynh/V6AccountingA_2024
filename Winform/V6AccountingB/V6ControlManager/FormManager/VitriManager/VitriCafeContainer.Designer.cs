@@ -52,6 +52,7 @@
             // 
             // tsNew
             // 
+            this.tsNew.AccessibleDescription = ".";
             this.tsNew.FlatAppearance.BorderSize = 0;
             this.tsNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.tsNew.Image = global::V6ControlManager.Properties.Resources.Add24;
@@ -64,6 +65,7 @@
             // 
             // tsFull
             // 
+            this.tsFull.AccessibleDescription = ".";
             this.tsFull.FlatAppearance.BorderSize = 0;
             this.tsFull.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.tsFull.Image = global::V6ControlManager.Properties.Resources.ZoomIn24;
@@ -76,6 +78,7 @@
             // 
             // tsClose
             // 
+            this.tsClose.AccessibleDescription = ".";
             this.tsClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tsClose.FlatAppearance.BorderSize = 0;
             this.tsClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -101,6 +104,7 @@
             // 
             // txtTime
             // 
+            this.txtTime.AccessibleDescription = ".";
             this.txtTime.AccessibleName = "TIME";
             this.txtTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTime.BackColor = System.Drawing.SystemColors.Window;

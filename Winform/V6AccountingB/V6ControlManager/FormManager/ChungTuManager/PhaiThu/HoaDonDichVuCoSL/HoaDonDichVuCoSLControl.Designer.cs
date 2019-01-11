@@ -237,7 +237,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             this.group1 = new System.Windows.Forms.GroupBox();
             this.txtMa_sonb = new V6Controls.V6VvarTextBox();
             this.v6Label2 = new V6Controls.V6Label();
-            this.TxtSo_ct = new V6Controls.V6ColorTextBox();
+            this.txtSoPhieu = new V6Controls.V6ColorTextBox();
             this.dateNgayLCT = new V6Controls.V6DateTimePicker();
             this.dateNgayCT = new V6Controls.V6DateTimePicker();
             this.v6Label5 = new V6Controls.V6Label();
@@ -837,8 +837,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             this.dataGridView1.Tag = "cancelall;readonly";
             this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
-            this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
+            this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             // 
             // MA_VT
             // 
@@ -1062,7 +1062,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // TxtT_TIENVCNT
             // 
@@ -1087,7 +1087,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6Label26
             // 
@@ -1300,7 +1300,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSL_UD2
             // 
@@ -1325,7 +1325,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSL_UD1
             // 
@@ -1350,7 +1350,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // label16
             // 
@@ -1787,7 +1787,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtTongGiam
             // 
@@ -1814,7 +1814,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtTongCk
             // 
@@ -1841,7 +1841,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtTongThue
             // 
@@ -1868,7 +1868,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtTongThanhToan
             // 
@@ -2003,7 +2003,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             0,
             0,
             0,
-            196608});
+            0});
             this.txtTongGiamNt.V6LostFocus += new V6Controls.ControlEventHandle(this.txtTongGiamNt_V6LostFocus);
             // 
             // v6Label23
@@ -2038,7 +2038,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             0,
             0,
             0,
-            196608});
+            0});
             this.txtTongCkNt.V6LostFocus += new V6Controls.ControlEventHandle(this.txtTongCkNt_V6LostFocus);
             // 
             // v6Label22
@@ -2237,7 +2237,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             0,
             0,
             0,
-            131072});
+            0});
             // 
             // cboChuyenData
             // 
@@ -2322,7 +2322,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             0,
             0,
             0,
-            131072});
+            0});
             // 
             // txtTongSoLuong1
             // 
@@ -2351,7 +2351,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             0,
             0,
             0,
-            131072});
+            0});
             // 
             // cboKieuPost
             // 
@@ -2512,7 +2512,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             0,
             0,
             0,
-            131072});
+            0});
             this.txtThueSuat.V6LostFocus += new V6Controls.ControlEventHandle(this.txtThueSuat_V6LostFocus);
             // 
             // txtPtCk
@@ -2538,7 +2538,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             0,
             0,
             0,
-            131072});
+            0});
             this.txtPtCk.V6LostFocus += new V6Controls.ControlEventHandle(this.txtPtCk_V6LostFocus);
             // 
             // btnChucNang
@@ -2934,7 +2934,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             0,
             0,
             0,
-            196608});
+            0});
             this.txtTyGia.V6LostFocus += new V6Controls.ControlEventHandle(this.txtTyGia_V6LostFocus);
             // 
             // cboMaNt
@@ -3398,7 +3398,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             // 
             this.group1.Controls.Add(this.txtMa_sonb);
             this.group1.Controls.Add(this.v6Label2);
-            this.group1.Controls.Add(this.TxtSo_ct);
+            this.group1.Controls.Add(this.txtSoPhieu);
             this.group1.Controls.Add(this.dateNgayLCT);
             this.group1.Controls.Add(this.dateNgayCT);
             this.group1.Controls.Add(this.v6Label5);
@@ -3442,22 +3442,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             this.v6Label2.TabIndex = 7;
             this.v6Label2.Text = "Số phiếu";
             // 
-            // TxtSo_ct
+            // txtSoPhieu
             // 
-            this.TxtSo_ct.AccessibleName = "so_ct";
-            this.TxtSo_ct.BackColor = System.Drawing.SystemColors.Window;
-            this.TxtSo_ct.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtSo_ct.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtSo_ct.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtSo_ct.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtSo_ct.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtSo_ct.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtSo_ct.LeaveColor = System.Drawing.Color.White;
-            this.TxtSo_ct.Location = new System.Drawing.Point(92, 32);
-            this.TxtSo_ct.Name = "TxtSo_ct";
-            this.TxtSo_ct.Size = new System.Drawing.Size(100, 20);
-            this.TxtSo_ct.TabIndex = 2;
-            this.TxtSo_ct.TextChanged += new System.EventHandler(this.txtSoCt_TextChanged);
+            this.txtSoPhieu.AccessibleName = "so_ct";
+            this.txtSoPhieu.BackColor = System.Drawing.SystemColors.Window;
+            this.txtSoPhieu.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtSoPhieu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSoPhieu.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtSoPhieu.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtSoPhieu.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtSoPhieu.HoverColor = System.Drawing.Color.Yellow;
+            this.txtSoPhieu.LeaveColor = System.Drawing.Color.White;
+            this.txtSoPhieu.Location = new System.Drawing.Point(92, 32);
+            this.txtSoPhieu.Name = "txtSoPhieu";
+            this.txtSoPhieu.Size = new System.Drawing.Size(100, 20);
+            this.txtSoPhieu.TabIndex = 2;
+            this.txtSoPhieu.TextChanged += new System.EventHandler(this.txtSoCt_TextChanged);
             // 
             // dateNgayLCT
             // 
@@ -3702,7 +3702,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         private V6Label v6Label18;
         private V6ColorTextBox Txtma_nk;
         private V6Label v6Label2;
-        private V6ColorTextBox TxtSo_ct;
+        private V6ColorTextBox txtSoPhieu;
         private V6VvarTextBox txtMa_sonb;
         private System.Windows.Forms.Button btnViewInfoData;
         private V6ColorTextBox Txtten_vtthue;
