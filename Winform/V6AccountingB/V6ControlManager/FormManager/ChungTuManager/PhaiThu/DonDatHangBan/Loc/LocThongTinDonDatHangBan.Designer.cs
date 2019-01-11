@@ -70,6 +70,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.AccessibleDescription = "SEARCHG00001";
             this.groupBox1.Controls.Add(this.txtNhomKH9);
             this.groupBox1.Controls.Add(this.txtNhomKH8);
             this.groupBox1.Controls.Add(this.txtNhomKH6);

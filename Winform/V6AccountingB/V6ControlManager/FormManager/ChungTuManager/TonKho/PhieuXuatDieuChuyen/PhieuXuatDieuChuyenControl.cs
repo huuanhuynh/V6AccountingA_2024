@@ -3111,6 +3111,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 txtMaKH2.ExistRowInTable();
                 txtMaKhoX.ExistRowInTable();
                 txtMaKhoN.ExistRowInTable();
+                ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
                 
                 //XuLyChonMaKhoX();
                 //XuLyChonMaKhoN();

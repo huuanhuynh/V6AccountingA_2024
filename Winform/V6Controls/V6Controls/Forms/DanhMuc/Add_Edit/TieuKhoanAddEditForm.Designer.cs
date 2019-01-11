@@ -33,7 +33,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txttk2 = new V6Controls.V6ColorTextBox();
             this.checkBox1 = new V6Controls.V6CheckBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.txtten_tk2 = new V6Controls.V6ColorTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,6 +44,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.AccessibleDescription = ".";
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -51,7 +52,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txttk2);
             this.groupBox1.Controls.Add(this.checkBox1);
-            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.lblStatus);
             this.groupBox1.Controls.Add(this.txtten_tk2);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label1);
@@ -86,6 +87,7 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "ADDEDITL00245";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(28, 120);
             this.label3.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -113,6 +115,7 @@
             // 
             // checkBox1
             // 
+            this.checkBox1.AccessibleDescription = "ADDEDITC00001";
             this.checkBox1.AccessibleName = "status";
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -126,15 +129,16 @@
             this.checkBox1.Text = "Có sử dụng ?";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // lblStatus
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(28, 152);
-            this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(78, 17);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Trạng Thái";
+            this.lblStatus.AccessibleDescription = "ADDEDITL00022";
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(28, 152);
+            this.lblStatus.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(78, 17);
+            this.lblStatus.TabIndex = 8;
+            this.lblStatus.Text = "Trạng Thái";
             // 
             // txtten_tk2
             // 
@@ -157,6 +161,7 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00244";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(28, 85);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -167,6 +172,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00242";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(28, 21);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -196,6 +202,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ADDEDITL00243";
             this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(28, 53);
@@ -225,7 +232,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private V6ColorTextBox txttk2;
         private V6Controls.V6CheckBox checkBox1;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblStatus;
         private V6ColorTextBox txtten_tk2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;

@@ -4448,6 +4448,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 V6ControlFormHelper.SetFormDataRow(this, AM.Rows[CurrentIndex]);
                 txtMadvcs.ExistRowInTable();
                 txtMaKh.ExistRowInTable();
+                ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
 
                 XuLyThayDoiMaDVCS();
                 SetGridViewData();

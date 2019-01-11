@@ -1335,6 +1335,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                 var row = AM.Rows[CurrentIndex];
                 V6ControlFormHelper.SetFormDataRow(this, row);
                 txtMadvcs.ExistRowInTable();
+                ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
                 
                 SetGridViewData();
                 XuLyThayDoiMaNt();

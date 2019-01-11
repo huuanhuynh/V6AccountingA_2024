@@ -2644,6 +2644,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 txtMadvcs.ExistRowInTable();
                 txtMaKh.ExistRowInTable();
                 txtTk.ExistRowInTable();
+                ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
 
                 SetGridViewData();
                 XuLyThayDoiMaNt();

@@ -271,8 +271,9 @@
             // 
             // v6Label3
             // 
+            this.v6Label3.AccessibleDescription = "SEARCHF00014";
             this.v6Label3.AutoSize = true;
-            this.v6Label3.Location = new System.Drawing.Point(7, 190);
+            this.v6Label3.Location = new System.Drawing.Point(6, 190);
             this.v6Label3.Name = "v6Label3";
             this.v6Label3.Size = new System.Drawing.Size(74, 13);
             this.v6Label3.TabIndex = 31;
@@ -280,8 +281,9 @@
             // 
             // v6Label2
             // 
+            this.v6Label2.AccessibleDescription = "SEARCHF00013";
             this.v6Label2.AutoSize = true;
-            this.v6Label2.Location = new System.Drawing.Point(7, 171);
+            this.v6Label2.Location = new System.Drawing.Point(6, 171);
             this.v6Label2.Name = "v6Label2";
             this.v6Label2.Size = new System.Drawing.Size(74, 13);
             this.v6Label2.TabIndex = 27;
@@ -289,6 +291,7 @@
             // 
             // v6Label1
             // 
+            this.v6Label1.AccessibleDescription = "SEARCHF00012";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(6, 152);
             this.v6Label1.Name = "v6Label1";
@@ -355,7 +358,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // taiKhoanNo
             // 
@@ -457,7 +460,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // maKhach
             // 

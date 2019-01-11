@@ -2959,6 +2959,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 txtMaKh.ExistRowInTable();
                 txtvBienSo.ExistRowInTable();
                 FixBPNV_Name();
+                ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
 
                 XuLyThayDoiMaDVCS();
                 SetGridViewData();

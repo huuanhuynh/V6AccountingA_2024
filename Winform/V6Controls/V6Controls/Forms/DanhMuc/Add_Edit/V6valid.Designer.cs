@@ -287,6 +287,7 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "ADDEDITL00180";
             this.label3.AccessibleName = "";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(371, 28);
@@ -358,6 +359,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00216";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(25, 88);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -388,6 +390,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ADDEDITL00246";
             this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(25, 28);

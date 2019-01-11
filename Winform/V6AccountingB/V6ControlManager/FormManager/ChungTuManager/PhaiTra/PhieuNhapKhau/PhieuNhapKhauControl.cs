@@ -3674,7 +3674,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
                 txtT_nk_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Nk"]);
                 txtT_nk_nt_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Nk_nt"]);
-                
+                ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
+
                 XuLyThayDoiMaDVCS();
                 SetGridViewData();
                 XuLyThayDoiMaNt();

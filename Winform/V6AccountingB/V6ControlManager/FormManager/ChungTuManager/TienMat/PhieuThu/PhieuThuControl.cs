@@ -2379,6 +2379,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 txtMadvcs.ExistRowInTable();
                 txtMaKh.ExistRowInTable();
                 txtTk.ExistRowInTable();
+                ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
 
                 SetGridViewData();
                 XuLyThayDoiMaNt();

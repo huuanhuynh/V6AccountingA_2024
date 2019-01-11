@@ -2054,6 +2054,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 TxtT_cp_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Cp"]);
                 TxtTk_i_ao.Text = row["Tk_i"].ToString().Trim();
                 TxtT_cp_nt_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Cp_nt"]);
+                ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
 
                 XuLyThayDoiMaDVCS();
                 //Tuanmh 20/02/2016

@@ -86,6 +86,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             lblResetCopy.Visible = true;
             txtADSELECTMORE.Visible = true;
             lblADSELECTMORE.Visible = true;
+            txtAMSELECTMORE.Visible = true;
+            lblAMSELECTMORE.Visible = true;
         }
 
         private void DoEditXml()

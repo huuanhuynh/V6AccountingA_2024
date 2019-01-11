@@ -4513,6 +4513,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 txtMadvcs.ExistRowInTable();
                 txtMaKh.ExistRowInTable();
                 txtLoaiPhieu.ExistRowInTable(true);
+                ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
 
                 XuLyThayDoiMaDVCS();
                 //{Tuanmh 20/02/2016

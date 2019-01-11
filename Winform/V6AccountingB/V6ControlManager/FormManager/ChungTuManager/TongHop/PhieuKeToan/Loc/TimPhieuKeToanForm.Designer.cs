@@ -88,6 +88,7 @@
             // 
             // lblStatusDescription
             // 
+            this.lblStatusDescription.AccessibleDescription = ".";
             this.lblStatusDescription.Location = new System.Drawing.Point(137, 74);
             this.lblStatusDescription.Name = "lblStatusDescription";
             this.lblStatusDescription.Size = new System.Drawing.Size(616, 32);
@@ -197,6 +198,7 @@
             // 
             // v6Label6
             // 
+            this.v6Label6.AccessibleDescription = ".";
             this.v6Label6.AutoSize = true;
             this.v6Label6.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.v6Label6.Location = new System.Drawing.Point(282, 48);
@@ -208,6 +210,7 @@
             // 
             // v6Label7
             // 
+            this.v6Label7.AccessibleDescription = ".";
             this.v6Label7.AutoSize = true;
             this.v6Label7.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.v6Label7.Location = new System.Drawing.Point(282, 22);
@@ -219,6 +222,7 @@
             // 
             // v6Label8
             // 
+            this.v6Label8.AccessibleDescription = ".";
             this.v6Label8.AutoSize = true;
             this.v6Label8.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.v6Label8.Location = new System.Drawing.Point(6, 22);
