@@ -86,5 +86,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             Check2 = checkBox2.Checked;
         }
+
+        private void chkAutoSoCt_CheckedChanged(object sender, EventArgs e)
+        {
+            ObjectDictionary["AUTOSOCT"] = chkAutoSoCt.Checked;
+            Check3 = chkAutoSoCt.Checked;
+        }
     }
 }

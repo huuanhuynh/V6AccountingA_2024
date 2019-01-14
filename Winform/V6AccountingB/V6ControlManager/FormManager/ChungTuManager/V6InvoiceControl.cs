@@ -1261,14 +1261,15 @@ namespace V6ControlManager.FormManager.ChungTuManager
             SortedDictionary<string, object> someData = new SortedDictionary<string, object>();
             foreach (DefaultValueInfo item in infos)
             {
+                if (!string.IsNullOrEmpty(item.AName)) continue;
                 if (item.Type1 == "0")
                 {
-                    //Value null vẫn gán. không làm gì hết.
+                    //Value null vẫn gán.
                 }
                 else if (item.Type1 == "2")
                 {
                     //Kiểm tra value trên form theo Name. rỗng mới gán
-                    var fValue = ObjectAndString.ObjectToString(V6ControlFormHelper.GetFormValue(this, item.Name));
+                    var fValue = ObjectAndString.ObjectToString(V6ControlFormHelper.GetFormValue(this, item.AName));
                     if (!string.IsNullOrEmpty(fValue)) continue;
                 }
 
@@ -1283,10 +1284,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
                             //Value khác null mới gán
                             if (string.IsNullOrEmpty(getValue)) continue;
                         }
-                        someData[item.Name.ToUpper()] = getValue;
+                        someData[item.AName.ToUpper()] = getValue;
                     }
                 }
             }
+
             SetSomeData(someData);
         }
 

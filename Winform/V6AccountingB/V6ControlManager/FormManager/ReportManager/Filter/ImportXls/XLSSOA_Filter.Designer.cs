@@ -34,6 +34,7 @@
             this.v6Label3 = new V6Controls.V6Label();
             this.comboBox1 = new V6Controls.V6ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkAutoSoCt = new V6Controls.V6CheckBox();
             this.checkBox2 = new V6Controls.V6CheckBox();
             this.checkBox1 = new V6Controls.V6CheckBox();
             this.comboBox2 = new V6Controls.V6ComboBox();
@@ -57,7 +58,7 @@
             // 
             this.v6Label2.AccessibleDescription = "FILTERL00204";
             this.v6Label2.AutoSize = true;
-            this.v6Label2.Location = new System.Drawing.Point(5, 77);
+            this.v6Label2.Location = new System.Drawing.Point(1, 109);
             this.v6Label2.Name = "v6Label2";
             this.v6Label2.Size = new System.Drawing.Size(48, 13);
             this.v6Label2.TabIndex = 4;
@@ -81,7 +82,7 @@
             // 
             this.v6Label3.AccessibleDescription = "FILTERL00204";
             this.v6Label3.AutoSize = true;
-            this.v6Label3.Location = new System.Drawing.Point(6, 50);
+            this.v6Label3.Location = new System.Drawing.Point(2, 82);
             this.v6Label3.Name = "v6Label3";
             this.v6Label3.Size = new System.Drawing.Size(55, 13);
             this.v6Label3.TabIndex = 2;
@@ -98,7 +99,7 @@
             this.comboBox1.Items.AddRange(new object[] {
             "TCVN3 (ABC)",
             "VNI"});
-            this.comboBox1.Location = new System.Drawing.Point(98, 47);
+            this.comboBox1.Location = new System.Drawing.Point(94, 79);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(154, 21);
             this.comboBox1.TabIndex = 3;
@@ -110,6 +111,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.chkAutoSoCt);
             this.groupBox1.Controls.Add(this.checkBox2);
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.comboBox1);
@@ -118,10 +120,21 @@
             this.groupBox1.Controls.Add(this.v6Label2);
             this.groupBox1.Location = new System.Drawing.Point(0, 118);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(269, 106);
+            this.groupBox1.Size = new System.Drawing.Size(269, 136);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tùy chọn";
+            // 
+            // chkAutoSoCt
+            // 
+            this.chkAutoSoCt.AutoSize = true;
+            this.chkAutoSoCt.Location = new System.Drawing.Point(94, 42);
+            this.chkAutoSoCt.Name = "chkAutoSoCt";
+            this.chkAutoSoCt.Size = new System.Drawing.Size(144, 17);
+            this.chkAutoSoCt.TabIndex = 6;
+            this.chkAutoSoCt.Text = "Tự động tạo số chứng từ";
+            this.chkAutoSoCt.UseVisualStyleBackColor = true;
+            this.chkAutoSoCt.CheckedChanged += new System.EventHandler(this.chkAutoSoCt_CheckedChanged);
             // 
             // checkBox2
             // 
@@ -159,7 +172,7 @@
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
             "UNICODE"});
-            this.comboBox2.Location = new System.Drawing.Point(98, 74);
+            this.comboBox2.Location = new System.Drawing.Point(94, 106);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(154, 21);
             this.comboBox2.TabIndex = 5;
@@ -188,7 +201,7 @@
             // btnXemMauExcel
             // 
             this.btnXemMauExcel.AccessibleDescription = "FILTERB00013";
-            this.btnXemMauExcel.Location = new System.Drawing.Point(4, 230);
+            this.btnXemMauExcel.Location = new System.Drawing.Point(3, 272);
             this.btnXemMauExcel.Name = "btnXemMauExcel";
             this.btnXemMauExcel.Size = new System.Drawing.Size(88, 29);
             this.btnXemMauExcel.TabIndex = 12;
@@ -207,7 +220,7 @@
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.label1);
             this.Name = "XLSSOA_Filter";
-            this.Size = new System.Drawing.Size(275, 270);
+            this.Size = new System.Drawing.Size(275, 300);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -229,5 +242,6 @@
         private System.Windows.Forms.RichTextBox txtFile;
         private System.Windows.Forms.Button btnSuaChiTieu;
         private System.Windows.Forms.Button btnXemMauExcel;
+        private V6Controls.V6CheckBox chkAutoSoCt;
     }
 }

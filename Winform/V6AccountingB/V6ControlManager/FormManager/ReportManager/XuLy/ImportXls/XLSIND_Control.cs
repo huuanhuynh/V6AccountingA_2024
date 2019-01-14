@@ -21,7 +21,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     {
         private readonly V6Categories _categories = new V6Categories();
         private const string ID_FIELD = "SO_CT", NAME_FIELD = "NGAY_CT";
-        private DataTable data;
+        private DataTable _data;
         /// <summary>
         /// Kiem tra du lieu hop le
         /// </summary>
@@ -44,7 +44,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 FilterControl.UpdateValues();
 
-                data = Excel_File.Sheet1ToDataTable(FilterControl.String1);
+                _data = Excel_File.Sheet1ToDataTable(FilterControl.String1);
                 //Check1: chuyen ma, String12 A to U
                 if (FilterControl.Check1)
                 {
@@ -56,16 +56,57 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var to = "U";
                         if (FilterControl.String3.StartsWith("TCVN3")) to = "A";
                         if (FilterControl.String3.StartsWith("VNI")) to = "V";
-                        data = Data_Table.ChuyenMaTiengViet(data, from, to);
+                        _data = Data_Table.ChuyenMaTiengViet(_data, from, to);
                     }
                     else
                     {
                         V6ControlFormHelper.ShowMessage("Chưa chọn mã nguồn và đích.");
                     }
                 }
-                All_Objects["data"] = data;
+                //FIX DATA
+                if (!_data.Columns.Contains("TY_GIA"))
+                {
+                    _data.Columns.Add("TY_GIA", typeof(decimal));
+                    V6ControlFormHelper.UpdateDKlist(_data, "TY_GIA", 1m);
+                }
+                if (!_data.Columns.Contains("THUE_NT"))
+                {
+                    _data.Columns.Add("THUE_NT", typeof(decimal));
+                    V6ControlFormHelper.UpdateDKlist(_data, "THUE_NT", 0m);
+                }
+                if (!_data.Columns.Contains("TIEN_NT"))
+                {
+                    _data.Columns.Add("TIEN_NT", typeof(decimal));
+                    V6ControlFormHelper.UpdateDKlist(_data, "TIEN_NT", 0m);
+                }
+                if (!_data.Columns.Contains("TIEN0"))
+                {
+                    _data.Columns.Add("TIEN0", typeof(decimal));
+                    foreach (DataRow row in _data.Rows)
+                    {
+                        row["TIEN0"] =
+                            V6BusinessHelper.Vround(
+                                ObjectAndString.ObjectToDecimal(row["TIEN_NT0"]) *
+                                ObjectAndString.ObjectToDecimal(row["TY_GIA"]), V6Setting.RoundTien);
+
+                    }
+                }
+                if (!_data.Columns.Contains("THUE"))
+                {
+                    _data.Columns.Add("THUE", typeof(decimal));
+                    foreach (DataRow row in _data.Rows)
+                    {
+                        row["THUE"] =
+                            V6BusinessHelper.Vround(
+                                ObjectAndString.ObjectToDecimal(row["THUE_NT"]) *
+                                ObjectAndString.ObjectToDecimal(row["TY_GIA"]), V6Setting.RoundTien);
+
+                    }
+                }
+
+                All_Objects["data"] = _data;
                 InvokeFormEvent(FormDynamicEvent.DYNAMICFIXEXCEL);
-                dataGridView1.DataSource = data;
+                dataGridView1.DataSource = _data;
                 string[] data_fields = "MA_KH,MA_VT".Split(',');
                 string[] check_fields = "MA_KH,MA_VT".Split(',');
                 string[] check_tables = "ALKH,ALVT".Split(',');
@@ -94,10 +135,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     this.ShowWarningMessage("Kiểm tra dữ liệu!");
                     return;
                 }
-                if (data != null)
+                if (_data != null)
                 {
-                    if (data.Columns.Contains(ID_FIELD) && data.Columns.Contains(NAME_FIELD))
+                    if (_data.Columns.Contains(ID_FIELD) && _data.Columns.Contains(NAME_FIELD))
                     {
+                        LockButtons();
+                        chkAutoSoCt_Checked = FilterControl.Check3;
+
                         Timer timerF9 = new Timer {Interval = 1000};
                         timerF9.Tick += tF9_Tick;
                         remove_list_d = new List<DataRow>();
@@ -129,6 +173,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private string f9Error = "";
         private string f9ErrorAll = "";
         V6Invoice74 Invoice = new V6Invoice74();
+        private bool chkAutoSoCt_Checked = false;
         private void F9Thread()
         {
             try
@@ -139,7 +184,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //Gom chi tiet theo SO_CT va NGAY_CT
                 Dictionary<string, List<DataRow>> data_dictionary = new Dictionary<string, List<DataRow>>();
                 DateTime? dateMin = null, dateMax = null;
-                foreach (DataRow row in data.Rows)
+                foreach (DataRow row in _data.Rows)
                 {
                     var date = ObjectAndString.ObjectToFullDateTime(row["NGAY_CT"]);
                     if (dateMin == null || date < dateMin)
@@ -151,11 +196,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         dateMax = date;
                     }
-                    string so_ct = row["SO_CT"].ToString().Trim().ToUpper();
-                    string ngay_ct = date.ToString("yyyyMMdd");
-                    if (so_ct != "" && ngay_ct != "")
+
+                    string soct_or_makh = row["SO_CT"].ToString().Trim().ToUpper();
+                    if (chkAutoSoCt_Checked)
                     {
-                        var key = so_ct + ngay_ct;
+                        soct_or_makh = row["MA_KH"].ToString().Trim().ToUpper();
+                    }
+                    string ngay_ct = date.ToString("yyyyMMdd");
+                    if (soct_or_makh != "" && ngay_ct != "")
+                    {
+                        var key = string.Format("[{0}]_[{1}]", soct_or_makh, ngay_ct);
                         if (data_dictionary.ContainsKey(key))
                         {
                             data_dictionary[key].Add(row);
@@ -194,9 +244,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         IDictionary<string, object> AM = GET_AM_Data(data_rows, "SO_LUONG1,TIEN_NT0", "");
                         var sttRec = V6BusinessHelper.GetNewSttRec(Invoice.Mact);
+                        if (chkAutoSoCt_Checked) // Tự động tạo số chứng từ.
+                        {
+                            string ma_sonb;
+                            DateTime ngay_ct = ObjectAndString.ObjectToFullDateTime(AM["NGAY_CT"]);
+                            var so_ct = V6BusinessHelper.GetNewSoCt_date(Invoice.Mact, ngay_ct, "1", out ma_sonb);
+                            AM["SO_CT"] = so_ct;
+                            AM["MA_SONB"] = ma_sonb;
+                        }
                         AM["STT_REC"] = sttRec;
                         var AD1_List = GET_AD1_List(data_rows, sttRec);
-                        
+
+                        All_Objects["AM"] = AM;
+                        All_Objects["AD"] = AD1_List;
+                        InvokeFormEvent("BEFOREINSERT");
                         if (Invoice.InsertInvoice(AM, AD1_List))
                         {
                             f9Error += "Đã thêm: " + item.Key;
@@ -236,10 +297,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //Tính sum max
                 sumColumns = "," + sumColumns.ToUpper() + ",";
                 maxColumns = "," + maxColumns.ToUpper() + ",";
-                var am_row = data.NewRow();
+                var am_row = _data.NewRow();
                 foreach (DataRow row in dataRows)
                 {
-                    foreach (DataColumn column in data.Columns)
+                    foreach (DataColumn column in _data.Columns)
                     {
                         var FIELD = column.ColumnName.ToUpper();
                         if (sumColumns.Contains("," + FIELD + ","))
@@ -349,7 +410,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //Remove
                 while (remove_list_d.Count>0)
                 {
-                    data.Rows.Remove(remove_list_d[0]);
+                    _data.Rows.Remove(remove_list_d[0]);
                     remove_list_d.RemoveAt(0);
                 }
 
@@ -364,11 +425,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             else
             {
                 ((Timer)sender).Stop();
-
+                UnlockButtons();
                 //Remove
                 while (remove_list_d.Count > 0)
                 {
-                    data.Rows.Remove(remove_list_d[0]);
+                    _data.Rows.Remove(remove_list_d[0]);
                     remove_list_d.RemoveAt(0);
                 }
 

@@ -383,8 +383,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     else
                     {
-                        //row.DefaultCellStyle.BackColor = Color.Red;
-                        f9Message += "Có dòng rỗng";
+                        f9Message += "Kiểm tra [MA_KH].";
                     }
                 }
 

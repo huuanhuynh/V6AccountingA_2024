@@ -77,6 +77,21 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                 }
                 //FIX DATA
+                if (!_data.Columns.Contains("TY_GIA"))
+                {
+                    _data.Columns.Add("TY_GIA", typeof(decimal));
+                    V6ControlFormHelper.UpdateDKlist(_data, "TY_GIA", 1m);
+                }
+                if (!_data.Columns.Contains("THUE_NT"))
+                {
+                    _data.Columns.Add("THUE_NT", typeof(decimal));
+                    V6ControlFormHelper.UpdateDKlist(_data, "THUE_NT", 0m);
+                }
+                if (!_data.Columns.Contains("TIEN_NT"))
+                {
+                    _data.Columns.Add("TIEN_NT", typeof(decimal));
+                    V6ControlFormHelper.UpdateDKlist(_data, "TIEN_NT", 0m);
+                }
                 if (!_data.Columns.Contains("TIEN2"))
                 {
                     _data.Columns.Add("TIEN2", typeof (decimal));
@@ -175,7 +190,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     if (_data.Columns.Contains(ID_FIELD) && _data.Columns.Contains(NAME_FIELD))
                     {
                         LockButtons();
-                        
+                        //chkAutoSoCt_Checked = ObjectAndString.ObjectToBool(FilterControl.ObjectDictionary["AUTOSOCT"]);
+                        chkAutoSoCt_Checked = FilterControl.Check3;
+
                         Timer timerF9 = new Timer {Interval = 1000};
                         timerF9.Tick += tF9_Tick;
                         remove_list_d = new List<DataRow>();
@@ -208,6 +225,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private string f9MessageAll = "";
         V6Invoice81 Invoice = new V6Invoice81();
         private IDictionary<string, object> AM_DATA;
+        private bool chkAutoSoCt_Checked = false;
         private void F9Thread()
         {
             try
@@ -229,11 +247,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         dateMax = date;
                     }
-                    string so_ct = row["SO_CT"].ToString().Trim().ToUpper();
-                    string ngay_ct = date.ToString("yyyyMMdd");
-                    if (so_ct != "" && ngay_ct != "")
+                    string soct_or_makh = row["SO_CT"].ToString().Trim().ToUpper();
+                    if (chkAutoSoCt_Checked)
                     {
-                        var key = so_ct + ":" + ngay_ct;
+                        soct_or_makh = row["MA_KH"].ToString().Trim().ToUpper();
+                    }
+                    string ngay_ct = date.ToString("yyyyMMdd");
+                    if (soct_or_makh != "" && ngay_ct != "")
+                    {
+                        var key = string.Format("[{0}]_[{1}]", soct_or_makh, ngay_ct);
                         if (data_dictionary.ContainsKey(key))
                         {
                             data_dictionary[key].Add(row);
@@ -245,8 +267,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     else
                     {
-                        //row.DefaultCellStyle.BackColor = Color.Red;
-                        f9Message += "Có dòng rỗng";
+                        if (chkAutoSoCt_Checked)
+                        {
+                            f9Message += "Kiểm tra [SO_CT]_[MA_KH].";
+                        }
+                        else
+                        {
+                            f9Message += "Kiểm tra [SO_CT].";
+                        }
                     }
                 }
 
@@ -274,9 +302,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         AM_DATA = GET_AM_Data(data_rows, "SO_LUONG,SO_LUONG1,TIEN_NT2,TIEN_NT,TIEN2,TIEN,THUE_NT,THUE,CK_NT,CK,GG_NT,GG", "MA_NX");
 
                         var sttRec = V6BusinessHelper.GetNewSttRec(Invoice.Mact);
+                        if (chkAutoSoCt_Checked) // Tự động tạo số chứng từ.
+                        {
+                            string ma_sonb;
+                            DateTime ngay_ct = ObjectAndString.ObjectToFullDateTime(AM_DATA["NGAY_CT"]);
+                            var so_ct = V6BusinessHelper.GetNewSoCt_date(Invoice.Mact, ngay_ct, "1", out ma_sonb);
+                            AM_DATA["SO_CT"] = so_ct;
+                            AM_DATA["MA_SONB"] = ma_sonb;
+                        }
                         AM_DATA["STT_REC"] = sttRec;
                         var AD1_List = GET_AD1_List(data_rows, sttRec);
-                        
+
+                        All_Objects["AM"] = AM_DATA;
+                        All_Objects["AD"] = AD1_List;
+                        InvokeFormEvent("BEFOREINSERT");
                         if (Invoice.InsertInvoice(AM_DATA, AD1_List, new List<IDictionary<string, object>>()))//!!!!!!!!
                         {
                             f9Message += "Đã thêm: " + item.Key;

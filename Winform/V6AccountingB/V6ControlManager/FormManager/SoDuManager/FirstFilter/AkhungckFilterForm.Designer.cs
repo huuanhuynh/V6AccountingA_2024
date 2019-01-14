@@ -78,7 +78,7 @@
             this.panel1.Controls.Add(this.v6ColorDateTimePick1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.txtMaDvcs);
-            this.panel1.Location = new System.Drawing.Point(1, 3);
+            this.panel1.Location = new System.Drawing.Point(1, 1);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(532, 120);
             this.panel1.TabIndex = 0;
@@ -95,6 +95,7 @@
             // 
             // v6ColorDateTimePick2
             // 
+            this.v6ColorDateTimePick2.AccessibleName = "DATE2";
             this.v6ColorDateTimePick2.CustomFormat = "dd/MM/yyyy";
             this.v6ColorDateTimePick2.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorDateTimePick2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
@@ -118,6 +119,7 @@
             // 
             // v6ColorDateTimePick1
             // 
+            this.v6ColorDateTimePick1.AccessibleName = "DATE1";
             this.v6ColorDateTimePick1.CustomFormat = "dd/MM/yyyy";
             this.v6ColorDateTimePick1.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorDateTimePick1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;

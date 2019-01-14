@@ -459,8 +459,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     else
                     {
-                        //row.DefaultCellStyle.BackColor = Color.Red;
-                        f9Message += "Có dòng rỗng";
+                        if (chkAutoSoCt_Checked)
+                        {
+                            f9Message += "Kiểm tra [SO_CT]_[MA_KH].";
+                        }
+                        else
+                        {
+                            f9Message += "Kiểm tra [SO_CT].";
+                        }
                     }
                 }
 

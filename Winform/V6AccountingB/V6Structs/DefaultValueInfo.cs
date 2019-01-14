@@ -14,6 +14,14 @@
         /// </summary>
         public string Type1 = "";
 
-        public string Name = "";
+        /// <summary>
+        /// AccessibleName của Control.
+        /// </summary>
+        public string AName = "";
+
+        /// <summary>
+        /// Control Name.
+        /// </summary>
+        public string CName { get; set; }
     }
 }

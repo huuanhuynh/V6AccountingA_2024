@@ -930,7 +930,8 @@ namespace V6AccountingBusiness.Invoices
                 var cell = row["Default" + lang];
                 if (cell == null) continue;
 
-                dValue.Name = row["NameVal"].ToString().Trim().ToUpper();
+                dValue.AName = row["NameVal"].ToString().Trim().ToUpper();
+                dValue.CName = row["NameTag"].ToString().Trim().ToUpper();
                 dValue.Value = ("" + cell).Trim();
                 dValue.Type1 = row["Kieu"].ToString().Trim();
                 

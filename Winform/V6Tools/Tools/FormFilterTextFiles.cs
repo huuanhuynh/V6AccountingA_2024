@@ -46,6 +46,9 @@ namespace Tools
                     GetAllInfos();
                 }
             }
+
+            public object FoundInfos { get; set; }
+
             private string _fullPath;
             public string Name;
             public string Text;
@@ -224,6 +227,7 @@ namespace Tools
                 if (listBox2.SelectedItem != null)
                 {
                     MyFileInfo fi = (MyFileInfo) listBox2.SelectedItem;
+                    richFoundInfos.Text = fi.FoundInfos.ToString();
                     richView.Text = fi.Text;
                     lblFilePath.Text = fi.FullPath;
                 }

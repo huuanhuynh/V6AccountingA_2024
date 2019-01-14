@@ -4762,7 +4762,7 @@ namespace V6Controls.Forms
                     path2 = Path.Combine(path2, file);
                     if (File.Exists(path2)) File.Delete(path2);
                     File.Copy(path1, path2);
-
+                    SetStatusText(path1);
                     ProcessStartInfo info1 = new ProcessStartInfo(path2);
                     Process.Start(info1);
                 }

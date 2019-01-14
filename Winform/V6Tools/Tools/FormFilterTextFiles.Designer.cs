@@ -53,6 +53,7 @@
             this.chkSubFolder = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.lblFilePath = new System.Windows.Forms.Label();
+            this.richFoundInfos = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // btnSaveFile
@@ -101,10 +102,10 @@
             this.richView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richView.Location = new System.Drawing.Point(417, 226);
+            this.richView.Location = new System.Drawing.Point(417, 409);
             this.richView.Name = "richView";
             this.richView.ReadOnly = true;
-            this.richView.Size = new System.Drawing.Size(441, 430);
+            this.richView.Size = new System.Drawing.Size(441, 250);
             this.richView.TabIndex = 17;
             this.richView.Text = "";
             // 
@@ -283,6 +284,18 @@
             this.lblFilePath.TabIndex = 10;
             this.lblFilePath.Text = "File";
             // 
+            // richFoundInfos
+            // 
+            this.richFoundInfos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richFoundInfos.Location = new System.Drawing.Point(417, 226);
+            this.richFoundInfos.Name = "richFoundInfos";
+            this.richFoundInfos.ReadOnly = true;
+            this.richFoundInfos.Size = new System.Drawing.Size(441, 177);
+            this.richFoundInfos.TabIndex = 17;
+            this.richFoundInfos.Text = "";
+            // 
             // FormFilterTextFiles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -295,6 +308,7 @@
             this.Controls.Add(this.chkCase);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.richFoundInfos);
             this.Controls.Add(this.richView);
             this.Controls.Add(this.lblFilePath);
             this.Controls.Add(this.label2);
@@ -345,5 +359,6 @@
         private System.Windows.Forms.CheckBox chkSubFolder;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label lblFilePath;
+        private System.Windows.Forms.RichTextBox richFoundInfos;
     }
 }

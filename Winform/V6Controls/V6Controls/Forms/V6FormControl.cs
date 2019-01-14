@@ -275,7 +275,7 @@ namespace V6Controls.Forms
         /// <summary>
         /// Gán dữ liệu mặc định lên form.
         /// </summary>
-        /// <param name="loai">1ct 4report</param>
+        /// <param name="loai">1ct 2danhmuc 4report</param>
         /// <param name="mact"></param>
         /// <param name="madm"></param>
         /// <param name="itemId"></param>
@@ -284,11 +284,8 @@ namespace V6Controls.Forms
         {
             try
             {
-                var data = GetDefaultData(V6Setting.Language, 4, mact, madm, itemId, adv);
+                var data = GetDefaultData(V6Setting.Language, loai, mact, madm, itemId, adv);
                 SetDefaultDataInfoToForm(data);
-                //var data0 = new SortedDictionary<string, object>();
-                //data0.AddRange(data);
-                //V6ControlFormHelper.SetFormDataDictionary(this, data0, false);
             }
             catch (Exception ex)
             {
@@ -312,31 +309,73 @@ namespace V6Controls.Forms
                         switch (valueInfo.Type1)
                         {
                             case "0":
-                                someData[valueInfo.Name] = valueInfo.Value;
+                                if (!string.IsNullOrEmpty(valueInfo.AName))
+                                {
+                                    someData[valueInfo.AName] = valueInfo.Value;
+                                }
+                                else if (!string.IsNullOrEmpty(valueInfo.CName))
+                                {
+                                    SetControlValue(GetControlByName(valueInfo.CName), valueInfo.Value);
+                                }
                                 break;
                             case "1":
                                 if (!string.IsNullOrEmpty(valueInfo.Value))
                                 {
-                                    someData[valueInfo.Name] = valueInfo.Value;
+                                    if (!string.IsNullOrEmpty(valueInfo.AName))
+                                    {
+                                        someData[valueInfo.AName] = valueInfo.Value;
+                                    }
+                                    else if (!string.IsNullOrEmpty(valueInfo.CName))
+                                    {
+                                        SetControlValue(GetControlByName(valueInfo.CName), valueInfo.Value);
+                                    }
                                 }
                                 break;
                             case "2":
-                                var formValue = V6ControlFormHelper.GetFormValue(this, valueInfo.Name);
-                                if (formValue == null)
+                                if (!string.IsNullOrEmpty(valueInfo.AName))
                                 {
-                                    someData[valueInfo.Name] = valueInfo.Value;
-                                }
-                                else if (ObjectAndString.IsNumberType(formValue.GetType()))
-                                {
-                                    var num = ObjectAndString.ObjectToDecimal(formValue);
-                                    if (num == 0)
+                                    var formValue = V6ControlFormHelper.GetFormValue(this, valueInfo.AName);
+                                    if (formValue == null)
                                     {
-                                        someData[valueInfo.Name] = valueInfo.Value;
+                                        someData[valueInfo.AName] = valueInfo.Value;
+                                    }
+                                    else if (ObjectAndString.IsNumberType(formValue.GetType()))
+                                    {
+                                        var num = ObjectAndString.ObjectToDecimal(formValue);
+                                        if (num == 0)
+                                        {
+                                            someData[valueInfo.AName] = valueInfo.Value;
+                                        }
+                                    }
+                                    else if (string.IsNullOrEmpty(formValue.ToString().Trim()))
+                                    {
+                                        someData[valueInfo.AName] = valueInfo.Value;
                                     }
                                 }
-                                else if (string.IsNullOrEmpty(formValue.ToString().Trim()))
+                                else if (!string.IsNullOrEmpty(valueInfo.CName))
                                 {
-                                    someData[valueInfo.Name] = valueInfo.Value;
+                                    var control = GetControlByName(valueInfo.CName);
+                                    if (control != null)
+                                    {
+                                        var control_value = V6ControlFormHelper.GetControlValue(control);
+
+                                        if (control_value == null)
+                                        {
+                                            SetControlValue(control, valueInfo.Value);
+                                        }
+                                        else if (ObjectAndString.IsNumberType(control_value.GetType()))
+                                        {
+                                            var num = ObjectAndString.ObjectToDecimal(control_value);
+                                            if (num == 0)
+                                            {
+                                                SetControlValue(control, valueInfo.Value);
+                                            }
+                                        }
+                                        else if (string.IsNullOrEmpty(control_value.ToString().Trim()))
+                                        {
+                                            SetControlValue(control, valueInfo.Value);
+                                        }
+                                    }
                                 }
                                 break;
                             default:
@@ -419,14 +458,16 @@ namespace V6Controls.Forms
                 
                 var cell = row["Default" + lang]; if (cell == null) continue;
                 var value = cell.ToString().Trim();
-                var NAME = row["NameVal"].ToString().Trim().ToUpper();
+                var ANAME = row["NameVal"].ToString().Trim().ToUpper();
+                var CNAME = row["NameTag"].ToString().Trim().ToUpper();
                 DefaultValueInfo valueInfo = new DefaultValueInfo()
                 {
-                    Name = NAME,
+                    AName = ANAME,
+                    CName = CNAME,
                     Value = value,
                     Type1 = kieu,
                 };
-                result[NAME] = valueInfo;
+                result[string.IsNullOrEmpty(ANAME)?CNAME:ANAME] = valueInfo;
             }
             defaultData = result;
             return result;

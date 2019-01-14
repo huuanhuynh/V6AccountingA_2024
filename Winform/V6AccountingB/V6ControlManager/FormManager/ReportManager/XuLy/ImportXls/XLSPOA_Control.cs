@@ -21,7 +21,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     {
         private readonly V6Categories _categories = new V6Categories();
         private const string ID_FIELD = "SO_CT", NAME_FIELD = "NGAY_CT";
-        private DataTable data;
+        private DataTable _data;
         /// <summary>
         /// Kiem tra du lieu hop le
         /// </summary>
@@ -44,7 +44,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 FilterControl.UpdateValues();
 
-                data = Excel_File.Sheet1ToDataTable(FilterControl.String1);
+                _data = Excel_File.Sheet1ToDataTable(FilterControl.String1);
                 //Check1: chuyen ma, String12 A to U
                 if (FilterControl.Check1)
                 {
@@ -56,7 +56,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var to = "U";
                         if (FilterControl.String3.StartsWith("TCVN3")) to = "A";
                         if (FilterControl.String3.StartsWith("VNI")) to = "V";
-                        data = Data_Table.ChuyenMaTiengViet(data, from, to);
+                        _data = Data_Table.ChuyenMaTiengViet(_data, from, to);
                     }
                     else
                     {
@@ -64,10 +64,25 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                 }
                 //FIX DATA
-                if (!data.Columns.Contains("TIEN0"))
+                if (!_data.Columns.Contains("TY_GIA"))
                 {
-                    data.Columns.Add("TIEN0", typeof (decimal));
-                    foreach (DataRow row in data.Rows)
+                    _data.Columns.Add("TY_GIA", typeof(decimal));
+                    V6ControlFormHelper.UpdateDKlist(_data, "TY_GIA", 1m);
+                }
+                if (!_data.Columns.Contains("THUE_NT"))
+                {
+                    _data.Columns.Add("THUE_NT", typeof(decimal));
+                    V6ControlFormHelper.UpdateDKlist(_data, "THUE_NT", 0m);
+                }
+                if (!_data.Columns.Contains("TIEN_NT"))
+                {
+                    _data.Columns.Add("TIEN_NT", typeof(decimal));
+                    V6ControlFormHelper.UpdateDKlist(_data, "TIEN_NT", 0m);
+                }
+                if (!_data.Columns.Contains("TIEN0"))
+                {
+                    _data.Columns.Add("TIEN0", typeof (decimal));
+                    foreach (DataRow row in _data.Rows)
                     {
                         row["TIEN0"] =
                             V6BusinessHelper.Vround(
@@ -76,10 +91,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                     }
                 }
-                if (!data.Columns.Contains("THUE"))
+                if (!_data.Columns.Contains("THUE"))
                 {
-                    data.Columns.Add("THUE", typeof(decimal));
-                    foreach (DataRow row in data.Rows)
+                    _data.Columns.Add("THUE", typeof(decimal));
+                    foreach (DataRow row in _data.Rows)
                     {
                         row["THUE"] =
                             V6BusinessHelper.Vround(
@@ -89,9 +104,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                 }
 
-                All_Objects["data"] = data;
+                All_Objects["data"] = _data;
                 InvokeFormEvent(FormDynamicEvent.DYNAMICFIXEXCEL);
-                dataGridView1.DataSource = data;
+                dataGridView1.DataSource = _data;
 
                 var alim2xls = V6BusinessHelper.Select("ALIM2XLS", "top 1 *", "MA_CT='POA'").Data;
                 if (alim2xls != null && alim2xls.Rows.Count > 0)
@@ -100,7 +115,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     var lost_fields = "";
                     foreach (string field in khoa)
                     {
-                        if (!data.Columns.Contains(field))
+                        if (!_data.Columns.Contains(field))
                         {
                             check = false;
                             lost_fields += ", " + field;
@@ -145,12 +160,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     this.ShowWarningMessage("Kiểm tra dữ liệu!");
                     return;
                 }
-                if (data != null)
+                if (_data != null)
                 {
-                    if (data.Columns.Contains(ID_FIELD) && data.Columns.Contains(NAME_FIELD))
+                    if (_data.Columns.Contains(ID_FIELD) && _data.Columns.Contains(NAME_FIELD))
                     {
                         LockButtons();
-                        
+                        chkAutoSoCt_Checked = FilterControl.Check3;
                         Timer timerF9 = new Timer {Interval = 1000};
                         timerF9.Tick += tF9_Tick;
                         remove_list_d = new List<DataRow>();
@@ -179,10 +194,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
 
         private bool f9Running;
-        private string f9Error = "";
+        private string f9Message = "";
         private string f9ErrorAll = "";
         V6Invoice71 Invoice = new V6Invoice71();
-        private IDictionary<string, object> AM_DATA; 
+        private IDictionary<string, object> AM_DATA;
+        private bool chkAutoSoCt_Checked = false;
         private void F9Thread()
         {
             try
@@ -193,26 +209,28 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //Gom chi tiet theo SO_CT va NGAY_CT
                 Dictionary<string, List<DataRow>> data_dictionary = new Dictionary<string, List<DataRow>>();
                 DateTime? dateMin = null, dateMax = null;
-                foreach (DataRow row in data.Rows)
+                foreach (DataRow row in _data.Rows)
                 {
-                    var date = ObjectAndString.ObjectToDate(row["NGAY_CT"]);
-                    if (date != null)
+                    var date = ObjectAndString.ObjectToFullDateTime(row["NGAY_CT"]);
+                    
+                    if (dateMin == null || date < dateMin)
                     {
-                        if (dateMin == null || date < dateMin)
-                        {
-                            dateMin = date;
-                        }
-
-                        if (dateMax == null || date > dateMax)
-                        {
-                            dateMax = date;
-                        }
+                        dateMin = date;
                     }
-                    string so_ct = row["SO_CT"].ToString().Trim().ToUpper();
-                    string ngay_ct = date.Value.ToString("yyyyMMdd");
-                    if (so_ct != "" && ngay_ct != "")
+                    if (dateMax == null || date > dateMax)
                     {
-                        var key = so_ct + ":" + ngay_ct;
+                        dateMax = date;
+                    }                    
+                    
+                    string soct_or_makh = row["SO_CT"].ToString().Trim().ToUpper();
+                    if (chkAutoSoCt_Checked)
+                    {
+                        soct_or_makh = row["MA_KH"].ToString().Trim().ToUpper();
+                    }
+                    string ngay_ct = date.ToString("yyyyMMdd");
+                    if (soct_or_makh != "" && ngay_ct != "")
+                    {
+                        var key = string.Format("[{0}]_[{1}]", soct_or_makh, ngay_ct);
                         if (data_dictionary.ContainsKey(key))
                         {
                             data_dictionary[key].Add(row);
@@ -224,8 +242,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     else
                     {
-                        //row.DefaultCellStyle.BackColor = Color.Red;
-                        f9Error += "Có dòng rỗng";
+                        if (chkAutoSoCt_Checked)
+                        {
+                            f9Message += "Kiểm tra [SO_CT]_[MA_KH].";
+                        }
+                        else
+                        {
+                            f9Message += "Kiểm tra [SO_CT].";
+                        }
                     }
                 }
 
@@ -253,13 +277,24 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         AM_DATA = GET_AM_Data(data_rows, "SO_LUONG,SO_LUONG1,TIEN_NT0,TIEN_NT,TIEN0,TIEN,THUE_NT,THUE,CK_NT,CK,GG_NT,GG", "MA_NX");
 
                         var sttRec = V6BusinessHelper.GetNewSttRec(Invoice.Mact);
+                        if (chkAutoSoCt_Checked) // Tự động tạo số chứng từ.
+                        {
+                            string ma_sonb;
+                            DateTime ngay_ct = ObjectAndString.ObjectToFullDateTime(AM_DATA["NGAY_CT"]);
+                            var so_ct = V6BusinessHelper.GetNewSoCt_date(Invoice.Mact, ngay_ct, "1", out ma_sonb);
+                            AM_DATA["SO_CT"] = so_ct;
+                            AM_DATA["MA_SONB"] = ma_sonb;
+                        }
                         AM_DATA["STT_REC"] = sttRec;
                         var AD1_List = GET_AD1_List(data_rows, sttRec);
                         var AD2_List = GET_AD2_List(data_rows, sttRec);
 
+                        All_Objects["AM"] = AM_DATA;
+                        All_Objects["AD"] = AD1_List;
+                        InvokeFormEvent("BEFOREINSERT");
                         if (Invoice.InsertInvoice(AM_DATA, AD1_List, AD2_List, new List<IDictionary<string, object>>()))//!!!!!!!!
                         {
-                            f9Error += "Đã thêm: " + item.Key;
+                            f9Message += "Đã thêm: " + item.Key;
                             //Danh dau xóa data.
                             foreach (DataRow remove_row in item.Value)
                             {
@@ -268,20 +303,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         }
                         else
                         {
-                            f9Error += item.Key + ": " + "Thêm lỗi " + Invoice.V6Message;
+                            f9Message += item.Key + ": " + "Thêm lỗi " + Invoice.V6Message;
                             f9ErrorAll += item.Key + ": " + "Thêm lỗi " + Invoice.V6Message;
                         }
                     }
                     catch (Exception ex)
                     {
-                        f9Error += item.Key + ": " + ex.Message;
+                        f9Message += item.Key + ": " + ex.Message;
                         f9ErrorAll += item.Key + ": " + ex.Message;
                     }
                 }
             }
             catch (Exception ex)
             {
-                f9Error = "F9Thread: " + ex.Message;
+                f9Message = "F9Thread: " + ex.Message;
             }
             //
             
@@ -296,10 +331,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //Tính sum max
                 sumColumns = "," + sumColumns.ToUpper() + ",";
                 maxColumns = "," + maxColumns.ToUpper() + ",";
-                var am_row = data.NewRow();
+                var am_row = _data.NewRow();
                 foreach (DataRow row in dataRows)
                 {
-                    foreach (DataColumn column in data.Columns)
+                    foreach (DataColumn column in _data.Columns)
                     {
                         var FIELD = column.ColumnName.ToUpper();
                         if (sumColumns.Contains("," + FIELD + ","))
@@ -523,7 +558,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             newRow["T_TIEN_NT"] = AM_DATA["T_TIEN_NT0"];
             newRow["T_THUE"] = AM_DATA["T_THUE"];
             newRow["T_THUE_NT"] = AM_DATA["T_THUE_NT"];
-            newRow["MA_THUE"] = AM_DATA["MA_THUE"];
+            //newRow["MA_THUE"] = AM_DATA["MA_THUE"];
             newRow["THUE_SUAT"] = AM_DATA["THUE_SUAT"];
             newRow["TK_THUE_NO"] = AM_DATA["TK_THUE_NO"];
             newRow["TK_DU"] = AM_DATA["MA_NX"];
@@ -549,14 +584,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //Remove
                 while (remove_list_d.Count > 0)
                 {
-                    data.Rows.Remove(remove_list_d[0]);
+                    _data.Rows.Remove(remove_list_d[0]);
                     remove_list_d.RemoveAt(0);
                 }
 
-                var cError = f9Error;
+                var cError = f9Message;
                 if (cError.Length > 0)
                 {
-                    f9Error = f9Error.Substring(cError.Length);
+                    f9Message = f9Message.Substring(cError.Length);
                     V6ControlFormHelper.SetStatusText(cError);
                     V6ControlFormHelper.ShowMainMessage("F9 running: " + cError);
                 }
@@ -569,7 +604,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //Remove
                 while (remove_list_d.Count > 0)
                 {
-                    data.Rows.Remove(remove_list_d[0]);
+                    _data.Rows.Remove(remove_list_d[0]);
                     remove_list_d.RemoveAt(0);
                 }
 
@@ -579,14 +614,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
 
                 //btnNhan.PerformClick();
-                V6ControlFormHelper.SetStatusText("F9 finish " + f9Error);
-                V6ControlFormHelper.ShowMainMessage("F9 finish! " + f9Error);
+                V6ControlFormHelper.SetStatusText("F9 finish " + f9Message);
+                V6ControlFormHelper.ShowMainMessage("F9 finish! " + f9Message);
                 V6ControlFormHelper.ShowInfoMessage("F9 finish: " + f9ErrorAll, 500, this);
                 if (f9ErrorAll.Length > 0)
                 {
                     Logger.WriteToLog(V6Login.ClientName + " " + GetType() + "XLS_POA F9 " + f9ErrorAll);
                 }
-                f9Error = "";
+                f9Message = "";
                 f9ErrorAll = "";
             }
         }

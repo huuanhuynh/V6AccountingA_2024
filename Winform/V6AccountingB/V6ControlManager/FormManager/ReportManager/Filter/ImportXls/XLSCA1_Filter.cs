@@ -99,5 +99,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             V6ControlFormHelper.OpenExcelTemplate("CA1_ALL.XLS", "IMPORT_EXCEL");
         }
+
+        private void chkAutoSoCt_CheckedChanged(object sender, EventArgs e)
+        {
+            ObjectDictionary["AUTOSOCT"] = chkAutoSoCt.Checked;
+            Check3 = chkAutoSoCt.Checked;
+        }
     }
 }

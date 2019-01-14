@@ -61,7 +61,7 @@ namespace Tools
             if (open.ShowDialog() == DialogResult.OK)
             {
                 //118.69.183.160
-                V6FileIO.CopyToVPN(open.FileName, "118.69.183.16", "huuan", UtilityHelper.EnCrypt("_D21C2V62015"));
+                V6FileIO.CopyToVPN(open.FileName, "", "118.69.183.16", "huuan", UtilityHelper.EnCrypt("_D21C2V62015"));
             }
         }
 
