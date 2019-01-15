@@ -115,11 +115,11 @@
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.txtTenDvcs);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(7, 2);
+            this.groupBox1.Location = new System.Drawing.Point(3, 2);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.groupBox1.Size = new System.Drawing.Size(771, 471);
+            this.groupBox1.Size = new System.Drawing.Size(780, 471);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -144,9 +144,6 @@
             // TxtNH_DVCS1
             // 
             this.TxtNH_DVCS1.AccessibleName = "NH_DVCS1";
-            this.TxtNH_DVCS1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtNH_DVCS1.BackColor = System.Drawing.SystemColors.Window;
             this.TxtNH_DVCS1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtNH_DVCS1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
@@ -163,6 +160,7 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "ADDEDITL00180";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(395, 22);
             this.label3.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -173,12 +171,10 @@
             // 
             // checkBox1
             // 
+            this.checkBox1.AccessibleDescription = "ADDEDITC00001";
             this.checkBox1.AccessibleName = "status";
-            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(169, 436);
+            this.checkBox1.Location = new System.Drawing.Point(169, 427);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(5);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(111, 21);
@@ -188,8 +184,9 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00022";
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 438);
+            this.label4.Location = new System.Drawing.Point(13, 427);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 17);
@@ -199,9 +196,6 @@
             // v6ColorTextBox8
             // 
             this.v6ColorTextBox8.AccessibleName = "TEN_GOI_GD";
-            this.v6ColorTextBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.v6ColorTextBox8.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox8.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox8.EnterColor = System.Drawing.Color.PaleGreen;
@@ -209,7 +203,7 @@
             this.v6ColorTextBox8.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox8.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox8.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox8.Location = new System.Drawing.Point(169, 375);
+            this.v6ColorTextBox8.Location = new System.Drawing.Point(169, 369);
             this.v6ColorTextBox8.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6ColorTextBox8.Name = "v6ColorTextBox8";
             this.v6ColorTextBox8.Size = new System.Drawing.Size(562, 23);
@@ -218,9 +212,6 @@
             // v6ColorTextBox6
             // 
             this.v6ColorTextBox6.AccessibleName = "TEN_NLB";
-            this.v6ColorTextBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.v6ColorTextBox6.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox6.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox6.EnterColor = System.Drawing.Color.PaleGreen;
@@ -228,7 +219,7 @@
             this.v6ColorTextBox6.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox6.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox6.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox6.Location = new System.Drawing.Point(169, 348);
+            this.v6ColorTextBox6.Location = new System.Drawing.Point(169, 342);
             this.v6ColorTextBox6.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6ColorTextBox6.Name = "v6ColorTextBox6";
             this.v6ColorTextBox6.Size = new System.Drawing.Size(274, 23);
@@ -237,9 +228,6 @@
             // txtDiaChi2X
             // 
             this.txtDiaChi2X.AccessibleName = "DIA_CHI2X";
-            this.txtDiaChi2X.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDiaChi2X.BackColor = System.Drawing.SystemColors.Window;
             this.txtDiaChi2X.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtDiaChi2X.EnterColor = System.Drawing.Color.PaleGreen;
@@ -247,7 +235,7 @@
             this.txtDiaChi2X.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtDiaChi2X.HoverColor = System.Drawing.Color.Yellow;
             this.txtDiaChi2X.LeaveColor = System.Drawing.Color.White;
-            this.txtDiaChi2X.Location = new System.Drawing.Point(169, 233);
+            this.txtDiaChi2X.Location = new System.Drawing.Point(169, 234);
             this.txtDiaChi2X.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtDiaChi2X.Name = "txtDiaChi2X";
             this.txtDiaChi2X.Size = new System.Drawing.Size(562, 23);
@@ -256,9 +244,6 @@
             // v6ColorTextBox5
             // 
             this.v6ColorTextBox5.AccessibleName = "TEN_KTT2";
-            this.v6ColorTextBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.v6ColorTextBox5.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox5.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox5.EnterColor = System.Drawing.Color.PaleGreen;
@@ -275,9 +260,6 @@
             // txtDiaChi2
             // 
             this.txtDiaChi2.AccessibleName = "DIA_CHI2";
-            this.txtDiaChi2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDiaChi2.BackColor = System.Drawing.SystemColors.Window;
             this.txtDiaChi2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtDiaChi2.EnterColor = System.Drawing.Color.PaleGreen;
@@ -285,7 +267,7 @@
             this.txtDiaChi2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtDiaChi2.HoverColor = System.Drawing.Color.Yellow;
             this.txtDiaChi2.LeaveColor = System.Drawing.Color.White;
-            this.txtDiaChi2.Location = new System.Drawing.Point(169, 206);
+            this.txtDiaChi2.Location = new System.Drawing.Point(169, 207);
             this.txtDiaChi2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtDiaChi2.Name = "txtDiaChi2";
             this.txtDiaChi2.Size = new System.Drawing.Size(562, 23);
@@ -294,9 +276,6 @@
             // v6ColorTextBox4
             // 
             this.v6ColorTextBox4.AccessibleName = "TEN_GD";
-            this.v6ColorTextBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.v6ColorTextBox4.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox4.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox4.EnterColor = System.Drawing.Color.PaleGreen;
@@ -304,7 +283,7 @@
             this.v6ColorTextBox4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox4.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox4.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox4.Location = new System.Drawing.Point(169, 294);
+            this.v6ColorTextBox4.Location = new System.Drawing.Point(169, 288);
             this.v6ColorTextBox4.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6ColorTextBox4.Name = "v6ColorTextBox4";
             this.v6ColorTextBox4.Size = new System.Drawing.Size(274, 23);
@@ -312,8 +291,9 @@
             // 
             // label20
             // 
+            this.label20.AccessibleDescription = "ADDEDITL00288";
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(13, 377);
+            this.label20.Location = new System.Drawing.Point(13, 373);
             this.label20.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(147, 17);
@@ -323,9 +303,6 @@
             // txtTen2X
             // 
             this.txtTen2X.AccessibleName = "ten_dvcs2X";
-            this.txtTen2X.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTen2X.BackColor = System.Drawing.SystemColors.Window;
             this.txtTen2X.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtTen2X.EnterColor = System.Drawing.Color.PaleGreen;
@@ -333,7 +310,7 @@
             this.txtTen2X.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTen2X.HoverColor = System.Drawing.Color.Yellow;
             this.txtTen2X.LeaveColor = System.Drawing.Color.White;
-            this.txtTen2X.Location = new System.Drawing.Point(169, 125);
+            this.txtTen2X.Location = new System.Drawing.Point(169, 126);
             this.txtTen2X.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtTen2X.Name = "txtTen2X";
             this.txtTen2X.Size = new System.Drawing.Size(562, 23);
@@ -341,8 +318,9 @@
             // 
             // label18
             // 
+            this.label18.AccessibleDescription = "ADDEDITL00287";
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(13, 350);
+            this.label18.Location = new System.Drawing.Point(13, 346);
             this.label18.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(126, 17);
@@ -352,9 +330,6 @@
             // txtTen2
             // 
             this.txtTen2.AccessibleName = "ten_dvcs2";
-            this.txtTen2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTen2.BackColor = System.Drawing.SystemColors.Window;
             this.txtTen2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtTen2.EnterColor = System.Drawing.Color.PaleGreen;
@@ -362,7 +337,7 @@
             this.txtTen2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTen2.HoverColor = System.Drawing.Color.Yellow;
             this.txtTen2.LeaveColor = System.Drawing.Color.White;
-            this.txtTen2.Location = new System.Drawing.Point(169, 98);
+            this.txtTen2.Location = new System.Drawing.Point(169, 99);
             this.txtTen2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtTen2.Name = "txtTen2";
             this.txtTen2.Size = new System.Drawing.Size(562, 23);
@@ -370,8 +345,9 @@
             // 
             // label17
             // 
+            this.label17.AccessibleDescription = "ADDEDITL00285";
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(13, 296);
+            this.label17.Location = new System.Drawing.Point(13, 292);
             this.label17.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(94, 17);
@@ -380,8 +356,9 @@
             // 
             // label12
             // 
+            this.label12.AccessibleDescription = "ADDEDITL00284";
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(13, 235);
+            this.label12.Location = new System.Drawing.Point(13, 238);
             this.label12.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(76, 17);
@@ -390,8 +367,9 @@
             // 
             // label10
             // 
+            this.label10.AccessibleDescription = "ADDEDITL00281";
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(13, 127);
+            this.label10.Location = new System.Drawing.Point(13, 130);
             this.label10.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(58, 17);
@@ -400,8 +378,9 @@
             // 
             // label7
             // 
+            this.label7.AccessibleDescription = "ADDEDITL00283";
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(13, 209);
+            this.label7.Location = new System.Drawing.Point(13, 211);
             this.label7.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(63, 17);
@@ -411,9 +390,6 @@
             // v6ColorTextBox7
             // 
             this.v6ColorTextBox7.AccessibleName = "TEN_GOI_KTT";
-            this.v6ColorTextBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.v6ColorTextBox7.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox7.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox7.EnterColor = System.Drawing.Color.PaleGreen;
@@ -421,7 +397,7 @@
             this.v6ColorTextBox7.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox7.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox7.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox7.Location = new System.Drawing.Point(169, 402);
+            this.v6ColorTextBox7.Location = new System.Drawing.Point(169, 396);
             this.v6ColorTextBox7.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6ColorTextBox7.Name = "v6ColorTextBox7";
             this.v6ColorTextBox7.Size = new System.Drawing.Size(562, 23);
@@ -429,8 +405,9 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00004";
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 101);
+            this.label5.Location = new System.Drawing.Point(13, 103);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(45, 17);
@@ -440,9 +417,6 @@
             // v6ColorTextBox3
             // 
             this.v6ColorTextBox3.AccessibleName = "TEN_NLB2";
-            this.v6ColorTextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.v6ColorTextBox3.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox3.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox3.EnterColor = System.Drawing.Color.PaleGreen;
@@ -458,9 +432,10 @@
             // 
             // label19
             // 
+            this.label19.AccessibleDescription = "ADDEDITL00289";
             this.label19.AccessibleName = "";
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(13, 406);
+            this.label19.Location = new System.Drawing.Point(13, 400);
             this.label19.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(153, 17);
@@ -469,6 +444,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00005";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 22);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -480,9 +456,6 @@
             // txtDIEN_THOAI
             // 
             this.txtDIEN_THOAI.AccessibleName = "DIEN_THOAI";
-            this.txtDIEN_THOAI.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDIEN_THOAI.BackColor = System.Drawing.SystemColors.Window;
             this.txtDIEN_THOAI.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtDIEN_THOAI.EnterColor = System.Drawing.Color.PaleGreen;
@@ -499,9 +472,6 @@
             // txtMst
             // 
             this.txtMst.AccessibleName = "MA_SO_THUE";
-            this.txtMst.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMst.BackColor = System.Drawing.SystemColors.Window;
             this.txtMst.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMst.EnterColor = System.Drawing.Color.PaleGreen;
@@ -509,7 +479,7 @@
             this.txtMst.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMst.HoverColor = System.Drawing.Color.Yellow;
             this.txtMst.LeaveColor = System.Drawing.Color.White;
-            this.txtMst.Location = new System.Drawing.Point(169, 259);
+            this.txtMst.Location = new System.Drawing.Point(169, 261);
             this.txtMst.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtMst.Name = "txtMst";
             this.txtMst.Size = new System.Drawing.Size(274, 23);
@@ -518,9 +488,6 @@
             // v6ColorTextBox2
             // 
             this.v6ColorTextBox2.AccessibleName = "TEN_KTT";
-            this.v6ColorTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.v6ColorTextBox2.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox2.EnterColor = System.Drawing.Color.PaleGreen;
@@ -528,7 +495,7 @@
             this.v6ColorTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox2.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox2.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox2.Location = new System.Drawing.Point(169, 321);
+            this.v6ColorTextBox2.Location = new System.Drawing.Point(169, 315);
             this.v6ColorTextBox2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6ColorTextBox2.Name = "v6ColorTextBox2";
             this.v6ColorTextBox2.Size = new System.Drawing.Size(274, 23);
@@ -536,6 +503,7 @@
             // 
             // label13
             // 
+            this.label13.AccessibleDescription = "ADDEDITL00010";
             this.label13.AccessibleName = "";
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(457, 263);
@@ -547,9 +515,10 @@
             // 
             // label8
             // 
+            this.label8.AccessibleDescription = "ADDEDITL00008";
             this.label8.AccessibleName = "";
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(13, 263);
+            this.label8.Location = new System.Drawing.Point(13, 265);
             this.label8.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(78, 17);
@@ -558,9 +527,10 @@
             // 
             // label14
             // 
+            this.label14.AccessibleDescription = "ADDEDITL00286";
             this.label14.AccessibleName = "";
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(13, 324);
+            this.label14.Location = new System.Drawing.Point(13, 319);
             this.label14.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(129, 17);
@@ -570,9 +540,6 @@
             // txtDiaChiX
             // 
             this.txtDiaChiX.AccessibleName = "DIA_CHIX";
-            this.txtDiaChiX.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDiaChiX.BackColor = System.Drawing.SystemColors.Window;
             this.txtDiaChiX.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtDiaChiX.EnterColor = System.Drawing.Color.PaleGreen;
@@ -580,7 +547,7 @@
             this.txtDiaChiX.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtDiaChiX.HoverColor = System.Drawing.Color.Yellow;
             this.txtDiaChiX.LeaveColor = System.Drawing.Color.White;
-            this.txtDiaChiX.Location = new System.Drawing.Point(169, 179);
+            this.txtDiaChiX.Location = new System.Drawing.Point(169, 180);
             this.txtDiaChiX.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtDiaChiX.Name = "txtDiaChiX";
             this.txtDiaChiX.Size = new System.Drawing.Size(562, 23);
@@ -589,9 +556,6 @@
             // v6ColorTextBox1
             // 
             this.v6ColorTextBox1.AccessibleName = "TEN_GD2";
-            this.v6ColorTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.v6ColorTextBox1.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
@@ -607,9 +571,10 @@
             // 
             // label11
             // 
+            this.label11.AccessibleDescription = "ADDEDITL00282";
             this.label11.AccessibleName = "";
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(13, 182);
+            this.label11.Location = new System.Drawing.Point(13, 184);
             this.label11.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(64, 17);
@@ -619,9 +584,6 @@
             // txtDiaChi
             // 
             this.txtDiaChi.AccessibleName = "DIA_CHI";
-            this.txtDiaChi.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDiaChi.BackColor = System.Drawing.SystemColors.Window;
             this.txtDiaChi.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtDiaChi.EnterColor = System.Drawing.Color.PaleGreen;
@@ -629,7 +591,7 @@
             this.txtDiaChi.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtDiaChi.HoverColor = System.Drawing.Color.Yellow;
             this.txtDiaChi.LeaveColor = System.Drawing.Color.White;
-            this.txtDiaChi.Location = new System.Drawing.Point(169, 152);
+            this.txtDiaChi.Location = new System.Drawing.Point(169, 153);
             this.txtDiaChi.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtDiaChi.Name = "txtDiaChi";
             this.txtDiaChi.Size = new System.Drawing.Size(562, 23);
@@ -637,9 +599,10 @@
             // 
             // label6
             // 
+            this.label6.AccessibleDescription = "ADDEDITL00006";
             this.label6.AccessibleName = "";
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 154);
+            this.label6.Location = new System.Drawing.Point(13, 157);
             this.label6.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(51, 17);
@@ -649,9 +612,6 @@
             // txtTenDvcsX
             // 
             this.txtTenDvcsX.AccessibleName = "ten_dvcsX";
-            this.txtTenDvcsX.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTenDvcsX.BackColor = System.Drawing.SystemColors.Window;
             this.txtTenDvcsX.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtTenDvcsX.EnterColor = System.Drawing.Color.PaleGreen;
@@ -659,7 +619,7 @@
             this.txtTenDvcsX.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTenDvcsX.HoverColor = System.Drawing.Color.Yellow;
             this.txtTenDvcsX.LeaveColor = System.Drawing.Color.White;
-            this.txtTenDvcsX.Location = new System.Drawing.Point(169, 71);
+            this.txtTenDvcsX.Location = new System.Drawing.Point(169, 72);
             this.txtTenDvcsX.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtTenDvcsX.Name = "txtTenDvcsX";
             this.txtTenDvcsX.Size = new System.Drawing.Size(562, 23);
@@ -667,9 +627,10 @@
             // 
             // label9
             // 
+            this.label9.AccessibleDescription = "ADDEDITL00280";
             this.label9.AccessibleName = "";
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(13, 74);
+            this.label9.Location = new System.Drawing.Point(13, 76);
             this.label9.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(87, 17);
@@ -679,9 +640,6 @@
             // txtTenDvcs
             // 
             this.txtTenDvcs.AccessibleName = "ten_dvcs";
-            this.txtTenDvcs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTenDvcs.BackColor = System.Drawing.SystemColors.Window;
             this.txtTenDvcs.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtTenDvcs.EnterColor = System.Drawing.Color.PaleGreen;
@@ -689,7 +647,7 @@
             this.txtTenDvcs.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTenDvcs.HoverColor = System.Drawing.Color.Yellow;
             this.txtTenDvcs.LeaveColor = System.Drawing.Color.White;
-            this.txtTenDvcs.Location = new System.Drawing.Point(169, 44);
+            this.txtTenDvcs.Location = new System.Drawing.Point(169, 45);
             this.txtTenDvcs.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtTenDvcs.Name = "txtTenDvcs";
             this.txtTenDvcs.Size = new System.Drawing.Size(562, 23);
@@ -697,9 +655,10 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ADDEDITL00279";
             this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 48);
+            this.label2.Location = new System.Drawing.Point(13, 49);
             this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 17);
@@ -714,7 +673,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DonViCoSoAddEditForm";
-            this.Size = new System.Drawing.Size(785, 479);
+            this.Size = new System.Drawing.Size(786, 479);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

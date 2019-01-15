@@ -47,6 +47,7 @@ namespace V6ReportControls
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = ".";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(20, 3);
             this.label1.Name = "label1";

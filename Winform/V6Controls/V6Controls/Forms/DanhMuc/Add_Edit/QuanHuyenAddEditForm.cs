@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using V6AccountingBusiness;
 using V6Structs;
 

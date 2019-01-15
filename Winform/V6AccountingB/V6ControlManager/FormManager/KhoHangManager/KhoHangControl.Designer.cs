@@ -47,6 +47,7 @@
             // 
             // lblKho
             // 
+            this.lblKho.AccessibleDescription = ".";
             this.lblKho.AutoSize = true;
             this.lblKho.Location = new System.Drawing.Point(3, 9);
             this.lblKho.Name = "lblKho";

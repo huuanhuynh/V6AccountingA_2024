@@ -63,6 +63,7 @@
             // 
             // lblContent2
             // 
+            this.lblContent2.AccessibleDescription = ".";
             this.lblContent2.AutoSize = true;
             this.lblContent2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblContent2.ForeColor = System.Drawing.Color.Blue;
@@ -75,6 +76,7 @@
             // 
             // lblContent1
             // 
+            this.lblContent1.AccessibleDescription = ".";
             this.lblContent1.AutoSize = true;
             this.lblContent1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblContent1.ForeColor = System.Drawing.Color.Blue;
@@ -87,6 +89,7 @@
             // 
             // lblTitle
             // 
+            this.lblTitle.AccessibleDescription = ".";
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.Blue;
@@ -110,6 +113,7 @@
             // 
             // linkLabelV6Soft
             // 
+            this.linkLabelV6Soft.AccessibleDescription = ".";
             this.linkLabelV6Soft.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabelV6Soft.Location = new System.Drawing.Point(3, 125);
             this.linkLabelV6Soft.Name = "linkLabelV6Soft";

@@ -38,13 +38,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                                             + key + "=" + DataDic[key]);
                     }
                 }
-
-
-
             }
             else if (Mode == V6Mode.Add)
             {
-
                 var keys = new SortedDictionary<string, object>();
                 keys.Add("MA_QG", TxtMa_qg.Text.Trim());
 

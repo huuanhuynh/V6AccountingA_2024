@@ -32,7 +32,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 this.ShowErrorMessage(GetType() + ".DisableControl " + ex.Message);
             }
-
         }
 
         public override void ValidateData()
@@ -79,13 +78,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 {
                     TxtDvtqd.Text = TxtMa_vt.Data["Dvt"].ToString();
                     TxtXtype.Text = "1";
-
                 }
             }
-          
-
         }
-
         
     }
 }

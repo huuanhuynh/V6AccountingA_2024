@@ -1,6 +1,5 @@
 ﻿using System;
 using V6AccountingBusiness;
-using V6Structs;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
@@ -10,14 +9,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             InitializeComponent();
         }
-        
-        
-          public override void DoBeforeEdit()
+
+        public override void DoBeforeEdit()
         {
             var v = Categories.IsExistOneCode_List("ALTS", "MA_TG_TS", Txtma_tg_ts.Text);
             Txtma_tg_ts.Enabled = !v;
         }
-        
 
         public override void ValidateData()
         {

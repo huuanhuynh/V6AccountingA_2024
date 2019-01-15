@@ -47,7 +47,7 @@ namespace Tools
                 }
             }
 
-            public object FoundInfos { get; set; }
+            public string FoundLine { get; set; }
 
             private string _fullPath;
             public string Name;
@@ -166,6 +166,7 @@ namespace Tools
                         headText = fileText[searchTextIndexA] + headText;
                         searchTextIndexA--;
                     }
+                    headText = headText.Trim();
                 }
 
                 if (useTail)
@@ -176,18 +177,46 @@ namespace Tools
                         tailText = tailText + fileText[searchTextIndexB];
                         searchTextIndexB++;
                     }
+                    tailText = tailText.Trim();
+                }
+                
+                //Check headText and tailText
+                if (useHead && txtAContains.Text != "")
+                {
+                    if (!headText.Contains(txtAContains.Text)) return false;
+                }
+                if (useTail && txtBContains.Text != "")
+                {
+                    if (!tailText.Contains(txtBContains.Text)) return false;
+                }
+
+                try
+                {
+                    // Lấy dòng
+                    int endLineIndex = fileText.IndexOf("\n", searchTextIndex0, o);
+                    string line = headText + fileText.Substring(searchTextIndex0, endLineIndex - searchTextIndex0 - 1);
+                    myFileInfo.FoundLine = line;
+                }
+                catch (Exception ex)
+                {
+                    ;
                 }
             }
+
             if (txt12.Text != "" && (fileText.IndexOf(txt12.Text, o) < 0 || (chkx212.Checked && fileText.IndexOf(txt12.Text, o) == fileText.LastIndexOf(txt12.Text, o)))) return false;
             if (txt13.Text != "" && (fileText.IndexOf(txt13.Text, o) < 0 || (chkx213.Checked && fileText.IndexOf(txt13.Text, o) == fileText.LastIndexOf(txt13.Text, o)))) return false;
+
+            
 
             searchText = txt01.Text;
             if (useHead) searchText = searchText.Replace("[A]", headText);
             if (useTail) searchText = searchText.Replace("[B]", tailText);
+
+            // Kiểm tra không chứa, nếu có chứa là sai.
             if (txt01.Text != "" && (fileText.IndexOf(searchText, o) >= 0)) return false;
             if (txt02.Text != "" && (fileText.IndexOf(txt02.Text, o) >= 0)) return false;
             if (txt03.Text != "" && (fileText.IndexOf(txt03.Text, o) >= 0)) return false;
-            
+            //myFileInfo.FoundInfos = fileText.IndexOf()
             return true;
         }
 
@@ -227,7 +256,7 @@ namespace Tools
                 if (listBox2.SelectedItem != null)
                 {
                     MyFileInfo fi = (MyFileInfo) listBox2.SelectedItem;
-                    richFoundInfos.Text = fi.FoundInfos.ToString();
+                    richFoundInfos.Text = fi.FoundLine;
                     richView.Text = fi.Text;
                     lblFilePath.Text = fi.FullPath;
                 }

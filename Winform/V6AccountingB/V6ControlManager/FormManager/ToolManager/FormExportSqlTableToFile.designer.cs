@@ -58,6 +58,7 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = ".";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(6, 6);
             this.label5.Name = "label5";
@@ -91,6 +92,7 @@
             // 
             // grbExport
             // 
+            this.grbExport.AccessibleDescription = ".";
             this.grbExport.Controls.Add(this.txtTo);
             this.grbExport.Controls.Add(this.label9);
             this.grbExport.Controls.Add(this.txtFrom);
@@ -114,6 +116,7 @@
             // 
             // label9
             // 
+            this.label9.AccessibleDescription = ".";
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(131, 22);
             this.label9.Name = "label9";
@@ -131,6 +134,7 @@
             // 
             // chkConvert
             // 
+            this.chkConvert.AccessibleDescription = ".";
             this.chkConvert.AutoSize = true;
             this.chkConvert.Location = new System.Drawing.Point(6, 19);
             this.chkConvert.Name = "chkConvert";
@@ -152,6 +156,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.AccessibleDescription = ".";
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.richTextBox1);

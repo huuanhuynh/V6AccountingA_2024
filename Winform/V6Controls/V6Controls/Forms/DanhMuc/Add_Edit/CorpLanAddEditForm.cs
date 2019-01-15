@@ -153,5 +153,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             FixID();
         }
+
+        private void btnKhongDau_Click(object sender, EventArgs e)
+        {
+            txtTextE.Text = ChuyenMaTiengViet.ToUnSign(txtTextE.Text);
+        }
     }
 }

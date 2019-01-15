@@ -90,6 +90,8 @@
             this.v6ColorTextBox16 = new V6Controls.V6ColorTextBox();
             this.label47 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.TxtSTT13 = new V6Controls.V6NumberTextBox();
+            this.label33 = new System.Windows.Forms.Label();
             this.lblThongTinThem = new System.Windows.Forms.Label();
             this.txtExtraInfo = new V6Controls.V6ColorTextBox();
             this.grbSum = new System.Windows.Forms.GroupBox();
@@ -134,8 +136,6 @@
             this.btnExcel2View = new System.Windows.Forms.Button();
             this.txtND51 = new V6Controls.V6NumberTextBox();
             this.chkCheckPrint = new V6Controls.V6CheckBox();
-            this.TxtSTT13 = new V6Controls.V6NumberTextBox();
-            this.label33 = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -160,6 +160,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00229";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 37);
             this.label1.Name = "label1";
@@ -184,6 +185,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ADDEDITL00335";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 63);
             this.label2.Name = "label2";
@@ -228,6 +230,7 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "ADDEDITL00336";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 89);
             this.label3.Name = "label3";
@@ -342,6 +345,7 @@
             // 
             // label6
             // 
+            this.label6.AccessibleDescription = "ADDEDITL00337";
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(7, 9);
             this.label6.Name = "label6";
@@ -399,6 +403,7 @@
             // 
             // label8
             // 
+            this.label8.AccessibleDescription = "ADDEDITL00246";
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(12, 11);
             this.label8.Name = "label8";
@@ -484,6 +489,7 @@
             this.txtPrinterDef.ReadOnly = true;
             this.txtPrinterDef.Size = new System.Drawing.Size(167, 45);
             this.txtPrinterDef.TabIndex = 23;
+            this.txtPrinterDef.TabStop = false;
             // 
             // chkPrinterYn
             // 
@@ -987,6 +993,39 @@
             this.tabPage2.Size = new System.Drawing.Size(747, 384);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Định dạng màu và mở rộng";
+            // 
+            // TxtSTT13
+            // 
+            this.TxtSTT13.AccessibleName = "FROZENV";
+            this.TxtSTT13.BackColor = System.Drawing.Color.White;
+            this.TxtSTT13.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.TxtSTT13.DecimalPlaces = 0;
+            this.TxtSTT13.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtSTT13.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtSTT13.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.TxtSTT13.HoverColor = System.Drawing.Color.Yellow;
+            this.TxtSTT13.LeaveColor = System.Drawing.Color.White;
+            this.TxtSTT13.Location = new System.Drawing.Point(470, 102);
+            this.TxtSTT13.Margin = new System.Windows.Forms.Padding(5);
+            this.TxtSTT13.Name = "TxtSTT13";
+            this.TxtSTT13.Size = new System.Drawing.Size(40, 20);
+            this.TxtSTT13.TabIndex = 150;
+            this.TxtSTT13.Text = "0";
+            this.TxtSTT13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.TxtSTT13.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(343, 105);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(93, 13);
+            this.label33.TabIndex = 149;
+            this.label33.Text = "Số cột đông cứng";
             // 
             // lblThongTinThem
             // 
@@ -1586,39 +1625,6 @@
             this.chkCheckPrint.Text = "In 1 lần";
             this.chkCheckPrint.UseVisualStyleBackColor = true;
             this.chkCheckPrint.CheckedChanged += new System.EventHandler(this.chknd51_CheckedChanged);
-            // 
-            // TxtSTT13
-            // 
-            this.TxtSTT13.AccessibleName = "FROZENV";
-            this.TxtSTT13.BackColor = System.Drawing.Color.White;
-            this.TxtSTT13.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtSTT13.DecimalPlaces = 0;
-            this.TxtSTT13.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtSTT13.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtSTT13.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtSTT13.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtSTT13.LeaveColor = System.Drawing.Color.White;
-            this.TxtSTT13.Location = new System.Drawing.Point(470, 102);
-            this.TxtSTT13.Margin = new System.Windows.Forms.Padding(5);
-            this.TxtSTT13.Name = "TxtSTT13";
-            this.TxtSTT13.Size = new System.Drawing.Size(40, 20);
-            this.TxtSTT13.TabIndex = 150;
-            this.TxtSTT13.Text = "0";
-            this.TxtSTT13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.TxtSTT13.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(343, 105);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(93, 13);
-            this.label33.TabIndex = 149;
-            this.label33.Text = "Số cột đông cứng";
             // 
             // AlbcAddEditForm
             // 

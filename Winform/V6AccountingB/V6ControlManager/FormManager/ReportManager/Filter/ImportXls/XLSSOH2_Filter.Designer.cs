@@ -55,7 +55,7 @@
             // 
             // v6Label2
             // 
-            this.v6Label2.AccessibleDescription = "FILTERL00204";
+            this.v6Label2.AccessibleDescription = "FILTERL00205";
             this.v6Label2.AutoSize = true;
             this.v6Label2.Location = new System.Drawing.Point(5, 77);
             this.v6Label2.Name = "v6Label2";

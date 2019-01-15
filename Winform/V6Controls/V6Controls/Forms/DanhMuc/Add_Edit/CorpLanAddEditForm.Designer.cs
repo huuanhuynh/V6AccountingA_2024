@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnKhongDau = new System.Windows.Forms.Button();
             this.chkAutoCopyID = new System.Windows.Forms.CheckBox();
             this.txtTen = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox1 = new V6Controls.V6ColorTextBox();
@@ -58,6 +59,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.btnKhongDau);
             this.groupBox1.Controls.Add(this.chkAutoCopyID);
             this.groupBox1.Controls.Add(this.txtTen);
             this.groupBox1.Controls.Add(this.v6ColorTextBox1);
@@ -87,6 +89,17 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // btnKhongDau
+            // 
+            this.btnKhongDau.AccessibleDescription = "AECORPLANB00001";
+            this.btnKhongDau.Location = new System.Drawing.Point(312, 139);
+            this.btnKhongDau.Name = "btnKhongDau";
+            this.btnKhongDau.Size = new System.Drawing.Size(115, 27);
+            this.btnKhongDau.TabIndex = 11;
+            this.btnKhongDau.Text = "Không dấu";
+            this.btnKhongDau.UseVisualStyleBackColor = true;
+            this.btnKhongDau.Click += new System.EventHandler(this.btnKhongDau_Click);
+            // 
             // chkAutoCopyID
             // 
             this.chkAutoCopyID.AccessibleDescription = "AECORPLANC00001";
@@ -95,7 +108,8 @@
             this.chkAutoCopyID.Location = new System.Drawing.Point(320, 114);
             this.chkAutoCopyID.Name = "chkAutoCopyID";
             this.chkAutoCopyID.Size = new System.Drawing.Size(102, 21);
-            this.chkAutoCopyID.TabIndex = 18;
+            this.chkAutoCopyID.TabIndex = 8;
+            this.chkAutoCopyID.TabStop = false;
             this.chkAutoCopyID.Text = "CHANGE_V";
             this.toolTipV6FormControl.SetToolTip(this.chkAutoCopyID, "Thay đổi tiếng Việt mặc định");
             this.chkAutoCopyID.UseVisualStyleBackColor = true;
@@ -113,7 +127,7 @@
             this.txtTen.Location = new System.Drawing.Point(132, 170);
             this.txtTen.Name = "txtTen";
             this.txtTen.Size = new System.Drawing.Size(174, 23);
-            this.txtTen.TabIndex = 11;
+            this.txtTen.TabIndex = 13;
             // 
             // v6ColorTextBox1
             // 
@@ -129,7 +143,7 @@
             this.v6ColorTextBox1.Location = new System.Drawing.Point(526, 80);
             this.v6ColorTextBox1.Name = "v6ColorTextBox1";
             this.v6ColorTextBox1.Size = new System.Drawing.Size(135, 23);
-            this.v6ColorTextBox1.TabIndex = 17;
+            this.v6ColorTextBox1.TabIndex = 21;
             this.v6ColorTextBox1.TextChanged += new System.EventHandler(this.txtCtype_TextChanged);
             // 
             // txtCtype
@@ -146,7 +160,7 @@
             this.txtCtype.Location = new System.Drawing.Point(526, 54);
             this.txtCtype.Name = "txtCtype";
             this.txtCtype.Size = new System.Drawing.Size(135, 23);
-            this.txtCtype.TabIndex = 17;
+            this.txtCtype.TabIndex = 19;
             this.txtCtype.TextChanged += new System.EventHandler(this.txtCtype_TextChanged);
             // 
             // txtSname
@@ -180,7 +194,8 @@
             this.txtSfile.Name = "txtSfile";
             this.txtSfile.ReadOnly = true;
             this.txtSfile.Size = new System.Drawing.Size(135, 23);
-            this.txtSfile.TabIndex = 15;
+            this.txtSfile.TabIndex = 17;
+            this.txtSfile.TabStop = false;
             this.txtSfile.Tag = "readonly";
             this.txtSfile.TextChanged += new System.EventHandler(this.txtSfile_TextChanged);
             this.txtSfile.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSfile_KeyDown);
@@ -198,7 +213,7 @@
             this.txtTen2.Location = new System.Drawing.Point(132, 199);
             this.txtTen2.Name = "txtTen2";
             this.txtTen2.Size = new System.Drawing.Size(174, 23);
-            this.txtTen2.TabIndex = 13;
+            this.txtTen2.TabIndex = 15;
             // 
             // txtTextE
             // 
@@ -213,7 +228,7 @@
             this.txtTextE.Location = new System.Drawing.Point(132, 141);
             this.txtTextE.Name = "txtTextE";
             this.txtTextE.Size = new System.Drawing.Size(174, 23);
-            this.txtTextE.TabIndex = 9;
+            this.txtTextE.TabIndex = 10;
             // 
             // txtTextV
             // 
@@ -269,7 +284,7 @@
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 17);
-            this.label1.TabIndex = 16;
+            this.label1.TabIndex = 20;
             this.label1.Text = "MA_CT";
             // 
             // label3
@@ -292,7 +307,7 @@
             this.lblCtype.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblCtype.Name = "lblCtype";
             this.lblCtype.Size = new System.Drawing.Size(49, 17);
-            this.lblCtype.TabIndex = 16;
+            this.lblCtype.TabIndex = 18;
             this.lblCtype.Text = "CType";
             // 
             // label4
@@ -303,7 +318,7 @@
             this.label4.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(39, 17);
-            this.label4.TabIndex = 14;
+            this.label4.TabIndex = 16;
             this.label4.Text = "SFile";
             // 
             // label9
@@ -325,7 +340,7 @@
             this.lblTen2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblTen2.Name = "lblTen2";
             this.lblTen2.Size = new System.Drawing.Size(45, 17);
-            this.lblTen2.TabIndex = 12;
+            this.lblTen2.TabIndex = 14;
             this.lblTen2.Text = "Tên 2";
             // 
             // lblTen
@@ -336,7 +351,7 @@
             this.lblTen.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblTen.Name = "lblTen";
             this.lblTen.Size = new System.Drawing.Size(33, 17);
-            this.lblTen.TabIndex = 10;
+            this.lblTen.TabIndex = 12;
             this.lblTen.Text = "Tên";
             // 
             // lblTextE
@@ -347,7 +362,7 @@
             this.lblTextE.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblTextE.Name = "lblTextE";
             this.lblTextE.Size = new System.Drawing.Size(48, 17);
-            this.lblTextE.TabIndex = 8;
+            this.lblTextE.TabIndex = 9;
             this.lblTextE.Text = "Text E";
             // 
             // label5
@@ -413,5 +428,6 @@
         private System.Windows.Forms.CheckBox chkAutoCopyID;
         private V6ColorTextBox v6ColorTextBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnKhongDau;
     }
 }

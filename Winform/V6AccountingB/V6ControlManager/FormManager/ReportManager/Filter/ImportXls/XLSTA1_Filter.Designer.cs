@@ -33,6 +33,7 @@
             this.v6Label3 = new V6Controls.V6Label();
             this.comboBox1 = new V6Controls.V6ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkAutoSoCt = new V6Controls.V6CheckBox();
             this.checkBox2 = new V6Controls.V6CheckBox();
             this.checkBox1 = new V6Controls.V6CheckBox();
             this.comboBox2 = new V6Controls.V6ComboBox();
@@ -40,7 +41,6 @@
             this.btnSuaChiTieu = new System.Windows.Forms.Button();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.btnXemMauExcel = new System.Windows.Forms.Button();
-            this.chkAutoSoCt = new V6Controls.V6CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -110,6 +110,18 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tùy chọn";
+            // 
+            // chkAutoSoCt
+            // 
+            this.chkAutoSoCt.AccessibleDescription = "FILTERL00269";
+            this.chkAutoSoCt.AutoSize = true;
+            this.chkAutoSoCt.Location = new System.Drawing.Point(94, 42);
+            this.chkAutoSoCt.Name = "chkAutoSoCt";
+            this.chkAutoSoCt.Size = new System.Drawing.Size(144, 17);
+            this.chkAutoSoCt.TabIndex = 7;
+            this.chkAutoSoCt.Text = "Tự động tạo số chứng từ";
+            this.chkAutoSoCt.UseVisualStyleBackColor = true;
+            this.chkAutoSoCt.CheckedChanged += new System.EventHandler(this.chkAutoSoCt_CheckedChanged);
             // 
             // checkBox2
             // 
@@ -197,17 +209,6 @@
             this.btnXemMauExcel.Text = "Xem mẫu excel";
             this.btnXemMauExcel.UseVisualStyleBackColor = true;
             this.btnXemMauExcel.Click += new System.EventHandler(this.btnXemMauExcel_Click);
-            // 
-            // chkAutoSoCt
-            // 
-            this.chkAutoSoCt.AutoSize = true;
-            this.chkAutoSoCt.Location = new System.Drawing.Point(94, 42);
-            this.chkAutoSoCt.Name = "chkAutoSoCt";
-            this.chkAutoSoCt.Size = new System.Drawing.Size(144, 17);
-            this.chkAutoSoCt.TabIndex = 7;
-            this.chkAutoSoCt.Text = "Tự động tạo số chứng từ";
-            this.chkAutoSoCt.UseVisualStyleBackColor = true;
-            this.chkAutoSoCt.CheckedChanged += new System.EventHandler(this.chkAutoSoCt_CheckedChanged);
             // 
             // XLSTA1_Filter
             // 

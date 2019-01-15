@@ -35,6 +35,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "XULYL00195";
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(0, 0);
@@ -56,6 +57,7 @@
             // 
             // button1
             // 
+            this.button1.AccessibleDescription = "DANHMUCVIEWB00012";
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Location = new System.Drawing.Point(192, 189);
             this.button1.Name = "button1";

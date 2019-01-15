@@ -25,9 +25,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 var v = Categories.IsExistOneCode_List(F8_table, "MA_CK", TXTma_ck.Text);
                 TXTma_ck.Enabled = !v;
-              
-
-
             }
             catch (Exception ex)
             {
@@ -44,7 +41,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             InitializeComponent();
         }
-
        
         public override void ValidateData()
         {

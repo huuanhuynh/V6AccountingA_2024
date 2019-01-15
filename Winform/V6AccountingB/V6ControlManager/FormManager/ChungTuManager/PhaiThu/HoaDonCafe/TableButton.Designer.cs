@@ -44,6 +44,7 @@
             // 
             // lblName
             // 
+            this.lblName.AccessibleDescription = ".";
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.Location = new System.Drawing.Point(0, 0);
             this.lblName.Name = "lblName";
@@ -55,6 +56,7 @@
             // 
             // lblStatus
             // 
+            this.lblStatus.AccessibleDescription = ".";
             this.lblStatus.Location = new System.Drawing.Point(0, 20);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(87, 15);
@@ -65,6 +67,7 @@
             // 
             // lblTTT
             // 
+            this.lblTTT.AccessibleDescription = ".";
             this.lblTTT.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTTT.Location = new System.Drawing.Point(0, 37);
             this.lblTTT.Name = "lblTTT";
@@ -90,6 +93,7 @@
             // 
             // lblGhiChu
             // 
+            this.lblGhiChu.AccessibleDescription = ".";
             this.lblGhiChu.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGhiChu.Location = new System.Drawing.Point(0, 52);
             this.lblGhiChu.Name = "lblGhiChu";

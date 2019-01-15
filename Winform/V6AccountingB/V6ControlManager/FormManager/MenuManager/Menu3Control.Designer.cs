@@ -44,6 +44,7 @@ namespace V6ControlManager.FormManager.MenuManager
             // 
             // lblShowHide
             // 
+            this.lblShowHide.AccessibleDescription = ".";
             this.lblShowHide.AccessibleName = "ShowHideMenu";
             this.lblShowHide.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblShowHide.Dock = System.Windows.Forms.DockStyle.Right;

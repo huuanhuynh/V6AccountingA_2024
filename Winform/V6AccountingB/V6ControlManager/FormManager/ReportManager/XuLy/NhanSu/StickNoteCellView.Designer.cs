@@ -35,6 +35,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = ".";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(3, 9);
             this.label1.MaximumSize = new System.Drawing.Size(188, 0);

@@ -74,6 +74,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "DANHMUCVIEWL00002";
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.Location = new System.Drawing.Point(617, 345);
             this.label1.Name = "label1";

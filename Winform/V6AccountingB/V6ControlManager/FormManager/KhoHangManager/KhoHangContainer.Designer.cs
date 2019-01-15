@@ -54,6 +54,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "XULYL00191";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(3, 9);
             this.label1.Name = "label1";
@@ -93,6 +94,7 @@
             // 
             // btnSuaTTMauBC
             // 
+            this.btnSuaTTMauBC.AccessibleDescription = "XULYL00192";
             this.btnSuaTTMauBC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSuaTTMauBC.Location = new System.Drawing.Point(690, 4);
             this.btnSuaTTMauBC.Name = "btnSuaTTMauBC";
@@ -105,6 +107,7 @@
             // 
             // btnThemMauBC
             // 
+            this.btnThemMauBC.AccessibleDescription = "XULYL00193";
             this.btnThemMauBC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnThemMauBC.Location = new System.Drawing.Point(735, 4);
             this.btnThemMauBC.Name = "btnThemMauBC";

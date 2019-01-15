@@ -54,6 +54,10 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.lblFilePath = new System.Windows.Forms.Label();
             this.richFoundInfos = new System.Windows.Forms.RichTextBox();
+            this.txtAContains = new System.Windows.Forms.TextBox();
+            this.txtBContains = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnSaveFile
@@ -102,10 +106,10 @@
             this.richView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richView.Location = new System.Drawing.Point(417, 409);
+            this.richView.Location = new System.Drawing.Point(417, 289);
             this.richView.Name = "richView";
             this.richView.ReadOnly = true;
-            this.richView.Size = new System.Drawing.Size(441, 250);
+            this.richView.Size = new System.Drawing.Size(441, 370);
             this.richView.TabIndex = 17;
             this.richView.Text = "";
             // 
@@ -143,7 +147,7 @@
             // 
             this.txt12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt12.Location = new System.Drawing.Point(284, 53);
+            this.txt12.Location = new System.Drawing.Point(284, 47);
             this.txt12.Name = "txt12";
             this.txt12.Size = new System.Drawing.Size(539, 20);
             this.txt12.TabIndex = 8;
@@ -152,7 +156,7 @@
             // 
             this.txt13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt13.Location = new System.Drawing.Point(284, 79);
+            this.txt13.Location = new System.Drawing.Point(284, 67);
             this.txt13.Name = "txt13";
             this.txt13.Size = new System.Drawing.Size(539, 20);
             this.txt13.TabIndex = 9;
@@ -161,7 +165,7 @@
             // 
             this.txt01.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt01.Location = new System.Drawing.Point(284, 105);
+            this.txt01.Location = new System.Drawing.Point(284, 87);
             this.txt01.Name = "txt01";
             this.txt01.Size = new System.Drawing.Size(585, 20);
             this.txt01.TabIndex = 11;
@@ -172,7 +176,7 @@
             // 
             this.txt02.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt02.Location = new System.Drawing.Point(284, 131);
+            this.txt02.Location = new System.Drawing.Point(284, 107);
             this.txt02.Name = "txt02";
             this.txt02.Size = new System.Drawing.Size(585, 20);
             this.txt02.TabIndex = 12;
@@ -182,7 +186,7 @@
             // 
             this.txt03.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt03.Location = new System.Drawing.Point(284, 157);
+            this.txt03.Location = new System.Drawing.Point(284, 127);
             this.txt03.Name = "txt03";
             this.txt03.Size = new System.Drawing.Size(585, 20);
             this.txt03.TabIndex = 13;
@@ -191,7 +195,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(213, 108);
+            this.label2.Location = new System.Drawing.Point(213, 90);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 13);
             this.label2.TabIndex = 10;
@@ -243,7 +247,7 @@
             // 
             this.chkx212.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkx212.AutoSize = true;
-            this.chkx212.Location = new System.Drawing.Point(829, 55);
+            this.chkx212.Location = new System.Drawing.Point(829, 49);
             this.chkx212.Name = "chkx212";
             this.chkx212.Size = new System.Drawing.Size(37, 17);
             this.chkx212.TabIndex = 14;
@@ -254,7 +258,7 @@
             // 
             this.chkx213.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkx213.AutoSize = true;
-            this.chkx213.Location = new System.Drawing.Point(829, 81);
+            this.chkx213.Location = new System.Drawing.Point(829, 69);
             this.chkx213.Name = "chkx213";
             this.chkx213.Size = new System.Drawing.Size(37, 17);
             this.chkx213.TabIndex = 14;
@@ -286,15 +290,50 @@
             // 
             // richFoundInfos
             // 
-            this.richFoundInfos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.richFoundInfos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richFoundInfos.Location = new System.Drawing.Point(417, 226);
             this.richFoundInfos.Name = "richFoundInfos";
             this.richFoundInfos.ReadOnly = true;
-            this.richFoundInfos.Size = new System.Drawing.Size(441, 177);
+            this.richFoundInfos.Size = new System.Drawing.Size(441, 57);
             this.richFoundInfos.TabIndex = 17;
             this.richFoundInfos.Text = "";
+            // 
+            // txtAContains
+            // 
+            this.txtAContains.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAContains.Location = new System.Drawing.Point(284, 153);
+            this.txtAContains.Name = "txtAContains";
+            this.txtAContains.Size = new System.Drawing.Size(585, 20);
+            this.txtAContains.TabIndex = 12;
+            // 
+            // txtBContains
+            // 
+            this.txtBContains.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBContains.Location = new System.Drawing.Point(284, 175);
+            this.txtBContains.Name = "txtBContains";
+            this.txtBContains.Size = new System.Drawing.Size(585, 20);
+            this.txtBContains.TabIndex = 12;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(213, 156);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "[A] chứa";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(213, 178);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(47, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "[B] chứa";
             // 
             // FormFilterTextFiles
             // 
@@ -312,12 +351,16 @@
             this.Controls.Add(this.richView);
             this.Controls.Add(this.lblFilePath);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnFolder);
             this.Controls.Add(this.btnSaveFile);
             this.Controls.Add(this.txt03);
             this.Controls.Add(this.txt13);
+            this.Controls.Add(this.txtBContains);
+            this.Controls.Add(this.txtAContains);
             this.Controls.Add(this.txt02);
             this.Controls.Add(this.txt12);
             this.Controls.Add(this.txt01);
@@ -360,5 +403,9 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label lblFilePath;
         private System.Windows.Forms.RichTextBox richFoundInfos;
+        private System.Windows.Forms.TextBox txtAContains;
+        private System.Windows.Forms.TextBox txtBContains;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }

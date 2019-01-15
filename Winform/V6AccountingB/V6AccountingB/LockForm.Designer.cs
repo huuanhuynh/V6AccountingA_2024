@@ -51,8 +51,15 @@ namespace V6AccountingB
             // txtUserName
             // 
             this.txtUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUserName.BackColor = System.Drawing.SystemColors.Window;
+            this.txtUserName.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtUserName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtUserName.Enabled = false;
+            this.txtUserName.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtUserName.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtUserName.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtUserName.HoverColor = System.Drawing.Color.Yellow;
+            this.txtUserName.LeaveColor = System.Drawing.Color.White;
             this.txtUserName.Location = new System.Drawing.Point(750, 550);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(147, 20);
@@ -60,6 +67,7 @@ namespace V6AccountingB
             // 
             // label0
             // 
+            this.label0.AccessibleDescription = "V6REASKL00010";
             this.label0.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label0.BackColor = System.Drawing.Color.Transparent;
             this.label0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -72,6 +80,7 @@ namespace V6AccountingB
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "V6REASKL00003";
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
@@ -84,6 +93,7 @@ namespace V6AccountingB
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "V6REASKR00002";
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
@@ -125,6 +135,13 @@ namespace V6AccountingB
             this.Text = "V6Accounting";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LockForm_FormClosing);
             this.Load += new System.EventHandler(this.LockControl_Load);
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.label0, 0);
+            this.Controls.SetChildIndex(this.txtUserName, 0);
+            this.Controls.SetChildIndex(this.txtPassword, 0);
+            this.Controls.SetChildIndex(this.lblCompanyName, 0);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 

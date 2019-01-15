@@ -10,25 +10,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             InitializeComponent();
         }
-         
-        
-         public override void DoBeforeEdit()
+
+        public override void DoBeforeEdit()
         {
             try
             {
-              
-
                 var v = Categories.IsExistOneCode_List("ALCC", "MA_BP", txtma_bp.Text);
                 txtma_bp.Enabled = !v;
-
-                
-
             }
             catch (Exception ex)
             {
                 V6Tools.Logger.WriteToLog("BoPhanSuDungCongCuAddEditForm DisableWhenEdit " + ex.Message);
             }
         }
+
         public override void ValidateData()
         {
             var errors = "";

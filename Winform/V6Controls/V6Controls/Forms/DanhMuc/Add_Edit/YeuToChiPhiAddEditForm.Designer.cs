@@ -153,6 +153,7 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00328";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(15, 82);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -163,6 +164,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00326";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(15, 18);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -173,6 +175,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ADDEDITL00327";
             this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(15, 50);
@@ -284,6 +287,7 @@
             // 
             // label11
             // 
+            this.label11.AccessibleDescription = "ADDEDITL00331";
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(15, 73);
             this.label11.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -313,6 +317,7 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00329";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(15, 10);
             this.label4.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -333,6 +338,7 @@
             // 
             // label6
             // 
+            this.label6.AccessibleDescription = "ADDEDITL00330";
             this.label6.AccessibleName = "";
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(15, 42);
@@ -367,6 +373,7 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "ADDEDITL00180";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(15, 103);
             this.label3.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -430,6 +437,7 @@
             // 
             // label7
             // 
+            this.label7.AccessibleDescription = "ADDEDITL00333";
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(15, 196);
             this.label7.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -440,6 +448,7 @@
             // 
             // label9
             // 
+            this.label9.AccessibleDescription = "ADDEDITL00038";
             this.label9.AccessibleName = "";
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(15, 164);
@@ -451,6 +460,7 @@
             // 
             // label8
             // 
+            this.label8.AccessibleDescription = "ADDEDITL00332";
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(15, 132);
             this.label8.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -560,7 +570,7 @@
             this.v6DateTimeColor3.TabIndex = 7;
             this.v6DateTimeColor3.Text = "__/__/____";
             // 
-            // v6ColorTextBox16
+            // txtGC_TD3
             // 
             this.txtGC_TD3.AccessibleName = "GC_TD3";
             this.txtGC_TD3.BackColor = System.Drawing.Color.White;
@@ -576,7 +586,7 @@
             this.txtGC_TD3.Size = new System.Drawing.Size(526, 23);
             this.txtGC_TD3.TabIndex = 23;
             // 
-            // v6ColorTextBox15
+            // txtGC_TD2
             // 
             this.txtGC_TD2.AccessibleName = "GC_TD2";
             this.txtGC_TD2.BackColor = System.Drawing.Color.White;
@@ -592,7 +602,7 @@
             this.txtGC_TD2.Size = new System.Drawing.Size(526, 23);
             this.txtGC_TD2.TabIndex = 21;
             // 
-            // v6ColorTextBox14
+            // txtGC_TD1
             // 
             this.txtGC_TD1.AccessibleName = "GC_TD1";
             this.txtGC_TD1.BackColor = System.Drawing.Color.White;
@@ -647,7 +657,7 @@
             this.label27.TabIndex = 18;
             this.label27.Text = "Ghi chú ĐN 1";
             // 
-            // v6ColorTextBox9
+            // txtMA_TD3
             // 
             this.txtMA_TD3.AccessibleName = "MA_TD3";
             this.txtMA_TD3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -666,7 +676,7 @@
             this.txtMA_TD3.Size = new System.Drawing.Size(171, 23);
             this.txtMA_TD3.TabIndex = 5;
             // 
-            // v6ColorTextBox10
+            // txtMA_TD2
             // 
             this.txtMA_TD2.AccessibleName = "MA_TD2";
             this.txtMA_TD2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -685,7 +695,7 @@
             this.txtMA_TD2.Size = new System.Drawing.Size(171, 23);
             this.txtMA_TD2.TabIndex = 3;
             // 
-            // v6ColorTextBox11
+            // txtMA_TD1
             // 
             this.txtMA_TD1.AccessibleName = "MA_TD1";
             this.txtMA_TD1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -723,13 +733,14 @@
             this.v6NumberTextBox3.ReadOnly = true;
             this.v6NumberTextBox3.Size = new System.Drawing.Size(171, 23);
             this.v6NumberTextBox3.TabIndex = 17;
+            this.v6NumberTextBox3.TabStop = false;
             this.v6NumberTextBox3.Text = "0,000";
             this.v6NumberTextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox3.Value = new decimal(new int[] {
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox2
             // 
@@ -750,13 +761,14 @@
             this.v6NumberTextBox2.ReadOnly = true;
             this.v6NumberTextBox2.Size = new System.Drawing.Size(171, 23);
             this.v6NumberTextBox2.TabIndex = 15;
+            this.v6NumberTextBox2.TabStop = false;
             this.v6NumberTextBox2.Text = "0,000";
             this.v6NumberTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox2.Value = new decimal(new int[] {
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox1
             // 
@@ -777,13 +789,14 @@
             this.v6NumberTextBox1.ReadOnly = true;
             this.v6NumberTextBox1.Size = new System.Drawing.Size(171, 23);
             this.v6NumberTextBox1.TabIndex = 13;
+            this.v6NumberTextBox1.TabStop = false;
             this.v6NumberTextBox1.Text = "0,000";
             this.v6NumberTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox1.Value = new decimal(new int[] {
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // label16
             // 

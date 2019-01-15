@@ -70,6 +70,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = ".";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(325, 153);
             this.label1.Name = "label1";
@@ -79,6 +80,7 @@
             // 
             // lblĐiểm_dòng
             // 
+            this.lblĐiểm_dòng.AccessibleDescription = ".";
             this.lblĐiểm_dòng.AutoSize = true;
             this.lblĐiểm_dòng.Location = new System.Drawing.Point(368, 153);
             this.lblĐiểm_dòng.Name = "lblĐiểm_dòng";
@@ -88,6 +90,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = ".";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(325, 166);
             this.label2.Name = "label2";
@@ -97,6 +100,7 @@
             // 
             // lblCấp_độ
             // 
+            this.lblCấp_độ.AccessibleDescription = ".";
             this.lblCấp_độ.AutoSize = true;
             this.lblCấp_độ.Location = new System.Drawing.Point(368, 166);
             this.lblCấp_độ.Name = "lblCấp_độ";
@@ -117,6 +121,7 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = ".";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(325, 196);
             this.label3.Name = "label3";
@@ -126,6 +131,7 @@
             // 
             // lblKỷ_lục
             // 
+            this.lblKỷ_lục.AccessibleDescription = ".";
             this.lblKỷ_lục.AutoSize = true;
             this.lblKỷ_lục.Location = new System.Drawing.Point(325, 209);
             this.lblKỷ_lục.Name = "lblKỷ_lục";

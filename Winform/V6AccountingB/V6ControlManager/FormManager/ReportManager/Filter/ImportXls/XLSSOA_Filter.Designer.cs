@@ -56,7 +56,7 @@
             // 
             // v6Label2
             // 
-            this.v6Label2.AccessibleDescription = "FILTERL00204";
+            this.v6Label2.AccessibleDescription = "FILTERL00205";
             this.v6Label2.AutoSize = true;
             this.v6Label2.Location = new System.Drawing.Point(1, 109);
             this.v6Label2.Name = "v6Label2";
@@ -127,6 +127,7 @@
             // 
             // chkAutoSoCt
             // 
+            this.chkAutoSoCt.AccessibleDescription = "FILTERL00269";
             this.chkAutoSoCt.AutoSize = true;
             this.chkAutoSoCt.Location = new System.Drawing.Point(94, 42);
             this.chkAutoSoCt.Name = "chkAutoSoCt";

@@ -1,6 +1,5 @@
 ﻿using System;
 using V6AccountingBusiness;
-using V6Structs;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
@@ -14,17 +13,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-
                 var v = Categories.IsExistOneCode_List("ALTS", "MA_BP", txtma_bp.Text);
                 txtma_bp.Enabled = !v;
-               
-
             }
             catch (Exception ex)
             {
                 V6Tools.Logger.WriteToLog("BoPhanSuDungTangSuatAddEditForm DisableWhenEdit " + ex.Message);
             }
-
         }
        
         public override void ValidateData()

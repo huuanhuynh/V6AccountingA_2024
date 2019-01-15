@@ -49,6 +49,7 @@
             // 
             // lblTotalPage
             // 
+            this.lblTotalPage.AccessibleDescription = "DANHMUCVIEWL00003";
             this.lblTotalPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTotalPage.AutoSize = true;
             this.lblTotalPage.Location = new System.Drawing.Point(3, 582);

@@ -36,7 +36,7 @@
             this.txtFileMauBc = new V6Controls.V6VvarTextBox();
             this.txtTenMauBc2 = new V6Controls.V6VvarTextBox();
             this.txtTenMauBc = new V6Controls.V6VvarTextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblName2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
@@ -54,7 +54,7 @@
             this.groupBox1.Controls.Add(this.txtFileMauBc);
             this.groupBox1.Controls.Add(this.txtTenMauBc2);
             this.groupBox1.Controls.Add(this.txtTenMauBc);
-            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.lblName2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(5, 1);
@@ -67,6 +67,7 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "ADDEDITL00246";
             this.label3.AccessibleName = "";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(9, 135);
@@ -81,23 +82,19 @@
             this.txtstt.AccessibleName = "STT";
             this.txtstt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtstt.BackColor = System.Drawing.Color.White;
-            this.txtstt.Carry = false;
+            this.txtstt.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtstt.DecimalPlaces = 0;
-            this.txtstt.EnableColorEffect = true;
-            this.txtstt.EnableColorEffectOnMouseEnter = false;
             this.txtstt.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtstt.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtstt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtstt.HoverColor = System.Drawing.Color.Yellow;
             this.txtstt.LeaveColor = System.Drawing.Color.White;
-            this.txtstt.LimitCharacters = null;
             this.txtstt.Location = new System.Drawing.Point(133, 132);
-            this.txtstt.MaxNumDecimal = 0;
-            this.txtstt.MaxNumLength = 0;
             this.txtstt.Name = "txtstt";
             this.txtstt.Size = new System.Drawing.Size(134, 23);
             this.txtstt.TabIndex = 108;
             this.txtstt.Text = "0";
             this.txtstt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtstt.GrayText = "";
             this.txtstt.Value = new decimal(new int[] {
             0,
             0,
@@ -107,24 +104,22 @@
             // txtMaMauBc
             // 
             this.txtMaMauBc.AccessibleName = "ma_maubc";
-            this.txtMaMauBc.BrotherFields = null;
-            this.txtMaMauBc.Carry = false;
+            this.txtMaMauBc.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaMauBc.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaMauBc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtMaMauBc.EnableColorEffect = true;
-            this.txtMaMauBc.EnableColorEffectOnMouseEnter = false;
             this.txtMaMauBc.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaMauBc.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaMauBc.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaMauBc.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaMauBc.LeaveColor = System.Drawing.Color.White;
-            this.txtMaMauBc.LimitCharacters = null;
             this.txtMaMauBc.Location = new System.Drawing.Point(133, 16);
             this.txtMaMauBc.Name = "txtMaMauBc";
-            this.txtMaMauBc.NeighborFields = null;
             this.txtMaMauBc.Size = new System.Drawing.Size(202, 23);
             this.txtMaMauBc.TabIndex = 0;
-            this.txtMaMauBc.GrayText = "";
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00250";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(9, 106);
             this.label4.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -138,73 +133,66 @@
             this.txtFileMauBc.AccessibleName = "file_maubc";
             this.txtFileMauBc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFileMauBc.BrotherFields = null;
-            this.txtFileMauBc.Carry = false;
-            this.txtFileMauBc.EnableColorEffect = true;
-            this.txtFileMauBc.EnableColorEffectOnMouseEnter = false;
+            this.txtFileMauBc.BackColor = System.Drawing.SystemColors.Window;
+            this.txtFileMauBc.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtFileMauBc.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtFileMauBc.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtFileMauBc.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtFileMauBc.HoverColor = System.Drawing.Color.Yellow;
             this.txtFileMauBc.LeaveColor = System.Drawing.Color.White;
-            this.txtFileMauBc.LimitCharacters = null;
             this.txtFileMauBc.Location = new System.Drawing.Point(133, 103);
             this.txtFileMauBc.Name = "txtFileMauBc";
-            this.txtFileMauBc.NeighborFields = null;
             this.txtFileMauBc.Size = new System.Drawing.Size(356, 23);
             this.txtFileMauBc.TabIndex = 2;
-            this.txtFileMauBc.GrayText = "";
             // 
             // txtTenMauBc2
             // 
             this.txtTenMauBc2.AccessibleName = "ten_maubc2";
             this.txtTenMauBc2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTenMauBc2.BrotherFields = null;
-            this.txtTenMauBc2.Carry = false;
-            this.txtTenMauBc2.EnableColorEffect = true;
-            this.txtTenMauBc2.EnableColorEffectOnMouseEnter = false;
+            this.txtTenMauBc2.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTenMauBc2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtTenMauBc2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTenMauBc2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTenMauBc2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTenMauBc2.HoverColor = System.Drawing.Color.Yellow;
             this.txtTenMauBc2.LeaveColor = System.Drawing.Color.White;
-            this.txtTenMauBc2.LimitCharacters = null;
             this.txtTenMauBc2.Location = new System.Drawing.Point(133, 74);
             this.txtTenMauBc2.Name = "txtTenMauBc2";
-            this.txtTenMauBc2.NeighborFields = null;
             this.txtTenMauBc2.Size = new System.Drawing.Size(356, 23);
             this.txtTenMauBc2.TabIndex = 2;
-            this.txtTenMauBc2.GrayText = "";
             // 
             // txtTenMauBc
             // 
             this.txtTenMauBc.AccessibleName = "ten_maubc";
             this.txtTenMauBc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTenMauBc.BrotherFields = null;
-            this.txtTenMauBc.Carry = false;
-            this.txtTenMauBc.EnableColorEffect = true;
-            this.txtTenMauBc.EnableColorEffectOnMouseEnter = false;
+            this.txtTenMauBc.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTenMauBc.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtTenMauBc.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTenMauBc.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTenMauBc.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTenMauBc.HoverColor = System.Drawing.Color.Yellow;
             this.txtTenMauBc.LeaveColor = System.Drawing.Color.White;
-            this.txtTenMauBc.LimitCharacters = null;
             this.txtTenMauBc.Location = new System.Drawing.Point(133, 45);
             this.txtTenMauBc.Name = "txtTenMauBc";
-            this.txtTenMauBc.NeighborFields = null;
             this.txtTenMauBc.Size = new System.Drawing.Size(356, 23);
             this.txtTenMauBc.TabIndex = 1;
-            this.txtTenMauBc.GrayText = "";
             // 
-            // label5
+            // lblName2
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 77);
-            this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 17);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "Tên 2 ";
+            this.lblName2.AccessibleDescription = "ADDEDITL00004";
+            this.lblName2.AutoSize = true;
+            this.lblName2.Location = new System.Drawing.Point(9, 77);
+            this.lblName2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblName2.Name = "lblName2";
+            this.lblName2.Size = new System.Drawing.Size(49, 17);
+            this.lblName2.TabIndex = 6;
+            this.lblName2.Text = "Tên 2 ";
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00248";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 19);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -215,6 +203,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ADDEDITL00249";
             this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(9, 48);
@@ -242,7 +231,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblName2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private V6VvarTextBox txtMaMauBc;

@@ -50,6 +50,7 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "REPORTL00017";
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Location = new System.Drawing.Point(6, 37);

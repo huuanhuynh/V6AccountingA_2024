@@ -160,6 +160,7 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "INVOICEL00001";
             this.label3.AccessibleName = "";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(9, 8);
@@ -171,6 +172,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "INVOICEL00002";
             this.label1.AccessibleName = "";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(396, 8);
@@ -182,6 +184,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "INVOICEL00003";
             this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(9, 290);
@@ -193,6 +196,7 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "INVOICEL00004";
             this.label4.AccessibleName = "";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(396, 290);
