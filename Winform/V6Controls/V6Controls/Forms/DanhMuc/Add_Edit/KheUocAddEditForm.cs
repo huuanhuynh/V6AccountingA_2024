@@ -33,25 +33,24 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             Txtnh_ku3.SetInitFilter("Loai_nh=3");
         }
 
-
-            public override void DoBeforeEdit()
+        public override void DoBeforeEdit()
+        {
+            try
             {
-                try
+                var v = Categories.IsExistOneCode_List("ABKU,ARA00,ARI70", "MA_KU", TxtMa_ku.Text);
+                TxtMa_ku.Enabled = !v;
+                if (!V6Login.IsAdmin && TxtMa_dvcs.Text.ToUpper() != V6Login.Madvcs.ToUpper())
                 {
-                    var v = Categories.IsExistOneCode_List("ABKU,ARA00,ARI70", "MA_KU", TxtMa_ku.Text);
-                    TxtMa_ku.Enabled = !v;
-                    if (!V6Login.IsAdmin && TxtMa_dvcs.Text.ToUpper() != V6Login.Madvcs.ToUpper())
-                    {
-                        TxtMa_dvcs.Enabled = false;
-                    }
+                    TxtMa_dvcs.Enabled = false;
+                }
 
-                    }
+            }
 
-                    catch (Exception ex)
-                    {
-                        Logger.WriteToLog("DisableWhenEdit " + ex.Message);
-                    }
-                    }
+            catch (Exception ex)
+            {
+                Logger.WriteToLog("DisableWhenEdit " + ex.Message);
+            }
+        }
 
         public override void ValidateData()
         {
@@ -135,7 +134,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 this.ShowErrorMessage(GetType() + " BoSung_Click " + ex.Message);
             }
-        
         }
     }
 }

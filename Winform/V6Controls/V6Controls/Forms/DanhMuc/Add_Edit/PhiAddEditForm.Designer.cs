@@ -81,6 +81,7 @@
             // 
             // v6TabControl1
             // 
+            this.v6TabControl1.AccessibleDescription = "ADDEDITT00003";
             this.v6TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -98,6 +99,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.AccessibleDescription = "ADDEDITT00001";
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage1.Controls.Add(this.Txtnh_phi2);
             this.tabPage1.Controls.Add(this.Txtnh_phi3);
@@ -469,7 +471,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox2
             // 
@@ -494,7 +496,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox1
             // 
@@ -519,7 +521,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // label16
             // 
@@ -715,6 +717,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.AccessibleDescription = "ADDEDITT00004";
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(5);

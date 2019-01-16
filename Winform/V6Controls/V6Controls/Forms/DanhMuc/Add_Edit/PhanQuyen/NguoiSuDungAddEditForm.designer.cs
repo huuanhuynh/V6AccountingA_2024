@@ -107,6 +107,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.AccessibleDescription = "ADDEDITT00001";
             this.tabPage1.AutoScroll = true;
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage1.Controls.Add(this.txtUser_pre);
@@ -291,7 +292,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.AccessibleDescription = "thong_tin_cong_no";
+            this.tabPage2.AccessibleDescription = "ADDEDITT00009";
             this.tabPage2.AutoScroll = true;
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage2.Location = new System.Drawing.Point(4, 28);
@@ -304,6 +305,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.AccessibleDescription = "ADDEDITT00010";
             this.tabPage3.AutoScroll = true;
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage3.Controls.Add(this.btnEditXml);
@@ -351,6 +353,7 @@
             this.txtXmlInfor.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtXmlInfor.Size = new System.Drawing.Size(581, 102);
             this.txtXmlInfor.TabIndex = 75;
+            this.txtXmlInfor.TabStop = false;
             // 
             // label10
             // 
@@ -432,7 +435,7 @@
             // 
             // label9
             // 
-            this.label9.AccessibleDescription = "";
+            this.label9.AccessibleDescription = "ADDEDITL00443";
             this.label9.AutoSize = true;
             this.label9.Enabled = false;
             this.label9.Location = new System.Drawing.Point(504, 76);
@@ -694,7 +697,7 @@
             // 
             // label5
             // 
-            this.label5.AccessibleDescription = "";
+            this.label5.AccessibleDescription = "ADDEDITL00438";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(20, 48);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -785,7 +788,7 @@
             // 
             // label8
             // 
-            this.label8.AccessibleDescription = "";
+            this.label8.AccessibleDescription = "ADDEDITL00442";
             this.label8.AutoSize = true;
             this.label8.Enabled = false;
             this.label8.Location = new System.Drawing.Point(504, 48);
@@ -822,7 +825,7 @@
             // 
             // label4
             // 
-            this.label4.AccessibleDescription = "";
+            this.label4.AccessibleDescription = "ADDEDITL00441";
             this.label4.AutoSize = true;
             this.label4.Enabled = false;
             this.label4.Location = new System.Drawing.Point(503, 20);
@@ -834,7 +837,7 @@
             // 
             // label3
             // 
-            this.label3.AccessibleDescription = "";
+            this.label3.AccessibleDescription = "ADDEDITL00440";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(20, 100);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -845,7 +848,7 @@
             // 
             // label2
             // 
-            this.label2.AccessibleDescription = "";
+            this.label2.AccessibleDescription = "ADDEDITL00439";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(20, 73);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -856,7 +859,7 @@
             // 
             // label1
             // 
-            this.label1.AccessibleDescription = "";
+            this.label1.AccessibleDescription = "ADDEDITL00437";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(20, 20);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);

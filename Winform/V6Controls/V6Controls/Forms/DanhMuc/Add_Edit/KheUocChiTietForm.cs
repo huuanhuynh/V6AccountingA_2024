@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using V6Init;
 using V6Structs;
 using V6Tools;
 

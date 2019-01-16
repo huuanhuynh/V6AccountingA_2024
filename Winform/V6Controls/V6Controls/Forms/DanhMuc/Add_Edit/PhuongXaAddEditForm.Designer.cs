@@ -92,6 +92,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.AccessibleDescription = "ADDEDITT00001";
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage1.Controls.Add(this.checkBox1);
             this.tabPage1.Controls.Add(this.v6ColorTextBox5);
@@ -158,6 +159,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.AccessibleDescription = "ADDEDITT00003";
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage2.Controls.Add(this.txtGC_TD3);
             this.tabPage2.Controls.Add(this.txtGC_TD2);
@@ -191,7 +193,7 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tự định nghĩa";
             // 
-            // v6ColorTextBox16
+            // txtGC_TD3
             // 
             this.txtGC_TD3.AccessibleName = "GC_TD3";
             this.txtGC_TD3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -210,7 +212,7 @@
             this.txtGC_TD3.Size = new System.Drawing.Size(573, 23);
             this.txtGC_TD3.TabIndex = 161;
             // 
-            // v6ColorTextBox15
+            // txtGC_TD2
             // 
             this.txtGC_TD2.AccessibleName = "GC_TD2";
             this.txtGC_TD2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -229,7 +231,7 @@
             this.txtGC_TD2.Size = new System.Drawing.Size(573, 23);
             this.txtGC_TD2.TabIndex = 160;
             // 
-            // v6ColorTextBox1
+            // txtGC_TD1
             // 
             this.txtGC_TD1.AccessibleName = "GC_TD1";
             this.txtGC_TD1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -290,7 +292,7 @@
             this.label27.TabIndex = 156;
             this.label27.Text = "Ghi chú ĐN 1";
             // 
-            // v6ColorTextBox19
+            // txtMA_TD3
             // 
             this.txtMA_TD3.AccessibleName = "MA_TD3";
             this.txtMA_TD3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -308,7 +310,7 @@
             this.txtMA_TD3.Size = new System.Drawing.Size(135, 23);
             this.txtMA_TD3.TabIndex = 143;
             // 
-            // v6ColorTextBox20
+            // txtMA_TD2
             // 
             this.txtMA_TD2.AccessibleName = "MA_TD2";
             this.txtMA_TD2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -326,7 +328,7 @@
             this.txtMA_TD2.Size = new System.Drawing.Size(135, 23);
             this.txtMA_TD2.TabIndex = 141;
             // 
-            // v6ColorTextBox22
+            // txtMA_TD1
             // 
             this.txtMA_TD1.AccessibleName = "MA_TD1";
             this.txtMA_TD1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -367,7 +369,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox2
             // 
@@ -392,7 +394,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox1
             // 
@@ -417,7 +419,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // label16
             // 
@@ -613,6 +615,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.AccessibleDescription = "ADDEDITT00004";
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using V6AccountingBusiness;
 using V6Structs;
 
@@ -29,9 +28,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 var v = Categories.IsExistOneCode_List(F8_table, "MA_TD", Txtma_td.Text);
                 Txtma_td.Enabled = !v;
-
-                
-
             }
             catch (Exception ex)
             {

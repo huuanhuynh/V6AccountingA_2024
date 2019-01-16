@@ -1,7 +1,5 @@
-﻿using System.Data.SqlClient;
-using V6Structs;
+﻿using V6Structs;
 using System;
-using V6Init;
 using V6AccountingBusiness;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu

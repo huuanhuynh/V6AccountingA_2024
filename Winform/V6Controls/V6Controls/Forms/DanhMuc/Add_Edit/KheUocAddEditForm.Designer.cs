@@ -124,6 +124,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.AccessibleDescription = "ADDEDITT00001";
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage1.Controls.Add(this.btnBoSung);
             this.tabPage1.Controls.Add(this.txtMaVV);
@@ -358,7 +359,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox6
             // 
@@ -380,7 +381,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox5
             // 
@@ -402,7 +403,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox4
             // 
@@ -424,7 +425,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6ColorTextBox6
             // 
@@ -580,6 +581,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.AccessibleDescription = "ADDEDITT00002";
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage2.Controls.Add(this.v6ColorTextBox1);
             this.tabPage2.Controls.Add(this.v6ColorTextBox5);
@@ -624,7 +626,7 @@
             this.v6ColorTextBox5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox5.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox5.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox5.Location = new System.Drawing.Point(201, 147);
+            this.v6ColorTextBox5.Location = new System.Drawing.Point(201, 11);
             this.v6ColorTextBox5.Margin = new System.Windows.Forms.Padding(5);
             this.v6ColorTextBox5.Multiline = true;
             this.v6ColorTextBox5.Name = "v6ColorTextBox5";
@@ -634,7 +636,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 150);
+            this.label4.Location = new System.Drawing.Point(14, 17);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(57, 17);
@@ -643,6 +645,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.AccessibleDescription = "ADDEDITT00003";
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage3.Controls.Add(this.txtGC_TD3);
             this.tabPage3.Controls.Add(this.txtGC_TD2);
@@ -852,7 +855,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox2
             // 
@@ -877,7 +880,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox1
             // 
@@ -902,7 +905,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // label16
             // 
@@ -1098,6 +1101,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.AccessibleDescription = "ADDEDITT00004";
             this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage4.Location = new System.Drawing.Point(4, 28);
             this.tabPage4.Name = "tabPage4";

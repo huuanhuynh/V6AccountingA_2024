@@ -39,6 +39,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = ".";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(5, 11);
             this.label1.Name = "label1";
@@ -58,6 +59,7 @@
             // 
             // button1
             // 
+            this.button1.AccessibleDescription = ".";
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Location = new System.Drawing.Point(262, 6);
             this.button1.Name = "button1";
@@ -69,6 +71,7 @@
             // 
             // checkBox1
             // 
+            this.checkBox1.AccessibleDescription = ".";
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(220, 10);
@@ -109,6 +112,7 @@
             // FormChangeControlLanguageText
             // 
             this.AcceptButton = this.button1;
+            this.AccessibleDescription = ".";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(323, 446);

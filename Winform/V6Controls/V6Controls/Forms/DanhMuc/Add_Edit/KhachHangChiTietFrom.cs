@@ -22,7 +22,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 
             }
-        
         }
 
         private void KhachHangFrom_Load(object sender, EventArgs e)

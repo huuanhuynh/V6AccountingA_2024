@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using V6AccountingBusiness;
-using V6Init;
 using V6Structs;
 using V6Tools;
 

@@ -4,7 +4,6 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 using V6AccountingBusiness;
-using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
 using V6Init;
 using V6Structs;
 using V6Tools;

@@ -22,21 +22,16 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         public override void DoBeforeEdit()
         {
-           
-                var v = Categories.IsExistTwoCode_List("ABLO,ARI70", "Ma_vt", TxtMa_vt.Text.Trim(), "Ma_lo",
-                    TxtMa_lo.Text.Trim());
-                TxtMa_lo.Enabled = !v;
-                TxtMa_vt.Enabled = !v;
-                txtngay_hhsd.Enabled = !v;
-            
+            var v = Categories.IsExistTwoCode_List("ABLO,ARI70", "Ma_vt", TxtMa_vt.Text.Trim(), "Ma_lo",
+                TxtMa_lo.Text.Trim());
+            TxtMa_lo.Enabled = !v;
+            TxtMa_vt.Enabled = !v;
+            txtngay_hhsd.Enabled = !v;
         }
 
         public override void ValidateData()
         {
             var errors = "";
-
-
-
             if (TxtMa_lo.Text.Trim() == "")
             {
                 errors += "Chưa nhập mã lô!\r\n";

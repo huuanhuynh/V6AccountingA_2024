@@ -111,6 +111,7 @@
             // 
             // v6TabControl1
             // 
+            this.v6TabControl1.AccessibleDescription = "ADDEDITT00004";
             this.v6TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -128,6 +129,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.AccessibleDescription = "ADDEDITT00001";
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage1.Controls.Add(this.checkBox1);
             this.tabPage1.Controls.Add(this.label4);
@@ -166,6 +168,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.AccessibleDescription = "ADDEDITT00003";
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage2.Controls.Add(this.v6ColorTextBox1);
             this.tabPage2.Controls.Add(this.v6ColorTextBox3);
@@ -294,7 +297,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox5
             // 
@@ -319,7 +322,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox6
             // 
@@ -344,7 +347,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // label3
             // 
@@ -538,7 +541,7 @@
             this.v6DateTimeColor3.TabIndex = 15;
             this.v6DateTimeColor3.Text = "__/__/____";
             // 
-            // v6ColorTextBox16
+            // txtGC_TD3
             // 
             this.txtGC_TD3.AccessibleName = "GC_TD3";
             this.txtGC_TD3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -557,7 +560,7 @@
             this.txtGC_TD3.Size = new System.Drawing.Size(461, 23);
             this.txtGC_TD3.TabIndex = 11;
             // 
-            // v6ColorTextBox15
+            // txtGC_TD2
             // 
             this.txtGC_TD2.AccessibleName = "GC_TD2";
             this.txtGC_TD2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -576,7 +579,7 @@
             this.txtGC_TD2.Size = new System.Drawing.Size(461, 23);
             this.txtGC_TD2.TabIndex = 10;
             // 
-            // v6ColorTextBox2
+            // txtGC_TD1
             // 
             this.txtGC_TD1.AccessibleName = "GC_TD1";
             this.txtGC_TD1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -637,7 +640,7 @@
             this.label27.TabIndex = 156;
             this.label27.Text = "Ghi chú ĐN 1";
             // 
-            // v6ColorTextBox19
+            // txtMA_TD3
             // 
             this.txtMA_TD3.AccessibleName = "MA_TD3";
             this.txtMA_TD3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -655,7 +658,7 @@
             this.txtMA_TD3.Size = new System.Drawing.Size(135, 23);
             this.txtMA_TD3.TabIndex = 2;
             // 
-            // v6ColorTextBox20
+            // txtMA_TD2
             // 
             this.txtMA_TD2.AccessibleName = "MA_TD2";
             this.txtMA_TD2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -673,7 +676,7 @@
             this.txtMA_TD2.Size = new System.Drawing.Size(135, 23);
             this.txtMA_TD2.TabIndex = 1;
             // 
-            // v6ColorTextBox22
+            // txtMA_TD1
             // 
             this.txtMA_TD1.AccessibleName = "MA_TD1";
             this.txtMA_TD1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -714,7 +717,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox2
             // 
@@ -739,7 +742,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox1
             // 
@@ -764,7 +767,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // label16
             // 
@@ -971,7 +974,7 @@
             // 
             // Txtma_td
             // 
-            this.Txtma_td.AccessibleName =  "ma_td";
+            this.Txtma_td.AccessibleName = "ma_td";
             this.Txtma_td.BackColor = System.Drawing.Color.White;
             this.Txtma_td.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.Txtma_td.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;

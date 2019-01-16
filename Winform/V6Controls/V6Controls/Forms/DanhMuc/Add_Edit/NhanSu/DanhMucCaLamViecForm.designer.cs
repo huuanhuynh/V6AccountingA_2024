@@ -83,6 +83,7 @@
             // 
             // v6TabControl1
             // 
+            this.v6TabControl1.AccessibleDescription = "ADDEDITT00003";
             this.v6TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -100,6 +101,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.AccessibleDescription = "ADDEDITT00001";
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage1.Controls.Add(this.v6ColorTextBox17);
             this.tabPage1.Controls.Add(this.txtGio_max);
@@ -143,6 +145,13 @@
             // txtGio_max
             // 
             this.txtGio_max.AccessibleName = "gio_max";
+            this.txtGio_max.BackColor = System.Drawing.SystemColors.Window;
+            this.txtGio_max.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtGio_max.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtGio_max.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtGio_max.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtGio_max.HoverColor = System.Drawing.Color.Yellow;
+            this.txtGio_max.LeaveColor = System.Drawing.Color.White;
             this.txtGio_max.Location = new System.Drawing.Point(150, 43);
             this.txtGio_max.Mask = "00:00";
             this.txtGio_max.Name = "txtGio_max";
@@ -154,6 +163,13 @@
             // txtGio_min
             // 
             this.txtGio_min.AccessibleName = "Gio_min";
+            this.txtGio_min.BackColor = System.Drawing.SystemColors.Window;
+            this.txtGio_min.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtGio_min.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtGio_min.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtGio_min.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtGio_min.HoverColor = System.Drawing.Color.Yellow;
+            this.txtGio_min.LeaveColor = System.Drawing.Color.White;
             this.txtGio_min.Location = new System.Drawing.Point(150, 17);
             this.txtGio_min.Mask = "00:00";
             this.txtGio_min.Name = "txtGio_min";
@@ -164,6 +180,13 @@
             // txtGioktmax
             // 
             this.txtGioktmax.AccessibleName = "gio_kt_max";
+            this.txtGioktmax.BackColor = System.Drawing.SystemColors.Window;
+            this.txtGioktmax.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtGioktmax.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtGioktmax.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtGioktmax.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtGioktmax.HoverColor = System.Drawing.Color.Yellow;
+            this.txtGioktmax.LeaveColor = System.Drawing.Color.White;
             this.txtGioktmax.Location = new System.Drawing.Point(239, 97);
             this.txtGioktmax.Mask = "00:00";
             this.txtGioktmax.Name = "txtGioktmax";
@@ -175,6 +198,13 @@
             // txtGioKTMin
             // 
             this.txtGioKTMin.AccessibleName = "gio_kt_min";
+            this.txtGioKTMin.BackColor = System.Drawing.SystemColors.Window;
+            this.txtGioKTMin.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtGioKTMin.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtGioKTMin.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtGioKTMin.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtGioKTMin.HoverColor = System.Drawing.Color.Yellow;
+            this.txtGioKTMin.LeaveColor = System.Drawing.Color.White;
             this.txtGioKTMin.Location = new System.Drawing.Point(150, 97);
             this.txtGioKTMin.Mask = "00:00";
             this.txtGioKTMin.Name = "txtGioKTMin";
@@ -186,6 +216,13 @@
             // txtGioBDMax
             // 
             this.txtGioBDMax.AccessibleName = "gio_bd_max";
+            this.txtGioBDMax.BackColor = System.Drawing.SystemColors.Window;
+            this.txtGioBDMax.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtGioBDMax.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtGioBDMax.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtGioBDMax.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtGioBDMax.HoverColor = System.Drawing.Color.Yellow;
+            this.txtGioBDMax.LeaveColor = System.Drawing.Color.White;
             this.txtGioBDMax.Location = new System.Drawing.Point(239, 70);
             this.txtGioBDMax.Mask = "00:00";
             this.txtGioBDMax.Name = "txtGioBDMax";
@@ -197,6 +234,13 @@
             // txtGioBDmin
             // 
             this.txtGioBDmin.AccessibleName = "Gio_bd_min";
+            this.txtGioBDmin.BackColor = System.Drawing.SystemColors.Window;
+            this.txtGioBDmin.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtGioBDmin.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtGioBDmin.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtGioBDmin.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtGioBDmin.HoverColor = System.Drawing.Color.Yellow;
+            this.txtGioBDmin.LeaveColor = System.Drawing.Color.White;
             this.txtGioBDmin.Location = new System.Drawing.Point(150, 70);
             this.txtGioBDmin.Mask = "00:00";
             this.txtGioBDmin.Name = "txtGioBDmin";
@@ -207,7 +251,7 @@
             // 
             // v6Label6
             // 
-            this.v6Label6.AccessibleDescription = "";
+            this.v6Label6.AccessibleDescription = "ADDEDITL00423";
             this.v6Label6.AutoSize = true;
             this.v6Label6.Location = new System.Drawing.Point(11, 20);
             this.v6Label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -218,7 +262,7 @@
             // 
             // v6Label7
             // 
-            this.v6Label7.AccessibleDescription = "";
+            this.v6Label7.AccessibleDescription = "ADDEDITL00424";
             this.v6Label7.AutoSize = true;
             this.v6Label7.Location = new System.Drawing.Point(11, 46);
             this.v6Label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -229,7 +273,7 @@
             // 
             // v6Label8
             // 
-            this.v6Label8.AccessibleDescription = "";
+            this.v6Label8.AccessibleDescription = "ADDEDITL00425";
             this.v6Label8.AutoSize = true;
             this.v6Label8.Location = new System.Drawing.Point(11, 73);
             this.v6Label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -240,7 +284,7 @@
             // 
             // v6Label9
             // 
-            this.v6Label9.AccessibleDescription = "";
+            this.v6Label9.AccessibleDescription = "ADDEDITL00036";
             this.v6Label9.AutoSize = true;
             this.v6Label9.Location = new System.Drawing.Point(11, 129);
             this.v6Label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -251,7 +295,7 @@
             // 
             // v6Label10
             // 
-            this.v6Label10.AccessibleDescription = "";
+            this.v6Label10.AccessibleDescription = "ADDEDITL00426";
             this.v6Label10.AutoSize = true;
             this.v6Label10.Location = new System.Drawing.Point(11, 100);
             this.v6Label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -262,6 +306,7 @@
             // 
             // checkBox1
             // 
+            this.checkBox1.AccessibleDescription = "ADDEDITC00001";
             this.checkBox1.AccessibleName = "status";
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(150, 230);
@@ -274,7 +319,7 @@
             // 
             // label15
             // 
-            this.label15.AccessibleDescription = "status";
+            this.label15.AccessibleDescription = "ADDEDITL00022";
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(11, 231);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -285,6 +330,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.AccessibleDescription = "ADDEDITT00003";
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage2.Controls.Add(this.txtGC_TD3);
             this.tabPage2.Controls.Add(this.txtGC_TD2);
@@ -318,7 +364,7 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tự định nghĩa";
             // 
-            // v6ColorTextBox16
+            // txtGC_TD3
             // 
             this.txtGC_TD3.AccessibleName = "GC_TD3";
             this.txtGC_TD3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -337,7 +383,7 @@
             this.txtGC_TD3.Size = new System.Drawing.Size(478, 23);
             this.txtGC_TD3.TabIndex = 161;
             // 
-            // v6ColorTextBox15
+            // txtGC_TD2
             // 
             this.txtGC_TD2.AccessibleName = "GC_TD2";
             this.txtGC_TD2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -356,7 +402,7 @@
             this.txtGC_TD2.Size = new System.Drawing.Size(478, 23);
             this.txtGC_TD2.TabIndex = 160;
             // 
-            // v6ColorTextBox2
+            // txtGC_TD1
             // 
             this.txtGC_TD1.AccessibleName = "GC_TD1";
             this.txtGC_TD1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -417,7 +463,7 @@
             this.label27.TabIndex = 156;
             this.label27.Text = "Ghi chú ĐN 1";
             // 
-            // v6ColorTextBox19
+            // txtMA_TD3
             // 
             this.txtMA_TD3.AccessibleName = "MA_TD3";
             this.txtMA_TD3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -435,7 +481,7 @@
             this.txtMA_TD3.Size = new System.Drawing.Size(135, 23);
             this.txtMA_TD3.TabIndex = 143;
             // 
-            // v6ColorTextBox20
+            // txtMA_TD2
             // 
             this.txtMA_TD2.AccessibleName = "MA_TD2";
             this.txtMA_TD2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -453,7 +499,7 @@
             this.txtMA_TD2.Size = new System.Drawing.Size(135, 23);
             this.txtMA_TD2.TabIndex = 141;
             // 
-            // v6ColorTextBox22
+            // txtMA_TD1
             // 
             this.txtMA_TD1.AccessibleName = "MA_TD1";
             this.txtMA_TD1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -494,7 +540,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox2
             // 
@@ -519,7 +565,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox1
             // 
@@ -544,7 +590,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // label26
             // 
@@ -740,6 +786,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.AccessibleDescription = "ADDEDITT00004";
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
@@ -770,7 +817,7 @@
             // 
             // v6Label17
             // 
-            this.v6Label17.AccessibleDescription = "";
+            this.v6Label17.AccessibleDescription = "ADDEDITL00404";
             this.v6Label17.AutoSize = true;
             this.v6Label17.Location = new System.Drawing.Point(12, 74);
             this.v6Label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -800,6 +847,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00403";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 48);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -830,6 +878,7 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00401";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(12, 21);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
