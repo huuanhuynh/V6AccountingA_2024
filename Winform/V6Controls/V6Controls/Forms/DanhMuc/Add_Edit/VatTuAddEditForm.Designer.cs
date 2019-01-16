@@ -2512,7 +2512,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             // label76
             // 
-            this.label76.AccessibleDescription = "ADDEDITL00088";
+            this.label76.AccessibleDescription = "ADDEDITL00079";
             this.label76.AutoSize = true;
             this.label76.Location = new System.Drawing.Point(9, 13);
             this.label76.Name = "label76";

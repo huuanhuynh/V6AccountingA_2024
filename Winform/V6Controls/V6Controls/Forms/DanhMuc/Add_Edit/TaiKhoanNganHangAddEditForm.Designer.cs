@@ -89,6 +89,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00379";
             this.label1.AccessibleName = "";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(10, 18);
@@ -118,6 +119,7 @@
             // 
             // label6
             // 
+            this.label6.AccessibleDescription = "ADDEDITL00381";
             this.label6.AccessibleName = "";
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(10, 135);
@@ -129,6 +131,7 @@
             // 
             // txtTen2
             // 
+            this.txtTen2.AccessibleDescription = "ADDEDITL00004";
             this.txtTen2.AccessibleName = "ten_tknh2";
             this.txtTen2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -158,6 +161,7 @@
             // 
             // chkStatus
             // 
+            this.chkStatus.AccessibleDescription = "ADDEDITC00001";
             this.chkStatus.AccessibleName = "STATUS";
             this.chkStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -173,6 +177,7 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00022";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(10, 162);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -201,6 +206,7 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00380";
             this.label5.AccessibleName = "";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(10, 75);
@@ -230,14 +236,15 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ADDEDITL00019";
             this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(10, 45);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 13);
+            this.label2.Size = new System.Drawing.Size(109, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "TK ngân hàng";
+            this.label2.Text = "Tài khoản ngân hàng";
             // 
             // TaiKhoanNganHangAddEditForm
             // 

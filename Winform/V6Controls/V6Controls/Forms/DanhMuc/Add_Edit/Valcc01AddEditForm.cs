@@ -20,7 +20,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         public override void DoBeforeEdit()
         {
-            
             try
             {
                 //F3

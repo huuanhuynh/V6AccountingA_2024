@@ -1,8 +1,7 @@
-﻿using System.Data.SqlClient;
-using V6AccountingBusiness;
+﻿using V6AccountingBusiness;
 using System;
 using V6Structs;
-using V6Init;
+
 namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 {
     public partial class DanhMucChiTietCaLamViecForm : AddEditControlVirtual

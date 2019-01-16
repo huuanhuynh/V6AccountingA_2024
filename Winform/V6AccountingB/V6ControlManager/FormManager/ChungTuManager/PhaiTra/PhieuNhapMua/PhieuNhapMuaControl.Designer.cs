@@ -82,8 +82,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.btnXoaPB = new V6Controls.Controls.V6FormButton();
             this.btnTinhPB = new V6Controls.Controls.V6FormButton();
             this.tabKhac = new System.Windows.Forms.TabPage();
-            this.txtGhiChuChung = new V6Controls.V6ColorTextBox();
-            this.txtSoCtKemt = new V6Controls.V6ColorTextBox();
+            this.txtGhiChuChung = new V6Controls.V6VvarTextBox();
+            this.txtSoCtKemt = new V6Controls.V6VvarTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnInfos = new System.Windows.Forms.Button();
@@ -186,7 +186,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.txtMaHttt = new V6Controls.V6VvarTextBox();
             this.v6Label40 = new V6Controls.V6Label();
             this.txtMadvcs = new V6Controls.V6VvarTextBox();
-            this.v6ColorTextBox4 = new V6Controls.V6ColorTextBox();
+            this.txtTenDVCS = new V6Controls.V6VvarTextBox();
             this.v6Label38 = new V6Controls.V6Label();
             this.v6NumberTextBox1 = new V6Controls.V6NumberTextBox();
             this.v6VvarTextBox2 = new V6Controls.V6VvarTextBox();
@@ -199,27 +199,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.v6Label16 = new V6Controls.V6Label();
             this.v6Label15 = new V6Controls.V6Label();
             this.chkLoaiChietKhau = new V6Controls.V6CheckBox();
-            this.txtDienGiai = new V6Controls.V6ColorTextBox();
+            this.txtDienGiai = new V6Controls.V6VvarTextBox();
             this.v6Label12 = new V6Controls.V6Label();
-            this.txtMaSoThue = new V6Controls.V6ColorTextBox();
-            this.txtTenKh = new V6Controls.V6ColorTextBox();
-            this.txtDiaChi = new V6Controls.V6ColorTextBox();
+            this.txtMaSoThue = new V6Controls.V6VvarTextBox();
+            this.txtTenKh = new V6Controls.V6VvarTextBox();
+            this.txtDiaChi = new V6Controls.V6VvarTextBox();
             this.v6Label11 = new V6Controls.V6Label();
             this.v6Label10 = new V6Controls.V6Label();
-            this.TxtLoai_pb = new V6Controls.V6ColorTextBox();
+            this.TxtLoai_pb = new V6Controls.V6VvarTextBox();
             this.TxtTk_i = new V6Controls.V6VvarTextBox();
             this.Txtma_kh_i = new V6Controls.V6VvarTextBox();
             this.group2 = new System.Windows.Forms.GroupBox();
-            this.txtSoSeri0 = new V6Controls.V6ColorTextBox();
+            this.txtSoSeri0 = new V6Controls.V6VvarTextBox();
             this.txtManx = new V6Controls.V6VvarTextBox();
             this.v6Label14 = new V6Controls.V6Label();
-            this.txtSoCt0 = new V6Controls.V6ColorTextBox();
+            this.txtSoCt0 = new V6Controls.V6VvarTextBox();
             this.v6Label13 = new V6Controls.V6Label();
             this.txtNgayCt0 = new V6Controls.V6DateTimeColor();
             this.v6Label6 = new V6Controls.V6Label();
             this.v6Label7 = new V6Controls.V6Label();
             this.v6Label9 = new V6Controls.V6Label();
-            this.txtOngBa = new V6Controls.V6ColorTextBox();
+            this.txtOngBa = new V6Controls.V6VvarTextBox();
             this.group1 = new System.Windows.Forms.GroupBox();
             this.txtMa_sonb = new V6Controls.V6VvarTextBox();
             this.v6Label2 = new V6Controls.V6Label();
@@ -228,9 +228,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.v6Label5 = new V6Controls.V6Label();
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label1 = new V6Controls.V6Label();
-            this.txtSoPhieu = new V6Controls.V6ColorTextBox();
-            this.txtMa_ct = new V6Controls.V6ColorTextBox();
-            this.txtLoaiCt = new V6Controls.V6ColorTextBox();
+            this.txtSoPhieu = new V6Controls.V6VvarTextBox();
+            this.txtMa_ct = new V6Controls.V6VvarTextBox();
+            this.txtLoaiCt = new V6Controls.V6VvarTextBox();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -251,10 +251,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.btnMoi = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnTim = new System.Windows.Forms.Button();
-            this.Txtma_nk = new V6Controls.V6ColorTextBox();
+            this.Txtma_nk = new V6Controls.V6VvarTextBox();
             this.btnViewInfoData = new System.Windows.Forms.Button();
             this.lblNameT = new V6Controls.V6Label();
-            this.TxtMa_gd = new V6Controls.V6ColorTextBox();
+            this.TxtMa_gd = new V6Controls.V6VvarTextBox();
             this.menuDetail1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuXemPhieuNhap = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -2508,7 +2508,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.group3.Controls.Add(this.txtMaHttt);
             this.group3.Controls.Add(this.v6Label40);
             this.group3.Controls.Add(this.txtMadvcs);
-            this.group3.Controls.Add(this.v6ColorTextBox4);
+            this.group3.Controls.Add(this.txtTenDVCS);
             this.group3.Controls.Add(this.v6Label38);
             this.group3.Controls.Add(this.v6NumberTextBox1);
             this.group3.Controls.Add(this.v6VvarTextBox2);
@@ -2647,24 +2647,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.txtMadvcs.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMadvcs_V6LostFocus);
             this.txtMadvcs.TextChanged += new System.EventHandler(this.txtMadvcs_TextChanged);
             // 
-            // v6ColorTextBox4
+            // txtTenDVCS
             // 
-            this.v6ColorTextBox4.AccessibleName = "ten_dvcs";
-            this.v6ColorTextBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtTenDVCS.AccessibleName = "ten_dvcs";
+            this.txtTenDVCS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox4.BackColor = System.Drawing.SystemColors.Window;
-            this.v6ColorTextBox4.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.v6ColorTextBox4.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox4.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox4.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox4.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox4.Location = new System.Drawing.Point(198, 9);
-            this.v6ColorTextBox4.Name = "v6ColorTextBox4";
-            this.v6ColorTextBox4.Size = new System.Drawing.Size(424, 20);
-            this.v6ColorTextBox4.TabIndex = 2;
-            this.v6ColorTextBox4.Tag = "disable";
+            this.txtTenDVCS.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTenDVCS.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTenDVCS.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTenDVCS.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTenDVCS.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTenDVCS.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTenDVCS.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTenDVCS.LeaveColor = System.Drawing.Color.White;
+            this.txtTenDVCS.Location = new System.Drawing.Point(198, 9);
+            this.txtTenDVCS.Name = "txtTenDVCS";
+            this.txtTenDVCS.Size = new System.Drawing.Size(424, 20);
+            this.txtTenDVCS.TabIndex = 2;
+            this.txtTenDVCS.Tag = "disable";
             // 
             // v6Label38
             // 
@@ -3742,8 +3742,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private System.Windows.Forms.GroupBox group1;
         private V6Label v6Label3;
         private V6Label v6Label1;
-        private V6ColorTextBox txtLoaiCt;
-        private V6ColorTextBox txtSoPhieu;
+        private V6VvarTextBox txtLoaiCt;
+        private V6VvarTextBox txtSoPhieu;
         private System.Windows.Forms.GroupBox group3;
         private System.Windows.Forms.GroupBox group4;
         private System.Windows.Forms.GroupBox group5;
@@ -3762,13 +3762,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private V6Label v6Label7;
         private V6Label v6Label8;
         private V6Label v6Label9;
-        private V6ColorTextBox txtOngBa;
-        private V6ColorTextBox txtSoSeri0;
+        private V6VvarTextBox txtOngBa;
+        private V6VvarTextBox txtSoSeri0;
         private V6VvarTextBox txtManx;
         private V6Label v6Label10;
-        private V6ColorTextBox txtDienGiai;
+        private V6VvarTextBox txtDienGiai;
         private V6Label v6Label12;
-        private V6ColorTextBox txtDiaChi;
+        private V6VvarTextBox txtDiaChi;
         private V6Label v6Label11;
         private V6Label v6Label16;
         private V6Label v6Label15;
@@ -3824,9 +3824,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnPrevious;
         private System.Windows.Forms.Button btnFirst;
-        private V6ColorTextBox txtTenKh;
+        private V6VvarTextBox txtTenKh;
         private HD_Detail detail1;
-        private V6ColorTextBox txtMaSoThue;
+        private V6VvarTextBox txtMaSoThue;
         private System.Windows.Forms.Button btnHuy;
         private V6Controls.V6ComboBox cboMaNt;
         private V6NumberTextBox txtTyGia;
@@ -3834,7 +3834,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private V6Controls.V6CheckBox chkT_THUE_NT;
         private NumberSoluong txtTongSoLuong1;
         private V6Label lblDocSoTien;
-        private V6ColorTextBox txtMa_ct;
+        private V6VvarTextBox txtMa_ct;
         private NumberTienNt txtTongThanhToanNt;
         private NumberTienNt txtTongThueNt;
         private NumberTien txtTongThanhToan;
@@ -3843,7 +3843,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private V6VvarTextBox v6VvarTextBox1;
         private V6Controls.V6CheckBox chkSuaTien;
         private V6Label v6Label14;
-        private V6ColorTextBox txtSoCt0;
+        private V6VvarTextBox txtSoCt0;
         private V6Label v6Label13;
         private V6DateTimeColor txtNgayCt0;
         private HD_Detail detail2;
@@ -3861,13 +3861,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private V6VvarTextBox TxtMa_kh_i_ao;
         private V6NumberTextBox TxtT_cp_nt;
         private V6NumberTextBox TxtT_cp;
-        private V6ColorTextBox TxtLoai_pb;
+        private V6VvarTextBox TxtLoai_pb;
         private V6VvarTextBox TxtTk_i;
         private V6VvarTextBox Txtma_kh_i;
         private V6VvarTextBox txtMadvcs;
-        private V6ColorTextBox v6ColorTextBox4;
+        private V6VvarTextBox txtTenDVCS;
         private V6Label v6Label38;
-        private V6ColorTextBox Txtma_nk;
+        private V6VvarTextBox Txtma_nk;
         private V6VvarTextBox txtMa_sonb;
         private V6Label v6Label2;
         private System.Windows.Forms.Button btnViewInfoData;
@@ -3916,13 +3916,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private NumberTienNt txtTongTangGiam;
         private V6VvarTextBox txtMaHttt;
         private V6Label v6Label40;
-        private V6ColorTextBox TxtMa_gd;
+        private V6VvarTextBox TxtMa_gd;
         private System.Windows.Forms.ToolStripMenuItem chonTuExcelToolStripMenuItem;
         private V6NumberTextBox TxtT_TIENVC;
         private V6NumberTextBox TxtT_TIENVCNT;
         private V6Label v6Label26;
-        private V6ColorTextBox txtGhiChuChung;
-        private V6ColorTextBox txtSoCtKemt;
+        private V6VvarTextBox txtGhiChuChung;
+        private V6VvarTextBox txtSoCtKemt;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ContextMenuStrip menuDetail1;

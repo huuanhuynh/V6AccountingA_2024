@@ -60,6 +60,7 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00411";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(18, 21);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -70,9 +71,9 @@
             // 
             // v6Label17
             // 
-            this.v6Label17.AccessibleDescription = "";
+            this.v6Label17.AccessibleDescription = "ADDEDITL00412";
             this.v6Label17.AutoSize = true;
-            this.v6Label17.Location = new System.Drawing.Point(18, 46);
+            this.v6Label17.Location = new System.Drawing.Point(18, 50);
             this.v6Label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.v6Label17.Name = "v6Label17";
             this.v6Label17.Size = new System.Drawing.Size(107, 17);
@@ -81,9 +82,9 @@
             // 
             // v6Label1
             // 
-            this.v6Label1.AccessibleDescription = "";
+            this.v6Label1.AccessibleDescription = "ADDEDITL00413";
             this.v6Label1.AutoSize = true;
-            this.v6Label1.Location = new System.Drawing.Point(18, 77);
+            this.v6Label1.Location = new System.Drawing.Point(18, 79);
             this.v6Label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.v6Label1.Name = "v6Label1";
             this.v6Label1.Size = new System.Drawing.Size(119, 17);
@@ -130,6 +131,7 @@
             // 
             // checkBox1
             // 
+            this.checkBox1.AccessibleDescription = "ADDEDITC00001";
             this.checkBox1.AccessibleName = "status";
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -145,6 +147,7 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00022";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(18, 108);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);

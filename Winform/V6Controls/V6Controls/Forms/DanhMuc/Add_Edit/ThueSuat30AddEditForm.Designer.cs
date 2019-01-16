@@ -48,6 +48,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00182";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(25, 26);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -58,6 +59,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ADDEDITL00183";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(25, 56);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -68,6 +70,7 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "ADDEDITL00184";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(25, 118);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -78,6 +81,7 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00382";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(25, 149);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -88,6 +92,7 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00186";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(25, 180);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -98,6 +103,7 @@
             // 
             // label6
             // 
+            this.label6.AccessibleDescription = "ADDEDITL00004";
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(25, 87);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -108,6 +114,7 @@
             // 
             // label7
             // 
+            this.label7.AccessibleDescription = "ADDEDITL00022";
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(25, 212);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -181,10 +188,11 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // checkBox1
             // 
+            this.checkBox1.AccessibleDescription = "ADDEDITC00001";
             this.checkBox1.AccessibleName = "status";
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(260, 208);

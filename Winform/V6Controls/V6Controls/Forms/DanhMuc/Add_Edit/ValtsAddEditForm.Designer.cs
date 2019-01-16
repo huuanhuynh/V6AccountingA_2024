@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtTenTS = new V6Controls.V6LabelTextBox();
             this.DateNgay_khc = new V6Controls.V6DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.TxtTang_giam = new V6Controls.V6NumberTextBox();
@@ -42,7 +43,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtTenTS = new V6Controls.V6LabelTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,6 +73,18 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // txtTenTS
+            // 
+            this.txtTenTS.AccessibleName = "TEN_TS";
+            this.txtTenTS.BackColor = System.Drawing.SystemColors.Control;
+            this.txtTenTS.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTenTS.Location = new System.Drawing.Point(312, 28);
+            this.txtTenTS.Name = "txtTenTS";
+            this.txtTenTS.ReadOnly = true;
+            this.txtTenTS.Size = new System.Drawing.Size(376, 16);
+            this.txtTenTS.TabIndex = 12;
+            this.txtTenTS.Tag = "readonly";
+            // 
             // DateNgay_khc
             // 
             this.DateNgay_khc.AccessibleName = "ngay_khc";
@@ -86,7 +98,7 @@
             this.DateNgay_khc.HoverColor = System.Drawing.Color.Yellow;
             this.DateNgay_khc.ImeMode = System.Windows.Forms.ImeMode.On;
             this.DateNgay_khc.LeaveColor = System.Drawing.Color.White;
-            this.DateNgay_khc.Location = new System.Drawing.Point(171, 108);
+            this.DateNgay_khc.Location = new System.Drawing.Point(171, 106);
             this.DateNgay_khc.Margin = new System.Windows.Forms.Padding(5);
             this.DateNgay_khc.Name = "DateNgay_khc";
             this.DateNgay_khc.Size = new System.Drawing.Size(135, 23);
@@ -94,8 +106,9 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00388";
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 108);
+            this.label4.Location = new System.Drawing.Point(25, 109);
             this.label4.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(131, 17);
@@ -112,7 +125,7 @@
             this.TxtTang_giam.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtTang_giam.HoverColor = System.Drawing.Color.Yellow;
             this.TxtTang_giam.LeaveColor = System.Drawing.Color.White;
-            this.TxtTang_giam.Location = new System.Drawing.Point(592, 130);
+            this.TxtTang_giam.Location = new System.Drawing.Point(591, 130);
             this.TxtTang_giam.Name = "TxtTang_giam";
             this.TxtTang_giam.Size = new System.Drawing.Size(96, 23);
             this.TxtTang_giam.TabIndex = 10;
@@ -122,7 +135,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             this.TxtTang_giam.Visible = false;
             // 
             // dateNgayGiam
@@ -138,7 +151,7 @@
             this.dateNgayGiam.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgayGiam.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dateNgayGiam.LeaveColor = System.Drawing.Color.White;
-            this.dateNgayGiam.Location = new System.Drawing.Point(171, 81);
+            this.dateNgayGiam.Location = new System.Drawing.Point(171, 79);
             this.dateNgayGiam.Margin = new System.Windows.Forms.Padding(5);
             this.dateNgayGiam.Name = "dateNgayGiam";
             this.dateNgayGiam.Size = new System.Drawing.Size(135, 23);
@@ -154,7 +167,7 @@
             this.txtLyDo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtLyDo.HoverColor = System.Drawing.Color.Yellow;
             this.txtLyDo.LeaveColor = System.Drawing.Color.White;
-            this.txtLyDo.Location = new System.Drawing.Point(171, 161);
+            this.txtLyDo.Location = new System.Drawing.Point(171, 160);
             this.txtLyDo.Name = "txtLyDo";
             this.txtLyDo.Size = new System.Drawing.Size(517, 23);
             this.txtLyDo.TabIndex = 5;
@@ -170,7 +183,7 @@
             this.txtSoCt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtSoCt.HoverColor = System.Drawing.Color.Yellow;
             this.txtSoCt.LeaveColor = System.Drawing.Color.White;
-            this.txtSoCt.Location = new System.Drawing.Point(171, 134);
+            this.txtSoCt.Location = new System.Drawing.Point(171, 133);
             this.txtSoCt.Name = "txtSoCt";
             this.txtSoCt.Size = new System.Drawing.Size(135, 23);
             this.txtSoCt.TabIndex = 4;
@@ -187,7 +200,7 @@
             this.txtMaGiamTS.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaGiamTS.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaGiamTS.LeaveColor = System.Drawing.Color.White;
-            this.txtMaGiamTS.Location = new System.Drawing.Point(171, 54);
+            this.txtMaGiamTS.Location = new System.Drawing.Point(171, 52);
             this.txtMaGiamTS.Name = "txtMaGiamTS";
             this.txtMaGiamTS.Size = new System.Drawing.Size(135, 23);
             this.txtMaGiamTS.TabIndex = 1;
@@ -216,9 +229,10 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "ADDEDITL00390";
             this.label3.AccessibleName = "";
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(25, 57);
+            this.label3.Location = new System.Drawing.Point(25, 55);
             this.label3.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 17);
@@ -227,8 +241,9 @@
             // 
             // label7
             // 
+            this.label7.AccessibleDescription = "ADDEDITL00392";
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(25, 164);
+            this.label7.Location = new System.Drawing.Point(25, 163);
             this.label7.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(77, 17);
@@ -237,6 +252,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00207";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(25, 136);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -247,8 +263,9 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00391";
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(25, 84);
+            this.label5.Location = new System.Drawing.Point(25, 82);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(75, 17);
@@ -257,6 +274,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ADDEDITL00389";
             this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(25, 28);
@@ -265,18 +283,6 @@
             this.label2.Size = new System.Drawing.Size(73, 17);
             this.label2.TabIndex = 0;
             this.label2.Text = "Mã tài sản";
-            // 
-            // txtTenTS
-            // 
-            this.txtTenTS.AccessibleName = "TEN_TS";
-            this.txtTenTS.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.txtTenTS.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTenTS.Location = new System.Drawing.Point(312, 28);
-            this.txtTenTS.Name = "txtTenTS";
-            this.txtTenTS.ReadOnly = true;
-            this.txtTenTS.Size = new System.Drawing.Size(376, 16);
-            this.txtTenTS.TabIndex = 12;
-            this.txtTenTS.Tag = "readonly";
             // 
             // ValtsAddEditForm
             // 

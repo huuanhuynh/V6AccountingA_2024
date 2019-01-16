@@ -71,30 +71,28 @@
             this.dateNgayThoiPB.Name = "dateNgayThoiPB";
             this.dateNgayThoiPB.Size = new System.Drawing.Size(135, 23);
             this.dateNgayThoiPB.TabIndex = 5;
-            this.dateNgayThoiPB.TextTitle = null;
             // 
             // txtMaCC
             // 
             this.txtMaCC.AccessibleName = "SO_THE_CC";
-            this.txtMaCC.BrotherFields = null;
-            this.txtMaCC.Carry = false;
+            this.txtMaCC.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaCC.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaCC.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMaCC.CheckNotEmpty = true;
-            this.txtMaCC.EnableColorEffect = true;
-            this.txtMaCC.EnableColorEffectOnMouseEnter = false;
             this.txtMaCC.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaCC.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaCC.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaCC.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaCC.LeaveColor = System.Drawing.Color.White;
-            this.txtMaCC.LimitCharacters = null;
             this.txtMaCC.Location = new System.Drawing.Point(171, 25);
             this.txtMaCC.Name = "txtMaCC";
             this.txtMaCC.Size = new System.Drawing.Size(135, 23);
             this.txtMaCC.TabIndex = 1;
-            this.txtMaCC.GrayText = "";
             this.txtMaCC.VVar = "so_the_cc";
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00387";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(25, 58);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -105,6 +103,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ADDEDITL00386";
             this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(25, 28);

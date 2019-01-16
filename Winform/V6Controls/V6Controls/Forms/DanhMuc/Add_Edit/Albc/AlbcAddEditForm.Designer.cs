@@ -240,6 +240,7 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = ".";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(12, 115);
             this.label4.Name = "label4";
@@ -283,6 +284,7 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = ".";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(12, 141);
             this.label5.Name = "label5";
@@ -370,6 +372,7 @@
             // 
             // btnExcel2
             // 
+            this.btnExcel2.AccessibleDescription = "ADDEDITB00014";
             this.btnExcel2.Location = new System.Drawing.Point(521, 5);
             this.btnExcel2.Name = "btnExcel2";
             this.btnExcel2.Size = new System.Drawing.Size(114, 24);
@@ -413,6 +416,7 @@
             // 
             // chknd51
             // 
+            this.chknd51.AccessibleDescription = "ADDEDITC00011";
             this.chknd51.AutoSize = true;
             this.chknd51.Location = new System.Drawing.Point(157, 10);
             this.chknd51.Name = "chknd51";
@@ -424,6 +428,7 @@
             // 
             // chkStatus
             // 
+            this.chkStatus.AccessibleDescription = "ADDEDITC00013";
             this.chkStatus.AccessibleName = "STATUS";
             this.chkStatus.AutoSize = true;
             this.chkStatus.Location = new System.Drawing.Point(335, 10);
@@ -435,6 +440,7 @@
             // 
             // chkMauTuIn
             // 
+            this.chkMauTuIn.AccessibleDescription = "ADDEDITC00012";
             this.chkMauTuIn.AccessibleName = "MAU_TU_IN";
             this.chkMauTuIn.AutoSize = true;
             this.chkMauTuIn.Location = new System.Drawing.Point(261, 10);
@@ -465,6 +471,7 @@
             // 
             // btnExcelTemplate
             // 
+            this.btnExcelTemplate.AccessibleDescription = "ADDEDITB00015";
             this.btnExcelTemplate.Location = new System.Drawing.Point(521, 31);
             this.btnExcelTemplate.Name = "btnExcelTemplate";
             this.btnExcelTemplate.Size = new System.Drawing.Size(114, 24);
@@ -493,6 +500,7 @@
             // 
             // chkPrinterYn
             // 
+            this.chkPrinterYn.AccessibleDescription = "ADDEDITC00015";
             this.chkPrinterYn.AccessibleName = "PRINTER_YN";
             this.chkPrinterYn.AutoSize = true;
             this.chkPrinterYn.Location = new System.Drawing.Point(440, 64);
@@ -505,6 +513,7 @@
             // 
             // btnPrinterSelect
             // 
+            this.btnPrinterSelect.AccessibleDescription = "ADDEDITB00018";
             this.btnPrinterSelect.Enabled = false;
             this.btnPrinterSelect.Location = new System.Drawing.Point(696, 58);
             this.btnPrinterSelect.Name = "btnPrinterSelect";
@@ -516,6 +525,7 @@
             // 
             // chkInherit_ch
             // 
+            this.chkInherit_ch.AccessibleDescription = "ADDEDITC00017";
             this.chkInherit_ch.AccessibleName = "Inherit_ch";
             this.chkInherit_ch.AutoSize = true;
             this.chkInherit_ch.Enabled = false;
@@ -538,6 +548,7 @@
             // 
             // btnPhanQuyenUser
             // 
+            this.btnPhanQuyenUser.AccessibleDescription = "ADDEDITB00019";
             this.btnPhanQuyenUser.Enabled = false;
             this.btnPhanQuyenUser.Location = new System.Drawing.Point(440, 129);
             this.btnPhanQuyenUser.Name = "btnPhanQuyenUser";
@@ -549,6 +560,7 @@
             // 
             // chkRight_YN
             // 
+            this.chkRight_YN.AccessibleDescription = "ADDEDITC00016";
             this.chkRight_YN.AccessibleName = "Right_yn";
             this.chkRight_YN.AutoSize = true;
             this.chkRight_YN.Enabled = false;
@@ -577,6 +589,7 @@
             // 
             // label9
             // 
+            this.label9.AccessibleDescription = "ADDEDITL00338";
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(7, 35);
             this.label9.Name = "label9";
@@ -601,6 +614,7 @@
             // 
             // label10
             // 
+            this.label10.AccessibleDescription = "ADDEDITL00339";
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(7, 57);
             this.label10.Name = "label10";
@@ -625,6 +639,7 @@
             // 
             // label11
             // 
+            this.label11.AccessibleDescription = "ADDEDITL00340";
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(7, 79);
             this.label11.Name = "label11";
@@ -649,12 +664,13 @@
             // 
             // label12
             // 
+            this.label12.AccessibleDescription = "ADDEDITL00341";
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(7, 101);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(65, 13);
+            this.label12.Size = new System.Drawing.Size(66, 13);
             this.label12.TabIndex = 16;
-            this.label12.Text = "Tiêu đề anh";
+            this.label12.Text = "Tiêu đề Anh";
             // 
             // txtShowFields2
             // 
@@ -718,6 +734,7 @@
             // 
             // label14
             // 
+            this.label14.AccessibleDescription = "ADDEDITL00343";
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(7, 149);
             this.label14.Name = "label14";
@@ -727,6 +744,7 @@
             // 
             // label15
             // 
+            this.label15.AccessibleDescription = "ADDEDITL00344";
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(7, 171);
             this.label15.Name = "label15";
@@ -736,6 +754,7 @@
             // 
             // label16
             // 
+            this.label16.AccessibleDescription = "ADDEDITL00345";
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(7, 193);
             this.label16.Name = "label16";
@@ -745,6 +764,7 @@
             // 
             // label17
             // 
+            this.label17.AccessibleDescription = "ADDEDITL00346";
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(7, 215);
             this.label17.Name = "label17";
@@ -784,6 +804,7 @@
             // 
             // label13
             // 
+            this.label13.AccessibleDescription = "ADDEDITL00347";
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(7, 237);
             this.label13.Name = "label13";
@@ -793,6 +814,7 @@
             // 
             // label18
             // 
+            this.label18.AccessibleDescription = "ADDEDITL00342";
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(7, 123);
             this.label18.Name = "label18";
@@ -853,6 +875,7 @@
             // 
             // btnNhapXML
             // 
+            this.btnNhapXML.AccessibleDescription = "ADDEDITB00021";
             this.btnNhapXML.AccessibleName = "";
             this.btnNhapXML.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnNhapXML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -867,6 +890,7 @@
             // 
             // btnXuatXML
             // 
+            this.btnXuatXML.AccessibleDescription = "ADDEDITB00020";
             this.btnXuatXML.AccessibleName = "";
             this.btnXuatXML.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnXuatXML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -917,6 +941,7 @@
             // 
             // lblXml
             // 
+            this.lblXml.AccessibleDescription = ".";
             this.lblXml.AutoSize = true;
             this.lblXml.Location = new System.Drawing.Point(7, 316);
             this.lblXml.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -947,6 +972,7 @@
             // 
             // label47
             // 
+            this.label47.AccessibleDescription = ".";
             this.label47.AutoSize = true;
             this.label47.Location = new System.Drawing.Point(7, 293);
             this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1029,6 +1055,7 @@
             // 
             // lblThongTinThem
             // 
+            this.lblThongTinThem.AccessibleDescription = "ADDEDITL00356";
             this.lblThongTinThem.AutoSize = true;
             this.lblThongTinThem.Location = new System.Drawing.Point(7, 351);
             this.lblThongTinThem.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1075,6 +1102,7 @@
             // 
             // label7
             // 
+            this.label7.AccessibleDescription = "ADDEDITL00348";
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(6, 20);
             this.label7.Name = "label7";
@@ -1084,6 +1112,7 @@
             // 
             // label29
             // 
+            this.label29.AccessibleDescription = "ADDEDITL00350";
             this.label29.AutoSize = true;
             this.label29.Location = new System.Drawing.Point(6, 73);
             this.label29.Name = "label29";
@@ -1093,6 +1122,7 @@
             // 
             // label34
             // 
+            this.label34.AccessibleDescription = "ADDEDITL00349";
             this.label34.AutoSize = true;
             this.label34.Location = new System.Drawing.Point(6, 46);
             this.label34.Name = "label34";
@@ -1149,6 +1179,7 @@
             // 
             // grbBold
             // 
+            this.grbBold.AccessibleDescription = "ADDEDITG00001";
             this.grbBold.Controls.Add(this.label19);
             this.grbBold.Controls.Add(this.label20);
             this.grbBold.Controls.Add(this.label23);
@@ -1164,6 +1195,7 @@
             // 
             // label19
             // 
+            this.label19.AccessibleDescription = "ADDEDITL00348";
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(6, 20);
             this.label19.Name = "label19";
@@ -1173,6 +1205,7 @@
             // 
             // label20
             // 
+            this.label20.AccessibleDescription = "ADDEDITL00350";
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(6, 73);
             this.label20.Name = "label20";
@@ -1182,6 +1215,7 @@
             // 
             // label23
             // 
+            this.label23.AccessibleDescription = "ADDEDITL00349";
             this.label23.AutoSize = true;
             this.label23.Location = new System.Drawing.Point(6, 46);
             this.label23.Name = "label23";
@@ -1263,6 +1297,7 @@
             // 
             // label32
             // 
+            this.label32.AccessibleDescription = ".";
             this.label32.AutoSize = true;
             this.label32.Location = new System.Drawing.Point(343, 279);
             this.label32.Name = "label32";
@@ -1296,6 +1331,7 @@
             // 
             // lblRowMax
             // 
+            this.lblRowMax.AccessibleDescription = ".";
             this.lblRowMax.AutoSize = true;
             this.lblRowMax.Location = new System.Drawing.Point(166, 279);
             this.lblRowMax.Name = "lblRowMax";
@@ -1330,6 +1366,7 @@
             // 
             // label30
             // 
+            this.label30.AccessibleDescription = ".";
             this.label30.AutoSize = true;
             this.label30.Location = new System.Drawing.Point(7, 279);
             this.label30.Name = "label30";
@@ -1365,6 +1402,7 @@
             // 
             // label28
             // 
+            this.label28.AccessibleDescription = "ADDEDITL00355";
             this.label28.AutoSize = true;
             this.label28.Location = new System.Drawing.Point(7, 255);
             this.label28.Name = "label28";
@@ -1463,6 +1501,7 @@
             // 
             // cboColor
             // 
+            this.cboColor.AccessibleDescription = "ADDEDITC00019";
             this.cboColor.AccessibleName = "COLOR_YN";
             this.cboColor.AutoSize = true;
             this.cboColor.Location = new System.Drawing.Point(97, 127);
@@ -1474,6 +1513,7 @@
             // 
             // label31
             // 
+            this.label31.AccessibleDescription = ".";
             this.label31.AutoSize = true;
             this.label31.Location = new System.Drawing.Point(7, 303);
             this.label31.Name = "label31";
@@ -1483,6 +1523,7 @@
             // 
             // chkBold
             // 
+            this.chkBold.AccessibleDescription = "ADDEDITC00018";
             this.chkBold.AccessibleName = "BOLD_YN";
             this.chkBold.AutoSize = true;
             this.chkBold.Location = new System.Drawing.Point(97, 105);
@@ -1494,6 +1535,7 @@
             // 
             // label27
             // 
+            this.label27.AccessibleDescription = ".";
             this.label27.AutoSize = true;
             this.label27.Location = new System.Drawing.Point(7, 231);
             this.label27.Name = "label27";
@@ -1503,6 +1545,7 @@
             // 
             // label25
             // 
+            this.label25.AccessibleDescription = ".";
             this.label25.AutoSize = true;
             this.label25.Location = new System.Drawing.Point(7, 207);
             this.label25.Name = "label25";
@@ -1512,6 +1555,7 @@
             // 
             // label21
             // 
+            this.label21.AccessibleDescription = "ADDEDITL00351";
             this.label21.AutoSize = true;
             this.label21.Location = new System.Drawing.Point(7, 106);
             this.label21.Name = "label21";
@@ -1521,15 +1565,17 @@
             // 
             // label26
             // 
+            this.label26.AccessibleDescription = "ADDEDITL00354";
             this.label26.AutoSize = true;
             this.label26.Location = new System.Drawing.Point(147, 177);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(67, 13);
+            this.label26.Size = new System.Drawing.Size(75, 13);
             this.label26.TabIndex = 14;
-            this.label26.Text = "Report động";
+            this.label26.Text = "Báo cáo động";
             // 
             // label24
             // 
+            this.label24.AccessibleDescription = ".";
             this.label24.AutoSize = true;
             this.label24.Location = new System.Drawing.Point(7, 183);
             this.label24.Name = "label24";
@@ -1539,6 +1585,7 @@
             // 
             // label22
             // 
+            this.label22.AccessibleDescription = "ADDEDITL00352";
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(7, 130);
             this.label22.Name = "label22";
@@ -1548,6 +1595,7 @@
             // 
             // lblTenMau
             // 
+            this.lblTenMau.AccessibleDescription = "ADDEDITL00353";
             this.lblTenMau.Location = new System.Drawing.Point(7, 151);
             this.lblTenMau.Name = "lblTenMau";
             this.lblTenMau.Size = new System.Drawing.Size(86, 18);
@@ -1557,6 +1605,7 @@
             // 
             // btnExcelTemplateView
             // 
+            this.btnExcelTemplateView.AccessibleDescription = "ADDEDITB00017";
             this.btnExcelTemplateView.Location = new System.Drawing.Point(635, 31);
             this.btnExcelTemplateView.Name = "btnExcelTemplateView";
             this.btnExcelTemplateView.Size = new System.Drawing.Size(114, 24);
@@ -1583,6 +1632,7 @@
             // 
             // btnExcel2View
             // 
+            this.btnExcel2View.AccessibleDescription = "ADDEDITB00016";
             this.btnExcel2View.Location = new System.Drawing.Point(635, 5);
             this.btnExcel2View.Name = "btnExcel2View";
             this.btnExcel2View.Size = new System.Drawing.Size(114, 24);
@@ -1617,6 +1667,7 @@
             // 
             // chkCheckPrint
             // 
+            this.chkCheckPrint.AccessibleDescription = "ADDEDITC00014";
             this.chkCheckPrint.AutoSize = true;
             this.chkCheckPrint.Location = new System.Drawing.Point(407, 10);
             this.chkCheckPrint.Name = "chkCheckPrint";

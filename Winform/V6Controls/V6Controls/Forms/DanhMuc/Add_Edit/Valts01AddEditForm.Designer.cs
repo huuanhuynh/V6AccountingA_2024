@@ -45,20 +45,17 @@
             this.groupBox1.Controls.Add(this.txtMaTS);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(7, 3);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.groupBox1.Size = new System.Drawing.Size(698, 185);
+            this.groupBox1.Size = new System.Drawing.Size(468, 100);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
             // dateNgayThoiKH
             // 
             this.dateNgayThoiKH.AccessibleName = "NGAY_KH1";
-            this.dateNgayThoiKH.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dateNgayThoiKH.BackColor = System.Drawing.Color.White;
             this.dateNgayThoiKH.CustomFormat = "dd/MM/yyyy";
             this.dateNgayThoiKH.EnterColor = System.Drawing.Color.PaleGreen;
@@ -71,30 +68,28 @@
             this.dateNgayThoiKH.Name = "dateNgayThoiKH";
             this.dateNgayThoiKH.Size = new System.Drawing.Size(135, 23);
             this.dateNgayThoiKH.TabIndex = 5;
-            this.dateNgayThoiKH.TextTitle = null;
             // 
             // txtMaTS
             // 
             this.txtMaTS.AccessibleName = "SO_THE_TS";
-            this.txtMaTS.BrotherFields = null;
-            this.txtMaTS.Carry = false;
+            this.txtMaTS.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaTS.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaTS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMaTS.CheckNotEmpty = true;
-            this.txtMaTS.EnableColorEffect = true;
-            this.txtMaTS.EnableColorEffectOnMouseEnter = false;
             this.txtMaTS.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaTS.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaTS.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaTS.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaTS.LeaveColor = System.Drawing.Color.White;
-            this.txtMaTS.LimitCharacters = null;
             this.txtMaTS.Location = new System.Drawing.Point(171, 25);
             this.txtMaTS.Name = "txtMaTS";
             this.txtMaTS.Size = new System.Drawing.Size(135, 23);
             this.txtMaTS.TabIndex = 1;
-            this.txtMaTS.GrayText = "";
             this.txtMaTS.VVar = "so_the_ts";
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00388";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(25, 57);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -105,6 +100,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ADDEDITL00389";
             this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(25, 28);
@@ -122,7 +118,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Valts01AddEditForm";
-            this.Size = new System.Drawing.Size(712, 197);
+            this.Size = new System.Drawing.Size(478, 109);
             this.Load += new System.EventHandler(this.Algia2AddEditForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -102,7 +102,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.lblTongSoDong = new V6Controls.V6Label();
             this.v6Label20 = new V6Controls.V6Label();
             this.group3 = new System.Windows.Forms.GroupBox();
-            this.Txtten_vtthue = new V6Controls.V6ColorTextBox();
+            this.Txtten_vtthue = new V6Controls.V6VvarTextBox();
             this.v6Label34 = new V6Controls.V6Label();
             this.txtMadvcs = new V6Controls.V6VvarTextBox();
             this.v6ColorDateTimePick1 = new V6Controls.V6DateTimePicker();
@@ -2483,7 +2483,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         private V6ColorTextBox txtSoPhieu;
         private V6VvarTextBox txtMa_sonb;
         private System.Windows.Forms.Button btnViewInfoData;
-        private V6ColorTextBox Txtten_vtthue;
+        private V6VvarTextBox Txtten_vtthue;
         private V6Label v6Label34;
         private V6DateTimePicker v6ColorDateTimePick1;
         private V6ColorTextBox TxtTen_khoN;

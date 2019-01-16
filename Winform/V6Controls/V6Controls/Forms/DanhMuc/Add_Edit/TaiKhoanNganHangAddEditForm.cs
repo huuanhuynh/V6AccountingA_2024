@@ -25,9 +25,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 var v = Categories.IsExistOneCode_List(F8_table, "TKNH", txtTKNH.Text);
                 txtTKNH.Enabled = !v;
-
-                
-
             }
             catch (System.Exception ex)
             {

@@ -27,9 +27,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 var v = Categories.IsExistOneCode_List(F8_table, "TT_VT", txtTT_VT.Text);
                 txtTT_VT.Enabled = !v;
-
-                
-
             }
             catch (Exception ex)
             {
