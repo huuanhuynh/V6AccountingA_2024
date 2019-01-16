@@ -689,7 +689,7 @@
             this.TxtComment.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtComment.HoverColor = System.Drawing.Color.Yellow;
             this.TxtComment.LeaveColor = System.Drawing.Color.White;
-            this.TxtComment.Location = new System.Drawing.Point(153, 45);
+            this.TxtComment.Location = new System.Drawing.Point(153, 43);
             this.TxtComment.Margin = new System.Windows.Forms.Padding(4);
             this.TxtComment.Name = "TxtComment";
             this.TxtComment.Size = new System.Drawing.Size(321, 23);
@@ -699,7 +699,7 @@
             // 
             this.label5.AccessibleDescription = "ADDEDITL00438";
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(20, 48);
+            this.label5.Location = new System.Drawing.Point(20, 46);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(80, 17);
@@ -719,7 +719,7 @@
             this.TxtPassword2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtPassword2.HoverColor = System.Drawing.Color.Yellow;
             this.TxtPassword2.LeaveColor = System.Drawing.Color.White;
-            this.TxtPassword2.Location = new System.Drawing.Point(153, 97);
+            this.TxtPassword2.Location = new System.Drawing.Point(153, 95);
             this.TxtPassword2.Margin = new System.Windows.Forms.Padding(4);
             this.TxtPassword2.Name = "TxtPassword2";
             this.TxtPassword2.PasswordChar = '*';
@@ -739,7 +739,7 @@
             this.TxtPassword1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtPassword1.HoverColor = System.Drawing.Color.Yellow;
             this.TxtPassword1.LeaveColor = System.Drawing.Color.White;
-            this.TxtPassword1.Location = new System.Drawing.Point(153, 71);
+            this.TxtPassword1.Location = new System.Drawing.Point(153, 69);
             this.TxtPassword1.Margin = new System.Windows.Forms.Padding(4);
             this.TxtPassword1.Name = "TxtPassword1";
             this.TxtPassword1.PasswordChar = '*';
@@ -760,7 +760,7 @@
             this.txtModuleID.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtModuleID.HoverColor = System.Drawing.Color.Yellow;
             this.txtModuleID.LeaveColor = System.Drawing.Color.White;
-            this.txtModuleID.Location = new System.Drawing.Point(620, 45);
+            this.txtModuleID.Location = new System.Drawing.Point(620, 44);
             this.txtModuleID.Margin = new System.Windows.Forms.Padding(4);
             this.txtModuleID.Name = "txtModuleID";
             this.txtModuleID.Size = new System.Drawing.Size(110, 23);
@@ -828,7 +828,7 @@
             this.label4.AccessibleDescription = "ADDEDITL00441";
             this.label4.AutoSize = true;
             this.label4.Enabled = false;
-            this.label4.Location = new System.Drawing.Point(503, 20);
+            this.label4.Location = new System.Drawing.Point(504, 20);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 17);
@@ -839,7 +839,7 @@
             // 
             this.label3.AccessibleDescription = "ADDEDITL00440";
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 100);
+            this.label3.Location = new System.Drawing.Point(20, 98);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(122, 17);
@@ -850,7 +850,7 @@
             // 
             this.label2.AccessibleDescription = "ADDEDITL00439";
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 73);
+            this.label2.Location = new System.Drawing.Point(20, 72);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 17);
