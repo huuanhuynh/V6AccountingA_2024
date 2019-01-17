@@ -68,15 +68,15 @@
             // 
             // btnThoat
             // 
-            this.btnThoat.AccessibleDescription = "Đóng cửa sổ báo cáo này!";
+            this.btnThoat.AccessibleDescription = "SEARCHB00003";
             this.btnThoat.AccessibleName = "";
             this.btnThoat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnThoat.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnThoat.Image = global::V6Controls.Properties.Resources.Cancel;
             this.btnThoat.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnThoat.Location = new System.Drawing.Point(94, 69);
+            this.btnThoat.Location = new System.Drawing.Point(102, 69);
             this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(76, 40);
+            this.btnThoat.Size = new System.Drawing.Size(90, 40);
             this.btnThoat.TabIndex = 10;
             this.btnThoat.Text = "&Hủy";
             this.btnThoat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -85,14 +85,14 @@
             // 
             // btnNhan
             // 
-            this.btnNhan.AccessibleDescription = "Nhận báo cáo theo điều kiện đã chọn";
+            this.btnNhan.AccessibleDescription = "SEARCHB00002";
             this.btnNhan.AccessibleName = "";
             this.btnNhan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnNhan.Image = global::V6Controls.Properties.Resources.Apply;
             this.btnNhan.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnNhan.Location = new System.Drawing.Point(12, 69);
             this.btnNhan.Name = "btnNhan";
-            this.btnNhan.Size = new System.Drawing.Size(76, 40);
+            this.btnNhan.Size = new System.Drawing.Size(90, 40);
             this.btnNhan.TabIndex = 9;
             this.btnNhan.Text = "&Nhận";
             this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -136,7 +136,7 @@
             0,
             0,
             0,
-            131072});
+            0});
             this.numValue.Visible = false;
             // 
             // numValue2
@@ -159,7 +159,7 @@
             0,
             0,
             0,
-            131072});
+            0});
             this.numValue2.Visible = false;
             // 
             // dateValue
@@ -194,6 +194,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "V6REASKL00012";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(166, 15);
             this.label1.Name = "label1";
@@ -205,6 +206,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "V6REASKL00013";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(367, 15);
             this.label2.Name = "label2";
@@ -216,6 +218,7 @@
             // 
             // lblField
             // 
+            this.lblField.AccessibleDescription = "V6REASKL00011";
             this.lblField.AutoSize = true;
             this.lblField.Location = new System.Drawing.Point(12, 15);
             this.lblField.Name = "lblField";
@@ -226,6 +229,7 @@
             // 
             // chkFindNext
             // 
+            this.chkFindNext.AccessibleDescription = "V6REASKC00001";
             this.chkFindNext.AutoSize = true;
             this.chkFindNext.Location = new System.Drawing.Point(12, 40);
             this.chkFindNext.Name = "chkFindNext";
@@ -237,6 +241,7 @@
             // 
             // chkFindOr
             // 
+            this.chkFindOr.AccessibleDescription = "V6REASKC00002";
             this.chkFindOr.AutoSize = true;
             this.chkFindOr.Location = new System.Drawing.Point(111, 40);
             this.chkFindOr.Name = "chkFindOr";
@@ -270,6 +275,20 @@
             this.MinimizeBox = false;
             this.Name = "GridViewFilterForm";
             this.Text = "GridViewFilterForm";
+            this.Controls.SetChildIndex(this.comboBox1, 0);
+            this.Controls.SetChildIndex(this.btnNhan, 0);
+            this.Controls.SetChildIndex(this.btnThoat, 0);
+            this.Controls.SetChildIndex(this.txtValue, 0);
+            this.Controls.SetChildIndex(this.numValue, 0);
+            this.Controls.SetChildIndex(this.numValue2, 0);
+            this.Controls.SetChildIndex(this.dateValue, 0);
+            this.Controls.SetChildIndex(this.dateValue2, 0);
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.lblField, 0);
+            this.Controls.SetChildIndex(this.chkFindNext, 0);
+            this.Controls.SetChildIndex(this.chkFindOr, 0);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 

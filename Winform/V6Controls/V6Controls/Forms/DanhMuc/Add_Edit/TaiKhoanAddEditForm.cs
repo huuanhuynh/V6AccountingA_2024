@@ -35,8 +35,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 var v = Categories.IsExistOneCode_List("ABKH,ARA00", "Tk", TxtTk.Text);
                 TxtTk.Enabled = !v;
-
-
             }
             catch (Exception ex)
             {

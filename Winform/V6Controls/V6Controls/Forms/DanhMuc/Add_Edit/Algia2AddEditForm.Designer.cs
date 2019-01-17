@@ -94,7 +94,6 @@
             this.dateNgay_ban.Name = "dateNgay_ban";
             this.dateNgay_ban.Size = new System.Drawing.Size(135, 23);
             this.dateNgay_ban.TabIndex = 9;
-            this.dateNgay_ban.TextTitle = null;
             // 
             // txtGiaBan
             // 
@@ -103,8 +102,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtGiaBan.BackColor = System.Drawing.Color.White;
+            this.txtGiaBan.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtGiaBan.DecimalPlaces = 0;
             this.txtGiaBan.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtGiaBan.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtGiaBan.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtGiaBan.HoverColor = System.Drawing.Color.Yellow;
             this.txtGiaBan.LeaveColor = System.Drawing.Color.White;
             this.txtGiaBan.Location = new System.Drawing.Point(171, 201);
@@ -124,7 +126,10 @@
             // 
             this.dateNgayHetHieuLuc.AccessibleName = "ngay_hhl";
             this.dateNgayHetHieuLuc.BackColor = System.Drawing.Color.White;
+            this.dateNgayHetHieuLuc.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.dateNgayHetHieuLuc.EnterColor = System.Drawing.Color.PaleGreen;
+            this.dateNgayHetHieuLuc.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.dateNgayHetHieuLuc.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.dateNgayHetHieuLuc.GrayText = null;
             this.dateNgayHetHieuLuc.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgayHetHieuLuc.ImeMode = System.Windows.Forms.ImeMode.On;
@@ -136,14 +141,17 @@
             this.dateNgayHetHieuLuc.StringValue = "__/__/____";
             this.dateNgayHetHieuLuc.TabIndex = 17;
             this.dateNgayHetHieuLuc.Text = "__/__/____";
-            this.dateNgayHetHieuLuc.Value = null;
             // 
             // txtMaNT
             // 
             this.txtMaNT.AccessibleName = "ma_nt";
+            this.txtMaNT.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaNT.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaNT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMaNT.CheckNotEmpty = true;
             this.txtMaNT.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaNT.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaNT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaNT.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaNT.LeaveColor = System.Drawing.Color.White;
             this.txtMaNT.Location = new System.Drawing.Point(171, 170);
@@ -155,8 +163,12 @@
             // txtDVT
             // 
             this.txtDVT.AccessibleName = "DVT";
+            this.txtDVT.BackColor = System.Drawing.SystemColors.Window;
+            this.txtDVT.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtDVT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDVT.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtDVT.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtDVT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtDVT.HoverColor = System.Drawing.Color.Yellow;
             this.txtDVT.LeaveColor = System.Drawing.Color.White;
             this.txtDVT.Location = new System.Drawing.Point(171, 112);
@@ -168,8 +180,12 @@
             // txtMaVt
             // 
             this.txtMaVt.AccessibleName = "ma_vt";
+            this.txtMaVt.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaVt.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaVt.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMaVt.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaVt.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaVt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaVt.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaVt.LeaveColor = System.Drawing.Color.White;
             this.txtMaVt.Location = new System.Drawing.Point(171, 83);
@@ -182,8 +198,12 @@
             // txtMaKH
             // 
             this.txtMaKH.AccessibleName = "ma_kh";
+            this.txtMaKH.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaKH.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaKH.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMaKH.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaKH.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaKH.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaKH.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaKH.LeaveColor = System.Drawing.Color.White;
             this.txtMaKH.Location = new System.Drawing.Point(171, 54);
@@ -195,9 +215,13 @@
             // txtma_gia
             // 
             this.txtma_gia.AccessibleName = "ma_gia";
+            this.txtma_gia.BackColor = System.Drawing.SystemColors.Window;
+            this.txtma_gia.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtma_gia.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtma_gia.CheckNotEmpty = true;
             this.txtma_gia.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtma_gia.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtma_gia.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtma_gia.HoverColor = System.Drawing.Color.Yellow;
             this.txtma_gia.LeaveColor = System.Drawing.Color.White;
             this.txtma_gia.Location = new System.Drawing.Point(171, 25);
@@ -208,6 +232,7 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "ADDEDITL00472";
             this.label3.AccessibleName = "";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(25, 57);
@@ -219,6 +244,7 @@
             // 
             // checkBox1
             // 
+            this.checkBox1.AccessibleDescription = "ADDEDITC00001";
             this.checkBox1.AccessibleName = "status";
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -234,6 +260,7 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00022";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(25, 234);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -244,6 +271,7 @@
             // 
             // label6
             // 
+            this.label6.AccessibleDescription = "ADDEDITL00409";
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(28, 268);
             this.label6.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -254,6 +282,7 @@
             // 
             // label9
             // 
+            this.label9.AccessibleDescription = "ADDEDITL00484";
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(28, 204);
             this.label9.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -264,16 +293,18 @@
             // 
             // label8
             // 
+            this.label8.AccessibleDescription = "ADDEDITL00127";
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(28, 173);
             this.label8.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(82, 17);
+            this.label8.Size = new System.Drawing.Size(50, 17);
             this.label8.TabIndex = 10;
-            this.label8.Text = "Mã ngoại tệ";
+            this.label8.Text = "Mã NT";
             // 
             // label7
             // 
+            this.label7.AccessibleDescription = "ADDEDITL00483";
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(25, 146);
             this.label7.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -284,6 +315,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00042";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(25, 115);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -294,6 +326,7 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00195";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(25, 86);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -304,6 +337,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ADDEDITL00457";
             this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(25, 28);

@@ -90,7 +90,7 @@
             this.dateNgay_mua.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgay_mua.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dateNgay_mua.LeaveColor = System.Drawing.Color.White;
-            this.dateNgay_mua.Location = new System.Drawing.Point(171, 141);
+            this.dateNgay_mua.Location = new System.Drawing.Point(171, 145);
             this.dateNgay_mua.Name = "dateNgay_mua";
             this.dateNgay_mua.Size = new System.Drawing.Size(135, 23);
             this.dateNgay_mua.TabIndex = 9;
@@ -109,7 +109,7 @@
             this.txtGiaMua.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtGiaMua.HoverColor = System.Drawing.Color.Yellow;
             this.txtGiaMua.LeaveColor = System.Drawing.Color.White;
-            this.txtGiaMua.Location = new System.Drawing.Point(171, 201);
+            this.txtGiaMua.Location = new System.Drawing.Point(171, 205);
             this.txtGiaMua.Margin = new System.Windows.Forms.Padding(5);
             this.txtGiaMua.Name = "txtGiaMua";
             this.txtGiaMua.Size = new System.Drawing.Size(135, 23);
@@ -134,7 +134,7 @@
             this.dateNgayHetHieuLuc.HoverColor = System.Drawing.Color.Yellow;
             this.dateNgayHetHieuLuc.ImeMode = System.Windows.Forms.ImeMode.On;
             this.dateNgayHetHieuLuc.LeaveColor = System.Drawing.Color.White;
-            this.dateNgayHetHieuLuc.Location = new System.Drawing.Point(171, 265);
+            this.dateNgayHetHieuLuc.Location = new System.Drawing.Point(171, 263);
             this.dateNgayHetHieuLuc.Margin = new System.Windows.Forms.Padding(5);
             this.dateNgayHetHieuLuc.Name = "dateNgayHetHieuLuc";
             this.dateNgayHetHieuLuc.Size = new System.Drawing.Size(135, 23);
@@ -154,7 +154,7 @@
             this.txtMaNT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaNT.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaNT.LeaveColor = System.Drawing.Color.White;
-            this.txtMaNT.Location = new System.Drawing.Point(171, 170);
+            this.txtMaNT.Location = new System.Drawing.Point(171, 175);
             this.txtMaNT.Name = "txtMaNT";
             this.txtMaNT.Size = new System.Drawing.Size(135, 23);
             this.txtMaNT.TabIndex = 11;
@@ -171,7 +171,7 @@
             this.txtDVT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtDVT.HoverColor = System.Drawing.Color.Yellow;
             this.txtDVT.LeaveColor = System.Drawing.Color.White;
-            this.txtDVT.Location = new System.Drawing.Point(171, 112);
+            this.txtDVT.Location = new System.Drawing.Point(171, 115);
             this.txtDVT.Name = "txtDVT";
             this.txtDVT.Size = new System.Drawing.Size(135, 23);
             this.txtDVT.TabIndex = 7;
@@ -188,7 +188,7 @@
             this.txtMaVt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaVt.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaVt.LeaveColor = System.Drawing.Color.White;
-            this.txtMaVt.Location = new System.Drawing.Point(171, 83);
+            this.txtMaVt.Location = new System.Drawing.Point(171, 85);
             this.txtMaVt.Name = "txtMaVt";
             this.txtMaVt.Size = new System.Drawing.Size(135, 23);
             this.txtMaVt.TabIndex = 5;
@@ -206,7 +206,7 @@
             this.txtMaKH.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaKH.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaKH.LeaveColor = System.Drawing.Color.White;
-            this.txtMaKH.Location = new System.Drawing.Point(171, 54);
+            this.txtMaKH.Location = new System.Drawing.Point(171, 55);
             this.txtMaKH.Name = "txtMaKH";
             this.txtMaKH.Size = new System.Drawing.Size(135, 23);
             this.txtMaKH.TabIndex = 3;
@@ -232,9 +232,10 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "ADDEDITL00002";
             this.label3.AccessibleName = "";
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(25, 57);
+            this.label3.Location = new System.Drawing.Point(25, 58);
             this.label3.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 17);
@@ -243,12 +244,13 @@
             // 
             // checkBox1
             // 
+            this.checkBox1.AccessibleDescription = "ADDEDITC00001";
             this.checkBox1.AccessibleName = "status";
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(171, 234);
+            this.checkBox1.Location = new System.Drawing.Point(171, 235);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(5);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(111, 21);
@@ -258,8 +260,9 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00022";
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 234);
+            this.label4.Location = new System.Drawing.Point(25, 238);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(73, 17);
@@ -268,6 +271,7 @@
             // 
             // label6
             // 
+            this.label6.AccessibleDescription = "ADDEDITL00505";
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(25, 268);
             this.label6.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -278,8 +282,9 @@
             // 
             // label9
             // 
+            this.label9.AccessibleDescription = "ADDEDITL00504";
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(25, 204);
+            this.label9.Location = new System.Drawing.Point(25, 208);
             this.label9.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(61, 17);
@@ -288,18 +293,20 @@
             // 
             // label8
             // 
+            this.label8.AccessibleDescription = "ADDEDITL00127";
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(25, 173);
+            this.label8.Location = new System.Drawing.Point(25, 178);
             this.label8.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(82, 17);
+            this.label8.Size = new System.Drawing.Size(50, 17);
             this.label8.TabIndex = 10;
-            this.label8.Text = "Mã ngoại tệ";
+            this.label8.Text = "Mã NT";
             // 
             // label7
             // 
+            this.label7.AccessibleDescription = "ADDEDITL00503";
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(25, 146);
+            this.label7.Location = new System.Drawing.Point(25, 148);
             this.label7.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(72, 17);
@@ -308,8 +315,9 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00042";
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 115);
+            this.label1.Location = new System.Drawing.Point(25, 118);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(75, 17);
@@ -318,8 +326,9 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00195";
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(25, 86);
+            this.label5.Location = new System.Drawing.Point(25, 88);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(66, 17);
@@ -328,6 +337,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ADDEDITL00457";
             this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(25, 28);

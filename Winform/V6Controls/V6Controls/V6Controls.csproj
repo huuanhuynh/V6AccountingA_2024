@@ -1713,6 +1713,9 @@
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoLoaiLuong.resx">
       <DependentUpon>KhaiBaoLoaiLuong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\KhaiBaoNgayNghiLe.resx">
+      <DependentUpon>KhaiBaoNgayNghiLe.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\NhanSu\KinhNghiemLamViec.resx">
       <DependentUpon>KinhNghiemLamViec.cs</DependentUpon>
     </EmbeddedResource>

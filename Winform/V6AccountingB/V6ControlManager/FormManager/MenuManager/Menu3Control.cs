@@ -170,7 +170,7 @@ namespace V6ControlManager.FormManager.MenuManager
 
                 if (ControlsDictionary.ContainsKey(item_id) && !ControlsDictionary[item_id].IsDisposed)
                 {
-                    bool check = true, mouse_left = false, ctrl_is_down = false;
+                    bool check = true, mouse_left = false, ctrl_is_down = false, shift_is_down;
                     if (codeform != null)
                     {
                         var code = string.IsNullOrEmpty(codeform) ? "" : codeform.Substring(0, 1);
@@ -184,6 +184,10 @@ namespace V6ControlManager.FormManager.MenuManager
                         if ((Control.ModifierKeys & Keys.Control) == Keys.Control)
                         {
                             ctrl_is_down = true;
+                        }
+                        if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift)
+                        {
+                            shift_is_down = true;
                         }
 
                         //var TABLE_NAME = (codeform.Length > 1 ? codeform.Substring(1) : "").ToUpper();

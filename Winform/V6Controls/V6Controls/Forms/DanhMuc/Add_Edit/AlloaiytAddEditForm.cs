@@ -1,7 +1,7 @@
 ﻿using System;
 using V6AccountingBusiness;
 using V6Structs;
-using V6Structs;
+
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
     public partial class AlloaiytAddEditForm : AddEditControlVirtual

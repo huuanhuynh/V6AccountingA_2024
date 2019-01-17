@@ -274,6 +274,7 @@
             // 
             // label26
             // 
+            this.label26.AccessibleDescription = "ADDEDITL00058";
             this.label26.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -287,6 +288,7 @@
             // 
             // label25
             // 
+            this.label25.AccessibleDescription = "ADDEDITL00480";
             this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -300,6 +302,7 @@
             // 
             // label24
             // 
+            this.label24.AccessibleDescription = "ADDEDITL00479";
             this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -313,6 +316,7 @@
             // 
             // label23
             // 
+            this.label23.AccessibleDescription = "ADDEDITL00478";
             this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -342,6 +346,7 @@
             // 
             // label22
             // 
+            this.label22.AccessibleDescription = "ADDEDITL00477";
             this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -355,6 +360,7 @@
             // 
             // label21
             // 
+            this.label21.AccessibleDescription = "ADDEDITL00476";
             this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -368,6 +374,7 @@
             // 
             // label20
             // 
+            this.label20.AccessibleDescription = "ADDEDITL00475";
             this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -381,6 +388,7 @@
             // 
             // label19
             // 
+            this.label19.AccessibleDescription = "ADDEDITL00474";
             this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -394,6 +402,7 @@
             // 
             // checkBox1
             // 
+            this.checkBox1.AccessibleDescription = "ADDEDITC00001";
             this.checkBox1.AccessibleName = "status";
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBox1.AutoSize = true;
@@ -426,6 +435,7 @@
             // 
             // label8
             // 
+            this.label8.AccessibleDescription = "ADDEDITL00022";
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(14, 223);
@@ -437,6 +447,7 @@
             // 
             // label9
             // 
+            this.label9.AccessibleDescription = "ADDEDITL00036";
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(11, 162);
             this.label9.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -1006,6 +1017,7 @@
             // 
             // label7
             // 
+            this.label7.AccessibleDescription = "ADDEDITL00473";
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(438, 121);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1016,6 +1028,7 @@
             // 
             // label6
             // 
+            this.label6.AccessibleDescription = "ADDEDITL00472";
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(438, 43);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1042,6 +1055,7 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00471";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(18, 121);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1052,6 +1066,7 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00004";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(18, 95);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1078,6 +1093,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00195";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(18, 17);
             this.label1.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
@@ -1107,6 +1123,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ADDEDITL00469";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(18, 43);
             this.label2.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
@@ -1117,6 +1134,7 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "ADDEDITL00470";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(18, 69);
             this.label3.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);

@@ -1,8 +1,6 @@
-﻿using System.Data.SqlClient;
-using V6Structs;
+﻿using V6Structs;
 using System;
 using System.Collections.Generic;
-using V6Init;
 using V6AccountingBusiness;
 using V6Tools;
 
@@ -37,8 +35,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 
                 var v = Categories.IsExistOneCode_List(F8_table, "MA_LOAI", txtMaLoai.Text);
                 txtMaLoai.Enabled = !v;
-
-              
             }
             catch (Exception ex)
             {

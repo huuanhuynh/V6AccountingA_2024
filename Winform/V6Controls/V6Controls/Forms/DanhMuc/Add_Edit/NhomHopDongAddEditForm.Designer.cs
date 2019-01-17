@@ -74,7 +74,7 @@
             this.txtma_nh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtma_nh.HoverColor = System.Drawing.Color.Yellow;
             this.txtma_nh.LeaveColor = System.Drawing.Color.White;
-            this.txtma_nh.Location = new System.Drawing.Point(228, 52);
+            this.txtma_nh.Location = new System.Drawing.Point(191, 55);
             this.txtma_nh.Name = "txtma_nh";
             this.txtma_nh.Size = new System.Drawing.Size(100, 23);
             this.txtma_nh.TabIndex = 3;
@@ -83,12 +83,13 @@
             // 
             // checkBox1
             // 
+            this.checkBox1.AccessibleDescription = "ADDEDITC00001";
             this.checkBox1.AccessibleName = "status";
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(228, 155);
+            this.checkBox1.Location = new System.Drawing.Point(191, 145);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(5);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(111, 21);
@@ -98,11 +99,12 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00022";
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(73, 156);
+            this.label4.Location = new System.Drawing.Point(36, 149);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 17);
@@ -122,7 +124,7 @@
             this.v6NumberTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox1.Location = new System.Drawing.Point(228, 23);
+            this.v6NumberTextBox1.Location = new System.Drawing.Point(191, 25);
             this.v6NumberTextBox1.Name = "v6NumberTextBox1";
             this.v6NumberTextBox1.Size = new System.Drawing.Size(100, 23);
             this.v6NumberTextBox1.TabIndex = 1;
@@ -132,7 +134,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6ColorTextBox5
             // 
@@ -147,7 +149,7 @@
             this.v6ColorTextBox5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox5.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox5.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox5.Location = new System.Drawing.Point(228, 116);
+            this.v6ColorTextBox5.Location = new System.Drawing.Point(191, 115);
             this.v6ColorTextBox5.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6ColorTextBox5.Name = "v6ColorTextBox5";
             this.v6ColorTextBox5.Size = new System.Drawing.Size(527, 23);
@@ -155,11 +157,12 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00004";
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(73, 119);
+            this.label5.Location = new System.Drawing.Point(36, 118);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(45, 17);
@@ -179,7 +182,7 @@
             this.txtten_nh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtten_nh.HoverColor = System.Drawing.Color.Yellow;
             this.txtten_nh.LeaveColor = System.Drawing.Color.White;
-            this.txtten_nh.Location = new System.Drawing.Point(228, 84);
+            this.txtten_nh.Location = new System.Drawing.Point(191, 85);
             this.txtten_nh.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtten_nh.Name = "txtten_nh";
             this.txtten_nh.Size = new System.Drawing.Size(527, 23);
@@ -187,11 +190,12 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00514";
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(73, 23);
+            this.label1.Location = new System.Drawing.Point(36, 25);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 17);
@@ -200,12 +204,12 @@
             // 
             // label2
             // 
-            this.label2.AccessibleName = "ma_nh";
+            this.label2.AccessibleDescription = "ADDEDITL00515";
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(73, 55);
+            this.label2.Location = new System.Drawing.Point(36, 56);
             this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(130, 17);
@@ -214,11 +218,12 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "ADDEDITL00516";
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(73, 87);
+            this.label3.Location = new System.Drawing.Point(36, 87);
             this.label3.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(136, 17);

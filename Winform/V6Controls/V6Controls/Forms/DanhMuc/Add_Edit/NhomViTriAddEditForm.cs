@@ -30,9 +30,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 var v = Categories.IsExistOneCode_List(F8_table, "MA_NH", txtMa_nh.Text);
                 txtMa_nh.Enabled = !v;
-
-                
-
             }
             catch (Exception ex)
             {
@@ -63,6 +60,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
 
             if (errors.Length > 0) throw new Exception(errors);
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -53,11 +53,11 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.Txtten_nv);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(7, 6);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.groupBox1.Size = new System.Drawing.Size(797, 180);
+            this.groupBox1.Size = new System.Drawing.Size(802, 174);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -72,7 +72,7 @@
             this.Txtma_nv.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.Txtma_nv.HoverColor = System.Drawing.Color.Yellow;
             this.Txtma_nv.LeaveColor = System.Drawing.Color.White;
-            this.Txtma_nv.Location = new System.Drawing.Point(228, 20);
+            this.Txtma_nv.Location = new System.Drawing.Point(174, 25);
             this.Txtma_nv.Name = "Txtma_nv";
             this.Txtma_nv.Size = new System.Drawing.Size(141, 23);
             this.Txtma_nv.TabIndex = 1;
@@ -80,12 +80,13 @@
             // 
             // checkBox1
             // 
+            this.checkBox1.AccessibleDescription = "ADDEDITC00001";
             this.checkBox1.AccessibleName = "status";
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(228, 127);
+            this.checkBox1.Location = new System.Drawing.Point(174, 121);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(5);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(111, 21);
@@ -95,8 +96,9 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00022";
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(73, 128);
+            this.label4.Location = new System.Drawing.Point(19, 121);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 17);
@@ -116,16 +118,17 @@
             this.v6ColorTextBox5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox5.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox5.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox5.Location = new System.Drawing.Point(228, 84);
+            this.v6ColorTextBox5.Location = new System.Drawing.Point(174, 89);
             this.v6ColorTextBox5.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.v6ColorTextBox5.Name = "v6ColorTextBox5";
-            this.v6ColorTextBox5.Size = new System.Drawing.Size(555, 23);
+            this.v6ColorTextBox5.Size = new System.Drawing.Size(560, 23);
             this.v6ColorTextBox5.TabIndex = 5;
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00004";
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(73, 87);
+            this.label5.Location = new System.Drawing.Point(19, 90);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(45, 17);
@@ -134,8 +137,9 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00512";
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(73, 23);
+            this.label1.Location = new System.Drawing.Point(19, 28);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(102, 17);
@@ -155,17 +159,18 @@
             this.Txtten_nv.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.Txtten_nv.HoverColor = System.Drawing.Color.Yellow;
             this.Txtten_nv.LeaveColor = System.Drawing.Color.White;
-            this.Txtten_nv.Location = new System.Drawing.Point(228, 52);
+            this.Txtten_nv.Location = new System.Drawing.Point(174, 57);
             this.Txtten_nv.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.Txtten_nv.Name = "Txtten_nv";
-            this.Txtten_nv.Size = new System.Drawing.Size(555, 23);
+            this.Txtten_nv.Size = new System.Drawing.Size(560, 23);
             this.Txtten_nv.TabIndex = 3;
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ADDEDITL00513";
             this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(73, 55);
+            this.label2.Location = new System.Drawing.Point(19, 59);
             this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(104, 17);
@@ -180,7 +185,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "NguonVonAddEditForm";
-            this.Size = new System.Drawing.Size(811, 201);
+            this.Size = new System.Drawing.Size(811, 183);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

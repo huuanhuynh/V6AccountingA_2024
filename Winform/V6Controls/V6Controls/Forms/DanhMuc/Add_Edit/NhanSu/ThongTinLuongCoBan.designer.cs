@@ -129,7 +129,7 @@
             // 
             // v6Label18
             // 
-            this.v6Label18.AccessibleDescription = "";
+            this.v6Label18.AccessibleDescription = "ADDEDITL00626";
             this.v6Label18.AccessibleName = "";
             this.v6Label18.AutoSize = true;
             this.v6Label18.Location = new System.Drawing.Point(191, 356);
@@ -141,7 +141,7 @@
             // 
             // v6Label17
             // 
-            this.v6Label17.AccessibleDescription = "";
+            this.v6Label17.AccessibleDescription = "ADDEDITL00582";
             this.v6Label17.AccessibleName = "";
             this.v6Label17.AutoSize = true;
             this.v6Label17.Location = new System.Drawing.Point(191, 325);
@@ -166,6 +166,7 @@
             // 
             // checkBox1
             // 
+            this.checkBox1.AccessibleDescription = "ADDEDITC00001";
             this.checkBox1.AccessibleName = "status";
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -276,7 +277,7 @@
             0,
             0,
             0,
-            131072});
+            0});
             // 
             // txtMa_NhNV
             // 
@@ -330,7 +331,7 @@
             // 
             // v6Label16
             // 
-            this.v6Label16.AccessibleDescription = "";
+            this.v6Label16.AccessibleDescription = "ADDEDITL00022";
             this.v6Label16.AutoSize = true;
             this.v6Label16.Location = new System.Drawing.Point(8, 503);
             this.v6Label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -341,7 +342,7 @@
             // 
             // v6Label15
             // 
-            this.v6Label15.AccessibleDescription = "";
+            this.v6Label15.AccessibleDescription = "ADDEDITL00219";
             this.v6Label15.AutoSize = true;
             this.v6Label15.Location = new System.Drawing.Point(8, 473);
             this.v6Label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -352,7 +353,7 @@
             // 
             // v6Label14
             // 
-            this.v6Label14.AccessibleDescription = "";
+            this.v6Label14.AccessibleDescription = "ADDEDITL00621";
             this.v6Label14.AutoSize = true;
             this.v6Label14.Location = new System.Drawing.Point(8, 387);
             this.v6Label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -363,7 +364,7 @@
             // 
             // v6Label13
             // 
-            this.v6Label13.AccessibleDescription = "";
+            this.v6Label13.AccessibleDescription = "ADDEDITL00620";
             this.v6Label13.AutoSize = true;
             this.v6Label13.Location = new System.Drawing.Point(8, 356);
             this.v6Label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -374,7 +375,7 @@
             // 
             // v6Label12
             // 
-            this.v6Label12.AccessibleDescription = "";
+            this.v6Label12.AccessibleDescription = "ADDEDITL00580";
             this.v6Label12.AutoSize = true;
             this.v6Label12.Location = new System.Drawing.Point(8, 325);
             this.v6Label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -385,7 +386,7 @@
             // 
             // v6Label11
             // 
-            this.v6Label11.AccessibleDescription = "";
+            this.v6Label11.AccessibleDescription = "ADDEDITL00619";
             this.v6Label11.AutoSize = true;
             this.v6Label11.Location = new System.Drawing.Point(8, 294);
             this.v6Label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -396,7 +397,7 @@
             // 
             // v6Label10
             // 
-            this.v6Label10.AccessibleDescription = "";
+            this.v6Label10.AccessibleDescription = "ADDEDITL00615";
             this.v6Label10.AutoSize = true;
             this.v6Label10.Location = new System.Drawing.Point(8, 170);
             this.v6Label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -407,7 +408,7 @@
             // 
             // v6Label6
             // 
-            this.v6Label6.AccessibleDescription = "";
+            this.v6Label6.AccessibleDescription = "ADDEDITL00612";
             this.v6Label6.AutoSize = true;
             this.v6Label6.Location = new System.Drawing.Point(8, 77);
             this.v6Label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -418,7 +419,7 @@
             // 
             // v6Label5
             // 
-            this.v6Label5.AccessibleDescription = "";
+            this.v6Label5.AccessibleDescription = "ADDEDITL00208";
             this.v6Label5.AutoSize = true;
             this.v6Label5.Location = new System.Drawing.Point(8, 46);
             this.v6Label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -444,7 +445,7 @@
             // 
             // v6Label4
             // 
-            this.v6Label4.AccessibleDescription = "";
+            this.v6Label4.AccessibleDescription = "ADDEDITL00611";
             this.v6Label4.AutoSize = true;
             this.v6Label4.Location = new System.Drawing.Point(8, 15);
             this.v6Label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -591,11 +592,11 @@
             0,
             0,
             0,
-            131072});
+            0});
             // 
             // v6Label2
             // 
-            this.v6Label2.AccessibleDescription = "";
+            this.v6Label2.AccessibleDescription = "ADDEDITL00618";
             this.v6Label2.AutoSize = true;
             this.v6Label2.Location = new System.Drawing.Point(8, 263);
             this.v6Label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -606,7 +607,7 @@
             // 
             // v6Label1
             // 
-            this.v6Label1.AccessibleDescription = "";
+            this.v6Label1.AccessibleDescription = "ADDEDITL00617";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(8, 232);
             this.v6Label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -617,7 +618,7 @@
             // 
             // v6Label3
             // 
-            this.v6Label3.AccessibleDescription = "";
+            this.v6Label3.AccessibleDescription = "ADDEDITL00616";
             this.v6Label3.AutoSize = true;
             this.v6Label3.Location = new System.Drawing.Point(8, 201);
             this.v6Label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -654,6 +655,7 @@
             // 
             // label18
             // 
+            this.label18.AccessibleDescription = "ADDEDITL00614";
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(8, 139);
             this.label18.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -664,6 +666,7 @@
             // 
             // label15
             // 
+            this.label15.AccessibleDescription = "ADDEDITL00613";
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(8, 106);
             this.label15.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -755,7 +758,7 @@
             // 
             // v6Label7
             // 
-            this.v6Label7.AccessibleDescription = "";
+            this.v6Label7.AccessibleDescription = "ADDEDITL00622";
             this.v6Label7.AutoSize = true;
             this.v6Label7.Location = new System.Drawing.Point(8, 418);
             this.v6Label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -790,7 +793,7 @@
             // 
             // v6Label8
             // 
-            this.v6Label8.AccessibleDescription = "";
+            this.v6Label8.AccessibleDescription = "ADDEDITL00623";
             this.v6Label8.AutoSize = true;
             this.v6Label8.Location = new System.Drawing.Point(8, 445);
             this.v6Label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -904,7 +907,7 @@
             0,
             0,
             0,
-            655360});
+            0});
             // 
             // v6NumberTextBox7
             // 
@@ -928,11 +931,11 @@
             0,
             0,
             0,
-            655360});
+            0});
             // 
             // v6Label19
             // 
-            this.v6Label19.AccessibleDescription = "";
+            this.v6Label19.AccessibleDescription = "ADDEDITL00625";
             this.v6Label19.AutoSize = true;
             this.v6Label19.Location = new System.Drawing.Point(386, 445);
             this.v6Label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -943,7 +946,7 @@
             // 
             // v6Label9
             // 
-            this.v6Label9.AccessibleDescription = "";
+            this.v6Label9.AccessibleDescription = "ADDEDITL00624";
             this.v6Label9.AutoSize = true;
             this.v6Label9.Location = new System.Drawing.Point(386, 418);
             this.v6Label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1084,7 +1087,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSLS5
             // 
@@ -1109,7 +1112,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSLS4
             // 
@@ -1134,7 +1137,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // lblSLS6
             // 
@@ -1462,7 +1465,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSLDN2
             // 
@@ -1487,7 +1490,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSLDN1
             // 
@@ -1512,7 +1515,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // dateNgayDN3
             // 

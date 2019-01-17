@@ -57,6 +57,7 @@
             // 
             // label6
             // 
+            this.label6.AccessibleDescription = ".";
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(6, 174);
             this.label6.Name = "label6";
@@ -74,6 +75,7 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = ".";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(6, 148);
             this.label5.Name = "label5";
@@ -90,6 +92,7 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = ".";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(6, 122);
             this.label4.Name = "label4";
@@ -107,6 +110,7 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = ".";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(6, 67);
             this.label3.Name = "label3";
@@ -125,6 +129,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = ".";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 41);
             this.label2.Name = "label2";
@@ -142,6 +147,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = ".";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 15);
             this.label1.Name = "label1";
@@ -151,6 +157,7 @@
             // 
             // btnBrownFile
             // 
+            this.btnBrownFile.AccessibleDescription = ".";
             this.btnBrownFile.Location = new System.Drawing.Point(410, 117);
             this.btnBrownFile.Name = "btnBrownFile";
             this.btnBrownFile.Size = new System.Drawing.Size(41, 23);
@@ -161,6 +168,7 @@
             // 
             // btnSend
             // 
+            this.btnSend.AccessibleDescription = ".";
             this.btnSend.Location = new System.Drawing.Point(84, 90);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(75, 23);

@@ -28,9 +28,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 var v = Categories.IsExistOneCode_List(F8_table, "MA_TD3", txtMA_TD3.Text);
                 txtMA_TD3.Enabled = !v;
-
-                
-
             }
             catch (Exception ex)
             {

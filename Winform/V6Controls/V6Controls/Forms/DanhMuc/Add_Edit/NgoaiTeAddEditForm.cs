@@ -23,8 +23,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             var v = Categories.IsExistOneCode_List("ARA00", "Ma_nt", TxtMa_nt.Text);
             TxtMa_nt.Enabled = !v;
-
-
         }
         public override void ValidateData()
         {

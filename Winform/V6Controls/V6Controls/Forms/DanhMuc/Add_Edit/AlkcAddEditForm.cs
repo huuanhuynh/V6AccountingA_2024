@@ -20,10 +20,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 }
             }
         }
-         public override void DoBeforeEdit()
-         {
-         }
-         
+
+        public override void DoBeforeEdit()
+        {
+        }
 
         public override void LoadDetails()
         {
@@ -87,10 +87,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 _group_kc = _group_kc.Substring(1);
 
             txtgroup_kc.Text = _group_kc;
-
-
-
-
         }
 
         private void AlkcAddEditForm_Load(object sender, EventArgs e)

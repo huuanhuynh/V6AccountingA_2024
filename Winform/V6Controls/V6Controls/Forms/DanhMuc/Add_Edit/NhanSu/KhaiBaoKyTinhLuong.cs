@@ -1,5 +1,4 @@
-﻿using System.Data.SqlClient;
-using V6AccountingBusiness;
+﻿using V6AccountingBusiness;
 using V6Structs;
 using System;
 using V6Init;

@@ -76,7 +76,7 @@
             this.Txtma_nh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.Txtma_nh.HoverColor = System.Drawing.Color.Yellow;
             this.Txtma_nh.LeaveColor = System.Drawing.Color.White;
-            this.Txtma_nh.Location = new System.Drawing.Point(226, 62);
+            this.Txtma_nh.Location = new System.Drawing.Point(191, 53);
             this.Txtma_nh.Name = "Txtma_nh";
             this.Txtma_nh.Size = new System.Drawing.Size(147, 23);
             this.Txtma_nh.TabIndex = 11;
@@ -94,7 +94,7 @@
             this.v6NumberTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox1.LeaveColor = System.Drawing.Color.White;
             this.v6NumberTextBox1.LimitCharacters = "123456";
-            this.v6NumberTextBox1.Location = new System.Drawing.Point(226, 31);
+            this.v6NumberTextBox1.Location = new System.Drawing.Point(191, 22);
             this.v6NumberTextBox1.MaxLength = 1;
             this.v6NumberTextBox1.Name = "v6NumberTextBox1";
             this.v6NumberTextBox1.Size = new System.Drawing.Size(147, 23);
@@ -120,7 +120,7 @@
             this.v6VvarTextBoxColor1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6VvarTextBoxColor1.HoverColor = System.Drawing.Color.Yellow;
             this.v6VvarTextBoxColor1.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBoxColor1.Location = new System.Drawing.Point(226, 129);
+            this.v6VvarTextBoxColor1.Location = new System.Drawing.Point(191, 120);
             this.v6VvarTextBoxColor1.Margin = new System.Windows.Forms.Padding(4);
             this.v6VvarTextBoxColor1.Name = "v6VvarTextBoxColor1";
             this.v6VvarTextBoxColor1.Size = new System.Drawing.Size(483, 23);
@@ -139,7 +139,7 @@
             this.TxtTen_nh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtTen_nh.HoverColor = System.Drawing.Color.Yellow;
             this.TxtTen_nh.LeaveColor = System.Drawing.Color.White;
-            this.TxtTen_nh.Location = new System.Drawing.Point(226, 98);
+            this.TxtTen_nh.Location = new System.Drawing.Point(191, 89);
             this.TxtTen_nh.Margin = new System.Windows.Forms.Padding(4);
             this.TxtTen_nh.Name = "TxtTen_nh";
             this.TxtTen_nh.Size = new System.Drawing.Size(483, 23);
@@ -147,9 +147,10 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00514";
             this.label1.AccessibleName = "";
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(54, 31);
+            this.label1.Location = new System.Drawing.Point(19, 22);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 17);
@@ -158,9 +159,10 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "ADDEDITL00004";
             this.label3.AccessibleName = "";
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(54, 133);
+            this.label3.Location = new System.Drawing.Point(19, 124);
             this.label3.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 17);
@@ -169,12 +171,13 @@
             // 
             // checkBox1
             // 
+            this.checkBox1.AccessibleDescription = "ADDEDITC00001";
             this.checkBox1.AccessibleName = "status";
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(228, 164);
+            this.checkBox1.Location = new System.Drawing.Point(193, 155);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(5);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(111, 21);
@@ -184,8 +187,9 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00022";
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(54, 165);
+            this.label4.Location = new System.Drawing.Point(19, 156);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 17);
@@ -194,9 +198,10 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00553";
             this.label5.AccessibleName = "";
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(54, 98);
+            this.label5.Location = new System.Drawing.Point(19, 89);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(126, 17);
@@ -205,9 +210,10 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ADDEDITL00552";
             this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(54, 66);
+            this.label2.Location = new System.Drawing.Point(19, 57);
             this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(120, 17);

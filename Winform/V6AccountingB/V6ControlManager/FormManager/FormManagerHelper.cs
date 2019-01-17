@@ -7,6 +7,7 @@ using System.IO;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager.ChungTuManager;
+using V6ControlManager.FormManager.DanhMucManager;
 using V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu;
 using V6ControlManager.FormManager.MenuManager;
 using V6ControlManager.FormManager.ReportManager.DanhMuc;
@@ -56,7 +57,15 @@ namespace V6ControlManager.FormManager
             switch (code)
             {
                 case "CORPLAN":
-                    return new CorplanContainer(itemId);
+                    if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift)
+                    {
+                        //shift_is_down = true;
+                        return new DanhMucView(itemId, code, V6TableName.CorpLan.ToString(), "", "", false);
+                    }
+                    else
+                    {
+                        return new CorplanContainer(itemId);
+                    }
                 case "V6TOOLS":
                     return new ToolManager.AllTool(itemId);
             }

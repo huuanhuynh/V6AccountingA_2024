@@ -61,7 +61,7 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // TxtMa_td2
+            // txtMA_TD2
             // 
             this.txtMA_TD2.AccessibleName = "MA_TD2";
             this.txtMA_TD2.BackColor = System.Drawing.SystemColors.Window;
@@ -80,6 +80,7 @@
             // 
             // checkBox1
             // 
+            this.checkBox1.AccessibleDescription = "ADDEDITC00001";
             this.checkBox1.AccessibleName = "status";
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -95,6 +96,7 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00022";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(14, 118);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -123,6 +125,7 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00004";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(14, 86);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -133,6 +136,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00563";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(14, 22);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -161,6 +165,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ADDEDITL00564";
             this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(14, 54);

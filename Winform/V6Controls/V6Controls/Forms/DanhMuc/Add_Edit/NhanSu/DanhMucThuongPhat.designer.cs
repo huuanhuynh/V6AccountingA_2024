@@ -43,6 +43,7 @@
             // 
             // checkBox1
             // 
+            this.checkBox1.AccessibleDescription = "ADDEDITC00001";
             this.checkBox1.AccessibleName = "status";
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -58,8 +59,9 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00022";
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 140);
+            this.label4.Location = new System.Drawing.Point(18, 137);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(73, 17);
@@ -79,7 +81,7 @@
             this.txtTenLoai2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTenLoai2.HoverColor = System.Drawing.Color.Yellow;
             this.txtTenLoai2.LeaveColor = System.Drawing.Color.White;
-            this.txtTenLoai2.Location = new System.Drawing.Point(154, 77);
+            this.txtTenLoai2.Location = new System.Drawing.Point(154, 79);
             this.txtTenLoai2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtTenLoai2.Name = "txtTenLoai2";
             this.txtTenLoai2.Size = new System.Drawing.Size(417, 23);
@@ -98,7 +100,7 @@
             this.txtTenLoai.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTenLoai.HoverColor = System.Drawing.Color.Yellow;
             this.txtTenLoai.LeaveColor = System.Drawing.Color.White;
-            this.txtTenLoai.Location = new System.Drawing.Point(154, 48);
+            this.txtTenLoai.Location = new System.Drawing.Point(154, 49);
             this.txtTenLoai.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtTenLoai.Name = "txtTenLoai";
             this.txtTenLoai.Size = new System.Drawing.Size(417, 23);
@@ -106,9 +108,9 @@
             // 
             // v6Label1
             // 
-            this.v6Label1.AccessibleDescription = "";
+            this.v6Label1.AccessibleDescription = "ADDEDITL00586";
             this.v6Label1.AutoSize = true;
-            this.v6Label1.Location = new System.Drawing.Point(18, 80);
+            this.v6Label1.Location = new System.Drawing.Point(18, 79);
             this.v6Label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.v6Label1.Name = "v6Label1";
             this.v6Label1.Size = new System.Drawing.Size(71, 17);
@@ -117,9 +119,9 @@
             // 
             // v6Label17
             // 
-            this.v6Label17.AccessibleDescription = "";
+            this.v6Label17.AccessibleDescription = "ADDEDITL00299";
             this.v6Label17.AutoSize = true;
-            this.v6Label17.Location = new System.Drawing.Point(18, 48);
+            this.v6Label17.Location = new System.Drawing.Point(18, 50);
             this.v6Label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.v6Label17.Name = "v6Label17";
             this.v6Label17.Size = new System.Drawing.Size(59, 17);
@@ -148,6 +150,7 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00298";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(18, 21);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -158,9 +161,9 @@
             // 
             // v6Label2
             // 
-            this.v6Label2.AccessibleDescription = "";
+            this.v6Label2.AccessibleDescription = "ADDEDITL00099";
             this.v6Label2.AutoSize = true;
-            this.v6Label2.Location = new System.Drawing.Point(18, 111);
+            this.v6Label2.Location = new System.Drawing.Point(18, 108);
             this.v6Label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.v6Label2.Name = "v6Label2";
             this.v6Label2.Size = new System.Drawing.Size(36, 17);
@@ -169,7 +172,7 @@
             // 
             // v6Label3
             // 
-            this.v6Label3.AccessibleDescription = "";
+            this.v6Label3.AccessibleDescription = "ADDEDITL00587";
             this.v6Label3.AutoSize = true;
             this.v6Label3.Location = new System.Drawing.Point(205, 111);
             this.v6Label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -192,7 +195,7 @@
             this.txtKieu.HoverColor = System.Drawing.Color.Yellow;
             this.txtKieu.LeaveColor = System.Drawing.Color.White;
             this.txtKieu.LimitCharacters = "12";
-            this.txtKieu.Location = new System.Drawing.Point(154, 108);
+            this.txtKieu.Location = new System.Drawing.Point(154, 109);
             this.txtKieu.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtKieu.MaxLength = 1;
             this.txtKieu.Name = "txtKieu";

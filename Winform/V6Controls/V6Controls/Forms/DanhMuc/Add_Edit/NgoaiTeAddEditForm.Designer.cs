@@ -102,7 +102,7 @@
             this.number.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.number.HoverColor = System.Drawing.Color.Yellow;
             this.number.LeaveColor = System.Drawing.Color.White;
-            this.number.Location = new System.Drawing.Point(174, 177);
+            this.number.Location = new System.Drawing.Point(174, 175);
             this.number.Margin = new System.Windows.Forms.Padding(5);
             this.number.Name = "number";
             this.number.Size = new System.Drawing.Size(135, 23);
@@ -126,7 +126,7 @@
             this.only2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.only2.HoverColor = System.Drawing.Color.Yellow;
             this.only2.LeaveColor = System.Drawing.Color.White;
-            this.only2.Location = new System.Drawing.Point(479, 147);
+            this.only2.Location = new System.Drawing.Point(479, 144);
             this.only2.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.only2.Name = "only2";
             this.only2.Size = new System.Drawing.Size(71, 23);
@@ -143,7 +143,7 @@
             this.endpoint2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.endpoint2.HoverColor = System.Drawing.Color.Yellow;
             this.endpoint2.LeaveColor = System.Drawing.Color.White;
-            this.endpoint2.Location = new System.Drawing.Point(403, 147);
+            this.endpoint2.Location = new System.Drawing.Point(403, 144);
             this.endpoint2.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.endpoint2.Name = "endpoint2";
             this.endpoint2.Size = new System.Drawing.Size(71, 23);
@@ -160,7 +160,7 @@
             this.only1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.only1.HoverColor = System.Drawing.Color.Yellow;
             this.only1.LeaveColor = System.Drawing.Color.White;
-            this.only1.Location = new System.Drawing.Point(479, 114);
+            this.only1.Location = new System.Drawing.Point(479, 113);
             this.only1.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.only1.Name = "only1";
             this.only1.Size = new System.Drawing.Size(71, 23);
@@ -177,7 +177,7 @@
             this.end2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.end2.HoverColor = System.Drawing.Color.Yellow;
             this.end2.LeaveColor = System.Drawing.Color.White;
-            this.end2.Location = new System.Drawing.Point(250, 147);
+            this.end2.Location = new System.Drawing.Point(250, 144);
             this.end2.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.end2.Name = "end2";
             this.end2.Size = new System.Drawing.Size(71, 23);
@@ -194,7 +194,7 @@
             this.endpoint1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.endpoint1.HoverColor = System.Drawing.Color.Yellow;
             this.endpoint1.LeaveColor = System.Drawing.Color.White;
-            this.endpoint1.Location = new System.Drawing.Point(403, 114);
+            this.endpoint1.Location = new System.Drawing.Point(403, 113);
             this.endpoint1.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.endpoint1.Name = "endpoint1";
             this.endpoint1.Size = new System.Drawing.Size(71, 23);
@@ -211,7 +211,7 @@
             this.point2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.point2.HoverColor = System.Drawing.Color.Yellow;
             this.point2.LeaveColor = System.Drawing.Color.White;
-            this.point2.Location = new System.Drawing.Point(327, 147);
+            this.point2.Location = new System.Drawing.Point(327, 144);
             this.point2.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.point2.Name = "point2";
             this.point2.Size = new System.Drawing.Size(71, 23);
@@ -228,7 +228,7 @@
             this.end1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.end1.HoverColor = System.Drawing.Color.Yellow;
             this.end1.LeaveColor = System.Drawing.Color.White;
-            this.end1.Location = new System.Drawing.Point(250, 114);
+            this.end1.Location = new System.Drawing.Point(250, 113);
             this.end1.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.end1.Name = "end1";
             this.end1.Size = new System.Drawing.Size(71, 23);
@@ -245,7 +245,7 @@
             this.begin2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.begin2.HoverColor = System.Drawing.Color.Yellow;
             this.begin2.LeaveColor = System.Drawing.Color.White;
-            this.begin2.Location = new System.Drawing.Point(174, 147);
+            this.begin2.Location = new System.Drawing.Point(174, 144);
             this.begin2.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.begin2.Name = "begin2";
             this.begin2.Size = new System.Drawing.Size(71, 23);
@@ -262,7 +262,7 @@
             this.point1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.point1.HoverColor = System.Drawing.Color.Yellow;
             this.point1.LeaveColor = System.Drawing.Color.White;
-            this.point1.Location = new System.Drawing.Point(327, 114);
+            this.point1.Location = new System.Drawing.Point(327, 113);
             this.point1.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.point1.Name = "point1";
             this.point1.Size = new System.Drawing.Size(71, 23);
@@ -279,7 +279,7 @@
             this.begin1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.begin1.HoverColor = System.Drawing.Color.Yellow;
             this.begin1.LeaveColor = System.Drawing.Color.White;
-            this.begin1.Location = new System.Drawing.Point(174, 114);
+            this.begin1.Location = new System.Drawing.Point(174, 113);
             this.begin1.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.begin1.Name = "begin1";
             this.begin1.Size = new System.Drawing.Size(71, 23);
@@ -306,6 +306,7 @@
             // 
             // checkBox1
             // 
+            this.checkBox1.AccessibleDescription = "ADDEDITC00001";
             this.checkBox1.AccessibleName = "status";
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -321,6 +322,7 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00022";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(13, 360);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -350,6 +352,7 @@
             // 
             // lblDocSoTien
             // 
+            this.lblDocSoTien.AccessibleDescription = ".";
             this.lblDocSoTien.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -362,8 +365,9 @@
             // 
             // label6
             // 
+            this.label6.AccessibleDescription = "ADDEDITL00511";
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(14, 183);
+            this.label6.Location = new System.Drawing.Point(13, 182);
             this.label6.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(56, 17);
@@ -372,6 +376,7 @@
             // 
             // label7
             // 
+            this.label7.AccessibleDescription = "ADDEDITL00510";
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(13, 150);
             this.label7.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -382,8 +387,9 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "ADDEDITL00509";
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 117);
+            this.label3.Location = new System.Drawing.Point(13, 118);
             this.label3.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(157, 17);
@@ -392,6 +398,7 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00508";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(13, 86);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -402,6 +409,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00506";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 22);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -423,7 +431,7 @@
             this.TxtTen_nt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtTen_nt.HoverColor = System.Drawing.Color.Yellow;
             this.TxtTen_nt.LeaveColor = System.Drawing.Color.White;
-            this.TxtTen_nt.Location = new System.Drawing.Point(174, 50);
+            this.TxtTen_nt.Location = new System.Drawing.Point(174, 51);
             this.TxtTen_nt.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.TxtTen_nt.Name = "TxtTen_nt";
             this.TxtTen_nt.Size = new System.Drawing.Size(472, 23);
@@ -431,6 +439,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ADDEDITL00507";
             this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(13, 54);

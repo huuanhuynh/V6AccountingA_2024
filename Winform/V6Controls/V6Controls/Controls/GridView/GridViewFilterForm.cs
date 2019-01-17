@@ -2,7 +2,6 @@
 using System.Data;
 using System.Windows.Forms;
 using V6Controls.Forms;
-using V6Tools;
 using V6Tools.V6Convert;
 
 namespace V6Controls.Controls.GridView

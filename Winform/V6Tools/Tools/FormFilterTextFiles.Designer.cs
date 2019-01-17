@@ -88,7 +88,9 @@
             this.txtFolder.Size = new System.Drawing.Size(516, 20);
             this.txtFolder.TabIndex = 1;
             this.txtFolder.Text = "E:\\Git\\MicrosoftSource\\Framework35\\Winform";
+            this.txtFolder.TextChanged += new System.EventHandler(this.txtFolder_TextChanged);
             this.txtFolder.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFolder_KeyDown);
+            this.txtFolder.Leave += new System.EventHandler(this.txtFolder_Leave);
             // 
             // txt11
             // 
@@ -100,6 +102,8 @@
             this.txt11.TabIndex = 7;
             this.txt11.Text = "[A].Text = \"B";
             this.toolTip1.SetToolTip(this.txt11, "[A]Contents[B]");
+            this.txt11.TextChanged += new System.EventHandler(this.txtFolder_TextChanged);
+            this.txt11.Leave += new System.EventHandler(this.txtFolder_Leave);
             // 
             // richView
             // 
@@ -151,6 +155,8 @@
             this.txt12.Name = "txt12";
             this.txt12.Size = new System.Drawing.Size(539, 20);
             this.txt12.TabIndex = 8;
+            this.txt12.TextChanged += new System.EventHandler(this.txtFolder_TextChanged);
+            this.txt12.Leave += new System.EventHandler(this.txtFolder_Leave);
             // 
             // txt13
             // 
@@ -160,6 +166,8 @@
             this.txt13.Name = "txt13";
             this.txt13.Size = new System.Drawing.Size(539, 20);
             this.txt13.TabIndex = 9;
+            this.txt13.TextChanged += new System.EventHandler(this.txtFolder_TextChanged);
+            this.txt13.Leave += new System.EventHandler(this.txtFolder_Leave);
             // 
             // txt01
             // 
@@ -171,6 +179,8 @@
             this.txt01.TabIndex = 11;
             this.txt01.Text = "[A].AccessibleD";
             this.toolTip1.SetToolTip(this.txt01, "[A]Contents[B]");
+            this.txt01.TextChanged += new System.EventHandler(this.txtFolder_TextChanged);
+            this.txt01.Leave += new System.EventHandler(this.txtFolder_Leave);
             // 
             // txt02
             // 
@@ -180,7 +190,8 @@
             this.txt02.Name = "txt02";
             this.txt02.Size = new System.Drawing.Size(585, 20);
             this.txt02.TabIndex = 12;
-            this.txt02.Text = "namespace V6Tools";
+            this.txt02.TextChanged += new System.EventHandler(this.txtFolder_TextChanged);
+            this.txt02.Leave += new System.EventHandler(this.txtFolder_Leave);
             // 
             // txt03
             // 
@@ -190,7 +201,8 @@
             this.txt03.Name = "txt03";
             this.txt03.Size = new System.Drawing.Size(585, 20);
             this.txt03.TabIndex = 13;
-            this.txt03.Text = "H_Controls";
+            this.txt03.TextChanged += new System.EventHandler(this.txtFolder_TextChanged);
+            this.txt03.Leave += new System.EventHandler(this.txtFolder_Leave);
             // 
             // label2
             // 
@@ -209,7 +221,8 @@
             this.txtExt.Size = new System.Drawing.Size(120, 20);
             this.txtExt.TabIndex = 4;
             this.txtExt.Text = "cs";
-            this.txtExt.Leave += new System.EventHandler(this.txtExt_Leave);
+            this.txtExt.TextChanged += new System.EventHandler(this.txtFolder_TextChanged);
+            this.txtExt.Leave += new System.EventHandler(this.txtFolder_Leave);
             // 
             // listBox2
             // 
@@ -307,6 +320,8 @@
             this.txtAContains.Name = "txtAContains";
             this.txtAContains.Size = new System.Drawing.Size(585, 20);
             this.txtAContains.TabIndex = 12;
+            this.txtAContains.TextChanged += new System.EventHandler(this.txtFolder_TextChanged);
+            this.txtAContains.Leave += new System.EventHandler(this.txtFolder_Leave);
             // 
             // txtBContains
             // 
@@ -316,6 +331,8 @@
             this.txtBContains.Name = "txtBContains";
             this.txtBContains.Size = new System.Drawing.Size(585, 20);
             this.txtBContains.TabIndex = 12;
+            this.txtBContains.TextChanged += new System.EventHandler(this.txtFolder_TextChanged);
+            this.txtBContains.Leave += new System.EventHandler(this.txtFolder_Leave);
             // 
             // label3
             // 
@@ -371,6 +388,7 @@
             this.Name = "FormFilterTextFiles";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormFilterTextFiles";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormFilterTextFiles_FormClosing);
             this.Load += new System.EventHandler(this.FormFilterTextFiles_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

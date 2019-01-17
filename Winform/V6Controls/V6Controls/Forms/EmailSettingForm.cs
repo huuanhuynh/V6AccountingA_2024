@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO.Ports;
 using System.Windows.Forms;
-using GSM;
 using V6Tools;
 
 namespace V6Controls.Forms
@@ -20,7 +17,6 @@ namespace V6Controls.Forms
             //txtEmail.Text = txtEmail.Text;
             //txtPassword
         }
-
 
         private void btnSend_Click(object sender, EventArgs e)
         {

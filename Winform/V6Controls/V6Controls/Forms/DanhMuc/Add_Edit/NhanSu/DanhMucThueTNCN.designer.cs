@@ -61,7 +61,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(9, 7, 9, 7);
-            this.groupBox1.Size = new System.Drawing.Size(465, 237);
+            this.groupBox1.Size = new System.Drawing.Size(465, 191);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
@@ -77,7 +77,7 @@
             this.txtStt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtStt.HoverColor = System.Drawing.Color.Yellow;
             this.txtStt.LeaveColor = System.Drawing.Color.White;
-            this.txtStt.Location = new System.Drawing.Point(235, 49);
+            this.txtStt.Location = new System.Drawing.Point(234, 26);
             this.txtStt.Name = "txtStt";
             this.txtStt.Size = new System.Drawing.Size(72, 23);
             this.txtStt.TabIndex = 0;
@@ -100,7 +100,7 @@
             this.txtThue.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtThue.HoverColor = System.Drawing.Color.Yellow;
             this.txtThue.LeaveColor = System.Drawing.Color.White;
-            this.txtThue.Location = new System.Drawing.Point(235, 130);
+            this.txtThue.Location = new System.Drawing.Point(234, 107);
             this.txtThue.Margin = new System.Windows.Forms.Padding(4);
             this.txtThue.Name = "txtThue";
             this.txtThue.Size = new System.Drawing.Size(72, 23);
@@ -124,7 +124,7 @@
             this.txtTyLe.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTyLe.HoverColor = System.Drawing.Color.Yellow;
             this.txtTyLe.LeaveColor = System.Drawing.Color.White;
-            this.txtTyLe.Location = new System.Drawing.Point(235, 103);
+            this.txtTyLe.Location = new System.Drawing.Point(234, 80);
             this.txtTyLe.Margin = new System.Windows.Forms.Padding(4);
             this.txtTyLe.Name = "txtTyLe";
             this.txtTyLe.Size = new System.Drawing.Size(149, 23);
@@ -148,7 +148,7 @@
             this.TXTTIEN.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TXTTIEN.HoverColor = System.Drawing.Color.Yellow;
             this.TXTTIEN.LeaveColor = System.Drawing.Color.White;
-            this.TXTTIEN.Location = new System.Drawing.Point(235, 75);
+            this.TXTTIEN.Location = new System.Drawing.Point(234, 52);
             this.TXTTIEN.Margin = new System.Windows.Forms.Padding(4);
             this.TXTTIEN.Name = "TXTTIEN";
             this.TXTTIEN.Size = new System.Drawing.Size(149, 23);
@@ -163,8 +163,9 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00184";
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 133);
+            this.label1.Location = new System.Drawing.Point(20, 110);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 17);
@@ -173,9 +174,9 @@
             // 
             // v6Label1
             // 
-            this.v6Label1.AccessibleDescription = "";
+            this.v6Label1.AccessibleDescription = "ADDEDITL00598";
             this.v6Label1.AutoSize = true;
-            this.v6Label1.Location = new System.Drawing.Point(31, 106);
+            this.v6Label1.Location = new System.Drawing.Point(20, 83);
             this.v6Label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.v6Label1.Name = "v6Label1";
             this.v6Label1.Size = new System.Drawing.Size(188, 17);
@@ -184,9 +185,9 @@
             // 
             // v6Label6
             // 
-            this.v6Label6.AccessibleDescription = "";
+            this.v6Label6.AccessibleDescription = "ADDEDITL00597";
             this.v6Label6.AutoSize = true;
-            this.v6Label6.Location = new System.Drawing.Point(31, 78);
+            this.v6Label6.Location = new System.Drawing.Point(20, 55);
             this.v6Label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.v6Label6.Name = "v6Label6";
             this.v6Label6.Size = new System.Drawing.Size(197, 17);
@@ -195,9 +196,10 @@
             // 
             // checkBox1
             // 
+            this.checkBox1.AccessibleDescription = "ADDEDITC00001";
             this.checkBox1.AccessibleName = "status";
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(235, 180);
+            this.checkBox1.Location = new System.Drawing.Point(234, 157);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(107, 21);
@@ -207,9 +209,9 @@
             // 
             // label15
             // 
-            this.label15.AccessibleDescription = "status";
+            this.label15.AccessibleDescription = "ADDEDITL00022";
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(31, 181);
+            this.label15.Location = new System.Drawing.Point(20, 158);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(73, 17);
@@ -218,8 +220,9 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00246";
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(31, 52);
+            this.label5.Location = new System.Drawing.Point(20, 29);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 17);
@@ -234,7 +237,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DanhMucThueTNCN";
-            this.Size = new System.Drawing.Size(483, 251);
+            this.Size = new System.Drawing.Size(483, 205);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

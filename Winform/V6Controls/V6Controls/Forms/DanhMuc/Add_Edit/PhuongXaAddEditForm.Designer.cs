@@ -108,6 +108,7 @@
             // 
             // checkBox1
             // 
+            this.checkBox1.AccessibleDescription = "ADDEDITC00001";
             this.checkBox1.AccessibleName = "status";
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(177, 123);
@@ -139,8 +140,9 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00022";
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 127);
+            this.label5.Location = new System.Drawing.Point(8, 123);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(78, 17);
@@ -149,6 +151,7 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00036";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(8, 11);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -680,6 +683,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00591";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(10, 18);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -708,6 +712,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ADDEDITL00592";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(10, 49);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -718,6 +723,7 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "ADDEDITL00593";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(10, 82);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);

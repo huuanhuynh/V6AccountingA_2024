@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtghi_chu2 = new V6Controls.V6ColorTextBox();
+            this.txtghi_chu = new V6Controls.V6ColorTextBox();
             this.chkStatus = new V6Controls.V6CheckBox();
             this.txtLoai_yt = new V6Controls.V6VvarTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtghi_chu2 = new V6Controls.V6ColorTextBox();
-            this.txtghi_chu = new V6Controls.V6ColorTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,14 +61,51 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // txtghi_chu2
+            // 
+            this.txtghi_chu2.AccessibleName = "ghi_chu2";
+            this.txtghi_chu2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtghi_chu2.BackColor = System.Drawing.Color.White;
+            this.txtghi_chu2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtghi_chu2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtghi_chu2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtghi_chu2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtghi_chu2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtghi_chu2.LeaveColor = System.Drawing.Color.White;
+            this.txtghi_chu2.Location = new System.Drawing.Point(175, 89);
+            this.txtghi_chu2.Margin = new System.Windows.Forms.Padding(4);
+            this.txtghi_chu2.Name = "txtghi_chu2";
+            this.txtghi_chu2.Size = new System.Drawing.Size(526, 23);
+            this.txtghi_chu2.TabIndex = 2;
+            // 
+            // txtghi_chu
+            // 
+            this.txtghi_chu.AccessibleName = "ghi_chu";
+            this.txtghi_chu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtghi_chu.BackColor = System.Drawing.Color.White;
+            this.txtghi_chu.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtghi_chu.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtghi_chu.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtghi_chu.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtghi_chu.HoverColor = System.Drawing.Color.Yellow;
+            this.txtghi_chu.LeaveColor = System.Drawing.Color.White;
+            this.txtghi_chu.Location = new System.Drawing.Point(175, 57);
+            this.txtghi_chu.Margin = new System.Windows.Forms.Padding(4);
+            this.txtghi_chu.Name = "txtghi_chu";
+            this.txtghi_chu.Size = new System.Drawing.Size(526, 23);
+            this.txtghi_chu.TabIndex = 1;
+            // 
             // chkStatus
             // 
+            this.chkStatus.AccessibleDescription = "ADDEDITC00001";
             this.chkStatus.AccessibleName = "status";
             this.chkStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chkStatus.AutoSize = true;
-            this.chkStatus.Location = new System.Drawing.Point(227, 135);
+            this.chkStatus.Location = new System.Drawing.Point(177, 126);
             this.chkStatus.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.chkStatus.Name = "chkStatus";
             this.chkStatus.Size = new System.Drawing.Size(111, 21);
@@ -87,15 +124,16 @@
             this.txtLoai_yt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtLoai_yt.HoverColor = System.Drawing.Color.Yellow;
             this.txtLoai_yt.LeaveColor = System.Drawing.Color.White;
-            this.txtLoai_yt.Location = new System.Drawing.Point(225, 34);
+            this.txtLoai_yt.Location = new System.Drawing.Point(175, 25);
             this.txtLoai_yt.Name = "txtLoai_yt";
             this.txtLoai_yt.Size = new System.Drawing.Size(171, 23);
             this.txtLoai_yt.TabIndex = 0;
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00022";
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(70, 135);
+            this.label4.Location = new System.Drawing.Point(20, 126);
             this.label4.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(73, 17);
@@ -104,8 +142,9 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00004";
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(70, 101);
+            this.label5.Location = new System.Drawing.Point(20, 92);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(49, 17);
@@ -114,8 +153,9 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00444";
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(70, 37);
+            this.label1.Location = new System.Drawing.Point(20, 28);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 17);
@@ -124,50 +164,15 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ADDEDITL00445";
             this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(70, 69);
+            this.label2.Location = new System.Drawing.Point(20, 60);
             this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(102, 17);
             this.label2.TabIndex = 4;
             this.label2.Text = "Tên loại yếu tố";
-            // 
-            // txtghi_chu2
-            // 
-            this.txtghi_chu2.AccessibleName = "ghi_chu2";
-            this.txtghi_chu2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtghi_chu2.BackColor = System.Drawing.Color.White;
-            this.txtghi_chu2.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtghi_chu2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtghi_chu2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtghi_chu2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtghi_chu2.HoverColor = System.Drawing.Color.Yellow;
-            this.txtghi_chu2.LeaveColor = System.Drawing.Color.White;
-            this.txtghi_chu2.Location = new System.Drawing.Point(225, 98);
-            this.txtghi_chu2.Margin = new System.Windows.Forms.Padding(4);
-            this.txtghi_chu2.Name = "txtghi_chu2";
-            this.txtghi_chu2.Size = new System.Drawing.Size(526, 23);
-            this.txtghi_chu2.TabIndex = 2;
-            // 
-            // txtghi_chu
-            // 
-            this.txtghi_chu.AccessibleName = "ghi_chu";
-            this.txtghi_chu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtghi_chu.BackColor = System.Drawing.Color.White;
-            this.txtghi_chu.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtghi_chu.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtghi_chu.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtghi_chu.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtghi_chu.HoverColor = System.Drawing.Color.Yellow;
-            this.txtghi_chu.LeaveColor = System.Drawing.Color.White;
-            this.txtghi_chu.Location = new System.Drawing.Point(225, 66);
-            this.txtghi_chu.Margin = new System.Windows.Forms.Padding(4);
-            this.txtghi_chu.Name = "txtghi_chu";
-            this.txtghi_chu.Size = new System.Drawing.Size(526, 23);
-            this.txtghi_chu.TabIndex = 1;
             // 
             // Acosxlt_alloaiytAddEditForm
             // 

@@ -226,6 +226,7 @@
             // 
             // gctd3u
             // 
+            this.gctd3u.AccessibleDescription = "ADDEDITC00001";
             this.gctd3u.AutoSize = true;
             this.gctd3u.Location = new System.Drawing.Point(557, 282);
             this.gctd3u.Margin = new System.Windows.Forms.Padding(4);
@@ -237,6 +238,7 @@
             // 
             // sltd3u
             // 
+            this.sltd3u.AccessibleDescription = "ADDEDITC00001";
             this.sltd3u.AutoSize = true;
             this.sltd3u.Location = new System.Drawing.Point(557, 213);
             this.sltd3u.Margin = new System.Windows.Forms.Padding(4);
@@ -248,6 +250,7 @@
             // 
             // ngaytd3u
             // 
+            this.ngaytd3u.AccessibleDescription = "ADDEDITC00001";
             this.ngaytd3u.AutoSize = true;
             this.ngaytd3u.Location = new System.Drawing.Point(557, 144);
             this.ngaytd3u.Margin = new System.Windows.Forms.Padding(4);
@@ -259,6 +262,7 @@
             // 
             // matd3u
             // 
+            this.matd3u.AccessibleDescription = "ADDEDITC00001";
             this.matd3u.AutoSize = true;
             this.matd3u.Location = new System.Drawing.Point(557, 75);
             this.matd3u.Margin = new System.Windows.Forms.Padding(4);
@@ -270,6 +274,7 @@
             // 
             // gctd2u
             // 
+            this.gctd2u.AccessibleDescription = "ADDEDITC00001";
             this.gctd2u.AutoSize = true;
             this.gctd2u.Location = new System.Drawing.Point(557, 259);
             this.gctd2u.Margin = new System.Windows.Forms.Padding(4);
@@ -281,6 +286,7 @@
             // 
             // sltd2u
             // 
+            this.sltd2u.AccessibleDescription = "ADDEDITC00001";
             this.sltd2u.AutoSize = true;
             this.sltd2u.Location = new System.Drawing.Point(557, 190);
             this.sltd2u.Margin = new System.Windows.Forms.Padding(4);
@@ -292,6 +298,7 @@
             // 
             // ngaytd2u
             // 
+            this.ngaytd2u.AccessibleDescription = "ADDEDITC00001";
             this.ngaytd2u.AutoSize = true;
             this.ngaytd2u.Location = new System.Drawing.Point(557, 121);
             this.ngaytd2u.Margin = new System.Windows.Forms.Padding(4);
@@ -303,6 +310,7 @@
             // 
             // matd2u
             // 
+            this.matd2u.AccessibleDescription = "ADDEDITC00001";
             this.matd2u.AutoSize = true;
             this.matd2u.Location = new System.Drawing.Point(557, 52);
             this.matd2u.Margin = new System.Windows.Forms.Padding(4);
@@ -314,6 +322,7 @@
             // 
             // gctd1u
             // 
+            this.gctd1u.AccessibleDescription = "ADDEDITC00001";
             this.gctd1u.AutoSize = true;
             this.gctd1u.Location = new System.Drawing.Point(557, 236);
             this.gctd1u.Margin = new System.Windows.Forms.Padding(4);
@@ -325,6 +334,7 @@
             // 
             // sltd1u
             // 
+            this.sltd1u.AccessibleDescription = "ADDEDITC00001";
             this.sltd1u.AutoSize = true;
             this.sltd1u.Location = new System.Drawing.Point(557, 167);
             this.sltd1u.Margin = new System.Windows.Forms.Padding(4);
@@ -336,6 +346,7 @@
             // 
             // ngaytd1u
             // 
+            this.ngaytd1u.AccessibleDescription = "ADDEDITC00001";
             this.ngaytd1u.AutoSize = true;
             this.ngaytd1u.Location = new System.Drawing.Point(557, 98);
             this.ngaytd1u.Margin = new System.Windows.Forms.Padding(4);
@@ -347,6 +358,7 @@
             // 
             // matd1u
             // 
+            this.matd1u.AccessibleDescription = "ADDEDITC00001";
             this.matd1u.AutoSize = true;
             this.matd1u.Location = new System.Drawing.Point(557, 29);
             this.matd1u.Margin = new System.Windows.Forms.Padding(4);
@@ -479,6 +491,7 @@
             // 
             // label15
             // 
+            this.label15.AccessibleDescription = "ADDEDITL00596";
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(500, 8);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -489,6 +502,7 @@
             // 
             // label14
             // 
+            this.label14.AccessibleDescription = "AARCTAR1-INO00012";
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(326, 8);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -499,6 +513,7 @@
             // 
             // label13
             // 
+            this.label13.AccessibleDescription = "ASOCTSOA-INL00018";
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(155, 8);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1096,6 +1111,7 @@
             // 
             // btnNhan
             // 
+            this.btnNhan.AccessibleDescription = "ADDEDITB00001";
             this.btnNhan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnNhan.Location = new System.Drawing.Point(12, 381);
             this.btnNhan.Name = "btnNhan";
@@ -1107,6 +1123,7 @@
             // 
             // btnHuy
             // 
+            this.btnHuy.AccessibleDescription = "ADDEDITB00002";
             this.btnHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnHuy.Location = new System.Drawing.Point(102, 381);

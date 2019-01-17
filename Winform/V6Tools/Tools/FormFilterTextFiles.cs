@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using H;
 using V6Tools;
 using V6Tools.V6Reader;
 
@@ -63,7 +64,7 @@ namespace Tools
         {
             InitializeComponent();
         }
-
+        Setting Setting = new Setting("Setting.ini");
         private readonly FolderBrowserDialog f = new FolderBrowserDialog();
         private void GetFolder()
         {
@@ -134,7 +135,7 @@ namespace Tools
             var o = chkCase.Checked ? StringComparison.Ordinal : StringComparison.InvariantCultureIgnoreCase;
             var fileText = myFileInfo.Text;
 
-            bool useHead=false, useTail = false;
+            bool useHead = false, useTail = false;
             string headText = "", tailText = "";
             var searchText = txt11.Text;
             if (searchText.StartsWith("[A]"))
@@ -156,76 +157,96 @@ namespace Tools
             }
             else
             {
-                int searchTextIndex0 = fileText.IndexOf(searchText, o);
-                // Lấy head
-                if (useHead)
+                int searchTextIndex0 = 0;
+                while (searchTextIndex0 > -1)
                 {
-                    int searchTextIndexA = searchTextIndex0-1;
-                    while (searchTextIndexA > 0 && fileText[searchTextIndexA] != '\n')
-                    {
-                        headText = fileText[searchTextIndexA] + headText;
-                        searchTextIndexA--;
-                    }
-                    headText = headText.Trim();
-                }
+                    searchTextIndex0 = fileText.IndexOf(searchText, searchTextIndex0 + searchText.Length, o);
 
-                if (useTail)
-                {
-                    int searchTextIndexB = searchTextIndex0 + searchText.Length;
-                    while (fileText[searchTextIndexB] != '\n')
+                    // Lấy head
+                    if (useHead)
                     {
-                        tailText = tailText + fileText[searchTextIndexB];
-                        searchTextIndexB++;
+                        headText = "";
+                        int searchTextIndexA = searchTextIndex0 - 1;
+                        while (searchTextIndexA > 0 && fileText[searchTextIndexA] != '\n')
+                        {
+                            headText = fileText[searchTextIndexA] + headText;
+                            searchTextIndexA--;
+                        }
+                        headText = headText.Trim();
                     }
-                    tailText = tailText.Trim();
-                }
-                
-                //Check headText and tailText
-                if (useHead && txtAContains.Text != "")
-                {
-                    if (!headText.Contains(txtAContains.Text)) return false;
-                }
-                if (useTail && txtBContains.Text != "")
-                {
-                    if (!tailText.Contains(txtBContains.Text)) return false;
-                }
 
-                try
-                {
-                    // Lấy dòng
-                    int endLineIndex = fileText.IndexOf("\n", searchTextIndex0, o);
-                    string line = headText + fileText.Substring(searchTextIndex0, endLineIndex - searchTextIndex0 - 1);
-                    myFileInfo.FoundLine = line;
+                    if (useTail)
+                    {
+                        tailText = "";
+                        int searchTextIndexB = searchTextIndex0 + searchText.Length;
+                        while (fileText[searchTextIndexB] != '\n')
+                        {
+                            tailText = tailText + fileText[searchTextIndexB];
+                            searchTextIndexB++;
+                        }
+                        tailText = tailText.Trim();
+                    }
+
+                    //Check headText and tailText
+                    if (useHead && txtAContains.Text != "")
+                    {
+                        if (!headText.Contains(txtAContains.Text)) continue;
+                    }
+                    if (useTail && txtBContains.Text != "")
+                    {
+                        if (!tailText.Contains(txtBContains.Text)) continue;
+                    }
+
+                    try
+                    {
+                        // Lấy dòng
+                        int endLineIndex = fileText.IndexOf("\n", searchTextIndex0, o);
+                        string line = headText +
+                                      fileText.Substring(searchTextIndex0, endLineIndex - searchTextIndex0 - 1);
+                        myFileInfo.FoundLine = line;
+                    }
+                    catch (Exception ex)
+                    {
+                        ;
+                    }
+
+
+                    if (txt12.Text != "" &&
+                        (fileText.IndexOf(txt12.Text, o) < 0 ||
+                         (chkx212.Checked && fileText.IndexOf(txt12.Text, o) == fileText.LastIndexOf(txt12.Text, o))))
+                        continue;
+                    if (txt13.Text != "" &&
+                        (fileText.IndexOf(txt13.Text, o) < 0 ||
+                         (chkx213.Checked && fileText.IndexOf(txt13.Text, o) == fileText.LastIndexOf(txt13.Text, o))))
+                        continue;
+
+                    searchText = txt01.Text;
+                    if (useHead) searchText = searchText.Replace("[A]", headText);
+                    if (useTail) searchText = searchText.Replace("[B]", tailText);
+
+                    // Kiểm tra không chứa, nếu có chứa là sai.
+                    if (txt01.Text != "" && (fileText.IndexOf(searchText, o) >= 0)) continue;
+                    if (txt02.Text != "" && (fileText.IndexOf(txt02.Text, o) >= 0)) continue;
+                    if (txt03.Text != "" && (fileText.IndexOf(txt03.Text, o) >= 0)) continue;
+                    //myFileInfo.FoundInfos = fileText.IndexOf()
+                    // All pass;
+                    return true;
                 }
-                catch (Exception ex)
-                {
-                    ;
-                }
+                return false;
             }
-
-            if (txt12.Text != "" && (fileText.IndexOf(txt12.Text, o) < 0 || (chkx212.Checked && fileText.IndexOf(txt12.Text, o) == fileText.LastIndexOf(txt12.Text, o)))) return false;
-            if (txt13.Text != "" && (fileText.IndexOf(txt13.Text, o) < 0 || (chkx213.Checked && fileText.IndexOf(txt13.Text, o) == fileText.LastIndexOf(txt13.Text, o)))) return false;
-
-            
-
-            searchText = txt01.Text;
-            if (useHead) searchText = searchText.Replace("[A]", headText);
-            if (useTail) searchText = searchText.Replace("[B]", tailText);
-
-            // Kiểm tra không chứa, nếu có chứa là sai.
-            if (txt01.Text != "" && (fileText.IndexOf(searchText, o) >= 0)) return false;
-            if (txt02.Text != "" && (fileText.IndexOf(txt02.Text, o) >= 0)) return false;
-            if (txt03.Text != "" && (fileText.IndexOf(txt03.Text, o) >= 0)) return false;
-            //myFileInfo.FoundInfos = fileText.IndexOf()
-            return true;
         }
-
 
         private void FormFilterTextFiles_Load(object sender, EventArgs e)
         {
             try
             {
-                
+                Setting._autoSave = true;
+                txtExt.Leave += txtExt_Leave;
+                foreach (Control control in this.Controls)
+                {
+                    string s = Setting.GetSetting(control.Name);
+                    if (s != "") control.Text = s;
+                }
             }
             catch (Exception ex)
             {
@@ -275,6 +296,22 @@ namespace Tools
                 LoadFiles(chkSubFolder.Checked);
             }
         }
+
+        private void txtFolder_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtFolder_Leave(object sender, EventArgs e)
+        {
+            Setting.SetSetting(((Control)sender).Name, ((Control)sender).Text);
+        }
+
+        private void FormFilterTextFiles_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+        }
+
     }
 
     

@@ -40,6 +40,7 @@
             // 
             // checkBox1
             // 
+            this.checkBox1.AccessibleDescription = "ADDEDITC00001";
             this.checkBox1.AccessibleName = "status";
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -55,6 +56,7 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00022";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(18, 140);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
@@ -103,7 +105,7 @@
             // 
             // v6Label1
             // 
-            this.v6Label1.AccessibleDescription = "";
+            this.v6Label1.AccessibleDescription = "ADDEDITL00572";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(18, 80);
             this.v6Label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -114,7 +116,7 @@
             // 
             // v6Label17
             // 
-            this.v6Label17.AccessibleDescription = "";
+            this.v6Label17.AccessibleDescription = "ADDEDITL00571";
             this.v6Label17.AutoSize = true;
             this.v6Label17.Location = new System.Drawing.Point(18, 48);
             this.v6Label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -145,6 +147,7 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00570";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(18, 21);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);

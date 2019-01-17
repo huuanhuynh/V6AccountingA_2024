@@ -84,6 +84,7 @@
             // 
             // chkStatus
             // 
+            this.chkStatus.AccessibleDescription = "ADDEDITC00001";
             this.chkStatus.AccessibleName = "status";
             this.chkStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -99,6 +100,7 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00022";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(18, 169);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
@@ -128,6 +130,7 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00004";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(18, 135);
             this.label4.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
@@ -178,6 +181,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ADDEDITL00298";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(18, 33);
             this.label1.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
@@ -188,6 +192,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ADDEDITL00554";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(18, 67);
             this.label2.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
@@ -198,6 +203,7 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "ADDEDITL00555";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(18, 101);
             this.label3.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
