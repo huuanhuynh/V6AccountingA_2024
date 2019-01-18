@@ -646,6 +646,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 {
                     _keys["UID"] = DataOld["UID"];
                 }
+                if (_structTable.TableName.ToUpper() == "CORPLAN")
+                {
+                    _keys["ID"] = DataOld["ID"];
+                }
                 var result = Categories.Update(TableName, DataDic, _keys);
                 return result;
             }

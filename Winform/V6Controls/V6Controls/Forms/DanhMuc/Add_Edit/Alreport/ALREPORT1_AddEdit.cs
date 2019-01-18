@@ -22,7 +22,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
             {
                
             }
-
         }
   
         public override void V6F3Execute()

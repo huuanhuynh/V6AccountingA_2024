@@ -397,7 +397,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CorpLanAddEditForm";
             this.Size = new System.Drawing.Size(712, 257);
-            this.Load += new System.EventHandler(this.Algia2AddEditForm_Load);
+            this.Load += new System.EventHandler(this.Form_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

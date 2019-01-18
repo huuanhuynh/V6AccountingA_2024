@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using V6AccountingBusiness;
 using V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen;
-using V6Structs;
-using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {

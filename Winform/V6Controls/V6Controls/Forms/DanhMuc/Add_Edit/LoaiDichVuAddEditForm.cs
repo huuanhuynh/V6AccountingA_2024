@@ -29,9 +29,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 var v = Categories.IsExistOneCode_List(F8_table, "MA_LOAI", txtma_loai.Text);
                 txtma_loai.Enabled = !v;
-
-                
-
             }
             catch (Exception ex)
             {

@@ -244,6 +244,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.AccessibleDescription = "ADDEDITT00001";
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage1.Controls.Add(this.TxtTrang_thai);
             this.tabPage1.Controls.Add(this.label36);
@@ -587,6 +588,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.AccessibleDescription = "ADDEDITT00002";
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage2.Controls.Add(this.v6ColorTextBox2);
             this.tabPage2.Controls.Add(this.TxtMa_kh);
@@ -756,6 +758,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.AccessibleDescription = "ADDEDITT00003";
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage3.Controls.Add(this.v6DateTimeColor1);
             this.tabPage3.Controls.Add(this.v6DateTimeColor2);
@@ -1014,7 +1017,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox2
             // 
@@ -1037,7 +1040,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox1
             // 
@@ -1060,7 +1063,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // label14
             // 
@@ -1181,6 +1184,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.AccessibleDescription = "ADDEDITT00004";
             this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage4.Controls.Add(this.v6ColorTextBox18);
             this.tabPage4.Controls.Add(this.v6ColorTextBox8);

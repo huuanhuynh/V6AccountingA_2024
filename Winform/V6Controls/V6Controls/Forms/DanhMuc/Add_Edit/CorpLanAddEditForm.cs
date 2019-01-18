@@ -34,7 +34,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
-        private void Algia2AddEditForm_Load(object sender, EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
             if (TableName != V6TableName.CorpLan)
             {
@@ -49,6 +49,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 txtSname.Visible = false;
                 label9.Visible = false;
+            }
+        }
+
+        public override void DoBeforeAdd()
+        {
+            try
+            {
+                FixID();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoBeforeAdd", ex);
             }
         }
 

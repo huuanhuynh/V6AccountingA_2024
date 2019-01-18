@@ -40,8 +40,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 
                 var v = Categories.IsExistOneCode_List(F8_table, "MA_LOAI_LG", txtMa_loai_luong.Text);
                 txtMa_loai_luong.Enabled = !v;
-
-
             }
             catch (Exception ex)
             {

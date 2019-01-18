@@ -79,23 +79,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             this.TxtNam_bd.AccessibleName = "nam_bd";
             this.TxtNam_bd.BackColor = System.Drawing.Color.White;
+            this.TxtNam_bd.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtNam_bd.DecimalPlaces = 0;
-            this.TxtNam_bd.EnableColorEffect = true;
-            this.TxtNam_bd.EnableColorEffectOnMouseEnter = false;
             this.TxtNam_bd.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtNam_bd.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtNam_bd.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtNam_bd.HoverColor = System.Drawing.Color.Yellow;
             this.TxtNam_bd.LeaveColor = System.Drawing.Color.White;
-            this.TxtNam_bd.LimitCharacters = null;
             this.TxtNam_bd.Location = new System.Drawing.Point(620, 14);
             this.TxtNam_bd.Margin = new System.Windows.Forms.Padding(4);
-            this.TxtNam_bd.MaxNumDecimal = 0;
-            this.TxtNam_bd.MaxNumLength = 0;
             this.TxtNam_bd.Name = "TxtNam_bd";
             this.TxtNam_bd.Size = new System.Drawing.Size(110, 23);
             this.TxtNam_bd.TabIndex = 16;
             this.TxtNam_bd.Text = "0";
             this.TxtNam_bd.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.TxtNam_bd.GrayText = "";
             this.TxtNam_bd.Value = new decimal(new int[] {
             0,
             0,
@@ -133,7 +130,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.TxtNgay_dn.Name = "TxtNgay_dn";
             this.TxtNgay_dn.Size = new System.Drawing.Size(125, 23);
             this.TxtNgay_dn.TabIndex = 2;
-            this.TxtNgay_dn.TextTitle = null;
             // 
             // TxtNgay_ky1
             // 
@@ -153,27 +149,25 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.TxtNgay_ky1.Name = "TxtNgay_ky1";
             this.TxtNgay_ky1.Size = new System.Drawing.Size(125, 23);
             this.TxtNgay_ky1.TabIndex = 3;
-            this.TxtNgay_ky1.TextTitle = null;
             this.TxtNgay_ky1.Leave += new System.EventHandler(this.TxtNgay_ky1_Leave);
             // 
             // txtStt_rec
             // 
             this.txtStt_rec.AccessibleName = "Stt_rec";
             this.txtStt_rec.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.txtStt_rec.BrotherFields = null;
-            this.txtStt_rec.EnableColorEffect = true;
-            this.txtStt_rec.EnableColorEffectOnMouseEnter = false;
+            this.txtStt_rec.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtStt_rec.Enabled = false;
             this.txtStt_rec.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtStt_rec.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtStt_rec.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtStt_rec.HoverColor = System.Drawing.Color.Yellow;
             this.txtStt_rec.LeaveColor = System.Drawing.Color.White;
-            this.txtStt_rec.LimitCharacters = null;
             this.txtStt_rec.Location = new System.Drawing.Point(274, 17);
             this.txtStt_rec.Name = "txtStt_rec";
             this.txtStt_rec.ReadOnly = true;
             this.txtStt_rec.Size = new System.Drawing.Size(126, 23);
             this.txtStt_rec.TabIndex = 1;
-            this.txtStt_rec.GrayText = "";
+            this.txtStt_rec.TabStop = false;
             this.txtStt_rec.Visible = false;
             // 
             // label3
@@ -212,18 +206,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             // tabPage3
             // 
+            this.tabPage3.AccessibleDescription = "ADDEDITT00010";
             this.tabPage3.AutoScroll = true;
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage3.Size = new System.Drawing.Size(747, 292);
+            this.tabPage3.Size = new System.Drawing.Size(748, 292);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Các tùy chọn";
             // 
             // tabPage1
             // 
+            this.tabPage1.AccessibleDescription = "ADDEDITT00001";
             this.tabPage1.AutoScroll = true;
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage1.Controls.Add(this.v6ColorDateTimePick5);
@@ -236,7 +232,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(747, 292);
+            this.tabPage1.Size = new System.Drawing.Size(748, 292);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 
@@ -256,9 +252,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6ColorDateTimePick5.Location = new System.Drawing.Point(266, 78);
             this.v6ColorDateTimePick5.Margin = new System.Windows.Forms.Padding(5);
             this.v6ColorDateTimePick5.Name = "v6ColorDateTimePick5";
-            this.v6ColorDateTimePick5.Size = new System.Drawing.Size(125, 23);
+            this.v6ColorDateTimePick5.Size = new System.Drawing.Size(126, 23);
             this.v6ColorDateTimePick5.TabIndex = 6;
-            this.v6ColorDateTimePick5.TextTitle = null;
             // 
             // v6ColorDateTimePick4
             // 
@@ -276,9 +271,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6ColorDateTimePick4.Location = new System.Drawing.Point(266, 49);
             this.v6ColorDateTimePick4.Margin = new System.Windows.Forms.Padding(5);
             this.v6ColorDateTimePick4.Name = "v6ColorDateTimePick4";
-            this.v6ColorDateTimePick4.Size = new System.Drawing.Size(125, 23);
+            this.v6ColorDateTimePick4.Size = new System.Drawing.Size(126, 23);
             this.v6ColorDateTimePick4.TabIndex = 5;
-            this.v6ColorDateTimePick4.TextTitle = null;
             // 
             // v6ColorDateTimePick3
             // 
@@ -296,9 +290,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6ColorDateTimePick3.Location = new System.Drawing.Point(266, 16);
             this.v6ColorDateTimePick3.Margin = new System.Windows.Forms.Padding(5);
             this.v6ColorDateTimePick3.Name = "v6ColorDateTimePick3";
-            this.v6ColorDateTimePick3.Size = new System.Drawing.Size(125, 23);
+            this.v6ColorDateTimePick3.Size = new System.Drawing.Size(126, 23);
             this.v6ColorDateTimePick3.TabIndex = 4;
-            this.v6ColorDateTimePick3.TextTitle = null;
             // 
             // label7
             // 
@@ -338,29 +331,28 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6TabControl1.BackColor = Color.FromArgb(246, 243, 226);
             this.v6TabControl1.Controls.Add(this.tabPage1);
             this.v6TabControl1.Controls.Add(this.tabPage2);
             this.v6TabControl1.Controls.Add(this.tabPage3);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
-            this.v6TabControl1.Location = new System.Drawing.Point(4, 121);
+            this.v6TabControl1.Location = new System.Drawing.Point(3, 121);
             this.v6TabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.v6TabControl1.Name = "v6TabControl1";
             this.v6TabControl1.SelectedIndex = 0;
-            this.v6TabControl1.Size = new System.Drawing.Size(755, 324);
+            this.v6TabControl1.Size = new System.Drawing.Size(756, 324);
             this.v6TabControl1.TabIndex = 1;
             // 
             // tabPage2
             // 
-            this.tabPage2.AccessibleDescription = "thong_tin_cong_no";
+            this.tabPage2.AccessibleDescription = "ADDEDITT00009";
             this.tabPage2.AutoScroll = true;
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(747, 292);
+            this.tabPage2.Size = new System.Drawing.Size(748, 292);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Thông tin ngầm định";
             // 

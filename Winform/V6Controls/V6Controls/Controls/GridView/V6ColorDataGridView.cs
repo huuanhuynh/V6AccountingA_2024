@@ -1032,7 +1032,7 @@ namespace V6Controls
                 else if (CurrentCell != null && e.KeyData == (Keys.Control | Keys.C))
                 {
                     e.Handled = true;
-                    Clipboard.SetText(ObjectAndString.ObjectToString(CurrentCell.Value));
+                    Clipboard.SetText(ObjectAndString.ObjectToString(CurrentCell.Value).TrimEnd());
                 }
                 else if (e.KeyData == (Keys.Control | Keys.F))
                 {

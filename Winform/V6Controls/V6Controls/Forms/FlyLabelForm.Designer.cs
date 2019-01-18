@@ -37,6 +37,7 @@
             // 
             // lblMessage
             // 
+            this.lblMessage.AccessibleDescription = ".";
             this.lblMessage.AutoSize = true;
             this.lblMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

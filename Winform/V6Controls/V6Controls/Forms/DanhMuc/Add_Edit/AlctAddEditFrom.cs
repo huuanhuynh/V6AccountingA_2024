@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using V6AccountingBusiness.Invoices;
-using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
 using V6Init;
 using V6Structs;
 using V6Tools;

@@ -24,10 +24,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     ChkVisible.Enabled = false;
                     TxtForder.Enabled = false;
                     TxtWidth.Enabled = false;
-
                 }
             }
-
         }
         public override void ValidateData()
         {

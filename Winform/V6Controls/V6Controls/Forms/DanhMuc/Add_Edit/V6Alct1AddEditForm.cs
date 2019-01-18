@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
 using V6Controls.Forms.DanhMuc.Add_Edit.Alreport;
 using V6Structs;
 
@@ -27,10 +26,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     ChkVisible.Enabled = false;
                     TxtForder.Enabled = false;
                     TxtWidth.Enabled = false;
-
                 }
             }
-
         }
         public override void ValidateData()
         {

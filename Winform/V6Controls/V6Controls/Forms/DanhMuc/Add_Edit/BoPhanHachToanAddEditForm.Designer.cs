@@ -85,9 +85,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.TxtMa_dvcs);
             this.groupBox1.Controls.Add(this.label41);
             this.groupBox1.Controls.Add(this.txtTen_bpht2);
@@ -102,7 +99,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.groupBox1.Size = new System.Drawing.Size(839, 136);
+            this.groupBox1.Size = new System.Drawing.Size(776, 125);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -119,7 +116,7 @@
             this.TxtMa_dvcs.LeaveColor = System.Drawing.Color.White;
             this.TxtMa_dvcs.Location = new System.Drawing.Point(518, 15);
             this.TxtMa_dvcs.Name = "TxtMa_dvcs";
-            this.TxtMa_dvcs.Size = new System.Drawing.Size(201, 23);
+            this.TxtMa_dvcs.Size = new System.Drawing.Size(200, 23);
             this.TxtMa_dvcs.TabIndex = 1;
             this.TxtMa_dvcs.VVar = "MA_DVCS";
             // 
@@ -138,8 +135,6 @@
             // txtTen_bpht2
             // 
             this.txtTen_bpht2.AccessibleName = "ten_bpht2";
-            this.txtTen_bpht2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTen_bpht2.BackColor = System.Drawing.Color.White;
             this.txtTen_bpht2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtTen_bpht2.EnterColor = System.Drawing.Color.PaleGreen;
@@ -147,7 +142,7 @@
             this.txtTen_bpht2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTen_bpht2.HoverColor = System.Drawing.Color.Yellow;
             this.txtTen_bpht2.LeaveColor = System.Drawing.Color.White;
-            this.txtTen_bpht2.Location = new System.Drawing.Point(193, 105);
+            this.txtTen_bpht2.Location = new System.Drawing.Point(193, 96);
             this.txtTen_bpht2.Margin = new System.Windows.Forms.Padding(4);
             this.txtTen_bpht2.Name = "txtTen_bpht2";
             this.txtTen_bpht2.Size = new System.Drawing.Size(526, 23);
@@ -156,8 +151,6 @@
             // txtten_bpht
             // 
             this.txtten_bpht.AccessibleName = "ten_bpht";
-            this.txtten_bpht.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtten_bpht.BackColor = System.Drawing.Color.White;
             this.txtten_bpht.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtten_bpht.EnterColor = System.Drawing.Color.PaleGreen;
@@ -165,7 +158,7 @@
             this.txtten_bpht.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtten_bpht.HoverColor = System.Drawing.Color.Yellow;
             this.txtten_bpht.LeaveColor = System.Drawing.Color.White;
-            this.txtten_bpht.Location = new System.Drawing.Point(193, 75);
+            this.txtten_bpht.Location = new System.Drawing.Point(193, 69);
             this.txtten_bpht.Margin = new System.Windows.Forms.Padding(4);
             this.txtten_bpht.Name = "txtten_bpht";
             this.txtten_bpht.Size = new System.Drawing.Size(526, 23);
@@ -184,7 +177,7 @@
             this.txtSTT_TINH.LeaveColor = System.Drawing.Color.White;
             this.txtSTT_TINH.Location = new System.Drawing.Point(193, 15);
             this.txtSTT_TINH.Name = "txtSTT_TINH";
-            this.txtSTT_TINH.Size = new System.Drawing.Size(203, 23);
+            this.txtSTT_TINH.Size = new System.Drawing.Size(200, 23);
             this.txtSTT_TINH.TabIndex = 0;
             this.txtSTT_TINH.Text = "0";
             this.txtSTT_TINH.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -197,7 +190,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(23, 108);
+            this.label4.Location = new System.Drawing.Point(14, 99);
             this.label4.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 17);
@@ -215,16 +208,16 @@
             this.txtMa_bpht.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMa_bpht.HoverColor = System.Drawing.Color.Yellow;
             this.txtMa_bpht.LeaveColor = System.Drawing.Color.White;
-            this.txtMa_bpht.Location = new System.Drawing.Point(193, 47);
+            this.txtMa_bpht.Location = new System.Drawing.Point(193, 42);
             this.txtMa_bpht.Name = "txtMa_bpht";
-            this.txtMa_bpht.Size = new System.Drawing.Size(203, 23);
+            this.txtMa_bpht.Size = new System.Drawing.Size(200, 23);
             this.txtMa_bpht.TabIndex = 2;
             this.txtMa_bpht.UseLimitCharacters0 = true;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(23, 78);
+            this.label5.Location = new System.Drawing.Point(14, 72);
             this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 17);
@@ -234,7 +227,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 18);
+            this.label1.Location = new System.Drawing.Point(14, 18);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 17);
@@ -245,7 +238,7 @@
             // 
             this.label2.AccessibleName = "";
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 50);
+            this.label2.Location = new System.Drawing.Point(14, 45);
             this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(83, 17);
@@ -262,15 +255,16 @@
             this.v6TabControl1.Controls.Add(this.tabPage3);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
-            this.v6TabControl1.Location = new System.Drawing.Point(7, 150);
+            this.v6TabControl1.Location = new System.Drawing.Point(3, 139);
             this.v6TabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.v6TabControl1.Name = "v6TabControl1";
             this.v6TabControl1.SelectedIndex = 0;
-            this.v6TabControl1.Size = new System.Drawing.Size(839, 430);
+            this.v6TabControl1.Size = new System.Drawing.Size(781, 384);
             this.v6TabControl1.TabIndex = 1;
             // 
             // tabPage1
             // 
+            this.tabPage1.AccessibleDescription = "ADDEDITT00001";
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.label3);
@@ -286,7 +280,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(831, 398);
+            this.tabPage1.Size = new System.Drawing.Size(773, 352);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 
@@ -429,6 +423,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.AccessibleDescription = "ADDEDITT00003";
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage2.Controls.Add(this.v6DateTimeColor1);
             this.tabPage2.Controls.Add(this.v6DateTimeColor2);
@@ -458,7 +453,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(831, 398);
+            this.tabPage2.Size = new System.Drawing.Size(773, 352);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tự định nghĩa";
             // 
@@ -474,7 +469,7 @@
             this.v6DateTimeColor1.HoverColor = System.Drawing.Color.Yellow;
             this.v6DateTimeColor1.ImeMode = System.Windows.Forms.ImeMode.On;
             this.v6DateTimeColor1.LeaveColor = System.Drawing.Color.White;
-            this.v6DateTimeColor1.Location = new System.Drawing.Point(189, 178);
+            this.v6DateTimeColor1.Location = new System.Drawing.Point(189, 151);
             this.v6DateTimeColor1.Margin = new System.Windows.Forms.Padding(5);
             this.v6DateTimeColor1.Name = "v6DateTimeColor1";
             this.v6DateTimeColor1.Size = new System.Drawing.Size(203, 23);
@@ -494,7 +489,7 @@
             this.v6DateTimeColor2.HoverColor = System.Drawing.Color.Yellow;
             this.v6DateTimeColor2.ImeMode = System.Windows.Forms.ImeMode.On;
             this.v6DateTimeColor2.LeaveColor = System.Drawing.Color.White;
-            this.v6DateTimeColor2.Location = new System.Drawing.Point(189, 147);
+            this.v6DateTimeColor2.Location = new System.Drawing.Point(189, 123);
             this.v6DateTimeColor2.Margin = new System.Windows.Forms.Padding(5);
             this.v6DateTimeColor2.Name = "v6DateTimeColor2";
             this.v6DateTimeColor2.Size = new System.Drawing.Size(203, 23);
@@ -514,7 +509,7 @@
             this.v6DateTimeColor3.HoverColor = System.Drawing.Color.Yellow;
             this.v6DateTimeColor3.ImeMode = System.Windows.Forms.ImeMode.On;
             this.v6DateTimeColor3.LeaveColor = System.Drawing.Color.White;
-            this.v6DateTimeColor3.Location = new System.Drawing.Point(189, 116);
+            this.v6DateTimeColor3.Location = new System.Drawing.Point(189, 95);
             this.v6DateTimeColor3.Margin = new System.Windows.Forms.Padding(5);
             this.v6DateTimeColor3.Name = "v6DateTimeColor3";
             this.v6DateTimeColor3.Size = new System.Drawing.Size(203, 23);
@@ -522,52 +517,49 @@
             this.v6DateTimeColor3.TabIndex = 114;
             this.v6DateTimeColor3.Text = "__/__/____";
             // 
-            // v6ColorTextBox16
+            // txtGC_TD3
             // 
             this.txtGC_TD3.AccessibleName = "GC_TD3";
-            this.txtGC_TD3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtGC_TD3.BackColor = System.Drawing.Color.White;
             this.txtGC_TD3.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtGC_TD3.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtGC_TD3.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtGC_TD3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtGC_TD3.HoverColor = System.Drawing.Color.Yellow;
             this.txtGC_TD3.LeaveColor = System.Drawing.Color.White;
-            this.txtGC_TD3.Location = new System.Drawing.Point(189, 364);
+            this.txtGC_TD3.Location = new System.Drawing.Point(189, 319);
             this.txtGC_TD3.Margin = new System.Windows.Forms.Padding(5);
             this.txtGC_TD3.Name = "txtGC_TD3";
             this.txtGC_TD3.Size = new System.Drawing.Size(577, 23);
             this.txtGC_TD3.TabIndex = 113;
             // 
-            // v6ColorTextBox15
+            // txtGC_TD2
             // 
             this.txtGC_TD2.AccessibleName = "GC_TD2";
-            this.txtGC_TD2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtGC_TD2.BackColor = System.Drawing.Color.White;
             this.txtGC_TD2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtGC_TD2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtGC_TD2.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtGC_TD2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtGC_TD2.HoverColor = System.Drawing.Color.Yellow;
             this.txtGC_TD2.LeaveColor = System.Drawing.Color.White;
-            this.txtGC_TD2.Location = new System.Drawing.Point(189, 333);
+            this.txtGC_TD2.Location = new System.Drawing.Point(189, 291);
             this.txtGC_TD2.Margin = new System.Windows.Forms.Padding(5);
             this.txtGC_TD2.Name = "txtGC_TD2";
             this.txtGC_TD2.Size = new System.Drawing.Size(577, 23);
             this.txtGC_TD2.TabIndex = 112;
             // 
-            // v6ColorTextBox14
+            // txtGC_TD1
             // 
             this.txtGC_TD1.AccessibleName = "GC_TD1";
-            this.txtGC_TD1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtGC_TD1.BackColor = System.Drawing.Color.White;
             this.txtGC_TD1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtGC_TD1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtGC_TD1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtGC_TD1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtGC_TD1.HoverColor = System.Drawing.Color.Yellow;
             this.txtGC_TD1.LeaveColor = System.Drawing.Color.White;
-            this.txtGC_TD1.Location = new System.Drawing.Point(189, 302);
+            this.txtGC_TD1.Location = new System.Drawing.Point(189, 263);
             this.txtGC_TD1.Margin = new System.Windows.Forms.Padding(5);
             this.txtGC_TD1.Name = "txtGC_TD1";
             this.txtGC_TD1.Size = new System.Drawing.Size(577, 23);
@@ -579,7 +571,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(19, 367);
+            this.label29.Location = new System.Drawing.Point(14, 322);
             this.label29.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(93, 17);
@@ -592,7 +584,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(19, 336);
+            this.label28.Location = new System.Drawing.Point(14, 294);
             this.label28.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(93, 17);
@@ -605,50 +597,56 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(19, 305);
+            this.label27.Location = new System.Drawing.Point(14, 266);
             this.label27.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(93, 17);
             this.label27.TabIndex = 108;
             this.label27.Text = "Ghi chú ĐN 1";
             // 
-            // v6ColorTextBox9
+            // txtMA_TD3
             // 
             this.txtMA_TD3.AccessibleName = "MA_TD3";
+            this.txtMA_TD3.BackColor = System.Drawing.SystemColors.Window;
             this.txtMA_TD3.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMA_TD3.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMA_TD3.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMA_TD3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMA_TD3.HoverColor = System.Drawing.Color.Yellow;
             this.txtMA_TD3.LeaveColor = System.Drawing.Color.White;
-            this.txtMA_TD3.Location = new System.Drawing.Point(189, 85);
+            this.txtMA_TD3.Location = new System.Drawing.Point(189, 67);
             this.txtMA_TD3.Margin = new System.Windows.Forms.Padding(5);
             this.txtMA_TD3.Name = "txtMA_TD3";
             this.txtMA_TD3.Size = new System.Drawing.Size(203, 23);
             this.txtMA_TD3.TabIndex = 95;
             // 
-            // v6ColorTextBox10
+            // txtMA_TD2
             // 
             this.txtMA_TD2.AccessibleName = "MA_TD2";
+            this.txtMA_TD2.BackColor = System.Drawing.SystemColors.Window;
             this.txtMA_TD2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMA_TD2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMA_TD2.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMA_TD2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMA_TD2.HoverColor = System.Drawing.Color.Yellow;
             this.txtMA_TD2.LeaveColor = System.Drawing.Color.White;
-            this.txtMA_TD2.Location = new System.Drawing.Point(189, 54);
+            this.txtMA_TD2.Location = new System.Drawing.Point(189, 39);
             this.txtMA_TD2.Margin = new System.Windows.Forms.Padding(5);
             this.txtMA_TD2.Name = "txtMA_TD2";
             this.txtMA_TD2.Size = new System.Drawing.Size(203, 23);
             this.txtMA_TD2.TabIndex = 93;
             // 
-            // v6ColorTextBox11
+            // txtMA_TD1
             // 
             this.txtMA_TD1.AccessibleName = "MA_TD1";
+            this.txtMA_TD1.BackColor = System.Drawing.SystemColors.Window;
             this.txtMA_TD1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMA_TD1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMA_TD1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMA_TD1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMA_TD1.HoverColor = System.Drawing.Color.Yellow;
             this.txtMA_TD1.LeaveColor = System.Drawing.Color.White;
-            this.txtMA_TD1.Location = new System.Drawing.Point(189, 23);
+            this.txtMA_TD1.Location = new System.Drawing.Point(189, 11);
             this.txtMA_TD1.Margin = new System.Windows.Forms.Padding(5);
             this.txtMA_TD1.Name = "txtMA_TD1";
             this.txtMA_TD1.Size = new System.Drawing.Size(203, 23);
@@ -664,19 +662,20 @@
             this.v6NumberTextBox3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox3.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox3.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox3.Location = new System.Drawing.Point(189, 271);
+            this.v6NumberTextBox3.Location = new System.Drawing.Point(189, 235);
             this.v6NumberTextBox3.Margin = new System.Windows.Forms.Padding(5);
             this.v6NumberTextBox3.Name = "v6NumberTextBox3";
             this.v6NumberTextBox3.ReadOnly = true;
             this.v6NumberTextBox3.Size = new System.Drawing.Size(203, 23);
             this.v6NumberTextBox3.TabIndex = 107;
+            this.v6NumberTextBox3.TabStop = false;
             this.v6NumberTextBox3.Text = "0,000";
             this.v6NumberTextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox3.Value = new decimal(new int[] {
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox2
             // 
@@ -688,19 +687,20 @@
             this.v6NumberTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox2.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox2.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox2.Location = new System.Drawing.Point(189, 240);
+            this.v6NumberTextBox2.Location = new System.Drawing.Point(189, 207);
             this.v6NumberTextBox2.Margin = new System.Windows.Forms.Padding(5);
             this.v6NumberTextBox2.Name = "v6NumberTextBox2";
             this.v6NumberTextBox2.ReadOnly = true;
             this.v6NumberTextBox2.Size = new System.Drawing.Size(203, 23);
             this.v6NumberTextBox2.TabIndex = 105;
+            this.v6NumberTextBox2.TabStop = false;
             this.v6NumberTextBox2.Text = "0,000";
             this.v6NumberTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox2.Value = new decimal(new int[] {
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox1
             // 
@@ -712,19 +712,20 @@
             this.v6NumberTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox1.Location = new System.Drawing.Point(189, 209);
+            this.v6NumberTextBox1.Location = new System.Drawing.Point(189, 179);
             this.v6NumberTextBox1.Margin = new System.Windows.Forms.Padding(5);
             this.v6NumberTextBox1.Name = "v6NumberTextBox1";
             this.v6NumberTextBox1.ReadOnly = true;
             this.v6NumberTextBox1.Size = new System.Drawing.Size(203, 23);
             this.v6NumberTextBox1.TabIndex = 103;
+            this.v6NumberTextBox1.TabStop = false;
             this.v6NumberTextBox1.Text = "0,000";
             this.v6NumberTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox1.Value = new decimal(new int[] {
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // label14
             // 
@@ -732,7 +733,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(19, 274);
+            this.label14.Location = new System.Drawing.Point(14, 238);
             this.label14.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(100, 17);
@@ -745,7 +746,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(19, 243);
+            this.label13.Location = new System.Drawing.Point(14, 210);
             this.label13.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(100, 17);
@@ -758,7 +759,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(19, 212);
+            this.label12.Location = new System.Drawing.Point(14, 182);
             this.label12.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(100, 17);
@@ -771,7 +772,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(19, 181);
+            this.label15.Location = new System.Drawing.Point(14, 154);
             this.label15.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(77, 17);
@@ -784,7 +785,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(19, 150);
+            this.label16.Location = new System.Drawing.Point(14, 126);
             this.label16.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(77, 17);
@@ -797,7 +798,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(19, 119);
+            this.label17.Location = new System.Drawing.Point(14, 98);
             this.label17.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(77, 17);
@@ -810,7 +811,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(19, 88);
+            this.label18.Location = new System.Drawing.Point(14, 70);
             this.label18.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(63, 17);
@@ -823,7 +824,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(19, 57);
+            this.label19.Location = new System.Drawing.Point(14, 42);
             this.label19.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(63, 17);
@@ -836,7 +837,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(19, 26);
+            this.label20.Location = new System.Drawing.Point(14, 14);
             this.label20.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(63, 17);
@@ -845,12 +846,13 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.AccessibleDescription = "ADDEDITT00004";
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage3.Size = new System.Drawing.Size(831, 398);
+            this.tabPage3.Size = new System.Drawing.Size(773, 352);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
             // 
@@ -863,7 +865,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BoPhanHachToanAddEditForm";
-            this.Size = new System.Drawing.Size(853, 584);
+            this.Size = new System.Drawing.Size(790, 527);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.v6TabControl1.ResumeLayout(false);

@@ -47,6 +47,7 @@
             // 
             // lblMessage
             // 
+            this.lblMessage.AccessibleDescription = ".";
             this.lblMessage.AutoSize = true;
             this.lblMessage.Location = new System.Drawing.Point(79, 30);
             this.lblMessage.Name = "lblMessage";
@@ -56,6 +57,7 @@
             // 
             // buttonOK
             // 
+            this.buttonOK.AccessibleDescription = ".";
             this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonOK.Location = new System.Drawing.Point(106, 7);
@@ -92,6 +94,7 @@
             // 
             // buttonNO
             // 
+            this.buttonNO.AccessibleDescription = ".";
             this.buttonNO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonNO.DialogResult = System.Windows.Forms.DialogResult.No;
             this.buttonNO.Location = new System.Drawing.Point(187, 7);
@@ -155,6 +158,7 @@
             // 
             // button1
             // 
+            this.button1.AccessibleDescription = ".";
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button1.Location = new System.Drawing.Point(25, 7);

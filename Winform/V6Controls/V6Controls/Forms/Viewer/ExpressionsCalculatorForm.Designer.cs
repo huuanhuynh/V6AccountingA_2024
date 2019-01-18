@@ -50,6 +50,7 @@
             // 
             // btnCopy
             // 
+            this.btnCopy.AccessibleDescription = ".";
             this.btnCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCopy.Location = new System.Drawing.Point(319, 190);
             this.btnCopy.Name = "btnCopy";
@@ -72,6 +73,7 @@
             // 
             // lblSelectionStatus
             // 
+            this.lblSelectionStatus.AccessibleDescription = ".";
             this.lblSelectionStatus.AutoSize = true;
             this.lblSelectionStatus.Location = new System.Drawing.Point(12, 9);
             this.lblSelectionStatus.Name = "lblSelectionStatus";
@@ -79,7 +81,7 @@
             this.lblSelectionStatus.TabIndex = 9;
             this.lblSelectionStatus.Text = "Length=0";
             // 
-            // ExpressionsCaculatorForm
+            // ExpressionsCalculatorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -88,7 +90,7 @@
             this.Controls.Add(this.txtKetQua);
             this.Controls.Add(this.btnCopy);
             this.Controls.Add(this.txtBieuThuc);
-            this.Name = "ExpressionsCaculatorForm";
+            this.Name = "ExpressionsCalculatorForm";
             this.Text = "Máy tính biểu thức";
             this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.txtBieuThuc, 0);

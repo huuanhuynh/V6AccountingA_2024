@@ -111,8 +111,16 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             get
             {
-                if (_aldm) return _aldmConfig == null ? null : _aldmConfig.FILTER_FIELD;
-                return v6lookup_config.FILTER_FIELD;
+                string result;
+                if (_aldm) result = _aldmConfig == null ? null : _aldmConfig.FILTER_FIELD;
+                else result = v6lookup_config.FILTER_FIELD;
+
+                if (string.IsNullOrEmpty(result) && CurrentTable == V6TableName.CorpLan)
+                {
+                    result = "SFILE";
+                }
+
+                return result;
             }
         }
         /// <summary>
@@ -255,6 +263,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             try
             {
                 string filter_field = FILTER_FIELD;
+                
                 if (!string.IsNullOrEmpty(filter_field))
                 {
                     //Get filter data

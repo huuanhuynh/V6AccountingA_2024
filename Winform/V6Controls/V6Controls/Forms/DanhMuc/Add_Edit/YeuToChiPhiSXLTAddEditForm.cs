@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using V6AccountingBusiness;
 using V6Structs;
@@ -11,11 +10,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public YeuToChiPhiSXLTAddEditForm()
         {
             InitializeComponent();
-        }
-
-        private void v6ColorTextBox2_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void txtloai_pb_TextChanged(object sender, EventArgs e)
