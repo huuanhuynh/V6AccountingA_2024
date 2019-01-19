@@ -1690,6 +1690,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             // 
             // lblKieuPostColor
             // 
+            this.lblKieuPostColor.AccessibleDescription = ".";
             this.lblKieuPostColor.AutoSize = true;
             this.lblKieuPostColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKieuPostColor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
@@ -2074,6 +2075,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             // 
             // lblTongSoDong
             // 
+            this.lblTongSoDong.AccessibleDescription = ".";
             this.lblTongSoDong.AutoSize = true;
             this.lblTongSoDong.Location = new System.Drawing.Point(6, 11);
             this.lblTongSoDong.Name = "lblTongSoDong";

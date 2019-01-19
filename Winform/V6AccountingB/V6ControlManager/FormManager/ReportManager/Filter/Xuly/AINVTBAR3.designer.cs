@@ -89,6 +89,7 @@
             // 
             // lblStatus1
             // 
+            this.lblStatus1.AccessibleDescription = ".";
             this.lblStatus1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblStatus1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus1.ForeColor = System.Drawing.Color.Red;

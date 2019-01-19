@@ -108,6 +108,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.txtTongThueNt = new V6Controls.NumberTienNt();
             this.txtTongThanhToanNt = new V6Controls.NumberTienNt();
             this.group4 = new System.Windows.Forms.GroupBox();
+            this.lblKieuPostColor = new V6Controls.V6Label();
             this.cboChuyenData = new V6Controls.Controls.V6IndexComboBox();
             this.btnChucNang = new V6Controls.Controls.DropDownButton();
             this.menuChucNang = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -185,7 +186,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.btnTim = new System.Windows.Forms.Button();
             this.btnViewInfoData = new System.Windows.Forms.Button();
             this.lblNameT = new V6Controls.V6Label();
-            this.lblKieuPostColor = new V6Controls.V6Label();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -298,8 +298,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.dataGridView1.Tag = "cancelall";
             this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
-            this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
+            this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             // 
             // TK_I
             // 
@@ -646,7 +646,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSL_UD2
             // 
@@ -671,7 +671,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtSL_UD1
             // 
@@ -696,7 +696,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // label16
             // 
@@ -1370,6 +1370,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.group4.TabIndex = 4;
             this.group4.TabStop = false;
             // 
+            // lblKieuPostColor
+            // 
+            this.lblKieuPostColor.AccessibleDescription = ".";
+            this.lblKieuPostColor.AutoSize = true;
+            this.lblKieuPostColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKieuPostColor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblKieuPostColor.Location = new System.Drawing.Point(65, 10);
+            this.lblKieuPostColor.Name = "lblKieuPostColor";
+            this.lblKieuPostColor.Size = new System.Drawing.Size(57, 13);
+            this.lblKieuPostColor.TabIndex = 36;
+            this.lblKieuPostColor.Text = "KieuPost";
+            // 
             // cboChuyenData
             // 
             this.cboChuyenData.AccessibleName = "IMTYPE";
@@ -1486,6 +1498,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             // 
             // lblTongSoDong
             // 
+            this.lblTongSoDong.AccessibleDescription = ".";
             this.lblTongSoDong.AutoSize = true;
             this.lblTongSoDong.Location = new System.Drawing.Point(6, 16);
             this.lblTongSoDong.Name = "lblTongSoDong";
@@ -1581,7 +1594,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtTenGiaoDich
             // 
@@ -1697,7 +1710,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             0,
             0,
             0,
-            196608});
+            0});
             this.txtTyGia.V6LostFocus += new V6Controls.ControlEventHandle(this.txtTyGia_V6LostFocus);
             // 
             // cboMaNt
@@ -2442,17 +2455,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.lblNameT.Size = new System.Drawing.Size(611, 18);
             this.lblNameT.TabIndex = 22;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblKieuPostColor
-            // 
-            this.lblKieuPostColor.AutoSize = true;
-            this.lblKieuPostColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblKieuPostColor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblKieuPostColor.Location = new System.Drawing.Point(65, 10);
-            this.lblKieuPostColor.Name = "lblKieuPostColor";
-            this.lblKieuPostColor.Size = new System.Drawing.Size(57, 13);
-            this.lblKieuPostColor.TabIndex = 36;
-            this.lblKieuPostColor.Text = "KieuPost";
             // 
             // PhieuChiControl
             // 

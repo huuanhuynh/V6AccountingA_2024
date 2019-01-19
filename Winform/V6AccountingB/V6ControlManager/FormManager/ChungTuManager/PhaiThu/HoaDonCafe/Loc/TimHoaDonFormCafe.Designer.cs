@@ -115,7 +115,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
             this.txtNhomVT6.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtNhomVT6.HoverColor = System.Drawing.Color.Yellow;
             this.txtNhomVT6.LeaveColor = System.Drawing.Color.White;
-            this.txtNhomVT6.Location = new System.Drawing.Point(621, 63);
+            this.txtNhomVT6.Location = new System.Drawing.Point(621, 53);
             this.txtNhomVT6.Name = "txtNhomVT6";
             this.txtNhomVT6.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT6.TabIndex = 18;
@@ -132,7 +132,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
             this.txtNhomVT5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtNhomVT5.HoverColor = System.Drawing.Color.Yellow;
             this.txtNhomVT5.LeaveColor = System.Drawing.Color.White;
-            this.txtNhomVT5.Location = new System.Drawing.Point(621, 37);
+            this.txtNhomVT5.Location = new System.Drawing.Point(621, 32);
             this.txtNhomVT5.Name = "txtNhomVT5";
             this.txtNhomVT5.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT5.TabIndex = 16;
@@ -159,7 +159,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
             // 
             this.v6Label3.AccessibleDescription = "ASOCTSOAL00106";
             this.v6Label3.AutoSize = true;
-            this.v6Label3.Location = new System.Drawing.Point(538, 66);
+            this.v6Label3.Location = new System.Drawing.Point(538, 56);
             this.v6Label3.Name = "v6Label3";
             this.v6Label3.Size = new System.Drawing.Size(74, 13);
             this.v6Label3.TabIndex = 17;
@@ -169,7 +169,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
             // 
             this.v6Label2.AccessibleDescription = "ASOCTSOAL00105";
             this.v6Label2.AutoSize = true;
-            this.v6Label2.Location = new System.Drawing.Point(538, 40);
+            this.v6Label2.Location = new System.Drawing.Point(538, 35);
             this.v6Label2.Name = "v6Label2";
             this.v6Label2.Size = new System.Drawing.Size(74, 13);
             this.v6Label2.TabIndex = 15;
@@ -187,9 +187,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
             // 
             // lblStatusDescription
             // 
-            this.lblStatusDescription.Location = new System.Drawing.Point(6, 94);
+            this.lblStatusDescription.AccessibleDescription = ".";
+            this.lblStatusDescription.Location = new System.Drawing.Point(6, 84);
             this.lblStatusDescription.Name = "lblStatusDescription";
-            this.lblStatusDescription.Size = new System.Drawing.Size(619, 31);
+            this.lblStatusDescription.Size = new System.Drawing.Size(747, 31);
             this.lblStatusDescription.TabIndex = 6;
             this.lblStatusDescription.Text = "* Tất cả, 0 - Chưa, 1- Ghi vào sổ kho, 2-Ghi vào sổ cái, 3- Hóa đơn xóa bỏ, 4-Hóa" +
     " đơn mất, 5- Hóa đơn hủy ";
@@ -198,7 +199,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
             // 
             this.chkNSD.AccessibleName = "";
             this.chkNSD.AutoSize = true;
-            this.chkNSD.Location = new System.Drawing.Point(87, 48);
+            this.chkNSD.Location = new System.Drawing.Point(87, 41);
             this.chkNSD.Name = "chkNSD";
             this.chkNSD.Size = new System.Drawing.Size(15, 14);
             this.chkNSD.TabIndex = 3;
@@ -215,7 +216,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
             this.txtMaDVCS.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaDVCS.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaDVCS.LeaveColor = System.Drawing.Color.White;
-            this.txtMaDVCS.Location = new System.Drawing.Point(87, 22);
+            this.txtMaDVCS.Location = new System.Drawing.Point(87, 15);
             this.txtMaDVCS.Name = "txtMaDVCS";
             this.txtMaDVCS.Size = new System.Drawing.Size(132, 20);
             this.txtMaDVCS.TabIndex = 1;
@@ -232,7 +233,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
             this.txtNhomVT3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtNhomVT3.HoverColor = System.Drawing.Color.Yellow;
             this.txtNhomVT3.LeaveColor = System.Drawing.Color.White;
-            this.txtNhomVT3.Location = new System.Drawing.Point(367, 63);
+            this.txtNhomVT3.Location = new System.Drawing.Point(367, 53);
             this.txtNhomVT3.Name = "txtNhomVT3";
             this.txtNhomVT3.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT3.TabIndex = 12;
@@ -249,7 +250,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
             this.txtNhomVT2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtNhomVT2.HoverColor = System.Drawing.Color.Yellow;
             this.txtNhomVT2.LeaveColor = System.Drawing.Color.White;
-            this.txtNhomVT2.Location = new System.Drawing.Point(367, 37);
+            this.txtNhomVT2.Location = new System.Drawing.Point(367, 32);
             this.txtNhomVT2.Name = "txtNhomVT2";
             this.txtNhomVT2.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT2.TabIndex = 10;
@@ -266,7 +267,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
             this.txtTrangThai.HoverColor = System.Drawing.Color.Yellow;
             this.txtTrangThai.LeaveColor = System.Drawing.Color.White;
             this.txtTrangThai.LimitCharacters = "*012345";
-            this.txtTrangThai.Location = new System.Drawing.Point(87, 71);
+            this.txtTrangThai.Location = new System.Drawing.Point(87, 61);
             this.txtTrangThai.Name = "txtTrangThai";
             this.txtTrangThai.Size = new System.Drawing.Size(44, 20);
             this.txtTrangThai.TabIndex = 5;
@@ -292,7 +293,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
             // 
             this.v6Label21.AccessibleDescription = "ASOCTSOAL00108";
             this.v6Label21.AutoSize = true;
-            this.v6Label21.Location = new System.Drawing.Point(6, 74);
+            this.v6Label21.Location = new System.Drawing.Point(6, 62);
             this.v6Label21.Name = "v6Label21";
             this.v6Label21.Size = new System.Drawing.Size(55, 13);
             this.v6Label21.TabIndex = 4;
@@ -301,7 +302,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
             // v6Label20
             // 
             this.v6Label20.AutoSize = true;
-            this.v6Label20.Location = new System.Drawing.Point(6, 48);
+            this.v6Label20.Location = new System.Drawing.Point(6, 41);
             this.v6Label20.Name = "v6Label20";
             this.v6Label20.Size = new System.Drawing.Size(69, 13);
             this.v6Label20.TabIndex = 2;
@@ -311,7 +312,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
             // 
             this.v6Label6.AccessibleDescription = "ASOCTSOAL00106";
             this.v6Label6.AutoSize = true;
-            this.v6Label6.Location = new System.Drawing.Point(284, 66);
+            this.v6Label6.Location = new System.Drawing.Point(284, 56);
             this.v6Label6.Name = "v6Label6";
             this.v6Label6.Size = new System.Drawing.Size(74, 13);
             this.v6Label6.TabIndex = 11;
@@ -321,7 +322,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
             // 
             this.v6Label26.AccessibleDescription = "ASOCTSOAL00107";
             this.v6Label26.AutoSize = true;
-            this.v6Label26.Location = new System.Drawing.Point(13, 25);
+            this.v6Label26.Location = new System.Drawing.Point(6, 18);
             this.v6Label26.Name = "v6Label26";
             this.v6Label26.Size = new System.Drawing.Size(55, 13);
             this.v6Label26.TabIndex = 0;
@@ -331,7 +332,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
             // 
             this.v6Label7.AccessibleDescription = "ASOCTSOAL00105";
             this.v6Label7.AutoSize = true;
-            this.v6Label7.Location = new System.Drawing.Point(284, 40);
+            this.v6Label7.Location = new System.Drawing.Point(284, 35);
             this.v6Label7.Name = "v6Label7";
             this.v6Label7.Size = new System.Drawing.Size(74, 13);
             this.v6Label7.TabIndex = 9;

@@ -137,7 +137,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 for (int i = _fixColumn; i < _tbl0.Columns.Count - 1; i++) // -1 bỏ qua cột CHECK
                 {
                     var column_i = _tbl0.Columns[i];
-                    string MA_KH = column_i.ColumnName.ToUpper();
+                    string MA_KH = column_i.ColumnName.Trim().ToUpper();
                     var value = MA_KH;
                     var notexist = V6BusinessHelper.IsValidOneCode_Full("ALKH", 1, "MA_KH", value, value);
                     string CHECK_KH = notexist ? "0" : "1";

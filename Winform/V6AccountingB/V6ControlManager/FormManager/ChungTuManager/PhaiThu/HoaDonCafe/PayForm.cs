@@ -11,7 +11,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         {
             InitializeComponent();
         }
-
         
         public PayForm(decimal tt, int num_format)
         {

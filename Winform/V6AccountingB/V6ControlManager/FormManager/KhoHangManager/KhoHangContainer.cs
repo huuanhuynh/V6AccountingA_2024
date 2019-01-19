@@ -149,9 +149,6 @@ namespace V6ControlManager.FormManager.KhoHangManager
 
         #endregion properties
         
-
-        
-
         private void LoadComboboxSource()
         {
             MauInData = Albc.GetMauInData(KhoParams.Program, "", "", "");

@@ -70,6 +70,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = ".";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
@@ -79,6 +80,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = ".";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 84);
             this.label2.Name = "label2";
@@ -161,6 +163,7 @@
             this.Name = "ChangeForm";
             this.Text = "ChangeForm";
             this.Load += new System.EventHandler(this.ChangeForm_Load);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.label1, 0);

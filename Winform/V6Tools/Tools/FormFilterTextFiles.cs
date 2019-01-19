@@ -258,6 +258,7 @@ namespace Tools
         {
             GetFolder();
             LoadFiles(chkSubFolder.Checked);
+            txtFolder_Leave(txtFolder, new EventArgs());
         }
 
         private void txtExt_Leave(object sender, EventArgs e)

@@ -87,6 +87,7 @@
             // 
             // btnLoc
             // 
+            this.btnLoc.AccessibleDescription = "XULYB00011";
             this.btnLoc.Location = new System.Drawing.Point(226, 425);
             this.btnLoc.Name = "btnLoc";
             this.btnLoc.Size = new System.Drawing.Size(50, 23);
@@ -97,6 +98,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "XULYL00003";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(10, 456);
             this.label2.Name = "label2";
@@ -106,6 +108,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "XULYL00197";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(10, 430);
             this.label1.Name = "label1";
@@ -153,6 +156,7 @@
             // 
             // lblStatus1
             // 
+            this.lblStatus1.AccessibleDescription = ".";
             this.lblStatus1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblStatus1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus1.ForeColor = System.Drawing.Color.Red;

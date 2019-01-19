@@ -104,6 +104,7 @@
             // 
             // lblStatusDescription
             // 
+            this.lblStatusDescription.AccessibleDescription = ".";
             this.lblStatusDescription.Location = new System.Drawing.Point(7, 82);
             this.lblStatusDescription.Name = "lblStatusDescription";
             this.lblStatusDescription.Size = new System.Drawing.Size(737, 31);

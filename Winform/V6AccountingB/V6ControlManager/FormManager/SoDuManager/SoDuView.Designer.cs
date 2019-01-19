@@ -87,6 +87,7 @@
             // 
             // lblTotalPage
             // 
+            this.lblTotalPage.AccessibleDescription = "DANHMUCVIEWL00003";
             this.lblTotalPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTotalPage.AutoSize = true;
             this.lblTotalPage.Location = new System.Drawing.Point(210, 350);
@@ -109,6 +110,7 @@
             // 
             // btnLast
             // 
+            this.btnLast.AccessibleDescription = ".";
             this.btnLast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnLast.Enabled = false;
             this.btnLast.Image = global::V6ControlManager.Properties.Resources.Last;
@@ -121,6 +123,7 @@
             // 
             // btnNext
             // 
+            this.btnNext.AccessibleDescription = ".";
             this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnNext.Enabled = false;
             this.btnNext.Image = global::V6ControlManager.Properties.Resources.Forward;
@@ -133,6 +136,7 @@
             // 
             // btnPrevious
             // 
+            this.btnPrevious.AccessibleDescription = ".";
             this.btnPrevious.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnPrevious.Enabled = false;
             this.btnPrevious.Image = global::V6ControlManager.Properties.Resources.Back;
@@ -145,6 +149,7 @@
             // 
             // btnFirst
             // 
+            this.btnFirst.AccessibleDescription = ".";
             this.btnFirst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnFirst.Enabled = false;
             this.btnFirst.Image = global::V6ControlManager.Properties.Resources.First;

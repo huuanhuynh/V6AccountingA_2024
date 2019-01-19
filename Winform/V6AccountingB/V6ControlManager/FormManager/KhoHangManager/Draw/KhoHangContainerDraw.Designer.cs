@@ -142,6 +142,7 @@
             // 
             // lblTenHang
             // 
+            this.lblTenHang.AccessibleDescription = ".";
             this.lblTenHang.AccessibleName = "TEN_VT";
             this.lblTenHang.AutoSize = true;
             this.lblTenHang.Location = new System.Drawing.Point(329, 8);
@@ -183,7 +184,7 @@
             // 
             this.pictureBox1.Location = new System.Drawing.Point(107, 35);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(671, 524);
+            this.pictureBox1.Size = new System.Drawing.Size(671, 527);
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 

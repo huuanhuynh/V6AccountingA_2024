@@ -75,6 +75,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "ASOCTSOAL00116";
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(10, 25);
@@ -119,6 +120,7 @@
             this.txtTongTienNt2.ReadOnly = true;
             this.txtTongTienNt2.Size = new System.Drawing.Size(276, 45);
             this.txtTongTienNt2.TabIndex = 6;
+            this.txtTongTienNt2.TabStop = false;
             this.txtTongTienNt2.Tag = "readonly";
             this.txtTongTienNt2.Text = "0";
             this.txtTongTienNt2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -130,6 +132,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = "ASOCTSOAL00117";
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(10, 60);
@@ -168,6 +171,7 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "ASOCTSOAL00118";
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(10, 170);
@@ -195,6 +199,7 @@
             this.txtTraLai.ReadOnly = true;
             this.txtTraLai.Size = new System.Drawing.Size(276, 45);
             this.txtTraLai.TabIndex = 8;
+            this.txtTraLai.TabStop = false;
             this.txtTraLai.Tag = "readonly";
             this.txtTraLai.Text = "0";
             this.txtTraLai.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -206,7 +211,6 @@
             // 
             // button1
             // 
-            this.button1.AccessibleDescription = "REPORTB00005";
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(3, 88);
@@ -221,7 +225,6 @@
             // 
             // button2
             // 
-            this.button2.AccessibleDescription = "REPORTB00005";
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(106, 88);
@@ -236,7 +239,6 @@
             // 
             // button3
             // 
-            this.button3.AccessibleDescription = "REPORTB00005";
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Location = new System.Drawing.Point(3, 118);
@@ -251,7 +253,6 @@
             // 
             // button4
             // 
-            this.button4.AccessibleDescription = "REPORTB00005";
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.Location = new System.Drawing.Point(106, 118);
@@ -266,6 +267,7 @@
             // 
             // PayForm
             // 
+            this.AccessibleDescription = "ASOCTSOAF00001";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnHuy;

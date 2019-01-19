@@ -561,6 +561,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // lblTenDvcs
             // 
+            this.lblTenDvcs.AccessibleDescription = ".";
             this.lblTenDvcs.AccessibleName = "TEN_DVCS";
             this.lblTenDvcs.AutoSize = true;
             this.lblTenDvcs.Location = new System.Drawing.Point(263, 8);

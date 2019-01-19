@@ -140,6 +140,7 @@
             // 
             // lblTenHang
             // 
+            this.lblTenHang.AccessibleDescription = ".";
             this.lblTenHang.AccessibleName = "TEN_VT";
             this.lblTenHang.AutoSize = true;
             this.lblTenHang.Location = new System.Drawing.Point(329, 8);

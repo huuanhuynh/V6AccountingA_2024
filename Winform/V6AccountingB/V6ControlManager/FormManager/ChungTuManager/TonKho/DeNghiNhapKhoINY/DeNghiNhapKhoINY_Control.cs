@@ -8,7 +8,6 @@ using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
-using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY.ChonDonHangBan;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY.Loc;
 using V6Controls;
