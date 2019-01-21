@@ -108,6 +108,7 @@
             // 
             // lblDocSoTien
             // 
+            this.lblDocSoTien.AccessibleDescription = ".";
             this.lblDocSoTien.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDocSoTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -293,7 +294,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // maDonVi
             // 
@@ -456,7 +457,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // soHd
             // 

@@ -61,7 +61,7 @@
             // 
             // grbTuyChon
             // 
-            this.grbTuyChon.AccessibleDescription = "ACACTTA1H00030";
+            this.grbTuyChon.AccessibleDescription = "SEARCHG00003";
             this.grbTuyChon.Controls.Add(this.lblStatusDescription);
             this.grbTuyChon.Controls.Add(this.txtTrangThai);
             this.grbTuyChon.Controls.Add(this.chkNSD);
@@ -76,6 +76,7 @@
             // 
             // lblStatusDescription
             // 
+            this.lblStatusDescription.AccessibleDescription = ".";
             this.lblStatusDescription.Location = new System.Drawing.Point(137, 42);
             this.lblStatusDescription.Name = "lblStatusDescription";
             this.lblStatusDescription.Size = new System.Drawing.Size(616, 35);
@@ -111,7 +112,7 @@
             // 
             // v6Label21
             // 
-            this.v6Label21.AccessibleDescription = "ACACTTA1H00032";
+            this.v6Label21.AccessibleDescription = "SEARCHL00045";
             this.v6Label21.AutoSize = true;
             this.v6Label21.Location = new System.Drawing.Point(6, 42);
             this.v6Label21.Name = "v6Label21";
@@ -121,7 +122,7 @@
             // 
             // v6Label20
             // 
-            this.v6Label20.AccessibleDescription = "ACACTTA1H00031";
+            this.v6Label20.AccessibleDescription = "SEARCHL00044";
             this.v6Label20.AutoSize = true;
             this.v6Label20.Location = new System.Drawing.Point(6, 16);
             this.v6Label20.Name = "v6Label20";
@@ -217,6 +218,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TimPhieuThuForm_FormClosing);
             this.Load += new System.EventHandler(this.TimHoaDonForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TimPhieuThuForm_KeyDown);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.panel1, 0);

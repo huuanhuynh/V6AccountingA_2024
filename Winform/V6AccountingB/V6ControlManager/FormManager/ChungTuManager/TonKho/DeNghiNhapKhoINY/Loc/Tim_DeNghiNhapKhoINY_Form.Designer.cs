@@ -185,9 +185,10 @@
             // 
             // lblStatusDescription
             // 
+            this.lblStatusDescription.AccessibleDescription = ".";
             this.lblStatusDescription.Location = new System.Drawing.Point(6, 81);
             this.lblStatusDescription.Name = "lblStatusDescription";
-            this.lblStatusDescription.Size = new System.Drawing.Size(616, 32);
+            this.lblStatusDescription.Size = new System.Drawing.Size(747, 32);
             this.lblStatusDescription.TabIndex = 6;
             this.lblStatusDescription.Text = "* Tất cả, 0 - Chưa, 1- Ghi vào sổ kho, 2-Ghi vào sổ cái";
             // 
@@ -263,7 +264,7 @@
             this.txtTrangThai.HoverColor = System.Drawing.Color.Yellow;
             this.txtTrangThai.LeaveColor = System.Drawing.Color.White;
             this.txtTrangThai.LimitCharacters = "*012";
-            this.txtTrangThai.Location = new System.Drawing.Point(87, 60);
+            this.txtTrangThai.Location = new System.Drawing.Point(87, 59);
             this.txtTrangThai.MaxLength = 1;
             this.txtTrangThai.Name = "txtTrangThai";
             this.txtTrangThai.Size = new System.Drawing.Size(44, 20);
@@ -289,7 +290,7 @@
             // v6Label21
             // 
             this.v6Label21.AutoSize = true;
-            this.v6Label21.Location = new System.Drawing.Point(6, 63);
+            this.v6Label21.Location = new System.Drawing.Point(6, 62);
             this.v6Label21.Name = "v6Label21";
             this.v6Label21.Size = new System.Drawing.Size(55, 13);
             this.v6Label21.TabIndex = 4;
