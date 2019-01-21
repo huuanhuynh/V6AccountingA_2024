@@ -360,7 +360,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
             {
                 this.ShowInfoMessage(V6Text.AddDenied + "\nMode: " + Mode);
-                return true;
+                return false;
             }
             try
             {
@@ -404,6 +404,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".XuLyThemDetail", ex);
+                return false;
             }
             return true;
         }
@@ -455,11 +456,13 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 else
                 {
                     this.ShowWarningMessage(V6Text.NoSelection);
+                    return false;
                 }
             }
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".XuLySuaDetail", ex);
+                return false;
             }
             return true;
         }

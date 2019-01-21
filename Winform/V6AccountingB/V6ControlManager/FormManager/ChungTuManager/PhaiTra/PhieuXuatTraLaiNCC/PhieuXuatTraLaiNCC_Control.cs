@@ -793,21 +793,73 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                     }
                 }
             }
+            else if (keyData == Keys.F3) // Copy detail
+            {
+                if (NotAddEdit)
+                {
+                    ShowParentMessage(V6Text.PreviewingMode);
+                    return false;
+                }
+
+                detail1.btnNhan.Focus();
+                if (detail1.MODE == V6Mode.Add)
+                {
+                    var detailData = detail1.GetData();
+                    if (ValidateData_Detail(detailData))
+                    {
+                        if (XuLyThemDetail(detailData))
+                        {
+                            ShowParentMessage(V6Text.InvoiceF3AddDetailSuccess);
+                        }
+                    }
+                }
+                else if (detail1.MODE == V6Mode.Edit)
+                {
+                    var detailData = detail1.GetData();
+                    if (ValidateData_Detail(detailData))
+                    {
+                        if (XuLySuaDetail(detailData))
+                        {
+                            // Chuyển detail1 từ mode Edit qua mod Add không thay đổi data.
+                            detail1._mode = V6Mode.Add;
+                            detail1.btnSua.Image = Properties.Resources.Pencil16;
+                            detail1.btnMoi.Image = Properties.Resources.Cancel16;
+                            detail1.toolTip1.SetToolTip(btnMoi, V6Text.Cancel);
+                            detail1.btnMoi.Enabled = true;
+                            detail1.btnSua.Enabled = false;
+                            detail1.btnXoa.Enabled = false;
+                            detail1.btnNhan.Enabled = true;
+                            detail1.btnChucNang.Enabled = true;
+
+                            ShowParentMessage(V6Text.InvoiceF3EditDetailSuccess);
+                        }
+                    }
+                }
+                else
+                {
+                    detail1._mode = V6Mode.Add;
+                    detail1.SetFormControlsReadOnly(false);
+                    detail1.btnMoi.Image = Properties.Resources.Cancel16;
+                    detail1.toolTip1.SetToolTip(btnMoi, V6Text.Cancel);
+                    detail1.btnMoi.Enabled = true;
+                    detail1.btnSua.Enabled = false;
+                    detail1.btnXoa.Enabled = false;
+                    detail1.btnNhan.Enabled = true;
+                    detail1.btnChucNang.Enabled = true;
+                }
+            }
             else if (keyData == Keys.F4)
             {
                 if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
                 {
+                    detail1.btnNhan.Focus();
                     if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                     {
-                        string error = ValidateDetailData(Invoice, detail1.GetData());
-                        if (string.IsNullOrEmpty(error))
+                        var detailData = detail1.GetData();
+                        if (ValidateData_Detail(detailData))
                         {
                             detail1.btnNhan.Focus();
                             detail1.btnNhan.PerformClick();
-                        }
-                        else
-                        {
-                            ShowMainMessage(error);
                         }
                     }
 
@@ -3352,7 +3404,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             if (NotAddEdit)
             {
                 this.ShowInfoMessage(V6Text.AddDenied + "\nMode: " + Mode);
-                return true;
+                return false;
             }
             try
             {
@@ -3380,7 +3432,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                     }
                     AD.Rows.Add(newRow);
                     dataGridView1.DataSource = AD;
-                    success = true;
                     
                     if (AD.Rows.Count > 0)
                     {
@@ -3391,15 +3442,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                 else
                 {
                     this.ShowWarningMessage(V6Text.CheckData + error);
-                    success = false;
+                    return false;
                 }                
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);                
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                return false;
             }
             TinhTongThanhToan(GetType() + "." + MethodBase.GetCurrentMethod().Name);
-            return success;
+            return true;
         }
 
         
@@ -3412,54 +3464,51 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             }
             try
             {
-                if (_gv1EditingRow != null)
-                {
-                    var cIndex = _gv1EditingRow.Index;
-
-                    if (cIndex >= 0 && cIndex < AD.Rows.Count)
-                    {
-                        //Thêm thông tin...
-                        data["MA_CT"] = Invoice.Mact;
-                        data["NGAY_CT"] = dateNgayCT.Date;
-
-
-                        //Kiem tra du lieu truoc khi them sua
-                        var error = "";
-                        if (!data.ContainsKey("MA_VT") || data["MA_VT"].ToString().Trim() == "")
-                            error += "\nMã vật tư rỗng.";
-                        if (!data.ContainsKey("MA_KHO_I") || data["MA_KHO_I"].ToString().Trim() == "")
-                            error += "\nMã kho rỗng.";
-                        if (error == "")
-                        {
-                            //Sửa dòng dữ liệu.
-                            var currentRow = AD.Rows[cIndex];
-                            foreach (DataColumn column in AD.Columns)
-                            {
-                                var key = column.ColumnName.ToUpper();
-                                if (data.ContainsKey(key))
-                                {
-                                    object value = ObjectAndString.ObjectTo(column.DataType, data[key]);
-                                    currentRow[key] = value;
-                                }
-                            }
-                            dataGridView1.DataSource = AD;
-                            
-                        }
-                        else
-                        {
-                            this.ShowWarningMessage(V6Text.CheckData + error);
-                            return false;
-                        }
-                    }
-                }
-                else
+                if (_gv1EditingRow == null)
                 {
                     this.ShowWarningMessage(V6Text.NoSelection);
+                    return false;
+                }
+
+                var cIndex = _gv1EditingRow.Index;
+
+                if (cIndex >= 0 && cIndex < AD.Rows.Count)
+                {
+                    //Thêm thông tin...
+                    data["MA_CT"] = Invoice.Mact;
+                    data["NGAY_CT"] = dateNgayCT.Date;
+                    //Kiem tra du lieu truoc khi them sua
+                    var error = "";
+                    if (!data.ContainsKey("MA_VT") || data["MA_VT"].ToString().Trim() == "")
+                        error += "\nMã vật tư rỗng.";
+                    if (!data.ContainsKey("MA_KHO_I") || data["MA_KHO_I"].ToString().Trim() == "")
+                        error += "\nMã kho rỗng.";
+                    if (error == "")
+                    {
+                        //Sửa dòng dữ liệu.
+                        var currentRow = AD.Rows[cIndex];
+                        foreach (DataColumn column in AD.Columns)
+                        {
+                            var key = column.ColumnName.ToUpper();
+                            if (data.ContainsKey(key))
+                            {
+                                object value = ObjectAndString.ObjectTo(column.DataType, data[key]);
+                                currentRow[key] = value;
+                            }
+                        }
+                        dataGridView1.DataSource = AD;
+                    }
+                    else
+                    {
+                        this.ShowWarningMessage(V6Text.CheckData + error);
+                        return false;
+                    }
                 }
             }
             catch (Exception ex)
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                return false;
             }
             TinhTongThanhToan("xy ly sua detail");
             return true;

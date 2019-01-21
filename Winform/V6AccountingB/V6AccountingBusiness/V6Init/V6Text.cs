@@ -384,6 +384,8 @@
         public static string UnFinished { get { return V6Setting.IsVietnamese ? "Chưa xử lý xong!" : "UnFinished!"; } }
         public static string Unsupported { get { return V6Setting.Language == "V" ? "Chưa hỗ trợ!" : "Unsupported!"; } }
         public static string ValidateFail { get { return V6Setting.IsVietnamese ? "Validate Fail!" : "Validate Fail"; } }
+        public static string InvoiceF3AddDetailSuccess { get { return V6Setting.IsVietnamese ? "Đã thêm thành công 1 chi tiết và bắt đầu thêm mới một dòng khác." : "Successfully added 1 detail and started adding a new line."; } }
+        public static string InvoiceF3EditDetailSuccess { get { return V6Setting.IsVietnamese ? "Đã sửa chi tiết và bắt đầu thêm mới một dòng khác." : "Corrected details and started adding another line."; } }
         
 
         #region ==== Fuctions ====

@@ -835,7 +835,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
             {
                 this.ShowInfoMessage(V6Text.AddDenied + "\nMode: " + Mode);
-                return true;
+                return false;
             }
             try
             {
@@ -879,6 +879,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             catch (Exception ex)
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                return false;
             }
             return true;
         }
@@ -887,7 +888,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
             {
                 this.ShowInfoMessage(V6Text.AddDenied + "\nMode: " + Mode);
-                return true;
+                return false;
             }
             try
             {
@@ -924,11 +925,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     this.ShowWarningMessage("Kiểm tra lại dữ liệu 3:" + error);
                     return false;
                 }
-
             }
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".Thêm chi tiết 3: " + ex.Message);
+                return false;
             }
             return true;
         }
@@ -1033,11 +1034,13 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 else
                 {
                     this.ShowWarningMessage(V6Text.NoSelection);
+                    return false;
                 }
             }
             catch (Exception ex)
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                return false;
             }
             return true;
         }
