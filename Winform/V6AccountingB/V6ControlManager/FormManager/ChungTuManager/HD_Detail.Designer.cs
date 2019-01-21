@@ -219,13 +219,14 @@ namespace V6ControlManager.FormManager.ChungTuManager
         public V6FormButton btnSua;
         public V6FormButton btnXoa;
         public V6FormButton btnMoi;
-        private System.Windows.Forms.ToolTip toolTip1;
+        public System.Windows.Forms.ToolTip toolTip1;
         public V6Label lblName;
         private System.Windows.Forms.HScrollBar hScrollBar1;
         /// <summary>
         /// Panel chứa panelControls (có thanh kéo ngang).
         /// </summary>
         public System.Windows.Forms.Panel panel2;
-        private DropDownButton btnChucNang;
+
+        public DropDownButton btnChucNang;
     }
 }

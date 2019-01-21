@@ -206,7 +206,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
 
         /// <summary>
-        /// Mode != V6Mode.Add && Mode != V6Mode.Edit
+        /// Không phải đang sửa hoặc thêm mới chứng từ.
         /// </summary>
         public bool NotAddEdit
         {

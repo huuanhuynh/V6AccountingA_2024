@@ -372,6 +372,7 @@
         public static string NotAllow { get { return V6Setting.Language == "V" ? "Không được phép!" : "Not Allow!"; } }
         public static string NotAllowed { get { return V6Setting.Language == "V" ? "Chưa được phép!" : "Not Allowed!"; } }
         public static string NotAnAdmin { get { return V6Setting.Language == "V" ? "Không phải admin." : "Not an admin."; } }
+        public static string PreviewingMode { get { return V6Setting.IsVietnamese ? "Đang ở trạng thái xem!" : "Previewing mode!"; } }
         public static string ReadOnly { get { return V6Setting.IsVietnamese ? "Chỉ đọc!" : "Readonly!"; } }
         public static string Ready { get { return V6Setting.Language == "V" ? "Sẵn sàng." : "Ready."; } }
         public static string ReportError { get { return V6Setting.Language == "V" ? "Báo cáo bị lỗi." : "Report error."; } }

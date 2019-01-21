@@ -609,7 +609,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.Loc
             // 
             // v6Label20
             // 
-            this.v6Label20.AccessibleDescription = "SEARCHL00059";
+            this.v6Label20.AccessibleDescription = "SEARCHL00040";
             this.v6Label20.AutoSize = true;
             this.v6Label20.Location = new System.Drawing.Point(4, 35);
             this.v6Label20.Name = "v6Label20";

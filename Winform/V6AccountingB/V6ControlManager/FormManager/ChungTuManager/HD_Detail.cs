@@ -63,7 +63,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         public bool AutoFixControlLocation { get { return _autoLocation; } set { _autoLocation = value; } }
         private bool _autoLocation = true;
 
-        private V6Mode _mode = V6Mode.Init;
+        internal V6Mode _mode = V6Mode.Init;
 
         public V6Mode MODE
         {
@@ -796,7 +796,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// 
         /// </summary>
         /// <param name="readOnly"></param>
-        private void SetFormControlsReadOnly(bool readOnly)//, bool buttonToo)
+        public void SetFormControlsReadOnly(bool readOnly)//, bool buttonToo)
         {
             foreach (Control control in Controls)
             {

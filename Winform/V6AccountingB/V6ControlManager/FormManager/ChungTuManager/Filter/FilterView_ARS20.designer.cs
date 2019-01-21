@@ -220,7 +220,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // v6Label8
             // 
-            this.v6Label8.AccessibleDescription = "SEARCHL00052";
+            this.v6Label8.AccessibleDescription = "SEARCHL00042";
             this.v6Label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.v6Label8.AutoSize = true;
             this.v6Label8.Location = new System.Drawing.Point(456, 8);
@@ -275,7 +275,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // v6Label3
             // 
-            this.v6Label3.AccessibleDescription = "SEARCHL00051";
+            this.v6Label3.AccessibleDescription = "SEARCHL00041";
             this.v6Label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.v6Label3.AutoSize = true;
             this.v6Label3.Location = new System.Drawing.Point(650, 8);
