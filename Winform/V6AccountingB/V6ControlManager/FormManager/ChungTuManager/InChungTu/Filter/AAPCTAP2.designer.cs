@@ -54,6 +54,7 @@
             // 
             // radOr
             // 
+            this.radOr.AccessibleDescription = "FILTERR00002";
             this.radOr.AutoSize = true;
             this.radOr.Location = new System.Drawing.Point(142, 16);
             this.radOr.Name = "radOr";
@@ -65,6 +66,7 @@
             // 
             // radAnd
             // 
+            this.radAnd.AccessibleDescription = "FILTERR00001";
             this.radAnd.AutoSize = true;
             this.radAnd.Checked = true;
             this.radAnd.Location = new System.Drawing.Point(6, 16);
@@ -77,6 +79,7 @@
             // 
             // v6Label9
             // 
+            this.v6Label9.AccessibleDescription = ".";
             this.v6Label9.AutoSize = true;
             this.v6Label9.Location = new System.Drawing.Point(21, 57);
             this.v6Label9.Name = "v6Label9";
@@ -88,28 +91,27 @@
             // TxtStt_rec
             // 
             this.TxtStt_rec.AccessibleName = "STT_REC";
-            this.TxtStt_rec.BrotherFields = null;
-            this.TxtStt_rec.EnableColorEffect = true;
-            this.TxtStt_rec.EnableColorEffectOnMouseEnter = false;
+            this.TxtStt_rec.BackColor = System.Drawing.SystemColors.Window;
+            this.TxtStt_rec.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtStt_rec.EnterColor = System.Drawing.Color.PaleGreen;
+            this.TxtStt_rec.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.TxtStt_rec.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtStt_rec.HoverColor = System.Drawing.Color.Yellow;
             this.TxtStt_rec.LeaveColor = System.Drawing.Color.White;
-            this.TxtStt_rec.LimitCharacters = null;
             this.TxtStt_rec.Location = new System.Drawing.Point(131, 55);
             this.TxtStt_rec.Name = "TxtStt_rec";
             this.TxtStt_rec.Size = new System.Drawing.Size(100, 20);
             this.TxtStt_rec.TabIndex = 16;
-            this.TxtStt_rec.GrayText = "";
             this.TxtStt_rec.Visible = false;
             // 
-            // ACACTCA1
+            // AAPCTAP2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.v6Label9);
             this.Controls.Add(this.TxtStt_rec);
             this.Controls.Add(this.groupBox1);
-            this.Name = "ACACTCA1";
+            this.Name = "AAPCTAP2";
             this.Size = new System.Drawing.Size(295, 359);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -21,9 +21,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 filterMaDvcs.Enabled = false;
             }
-            
         }
-
         
         /// <summary>
         /// Lay cac tham so cho procedure

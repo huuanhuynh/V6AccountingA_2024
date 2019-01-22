@@ -49,7 +49,7 @@
             this.v6Label26 = new V6Controls.V6Label();
             this.v6Label7 = new V6Controls.V6Label();
             this.v6Label8 = new V6Controls.V6Label();
-            this.locThongTinChiTiet1 = new V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC.Loc.LocThongTinChiTietHoadon();
+            this.locThongTinChiTiet1 = new V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC.Loc.LocThongTinChiTietPhieuXuatTraLaiNCC();
             this.locThongTin1 = new V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC.Loc.LocThongTinPhieuXuatTraLaiNCC();
             this.locThoiGian1 = new V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC.Loc.LocThoiGianPhieuXuatTraLaiNCC();
             this.btnHuy = new System.Windows.Forms.Button();
@@ -449,7 +449,7 @@
         private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.Button btnNhan;
         private LocThoiGianPhieuXuatTraLaiNCC locThoiGian1;
-        private LocThongTinChiTietHoadon locThongTinChiTiet1;
+        private LocThongTinChiTietPhieuXuatTraLaiNCC locThongTinChiTiet1;
         private LocThongTinPhieuXuatTraLaiNCC locThongTin1;
         private V6Controls.V6Label lblDocSoTien;
         private System.Windows.Forms.GroupBox grbTuyChon;

@@ -107,8 +107,8 @@
             this.dataGridView1.Size = new System.Drawing.Size(76, 570);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            this.dataGridView1.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowEnter);
             this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
+            this.dataGridView1.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowEnter);
             // 
             // grbEditMode
             // 
@@ -125,6 +125,7 @@
             // 
             // radCopyFrom
             // 
+            this.radCopyFrom.AccessibleDescription = ".";
             this.radCopyFrom.AutoSize = true;
             this.radCopyFrom.Location = new System.Drawing.Point(248, 12);
             this.radCopyFrom.Name = "radCopyFrom";
@@ -137,6 +138,7 @@
             // 
             // radEditMove
             // 
+            this.radEditMove.AccessibleDescription = ".";
             this.radEditMove.AutoSize = true;
             this.radEditMove.Location = new System.Drawing.Point(153, 12);
             this.radEditMove.Name = "radEditMove";
@@ -149,6 +151,7 @@
             // 
             // radReplaceNew
             // 
+            this.radReplaceNew.AccessibleDescription = ".";
             this.radReplaceNew.AutoSize = true;
             this.radReplaceNew.Location = new System.Drawing.Point(55, 12);
             this.radReplaceNew.Name = "radReplaceNew";
@@ -161,6 +164,7 @@
             // 
             // radNo
             // 
+            this.radNo.AccessibleDescription = ".";
             this.radNo.AutoSize = true;
             this.radNo.Checked = true;
             this.radNo.Location = new System.Drawing.Point(6, 12);
@@ -200,6 +204,7 @@
             // 
             // grbKhuVuc
             // 
+            this.grbKhuVuc.AccessibleDescription = ".";
             this.grbKhuVuc.Controls.Add(this.chkNone);
             this.grbKhuVuc.Controls.Add(this.comboBoxGroup);
             this.grbKhuVuc.Location = new System.Drawing.Point(3, -2);
@@ -211,6 +216,7 @@
             // 
             // chkNone
             // 
+            this.chkNone.AccessibleDescription = ".";
             this.chkNone.AutoSize = true;
             this.chkNone.Location = new System.Drawing.Point(223, 16);
             this.chkNone.Name = "chkNone";

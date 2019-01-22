@@ -521,7 +521,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // tabPage3
             // 
-            this.tabPage3.AccessibleDescription = "XULYT00003";
+            this.tabPage3.AccessibleDescription = "ADDEDITT00004";
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(5);

@@ -56,7 +56,7 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu
             // 
             // lblDefault
             // 
-            this.lblDefault.AccessibleDescription = "";
+            this.lblDefault.AccessibleDescription = "XULYL00199";
             this.lblDefault.Location = new System.Drawing.Point(159, 3);
             this.lblDefault.Name = "lblDefault";
             this.lblDefault.Size = new System.Drawing.Size(160, 20);
@@ -74,6 +74,7 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu
             // 
             // btnAdd
             // 
+            this.btnAdd.AccessibleDescription = "XULYB00012";
             this.btnAdd.Location = new System.Drawing.Point(7, 3);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 27);
@@ -84,6 +85,7 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu
             // 
             // chkAutoCopyID
             // 
+            this.chkAutoCopyID.AccessibleDescription = "XULYC00014";
             this.chkAutoCopyID.AutoSize = true;
             this.chkAutoCopyID.Checked = true;
             this.chkAutoCopyID.CheckState = System.Windows.Forms.CheckState.Checked;

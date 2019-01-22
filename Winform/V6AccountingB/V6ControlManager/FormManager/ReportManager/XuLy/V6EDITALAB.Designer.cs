@@ -88,6 +88,7 @@
             // 
             // radEditMode
             // 
+            this.radEditMode.AccessibleDescription = "XULYC00004";
             this.radEditMode.AutoSize = true;
             this.radEditMode.Checked = true;
             this.radEditMode.Location = new System.Drawing.Point(15, 14);
@@ -100,6 +101,7 @@
             // 
             // radDeleteMode
             // 
+            this.radDeleteMode.AccessibleDescription = "XULYC00016";
             this.radDeleteMode.AutoSize = true;
             this.radDeleteMode.Location = new System.Drawing.Point(98, 14);
             this.radDeleteMode.Name = "radDeleteMode";
@@ -110,6 +112,7 @@
             // 
             // v6Label2
             // 
+            this.v6Label2.AccessibleDescription = "XULYL00163";
             this.v6Label2.AutoSize = true;
             this.v6Label2.Location = new System.Drawing.Point(10, 82);
             this.v6Label2.Name = "v6Label2";
@@ -149,6 +152,7 @@
             // 
             // v6Label3
             // 
+            this.v6Label3.AccessibleDescription = "XULYL00200";
             this.v6Label3.AutoSize = true;
             this.v6Label3.Location = new System.Drawing.Point(10, 109);
             this.v6Label3.Name = "v6Label3";

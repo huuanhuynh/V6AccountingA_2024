@@ -218,7 +218,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // tabPageThongTinChinh
             // 
-            this.tabPageThongTinChinh.AccessibleDescription = "XULYT00001";
+            this.tabPageThongTinChinh.AccessibleDescription = "ADDEDITT00001";
             this.tabPageThongTinChinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPageThongTinChinh.Controls.Add(this.cboLoai_cc0);
             this.tabPageThongTinChinh.Controls.Add(this.label34);
@@ -1149,7 +1149,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // tabPageTuDinhNghia
             // 
-            this.tabPageTuDinhNghia.AccessibleDescription = "XULYT00002";
+            this.tabPageTuDinhNghia.AccessibleDescription = "ADDEDITT00003";
             this.tabPageTuDinhNghia.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPageTuDinhNghia.Controls.Add(this.txtGC_TD3);
             this.tabPageTuDinhNghia.Controls.Add(this.txtGC_TD2);

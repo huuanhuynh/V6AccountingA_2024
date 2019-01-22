@@ -320,6 +320,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.Loc
             // 
             // chkLike
             // 
+            this.chkLike.AccessibleDescription = "SEARCHC00001";
             this.chkLike.AutoSize = true;
             this.chkLike.Checked = true;
             this.chkLike.CheckState = System.Windows.Forms.CheckState.Checked;

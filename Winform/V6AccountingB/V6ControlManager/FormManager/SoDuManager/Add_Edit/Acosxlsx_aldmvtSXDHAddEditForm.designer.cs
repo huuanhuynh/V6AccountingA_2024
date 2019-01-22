@@ -75,7 +75,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // v6TabControl1
             // 
-            this.v6TabControl1.AccessibleDescription = "XULYT00003";
+            this.v6TabControl1.AccessibleDescription = "ADDEDITT00004";
             this.v6TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.v6TabControl1.Controls.Add(this.tabPage1);
@@ -92,7 +92,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // tabPage1
             // 
-            this.tabPage1.AccessibleDescription = "XULYT00001";
+            this.tabPage1.AccessibleDescription = "ADDEDITT00001";
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage1.Controls.Add(this.txtMaCt);
             this.tabPage1.Controls.Add(this.txtSttRec);
@@ -246,7 +246,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // tabPage2
             // 
-            this.tabPage2.AccessibleDescription = "XULYT00002";
+            this.tabPage2.AccessibleDescription = "ADDEDITT00003";
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage2.Controls.Add(this.v6ColorTextBox16);
             this.tabPage2.Controls.Add(this.v6ColorTextBox15);

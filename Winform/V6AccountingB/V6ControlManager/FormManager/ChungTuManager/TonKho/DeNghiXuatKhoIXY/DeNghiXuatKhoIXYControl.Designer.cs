@@ -32,9 +32,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabChiTiet = new System.Windows.Forms.TabPage();
             this.detail1 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
@@ -299,20 +299,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MA_VT,
@@ -324,8 +324,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(875, 142);
             this.dataGridView1.TabIndex = 1;
@@ -1123,8 +1123,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             // 
             // lblTG_NHAN
             // 
+            this.lblTG_NHAN.AccessibleDescription = "ASOCTSOAL00121";
             this.lblTG_NHAN.AutoSize = true;
-            this.lblTG_NHAN.Location = new System.Drawing.Point(0, 83);
+            this.lblTG_NHAN.Location = new System.Drawing.Point(3, 83);
             this.lblTG_NHAN.Name = "lblTG_NHAN";
             this.lblTG_NHAN.Size = new System.Drawing.Size(60, 13);
             this.lblTG_NHAN.TabIndex = 8;
@@ -1153,8 +1154,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             // 
             // lblNGAY_NOHD
             // 
+            this.lblNGAY_NOHD.AccessibleDescription = "ASOCTSOAL00120";
             this.lblNGAY_NOHD.AutoSize = true;
-            this.lblNGAY_NOHD.Location = new System.Drawing.Point(0, 55);
+            this.lblNGAY_NOHD.Location = new System.Drawing.Point(3, 55);
             this.lblNGAY_NOHD.Name = "lblNGAY_NOHD";
             this.lblNGAY_NOHD.Size = new System.Drawing.Size(106, 13);
             this.lblNGAY_NOHD.TabIndex = 6;
@@ -1205,8 +1207,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             // 
             // lblMA_HTVC
             // 
+            this.lblMA_HTVC.AccessibleDescription = "ASOCTSOAL00119";
             this.lblMA_HTVC.AutoSize = true;
-            this.lblMA_HTVC.Location = new System.Drawing.Point(0, 32);
+            this.lblMA_HTVC.Location = new System.Drawing.Point(3, 32);
             this.lblMA_HTVC.Name = "lblMA_HTVC";
             this.lblMA_HTVC.Size = new System.Drawing.Size(118, 13);
             this.lblMA_HTVC.TabIndex = 2;
@@ -1214,8 +1217,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             // 
             // lblDIA_CHI2
             // 
+            this.lblDIA_CHI2.AccessibleDescription = "ASOCTSOAL00109";
             this.lblDIA_CHI2.AutoSize = true;
-            this.lblDIA_CHI2.Location = new System.Drawing.Point(0, 6);
+            this.lblDIA_CHI2.Location = new System.Drawing.Point(3, 6);
             this.lblDIA_CHI2.Name = "lblDIA_CHI2";
             this.lblDIA_CHI2.Size = new System.Drawing.Size(90, 13);
             this.lblDIA_CHI2.TabIndex = 0;
@@ -1634,6 +1638,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             // 
             // lblKieuPostColor
             // 
+            this.lblKieuPostColor.AccessibleDescription = ".";
             this.lblKieuPostColor.AutoSize = true;
             this.lblKieuPostColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKieuPostColor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
@@ -2053,6 +2058,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             // 
             // lblTongSoDong
             // 
+            this.lblTongSoDong.AccessibleDescription = ".";
             this.lblTongSoDong.AutoSize = true;
             this.lblTongSoDong.Location = new System.Drawing.Point(6, 14);
             this.lblTongSoDong.Name = "lblTongSoDong";
@@ -2825,6 +2831,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             // 
             // v6Label2
             // 
+            this.v6Label2.AccessibleDescription = "ASOCTSOAC00043";
             this.v6Label2.AutoSize = true;
             this.v6Label2.Location = new System.Drawing.Point(6, 36);
             this.v6Label2.Name = "v6Label2";
@@ -2900,6 +2907,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             // 
             // v6Label1
             // 
+            this.v6Label1.AccessibleDescription = "ASOCTSOAC00042";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(6, 13);
             this.v6Label1.Name = "v6Label1";

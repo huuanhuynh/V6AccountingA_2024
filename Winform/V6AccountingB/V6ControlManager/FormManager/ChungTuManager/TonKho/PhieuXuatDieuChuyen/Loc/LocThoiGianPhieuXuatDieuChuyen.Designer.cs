@@ -44,6 +44,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             // 
             // groupBox1
             // 
+            this.groupBox1.AccessibleDescription = "partial class LocThoiGianPhieuXuatDieuChuyen";
             this.groupBox1.Controls.Add(this.v6ColorTextBox2);
             this.groupBox1.Controls.Add(this.v6ColorTextBox1);
             this.groupBox1.Controls.Add(this.v6Label4);
@@ -92,6 +93,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             // 
             // v6Label4
             // 
+            this.v6Label4.AccessibleDescription = "SEARCHL00017";
             this.v6Label4.AutoSize = true;
             this.v6Label4.Location = new System.Drawing.Point(587, 22);
             this.v6Label4.Name = "v6Label4";

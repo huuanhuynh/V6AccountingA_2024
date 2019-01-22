@@ -5,9 +5,9 @@ using V6Structs;
 
 namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC.Loc
 {
-    public partial class LocThongTinChiTietHoadon : UserControl
+    public partial class LocThongTinChiTietPhieuXuatTraLaiNCC : UserControl
     {
-        public LocThongTinChiTietHoadon()
+        public LocThongTinChiTietPhieuXuatTraLaiNCC()
         {
             InitializeComponent();
             txtMaSanPham.SetInitFilter("Loai_vt=55");

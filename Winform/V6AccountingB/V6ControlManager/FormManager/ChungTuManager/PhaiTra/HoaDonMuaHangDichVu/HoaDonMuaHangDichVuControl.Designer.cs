@@ -1472,6 +1472,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             // 
             // chkSuaTien
             // 
+            this.chkSuaTien.AccessibleDescription = "ASOCTSOAR00026";
             this.chkSuaTien.AccessibleName = "sua_tien";
             this.chkSuaTien.AutoSize = true;
             this.chkSuaTien.Location = new System.Drawing.Point(7, 58);

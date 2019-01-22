@@ -1806,6 +1806,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             // 
             // chkT_THUE_NT
             // 
+            this.chkT_THUE_NT.AccessibleDescription = "ASOCTSOAR00028";
             this.chkT_THUE_NT.AccessibleName = "sua_thue";
             this.chkT_THUE_NT.AutoSize = true;
             this.chkT_THUE_NT.Location = new System.Drawing.Point(63, 73);
@@ -1819,6 +1820,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             // 
             // chkSuaTienCk
             // 
+            this.chkSuaTienCk.AccessibleDescription = "ASOCTSOAR00033";
             this.chkSuaTienCk.AccessibleName = "sua_ck";
             this.chkSuaTienCk.AutoSize = true;
             this.chkSuaTienCk.Location = new System.Drawing.Point(63, 52);

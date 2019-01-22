@@ -85,6 +85,7 @@
             this.TxtTransform.ReadOnly = true;
             this.TxtTransform.Size = new System.Drawing.Size(135, 23);
             this.TxtTransform.TabIndex = 19;
+            this.TxtTransform.TabStop = false;
             this.TxtTransform.Tag = "readonly";
             this.TxtTransform.Visible = false;
             // 
@@ -117,6 +118,7 @@
             this.TxtMa_ctnb.ReadOnly = true;
             this.TxtMa_ctnb.Size = new System.Drawing.Size(403, 20);
             this.TxtMa_ctnb.TabIndex = 7;
+            this.TxtMa_ctnb.TabStop = false;
             // 
             // TxtDinhdang
             // 
@@ -172,6 +174,7 @@
             this.TxtMau.ReadOnly = true;
             this.TxtMau.Size = new System.Drawing.Size(135, 23);
             this.TxtMau.TabIndex = 17;
+            this.TxtMau.TabStop = false;
             this.TxtMau.Tag = "readonly";
             // 
             // TxtPhandau
@@ -376,6 +379,7 @@
             // 
             // radOr
             // 
+            this.radOr.AccessibleDescription = "FILTERR00002";
             this.radOr.AutoSize = true;
             this.radOr.Location = new System.Drawing.Point(142, 16);
             this.radOr.Name = "radOr";
@@ -387,6 +391,7 @@
             // 
             // radAnd
             // 
+            this.radAnd.AccessibleDescription = "FILTERR00001";
             this.radAnd.AutoSize = true;
             this.radAnd.Checked = true;
             this.radAnd.Location = new System.Drawing.Point(6, 16);

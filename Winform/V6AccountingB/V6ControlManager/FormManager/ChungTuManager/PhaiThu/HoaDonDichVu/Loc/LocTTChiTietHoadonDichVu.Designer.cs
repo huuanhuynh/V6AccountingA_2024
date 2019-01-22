@@ -31,6 +31,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.v6VvarTextBox1 = new V6Controls.V6VvarTextBox();
+            this.v6Label5 = new V6Controls.V6Label();
             this.panelFilter2 = new V6ReportControls.PanelFilter();
             this.v6ColorTextBox4 = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox5 = new V6Controls.V6VvarTextBox();
@@ -64,13 +66,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             this.v6Label35 = new V6Controls.V6Label();
             this.v6Label36 = new V6Controls.V6Label();
             this.v6Label37 = new V6Controls.V6Label();
-            this.v6VvarTextBox1 = new V6Controls.V6VvarTextBox();
-            this.v6Label5 = new V6Controls.V6Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.AccessibleDescription = "SEARCHG00002";
             this.groupBox1.Controls.Add(this.v6VvarTextBox1);
             this.groupBox1.Controls.Add(this.v6Label5);
             this.groupBox1.Controls.Add(this.panelFilter2);
@@ -113,6 +114,32 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc thông tin chi tiết";
+            // 
+            // v6VvarTextBox1
+            // 
+            this.v6VvarTextBox1.AccessibleName = "dien_giaii";
+            this.v6VvarTextBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.v6VvarTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6VvarTextBox1.CheckOnLeave = false;
+            this.v6VvarTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6VvarTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6VvarTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6VvarTextBox1.HoverColor = System.Drawing.Color.Yellow;
+            this.v6VvarTextBox1.LeaveColor = System.Drawing.Color.White;
+            this.v6VvarTextBox1.Location = new System.Drawing.Point(87, 203);
+            this.v6VvarTextBox1.Name = "v6VvarTextBox1";
+            this.v6VvarTextBox1.Size = new System.Drawing.Size(413, 20);
+            this.v6VvarTextBox1.TabIndex = 34;
+            // 
+            // v6Label5
+            // 
+            this.v6Label5.AccessibleDescription = "SEARCHL00012";
+            this.v6Label5.AutoSize = true;
+            this.v6Label5.Location = new System.Drawing.Point(6, 206);
+            this.v6Label5.Name = "v6Label5";
+            this.v6Label5.Size = new System.Drawing.Size(75, 13);
+            this.v6Label5.TabIndex = 33;
+            this.v6Label5.Text = "Diễn giải chứa";
             // 
             // panelFilter2
             // 
@@ -364,6 +391,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             // 
             // v6Label4
             // 
+            this.v6Label4.AccessibleDescription = "SEARCHL00034";
             this.v6Label4.AutoSize = true;
             this.v6Label4.Location = new System.Drawing.Point(6, 183);
             this.v6Label4.Name = "v6Label4";
@@ -390,6 +418,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             // 
             // v6Label9
             // 
+            this.v6Label9.AccessibleDescription = "SEARCHL00030";
             this.v6Label9.AutoSize = true;
             this.v6Label9.Location = new System.Drawing.Point(6, 137);
             this.v6Label9.Name = "v6Label9";
@@ -399,6 +428,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             // 
             // v6Label3
             // 
+            this.v6Label3.AccessibleDescription = "SEARCHL00035";
             this.v6Label3.AutoSize = true;
             this.v6Label3.Location = new System.Drawing.Point(285, 183);
             this.v6Label3.Name = "v6Label3";
@@ -408,6 +438,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             // 
             // v6Label10
             // 
+            this.v6Label10.AccessibleDescription = "SEARCHL00024";
             this.v6Label10.AutoSize = true;
             this.v6Label10.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.v6Label10.Location = new System.Drawing.Point(6, 68);
@@ -419,6 +450,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             // 
             // v6Label2
             // 
+            this.v6Label2.AccessibleDescription = "SEARCHL00032";
             this.v6Label2.AutoSize = true;
             this.v6Label2.Location = new System.Drawing.Point(6, 160);
             this.v6Label2.Name = "v6Label2";
@@ -428,6 +460,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             // 
             // v6Label11
             // 
+            this.v6Label11.AccessibleDescription = "SEARCHL00031";
             this.v6Label11.AutoSize = true;
             this.v6Label11.Location = new System.Drawing.Point(285, 137);
             this.v6Label11.Name = "v6Label11";
@@ -437,6 +470,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             // 
             // v6Label12
             // 
+            this.v6Label12.AccessibleDescription = "SEARCHL00033";
             this.v6Label12.AutoSize = true;
             this.v6Label12.Location = new System.Drawing.Point(6, 114);
             this.v6Label12.Name = "v6Label12";
@@ -446,6 +480,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             // 
             // v6Label30
             // 
+            this.v6Label30.AccessibleDescription = "SEARCHL00027";
             this.v6Label30.AutoSize = true;
             this.v6Label30.Location = new System.Drawing.Point(285, 91);
             this.v6Label30.Name = "v6Label30";
@@ -455,6 +490,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             // 
             // v6Label1
             // 
+            this.v6Label1.AccessibleDescription = "SEARCHL00028";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(285, 160);
             this.v6Label1.Name = "v6Label1";
@@ -464,6 +500,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             // 
             // v6Label31
             // 
+            this.v6Label31.AccessibleDescription = "SEARCHL00022";
             this.v6Label31.AutoSize = true;
             this.v6Label31.Location = new System.Drawing.Point(6, 45);
             this.v6Label31.Name = "v6Label31";
@@ -473,6 +510,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             // 
             // v6Label32
             // 
+            this.v6Label32.AccessibleDescription = "SEARCHL00029";
             this.v6Label32.AutoSize = true;
             this.v6Label32.Location = new System.Drawing.Point(285, 114);
             this.v6Label32.Name = "v6Label32";
@@ -482,6 +520,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             // 
             // v6Label33
             // 
+            this.v6Label33.AccessibleDescription = "SEARCHL00023";
             this.v6Label33.AutoSize = true;
             this.v6Label33.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.v6Label33.Location = new System.Drawing.Point(285, 45);
@@ -493,6 +532,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             // 
             // v6Label34
             // 
+            this.v6Label34.AccessibleDescription = "SEARCHL00025";
             this.v6Label34.AutoSize = true;
             this.v6Label34.Location = new System.Drawing.Point(285, 68);
             this.v6Label34.Name = "v6Label34";
@@ -502,6 +542,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             // 
             // v6Label35
             // 
+            this.v6Label35.AccessibleDescription = "SEARCHL00026";
             this.v6Label35.AutoSize = true;
             this.v6Label35.Location = new System.Drawing.Point(6, 91);
             this.v6Label35.Name = "v6Label35";
@@ -511,6 +552,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             // 
             // v6Label36
             // 
+            this.v6Label36.AccessibleDescription = "SEARCHL00021";
             this.v6Label36.AutoSize = true;
             this.v6Label36.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.v6Label36.Location = new System.Drawing.Point(285, 22);
@@ -522,6 +564,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             // 
             // v6Label37
             // 
+            this.v6Label37.AccessibleDescription = "SEARCHL00020";
             this.v6Label37.AutoSize = true;
             this.v6Label37.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.v6Label37.Location = new System.Drawing.Point(6, 22);
@@ -530,32 +573,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu.Loc
             this.v6Label37.TabIndex = 0;
             this.v6Label37.Text = "Mã kho";
             this.v6Label37.Visible = false;
-            // 
-            // v6VvarTextBox1
-            // 
-            this.v6VvarTextBox1.AccessibleName = "dien_giaii";
-            this.v6VvarTextBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.v6VvarTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6VvarTextBox1.CheckOnLeave = false;
-            this.v6VvarTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6VvarTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6VvarTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6VvarTextBox1.HoverColor = System.Drawing.Color.Yellow;
-            this.v6VvarTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox1.Location = new System.Drawing.Point(87, 203);
-            this.v6VvarTextBox1.Name = "v6VvarTextBox1";
-            this.v6VvarTextBox1.Size = new System.Drawing.Size(413, 20);
-            this.v6VvarTextBox1.TabIndex = 34;
-            // 
-            // v6Label5
-            // 
-            this.v6Label5.AccessibleDescription = "SEARCHL00012";
-            this.v6Label5.AutoSize = true;
-            this.v6Label5.Location = new System.Drawing.Point(6, 206);
-            this.v6Label5.Name = "v6Label5";
-            this.v6Label5.Size = new System.Drawing.Size(75, 13);
-            this.v6Label5.TabIndex = 33;
-            this.v6Label5.Text = "Diễn giải chứa";
             // 
             // LocTTChiTietHoadonDichVu
             // 

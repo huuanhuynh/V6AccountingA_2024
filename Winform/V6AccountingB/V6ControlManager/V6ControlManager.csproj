@@ -890,23 +890,23 @@
     <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonPhieuNhap\CPNKetQuaPhieuXuatTraLaiNCC.Designer.cs">
       <DependentUpon>CPNKetQuaPhieuXuatTraLaiNCC.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonPhieuNhap\CPNThoiGianHangTraLai.cs">
+    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonPhieuNhap\CPNThoiGianPhieuXuatTraLaiNCC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonPhieuNhap\CPNThoiGianHangTraLai.Designer.cs">
-      <DependentUpon>CPNThoiGianHangTraLai.cs</DependentUpon>
+    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonPhieuNhap\CPNThoiGianPhieuXuatTraLaiNCC.Designer.cs">
+      <DependentUpon>CPNThoiGianPhieuXuatTraLaiNCC.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonPhieuNhap\CPNThongTinChiTietHangTraLai.cs">
+    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonPhieuNhap\CPNThongTinChiTietPhieuXuatTraLaiNCC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonPhieuNhap\CPNThongTinChiTietHangTraLai.Designer.cs">
-      <DependentUpon>CPNThongTinChiTietHangTraLai.cs</DependentUpon>
+    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonPhieuNhap\CPNThongTinChiTietPhieuXuatTraLaiNCC.Designer.cs">
+      <DependentUpon>CPNThongTinChiTietPhieuXuatTraLaiNCC.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonPhieuNhap\CPNThongTinHangTraLai.cs">
+    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonPhieuNhap\CPNThongTinPhieuXuatTraLaiNCC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonPhieuNhap\CPNThongTinHangTraLai.Designer.cs">
-      <DependentUpon>CPNThongTinHangTraLai.cs</DependentUpon>
+    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonPhieuNhap\CPNThongTinPhieuXuatTraLaiNCC.Designer.cs">
+      <DependentUpon>CPNThongTinPhieuXuatTraLaiNCC.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\PhieuXuatTraLaiNCC_Control.cs">
       <SubType>UserControl</SubType>
@@ -5880,8 +5880,8 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\HoaDonMuaHangDichVu\Loc\LocKetQuaHoaDonMuaHangDichVu.resx">
       <DependentUpon>LocKetQuaHoaDonMuaHangDichVu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonPhieuNhap\CPNThoiGianHangTraLai.resx">
-      <DependentUpon>CPNThoiGianHangTraLai.cs</DependentUpon>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonPhieuNhap\CPNThoiGianPhieuXuatTraLaiNCC.resx">
+      <DependentUpon>CPNThoiGianPhieuXuatTraLaiNCC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonPhieuNhap\CPN_PhieuXuatTraLaiNCC_Form.resx">
       <DependentUpon>CPN_PhieuXuatTraLaiNCC_Form.cs</DependentUpon>
@@ -5889,11 +5889,11 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonPhieuNhap\CPNKetQuaPhieuXuatTraLaiNCC.resx">
       <DependentUpon>CPNKetQuaPhieuXuatTraLaiNCC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonPhieuNhap\CPNThongTinChiTietHangTraLai.resx">
-      <DependentUpon>CPNThongTinChiTietHangTraLai.cs</DependentUpon>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonPhieuNhap\CPNThongTinChiTietPhieuXuatTraLaiNCC.resx">
+      <DependentUpon>CPNThongTinChiTietPhieuXuatTraLaiNCC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonPhieuNhap\CPNThongTinHangTraLai.resx">
-      <DependentUpon>CPNThongTinHangTraLai.cs</DependentUpon>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\ChonPhieuNhap\CPNThongTinPhieuXuatTraLaiNCC.resx">
+      <DependentUpon>CPNThongTinPhieuXuatTraLaiNCC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuXuatTraLaiNCC\Loc\LocThoiGianPhieuXuatTraLaiNCC.resx">
       <DependentUpon>LocThoiGianPhieuXuatTraLaiNCC.cs</DependentUpon>

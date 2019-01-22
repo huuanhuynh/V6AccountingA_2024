@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using H;
 using V6BarcodeLib;
 using V6Controls;
+using V6Controls.Forms;
 using V6Init;
 using V6Tools.V6Convert;
 
@@ -17,7 +18,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
 	/// <summary>
 	/// Summary description for Form.
 	/// </summary>
-	partial class PrintBarcodeForm : Form
+	partial class PrintBarcodeForm : V6Form
 	{
 		private BarcodeLib code13 = null;
         public DataTable Data { get; set; }
@@ -530,7 +531,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
             DrawSample();
         }
 
-        void LoadLanguage()
+        void LoadLanguage0()
         {
             if (radV.Checked)
             {
@@ -545,7 +546,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
                 grbStampSize.Text = "Kích thước tem (mm)";
                 lblTemNgang.Text = "Ngang";
                 lblTemDoc.Text = "Dọc";
-                grbMargin.Text = "Canh lề trang in (mm)";
+                grbPageMargin.Text = "Canh lề trang in (mm)";
                 lblTrai.Text = "Trái";
                 lblPhai.Text = "Phải";
                 lblTren.Text = "Trên";
@@ -579,7 +580,7 @@ namespace V6ControlManager.FormManager.HeThong.V6BarcodePrint
                 grbStampSize.Text = "Stamp size (mm)";
                 lblTemNgang.Text = "Horizontal";
                 lblTemDoc.Text = "Vertical";
-                grbMargin.Text = "Margin (mm)";
+                grbPageMargin.Text = "Margin (mm)";
                 lblTrai.Text = "Left";
                 lblPhai.Text = "Right";
                 lblTren.Text = "Top";

@@ -123,7 +123,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // tabPage1
             // 
-            this.tabPage1.AccessibleDescription = "XULYT00001";
+            this.tabPage1.AccessibleDescription = "ADDEDITT00001";
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage1.Controls.Add(this.txtMaCt);
             this.tabPage1.Controls.Add(this.txtSttRec);
@@ -277,7 +277,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // tabPage2
             // 
-            this.tabPage2.AccessibleDescription = "XULYT00002";
+            this.tabPage2.AccessibleDescription = "ADDEDITT00003";
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage2.Controls.Add(this.txtGC_TD3);
             this.tabPage2.Controls.Add(this.txtGC_TD2);
@@ -1072,7 +1072,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // tabPage3
             // 
-            this.tabPage3.AccessibleDescription = "XULYT00001";
+            this.tabPage3.AccessibleDescription = "ADDEDITT00001";
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(5);

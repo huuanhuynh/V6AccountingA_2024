@@ -660,7 +660,7 @@
             // 
             // v6Label30
             // 
-            this.v6Label30.AccessibleDescription = "SEARCHL00033";
+            this.v6Label30.AccessibleDescription = "SEARCHL00028";
             this.v6Label30.AutoSize = true;
             this.v6Label30.Location = new System.Drawing.Point(282, 73);
             this.v6Label30.Name = "v6Label30";
@@ -670,7 +670,7 @@
             // 
             // v6Label32
             // 
-            this.v6Label32.AccessibleDescription = "SEARCHL00028";
+            this.v6Label32.AccessibleDescription = "SEARCHL00033";
             this.v6Label32.AutoSize = true;
             this.v6Label32.Location = new System.Drawing.Point(282, 93);
             this.v6Label32.Name = "v6Label32";

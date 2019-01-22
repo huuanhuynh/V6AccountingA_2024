@@ -54,6 +54,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             // 
             // lblDenNgay
             // 
+            this.lblDenNgay.AccessibleDescription = "SEARCHL00038";
             this.lblDenNgay.AutoSize = true;
             this.lblDenNgay.Location = new System.Drawing.Point(183, 22);
             this.lblDenNgay.Name = "lblDenNgay";

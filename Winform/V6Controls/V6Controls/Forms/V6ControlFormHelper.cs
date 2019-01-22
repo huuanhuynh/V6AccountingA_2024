@@ -649,7 +649,7 @@ namespace V6Controls.Forms
             Control temp_control = new Control();
             foreach (DataRow row in alct1.Rows)
             {
-                //var visible = 1 == Convert.ToInt32(row["visible"]);
+                var read_only = 1 == Convert.ToInt32(row["visible"]);
                 //if (!visible) continue;
 
                 var fcolumn = row["fcolumn"].ToString().Trim().ToUpper();
@@ -759,6 +759,9 @@ namespace V6Controls.Forms
                         break;
                     #endregion
                 }
+
+                if (read_only) AddTagString(c, "readonly");
+
                 if (c != temp_control)
                 {
                     result.Add(fOrder, c);
@@ -775,7 +778,7 @@ namespace V6Controls.Forms
         }
 
         /// <summary>
-        /// Lấy động danh sách control (textbox) từ bảng Alct
+        /// Lấy động danh sách control (textbox) từ bảng Alct có LookupButton
         /// </summary>
         /// <param name="alct1"></param>
         /// <param name="orderList">Dùng để xắp xếp lại gridview_columns khi cần.</param>
@@ -795,7 +798,7 @@ namespace V6Controls.Forms
             Control temp_control = new Control();
             foreach (DataRow row in alct1.Rows)
             {
-                //var visible = 1 == Convert.ToInt32(row["visible"]);
+                var read_only = 1 == Convert.ToInt32(row["visible"]);
                 //if (!visible) continue;
                 Config config = new Config(row.ToDataDictionary());
                 var filter_m = config.GetString("FILTER_M");
@@ -907,7 +910,7 @@ namespace V6Controls.Forms
                     #endregion
                 }
 
-                
+                if (read_only) AddTagString(c, "readonly");
 
                 if (c != temp_control)
                 {

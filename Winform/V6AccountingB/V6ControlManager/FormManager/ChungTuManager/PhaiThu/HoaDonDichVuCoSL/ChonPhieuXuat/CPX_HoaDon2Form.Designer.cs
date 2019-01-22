@@ -500,7 +500,7 @@
             // 
             // v6Label14
             // 
-            this.v6Label14.AccessibleDescription = "SEARCHL00028";
+            this.v6Label14.AccessibleDescription = "SEARCHL00033";
             this.v6Label14.AutoSize = true;
             this.v6Label14.Location = new System.Drawing.Point(6, 126);
             this.v6Label14.Name = "v6Label14";
@@ -520,7 +520,7 @@
             // 
             // v6Label15
             // 
-            this.v6Label15.AccessibleDescription = "SEARCHL00033";
+            this.v6Label15.AccessibleDescription = "SEARCHL00028";
             this.v6Label15.AutoSize = true;
             this.v6Label15.Location = new System.Drawing.Point(285, 178);
             this.v6Label15.Name = "v6Label15";
@@ -673,6 +673,7 @@
             // 
             // chkLike
             // 
+            this.chkLike.AccessibleDescription = "SEARCHC00001";
             this.chkLike.AutoSize = true;
             this.chkLike.Checked = true;
             this.chkLike.CheckState = System.Windows.Forms.CheckState.Checked;

@@ -72,6 +72,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             // 
             // btnChucNang
             // 
+            this.btnChucNang.AccessibleDescription = ".";
             this.btnChucNang.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnChucNang.Location = new System.Drawing.Point(35, 24);
             this.btnChucNang.Name = "btnChucNang";
@@ -85,6 +86,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             // 
             // lblName
             // 
+            this.lblName.AccessibleDescription = ".";
             this.lblName.AccessibleName = "ten_vt";
             this.lblName.Location = new System.Drawing.Point(0, 33);
             this.lblName.Name = "lblName";
@@ -98,6 +100,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             // 
             // btnSua
             // 
+            this.btnSua.AccessibleDescription = ".";
             this.btnSua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSua.Image = global::V6ControlManager.Properties.Resources.Pencil16;
@@ -115,6 +118,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             // 
             // btnXoa
             // 
+            this.btnXoa.AccessibleDescription = ".";
             this.btnXoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXoa.Image = global::V6ControlManager.Properties.Resources.Delete16;
@@ -132,6 +136,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             // 
             // btnMoi
             // 
+            this.btnMoi.AccessibleDescription = ".";
             this.btnMoi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMoi.Image = global::V6ControlManager.Properties.Resources.Add16;
@@ -148,6 +153,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             // 
             // btnNhan
             // 
+            this.btnNhan.AccessibleDescription = ".";
             this.btnNhan.Enabled = false;
             this.btnNhan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNhan.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

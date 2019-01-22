@@ -74,6 +74,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     _data.Columns.Add("THUE_NT", typeof(decimal));
                     V6ControlFormHelper.UpdateDKlist(_data, "THUE_NT", 0m);
                 }
+                if (!_data.Columns.Contains("CP_NT"))
+                {
+                    _data.Columns.Add("CP_NT", typeof(decimal));
+                    V6ControlFormHelper.UpdateDKlist(_data, "CP_NT", 0m);
+                }
                 if (!_data.Columns.Contains("TIEN_NT"))
                 {
                     _data.Columns.Add("TIEN_NT", typeof(decimal));
@@ -99,6 +104,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         row["THUE"] =
                             V6BusinessHelper.Vround(
                                 ObjectAndString.ObjectToDecimal(row["THUE_NT"]) *
+                                ObjectAndString.ObjectToDecimal(row["TY_GIA"]), V6Setting.RoundTien);
+
+                    }
+                }
+                if (!_data.Columns.Contains("CP"))
+                {
+                    _data.Columns.Add("CP", typeof(decimal));
+                    foreach (DataRow row in _data.Rows)
+                    {
+                        row["CP"] =
+                            V6BusinessHelper.Vround(
+                                ObjectAndString.ObjectToDecimal(row["CP_NT"]) *
                                 ObjectAndString.ObjectToDecimal(row["TY_GIA"]), V6Setting.RoundTien);
 
                     }
@@ -274,7 +291,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     var data_rows = item.Value;
                     try
                     {
-                        AM_DATA = GET_AM_Data(data_rows, "SO_LUONG,SO_LUONG1,TIEN_NT0,TIEN_NT,TIEN0,TIEN,THUE_NT,THUE,CK_NT,CK,GG_NT,GG", "MA_NX");
+                        AM_DATA = GET_AM_Data(data_rows, "SO_LUONG,SO_LUONG1,TIEN_NT0,TIEN0,TIEN_NT,TIEN,THUE_NT,THUE,CP_NT,CP,CK_NT,CK,GG_NT,GG", "MA_NX");
 
                         var sttRec = V6BusinessHelper.GetNewSttRec(Invoice.Mact);
                         if (chkAutoSoCt_Checked) // Tự động tạo số chứng từ.
@@ -394,6 +411,61 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     AM["DIA_CHI"] = "DIA_CHI";
                     AM["MA_SO_THUE"] = "MA_SO_THUE";
                 }
+
+                var t_tien_nt0 = 0m;
+                var t_gg_nt = 0m;
+                var t_ck_nt = 0m;
+                var t_thue_nt = 0m;
+                var t_cp_nt = 0m;
+                var t_vc_nt = 0m;
+                var ty_gia = 1m;
+                if (AM.ContainsKey("TY_GIA"))
+                {
+                    ty_gia = ObjectAndString.ObjectToDecimal(AM["TY_GIA"]);
+                }
+                //SO_LUONG,SO_LUONG1,TIEN_NT0,TIEN_NT,TIEN0,TIEN,THUE_NT,THUE,CP_NT,CP,CK_NT,CK,GG_NT,GG
+                if (AM.ContainsKey("SO_LUONG")) AM["T_SO_LUONG"] = AM["SO_LUONG"];
+                if (AM.ContainsKey("SO_LUONG1")) AM["TSO_LUONG1"] = AM["SO_LUONG1"];
+                if (AM.ContainsKey("TIEN_NT0"))
+                {
+                    AM["T_TIEN_NT0"] = AM["TIEN_NT0"];
+                    t_tien_nt0 = ObjectAndString.ObjectToDecimal(AM["T_TIEN_NT0"]);
+                }
+                if (AM.ContainsKey("TIEN0")) AM["T_TIEN0"] = AM["TIEN0"];
+                
+                if (AM.ContainsKey("TIEN_NT")) AM["T_TIEN_NT"] = AM["TIEN_NT"];
+                if (AM.ContainsKey("TIEN2")) AM["T_TIEN2"] = AM["TIEN2"];
+                if (AM.ContainsKey("TIEN")) AM["T_TIEN"] = AM["TIEN"];
+                if (AM.ContainsKey("THUE_NT"))
+                {
+                    AM["T_THUE_NT"] = AM["THUE_NT"];
+                    t_thue_nt = ObjectAndString.ObjectToDecimal(AM["T_THUE_NT"]);
+                }
+                if (AM.ContainsKey("THUE")) AM["T_THUE"] = AM["THUE"];
+
+                if (AM.ContainsKey("THUE_NT"))
+                {
+                    AM["T_CP_NT"] = AM["CP_NT"];
+                    t_cp_nt = ObjectAndString.ObjectToDecimal(AM["T_CP_NT"]);
+                }
+                if (AM.ContainsKey("CP")) AM["T_CP"] = AM["CP"];
+
+                if (AM.ContainsKey("CK_NT"))
+                {
+                    AM["T_CK_NT"] = AM["CK_NT"];
+                    t_ck_nt = ObjectAndString.ObjectToDecimal(AM["T_CK_NT"]);
+                }
+                if (AM.ContainsKey("CK")) AM["T_CK"] = AM["CK"];
+                if (AM.ContainsKey("GG_NT"))
+                {
+                    AM["T_GG_NT"] = AM["GG_NT"];
+                    t_gg_nt = ObjectAndString.ObjectToDecimal(AM["T_GG_NT"]);
+                }
+                if (AM.ContainsKey("GG")) AM["T_GG"] = AM["GG"];
+
+                var t_tt_nt = t_tien_nt0 - t_gg_nt - t_ck_nt + t_thue_nt + t_cp_nt + t_vc_nt;
+                AM["T_TT_NT"] = t_tt_nt;
+                AM["T_TT"] = t_tt_nt * ty_gia;
 
                 //SO_LUONG,SO_LUONG1,TIEN_NT0,TIEN_NT,TIEN0,TIEN,THUE_NT,THUE,CK_NT,CK,GG_NT,GG
                 if (AM.ContainsKey("SO_LUONG")) AM["T_SO_LUONG"] = AM["SO_LUONG"];

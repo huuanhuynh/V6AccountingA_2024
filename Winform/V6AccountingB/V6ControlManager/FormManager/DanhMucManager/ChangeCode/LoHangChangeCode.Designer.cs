@@ -80,6 +80,7 @@
             // 
             // radDoiMaLoVaNgay
             // 
+            this.radDoiMaLoVaNgay.AccessibleDescription = "ADDEDITR00003";
             this.radDoiMaLoVaNgay.AutoSize = true;
             this.radDoiMaLoVaNgay.Location = new System.Drawing.Point(292, 15);
             this.radDoiMaLoVaNgay.Name = "radDoiMaLoVaNgay";
@@ -91,6 +92,7 @@
             // 
             // radDoiMaLo
             // 
+            this.radDoiMaLo.AccessibleDescription = "ADDEDITR00002";
             this.radDoiMaLo.AutoSize = true;
             this.radDoiMaLo.Location = new System.Drawing.Point(217, 15);
             this.radDoiMaLo.Name = "radDoiMaLo";
@@ -102,6 +104,7 @@
             // 
             // radDoiNGay
             // 
+            this.radDoiNGay.AccessibleDescription = "ADDEDITR00001";
             this.radDoiNGay.AutoSize = true;
             this.radDoiNGay.Location = new System.Drawing.Point(118, 15);
             this.radDoiNGay.Name = "radDoiNGay";
@@ -147,6 +150,7 @@
             this.txtName.ReadOnly = true;
             this.txtName.Size = new System.Drawing.Size(487, 20);
             this.txtName.TabIndex = 6;
+            this.txtName.TabStop = false;
             // 
             // txtNgayHHSD
             // 
@@ -166,6 +170,7 @@
             this.txtNgayHHSD.Size = new System.Drawing.Size(144, 20);
             this.txtNgayHHSD.StringValue = "__/__/____";
             this.txtNgayHHSD.TabIndex = 12;
+            this.txtNgayHHSD.TabStop = false;
             this.txtNgayHHSD.Text = "__/__/____";
             // 
             // txtNgayHHSDmoi
@@ -189,7 +194,7 @@
             // 
             // label5
             // 
-            this.label5.AccessibleDescription = "ten_kh";
+            this.label5.AccessibleDescription = "ADDEDITL00712";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(303, 78);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -215,6 +220,7 @@
             this.txtMaVt.ReadOnly = true;
             this.txtMaVt.Size = new System.Drawing.Size(144, 20);
             this.txtMaVt.TabIndex = 14;
+            this.txtMaVt.TabStop = false;
             // 
             // txtNewCode
             // 
@@ -235,7 +241,7 @@
             // 
             // label6
             // 
-            this.label6.AccessibleDescription = "ten_kh";
+            this.label6.AccessibleDescription = "ADDEDITL00195";
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(303, 107);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -246,7 +252,7 @@
             // 
             // label4
             // 
-            this.label4.AccessibleDescription = "ten_kh";
+            this.label4.AccessibleDescription = "ADDEDITL00713";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(11, 107);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -257,7 +263,7 @@
             // 
             // label2
             // 
-            this.label2.AccessibleDescription = "ten_kh";
+            this.label2.AccessibleDescription = "ADDEDITL00711";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(11, 78);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -268,6 +274,7 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = "ADDEDITL00709";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(11, 17);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -278,7 +285,7 @@
             // 
             // label1
             // 
-            this.label1.AccessibleDescription = "ma_kh";
+            this.label1.AccessibleDescription = "ADDEDITL00710";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(11, 46);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -332,6 +339,7 @@
             this.Name = "LoHangChangeCode";
             this.Text = "Đổi mã lô - hạn sử dụng";
             this.Load += new System.EventHandler(this.Form_Load);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);

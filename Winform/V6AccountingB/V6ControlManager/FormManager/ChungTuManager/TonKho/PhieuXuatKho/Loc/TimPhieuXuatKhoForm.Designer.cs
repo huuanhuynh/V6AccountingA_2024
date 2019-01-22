@@ -109,7 +109,7 @@
             this.txtNhomVT6.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtNhomVT6.HoverColor = System.Drawing.Color.Yellow;
             this.txtNhomVT6.LeaveColor = System.Drawing.Color.White;
-            this.txtNhomVT6.Location = new System.Drawing.Point(621, 67);
+            this.txtNhomVT6.Location = new System.Drawing.Point(621, 54);
             this.txtNhomVT6.Name = "txtNhomVT6";
             this.txtNhomVT6.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT6.TabIndex = 20;
@@ -126,7 +126,7 @@
             this.txtNhomVT5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtNhomVT5.HoverColor = System.Drawing.Color.Yellow;
             this.txtNhomVT5.LeaveColor = System.Drawing.Color.White;
-            this.txtNhomVT5.Location = new System.Drawing.Point(621, 41);
+            this.txtNhomVT5.Location = new System.Drawing.Point(621, 33);
             this.txtNhomVT5.Name = "txtNhomVT5";
             this.txtNhomVT5.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT5.TabIndex = 18;
@@ -136,7 +136,7 @@
             // 
             this.chkNSD.AccessibleName = "";
             this.chkNSD.AutoSize = true;
-            this.chkNSD.Location = new System.Drawing.Point(87, 48);
+            this.chkNSD.Location = new System.Drawing.Point(87, 22);
             this.chkNSD.Name = "chkNSD";
             this.chkNSD.Size = new System.Drawing.Size(15, 14);
             this.chkNSD.TabIndex = 1;
@@ -153,7 +153,7 @@
             this.txtNhomVT4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtNhomVT4.HoverColor = System.Drawing.Color.Yellow;
             this.txtNhomVT4.LeaveColor = System.Drawing.Color.White;
-            this.txtNhomVT4.Location = new System.Drawing.Point(621, 15);
+            this.txtNhomVT4.Location = new System.Drawing.Point(621, 12);
             this.txtNhomVT4.Name = "txtNhomVT4";
             this.txtNhomVT4.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT4.TabIndex = 16;
@@ -163,7 +163,7 @@
             // 
             this.v6Label3.AccessibleDescription = "ASOCTSOAL00106";
             this.v6Label3.AutoSize = true;
-            this.v6Label3.Location = new System.Drawing.Point(538, 70);
+            this.v6Label3.Location = new System.Drawing.Point(538, 54);
             this.v6Label3.Name = "v6Label3";
             this.v6Label3.Size = new System.Drawing.Size(74, 13);
             this.v6Label3.TabIndex = 19;
@@ -180,7 +180,7 @@
             this.txtNhomVT3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtNhomVT3.HoverColor = System.Drawing.Color.Yellow;
             this.txtNhomVT3.LeaveColor = System.Drawing.Color.White;
-            this.txtNhomVT3.Location = new System.Drawing.Point(365, 45);
+            this.txtNhomVT3.Location = new System.Drawing.Point(365, 54);
             this.txtNhomVT3.Name = "txtNhomVT3";
             this.txtNhomVT3.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT3.TabIndex = 10;
@@ -190,7 +190,7 @@
             // 
             this.v6Label2.AccessibleDescription = "ASOCTSOAL00105";
             this.v6Label2.AutoSize = true;
-            this.v6Label2.Location = new System.Drawing.Point(538, 44);
+            this.v6Label2.Location = new System.Drawing.Point(538, 33);
             this.v6Label2.Name = "v6Label2";
             this.v6Label2.Size = new System.Drawing.Size(74, 13);
             this.v6Label2.TabIndex = 17;
@@ -207,7 +207,7 @@
             this.txtNhomVT2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtNhomVT2.HoverColor = System.Drawing.Color.Yellow;
             this.txtNhomVT2.LeaveColor = System.Drawing.Color.White;
-            this.txtNhomVT2.Location = new System.Drawing.Point(365, 19);
+            this.txtNhomVT2.Location = new System.Drawing.Point(365, 33);
             this.txtNhomVT2.Name = "txtNhomVT2";
             this.txtNhomVT2.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT2.TabIndex = 8;
@@ -217,7 +217,7 @@
             // 
             this.v6Label1.AccessibleDescription = "ASOCTSOAL00104";
             this.v6Label1.AutoSize = true;
-            this.v6Label1.Location = new System.Drawing.Point(538, 18);
+            this.v6Label1.Location = new System.Drawing.Point(538, 12);
             this.v6Label1.Name = "v6Label1";
             this.v6Label1.Size = new System.Drawing.Size(74, 13);
             this.v6Label1.TabIndex = 15;
@@ -234,7 +234,7 @@
             this.txtTrangThai.HoverColor = System.Drawing.Color.Yellow;
             this.txtTrangThai.LeaveColor = System.Drawing.Color.White;
             this.txtTrangThai.LimitCharacters = "*012";
-            this.txtTrangThai.Location = new System.Drawing.Point(87, 71);
+            this.txtTrangThai.Location = new System.Drawing.Point(87, 45);
             this.txtTrangThai.MaxLength = 1;
             this.txtTrangThai.Name = "txtTrangThai";
             this.txtTrangThai.Size = new System.Drawing.Size(44, 20);
@@ -251,7 +251,7 @@
             this.txtNhomVT1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtNhomVT1.HoverColor = System.Drawing.Color.Yellow;
             this.txtNhomVT1.LeaveColor = System.Drawing.Color.White;
-            this.txtNhomVT1.Location = new System.Drawing.Point(87, 19);
+            this.txtNhomVT1.Location = new System.Drawing.Point(365, 12);
             this.txtNhomVT1.Name = "txtNhomVT1";
             this.txtNhomVT1.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT1.TabIndex = 6;
@@ -261,7 +261,7 @@
             // 
             this.v6Label21.AccessibleDescription = "SEARCHL00045";
             this.v6Label21.AutoSize = true;
-            this.v6Label21.Location = new System.Drawing.Point(6, 74);
+            this.v6Label21.Location = new System.Drawing.Point(6, 48);
             this.v6Label21.Name = "v6Label21";
             this.v6Label21.Size = new System.Drawing.Size(55, 13);
             this.v6Label21.TabIndex = 2;
@@ -271,7 +271,7 @@
             // 
             this.v6Label20.AccessibleDescription = "SEARCHL00044";
             this.v6Label20.AutoSize = true;
-            this.v6Label20.Location = new System.Drawing.Point(6, 48);
+            this.v6Label20.Location = new System.Drawing.Point(6, 22);
             this.v6Label20.Name = "v6Label20";
             this.v6Label20.Size = new System.Drawing.Size(69, 13);
             this.v6Label20.TabIndex = 0;
@@ -281,7 +281,7 @@
             // 
             this.v6Label6.AccessibleDescription = "SEARCHL00053";
             this.v6Label6.AutoSize = true;
-            this.v6Label6.Location = new System.Drawing.Point(282, 48);
+            this.v6Label6.Location = new System.Drawing.Point(282, 54);
             this.v6Label6.Name = "v6Label6";
             this.v6Label6.Size = new System.Drawing.Size(74, 13);
             this.v6Label6.TabIndex = 9;
@@ -291,7 +291,7 @@
             // 
             this.v6Label7.AccessibleDescription = "SEARCHL00052";
             this.v6Label7.AutoSize = true;
-            this.v6Label7.Location = new System.Drawing.Point(282, 22);
+            this.v6Label7.Location = new System.Drawing.Point(282, 33);
             this.v6Label7.Name = "v6Label7";
             this.v6Label7.Size = new System.Drawing.Size(74, 13);
             this.v6Label7.TabIndex = 7;
@@ -301,7 +301,7 @@
             // 
             this.v6Label8.AccessibleDescription = "SEARCHL00051";
             this.v6Label8.AutoSize = true;
-            this.v6Label8.Location = new System.Drawing.Point(6, 22);
+            this.v6Label8.Location = new System.Drawing.Point(282, 12);
             this.v6Label8.Name = "v6Label8";
             this.v6Label8.Size = new System.Drawing.Size(74, 13);
             this.v6Label8.TabIndex = 5;
@@ -309,9 +309,10 @@
             // 
             // lblStatusDescription
             // 
-            this.lblStatusDescription.Location = new System.Drawing.Point(137, 74);
+            this.lblStatusDescription.AccessibleDescription = ".";
+            this.lblStatusDescription.Location = new System.Drawing.Point(9, 81);
             this.lblStatusDescription.Name = "lblStatusDescription";
-            this.lblStatusDescription.Size = new System.Drawing.Size(616, 31);
+            this.lblStatusDescription.Size = new System.Drawing.Size(744, 31);
             this.lblStatusDescription.TabIndex = 4;
             this.lblStatusDescription.Text = "* Tất cả, 0 - Chưa, 1- Ghi vào sổ kho, 2-Ghi vào sổ cái";
             // 

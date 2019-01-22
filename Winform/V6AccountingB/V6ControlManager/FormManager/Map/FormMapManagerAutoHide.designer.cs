@@ -49,6 +49,7 @@
             this.chkNone = new System.Windows.Forms.CheckBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panelContainer1 = new System.Windows.Forms.Panel();
+            this.btnPrintPicture = new System.Windows.Forms.Button();
             this.grbNgonNgu = new System.Windows.Forms.GroupBox();
             this.rbtTiengViet = new System.Windows.Forms.RadioButton();
             this.rbtEnglish = new System.Windows.Forms.RadioButton();
@@ -60,7 +61,6 @@
             this.menuPictureReport = new System.Windows.Forms.ToolStripMenuItem();
             this.timerRefresh = new System.Windows.Forms.Timer(this.components);
             this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
-            this.btnPrintPicture = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.contextMenuStrip_Pic1.SuspendLayout();
             this.panel1_Image.SuspendLayout();
@@ -219,6 +219,7 @@
             // 
             // grbKhuVuc
             // 
+            this.grbKhuVuc.AccessibleDescription = "XULYG00003";
             this.grbKhuVuc.Controls.Add(this.chkNone);
             this.grbKhuVuc.Controls.Add(this.comboBoxGroup);
             this.grbKhuVuc.Location = new System.Drawing.Point(4, 4);
@@ -230,6 +231,7 @@
             // 
             // chkNone
             // 
+            this.chkNone.AccessibleDescription = ".";
             this.chkNone.AutoSize = true;
             this.chkNone.Location = new System.Drawing.Point(348, 20);
             this.chkNone.Name = "chkNone";
@@ -261,8 +263,20 @@
             this.panelContainer1.MouseHover += new System.EventHandler(this.panelContainer1_MouseHover);
             this.panelContainer1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelContainer1_MouseMove);
             // 
+            // btnPrintPicture
+            // 
+            this.btnPrintPicture.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrintPicture.Location = new System.Drawing.Point(710, 13);
+            this.btnPrintPicture.Name = "btnPrintPicture";
+            this.btnPrintPicture.Size = new System.Drawing.Size(75, 23);
+            this.btnPrintPicture.TabIndex = 9;
+            this.btnPrintPicture.Text = "Lưu hình";
+            this.btnPrintPicture.UseVisualStyleBackColor = true;
+            this.btnPrintPicture.Click += new System.EventHandler(this.btnPrintPicture_Click);
+            // 
             // grbNgonNgu
             // 
+            this.grbNgonNgu.AccessibleDescription = "XULYG00004";
             this.grbNgonNgu.Controls.Add(this.rbtTiengViet);
             this.grbNgonNgu.Controls.Add(this.rbtEnglish);
             this.grbNgonNgu.Location = new System.Drawing.Point(416, 13);
@@ -344,17 +358,6 @@
             // timerRefresh
             // 
             this.timerRefresh.Tick += new System.EventHandler(this.timerRefresh_Tick);
-            // 
-            // btnPrintPicture
-            // 
-            this.btnPrintPicture.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrintPicture.Location = new System.Drawing.Point(710, 13);
-            this.btnPrintPicture.Name = "btnPrintPicture";
-            this.btnPrintPicture.Size = new System.Drawing.Size(75, 23);
-            this.btnPrintPicture.TabIndex = 9;
-            this.btnPrintPicture.Text = "Lưu hình";
-            this.btnPrintPicture.UseVisualStyleBackColor = true;
-            this.btnPrintPicture.Click += new System.EventHandler(this.btnPrintPicture_Click);
             // 
             // FormMapManagerAutoHide
             // 

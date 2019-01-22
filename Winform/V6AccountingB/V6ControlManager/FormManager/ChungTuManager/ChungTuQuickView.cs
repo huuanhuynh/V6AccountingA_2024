@@ -84,7 +84,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         if (row.Cells["STT_REC"].Value.ToString().Trim() == sttRec)
                         {
                             row.Selected = true;
-                            dataGridView1.CurrentCell = row.Cells["SO_CT"];
+                            //Operation is not valid because it results in a reentrant call to the SetCurrentCellAddressCore function.
+                            //dataGridView1.CurrentCell = row.Cells["SO_CT"];
                             _oldIndex = row.Index;
                             break;
                         }

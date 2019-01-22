@@ -50,7 +50,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.numericUpDownScale = new System.Windows.Forms.NumericUpDown();
             this.lblTyLeCoGian = new System.Windows.Forms.Label();
-            this.grbMargin = new System.Windows.Forms.GroupBox();
+            this.grbPageMargin = new System.Windows.Forms.GroupBox();
             this.numericUpDownMarginBottom = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownMarginRight = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownMarginTop = new System.Windows.Forms.NumericUpDown();
@@ -97,7 +97,7 @@
             this.grbPaperSize.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownScale)).BeginInit();
-            this.grbMargin.SuspendLayout();
+            this.grbPageMargin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMarginBottom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMarginRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMarginTop)).BeginInit();
@@ -118,6 +118,7 @@
             // 
             // butPrint
             // 
+            this.butPrint.AccessibleDescription = ".";
             this.butPrint.Location = new System.Drawing.Point(722, 63);
             this.butPrint.Name = "butPrint";
             this.butPrint.Size = new System.Drawing.Size(100, 23);
@@ -177,6 +178,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = ".";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(593, 57);
             this.label1.Name = "label1";
@@ -187,6 +189,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = ".";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(592, 97);
             this.label2.Name = "label2";
@@ -197,6 +200,7 @@
             // 
             // label3
             // 
+            this.label3.AccessibleDescription = ".";
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(592, 136);
             this.label3.Name = "label3";
@@ -207,6 +211,7 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = ".";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(592, 177);
             this.label4.Name = "label4";
@@ -217,6 +222,7 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = ".";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(755, 176);
             this.label5.Name = "label5";
@@ -227,6 +233,7 @@
             // 
             // butCreateBitmap
             // 
+            this.butCreateBitmap.AccessibleDescription = ".";
             this.butCreateBitmap.Location = new System.Drawing.Point(722, 92);
             this.butCreateBitmap.Name = "butCreateBitmap";
             this.butCreateBitmap.Size = new System.Drawing.Size(100, 23);
@@ -273,6 +280,7 @@
             // 
             // lblNgang
             // 
+            this.lblNgang.AccessibleDescription = "V6REASKL00014";
             this.lblNgang.AutoSize = true;
             this.lblNgang.Location = new System.Drawing.Point(8, 22);
             this.lblNgang.Name = "lblNgang";
@@ -282,6 +290,7 @@
             // 
             // grbPaperSize
             // 
+            this.grbPaperSize.AccessibleDescription = "V6REASKG00001";
             this.grbPaperSize.Controls.Add(this.numericUpDownDoc);
             this.grbPaperSize.Controls.Add(this.numericUpDownNgang);
             this.grbPaperSize.Controls.Add(this.lblDoc);
@@ -313,6 +322,7 @@
             // 
             // lblDoc
             // 
+            this.lblDoc.AccessibleDescription = "V6REASKL00015";
             this.lblDoc.AutoSize = true;
             this.lblDoc.Location = new System.Drawing.Point(8, 48);
             this.lblDoc.Name = "lblDoc";
@@ -331,6 +341,7 @@
             // 
             // label10
             // 
+            this.label10.AccessibleDescription = ".";
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(719, 136);
             this.label10.Name = "label10";
@@ -363,6 +374,7 @@
             // 
             // lblTyLeCoGian
             // 
+            this.lblTyLeCoGian.AccessibleDescription = "V6REASKL00020";
             this.lblTyLeCoGian.AutoSize = true;
             this.lblTyLeCoGian.Location = new System.Drawing.Point(390, 12);
             this.lblTyLeCoGian.Name = "lblTyLeCoGian";
@@ -370,22 +382,23 @@
             this.lblTyLeCoGian.TabIndex = 2;
             this.lblTyLeCoGian.Text = "Tỷ lệ co giãn (%)";
             // 
-            // grbMargin
+            // grbPageMargin
             // 
-            this.grbMargin.Controls.Add(this.numericUpDownMarginBottom);
-            this.grbMargin.Controls.Add(this.numericUpDownMarginRight);
-            this.grbMargin.Controls.Add(this.numericUpDownMarginTop);
-            this.grbMargin.Controls.Add(this.numericUpDownMarginLeft);
-            this.grbMargin.Controls.Add(this.lblDuoi);
-            this.grbMargin.Controls.Add(this.lblTren);
-            this.grbMargin.Controls.Add(this.lblPhai);
-            this.grbMargin.Controls.Add(this.lblTrai);
-            this.grbMargin.Location = new System.Drawing.Point(12, 88);
-            this.grbMargin.Name = "grbMargin";
-            this.grbMargin.Size = new System.Drawing.Size(138, 126);
-            this.grbMargin.TabIndex = 1;
-            this.grbMargin.TabStop = false;
-            this.grbMargin.Text = "Canh lề trang in (mm)";
+            this.grbPageMargin.AccessibleDescription = "V6REASKG00003";
+            this.grbPageMargin.Controls.Add(this.numericUpDownMarginBottom);
+            this.grbPageMargin.Controls.Add(this.numericUpDownMarginRight);
+            this.grbPageMargin.Controls.Add(this.numericUpDownMarginTop);
+            this.grbPageMargin.Controls.Add(this.numericUpDownMarginLeft);
+            this.grbPageMargin.Controls.Add(this.lblDuoi);
+            this.grbPageMargin.Controls.Add(this.lblTren);
+            this.grbPageMargin.Controls.Add(this.lblPhai);
+            this.grbPageMargin.Controls.Add(this.lblTrai);
+            this.grbPageMargin.Location = new System.Drawing.Point(12, 88);
+            this.grbPageMargin.Name = "grbPageMargin";
+            this.grbPageMargin.Size = new System.Drawing.Size(138, 126);
+            this.grbPageMargin.TabIndex = 1;
+            this.grbPageMargin.TabStop = false;
+            this.grbPageMargin.Text = "Canh lề trang in (mm)";
             // 
             // numericUpDownMarginBottom
             // 
@@ -426,6 +439,7 @@
             // 
             // lblDuoi
             // 
+            this.lblDuoi.AccessibleDescription = "V6REASKL00019";
             this.lblDuoi.AutoSize = true;
             this.lblDuoi.Location = new System.Drawing.Point(8, 99);
             this.lblDuoi.Name = "lblDuoi";
@@ -435,6 +449,7 @@
             // 
             // lblTren
             // 
+            this.lblTren.AccessibleDescription = "V6REASKL00018";
             this.lblTren.AutoSize = true;
             this.lblTren.Location = new System.Drawing.Point(8, 73);
             this.lblTren.Name = "lblTren";
@@ -444,6 +459,7 @@
             // 
             // lblPhai
             // 
+            this.lblPhai.AccessibleDescription = "V6REASKL00017";
             this.lblPhai.AutoSize = true;
             this.lblPhai.Location = new System.Drawing.Point(8, 47);
             this.lblPhai.Name = "lblPhai";
@@ -453,6 +469,7 @@
             // 
             // lblTrai
             // 
+            this.lblTrai.AccessibleDescription = "V6REASKL00016";
             this.lblTrai.AutoSize = true;
             this.lblTrai.Location = new System.Drawing.Point(8, 21);
             this.lblTrai.Name = "lblTrai";
@@ -475,6 +492,7 @@
             // 
             // lblKhoangCachCotVaHang
             // 
+            this.lblKhoangCachCotVaHang.AccessibleDescription = "V6REASKL00027";
             this.lblKhoangCachCotVaHang.AutoSize = true;
             this.lblKhoangCachCotVaHang.Location = new System.Drawing.Point(12, 217);
             this.lblKhoangCachCotVaHang.Name = "lblKhoangCachCotVaHang";
@@ -566,6 +584,7 @@
             // 
             // grbDonViTien
             // 
+            this.grbDonViTien.AccessibleDescription = "V6REASKG00005";
             this.grbDonViTien.Controls.Add(this.radKhac);
             this.grbDonViTien.Controls.Add(this.radUSD);
             this.grbDonViTien.Controls.Add(this.radVND);
@@ -578,6 +597,7 @@
             // 
             // radKhac
             // 
+            this.radKhac.AccessibleDescription = "V6REASKL00021";
             this.radKhac.AutoSize = true;
             this.radKhac.Location = new System.Drawing.Point(72, 19);
             this.radKhac.Name = "radKhac";
@@ -589,6 +609,7 @@
             // 
             // radUSD
             // 
+            this.radUSD.AccessibleDescription = ".";
             this.radUSD.AutoSize = true;
             this.radUSD.Location = new System.Drawing.Point(15, 41);
             this.radUSD.Name = "radUSD";
@@ -599,6 +620,7 @@
             // 
             // radVND
             // 
+            this.radVND.AccessibleDescription = ".";
             this.radVND.AutoSize = true;
             this.radVND.Checked = true;
             this.radVND.Location = new System.Drawing.Point(15, 19);
@@ -619,9 +641,11 @@
             this.grbLang.TabIndex = 30;
             this.grbLang.TabStop = false;
             this.grbLang.Text = "Ngôn ngữ";
+            this.grbLang.Visible = false;
             // 
             // radE
             // 
+            this.radE.AccessibleDescription = "V6REASKL00023";
             this.radE.AutoSize = true;
             this.radE.Location = new System.Drawing.Point(72, 21);
             this.radE.Name = "radE";
@@ -632,6 +656,7 @@
             // 
             // radV
             // 
+            this.radV.AccessibleDescription = "V6REASKL00022";
             this.radV.AutoSize = true;
             this.radV.Checked = true;
             this.radV.Location = new System.Drawing.Point(18, 21);
@@ -682,6 +707,7 @@
             // 
             // grbStampSize
             // 
+            this.grbStampSize.AccessibleDescription = "V6REASKG00002";
             this.grbStampSize.Controls.Add(this.numStampHeight);
             this.grbStampSize.Controls.Add(this.numStampWidth);
             this.grbStampSize.Controls.Add(this.lblTemDoc);
@@ -732,6 +758,7 @@
             // 
             // lblTemDoc
             // 
+            this.lblTemDoc.AccessibleDescription = "V6REASKL00015";
             this.lblTemDoc.AutoSize = true;
             this.lblTemDoc.Location = new System.Drawing.Point(8, 48);
             this.lblTemDoc.Name = "lblTemDoc";
@@ -741,6 +768,7 @@
             // 
             // lblTemNgang
             // 
+            this.lblTemNgang.AccessibleDescription = "V6REASKL00014";
             this.lblTemNgang.AutoSize = true;
             this.lblTemNgang.Location = new System.Drawing.Point(8, 22);
             this.lblTemNgang.Name = "lblTemNgang";
@@ -750,6 +778,7 @@
             // 
             // grbFontSizeBold
             // 
+            this.grbFontSizeBold.AccessibleDescription = "V6REASKG00004";
             this.grbFontSizeBold.Controls.Add(this.chkCodeDrop);
             this.grbFontSizeBold.Controls.Add(this.chkPriceDrop);
             this.grbFontSizeBold.Controls.Add(this.chkNameDrop);
@@ -802,6 +831,7 @@
             // 
             // lblGia
             // 
+            this.lblGia.AccessibleDescription = "V6REASKL00026";
             this.lblGia.AutoSize = true;
             this.lblGia.Location = new System.Drawing.Point(8, 73);
             this.lblGia.Name = "lblGia";
@@ -811,6 +841,7 @@
             // 
             // lblMa
             // 
+            this.lblMa.AccessibleDescription = "V6REASKL00025";
             this.lblMa.AutoSize = true;
             this.lblMa.Location = new System.Drawing.Point(8, 47);
             this.lblMa.Name = "lblMa";
@@ -820,6 +851,7 @@
             // 
             // lblTen
             // 
+            this.lblTen.AccessibleDescription = "V6REASKL00024";
             this.lblTen.AutoSize = true;
             this.lblTen.Location = new System.Drawing.Point(8, 21);
             this.lblTen.Name = "lblTen";
@@ -829,6 +861,7 @@
             // 
             // btnPrintView
             // 
+            this.btnPrintView.AccessibleDescription = "V6REASKB00004";
             this.btnPrintView.Image = global::V6ControlManager.Properties.Resources.ViewDetails;
             this.btnPrintView.Location = new System.Drawing.Point(387, 294);
             this.btnPrintView.Name = "btnPrintView";
@@ -841,6 +874,7 @@
             // 
             // btnPrint
             // 
+            this.btnPrint.AccessibleDescription = "V6REASKB00003";
             this.btnPrint.Image = global::V6ControlManager.Properties.Resources.Print;
             this.btnPrint.Location = new System.Drawing.Point(387, 375);
             this.btnPrint.Name = "btnPrint";
@@ -862,6 +896,7 @@
             // 
             // butDraw
             // 
+            this.butDraw.AccessibleDescription = "V6REASKB00005";
             this.butDraw.Image = global::V6ControlManager.Properties.Resources.Barcode24;
             this.butDraw.Location = new System.Drawing.Point(387, 259);
             this.butDraw.Name = "butDraw";
@@ -920,6 +955,7 @@
             // 
             // lblBarcodeType
             // 
+            this.lblBarcodeType.AccessibleDescription = "V6REASKL00028";
             this.lblBarcodeType.AutoSize = true;
             this.lblBarcodeType.Location = new System.Drawing.Point(160, 217);
             this.lblBarcodeType.Name = "lblBarcodeType";
@@ -929,14 +965,14 @@
             // 
             // PrintBarcodeForm
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(538, 450);
             this.Controls.Add(this.cboBarcodeType);
             this.Controls.Add(this.grbFontSizeBold);
             this.Controls.Add(this.grbStampSize);
             this.Controls.Add(this.grbLang);
             this.Controls.Add(this.grbDonViTien);
-            this.Controls.Add(this.grbMargin);
+            this.Controls.Add(this.grbPageMargin);
             this.Controls.Add(this.numericUpDownDistanceH);
             this.Controls.Add(this.numericUpDownDistanceV);
             this.Controls.Add(this.numericUpDownScale);
@@ -968,16 +1004,48 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PrintBarcodeForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "V6Barcode";
             this.Load += new System.EventHandler(this.frmEan13_Load);
+            this.Controls.SetChildIndex(this.butDraw, 0);
+            this.Controls.SetChildIndex(this.butPrint, 0);
+            this.Controls.SetChildIndex(this.picBarcode, 0);
+            this.Controls.SetChildIndex(this.txtManufacturerCode, 0);
+            this.Controls.SetChildIndex(this.txtProductCode, 0);
+            this.Controls.SetChildIndex(this.txtChecksumDigit, 0);
+            this.Controls.SetChildIndex(this.cboScale, 0);
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.label3, 0);
+            this.Controls.SetChildIndex(this.label4, 0);
+            this.Controls.SetChildIndex(this.label5, 0);
+            this.Controls.SetChildIndex(this.label10, 0);
+            this.Controls.SetChildIndex(this.butCreateBitmap, 0);
+            this.Controls.SetChildIndex(this.txtCountryCode, 0);
+            this.Controls.SetChildIndex(this.txtProductName, 0);
+            this.Controls.SetChildIndex(this.btnPrint, 0);
+            this.Controls.SetChildIndex(this.grbPaperSize, 0);
+            this.Controls.SetChildIndex(this.btnPrintView, 0);
+            this.Controls.SetChildIndex(this.txtPrice, 0);
+            this.Controls.SetChildIndex(this.lblTyLeCoGian, 0);
+            this.Controls.SetChildIndex(this.lblKhoangCachCotVaHang, 0);
+            this.Controls.SetChildIndex(this.lblBarcodeType, 0);
+            this.Controls.SetChildIndex(this.numericUpDownScale, 0);
+            this.Controls.SetChildIndex(this.numericUpDownDistanceV, 0);
+            this.Controls.SetChildIndex(this.numericUpDownDistanceH, 0);
+            this.Controls.SetChildIndex(this.grbPageMargin, 0);
+            this.Controls.SetChildIndex(this.grbDonViTien, 0);
+            this.Controls.SetChildIndex(this.grbLang, 0);
+            this.Controls.SetChildIndex(this.grbStampSize, 0);
+            this.Controls.SetChildIndex(this.grbFontSizeBold, 0);
+            this.Controls.SetChildIndex(this.cboBarcodeType, 0);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNgang)).EndInit();
             this.grbPaperSize.ResumeLayout(false);
             this.grbPaperSize.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDoc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownScale)).EndInit();
-            this.grbMargin.ResumeLayout(false);
-            this.grbMargin.PerformLayout();
+            this.grbPageMargin.ResumeLayout(false);
+            this.grbPageMargin.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMarginBottom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMarginRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMarginTop)).EndInit();
@@ -1031,7 +1099,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.NumericUpDown numericUpDownScale;
         private System.Windows.Forms.Label lblTyLeCoGian;
-        private System.Windows.Forms.GroupBox grbMargin;
+        private System.Windows.Forms.GroupBox grbPageMargin;
         private System.Windows.Forms.NumericUpDown numericUpDownMarginBottom;
         private System.Windows.Forms.NumericUpDown numericUpDownMarginRight;
         private System.Windows.Forms.NumericUpDown numericUpDownMarginTop;

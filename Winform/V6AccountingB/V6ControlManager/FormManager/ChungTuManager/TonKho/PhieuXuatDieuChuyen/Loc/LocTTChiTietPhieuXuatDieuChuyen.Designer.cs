@@ -427,7 +427,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             // 
             // v6Label12
             // 
-            this.v6Label12.AccessibleDescription = "SEARCHL00028";
+            this.v6Label12.AccessibleDescription = "SEARCHL00033";
             this.v6Label12.AutoSize = true;
             this.v6Label12.Location = new System.Drawing.Point(6, 126);
             this.v6Label12.Name = "v6Label12";
@@ -447,7 +447,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             // 
             // v6Label1
             // 
-            this.v6Label1.AccessibleDescription = "SEARCHL00033";
+            this.v6Label1.AccessibleDescription = "SEARCHL00028";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(285, 178);
             this.v6Label1.Name = "v6Label1";

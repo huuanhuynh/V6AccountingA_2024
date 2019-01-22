@@ -40,6 +40,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.AccessibleDescription = "XULYL00122";
             this.groupBox1.Controls.Add(this.radDaoNguoc);
             this.groupBox1.Controls.Add(this.radThayThe);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
@@ -51,6 +52,7 @@
             // 
             // radDaoNguoc
             // 
+            this.radDaoNguoc.AccessibleDescription = "XULYC00013";
             this.radDaoNguoc.AutoSize = true;
             this.radDaoNguoc.Location = new System.Drawing.Point(109, 20);
             this.radDaoNguoc.Name = "radDaoNguoc";
@@ -63,6 +65,7 @@
             // 
             // radThayThe
             // 
+            this.radThayThe.AccessibleDescription = "XULYC00012";
             this.radThayThe.AutoSize = true;
             this.radThayThe.Location = new System.Drawing.Point(6, 19);
             this.radThayThe.Name = "radThayThe";
@@ -75,6 +78,13 @@
             // 
             // textBox1
             // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.textBox1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.textBox1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.textBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.textBox1.HoverColor = System.Drawing.Color.Yellow;
+            this.textBox1.LeaveColor = System.Drawing.Color.White;
             this.textBox1.Location = new System.Drawing.Point(18, 83);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(181, 20);
@@ -115,6 +125,7 @@
             // 
             // label1
             // 
+            this.label1.AccessibleDescription = "XULYL00198";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(15, 67);
             this.label1.Name = "label1";

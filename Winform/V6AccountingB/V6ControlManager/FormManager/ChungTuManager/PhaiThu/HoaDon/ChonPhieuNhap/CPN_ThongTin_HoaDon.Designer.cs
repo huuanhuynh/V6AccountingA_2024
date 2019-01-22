@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtma_gd = new V6Controls.V6ColorTextBox();
+            this.v6Label16 = new V6Controls.V6Label();
             this.panelFilter1 = new V6ReportControls.PanelFilter();
             this.chkLike = new V6Controls.V6CheckBox();
             this.taiKhoanThue = new V6Controls.V6VvarTextBox();
@@ -51,13 +53,12 @@
             this.v6Label22 = new V6Controls.V6Label();
             this.v6Label7 = new V6Controls.V6Label();
             this.v6Label8 = new V6Controls.V6Label();
-            this.txtma_gd = new V6Controls.V6ColorTextBox();
-            this.v6Label16 = new V6Controls.V6Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.AccessibleDescription = "SEARCHG00001";
             this.groupBox1.Controls.Add(this.txtma_gd);
             this.groupBox1.Controls.Add(this.v6Label16);
             this.groupBox1.Controls.Add(this.panelFilter1);
@@ -90,6 +91,31 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc thông tin";
             // 
+            // txtma_gd
+            // 
+            this.txtma_gd.AccessibleName = "MA_GD";
+            this.txtma_gd.BackColor = System.Drawing.SystemColors.Window;
+            this.txtma_gd.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtma_gd.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtma_gd.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtma_gd.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtma_gd.HoverColor = System.Drawing.Color.Yellow;
+            this.txtma_gd.LeaveColor = System.Drawing.Color.White;
+            this.txtma_gd.Location = new System.Drawing.Point(365, 48);
+            this.txtma_gd.Name = "txtma_gd";
+            this.txtma_gd.Size = new System.Drawing.Size(132, 20);
+            this.txtma_gd.TabIndex = 30;
+            // 
+            // v6Label16
+            // 
+            this.v6Label16.AccessibleDescription = "SEARCHL00036";
+            this.v6Label16.AutoSize = true;
+            this.v6Label16.Location = new System.Drawing.Point(283, 50);
+            this.v6Label16.Name = "v6Label16";
+            this.v6Label16.Size = new System.Drawing.Size(56, 13);
+            this.v6Label16.TabIndex = 29;
+            this.v6Label16.Text = "Loại phiếu";
+            // 
             // panelFilter1
             // 
             this.panelFilter1.Location = new System.Drawing.Point(503, 13);
@@ -100,6 +126,7 @@
             // 
             // chkLike
             // 
+            this.chkLike.AccessibleDescription = "SEARCHC00001";
             this.chkLike.AutoSize = true;
             this.chkLike.Checked = true;
             this.chkLike.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -144,7 +171,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // ctDenSo
             // 
@@ -223,7 +250,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // maKhach
             // 
@@ -274,6 +301,7 @@
             // 
             // v6Label25
             // 
+            this.v6Label25.AccessibleDescription = "SEARCHL00012";
             this.v6Label25.AutoSize = true;
             this.v6Label25.Location = new System.Drawing.Point(6, 178);
             this.v6Label25.Name = "v6Label25";
@@ -283,6 +311,7 @@
             // 
             // v6Label24
             // 
+            this.v6Label24.AccessibleDescription = "SEARCHL00007";
             this.v6Label24.AutoSize = true;
             this.v6Label24.Location = new System.Drawing.Point(6, 152);
             this.v6Label24.Name = "v6Label24";
@@ -292,6 +321,7 @@
             // 
             // v6Label21
             // 
+            this.v6Label21.AccessibleDescription = "SEARCHL00005";
             this.v6Label21.AutoSize = true;
             this.v6Label21.Location = new System.Drawing.Point(6, 74);
             this.v6Label21.Name = "v6Label21";
@@ -301,6 +331,7 @@
             // 
             // v6Label23
             // 
+            this.v6Label23.AccessibleDescription = "SEARCHL00010";
             this.v6Label23.AutoSize = true;
             this.v6Label23.Location = new System.Drawing.Point(6, 126);
             this.v6Label23.Name = "v6Label23";
@@ -310,6 +341,7 @@
             // 
             // v6Label27
             // 
+            this.v6Label27.AccessibleDescription = "SEARCHL00009";
             this.v6Label27.AutoSize = true;
             this.v6Label27.Location = new System.Drawing.Point(282, 100);
             this.v6Label27.Name = "v6Label27";
@@ -319,6 +351,7 @@
             // 
             // v6Label20
             // 
+            this.v6Label20.AccessibleDescription = "SEARCHL00004";
             this.v6Label20.AutoSize = true;
             this.v6Label20.Location = new System.Drawing.Point(6, 48);
             this.v6Label20.Name = "v6Label20";
@@ -328,6 +361,7 @@
             // 
             // v6Label28
             // 
+            this.v6Label28.AccessibleDescription = "SEARCHL00011";
             this.v6Label28.AutoSize = true;
             this.v6Label28.Location = new System.Drawing.Point(282, 126);
             this.v6Label28.Name = "v6Label28";
@@ -337,6 +371,7 @@
             // 
             // v6Label22
             // 
+            this.v6Label22.AccessibleDescription = "SEARCHL00006";
             this.v6Label22.AutoSize = true;
             this.v6Label22.Location = new System.Drawing.Point(6, 100);
             this.v6Label22.Name = "v6Label22";
@@ -346,6 +381,7 @@
             // 
             // v6Label7
             // 
+            this.v6Label7.AccessibleDescription = "SEARCHL00003";
             this.v6Label7.AutoSize = true;
             this.v6Label7.Location = new System.Drawing.Point(282, 22);
             this.v6Label7.Name = "v6Label7";
@@ -355,36 +391,13 @@
             // 
             // v6Label8
             // 
+            this.v6Label8.AccessibleDescription = "SEARCHL00002";
             this.v6Label8.AutoSize = true;
             this.v6Label8.Location = new System.Drawing.Point(6, 22);
             this.v6Label8.Name = "v6Label8";
             this.v6Label8.Size = new System.Drawing.Size(47, 13);
             this.v6Label8.TabIndex = 0;
             this.v6Label8.Text = "CT từ số";
-            // 
-            // txtma_gd
-            // 
-            this.txtma_gd.AccessibleName = "MA_GD";
-            this.txtma_gd.BackColor = System.Drawing.SystemColors.Window;
-            this.txtma_gd.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtma_gd.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtma_gd.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtma_gd.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtma_gd.HoverColor = System.Drawing.Color.Yellow;
-            this.txtma_gd.LeaveColor = System.Drawing.Color.White;
-            this.txtma_gd.Location = new System.Drawing.Point(365, 48);
-            this.txtma_gd.Name = "txtma_gd";
-            this.txtma_gd.Size = new System.Drawing.Size(132, 20);
-            this.txtma_gd.TabIndex = 30;
-            // 
-            // v6Label16
-            // 
-            this.v6Label16.AutoSize = true;
-            this.v6Label16.Location = new System.Drawing.Point(283, 50);
-            this.v6Label16.Name = "v6Label16";
-            this.v6Label16.Size = new System.Drawing.Size(56, 13);
-            this.v6Label16.TabIndex = 29;
-            this.v6Label16.Text = "Loại phiếu";
             // 
             // CPN_ThongTin_HoaDon
             // 

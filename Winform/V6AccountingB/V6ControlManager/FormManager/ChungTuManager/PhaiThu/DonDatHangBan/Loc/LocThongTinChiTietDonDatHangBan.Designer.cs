@@ -69,6 +69,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
             // 
             // groupBox1
             // 
+            this.groupBox1.AccessibleDescription = "SEARCHG00002";
             this.groupBox1.Controls.Add(this.panelFilter2);
             this.groupBox1.Controls.Add(this.v6ColorTextBox4);
             this.groupBox1.Controls.Add(this.v6ColorTextBox5);
@@ -121,299 +122,255 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
             // v6ColorTextBox4
             // 
             this.v6ColorTextBox4.AccessibleName = "ma_td3";
-            this.v6ColorTextBox4.BrotherFields = null;
-            this.v6ColorTextBox4.Carry = false;
-            this.v6ColorTextBox4.EnableColorEffect = true;
-            this.v6ColorTextBox4.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox4.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox4.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox4.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox4.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox4.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox4.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox4.LimitCharacters = null;
             this.v6ColorTextBox4.Location = new System.Drawing.Point(368, 201);
             this.v6ColorTextBox4.Name = "v6ColorTextBox4";
-            this.v6ColorTextBox4.NeighborFields = null;
             this.v6ColorTextBox4.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox4.TabIndex = 31;
-            this.v6ColorTextBox4.GrayText = "";
             // 
             // v6ColorTextBox5
             // 
             this.v6ColorTextBox5.AccessibleName = "ma_vitri";
-            this.v6ColorTextBox5.BrotherFields = null;
-            this.v6ColorTextBox5.Carry = false;
+            this.v6ColorTextBox5.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox5.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox5.CheckOnLeave = false;
-            this.v6ColorTextBox5.EnableColorEffect = true;
-            this.v6ColorTextBox5.EnableColorEffectOnMouseEnter = false;
             this.v6ColorTextBox5.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox5.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox5.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox5.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox5.LimitCharacters = null;
             this.v6ColorTextBox5.Location = new System.Drawing.Point(368, 149);
             this.v6ColorTextBox5.Name = "v6ColorTextBox5";
-            this.v6ColorTextBox5.NeighborFields = null;
             this.v6ColorTextBox5.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox5.TabIndex = 27;
-            this.v6ColorTextBox5.GrayText = "";
             this.v6ColorTextBox5.VVar = "MA_VITRI";
             // 
             // v6ColorTextBox6
             // 
             this.v6ColorTextBox6.AccessibleName = "ma_hd";
-            this.v6ColorTextBox6.BrotherFields = null;
-            this.v6ColorTextBox6.Carry = false;
+            this.v6ColorTextBox6.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox6.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox6.CheckOnLeave = false;
-            this.v6ColorTextBox6.EnableColorEffect = true;
-            this.v6ColorTextBox6.EnableColorEffectOnMouseEnter = false;
             this.v6ColorTextBox6.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox6.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox6.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox6.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox6.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox6.LimitCharacters = null;
             this.v6ColorTextBox6.Location = new System.Drawing.Point(368, 97);
             this.v6ColorTextBox6.Name = "v6ColorTextBox6";
-            this.v6ColorTextBox6.NeighborFields = null;
             this.v6ColorTextBox6.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox6.TabIndex = 23;
-            this.v6ColorTextBox6.GrayText = "";
             this.v6ColorTextBox6.VVar = "MA_HD";
             // 
             // txtMaSanPham
             // 
             this.txtMaSanPham.AccessibleName = "ma_sp";
-            this.txtMaSanPham.BrotherFields = null;
-            this.txtMaSanPham.Carry = false;
+            this.txtMaSanPham.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaSanPham.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaSanPham.CheckOnLeave = false;
-            this.txtMaSanPham.EnableColorEffect = true;
-            this.txtMaSanPham.EnableColorEffectOnMouseEnter = false;
             this.txtMaSanPham.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaSanPham.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaSanPham.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaSanPham.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaSanPham.LeaveColor = System.Drawing.Color.White;
-            this.txtMaSanPham.LimitCharacters = null;
             this.txtMaSanPham.Location = new System.Drawing.Point(368, 175);
             this.txtMaSanPham.Name = "txtMaSanPham";
-            this.txtMaSanPham.NeighborFields = null;
             this.txtMaSanPham.Size = new System.Drawing.Size(132, 20);
             this.txtMaSanPham.TabIndex = 29;
-            this.txtMaSanPham.GrayText = "";
             this.txtMaSanPham.VVar = "MA_VT";
             // 
             // v6ColorTextBox24
             // 
             this.v6ColorTextBox24.AccessibleName = "ma_ku";
-            this.v6ColorTextBox24.BrotherFields = null;
-            this.v6ColorTextBox24.Carry = false;
+            this.v6ColorTextBox24.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox24.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox24.CheckOnLeave = false;
-            this.v6ColorTextBox24.EnableColorEffect = true;
-            this.v6ColorTextBox24.EnableColorEffectOnMouseEnter = false;
             this.v6ColorTextBox24.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox24.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox24.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox24.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox24.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox24.LimitCharacters = null;
             this.v6ColorTextBox24.Location = new System.Drawing.Point(368, 123);
             this.v6ColorTextBox24.Name = "v6ColorTextBox24";
-            this.v6ColorTextBox24.NeighborFields = null;
             this.v6ColorTextBox24.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox24.TabIndex = 25;
-            this.v6ColorTextBox24.GrayText = "";
             this.v6ColorTextBox24.VVar = "MA_KU";
             // 
             // v6ColorTextBox25
             // 
             this.v6ColorTextBox25.AccessibleName = "MA_VV_I";
-            this.v6ColorTextBox25.BrotherFields = null;
-            this.v6ColorTextBox25.Carry = false;
+            this.v6ColorTextBox25.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox25.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox25.CheckOnLeave = false;
-            this.v6ColorTextBox25.EnableColorEffect = true;
-            this.v6ColorTextBox25.EnableColorEffectOnMouseEnter = false;
             this.v6ColorTextBox25.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox25.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox25.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox25.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox25.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox25.LimitCharacters = null;
             this.v6ColorTextBox25.Location = new System.Drawing.Point(368, 71);
             this.v6ColorTextBox25.Name = "v6ColorTextBox25";
-            this.v6ColorTextBox25.NeighborFields = null;
             this.v6ColorTextBox25.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox25.TabIndex = 21;
-            this.v6ColorTextBox25.GrayText = "";
             this.v6ColorTextBox25.VVar = "MA_VV";
             // 
             // v6ColorTextBox26
             // 
             this.v6ColorTextBox26.AccessibleName = "tk_gv";
-            this.v6ColorTextBox26.BrotherFields = null;
-            this.v6ColorTextBox26.Carry = false;
+            this.v6ColorTextBox26.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox26.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox26.CheckOnLeave = false;
-            this.v6ColorTextBox26.EnableColorEffect = true;
-            this.v6ColorTextBox26.EnableColorEffectOnMouseEnter = false;
             this.v6ColorTextBox26.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox26.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox26.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox26.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox26.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox26.LimitCharacters = null;
             this.v6ColorTextBox26.Location = new System.Drawing.Point(368, 45);
             this.v6ColorTextBox26.Name = "v6ColorTextBox26";
-            this.v6ColorTextBox26.NeighborFields = null;
             this.v6ColorTextBox26.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox26.TabIndex = 19;
-            this.v6ColorTextBox26.GrayText = "";
             this.v6ColorTextBox26.VVar = "TK";
             // 
             // v6ColorTextBox27
             // 
             this.v6ColorTextBox27.AccessibleName = "ma_vt";
-            this.v6ColorTextBox27.BrotherFields = null;
-            this.v6ColorTextBox27.Carry = false;
+            this.v6ColorTextBox27.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox27.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox27.CheckOnLeave = false;
-            this.v6ColorTextBox27.EnableColorEffect = true;
-            this.v6ColorTextBox27.EnableColorEffectOnMouseEnter = false;
             this.v6ColorTextBox27.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox27.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox27.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox27.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox27.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox27.LimitCharacters = null;
             this.v6ColorTextBox27.Location = new System.Drawing.Point(368, 19);
             this.v6ColorTextBox27.Name = "v6ColorTextBox27";
-            this.v6ColorTextBox27.NeighborFields = null;
             this.v6ColorTextBox27.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox27.TabIndex = 17;
-            this.v6ColorTextBox27.GrayText = "";
             this.v6ColorTextBox27.VVar = "MA_VT";
             // 
             // v6ColorTextBox2
             // 
             this.v6ColorTextBox2.AccessibleName = "ma_td2";
-            this.v6ColorTextBox2.BrotherFields = null;
-            this.v6ColorTextBox2.Carry = false;
-            this.v6ColorTextBox2.EnableColorEffect = true;
-            this.v6ColorTextBox2.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox2.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox2.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox2.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox2.LimitCharacters = null;
             this.v6ColorTextBox2.Location = new System.Drawing.Point(87, 201);
             this.v6ColorTextBox2.Name = "v6ColorTextBox2";
-            this.v6ColorTextBox2.NeighborFields = null;
             this.v6ColorTextBox2.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox2.TabIndex = 15;
-            this.v6ColorTextBox2.GrayText = "";
             // 
             // v6ColorTextBox28
             // 
             this.v6ColorTextBox28.AccessibleName = "ma_bpht";
-            this.v6ColorTextBox28.BrotherFields = null;
-            this.v6ColorTextBox28.Carry = false;
+            this.v6ColorTextBox28.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox28.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox28.CheckOnLeave = false;
-            this.v6ColorTextBox28.EnableColorEffect = true;
-            this.v6ColorTextBox28.EnableColorEffectOnMouseEnter = false;
             this.v6ColorTextBox28.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox28.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox28.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox28.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox28.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox28.LimitCharacters = null;
             this.v6ColorTextBox28.Location = new System.Drawing.Point(87, 149);
             this.v6ColorTextBox28.Name = "v6ColorTextBox28";
-            this.v6ColorTextBox28.NeighborFields = null;
             this.v6ColorTextBox28.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox28.TabIndex = 11;
-            this.v6ColorTextBox28.GrayText = "";
             this.v6ColorTextBox28.VVar = "MA_BPHT";
             // 
             // v6ColorTextBox29
             // 
             this.v6ColorTextBox29.AccessibleName = "tk_vt";
-            this.v6ColorTextBox29.BrotherFields = null;
-            this.v6ColorTextBox29.Carry = false;
+            this.v6ColorTextBox29.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox29.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox29.CheckOnLeave = false;
-            this.v6ColorTextBox29.EnableColorEffect = true;
-            this.v6ColorTextBox29.EnableColorEffectOnMouseEnter = false;
             this.v6ColorTextBox29.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox29.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox29.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox29.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox29.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox29.LimitCharacters = null;
             this.v6ColorTextBox29.Location = new System.Drawing.Point(87, 71);
             this.v6ColorTextBox29.Name = "v6ColorTextBox29";
-            this.v6ColorTextBox29.NeighborFields = null;
             this.v6ColorTextBox29.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox29.TabIndex = 5;
-            this.v6ColorTextBox29.GrayText = "";
             this.v6ColorTextBox29.VVar = "TK";
             // 
             // v6ColorTextBox1
             // 
             this.v6ColorTextBox1.AccessibleName = "ma_lo";
-            this.v6ColorTextBox1.BrotherFields = null;
-            this.v6ColorTextBox1.Carry = false;
+            this.v6ColorTextBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox1.CheckOnLeave = false;
-            this.v6ColorTextBox1.EnableColorEffect = true;
-            this.v6ColorTextBox1.EnableColorEffectOnMouseEnter = false;
             this.v6ColorTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox1.LimitCharacters = null;
             this.v6ColorTextBox1.Location = new System.Drawing.Point(87, 175);
             this.v6ColorTextBox1.Name = "v6ColorTextBox1";
-            this.v6ColorTextBox1.NeighborFields = null;
             this.v6ColorTextBox1.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox1.TabIndex = 13;
-            this.v6ColorTextBox1.GrayText = "";
             this.v6ColorTextBox1.VVar = "MA_LO";
             // 
             // v6ColorTextBox30
             // 
             this.v6ColorTextBox30.AccessibleName = "ma_td1";
-            this.v6ColorTextBox30.BrotherFields = null;
-            this.v6ColorTextBox30.Carry = false;
-            this.v6ColorTextBox30.EnableColorEffect = true;
-            this.v6ColorTextBox30.EnableColorEffectOnMouseEnter = false;
+            this.v6ColorTextBox30.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox30.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox30.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox30.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox30.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox30.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox30.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox30.LimitCharacters = null;
             this.v6ColorTextBox30.Location = new System.Drawing.Point(87, 123);
             this.v6ColorTextBox30.Name = "v6ColorTextBox30";
-            this.v6ColorTextBox30.NeighborFields = null;
             this.v6ColorTextBox30.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox30.TabIndex = 9;
-            this.v6ColorTextBox30.GrayText = "";
             // 
             // v6ColorTextBox31
             // 
             this.v6ColorTextBox31.AccessibleName = "tk_dt";
-            this.v6ColorTextBox31.BrotherFields = null;
-            this.v6ColorTextBox31.Carry = false;
+            this.v6ColorTextBox31.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox31.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox31.CheckOnLeave = false;
-            this.v6ColorTextBox31.EnableColorEffect = true;
-            this.v6ColorTextBox31.EnableColorEffectOnMouseEnter = false;
             this.v6ColorTextBox31.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox31.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox31.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox31.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox31.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox31.LimitCharacters = null;
             this.v6ColorTextBox31.Location = new System.Drawing.Point(87, 45);
             this.v6ColorTextBox31.Name = "v6ColorTextBox31";
-            this.v6ColorTextBox31.NeighborFields = null;
             this.v6ColorTextBox31.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox31.TabIndex = 3;
-            this.v6ColorTextBox31.GrayText = "";
             this.v6ColorTextBox31.VVar = "TK";
             // 
             // v6ColorTextBox32
             // 
             this.v6ColorTextBox32.AccessibleName = "ma_phi";
-            this.v6ColorTextBox32.BrotherFields = null;
-            this.v6ColorTextBox32.Carry = false;
+            this.v6ColorTextBox32.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox32.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox32.CheckOnLeave = false;
-            this.v6ColorTextBox32.EnableColorEffect = true;
-            this.v6ColorTextBox32.EnableColorEffectOnMouseEnter = false;
             this.v6ColorTextBox32.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox32.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox32.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox32.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox32.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox32.LimitCharacters = null;
             this.v6ColorTextBox32.Location = new System.Drawing.Point(87, 97);
             this.v6ColorTextBox32.Name = "v6ColorTextBox32";
-            this.v6ColorTextBox32.NeighborFields = null;
             this.v6ColorTextBox32.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox32.TabIndex = 7;
-            this.v6ColorTextBox32.GrayText = "";
             this.v6ColorTextBox32.VVar = "MA_PHI";
             // 
             // v6Label4
             // 
+            this.v6Label4.AccessibleDescription = "SEARCHL00034";
             this.v6Label4.AutoSize = true;
             this.v6Label4.Location = new System.Drawing.Point(6, 204);
             this.v6Label4.Name = "v6Label4";
@@ -424,25 +381,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
             // v6ColorTextBox33
             // 
             this.v6ColorTextBox33.AccessibleName = "ma_kho_i";
-            this.v6ColorTextBox33.BrotherFields = null;
-            this.v6ColorTextBox33.Carry = false;
+            this.v6ColorTextBox33.BackColor = System.Drawing.SystemColors.Window;
+            this.v6ColorTextBox33.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox33.CheckOnLeave = false;
-            this.v6ColorTextBox33.EnableColorEffect = true;
-            this.v6ColorTextBox33.EnableColorEffectOnMouseEnter = false;
             this.v6ColorTextBox33.EnterColor = System.Drawing.Color.PaleGreen;
+            this.v6ColorTextBox33.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox33.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox33.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox33.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox33.LimitCharacters = null;
             this.v6ColorTextBox33.Location = new System.Drawing.Point(87, 19);
             this.v6ColorTextBox33.Name = "v6ColorTextBox33";
-            this.v6ColorTextBox33.NeighborFields = null;
             this.v6ColorTextBox33.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox33.TabIndex = 1;
-            this.v6ColorTextBox33.GrayText = "";
             this.v6ColorTextBox33.VVar = "MA_KHO";
             // 
             // v6Label9
             // 
+            this.v6Label9.AccessibleDescription = "SEARCHL00030";
             this.v6Label9.AutoSize = true;
             this.v6Label9.Location = new System.Drawing.Point(6, 152);
             this.v6Label9.Name = "v6Label9";
@@ -452,6 +407,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
             // 
             // v6Label3
             // 
+            this.v6Label3.AccessibleDescription = "SEARCHL00035";
             this.v6Label3.AutoSize = true;
             this.v6Label3.Location = new System.Drawing.Point(285, 204);
             this.v6Label3.Name = "v6Label3";
@@ -470,6 +426,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
             // 
             // v6Label2
             // 
+            this.v6Label2.AccessibleDescription = "SEARCHL00032";
             this.v6Label2.AutoSize = true;
             this.v6Label2.Location = new System.Drawing.Point(6, 178);
             this.v6Label2.Name = "v6Label2";
@@ -479,6 +436,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
             // 
             // v6Label11
             // 
+            this.v6Label11.AccessibleDescription = "SEARCHL00031";
             this.v6Label11.AutoSize = true;
             this.v6Label11.Location = new System.Drawing.Point(285, 152);
             this.v6Label11.Name = "v6Label11";
@@ -488,6 +446,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
             // 
             // v6Label12
             // 
+            this.v6Label12.AccessibleDescription = "SEARCHL00033";
             this.v6Label12.AutoSize = true;
             this.v6Label12.Location = new System.Drawing.Point(6, 126);
             this.v6Label12.Name = "v6Label12";
@@ -497,6 +456,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
             // 
             // v6Label30
             // 
+            this.v6Label30.AccessibleDescription = "SEARCHL00027";
             this.v6Label30.AutoSize = true;
             this.v6Label30.Location = new System.Drawing.Point(285, 100);
             this.v6Label30.Name = "v6Label30";
@@ -506,6 +466,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
             // 
             // v6Label1
             // 
+            this.v6Label1.AccessibleDescription = "SEARCHL00028";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(285, 178);
             this.v6Label1.Name = "v6Label1";
@@ -524,6 +485,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
             // 
             // v6Label32
             // 
+            this.v6Label32.AccessibleDescription = "SEARCHL00029";
             this.v6Label32.AutoSize = true;
             this.v6Label32.Location = new System.Drawing.Point(285, 126);
             this.v6Label32.Name = "v6Label32";
@@ -542,6 +504,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
             // 
             // v6Label34
             // 
+            this.v6Label34.AccessibleDescription = "SEARCHL00025";
             this.v6Label34.AutoSize = true;
             this.v6Label34.Location = new System.Drawing.Point(285, 74);
             this.v6Label34.Name = "v6Label34";
@@ -551,6 +514,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
             // 
             // v6Label35
             // 
+            this.v6Label35.AccessibleDescription = "SEARCHL00026";
             this.v6Label35.AutoSize = true;
             this.v6Label35.Location = new System.Drawing.Point(6, 100);
             this.v6Label35.Name = "v6Label35";
@@ -560,6 +524,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
             // 
             // v6Label36
             // 
+            this.v6Label36.AccessibleDescription = "SEARCHL00021";
             this.v6Label36.AutoSize = true;
             this.v6Label36.Location = new System.Drawing.Point(285, 22);
             this.v6Label36.Name = "v6Label36";
@@ -569,6 +534,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
             // 
             // v6Label37
             // 
+            this.v6Label37.AccessibleDescription = "SEARCHL00020";
             this.v6Label37.AutoSize = true;
             this.v6Label37.Location = new System.Drawing.Point(6, 22);
             this.v6Label37.Name = "v6Label37";
