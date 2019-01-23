@@ -309,6 +309,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // btnESC
             // 
+            this.btnESC.AccessibleDescription = ".";
             this.btnESC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnESC.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnESC.Location = new System.Drawing.Point(756, 6);

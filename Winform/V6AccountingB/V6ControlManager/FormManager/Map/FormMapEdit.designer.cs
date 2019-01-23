@@ -228,6 +228,7 @@
             // 
             // buttonChooseImage
             // 
+            this.buttonChooseImage.AccessibleDescription = ".";
             this.buttonChooseImage.Location = new System.Drawing.Point(827, 6);
             this.buttonChooseImage.Name = "buttonChooseImage";
             this.buttonChooseImage.Size = new System.Drawing.Size(14, 29);
@@ -305,6 +306,7 @@
             // 
             // btnRightSize
             // 
+            this.btnRightSize.AccessibleDescription = ".";
             this.btnRightSize.Location = new System.Drawing.Point(3, 6);
             this.btnRightSize.Name = "btnRightSize";
             this.btnRightSize.Size = new System.Drawing.Size(27, 29);

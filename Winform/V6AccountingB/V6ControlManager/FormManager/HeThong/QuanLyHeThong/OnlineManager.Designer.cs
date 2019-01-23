@@ -32,12 +32,12 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gridView1 = new V6Controls.V6ColorDataGridView();
-            this.v6FormButton1 = new V6FormButton();
-            this.v6FormButton2 = new V6FormButton();
+            this.v6FormButton1 = new V6Controls.Controls.V6FormButton();
+            this.v6FormButton2 = new V6Controls.Controls.V6FormButton();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnAll = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -46,25 +46,26 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong
             // gridView1
             // 
             this.gridView1.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.gridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightCyan;
+            this.gridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.gridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.gridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.gridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridView1.Location = new System.Drawing.Point(3, 3);
             this.gridView1.Name = "gridView1";
             this.gridView1.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
-            this.gridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.LightYellow;
+            this.gridView1.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.gridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.gridView1.Size = new System.Drawing.Size(476, 249);
             this.gridView1.TabIndex = 0;
@@ -72,6 +73,7 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong
             // 
             // v6FormButton1
             // 
+            this.v6FormButton1.AccessibleDescription = "ADDEDITB00001";
             this.v6FormButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.v6FormButton1.Location = new System.Drawing.Point(3, 290);
             this.v6FormButton1.Name = "v6FormButton1";
@@ -84,6 +86,7 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong
             // 
             // v6FormButton2
             // 
+            this.v6FormButton2.AccessibleDescription = "ADDEDITB00023";
             this.v6FormButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.v6FormButton2.Location = new System.Drawing.Point(84, 290);
             this.v6FormButton2.Name = "v6FormButton2";
@@ -96,6 +99,7 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong
             // 
             // btnBack
             // 
+            this.btnBack.AccessibleDescription = "DANHMUCVIEWB00012";
             this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBack.Image = global::V6ControlManager.Properties.Resources.Back2;
             this.btnBack.Location = new System.Drawing.Point(423, 258);
@@ -110,6 +114,7 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong
             // 
             // btnAll
             // 
+            this.btnAll.AccessibleDescription = "DANHMUCVIEWB00014";
             this.btnAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAll.Image = global::V6ControlManager.Properties.Resources.Refresh;
             this.btnAll.Location = new System.Drawing.Point(361, 258);

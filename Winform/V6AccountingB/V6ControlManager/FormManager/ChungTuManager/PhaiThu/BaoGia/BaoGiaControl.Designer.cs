@@ -559,6 +559,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             // 
             // btnInfos
             // 
+            this.btnInfos.AccessibleDescription = "ADDEDITL00247";
             this.btnInfos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInfos.Location = new System.Drawing.Point(673, 4);
             this.btnInfos.Name = "btnInfos";

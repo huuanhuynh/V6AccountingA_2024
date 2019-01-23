@@ -126,6 +126,7 @@
             // 
             // label2
             // 
+            this.label2.AccessibleDescription = ".";
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Lime;
             this.label2.Image = global::V6ControlManager.Properties.Resources.V6Logo_5x4;
@@ -136,6 +137,7 @@
             // 
             // btnHuy
             // 
+            this.btnHuy.AccessibleDescription = "V6REASKB00002";
             this.btnHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnHuy.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.btnHuy.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

@@ -1410,7 +1410,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
         
         #region ==== Show Hide Enable Disable controls ====
         
-        protected override void EnableVisibleControls()
+        public override void EnableVisibleControls()
         {
             try
             {
@@ -1639,7 +1639,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
         #endregion datagridview
 
 
-        protected override void EnableNavigationButtons()
+        public override void EnableNavigationButtons()
         {
             if (AM == null || AM.Rows.Count == 0)
             {
@@ -1674,7 +1674,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             }
         }
 
-        protected override void EnableFunctionButtons()
+        public override void EnableFunctionButtons()
         {
             btnLuu.Enabled = false;
             btnHuy.Visible = false;

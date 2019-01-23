@@ -185,6 +185,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             // 
             // btnLs
             // 
+            this.btnLs.AccessibleDescription = ".";
             this.btnLs.Location = new System.Drawing.Point(48, 144);
             this.btnLs.Name = "btnLs";
             this.btnLs.Size = new System.Drawing.Size(34, 25);
@@ -195,6 +196,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             // 
             // btnLt
             // 
+            this.btnLt.AccessibleDescription = ".";
             this.btnLt.Location = new System.Drawing.Point(6, 144);
             this.btnLt.Name = "btnLt";
             this.btnLt.Size = new System.Drawing.Size(34, 25);

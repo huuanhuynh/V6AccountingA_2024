@@ -645,6 +645,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             // 
             // v6Label37
             // 
+            this.v6Label37.AccessibleDescription = "ASOCTSOAL00123";
             this.v6Label37.AutoSize = true;
             this.v6Label37.Location = new System.Drawing.Point(17, 27);
             this.v6Label37.Name = "v6Label37";
@@ -654,6 +655,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             // 
             // v6Label36
             // 
+            this.v6Label36.AccessibleDescription = "ASOCTSOAL00122";
             this.v6Label36.AutoSize = true;
             this.v6Label36.Location = new System.Drawing.Point(426, 6);
             this.v6Label36.Name = "v6Label36";
@@ -663,6 +665,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             // 
             // v6Label34
             // 
+            this.v6Label34.AccessibleDescription = "ASOCTSOAH00078";
             this.v6Label34.AutoSize = true;
             this.v6Label34.Location = new System.Drawing.Point(235, 6);
             this.v6Label34.Name = "v6Label34";
@@ -672,6 +675,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             // 
             // v6Label18
             // 
+            this.v6Label18.AccessibleDescription = "ASOCTSOAH00064";
             this.v6Label18.AutoSize = true;
             this.v6Label18.Location = new System.Drawing.Point(15, 8);
             this.v6Label18.Name = "v6Label18";
@@ -818,6 +822,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             // 
             // btnXoaPB
             // 
+            this.btnXoaPB.AccessibleDescription = "ASOCTSOAB00044";
             this.btnXoaPB.Location = new System.Drawing.Point(778, 2);
             this.btnXoaPB.Name = "btnXoaPB";
             this.btnXoaPB.Size = new System.Drawing.Size(95, 23);
@@ -828,6 +833,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             // 
             // btnTinhPB
             // 
+            this.btnTinhPB.AccessibleDescription = "ASOCTSOAB00043";
             this.btnTinhPB.Location = new System.Drawing.Point(677, 2);
             this.btnTinhPB.Name = "btnTinhPB";
             this.btnTinhPB.Size = new System.Drawing.Size(95, 23);

@@ -212,6 +212,7 @@
             // 
             // button1
             // 
+            this.button1.AccessibleDescription = ".";
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.Location = new System.Drawing.Point(7, 228);
             this.button1.Name = "button1";

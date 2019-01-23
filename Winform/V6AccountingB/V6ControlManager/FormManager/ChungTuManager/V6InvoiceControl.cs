@@ -74,7 +74,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
-        protected void LoadAdvanceControls(string ma_ct)
+        public void LoadAdvanceControls(string ma_ct)
         {
             try
             {
@@ -88,14 +88,14 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         //public delegate void ChangeInvoice(string sttRec);
         public event Action<string> InvoiceChanged;
-        protected virtual void OnInvoiceChanged(string sttRec)
+        public virtual void OnInvoiceChanged(string sttRec)
         {
             var handler = InvoiceChanged;
             if (handler != null) handler(sttRec);
         }
 
         public event Action<DataTable> AmChanged;
-        protected virtual void OnAmChanged(DataTable data)
+        public virtual void OnAmChanged(DataTable data)
         {
             try
             {
@@ -153,20 +153,20 @@ namespace V6ControlManager.FormManager.ChungTuManager
         public TabPage ParentTabPage { get; set; }
 
         public string MaCt { get; set; }
-        protected string _sttRec0 = "";
-        protected string _sttRec02 = "";
-        protected string _sttRec03 = "";
-        protected string _mMaNt0 = "";
-        protected string _maNt = "VND";
-        protected bool co_chon_don_hang;
+        public string _sttRec0 = "";
+        public string _sttRec02 = "";
+        public string _sttRec03 = "";
+        public string _mMaNt0 = "";
+        public string _maNt = "VND";
+        public bool co_chon_don_hang;
         public string MA_NT { get { return _maNt; } }
-        
-        protected int M_ROUND_NUM;
-        protected int M_ROUND;
-        protected int M_ROUND_NT;
-        protected int M_ROUND_SL;
-        protected int M_ROUND_GIA;
-        protected int M_ROUND_GIA_NT;
+
+        public int M_ROUND_NUM;
+        public int M_ROUND;
+        public int M_ROUND_NT;
+        public int M_ROUND_SL;
+        public int M_ROUND_GIA;
+        public int M_ROUND_GIA_NT;
         public string M_SOA_HT_KM_CK;
         public string M_SOA_MULTI_VAT;
         public string M_POA_MULTI_VAT;
@@ -175,17 +175,17 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <summary>
         /// List thứ tự field chi tiết.
         /// </summary>
-        protected List<string> _orderList = new List<string>();
-        protected List<string> _orderList2 = new List<string>();
-        protected List<string> _orderList3 = new List<string>();
+        public List<string> _orderList = new List<string>();
+        public List<string> _orderList2 = new List<string>();
+        public List<string> _orderList3 = new List<string>();
 
-        protected SortedDictionary<string, DataRow> _alct1Dic;
-        protected SortedDictionary<string, DataRow> _alct2Dic;
-        protected SortedDictionary<string, DataRow> _alct3Dic;
+        public SortedDictionary<string, DataRow> _alct1Dic;
+        public SortedDictionary<string, DataRow> _alct2Dic;
+        public SortedDictionary<string, DataRow> _alct3Dic;
 
-        protected DataGridViewRow _gv1EditingRow;
-        protected DataGridViewRow _gv2EditingRow;
-        protected DataGridViewRow _gv3EditingRow;
+        public DataGridViewRow _gv1EditingRow;
+        public DataGridViewRow _gv2EditingRow;
+        public DataGridViewRow _gv3EditingRow;
 
         private List<Control> _carryControls = new List<Control>();
 
@@ -221,7 +221,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <summary>
         /// Gây ra sự kiện để cập nhập thông tin lên button
         /// </summary>
-        protected virtual void OnBillChanged()
+        public virtual void OnBillChanged()
         {
             var handler = BillChanged;
             if (handler != null) handler(this, new EventArgs());
@@ -236,20 +236,18 @@ namespace V6ControlManager.FormManager.ChungTuManager
             //public string TableTo { get; set; }
         }
         public event ChangeTableEventHandler ChangeTable;
-        protected virtual void OnChangeTable(ChangeTableEventArgs e)
+        public virtual void OnChangeTable(ChangeTableEventArgs e)
         {
             var handler = ChangeTable;
             if (handler != null) handler(this, e);
         }
 
         public event EventHandler ViewNext;
-        protected virtual void OnViewNext()
+        public virtual void OnViewNext()
         {
             var handler = ViewNext;
             if (handler != null) handler(this, new EventArgs());
         }
-
-        
 
         /// <summary>
         /// Đổi Mode, Thay đổi trạng thái control Enable
@@ -272,19 +270,19 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <summary>
         /// Goi cac ham enable khac (functionButton, navi, form)
         /// </summary>
-        protected void EnableControls()
+        public void EnableControls()
         {
             EnableNavigationButtons();
             EnableFunctionButtons();
             EnableVisibleControls();
         }
 
-        protected virtual void EnableNavigationButtons()
+        public virtual void EnableNavigationButtons()
         {
             throw new System.NotImplementedException("Cần override.");
         }
 
-        protected virtual void EnableFunctionButtons()
+        public virtual void EnableFunctionButtons()
         {
             throw new System.NotImplementedException("Cần override.");
         }
@@ -292,12 +290,12 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <summary>
         /// Ẩn hiện, set Readonly cho các control.
         /// </summary>
-        protected virtual void EnableVisibleControls()
+        public virtual void EnableVisibleControls()
         {
             throw new System.NotImplementedException("Cần override.");
         }
 
-        protected void SetControlReadOnlyHide(Control container, V6InvoiceBase invoice, V6Mode mode)
+        public void SetControlReadOnlyHide(Control container, V6InvoiceBase invoice, V6Mode mode)
         {
             try //  Ẩn hiện theo quyền trong Alctct
             {
@@ -359,7 +357,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <param name="grid">GridView3ChiPhi</param>
         /// <param name="total">var total = TxtT_cp_nt.Value;</param>
         /// <returns></returns>
-        protected bool CheckPhanBo(DataGridView grid, decimal total)
+        public bool CheckPhanBo(DataGridView grid, decimal total)
         {
             try
             {
@@ -382,7 +380,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             throw new NotImplementedException();
         }
 
-        protected virtual void DisableAllFunctionButtons(Button btnLuu, Button btnMoi, Button btnCopy, Button btnIn, Button btnSua, Button btnHuy, Button btnXoa, Button btnXem, Button btnTim, Button btnQuayRa)
+        public virtual void DisableAllFunctionButtons(Button btnLuu, Button btnMoi, Button btnCopy, Button btnIn, Button btnSua, Button btnHuy, Button btnXoa, Button btnXem, Button btnTim, Button btnQuayRa)
         {
             btnLuu.Enabled = false;
             btnMoi.Enabled = false;
@@ -400,7 +398,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// Chỉnh lại kích thước của gridview có phần details.
         /// </summary>
         /// <param name="dgvs"></param>
-        protected void FixDataGridViewSize(params V6ColorDataGridView[] dgvs)
+        public void FixDataGridViewSize(params V6ColorDataGridView[] dgvs)
         {
             try
             {
@@ -422,7 +420,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
         
-        protected IDictionary<string, object> PreparingDataAM(V6InvoiceBase invoice)
+        public IDictionary<string, object> PreparingDataAM(V6InvoiceBase invoice)
         {
             var addDataAM = GetData();
             addDataAM["STT_REC"] = _sttRec;
@@ -430,7 +428,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             return addDataAM;
         }
 
-        protected void LoadTag(V6InvoiceBase invoice, ControlCollection detailPanelControls)
+        public void LoadTag(V6InvoiceBase invoice, ControlCollection detailPanelControls)
         {
             try
             {
@@ -455,7 +453,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// </summary>
         /// <param name="maCt">Invoice.Mact</param>
         /// <returns>_sttRec</returns>
-        protected virtual string GetSttRec(string maCt)
+        public virtual string GetSttRec(string maCt)
         {
             V6ControlFormHelper.RemoveRunningList(_sttRec);
             _sttRec = V6BusinessHelper. GetNewSttRec(maCt);
@@ -490,7 +488,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// Stt_rec &lt;&gt; ADrow["STT_REC_TT"]
         /// </summary>
         /// <returns></returns>
-        protected string GetSoCt0InitFilter()
+        public string GetSoCt0InitFilter()
         {
             var result = "";
             try
@@ -508,7 +506,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             return result;
         }
 
-        protected string GetAlVitriTonInitFilter()
+        public string GetAlVitriTonInitFilter()
         {
             var result = "";
             try
@@ -828,36 +826,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <param name="_sl_qd2"></param>
         /// <param name="_hs_qd1">Hệ số nhân đổi DVT ra DVT qd. (1 viên = ?0.01 thùng)</param>
         /// <param name="_hs_qd2">100 viên / thùng</param>
-        //protected void TinhSoluongQuyDoi(V6NumberTextBox _soLuong1
-        //    , V6NumberTextBox _sl_qd, V6NumberTextBox _sl_qd2
-        //    , V6NumberTextBox _hs_qd1, V6NumberTextBox _hs_qd2)
-        //{
-        //    try
-        //    {
-        //        if (M_CAL_SL_QD_ALL == "0")
-        //        {
-        //            //Phần nguyên, (ví dụ 1.5 thùng)
-        //            _sl_qd.Value = _soLuong1.Value*_hs_qd1.Value;
-        //            //Phần lẻ (ví dụ 50 viên = 0.5 thùng bên trên)
-        //            var tong = _sl_qd.Value*_hs_qd2.Value;
-        //            var sl_nguyen_thung = ((int) _sl_qd.Value)*_hs_qd2.Value;
-        //            _sl_qd2.Value = V6BusinessHelper.Vround(tong - sl_nguyen_thung, 1);
-        //        }
-        //        else if (M_CAL_SL_QD_ALL == "1")
-        //        {
-        //            _soLuong1.Value = _sl_qd.Value*_hs_qd1.Value;
-        //        }
-        //        else
-        //        {
-        //            //this.ShowParentMessage();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        this.ShowErrorException(GetType() + ".TinhSoluongQuyDoi " + _sttRec, ex);
-        //    }
-        //}
-
         public void TinhSoluongQuyDoi_0(V6NumberTextBox _soLuong1
             , V6NumberTextBox _sl_qd, V6NumberTextBox _sl_qd2
             , V6NumberTextBox _hs_qd1, V6NumberTextBox _hs_qd2)
@@ -926,13 +894,12 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
 
 
-        protected decimal TinhTong(DataTable AD_table, string colName)
+        public decimal TinhTong(DataTable AD_table, string colName)
         {
             return V6BusinessHelper.TinhTong(AD_table, colName);
         }
 
-        
-        protected void TinhChietKhauChiTiet(bool nhapTien, V6NumberTextBox _ck_textbox, V6NumberTextBox _ck_nt_textbox,
+        public void TinhChietKhauChiTiet(bool nhapTien, V6NumberTextBox _ck_textbox, V6NumberTextBox _ck_nt_textbox,
             V6NumberTextBox txtTyGia, V6NumberTextBox _tienNt2, V6NumberTextBox _pt_cki)
         {
             try
@@ -972,7 +939,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <param name="tien"></param>
         /// <param name="txtTienThue"></param>
         /// <param name="round"></param>
-        protected void Tinh_TienThue_TheoThueSuat(decimal thueSuat, decimal tien, V6NumberTextBox txtTienThue, int round)
+        public void Tinh_TienThue_TheoThueSuat(decimal thueSuat, decimal tien, V6NumberTextBox txtTienThue, int round)
         {
             try
             {
@@ -983,8 +950,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
             }
         }
-        
-        protected void Tinh_TienThue_TheoTienThueNt(decimal tienThueNt, decimal tyGia, V6NumberTextBox txtTienThue, int round)
+
+        public void Tinh_TienThue_TheoTienThueNt(decimal tienThueNt, decimal tyGia, V6NumberTextBox txtTienThue, int round)
         {
             try
             {
@@ -1004,7 +971,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <param name="tien"></param>
         /// <param name="txtTienThueNt">control thue_nt</param>
         /// <param name="txtTienThue">control thue</param>
-        protected void Tinh_TienThueNtVaTienThue_TheoThueSuat(decimal thueSuat, decimal tienNt, decimal tien, V6NumberTextBox txtTienThueNt, V6NumberTextBox txtTienThue)
+        public void Tinh_TienThueNtVaTienThue_TheoThueSuat(decimal thueSuat, decimal tienNt, decimal tien, V6NumberTextBox txtTienThueNt, V6NumberTextBox txtTienThue)
         {
             try
             {
@@ -1031,7 +998,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <param name="txtTien"></param>
         /// <param name="txtTienThueNt"></param>
         /// <param name="txtTienThue"></param>
-        protected void TienNtChanged(decimal tienNt, decimal tyGia, decimal thueSuat, V6NumberTextBox txtTien,
+        public void TienNtChanged(decimal tienNt, decimal tyGia, decimal thueSuat, V6NumberTextBox txtTien,
             V6NumberTextBox txtTienThueNt, V6NumberTextBox txtTienThue)
         {
             try
@@ -1055,7 +1022,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <param name="tien">Giá trị Tiền sau khi thay đổi.</param>
         /// <param name="thueSuat">Thuế suất theo %. vd 10 là 10%.</param>
         /// <param name="txtTienThue">TextBox tiền thuế.</param>
-        protected void TienChanged(decimal tien, decimal thueSuat, V6NumberTextBox txtTienThue)
+        public void TienChanged(decimal tien, decimal thueSuat, V6NumberTextBox txtTienThue)
         {
             try
             {
@@ -1076,7 +1043,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             LoadLanguage();
         }
 
-        protected bool ValidateNgayCt(string maCt, DateTimePicker dateNgayCT)
+        public bool ValidateNgayCt(string maCt, DateTimePicker dateNgayCT)
         {
             try
             {
@@ -1098,7 +1065,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             return false;
         }
 
-        protected bool ValidateMasterData(V6InvoiceBase Invoice)
+        public bool ValidateMasterData(V6InvoiceBase Invoice)
         {
             var v6validConfig = ConfigManager.GetV6ValidConfig(Invoice.Mact, 1);
             
@@ -1151,7 +1118,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <param name="Invoice"></param>
         /// <param name="data"></param>
         /// <returns>Nếu hợp lệ trả về rỗng hoặc null, Nếu ko trả về message.</returns>
-        protected string ValidateDetailData(V6InvoiceBase Invoice, IDictionary<string, object> data)
+        public string ValidateDetailData(V6InvoiceBase Invoice, IDictionary<string, object> data)
         {
             string error = "";
             try
@@ -1216,7 +1183,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         public virtual void TinhTongThanhToan(string debug) { }
 
-        protected void XuLyHienThiChietKhau_PhieuNhap(bool ckChung, bool suaTienCk,
+        public void XuLyHienThiChietKhau_PhieuNhap(bool ckChung, bool suaTienCk,
             V6NumberTextBox _pt_cki_textbox, V6NumberTextBox _ckNt_textbox,
             V6NumberTextBox txtTongCkNt, CheckBox chkSuaPtck)
         {
@@ -1252,7 +1219,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <param name="itemID"></param>
         /// <param name="controlName"></param>
         /// <param name="controlData"></param>
-        protected void SetDefaultDataReference(V6InvoiceBase invoice, string itemID, string controlName, DataRow controlData)
+        public void SetDefaultDataReference(V6InvoiceBase invoice, string itemID, string controlName, DataRow controlData)
         {
             //Lay thong tin gan du lieu 20161129
             var infos = invoice.LoadDataReferenceInfo(V6Setting.Language, ItemID);
@@ -1329,7 +1296,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 }
             }
         }
-        protected void XuLyThayDoiTyGia(V6NumberTextBox txtTyGia, CheckBox chkSuaTien)
+
+        public void XuLyThayDoiTyGia(V6NumberTextBox txtTyGia, CheckBox chkSuaTien)
         {
             try
             {
@@ -1436,7 +1404,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <param name="ngayCt">Ngày ct đang nhập trên form.</param>
         /// <param name="maKhoX">Mã kho xuất trên form, nếu dùng Ma_kho_i để null</param>
         /// <returns></returns>
-        protected bool ValidateData_Master_CheckTon(V6InvoiceBase Invoice, DateTime ngayCt, string maKhoX)
+        public bool ValidateData_Master_CheckTon(V6InvoiceBase Invoice, DateTime ngayCt, string maKhoX)
         {
             try
             {
@@ -1828,9 +1796,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <summary>
         /// Biến tạm: stt_rec để in sau khi lưu thành công.
         /// </summary>
-        protected string _sttRec_In = "";
-        protected V6PrintMode _print_flag = V6PrintMode.DoNoThing;
-        protected void BasePrint(V6InvoiceBase Invoice, string sttRec_In, V6PrintMode printMode,
+        public string _sttRec_In = "";
+        public V6PrintMode _print_flag = V6PrintMode.DoNoThing;
+        public void BasePrint(V6InvoiceBase Invoice, string sttRec_In, V6PrintMode printMode,
             decimal tongThanhToan_Value, decimal tongThanhToanNT_Value, bool closeAfterPrint, int sec = 3)
         {
             try
@@ -1931,7 +1899,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// </summary>
         /// <param name="Invoice"></param>
         /// <returns></returns>
-        protected bool CheckPrint(V6InvoiceBase Invoice)
+        public bool CheckPrint(V6InvoiceBase Invoice)
         {
             bool check_print = true;
             try
@@ -1985,7 +1953,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             return check_print;
         }
 
-        protected void XemPhieuNhapView(DateTime ngayCT, string maCT, string maKho, string maVt)
+        public void XemPhieuNhapView(DateTime ngayCT, string maCT, string maKho, string maVt)
         {
             try
             {
@@ -2018,14 +1986,14 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
-        protected void ResetTonLoHsd(V6NumberTextBox _ton13, V6VvarTextBox _maLo, V6DateTimeColor _hanSd)
+        public void ResetTonLoHsd(V6NumberTextBox _ton13, V6VvarTextBox _maLo, V6DateTimeColor _hanSd)
         {
             _ton13.Value = 0;
             _maLo.Clear();
             _hanSd.Value = null;
         }
 
-        protected string GetCA()
+        public string GetCA()
         {
             SqlParameter[] plist =
             {
@@ -2038,10 +2006,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <summary>
         /// No_use
         /// </summary>
-        protected Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
-        protected Type Event_program;
-        protected Dictionary<string, object> All_Objects = new Dictionary<string, object>();
-        protected void CreateFormProgram(V6InvoiceBase Invoice)
+        public Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
+        public Type Event_program;
+        public Dictionary<string, object> All_Objects = new Dictionary<string, object>();
+        public void CreateFormProgram(V6InvoiceBase Invoice)
         {
             try
             {
@@ -2108,7 +2076,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// </summary>
         /// <param name="eventName"></param>
         /// <returns></returns>
-        protected object InvokeFormEvent(string eventName)
+        public object InvokeFormEvent(string eventName)
         {
             try // Dynamic invoke
             {
@@ -2126,7 +2094,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
 
 
-        protected void InvokeFormEventFixCopyData()
+        public void InvokeFormEventFixCopyData()
         {
             try
             {
@@ -2145,7 +2113,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// Chức năng sửa hàng loạt một cột dữ liệu.
         /// </summary>
         /// <param name="invoice"></param>
-        protected void ChucNang_ThayThe(V6InvoiceBase invoice)
+        public void ChucNang_ThayThe(V6InvoiceBase invoice)
         {
             try
             {
@@ -2242,7 +2210,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// Chức năng sửa dữ liệu AD bằng cách gõ trực tiếp.
         /// </summary>
         /// <param name="invoice"></param>
-        protected void ChucNang_SuaNhieuDong(V6InvoiceBase invoice)
+        public void ChucNang_SuaNhieuDong(V6InvoiceBase invoice)
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
@@ -2256,7 +2224,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
-        protected void AfterReplace(Dictionary<string, object> allObjects)
+        public void AfterReplace(Dictionary<string, object> allObjects)
         {
             try
             {
@@ -2294,7 +2262,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// Gán lại giá trị mặc định cho một số trường định nghĩa trong ALCT.M_MA_HD
         /// </summary>
         /// <param name="invoice"></param>
-        protected void ResetAMADbyConfig(V6InvoiceBase invoice)
+        public void ResetAMADbyConfig(V6InvoiceBase invoice)
         {
             var m_ma_hd = ("" + invoice.Alct["M_MA_HD"]).Trim();
             if (m_ma_hd == "") return;

@@ -2077,7 +2077,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         
         #region ==== Show Hide Enable Disable controls ====
 
-        protected override void EnableVisibleControls()
+        public override void EnableVisibleControls()
         {
             try
             {
@@ -2174,7 +2174,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             SetControlReadOnlyHide(this, Invoice, Mode);
         }
 
-        protected override void EnableNavigationButtons()
+        public override void EnableNavigationButtons()
         {
             if (AM == null || AM.Rows.Count == 0)
             {
@@ -2209,7 +2209,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
         }
 
-        protected override void EnableFunctionButtons()
+        public override void EnableFunctionButtons()
         {
             btnLuu.Enabled = false;
             btnHuy.Visible = false;

@@ -284,6 +284,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             // 
             // btnXoaPB
             // 
+            this.btnXoaPB.AccessibleDescription = "ASOCTSOAB00044";
             this.btnXoaPB.Location = new System.Drawing.Point(781, 3);
             this.btnXoaPB.Name = "btnXoaPB";
             this.btnXoaPB.Size = new System.Drawing.Size(95, 23);
@@ -294,6 +295,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             // 
             // btnTinhPB
             // 
+            this.btnTinhPB.AccessibleDescription = "ASOCTSOAB00043";
             this.btnTinhPB.Location = new System.Drawing.Point(680, 3);
             this.btnTinhPB.Name = "btnTinhPB";
             this.btnTinhPB.Size = new System.Drawing.Size(95, 23);

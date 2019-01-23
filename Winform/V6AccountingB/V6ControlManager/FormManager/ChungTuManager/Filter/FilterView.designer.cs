@@ -73,6 +73,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // btnESC
             // 
+            this.btnESC.AccessibleDescription = ".";
             this.btnESC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnESC.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnESC.Location = new System.Drawing.Point(3, 0);
@@ -86,6 +87,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             // btnVSearch
             // 
+            this.btnVSearch.AccessibleDescription = "SEARCHB00001";
             this.btnVSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnVSearch.Location = new System.Drawing.Point(364, 0);
             this.btnVSearch.Name = "btnVSearch";
@@ -142,7 +144,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
-            //this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
             // 
             // gridViewSummary1
             // 
@@ -151,6 +152,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.gridViewSummary1.Location = new System.Drawing.Point(0, 482);
             this.gridViewSummary1.Name = "gridViewSummary1";
             this.gridViewSummary1.Size = new System.Drawing.Size(732, 22);
+            this.gridViewSummary1.SumCondition = null;
             this.gridViewSummary1.TabIndex = 3;
             // 
             // FilterView

@@ -265,6 +265,7 @@
             // 
             // btnPrintPicture
             // 
+            this.btnPrintPicture.AccessibleDescription = "XULYB00013";
             this.btnPrintPicture.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrintPicture.Location = new System.Drawing.Point(710, 13);
             this.btnPrintPicture.Name = "btnPrintPicture";

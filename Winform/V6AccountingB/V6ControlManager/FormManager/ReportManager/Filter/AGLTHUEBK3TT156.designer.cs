@@ -93,9 +93,11 @@
             this.txtFileName.ReadOnly = true;
             this.txtFileName.Size = new System.Drawing.Size(246, 20);
             this.txtFileName.TabIndex = 7;
+            this.txtFileName.TabStop = false;
             // 
             // btnChon
             // 
+            this.btnChon.AccessibleDescription = "ADDEDITB00013";
             this.btnChon.Location = new System.Drawing.Point(255, 107);
             this.btnChon.Name = "btnChon";
             this.btnChon.Size = new System.Drawing.Size(36, 23);
