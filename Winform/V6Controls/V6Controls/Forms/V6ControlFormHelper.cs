@@ -760,7 +760,11 @@ namespace V6Controls.Forms
                     #endregion
                 }
 
-                if (read_only) AddTagString(c, "readonly");
+                if (read_only)
+                {
+                    AddTagString(c, "readonly");
+                    c.TabStop = false;
+                }
 
                 if (c != temp_control)
                 {
@@ -910,7 +914,11 @@ namespace V6Controls.Forms
                     #endregion
                 }
 
-                if (read_only) AddTagString(c, "readonly");
+                if (read_only)
+                {
+                    AddTagString(c, "readonly");
+                    c.TabStop = false;
+                }
 
                 if (c != temp_control)
                 {

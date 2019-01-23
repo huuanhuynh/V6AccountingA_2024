@@ -1868,8 +1868,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             GetTon13();
         }
 
-        
-        private void XuLyLayThongTinKhiChonMaVt()
+        public void XuLyLayThongTinKhiChonMaVt()
         {
             try
             {
@@ -1884,6 +1883,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 }
                 else
                 {
+                    SetADSelectMoreControlValue(Invoice, data);
                     _tkVt.Text = (data["tk_vt"] ?? "").ToString().Trim();
                     _hs_qd1.Value = ObjectAndString.ObjectToDecimal(data["HS_QD1"]);
                     _hs_qd2.Value = ObjectAndString.ObjectToDecimal(data["HS_QD2"]);
@@ -6570,7 +6570,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         }
 
         private DataTable _dataLoDate;
-        private void GetTon13()
+        public void GetTon13()
         {
             try
             {

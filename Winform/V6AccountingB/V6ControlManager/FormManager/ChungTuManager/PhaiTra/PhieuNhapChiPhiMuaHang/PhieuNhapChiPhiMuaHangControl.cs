@@ -1051,8 +1051,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             
         }
 
-        
-        private void XuLyLayThongTinKhiChonMaVt()
+        public void XuLyLayThongTinKhiChonMaVt()
         {
             try
             {
@@ -1064,6 +1063,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 }
                 else
                 {
+                    SetADSelectMoreControlValue(Invoice, data);
                     _tkVt.Text = (data["tk_vt"] ?? "").ToString().Trim();    
                 }
                 

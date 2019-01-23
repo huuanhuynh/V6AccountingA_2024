@@ -112,6 +112,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
         #endregion contructor
 
         #region ==== Khởi tạo Detail Form ====
+        private IDictionary<int, AlctControls> DynamicControlList1 = null;
         private V6ColorTextBox _dvt, txtPTEN_KHC, txtPONG_BAC, txtPDIEN_THOAIC;
         private V6VvarTextBox _maVt, _dvt1, _maKho, _maKhoI, _tkVt, _maLo, _ma_thue_i, txtPMA_KHC;
         private V6NumberTextBox _giaNt, _giaNt01, _tien0, _tienNt0, _gia0, _gia01, _gia, _gia_Nt0,
@@ -123,14 +124,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
         private V6VvarTextBox _ma_kh22, _tk_du22, _tk_thue_no22;
         private V6DateTimeColor _ngay_ct022;
         private V6NumberTextBox _t_tien22, _t_tien_nt22, _thue_suat22, _t_thue22, _t_thue_nt22, _gia_Nt022;
-
         
         private void LoadDetailControls()
         {
             //Lấy các control động
-            var dynamicControlList = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
+            DynamicControlList1 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
             //Thêm các control động vào danh sách
-            foreach (KeyValuePair<int, AlctControls> item in dynamicControlList)
+            foreach (KeyValuePair<int, AlctControls> item in DynamicControlList1)
             {
                 var control = item.Value.DetailControl;
                 ApplyControlEnterStatus(control);
@@ -527,7 +527,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
             }
 
-            foreach (AlctControls item in dynamicControlList.Values)
+            foreach (AlctControls item in DynamicControlList1.Values)
             {
                 detail1.AddControl(item);
             }
@@ -1144,14 +1144,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             TinhTienNt0();
             Tinh_thue_ct();
         }
+
         private void XuLyChonMaKhoI()
         {
             XuLyLayThongTinKhiChonMaKhoI();
-          
         }
-
         
-        private void XuLyLayThongTinKhiChonMaVt()
+        public void XuLyLayThongTinKhiChonMaVt()
         {
             try
             {
@@ -1167,10 +1166,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 }
                 else
                 {
+                    SetADSelectMoreControlValue(Invoice, data);
                     _tkVt.Text = (data["tk_vt"] ?? "").ToString().Trim();
                     _hs_qd1.Value = ObjectAndString.ObjectToDecimal(data["HS_QD1"]);
                     _hs_qd2.Value = ObjectAndString.ObjectToDecimal(data["HS_QD2"]);
-                    txtPMA_KHC.ChangeText(data["PMA_KHC"].ToString());
+                    //txtPMA_KHC.ChangeText(data["PMA_KHC"].ToString());
 
                     if (M_POA_MULTI_VAT == "1")
                     {
@@ -5121,16 +5121,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             XoaPhanBoChiPhi();
         }
 
-        private void GetGia()
+        public void GetGia()
         {
             try
             {
+                if (txtMaGia.Text.Trim() == "") return;
+
                 var dataGia = Invoice.GetGiaMua("MA_VT", Invoice.Mact, dateNgayCT.Date,
                         cboMaNt.SelectedValue.ToString().Trim(), _maVt.Text, _dvt1.Text, txtMaKh.Text, txtMaGia.Text);
                 _giaNt01.Value = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT0"]);
 
                 if (_dvt.Text.ToUpper().Trim() == _dvt1.Text.ToUpper().Trim())
+                {
                     _gia_Nt0.Value = _giaNt01.Value;
+                }
                 else
                 {
                     if (_soLuong.Value != 0)
@@ -5146,7 +5150,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
         }
 
         private DataTable _dataLoDate;
-        private void GetTon13()
+        public void GetTon13()
         {
             try
             {

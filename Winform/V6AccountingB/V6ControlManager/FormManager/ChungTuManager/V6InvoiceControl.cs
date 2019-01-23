@@ -2346,12 +2346,32 @@ namespace V6ControlManager.FormManager.ChungTuManager
             try
             {
                 lblKieuPostColor.Text = cboKieuPost.Text;
-                V6VvarTextBox txtMaXuLy = GetControlByAccessibleName("MA_XULY") as V6VvarTextBox;
-                if (txtMaXuLy != null && txtMaXuLy.Data != null)
+                
+                TextBox maXuLy_TextBox = GetControlByAccessibleName("MA_XULY") as TextBox;
+
+                if (maXuLy_TextBox is V6LookupProc)
                 {
-                    var ten_xuly = " (" + (V6Setting.IsVietnamese ? txtMaXuLy.Data["TEN_XULY"] : txtMaXuLy.Data["TEN_XULY2"]) + ")";
-                    lblKieuPostColor.Text += ten_xuly;
+                    var maXuLy_Proc = maXuLy_TextBox as V6LookupProc;
+                    if (maXuLy_Proc.Data != null)
+                    {
+                        var ten_xuly = " (" + (V6Setting.IsVietnamese ? maXuLy_Proc.Data["TEN_XULY"] : maXuLy_Proc.Data["TEN_XULY2"]) + ")";
+                        lblKieuPostColor.Text += ten_xuly;
+                    }
                 }
+                else if (maXuLy_TextBox is V6VvarTextBox)
+                {
+                    var maXuLy_Vvar = maXuLy_TextBox as V6VvarTextBox;
+                    if (maXuLy_Vvar.Data != null)
+                    {
+                        var ten_xuly = " (" + (V6Setting.IsVietnamese ? maXuLy_Vvar.Data["TEN_XULY"] : maXuLy_Vvar.Data["TEN_XULY2"]) + ")";
+                        lblKieuPostColor.Text += ten_xuly;
+                    }
+                }
+                //if (txtMaXuLy_TextBox != null && txtMaXuLy_TextBox.Data != null)
+                //{
+                //    var ten_xuly = " (" + (V6Setting.IsVietnamese ? txtMaXuLy_TextBox.Data["TEN_XULY"] : txtMaXuLy_TextBox.Data["TEN_XULY2"]) + ")";
+                //    lblKieuPostColor.Text += ten_xuly;
+                //}
 
                 if (cboKieuPost.SelectedValue == null) return;
                 var selectedRow = ((DataRowView) cboKieuPost.SelectedItem).Row;
@@ -2369,6 +2389,37 @@ namespace V6ControlManager.FormManager.ChungTuManager
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".ViewLblKieuPost", ex);
+            }
+        }
+
+        /// <summary>
+        /// ADSELECTMORE d.XXXX Gán giá trị liên quan của ma_vt
+        /// </summary>
+        /// <param name="invoice"></param>
+        /// <param name="ma_vt_data"></param>
+        public void SetADSelectMoreControlValue(V6InvoiceBase invoice, DataRow ma_vt_data)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(invoice.ADSELECTMORE)) return;
+
+                var d_list = ObjectAndString.SplitString(invoice.ADSELECTMORE);
+                foreach (string d_ in d_list)
+                {
+                    string D_ = d_.ToUpper().Trim();
+                    if (D_.StartsWith("D."))
+                    {
+                        string FIELD = D_.Substring(2);
+                        if (All_Objects.ContainsKey(FIELD))
+                        {
+                            SetControlValue(All_Objects[FIELD] as Control, ma_vt_data[FIELD]);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".SetADSelectMoreControlValue", ex);
             }
         }
     }

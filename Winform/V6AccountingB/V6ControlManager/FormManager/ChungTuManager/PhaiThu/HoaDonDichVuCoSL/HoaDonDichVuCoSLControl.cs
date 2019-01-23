@@ -1521,7 +1521,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         }
 
         private DataTable _dataViTri;
-        private void GetViTri13()
+        public void GetViTri13()
         {
             try
             {
@@ -1591,7 +1591,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             }
         }
 
-        private void GetViTriLoDate13()
+        public void GetViTriLoDate13()
         {
             try
             {
@@ -1667,7 +1667,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             }
         }
 
-        private void GetViTri()
+        public void GetViTri()
         {
             try
             {
@@ -1737,7 +1737,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             }
         }
 
-        private void GetViTriLoDate()
+        public void GetViTriLoDate()
         {
             try
             {
@@ -2585,7 +2585,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             }
         }
 
-        private void GetTon13()
+        public void GetTon13()
         {
             try
             {
@@ -2657,7 +2657,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        private void XuLyLayThongTinKhiChonMaVt()
+        public void XuLyLayThongTinKhiChonMaVt()
         {
             try
             {
@@ -2679,6 +2679,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 }
                 else
                 {
+                    SetADSelectMoreControlValue(Invoice, data);
                     //_tkDt.Text = (data["tk_dt"] ?? "").ToString().Trim();
                     //_tkGv.Text = (data["tk_gv"] ?? "").ToString().Trim();
                     SetControlValue(_tkDt, data["tk_dt"], Invoice.GetTemplateSettingAD("TK_DT"));
@@ -2793,16 +2794,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         }
 
 
-        private void GetGia()
+        public void GetGia()
         {
             try
             {
+                if (txtMaGia.Text.Trim() == "") return;
+
                 var dataGia = Invoice.GetGiaBan("MA_VT", Invoice.Mact, dateNgayCT.Date,
                         cboMaNt.SelectedValue.ToString().Trim(), _maVt.Text, _dvt1.Text, txtMaKh.Text, txtMaGia.Text);
                 _giaNt21.Value = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT2"]);
-                //ObjectAndString.ObjectToDecimal(dataGia["GIA_NT2"]);
+                
                 if (_dvt.Text.ToUpper().Trim() == _dvt1.Text.ToUpper().Trim())
+                {
                     _giaNt2.Value = _giaNt21.Value;
+                }
                 else
                 {
                     if (_soLuong.Value != 0)

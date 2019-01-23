@@ -1709,7 +1709,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
         }
 
-        private void GetViTri13()
+        public void GetViTri13()
         {
             try
             {
@@ -1779,7 +1779,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
         }
 
-        private void GetViTriLoDate13()
+        public void GetViTriLoDate13()
         {
             try
             {
@@ -1999,7 +1999,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         }
 
 
-        private void GetViTri()
+        public void GetViTri()
         {
             try
             {
@@ -2069,7 +2069,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
         }
 
-        private void GetViTriLoDate()
+        public void GetViTriLoDate()
         {
             try
             {
@@ -2152,7 +2152,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
         }
 
-        private void GetTon13()
+        public void GetTon13()
         {
             try
             {
@@ -2225,7 +2225,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        private void XuLyLayThongTinKhiChonMaVt()
+
+        public void XuLyLayThongTinKhiChonMaVt()
         {
             try
             {
@@ -2239,6 +2240,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 }
                 else
                 {
+                    SetADSelectMoreControlValue(Invoice, data);
                     _tkVt.Text = (data["tk_vt"] ?? "").ToString().Trim();
                     _hs_qd1.Value = ObjectAndString.ObjectToDecimal(data["HS_QD1"]);
                     _hs_qd2.Value = ObjectAndString.ObjectToDecimal(data["HS_QD2"]);

@@ -1861,9 +1861,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             XuLyLayThongTinKhiChonMaKhoI();
           
         }
-
         
-        private void XuLyLayThongTinKhiChonMaVt()
+        public void XuLyLayThongTinKhiChonMaVt()
         {
             try
             {
@@ -1878,6 +1877,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 }
                 else
                 {
+                    SetADSelectMoreControlValue(Invoice, data);
                     _tkVt.Text = (data["tk_vt"] ?? "").ToString().Trim();
                     _hs_qd1.Value = ObjectAndString.ObjectToDecimal(data["HS_QD1"]);
                     _hs_qd2.Value = ObjectAndString.ObjectToDecimal(data["HS_QD2"]);
@@ -6505,7 +6505,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         }
 
         private DataTable _dataLoDate;
-        private void GetTon13()
+        public void GetTon13()
         {
             try
             {
@@ -6577,16 +6577,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
         }
 
-        private void GetGia()
+        public void GetGia()
         {
             try
             {
+                if (txtMaGia.Text.Trim() == "") return;
+
                 var dataGia = Invoice.GetGiaMua("MA_VT", Invoice.Mact, dateNgayCT.Date,
                         cboMaNt.SelectedValue.ToString().Trim(), _maVt.Text, _dvt1.Text, txtMaKh.Text, txtMaGia.Text);
                 _giaNt01.Value = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT0"]);
-                
+
                 if (_dvt.Text.ToUpper().Trim() == _dvt1.Text.ToUpper().Trim())
+                {
                     _gia_Nt0.Value = _giaNt01.Value;
+                }
                 else
                 {
                     if (_soLuong.Value != 0)

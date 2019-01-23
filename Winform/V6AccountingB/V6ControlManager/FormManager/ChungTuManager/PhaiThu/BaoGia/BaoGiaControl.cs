@@ -1386,7 +1386,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        private void GetTon13()
+        public void GetTon13()
         {
             try
             {
@@ -1412,7 +1412,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        private void XuLyLayThongTinKhiChonMaVt()
+        public void XuLyLayThongTinKhiChonMaVt()
         {
             try
             {
@@ -1432,6 +1432,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 }
                 else
                 {
+                    SetADSelectMoreControlValue(Invoice, data);
                     _tkDt.Text = (data["tk_dt"] ?? "").ToString().Trim();
                     _tkGv.Text = (data["tk_gv"] ?? "").ToString().Trim();
                     _tkCkI.Text = (data["tk_ck"] ?? "").ToString().Trim();
@@ -1530,16 +1531,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             }
         }
 
-        private void GetGia()
+        public void GetGia()
         {
             try
             {
+                if (txtMaGia.Text.Trim() == "") return;
+
                 var dataGia = Invoice.GetGiaBan("MA_VT", Invoice.Mact, dateNgayCT.Date,
                         cboMaNt.SelectedValue.ToString().Trim(), _maVt.Text, _dvt1.Text, "", txtMaGia.Text);
                 _giaNt21.Value = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT2"]);
-                //ObjectAndString.ObjectToDecimal(dataGia["GIA_NT2"]);
+                
                 if (_dvt.Text.ToUpper().Trim() == _dvt1.Text.ToUpper().Trim())
+                {
                     _giaNt2.Value = _giaNt21.Value;
+                }
                 else
                 {
                     if (_soLuong.Value != 0)
