@@ -948,7 +948,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
         }
 
-        void TienNt2_V6LostFocus(object sender)
+        public void TienNt2_V6LostFocus(object sender)
         {
             //TinhGiaNt2();
             TinhGiaNt2_TienNt2();
@@ -959,7 +959,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
            TinhTienNt2();
         }
 
-        void GiaNt21_V6LostFocus(object sender)
+        public void GiaNt21_V6LostFocus(object sender)
         {
             TinhTienNt2();
         }
@@ -1392,7 +1392,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
         }
 
-        private void TinhTienNt2()
+        public void TinhTienNt2()
         {
             try
             {
@@ -1419,7 +1419,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
         }
 
-        private void TinhGiamGiaCt()
+        public void TinhGiamGiaCt()
         {
             try
             {
@@ -1441,7 +1441,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
         }
         
-        private void TinhTienVon()
+        public void TinhTienVon()
         {
             _tienNt.Value = V6BusinessHelper.Vround(_soLuong.Value * _gia_nt.Value, M_ROUND_NT);
             _tien.Value = V6BusinessHelper.Vround(_tienNt.Value * txtTyGia.Value, M_ROUND);
@@ -1450,7 +1450,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 _tien.Value = _tienNt.Value;
             }
         }
-        private void TinhTien()
+        public void TinhTien()
         {
             _tien.Value = V6BusinessHelper.Vround(_tienNt.Value * txtTyGia.Value, M_ROUND);
             if (_maNt == _mMaNt0)
@@ -1459,7 +1459,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
             }
         }
-        private void TinhGiaVon()
+        public void TinhGiaVon()
         {
             if (_soLuong.Value != 0)
             {
@@ -1474,7 +1474,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 }
             }
         }
-        private void TinhGiaVon_TienVon()
+        public void TinhGiaVon_TienVon()
         {
             if (_soLuong.Value != 0)
             {
@@ -1489,7 +1489,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 }
             }
         }
-        private void TinhTienVon_GiaVon()
+        public void TinhTienVon_GiaVon()
         {
             _tien.Value = V6BusinessHelper.Vround((_tienNt.Value * txtTyGia.Value), M_ROUND);
             if (_maNt == _mMaNt0)
@@ -1512,7 +1512,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
         }
 
-        private void TinhGiaNt2()
+        public void TinhGiaNt2()
         {
             try
             {
@@ -1543,7 +1543,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
         }
 
-        private void TinhGiaNt2_TienNt2()
+        public void TinhGiaNt2_TienNt2()
         {
             try
             {
@@ -1883,7 +1883,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
         #region ==== Tính toán hóa đơn ====
         
-        private void TinhTongValues()
+        public void TinhTongValues()
         {
             txtTongSoLuong1.Value = TinhTong(AD, "SO_LUONG1");
             txtTongSoLuong.Value = TinhTong(AD, "SO_LUONG");
@@ -1904,7 +1904,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
         }
 
-        private void TinhChietKhau()
+        public void TinhChietKhau()
         {
             try
             {
@@ -1992,7 +1992,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        private void TinhGiamGia()
+        public void TinhGiamGia()
         {
             try
             {
@@ -2083,7 +2083,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
         }
 
-        private void TinhThue()
+        public void TinhThue()
         {
             //Tính tiền thuế theo thuế suất
             decimal thue_suat;
@@ -2162,7 +2162,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
         // copy from soa
         // Tuanmh 08/04/2018 Tinh lai khi thue suat chi tiet tung mat hang
-        private void TinhLaiTienThueCT()
+        public void TinhLaiTienThueCT()
         {
             if (chkSuaTienThue.Checked) return;
 
@@ -2234,7 +2234,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
         }
 
-        private void TinhTongThue_ct()
+        public void TinhTongThue_ct()
         {
             var t_thue_nt = TinhTong(AD, "THUE_NT");
             var t_thue = TinhTong(AD, "THUE");
@@ -2419,7 +2419,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         /// <summary>
         /// Gán dữ liệu mặc định khi bấm mới chi tiết.
         /// </summary>
-        protected override void SetDefaultDetail()
+        public override void SetDefaultDetail()
         {
             try
             {
@@ -2626,7 +2626,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             //TinhTongThanhToan("XuLyThayDoiMaThue_i");
         }
 
-        private void Tinh_thue_ct()
+        public void Tinh_thue_ct()
         {
             V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - M_SOA_MULTI_VAT = " + M_SOA_MULTI_VAT);
             if (M_SOA_MULTI_VAT == "1")
@@ -2723,7 +2723,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
         }
         
-        protected override void ShowParentMessage(string message)
+        public override void ShowParentMessage(string message)
         {
             try
             {

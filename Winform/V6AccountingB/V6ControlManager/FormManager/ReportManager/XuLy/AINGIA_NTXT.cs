@@ -64,7 +64,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// <summary>
         /// Chạy tính giá tách nhiều phần
         /// </summary>
-        private void TinhGia_NTXT()
+        public void TinhGia_NTXT()
         {
             try
             {
@@ -165,7 +165,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// <summary>
         /// Chạy tính giá full in proc. (timeout)
         /// </summary>
-        private void TinhGia_NTXT_All()
+        public void TinhGia_NTXT_All()
         {
             base.ExecuteProcedure();
         }
@@ -210,7 +210,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private void TinhGia_NTXT3(params object[] plist)
+        public void TinhGia_NTXT3(params object[] plist)
         {
             try
             {
@@ -222,7 +222,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private void TinhGia_NTXT_A3(int year, int month, DateTime ngay1, DateTime ngay2)
+        public void TinhGia_NTXT_A3(int year, int month, DateTime ngay1, DateTime ngay2)
         {
             try
             {
@@ -239,7 +239,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private void TinhGia_NTXT3_All(SqlParameter[] plist)
+        public void TinhGia_NTXT3_All(SqlParameter[] plist)
         {
             try
             {
@@ -251,7 +251,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private void TinhGia_NTXT_A4(SqlParameter[] plist)
+        public void TinhGia_NTXT_A4(SqlParameter[] plist)
         {
             try
             {
@@ -263,7 +263,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private void TinhGia_NTXT_5(SqlParameter[] plist)
+        public void TinhGia_NTXT_5(SqlParameter[] plist)
         {
             try
             {
@@ -275,7 +275,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
         
-        private void TinhGia_NTXT_A5(SqlParameter[] plist)
+        public void TinhGia_NTXT_A5(SqlParameter[] plist)
         {
             try
             {
@@ -307,7 +307,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// <summary>
         /// Lặp vật tư, Gom EXEC4 và 5 vào trong 1 th
         /// </summary>
-        private void TinhGia_NTXT_A45(int year, int month, string ma_vt, int warning, int tinh_giatb, string advance)
+        public void TinhGia_NTXT_A45(int year, int month, string ma_vt, int warning, int tinh_giatb, string advance)
         {
             try
             {

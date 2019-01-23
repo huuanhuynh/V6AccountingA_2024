@@ -1417,7 +1417,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         /// <summary>
         /// Check so luong roi tinh tien Nt2
         /// </summary>
-        private void CheckSoLuong1()
+        public void CheckSoLuong1()
         {
             try
             {
@@ -1706,12 +1706,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             }
         }
 
-        void TienNt2_V6LostFocus(object sender)
+        public void TienNt2_V6LostFocus(object sender)
         {
             TinhGiaNt2_TienNt2();
         }
 
-        void GiaNt21_V6LostFocus(object sender)
+        public void GiaNt21_V6LostFocus(object sender)
         {
             TinhTienNt2();
         }
@@ -2437,7 +2437,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             }
         }
 
-        private void TinhTienNt2()
+        public void TinhTienNt2()
         {
             try
             {
@@ -2464,7 +2464,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 this.ShowErrorException(GetType() + ".TinhTienNt2 " + _sttRec, ex);
             }
         }
-        private void TinhGiamGiaCt()
+        public void TinhGiamGiaCt()
         {
             try
             {
@@ -2485,7 +2485,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        private void TinhVanChuyen()
+        public void TinhVanChuyen()
         {
             try
             {
@@ -2508,7 +2508,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             }
         }
 
-        private void TinhTienVon()
+        public void TinhTienVon()
         {
             TinhGiaNt();
             
@@ -2521,7 +2521,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             }
         }
 
-        private void TinhGiaNt()
+        public void TinhGiaNt()
         {
             try
             {
@@ -2539,7 +2539,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             }
         }
         
-        private void TinhTienVon_GiaVon()
+        public void TinhTienVon_GiaVon()
         {
             _tien.Value = V6BusinessHelper.Vround((_tienNt.Value * txtTyGia.Value), M_ROUND);
             if (_maNt == _mMaNt0)
@@ -2562,7 +2562,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             }
         }
 
-        private void TinhGiaNt2()
+        public void TinhGiaNt2()
         {
             try
             {
@@ -2596,7 +2596,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         /// <summary>
         /// chay khi nhap tien
         /// </summary>
-        private void TinhGiaNt2_TienNt2()
+        public void TinhGiaNt2_TienNt2()
         {
             try
             {
@@ -3059,7 +3059,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
         #region ==== Tính toán hóa đơn ====
         
-        private void TinhTongValues()
+        public void TinhTongValues()
         {
             txtTongSoLuong1.Value = TinhTong(AD, "SO_LUONG1");
             txtTongSoLuong.Value = TinhTong(AD, "SO_LUONG");
@@ -3104,7 +3104,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         }
 
 
-        private void TinhChietKhau()
+        public void TinhChietKhau()
         {
             try
             {
@@ -3218,7 +3218,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         }
         
 
-        private void TinhThue()
+        public void TinhThue()
         {
             //Tính tiền thuế theo thuế suất
             decimal thue_suat;
@@ -3859,7 +3859,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         }
 
         
-        protected override void ShowParentMessage(string message)
+        public override void ShowParentMessage(string message)
         {
             try
             {
@@ -5192,7 +5192,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             }
         }
 
-        protected override void SetDefaultDetail()
+        public override void SetDefaultDetail()
         {
             //Tuanmh 14/05/2017
             //MA_KHO_I

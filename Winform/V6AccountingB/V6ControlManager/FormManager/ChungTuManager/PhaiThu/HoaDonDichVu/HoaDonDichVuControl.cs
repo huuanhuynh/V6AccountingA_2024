@@ -1037,7 +1037,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
         }
 
         
-        private void TinhTienNt2()
+        public void TinhTienNt2()
         {
             try
             {
@@ -1351,7 +1351,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
 
         #region ==== Tính toán hóa đơn ====
         
-        private void TinhTongValues()
+        public void TinhTongValues()
         {
             txtTongSoLuong1.Value = TinhTong(AD, "SO_LUONG1");
             txtTongSoLuong.Value = TinhTong(AD, "SO_LUONG");
@@ -1731,7 +1731,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             }
         }
 
-        private void TinhThueChiTiet()
+        public void TinhThueChiTiet()
         {
             try
             {
@@ -1748,7 +1748,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        private void TinhThueChiTietKhiSuaTienThue()
+        public void TinhThueChiTietKhiSuaTienThue()
         {
             try
             {
@@ -1788,7 +1788,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
         }
 
         
-        protected override void ShowParentMessage(string message)
+        public override void ShowParentMessage(string message)
         {
             try
             {
@@ -3120,7 +3120,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             txtTyGia_V6LostFocus(sender);
         }
 
-        private void TinhTongThanhToan_V6LostFocus(object sender)
+        public void TinhTongThanhToan_V6LostFocus(object sender)
         {
             TinhTongThanhToan("V6LostFocus " + ((Control)sender).AccessibleName);
         }

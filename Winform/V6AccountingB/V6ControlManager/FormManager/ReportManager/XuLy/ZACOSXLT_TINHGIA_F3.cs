@@ -221,7 +221,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private void TinhToan()
+        public void TinhToan()
         {
             txtTien.Value = txtSL.Value*txtGia.Value;
         }

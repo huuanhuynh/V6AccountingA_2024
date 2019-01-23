@@ -536,7 +536,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             }
         }
 
-        private void TinhTienThue()
+        public void TinhTienThue()
         {
             try
             {
@@ -565,7 +565,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
         ///// <summary>
         ///// Tính toán tiền thuế chi tiết bảng AD2
         ///// </summary>
-        //private void TinhTienThue22()
+        //public void TinhTienThue22()
         //{
         //    try
         //    {
@@ -590,7 +590,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
         /// <summary>
         /// Tính toán tiền và tiền thuế chi tiết bảng AD2
         /// </summary>
-        private void TinhTien22TienThue22()
+        public void TinhTien22TienThue22()
         {
             try
             {
@@ -1160,7 +1160,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
 
         #region ==== Tính toán hóa đơn ====
         
-        private void TinhTongValues()
+        public void TinhTongValues()
         {
 
             var t_tien_nt = TinhTong(AD, "TIEN_NT");
@@ -1519,7 +1519,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
         }
 
         
-        protected override void ShowParentMessage(string message)
+        public override void ShowParentMessage(string message)
         {
             try
             {
@@ -3107,7 +3107,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             txtTyGia_V6LostFocus(sender);
         }
         
-        private void TinhTongThanhToan_V6LostFocus(object sender)
+        public void TinhTongThanhToan_V6LostFocus(object sender)
         {
             TinhTongThanhToan("V6LostFocus " + ((Control)sender).AccessibleName);
         }

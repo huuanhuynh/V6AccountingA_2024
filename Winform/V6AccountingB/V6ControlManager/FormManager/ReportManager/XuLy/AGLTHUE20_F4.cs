@@ -163,7 +163,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             if (txtma_kh.Text.Trim() == "") errors += "Chưa nhập mã khách hàng!\r\n";
             if (errors.Length > 0) throw new Exception(errors);
         }
-        private void TinhTongTien2()
+        public void TinhTongTien2()
         {
             txtt_tien2.Value = txtty_gia.Value * Txtt_tien_nt2.Value;
             if (txtty_gia.Value != 0)

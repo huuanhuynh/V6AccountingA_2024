@@ -146,7 +146,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             var handler = UpdateSuccessEvent;
             if (handler != null) handler(datadic);
         }
-        private void TinhGiaTriKhauHao()
+        public void TinhGiaTriKhauHao()
         {
             try
             {

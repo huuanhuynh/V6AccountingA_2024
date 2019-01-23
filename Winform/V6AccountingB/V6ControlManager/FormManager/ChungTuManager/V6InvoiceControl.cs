@@ -526,7 +526,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             return result;
         }
 
-        protected string GetAlLoTonInitFilter()
+        public string GetAlLoTonInitFilter()
         {
             var result = "";
             try
@@ -558,7 +558,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <param name="dataGridView3ChiPhi"></param>
         /// <param name="columnsNgoaiTe">Các cột được edit trường hợp dùng Ngoại tệ.</param>
         /// <param name="columnsNguyenTe">Các cột được edit trường hợp không dùng Ngoại tệ.</param>
-        protected void SetGridViewChiPhiEditAble(string loai_pb, bool sua_tien, V6ColorDataGridView dataGridView3ChiPhi,
+        public void SetGridViewChiPhiEditAble(string loai_pb, bool sua_tien, V6ColorDataGridView dataGridView3ChiPhi,
             string columnsNgoaiTe = "CP,CP_NT", string columnsNguyenTe = "CP_NT")
         {
             if (loai_pb == "0" && (Mode == V6Mode.Add || Mode == V6Mode.Edit))
@@ -578,7 +578,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// Gán dữ liệu mặc định theo chứng từ. (VPA_GetDefaultvalue)
         /// </summary>
         /// <param name="invoice"></param>
-        protected void SetDefaultData(V6InvoiceBase invoice)
+        public void SetDefaultData(V6InvoiceBase invoice)
         {
             try
             {
@@ -617,7 +617,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
-        protected void SetDefaultDataDetail(V6InvoiceBase invoice, Control detailControl)
+        public void SetDefaultDataDetail(V6InvoiceBase invoice, Control detailControl)
         {
             try
             {
@@ -635,7 +635,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <summary>
         /// Gán dữ liệu mặc định khi bấm mới chi tiết. Cần override
         /// </summary>
-        protected virtual void SetDefaultDetail()
+        public virtual void SetDefaultDetail()
         {
             
         }
@@ -645,7 +645,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <para>Field:TableName:1 => lấy initfilter từ V6Login theo TableName.</para>
         /// <para>Field:TableName:1 => nếu là 1 sẽ gắn thêm [Status] &lt;&gt; '0'</para>
         /// </summary>
-        protected void SetInitFilterAll()
+        public void SetInitFilterAll()
         {
             if (V6Setting.IsDesignTime) return;
             try
@@ -779,7 +779,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
-        protected void ShowViewInfoData(V6InvoiceBase invoice)
+        public void ShowViewInfoData(V6InvoiceBase invoice)
         {
             try
             {
@@ -796,7 +796,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// Hàm cần override để thay đổi container, Hiển thị thông báo phía trên của form chứng từ.
         /// </summary>
         /// <param name="message"></param>
-        protected virtual void ShowParentMessage(string message)
+        public virtual void ShowParentMessage(string message)
         {
             try
             {
@@ -858,7 +858,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         //    }
         //}
 
-        protected void TinhSoluongQuyDoi_0(V6NumberTextBox _soLuong1
+        public void TinhSoluongQuyDoi_0(V6NumberTextBox _soLuong1
             , V6NumberTextBox _sl_qd, V6NumberTextBox _sl_qd2
             , V6NumberTextBox _hs_qd1, V6NumberTextBox _hs_qd2)
         {
@@ -880,7 +880,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.ShowErrorException(GetType() + ".TinhSoluongQuyDoi_0 " + _sttRec, ex);
             }
         }
-        protected void TinhSoluongQuyDoi_2(V6NumberTextBox _soLuong1
+
+        public void TinhSoluongQuyDoi_2(V6NumberTextBox _soLuong1
             , V6NumberTextBox _sl_qd, V6NumberTextBox _sl_qd2
             , V6NumberTextBox _hs_qd1, V6NumberTextBox _hs_qd2)
         {
@@ -905,7 +906,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.ShowErrorException(GetType() + ".TinhSoluongQuyDoi_0 " + _sttRec, ex);
             }
         }
-        protected void TinhSoluongQuyDoi_1(V6NumberTextBox _soLuong1
+
+        public void TinhSoluongQuyDoi_1(V6NumberTextBox _soLuong1
             , V6NumberTextBox _sl_qd, V6NumberTextBox _sl_qd2
             , V6NumberTextBox _hs_qd1, V6NumberTextBox _hs_qd2)
         {

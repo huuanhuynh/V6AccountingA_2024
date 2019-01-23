@@ -638,7 +638,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         /// <summary>
         ///  Hàm giả cho giống tên bên HoaDon
         /// </summary>
-        private void CheckSoLuong1()
+        public void CheckSoLuong1()
         {
             TinhTienNt0();
             Tinh_thue_ct();
@@ -886,7 +886,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
 
         // Tuanmh 07/10/2016
-        //private void TinhTien22()
+        //public void TinhTien22()
         //{
         //    try
         //    {
@@ -907,7 +907,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         //    }
         //}
 
-        //private void TinhTienThue22()
+        //public void TinhTienThue22()
         //{
         //    try
         //    {
@@ -1711,7 +1711,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
         }
 
-        void TienNt0_V6LostFocus(object sender)
+        public void TienNt0_V6LostFocus(object sender)
         {
             _tien0.Value = V6BusinessHelper.Vround((_tienNt0.Value * txtTyGia.Value), M_ROUND);
             if (_maNt == _mMaNt0)
@@ -1722,7 +1722,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             //TinhGiaNt();
         }
         
-        void GiaNt01_V6LostFocus(object sender)
+        public void GiaNt01_V6LostFocus(object sender)
         {
             chkT_THUE_NT.Checked = false;
             TinhTienNt0();
@@ -1982,7 +1982,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         /// <summary>
         /// Tính tiền nt, tính giá nt
         /// </summary>
-        private void TinhTienNt()
+        public void TinhTienNt()
         {
             try
             {
@@ -2004,7 +2004,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             TinhGiaNt();
         }
 
-        private void TinhTienNt0()
+        public void TinhTienNt0()
         {
             try
             {
@@ -2035,7 +2035,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
         }
 
-        private void TinhGiaNt()
+        public void TinhGiaNt()
         {
             try
             {
@@ -2647,7 +2647,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             return false;
         }
 
-        private void TinhTongValues()
+        public void TinhTongValues()
         {
             txtTongSoLuong1.Value = TinhTong(AD, "SO_LUONG1");
             txtTongSoLuong.Value = TinhTong(AD, "SO_LUONG");
@@ -2685,7 +2685,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             //}
         }
         //Tuanmh 14/10/2016
-        private void TinhTongCong()
+        public void TinhTongCong()
         {
             var t_tien_nt2 = txtTongTienNt0.Value;
             var t_gg_nt = txtTongGiamNt.Value;
@@ -2712,7 +2712,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             txtTongThanhToan.Value = V6BusinessHelper.Vround(t_tt, M_ROUND);
         }
 
-        private void TinhChietKhau()
+        public void TinhChietKhau()
         {
             try
             {
@@ -2850,7 +2850,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
         }
 
-        private void TinhGiamGia()
+        public void TinhGiamGia()
         {
             try
             {
@@ -2952,7 +2952,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
         }
 
-        private void TinhGiamGiaCt()
+        public void TinhGiamGiaCt()
         {
             try
             {
@@ -2977,7 +2977,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
         }
 
-        private void TinhVanChuyen()
+        public void TinhVanChuyen()
         {
             try
             {
@@ -3001,7 +3001,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         }
 
         
-        private void TinhThue()
+        public void TinhThue()
         {
             //Tính tiền thuế theo thuế suất
             var thue_suat = txtThueSuat.Value;
@@ -3081,7 +3081,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         }
 
         // Tuanmh 08/04/2018 Tinh lai khi thue suat chi tiet tung mat hang
-        private void TinhLaiTienThueCT()
+        public void TinhLaiTienThueCT()
         {
             if (chkT_THUE_NT.Checked) return;
 
@@ -3144,7 +3144,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
         }
 
-        private void TinhTongThue_ct()
+        public void TinhTongThue_ct()
         {
             var t_thue_nt = TinhTong(AD, "THUE_NT");
             var t_thue = TinhTong(AD, "THUE");
@@ -3179,7 +3179,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             //TinhTongThanhToan("XuLyThayDoiMaThue_i");
         }
 
-        private void Tinh_thue_ct()
+        public void Tinh_thue_ct()
         {
             V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - M_POA_MULTI_VAT = " + M_POA_MULTI_VAT);
             if (M_POA_MULTI_VAT == "1")
@@ -3703,7 +3703,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         }
 
         
-        protected override void ShowParentMessage(string message)
+        public override void ShowParentMessage(string message)
         {
             try
             {
@@ -5777,7 +5777,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
         }
         
-        private void TinhPhanBoChiPhi(string loai_pb)
+        public void TinhPhanBoChiPhi(string loai_pb)
         {
             try
             {
@@ -5940,7 +5940,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             XoaPhanBoChiPhi();
         }
 
-        private void TinhT_CpNt()
+        public void TinhT_CpNt()
         {
             try
             {

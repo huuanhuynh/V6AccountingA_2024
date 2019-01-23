@@ -703,7 +703,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
         /// <summary>
         /// Check soluong roi tinh tien von
         /// </summary>
-        private void CheckSoLuong1()
+        public void CheckSoLuong1()
         {
             try
             {
@@ -1493,7 +1493,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             //TinhTienVon();
         }
 
-        private void TinhTienVon1()
+        public void TinhTienVon1()
         {
             if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
             if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
@@ -1509,7 +1509,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
         }
         
-        private void TinhTienVon()
+        public void TinhTienVon()
         {
             
             _tien.Value = V6BusinessHelper.Vround((_tienNt.Value * txtTyGia.Value), M_ROUND);
@@ -1520,7 +1520,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             }
             
         }
-        private void TinhGiaVon()
+        public void TinhGiaVon()
         {
             _gia1.Value = V6BusinessHelper.Vround((_gia_nt1.Value * txtTyGia.Value), M_ROUND_GIA_NT);
             if (_maNt == _mMaNt0)
@@ -1794,7 +1794,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
 
         #region ==== Tính toán hóa đơn ====
         
-        private void TinhTongValues()
+        public void TinhTongValues()
         {
             txtTongSoLuong1.Value = TinhTong(AD, "SO_LUONG1");
             txtTongSoLuong.Value = TinhTong(AD, "SO_LUONG");
@@ -1805,7 +1805,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             var t_tien = TinhTong(AD, "TIEN");
             txtTongTien.Value = V6BusinessHelper.Vround(t_tien, M_ROUND);
         }
-        private void TinhChietKhau()
+        public void TinhChietKhau()
         {
             try
             {
@@ -1893,7 +1893,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
         }
 
 
-        private void TinhThue()
+        public void TinhThue()
         {
             //Tính tiền thuế theo thuế suất
             decimal thue_suat;
@@ -2382,7 +2382,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
         }
         
         
-        protected override void ShowParentMessage(string message)
+        public override void ShowParentMessage(string message)
         {
             try
             {

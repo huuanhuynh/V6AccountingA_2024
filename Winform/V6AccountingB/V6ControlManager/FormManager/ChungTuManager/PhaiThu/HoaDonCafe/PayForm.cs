@@ -69,7 +69,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             }
         }
 
-        private void TinhTienTraLai()
+        public void TinhTienTraLai()
         {
             try
             {

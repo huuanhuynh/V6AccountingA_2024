@@ -230,7 +230,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
         }
 
-        private void TinhGiaTriPhanBo()
+        public void TinhGiaTriPhanBo()
         {
             try
             {
@@ -253,7 +253,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
         }
 
-        private void TinhTongCong()
+        public void TinhTongCong()
         {
             txttong_ng.Value = TinhTong("Nguyen_gia");
             txttong_da_pb.Value = TinhTong("Gt_da_pb");

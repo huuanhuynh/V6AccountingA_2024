@@ -72,7 +72,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private void TinhGia_TB()
+        public void TinhGia_TB()
         {
             try
             {
@@ -144,7 +144,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 SetStatusText("Tính lỗi: " + ex.Message);
             }
         }
-        private void TinhGia_TB_All()
+        public void TinhGia_TB_All()
         {
             try
             {
@@ -220,7 +220,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             base.SetStatusText(text);
         }
 
-        private void TinhGia_TB6()
+        public void TinhGia_TB6()
         {
             try
             {
@@ -232,7 +232,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private void TinhGia_TB5(SqlParameter[] plist)
+        public void TinhGia_TB5(SqlParameter[] plist)
         {
             try
             {
@@ -244,7 +244,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private void TinhGia_TB4()
+        public void TinhGia_TB4()
         {
             try
             {
@@ -256,7 +256,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private void TinhGia_TB3(SqlParameter[] plist)
+        public void TinhGia_TB3(SqlParameter[] plist)
         {
             try
             {
@@ -267,7 +267,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 throw new Exception("TinhGia_TB3 " + ex.Message);
             }
         }
-        private void TinhGia_TB3_All(SqlParameter[] plist)
+        public void TinhGia_TB3_All(SqlParameter[] plist)
         {
             try
             {

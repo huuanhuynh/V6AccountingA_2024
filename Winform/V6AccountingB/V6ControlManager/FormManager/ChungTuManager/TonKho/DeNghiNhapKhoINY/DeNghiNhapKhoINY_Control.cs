@@ -541,7 +541,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
         /// <summary>
         ///  Hàm giả cho giống tên bên HoaDon
         /// </summary>
-        private void CheckSoLuong1()
+        public void CheckSoLuong1()
         {
             TinhTienNt0();
             Tinh_thue_ct();
@@ -722,7 +722,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             V6ControlFormHelper.RecaptionDataGridViewColumns(dataGridView2, _alct2Dic, _maNt, _mMaNt0);
         }
 
-        private void TinhTienThue22()
+        public void TinhTienThue22()
         {
             try
             {
@@ -1007,12 +1007,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             }
         }
 
-        void TienNt0_V6LostFocus(object sender)
+        public void TienNt0_V6LostFocus(object sender)
         {
             TinhGiaNt();
         }
         
-        void GiaNt01_V6LostFocus(object sender)
+        public void GiaNt01_V6LostFocus(object sender)
         {
             chkT_THUE_NT.Checked = false;
             TinhTienNt0();
@@ -1268,7 +1268,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
         /// <summary>
         /// Tính tiền nt, tính giá nt
         /// </summary>
-        private void TinhTienNt()
+        public void TinhTienNt()
         {
             try
             {
@@ -1290,7 +1290,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             TinhGiaNt();
         }
 
-        private void TinhTienNt0()
+        public void TinhTienNt0()
         {
             try
             {
@@ -1321,7 +1321,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             }
         }
 
-        private void TinhGiamGiaCt()
+        public void TinhGiamGiaCt()
         {
             try
             {
@@ -1343,7 +1343,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             }
         }
 
-        private void TinhVanChuyen()
+        public void TinhVanChuyen()
         {
             try
             {
@@ -1366,7 +1366,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             }
         }
 
-        private void TinhGiaNt()
+        public void TinhGiaNt()
         {
             try
             {
@@ -1744,7 +1744,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
 
         #region ==== Tính toán hóa đơn ====
         
-        private void TinhTongValues()
+        public void TinhTongValues()
         {
             txtTongSoLuong1.Value = TinhTong(AD, "SO_LUONG1");
             txtTongSoLuong.Value = TinhTong(AD, "SO_LUONG");
@@ -1774,7 +1774,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                 txtT_TIENVC.Value = V6BusinessHelper.Vround(t_vc, M_ROUND);
             }
         }
-        private void TinhChietKhau()
+        public void TinhChietKhau()
         {
             try
             {
@@ -1863,7 +1863,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             }
         }
 
-        private void TinhPhanBoGiamGia()
+        public void TinhPhanBoGiamGia()
         {
             try
             {
@@ -1933,7 +1933,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             }
         }
 
-        private void TinhThue()
+        public void TinhThue()
         {
             //Tính tiền thuế theo thuế suất
             var thue_suat = 0m;
@@ -1992,7 +1992,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
 
 
         // Tuanmh 08/04/2018 Tinh lai khi thue suat chi tiet tung mat hang
-        private void TinhLaiTienThueCT()
+        public void TinhLaiTienThueCT()
         {
             if (chkT_THUE_NT.Checked) return;
 
@@ -2115,7 +2115,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             }
         }
 
-        private void TinhTongThue_ct()
+        public void TinhTongThue_ct()
         {
             var t_thue_nt = TinhTong(AD, "THUE_NT");
             var t_thue = TinhTong(AD, "THUE");
@@ -2436,7 +2436,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             //TinhTongThanhToan("XuLyThayDoiMaThue_i");
         }
 
-        private void Tinh_thue_ct()
+        public void Tinh_thue_ct()
         {
             V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - M_POA_MULTI_VAT = " + M_POA_MULTI_VAT);
             if (M_POA_MULTI_VAT == "1")
@@ -2471,7 +2471,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
         }
 
         
-        protected override void ShowParentMessage(string message)
+        public override void ShowParentMessage(string message)
         {
             try
             {
@@ -4333,7 +4333,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             TxtLoai_pb.Text = loai_pb;
         }
 
-        private void TinhPhanBoChiPhi0(string loai_pb)
+        public void TinhPhanBoChiPhi0(string loai_pb)
         {
             try
             {
@@ -4389,7 +4389,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             }
         }
 
-        private void TinhPhanBoChiPhi(string loai_pb)
+        public void TinhPhanBoChiPhi(string loai_pb)
         {
             try
             {
@@ -4524,7 +4524,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             TinhPhanBoChiPhi(loai_pb);
         }
 
-        private void TinhT_CpNt()
+        public void TinhT_CpNt()
         {
             try
             {

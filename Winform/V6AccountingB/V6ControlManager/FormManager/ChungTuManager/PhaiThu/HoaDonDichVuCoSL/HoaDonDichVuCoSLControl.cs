@@ -1821,7 +1821,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         /// <summary>
         /// Check so luong roi tinh tien Nt2
         /// </summary>
-        private void CheckSoLuong1()
+        public void CheckSoLuong1()
         {
             try
             {
@@ -2088,12 +2088,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             }
         }
 
-        void TienNt2_V6LostFocus(object sender)
+        public void TienNt2_V6LostFocus(object sender)
         {
             TinhGiaNt2_TienNt2();
         }
 
-        void GiaNt21_V6LostFocus(object sender)
+        public void GiaNt21_V6LostFocus(object sender)
         {
             chkSuaTienThue.Checked = false;
             TinhTienNt2();
@@ -2841,7 +2841,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             }
         }
 
-        private void TinhTienNt2()
+        public void TinhTienNt2()
         {
             try
             {
@@ -2871,7 +2871,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             }
         }
 
-        private void TinhGiamGiaCt()
+        public void TinhGiamGiaCt()
         {
             try
             {
@@ -2892,7 +2892,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        private void TinhVanChuyen()
+        public void TinhVanChuyen()
         {
             try
             {
@@ -2915,7 +2915,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             }
         }
 
-        private void TinhTienVon()
+        public void TinhTienVon()
         {
             TinhGiaNt();
 
@@ -2928,7 +2928,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             }
         }
        
-        private void TinhTienVon_GiaVon()
+        public void TinhTienVon_GiaVon()
         {
             _tien.Value = V6BusinessHelper.Vround((_tienNt.Value * txtTyGia.Value), M_ROUND);
             if (_maNt == _mMaNt0)
@@ -2951,7 +2951,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             }
         }
 
-        private void TinhGiaNt2()
+        public void TinhGiaNt2()
         {
             try
             {
@@ -2982,7 +2982,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             }
         }
 
-        private void TinhGiaNt()
+        public void TinhGiaNt()
         {
             try
             {
@@ -3001,7 +3001,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         /// <summary>
         /// chay khi nhap tien
         /// </summary>
-        private void TinhGiaNt2_TienNt2()
+        public void TinhGiaNt2_TienNt2()
         {
             try
             {
@@ -3473,7 +3473,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
 
         #region ==== Tính toán hóa đơn ====
         
-        private void TinhTongValues()
+        public void TinhTongValues()
         {
             txtTongSoLuong1.Value = TinhTong(AD, "SO_LUONG1");
             txtTongSoLuong.Value = TinhTong(AD, "SO_LUONG");
@@ -3518,7 +3518,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         }
 
 
-        private void TinhChietKhau()
+        public void TinhChietKhau()
         {
             try
             {
@@ -3630,7 +3630,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        private void TinhPhanBoGiamGia()
+        public void TinhPhanBoGiamGia()
         {
             try
             {
@@ -3702,7 +3702,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         }
         
 
-        private void TinhThue()
+        public void TinhThue()
         {
             //Tính tiền thuế theo thuế suất
             decimal thue_suat;
@@ -3794,7 +3794,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
 
         }
 
-        private void TinhTongThue_ct()
+        public void TinhTongThue_ct()
         {
             var t_thue_nt = TinhTong(AD, "THUE_NT");
             var t_thue = TinhTong(AD, "THUE");
@@ -4238,7 +4238,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             //TinhTongThanhToan("XuLyThayDoiMaThue_i");
         }
 
-        private void Tinh_thue_ct()
+        public void Tinh_thue_ct()
         {
             if (M_SOA_MULTI_VAT == "1")
                 Tinh_TienThueNtVaTienThue_TheoThueSuat(_thue_suat_i.Value, _tienNt2.Value - _ckNt.Value - _ggNt.Value, _tien2.Value - _ck.Value - _gg.Value, _thue_nt, _thue);
@@ -4377,7 +4377,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             }
         }
 
-        protected override void ShowParentMessage(string message)
+        public override void ShowParentMessage(string message)
         {
             try
             {
@@ -7156,7 +7156,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
 
         #region ==== TINH KHUYEN MAI ====
         private string MA_KM_Field = "MA_KMB";
-        private void TinhChietKhauKhuyenMai()
+        public void TinhChietKhauKhuyenMai()
         {
             try
             {

@@ -643,7 +643,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             V6ControlFormHelper.RecaptionDataGridViewColumns(dataGridView2, _alct2Dic, _maNt, _mMaNt0);
         }
 
-        private void TinhTienThue22()
+        public void TinhTienThue22()
         {
             try
             {
@@ -912,7 +912,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             }
         }
 
-        void TienNt0_V6LostFocus(object sender)
+        public void TienNt0_V6LostFocus(object sender)
         {
             TinhGiaNt();
         }
@@ -922,7 +922,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
            TinhTienNt0();
         }
 
-        void GiaNt01_V6LostFocus(object sender)
+        public void GiaNt01_V6LostFocus(object sender)
         {
             TinhTienNt0();
         }
@@ -1154,7 +1154,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             TinhTienNt0();
         }
 
-        private void TinhTienNt0()
+        public void TinhTienNt0()
         {
 
 
@@ -1176,7 +1176,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             }
         }
 
-        private void TinhGiaNt()
+        public void TinhGiaNt()
         {
             try
             {
@@ -1497,14 +1497,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
         #region ==== Tính toán hóa đơn ====
         
-        private void TinhTongValues()
+        public void TinhTongValues()
         {
             txtTongSoLuong1.Value = TinhTong(AD, "SO_LUONG1");
             txtTongSoLuong.Value = TinhTong(AD, "SO_LUONG");
         }
       
 
-        private void TinhThue()
+        public void TinhThue()
         {
             //Tính tiền thuế theo thuế suất
             var thue_suat = txtThueSuat.Value;
@@ -1979,7 +1979,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         }
 
         
-        protected override void ShowParentMessage(string message)
+        public override void ShowParentMessage(string message)
         {
             try
             {
@@ -3846,7 +3846,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             
         }
 
-        private void TinhPhanBoChiPhi(string loai_pb)
+        public void TinhPhanBoChiPhi(string loai_pb)
         {
             try
             {
@@ -3953,7 +3953,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             TinhTongThanhToan("TxtT_cp_nt_ao_V6LostFocus");
         }
 
-        private void TinhT_CpNt()
+        public void TinhT_CpNt()
         {
             try
             {

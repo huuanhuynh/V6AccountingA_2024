@@ -900,11 +900,10 @@
             this.ChkVisible.Location = new System.Drawing.Point(111, 183);
             this.ChkVisible.Margin = new System.Windows.Forms.Padding(4);
             this.ChkVisible.Name = "ChkVisible";
-            this.ChkVisible.Size = new System.Drawing.Size(107, 21);
+            this.ChkVisible.Size = new System.Drawing.Size(56, 21);
             this.ChkVisible.TabIndex = 15;
-            this.ChkVisible.Text = "Có sử dụng?";
+            this.ChkVisible.Text = "Có ?";
             this.ChkVisible.UseVisualStyleBackColor = true;
-            this.ChkVisible.Visible = false;
             // 
             // label12
             // 
@@ -914,10 +913,9 @@
             this.label12.Location = new System.Drawing.Point(3, 183);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(61, 17);
+            this.label12.Size = new System.Drawing.Size(68, 17);
             this.label12.TabIndex = 14;
-            this.label12.Text = "Sử dụng";
-            this.label12.Visible = false;
+            this.label12.Text = "Readonly";
             // 
             // label6
             // 

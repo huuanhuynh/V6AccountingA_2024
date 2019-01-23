@@ -1565,7 +1565,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
         #region ==== Tính toán hóa đơn ====
         
-        private void TinhTongValues()
+        public void TinhTongValues()
         {
             var tTienNt = V6BusinessHelper.TinhTong(AD, "TIEN_NT");
             var tPsNoNt = V6BusinessHelper.TinhTongOper(AD3, "PS_NO_NT", "OPER_TT");
@@ -2265,7 +2265,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         }
 
         
-        protected override void ShowParentMessage(string message)
+        public override void ShowParentMessage(string message)
         {
             try
             {

@@ -1085,7 +1085,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         /// <summary>
         /// Đã tính luôn tiền vốn 1
         /// </summary>
-        private void CheckSoLuong1()
+        public void CheckSoLuong1()
         {
             try
             {
@@ -2366,7 +2366,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         }
 
     
-        private void TinhTienVon1()
+        public void TinhTienVon1()
         {
             if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
             if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
@@ -2380,7 +2380,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
             if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
         }
-        private void TinhTienVon()
+        public void TinhTienVon()
         {
 
             try
@@ -2403,7 +2403,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
         }
 
-        private void TinhGiaVon()
+        public void TinhGiaVon()
         {
             try
             {
@@ -2706,7 +2706,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
         }
 
-        private void TinhTongValues()
+        public void TinhTongValues()
         {
             txtTongSoLuong1.Value = TinhTong(AD, "SO_LUONG1");
             txtTongSoLuong.Value = TinhTong(AD, "SO_LUONG");
@@ -3034,7 +3034,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         }
 
         
-        //protected override void ShowParentMessage(string message)
+        //public override void ShowParentMessage(string message)
         //{
         //    try
         //    {

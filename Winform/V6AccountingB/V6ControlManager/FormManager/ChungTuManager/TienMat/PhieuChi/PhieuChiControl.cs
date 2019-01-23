@@ -1829,7 +1829,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             return true;
         }
 
-        private void TinhTongValues()
+        public void TinhTongValues()
         {
             //TongTien
             var tTienNt = V6BusinessHelper.TinhTong(AD, "PS_NO_NT");
@@ -2534,7 +2534,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         }
 
         
-        protected override void ShowParentMessage(string message)
+        public override void ShowParentMessage(string message)
         {
             try
             {
@@ -4085,7 +4085,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             return true;
         }
 
-        private void TinhToanTruocKhiLuu()
+        public void TinhToanTruocKhiLuu()
         {
             try
             {
@@ -4723,7 +4723,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
         }
 
-        private void TinhTienThue()
+        public void TinhTienThue()
         {
             try
             {
@@ -4749,7 +4749,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
         }
 
-        private void TinhTienThue22()
+        public void TinhTienThue22()
         {
             try
             {

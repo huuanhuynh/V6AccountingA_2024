@@ -112,7 +112,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private string[] proc_list;
         private int c_index;
-        private void TinhGiaAll()
+        public void TinhGiaAll()
         {
             try
             {
