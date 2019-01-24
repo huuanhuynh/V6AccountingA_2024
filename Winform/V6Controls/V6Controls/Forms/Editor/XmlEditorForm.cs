@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using V6Tools;
 using V6Tools.V6Convert;
 
-namespace V6Controls.Forms
+namespace V6Controls.Forms.Editor
 {
     public partial class XmlEditorForm : V6Form
     {

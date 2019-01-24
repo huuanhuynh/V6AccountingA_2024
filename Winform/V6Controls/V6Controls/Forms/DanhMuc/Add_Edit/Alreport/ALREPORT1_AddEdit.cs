@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using V6Controls.Forms.Editor;
 using V6Structs;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport

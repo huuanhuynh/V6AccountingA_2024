@@ -1,4 +1,4 @@
-﻿namespace V6Controls.Forms
+﻿namespace V6Controls.Forms.Editor
 {
     partial class XmlEditorForm
     {

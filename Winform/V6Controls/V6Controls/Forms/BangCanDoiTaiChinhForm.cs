@@ -31,7 +31,7 @@ namespace V6Controls.Forms
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".MyInit: " + ex.Message);
+                this.ShowErrorException(GetType() + ".MyInit", ex);
             }
         }
     }

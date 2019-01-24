@@ -165,12 +165,42 @@ namespace V6Controls.Forms
         }
 
         /// <summary>
+        /// Đếm Ctrol + Alt + I
+        /// </summary>
+        private int _ctrl_alt_i;
+        /// <summary>
         /// Sẽ click lên button hoặc V6label có Tag = keyData.ToString()
         /// </summary>
         /// <param name="keyData"></param>
         /// <returns>true nếu có lick/ false nếu không</returns>
         public virtual bool DoHotKey0(Keys keyData)
         {
+            if (keyData == (Keys.Control | Keys.Alt | Keys.I))
+            {
+                _ctrl_alt_i++;
+                if (_ctrl_alt_i == 2)
+                {
+                    Control c = V6ControlFormHelper.GetControlUnderMouse(this);
+                    if (c != null)
+                    {
+                        string s = string.Format("{0}({1}), Text({2}), Aname({3}), Adescription({4}).",
+                            c.GetType(), c.Name, c.Text, c.AccessibleName, c.AccessibleDescription);
+                        Clipboard.SetText(s);
+                        V6ControlFormHelper.SetStatusText(s);
+                    }
+                }
+                if (_ctrl_alt_i >= 3)
+                {
+                    if (new ConfirmPasswordV6().ShowDialog(this) != DialogResult.OK) return false;
+                    V6ControlFormHelper.ShowControlsProperties(this);
+                    _ctrl_alt_i = 0;
+                    return true;
+                }
+            }
+            else
+            {
+                _ctrl_alt_i = 0;
+            }
             return V6ControlFormHelper.DoKeyCommand(this, keyData);
         }
 

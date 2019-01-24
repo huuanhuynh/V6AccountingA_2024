@@ -587,6 +587,32 @@ namespace V6AccountingBusiness
         }
 
         /// <summary>
+        /// Kiểm tra MST đúng định dạng.
+        /// </summary>
+        /// <param name="strTaxCode"></param>
+        /// <returns></returns>
+        public static bool CheckMST(string strTaxCode)
+        {
+            if (strTaxCode.Trim().Length < 10) return false;
+
+            strTaxCode = strTaxCode.Substring(0, 10);
+            
+            int[] iCheck = {31, 29, 23, 19, 17, 13, 7, 5, 3};
+            int ChkNumber = 0;
+            for (int i = 0; i < 9; i++)
+            {
+                if(!char.IsNumber(strTaxCode[i]))
+                {
+                    return false;
+                }
+                ChkNumber += ObjectAndString.ObjectToInt(strTaxCode.Substring(i, 1))*iCheck[i];
+            }
+
+            return
+                ObjectAndString.ObjectToInt(strTaxCode.Substring(9, 1)) == 10 - ChkNumber%11;
+        }
+
+        /// <summary>
         /// Kiểm tra ngày nhập hợp lệ với ngày khóa sổ, ngày đầu kỳ, ngày cuối kỳ.
         /// </summary>
         /// <param name="maCt">Mã chứng từ để lấy ngay_ks_ky</param>

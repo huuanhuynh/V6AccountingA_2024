@@ -19,6 +19,7 @@ using V6AccountingBusiness;
 using V6Controls.Controls;
 using V6Controls.Controls.Label;
 using V6Controls.Forms.DanhMuc.Add_Edit.ThongTinDinhNghia;
+using V6Controls.Forms.Editor;
 using V6Controls.Forms.Viewer;
 using V6Controls.Structs;
 using V6Init;
@@ -1088,6 +1089,29 @@ namespace V6Controls.Forms
             {
                 throw new Exception("GetFormControl error!\n" + ex.Message);
             }
+        }
+
+        public static Control GetControlAtPoint(Control container, Point pos)
+        {
+            Control child;
+            foreach (Control c in container.Controls)
+            {
+                if (c.Visible && c.Bounds.Contains(pos))
+                {
+                    child = GetControlAtPoint(c, new Point(pos.X - c.Left, pos.Y - c.Top));
+                    if (child == null) return c;
+                    else return child;
+                }
+            }
+            return null;
+        }
+
+        public static Control GetControlUnderMouse(Form form)
+        {
+            Point pos = Cursor.Position;
+            if (form.Bounds.Contains(pos))
+                return GetControlAtPoint(form, form.PointToClient(pos));
+            return null;
         }
 
         public static List<Control> GetListControlByAccessibleNames(Control container, IList<string> accessibleName)
@@ -5545,7 +5569,7 @@ namespace V6Controls.Forms
             if (control == null) return;
             if (e.Button == MouseButtons.Middle)
             {
-                var message = string.Format("{0}({1}), Aname({2}), Adescription({3}),",
+                var message = string.Format("{0}({1}), Aname({2}), Adescription({3}).",
                     control.GetType(), control.Name, control.AccessibleName, control.AccessibleDescription);
                 
                 SetStatusText(message);
@@ -7274,6 +7298,23 @@ namespace V6Controls.Forms
             var tempFile = Path.Combine(V6ControlsHelper.V6SoftLocalAppData_Directory, "temp." + ext);
             File.WriteAllBytes(tempFile, bytes);
             Process.Start(tempFile);
+        }
+
+        /// <summary>
+        /// Hiện lên cây thuộc tính của tất cả các Controls [để chỉnh sửa].
+        /// </summary>
+        /// <param name="control"></param>
+        public static void ShowControlsProperties(Control control)
+        {
+            try
+            {
+                ControlsPropertiesEditorForm f = new ControlsPropertiesEditorForm(control);
+                f.Show(control);
+            }
+            catch (Exception ex)
+            {
+                control.WriteExLog(control.GetType() + ".ShowControlsProperties", ex);
+            }
         }
     }
 }

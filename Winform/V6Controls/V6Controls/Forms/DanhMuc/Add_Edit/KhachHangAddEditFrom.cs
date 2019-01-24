@@ -115,6 +115,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                                     + "MA_KH = " + txtMaKH.Text.Trim());
             }
 
+            if (txtMaSoThueVAT.Text.Trim().Length >= 10)
+            {
+                if (!V6BusinessHelper.CheckMST(txtMaSoThueVAT.Text.Trim()))
+                {
+                    errors += V6Text.CheckData + " " + txtMaSoThueVAT.AccessibleName;
+                }
+            }
+
             if(errors.Length>0) throw new Exception(errors);
         }
 

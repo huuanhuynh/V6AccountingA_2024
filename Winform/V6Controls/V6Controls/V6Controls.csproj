@@ -120,6 +120,12 @@
     <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\V6MenuHideYN.Designer.cs">
       <DependentUpon>V6MenuHideYN.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Editor\ControlsPropertiesEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Editor\ControlsPropertiesEditorForm.Designer.cs">
+      <DependentUpon>ControlsPropertiesEditorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Viewer\TextEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1231,10 +1237,10 @@
       <DependentUpon>ConfirmPassword.cs</DependentUpon>
     </Compile>
     <Compile Include="V6ControlExtensionMethods.cs" />
-    <Compile Include="Forms\XmlEditorForm.cs">
+    <Compile Include="Forms\Editor\XmlEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\XmlEditorForm.Designer.cs">
+    <Compile Include="Forms\Editor\XmlEditorForm.Designer.cs">
       <DependentUpon>XmlEditorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\DropDownButton.cs">
@@ -1977,6 +1983,9 @@
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\YeuToChiPhiSXLTAddEditForm.resx">
       <DependentUpon>YeuToChiPhiSXLTAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Editor\ControlsPropertiesEditorForm.resx">
+      <DependentUpon>ControlsPropertiesEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\EmailSettingForm.resx">
       <DependentUpon>EmailSettingForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1998,7 +2007,7 @@
     <EmbeddedResource Include="Forms\Viewer\TextEditorForm.resx">
       <DependentUpon>TextEditorForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\XmlEditorForm.resx">
+    <EmbeddedResource Include="Forms\Editor\XmlEditorForm.resx">
       <DependentUpon>XmlEditorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ToChucTreeSelectForm.resx">

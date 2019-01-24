@@ -193,10 +193,30 @@ namespace V6Controls.Forms
             }
         }
 
+        /// <summary>
+        /// Đếm Ctrol + Alt + I
+        /// </summary>
+        private int _ctrl_alt_i;
+
         public virtual bool DoHotKey0(Keys keyData)
         {
             try
             {
+                if (keyData == (Keys.Control | Keys.Alt | Keys.I))
+                {
+                    _ctrl_alt_i++;
+                    if (_ctrl_alt_i >= 3)
+                    {
+                        if (new ConfirmPasswordV6().ShowDialog(this) != DialogResult.OK) return false;
+                        V6ControlFormHelper.ShowControlsProperties(this);
+                        _ctrl_alt_i = 0;
+                        return true;
+                    }
+                }
+                else
+                {
+                    _ctrl_alt_i = 0;
+                }
                 return V6ControlFormHelper.DoKeyCommand(this, keyData);
             }
             catch (Exception ex)

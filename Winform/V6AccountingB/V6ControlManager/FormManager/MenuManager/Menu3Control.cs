@@ -370,6 +370,10 @@ namespace V6ControlManager.FormManager.MenuManager
         /// </summary>
         private bool _alt_m, _ctrl_alt_m, _have_alt_change_menu;
         /// <summary>
+        /// Đếm Ctrol + Alt + I
+        /// </summary>
+        private int _ctrl_alt_i;
+        /// <summary>
         /// Điểu khiển phím tắt
         /// </summary>
         /// <param name="keyData"></param>
@@ -430,6 +434,43 @@ namespace V6ControlManager.FormManager.MenuManager
                     }
                 }
 
+                if (keyData == (Keys.Control | Keys.Alt | Keys.I))
+                {
+                    ResetAltUpDownMenu();
+                    _ctrl_alt_i++;
+                    if (_ctrl_alt_i == 1)
+                    {
+                        Clipboard.SetText(menuControl1.SelectedButton.ItemID + "," + menuControl1.SelectedButton.CodeForm);
+                        V6ControlFormHelper.SetStatusText(menuControl1.SelectedButton.ItemID + "," + menuControl1.SelectedButton.CodeForm);
+                    }
+                    if (_ctrl_alt_i == 2)
+                    {
+                        Control c = V6ControlFormHelper.GetControlUnderMouse(FindForm());
+                        if (c != null)
+                        {
+                            string s = string.Format("{0}({1}), Text({2}), Aname({3}), Adescription({4}).",
+                                c.GetType(), c.Name, c.Text, c.AccessibleName, c.AccessibleDescription);
+                            Clipboard.SetText(s);
+                            V6ControlFormHelper.SetStatusText(s);
+                        }
+                    }
+                    if (_ctrl_alt_i >= 3)
+                    {
+                        if (new ConfirmPasswordV6().ShowDialog(this) != DialogResult.OK) return;
+
+                        if (menuControl1.SelectedButton != null &&
+                        ControlsDictionary.ContainsKey(menuControl1.SelectedButton.ItemID))
+                        {
+                            V6ControlFormHelper.ShowControlsProperties(ControlsDictionary[menuControl1.SelectedButton.ItemID]);
+                        }
+                        _ctrl_alt_i = 0;
+                        return;
+                    }
+                }
+                else
+                {
+                    _ctrl_alt_i = 0;
+                }
 
                 if (keyData == (Keys.Alt | Keys.Up))
                 {
@@ -457,9 +498,7 @@ namespace V6ControlManager.FormManager.MenuManager
                 }
                 else if (keyData == (Keys.Control | Keys.Alt | Keys.I))
                 {
-                    ResetAltUpDownMenu();
-                    Clipboard.SetText(menuControl1.SelectedButton.ItemID + "," + menuControl1.SelectedButton.CodeForm);
-                    V6ControlFormHelper.SetStatusText(menuControl1.SelectedButton.ItemID + "," + menuControl1.SelectedButton.CodeForm);
+                    
                 }
                 else if (keyData == (Keys.Control | Keys.Alt | Keys.C))
                 {

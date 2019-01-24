@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6Controls.Forms.Editor;
 using V6Controls.Forms.Viewer;
 using V6Init;
 using V6SqlConnect;
