@@ -50,6 +50,10 @@ namespace V6Controls.Forms.Editor
             {
                 newNode.ImageIndex = 9;
             }
+            else if (control is ComboBox)
+            {
+                newNode.ImageIndex = 12;
+            }
             else if (control is TextBox || control is TextBoxBase)
             {
                 newNode.ImageIndex = 11;
@@ -89,6 +93,10 @@ namespace V6Controls.Forms.Editor
             else if (control is Button)
             {
                 newNode.ImageIndex = 1;
+            }
+            else if (control is DataGridView)
+            {
+                newNode.ImageIndex = 13;
             }
             else
             {

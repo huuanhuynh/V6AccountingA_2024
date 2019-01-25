@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlsPropertiesEditorForm));
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.panel1 = new System.Windows.Forms.Panel();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -40,7 +41,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,6 +57,25 @@
             this.treeView1.Size = new System.Drawing.Size(285, 534);
             this.treeView1.TabIndex = 5;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Control_433.png");
+            this.imageList1.Images.SetKeyName(1, "Button_668.png");
+            this.imageList1.Images.SetKeyName(2, "CheckBox_669.png");
+            this.imageList1.Images.SetKeyName(3, "DateOrTimePicker_675.png");
+            this.imageList1.Images.SetKeyName(4, "GroupBox_680.png");
+            this.imageList1.Images.SetKeyName(5, "NumericUpOrDown_691.png");
+            this.imageList1.Images.SetKeyName(6, "Label_684.png");
+            this.imageList1.Images.SetKeyName(7, "ListBox_686.png");
+            this.imageList1.Images.SetKeyName(8, "RadioButton_701.png");
+            this.imageList1.Images.SetKeyName(9, "RichTextBox_702.png");
+            this.imageList1.Images.SetKeyName(10, "TabControl_707.png");
+            this.imageList1.Images.SetKeyName(11, "TextBox_708.png");
+            this.imageList1.Images.SetKeyName(12, "ComboBox_672.png");
+            this.imageList1.Images.SetKeyName(13, "DataGrid_674.png");
             // 
             // propertyGrid1
             // 
@@ -150,23 +169,6 @@
             this.label1.Size = new System.Drawing.Size(42, 13);
             this.label1.TabIndex = 5;
             this.label1.Text = "N.dung";
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "Control_433.png");
-            this.imageList1.Images.SetKeyName(1, "Button_668.png");
-            this.imageList1.Images.SetKeyName(2, "CheckBox_669.png");
-            this.imageList1.Images.SetKeyName(3, "DateOrTimePicker_675.png");
-            this.imageList1.Images.SetKeyName(4, "GroupBox_680.png");
-            this.imageList1.Images.SetKeyName(5, "NumericUpOrDown_691.png");
-            this.imageList1.Images.SetKeyName(6, "Label_684.png");
-            this.imageList1.Images.SetKeyName(7, "ListBox_686.png");
-            this.imageList1.Images.SetKeyName(8, "RadioButton_701.png");
-            this.imageList1.Images.SetKeyName(9, "RichTextBox_702.png");
-            this.imageList1.Images.SetKeyName(10, "TabControl_707.png");
-            this.imageList1.Images.SetKeyName(11, "TextBox_708.png");
             // 
             // ControlsPropertiesEditorForm
             // 
