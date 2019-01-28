@@ -183,8 +183,14 @@ namespace V6Controls.Forms
                     Control c = V6ControlFormHelper.GetControlUnderMouse(this);
                     if (c != null)
                     {
+                        string c_Text = c.Text;
+                        var box = c as TextBox;
+                        if (box != null && box.PasswordChar != '\0')
+                        {
+                            c_Text = "***";
+                        }
                         string s = string.Format("{0}({1}), Text({2}), Aname({3}), Adescription({4}).",
-                            c.GetType(), c.Name, c.Text, c.AccessibleName, c.AccessibleDescription);
+                            c.GetType(), c.Name, c_Text, c.AccessibleName, c.AccessibleDescription);
                         Clipboard.SetText(s);
                         V6ControlFormHelper.SetStatusText(s);
                     }

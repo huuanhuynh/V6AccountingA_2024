@@ -170,7 +170,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     {
                         if(_multiSelect)
                         this.ShowWarningMessage(V6Setting.IsVietnamese
-                            ? "Chưa chọn dòng nào!\nDùng phím cách(space) hoặc Ctrl+A, Ctrl+U để bỏ chọn hết!"
+                            ? "Chưa chọn dòng nào!\nDùng phím cách(space) hoặc Ctrl+A để chọn, Ctrl+U để bỏ chọn hết!"
                             : "No row selected!\nPlease use SpaceBar or Ctrl+A, Ctrl+U for unselect all!");
                         else this.ShowWarningMessage(V6Setting.IsVietnamese
                             ? V6Text.NoData

@@ -152,7 +152,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.Chon
                     }
                     else
                     {
-                        this.ShowWarningMessage(V6Setting.IsVietnamese? "Chưa chọn dòng nào!\nDùng phím cách(space) hoặc Ctrl+A, Ctrl+U để bỏ chọn hết!"
+                        this.ShowWarningMessage(V6Setting.IsVietnamese? "Chưa chọn dòng nào!\nDùng phím cách(space) hoặc Ctrl+A để chọn, Ctrl+U để bỏ chọn hết!"
                             : "No row selected!\nPlease use SpaceBar or Ctrl+A, Ctrl+U for unselect all!");
                     }
                 }

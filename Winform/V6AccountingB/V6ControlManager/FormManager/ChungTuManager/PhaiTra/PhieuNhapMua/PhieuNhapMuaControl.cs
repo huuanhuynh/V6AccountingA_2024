@@ -138,7 +138,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             _dia_chi22,_ma_so_thue22;
         private V6VvarTextBox _ma_kh22, _tk_du22, _tk_thue_no22, _ma_thue22;
         private V6DateTimeColor _ngay_ct022;
-        private V6NumberTextBox _t_tien22, _t_tien_nt22, _thue_suat22, _t_thue22, _t_thue_nt22, _gia_Nt022;
+        private V6NumberTextBox _t_tien22, _t_tien_nt22, _thue_suat22, _t_thue22, _t_thue_nt22, _gia_Nt022, _han_tt22;
         
         private void LoadDetailControls()
         {
@@ -763,6 +763,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                                 _gia_Nt022.ReadOnlyTag();
                             }
                         }
+                        break;
+                    case "HAN_TT":
+                        _han_tt22 = control as V6NumberTextBox;
                         break;
                     case "T_TIEN":
                         _t_tien22 = control as V6NumberTextBox;
@@ -1572,6 +1575,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 else
                 {
                     detail1._mode = V6Mode.Add;
+                    detail1.AutoFocus();
                     detail1.SetFormControlsReadOnly(false);
                     detail1.btnMoi.Image = Properties.Resources.Cancel16;
                     detail1.toolTip1.SetToolTip(btnMoi, V6Text.Cancel);
@@ -4740,6 +4744,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     _thue_suat22.Value = txtThueSuat.Value;
                     _tk_thue_no22.Text = txtTkThueNo.Text.Trim();
                     _tk_du22.Text = txtManx.Text.Trim();
+                    _han_tt22.Value = txtHanTT.Value;
                     _mau_bc.Value = 1;
                     if (_ma_kh22.Text.Trim() == "")
                     {

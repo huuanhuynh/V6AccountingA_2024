@@ -132,7 +132,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             _dia_chi22, _ma_so_thue22, _ten_vt22, _dien_giaii;
         private V6VvarTextBox _ma_kh22, _tk_du22, _tk_thue_no22, _ma_thue22;
         private V6DateTimeColor _ngay_ct022;
-        private V6NumberTextBox _t_tien22, _t_tien_nt22, _thue_suat22, _t_thue22, _t_thue_nt22, _gia_Nt022;
+        private V6NumberTextBox _t_tien22, _t_tien_nt22, _thue_suat22, _t_thue22, _t_thue_nt22, _gia_Nt022, _han_tt22;
         
         private void LoadDetailControls()
         {
@@ -251,213 +251,197 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                 ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
-                if (NAME == "SO_CT0")
+                switch (NAME)
                 {
-                    _so_ct022 = control as V6ColorTextBox;
-                    if (_so_ct022 != null)
-                    {
-                        
-                    }
-                }
-                else if (NAME == "SO_SERI0")
-                {
-                    _so_seri022 = control as V6ColorTextBox;
-                    if (_so_seri022 != null)
-                    {
-                        _so_seri022.Upper();
-
-                    }
-                }
-                else if (NAME == "MAU_BC")
-                {
-
-                    _mau_bc = control as V6NumberTextBox;
-                    if (_mau_bc != null)
-                    {
-                        _mau_bc.LimitCharacters = "123458";
-                        _mau_bc.MaxNumLength = 1;
-                        _mau_bc.MaxLength = 1;
-                        _mau_bc.GotFocus += _mau_bc_GotFocus;
-                    }
-					
-                }
-                else if (NAME == "TEN_KH")
-                {
-                    _ten_kh22 = control as V6ColorTextBox;
-                    if (_ten_kh22 != null)
-                    {
-
-                    }
-                }
-                else if (NAME == "TEN_VT")
-                {
-                    _ten_vt22 = control as V6ColorTextBox;
-                    if (_ten_vt22 != null)
-                    {
-
-                    }
-                }
-                else if (NAME == "DIA_CHI")
-                {
-                    _dia_chi22 = control as V6ColorTextBox;
-                    if (_dia_chi22 != null)
-                    {
-
-                    }
-                }
-                else if (NAME == "MA_SO_THUE")
-                {
-                    _ma_so_thue22 = control as V6ColorTextBox;
-                    if (_ma_so_thue22 != null)
-                    {
-
-                    }
-                }
-                else if (NAME == "MA_KH")
-                {
-                    _ma_kh22 = control as V6VvarTextBox;
-                    if (_ma_kh22 != null)
-                    {
-                        _ma_kh22.CheckOnLeave = true;
-                        _ma_kh22.V6LostFocus += delegate
+                    case "SO_CT0":
+                        _so_ct022 = control as V6ColorTextBox;
+                        if (_so_ct022 != null)
                         {
-                            XuLyChonMaKhach22();
-                        };
-                    }
-                }
-                else if (NAME == "TK_THUE_NO")
-                {
-                 
-                    _tk_thue_no22 = (V6VvarTextBox)control;
-                    _tk_thue_no22.Upper();
-                    _tk_thue_no22.SetInitFilter("Loai_tk=1");
-                    _tk_thue_no22.FilterStart = true;
-                }
-                else if (NAME == "TK_DU")
-                {
-
-                    _tk_du22 = (V6VvarTextBox)control;
-                    _tk_du22.Upper();
-                    _tk_du22.SetInitFilter("Loai_tk=1");
-                    _tk_du22.FilterStart = true;
-
-                }
-                //private V6ColorDateTime ;
-                //private V6NumberTextBox _t_tien22, ;
-                else if (NAME == "NGAY_CT0")
-                {
-                    _ngay_ct022 = control as V6DateTimeColor;
-                    if (_ngay_ct022 != null)
-                    {
                         
-                    }
-                }
-                else if (NAME == "GIA_NT0")
-                {
-                    _gia_Nt022 = control as V6NumberTextBox;
-                    if (_gia_Nt022 != null)
-                    {
-
-                    }
-                }
-                else if (NAME == "T_TIEN")
-                {
-                    _t_tien22 = control as V6NumberTextBox;
-                    if (_ngay_ct022 != null)
-                    {
-
-                    }
-                }
-                else if (NAME == "T_TIEN_NT")
-                {
-                    _t_tien_nt22 = control as V6NumberTextBox;
-                    if (_t_tien_nt22 != null)
-                    {
-                        _t_tien_nt22.V6LostFocus += delegate
+                        }
+                        break;
+                    case "SO_SERI0":
+                        _so_seri022 = control as V6ColorTextBox;
+                        if (_so_seri022 != null)
                         {
-                            //TinhTien22TienThue22();
-                            TienNtChanged(_t_tien_nt22.Value, txtTyGia.Value, _thue_suat22.Value,
+                            _so_seri022.Upper();
+
+                        }
+                        break;
+                    case "MAU_BC":
+
+                        _mau_bc = control as V6NumberTextBox;
+                        if (_mau_bc != null)
+                        {
+                            _mau_bc.LimitCharacters = "123458";
+                            _mau_bc.MaxNumLength = 1;
+                            _mau_bc.MaxLength = 1;
+                            _mau_bc.GotFocus += _mau_bc_GotFocus;
+                        }
+                        break;
+                    case "TEN_KH":
+                        _ten_kh22 = control as V6ColorTextBox;
+                        if (_ten_kh22 != null)
+                        {
+
+                        }
+                        break;
+                    case "TEN_VT":
+                        _ten_vt22 = control as V6ColorTextBox;
+                        if (_ten_vt22 != null)
+                        {
+
+                        }
+                        break;
+                    case "DIA_CHI":
+                        _dia_chi22 = control as V6ColorTextBox;
+                        if (_dia_chi22 != null)
+                        {
+
+                        }
+                        break;
+                    case "MA_SO_THUE":
+                        _ma_so_thue22 = control as V6ColorTextBox;
+                        if (_ma_so_thue22 != null)
+                        {
+
+                        }
+                        break;
+                    case "MA_KH":
+                        _ma_kh22 = control as V6VvarTextBox;
+                        if (_ma_kh22 != null)
+                        {
+                            _ma_kh22.CheckOnLeave = true;
+                            _ma_kh22.V6LostFocus += delegate
+                            {
+                                XuLyChonMaKhach22();
+                            };
+                        }
+                        break;
+                    case "TK_THUE_NO":
+
+                        _tk_thue_no22 = (V6VvarTextBox)control;
+                        _tk_thue_no22.Upper();
+                        _tk_thue_no22.SetInitFilter("Loai_tk=1");
+                        _tk_thue_no22.FilterStart = true;
+                        break;
+                    case "TK_DU":
+
+                        _tk_du22 = (V6VvarTextBox)control;
+                        _tk_du22.Upper();
+                        _tk_du22.SetInitFilter("Loai_tk=1");
+                        _tk_du22.FilterStart = true;
+                        break;
+                    case "NGAY_CT0":
+                        _ngay_ct022 = control as V6DateTimeColor;
+                        if (_ngay_ct022 != null)
+                        {
+                        
+                        }
+                        break;
+                    case "GIA_NT0":
+                        _gia_Nt022 = control as V6NumberTextBox;
+                        if (_gia_Nt022 != null)
+                        {
+
+                        }
+                        break;
+                    case "HAN_TT":
+                        _han_tt22 = control as V6NumberTextBox;
+                        break;
+                    case "T_TIEN":
+                        _t_tien22 = control as V6NumberTextBox;
+                        if (_ngay_ct022 != null)
+                        {
+
+                        }
+                        break;
+                    case "T_TIEN_NT":
+                        _t_tien_nt22 = control as V6NumberTextBox;
+                        if (_t_tien_nt22 != null)
+                        {
+                            _t_tien_nt22.V6LostFocus += delegate
+                            {
+                                //TinhTien22TienThue22();
+                                TienNtChanged(_t_tien_nt22.Value, txtTyGia.Value, _thue_suat22.Value,
                                     _t_tien22, _t_thue_nt22, _t_thue22);
-                        };
+                            };
 
-                        if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
-                        {
-                            _t_tien_nt22.InvisibleTag();
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
+                            {
+                                _t_tien_nt22.InvisibleTag();
+                            }
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                            {
+                                _t_tien_nt22.ReadOnlyTag();
+                            }
                         }
-                        if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                        break;
+                    case "MA_THUE":
+                        _ma_thue22 = control as V6VvarTextBox;
+                        _ma_thue22.CheckNotEmpty = true;
+                        _ma_thue22.CheckOnLeave = true;
+                        if (_ma_thue22 != null)
                         {
-                            _t_tien_nt22.ReadOnlyTag();
+                            _ma_thue22.V6LostFocus += delegate
+                            {
+                                _thue_suat22.Enabled = false;
+                                _thue_suat22.Tag = "disable";
+                                _thue_suat22.Value = ObjectAndString.ObjectToDecimal(_ma_thue22.Data["THUE_SUAT"]);
+                                _tk_thue_no22.Text = _ma_thue22.Data["TK_THUE_NO"].ToString().Trim();
+                                _tk_du22.Text = txtManx.Text;
+                                //TinhTien22TienThue22();
+                                Tinh_TienThueNtVaTienThue_TheoThueSuat(_thue_suat22.Value, _t_tien_nt22.Value, _t_tien22.Value, _t_thue_nt22, _t_thue22);
+                            };
                         }
-                    }
-                }
-                else if (NAME == "MA_THUE")
-                {
-                    _ma_thue22 = control as V6VvarTextBox;
-                    _ma_thue22.CheckNotEmpty = true;
-                    _ma_thue22.CheckOnLeave = true;
-                    if (_ma_thue22 != null)
-                    {
-                        _ma_thue22.V6LostFocus += delegate
+                        break;
+                    case "THUE_SUAT":
+                        _thue_suat22 = control as V6NumberTextBox;
+                        if (_thue_suat22 != null)
                         {
                             _thue_suat22.Enabled = false;
                             _thue_suat22.Tag = "disable";
-                            _thue_suat22.Value = ObjectAndString.ObjectToDecimal(_ma_thue22.Data["THUE_SUAT"]);
-                            _tk_thue_no22.Text = _ma_thue22.Data["TK_THUE_NO"].ToString().Trim();
-                            _tk_du22.Text = txtManx.Text;
-                            //TinhTien22TienThue22();
-                            Tinh_TienThueNtVaTienThue_TheoThueSuat(_thue_suat22.Value, _t_tien_nt22.Value, _t_tien22.Value, _t_thue_nt22, _t_thue22);
-                        };
-                    }
-                }
-                else if (NAME == "THUE_SUAT")
-                {
-                    _thue_suat22 = control as V6NumberTextBox;
-                    if (_thue_suat22 != null)
-                    {
-                        _thue_suat22.Enabled = false;
-                        _thue_suat22.Tag = "disable";
 
-                        _thue_suat22.V6LostFocus += delegate
-                        {
-                            //TinhTien22TienThue22();
-                            Tinh_TienThueNtVaTienThue_TheoThueSuat(_thue_suat22.Value, _t_tien_nt22.Value, _t_tien22.Value, _t_thue_nt22, _t_thue22);
-                        };
-                    }
-                }
-                else if (NAME == "T_THUE")
-                {
-                    _t_thue22 = control as V6NumberTextBox;
-                    if (_t_thue22 != null)
-                    {
-                        if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
-                        {
-                            _t_thue22.InvisibleTag();
+                            _thue_suat22.V6LostFocus += delegate
+                            {
+                                //TinhTien22TienThue22();
+                                Tinh_TienThueNtVaTienThue_TheoThueSuat(_thue_suat22.Value, _t_tien_nt22.Value, _t_tien22.Value, _t_thue_nt22, _t_thue22);
+                            };
                         }
-                        if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                        break;
+                    case "T_THUE":
+                        _t_thue22 = control as V6NumberTextBox;
+                        if (_t_thue22 != null)
                         {
-                            _t_thue22.ReadOnlyTag();
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
+                            {
+                                _t_thue22.InvisibleTag();
+                            }
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                            {
+                                _t_thue22.ReadOnlyTag();
+                            }
                         }
-                    }
-                }
-                else if (NAME == "T_THUE_NT")
-                {
-                    _t_thue_nt22 = control as V6NumberTextBox;
-                    if (_t_thue_nt22 != null)
-                    {
-                        if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
+                        break;
+                    case "T_THUE_NT":
+                        _t_thue_nt22 = control as V6NumberTextBox;
+                        if (_t_thue_nt22 != null)
                         {
-                            _t_thue_nt22.InvisibleTag();
-                        }
-                        if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
-                        {
-                            _t_thue_nt22.ReadOnlyTag();
-                        }
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
+                            {
+                                _t_thue_nt22.InvisibleTag();
+                            }
+                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                            {
+                                _t_thue_nt22.ReadOnlyTag();
+                            }
 
-                        _t_thue_nt22.V6LostFocus += delegate
-                        {
-                            Tinh_TienThue_TheoTienThueNt(_t_thue_nt22.Value, txtTyGia.Value, _t_thue22, M_ROUND);
-                        };                        
-                    }
+                            _t_thue_nt22.V6LostFocus += delegate
+                            {
+                                Tinh_TienThue_TheoTienThueNt(_t_thue_nt22.Value, txtTyGia.Value, _t_thue22, M_ROUND);
+                            };                        
+                        }
+                        break;
                 }
 
             }
@@ -1041,6 +1025,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                 else
                 {
                     detail1._mode = V6Mode.Add;
+                    detail1.AutoFocus();
                     detail1.SetFormControlsReadOnly(false);
                     detail1.btnMoi.Image = Properties.Resources.Cancel16;
                     detail1.toolTip1.SetToolTip(btnMoi, V6Text.Cancel);
@@ -3021,6 +3006,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                     //_thue_suat22.Value = txtThueSuat.Value;
                     //_tk_thue_no22.Text = txtTkThueNo.Text.Trim();
                     _tk_du22.Text = txtManx.Text.Trim();
+                    _han_tt22.Value = txtHanTT.Value;
                     _mau_bc.Value = 1;
 
                     _thue_suat22.Enabled = false;

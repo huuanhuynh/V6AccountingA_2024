@@ -860,6 +860,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 else
                 {
                     detail1._mode = V6Mode.Add;
+                    detail1.AutoFocus();
                     detail1.SetFormControlsReadOnly(false);
                     detail1.btnMoi.Image = Properties.Resources.Cancel16;
                     detail1.toolTip1.SetToolTip(btnMoi, V6Text.Cancel);

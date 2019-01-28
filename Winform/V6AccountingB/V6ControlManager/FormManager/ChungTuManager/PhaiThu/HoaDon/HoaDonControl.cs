@@ -1978,6 +1978,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 else
                 {
                     detail1._mode = V6Mode.Add;
+                    detail1.AutoFocus();
                     detail1.SetFormControlsReadOnly(false);
                     detail1.btnMoi.Image = Properties.Resources.Cancel16;
                     detail1.toolTip1.SetToolTip(btnMoi, V6Text.Cancel);
@@ -6525,6 +6526,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 detail1.MODE = V6Mode.View;
                 AD.Rows.Clear();
                 int addCount = 0, failCount = 0;
+                
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {
                     var newData = new SortedDictionary<string, object>(data);
@@ -6532,9 +6534,63 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     {
                         newData["MA_TD_I"] = Txtma_td_ph.Text;
                     }
-
-                    if (XuLyThemDetail(newData)) addCount++;
-                    else failCount++;
+                    string ma_vt = newData["MA_VT"].ToString().Trim();
+                    V6VvarTextBox temp_vt = new V6VvarTextBox()
+                    {
+                        VVar = "MA_VT",
+                    };
+                    temp_vt.Text = ma_vt;
+                    temp_vt.RefreshLoDateYnValue();
+                    if (temp_vt.LO_YN && temp_vt.DATE_YN)
+                    {
+                        // Tách dòng nhiều lô cộng dồn cho đủ số lượng.
+                        decimal total = ObjectAndString.ObjectToDecimal(newData["SO_LUONG"]);
+                        decimal heso = 1;
+                        string dvt1 = newData["DVT1"].ToString().Trim();
+                        SqlParameter[] plist =
+                        {
+                            new SqlParameter("@p1", ma_vt),
+                            new SqlParameter("@p2", dvt1),
+                        };
+                        var dataHeso = V6BusinessHelper.Select("Alqddvt", "*", "ma_vt=@p1 and dvt=@p2", "", "", plist).Data;
+                        if (dataHeso.Rows.Count > 0)
+                        {
+                            heso = ObjectAndString.ObjectToDecimal(dataHeso.Rows[0]["HE_SO"]);
+                        }
+                        if (heso == 0) heso = 1;
+                        decimal sum = 0;
+                        var lodate_data = V6BusinessHelper.GetLoDate(ma_vt, _sttRec, dateNgayCT.Date);
+                        // Get Data
+                        
+                        for (int i = lodate_data.Rows.Count - 1; i >= 0; i--)
+                        {
+                            DataRow data_row = lodate_data.Rows[i];
+                            decimal row = ObjectAndString.ObjectToDecimal(data_row["TON_DAU"]);
+                            decimal insert = (total - sum) < row ? (total - sum) : row;
+                            newData["MA_KHO"] = data_row["MA_KHO"];
+                            newData["MA_LO"] = data_row["MA_LO"];
+                            newData["HSD"] = data_row["HSD"];
+                            newData["DVT"] = data_row["DVT"];
+                            newData["DVT1"] = dvt1;
+                            newData["HE_SO"] = heso;
+                            newData["SO_LUONG"] = insert;
+                            newData["SO_LUONG1"] = insert/heso;
+                            
+                            if (XuLyThemDetail(newData)) addCount++;
+                            else failCount++;
+                            
+                            sum += insert;
+                            if (sum == total)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (XuLyThemDetail(newData)) addCount++;
+                        else failCount++;
+                    }
                 }
                 V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed {1}.", addCount, failCount));
                 //if (addCount > 0)

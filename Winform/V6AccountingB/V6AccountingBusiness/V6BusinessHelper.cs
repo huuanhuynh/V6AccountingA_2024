@@ -1588,6 +1588,27 @@ namespace V6AccountingBusiness
             return data;
         }
 
+        /// <summary>
+        /// GetLoDate không theo Mã Kho
+        /// </summary>
+        /// <param name="mavt"></param>
+        /// <param name="sttRec"></param>
+        /// <param name="ngayct"></param>
+        /// <returns></returns>
+        public static DataTable GetLoDate(string mavt, string sttRec, DateTime ngayct)
+        {
+            mavt = mavt.Replace("'", "''");
+            SqlParameter[] plist = new[]
+            {
+                new SqlParameter("@cKey1", String.Format("Ma_vt = '"+mavt+"'")),
+                new SqlParameter("@cKey2", ""),
+                new SqlParameter("@cKey3", ""),
+                new SqlParameter("@cStt_rec", sttRec),
+                new SqlParameter("@dBg", ngayct.Date)
+            };
+            return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_EdItems_DATE_STT_REC", plist).Tables[0];
+        }
+
         public static DataTable GetLoDate(string mavt, string makho, string sttRec, DateTime ngayct)
         {
             mavt = mavt.Replace("'", "''");

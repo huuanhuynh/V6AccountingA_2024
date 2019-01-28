@@ -188,7 +188,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.txtMadvcs = new V6Controls.V6VvarTextBox();
             this.txtTenDVCS = new V6Controls.V6VvarTextBox();
             this.v6Label38 = new V6Controls.V6Label();
-            this.v6NumberTextBox1 = new V6Controls.V6NumberTextBox();
+            this.txtHanTT = new V6Controls.V6NumberTextBox();
             this.v6VvarTextBox2 = new V6Controls.V6VvarTextBox();
             this.txtTyGia = new V6Controls.V6NumberTextBox();
             this.v6VvarTextBox1 = new V6Controls.V6VvarTextBox();
@@ -2518,7 +2518,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.group3.Controls.Add(this.txtMadvcs);
             this.group3.Controls.Add(this.txtTenDVCS);
             this.group3.Controls.Add(this.v6Label38);
-            this.group3.Controls.Add(this.v6NumberTextBox1);
+            this.group3.Controls.Add(this.txtHanTT);
             this.group3.Controls.Add(this.v6VvarTextBox2);
             this.group3.Controls.Add(this.txtTyGia);
             this.group3.Controls.Add(this.v6VvarTextBox1);
@@ -2684,27 +2684,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.v6Label38.TabIndex = 0;
             this.v6Label38.Text = "Mã đơn vị ";
             // 
-            // v6NumberTextBox1
+            // txtHanTT
             // 
-            this.v6NumberTextBox1.AccessibleDescription = "";
-            this.v6NumberTextBox1.AccessibleName = "han_tt";
-            this.v6NumberTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6NumberTextBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.v6NumberTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6NumberTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.v6NumberTextBox1.DecimalPlaces = 0;
-            this.v6NumberTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6NumberTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6NumberTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6NumberTextBox1.HoverColor = System.Drawing.Color.Yellow;
-            this.v6NumberTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox1.Location = new System.Drawing.Point(676, 52);
-            this.v6NumberTextBox1.Name = "v6NumberTextBox1";
-            this.v6NumberTextBox1.Size = new System.Drawing.Size(70, 20);
-            this.v6NumberTextBox1.TabIndex = 19;
-            this.v6NumberTextBox1.Text = "0";
-            this.v6NumberTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.v6NumberTextBox1.Value = new decimal(new int[] {
+            this.txtHanTT.AccessibleDescription = "";
+            this.txtHanTT.AccessibleName = "han_tt";
+            this.txtHanTT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtHanTT.BackColor = System.Drawing.SystemColors.Window;
+            this.txtHanTT.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtHanTT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtHanTT.DecimalPlaces = 0;
+            this.txtHanTT.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtHanTT.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtHanTT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtHanTT.HoverColor = System.Drawing.Color.Yellow;
+            this.txtHanTT.LeaveColor = System.Drawing.Color.White;
+            this.txtHanTT.Location = new System.Drawing.Point(676, 52);
+            this.txtHanTT.Name = "txtHanTT";
+            this.txtHanTT.Size = new System.Drawing.Size(70, 20);
+            this.txtHanTT.TabIndex = 19;
+            this.txtHanTT.Text = "0";
+            this.txtHanTT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHanTT.Value = new decimal(new int[] {
             0,
             0,
             0,
@@ -3846,7 +3846,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private NumberTienNt txtTongThanhToanNt;
         private NumberTienNt txtTongThueNt;
         private NumberTien txtTongThanhToan;
-        private V6NumberTextBox v6NumberTextBox1;
+        private V6NumberTextBox txtHanTT;
         private V6VvarTextBox v6VvarTextBox2;
         private V6VvarTextBox v6VvarTextBox1;
         private V6Controls.V6CheckBox chkSuaTien;
