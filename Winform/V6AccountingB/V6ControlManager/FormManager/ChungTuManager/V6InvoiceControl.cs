@@ -2080,6 +2080,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try // Dynamic invoke
             {
+                if (IsViewingAnInvoice) return null;
                 if (Event_Methods.ContainsKey(eventName))
                 {
                     var method_name = Event_Methods[eventName];

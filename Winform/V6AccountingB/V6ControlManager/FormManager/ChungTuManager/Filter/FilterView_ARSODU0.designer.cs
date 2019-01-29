@@ -58,6 +58,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
+            this.gridViewSummary1 = new V6Controls.Controls.GridViewSummary();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -376,11 +377,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(829, 370);
+            this.dataGridView1.Size = new System.Drawing.Size(829, 352);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
+            // 
+            // gridViewSummary1
+            // 
+            this.gridViewSummary1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridViewSummary1.DataGridView = this.dataGridView1;
+            this.gridViewSummary1.Location = new System.Drawing.Point(0, 483);
+            this.gridViewSummary1.Name = "gridViewSummary1";
+            this.gridViewSummary1.Size = new System.Drawing.Size(829, 22);
+            this.gridViewSummary1.SumCondition = null;
+            this.gridViewSummary1.TabIndex = 3;
             // 
             // FilterView_ARSODU0
             // 
@@ -388,6 +399,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnESC;
             this.ClientSize = new System.Drawing.Size(829, 526);
+            this.Controls.Add(this.gridViewSummary1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
@@ -437,6 +449,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
         private V6ReportControls.FilterLineVvarTextBox nhomKhach3;
         private V6ReportControls.FilterLineVvarTextBox txtMaKh;
         private V6ReportControls.FilterLineVvarTextBox taiKhoan;
+        private V6Controls.Controls.GridViewSummary gridViewSummary1;
 
     }
 }

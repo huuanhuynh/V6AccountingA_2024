@@ -2050,7 +2050,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     {
                         _gia01.Value = _giaNt01.Value;
                     }
-
                 }
 
                 if (_soLuong.Value != 0)
@@ -2063,8 +2062,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
                     if (_maNt == _mMaNt0)
                     {
-                        _gia0.Value = _giaNt01.Value;
-                        _gia_Nt0.Value = _giaNt01.Value;
+                        _gia0.Value = _gia_Nt0.Value;
+                        _gia.Value = _giaNt.Value;
                     }
                 }
             }

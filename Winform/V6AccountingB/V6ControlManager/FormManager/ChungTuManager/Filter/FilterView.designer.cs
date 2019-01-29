@@ -139,7 +139,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(732, 450);
+            this.dataGridView1.Size = new System.Drawing.Size(732, 451);
             this.dataGridView1.Space_Bar = true;
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
@@ -149,7 +149,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             this.gridViewSummary1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.gridViewSummary1.DataGridView = this.dataGridView1;
-            this.gridViewSummary1.Location = new System.Drawing.Point(0, 482);
+            this.gridViewSummary1.Location = new System.Drawing.Point(0, 483);
             this.gridViewSummary1.Name = "gridViewSummary1";
             this.gridViewSummary1.Size = new System.Drawing.Size(732, 22);
             this.gridViewSummary1.SumCondition = null;

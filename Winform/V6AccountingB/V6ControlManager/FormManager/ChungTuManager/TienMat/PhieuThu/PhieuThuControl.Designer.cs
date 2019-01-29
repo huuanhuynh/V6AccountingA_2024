@@ -107,6 +107,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.xuLyKhacToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thayTheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thayThe2toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thuNoTaiKhoanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chkSuaTien = new V6Controls.V6CheckBox();
             this.cboKieuPost = new V6Controls.V6ComboBox();
             this.btnChonPX = new V6Controls.Controls.V6FormButton();
@@ -1213,28 +1214,29 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.chonTuExcelToolStripMenuItem,
             this.xuLyKhacToolStripMenuItem,
             this.thayTheToolStripMenuItem,
-            this.thayThe2toolStripMenuItem});
+            this.thayThe2toolStripMenuItem,
+            this.thuNoTaiKhoanToolStripMenuItem});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(158, 136);
+            this.menuChucNang.Size = new System.Drawing.Size(165, 158);
             // 
             // ThuCongNo
             // 
             this.ThuCongNo.Name = "ThuCongNo";
-            this.ThuCongNo.Size = new System.Drawing.Size(157, 22);
+            this.ThuCongNo.Size = new System.Drawing.Size(164, 22);
             this.ThuCongNo.Text = "Thu công nợ";
             this.ThuCongNo.Click += new System.EventHandler(this.ThuCongNo_Click);
             // 
             // TroGiupMenu
             // 
             this.TroGiupMenu.Name = "TroGiupMenu";
-            this.TroGiupMenu.Size = new System.Drawing.Size(157, 22);
+            this.TroGiupMenu.Size = new System.Drawing.Size(164, 22);
             this.TroGiupMenu.Text = "Trợ giúp";
             this.TroGiupMenu.Click += new System.EventHandler(this.TroGiupMenu_Click);
             // 
             // chonTuExcelToolStripMenuItem
             // 
             this.chonTuExcelToolStripMenuItem.Name = "chonTuExcelToolStripMenuItem";
-            this.chonTuExcelToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.chonTuExcelToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.chonTuExcelToolStripMenuItem.Text = "Chọn từ excel";
             this.chonTuExcelToolStripMenuItem.Visible = false;
             this.chonTuExcelToolStripMenuItem.Click += new System.EventHandler(this.chonTuExcelToolStripMenuItem_Click);
@@ -1242,23 +1244,30 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             // xuLyKhacToolStripMenuItem
             // 
             this.xuLyKhacToolStripMenuItem.Name = "xuLyKhacToolStripMenuItem";
-            this.xuLyKhacToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.xuLyKhacToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.xuLyKhacToolStripMenuItem.Text = "Xử lý khác";
             this.xuLyKhacToolStripMenuItem.Click += new System.EventHandler(this.xuLyKhacToolStripMenuItem_Click);
             // 
             // thayTheToolStripMenuItem
             // 
             this.thayTheToolStripMenuItem.Name = "thayTheToolStripMenuItem";
-            this.thayTheToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.thayTheToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.thayTheToolStripMenuItem.Text = "Thay thế";
             this.thayTheToolStripMenuItem.Click += new System.EventHandler(this.thayTheToolStripMenuItem_Click);
             // 
             // thayThe2toolStripMenuItem
             // 
             this.thayThe2toolStripMenuItem.Name = "thayThe2toolStripMenuItem";
-            this.thayThe2toolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.thayThe2toolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.thayThe2toolStripMenuItem.Text = "Sửa nhiều dòng";
             this.thayThe2toolStripMenuItem.Click += new System.EventHandler(this.thayThe2toolStripMenuItem_Click);
+            // 
+            // thuNoTaiKhoanToolStripMenuItem
+            // 
+            this.thuNoTaiKhoanToolStripMenuItem.Name = "thuNoTaiKhoanToolStripMenuItem";
+            this.thuNoTaiKhoanToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.thuNoTaiKhoanToolStripMenuItem.Text = "Thu nợ tài khoản";
+            this.thuNoTaiKhoanToolStripMenuItem.Click += new System.EventHandler(this.thuNoTaiKhoanToolStripMenuItem_Click);
             // 
             // chkSuaTien
             // 
@@ -2412,5 +2421,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         private ToolStripMenuItem thayTheToolStripMenuItem;
         private ToolStripMenuItem thayThe2toolStripMenuItem;
         private V6Label lblKieuPostColor;
+        private ToolStripMenuItem thuNoTaiKhoanToolStripMenuItem;
     }
 }

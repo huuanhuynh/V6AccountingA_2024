@@ -4359,6 +4359,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         {
             try
             {
+                if (IsViewingAnInvoice) return;
                 if (_MA_GD == "3")
                 {
                     detail1.MODE = V6Mode.View;
@@ -4479,6 +4480,50 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 lblKieuPostColor.Visible = false;
             }
         }
-         
+
+        private void thuNoTaiKhoanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ThuNo131();
+        }
+
+        public void ThuNo131()
+        {
+            try
+            {
+                if (IsViewingAnInvoice) return;
+                if (_MA_GD == "3")
+                {
+                    detail1.MODE = V6Mode.View;
+
+
+                    var initFilter = GetSoCt0InitFilter();
+                    var f = new FilterView_ARSODU0TK(Invoice, new V6ColorTextBox(), _sttRec, txtMadvcs.Text, initFilter);
+                    f.MultiSeletion = true;
+                    f.ChoseEvent += data =>
+                    {
+                        var dic = detail1.GetData();
+
+                        dic["TK_I"] = data.Cells["TK"].Value;
+
+                        dic["TIEN"] = data.Cells["DU_NO"].Value;
+                        dic["TIEN_NT"] = data.Cells["DU_NO"].Value;
+                        dic["TIEN_TT"] = data.Cells["DU_NO"].Value;
+                        dic["PS_CO"] = data.Cells["DU_NO"].Value;
+                        dic["PS_CO_NT"] = data.Cells["DU_NO"].Value;
+
+
+                        dic["MA_KH_I"] = data.Cells["MA_KH"].Value;
+                        dic["TEN_KH_I"] = data.Cells["TEN_KH"].Value;
+
+                        XuLyThemDetail(dic);
+                    };
+                    f.ShowDialog(this);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ThuNo131 " + _sttRec, ex);
+            }
+        }
     }
 }

@@ -365,28 +365,42 @@ namespace V6AccountingBusiness.Invoices
             return Alct0;
         }
 
-        public override DataTable GetSoct0_All_Cust(string sttRec,string madvcs, string Keys)
+        public override DataTable GetSoct0_All_Cust(string sttRec, string madvcs, string filterString)
         {
             SqlParameter[] plist =
             {
                 new SqlParameter("@stt_rec", sttRec), 
                 new SqlParameter("@ma_dvcs", madvcs),
-                new SqlParameter("@advance", Keys)
+                new SqlParameter("@advance", filterString)
             };
             var result = V6BusinessHelper.ExecuteProcedure("ACACTTA1_CUSTS_InitTt", plist).Tables[0];
             Alct0 = result;
             return Alct0;
         }
 
-        public override DataTable GetSodu0_All_Cust(string sttRec, string madvcs, string Keys)
+        public override DataTable GetSodu0_All_Cust(string sttRec, string madvcs, string filterString)
         {
             SqlParameter[] plist =
             {
                 new SqlParameter("@stt_rec", sttRec), 
                 new SqlParameter("@ma_dvcs", madvcs),
-                new SqlParameter("@advance", Keys)
+                new SqlParameter("@advance", filterString)
             };
             var result = V6BusinessHelper.ExecuteProcedure("ACACTTA1_CUSTS_InitSd", plist).Tables[0];
+            Alct0 = result;
+            return Alct0;
+        }
+
+        public override DataTable GetSoDu0TK_All_Cust(string sttRec, string madvcs, DateTime ngay_ct, string filterString)
+        {
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@stt_rec", sttRec), 
+                new SqlParameter("@ma_dvcs", madvcs),
+                new SqlParameter("@ngay_ct", ngay_ct.ToString("yyyyMMdd")),
+                new SqlParameter("@advance", filterString)
+            };
+            var result = V6BusinessHelper.ExecuteProcedure("ACACTTA1_CUSTS_InitSd_TK", plist).Tables[0];
             Alct0 = result;
             return Alct0;
         }

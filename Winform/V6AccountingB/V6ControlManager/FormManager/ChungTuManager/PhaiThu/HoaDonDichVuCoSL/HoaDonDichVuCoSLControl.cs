@@ -2961,7 +2961,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         {
             try
             {
-
                 _gia21.Value = V6BusinessHelper.Vround((_giaNt21.Value*txtTyGia.Value), M_ROUND_GIA_NT);
                 if (_maNt == _mMaNt0)
                 {
@@ -2972,13 +2971,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 if (_soLuong.Value != 0)
                 {
                     _giaNt2.Value = V6BusinessHelper.Vround((_tienNt2.Value/_soLuong.Value), M_ROUND_GIA_NT);
-
                     _gia2.Value = V6BusinessHelper.Vround((_tien2.Value/_soLuong.Value), M_ROUND_GIA);
 
                     if (_maNt == _mMaNt0)
                     {
-                        _gia2.Value = _giaNt21.Value;
-                        _giaNt2.Value = _giaNt21.Value;
+                        _gia2.Value = _giaNt2.Value;
                     }
                 }
             }
@@ -3031,13 +3028,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 if (_soLuong.Value != 0)
                 {
                     _giaNt2.Value = V6BusinessHelper.Vround((_tienNt2.Value / _soLuong.Value),M_ROUND_GIA_NT);
-
                     _gia2.Value = V6BusinessHelper.Vround((_tien2.Value / _soLuong.Value), M_ROUND_GIA);
                     
                     if (_maNt == _mMaNt0)
                     {
-                        _gia2.Value = _giaNt21.Value;
-                        _giaNt2.Value = _giaNt21.Value;
+                        _gia2.Value = _giaNt2.Value;
                     }
                 }
             }

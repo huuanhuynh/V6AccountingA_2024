@@ -870,12 +870,17 @@ namespace V6AccountingBusiness.Invoices
             return V6BusinessHelper.GetStockAll(Mact, mavt_in, makho_in, sttRec, ngayct);
         }
 
-        public virtual DataTable GetSoct0_All_Cust(string sttRec, string trim, string filterString)
+        public virtual DataTable GetSoct0_All_Cust(string sttRec, string madvcs, string filterString)
         {
             throw new NotImplementedException();
         }
-        
-        public virtual DataTable GetSodu0_All_Cust(string sttRec, string trim, string filterString)
+
+        public virtual DataTable GetSodu0_All_Cust(string sttRec, string madvcs, string filterString)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual DataTable GetSoDu0TK_All_Cust(string sttRec, string madvcs, DateTime ngay_ct, string filterString)
         {
             throw new NotImplementedException();
         }

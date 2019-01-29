@@ -1390,8 +1390,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
 
                     if (_maNt == _mMaNt0)
                     {
-                        _gia0.Value = _giaNt01.Value;
-                        _gia_Nt0.Value = _giaNt01.Value;
+                        _gia0.Value = _gia_Nt0.Value;
+                        _gia.Value = _giaNt.Value;
                     }
                 }
             }

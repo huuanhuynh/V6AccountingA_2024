@@ -2,7 +2,7 @@
 
 namespace V6ControlManager.FormManager.ChungTuManager.Filter
 {
-    partial class FilterView_ARS20
+    partial class FilterView_ARSODU0TK
     {
         /// <summary>
         /// Required designer variable.
@@ -34,7 +34,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FilterView_ARS20));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FilterView_ARSODU0TK));
             this.panel1 = new System.Windows.Forms.Panel();
             this.nhomKhach4 = new V6ReportControls.FilterLineVvarTextBox();
             this.nhomKhach5 = new V6ReportControls.FilterLineVvarTextBox();
@@ -197,6 +197,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.Txtma_nvien.Name = "Txtma_nvien";
             this.Txtma_nvien.Size = new System.Drawing.Size(76, 20);
             this.Txtma_nvien.TabIndex = 11;
+            this.Txtma_nvien.Visible = false;
             this.Txtma_nvien.VVar = "Ma_nvien";
             // 
             // TxtMa_bp
@@ -216,6 +217,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.TxtMa_bp.Name = "TxtMa_bp";
             this.TxtMa_bp.Size = new System.Drawing.Size(61, 20);
             this.TxtMa_bp.TabIndex = 10;
+            this.TxtMa_bp.Visible = false;
             this.TxtMa_bp.VVar = "Ma_bp";
             // 
             // v6Label8
@@ -228,6 +230,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.v6Label8.Size = new System.Drawing.Size(41, 13);
             this.v6Label8.TabIndex = 9;
             this.v6Label8.Text = "BP/NV";
+            this.v6Label8.Visible = false;
             // 
             // txtMadvcs
             // 
@@ -293,6 +296,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.v6Label1.Size = new System.Drawing.Size(46, 13);
             this.v6Label1.TabIndex = 4;
             this.v6Label1.Text = "Từ ngày";
+            this.v6Label1.Visible = false;
             // 
             // v6ColorDateTimePick1
             // 
@@ -306,6 +310,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.v6ColorDateTimePick1.Name = "v6ColorDateTimePick1";
             this.v6ColorDateTimePick1.Size = new System.Drawing.Size(102, 20);
             this.v6ColorDateTimePick1.TabIndex = 5;
+            this.v6ColorDateTimePick1.Visible = false;
             // 
             // btnESC
             // 
@@ -393,7 +398,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.gridViewSummary1.SumCondition = null;
             this.gridViewSummary1.TabIndex = 3;
             // 
-            // FilterView_ARS20
+            // FilterView_ARSODU0TK
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -409,7 +414,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.MaximumSize = new System.Drawing.Size(1024, 768);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(600, 400);
-            this.Name = "FilterView_ARS20";
+            this.Name = "FilterView_ARSODU0TK";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_FormClosing);
