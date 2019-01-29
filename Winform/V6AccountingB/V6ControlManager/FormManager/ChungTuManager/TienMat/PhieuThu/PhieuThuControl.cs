@@ -4359,7 +4359,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         {
             try
             {
-                if (IsViewingAnInvoice) return;
+                if (NotAddEdit) return;
                 if (_MA_GD == "3")
                 {
                     detail1.MODE = V6Mode.View;
@@ -4490,7 +4490,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         {
             try
             {
-                if (IsViewingAnInvoice) return;
+                if (NotAddEdit) return;
                 if (_MA_GD == "3")
                 {
                     detail1.MODE = V6Mode.View;

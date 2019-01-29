@@ -5183,7 +5183,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             try
             {
-                if (IsViewingAnInvoice) return;
+                if (NotAddEdit) return;
                 if (_MA_GD == "3")
                 {
                     detail1.MODE = V6Mode.View;

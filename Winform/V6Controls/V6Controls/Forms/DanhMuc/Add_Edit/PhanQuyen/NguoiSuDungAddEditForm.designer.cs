@@ -144,6 +144,7 @@
             this.txtUser_pre.LeaveColor = System.Drawing.Color.White;
             this.txtUser_pre.Location = new System.Drawing.Point(212, 244);
             this.txtUser_pre.Name = "txtUser_pre";
+            this.txtUser_pre.ShowName = true;
             this.txtUser_pre.Size = new System.Drawing.Size(184, 23);
             this.txtUser_pre.TabIndex = 35;
             this.txtUser_pre.UseLimitCharacters0 = true;
