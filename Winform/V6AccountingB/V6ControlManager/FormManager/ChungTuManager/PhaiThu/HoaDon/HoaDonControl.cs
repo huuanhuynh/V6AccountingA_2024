@@ -4664,6 +4664,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 {
                     var temp = _print_flag;
                     _print_flag = V6PrintMode.DoNoThing;
+                    Thread.Sleep(1000);
                     BasePrint(Invoice, _sttRec_In, temp, TongThanhToan, TongThanhToanNT, true);
                     SetStatus2Text();
                 }
@@ -4808,6 +4809,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 {
                     var temp = _print_flag;
                     _print_flag = V6PrintMode.DoNoThing;
+                    Thread.Sleep(1000);
                     BasePrint(Invoice, _sttRec_In, temp, TongThanhToan, TongThanhToanNT, true);
                     SetStatus2Text();
                 }
@@ -6582,6 +6584,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     }
                     else
                     {
+                        if (newData.ContainsKey("SO_LUONG"))
+                        {
+                            decimal insert = ObjectAndString.ObjectToDecimal(newData["SO_LUONG"]);
+                            decimal heso = 1;
+                            string dvt1 = newData["DVT1"].ToString().Trim();
+                            SqlParameter[] plist =
+                            {
+                                new SqlParameter("@p1", ma_vt),
+                                new SqlParameter("@p2", dvt1),
+                            };
+                            var dataHeso =
+                                V6BusinessHelper.Select("Alqddvt", "*", "ma_vt=@p1 and dvt=@p2", "", "", plist).Data;
+                            if (dataHeso.Rows.Count > 0)
+                            {
+                                heso = ObjectAndString.ObjectToDecimal(dataHeso.Rows[0]["HE_SO"]);
+                            }
+                            if (heso == 0) heso = 1;
+                            newData["SO_LUONG1"] = insert/heso;
+                        }
                         if (XuLyThemDetail(newData)) addCount++;
                         else failCount++;
                     }

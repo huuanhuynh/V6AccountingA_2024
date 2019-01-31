@@ -658,7 +658,9 @@ namespace V6Controls
                     }
                     else
                     {
+                        Text = "";
                         _data = null;
+                        _text_data = "";
                         FixText();
                         V6ControlFormHelper.SetBrotherDataProc(this, _data, BrotherFields, BrotherFields2);
                         SetNeighborValues();

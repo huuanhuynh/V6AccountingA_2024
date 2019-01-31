@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -6234,7 +6235,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
         #region ==== Chức năng methods ====
 
-        private void ChucNang_ChonDonHang()
+        private void ChucNang_ChonDonHangMua()
         {
             try
             {
@@ -6278,7 +6279,29 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 int addCount = 0, failCount = 0;
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {
-                    if (XuLyThemDetail(data)) addCount++;
+                    var newData = new SortedDictionary<string, object>(data);
+                    if (newData.ContainsKey("SO_LUONG"))
+                    {
+                        decimal insert = ObjectAndString.ObjectToDecimal(newData["SO_LUONG"]);
+                        decimal heso = 1;
+                        string ma_vt = newData["MA_VT"].ToString().Trim();
+                        string dvt1 = newData["DVT1"].ToString().Trim();
+                        SqlParameter[] plist =
+                            {
+                                new SqlParameter("@p1", ma_vt),
+                                new SqlParameter("@p2", dvt1),
+                            };
+                        var dataHeso =
+                            V6BusinessHelper.Select("Alqddvt", "*", "ma_vt=@p1 and dvt=@p2", "", "", plist).Data;
+                        if (dataHeso.Rows.Count > 0)
+                        {
+                            heso = ObjectAndString.ObjectToDecimal(dataHeso.Rows[0]["HE_SO"]);
+                        }
+                        if (heso == 0) heso = 1;
+                        newData["SO_LUONG1"] = insert / heso;
+                    }
+
+                    if (XuLyThemDetail(newData)) addCount++;
                     else failCount++;
                 }
                 All_Objects["selectedDataList"] = selectedDataList;
@@ -6420,7 +6443,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
         private void ChonDonHangMuaMenu_Click(object sender, EventArgs e)
         {
-            ChucNang_ChonDonHang();
+            ChucNang_ChonDonHangMua();
         }
 
         private void TroGiupMenu_Click(object sender, EventArgs e)

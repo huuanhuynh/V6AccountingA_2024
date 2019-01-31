@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -5368,39 +5369,32 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
         #region ==== Chức năng methods ====
 
-        private void ChucNang_ChonDonHang()
+        private void ChucNang_ChonDonHangMua()
         {
             try
             {
-                try
+                var ma_kh = txtMaKh.Text.Trim();
+                var ma_dvcs = txtMadvcs.Text.Trim();
+                var message = "";
+                if (ma_kh != "" && ma_dvcs != "")
                 {
-                    var ma_kh = txtMaKh.Text.Trim();
-                    var ma_dvcs = txtMadvcs.Text.Trim();
-                    var message = "";
-                    if (ma_kh != "" && ma_dvcs != "")
-                    {
-                        CDH_PNMForm chon = new CDH_PNMForm(dateNgayCT.Date, txtMadvcs.Text, txtMaKh.Text);
-                        _chon_px = "DH";
-                        chon.AcceptSelectEvent += chon_AcceptSelectEvent;
-                        chon.ShowDialog(this);
-                    }
-                    else
-                    {
-                        if (ma_kh == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã khách hàng!\n" : "Customers ID needs to enter!\n";
-                        if (ma_dvcs == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã đơn vị." : "Agent ID needs to enter!";
-                        this.ShowWarningMessage(message);
-                        if (ma_kh == "") txtMaKh.Focus();
-                        else if (ma_dvcs == "") txtMadvcs.Focus();
-                    }
+                    CDH_PNMForm chon = new CDH_PNMForm(dateNgayCT.Date, txtMadvcs.Text, txtMaKh.Text);
+                    _chon_px = "DH";
+                    chon.AcceptSelectEvent += chon_AcceptSelectEvent;
+                    chon.ShowDialog(this);
                 }
-                catch (Exception ex)
+                else
                 {
-                    this.ShowErrorException(GetType() + ".XuLyChonPhieuXuat " + _sttRec, ex);
+                    if (ma_kh == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã khách hàng!\n" : "Customers ID needs to enter!\n";
+                    if (ma_dvcs == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã đơn vị." : "Agent ID needs to enter!";
+                    this.ShowWarningMessage(message);
+                    if (ma_kh == "") txtMaKh.Focus();
+                    else if (ma_dvcs == "") txtMadvcs.Focus();
                 }
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".ChucNang ChonDonHang " + _sttRec, ex);
+                this.ShowErrorException(GetType() + ".ChucNang ChonDonHangMua " + _sttRec, ex);
             }
         }
         
@@ -5413,7 +5407,29 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 int addCount = 0, failCount = 0;
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {
-                    if (XuLyThemDetail(data)) addCount++;
+                    var newData = new SortedDictionary<string, object>(data);
+                    if (newData.ContainsKey("SO_LUONG"))
+                    {
+                        decimal insert = ObjectAndString.ObjectToDecimal(newData["SO_LUONG"]);
+                        decimal heso = 1;
+                        string ma_vt = newData["MA_VT"].ToString().Trim();
+                        string dvt1 = newData["DVT1"].ToString().Trim();
+                        SqlParameter[] plist =
+                            {
+                                new SqlParameter("@p1", ma_vt),
+                                new SqlParameter("@p2", dvt1),
+                            };
+                        var dataHeso =
+                            V6BusinessHelper.Select("Alqddvt", "*", "ma_vt=@p1 and dvt=@p2", "", "", plist).Data;
+                        if (dataHeso.Rows.Count > 0)
+                        {
+                            heso = ObjectAndString.ObjectToDecimal(dataHeso.Rows[0]["HE_SO"]);
+                        }
+                        if (heso == 0) heso = 1;
+                        newData["SO_LUONG1"] = insert / heso;
+                    }
+
+                    if (XuLyThemDetail(newData)) addCount++;
                     else failCount++;
                 }
 
@@ -6307,7 +6323,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
         private void ChonDonHangMuaMenu_Click(object sender, EventArgs e)
         {
-            ChucNang_ChonDonHang();
+            ChucNang_ChonDonHangMua();
         }
 
         private void TroGiupMenu_Click(object sender, EventArgs e)

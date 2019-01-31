@@ -2091,7 +2091,8 @@ namespace V6Controls.Forms
                 var cancelall = control is DataGridView || control is ICrystalReportViewer || tagString.Contains(";cancelall;");
                 var canceldata = tagString.Contains(";canceldata;");
                 var cancelset = tagString.Contains(";cancelset;");
-                if (canceldata||cancelset||cancelall) goto CANCELALL;
+                if (canceldata||cancelset||cancelall)
+                    goto CANCELALL;
                 
                 var NAME = control is RadioButton ? control.Name : control.AccessibleName;
                 if (data != null && !string.IsNullOrEmpty(NAME) && data.ContainsKey(NAME.ToUpper()))
@@ -2104,6 +2105,11 @@ namespace V6Controls.Forms
                 else if (set_default && !string.IsNullOrEmpty(NAME))
                 {
                     // === Gán rỗng hoặc mặc định ===
+                    result[NAME] = control;
+                    if (control.AccessibleName == "MA_XULY")
+                    {
+                        ;
+                    }
                     SetControlValue(control, null);
                 }
 
