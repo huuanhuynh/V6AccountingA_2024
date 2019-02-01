@@ -2078,9 +2078,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <returns></returns>
         public object InvokeFormEvent(string eventName)
         {
-            try // Dynamic invoke
+            try
             {
-                if (NotAddEdit) return null;
                 if (Event_Methods.ContainsKey(eventName))
                 {
                     var method_name = Event_Methods[eventName];
