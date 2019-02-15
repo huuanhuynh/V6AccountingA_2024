@@ -412,8 +412,12 @@ namespace V6Controls.Controls.TreeView
                             var value = data[columnNAME];
                             if (ObjectAndString.IsNumberType(value.GetType()))
                             {
-                                var numberString = ObjectAndString.NumberToString(value, _viewDecimals[i-1],
-                                    V6Options.M_NUM_POINT, ".");
+                                string numberString = "";
+                                // Không hiển thị số 0
+                                if (ObjectAndString.ObjectToDecimal(value) != 0)
+                                {
+                                    numberString = ObjectAndString.NumberToString(value, _viewDecimals[i-1], V6Options.M_NUM_POINT, ".");
+                                }
                                 parent.SubItems.Add(numberString);
                             }
                             else
