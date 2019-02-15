@@ -30,6 +30,37 @@ namespace V6Tools
         {
             return length >= str.Length ? str : str.Substring(str.Length - length, length);
         }
+
+        /// <summary>
+        /// Thêm đoạn endText vào string, nếu có rồi thì thôi.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="endText"></param>
+        /// <returns></returns>
+        public static string WithEnd(this string s, string endText)
+        {
+            if (!s.EndsWith(endText))
+            {
+                s += " " + endText;
+            }
+            return s;
+        }
+
+        /// <summary>
+        /// Bỏ đoạn endText khỏi phần cuối của string, bỏ luôn khoảng trắng thừa.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="endText"></param>
+        /// <returns></returns>
+        public static string RemoveEnd(this string s, string endText)
+        {
+            if (s.EndsWith(endText))
+            {
+                s = s.Substring(0, s.Length - endText.Length);
+                s = s.TrimEnd();
+            }
+            return s;
+        }
         
         /// <summary>
         /// Hàm mở rộng. Add source to target

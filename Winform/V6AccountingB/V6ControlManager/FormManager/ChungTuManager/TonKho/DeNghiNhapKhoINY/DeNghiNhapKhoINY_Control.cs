@@ -5050,16 +5050,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
 
         private void ChonDonHangMuaMenu_Click(object sender, EventArgs e)
         {
-            ChucNang_ChonDonHang();
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            ChucNang_ChonDonHang(shift);
         }
 
-        private void ChucNang_ChonDonHang()
+        private void ChucNang_ChonDonHang(bool add = false)
         {
             try
             {
                 if (NotAddEdit) return;
 
-               
+                chon_accept_flag_add = add;
                 var ma_dvcs = txtMadvcs.Text.Trim();
                 var message = "";
                 if ( ma_dvcs != "")
@@ -5070,7 +5071,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                 }
                 else
                 {
-                    
                     if (ma_dvcs == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã đơn vị." : "Agent ID can not empty!";
                     this.ShowWarningMessage(message);
                     if (ma_dvcs == "") txtMadvcs.Focus();
@@ -5082,12 +5082,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             }
         }
 
-        void chon_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList)
+        void  chon_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList)
         {
             try
             {
+                bool flag_add = chon_accept_flag_add;
+                chon_accept_flag_add = false;
                 detail1.MODE = V6Mode.View;
-                AD.Rows.Clear();
+                if (flag_add)
+                {
+                    DoNothing();
+                }
+                else
+                {
+                    AD.Rows.Clear();
+                }
                 int addCount = 0, failCount = 0;
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {

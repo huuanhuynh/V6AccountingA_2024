@@ -3796,7 +3796,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         {
             if (txtLoaiPhieu.Text == "A")
             {
-                ChonPhieuXuat_A();
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                ChonPhieuXuat_A(shift);
             }
             else
             {
@@ -3804,10 +3805,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             }
         }
 
-        private void ChonPhieuXuat_A()
+        private void ChonPhieuXuat_A(bool add = false)
         {
             try
             {
+                chon_accept_flag_add = add;
                 var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMadvcs.Text.Trim();
                 var message = "";
@@ -3839,12 +3841,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         }
 
         private string _chon_px = "";
-        void chon_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList)
+        void  chon_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList)
         {
             try
             {
+                bool flag_add = chon_accept_flag_add;
+                chon_accept_flag_add = false;
                 detail1.MODE = V6Mode.View;
-                AD.Rows.Clear();
+                if (flag_add)
+                {
+                    DoNothing();
+                }
+                else
+                {
+                    AD.Rows.Clear();
+                }
                 int addCount = 0, failCount = 0;
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {

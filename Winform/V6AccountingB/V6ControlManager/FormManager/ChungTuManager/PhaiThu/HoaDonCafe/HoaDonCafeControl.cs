@@ -6115,18 +6115,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         #region ==== Chức năng ====
         private void chonDonHangBanMenu_Click(object sender, EventArgs e)
         {
-            ChucNang_ChonDonHang();
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            ChucNang_ChonDonHang(shift);
         }
         
         private void chonBaoGiaMenu_Click(object sender, EventArgs e)
         {
-            ChucNang_ChonBaoGia();
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            ChucNang_ChonBaoGia(shift);
         }
 
-        private void ChucNang_ChonDonHang()
+        private void ChucNang_ChonDonHang(bool add = false)
         {
             try
             {
+                chon_accept_flag_add = add;
                 var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMadvcs.Text.Trim();
                 var message = "";
@@ -6152,10 +6155,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             }
         }
 
-        private void ChucNang_ChonBaoGia()
+        private void ChucNang_ChonBaoGia(bool add = false)
         {
             try
             {
+                chon_accept_flag_add = add;
                 var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMadvcs.Text.Trim();
                 var message = "";
@@ -6182,12 +6186,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         }
 
         private string _chon_px = "";
-        void chon_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList)
+        void  chon_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList)
         {
             try
             {
+                bool flag_add = chon_accept_flag_add;
+                chon_accept_flag_add = false;
                 detail1.MODE = V6Mode.View;
-                AD.Rows.Clear();
+                if (flag_add)
+                {
+                    DoNothing();
+                }
+                else
+                {
+                    AD.Rows.Clear();
+                }
                 int addCount = 0, failCount = 0;
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {
@@ -6361,7 +6374,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         {
             if (txtLoaiPhieu.Text.Trim() == "B")
             {
-                ChonPhieuXuat_A();
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                ChonPhieuXuat_A(shift);
             }
             else
             {
@@ -6369,10 +6383,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             }
         }
 
-        private void ChonPhieuXuat_A()
+        private void ChonPhieuXuat_A(bool add = false)
         {
             try
             {
+                chon_accept_flag_add = add;
                 var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMadvcs.Text.Trim();
                 var message = "";

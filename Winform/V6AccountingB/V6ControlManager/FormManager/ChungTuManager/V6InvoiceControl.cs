@@ -151,6 +151,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
 
         public TabPage ParentTabPage { get; set; }
+        
+        public bool chon_accept_flag_add;
 
         public string MaCt { get; set; }
         public string _sttRec0 = "";
@@ -1259,6 +1261,26 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
 
             SetSomeData(someData);
+        }
+
+        /// <summary>
+        /// Thêm chữ (Thêm) khi nhấn shift cho menuItem.
+        /// </summary>
+        /// <param name="items"></param>
+        public void FixMenuChucNangItemShiftText(params ToolStripMenuItem[] items)
+        {
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            foreach (ToolStripMenuItem item in items)
+            {
+                if (shift)
+                {
+                    item.Text = item.Text.WithEnd(V6Text.AddInParentheses);
+                }
+                else
+                {
+                    item.Text = item.Text.RemoveEnd(V6Text.AddInParentheses);
+                }
+            }
         }
 
         /// <summary>
@@ -2422,5 +2444,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.WriteExLog(GetType() + ".SetADSelectMoreControlValue", ex);
             }
         }
+
     }
 }

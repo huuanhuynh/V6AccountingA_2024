@@ -341,9 +341,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonD
                 if (maKhach.Data != null)
                 {
                     var ma_kh_me = maKhach.Data["MA_KH_ME"].ToString().Trim();
-                    result += string.Format(
-                            "{0}{1}MA_KH in (Select ma_kh from alkh where MA_KH like '{2}' or MA_KH like '{3}')",
-                            (result.Length > 0 ? and_or : ""), tbL, maKhach.Text.Trim(), ma_kh_me);
+                    if (string.IsNullOrEmpty(ma_kh_me))
+                    {
+                        result += string.Format(
+                               "{0}{1}MA_KH in (Select ma_kh from alkh where MA_KH like '{2}')",
+                               (result.Length > 0 ? and_or : ""), tbL, maKhach.Text.Trim());
+                    }
+                    else
+                    {
+                        result += string.Format(
+                                "{0}{1}MA_KH in (Select ma_kh from alkh where MA_KH like '{2}' or MA_KH like '{3}')",
+                                (result.Length > 0 ? and_or : ""), tbL, maKhach.Text.Trim(), ma_kh_me);    
+                    }
+                    
                 }
                 else
                 {

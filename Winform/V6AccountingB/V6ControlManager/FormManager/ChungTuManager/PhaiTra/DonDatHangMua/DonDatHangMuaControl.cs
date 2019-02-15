@@ -5056,16 +5056,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
 
         private void ChonDonHangMuaMenu_Click(object sender, EventArgs e)
         {
-            ChucNang_ChonDonHang();
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            ChucNang_ChonDonHang(shift);
         }
 
-        private void ChucNang_ChonDonHang()
+        private void ChucNang_ChonDonHang(bool add = false)
         {
             try
             {
                 if (NotAddEdit) return;
 
-               
+                chon_accept_flag_add = add;
                 var ma_dvcs = txtMadvcs.Text.Trim();
                 var message = "";
                 if ( ma_dvcs != "")
@@ -5088,12 +5089,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             }
         }
 
-        void chon_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList)
+        void  chon_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList)
         {
             try
             {
+                bool flag_add = chon_accept_flag_add;
+                chon_accept_flag_add = false;
                 detail1.MODE = V6Mode.View;
-                AD.Rows.Clear();
+                if (flag_add)
+                {
+                    DoNothing();
+                }
+                else
+                {
+                    AD.Rows.Clear();
+                }
                 int addCount = 0, failCount = 0;
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {

@@ -5179,15 +5179,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
 
         private void chonBaoGiaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ChucNang_ChonBaoGia();
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            ChucNang_ChonBaoGia(shift);
         }
 
-        private void ChucNang_ChonBaoGia()
+        private void ChucNang_ChonBaoGia(bool add = false)
         {
             try
             {
                 if (NotAddEdit) return;
 
+                chon_accept_flag_add = add;
                 var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMadvcs.Text.Trim();
                 var message = "";
@@ -5212,12 +5214,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             }
         }
 
-        void chon_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList)
+        void  chon_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList)
         {
             try
             {
+                bool flag_add = chon_accept_flag_add;
+                chon_accept_flag_add = false;
                 detail1.MODE = V6Mode.View;
-                AD.Rows.Clear();
+                if (flag_add)
+                {
+                    DoNothing();
+                }
+                else
+                {
+                    AD.Rows.Clear();
+                }
                 int addCount = 0, failCount = 0;
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {

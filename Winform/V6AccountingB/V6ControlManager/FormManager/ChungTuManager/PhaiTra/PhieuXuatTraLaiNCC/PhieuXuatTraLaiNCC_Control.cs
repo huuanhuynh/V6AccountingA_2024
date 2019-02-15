@@ -4101,13 +4101,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
 
         private void btnChonPN_Click(object sender, EventArgs e)
         {
-            XuLyChonPhieuNhap();
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            XuLyChonPhieuNhap(shift);
         }
 
-        private void XuLyChonPhieuNhap()
+        private void XuLyChonPhieuNhap(bool add = false)
         {
             try
             {
+                chon_accept_flag_add = add;
                 var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMadvcs.Text.Trim();
                 var message = "";
@@ -4132,12 +4134,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
         }
 
         private string _chon_px = "";
-        void chon_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList)
+        void  chon_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList)
         {
             try
             {
+                bool flag_add = chon_accept_flag_add;
+                chon_accept_flag_add = false;
                 detail1.MODE = V6Mode.View;
-                AD.Rows.Clear();
+                if (flag_add)
+                {
+                    DoNothing();
+                }
+                else
+                {
+                    AD.Rows.Clear();
+                }
                 int addCount = 0, failCount = 0;
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {

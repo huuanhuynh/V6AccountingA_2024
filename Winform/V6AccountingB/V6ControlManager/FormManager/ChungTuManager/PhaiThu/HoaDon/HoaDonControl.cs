@@ -3039,6 +3039,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     detail3.MODE = V6Mode.Lock;
 
                     ChonDonHangBanMenu.Enabled = false;
+                    ChonDonHangBanThemMenu.Enabled = false;
                     chonBaoGiaToolStripMenuItem.Enabled = false;
                     chonTuExcelToolStripMenuItem.Enabled = false;
                     chonPhieuNhapToolStripMenuItem.Enabled = false;
@@ -3046,6 +3047,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 else
                 {
                     ChonDonHangBanMenu.Enabled = true;
+                    ChonDonHangBanThemMenu.Enabled = true;
                     chonBaoGiaToolStripMenuItem.Enabled = true;
                     chonTuExcelToolStripMenuItem.Enabled = true;
                     chonPhieuNhapToolStripMenuItem.Enabled = true;
@@ -6440,27 +6442,37 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 {
                     GetSoPhieu();
                 }
-
             }
         }
 
         #region ==== Chức năng ====
         private void chonDonHangBanMenu_Click(object sender, EventArgs e)
         {
-            ChucNang_ChonDonHang();
+            ChucNang_ChonDonHang( );
+        }
+
+        private void ChonDonHangBanThemMenu_Click(object sender, EventArgs e)
+        {
+            ChucNang_ChonDonHang(true);
         }
         
         private void chonBaoGiaMenu_Click(object sender, EventArgs e)
         {
-            ChucNang_ChonBaoGia();
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            ChucNang_ChonBaoGia(shift);
         }
 
-        private void ChucNang_ChonDonHang()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="add">true: thêm dòng chi tiết mới, false: xóa hết thêm lại chi tiết.</param>
+        private void ChucNang_ChonDonHang(bool add = false)
         {
             try
             {
                 if (NotAddEdit) return;
 
+                chon_accept_flag_add = add;
                 var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMadvcs.Text.Trim();
                 var message = "";
@@ -6485,12 +6497,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
-        private void ChucNang_ChonBaoGia()
+        private void ChucNang_ChonBaoGia(bool add = false)
         {
             try
             {
                 if (NotAddEdit) return;
 
+                chon_accept_flag_add = add;
                 var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMadvcs.Text.Trim();
                 var message = "";
@@ -6515,12 +6528,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
-        void chon_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList)
+        void  chon_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList)
         {
             try
             {
+                bool flag_add = chon_accept_flag_add;
+                chon_accept_flag_add = false;
                 detail1.MODE = V6Mode.View;
-                AD.Rows.Clear();
+                if (flag_add)
+                {
+                    DoNothing();
+                }
+                else
+                {
+                    AD.Rows.Clear();
+                }
                 int addCount = 0, failCount = 0;
                 
                 foreach (IDictionary<string, object> data in selectedDataList)
@@ -6863,10 +6885,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
-        private void ChonPhieuXuat_A()
+        private void ChonPhieuXuat_A(bool add = false)
         {
             try
             {
+                chon_accept_flag_add = add;
                 var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMadvcs.Text.Trim();
                 var message = "";
@@ -7806,5 +7829,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
+        private void chonBaoGiaToolStripMenuItem_MouseHover(object sender, EventArgs e)
+        {
+            FixMenuChucNangItemShiftText(chonBaoGiaToolStripMenuItem);
+        }
+
+        private void menuChucNang_MouseMove(object sender, MouseEventArgs e)
+        {
+            FixMenuChucNangItemShiftText(chonBaoGiaToolStripMenuItem);
+        }
+
+        private void menuChucNang_Paint(object sender, PaintEventArgs e)
+        {
+            FixMenuChucNangItemShiftText(chonBaoGiaToolStripMenuItem);
+        }
     }
 }
