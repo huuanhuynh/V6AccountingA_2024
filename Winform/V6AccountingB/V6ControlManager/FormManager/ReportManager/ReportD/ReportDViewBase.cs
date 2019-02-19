@@ -225,7 +225,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         {
             get
             {
-                if (_extraInfor == null || _extraInfor.Count == 0)
+                //if (_extraInfor == null || _extraInfor.Count == 0)
                 {
                     GetExtraInfor();
                 }
@@ -1060,6 +1060,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 timerViewReport.Start();
             }
         }
+
         private void timerViewReport_Tick(object sender, EventArgs e)
         {
             if (Data_Loading)
@@ -1078,7 +1079,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                     FilterControl.LoadDataFinish(_ds);
                     All_Objects["_ds"] = _ds;
                     InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
-
+                    ViewFooter();
                     dataGridView1.TableSource = _tbl1;
 
                     try
@@ -1318,6 +1319,68 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             }
         }
 
+        private void ViewFooter()
+        {
+            try
+            {
+                var tbl2_row = _tbl2.Rows[0];
+                string config_string = ""; // [rten_dau_ky]:DAU_KY:N2,[rten_cuoi_ky]:CUOI_KY:N2
+                if (EXTRA_INFOR.ContainsKey("FOOTER"))
+                {
+                    config_string = EXTRA_INFOR["FOOTER"];
+                    lblSummary.Visible = true;
+                }
+                else
+                {
+                    return;
+                }
+                var configs = ObjectAndString.SplitString(config_string);
+                string viewText = "";
+                foreach (string config in configs)
+                {
+                    var sss = config.Split(':');
+                    string value_field = sss[1];
+                    if (!_tbl2.Columns.Contains(value_field)) continue;
+
+                    int decimal_place = 2;
+                    if (sss.Length > 2 && sss[2].Length > 1)
+                    {
+                        decimal_place = ObjectAndString.ObjectToInt(sss[2].Substring(1));
+                    }
+                    string field_header_template = sss[0];
+                    // Text and [Field] and [Another_Field]
+                    int i = 0;
+                    while (field_header_template.IndexOf("[", i, StringComparison.Ordinal) >= 0)
+                    {
+                        int i0 = field_header_template.IndexOf("[", i, StringComparison.Ordinal);
+                        int i1 = field_header_template.IndexOf("]", i, StringComparison.Ordinal);
+                        if (i1 < i0)
+                        {
+                            i++;
+                            continue;
+                        }
+                        string field = field_header_template.Substring(i0 + 1, i1 - i0 - 1);
+                        if (_tbl2.Columns.Contains(field))
+                        {
+                            field_header_template = field_header_template.Replace("[" + field + "]",
+                                ObjectAndString.ObjectToString(tbl2_row[field]));
+                        }
+                        i = i1;
+                    }
+
+                    viewText += string.Format("   {0} {1}", field_header_template, ObjectAndString.NumberToString
+                        (tbl2_row[sss[1]], decimal_place, V6Options.M_NUM_POINT, V6Options.M_NUM_SEPARATOR));
+                }
+
+                if (viewText.Length > 3) viewText = viewText.Substring(3);
+                lblSummary.Text = viewText;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ViewFooter", ex);
+            }
+        }
+
         void ViewReportIndex(int currentReport = 0)
         {
             current_report_index = currentReport;
@@ -1403,25 +1466,33 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridView1.Bottom < crystalReportViewer1.Top)
+            if (crystalReportViewer1.Visible)
             {
                 //Phóng lớn dataGridView
                 dataGridView1.BringToFront();
                 gridViewSummary1.BringToFront();
-                dataGridView1.Height = Height - grbDieuKienLoc.Top - 25;
+                dataGridView1.Height = Height - grbDieuKienLoc.Top - 25 - 25; // 25 cho gviewSummary, 25 cho lblSummary
                 dataGridView1.Width = Width - 5;
                 dataGridView1.Top = grbDieuKienLoc.Top;
                 dataGridView1.Left = grbDieuKienLoc.Left;
 
                 dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
+
+                lblSummary.Left = dataGridView1.Left;
+                lblSummary.Top = dataGridView1.Bottom + 26;
+                crystalReportViewer1.Visible = false;
             }
             else
             {
                 dataGridView1.Top = grbDieuKienLoc.Top;
                 dataGridView1.Left = grbDieuKienLoc.Right + 5;
-                dataGridView1.Height = crystalReportViewer1.Top - grbDieuKienLoc.Top - 25;
+                dataGridView1.Height = crystalReportViewer1.Top - grbDieuKienLoc.Top - 25 - 25;
                 dataGridView1.Width = crystalReportViewer1.Width;
                 dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+
+                lblSummary.Left = dataGridView1.Left;
+                lblSummary.Top = dataGridView1.Bottom + 26;
+                crystalReportViewer1.Visible = true;
             }
         }
 
@@ -1438,7 +1509,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             else
             {
                 crystalReportViewer1.Left = grbDieuKienLoc.Right + 5;
-                crystalReportViewer1.Top = dataGridView1.Bottom + 25;
+                crystalReportViewer1.Top = dataGridView1.Bottom + 25 + 25;
                 crystalReportViewer1.Height = Height - crystalReportViewer1.Top - 10;
                 crystalReportViewer1.Width = dataGridView1.Width;
             }

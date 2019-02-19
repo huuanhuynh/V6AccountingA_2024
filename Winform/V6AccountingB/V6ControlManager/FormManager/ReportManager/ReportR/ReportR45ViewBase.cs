@@ -244,7 +244,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             get
             {
-                if (_extraInfor == null || _extraInfor.Count == 0)
+                //if (_extraInfor == null || _extraInfor.Count == 0)
                 {
                     GetExtraInfor();
                 }
@@ -1109,7 +1109,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 FilterControl.LoadDataFinish(_ds);
                 All_Objects["_ds"] = _ds;
                 InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
-                
+                ViewFooter();
                 ShowReport();
             }
             else if (Data_Loading)
@@ -1361,6 +1361,68 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 timerViewReport.Stop();
                 _load_data_success = false;
                 this.ShowErrorException(GetType() + ".ShowReport", ex);
+            }
+        }
+
+        private void ViewFooter()
+        {
+            try
+            {
+                var tbl2_row = _tbl2.Rows[0];
+                string config_string = ""; // [rten_dau_ky]:DAU_KY:N2,[rten_cuoi_ky]:CUOI_KY:N2
+                if (EXTRA_INFOR.ContainsKey("FOOTER"))
+                {
+                    config_string = EXTRA_INFOR["FOOTER"];
+                    lblSummary.Visible = true;
+                }
+                else
+                {
+                    return;
+                }
+                var configs = ObjectAndString.SplitString(config_string);
+                string viewText = "";
+                foreach (string config in configs)
+                {
+                    var sss = config.Split(':');
+                    string value_field = sss[1];
+                    if (!_tbl2.Columns.Contains(value_field)) continue;
+
+                    int decimal_place = 2;
+                    if (sss.Length > 2 && sss[2].Length > 1)
+                    {
+                        decimal_place = ObjectAndString.ObjectToInt(sss[2].Substring(1));
+                    }
+                    string field_header_template = sss[0];
+                    // Text and [Field] and [Another_Field]
+                    int i = 0;
+                    while (field_header_template.IndexOf("[", i, StringComparison.Ordinal) >= 0)
+                    {
+                        int i0 = field_header_template.IndexOf("[", i, StringComparison.Ordinal);
+                        int i1 = field_header_template.IndexOf("]", i, StringComparison.Ordinal);
+                        if (i1 < i0)
+                        {
+                            i++;
+                            continue;
+                        }
+                        string field = field_header_template.Substring(i0 + 1, i1 - i0 - 1);
+                        if (_tbl2.Columns.Contains(field))
+                        {
+                            field_header_template = field_header_template.Replace("[" + field + "]",
+                                ObjectAndString.ObjectToString(tbl2_row[field]));
+                        }
+                        i = i1;
+                    }
+
+                    viewText += string.Format("   {0} {1}", field_header_template, ObjectAndString.NumberToString
+                        (tbl2_row[sss[1]], decimal_place, V6Options.M_NUM_POINT, V6Options.M_NUM_SEPARATOR));
+                }
+
+                if (viewText.Length > 3) viewText = viewText.Substring(3);
+                lblSummary.Text = viewText;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ViewFooter", ex);
             }
         }
 

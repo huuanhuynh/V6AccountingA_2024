@@ -74,6 +74,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.gridViewSummary1 = new V6Controls.Controls.GridViewSummary();
             this.btnSuaLine = new V6Controls.Controls.V6FormButton();
             this.btnExport2 = new V6Controls.Controls.DropDownButton();
+            this.lblSummary = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbDieuKienLoc.SuspendLayout();
@@ -267,7 +268,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(662, 336);
+            this.dataGridView1.Size = new System.Drawing.Size(662, 314);
             this.dataGridView1.TabIndex = 13;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
@@ -521,7 +522,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // 
             this.gridViewSummary1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.gridViewSummary1.DataGridView = this.dataGridView1;
-            this.gridViewSummary1.Location = new System.Drawing.Point(307, 400);
+            this.gridViewSummary1.Location = new System.Drawing.Point(307, 378);
             this.gridViewSummary1.Name = "gridViewSummary1";
             this.gridViewSummary1.Size = new System.Drawing.Size(662, 23);
             this.gridViewSummary1.SumCondition = null;
@@ -553,10 +554,23 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnExport2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExport2.UseVisualStyleBackColor = true;
             // 
+            // lblSummary
+            // 
+            this.lblSummary.AccessibleDescription = ".";
+            this.lblSummary.AutoSize = true;
+            this.lblSummary.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSummary.Location = new System.Drawing.Point(307, 404);
+            this.lblSummary.Name = "lblSummary";
+            this.lblSummary.Size = new System.Drawing.Size(126, 15);
+            this.lblSummary.TabIndex = 19;
+            this.lblSummary.Text = "Summary FOOTER";
+            this.lblSummary.Visible = false;
+            // 
             // ReportR44ViewBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblSummary);
             this.Controls.Add(this.btnExport2);
             this.Controls.Add(this.chkHienTatCa);
             this.Controls.Add(this.btnSuaLine);
@@ -634,6 +648,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private System.Windows.Forms.ToolStripMenuItem exportToPdfToolStripMenuItem;
         private System.Windows.Forms.RadioButton rCurrent;
         private DropDownButton btnExport2;
+        private System.Windows.Forms.Label lblSummary;
 
 
 

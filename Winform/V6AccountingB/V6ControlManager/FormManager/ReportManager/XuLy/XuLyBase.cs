@@ -130,7 +130,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             get
             {
-                if (_extraInfor == null || _extraInfor.Count == 0)
+                //if (_extraInfor == null || _extraInfor.Count == 0)
                 {
                     GetExtraInfor();
                 }

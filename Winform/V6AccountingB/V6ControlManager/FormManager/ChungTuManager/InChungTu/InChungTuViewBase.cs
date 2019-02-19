@@ -228,7 +228,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             get
             {
-                if (_extraInfor == null || _extraInfor.Count == 0)
+                //if (_extraInfor == null || _extraInfor.Count == 0)
                 {
                     GetExtraInfor();
                 }

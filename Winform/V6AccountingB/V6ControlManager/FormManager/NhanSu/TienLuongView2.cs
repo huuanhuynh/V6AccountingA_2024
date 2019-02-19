@@ -819,15 +819,22 @@ namespace V6ControlManager.FormManager.NhanSu
         }
         private void btnFind_Click(object sender, EventArgs e)
         {
-            V6TableStruct structTable = V6BusinessHelper.GetTableStruct(CurrentTable.ToString());
-            //var keys = new SortedDictionary<string, object>();
-            string[] fields = _config.GetDefaultLookupFields;
-            _filterForm = new FilterForm(structTable, fields);
-            _filterForm.FilterApplyEvent += FilterFilterApplyEvent;
-            _filterForm.Opacity = 0.9;
-            _filterForm.TopMost = true;
-            //_filterForm.Location = Location;
-            _filterForm.Show();
+            try
+            {
+                V6TableStruct structTable = V6BusinessHelper.GetTableStruct(CurrentTable.ToString());
+                //var keys = new SortedDictionary<string, object>();
+                string[] fields = _config.GetDefaultLookupFields;
+                _filterForm = new FilterForm(structTable, fields);
+                _filterForm.FilterApplyEvent += FilterFilterApplyEvent;
+                _filterForm.Opacity = 0.9;
+                _filterForm.TopMost = true;
+                //_filterForm.Location = Location;
+                _filterForm.Show();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".Find_Click", ex);
+            }
         }
 
         void FilterFilterApplyEvent(string query)

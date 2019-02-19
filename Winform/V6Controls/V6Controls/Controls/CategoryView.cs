@@ -1233,16 +1233,23 @@ namespace V6Controls.Controls
         }
         private void btnFind_Click(object sender, EventArgs e)
         {
-            V6TableStruct structTable = V6BusinessHelper.GetTableStruct(_tableName);
-            //var keys = new SortedDictionary<string, object>();
-            string[] fields =_aldm ? ObjectAndString.SplitString(aldm_config.F_SEARCH) :
-                ObjectAndString.SplitString(V6Setting.IsVietnamese ? v6lookup_config.vFields : v6lookup_config.eFields);
-            _filterForm = new FilterForm(structTable, fields);
-            _filterForm.FilterApplyEvent += FilterFilterApplyEvent;
-            _filterForm.Opacity = 0.9;
-            _filterForm.TopMost = true;
-            //_filterForm.Location = Location;
-            _filterForm.Show(this);
+            try
+            {
+                V6TableStruct structTable = V6BusinessHelper.GetTableStruct(_tableName);
+                //var keys = new SortedDictionary<string, object>();
+                string[] fields = _aldm ? ObjectAndString.SplitString(aldm_config.F_SEARCH) :
+                    ObjectAndString.SplitString(V6Setting.IsVietnamese ? v6lookup_config.vFields : v6lookup_config.eFields);
+                _filterForm = new FilterForm(structTable, fields);
+                _filterForm.FilterApplyEvent += FilterFilterApplyEvent;
+                _filterForm.Opacity = 0.9;
+                _filterForm.TopMost = true;
+                //_filterForm.Location = Location;
+                _filterForm.Show(this);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".Find_Click", ex);
+            }
         }
 
         void FilterFilterApplyEvent(string query)

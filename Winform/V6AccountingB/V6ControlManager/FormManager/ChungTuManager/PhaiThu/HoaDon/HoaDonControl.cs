@@ -4626,11 +4626,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             checkAdd.Start();
         }
         
+
         void checkAdd_Tick(object sender, EventArgs e)
         {
             if (flagAddFinish)
             {
-                ((Timer)sender).Stop();
+                if (_print_flag == V6PrintMode.DoNoThing)
+                {
+                    ((Timer)sender).Stop();
+                }
+                else if (_print_flag_tick_count > 0)
+                {
+                    ((Timer) sender).Stop();
+                    var temp = _print_flag;
+                    _print_flag = V6PrintMode.DoNoThing;
+                    Thread.Sleep(1000);
+                    BasePrint(Invoice, _sttRec_In, temp, TongThanhToan, TongThanhToanNT, true);
+                    SetStatus2Text();
+                    return;
+                }
 
                 if (flagAddSuccess)
                 {
@@ -4661,15 +4675,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     Mode = V6Mode.Add;
                 }
 
-                ((Timer)sender).Dispose();
-                if (_print_flag != V6PrintMode.DoNoThing)
-                {
-                    var temp = _print_flag;
-                    _print_flag = V6PrintMode.DoNoThing;
-                    Thread.Sleep(1000);
-                    BasePrint(Invoice, _sttRec_In, temp, TongThanhToan, TongThanhToanNT, true);
-                    SetStatus2Text();
-                }
+                _print_flag_tick_count++;
+                SetStatus2Text();
             }
         }
 
@@ -5390,6 +5397,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 }
 
                 _print_flag = V6PrintMode.AutoClickPrint;
+                _print_flag_tick_count = 0;
                 _sttRec_In = _sttRec;
                 btnLuu.Focus();
                 if (ValidateData_Master())

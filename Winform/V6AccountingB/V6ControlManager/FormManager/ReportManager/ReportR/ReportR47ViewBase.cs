@@ -245,7 +245,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             get
             {
-                if (_extraInfor == null || _extraInfor.Count == 0)
+                //if (_extraInfor == null || _extraInfor.Count == 0)
                 {
                     GetExtraInfor();
                 }

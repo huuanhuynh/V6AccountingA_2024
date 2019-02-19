@@ -78,7 +78,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         {
             get
             {
-                if (_extraInfor == null || _extraInfor.Count == 0)
+                //if (_extraInfor == null || _extraInfor.Count == 0)
                 {
                     GetExtraInfor();
                 }

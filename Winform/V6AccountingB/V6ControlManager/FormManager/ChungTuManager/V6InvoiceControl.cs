@@ -1820,6 +1820,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// </summary>
         public string _sttRec_In = "";
         public V6PrintMode _print_flag = V6PrintMode.DoNoThing;
+        public int _print_flag_tick_count = 0;
         public void BasePrint(V6InvoiceBase Invoice, string sttRec_In, V6PrintMode printMode,
             decimal tongThanhToan_Value, decimal tongThanhToanNT_Value, bool closeAfterPrint, int sec = 3)
         {

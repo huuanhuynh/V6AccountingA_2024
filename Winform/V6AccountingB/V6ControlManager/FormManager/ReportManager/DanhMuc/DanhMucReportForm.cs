@@ -103,7 +103,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         {
             get
             {
-                if (_extraInfor == null || _extraInfor.Count == 0)
+                //if (_extraInfor == null || _extraInfor.Count == 0)
                 {
                     GetExtraInfor();
                 }
