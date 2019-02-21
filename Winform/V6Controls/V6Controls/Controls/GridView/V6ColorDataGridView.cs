@@ -113,6 +113,10 @@ namespace V6Controls
             EditingCell = CurrentCell;
             EditingRow = CurrentCell.OwningRow;
             EditingColumn = CurrentCell.OwningColumn;
+            //for (int i = 0; i < RowCount; i++)
+            //{
+            //    _old_values[i] = Rows[i].Cells[EditingColumn.DataPropertyName].Value;
+            //}
         }
 
         
@@ -123,11 +127,13 @@ namespace V6Controls
                 for (int i = 0; i < RowCount; i++)
                 {
                     ApCongThuc(i, e.ColumnIndex);
+                    ApValid(i, e.ColumnIndex);
                 }
             }
             else
             {
                 ApCongThuc(e.RowIndex, e.ColumnIndex);
+                ApValid(e.RowIndex, e.ColumnIndex);
             }
         }
 
@@ -137,11 +143,17 @@ namespace V6Controls
         [DefaultValue(false)]
         public bool CongThuc_CellEndEdit_ApplyAllRow { get; set; }
         private readonly Dictionary<string, string> CongThuc = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> CongThuc_Valid = new Dictionary<string, string>();
         /// <summary>
         /// Gán công thức tính toán, ghi đè nếu đã có.
         /// </summary>
         /// <param name="FIELD">Trường gây sự kiện khi CellEndEdit.</param>
-        /// <param name="congThuc">Danh sách công thức tính toán, cách nhau bằng dấu ;</param>
+        /// <param name="congThuc">
+        /// <para>Danh sách công thức tính toán, cách nhau bằng dấu ;</para>
+        /// <para>Dạng công thức: Field=Bieu_thuc</para>
+        /// <para>Trong đó biểu thức là các phép toán +-*/!^Round(,)Int()[Sqrt()]</para>
+        /// <para>Các giá trị là số đơn thuần hoặc tên các trường.</para>
+        /// <para>Các biến số được đặt trong ngoặc vuông.</para></param>
         public void GanCongThuc(string FIELD, string congThuc)
         {
             CongThuc[FIELD.ToUpper()] = congThuc;
@@ -153,7 +165,9 @@ namespace V6Controls
         /// <param name="congThuc">
         /// <para>Danh sách công thức tính toán, cách nhau bằng dấu ;</para>
         /// <para>Dạng công thức: Field=Bieu_thuc</para>
-        /// <para>Trong đó biểu thức là các phép toán +-*/!^Round(,)Int()[Sqrt()]</para></param>
+        /// <para>Trong đó biểu thức là các phép toán +-*/!^Round(,)Int()[Sqrt()]</para>
+        /// <para>Các giá trị là số đơn thuần hoặc tên các trường.</para>
+        /// <para>Các biến số được đặt trong ngoặc vuông.</para></param>
         public void ThemCongThuc(string FIELD, string congThuc)
         {
             FIELD = FIELD.ToUpper();
@@ -170,6 +184,16 @@ namespace V6Controls
         public void ApCongThuc(int rowIndex, int columnIndex)
         {
             ApCongThuc(Rows[rowIndex], Columns[columnIndex].Name);
+        }
+
+        public void ApValid(int rowIndex, int columnIndex)
+        {
+            ApValid(Rows[rowIndex], Columns[columnIndex].Name);
+        }
+
+        public void ApValid(int rowIndex, string COLUMN_NAME)
+        {
+            ApValid(Rows[rowIndex], COLUMN_NAME);
         }
 
         public void ApCongThuc(int rowIndex, string COLUMN_NAME)
@@ -203,6 +227,44 @@ namespace V6Controls
                             this.WriteExLog(GetType() + ".ApCongThuc Lỗi công thức: " + cong_thuc, ex);
                         }
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ApCongThuc", ex);
+            }
+            APCONGTHUC_VARS.Clear();
+        }
+
+        //private Dictionary<int,object> _old_values = null;
+        private void ApValid(DataGridViewRow row, string COLUMN_NAME)
+        {
+            try
+            {
+                APCONGTHUC_VARS = new SortedDictionary<string, decimal>();
+                COLUMN_NAME = COLUMN_NAME.ToUpper();
+                if (CongThuc_Valid.ContainsKey(COLUMN_NAME))
+                {
+                    string chuoi_cac_cong_thuc = CongThuc_Valid[COLUMN_NAME] ?? "";
+                    var value = GiaTriBieuThuc(chuoi_cac_cong_thuc, row);
+                    if (value < 0)
+                    {
+                        row.Cells[COLUMN_NAME].Value = row.Cells[COLUMN_NAME_VALID].Value;
+                        ApCongThuc(row, COLUMN_NAME);
+                    }
+                    //string[] list_congThuc = chuoi_cac_cong_thuc.Split(new[] { ';' },
+                    //    StringSplitOptions.RemoveEmptyEntries);
+                    //foreach (string cong_thuc in list_congThuc)
+                    //{
+                    //    try
+                    //    {
+                    //        XuLyCongThucTinhToan(cong_thuc, row);
+                    //    }
+                    //    catch (Exception ex)
+                    //    {
+                    //        this.WriteExLog(GetType() + ".ApCongThuc Lỗi công thức: " + cong_thuc, ex);
+                    //    }
+                    //}
                 }
             }
             catch (Exception ex)
@@ -665,22 +727,6 @@ namespace V6Controls
             }
         }
 
-        public void EnableEdit(params string[] columns)
-        {
-            ReadOnly = false;
-            foreach (DataGridViewColumn column in Columns)
-            {
-                column.ReadOnly = true;
-            }
-
-            foreach (string column in columns)
-            {
-                if(string.IsNullOrEmpty(column)) continue;
-                var g_column = Columns[column];
-                if (g_column != null) g_column.ReadOnly = false;
-            }
-        }
-
         private void V6ColorDataGridView_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
         {
             
@@ -1032,7 +1078,15 @@ namespace V6Controls
                 else if (CurrentCell != null && e.KeyData == (Keys.Control | Keys.C))
                 {
                     e.Handled = true;
-                    Clipboard.SetText((ObjectAndString.ObjectToString(CurrentCell.Value)+"").TrimEnd());
+                    string text = ObjectAndString.ObjectToString(CurrentCell.Value).TrimEnd();
+                    if (string.IsNullOrEmpty(text))
+                    {
+                        Clipboard.Clear();
+                    }
+                    else
+                    {
+                        Clipboard.SetText(text);
+                    }
                 }
                 else if (e.KeyData == (Keys.Control | Keys.F))
                 {
@@ -1377,6 +1431,18 @@ namespace V6Controls
                     c.ReadOnly = false;
                 }
             }
+        }
+
+        public void SetEditColumnParams(params string[] columns)
+        {
+            SetEditColumn(columns);
+        }
+
+        private string COLUMN_NAME_VALID = null;
+        public void SetValid(string field, string field_valid, string congThuc)
+        {
+            COLUMN_NAME_VALID = field_valid;
+            CongThuc_Valid[field.ToUpper()] = congThuc;
         }
 
         ///// <summary>

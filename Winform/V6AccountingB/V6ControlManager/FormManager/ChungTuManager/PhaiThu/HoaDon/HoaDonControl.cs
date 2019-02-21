@@ -6593,7 +6593,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             DataRow data_row = lodate_data.Rows[i];
                             decimal row = ObjectAndString.ObjectToDecimal(data_row["TON_DAU"]);
                             decimal insert = (total - sum) < row ? (total - sum) : row;
-                            newData["MA_KHO"] = data_row["MA_KHO"];
+                            newData["MA_KHO_I"] = data_row["MA_KHO"];
                             newData["MA_LO"] = data_row["MA_LO"];
                             newData["HSD"] = data_row["HSD"];
                             newData["DVT"] = data_row["DVT"];
@@ -6601,6 +6601,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             newData["HE_SO"] = heso;
                             newData["SO_LUONG"] = insert;
                             newData["SO_LUONG1"] = insert/heso;
+                            decimal gia2 = ObjectAndString.ObjectToDecimal(data["GIA2"]);
+                            decimal tien_nt2 = V6BusinessHelper.Vround(insert * gia2, M_ROUND_NT);
+                            newData["TIEN_NT2"] = tien_nt2;
+                            newData["TIEN2"] = V6BusinessHelper.Vround(tien_nt2 * txtTyGia.Value, M_ROUND);
+                            if (_maNt == _mMaNt0)
+                            {
+                                newData["TIEN2"] = tien_nt2;
+                            }
+                            if (M_SOA_MULTI_VAT == "1")
+                            {
+                                decimal thue_suat = ObjectAndString.ObjectToDecimal(data["THUE_SUAT_I"]);
+                                decimal thue_nt =V6BusinessHelper.Vround(thue_suat*tien_nt2, M_ROUND_NT);
+                                newData["THUE_NT"] = thue_nt;
+                                newData["THUE"] = V6BusinessHelper.Vround(thue_nt * txtTyGia.Value, M_ROUND);
+                                if (_maNt == _mMaNt0)
+                                {
+                                    newData["THUE"] = thue_nt;
+                                }
+                            }
                             var HS_QD1 = ObjectAndString.ObjectToDecimal(temp_vt.Data["HS_QD1"]);
                             if (HS_QD1 != 0 && M_CAL_SL_QD_ALL == "1")
                             {

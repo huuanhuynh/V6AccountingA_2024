@@ -211,7 +211,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         public override void FormatGridViewExtern()
         {
             dataGridView1.SelectionMode = DataGridViewSelectionMode.CellSelect;
-            dataGridView1.EnableEdit(("SO_CT01,SO_CT02,SO_CT03,SO_CT04,SO_CT05,SO_CT06," +
+            dataGridView1.SetEditColumn(("SO_CT01,SO_CT02,SO_CT03,SO_CT04,SO_CT05,SO_CT06," +
                                      "SO_CT07,SO_CT08,SO_CT09,SO_CT10,SO_CT11,SO_CT12").Split(','));
             V6TableStruct table_struct = V6BusinessHelper.GetTableStruct("ALKC");
             dataGridView1.FormatEditTextBox(table_struct, "UPPER");
