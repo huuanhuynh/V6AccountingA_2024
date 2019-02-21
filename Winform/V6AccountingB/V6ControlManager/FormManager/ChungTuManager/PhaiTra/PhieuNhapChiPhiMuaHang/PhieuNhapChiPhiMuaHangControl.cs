@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -857,8 +857,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             }
             else if (keyData == Keys.F8)
             {
-                if (detail1.MODE == V6Mode.View && detail1.btnXoa.Enabled && detail1.btnXoa.Visible)
-                    detail1.btnXoa.PerformClick();
+                if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+                {
+                    detail1.OnXoaClick();
+                }
+                //if (detail1.MODE == V6Mode.View && detail1.btnXoa.Enabled && detail1.btnXoa.Visible)
+                //    detail1.btnXoa.PerformClick();
             }
             else
             {
@@ -4197,17 +4201,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
         private void btnChonPN_Click(object sender, EventArgs e)
         {
-            XuLyChonPhieuNhap(false);
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            XuLyChonPhieuNhap(false, shift);
         }
         private void btnChonPN2_Click(object sender, EventArgs e)
         {
-            XuLyChonPhieuNhap(true);
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            XuLyChonPhieuNhap(true, shift);
         }
 
-        private void XuLyChonPhieuNhap(bool multiselect)
+        private void XuLyChonPhieuNhap(bool multiselect, bool add)
         {
             try
             {
+                chon_accept_flag_add = add;
                 CPN_PhieuNhapChiPhiMuaHangForm chon = new CPN_PhieuNhapChiPhiMuaHangForm(this, multiselect);
                 _chon_px = "PN";
                 chon.AcceptSelectEvent += chonpx_AcceptSelectEvent;
@@ -4219,14 +4226,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             }
         }
 
-        private bool co_chon_phieu_nhap;//!!!!! chwa su dung???
+        private bool co_chon_phieu_nhap = false;
         private string _chon_px = "";
         void chonpx_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList,
             bool multiSelect, IDictionary<string, object> amData)
         {
             try
             {
-                AD.Rows.Clear();
+                bool flag_add = chon_accept_flag_add;
+                chon_accept_flag_add = false;
+                detail1.MODE = V6Mode.View;
+
+                if (flag_add)
+                {
+                    DoNothing();
+                }
+                else
+                {
+                    AD.Rows.Clear();
+                }
 
                 if (!multiSelect)
                 {
@@ -4234,8 +4252,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     dateNgayPN.Value = ObjectAndString.ObjectToDate(amData["NGAY_CT"]);
                 }
 
-                detail1.MODE = V6Mode.View;
-                AD.Rows.Clear();
                 int addCount = 0, failCount = 0;
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {

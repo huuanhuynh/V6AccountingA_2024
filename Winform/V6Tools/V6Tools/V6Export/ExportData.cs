@@ -220,6 +220,16 @@ namespace V6Tools.V6Export
             }
             #endregion tô đường kẻ
             
+            // Biến vị trí ô
+            //int x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+            //for (int x = 0; x < firstRow; x++)
+            //{
+            //    x2 += workBook.getRowHeight(x);
+            //}
+            //for (int z = 0; z < firstColumn; z++)
+            //{
+            //    y2 += workBook.getColWidth(z);
+            //}
             // ImportData by DataType
             // Column by column
             // Duyệt qua từng cột một
@@ -228,8 +238,13 @@ namespace V6Tools.V6Export
             {
                 #region === Chèn dữ liệu cho cột i ===
                 var column = use_arr_cols ? arrColumns[i] : data.Columns[i];
+                int excelCurrentColumnIndex = firstColumn + i;
+                //int excelCurrentColumnWidth = workBook.getColWidth(excelCurrentColumnIndex);
+                //y1 = y2;
+                //y2 += excelCurrentColumnWidth;
                 var type = column.DataType;
                 var field = column.ColumnName;
+                
 
                 if (type == typeof(DateTime))
                 {
@@ -255,6 +270,28 @@ namespace V6Tools.V6Export
                     //Ap lai format dd/MM/yyyy
                     rs.CustomFormat = "dd/MM/yyyy";
                     workBook.setRangeStyle(rs, firstRow, firstColumn + i, firstRow + numOfRows, firstColumn + i);
+                }
+                else if (type == typeof(byte[])) // image type
+                {
+                    for (int j = 0; j < numOfRows; j++)
+                    {
+                        int excelCurrentRowIndex = firstRow + j;
+                        //int excelCurrentRowHeight = workBook.getRowHeight(excelCurrentRowIndex);
+                        //x1 = x2;
+                        //x2 += excelCurrentRowHeight;
+
+                        if (data.Rows[j][field] == DBNull.Value) continue;
+                        try
+                        {
+                            var picture = (byte[])data.Rows[j][field];
+                            workBook.addPicture(excelCurrentColumnIndex, excelCurrentRowIndex,
+                                excelCurrentColumnIndex + 1, excelCurrentRowIndex + 1, picture);
+                        }
+                        catch// (Exception ex)
+                        {
+                            //
+                        }
+                    }
                 }
                 else if (type == typeof(decimal) || type == typeof(float) || type == typeof(double)
                     || type == typeof(int) || type == typeof(long) || type == typeof(short)
@@ -1612,7 +1649,7 @@ namespace V6Tools.V6Export
                     workbook.Sheet = 0;
                     SetParametersSheetAddress(workbook, addressData);
                 }
-
+                
                 workbook.write(saveAsFile);
             }
             catch (Exception ex)

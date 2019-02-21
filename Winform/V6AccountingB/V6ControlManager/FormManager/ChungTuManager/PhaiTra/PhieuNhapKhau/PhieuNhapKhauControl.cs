@@ -6290,11 +6290,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {
                     var newData = new SortedDictionary<string, object>(data);
+                    string ma_vt = newData["MA_VT"].ToString().Trim();
+                    V6VvarTextBox temp_vt = new V6VvarTextBox()
+                    {
+                        VVar = "MA_VT",
+                    };
+                    temp_vt.Text = ma_vt;
+                    temp_vt.RefreshLoDateYnValue();
+
                     if (newData.ContainsKey("SO_LUONG"))
                     {
                         decimal insert = ObjectAndString.ObjectToDecimal(newData["SO_LUONG"]);
                         decimal heso = 1;
-                        string ma_vt = newData["MA_VT"].ToString().Trim();
                         string dvt1 = newData["DVT1"].ToString().Trim();
                         SqlParameter[] plist =
                             {
@@ -6309,6 +6316,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         }
                         if (heso == 0) heso = 1;
                         newData["SO_LUONG1"] = insert / heso;
+                        var HS_QD1 = ObjectAndString.ObjectToDecimal(temp_vt.Data["HS_QD1"]);
+                        if (HS_QD1 != 0 && M_CAL_SL_QD_ALL == "1")
+                        {
+                            newData["SL_QD"] = insert / HS_QD1;
+                        }
                     }
 
                     if (XuLyThemDetail(newData)) addCount++;

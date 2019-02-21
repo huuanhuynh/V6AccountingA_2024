@@ -6601,6 +6601,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             newData["HE_SO"] = heso;
                             newData["SO_LUONG"] = insert;
                             newData["SO_LUONG1"] = insert/heso;
+                            var HS_QD1 = ObjectAndString.ObjectToDecimal(temp_vt.Data["HS_QD1"]);
+                            if (HS_QD1 != 0 && M_CAL_SL_QD_ALL == "1")
+                            {
+                                newData["SL_QD"] = insert / HS_QD1;
+                            }
                             
                             if (XuLyThemDetail(newData)) addCount++;
                             else failCount++;
@@ -6632,6 +6637,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             }
                             if (heso == 0) heso = 1;
                             newData["SO_LUONG1"] = insert/heso;
+                            var HS_QD1 = ObjectAndString.ObjectToDecimal(temp_vt.Data["HS_QD1"]);
+                            if (HS_QD1 != 0 && M_CAL_SL_QD_ALL == "1")
+                            {
+                                newData["SL_QD"] = insert / HS_QD1;
+                            }
                         }
                         if (XuLyThemDetail(newData)) addCount++;
                         else failCount++;

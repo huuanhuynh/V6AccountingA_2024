@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using V6ControlManager.FormManager.SoDuManager.Add_Edit;
+using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6Structs;
@@ -69,14 +70,28 @@ namespace V6ControlManager.FormManager.SoDuManager
 
         protected virtual void OnInsertSuccessEvent(SoDuAddEditControlVirtual sender, IDictionary<string, object> datadic)
         {
-            var handler = InsertSuccessEvent;
-            if (handler != null) handler(sender, datadic);
+            try
+            {
+                var handler = InsertSuccessEvent;
+                if (handler != null) handler(sender, datadic);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".OnInsertSuccessEvent", ex);
+            }
         }
 
         protected virtual void OnUpdateSuccessEvent(SoDuAddEditControlVirtual sender, IDictionary<string, object> datadic)
         {
-            var handler = UpdateSuccessEvent;
-            if (handler != null) handler(sender, datadic);
+            try
+            {
+                var handler = UpdateSuccessEvent;
+                if (handler != null) handler(sender, datadic);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".OnUpdateSuccessEvent", ex);
+            }
         }
 
         private void btnInfos_Click(object sender, EventArgs e)

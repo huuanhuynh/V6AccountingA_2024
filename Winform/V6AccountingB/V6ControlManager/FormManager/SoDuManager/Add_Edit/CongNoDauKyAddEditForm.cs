@@ -25,7 +25,13 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         public override void DoBeforeEdit()
         {
-
+            if (V6Setting.M_Ngay_ky1.Day == 1 && V6Setting.M_Ngay_ky1.Month == 1)
+            {
+                TxtDu_no1.Enabled = false;
+                TxtDu_co1.Enabled = false;
+                TxtDu_co_nt1.Enabled = false;
+                TxtDu_no_nt1.Enabled = false;
+            }
         }
 
         public override void ValidateData()
@@ -78,6 +84,17 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
                     }
                 }
+            }
+        }
+
+        private void CapNhapDuDauNam()
+        {
+            if (V6Setting.M_Ngay_ky1.Day == 1 && V6Setting.M_Ngay_ky1.Month == 1)
+            {
+                TxtDu_no1.Value = TxtDu_no00.Value;
+                TxtDu_co1.Value = TxtDu_co00.Value;
+                TxtDu_co_nt1.Value = TxtDu_co_nt00.Value;
+                TxtDu_no_nt1.Value = TxtDu_no_nt00.Value;
             }
         }
 
@@ -154,7 +171,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 TxtDu_co00.Value = 0;
             }
-
+            CapNhapDuDauNam();
         }
         private void TxtDu_co00_V6LostFocus(object sender)
         {
@@ -162,7 +179,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 TxtDu_no00.Value = 0;
             }
-
+            CapNhapDuDauNam();
         }
 
         private void TxtDu_no_nt00_V6LostFocus(object sender)
@@ -171,7 +188,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 TxtDu_co_nt00.Value = 0;
             }
-
+            CapNhapDuDauNam();
         }
         private void TxtDu_co_nt00_V6LostFocus(object sender)
         {
@@ -179,7 +196,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 TxtDu_no_nt00.Value = 0;
             }
-
+            CapNhapDuDauNam();
         }
 
     }
