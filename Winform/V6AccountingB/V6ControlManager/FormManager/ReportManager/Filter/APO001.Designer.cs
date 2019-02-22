@@ -105,7 +105,7 @@
             this.groupBoxNhom.Size = new System.Drawing.Size(301, 112);
             this.groupBoxNhom.TabIndex = 25;
             this.groupBoxNhom.TabStop = false;
-            this.groupBoxNhom.Text = "Thứ tự sắp xếp theo nhóm vật tư - khách hàng";
+            this.groupBoxNhom.Text = "Thứ tự sắp xếp theo nhóm khách hàng - vật tư";
             // 
             // NH_KH1
             // 

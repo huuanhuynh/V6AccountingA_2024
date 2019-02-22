@@ -47,6 +47,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang
                 }
 
                 V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, grd_show, grd_format, grd_header);
+                
                 if (!string.IsNullOrEmpty(config.FIELD))
                 {
                     var field_valid = ObjectAndString.SplitString(config.FIELD);

@@ -195,7 +195,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             var data = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='"+String1+"' or ma_td1='0' or ma_td1='') order by date0,time0").Data;
             IDictionary<string, object> defaultData = new Dictionary<string, object>();
             defaultData.Add("LOAI", "AAPPR_SOA2");
-            V6ControlFormHelper.ShowDataEditorForm(this, data, tableName, null, keys, true, true, true, true, defaultData);
+            V6ControlFormHelper.ShowDataEditorForm(this, data, tableName, null, keys, false, false, true, true, defaultData);
         }
 
         private void cboSendType_SelectedIndexChanged(object sender, System.EventArgs e)

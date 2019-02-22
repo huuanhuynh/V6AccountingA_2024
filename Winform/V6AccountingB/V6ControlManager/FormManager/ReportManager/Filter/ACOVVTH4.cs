@@ -206,7 +206,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             string keys = "FIELD_NAME";
             var data = V6BusinessHelper.SelectTable(tableName);
 
-            V6ControlFormHelper.ShowDataEditorForm(this, data, tableName, null, keys, true, true);
+            V6ControlFormHelper.ShowDataEditorForm(this, data, tableName, null, keys, false, false);
         }
     }
 }

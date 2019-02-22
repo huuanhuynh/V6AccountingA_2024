@@ -1595,7 +1595,7 @@ namespace V6AccountingBusiness
         /// <param name="sttRec"></param>
         /// <param name="ngayct"></param>
         /// <returns></returns>
-        public static DataTable GetLoDate(string mavt, string sttRec, DateTime ngayct)
+        public static DataTable GetLoDatePriority(string mavt, string sttRec, DateTime ngayct)
         {
             mavt = mavt.Replace("'", "''");
             SqlParameter[] plist = new[]
@@ -1606,7 +1606,7 @@ namespace V6AccountingBusiness
                 new SqlParameter("@cStt_rec", sttRec),
                 new SqlParameter("@dBg", ngayct.Date)
             };
-            return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_EdItems_DATE_STT_REC", plist).Tables[0];
+            return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_EdItems_DATE_STT_REC_Priority", plist).Tables[0];
         }
 
         public static DataTable GetLoDate(string mavt, string makho, string sttRec, DateTime ngayct)

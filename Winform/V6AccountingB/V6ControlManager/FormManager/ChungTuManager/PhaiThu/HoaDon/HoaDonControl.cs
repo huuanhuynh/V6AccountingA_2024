@@ -6585,7 +6585,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         }
                         if (heso == 0) heso = 1;
                         decimal sum = 0;
-                        var lodate_data = V6BusinessHelper.GetLoDate(ma_vt, _sttRec, dateNgayCT.Date);
+                        var lodate_data = V6BusinessHelper.GetLoDatePriority(ma_vt, _sttRec, dateNgayCT.Date);
                         // Get Data
                         
                         for (int i = lodate_data.Rows.Count - 1; i >= 0; i--)
