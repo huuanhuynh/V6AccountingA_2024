@@ -60,18 +60,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 this.ShowErrorMessage(ex.Message);
             }
         }
-
-        
         
         private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
         {
             //SetStatus2Text();
         }
-
         
         public void btnNhan_Click(object sender, EventArgs e)
         {
-            
             try
             {
                 //@nam int,
@@ -87,7 +83,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var dateString = serverDateTime.ToString("yyyyMMdd");
                 var timeString = serverDateTime.ToString("HH:mm:ss");
 
-
                 SqlParameter[] plist =
                     {
                         new SqlParameter("@nam",txtnam.Value ),
@@ -98,7 +93,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         new SqlParameter("@user_id", V6Login.UserId),
                         new SqlParameter("@date2",dateString),
                         new SqlParameter("@time2",timeString)
-                        
                     };
               
                 var result = V6BusinessHelper.ExecuteProcedureNoneQuery("AFASUAKH_F3", plist);

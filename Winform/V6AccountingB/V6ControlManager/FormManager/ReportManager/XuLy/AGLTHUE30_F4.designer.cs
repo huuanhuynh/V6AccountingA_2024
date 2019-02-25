@@ -30,12 +30,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.exportToExcel = new System.Windows.Forms.ToolStripMenuItem();
-            this.printGrid = new System.Windows.Forms.ToolStripMenuItem();
-            this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
-            this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.lbTxtT_CL_NT = new V6Controls.V6Label();
             this.lbTxtT_tt_qd = new V6Controls.V6Label();
             this.txtso_luong = new V6Controls.NumberTien();
@@ -87,32 +81,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.v6Label12 = new V6Controls.V6Label();
             this.txttk_thue_no = new V6Controls.V6VvarTextBox();
             this.txttk_du = new V6Controls.V6VvarTextBox();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exportToExcel,
-            this.printGrid});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(154, 48);
-            // 
-            // exportToExcel
-            // 
-            this.exportToExcel.Name = "exportToExcel";
-            this.exportToExcel.Size = new System.Drawing.Size(153, 22);
-            this.exportToExcel.Text = "Export To Excel";
-            // 
-            // printGrid
-            // 
-            this.printGrid.Name = "printGrid";
-            this.printGrid.Size = new System.Drawing.Size(153, 22);
-            this.printGrid.Text = "Print Grid";
-            // 
-            // timerViewReport
-            // 
-            this.timerViewReport.Interval = 333;
             // 
             // lbTxtT_CL_NT
             // 
@@ -914,7 +883,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.Controls.Add(this.btnNhan);
             this.Name = "AGLTHUE30_F4";
             this.Size = new System.Drawing.Size(637, 466);
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -922,11 +890,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         #endregion
 
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem exportToExcel;
-        private System.Windows.Forms.ToolStripMenuItem printGrid;
-        private System.Drawing.Printing.PrintDocument MyPrintDocument;
-        private System.Windows.Forms.Timer timerViewReport;
         private V6Controls.V6Label lbTxtT_CL_NT;
         private V6Controls.V6Label lbTxtT_tt_qd;
         private V6Controls.NumberTien txtso_luong;

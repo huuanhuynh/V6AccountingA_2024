@@ -204,12 +204,12 @@ namespace V6Controls
         /// <summary>
         /// Biến lưu trữ các biến trong nhóm công thức.
         /// </summary>
-        private SortedDictionary<string, decimal> APCONGTHUC_VARS = new SortedDictionary<string, decimal>(); 
+        private SortedDictionary<string, decimal> CONGTHUC_VARS = new SortedDictionary<string, decimal>(); 
         private void ApCongThuc(DataGridViewRow row, string COLUMN_NAME)
         {
             try
             {
-                APCONGTHUC_VARS = new SortedDictionary<string, decimal>();
+                CONGTHUC_VARS = new SortedDictionary<string, decimal>();
                 COLUMN_NAME = COLUMN_NAME.ToUpper();
                 if (CongThuc.ContainsKey(COLUMN_NAME))
                 {
@@ -233,7 +233,7 @@ namespace V6Controls
             {
                 this.WriteExLog(GetType() + ".ApCongThuc", ex);
             }
-            APCONGTHUC_VARS.Clear();
+            CONGTHUC_VARS.Clear();
         }
 
         //private Dictionary<int,object> _old_values = null;
@@ -241,7 +241,7 @@ namespace V6Controls
         {
             try
             {
-                APCONGTHUC_VARS = new SortedDictionary<string, decimal>();
+                CONGTHUC_VARS = new SortedDictionary<string, decimal>();
                 COLUMN_NAME = COLUMN_NAME.ToUpper();
                 if (CongThuc_Valid.ContainsKey(COLUMN_NAME))
                 {
@@ -271,7 +271,7 @@ namespace V6Controls
             {
                 this.WriteExLog(GetType() + ".ApCongThuc", ex);
             }
-            APCONGTHUC_VARS.Clear();
+            CONGTHUC_VARS.Clear();
         }
 
         //private List<string> updateFieldList = new List<string>();
@@ -287,7 +287,7 @@ namespace V6Controls
                 if (Columns.Contains(field))
                     cRow.Cells[field].Value = GiaTriBieuThuc(bieu_thuc, cRow);
                 else
-                    APCONGTHUC_VARS[field.ToUpper()] = GiaTriBieuThuc(bieu_thuc, cRow);
+                    CONGTHUC_VARS[field.ToUpper()] = GiaTriBieuThuc(bieu_thuc, cRow);
                 
             }
         }
@@ -490,6 +490,31 @@ namespace V6Controls
             }
             #endregion === ROUND(x,a) ===
 
+            #region === MOD(x,Y) ===
+            foi = bieu_thuc.LastIndexOf("MOD(", StringComparison.Ordinal);
+            if (foi >= 0)
+            {
+                var iopen = foi + 3;
+                var iclose = FindCloseBrackets(bieu_thuc, iopen);
+                // a mod(b1,b2) c
+                string a = "", before = "", b = "", after = "", c = "";
+                a = bieu_thuc.Substring(0, foi);
+                if (a.Length > 0 && NoMultiplicationBefore.IndexOf(bieu_thuc[foi - 1], 0) < 0) before = "*";
+                b = bieu_thuc.Substring(iopen + 1, iclose - iopen - 1);
+                if (iclose + 1 < bieu_thuc.Length) c = bieu_thuc.Substring(iclose + 1);
+                if (c.Length > 0 && NoMultiplicationAfter.IndexOf(bieu_thuc[iclose + 1], 0) < 0) after = "*";
+
+                var phayindex = b.LastIndexOf(',');
+                var b1 = b.Substring(0, phayindex);
+                var b2 = b.Substring(phayindex + 1);
+
+                return GiaTriBieuThuc(
+                    a + before
+                    + (GiaTriBieuThuc(b1, DATA) % (int)GiaTriBieuThuc(b2, DATA)).ToString(CultureInfo.InvariantCulture)
+                    + after + c, DATA);
+            }
+            #endregion === MOD(x,a) ===
+
             #region === () xử lý phép toán trong ngoặc trong cùng trước. ===
             if (bieu_thuc.IndexOf('(', 0) >= 0 || bieu_thuc.IndexOf(')', 0) >= 0)
             {
@@ -516,7 +541,7 @@ namespace V6Controls
             }
             #endregion === () ===
 
-            // có phép cộng trong biểu thức
+            #region === + ===
             if (bieu_thuc.IndexOf('+') > 0 &&
                 (bieu_thuc.Split('+').Length - 1) >
                 (bieu_thuc.Split(new[] { "*+" }, StringSplitOptions.None).Length +
@@ -537,8 +562,9 @@ namespace V6Controls
                 var values2 = bieu_thuc.Substring(sp + 1);
                 return GiaTriBieuThuc(values1, DATA) + GiaTriBieuThuc(values2, DATA);
             }
+            #endregion === + ===
 
-            // làm cho hết phép cộng rồi tới phép trừ    ////////////////////////// xử lý số âm hơi vất vả.
+            #region === - === làm cho hết phép cộng rồi tới phép trừ    ////////////////////////// xử lý số âm hơi vất vả.
             if (bieu_thuc.IndexOf('-') > 0 &&
                 (bieu_thuc.Split('-').Length - 1) >
                 (bieu_thuc.Split(new[] { "*-" }, StringSplitOptions.None).Length +
@@ -559,11 +585,11 @@ namespace V6Controls
                 var values2 = bieu_thuc.Substring(sp + 1);
                 return GiaTriBieuThuc(values1, DATA) - GiaTriBieuThuc(values2, DATA);
             }
+            #endregion === - ===
 
-            //phép nhân
+            #region === * ===//phép nhân
             if (bieu_thuc.IndexOf('*', 0) >= 0)
             {
-
                 var values = bieu_thuc.Split('*');
                 decimal sum = 1;
                 for (var i = 0; i < values.Length; i++)
@@ -571,14 +597,10 @@ namespace V6Controls
                     sum *= GiaTriBieuThuc(values[i], DATA);
                 }
                 return sum;
-
-                //Phép Round (Round012.345)
-
-                //        var sp = bieu_thuc.LastIndexOf('*') > bieu_thuc.LastIndexOf("*-") ? bieu_thuc.LastIndexOf('*') : bieu_thuc.LastIndexOf("*-");
-                //        var values1 = bieu_thuc.Substring(0, sp);
-                //        var values2 = bieu_thuc.Substring(sp + 1);
-                //        return GiaTriBieuThuc(values1) * GiaTriBieuThuc(values2);
             }
+            #endregion === * ===
+
+            #region === / ===  Chia
             if (bieu_thuc.IndexOf('/', 0) >= 0)
             {
 
@@ -590,6 +612,22 @@ namespace V6Controls
                 var values2 = bieu_thuc.Substring(sp + 1);
                 return GiaTriBieuThuc(values1, DATA) / GiaTriBieuThuc(values2, DATA);
             }
+            #endregion === / ===
+
+            #region === % ===   MOD(x,y) chia lấy dư
+            if (bieu_thuc.IndexOf('%', 0) >= 0)
+            {
+
+                var sp = bieu_thuc.LastIndexOf('%') > bieu_thuc.LastIndexOf("%-", StringComparison.InvariantCulture)
+                    ? bieu_thuc.LastIndexOf('%')
+                    : bieu_thuc.LastIndexOf("%-", StringComparison.InvariantCulture);
+
+                var values1 = bieu_thuc.Substring(0, sp);
+                var values2 = bieu_thuc.Substring(sp + 1);
+                return GiaTriBieuThuc(values1, DATA) % GiaTriBieuThuc(values2, DATA);
+            }
+            #endregion === % ===
+
             if (bieu_thuc.IndexOf('^', 0) >= 0)
             {
                 var sp = bieu_thuc.LastIndexOf('^') < bieu_thuc.LastIndexOf("^-", StringComparison.InvariantCulture)
@@ -618,13 +656,13 @@ namespace V6Controls
                 {
                     return ObjectAndString.ObjectToDecimal(DATA.Cells[bieu_thuc].Value);
                 }
-                else if (APCONGTHUC_VARS.ContainsKey(bieu_thuc.ToUpper()))
+                else if (CONGTHUC_VARS.ContainsKey(bieu_thuc.ToUpper()))
                 {
-                    return APCONGTHUC_VARS[bieu_thuc.ToUpper()];
+                    return CONGTHUC_VARS[bieu_thuc.ToUpper()];
                 }
-                else if (bieu_thuc.StartsWith("{") && bieu_thuc.EndsWith("}") && APCONGTHUC_VARS.ContainsKey(bieu_thuc))
+                else if (bieu_thuc.StartsWith("{") && bieu_thuc.EndsWith("}") && CONGTHUC_VARS.ContainsKey(bieu_thuc))
                 {
-                    return APCONGTHUC_VARS[bieu_thuc];
+                    return CONGTHUC_VARS[bieu_thuc];
                 }
                 else if (bieu_thuc.StartsWith("M_ROUND"))
                 {
@@ -1566,11 +1604,18 @@ namespace V6Controls
             }
         }
 
+        /// <summary>
+        /// Cho phép sửa trên những cột truyền vào.
+        /// </summary>
+        /// <param name="columns">Nhiều cột trong 1 mảng hoặc trong các biến khác nhau.</param>
         public void SetEditColumnParams(params string[] columns)
         {
             SetEditColumn(columns);
         }
 
+        /// <summary>
+        /// Dữ liệu phục hồi cho field
+        /// </summary>
         private string COLUMN_NAME_VALID = null;
         public void SetValid(string field, string field_valid, string congThuc)
         {

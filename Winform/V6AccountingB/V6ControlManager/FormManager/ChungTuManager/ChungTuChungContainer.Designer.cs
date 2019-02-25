@@ -28,14 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tsNew = new System.Windows.Forms.Button();
             this.tsFull = new System.Windows.Forms.Button();
             this.tsClose = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tsMessage = new System.Windows.Forms.Label();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +58,6 @@
             this.tsNew.Name = "tsNew";
             this.tsNew.Size = new System.Drawing.Size(26, 26);
             this.tsNew.TabIndex = 3;
-            this.toolTip1.SetToolTip(this.tsNew, "Thêm");
             this.tsNew.UseVisualStyleBackColor = true;
             this.tsNew.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -73,7 +70,6 @@
             this.tsFull.Name = "tsFull";
             this.tsFull.Size = new System.Drawing.Size(26, 26);
             this.tsFull.TabIndex = 3;
-            this.toolTip1.SetToolTip(this.tsFull, "Phóng to");
             this.tsFull.UseVisualStyleBackColor = true;
             this.tsFull.Click += new System.EventHandler(this.btnFullScreen_Click);
             // 
@@ -87,7 +83,6 @@
             this.tsClose.Name = "tsClose";
             this.tsClose.Size = new System.Drawing.Size(26, 26);
             this.tsClose.TabIndex = 3;
-            this.toolTip1.SetToolTip(this.tsClose, "Đóng");
             this.tsClose.UseVisualStyleBackColor = true;
             this.tsClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -126,6 +121,7 @@
             this.FilterType = "1";
             this.Name = "ChungTuChungContainer";
             this.Size = new System.Drawing.Size(860, 609);
+            this.Load += new System.EventHandler(this.ChungTuChungContainer_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -139,6 +135,5 @@
         private System.Windows.Forms.Button tsClose;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label tsMessage;
-        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

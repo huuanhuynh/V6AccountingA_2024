@@ -67,22 +67,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (V6Login.MadvcsCount <= 1){
                     txtMaDvcs.Enabled = false;
                 }
-
-
             }
             catch (Exception ex)
             {
                 this.ShowErrorMessage(ex.Message);
             }
         }
-
         
-        
-        private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
             //SetStatus2Text();
         }
-
         
         public void btnNhan_Click(object sender, EventArgs e)
         {
@@ -107,12 +102,5 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        protected int _oldIndex = -1;
-
-        //protected virtual void OnUpdateSuccessEvent()
-        //{
-        //    var handler = UpdateSuccessEvent;
-        //    if (handler != null) handler();
-        //}
     }
 }

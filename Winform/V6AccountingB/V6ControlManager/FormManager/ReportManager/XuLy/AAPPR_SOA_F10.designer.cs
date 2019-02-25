@@ -28,43 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.exportToExcel = new System.Windows.Forms.ToolStripMenuItem();
-            this.printGrid = new System.Windows.Forms.ToolStripMenuItem();
-            this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
             this.txtSoCtXuat = new V6Controls.V6ColorTextBox();
             this.v6Label7 = new V6Controls.V6Label();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exportToExcel,
-            this.printGrid});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(154, 48);
-            // 
-            // exportToExcel
-            // 
-            this.exportToExcel.Name = "exportToExcel";
-            this.exportToExcel.Size = new System.Drawing.Size(153, 22);
-            this.exportToExcel.Text = "Export To Excel";
-            // 
-            // printGrid
-            // 
-            this.printGrid.Name = "printGrid";
-            this.printGrid.Size = new System.Drawing.Size(153, 22);
-            this.printGrid.Text = "Print Grid";
-            // 
-            // timerViewReport
-            // 
-            this.timerViewReport.Interval = 333;
             // 
             // btnHuy
             // 
@@ -135,9 +103,7 @@
             this.Controls.Add(this.btnNhan);
             this.Name = "AAPPR_SOA_F10";
             this.Size = new System.Drawing.Size(279, 149);
-            
             this.Load += new System.EventHandler(this.Form_Load);
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -145,12 +111,6 @@
 
         #endregion
 
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem exportToExcel;
-        private System.Windows.Forms.ToolStripMenuItem printGrid;
-        private System.Drawing.Printing.PrintDocument MyPrintDocument;
-        private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Timer timerViewReport;
         protected System.Windows.Forms.Button btnNhan;
         protected System.Windows.Forms.Button btnHuy;
         private V6Controls.V6Label v6Label7;

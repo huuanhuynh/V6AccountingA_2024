@@ -75,48 +75,31 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        
-        
-        private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
             //SetStatus2Text();
         }
-
         
         public void btnNhan_Click(object sender, EventArgs e)
         {
-            
             try
             {
-               
-                //@Type AS VARCHAR(8),
-                //@Year AS INT,
-                //@Period1 AS INT,
-                //@Period2 AS INT,
-                //@Stt_recs VARCHAR(MAX) = '', 
-                //@User_id AS INT,
-                //@Ma_dvcs VARCHAR(50) = ''
-
-
                 SqlParameter[] plist =
-                        {
-                            new SqlParameter("@Type","RATE"),
-                            new SqlParameter("@Year",txtNam.Value),
-                            new SqlParameter("@Period1",txtKy1.Value),
-                            new SqlParameter("@Period2",txtKy2.Value),
-                            new SqlParameter("@Stt_recs",_sttreclist),
-                            new SqlParameter("@User_id", V6Login.UserId),
-                            new SqlParameter("@Ma_dvcs",txtMaDvcs.StringValue)
+                {
+                    new SqlParameter("@Type", "RATE"),
+                    new SqlParameter("@Year", txtNam.Value),
+                    new SqlParameter("@Period1", txtKy1.Value),
+                    new SqlParameter("@Period2", txtKy2.Value),
+                    new SqlParameter("@Stt_recs", _sttreclist),
+                    new SqlParameter("@User_id", V6Login.UserId),
+                    new SqlParameter("@Ma_dvcs", txtMaDvcs.StringValue)
 
-                        };
+                };
 
                 V6BusinessHelper.ExecuteProcedureNoneQuery(_program, plist);
-
-
                 OnUpdateSuccessEvent();
                 Dispose();
                 V6ControlFormHelper.ShowMainMessage(V6Text.Finish);
-
             }
             catch (Exception ex)
             {

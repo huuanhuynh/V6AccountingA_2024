@@ -866,7 +866,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         var user_acc = V6Login.UserInfo["USER_ACC"].ToString().Trim();
                         if (user_acc != "1")
                         {
-                            if (!key3.Contains("1")) ExporttoExcelTemplate.Visible = false;
+                            if (!key3.Contains("1")) exportToExcelTemplate.Visible = false;
                             //if (!key3.Contains("2")) exportToExcelView.Visible = false;
                             if (!key3.Contains("3")) exportToExcel.Visible = false;
                             //if (!key3.Contains("4")) exportToXmlToolStripMenuItem.Visible = false;

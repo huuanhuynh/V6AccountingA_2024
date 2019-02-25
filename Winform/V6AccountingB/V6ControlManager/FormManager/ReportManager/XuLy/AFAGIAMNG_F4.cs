@@ -80,8 +80,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 this.ShowErrorMessage(ex.Message);
             }
         }
-
-       
         
         private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
         {
@@ -91,7 +89,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         public void btnNhan_Click(object sender, EventArgs e)
         {
-            
             try
             {
                 var am = new SortedDictionary<string, object>();
@@ -110,8 +107,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     this.ShowWarningMessage("Insert: ");
                 }
-                
-               
             }
             catch (Exception ex)
             {

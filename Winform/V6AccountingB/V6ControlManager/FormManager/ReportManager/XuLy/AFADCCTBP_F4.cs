@@ -67,16 +67,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 txtThang1.Value = V6Setting.M_SV_DATE.Month;
                 txtNam.Value = V6Setting.M_SV_DATE.Year;
-
-               
             }
             catch (Exception ex)
             {
                 this.ShowErrorMessage(ex.Message);
             }
         }
-
-       
         
         private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
         {
@@ -104,7 +100,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         { "SO_THE_TS",  am["SO_THE_TS"]  },
                         { "NAM",  am["NAM"]  },
                         { "KY",  am["KY"]  }
-
                     };
 
                    var where = V6SqlConnect.SqlGenerator.GenSqlWhere(keys);
@@ -125,8 +120,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     transaction.Rollback();
                     this.ShowWarningMessage("Insert: !! " );
                 }
-                
-               
             }
             catch (Exception ex)
             {
@@ -174,8 +167,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
             }
         }
-
-
 
         private void txtTk_kh_Leave(object sender, EventArgs e)
         {

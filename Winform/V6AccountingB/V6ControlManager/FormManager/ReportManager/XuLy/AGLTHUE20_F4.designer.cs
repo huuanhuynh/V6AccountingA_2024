@@ -30,12 +30,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.exportToExcel = new System.Windows.Forms.ToolStripMenuItem();
-            this.printGrid = new System.Windows.Forms.ToolStripMenuItem();
-            this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
-            this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.txtten_kh = new V6Controls.V6VvarTextBox();
             this.txtma_hd = new V6Controls.V6VvarTextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -89,32 +83,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.v6Label1 = new V6Controls.V6Label();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exportToExcel,
-            this.printGrid});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(154, 48);
-            // 
-            // exportToExcel
-            // 
-            this.exportToExcel.Name = "exportToExcel";
-            this.exportToExcel.Size = new System.Drawing.Size(153, 22);
-            this.exportToExcel.Text = "Export To Excel";
-            // 
-            // printGrid
-            // 
-            this.printGrid.Name = "printGrid";
-            this.printGrid.Size = new System.Drawing.Size(153, 22);
-            this.printGrid.Text = "Print Grid";
-            // 
-            // timerViewReport
-            // 
-            this.timerViewReport.Interval = 333;
             // 
             // txtten_kh
             // 
@@ -138,10 +107,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             // txtma_hd
             // 
             this.txtma_hd.AccessibleName = "ma_hd";
+            this.txtma_hd.BackColor = System.Drawing.SystemColors.Window;
             this.txtma_hd.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtma_hd.BrotherFields = "";
             this.txtma_hd.CheckNotEmpty = true;
             this.txtma_hd.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtma_hd.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtma_hd.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtma_hd.HoverColor = System.Drawing.Color.Yellow;
             this.txtma_hd.LeaveColor = System.Drawing.Color.White;
@@ -164,9 +135,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             // txtt_thue
             // 
             this.txtt_thue.AccessibleName = "t_thue";
+            this.txtt_thue.BackColor = System.Drawing.SystemColors.Window;
             this.txtt_thue.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtt_thue.DecimalPlaces = 0;
             this.txtt_thue.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtt_thue.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtt_thue.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtt_thue.HoverColor = System.Drawing.Color.Yellow;
             this.txtt_thue.LeaveColor = System.Drawing.Color.White;
@@ -242,6 +215,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtthue_suat.ReadOnly = true;
             this.txtthue_suat.Size = new System.Drawing.Size(56, 20);
             this.txtthue_suat.TabIndex = 19;
+            this.txtthue_suat.TabStop = false;
             this.txtthue_suat.Text = "0";
             this.txtthue_suat.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtthue_suat.Value = new decimal(new int[] {
@@ -278,6 +252,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtt_tien2.ReadOnly = true;
             this.txtt_tien2.Size = new System.Drawing.Size(146, 20);
             this.txtt_tien2.TabIndex = 17;
+            this.txtt_tien2.TabStop = false;
             this.txtt_tien2.Text = "0";
             this.txtt_tien2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtt_tien2.Value = new decimal(new int[] {
@@ -358,9 +333,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             // txtty_gia
             // 
             this.txtty_gia.AccessibleName = "ty_gia";
+            this.txtty_gia.BackColor = System.Drawing.SystemColors.Window;
             this.txtty_gia.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtty_gia.DecimalPlaces = 0;
             this.txtty_gia.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtty_gia.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtty_gia.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtty_gia.HoverColor = System.Drawing.Color.Yellow;
             this.txtty_gia.LeaveColor = System.Drawing.Color.White;
@@ -491,10 +468,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             // txttk_du
             // 
             this.txttk_du.AccessibleName = "tk_du";
+            this.txttk_du.BackColor = System.Drawing.SystemColors.Window;
             this.txttk_du.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txttk_du.BrotherFields = "";
             this.txttk_du.CheckNotEmpty = true;
             this.txttk_du.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txttk_du.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txttk_du.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txttk_du.HoverColor = System.Drawing.Color.Yellow;
             this.txttk_du.LeaveColor = System.Drawing.Color.White;
@@ -507,10 +486,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             // txttk_thue_co
             // 
             this.txttk_thue_co.AccessibleName = "tk_thue_co";
+            this.txttk_thue_co.BackColor = System.Drawing.SystemColors.Window;
             this.txttk_thue_co.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txttk_thue_co.BrotherFields = "";
             this.txttk_thue_co.CheckNotEmpty = true;
             this.txttk_thue_co.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txttk_thue_co.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txttk_thue_co.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txttk_thue_co.HoverColor = System.Drawing.Color.Yellow;
             this.txttk_thue_co.LeaveColor = System.Drawing.Color.White;
@@ -642,10 +623,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             // txtso_seri
             // 
             this.txtso_seri.AccessibleName = "so_seri";
+            this.txtso_seri.BackColor = System.Drawing.SystemColors.Window;
             this.txtso_seri.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtso_seri.BrotherFields = "Ten_Kh";
             this.txtso_seri.CheckNotEmpty = true;
             this.txtso_seri.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtso_seri.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtso_seri.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtso_seri.HoverColor = System.Drawing.Color.Yellow;
             this.txtso_seri.LeaveColor = System.Drawing.Color.White;
@@ -667,10 +650,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             // txtso_ct
             // 
             this.txtso_ct.AccessibleName = "so_ct";
+            this.txtso_ct.BackColor = System.Drawing.SystemColors.Window;
             this.txtso_ct.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtso_ct.BrotherFields = "Ten_Kh";
             this.txtso_ct.CheckNotEmpty = true;
             this.txtso_ct.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtso_ct.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtso_ct.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtso_ct.HoverColor = System.Drawing.Color.Yellow;
             this.txtso_ct.LeaveColor = System.Drawing.Color.White;
@@ -682,10 +667,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             // txtma_dvcs
             // 
             this.txtma_dvcs.AccessibleName = "ma_dvcs";
+            this.txtma_dvcs.BackColor = System.Drawing.SystemColors.Window;
             this.txtma_dvcs.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtma_dvcs.BrotherFields = "ten_dvcs";
             this.txtma_dvcs.CheckNotEmpty = true;
             this.txtma_dvcs.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtma_dvcs.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtma_dvcs.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtma_dvcs.HoverColor = System.Drawing.Color.Yellow;
             this.txtma_dvcs.LeaveColor = System.Drawing.Color.White;
@@ -815,10 +802,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             // txtma_kh
             // 
             this.txtma_kh.AccessibleName = "ma_kh";
+            this.txtma_kh.BackColor = System.Drawing.SystemColors.Window;
             this.txtma_kh.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtma_kh.BrotherFields = "Ten_Kh,dia_chi,ma_so_thue";
             this.txtma_kh.CheckNotEmpty = true;
             this.txtma_kh.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtma_kh.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtma_kh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtma_kh.HoverColor = System.Drawing.Color.Yellow;
             this.txtma_kh.LeaveColor = System.Drawing.Color.White;
@@ -960,7 +949,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.Controls.Add(this.btnNhan);
             this.Name = "AGLTHUE20_F4";
             this.Size = new System.Drawing.Size(637, 495);
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -968,11 +956,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         #endregion
 
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem exportToExcel;
-        private System.Windows.Forms.ToolStripMenuItem printGrid;
-        private System.Drawing.Printing.PrintDocument MyPrintDocument;
-        private System.Windows.Forms.Timer timerViewReport;
         private V6Controls.V6Label lbTxtT_CL_NT;
         private V6Controls.V6Label v6Label5;
         private V6Controls.V6Label v6Label4;

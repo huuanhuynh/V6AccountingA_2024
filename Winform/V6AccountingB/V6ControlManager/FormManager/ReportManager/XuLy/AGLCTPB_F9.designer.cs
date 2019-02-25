@@ -28,12 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.exportToExcel = new System.Windows.Forms.ToolStripMenuItem();
-            this.printGrid = new System.Windows.Forms.ToolStripMenuItem();
-            this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
-            this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
             this.v6Label1 = new V6Controls.V6Label();
@@ -43,32 +37,7 @@
             this.v6Label3 = new V6Controls.V6Label();
             this.txtKy2 = new V6Controls.V6NumberTextBox();
             this.txtMaDvcs = new V6ReportControls.FilterLineVvarTextBox();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exportToExcel,
-            this.printGrid});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(154, 48);
-            // 
-            // exportToExcel
-            // 
-            this.exportToExcel.Name = "exportToExcel";
-            this.exportToExcel.Size = new System.Drawing.Size(153, 22);
-            this.exportToExcel.Text = "Export To Excel";
-            // 
-            // printGrid
-            // 
-            this.printGrid.Name = "printGrid";
-            this.printGrid.Size = new System.Drawing.Size(153, 22);
-            this.printGrid.Text = "Print Grid";
-            // 
-            // timerViewReport
-            // 
-            this.timerViewReport.Interval = 333;
             // 
             // btnHuy
             // 
@@ -131,6 +100,7 @@
             this.txtNam.ReadOnly = true;
             this.txtNam.Size = new System.Drawing.Size(109, 20);
             this.txtNam.TabIndex = 0;
+            this.txtNam.TabStop = false;
             this.txtNam.Text = "0";
             this.txtNam.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtNam.Value = new decimal(new int[] {
@@ -233,9 +203,7 @@
             this.Controls.Add(this.btnNhan);
             this.Name = "AGLCTPB_F9";
             this.Size = new System.Drawing.Size(559, 240);
-            
-            this.Load += new System.EventHandler(this.FormBaoCaoHangTonTheoKho_Load);
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.Form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -243,11 +211,6 @@
 
         #endregion
 
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem exportToExcel;
-        private System.Windows.Forms.ToolStripMenuItem printGrid;
-        private System.Drawing.Printing.PrintDocument MyPrintDocument;
-        private System.Windows.Forms.Timer timerViewReport;
         protected System.Windows.Forms.Button btnNhan;
         protected System.Windows.Forms.Button btnHuy;
         private V6Controls.V6Label v6Label1;

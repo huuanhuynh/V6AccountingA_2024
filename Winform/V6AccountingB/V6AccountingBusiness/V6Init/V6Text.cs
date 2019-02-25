@@ -293,6 +293,7 @@
         public static string AddFail { get { return V6Setting.Language == "V" ? "Thêm lỗi!" : "Add fail!"; } }
         public static string BackConfirm { get { return V6Setting.Language == "V" ? "Có chắc bạn muốn quay ra?" : "Are you sure you want to go back?"; } }
         public static string Busy { get { return V6Setting.Language == "V" ? "Đang bận!" : "Busy!"; } }
+        public static string Close { get { return V6Setting.Language == "V" ? "Đóng lại" : "Close"; } }
         public static string CloseConfirm { get { return V6Setting.Language == "V" ? "Có chắc bạn muốn đóng lại?" : "Are you sure want to close?"; } }
         public static string Delete { get { return V6Setting.Language == "V" ? "Xóa" : "Delete"; } }
         public static string Deleted { get { return V6Setting.Language == "V" ? "Đã xóa" : "Deleted"; } }

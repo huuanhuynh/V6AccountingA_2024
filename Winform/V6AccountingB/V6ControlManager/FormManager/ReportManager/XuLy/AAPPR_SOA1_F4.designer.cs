@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.exportToExcel = new System.Windows.Forms.ToolStripMenuItem();
-            this.printGrid = new System.Windows.Forms.ToolStripMenuItem();
             this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.btnHuy = new System.Windows.Forms.Button();
@@ -62,28 +59,7 @@
             this.TxtMa_nvien = new V6Controls.V6VvarTextBox();
             this.TxtMa_bp = new V6Controls.V6VvarTextBox();
             this.lblBPNV = new V6Controls.V6Label();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exportToExcel,
-            this.printGrid});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(154, 48);
-            // 
-            // exportToExcel
-            // 
-            this.exportToExcel.Name = "exportToExcel";
-            this.exportToExcel.Size = new System.Drawing.Size(153, 22);
-            this.exportToExcel.Text = "Export To Excel";
-            // 
-            // printGrid
-            // 
-            this.printGrid.Name = "printGrid";
-            this.printGrid.Size = new System.Drawing.Size(153, 22);
-            this.printGrid.Text = "Print Grid";
             // 
             // timerViewReport
             // 
@@ -140,6 +116,7 @@
             this.txtMa_sonb.ReadOnly = true;
             this.txtMa_sonb.Size = new System.Drawing.Size(100, 20);
             this.txtMa_sonb.TabIndex = 9;
+            this.txtMa_sonb.TabStop = false;
             this.txtMa_sonb.VVar = "ma_sonb";
             // 
             // v6Label2
@@ -168,6 +145,7 @@
             this.TxtSo_ct.ReadOnly = true;
             this.TxtSo_ct.Size = new System.Drawing.Size(100, 20);
             this.TxtSo_ct.TabIndex = 10;
+            this.TxtSo_ct.TabStop = false;
             // 
             // dateNgayLCT
             // 
@@ -247,6 +225,7 @@
             this.txtMadvcs.ReadOnly = true;
             this.txtMadvcs.Size = new System.Drawing.Size(100, 20);
             this.txtMadvcs.TabIndex = 25;
+            this.txtMadvcs.TabStop = false;
             this.txtMadvcs.VVar = "ma_dvcs";
             // 
             // v6ColorTextBox3
@@ -267,6 +246,7 @@
             this.v6ColorTextBox3.ReadOnly = true;
             this.v6ColorTextBox3.Size = new System.Drawing.Size(361, 20);
             this.v6ColorTextBox3.TabIndex = 32;
+            this.v6ColorTextBox3.TabStop = false;
             this.v6ColorTextBox3.Tag = "disable";
             // 
             // v6Label18
@@ -297,6 +277,7 @@
             this.txtMaKh.ReadOnly = true;
             this.txtMaKh.Size = new System.Drawing.Size(100, 20);
             this.txtMaKh.TabIndex = 26;
+            this.txtMaKh.TabStop = false;
             this.txtMaKh.VVar = "ma_kh";
             // 
             // v6ColorTextBox9
@@ -317,6 +298,7 @@
             this.v6ColorTextBox9.ReadOnly = true;
             this.v6ColorTextBox9.Size = new System.Drawing.Size(467, 20);
             this.v6ColorTextBox9.TabIndex = 30;
+            this.v6ColorTextBox9.TabStop = false;
             // 
             // v6Label12
             // 
@@ -345,6 +327,7 @@
             this.txtMaSoThue.ReadOnly = true;
             this.txtMaSoThue.Size = new System.Drawing.Size(100, 20);
             this.txtMaSoThue.TabIndex = 29;
+            this.txtMaSoThue.TabStop = false;
             this.txtMaSoThue.Tag = "";
             // 
             // txtTenKh
@@ -365,6 +348,7 @@
             this.txtTenKh.ReadOnly = true;
             this.txtTenKh.Size = new System.Drawing.Size(361, 20);
             this.txtTenKh.TabIndex = 27;
+            this.txtTenKh.TabStop = false;
             this.txtTenKh.Tag = "";
             // 
             // txtDiaChi
@@ -385,6 +369,7 @@
             this.txtDiaChi.ReadOnly = true;
             this.txtDiaChi.Size = new System.Drawing.Size(361, 20);
             this.txtDiaChi.TabIndex = 28;
+            this.txtDiaChi.TabStop = false;
             // 
             // v6Label11
             // 
@@ -434,6 +419,7 @@
             this.txtGhiChu01.ReadOnly = true;
             this.txtGhiChu01.Size = new System.Drawing.Size(467, 20);
             this.txtGhiChu01.TabIndex = 30;
+            this.txtGhiChu01.TabStop = false;
             // 
             // v6Label6
             // 
@@ -463,6 +449,7 @@
             this.txtGhiChu02.ReadOnly = true;
             this.txtGhiChu02.Size = new System.Drawing.Size(467, 20);
             this.txtGhiChu02.TabIndex = 30;
+            this.txtGhiChu02.TabStop = false;
             // 
             // TxtMa_nvien
             // 
@@ -481,6 +468,7 @@
             this.TxtMa_nvien.ReadOnly = true;
             this.TxtMa_nvien.Size = new System.Drawing.Size(91, 20);
             this.TxtMa_nvien.TabIndex = 35;
+            this.TxtMa_nvien.TabStop = false;
             this.TxtMa_nvien.VVar = "ma_nvien";
             // 
             // TxtMa_bp
@@ -500,6 +488,7 @@
             this.TxtMa_bp.ReadOnly = true;
             this.TxtMa_bp.Size = new System.Drawing.Size(97, 20);
             this.TxtMa_bp.TabIndex = 34;
+            this.TxtMa_bp.TabStop = false;
             this.TxtMa_bp.VVar = "ma_bp";
             // 
             // lblBPNV
@@ -548,7 +537,6 @@
             this.Name = "AAPPR_SOA1_F4";
             this.Size = new System.Drawing.Size(559, 256);
             this.Load += new System.EventHandler(this.FormBaoCaoHangTonTheoKho_Load);
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -556,9 +544,6 @@
 
         #endregion
 
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem exportToExcel;
-        private System.Windows.Forms.ToolStripMenuItem printGrid;
         private System.Drawing.Printing.PrintDocument MyPrintDocument;
         private System.Windows.Forms.Timer timerViewReport;
         protected System.Windows.Forms.Button btnNhan;

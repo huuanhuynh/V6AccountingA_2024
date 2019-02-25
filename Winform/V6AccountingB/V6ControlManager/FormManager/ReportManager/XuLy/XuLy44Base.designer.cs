@@ -65,6 +65,7 @@
             // 
             // exportToExcel
             // 
+            this.exportToExcel.AccessibleDescription = "REPORTM00001";
             this.exportToExcel.Name = "exportToExcel";
             this.exportToExcel.Size = new System.Drawing.Size(153, 22);
             this.exportToExcel.Text = "Export To Excel";
@@ -72,6 +73,7 @@
             // 
             // printGrid
             // 
+            this.printGrid.AccessibleDescription = "REPORTM00007";
             this.printGrid.Name = "printGrid";
             this.printGrid.Size = new System.Drawing.Size(153, 22);
             this.printGrid.Text = "Print Grid";

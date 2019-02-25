@@ -48,6 +48,25 @@ namespace V6ControlManager.FormManager.ChungTuManager
             currentTabIndex = tabControl1.SelectedIndex;
         }
 
+        private void ChungTuChungContainer_Load(object sender, EventArgs e)
+        {
+            ApplyButtonToolTip();
+        }
+
+        private void ApplyButtonToolTip()
+        {
+            try
+            {
+                toolTipV6FormControl.SetToolTip(tsNew, V6Text.Add);
+                toolTipV6FormControl.SetToolTip(tsFull, V6Text.ZoomIn);
+                toolTipV6FormControl.SetToolTip(tsClose, V6Text.Close);
+            }
+            catch (Exception)
+            {
+                //
+            }
+        }
+
         private void AddTab()
         {
             string method_log = "";
@@ -123,7 +142,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     }
                     catch
                     {
-
+                        //
                     }
                 };
                 method_log += "tabControl1.TabPages.Add(tab);";
@@ -239,11 +258,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         if (child.IsDisposed) return;
                         container.Controls.Add(child);
                         tsFull.Image = Properties.Resources.ZoomIn24;
-                        toolTip1.SetToolTip(tsFull, V6Text.ZoomIn);
+                        toolTipV6FormControl.SetToolTip(tsFull, V6Text.ZoomIn);
                     };
 
                     tsFull.Image = Properties.Resources.ZoomOut24;
-                    toolTip1.SetToolTip(tsFull, V6Text.ZoomOut);
+                    toolTipV6FormControl.SetToolTip(tsFull, V6Text.ZoomOut);
 
                     f.ShowDialog(container);
                 }
@@ -304,5 +323,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             DoFullScreen();
         }
+        
     }
 }

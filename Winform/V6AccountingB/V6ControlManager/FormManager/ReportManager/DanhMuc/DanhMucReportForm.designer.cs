@@ -122,6 +122,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             // 
             // exportToExcelTemplate
             // 
+            this.exportToExcelTemplate.AccessibleDescription = "REPORTM00003";
             this.exportToExcelTemplate.Name = "exportToExcelTemplate";
             this.exportToExcelTemplate.Size = new System.Drawing.Size(200, 22);
             this.exportToExcelTemplate.Text = "Export to Excel template";
@@ -129,6 +130,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             // 
             // exportToExcel
             // 
+            this.exportToExcel.AccessibleDescription = "REPORTM00001";
             this.exportToExcel.Name = "exportToExcel";
             this.exportToExcel.Size = new System.Drawing.Size(200, 22);
             this.exportToExcel.Text = "Export To Excel";
@@ -136,6 +138,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             // 
             // exportToXmlToolStripMenuItem
             // 
+            this.exportToXmlToolStripMenuItem.AccessibleDescription = "REPORTM00005";
             this.exportToXmlToolStripMenuItem.Name = "exportToXmlToolStripMenuItem";
             this.exportToXmlToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.exportToXmlToolStripMenuItem.Text = "Export to xml";
@@ -143,6 +146,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             // 
             // printGrid
             // 
+            this.printGrid.AccessibleDescription = "REPORTM00007";
             this.printGrid.Name = "printGrid";
             this.printGrid.Size = new System.Drawing.Size(200, 22);
             this.printGrid.Text = "Print Grid";
@@ -157,6 +161,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             // 
             // exportToPdfToolStripMenuItem
             // 
+            this.exportToPdfToolStripMenuItem.AccessibleDescription = "REPORTM00006";
             this.exportToPdfToolStripMenuItem.Name = "exportToPdfToolStripMenuItem";
             this.exportToPdfToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.exportToPdfToolStripMenuItem.Text = "Export to PDF";

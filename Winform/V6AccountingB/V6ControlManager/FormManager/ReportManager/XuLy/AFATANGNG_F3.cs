@@ -74,29 +74,22 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (length == 0) length = 128;
                 txtdien_giai.MaxLength = length;
                 txtSo_the_ts.ExistRowInTable();
-
-                
             }
             catch (Exception ex)
             {
                 this.ShowErrorMessage(ex.Message);
             }
         }
-
-       
         
         private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
         {
             //SetStatus2Text();
         }
-
         
         public void btnNhan_Click(object sender, EventArgs e)
         {
-            
             try
             {
-               
                 var am = GetData();
 
                 am["STT_REC"] = _am["STT_REC"];
@@ -117,8 +110,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     this.ShowWarningMessage("Update: " + result);
                 }
-                
-               
             }
             catch (Exception ex)
             {

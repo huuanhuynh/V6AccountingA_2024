@@ -29,11 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.exportToExcel = new System.Windows.Forms.ToolStripMenuItem();
-            this.printGrid = new System.Windows.Forms.ToolStripMenuItem();
             this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.txtSo_the_ts = new V6Controls.V6VvarTextBox();
             this.v6Label1 = new V6Controls.V6Label();
@@ -58,28 +54,7 @@
             this.txtten_tk_ts = new V6Controls.V6LabelTextBox();
             this.txtten_bp = new V6Controls.V6LabelTextBox();
             this.txtten_ts = new V6Controls.V6LabelTextBox();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exportToExcel,
-            this.printGrid});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(154, 48);
-            // 
-            // exportToExcel
-            // 
-            this.exportToExcel.Name = "exportToExcel";
-            this.exportToExcel.Size = new System.Drawing.Size(153, 22);
-            this.exportToExcel.Text = "Export To Excel";
-            // 
-            // printGrid
-            // 
-            this.printGrid.Name = "printGrid";
-            this.printGrid.Size = new System.Drawing.Size(153, 22);
-            this.printGrid.Text = "Print Grid";
             // 
             // timerViewReport
             // 
@@ -484,9 +459,7 @@
             this.Controls.Add(this.btnNhan);
             this.Name = "AFADCBP_F4";
             this.Size = new System.Drawing.Size(638, 260);
-            
             this.Load += new System.EventHandler(this.FormBaoCaoHangTonTheoKho_Load);
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -494,11 +467,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem exportToExcel;
-        private System.Windows.Forms.ToolStripMenuItem printGrid;
         private System.Drawing.Printing.PrintDocument MyPrintDocument;
-        private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Timer timerViewReport;
         protected System.Windows.Forms.Button btnNhan;
         protected System.Windows.Forms.Button btnHuy;

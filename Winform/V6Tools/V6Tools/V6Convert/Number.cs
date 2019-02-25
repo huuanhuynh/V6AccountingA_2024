@@ -205,6 +205,31 @@ namespace V6Tools.V6Convert
                     + after + c, DATA);
             }
             #endregion === ROUND(x,a) ===
+            
+            #region === MOD(x,Y) ===
+            foi = bieu_thuc.LastIndexOf("MOD(", StringComparison.Ordinal);
+            if (foi >= 0)
+            {
+                var iopen = foi + 3;
+                var iclose = FindCloseBrackets(bieu_thuc, iopen);
+                // a mod(b1,b2) c
+                string a = "", before = "", b = "", after = "", c = "";
+                a = bieu_thuc.Substring(0, foi);
+                if (a.Length > 0 && NoMultiplicationBefore.IndexOf(bieu_thuc[foi - 1], 0) < 0) before = "*";
+                b = bieu_thuc.Substring(iopen + 1, iclose - iopen - 1);
+                if (iclose + 1 < bieu_thuc.Length) c = bieu_thuc.Substring(iclose + 1);
+                if (c.Length > 0 && NoMultiplicationAfter.IndexOf(bieu_thuc[iclose + 1], 0) < 0) after = "*";
+
+                var phayindex = b.LastIndexOf(',');
+                var b1 = b.Substring(0, phayindex);
+                var b2 = b.Substring(phayindex + 1);
+
+                return GiaTriBieuThuc(
+                    a + before
+                    + (GiaTriBieuThuc(b1, DATA) % (int)GiaTriBieuThuc(b2, DATA)).ToString(CultureInfo.InvariantCulture)
+                    + after + c, DATA);
+            }
+            #endregion === MOD(x,a) ===
 
             #region === () xử lý phép toán trong ngoặc trong cùng trước. ===
             if (bieu_thuc.IndexOf('(', 0) >= 0 || bieu_thuc.IndexOf(')', 0) >= 0)
@@ -232,7 +257,7 @@ namespace V6Tools.V6Convert
             }
             #endregion === () ===
 
-            // có phép cộng trong biểu thức
+            #region === + ===
             if (bieu_thuc.IndexOf('+') > 0 &&
                 (bieu_thuc.Split('+').Length - 1) >
                 (bieu_thuc.Split(new[] { "*+" }, StringSplitOptions.None).Length +
@@ -253,8 +278,9 @@ namespace V6Tools.V6Convert
                 var values2 = bieu_thuc.Substring(sp + 1);
                 return GiaTriBieuThuc(values1, DATA) + GiaTriBieuThuc(values2, DATA);
             }
+            #endregion === + ===
 
-            // làm cho hết phép cộng rồi tới phép trừ    ////////////////////////// xử lý số âm hơi vất vả.
+            #region === - === làm cho hết phép cộng rồi tới phép trừ    ////////////////////////// xử lý số âm hơi vất vả.
             if (bieu_thuc.IndexOf('-') > 0 &&
                 (bieu_thuc.Split('-').Length - 1) >
                 (bieu_thuc.Split(new[] { "*-" }, StringSplitOptions.None).Length +
@@ -275,8 +301,9 @@ namespace V6Tools.V6Convert
                 var values2 = bieu_thuc.Substring(sp + 1);
                 return GiaTriBieuThuc(values1, DATA) - GiaTriBieuThuc(values2, DATA);
             }
+            #endregion === - ===
 
-            //phép nhân
+            #region === * ===//phép nhân
             if (bieu_thuc.IndexOf('*', 0) >= 0)
             {
                 var values = bieu_thuc.Split('*');
@@ -286,25 +313,37 @@ namespace V6Tools.V6Convert
                     sum *= GiaTriBieuThuc(values[i], DATA);
                 }
                 return sum;
-
-                //Phép Round (Round012.345)
-
-                //        var sp = bieu_thuc.LastIndexOf('*') > bieu_thuc.LastIndexOf("*-") ? bieu_thuc.LastIndexOf('*') : bieu_thuc.LastIndexOf("*-");
-                //        var values1 = bieu_thuc.Substring(0, sp);
-                //        var values2 = bieu_thuc.Substring(sp + 1);
-                //        return GiaTriBieuThuc(values1) * GiaTriBieuThuc(values2);
             }
+            #endregion === * ===
+
+            #region === / ===  Chia
             if (bieu_thuc.IndexOf('/', 0) >= 0)
             {
 
-                var sp = bieu_thuc.LastIndexOf('/') > bieu_thuc.LastIndexOf("/-")
+                var sp = bieu_thuc.LastIndexOf('/') > bieu_thuc.LastIndexOf("/-", StringComparison.InvariantCulture)
                     ? bieu_thuc.LastIndexOf('/')
-                    : bieu_thuc.LastIndexOf("/-");
+                    : bieu_thuc.LastIndexOf("/-", StringComparison.InvariantCulture);
 
                 var values1 = bieu_thuc.Substring(0, sp);
                 var values2 = bieu_thuc.Substring(sp + 1);
                 return GiaTriBieuThuc(values1, DATA) / GiaTriBieuThuc(values2, DATA);
             }
+            #endregion === / ===
+
+            #region === % ===   MOD(x,y) chia lấy dư
+            if (bieu_thuc.IndexOf('%', 0) >= 0)
+            {
+
+                var sp = bieu_thuc.LastIndexOf('%') > bieu_thuc.LastIndexOf("%-", StringComparison.InvariantCulture)
+                    ? bieu_thuc.LastIndexOf('%')
+                    : bieu_thuc.LastIndexOf("%-", StringComparison.InvariantCulture);
+
+                var values1 = bieu_thuc.Substring(0, sp);
+                var values2 = bieu_thuc.Substring(sp + 1);
+                return GiaTriBieuThuc(values1, DATA) % GiaTriBieuThuc(values2, DATA);
+            }
+            #endregion === % ===
+
             if (bieu_thuc.IndexOf('^', 0) >= 0)
             {
                 var sp = bieu_thuc.LastIndexOf('^');// < bieu_thuc.LastIndexOf("^-")

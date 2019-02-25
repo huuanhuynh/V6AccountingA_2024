@@ -71,18 +71,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 this.ShowErrorMessage(ex.Message);
             }
         }
-
-        
         
         private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
         {
             //SetStatus2Text();
         }
-
         
         public void btnNhan_Click(object sender, EventArgs e)
         {
-            
             try
             {
                
@@ -110,8 +106,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     };
 
                     V6BusinessHelper.ExecuteProcedureNoneQuery(_program, plist);
-
-
+                    
                     OnUpdateSuccessEvent();
                     Dispose();
                     V6ControlFormHelper.ShowMainMessage(V6Text.Finish);

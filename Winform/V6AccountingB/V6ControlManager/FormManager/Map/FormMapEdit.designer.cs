@@ -197,6 +197,7 @@
             // 
             // reloadToolStripMenuItem
             // 
+            this.reloadToolStripMenuItem.AccessibleDescription = "REPORTM00010";
             this.reloadToolStripMenuItem.Name = "reloadToolStripMenuItem";
             this.reloadToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.reloadToolStripMenuItem.Text = "Reload";

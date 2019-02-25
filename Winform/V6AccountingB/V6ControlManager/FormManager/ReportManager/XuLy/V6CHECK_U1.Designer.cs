@@ -160,9 +160,10 @@
             // 
             // viewDataToolStripMenuItem
             // 
+            this.viewDataToolStripMenuItem.AccessibleDescription = "REPORTM00009";
             this.viewDataToolStripMenuItem.Name = "viewDataToolStripMenuItem";
             this.viewDataToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.viewDataToolStripMenuItem.Text = "ViewData";
+            this.viewDataToolStripMenuItem.Text = "View Data";
             this.viewDataToolStripMenuItem.Click += new System.EventHandler(this.viewDataToolStripMenuItem_Click);
             // 
             // V6CHECK_U1

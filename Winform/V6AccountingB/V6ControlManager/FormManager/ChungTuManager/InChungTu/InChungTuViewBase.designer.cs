@@ -36,7 +36,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ExporttoExcelTemplate = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToExcelTemplate = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.printGrid = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToPdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -127,22 +127,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ExporttoExcelTemplate,
+            this.exportToExcelTemplate,
             this.exportToExcel,
             this.printGrid,
             this.exportToPdfToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 114);
             // 
             // ExporttoExcelTemplate
             // 
-            this.ExporttoExcelTemplate.Name = "ExporttoExcelTemplate";
-            this.ExporttoExcelTemplate.Size = new System.Drawing.Size(208, 22);
-            this.ExporttoExcelTemplate.Text = "Export to Excel (template)";
-            this.ExporttoExcelTemplate.Click += new System.EventHandler(this.ExporttoExceltemplate_Click);
+            this.exportToExcelTemplate.AccessibleDescription = "REPORTM00003";
+            this.exportToExcelTemplate.Name = "exportToExcelTemplate";
+            this.exportToExcelTemplate.Size = new System.Drawing.Size(208, 22);
+            this.exportToExcelTemplate.Text = "Export to Excel (template)";
+            this.exportToExcelTemplate.Click += new System.EventHandler(this.ExporttoExceltemplate_Click);
             // 
             // exportToExcel
             // 
+            this.exportToExcel.AccessibleDescription = "REPORTM00001";
             this.exportToExcel.Name = "exportToExcel";
             this.exportToExcel.Size = new System.Drawing.Size(208, 22);
             this.exportToExcel.Text = "Export To Excel";
@@ -150,6 +152,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             // 
             // printGrid
             // 
+            this.printGrid.AccessibleDescription = "REPORTM00007";
             this.printGrid.Name = "printGrid";
             this.printGrid.Size = new System.Drawing.Size(208, 22);
             this.printGrid.Text = "Print Grid";
@@ -157,6 +160,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             // 
             // exportToPdfToolStripMenuItem
             // 
+            this.exportToPdfToolStripMenuItem.AccessibleDescription = "REPORTM00006";
             this.exportToPdfToolStripMenuItem.Name = "exportToPdfToolStripMenuItem";
             this.exportToPdfToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.exportToPdfToolStripMenuItem.Text = "Export to PDF";
@@ -787,7 +791,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         private System.Windows.Forms.Button btnLs;
         private System.Windows.Forms.Button btnLt;
         public System.Windows.Forms.Panel panelCRview;
-        private System.Windows.Forms.ToolStripMenuItem ExporttoExcelTemplate;
+        private System.Windows.Forms.ToolStripMenuItem exportToExcelTemplate;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer4;
         private System.Windows.Forms.ToolStripMenuItem exportToPdfToolStripMenuItem;
         private System.Windows.Forms.RadioButton rCurrent;

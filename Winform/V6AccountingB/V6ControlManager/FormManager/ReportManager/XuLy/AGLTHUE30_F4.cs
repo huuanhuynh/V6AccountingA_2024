@@ -76,6 +76,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 this.ShowErrorMessage(ex.Message);
             }
         }
+
         public  void btnNhan_Click(object sender, EventArgs e)
         {
             try
@@ -176,20 +177,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             TinhToan();
         }
-        private void txtThang12_TextChanged(object sender, System.EventArgs e)
-        {
-            try
-            {
-                var txt = (V6NumberTextBox)sender;
-                if (txt.Value < 1) txt.Value = 0;
-                if (txt.Value > 12) txt.Value = 12;
-            }
-            catch (Exception)
-            {
-
-            }
-        }
-      
 
     }
 }

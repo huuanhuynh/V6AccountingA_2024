@@ -75,8 +75,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 this.ShowErrorMessage(ex.Message);
             }
         }
-
-       
         
         private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
         {
@@ -86,7 +84,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         public void btnNhan_Click(object sender, EventArgs e)
         {
-            
             try
             {
                 var am = new SortedDictionary<string, object>();
@@ -104,8 +101,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     this.ShowWarningMessage("Insert: !! " );
                 }
-                
-               
             }
             catch (Exception ex)
             {
@@ -153,7 +148,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-
         private void TxtTk_ts_Leave(object sender, EventArgs e)
         {
             if (TxtTk_ts.Data != null)
@@ -171,7 +165,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             if (TxtTk_cp.Data != null)
                 txtten_tk_cp.Text = TxtTk_cp.Data["TEN_TK"].ToString().Trim();
         }
-
 
         private void txtThang1_Leave(object sender, EventArgs e)
         {

@@ -273,6 +273,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             // 
             // ChonDonHangMuaMenu
             // 
+            this.ChonDonHangMuaMenu.AccessibleDescription = "INVOICEM00013";
             this.ChonDonHangMuaMenu.Name = "ChonDonHangMuaMenu";
             this.ChonDonHangMuaMenu.Size = new System.Drawing.Size(180, 22);
             this.ChonDonHangMuaMenu.Text = "Chọn đơn hàng bán";
@@ -280,6 +281,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             // 
             // TroGiupMenu
             // 
+            this.TroGiupMenu.AccessibleDescription = "INVOICEM00003";
             this.TroGiupMenu.Name = "TroGiupMenu";
             this.TroGiupMenu.Size = new System.Drawing.Size(180, 22);
             this.TroGiupMenu.Text = "Trợ giúp";
@@ -287,6 +289,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             // 
             // chonTuExcelToolStripMenuItem
             // 
+            this.chonTuExcelToolStripMenuItem.AccessibleDescription = "INVOICEM00004";
             this.chonTuExcelToolStripMenuItem.Name = "chonTuExcelToolStripMenuItem";
             this.chonTuExcelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.chonTuExcelToolStripMenuItem.Text = "Chọn từ excel";
@@ -301,6 +304,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             // 
             // thayTheToolStripMenuItem
             // 
+            this.thayTheToolStripMenuItem.AccessibleDescription = "INVOICEM00008";
             this.thayTheToolStripMenuItem.Name = "thayTheToolStripMenuItem";
             this.thayTheToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.thayTheToolStripMenuItem.Text = "Thay thế";

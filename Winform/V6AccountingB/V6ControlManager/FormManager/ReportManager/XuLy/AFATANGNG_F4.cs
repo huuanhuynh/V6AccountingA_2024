@@ -80,27 +80,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 this.ShowErrorMessage(ex.Message);
             }
         }
-
-       
         
         private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
         {
             //SetStatus2Text();
         }
-
         
         public void btnNhan_Click(object sender, EventArgs e)
         {
-            
             try
             {
-               
                var am = GetData(); 
 
                am["DIEN_GIAI"] = txtdien_giai.Text;
                am["STT_REC"] = _am["STT_REC"];
-
-
 
                var result = V6BusinessHelper.Insert("ADALTS", am);
                 
@@ -146,6 +139,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             var handler = UpdateSuccessEvent;
             if (handler != null) handler(datadic);
         }
+
         public void TinhGiaTriKhauHao()
         {
             try
@@ -159,9 +153,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         ? txtnguyen_gia.Value / TxtSo_ky.Value
                         : txtgt_cl.Value / TxtSo_ky.Value,
                         V6Options.M_ROUND);
-
                 }
-                
             }
             catch (Exception ex)
             {
@@ -181,12 +173,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (txt.Value < 1) txt.Value = 0;
                 if (txt.Value > 12) txt.Value = 12;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                this.WriteExLog(GetType() + ".Thang12_TextChange", ex);
             }
         }
-      
 
     }
 }

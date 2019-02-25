@@ -84,8 +84,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 this.ShowErrorMessage(ex.Message);
             }
         }
-
-       
         
         private void FormBaoCaoHangTonTheoKho_Load(object sender, EventArgs e)
         {
@@ -95,7 +93,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         public void btnNhan_Click(object sender, EventArgs e)
         {
-
             SqlTransaction transaction = SqlConnect.CreateSqlTransaction("AFADCCTBP_F3");
 
             try
@@ -138,8 +135,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     transaction.Rollback();
                     this.ShowWarningMessage("Update: !! " );
                 }
-                
-               
             }
             catch (Exception ex)
             {
@@ -187,8 +182,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
             }
         }
-
-
 
         private void txtTk_kh_Leave(object sender, EventArgs e)
         {

@@ -138,6 +138,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             // 
             // exportToExcelTemplate
             // 
+            this.exportToExcelTemplate.AccessibleDescription = "REPORTM00003";
             this.exportToExcelTemplate.Name = "exportToExcelTemplate";
             this.exportToExcelTemplate.Size = new System.Drawing.Size(208, 22);
             this.exportToExcelTemplate.Text = "Export to Excel (template)";
@@ -145,6 +146,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             // 
             // exportToExcelView
             // 
+            this.exportToExcelView.AccessibleDescription = "REPORTM00004";
             this.exportToExcelView.Name = "exportToExcelView";
             this.exportToExcelView.Size = new System.Drawing.Size(208, 22);
             this.exportToExcelView.Text = "Export to Excel (view)";
@@ -152,6 +154,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             // 
             // exportToExcel
             // 
+            this.exportToExcel.AccessibleDescription = "REPORTM00002";
             this.exportToExcel.Name = "exportToExcel";
             this.exportToExcel.Size = new System.Drawing.Size(208, 22);
             this.exportToExcel.Text = "Export to Excel (all)";
@@ -159,6 +162,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             // 
             // exportToXmlToolStripMenuItem
             // 
+            this.exportToXmlToolStripMenuItem.AccessibleDescription = "REPORTM00005";
             this.exportToXmlToolStripMenuItem.Name = "exportToXmlToolStripMenuItem";
             this.exportToXmlToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.exportToXmlToolStripMenuItem.Text = "Export to xml";
@@ -166,6 +170,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             // 
             // printGrid
             // 
+            this.printGrid.AccessibleDescription = "REPORTM00007";
             this.printGrid.Name = "printGrid";
             this.printGrid.Size = new System.Drawing.Size(208, 22);
             this.printGrid.Text = "Print Grid";
@@ -173,13 +178,15 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             // 
             // viewDataToolStripMenuItem
             // 
+            this.viewDataToolStripMenuItem.AccessibleDescription = "REPORTM00009";
             this.viewDataToolStripMenuItem.Name = "viewDataToolStripMenuItem";
             this.viewDataToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.viewDataToolStripMenuItem.Text = "ViewData";
+            this.viewDataToolStripMenuItem.Text = "View Data";
             this.viewDataToolStripMenuItem.Click += new System.EventHandler(this.viewDataToolStripMenuItem_Click);
             // 
             // exportToPdfToolStripMenuItem
             // 
+            this.exportToPdfToolStripMenuItem.AccessibleDescription = "REPORTM00006";
             this.exportToPdfToolStripMenuItem.Name = "exportToPdfToolStripMenuItem";
             this.exportToPdfToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.exportToPdfToolStripMenuItem.Text = "Export to PDF";
