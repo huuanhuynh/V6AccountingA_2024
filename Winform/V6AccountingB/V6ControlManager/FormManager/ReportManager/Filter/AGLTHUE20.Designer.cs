@@ -180,7 +180,6 @@
             this.Controls.Add(this.dateNgay_ct1);
             this.Name = "AGLTHUE20";
             this.Size = new System.Drawing.Size(294, 175);
-            this.Load += new System.EventHandler(this.ARSD0_AR0_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

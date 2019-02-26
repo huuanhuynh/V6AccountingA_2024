@@ -17,6 +17,9 @@ namespace V6Init
             }
         }
 
+        private static DataView _menu2DataView = null;
+        private static DataView _menu3DataView = null;
+
         public static DataTable GetMenuTable1(int userid, string moduleID)
         {
             var prList = new List<SqlParameter>();
@@ -30,7 +33,26 @@ namespace V6Init
             prList.Add(new SqlParameter("@isAdmin", V6Login.IsAdmin));
             prList.Add(new SqlParameter("@mrights", V6Login.UserRight.Mrights));
             DataTable data = SqlConnect.ExecuteDataset(CommandType.Text, sql, prList.ToArray()).Tables[0];
+            _menu2DataView = new DataView(GetMenu2TableFull(userid));
+            _menu3DataView = new DataView(GetMenu3TableFull(userid));
             
+            return data;
+        }
+
+        public static DataTable GetMenu2TableFull(int userid)
+        {
+            var prList = new List<SqlParameter>();
+            string sql = "SELECT * FROM V6MENU WHERE Itemid='B0000000'";
+            sql += "\n AND HIDE_YN<>1";
+            sql += "\n AND JOBID<>'B099'";
+            sql += "\n AND V2ID+JOBID IN ";
+            sql += "\n    (SELECT V2ID+JOBid FROM V6MENU WHERE (((1=@isAdmin or dbo.VFA_Inlist_MEMO(ITEMID,@mrights)=1)) AND hide_yn<>1)";
+            sql += "\n    GROUP BY V2ID,JOBID) ORDER BY stt_box";
+            
+            prList.Add(new SqlParameter("@isAdmin", V6Login.IsAdmin));
+            prList.Add(new SqlParameter("@mrights", V6Login.UserRight.Mrights));
+            DataTable data = SqlConnect.ExecuteDataset(CommandType.Text, sql, prList.ToArray()).Tables[0];
+
             return data;
         }
 
@@ -41,7 +63,7 @@ namespace V6Init
         /// <param name="moduleID"></param>
         /// <param name="v2ID"></param>
         /// <returns></returns>
-        public static DataTable GetMenuTable2(int userid, string moduleID, string v2ID)
+        public static DataTable GetMenu2Table(int userid, string moduleID, string v2ID)
         {
             var prList = new List<SqlParameter>();
             string sql = "SELECT * FROM V6MENU WHERE Itemid='B0000000'";
@@ -59,9 +81,31 @@ namespace V6Init
             
             return data;
         }
+        
+        public static DataTable GetMenu2TableFilter(int userid, string moduleID, string v2ID)
+        {
+            _menu2DataView.RowFilter = string.Format("module_ID='{0}' and v2ID='{1}'", moduleID, v2ID);
+            DataTable data = _menu2DataView.ToTable();
+            return data;
+        }
 
+        private static DataTable GetMenu3TableFull(int userID)
+        {
+            var prList = new List<SqlParameter>();
+            string sql = "SELECT * FROM V6MENU WHERE";
+            sql += "\n ((nhat_ky='') or (nhat_ky<>'' and program='0000'))";
+            sql += "\n AND Itemid NOT IN('A0000000','B0000000')";
+            sql += "\n AND V2ID+JOBID+ItemID IN ";
+            sql += "\n    (SELECT V2ID+JOBid+ItemID FROM V6MENU WHERE (((1=@isAdmin or dbo.VFA_Inlist_MEMO(ITEMID,@mrights)=1)) AND hide_yn<>1)";
+            sql += "\n    GROUP BY V2ID,JOBID,ItemID) ORDER BY stt_box";
+            
+            prList.Add(new SqlParameter("@isAdmin", V6Login.IsAdmin));
+            prList.Add(new SqlParameter("@mrights", V6Login.UserRight.Mrights));
+            DataTable data = SqlConnect.ExecuteDataset(CommandType.Text, sql, prList.ToArray()).Tables[0];
+            return data;
+        }
 
-        public static DataTable GetMenuTable3(int userId, string moduleID, string v2ID, string jobID)
+        public static DataTable GetMenu3Table(int userId, string moduleID, string v2ID, string jobID)
         {
             var prList = new List<SqlParameter>();
             string sql = "SELECT * FROM V6MENU WHERE V2ID=@v2ID AND JOBID=@jobID";
@@ -78,6 +122,13 @@ namespace V6Init
             prList.Add(new SqlParameter("@mrights", V6Login.UserRight.Mrights));
             DataTable data = SqlConnect.ExecuteDataset(CommandType.Text, sql, prList.ToArray()).Tables[0];
             
+            return data;
+        }
+        
+        public static DataTable GetMenu3TableFilter(int userId, string moduleID, string v2ID, string jobID)
+        {
+            _menu3DataView.RowFilter = string.Format("module_ID='{0}' and v2ID='{1}' and jobID='{2}'", moduleID, v2ID, jobID);
+            DataTable data = _menu3DataView.ToTable();
             return data;
         }
 

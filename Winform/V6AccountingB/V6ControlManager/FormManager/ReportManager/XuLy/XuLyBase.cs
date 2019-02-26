@@ -870,7 +870,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 XuLyHienThiFormSuaChungTuF3();
             }
-            else if ((keyData & Keys.F4) == Keys.F4 && FilterControl.F4)
+            else if (keyData == Keys.F4 && FilterControl.F4)
             {
                 XuLyBoSungThongTinChungTuF4();
             }

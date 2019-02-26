@@ -560,7 +560,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             }
                             _sl_qd.V6LostFocus += delegate
                             {
-                                TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+                                TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+                                TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
                                 _soLuong.Value = _soLuong1.Value * _heSo1.Value;
                                 if (M_CAL_SL_QD_ALL == "1")
                                 {
@@ -568,6 +569,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                                     chkT_THUE_NT.Checked = false;
                                     Tinh_thue_ct();
                                 }
+                                TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
                             };
 
                             if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))

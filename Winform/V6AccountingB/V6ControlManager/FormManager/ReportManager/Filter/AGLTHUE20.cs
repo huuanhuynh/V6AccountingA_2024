@@ -91,9 +91,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             result.Add(new SqlParameter("@advFilter", cKey));
             return result;
         }
-        private void ARSD0_AR0_Load(object sender, EventArgs e)
-        {
 
-        }
     }
 }

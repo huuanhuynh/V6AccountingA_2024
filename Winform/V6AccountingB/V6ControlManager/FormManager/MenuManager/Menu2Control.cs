@@ -32,7 +32,7 @@ namespace V6ControlManager.FormManager.MenuManager
         private void MyInit()
         {
             //Tao tab
-            DataTable data = V6Menu.GetMenuTable2(V6Login.UserId, _moduleID, _v2ID);
+            DataTable data = V6Menu.GetMenu2TableFilter(V6Login.UserId, _moduleID, _v2ID);
             foreach (DataRow row in data.Rows)
             {
                 AddTab(row);
