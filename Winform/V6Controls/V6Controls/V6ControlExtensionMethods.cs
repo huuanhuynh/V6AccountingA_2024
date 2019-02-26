@@ -567,7 +567,7 @@ namespace V6Controls
         }
 
         /// <summary>
-        /// Gán Enabled = false và Tag = "disable" 
+        /// Gán Enabled = false và Tag += "disable" 
         /// </summary>
         /// <param name="control"></param>
         public static void DisableTag(this Control control)

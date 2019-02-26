@@ -64,6 +64,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 M_SOA_MULTI_VAT = V6Options.GetValue("M_SOA_MULTI_VAT");
                 M_POA_MULTI_VAT = V6Options.GetValue("M_POA_MULTI_VAT");
                 M_CAL_SL_QD_ALL = V6Options.GetValue("M_CAL_SL_QD_ALL");
+                M_TYPE_SL_QD_ALL = V6Options.GetValue("M_TYPE_SL_QD_ALL");
                 //var lbl = new Label();
                 //lbl.Text = MaCt;
                 //Controls.Add(lbl);
@@ -172,7 +173,21 @@ namespace V6ControlManager.FormManager.ChungTuManager
         public string M_SOA_HT_KM_CK;
         public string M_SOA_MULTI_VAT;
         public string M_POA_MULTI_VAT;
+        /// <summary>
+        /// <para>0:SL_QD=SO_LUONG1*HS_QD1(thùng):SL_QD2=Số lẻ(viên)</para>
+        /// <para>1:SO_LUONG1=SL_QD*HS_QD1</para>
+        /// <para>2:SL_QD=SO_LUONG1/HS_QD1(thùng)</para>
+        /// </summary>
         public string M_CAL_SL_QD_ALL;
+        /// <summary>
+        /// <para>0I-> Nhập SLQD</para>
+        /// <para>00:(M_CAL_SL_QD_ALL=0)</para>
+        /// <para>1I-> Nhập So_luong1</para>
+        /// <para>10(M_CAL_SL_QD_ALL=1)</para>
+        /// <para>2I->Nhập SLQD</para>
+        /// <para>20(M_CAL_SL_QD_ALL=2)</para>
+        /// </summary>
+        public string M_TYPE_SL_QD_ALL;
 
         /// <summary>
         /// List thứ tự field chi tiết.
@@ -834,15 +849,27 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try
             {
+               
                 if (M_CAL_SL_QD_ALL == "0")
                 {
                     //Phần nguyên, (ví dụ 1.5 thùng)
-                    var sl_qd = _soLuong1.Value * _hs_qd1.Value;
-                    _sl_qd.Value = V6BusinessHelper.Vround(sl_qd, M_ROUND_SL);
+                    if (_hs_qd1.Value != 0)
+                    {
+                        var sl_qd = _soLuong1.Value*_hs_qd1.Value;
+                        _sl_qd.Value = V6BusinessHelper.Vround(sl_qd, M_ROUND_SL);
+                    }
+                    else if (M_TYPE_SL_QD_ALL == "00")
+                    {
+                        _sl_qd.Value = 0;
+                    }
                     //Phần lẻ (ví dụ 50 viên = 0.5 thùng bên trên)
-                    var tong = _sl_qd.Value*_hs_qd2.Value;
-                    var sl_nguyen_thung = ((int) _sl_qd.Value)*_hs_qd2.Value;
-                    _sl_qd2.Value = V6BusinessHelper.Vround(tong - sl_nguyen_thung, 1);
+                    //Tuanmh 26/02/2019 _hs_qd2.Value != 0 
+                    if (_hs_qd2.Value != 0)
+                    {
+                        var tong = _sl_qd.Value*_hs_qd2.Value;
+                        var sl_nguyen_thung = ((int) _sl_qd.Value)*_hs_qd2.Value;
+                        _sl_qd2.Value = V6BusinessHelper.Vround(tong - sl_nguyen_thung, 1);
+                    }
                 }
             }
             catch (Exception ex)
@@ -865,10 +892,18 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         var sl_qd = _soLuong1.Value/_hs_qd1.Value;
                         _sl_qd.Value = V6BusinessHelper.Vround(sl_qd, M_ROUND_SL);
                     }
+                    else if (M_TYPE_SL_QD_ALL == "20")
+                    {
+                        _sl_qd.Value = 0;
+                    }
                     //Phần lẻ (ví dụ 50 viên = 0.5 thùng bên trên)
-                    var tong = _sl_qd.Value * _hs_qd2.Value;
-                    var sl_nguyen_thung = ((int)_sl_qd.Value) * _hs_qd2.Value;
-                    _sl_qd2.Value = V6BusinessHelper.Vround(tong - sl_nguyen_thung, 1);
+                    //Tuanmh 26/02/2019 _hs_qd2.Value != 0 
+                    if (_hs_qd2.Value != 0)
+                    {
+                        var tong = _sl_qd.Value*_hs_qd2.Value;
+                        var sl_nguyen_thung = ((int) _sl_qd.Value)*_hs_qd2.Value;
+                        _sl_qd2.Value = V6BusinessHelper.Vround(tong - sl_nguyen_thung, 1);
+                    }
                 }
             }
             catch (Exception ex)
@@ -885,8 +920,15 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 if (M_CAL_SL_QD_ALL == "1")
                 {
-                    var soLuong1 = _sl_qd.Value*_hs_qd1.Value;
-                    _soLuong1.Value = V6BusinessHelper.Vround(soLuong1, M_ROUND_SL);
+                    if (_hs_qd1.Value != 0)
+                    {
+                        var soLuong1 = _sl_qd.Value*_hs_qd1.Value;
+                        _soLuong1.Value = V6BusinessHelper.Vround(soLuong1, M_ROUND_SL);
+                    }
+                    else if (M_TYPE_SL_QD_ALL == "10")
+                    {
+                        _soLuong1.Value = 0;
+                    }
                 }
             }
             catch (Exception ex)

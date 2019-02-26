@@ -415,8 +415,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                         {
                             if (M_CAL_SL_QD_ALL == "0")
                             {
-                                _sl_qd.Enabled = false;
-                                if (_sl_qd.Tag == null || _sl_qd.Tag.ToString() != "hide") _sl_qd.Tag = "disable";
+                                if (M_TYPE_SL_QD_ALL == "00")
+                                {
+                                    _sl_qd.Enabled = false;
+                                    if (_sl_qd.IsVisibleTag()) _sl_qd.DisableTag();
+                                }
                             }
                             else if (M_CAL_SL_QD_ALL == "1")
                             {

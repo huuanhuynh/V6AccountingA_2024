@@ -52,7 +52,8 @@ namespace V6ControlManager.FormManager.MenuManager
         private void MyInit()
         {
             menuControl1.ViewStatusMode = 3;
-            DataTable v6MenuData = V6Menu.GetMenuTable3(V6Login.UserId, _moduleID, _v2ID, _jobID);
+            //DataTable v6MenuData = V6Menu.GetMenuTable3(V6Login.UserId, _moduleID, _v2ID, _jobID);
+            DataTable v6MenuData = V6Menu.GetMenuTable3Filter(V6Login.UserId, _moduleID, _v2ID, _jobID);
             foreach (DataRow row in v6MenuData.Rows)
             {
                 AddMenu(row);
