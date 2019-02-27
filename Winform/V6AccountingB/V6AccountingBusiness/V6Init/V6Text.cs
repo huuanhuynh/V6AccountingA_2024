@@ -285,6 +285,16 @@
             }
         }
 
+        public static string NoRight
+        {
+            get
+            {
+                var a = Text("CORPRUN0001");
+                if (a != "") return a;
+                return V6Setting.Language == "V" ? "Không có quyền!" : "No right!";
+            }
+        }
+
         public static string Action { get { return V6Setting.Language == "V" ? "Xử lý dữ liệu." : "Action."; } }
         public static string Add { get { return V6Setting.Language == "V" ? "Thêm " : "Add "; } }
         public static string AddInParentheses { get { return V6Setting.Language == "V" ? "(Thêm)" : "(Add)"; } }
@@ -300,54 +310,35 @@
         public static string Confirm { get { return V6Setting.Language == "V" ? "Xác nhận" : "Confirm"; } }
         public static string CheckData { get { return V6Setting.Language == "V" ? "Kiểm tra lại dữ liệu!" : "Check data!"; } }
         public static string CheckInfor { get { return V6Setting.Language == "V" ? "Kiểm tra thông tin chưa đầy đủ!" : "Check information again !"; } }
-        public static string Wrong { get { return V6Setting.Language == "V" ? "Nhập thông tin chưa đúng!" : "Wrong information!"; } }
         public static string CheckLock { get { return V6Setting.Language == "V" ? "Đã khóa số liệu!" : "Data locking !"; } }
         public static string CheckDeclare { get { return V6Setting.Language == "V" ? "Kiểm tra khai báo hệ thống quản lý !" : "Check system information again !"; } }
-        
+        public static string DataLoading { get { return V6Setting.Language == "V" ? "Đang tải dữ liệu." : "Data loading."; } }
         public static string DeleteConfirm { get { return V6Setting.Language == "V" ? "Có chắc chắn xóa?" : "Are you sure to delete?"; } }
         public static string DeleteRowConfirm { get { return V6Setting.Language == "V" ? "Có chắc chắn xóa dòng đang chọn?" : "Are you sure to delete selected row?"; } }
         public static string DeleteDenied { get { return V6Setting.Language == "V" ? "Không được xóa." : "Delete Denied."; } }
-        public static string EditDenied { get { return V6Setting.Language == "V" ? "Không được sửa." : "Edit Denied."; } }
+        
         public static string DeleteFail { get { return V6Setting.Language == "V" ? "Xóa không thành công!" : "Delete fail!"; } }
         public static string DeleteSuccess { get { return V6Setting.Language == "V" ? "Đã xóa." : "Delete success."; } }
-        public static string DiscardConfirm { get { return V6Setting.Language == "V" ? "Hủy bỏ các thay đổi?" : "Discard changes?"; } }
-        public static string EditSuccess { get { return V6Setting.Language == "V" ? "Sửa xong!" : "Edit success!"; } }
-        public static string EditFail { get { return V6Setting.Language == "V" ? "Sửa bị lỗi!" : "Edit fail!"; } }
-        public static string Executing { get { return V6Setting.Language == "V" ? "Đang xử lý." : "Executing."; } }
-        public static string Invoice { get { return V6Setting.Language == "V" ? "Chứng từ" : "Invoice"; } }
-        public static string OverFlow { get { return V6Setting.Language == "V" ? "Tràn dữ liệu!" : "OverFlow!"; } }
-        public static string ReloadConfirm { get { return V6Setting.Language == "V" ? "Có chắc bạn muốn tải lại?" : "Are you sure you want to reload?"; } }
-        
-        public static string SelectAccount { get { return V6Setting.Language == "V" ?  "Chưa chọn tài khoản!" : "Select account please!"; } }
-        public static string SelectCustomer { get { return V6Setting.Language == "V" ? "Chưa chọn khách hàng!" : "Select customer please!"; } }
-        public static string SelectItem { get { return V6Setting.Language == "V" ? "Chưa chọn mã vật tư!" : "Select item please!"; } }
-        public static string SelectWarehouse { get { return V6Setting.Language == "V" ? "Chưa chọn mã kho!" : "Select warehouse please!"; } }
-        public static string ZoomIn { get { return V6Setting.Language == "V" ? "Phóng" : "ZoomIn"; } }
-        public static string ZoomOut { get { return V6Setting.Language == "V" ? "Thu" : "ZoomOut"; } }
-
-        public static string Toolong { get { return V6Setting.Language == "V" ? "Quá dài !" : "Too long! "; } }
-       
-        public static string NoRight
-        {
-            get
-            {
-                var a = Text("CORPRUN0001");
-                if (a != "") return a;
-                return V6Setting.Language == "V" ? "Không có quyền!" : "No right!";
-            }
-        }
-        
-        public static string DataLoading { get { return V6Setting.Language == "V" ? "Đang tải dữ liệu." : "Data loading."; } }
         public static string DetailNotComplete { get { return V6Setting.Language == "V" ? "Chưa hoàn tất chi tiết!" : "Detail is not complete!"; } }
+        public static string DiscardConfirm { get { return V6Setting.Language == "V" ? "Hủy bỏ các thay đổi?" : "Discard changes?"; } }
+        public static string EditDenied { get { return V6Setting.Language == "V" ? "Không được sửa." : "Edit Denied."; } }
         public static string ExecuteConfirm { get { return V6Setting.Language == "V" ? "Có chắc chắn thực hiện hay không?" : "Are you sure want to proceed?"; } }
         public static string ExportFinish { get { return V6Setting.Language == "V" ? "Xuất hoàn tất." : "Export finish."; } }
         public static string ExportFail { get { return V6Setting.Language == "V" ? "Xuất lỗi." : "Export fail."; } }
         public static string Exporting { get { return V6Setting.Language == "V" ? "Đang xuất..." : "Exporting..."; } }
         public static string Exist { get { return V6Setting.Language == "V" ? "Đã tồn tại." : "Exist."; } }
         public static string ExistData { get { return V6Setting.Language == "V" ? "Dữ liệu đã tồn tại." : "Data Exist."; } }
+        public static string EditSuccess { get { return V6Setting.Language == "V" ? "Sửa xong!" : "Edit success!"; } }
+        public static string EditFail { get { return V6Setting.Language == "V" ? "Sửa bị lỗi!" : "Edit fail!"; } }
+        public static string Executing { get { return V6Setting.Language == "V" ? "Đang xử lý." : "Executing."; } }
+        public static string F348 { get { return V6Setting.Language == "V" ? "F3: Sửa, F4: Thêm, F8: Xóa" : "F3: Edit, F4: Add New, F8: Delete "; } }
+        
         public static string Fail { get { return V6Setting.Language == "V" ? "Hỏng." : "Fail."; } }
         public static string Finish { get { return V6Setting.Language == "V" ? "Hoàn thành." : "Finish."; } }
         public static string Help { get { return V6Setting.Language == "V" ? "Trợ giúp" : "Help"; } }
+        public static string Invoice { get { return V6Setting.Language == "V" ? "Chứng từ" : "Invoice"; } }
+        public static string InvoiceF3AddDetailSuccess { get { return V6Setting.IsVietnamese ? "Đã thêm thành công 1 chi tiết và bắt đầu thêm mới một dòng khác." : "Successfully added 1 detail and started adding a new line."; } }
+        public static string InvoiceF3EditDetailSuccess { get { return V6Setting.IsVietnamese ? "Đã sửa chi tiết và bắt đầu thêm mới một dòng khác." : "Corrected details and started adding another line."; } }
         public static string NoConnection { get { return V6Setting.Language == "V" ? "Không thể kết nối server!" : "Can not connect to server!"; } }
         public static string NoData { get { return V6Setting.Language == "V" ? "Không có dữ liệu." : "No data."; } }
         public static string NoDefine { get { return V6Setting.Language == "V" ? "Chưa định nghĩa." : "No define."; } }
@@ -366,29 +357,37 @@
         public static string NotRunHere { get { return V6Setting.Language == "V" ? "Không xử lý ở đây." : "Not run here."; } }
         public static string NotValid { get { return V6Setting.Language == "V" ? "Không hợp lệ." : "Not valid."; } }
         public static string NoUID { get { return V6Setting.Language == "V" ? "Không có UID." : "No UID."; } }
-        public static string Voucher_exist { get { return V6Setting.Language == "V" ? "Chứng từ trùng số , vẫn cho lưu!" : "This voucher is exist, still save!"; } }
-        public static string Voucher_exist_not_save { get { return V6Setting.Language == "V" ? "Chứng từ trùng số , không lưu được!" : "This voucher is exist, Not save!"; } }
-        public static string Updated { get { return V6Setting.Language == "V" ? "Đã cập nhập." : "Updated."; } }
-        public static string UpdateSuccess { get { return V6Setting.Language == "V" ? "Cập nhập thành công." : "Update success."; } }
-        public static string UpdateFail { get { return V6Setting.Language == "V" ? "Cập nhập lỗi." : "UpdateFail."; } }
+        
         public static string NotAllow { get { return V6Setting.Language == "V" ? "Không được phép!" : "Not Allow!"; } }
         public static string NotAllowed { get { return V6Setting.Language == "V" ? "Chưa được phép!" : "Not Allowed!"; } }
         public static string NotAnAdmin { get { return V6Setting.Language == "V" ? "Không phải admin." : "Not an admin."; } }
+        public static string OverFlow { get { return V6Setting.Language == "V" ? "Tràn dữ liệu!" : "OverFlow!"; } }
         public static string PreviewingMode { get { return V6Setting.IsVietnamese ? "Đang ở trạng thái xem!" : "Previewing mode!"; } }
         public static string ReadOnly { get { return V6Setting.IsVietnamese ? "Chỉ đọc!" : "Readonly!"; } }
         public static string Ready { get { return V6Setting.Language == "V" ? "Sẵn sàng." : "Ready."; } }
+        public static string ReloadConfirm { get { return V6Setting.Language == "V" ? "Có chắc bạn muốn tải lại?" : "Are you sure you want to reload?"; } }
         public static string ReportError { get { return V6Setting.Language == "V" ? "Báo cáo bị lỗi." : "Report error."; } }
         public static string SecretKeyFail { get { return V6Setting.Language == "V" ? "Sai khóa." : "No key."; } }
+        public static string SelectAccount { get { return V6Setting.Language == "V" ? "Chưa chọn tài khoản!" : "Select account please!"; } }
+        public static string SelectCustomer { get { return V6Setting.Language == "V" ? "Chưa chọn khách hàng!" : "Select customer please!"; } }
+        public static string SelectItem { get { return V6Setting.Language == "V" ? "Chưa chọn mã vật tư!" : "Select item please!"; } }
+        public static string SelectWarehouse { get { return V6Setting.Language == "V" ? "Chưa chọn mã kho!" : "Select warehouse please!"; } }
         /// <summary>
         /// Xuất > tồn
         /// </summary>
         public static string StockoutWarning { get { return V6Setting.Language == "V" ? "Xuất lớn hơn tồn!" : "Out > Stock!"; } }
+        public static string Toolong { get { return V6Setting.Language == "V" ? "Quá dài !" : "Too long! "; } }
         public static string UnFinished { get { return V6Setting.IsVietnamese ? "Chưa xử lý xong!" : "UnFinished!"; } }
         public static string Unsupported { get { return V6Setting.Language == "V" ? "Chưa hỗ trợ!" : "Unsupported!"; } }
+        public static string Updated { get { return V6Setting.Language == "V" ? "Đã cập nhập." : "Updated."; } }
+        public static string UpdateSuccess { get { return V6Setting.Language == "V" ? "Cập nhập thành công." : "Update success."; } }
+        public static string UpdateFail { get { return V6Setting.Language == "V" ? "Cập nhập lỗi." : "UpdateFail."; } }
         public static string ValidateFail { get { return V6Setting.IsVietnamese ? "Validate Fail!" : "Validate Fail"; } }
-        public static string InvoiceF3AddDetailSuccess { get { return V6Setting.IsVietnamese ? "Đã thêm thành công 1 chi tiết và bắt đầu thêm mới một dòng khác." : "Successfully added 1 detail and started adding a new line."; } }
-        public static string InvoiceF3EditDetailSuccess { get { return V6Setting.IsVietnamese ? "Đã sửa chi tiết và bắt đầu thêm mới một dòng khác." : "Corrected details and started adding another line."; } }
-        
+        public static string Voucher_exist { get { return V6Setting.Language == "V" ? "Chứng từ trùng số , vẫn cho lưu!" : "This voucher is exist, still save!"; } }
+        public static string Voucher_exist_not_save { get { return V6Setting.Language == "V" ? "Chứng từ trùng số , không lưu được!" : "This voucher is exist, Not save!"; } }
+        public static string Wrong { get { return V6Setting.Language == "V" ? "Nhập thông tin chưa đúng!" : "Wrong information!"; } }
+        public static string ZoomIn { get { return V6Setting.Language == "V" ? "Phóng" : "ZoomIn"; } }
+        public static string ZoomOut { get { return V6Setting.Language == "V" ? "Thu" : "ZoomOut"; } }
 
         #region ==== Fuctions ====
 

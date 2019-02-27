@@ -77,9 +77,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     if (V6Login.UserRight.AllowDelete("", "S02")
                         && this.ShowConfirmMessage("Xóa bút toán phân bổ khấu hao" ) == DialogResult.Yes)
                     {
-
-
-
                         var currentRowData = dataGridView1.CurrentRow.ToDataDictionary();
 
                         int nam = currentRowData.ContainsKey("RNAM")
@@ -111,9 +108,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             new SqlParameter("@Ma_dvcs", Madvcs),
                             new SqlParameter("@Ma_dvcs0", Madvcs0),
                             new SqlParameter("@Action", "F8"),
-
-
-
                         };
                         var result = V6BusinessHelper.ExecuteProcedureNoneQuery(_program, plist);
                         if (result > 0)

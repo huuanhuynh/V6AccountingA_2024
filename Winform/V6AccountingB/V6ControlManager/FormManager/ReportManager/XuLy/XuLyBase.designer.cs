@@ -109,7 +109,7 @@
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(662, 625);
+            this.dataGridView1.Size = new System.Drawing.Size(665, 625);
             this.dataGridView1.TabIndex = 4;
             this.dataGridView1.DataSourceChanged += new System.EventHandler(this.dataGridView1_DataSourceChanged);
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
@@ -232,7 +232,7 @@
             this.gridViewSummary1.DataGridView = this.dataGridView1;
             this.gridViewSummary1.Location = new System.Drawing.Point(307, 628);
             this.gridViewSummary1.Name = "gridViewSummary1";
-            this.gridViewSummary1.Size = new System.Drawing.Size(662, 23);
+            this.gridViewSummary1.Size = new System.Drawing.Size(665, 23);
             this.gridViewSummary1.SumCondition = null;
             this.gridViewSummary1.TabIndex = 0;
             // 

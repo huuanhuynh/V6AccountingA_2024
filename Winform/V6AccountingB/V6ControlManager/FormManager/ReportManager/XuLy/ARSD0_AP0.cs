@@ -16,11 +16,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         public ARSD0_AP0(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, false)
         {
-
+            InitializeComponent();
         }
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F3: Sửa,F4:Thêm hóa đơn bán ra, F8: Xóa");
+            V6ControlFormHelper.SetStatusText2(V6Text.F348);
         }
 
         protected override void MakeReport2()
@@ -46,91 +46,42 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                if (dataGridView1.CurrentRow != null)
+                if (dataGridView1.CurrentRow == null) return;
+                if (!V6Login.UserRight.AllowDelete("", "AP0"))
                 {
+                    V6ControlFormHelper.NoRightWarning();
+                    return;
+                }
 
-                    if (V6Login.UserRight.AllowDelete("", "AR0"))
+                var currentRowData = dataGridView1.CurrentRow.ToDataDictionary();
 
+                string sttrec = currentRowData.ContainsKey("STT_REC")
+                    ? ObjectAndString.ObjectToString(currentRowData["STT_REC"]) : "";
+
+                if (sttrec == "") return;
+
+                var t = V6BusinessHelper.CheckEditVoucher(sttrec, "ARS30", "S", "AP0");
+                if (t == 1)
+                {
+                    this.ShowWarningMessage(V6Text.DeleteDenied);
+                    return;
+                }
+
+                if (this.ShowConfirmMessage(V6Text.DeleteConfirm) == DialogResult.Yes)
+                {
+                    IDictionary<string, object> keys = new Dictionary<string, object>();
+                    keys.Add("STT_REC", sttrec);
+                    keys.Add("MA_CT", "AP0");
+                    var result = V6BusinessHelper.Delete("ARS30", keys);
+                    if (result > 0)
                     {
-                        var currentRowData = dataGridView1.CurrentRow.ToDataDictionary();
-
-                        int TS0 = currentRowData.ContainsKey("TS0")
-                            ? ObjectAndString.ObjectToInt(currentRowData["TS0"])
-                            : 1;
-
-                        if (TS0 == 1)
-                        {
-                            this.ShowWarningMessage("Không được xóa phần này!");
-
-                        }
-                        else
-                        {
-                            if (this.ShowConfirmMessage("Có chắc chắn xóa tăng giá trị ?") == DialogResult.Yes)
-                            {
-
-
-                                int nam = currentRowData.ContainsKey("RNAM")
-                                    ? ObjectAndString.ObjectToInt(currentRowData["RNAM"])
-                                    : 1900;
-                                int ky1 = currentRowData.ContainsKey("RKY1")
-                                    ? ObjectAndString.ObjectToInt(currentRowData["RKY1"])
-                                    : 0;
-                                int ky2 = currentRowData.ContainsKey("RKY2")
-                                    ? ObjectAndString.ObjectToInt(currentRowData["RKY2"])
-                                    : 0;
-                                string Diengiai = currentRowData.ContainsKey("RDIEN_GIAI")
-                                    ? ObjectAndString.ObjectToString(currentRowData["RDIEN_GIAI"])
-                                    : "";
-                                string Madvcs = currentRowData.ContainsKey("MA_DVCS")
-                                    ? ObjectAndString.ObjectToString(currentRowData["MA_DVCS"])
-                                    : "";
-                                string Madvcs0 = currentRowData.ContainsKey("MA_DVCS0")
-                                    ? ObjectAndString.ObjectToString(currentRowData["MA_DVCS0"])
-                                    : "";
-                                string Sothets = currentRowData.ContainsKey("SO_THE_TS")
-                                    ? ObjectAndString.ObjectToString(currentRowData["SO_THE_TS"])
-                                    : "";
-
-
-                                var uid = currentRowData.ContainsKey("UID")
-                                    ? ObjectAndString.ObjectToString(currentRowData["UID"])
-                                    : "";
-
-                                SqlParameter[] plist =
-                                {
-                                        new SqlParameter("@nam", nam),
-                                        new SqlParameter("@ky1", ky1),
-                                        new SqlParameter("@ky2", ky2),
-                                        new SqlParameter("@User_id", V6Login.UserId),
-                                        new SqlParameter("@So_the_ts", Sothets),
-                                        new SqlParameter("@Ma_dvcs", Madvcs),
-                                        new SqlParameter("@Ma_dvcs0", Madvcs0),
-                                        new SqlParameter("@uid", uid)
-
-
-
-                                    };
-                                var result = V6BusinessHelper.ExecuteProcedureNoneQuery(_program + "_F8",
-                                    plist);
-                                if (result > 0)
-                                {
-                                    V6ControlFormHelper.ShowMainMessage("Đã xóa!");
-                                    btnNhan.PerformClick();
-                                }
-                                else
-                                {
-                                    V6ControlFormHelper.ShowMainMessage("Xóa 0");
-                                }
-                            }
-                        }
-
+                        V6ControlFormHelper.ShowMainMessage("Đã xóa!");
+                        btnNhan.PerformClick();
                     }
-
                     else
                     {
-                        V6ControlFormHelper.NoRightWarning();
+                        V6ControlFormHelper.ShowMainMessage("Xóa 0");
                     }
-
                 }
             }
             catch (Exception ex)
@@ -222,13 +173,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                             }
                         }
-
-
                         else
                         {
                             this.ShowWarningMessage("Không được phép sửa!");
                         }
-
                     }
                 }
             }
