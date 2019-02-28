@@ -379,7 +379,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         {
             try
             {
-                var saveFile = V6ControlFormHelper.ChooseSaveFile(this, "Xml|*.xml");
+                var saveFile = V6ControlFormHelper.ChooseSaveFile(this, "Xml|*.xml", txtReportFileNew.Text + ".xml");
                 if (string.IsNullOrEmpty(saveFile)) return;
 
                 DataSet exportDataSet = new DataSet("ALBCEXCELFORMAT");

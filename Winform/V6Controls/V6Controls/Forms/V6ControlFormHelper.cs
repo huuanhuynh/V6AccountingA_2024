@@ -6139,12 +6139,23 @@ namespace V6Controls.Forms
         /// </summary>
         /// <param name="owner">Form hooặc control chủ gọi hàm này.</param>
         /// <param name="filter">Lọc file, vd: All file|*.*</param>
+        /// <param name="fileName">Tên file muốn lưu.</param>
         /// <returns></returns>
-        public static string ChooseSaveFile(IWin32Window owner, string filter)
+        public static string ChooseSaveFile(IWin32Window owner, string filter, string fileName = null)
         {
             if (V6Setting.IsDesignTime) return "";
             if (string.IsNullOrEmpty(filter)) filter = "All file|*.*";
             else if (!filter.Contains("All file|*.*".ToUpper())) filter += "|All file|*.*";
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                if (Path.IsPathRooted(fileName)) saveFileDialog.FileName = fileName;
+                else
+                {
+                    var folder = Path.GetFullPath(saveFileDialog.FileName);
+                    fileName = Path.Combine(folder, fileName);
+                    saveFileDialog.FileName = fileName;
+                }
+            }
             saveFileDialog.Filter = filter;
             if (saveFileDialog.ShowDialog(owner) == DialogResult.OK)
             {

@@ -177,6 +177,49 @@ namespace V6ControlManager.FormManager.SoDuManager
 
         #region ==== Do method ====
 
+
+        public override void DoHotKey(Keys keyData)
+        {
+            try
+            {
+                if (keyData == (Keys.Control | Keys.F6))
+                {
+
+                }
+                else if (keyData == Keys.F9)
+                {
+                    //All_Objects["dataGridView1"] = dataGridView1;
+                    //InvokeFormEvent(FormDynamicEvent.F9);
+                }
+                else if (keyData == Keys.Up || keyData == Keys.Down || keyData == Keys.Left || keyData == Keys.Right)
+                {
+                    return;
+                }
+                else if (keyData == Keys.PageUp)
+                {
+                    if (btnPrevious.Enabled) btnPrevious.PerformClick();
+                }
+                else if (keyData == Keys.PageDown)
+                {
+                    if (btnNext.Enabled) btnNext.PerformClick();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoHotKey", ex);
+            }
+            base.DoHotKey(keyData);
+        }
+
+        public override bool DoHotKey0(Keys keyData)
+        {
+            if (keyData == Keys.Up || keyData == Keys.Down || keyData == Keys.Left || keyData == Keys.Right)
+            {
+                if (Navigation(keyData)) return true;
+            }
+            return base.DoHotKey0(keyData);
+        }
+
         private void DoAdd()
         {
             try

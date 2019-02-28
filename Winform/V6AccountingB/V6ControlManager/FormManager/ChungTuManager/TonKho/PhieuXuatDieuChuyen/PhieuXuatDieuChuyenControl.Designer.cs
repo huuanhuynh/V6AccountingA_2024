@@ -1314,7 +1314,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             // 
             // TxtTen_khoN
             // 
-            this.TxtTen_khoN.AccessibleName = "";
+            this.TxtTen_khoN.AccessibleName = "TEN_KHON";
             this.TxtTen_khoN.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtTen_khoN.BackColor = System.Drawing.SystemColors.Window;
@@ -1333,7 +1333,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             // 
             // TxtTen_kho
             // 
-            this.TxtTen_kho.AccessibleName = "TEN_KHO";
+            this.TxtTen_kho.AccessibleName = "TEN_KHOX";
             this.TxtTen_kho.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtTen_kho.BackColor = System.Drawing.SystemColors.Window;
@@ -1430,7 +1430,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtMaKhoN.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaKhoN.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaKhoN.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMaKhoN.BrotherFields = "";
+            this.txtMaKhoN.BrotherFields = "TEN_KHO";
             this.txtMaKhoN.CheckNotEmpty = true;
             this.txtMaKhoN.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaKhoN.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -1439,6 +1439,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtMaKhoN.LeaveColor = System.Drawing.Color.White;
             this.txtMaKhoN.Location = new System.Drawing.Point(92, 97);
             this.txtMaKhoN.Name = "txtMaKhoN";
+            this.txtMaKhoN.NeighborFields = "TEN_KHON";
             this.txtMaKhoN.Size = new System.Drawing.Size(100, 20);
             this.txtMaKhoN.TabIndex = 9;
             this.txtMaKhoN.VVar = "ma_kho";
@@ -1460,6 +1461,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtMaKhoX.LeaveColor = System.Drawing.Color.White;
             this.txtMaKhoX.Location = new System.Drawing.Point(92, 75);
             this.txtMaKhoX.Name = "txtMaKhoX";
+            this.txtMaKhoX.NeighborFields = "TEN_KHOX";
             this.txtMaKhoX.Size = new System.Drawing.Size(100, 20);
             this.txtMaKhoX.TabIndex = 8;
             this.txtMaKhoX.VVar = "ma_kho";

@@ -578,5 +578,98 @@ namespace V6Controls.Forms
             }
         }
 
+        /// <summary>
+        /// Dịch chuyển focus theo phím mũi tên. Nên cancel handled khi dịch chuyển thành công (return true).
+        /// </summary>
+        /// <param name="keyData"></param>
+        /// <returns>true nếu dịch chuyển thành công.</returns>
+        public bool Navigation(Keys keyData)
+        {
+            try
+            {
+                Control current = ActiveControl;
+                if (current is DataGridView)
+                {
+                    var dataGridView1 = (DataGridView) current;
+                    if (dataGridView1.CurrentRow != null &&
+                        (keyData == Keys.Left || keyData == Keys.Right ||
+                         (keyData == Keys.Up && dataGridView1.CurrentRow.Index > 0) ||
+                         (keyData == Keys.Down && dataGridView1.CurrentRow.Index < dataGridView1.RowCount - 1)))
+                        return false;
+                }
+                else if (current is TreeListView)
+                {
+                    var tree_list_view = (TreeListView)current;
+                    if (tree_list_view.SelectedItems.Count>0 &&
+                        (keyData == Keys.Left || keyData == Keys.Right ||
+                         (keyData == Keys.Up && tree_list_view.SelectedItems[0].Index > 0) ||
+                         (keyData == Keys.Down && tree_list_view.SelectedItems[0].Index < tree_list_view.ItemsCount - 1)))
+                        return false;
+                }
+
+                Point get_point = current.Location;
+                Control get_control = null;
+                do
+                {
+                    if (current != null)
+                    {
+                        switch (keyData)
+                        {
+                            case Keys.Up:
+                                get_point.X = current.Left + 10;
+                                get_point.Y = current.Top - 20;
+                                break;
+                            case Keys.Down:
+                                get_point.X = current.Left + 10;
+                                get_point.Y = current.Bottom + 20;
+                                break;
+                            case Keys.Left:
+                                get_point.X = current.Left - 20;
+                                get_point.Y = current.Top + 10;
+                                break;
+                            case Keys.Right:
+                                get_point.X = current.Right + 20;
+                                get_point.Y = current.Top + 10;
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (keyData)
+                        {
+                            case Keys.Up:
+                                get_point.Y -= 10;
+                                break;
+                            case Keys.Down:
+                                get_point.Y += 10;
+                                break;
+                            case Keys.Left:
+                                get_point.X -= 10;
+                                break;
+                            case Keys.Right:
+                                get_point.X += 10;
+                                break;
+                        }
+                    }
+                    get_control = GetChildAtPoint(get_point);
+                    //if (get_control != null)
+                        current = get_control;
+
+                } while ((get_control != null && (!get_control.Visible || !get_control.Enabled))
+                    || (get_control == null && this.Bounds.Contains(get_point)));
+
+                if (get_control != null)
+                {
+                    get_control.Focus();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Navigation", ex);
+            }
+            return false;
+        }
+
     }
 }
