@@ -530,7 +530,7 @@ namespace V6Controls.Controls
                             if (t > 0)
                             {
                                 ReLoad();
-                                V6ControlFormHelper.ShowMainMessage("Đã xóa!");
+                                V6ControlFormHelper.ShowMainMessage(V6Text.Deleted);
                             }
                             else
                             {
@@ -558,7 +558,7 @@ namespace V6Controls.Controls
                             if (t > 0)
                             {
                                 ReLoad();
-                                V6ControlFormHelper.ShowMainMessage("Đã xóa " + t);
+                                V6ControlFormHelper.ShowMainMessage(V6Text.Deleted + t);
                             }
                             else
                             {
@@ -579,7 +579,7 @@ namespace V6Controls.Controls
                             if (t > 0)
                             {
                                 ReLoad();
-                                V6ControlFormHelper.ShowMainMessage("Đã xóa " + t);
+                                V6ControlFormHelper.ShowMainMessage(V6Text.Deleted + t);
                             }
                             else
                             {
@@ -600,7 +600,7 @@ namespace V6Controls.Controls
                             if (t > 0)
                             {
                                 ReLoad();
-                                V6ControlFormHelper.ShowMainMessage("Đã xóa " + t);
+                                V6ControlFormHelper.ShowMainMessage(V6Text.Deleted + t);
                             }
                             else
                             {
@@ -641,7 +641,7 @@ namespace V6Controls.Controls
                                 if (t > 0)
                                 {
                                     ReLoad();
-                                    V6ControlFormHelper.ShowMainMessage("Đã xóa " + userId);
+                                    V6ControlFormHelper.ShowMainMessage(V6Text.Deleted + userId);
                                 }
                                 else
                                 {
@@ -667,7 +667,7 @@ namespace V6Controls.Controls
                                 if (t > 0)
                                 {
                                     ReLoad();
-                                    V6ControlFormHelper.ShowMainMessage("Đã xóa ");
+                                    V6ControlFormHelper.ShowMainMessage(V6Text.Deleted);
                                 }
                                 else
                                 {
@@ -728,7 +728,7 @@ namespace V6Controls.Controls
 
                                     }
                                     ReLoad();
-                                    V6ControlFormHelper.ShowMainMessage("Đã xóa " + t);
+                                    V6ControlFormHelper.ShowMainMessage(V6Text.Deleted + t);
                                 }
                                 else
                                 {

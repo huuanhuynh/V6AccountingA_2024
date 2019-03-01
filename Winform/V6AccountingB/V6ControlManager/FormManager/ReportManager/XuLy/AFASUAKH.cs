@@ -68,7 +68,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         if (result > 0)
                         {
                             dataGridView1.Rows.Remove(dataGridView1.CurrentRow);
-                            V6ControlFormHelper.ShowMainMessage("Đã xóa!");
+                            V6ControlFormHelper.ShowMainMessage(V6Text.Deleted);
                         }
                         else
                         {

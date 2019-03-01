@@ -38,27 +38,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             var errors = "";
             if (txtstt.Value == 0)
-                errors += "Chưa nhập số thứ tự !\r\n";
+                errors += V6Text.ChuaNhapSTT;
             if (txtTen_bt.Text.Trim() == "")
-                errors += "Chưa nhập tên bút toán !\r\n";
-
-            //if (Mode == V6Mode.Edit)
-            //{
-            //    bool b = V6BusinessHelper.IsValidTwoCode_Full(TableName.ToString(), 0, "TK_NO",
-            //     txtTk_no.Text.Trim(), DataOld["TK_NO"].ToString(),
-            //     "TK_CO", txtTk_Co.Text.Trim(), DataOld["TK_CO"].ToString());
-            //    if (!b)
-            //        throw new Exception("Không được sửa tk đã tồn tại: ");
-            //}
-            //else if (Mode == V6Mode.Add)
-            //{
-            //    bool b = V6BusinessHelper.IsValidTwoCode_Full(TableName.ToString(), 1, "TK_NO",
-            //     txtTk_no.Text.Trim(), txtTk_no.Text.Trim(),
-            //     "TK_CO",txtTk_Co.Text.Trim(), txtTk_Co.Text.Trim());
-            //    if (!b)
-            //        throw new Exception("Không được thêm tk đã tồn tại: ");
-            //}
-
+                errors += V6Text.Text("ChuaNhapTenButToan");
+                //errors += "Chưa nhập tên bút toán !\r\n";
+            
             AldmConfig config = ConfigManager.GetAldmConfig(TableName.ToString());
             if (config != null && config.HaveInfo && !string.IsNullOrEmpty(config.KEY))
             {

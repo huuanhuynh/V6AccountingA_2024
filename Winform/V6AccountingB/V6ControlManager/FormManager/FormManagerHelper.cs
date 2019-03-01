@@ -62,6 +62,14 @@ namespace V6ControlManager.FormManager
                         //shift_is_down = true;
                         return new DanhMucView(itemId, code, V6TableName.CorpLan.ToString(), "", "", false);
                     }
+                    else if ((Control.ModifierKeys & Keys.Control) == Keys.Control)
+                    {
+                        return new DanhMucView(itemId, code, V6TableName.CorpLan1.ToString(), "", "", false);
+                    }
+                    else if ((Control.ModifierKeys & Keys.Alt) == Keys.Alt)
+                    {
+                        return new DanhMucView(itemId, code, V6TableName.CorpLan2.ToString(), "", "", false);
+                    }
                     else
                     {
                         return new CorplanContainer(itemId);

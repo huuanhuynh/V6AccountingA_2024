@@ -612,7 +612,7 @@ namespace V6ControlManager.FormManager.NhanSu
                         if (t > 0)
                         {
                             ReLoad();
-                            V6ControlFormHelper.ShowMainMessage("Đã xóa!");
+                            V6ControlFormHelper.ShowMainMessage(V6Text.Deleted);
                         }
                     }
                     else

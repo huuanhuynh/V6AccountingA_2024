@@ -38,9 +38,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtMaCt = new V6Controls.V6ColorTextBox();
             this.txtSttRec = new V6Controls.V6ColorTextBox();
             this.dateNgayHL = new V6Controls.V6DateTimeColor();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblMaBPHT = new System.Windows.Forms.Label();
             this.txtMaBpht = new V6Controls.V6VvarTextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblMaSP = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txtMaSp = new V6Controls.V6VvarTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -128,9 +128,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage1.Controls.Add(this.txtMaCt);
             this.tabPage1.Controls.Add(this.txtSttRec);
             this.tabPage1.Controls.Add(this.dateNgayHL);
-            this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Controls.Add(this.lblMaBPHT);
             this.tabPage1.Controls.Add(this.txtMaBpht);
-            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.lblMaSP);
             this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.txtMaSp);
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
@@ -200,17 +200,17 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dateNgayHL.TabIndex = 5;
             this.dateNgayHL.Text = "__/__/____";
             // 
-            // label3
+            // lblMaBPHT
             // 
-            this.label3.AccessibleDescription = "XULYL00026";
-            this.label3.AccessibleName = "";
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 8);
-            this.label3.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(150, 17);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Mã bộ phận hạch toán";
+            this.lblMaBPHT.AccessibleDescription = "XULYL00026";
+            this.lblMaBPHT.AccessibleName = "";
+            this.lblMaBPHT.AutoSize = true;
+            this.lblMaBPHT.Location = new System.Drawing.Point(9, 8);
+            this.lblMaBPHT.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblMaBPHT.Name = "lblMaBPHT";
+            this.lblMaBPHT.Size = new System.Drawing.Size(150, 17);
+            this.lblMaBPHT.TabIndex = 0;
+            this.lblMaBPHT.Text = "Mã bộ phận hạch toán";
             // 
             // txtMaBpht
             // 
@@ -231,17 +231,17 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtMaBpht.TabIndex = 1;
             this.txtMaBpht.VVar = "MA_BPHT";
             // 
-            // label1
+            // lblMaSP
             // 
-            this.label1.AccessibleDescription = "XULYL00028";
-            this.label1.AccessibleName = "";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 37);
-            this.label1.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 17);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Mã sản phẩm";
+            this.lblMaSP.AccessibleDescription = "XULYL00028";
+            this.lblMaSP.AccessibleName = "";
+            this.lblMaSP.AutoSize = true;
+            this.lblMaSP.Location = new System.Drawing.Point(9, 37);
+            this.lblMaSP.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblMaSP.Name = "lblMaSP";
+            this.lblMaSP.Size = new System.Drawing.Size(93, 17);
+            this.lblMaSP.TabIndex = 2;
+            this.lblMaSP.Text = "Mã sản phẩm";
             // 
             // label7
             // 
@@ -1252,10 +1252,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private V6VvarTextBox txtMaBpht;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblMaBPHT;
         private System.Windows.Forms.TabPage tabPage1;
         private V6VvarTextBox txtMaSp;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblMaSP;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabChiTiet;

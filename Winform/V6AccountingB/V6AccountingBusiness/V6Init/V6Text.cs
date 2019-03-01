@@ -16,7 +16,7 @@
         {
             get
             {
-                var a = Text("");
+                var a = Text("DACOPSKOXOA");
                 if (a != "") return a;
                 return V6Setting.Language == "V" ? "Đã có phát sinh, không được xóa!" : "Has been used, can not delete!";
             }
@@ -53,6 +53,17 @@
         {
             get { return V6Setting.Language == "V" ? "Hủy" : "Cancel"; }
         }
+
+        public static string ChuaNhapSTT
+        {
+            get { return Text("INPUT00001"); }
+        }
+
+        public static string ChuaNhapTenButToan
+        {
+            get { return Text("INPUT00002"); }
+        }
+
         public static string PhanBo
         {
             get
@@ -318,7 +329,7 @@
         public static string DeleteDenied { get { return V6Setting.Language == "V" ? "Không được xóa." : "Delete Denied."; } }
         
         public static string DeleteFail { get { return V6Setting.Language == "V" ? "Xóa không thành công!" : "Delete fail!"; } }
-        public static string DeleteSuccess { get { return V6Setting.Language == "V" ? "Đã xóa." : "Delete success."; } }
+        public static string DeleteSuccess { get { return V6Setting.Language == "V" ? "Xóa thành công." : "Delete success."; } }
         public static string DetailNotComplete { get { return V6Setting.Language == "V" ? "Chưa hoàn tất chi tiết!" : "Detail is not complete!"; } }
         public static string DiscardConfirm { get { return V6Setting.Language == "V" ? "Hủy bỏ các thay đổi?" : "Discard changes?"; } }
         public static string EditDenied { get { return V6Setting.Language == "V" ? "Không được sửa." : "Edit Denied."; } }
@@ -330,6 +341,7 @@
         public static string ExistData { get { return V6Setting.Language == "V" ? "Dữ liệu đã tồn tại." : "Data Exist."; } }
         public static string EditSuccess { get { return V6Setting.Language == "V" ? "Sửa xong!" : "Edit success!"; } }
         public static string EditFail { get { return V6Setting.Language == "V" ? "Sửa bị lỗi!" : "Edit fail!"; } }
+        public static object Empty { get { return V6Setting.Language == "V" ? "Rỗng" : "Empty"; } }
         public static string Executing { get { return V6Setting.Language == "V" ? "Đang xử lý." : "Executing."; } }
         public static string F348 { get { return V6Setting.Language == "V" ? "F3: Sửa, F4: Thêm, F8: Xóa" : "F3: Edit, F4: Add New, F8: Delete "; } }
         
@@ -385,9 +397,11 @@
         public static string ValidateFail { get { return V6Setting.IsVietnamese ? "Validate Fail!" : "Validate Fail"; } }
         public static string Voucher_exist { get { return V6Setting.Language == "V" ? "Chứng từ trùng số , vẫn cho lưu!" : "This voucher is exist, still save!"; } }
         public static string Voucher_exist_not_save { get { return V6Setting.Language == "V" ? "Chứng từ trùng số , không lưu được!" : "This voucher is exist, Not save!"; } }
+        public static string Warning { get { return V6Setting.Language == "V" ? "Cảnh báo!" : "Warning!"; } }
         public static string Wrong { get { return V6Setting.Language == "V" ? "Nhập thông tin chưa đúng!" : "Wrong information!"; } }
         public static string ZoomIn { get { return V6Setting.Language == "V" ? "Phóng" : "ZoomIn"; } }
         public static string ZoomOut { get { return V6Setting.Language == "V" ? "Thu" : "ZoomOut"; } }
+        
 
         #region ==== Fuctions ====
 

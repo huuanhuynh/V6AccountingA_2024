@@ -114,7 +114,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     plist);
                                 if (result > 0)
                                 {
-                                    V6ControlFormHelper.ShowMainMessage("Đã xóa!");
+                                    V6ControlFormHelper.ShowMainMessage(V6Text.Deleted);
                                     btnNhan.PerformClick();
                                 }
                                 else

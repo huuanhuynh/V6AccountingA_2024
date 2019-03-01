@@ -321,7 +321,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
             var errors = "";
 
-            if (txtTen_bt.Text.Trim() == "") errors += "Chưa nhập tên!\r\n";
+            if (txtTen_bt.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblTenBT.Text + "!\r\n";
 
             if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
             {

@@ -75,7 +75,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     var result = V6BusinessHelper.Delete("ARS30", keys);
                     if (result > 0)
                     {
-                        V6ControlFormHelper.ShowMainMessage("Đã xóa!");
+                        V6ControlFormHelper.ShowMainMessage(V6Text.Deleted);
                         btnNhan.PerformClick();
                     }
                     else

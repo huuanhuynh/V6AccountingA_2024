@@ -326,41 +326,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         public override void ValidateData()
         {
             var errors = "";
-            if (txtMaSp.Text.Trim() == "") errors += "Chưa nhập mã sản phẩm!\r\n";
-            if (txtMaBpht.Text.Trim() == "") errors += "Chưa nhập mã!\r\n";
-            //if (Mode == V6Mode.Edit)
-            //{
-            //    bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_SP",
-            //     txtMaSp.Text.Trim(), DataOld["MA_SP"].ToString());
-            //    if (!b)
-            //        throw new Exception("Không được sửa mã đã tồn tại: "
-            //                                        + "MA_SP = " + txtMaSp.Text.Trim());
-            //}
-            //else if (Mode == V6Mode.Add)
-            //{
-            //    bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_SP",
-            //     txtMaSp.Text.Trim(), txtMaSp.Text.Trim());
-            //    if (!b)
-            //        throw new Exception("Không được thêm mã đã tồn tại: "
-            //                                        + "MA_SP = " + txtMaSp.Text.Trim());
-            //}
-            //if (Mode == V6Mode.Edit)
-            //{
-            //    bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_BPHT",
-            //     txtMaBpht.Text.Trim(), DataOld["MA_BPHT"].ToString());
-            //    if (!b)
-            //        throw new Exception("Không được sửa mã đã tồn tại: "
-            //                                        + "MA_BPHT = " + txtMaBpht.Text.Trim());
-            //}
-            //else if (Mode == V6Mode.Add)
-            //{
-            //    bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_BPHT",
-            //     txtMaBpht.Text.Trim(), txtMaBpht.Text.Trim());
-            //    if (!b)
-            //        throw new Exception("Không được thêm mã đã tồn tại: "
-            //                                        + "MA_BPHT = " + txtMaBpht.Text.Trim());
-            //}
-
+            if (txtMaSp.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblMaSP.Text + "!\r\n";
+            if (txtMaBpht.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblMaBPHT.Text + "!\r\n";
+            
             AldmConfig config = ConfigManager.GetAldmConfig(TableName.ToString());
             if (config != null && config.HaveInfo && !string.IsNullOrEmpty(config.KEY))
             {

@@ -243,7 +243,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             if (dataGridView2.Rows.Count > 0)
             {
-                if (V6Message.Show("Chú ý: chưa tạo phiếu xuất (F10).\n" + "Bạn vẫn muốn quay ra?", "Cảnh báo!", 500, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, 2, this)
+                if (V6Message.Show(V6Text.Text("CHUYCHUATAOPXF10") + "\n" + V6Text.BackConfirm, V6Text.Warning, 500, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, 2, this)
                     != DialogResult.Yes)
                 {
                     return;

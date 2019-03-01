@@ -6151,8 +6151,11 @@ namespace V6Controls.Forms
                 if (Path.IsPathRooted(fileName)) saveFileDialog.FileName = fileName;
                 else
                 {
-                    var folder = Path.GetFullPath(saveFileDialog.FileName);
+                    var folder = string.IsNullOrEmpty(saveFileDialog.FileName)
+                        ? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+                        : Path.GetFullPath(saveFileDialog.FileName);
                     fileName = Path.Combine(folder, fileName);
+                    saveFileDialog.InitialDirectory = folder;
                     saveFileDialog.FileName = fileName;
                 }
             }

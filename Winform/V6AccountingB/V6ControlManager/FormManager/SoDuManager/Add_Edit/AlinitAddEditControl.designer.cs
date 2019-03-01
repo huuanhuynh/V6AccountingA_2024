@@ -30,9 +30,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.chkInherit_ch = new V6Controls.V6CheckBox();
@@ -48,11 +48,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtNhom = new V6Controls.V6ColorTextBox();
             this.dateNgayHL = new V6Controls.V6DateTimeColor();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblLoai = new System.Windows.Forms.Label();
             this.v6VvarTextBox1 = new V6Controls.V6VvarTextBox();
             this.txtMaCtMe = new V6Controls.V6VvarTextBox();
             this.txtLoai = new V6Controls.V6VvarTextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblNhom = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txtTagName = new V6Controls.V6VvarTextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -159,11 +159,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage1.Controls.Add(this.txtNhom);
             this.tabPage1.Controls.Add(this.dateNgayHL);
             this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Controls.Add(this.lblLoai);
             this.tabPage1.Controls.Add(this.v6VvarTextBox1);
             this.tabPage1.Controls.Add(this.txtMaCtMe);
             this.tabPage1.Controls.Add(this.txtLoai);
-            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.lblNhom);
             this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.txtTagName);
             this.tabPage1.Controls.Add(this.label2);
@@ -391,17 +391,17 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label4.TabIndex = 0;
             this.label4.Text = "1-Chứng từ, 2-Danh mục,4-Báo cáo,5- Adv_filter";
             // 
-            // label3
+            // lblLoai
             // 
-            this.label3.AccessibleDescription = "ADDEDITL00301";
-            this.label3.AccessibleName = "";
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(5, 5);
-            this.label3.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 17);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Loại";
+            this.lblLoai.AccessibleDescription = "ADDEDITL00301";
+            this.lblLoai.AccessibleName = "";
+            this.lblLoai.AutoSize = true;
+            this.lblLoai.Location = new System.Drawing.Point(5, 5);
+            this.lblLoai.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblLoai.Name = "lblLoai";
+            this.lblLoai.Size = new System.Drawing.Size(35, 17);
+            this.lblLoai.TabIndex = 0;
+            this.lblLoai.Text = "Loại";
             // 
             // v6VvarTextBox1
             // 
@@ -463,17 +463,17 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtLoai.TextChanged += new System.EventHandler(this.txtLoai_TextChanged);
             this.txtLoai.Leave += new System.EventHandler(this.txtLoai_Leave);
             // 
-            // label1
+            // lblNhom
             // 
-            this.label1.AccessibleDescription = "ADDEDITL00180";
-            this.label1.AccessibleName = "";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 35);
-            this.label1.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 17);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Nhóm";
+            this.lblNhom.AccessibleDescription = "ADDEDITL00180";
+            this.lblNhom.AccessibleName = "";
+            this.lblNhom.AutoSize = true;
+            this.lblNhom.Location = new System.Drawing.Point(5, 35);
+            this.lblNhom.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblNhom.Name = "lblNhom";
+            this.lblNhom.Size = new System.Drawing.Size(45, 17);
+            this.lblNhom.TabIndex = 2;
+            this.lblNhom.Text = "Nhóm";
             // 
             // label7
             // 
@@ -1486,20 +1486,20 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.USER_NAME,
@@ -1511,8 +1511,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(875, 138);
             this.dataGridView1.TabIndex = 1;
@@ -1602,10 +1602,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private V6VvarTextBox txtLoai;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblLoai;
         private System.Windows.Forms.TabPage tabPage1;
         private V6VvarTextBox txtTagName;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblNhom;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label5;

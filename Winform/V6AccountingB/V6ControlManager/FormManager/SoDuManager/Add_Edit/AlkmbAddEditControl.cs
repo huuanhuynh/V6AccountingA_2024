@@ -77,7 +77,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
             }
-            
+            this.toolTipV6FormControl.SetToolTip(this.btnChonKH, V6Text.Text("ShiftClickForDelete"));
+            this.toolTipV6FormControl.SetToolTip(this.BtchonExcel, V6Text.Text("ShiftClickForDelete"));
+            this.toolTipV6FormControl.SetToolTip(this.btnChonKH5, V6Text.Text("ShiftClickForDelete"));
+            this.toolTipV6FormControl.SetToolTip(this.BtchonExcel5, V6Text.Text("ShiftClickForDelete"));
         }
 
         public override void DoBeforeAdd()
@@ -651,7 +654,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
             var errors = "";
             
-            if (txtMaKm.Text.Trim() == "") errors += "Chưa nhập mã khuyến mãi!\r\n";
+            if (txtMaKm.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblMaKM.Text + "!\r\n";
 
             if (Mode == V6Mode.Edit)
             {
@@ -943,7 +946,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 }
                 else
                 {
-                    this.ShowWarningMessage("Kiểm tra lại dữ liệu 3:" + error);
+                    this.ShowWarningMessage(V6Text.Text("CHECKDATA") + "3:" + error);
                     return false;
                 }
             }
@@ -1731,7 +1734,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 }
                 else
                 {
-                    this.ShowWarningMessage("Kiểm tra lại dữ liệu 4:" + error);
+                    this.ShowWarningMessage(V6Text.Text("CHECKDATA") + "4:" + error);
                     return false;
                 }
 
@@ -1786,7 +1789,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 }
                 else
                 {
-                    this.ShowWarningMessage("Kiểm tra lại dữ liệu 5:" + error);
+                    this.ShowWarningMessage(V6Text.Text("CHECKDATA") + "5:" + error);
                     return false;
                 }
             }
@@ -1906,12 +1909,12 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         private void BtchonExcel_MouseEnter(object sender, EventArgs e)
         {
-            V6ControlFormHelper.SetStatusText("Giữ Shift khi click để xóa.");
+            V6ControlFormHelper.SetStatusText(V6Text.Text("ShiftClickForDelete"));
         }
 
         private void BtchonExcel_MouseHover(object sender, EventArgs e)
         {
-            V6ControlFormHelper.SetStatusText("Giữ Shift khi click để xóa.");
+            V6ControlFormHelper.SetStatusText(V6Text.Text("ShiftClickForDelete"));
         }
 
         private void btnChonKH5_Click(object sender, EventArgs e)

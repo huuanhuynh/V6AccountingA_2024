@@ -28,24 +28,26 @@ namespace V6Init
             }
             else
             {
-                
                 DataTable t = SqlConnect.Select("Corplan1", " distinct ID," + V6Setting.Language,
                     "ID=@p", "", V6Setting.Language, new SqlParameter("@p",id)).Data;
-                var d = t.Rows.Cast<DataRow>().ToDictionary(
-                    row =>
-                        row[0].ToString().Trim().ToUpper(),
-                    row =>
-                        row[1].ToString().Trim().Length > 0
-                            ? row[1].ToString().Trim()
-                            : row[0].ToString().Trim());
+                if (t.Rows.Count > 0)
+                {
+                    var d = t.Rows.Cast<DataRow>().ToDictionary(
+                        row =>
+                            row[0].ToString().Trim().ToUpper(),
+                        row =>
+                            row[1].ToString().Replace("\\r\\n", "\r\n").Trim().Length > 0
+                                ? row[1].ToString().Trim()
+                                : row[0].ToString().Trim());
 
-                dataDictionary.AddRange(d);
+                    dataDictionary.AddRange(d);
+                }
                 if (dataDictionary.ContainsKey(fieldUpper))
                 {
                     return dataDictionary[fieldUpper];
                 }
             }
-            return "";
+            return id;
         }
 
         public static SortedDictionary<string, string>GetTextDic(List<string> ids, string lang)

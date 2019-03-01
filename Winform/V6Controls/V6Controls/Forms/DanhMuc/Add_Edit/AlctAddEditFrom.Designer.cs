@@ -38,7 +38,7 @@
             this.v6ColorTextBox2 = new V6Controls.V6ColorTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblMaCT = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.v6NumberTextBox7 = new V6Controls.V6NumberTextBox();
@@ -196,7 +196,7 @@
             this.groupBox1.Controls.Add(this.v6ColorTextBox2);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblMaCT);
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
@@ -352,16 +352,16 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Tên chứng từ";
             // 
-            // label1
+            // lblMaCT
             // 
-            this.label1.AccessibleDescription = "ADDEDITL00627";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 20);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã chứng từ";
+            this.lblMaCT.AccessibleDescription = "ADDEDITL00627";
+            this.lblMaCT.AutoSize = true;
+            this.lblMaCT.Location = new System.Drawing.Point(8, 20);
+            this.lblMaCT.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMaCT.Name = "lblMaCT";
+            this.lblMaCT.Size = new System.Drawing.Size(86, 17);
+            this.lblMaCT.TabIndex = 0;
+            this.lblMaCT.Text = "Mã chứng từ";
             // 
             // v6TabControl1
             // 
@@ -2496,7 +2496,7 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblMaCT;
         private V6Controls.V6ColorTextBox v6ColorTextBox3;
         private V6Controls.V6ColorTextBox v6ColorTextBox2;
         private System.Windows.Forms.TabPage tabPage3;

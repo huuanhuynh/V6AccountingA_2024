@@ -672,13 +672,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         public override void ValidateData()
         {
             var errors = "";
-            if (txtMaCongCu.Text.Trim() == "")
-                errors += "Chưa nhập mã!\r\n";
-            if (txtTenCongCu.Text.Trim() == "")
-                errors += "Chưa nhập tên !\r\n";
-            if (txtLyDoTang.Text.Trim() == "")
-                errors += "Chưa nhập lý do tăng  !\r\n";
-            if (txtMa_bpcc.Text.Trim() == "") errors += "Chưa nhập mã bộ phận  !\r\n";
+            if (txtMaCongCu.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblMaCC.Text + "!\r\n";
+            if (txtTenCongCu.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblTenCC.Text + "!\r\n";
+            if (txtLyDoTang.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblLyDoTang.Text + "!\r\n";
+            if (txtMa_bpcc.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblMaBPCC.Text + "!\r\n";
 
             if (V6Login.MadvcsTotal > 0 && txtMaDVCS.Text.Trim() == "")
                 errors += "Chưa nhập đơn vị cơ sở !\r\n";
@@ -926,7 +923,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 }
                 else
                 {
-                    this.ShowWarningMessage("Kiểm tra lại dữ liệu 3:" + error);
+                    this.ShowWarningMessage(V6Text.Text("CHECKDATA") + "3:" + error);
                     return false;
                 }
             }
@@ -977,7 +974,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 }
                 else
                 {
-                    this.ShowWarningMessage("Kiểm tra lại dữ liệu 4:" + error);
+                    this.ShowWarningMessage(V6Text.Text("CHECKDATA") + "4:" + error);
                     return false;
                 }
 

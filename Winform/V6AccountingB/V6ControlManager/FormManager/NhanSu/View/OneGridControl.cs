@@ -217,11 +217,11 @@ namespace V6ControlManager.FormManager.NhanSu.View
                         if (t > 0)
                         {
                             ReLoad();
-                            V6ControlFormHelper.ShowMainMessage("Đã xóa!");
+                            V6ControlFormHelper.ShowMainMessage(V6Text.Deleted);
                         }
                         else
                         {
-                            V6ControlFormHelper.ShowMessage("Xóa chưa được!");
+                            V6ControlFormHelper.ShowMessage(V6Text.DeleteFail);
                         }
                     }
 

@@ -366,13 +366,13 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         public override void ValidateData()
         {
             var errors = "";
-            if (txtMaThau.Text.Trim() == "") errors += "Chưa nhập mã!\r\n";
-            if (txtTenThau.Text.Trim() == "") errors += "Chưa nhập tên!\r\n";
-            if (txtMaKh.Text.Trim() == "") errors += "Chưa nhập mã khách!\r\n";
-            if (txtMaDVCS.Text.Trim() == "") errors += "Chưa nhập đơn vị!\r\n";
+            if (txtMaThau.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblMaThau.Text + "!\r\n";
+            if (txtTenThau.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblTenThau.Text + "!\r\n";
+            if (txtMaKh.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblMaKH.Text + "!\r\n";
+            if (txtMaDVCS.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblMaDVCS.Text + "!\r\n";
 
-            if (V6Login.MadvcsTotal > 0 && txtMaDVCS.Text.Trim() == "")
-                errors += "Chưa nhập đơn vị cơ sở !\r\n";
+            //if (V6Login.MadvcsTotal > 0 && txtMaDVCS.Text.Trim() == "")
+            //    errors += "Chưa nhập đơn vị cơ sở !\r\n";
 
             if (Mode == V6Mode.Edit)
             {

@@ -75,10 +75,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.lbT_Tt_NT0 = new V6Controls.V6Label();
             this.v6Label5 = new V6Controls.V6Label();
             this.v6Label4 = new V6Controls.V6Label();
-            this.v6Label2 = new V6Controls.V6Label();
+            this.lblMaKH = new V6Controls.V6Label();
             this.txtma_kh = new V6Controls.V6VvarTextBox();
             this.v6Label9 = new V6Controls.V6Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblSoCT = new System.Windows.Forms.Label();
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label1 = new V6Controls.V6Label();
             this.btnHuy = new System.Windows.Forms.Button();
@@ -789,15 +789,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.v6Label4.TabIndex = 10;
             this.v6Label4.Text = "Khách VAT";
             // 
-            // v6Label2
+            // lblMaKH
             // 
-            this.v6Label2.AccessibleDescription = "XULYL00041";
-            this.v6Label2.AutoSize = true;
-            this.v6Label2.Location = new System.Drawing.Point(26, 80);
-            this.v6Label2.Name = "v6Label2";
-            this.v6Label2.Size = new System.Drawing.Size(55, 13);
-            this.v6Label2.TabIndex = 7;
-            this.v6Label2.Text = "Mã khách";
+            this.lblMaKH.AccessibleDescription = "XULYL00041";
+            this.lblMaKH.AutoSize = true;
+            this.lblMaKH.Location = new System.Drawing.Point(26, 80);
+            this.lblMaKH.Name = "lblMaKH";
+            this.lblMaKH.Size = new System.Drawing.Size(55, 13);
+            this.lblMaKH.TabIndex = 7;
+            this.lblMaKH.Text = "Mã khách";
             // 
             // txtma_kh
             // 
@@ -827,15 +827,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.v6Label9.TabIndex = 3;
             this.v6Label9.Text = "Ngày chứng từ";
             // 
-            // label1
+            // lblSoCT
             // 
-            this.label1.AccessibleDescription = "XULYL00013";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(339, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Số chứng từ";
+            this.lblSoCT.AccessibleDescription = "XULYL00013";
+            this.lblSoCT.AutoSize = true;
+            this.lblSoCT.Location = new System.Drawing.Point(339, 33);
+            this.lblSoCT.Name = "lblSoCT";
+            this.lblSoCT.Size = new System.Drawing.Size(65, 13);
+            this.lblSoCT.TabIndex = 5;
+            this.lblSoCT.Text = "Số chứng từ";
             // 
             // v6Label3
             // 
@@ -939,10 +939,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.Controls.Add(this.lbT_Tt_NT0);
             this.Controls.Add(this.v6Label5);
             this.Controls.Add(this.v6Label4);
-            this.Controls.Add(this.v6Label2);
+            this.Controls.Add(this.lblMaKH);
             this.Controls.Add(this.txtma_kh);
             this.Controls.Add(this.v6Label9);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblSoCT);
             this.Controls.Add(this.v6Label3);
             this.Controls.Add(this.v6Label1);
             this.Controls.Add(this.btnHuy);
@@ -959,10 +959,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private V6Controls.V6Label lbTxtT_CL_NT;
         private V6Controls.V6Label v6Label5;
         private V6Controls.V6Label v6Label4;
-        private V6Controls.V6Label v6Label2;
+        private V6Controls.V6Label lblMaKH;
         private V6Controls.V6VvarTextBox txtma_kh;
         private V6Controls.V6Label v6Label9;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblSoCT;
         private V6Controls.V6Label v6Label3;
         private V6Controls.V6Label v6Label1;
         protected System.Windows.Forms.Button btnHuy;

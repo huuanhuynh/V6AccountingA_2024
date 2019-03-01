@@ -505,12 +505,12 @@ namespace V6ControlManager.FormManager.SoDuManager
                                 TRANSACTION.Commit();
                                 ADTables.Remove(stt_rec);
                                 ReLoad();
-                                V6ControlFormHelper.ShowMainMessage("Đã xóa.");
+                                V6ControlFormHelper.ShowMainMessage(V6Text.Deleted);
                             }
                             else
                             {
                                 TRANSACTION.Rollback();
-                                V6ControlFormHelper.ShowMessage("Xóa chưa được!");
+                                V6ControlFormHelper.ShowMessage(V6Text.DeleteFail);
                             }
                         }
                     }

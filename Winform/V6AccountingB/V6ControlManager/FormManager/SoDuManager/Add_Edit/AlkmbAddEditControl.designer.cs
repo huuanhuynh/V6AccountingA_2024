@@ -80,7 +80,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblMaKM = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txtMaKmm = new V6Controls.V6VvarTextBox();
@@ -266,7 +266,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Controls.Add(this.label9);
             this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.lblMaKM);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.txtMaKmm);
@@ -866,17 +866,17 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label4.TabIndex = 15;
             this.label4.Text = "Ghi chú";
             // 
-            // label1
+            // lblMaKM
             // 
-            this.label1.AccessibleDescription = "XULYL00169";
-            this.label1.AccessibleName = "";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 56);
-            this.label1.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 17);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Mã khuyến mãi";
+            this.lblMaKM.AccessibleDescription = "XULYL00169";
+            this.lblMaKM.AccessibleName = "";
+            this.lblMaKM.AutoSize = true;
+            this.lblMaKM.Location = new System.Drawing.Point(5, 56);
+            this.lblMaKM.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblMaKM.Name = "lblMaKM";
+            this.lblMaKM.Size = new System.Drawing.Size(103, 17);
+            this.lblMaKM.TabIndex = 7;
+            this.lblMaKM.Text = "Mã khuyến mãi";
             // 
             // label2
             // 
@@ -1984,7 +1984,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.btnChonKH.Size = new System.Drawing.Size(136, 26);
             this.btnChonKH.TabIndex = 51;
             this.btnChonKH.Text = "Chọn KH...";
-            this.toolTipV6FormControl.SetToolTip(this.btnChonKH, "Giữ Shift khi click để xóa.");
             this.btnChonKH.UseVisualStyleBackColor = true;
             this.btnChonKH.Click += new System.EventHandler(this.btnChonKH_Click);
             this.btnChonKH.MouseEnter += new System.EventHandler(this.BtchonExcel_MouseEnter);
@@ -1997,7 +1996,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.BtchonExcel.Size = new System.Drawing.Size(178, 26);
             this.BtchonExcel.TabIndex = 51;
             this.BtchonExcel.Text = "Chọn khách hàng EXCEL";
-            this.toolTipV6FormControl.SetToolTip(this.BtchonExcel, "Giữ Shift khi click để xóa.");
             this.BtchonExcel.UseVisualStyleBackColor = true;
             this.BtchonExcel.Click += new System.EventHandler(this.BtchonExcel_Click);
             this.BtchonExcel.MouseEnter += new System.EventHandler(this.BtchonExcel_MouseEnter);
@@ -2301,7 +2299,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.btnChonKH5.Size = new System.Drawing.Size(136, 26);
             this.btnChonKH5.TabIndex = 55;
             this.btnChonKH5.Text = "Chọn KH...";
-            this.toolTipV6FormControl.SetToolTip(this.btnChonKH5, "Giữ Shift khi click để xóa.");
             this.btnChonKH5.UseVisualStyleBackColor = true;
             this.btnChonKH5.Click += new System.EventHandler(this.btnChonKH5_Click);
             this.btnChonKH5.MouseEnter += new System.EventHandler(this.BtchonExcel_MouseEnter);
@@ -2389,7 +2386,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.BtchonExcel5.Size = new System.Drawing.Size(280, 26);
             this.BtchonExcel5.TabIndex = 53;
             this.BtchonExcel5.Text = "Chọn danh sách khách hàng từ EXCEL ...";
-            this.toolTipV6FormControl.SetToolTip(this.BtchonExcel5, "Giữ Shift khi click để xóa.");
             this.BtchonExcel5.UseVisualStyleBackColor = true;
             this.BtchonExcel5.Click += new System.EventHandler(this.BtchonExcel5_Click);
             this.BtchonExcel5.MouseEnter += new System.EventHandler(this.BtchonExcel_MouseEnter);
@@ -2759,7 +2755,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TabPage tabPage1;
         private V6VvarTextBox txtMaKm;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblMaKM;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabChiTiet;

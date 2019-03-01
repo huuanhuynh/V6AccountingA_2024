@@ -175,9 +175,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         public override void ValidateData()
         {
             var errors = "";
-            if (txtso_ct.Text.Trim() == "") errors += "Chưa nhập số chứng từ!\r\n";
-            if (txtma_kh.Text.Trim() == "") errors += "Chưa nhập mã khách hàng!\r\n";
-            if (txttk.Text.Trim() == "") errors += "Chưa nhập tài khoản công nợ!\r\n";
+            if (txtso_ct.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblSoCT.Text + "!\r\n";
+            if (txtma_kh.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblMaKH.Text + "!\r\n";
+            if (txttk.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblTK.Text + "!\r\n";
             if (errors.Length > 0) throw new Exception(errors);
         }
 

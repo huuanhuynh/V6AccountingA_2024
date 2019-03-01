@@ -48,7 +48,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 lblTen2.Visible = false;
 
                 txtSname.Visible = false;
-                label9.Visible = false;
+                lblSName.Visible = false;
             }
         }
 
@@ -81,7 +81,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             var errors = "";
             if (txtID.Text.Trim() == "")
-                errors += "Chưa nhập mã !\r\n";
+                errors += V6Text.Text("CHUANHAPMA");
             if (txtTextD.Text.Trim() == "")
                 errors += "Chưa nhập mặc định !\r\n";
             //if (txtTextV.Text.Trim() == "")
@@ -113,6 +113,17 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public override void V6F3Execute()
         {
             txtSfile.ReadOnly = false;
+            //FCRJK
+            lblF.Visible = true;
+            txtF.Visible = true;
+            lblC.Visible = true;
+            txtC.Visible = true;
+            lblR.Visible = true;
+            txtR.Visible = true;
+            lblJ.Visible = true;
+            txtJ.Visible = true;
+            lblK.Visible = true;
+            txtK.Visible = true;
         }
 
         private int num;

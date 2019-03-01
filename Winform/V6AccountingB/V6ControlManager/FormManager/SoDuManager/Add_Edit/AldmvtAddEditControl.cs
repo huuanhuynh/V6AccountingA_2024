@@ -323,8 +323,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         public override void ValidateData()
         {
             var errors = "";
-            if (txtMaSp.Text.Trim() == "") errors += "Chưa nhập mã sản phẩm!\r\n";
-            if (txtMaBpht.Text.Trim() == "") errors += "Chưa nhập mã!\r\n";
+            if (txtMaSp.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblMaSP.Text + "!\r\n";
+            if (txtMaBpht.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblMaBPHT.Text + "!\r\n";
             
             AldmConfig config = ConfigManager.GetAldmConfig(TableName.ToString());
             if (config != null && config.HaveInfo && !string.IsNullOrEmpty(config.KEY))

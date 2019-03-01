@@ -282,8 +282,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         public override void ValidateData()
         {
             var errors = "";
-            if (txtLoai.Text.Trim() == "") errors += "Chưa nhập loại!\r\n";
-            if (txtNhom.Text.Trim() == "") errors += "Chưa nhập nhóm!\r\n";
+            if (txtLoai.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblLoai.Text + "!\r\n";
+            if (txtNhom.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblNhom.Text + "!\r\n";
             
             if (Mode == V6Mode.Edit)
             {
@@ -341,11 +341,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
                 if (!data.ContainsKey("USER_NAME") || data["USER_NAME"].ToString().Trim() == "")
-                    error += "\nMã người dùng rỗng.";
+                    error += "\n" + V6Text.Text("USER_NAME") + " " + V6Text.Empty;
                 if (_user_name.Data == null)
-                    error += "\nLấy dữ liệu người dùng lỗi.";//ít xảy ra.
-
-                
+                    error += "\n" + V6Text.Text("USERDATANULL");
                 
                 if (error == "" && _user_name.Data != null)
                 {
@@ -396,7 +394,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
             return true;
         }
-
         
         private bool XuLySuaDetail(IDictionary<string, object> data)
         {

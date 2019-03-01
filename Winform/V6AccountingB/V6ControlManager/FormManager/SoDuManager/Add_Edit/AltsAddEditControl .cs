@@ -667,13 +667,12 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
 
             var errors = "";
-            if (txtMaTaiSan.Text.Trim() == "") errors += "Chưa nhập mã!\r\n";
-            if (txtTenTaiSan.Text.Trim() == "") errors += "Chưa nhập tên !\r\n";
-            if (txtLyDoTang.Text.Trim() == "") errors += "Chưa nhập lý do tăng  !\r\n";
-            if (txtMa_bpts.Text.Trim() == "") errors += "Chưa nhập mã bộ phận  !\r\n";
+            if (txtMaTaiSan.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblMaTS.Text + "!\r\n";
+            if (txtTenTaiSan.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblTenTS.Text + "!\r\n";
+            if (txtLyDoTang.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblLyDoTang.Text + "!\r\n";
+            if (txtMa_bpts.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblMaBPTS.Text + "!\r\n";
 
-            if (V6Login.MadvcsTotal > 0 && txtMaDVCS.Text.Trim() == "")
-                errors += "Chưa nhập đơn vị cơ sở !\r\n";
+            if (V6Login.MadvcsTotal > 0 && txtMaDVCS.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblMaDVCS.Text + "!\r\n";
 
             if (Mode == V6Mode.Edit)
             {
@@ -922,7 +921,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 }
                 else
                 {
-                    this.ShowWarningMessage("Kiểm tra lại dữ liệu 3:" + error);
+                    this.ShowWarningMessage(V6Text.Text("CHECKDATA") + "3:" + error);
                     return false;
                 }
             }
@@ -973,7 +972,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 }
                 else
                 {
-                    this.ShowWarningMessage("Kiểm tra lại dữ liệu 4:" + error);
+                    this.ShowWarningMessage(V6Text.Text("CHECKDATA") + "4:" + error);
                     return false;
                 }
 

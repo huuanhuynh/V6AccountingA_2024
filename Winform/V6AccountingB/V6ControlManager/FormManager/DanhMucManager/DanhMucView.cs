@@ -119,6 +119,14 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 {
                     result = "SFILE";
                 }
+                else if (string.IsNullOrEmpty(result) && CurrentTable == V6TableName.CorpLan1)
+                {
+                    result = "SFILE";
+                }
+                else if (string.IsNullOrEmpty(result) && CurrentTable == V6TableName.CorpLan2)
+                {
+                    result = "SFILE";
+                }
 
                 return result;
             }
@@ -669,6 +677,11 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         var keys = new SortedDictionary<string, object>();
                         if (dataGridView1.Columns.Contains("UID")) //Luôn có trong thiết kế rồi.
                             keys.Add("UID", row.Cells["UID"].Value);
+                        if (_tableName.ToUpper().StartsWith("CORPLAN"))
+                        {
+                            if (dataGridView1.Columns.Contains("ID"))
+                                keys.Add("ID", row.Cells["ID"].Value);
+                        }
 
                         if (KeyFields != null)
                             foreach (var keyField in KeyFields)
@@ -1080,11 +1093,11 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         if (t > 0)
                         {
                             ReLoad();
-                            V6ControlFormHelper.ShowMainMessage("Đã xóa!");
+                            V6ControlFormHelper.ShowMainMessage(V6Text.Deleted);
                         }
                         else
                         {
-                            V6ControlFormHelper.ShowMessage("Xóa chưa được!");
+                            V6ControlFormHelper.ShowMessage(V6Text.DeleteFail);
                         }
                     }
                     
@@ -1754,6 +1767,17 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     // Hỗ trợ cho CorpLan
                     fields = new[] { "Sfile", "ID", "Ctype", "D", "V", "E" };
                 }
+                else if (fields.Length == 0 && CurrentTable == V6TableName.CorpLan1)
+                {
+                    // Hỗ trợ cho CorpLan
+                    fields = new[] { "Sfile", "ID", "Ctype", "D", "V", "E" };
+                }
+                else if (fields.Length == 0 && CurrentTable == V6TableName.CorpLan2)
+                {
+                    // Hỗ trợ cho CorpLan
+                    fields = new[] { "Sfile", "ID", "Ctype", "D", "V", "E" };
+                }
+
                 _filterForm = new FilterForm(structTable, fields);
                 _filterForm.FilterApplyEvent += FilterFilterApplyEvent;
                 _filterForm.Opacity = 0.9;

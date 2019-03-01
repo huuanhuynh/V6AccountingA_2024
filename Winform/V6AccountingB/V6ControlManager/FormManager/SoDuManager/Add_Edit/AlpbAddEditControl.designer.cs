@@ -61,7 +61,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtSttRec = new V6Controls.V6ColorTextBox();
             this.txtTen_bt = new V6Controls.V6ColorTextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTenBT = new System.Windows.Forms.Label();
             this.txtstt = new V6Controls.V6NumberTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.txtGC_TD3 = new V6Controls.V6VvarTextBox();
@@ -169,7 +169,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage1.Controls.Add(this.txtSttRec);
             this.tabPage1.Controls.Add(this.txtTen_bt);
             this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.lblTenBT);
             this.tabPage1.Controls.Add(this.txtstt);
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(5);
@@ -526,17 +526,17 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label3.TabIndex = 4;
             this.label3.Text = "Số thứ tự";
             // 
-            // label1
+            // lblTenBT
             // 
-            this.label1.AccessibleDescription = "XULYL00173";
-            this.label1.AccessibleName = "";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 33);
-            this.label1.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 17);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Tên bút toán";
+            this.lblTenBT.AccessibleDescription = "XULYL00173";
+            this.lblTenBT.AccessibleName = "";
+            this.lblTenBT.AutoSize = true;
+            this.lblTenBT.Location = new System.Drawing.Point(5, 33);
+            this.lblTenBT.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblTenBT.Name = "lblTenBT";
+            this.lblTenBT.Size = new System.Drawing.Size(89, 17);
+            this.lblTenBT.TabIndex = 8;
+            this.lblTenBT.Text = "Tên bút toán";
             // 
             // txtstt
             // 
@@ -1539,7 +1539,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTenBT;
         private V6NumberTextBox txtstt;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabChiTiet;

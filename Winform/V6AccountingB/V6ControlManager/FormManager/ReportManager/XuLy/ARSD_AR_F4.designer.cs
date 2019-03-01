@@ -43,12 +43,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.Txtt_tt = new V6Controls.NumberTien();
             this.v6Label6 = new V6Controls.V6Label();
             this.v6Label5 = new V6Controls.V6Label();
-            this.v6Label4 = new V6Controls.V6Label();
+            this.lblTK = new V6Controls.V6Label();
             this.txttk = new V6Controls.V6VvarTextBox();
-            this.v6Label2 = new V6Controls.V6Label();
+            this.lblMaKH = new V6Controls.V6Label();
             this.txtma_kh = new V6Controls.V6VvarTextBox();
             this.v6Label9 = new V6Controls.V6Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblSoCT = new System.Windows.Forms.Label();
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label12 = new V6Controls.V6Label();
             this.v6Label7 = new V6Controls.V6Label();
@@ -221,6 +221,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.Txtt_tt.ReadOnly = true;
             this.Txtt_tt.Size = new System.Drawing.Size(146, 20);
             this.Txtt_tt.TabIndex = 23;
+            this.Txtt_tt.TabStop = false;
             this.Txtt_tt.Text = "0";
             this.Txtt_tt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.Txtt_tt.Value = new decimal(new int[] {
@@ -249,15 +250,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.v6Label5.TabIndex = 13;
             this.v6Label5.Text = "Diễn giải";
             // 
-            // v6Label4
+            // lblTK
             // 
-            this.v6Label4.AccessibleDescription = "XULYL00107";
-            this.v6Label4.AutoSize = true;
-            this.v6Label4.Location = new System.Drawing.Point(26, 118);
-            this.v6Label4.Name = "v6Label4";
-            this.v6Label4.Size = new System.Drawing.Size(62, 13);
-            this.v6Label4.TabIndex = 10;
-            this.v6Label4.Text = "Tk công nợ";
+            this.lblTK.AccessibleDescription = "XULYL00107";
+            this.lblTK.AutoSize = true;
+            this.lblTK.Location = new System.Drawing.Point(26, 118);
+            this.lblTK.Name = "lblTK";
+            this.lblTK.Size = new System.Drawing.Size(62, 13);
+            this.lblTK.TabIndex = 10;
+            this.lblTK.Text = "Tk công nợ";
             // 
             // txttk
             // 
@@ -280,15 +281,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txttk.TabIndex = 11;
             this.txttk.VVar = "tk";
             // 
-            // v6Label2
+            // lblMaKH
             // 
-            this.v6Label2.AccessibleDescription = "XULYL00041";
-            this.v6Label2.AutoSize = true;
-            this.v6Label2.Location = new System.Drawing.Point(26, 93);
-            this.v6Label2.Name = "v6Label2";
-            this.v6Label2.Size = new System.Drawing.Size(65, 13);
-            this.v6Label2.TabIndex = 7;
-            this.v6Label2.Text = "Khách hàng";
+            this.lblMaKH.AccessibleDescription = "XULYL00041";
+            this.lblMaKH.AutoSize = true;
+            this.lblMaKH.Location = new System.Drawing.Point(26, 93);
+            this.lblMaKH.Name = "lblMaKH";
+            this.lblMaKH.Size = new System.Drawing.Size(65, 13);
+            this.lblMaKH.TabIndex = 7;
+            this.lblMaKH.Text = "Khách hàng";
             // 
             // txtma_kh
             // 
@@ -318,15 +319,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.v6Label9.TabIndex = 3;
             this.v6Label9.Text = "Ngày chứng từ";
             // 
-            // label1
+            // lblSoCT
             // 
-            this.label1.AccessibleDescription = "XULYL00013";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 68);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Số chứng từ";
+            this.lblSoCT.AccessibleDescription = "XULYL00013";
+            this.lblSoCT.AutoSize = true;
+            this.lblSoCT.Location = new System.Drawing.Point(26, 68);
+            this.lblSoCT.Name = "lblSoCT";
+            this.lblSoCT.Size = new System.Drawing.Size(65, 13);
+            this.lblSoCT.TabIndex = 5;
+            this.lblSoCT.Text = "Số chứng từ";
             // 
             // v6Label3
             // 
@@ -457,6 +458,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtma_nt.ReadOnly = true;
             this.txtma_nt.Size = new System.Drawing.Size(56, 20);
             this.txtma_nt.TabIndex = 16;
+            this.txtma_nt.TabStop = false;
             this.txtma_nt.VVar = "ma_nt";
             this.txtma_nt.TextChanged += new System.EventHandler(this.txtma_nt_TextChanged);
             // 
@@ -575,6 +577,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtt_tt_nt.ReadOnly = true;
             this.txtt_tt_nt.Size = new System.Drawing.Size(146, 20);
             this.txtt_tt_nt.TabIndex = 19;
+            this.txtt_tt_nt.TabStop = false;
             this.txtt_tt_nt.Text = "0";
             this.txtt_tt_nt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtt_tt_nt.Value = new decimal(new int[] {
@@ -600,6 +603,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtty_gia.ReadOnly = true;
             this.txtty_gia.Size = new System.Drawing.Size(146, 20);
             this.txtty_gia.TabIndex = 21;
+            this.txtty_gia.TabStop = false;
             this.txtty_gia.Text = "0";
             this.txtty_gia.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtty_gia.Value = new decimal(new int[] {
@@ -676,6 +680,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtTongTT0.ReadOnly = true;
             this.txtTongTT0.Size = new System.Drawing.Size(146, 20);
             this.txtTongTT0.TabIndex = 25;
+            this.txtTongTT0.TabStop = false;
             this.txtTongTT0.Text = "0";
             this.txtTongTT0.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTongTT0.Value = new decimal(new int[] {
@@ -714,12 +719,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.Controls.Add(this.Txtt_tt);
             this.Controls.Add(this.v6Label6);
             this.Controls.Add(this.v6Label5);
-            this.Controls.Add(this.v6Label4);
+            this.Controls.Add(this.lblTK);
             this.Controls.Add(this.txttk);
-            this.Controls.Add(this.v6Label2);
+            this.Controls.Add(this.lblMaKH);
             this.Controls.Add(this.txtma_kh);
             this.Controls.Add(this.v6Label9);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblSoCT);
             this.Controls.Add(this.v6Label3);
             this.Controls.Add(this.v6Label12);
             this.Controls.Add(this.v6Label7);
@@ -747,12 +752,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private V6Controls.NumberTien Txtt_tt;
         private V6Controls.V6Label v6Label6;
         private V6Controls.V6Label v6Label5;
-        private V6Controls.V6Label v6Label4;
+        private V6Controls.V6Label lblTK;
         private V6Controls.V6VvarTextBox txttk;
-        private V6Controls.V6Label v6Label2;
+        private V6Controls.V6Label lblMaKH;
         private V6Controls.V6VvarTextBox txtma_kh;
         private V6Controls.V6Label v6Label9;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblSoCT;
         private V6Controls.V6Label v6Label3;
         private V6Controls.V6Label v6Label12;
         private V6Controls.V6Label v6Label7;
