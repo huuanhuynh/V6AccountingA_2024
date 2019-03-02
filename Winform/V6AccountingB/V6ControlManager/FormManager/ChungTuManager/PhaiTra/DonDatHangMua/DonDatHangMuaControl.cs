@@ -3524,8 +3524,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
 
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
-                if (!data.ContainsKey("MA_VT") || data["MA_VT"].ToString().Trim() == "") error += "\nMã vật tư rỗng.";
-                if (!data.ContainsKey("MA_KHO_I") || data["MA_KHO_I"].ToString().Trim() == "") error += "\nMã kho rỗng.";
+                if (!data.ContainsKey("MA_VT") || data["MA_VT"].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00195") + " " + V6Text.Empty;
+                if (!data.ContainsKey("MA_KHO_I") || data["MA_KHO_I"].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00166") + " " + V6Text.Empty;
                 if (error == "")
                 {
                     //Tạo dòng dữ liệu mới.
@@ -3638,10 +3638,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
 
                         //Kiem tra du lieu truoc khi them sua
                         var error = "";
-                        if (!data.ContainsKey("MA_VT") || data["MA_VT"].ToString().Trim() == "")
-                            error += "\nMã vật tư rỗng.";
-                        if (!data.ContainsKey("MA_KHO_I") || data["MA_KHO_I"].ToString().Trim() == "")
-                            error += "\nMã kho rỗng.";
+                        if (!data.ContainsKey("MA_VT") || data["MA_VT"].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00195") + " " + V6Text.Empty;
+                        if (!data.ContainsKey("MA_KHO_I") || data["MA_KHO_I"].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00166") + " " + V6Text.Empty;
                         if (error == "")
                         {
                             //Sửa dòng dữ liệu.

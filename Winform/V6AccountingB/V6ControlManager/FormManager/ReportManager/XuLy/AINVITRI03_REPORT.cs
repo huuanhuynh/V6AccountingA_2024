@@ -194,7 +194,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     ViewData();
                     DoAfterExecuteSuccess();
-                    V6ControlFormHelper.ShowMainMessage("Tải dữ liệu xong!\r\n" + _message);
+                    V6ControlFormHelper.ShowMainMessage(V6Text.Text("TAIDULIEUXONG") + "!\r\n" + _message);
 
                     _success = false;
                 }

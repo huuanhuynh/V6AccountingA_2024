@@ -151,7 +151,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 }
                 else
                 {
-                    V6ControlFormHelper.ShowMessage("Chưa có dữ liệu.");
+                    V6ControlFormHelper.ShowMessage(V6Text.Text("NODATA"));
                 }
             }
             catch (Exception ex)
@@ -190,7 +190,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
 
                 if (data == null)
                 {
-                    f9ErrorAll = "Dữ liệu không hợp lệ!";
+                    f9ErrorAll = V6Text.Text("INVALIDDATA");
                     goto End;
                 }
                 int soCot = Convert.ToInt32(FilterControl.Number1);

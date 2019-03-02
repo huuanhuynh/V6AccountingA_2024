@@ -4067,7 +4067,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
-                if (!data.ContainsKey("MA_VT") || data["MA_VT"].ToString().Trim() == "") error += "\nMã vật tư rỗng.";
+                if (!data.ContainsKey("MA_VT") || data["MA_VT"].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00195") + " " + V6Text.Empty;
                 
                 if (error == "")
                 {
@@ -4128,8 +4128,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
                         //Kiem tra du lieu truoc khi them sua
                         var error = "";
-                        if (!data.ContainsKey("MA_VT") || data["MA_VT"].ToString().Trim() == "")
-                            error += "\nMã vật tư rỗng.";
+                        if (!data.ContainsKey("MA_VT") || data["MA_VT"].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00195") + " " + V6Text.Empty;
                         
                         if (error == "")
                         {

@@ -855,7 +855,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 {
                     if (!data.ContainsKey("MA_SP") || data["MA_SP"].ToString().Trim() == "")
                     {
-                        error += "\nMã vật tư rỗng.";
+                        error += "\n" + CorpLan.GetText("ADDEDITL00195") + " " + V6Text.Empty;
                         error += "\nMã vật tư KM rỗng.";
                     }
                 }
@@ -917,7 +917,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 {
                     if (!data.ContainsKey("MA_SP") || data["MA_SP"].ToString().Trim() == "")
                     {
-                        error += "\nMã vật tư rỗng.";
+                        error += "\n" + CorpLan.GetText("ADDEDITL00195") + " " + V6Text.Empty;
                         error += "\nMã vật tư KM rỗng.";
                     }
                 }
@@ -979,7 +979,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         {
                             if (!data.ContainsKey("MA_SP") || data["MA_SP"].ToString().Trim() == "")
                             {
-                                error += "\nMã vật tư rỗng.";
+                                error += "\n" + CorpLan.GetText("ADDEDITL00195") + " " + V6Text.Empty;
                                 error += "\nMã vật tư KM rỗng.";
                             }
                         }
@@ -1042,7 +1042,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         {
                             if (!data.ContainsKey("MA_SP") || data["MA_SP"].ToString().Trim() == "")
                             {
-                                error += "\nMã vật tư rỗng.";
+                                error += "\n" + CorpLan.GetText("ADDEDITL00195") + " " + V6Text.Empty;
                                 error += "\nMã vật tư KM rỗng.";
                             }
                         }

@@ -88,12 +88,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     else
                     {
-                        V6ControlFormHelper.ShowMessage(string.Format("Dữ liệu không có {0} và {1}", ID_FIELD, NAME_FIELD));
+                        V6ControlFormHelper.ShowMessage(string.Format(V6Text.Text("DULIEUBITHIEU") + " {0} và {1}", ID_FIELD, NAME_FIELD));
                     }
                 }
                 else
                 {
-                    V6ControlFormHelper.ShowMessage("Chưa có dữ liệu.");
+                    V6ControlFormHelper.ShowMessage(V6Text.Text("NODATA"));
                 }
             }
             catch (Exception ex)
@@ -116,7 +116,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 if (data == null)
                 {
-                    f9ErrorAll = "Dữ liệu không hợp lệ!";
+                    f9ErrorAll = V6Text.Text("INVALIDDATA");
                     goto End;
                 }
 

@@ -370,7 +370,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
-                if (!data.ContainsKey("TK") || data["TK"].ToString().Trim() == "") error += "\nTài khoản rỗng.";
+                if (!data.ContainsKey("TK") || data["TK"].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00379") + " " + V6Text.Empty;
                 
                 if (error == "")
                 {
@@ -427,8 +427,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     {
                         //Kiem tra du lieu truoc khi them sua
                         var error = "";
-                        if (!data.ContainsKey("TK") || data["TK"].ToString().Trim() == "")
-                            error += "\nTài khoản rỗng.";
+                        if (!data.ContainsKey("TK") || data["TK"].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00379") + " " + V6Text.Empty;
                        
                         if (error == "")
                         {

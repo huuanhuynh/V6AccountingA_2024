@@ -105,7 +105,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     if (lost_fields.Length > 2)
                     {
                         lost_fields = lost_fields.Substring(2);
-                        this.ShowWarningMessage("Dữ liệu thiếu: " + lost_fields);
+                        this.ShowWarningMessage(V6Text.Text("DULIEUBITHIEU") + ": " + lost_fields);
                     }
                 }
                 else
@@ -115,7 +115,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 if (!check)
                 {
-                    this.ShowWarningMessage("Kiểm tra dữ liệu!");
+                    this.ShowWarningMessage(V6Text.Text("KiemTraDuLieu"));
                     return;
                 }
             }
@@ -133,7 +133,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (!check)
                 {
-                    this.ShowWarningMessage("Kiểm tra dữ liệu!");
+                    this.ShowWarningMessage(V6Text.Text("KiemTraDuLieu"));
                     return;
                 }
                 if (_data != null)
@@ -155,12 +155,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     else
                     {
-                        V6ControlFormHelper.ShowMessage(string.Format("Dữ liệu không có {0} và {1}", ID_FIELD, NAME_FIELD));
+                        V6ControlFormHelper.ShowMessage(string.Format(V6Text.Text("DULIEUBITHIEU") + " {0} và {1}", ID_FIELD, NAME_FIELD));
                     }
                 }
                 else
                 {
-                    V6ControlFormHelper.ShowMessage("Chưa có dữ liệu.");
+                    V6ControlFormHelper.ShowMessage(V6Text.Text("NODATA"));
                 }
             }
             catch (Exception ex)

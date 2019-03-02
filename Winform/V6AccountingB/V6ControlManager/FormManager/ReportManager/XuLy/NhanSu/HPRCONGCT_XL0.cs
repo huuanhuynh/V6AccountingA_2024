@@ -114,7 +114,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 {
                     ViewDataSet();
                     DoAfterExecuteSuccess();
-                    V6ControlFormHelper.ShowMainMessage("HPRCONGCT_XL0: Tải dữ liệu xong!\r\n" + _message);
+                    V6ControlFormHelper.ShowMainMessage("HPRCONGCT_XL0: " + V6Text.Text("TAIDULIEUXONG") + "!\r\n" + _message);
 
                     _success = false;
                 }

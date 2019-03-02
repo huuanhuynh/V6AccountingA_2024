@@ -896,7 +896,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 data["STT_REC"] = txtSttRec.Text;
                 
                 var error = "";
-                //if (!data.ContainsKey("") || data[""].ToString().Trim() == "") error += "\nMã vật tư rỗng.";
+                //if (!data.ContainsKey("") || data[""].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00195") + " " + V6Text.Empty;
 
                 if (error == "")
                 {
@@ -947,7 +947,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
-                //if (!data.ContainsKey("") || data[""].ToString().Trim() == "") error += "\nMã vật tư rỗng.";
+                //if (!data.ContainsKey("") || data[""].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00195") + " " + V6Text.Empty;
 
                 if (error == "")
                 {

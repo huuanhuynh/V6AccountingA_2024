@@ -394,12 +394,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     else
                     {
-                        V6ControlFormHelper.ShowMessage(string.Format("Dữ liệu không có {0}", CHECK_FIELDS));
+                        V6ControlFormHelper.ShowMessage(string.Format(V6Text.Text("DULIEUBITHIEU") + " {0}", CHECK_FIELDS));
                     }
                 }
                 else
                 {
-                    V6ControlFormHelper.ShowMessage("Chưa có dữ liệu.");
+                    V6ControlFormHelper.ShowMessage(V6Text.Text("NODATA"));
                 }
             }
             catch (Exception ex)
@@ -894,12 +894,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     else
                     {
-                        V6ControlFormHelper.ShowMessage(string.Format("Dữ liệu không có {0}", CHECK_FIELDS));
+                        V6ControlFormHelper.ShowMessage(string.Format(V6Text.Text("DULIEUBITHIEU") + " {0}", CHECK_FIELDS));
                     }
                 }
                 else
                 {
-                    V6ControlFormHelper.ShowMessage("Chưa có dữ liệu.");
+                    V6ControlFormHelper.ShowMessage(V6Text.Text("NODATA"));
                 }
             }
             catch (Exception ex)
@@ -921,7 +921,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 if (_data == null)
                 {
-                    F10ErrorAll = "Dữ liệu không hợp lệ!";
+                    F10ErrorAll = V6Text.Text("INVALIDDATA");
                     goto End;
                 }
 

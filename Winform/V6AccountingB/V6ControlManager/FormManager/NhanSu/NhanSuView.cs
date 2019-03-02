@@ -438,7 +438,6 @@ namespace V6ControlManager.FormManager.NhanSu
         {
             try
             {
-
                 if ((V6Login.UserRight.AllowAdd("", CurrentTable.ToString().ToUpper() + "6"))
                     && (V6Login.UserRight.AllowEdit("", CurrentTable.ToString().ToUpper() + "6")))
                 {
@@ -465,9 +464,8 @@ namespace V6ControlManager.FormManager.NhanSu
                         }
                         else
                         {
-                            V6ControlFormHelper.ShowMainMessage("Hãy chọn một dòng dữ liệu!");
+                            V6ControlFormHelper.ShowMainMessage(V6Text.Text("CHON1DL"));
                         }
-
                     }
                 }
                 else
@@ -565,7 +563,7 @@ namespace V6ControlManager.FormManager.NhanSu
                     }
                     else
                     {
-                        V6ControlFormHelper.ShowMainMessage("Hãy chọn một dòng dữ liệu!");
+                        V6ControlFormHelper.ShowMainMessage(V6Text.Text("CHON1DL"));
                     }
                 }
                 else
@@ -619,7 +617,7 @@ namespace V6ControlManager.FormManager.NhanSu
                         }
                         else
                         {
-                            V6ControlFormHelper.ShowMainMessage("Hãy chọn một dòng dữ liệu!");
+                            V6ControlFormHelper.ShowMainMessage(V6Text.Text("CHON1DL"));
                         }
                     }
                 }

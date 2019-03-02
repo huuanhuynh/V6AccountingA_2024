@@ -2555,7 +2555,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
                 if (!data.ContainsKey("TK_VT") || data["TK_VT"].ToString().Trim() == "") error += "\nChưa nhập tài khoản nợ .";
-                //if (!data.ContainsKey("MA_KHO_I") || data["MA_KHO_I"].ToString().Trim() == "") error += "\nMã kho rỗng.";
+                //if (!data.ContainsKey("MA_KHO_I") || data["MA_KHO_I"].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00166") + " " + V6Text.Empty;
                 if (error == "")
                 {
                     //Tạo dòng dữ liệu mới.
@@ -2670,10 +2670,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
 
                         //Kiem tra du lieu truoc khi them sua
                         var error = "";
-                        if (!data.ContainsKey("TK_VT") || data["TK_VT"].ToString().Trim() == "")
-                            error += "\nTài khoản vật tư rỗng.";
-                        //if (!data.ContainsKey("MA_KHO_I") || data["MA_KHO_I"].ToString().Trim() == "")
-                        //    error += "\nMã kho rỗng.";
+                        if (!data.ContainsKey("TK_VT") || data["TK_VT"].ToString().Trim() == "") error += "\n" + CorpLan.GetText("FILTERL00165") + " " + V6Text.Empty;
+                        //if (!data.ContainsKey("MA_KHO_I") || data["MA_KHO_I"].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00166") + " " + V6Text.Empty;
                         if (error == "")
                         {
                             //Sửa dòng dữ liệu.

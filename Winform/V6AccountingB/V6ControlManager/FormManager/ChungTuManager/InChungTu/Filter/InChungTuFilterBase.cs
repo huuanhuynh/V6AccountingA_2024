@@ -83,7 +83,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter
 
         protected DataSet _ds = null;
         /// <summary>
-        /// Nhận dữ liệu khi tải dữ liệu xong.
+        /// Nhận dữ liệu khi tải xong.
         /// </summary>
         /// <param name="ds"></param>
         public virtual void LoadDataFinish(DataSet ds)

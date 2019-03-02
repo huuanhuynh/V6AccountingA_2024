@@ -270,7 +270,7 @@ namespace V6ControlManager.FormManager.NhanSu
                             }
                             else
                             {
-                                V6ControlFormHelper.ShowMainMessage("Hãy chọn một dòng dữ liệu!");
+                                V6ControlFormHelper.ShowMainMessage(V6Text.Text("CHON1DL"));
                             }
                         }
 
@@ -355,7 +355,7 @@ namespace V6ControlManager.FormManager.NhanSu
                         }
                         else
                         {
-                            V6ControlFormHelper.ShowMainMessage("Hãy chọn một dòng dữ liệu!");
+                            V6ControlFormHelper.ShowMainMessage(V6Text.Text("CHON1DL"));
                         }
 
                     }
@@ -444,7 +444,7 @@ namespace V6ControlManager.FormManager.NhanSu
                     }
                     else
                     {
-                        V6ControlFormHelper.ShowMainMessage("Hãy chọn một dòng dữ liệu!");
+                        V6ControlFormHelper.ShowMainMessage(V6Text.Text("CHON1DL"));
                     }
                 }
                 else
@@ -496,7 +496,7 @@ namespace V6ControlManager.FormManager.NhanSu
                         }
                         else
                         {
-                            V6ControlFormHelper.ShowMainMessage("Hãy chọn một dòng dữ liệu!");
+                            V6ControlFormHelper.ShowMainMessage(V6Text.Text("CHON1DL"));
                         }
                     }
                 }
@@ -938,7 +938,7 @@ namespace V6ControlManager.FormManager.NhanSu
                         }
                         else
                         {
-                            V6ControlFormHelper.ShowMainMessage("Hãy chọn một dòng dữ liệu!");
+                            V6ControlFormHelper.ShowMainMessage(V6Text.Text("CHON1DL"));
                         }
                     }
                 }

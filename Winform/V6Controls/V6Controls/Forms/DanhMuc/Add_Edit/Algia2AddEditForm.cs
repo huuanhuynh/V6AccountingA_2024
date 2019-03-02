@@ -66,12 +66,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public override void ValidateData()
         {
             var errors = "";
-            if (txtma_gia.Text.Trim() == "")
-                errors += "Chưa nhập mã !\r\n";
-            if (txtMaVt.Text.Trim() == "")
-                errors += "Chưa nhập vt !\r\n";
-            if (txtMaNT.Text.Trim() == "")
-                errors += "Chưa nhập mã ngoại tệ !\r\n";
+            if (txtma_gia.Text.Trim() == "") errors += "Chưa nhập mã !\r\n";
+            if (txtMaVt.Text.Trim() == "") errors += "Chưa nhập vt !\r\n";
+            if (txtMaNT.Text.Trim() == "") errors += "Chưa nhập mã ngoại tệ !\r\n";
 
             if (errors.Length > 0) throw new Exception(errors);
 
