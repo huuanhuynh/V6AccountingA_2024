@@ -6132,16 +6132,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             try
             {
-                //if (_tkDt.Int_Data("Loai_tk") == 0)
-                //{
-                //    this.ShowWarningMessage("Tài khoản không phải chi tiết !");
-                //    return false;
-                //}
-
-                string errors = ValidateDetailData(Invoice, data);
+                string firstErrorField;
+                string errors = ValidateDetailData(detail1, Invoice, data, out firstErrorField);
                 if (!string.IsNullOrEmpty(errors))
                 {
                     this.ShowWarningMessage(errors);
+                    var c = detail1.GetControlByAccessibleName(firstErrorField);
+                    if (c != null) c.Focus();
                     return false;
                 }
             }

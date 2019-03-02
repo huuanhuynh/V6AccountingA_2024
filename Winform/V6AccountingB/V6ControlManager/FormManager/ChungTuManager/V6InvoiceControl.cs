@@ -1154,17 +1154,20 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             return true;
         }
-        
+
         /// <summary>
         /// <para>Kiểm tra dữ liệu chi tiết hợp lệ quy định trong V6Valid.</para>
         /// <para>Nếu hợp lệ trả về rỗng hoặc null, Nếu ko trả về message.</para>
         /// </summary>
+        /// <param name="detail1"></param>
         /// <param name="Invoice"></param>
         /// <param name="data"></param>
+        /// <param name="firstField"></param>
         /// <returns>Nếu hợp lệ trả về rỗng hoặc null, Nếu ko trả về message.</returns>
-        public string ValidateDetailData(V6InvoiceBase Invoice, IDictionary<string, object> data)
+        public string ValidateDetailData(HD_Detail detail1, V6InvoiceBase Invoice, IDictionary<string, object> data, out string firstField)
         {
             string error = "";
+            firstField = null;
             try
             {
                 var config = ConfigManager.GetV6ValidConfig(Invoice.Mact, 2);
@@ -1176,6 +1179,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     foreach (string field in a_fields)
                     {
                         string FIELD = field.Trim().ToUpper();
+                        string label = FIELD;
                         if (!data.ContainsKey(FIELD))
                         {
                             //error += string.Format("{0}: [{1}]\n", V6Text.NoData, FIELD);
@@ -1184,17 +1188,36 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
                         V6ColumnStruct columnS = Invoice.ADStruct[FIELD];
                         object value = data[FIELD];
+                        
                         if (ObjectAndString.IsDateTimeType(columnS.DataType))
                         {
-                            if (value == null) error += V6Text.NoInput + " [" + FIELD + "]\n";
+                            if (value == null)
+                            {
+                                var lbl = detail1.GetControlByName("lbl" + FIELD);
+                                if (lbl != null) label = lbl.Text;
+                                error += V6Text.NoInput + " [" + label + "]\n";
+                                if (firstField == null) firstField = FIELD;
+                            }
                         }
                         else if (ObjectAndString.IsNumberType(columnS.DataType))
                         {
-                            if (ObjectAndString.ObjectToDecimal(value) == 0) error += V6Text.NoInput + " [" + FIELD + "]\n";
+                            if (ObjectAndString.ObjectToDecimal(value) == 0)
+                            {
+                                var lbl = detail1.GetControlByName("lbl" + FIELD);
+                                if (lbl != null) label = lbl.Text;
+                                error += V6Text.NoInput + " [" + label + "]\n";
+                                if (firstField == null) firstField = FIELD;
+                            }
                         }
                         else // string
                         {
-                            if (("" + value).Trim() == "") error += V6Text.NoInput + " [" + FIELD + "]\n";
+                            if (("" + value).Trim() == "")
+                            {
+                                var lbl = detail1.GetControlByName("lbl" + FIELD);
+                                if (lbl != null) label = lbl.Text;
+                                error += V6Text.NoInput + " [" + label + "]\n";
+                                if (firstField == null) firstField = FIELD;
+                            }
                         }
                     }
 

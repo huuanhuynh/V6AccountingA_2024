@@ -187,6 +187,11 @@ namespace V6Tools.V6Convert
             var result = 0m;
             if (o is DBNull) return 0;
             if (o == null) return result;
+            if (o is decimal)
+            {
+                result = (decimal)o;
+                return result;
+            }
             switch (o.GetType().ToString())
             {
                 case "System.DateTime":

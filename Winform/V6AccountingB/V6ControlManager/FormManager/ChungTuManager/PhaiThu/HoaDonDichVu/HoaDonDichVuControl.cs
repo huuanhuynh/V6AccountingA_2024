@@ -3433,10 +3433,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                     return false;
                 }
 
-                string errors = ValidateDetailData(Invoice, data);
+                string firstErrorField;
+                string errors = ValidateDetailData(detail1, Invoice, data, out firstErrorField);
                 if (!string.IsNullOrEmpty(errors))
                 {
                     this.ShowWarningMessage(errors);
+                    var c = detail1.GetControlByAccessibleName(firstErrorField);
+                    if (c != null) c.Focus();
                     return false;
                 }
             }
