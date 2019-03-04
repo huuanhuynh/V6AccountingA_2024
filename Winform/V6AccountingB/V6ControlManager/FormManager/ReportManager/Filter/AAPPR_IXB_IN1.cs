@@ -79,7 +79,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             var key0 = GetFilterStringByFields(new List<string>()
             {
-                "MA_DVCS","MA_BP", "MA_KH", "MA_NX"
+                "MA_DVCS","MA_BP", "MA_KH", "MA_NX", "MA_KHO", "MA_KHON"
             }, and);
             var key1 = GetFilterStringByFields(new List<string>()
             {
@@ -104,8 +104,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             if (!string.IsNullOrEmpty(key1))
             {
-                cKey = cKey + string.Format(" and ma_kh in (select ma_kh from alkh where {0} )", key1);
+                cKey = cKey + string.Format(" and ma_kh in (select ma_kh from alkh where {0})", key1);
             }
+            
             switch (TxtXtag.Text.Trim())
             {
                 case "0":

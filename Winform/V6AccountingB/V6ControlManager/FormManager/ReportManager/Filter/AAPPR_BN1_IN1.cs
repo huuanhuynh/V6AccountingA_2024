@@ -104,7 +104,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             if (!string.IsNullOrEmpty(key1))
             {
-                cKey = cKey + string.Format(" and ma_kh in (select ma_kh from alkh where {0} )", key1);
+                cKey = cKey + string.Format(" and ma_kh in (select ma_kh from alkh where {0})", key1);
             }
             switch (TxtXtag.Text.Trim())
             {

@@ -85,6 +85,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                "NH_KH1","NH_KH2","NH_KH3","NH_KH4","NH_KH5","NH_KH6","NH_KH7","NH_KH8","NH_KH9"
             }, and);
+            var key2 = GetFilterStringByFields(new List<string>()
+            {
+               "MA_KHO"
+            }, and);
            
             if (!string.IsNullOrEmpty(key0))
             {
@@ -104,7 +108,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             if (!string.IsNullOrEmpty(key1))
             {
-                cKey = cKey + string.Format(" and ma_kh in (select ma_kh from alkh where {0} )", key1);
+                cKey = cKey + string.Format(" and ma_kh in (select ma_kh from alkh where {0})", key1);
             }
             switch (TxtXtag.Text.Trim())
             {

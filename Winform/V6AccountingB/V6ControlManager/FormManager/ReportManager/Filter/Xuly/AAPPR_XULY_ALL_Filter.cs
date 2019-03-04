@@ -110,6 +110,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 "NH_KH1","NH_KH2","NH_KH3","NH_KH4","NH_KH5","NH_KH6","NH_KH7","NH_KH8","NH_KH9"
             }, and);
+            var key2 = GetFilterStringByFields(new List<string>()
+            {
+               "MA_KHO"
+            }, and);
            
             if (!string.IsNullOrEmpty(key0))
             {
@@ -129,7 +133,14 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             if (!string.IsNullOrEmpty(key1))
             {
-                cKey = cKey + string.Format(" and ma_kh in (select ma_kh from alkh where {0} )", key1);
+                cKey = cKey + string.Format(" and ma_kh in (select ma_kh from alkh where {0})", key1);
+            }
+            if (!string.IsNullOrEmpty(key2) && txtMa_ct.Data != null && ObjectAndString.ObjectToInt(txtMa_ct.Data["CT_NXT"]) != 0)
+            {
+                string AD = ("" + txtMa_ct.Data["m_ctdbf"]).Trim();
+                if(AD != "")
+                cKey = cKey + string.Format(" AND STT_REC IN (SELECT STT_REC FROM {3} WHERE NGAY_CT between '{1}' and '{2}' and ma_kho_i in (select ma_kho from alkho where {0}))",
+                    key2, dateNgay_ct1.YYYYMMDD, dateNgay_ct2.YYYYMMDD, AD);
             }
 
             switch (TxtXtag.Text.Trim())

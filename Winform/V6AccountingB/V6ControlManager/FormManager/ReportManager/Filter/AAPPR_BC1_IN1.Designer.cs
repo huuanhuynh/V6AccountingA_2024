@@ -303,6 +303,7 @@
             this.filterLineVvarTextBox1.Name = "filterLineVvarTextBox1";
             this.filterLineVvarTextBox1.Size = new System.Drawing.Size(292, 22);
             this.filterLineVvarTextBox1.TabIndex = 3;
+            this.filterLineVvarTextBox1.Visible = false;
             this.filterLineVvarTextBox1.Vvar = "MA_KHO";
             // 
             // filterLineVvarTextBox8
