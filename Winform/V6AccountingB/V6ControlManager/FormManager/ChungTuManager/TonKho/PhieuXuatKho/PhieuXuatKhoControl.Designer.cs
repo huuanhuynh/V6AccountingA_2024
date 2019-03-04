@@ -110,7 +110,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.v6ColorTextBox8 = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox3 = new V6Controls.V6VvarTextBox();
             this.v6Label6 = new V6Controls.V6Label();
-            this.v6Label18 = new V6Controls.V6Label();
+            this.lblMaDVCS = new V6Controls.V6Label();
             this.txtSLSP = new V6Controls.NumberSoluong();
             this.txtTyGia = new V6Controls.V6NumberTextBox();
             this.cboMaNt = new V6Controls.V6ComboBox();
@@ -132,7 +132,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.txtTenKh = new V6Controls.V6VvarTextBox();
             this.txtDiaChi = new V6Controls.V6VvarTextBox();
             this.v6Label11 = new V6Controls.V6Label();
-            this.v6Label10 = new V6Controls.V6Label();
+            this.lblMaKH = new V6Controls.V6Label();
             this.group2 = new System.Windows.Forms.GroupBox();
             this.v6VvarTextBox2 = new V6Controls.V6VvarTextBox();
             this.v6VvarTextBox1 = new V6Controls.V6VvarTextBox();
@@ -1228,7 +1228,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.group3.Controls.Add(this.v6ColorTextBox8);
             this.group3.Controls.Add(this.v6ColorTextBox3);
             this.group3.Controls.Add(this.v6Label6);
-            this.group3.Controls.Add(this.v6Label18);
+            this.group3.Controls.Add(this.lblMaDVCS);
             this.group3.Controls.Add(this.txtSLSP);
             this.group3.Controls.Add(this.txtTyGia);
             this.group3.Controls.Add(this.cboMaNt);
@@ -1250,7 +1250,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.group3.Controls.Add(this.txtTenKh);
             this.group3.Controls.Add(this.txtDiaChi);
             this.group3.Controls.Add(this.v6Label11);
-            this.group3.Controls.Add(this.v6Label10);
+            this.group3.Controls.Add(this.lblMaKH);
             this.group3.Location = new System.Drawing.Point(5, 50);
             this.group3.Name = "group3";
             this.group3.Size = new System.Drawing.Size(894, 149);
@@ -1399,15 +1399,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.v6Label6.TabIndex = 20;
             this.v6Label6.Text = "Loại phiếu";
             // 
-            // v6Label18
+            // lblMaDVCS
             // 
-            this.v6Label18.AccessibleDescription = "AINCTIXAL00001";
-            this.v6Label18.AutoSize = true;
-            this.v6Label18.Location = new System.Drawing.Point(3, 12);
-            this.v6Label18.Name = "v6Label18";
-            this.v6Label18.Size = new System.Drawing.Size(58, 13);
-            this.v6Label18.TabIndex = 20;
-            this.v6Label18.Text = "Mã đơn vị ";
+            this.lblMaDVCS.AccessibleDescription = "AINCTIXAL00001";
+            this.lblMaDVCS.AutoSize = true;
+            this.lblMaDVCS.Location = new System.Drawing.Point(3, 12);
+            this.lblMaDVCS.Name = "lblMaDVCS";
+            this.lblMaDVCS.Size = new System.Drawing.Size(58, 13);
+            this.lblMaDVCS.TabIndex = 20;
+            this.lblMaDVCS.Text = "Mã đơn vị ";
             // 
             // txtSLSP
             // 
@@ -1751,15 +1751,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.v6Label11.TabIndex = 2;
             this.v6Label11.Text = "Địa chỉ";
             // 
-            // v6Label10
+            // lblMaKH
             // 
-            this.v6Label10.AccessibleDescription = "AINCTIXAL00011";
-            this.v6Label10.AutoSize = true;
-            this.v6Label10.Location = new System.Drawing.Point(3, 57);
-            this.v6Label10.Name = "v6Label10";
-            this.v6Label10.Size = new System.Drawing.Size(82, 13);
-            this.v6Label10.TabIndex = 0;
-            this.v6Label10.Text = "Mã khách hàng";
+            this.lblMaKH.AccessibleDescription = "AINCTIXAL00011";
+            this.lblMaKH.AutoSize = true;
+            this.lblMaKH.Location = new System.Drawing.Point(3, 57);
+            this.lblMaKH.Name = "lblMaKH";
+            this.lblMaKH.Size = new System.Drawing.Size(82, 13);
+            this.lblMaKH.TabIndex = 0;
+            this.lblMaKH.Text = "Mã khách hàng";
             // 
             // group2
             // 
@@ -2429,7 +2429,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         private V6Label v6Label7;
         private V6Label v6Label8;
         private V6VvarTextBox v6ColorTextBox1;
-        private V6Label v6Label10;
+        private V6Label lblMaKH;
         private V6VvarTextBox txtLenhDieuDong;
         private V6Label v6Label12;
         private V6VvarTextBox txtDiaChi;
@@ -2479,7 +2479,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         private V6Controls.V6CheckBox chkSuaTien;
         private V6VvarTextBox txtMadvcs;
         private V6VvarTextBox v6ColorTextBox3;
-        private V6Label v6Label18;
+        private V6Label lblMaDVCS;
         private V6VvarTextBox Txtma_nk;
         private V6Label v6Label2;
         private V6VvarTextBox txtSoPhieu;

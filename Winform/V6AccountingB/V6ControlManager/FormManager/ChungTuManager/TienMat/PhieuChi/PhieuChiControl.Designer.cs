@@ -131,7 +131,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.btnChonNhieuHD = new V6Controls.Controls.V6FormButton();
             this.txtMadvcs = new V6Controls.V6VvarTextBox();
             this.txtTenDVCS = new V6Controls.V6VvarTextBox();
-            this.v6Label13 = new V6Controls.V6Label();
+            this.lblMaDVCS = new V6Controls.V6Label();
             this.txtTyGia = new V6Controls.V6NumberTextBox();
             this.cboMaNt = new V6Controls.V6ComboBox();
             this.txtLoaiPhieu = new V6Controls.V6VvarTextBox();
@@ -143,14 +143,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.txtTenKh = new V6Controls.V6VvarTextBox();
             this.txtDiaChi = new V6Controls.V6VvarTextBox();
             this.v6Label11 = new V6Controls.V6Label();
-            this.v6Label10 = new V6Controls.V6Label();
+            this.lblMaKH = new V6Controls.V6Label();
             this.group2 = new System.Windows.Forms.GroupBox();
             this.TxtTen_tk = new V6Controls.V6VvarTextBox();
             this.Txtma_nvien = new V6Controls.V6VvarTextBox();
             this.TxtMa_bp = new V6Controls.V6VvarTextBox();
             this.v6Label7 = new V6Controls.V6Label();
             this.v6Label8 = new V6Controls.V6Label();
-            this.v6Label9 = new V6Controls.V6Label();
+            this.lblTK = new V6Controls.V6Label();
             this.v6ColorTextBox1 = new V6Controls.V6VvarTextBox();
             this.txtTk = new V6Controls.V6VvarTextBox();
             this.group1 = new System.Windows.Forms.GroupBox();
@@ -1424,7 +1424,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.menuChucNang.Name = "menuChucNang";
             this.menuChucNang.Size = new System.Drawing.Size(165, 92);
             // 
-            // inKhacToolStripMenuItem
+            // xulyKhacMenu
             // 
             this.xulyKhacMenu.AccessibleDescription = "INVOICEM00010";
             this.xulyKhacMenu.Name = "xulyKhacMenu";
@@ -1541,7 +1541,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.group3.Controls.Add(this.btnChonNhieuHD);
             this.group3.Controls.Add(this.txtMadvcs);
             this.group3.Controls.Add(this.txtTenDVCS);
-            this.group3.Controls.Add(this.v6Label13);
+            this.group3.Controls.Add(this.lblMaDVCS);
             this.group3.Controls.Add(this.txtTyGia);
             this.group3.Controls.Add(this.cboMaNt);
             this.group3.Controls.Add(this.txtLoaiPhieu);
@@ -1553,7 +1553,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.group3.Controls.Add(this.txtTenKh);
             this.group3.Controls.Add(this.txtDiaChi);
             this.group3.Controls.Add(this.v6Label11);
-            this.group3.Controls.Add(this.v6Label10);
+            this.group3.Controls.Add(this.lblMaKH);
             this.group3.Location = new System.Drawing.Point(5, 54);
             this.group3.Name = "group3";
             this.group3.Size = new System.Drawing.Size(888, 122);
@@ -1690,15 +1690,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.txtTenDVCS.TabIndex = 2;
             this.txtTenDVCS.Tag = "disable";
             // 
-            // v6Label13
+            // lblMaDVCS
             // 
-            this.v6Label13.AccessibleDescription = "ACACTCA1L00001";
-            this.v6Label13.AutoSize = true;
-            this.v6Label13.Location = new System.Drawing.Point(3, 12);
-            this.v6Label13.Name = "v6Label13";
-            this.v6Label13.Size = new System.Drawing.Size(58, 13);
-            this.v6Label13.TabIndex = 0;
-            this.v6Label13.Text = "Mã đơn vị ";
+            this.lblMaDVCS.AccessibleDescription = "ACACTCA1L00001";
+            this.lblMaDVCS.AutoSize = true;
+            this.lblMaDVCS.Location = new System.Drawing.Point(3, 12);
+            this.lblMaDVCS.Name = "lblMaDVCS";
+            this.lblMaDVCS.Size = new System.Drawing.Size(58, 13);
+            this.lblMaDVCS.TabIndex = 0;
+            this.lblMaDVCS.Text = "Mã đơn vị ";
             // 
             // txtTyGia
             // 
@@ -1893,15 +1893,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.v6Label11.TabIndex = 9;
             this.v6Label11.Text = "Địa chỉ";
             // 
-            // v6Label10
+            // lblMaKH
             // 
-            this.v6Label10.AccessibleDescription = "ACACTCA1L00008";
-            this.v6Label10.AutoSize = true;
-            this.v6Label10.Location = new System.Drawing.Point(3, 56);
-            this.v6Label10.Name = "v6Label10";
-            this.v6Label10.Size = new System.Drawing.Size(82, 13);
-            this.v6Label10.TabIndex = 6;
-            this.v6Label10.Text = "Mã khách hàng";
+            this.lblMaKH.AccessibleDescription = "ACACTCA1L00008";
+            this.lblMaKH.AutoSize = true;
+            this.lblMaKH.Location = new System.Drawing.Point(3, 56);
+            this.lblMaKH.Name = "lblMaKH";
+            this.lblMaKH.Size = new System.Drawing.Size(82, 13);
+            this.lblMaKH.TabIndex = 6;
+            this.lblMaKH.Text = "Mã khách hàng";
             // 
             // group2
             // 
@@ -1912,7 +1912,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.group2.Controls.Add(this.TxtMa_bp);
             this.group2.Controls.Add(this.v6Label7);
             this.group2.Controls.Add(this.v6Label8);
-            this.group2.Controls.Add(this.v6Label9);
+            this.group2.Controls.Add(this.lblTK);
             this.group2.Controls.Add(this.v6ColorTextBox1);
             this.group2.Controls.Add(this.txtTk);
             this.group2.Location = new System.Drawing.Point(424, -5);
@@ -1997,15 +1997,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.v6Label8.TabIndex = 3;
             this.v6Label8.Text = "BP/NV";
             // 
-            // v6Label9
+            // lblTK
             // 
-            this.v6Label9.AccessibleDescription = "ACACTCA1L00002";
-            this.v6Label9.AutoSize = true;
-            this.v6Label9.Location = new System.Drawing.Point(6, 13);
-            this.v6Label9.Name = "v6Label9";
-            this.v6Label9.Size = new System.Drawing.Size(70, 13);
-            this.v6Label9.TabIndex = 0;
-            this.v6Label9.Text = "Tài khoản có";
+            this.lblTK.AccessibleDescription = "ACACTCA1L00002";
+            this.lblTK.AutoSize = true;
+            this.lblTK.Location = new System.Drawing.Point(6, 13);
+            this.lblTK.Name = "lblTK";
+            this.lblTK.Size = new System.Drawing.Size(70, 13);
+            this.lblTK.TabIndex = 0;
+            this.lblTK.Text = "Tài khoản có";
             // 
             // v6ColorTextBox1
             // 
@@ -2552,10 +2552,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         private System.Windows.Forms.GroupBox group2;
         private V6Label v6Label7;
         private V6Label v6Label8;
-        private V6Label v6Label9;
+        private V6Label lblTK;
         private V6VvarTextBox v6ColorTextBox1;
         private V6VvarTextBox txtTk;
-        private V6Label v6Label10;
+        private V6Label lblMaKH;
         private V6VvarTextBox Txtdien_giai;
         private V6Label v6Label12;
         private V6VvarTextBox txtDiaChi;
@@ -2600,7 +2600,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         private V6Label v6Label14;
         private V6VvarTextBox txtMadvcs;
         private V6VvarTextBox txtTenDVCS;
-        private V6Label v6Label13;
+        private V6Label lblMaDVCS;
         private System.Windows.Forms.DataGridViewTextBoxColumn TK_I;
         private System.Windows.Forms.DataGridViewTextBoxColumn TEN_TK_I;
         private System.Windows.Forms.DataGridViewTextBoxColumn UID;

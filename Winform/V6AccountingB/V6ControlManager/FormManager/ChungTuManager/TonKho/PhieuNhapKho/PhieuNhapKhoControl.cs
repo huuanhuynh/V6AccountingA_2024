@@ -3456,19 +3456,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
 
                 if (V6Login.MadvcsTotal > 0 && txtMadvcs.Text.Trim() == "")
                 {
-                    this.ShowWarningMessage("Chưa nhập mã đơn vị!");
+                    this.ShowWarningMessage(V6Text.NoInput + lblMaDVCS.Text);
                     txtMadvcs.Focus();
                     return false;
                 }
                 if (txtMaKh.Text.Trim() == "")
                 {
-                    this.ShowWarningMessage("Chưa nhập mã khách hàng!");
+                    this.ShowWarningMessage(V6Text.NoInput + lblMaKH.Text);
                     txtMaKh.Focus();
                     return false;
                 }
                 if (cboKieuPost.SelectedIndex == -1)
                 {
-                    this.ShowWarningMessage("Chưa chọn kiểu post!");
+                    this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"));
                     cboKieuPost.Focus();
                     return false;
                 }
@@ -3479,7 +3479,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 // Check Detail
                 if (AD.Rows.Count == 0)
                 {
-                    this.ShowWarningMessage("Chưa nhập chi tiết!");
+                    this.ShowWarningMessage(V6Text.NoInputDetail);
                     return false;
                 }
                 //Tuanmh 16/02/2016 Check Voucher Is exist 
@@ -3582,7 +3582,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             {
                 if (_tkVt.Int_Data("Loai_tk") == 0)
                 {
-                    this.ShowWarningMessage("Tài khoản không phải chi tiết !");
+                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
                     return false;
                 }
 

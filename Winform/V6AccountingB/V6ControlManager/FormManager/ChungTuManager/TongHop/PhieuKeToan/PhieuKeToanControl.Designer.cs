@@ -110,7 +110,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.group3 = new System.Windows.Forms.GroupBox();
             this.txtMadvcs = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox4 = new V6Controls.V6VvarTextBox();
-            this.v6Label38 = new V6Controls.V6Label();
+            this.lblMaDVCS = new V6Controls.V6Label();
             this.txtTyGia = new V6Controls.V6NumberTextBox();
             this.cboMaNt = new V6Controls.V6ComboBox();
             this.v6Label17 = new V6Controls.V6Label();
@@ -1294,7 +1294,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             | System.Windows.Forms.AnchorStyles.Right)));
             this.group3.Controls.Add(this.txtMadvcs);
             this.group3.Controls.Add(this.v6ColorTextBox4);
-            this.group3.Controls.Add(this.v6Label38);
+            this.group3.Controls.Add(this.lblMaDVCS);
             this.group3.Controls.Add(this.txtTyGia);
             this.group3.Controls.Add(this.cboMaNt);
             this.group3.Controls.Add(this.v6Label17);
@@ -1344,15 +1344,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.v6ColorTextBox4.TabIndex = 1;
             this.v6ColorTextBox4.Tag = "disable";
             // 
-            // v6Label38
+            // lblMaDVCS
             // 
-            this.v6Label38.AccessibleDescription = "AGLCTGL1L00001";
-            this.v6Label38.AutoSize = true;
-            this.v6Label38.Location = new System.Drawing.Point(3, 12);
-            this.v6Label38.Name = "v6Label38";
-            this.v6Label38.Size = new System.Drawing.Size(58, 13);
-            this.v6Label38.TabIndex = 24;
-            this.v6Label38.Text = "Mã đơn vị ";
+            this.lblMaDVCS.AccessibleDescription = "AGLCTGL1L00001";
+            this.lblMaDVCS.AutoSize = true;
+            this.lblMaDVCS.Location = new System.Drawing.Point(3, 12);
+            this.lblMaDVCS.Name = "lblMaDVCS";
+            this.lblMaDVCS.Size = new System.Drawing.Size(58, 13);
+            this.lblMaDVCS.TabIndex = 24;
+            this.lblMaDVCS.Text = "Mã đơn vị ";
             // 
             // txtTyGia
             // 
@@ -2196,7 +2196,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
         private V6VvarTextBox Txtma_kh_i;
         private V6VvarTextBox txtMadvcs;
         private V6VvarTextBox v6ColorTextBox4;
-        private V6Label v6Label38;
+        private V6Label lblMaDVCS;
         private V6VvarTextBox Txtma_nk;
         private V6VvarTextBox txtMa_sonb;
         private V6Label v6Label2;

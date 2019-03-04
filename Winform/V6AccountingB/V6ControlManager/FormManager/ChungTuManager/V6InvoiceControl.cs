@@ -1123,7 +1123,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     {
                         if (((V6DateTimeColor)control).Value == null)
                         {
-                            this.ShowWarningMessage("Chưa nhập giá trị: " + field);
+                            this.ShowWarningMessage(string.Format("{0}: [{1}] {2}", V6Text.Text("CHUANHAPGIATRI"), field, V6Text.FieldCaption(field)));
                             control.Focus();
                             return false;
                         }
@@ -1132,7 +1132,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     {
                         if (((V6NumberTextBox)control).Value == 0)
                         {
-                            this.ShowWarningMessage("Chưa nhập giá trị: " + field);
+                            this.ShowWarningMessage(string.Format("{0}: [{1}] {2}", V6Text.Text("CHUANHAPGIATRI"), field, V6Text.FieldCaption(field)));
                             control.Focus();
                             return false;
                         }
@@ -1141,7 +1141,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     {
                         if (string.IsNullOrEmpty(control.Text))
                         {
-                            this.ShowWarningMessage("Chưa nhập giá trị: " + field);
+                            this.ShowWarningMessage(string.Format("{0}: [{1}] {2}", V6Text.Text("CHUANHAPGIATRI"), field, V6Text.FieldCaption(field)));
                             control.Focus();
                             return false;
                         }
@@ -1150,7 +1150,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             else
             {
-                V6ControlFormHelper.SetStatusText("No V6Valid info!");
+                V6ControlFormHelper.SetStatusText(V6Text.Text("NoInfo") + " V6Valid!");
             }
             return true;
         }
@@ -1237,7 +1237,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 }
                 else
                 {
-                    ShowMainMessage("No V6Valid info!");
+                    ShowMainMessage(V6Text.Text("NoInfo") + " V6Valid!");
                 }
             }
             catch (Exception ex)

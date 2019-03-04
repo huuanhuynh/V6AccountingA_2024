@@ -1117,8 +1117,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
-                if (!data.ContainsKey("TK_I") || data["TK_I"].ToString().Trim() == "") error += "\nChưa nhập tài khoản.";
-                //if (!data.ContainsKey("MA_KHO_I") || data["MA_KHO_I"].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00166") + " " + V6Text.Empty;
+                if (!data.ContainsKey("TK_I") || data["TK_I"].ToString().Trim() == "")
+                {
+                    var label = "TK_I";
+                    var lbl = detail1.GetControlByName("lbl" + label);
+                    if (lbl != null) label = lbl.Text;
+                    error += V6Text.NoInput + " [" + label + "]\n";
+                }
+                
                 if (error == "")
                 {
                     //Tạo dòng dữ liệu mới.
@@ -1213,9 +1219,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     if (cIndex >= 0 && cIndex < AD3.Rows.Count)
                     {
                         var currentRow = AD3.Rows[cIndex];
-                        var details = "Tài khoản: " + currentRow["TK_I"];
-                        if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" +
-                                                                   details)
+                        var label = "TK_I";
+                        var lbl = detail3.GetControlByName("lbl" + label);
+                        var details = (lbl == null? "Tài khoản: " : lbl.Text + ": ") + currentRow["TK_I"];
+                        if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details)
                             == DialogResult.Yes)
                         {
                             AD3.Rows.Remove(currentRow);
@@ -1369,7 +1376,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
-
                 string sttRec0 = _sttRec0;
                 //string maVt = _maVt.Text.Trim().ToUpper();
                 //string maKhoI = _maKhoI.Text.Trim().ToUpper();
@@ -1872,9 +1878,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2(V6Setting.IsVietnamese ?
-                "F4-Nhận/thêm chi tiết, F7-Lưu và in, F8-Xóa chi tiết" :
-                "F4-Add detail, F7-Save and print, F8-Delete detail");
+            V6ControlFormHelper.SetStatusText2(V6Text.Text("STATUS2" + Invoice.Mact));
+            //V6Setting.IsVietnamese ?
+            //    "F4-Nhận/thêm chi tiết, F7-Lưu và in, F8-Xóa chi tiết" :
+            //    "F4-Add detail, F7-Save and print, F8-Delete detail");
         }
         
         public override bool DoHotKey0(Keys keyData)
@@ -6187,33 +6194,33 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                 if (V6Login.MadvcsTotal > 0 && txtMadvcs.Text.Trim() == "")
                 {
-                    this.ShowWarningMessage("Chưa nhập mã đơn vị!");
+                    this.ShowWarningMessage(V6Text.NoInput + lblMaDVCS.Text);
                     txtMadvcs.Focus();
                     return false;
                 }
 
                 if (txtMaKh.Text.Trim() == "")
                 {
-                    this.ShowWarningMessage("Chưa nhập mã khách hàng!");
+                    this.ShowWarningMessage(V6Text.NoInput + lblMaKH.Text);
                     txtMaKh.Focus();
                     return false;
                 }
 
                 if (txtManx.Text.Trim() == "")
                 {
-                    this.ShowWarningMessage("Chưa nhập tài khoản!");
+                    this.ShowWarningMessage(V6Text.NoInput + lblMaNX.Text);
                     txtManx.Focus();
                     return false;
                 }
                 if (txtManx.Int_Data("Loai_tk") == 0)
                 {
-                    this.ShowWarningMessage("Tài khoản không phải chi tiết!");
+                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
                     txtManx.Focus();
                     return false;
                 }
                 if (cboKieuPost.SelectedIndex == -1)
                 {
-                    this.ShowWarningMessage("Chưa chọn kiểu post!");
+                    this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"));
                     cboKieuPost.Focus();
                     return false;
                 }
@@ -6224,7 +6231,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 // Check Detail
                 if (AD.Rows.Count == 0)
                 {
-                    this.ShowWarningMessage("Chưa nhập chi tiết!");
+                    this.ShowWarningMessage(V6Text.NoInputDetail);
                     return false;
                 }
 
@@ -6256,7 +6263,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     var group = item.Value;
                     if (group[0] != group[1])
                     {
-                        checkChiTietError += string.Format("Kiểm tra nhóm định khoản (Phát sinh nợ <> Phát sinh có) {0}\n", item.Key);
+                        checkChiTietError += string.Format(V6Text.Text("KTNDKPSNKPSC") + " {0}\n", item.Key);
                     }
                 }
                 if (checkChiTietError.Length > 0)
@@ -6364,7 +6371,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 if (_tkDt.Int_Data("Loai_tk") == 0)
                 {
-                    this.ShowWarningMessage("Tài khoản không phải chi tiết !");
+                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
                     _tkDt.Focus();
                     return false;
                 }
@@ -6906,7 +6913,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 var data = txtMaKh.Data;
                 if (data == null)
                 {
-                    this.ShowWarningMessage("Chưa chọn mã khách hàng!", 300);
+                    this.ShowWarningMessage(V6Text.NoInput + lblMaKH.Text, 300);
                     return;
                 }
                 txtDiaChiGiaoHang.ParentData = data.ToDataDictionary();

@@ -42,7 +42,7 @@
             this.v6Label1 = new V6Controls.V6Label();
             this.txtMadvcs = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
-            this.v6Label18 = new V6Controls.V6Label();
+            this.lblMaDVCS = new V6Controls.V6Label();
             this.txtMaKh = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox9 = new V6Controls.V6ColorTextBox();
             this.v6Label12 = new V6Controls.V6Label();
@@ -50,7 +50,7 @@
             this.txtTenKh = new V6Controls.V6ColorTextBox();
             this.txtDiaChi = new V6Controls.V6ColorTextBox();
             this.v6Label11 = new V6Controls.V6Label();
-            this.v6Label10 = new V6Controls.V6Label();
+            this.lblMaKH = new V6Controls.V6Label();
             this.v6Label4 = new V6Controls.V6Label();
             this.txtGhiChu01 = new V6Controls.V6ColorTextBox();
             this.lblGhiChu2 = new V6Controls.V6Label();
@@ -247,15 +247,15 @@
             this.v6ColorTextBox3.TabStop = false;
             this.v6ColorTextBox3.Tag = "disable";
             // 
-            // v6Label18
+            // lblMaDVCS
             // 
-            this.v6Label18.AccessibleDescription = "XULYL00040";
-            this.v6Label18.AutoSize = true;
-            this.v6Label18.Location = new System.Drawing.Point(3, 54);
-            this.v6Label18.Name = "v6Label18";
-            this.v6Label18.Size = new System.Drawing.Size(58, 13);
-            this.v6Label18.TabIndex = 31;
-            this.v6Label18.Text = "Mã đơn vị ";
+            this.lblMaDVCS.AccessibleDescription = "XULYL00040";
+            this.lblMaDVCS.AutoSize = true;
+            this.lblMaDVCS.Location = new System.Drawing.Point(3, 54);
+            this.lblMaDVCS.Name = "lblMaDVCS";
+            this.lblMaDVCS.Size = new System.Drawing.Size(58, 13);
+            this.lblMaDVCS.TabIndex = 31;
+            this.lblMaDVCS.Text = "Mã đơn vị ";
             // 
             // txtMaKh
             // 
@@ -378,15 +378,15 @@
             this.v6Label11.TabIndex = 23;
             this.v6Label11.Text = "Địa chỉ";
             // 
-            // v6Label10
+            // lblMaKH
             // 
-            this.v6Label10.AccessibleDescription = "XULYL00041";
-            this.v6Label10.AutoSize = true;
-            this.v6Label10.Location = new System.Drawing.Point(3, 76);
-            this.v6Label10.Name = "v6Label10";
-            this.v6Label10.Size = new System.Drawing.Size(82, 13);
-            this.v6Label10.TabIndex = 22;
-            this.v6Label10.Text = "Mã khách hàng";
+            this.lblMaKH.AccessibleDescription = "XULYL00041";
+            this.lblMaKH.AutoSize = true;
+            this.lblMaKH.Location = new System.Drawing.Point(3, 76);
+            this.lblMaKH.Name = "lblMaKH";
+            this.lblMaKH.Size = new System.Drawing.Size(82, 13);
+            this.lblMaKH.TabIndex = 22;
+            this.lblMaKH.Text = "Mã khách hàng";
             // 
             // v6Label4
             // 
@@ -476,7 +476,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.txtMadvcs);
             this.Controls.Add(this.v6ColorTextBox3);
-            this.Controls.Add(this.v6Label18);
+            this.Controls.Add(this.lblMaDVCS);
             this.Controls.Add(this.txtMaKh);
             this.Controls.Add(this.txtGhiChu02);
             this.Controls.Add(this.lblGhiChu2);
@@ -488,7 +488,7 @@
             this.Controls.Add(this.txtTenKh);
             this.Controls.Add(this.txtDiaChi);
             this.Controls.Add(this.v6Label11);
-            this.Controls.Add(this.v6Label10);
+            this.Controls.Add(this.lblMaKH);
             this.Controls.Add(this.txtMa_sonb);
             this.Controls.Add(this.v6Label7);
             this.Controls.Add(this.v6Label2);
@@ -524,7 +524,7 @@
         private V6Controls.V6Label v6Label1;
         private V6Controls.V6VvarTextBox txtMadvcs;
         private V6Controls.V6ColorTextBox v6ColorTextBox3;
-        private V6Controls.V6Label v6Label18;
+        private V6Controls.V6Label lblMaDVCS;
         private V6Controls.V6VvarTextBox txtMaKh;
         private V6Controls.V6ColorTextBox v6ColorTextBox9;
         private V6Controls.V6Label v6Label12;
@@ -532,7 +532,7 @@
         private V6Controls.V6ColorTextBox txtTenKh;
         private V6Controls.V6ColorTextBox txtDiaChi;
         private V6Controls.V6Label v6Label11;
-        private V6Controls.V6Label v6Label10;
+        private V6Controls.V6Label lblMaKH;
         private V6Controls.V6Label v6Label4;
         private V6Controls.V6Label lblGhiChu2;
         private V6Controls.V6Label v6Label7;

@@ -36,14 +36,14 @@
             this.txtName = new V6Controls.V6ColorTextBox();
             this.txtNgayHHSD = new V6Controls.V6DateTimeColor();
             this.txtNgayHHSDmoi = new V6Controls.V6DateTimeColor();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblNgayHHSD = new System.Windows.Forms.Label();
             this.txtMaVt = new V6Controls.V6ColorTextBox();
             this.txtNewCode = new V6Controls.V6ColorTextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblMaVt = new System.Windows.Forms.Label();
+            this.lblHSDMoi = new System.Windows.Forms.Label();
+            this.lblNewCode = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblOldCode = new System.Windows.Forms.Label();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -62,14 +62,14 @@
             this.groupBox1.Controls.Add(this.txtName);
             this.groupBox1.Controls.Add(this.txtNgayHHSD);
             this.groupBox1.Controls.Add(this.txtNgayHHSDmoi);
-            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.lblNgayHHSD);
             this.groupBox1.Controls.Add(this.txtMaVt);
             this.groupBox1.Controls.Add(this.txtNewCode);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lblMaVt);
+            this.groupBox1.Controls.Add(this.lblHSDMoi);
+            this.groupBox1.Controls.Add(this.lblNewCode);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblOldCode);
             this.groupBox1.Location = new System.Drawing.Point(2, 1);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
@@ -192,16 +192,16 @@
             this.txtNgayHHSDmoi.TabIndex = 10;
             this.txtNgayHHSDmoi.Text = "__/__/____";
             // 
-            // label5
+            // lblNgayHHSD
             // 
-            this.label5.AccessibleDescription = "ADDEDITL00712";
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(303, 78);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 13);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Ngày hết HSD";
+            this.lblNgayHHSD.AccessibleDescription = "ADDEDITL00712";
+            this.lblNgayHHSD.AutoSize = true;
+            this.lblNgayHHSD.Location = new System.Drawing.Point(303, 78);
+            this.lblNgayHHSD.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNgayHHSD.Name = "lblNgayHHSD";
+            this.lblNgayHHSD.Size = new System.Drawing.Size(76, 13);
+            this.lblNgayHHSD.TabIndex = 11;
+            this.lblNgayHHSD.Text = "Ngày hết HSD";
             // 
             // txtMaVt
             // 
@@ -239,38 +239,38 @@
             this.txtNewCode.Size = new System.Drawing.Size(144, 20);
             this.txtNewCode.TabIndex = 8;
             // 
-            // label6
+            // lblMaVt
             // 
-            this.label6.AccessibleDescription = "ADDEDITL00195";
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(303, 107);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(52, 13);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Mã vật tư";
+            this.lblMaVt.AccessibleDescription = "ADDEDITL00195";
+            this.lblMaVt.AutoSize = true;
+            this.lblMaVt.Location = new System.Drawing.Point(303, 107);
+            this.lblMaVt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMaVt.Name = "lblMaVt";
+            this.lblMaVt.Size = new System.Drawing.Size(52, 13);
+            this.lblMaVt.TabIndex = 13;
+            this.lblMaVt.Text = "Mã vật tư";
             // 
-            // label4
+            // lblHSDMoi
             // 
-            this.label4.AccessibleDescription = "ADDEDITL00713";
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 107);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(95, 13);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Ngày hết HSD mới";
+            this.lblHSDMoi.AccessibleDescription = "ADDEDITL00713";
+            this.lblHSDMoi.AutoSize = true;
+            this.lblHSDMoi.Location = new System.Drawing.Point(11, 107);
+            this.lblHSDMoi.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblHSDMoi.Name = "lblHSDMoi";
+            this.lblHSDMoi.Size = new System.Drawing.Size(95, 13);
+            this.lblHSDMoi.TabIndex = 9;
+            this.lblHSDMoi.Text = "Ngày hết HSD mới";
             // 
-            // label2
+            // lblNewCode
             // 
-            this.label2.AccessibleDescription = "ADDEDITL00711";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 78);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Mã mới";
+            this.lblNewCode.AccessibleDescription = "ADDEDITL00711";
+            this.lblNewCode.AutoSize = true;
+            this.lblNewCode.Location = new System.Drawing.Point(11, 78);
+            this.lblNewCode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNewCode.Name = "lblNewCode";
+            this.lblNewCode.Size = new System.Drawing.Size(41, 13);
+            this.lblNewCode.TabIndex = 7;
+            this.lblNewCode.Text = "Mã mới";
             // 
             // label3
             // 
@@ -283,16 +283,16 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Tùy chọn";
             // 
-            // label1
+            // lblOldCode
             // 
-            this.label1.AccessibleDescription = "ADDEDITL00710";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 46);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Mã hiện tại";
+            this.lblOldCode.AccessibleDescription = "ADDEDITL00710";
+            this.lblOldCode.AutoSize = true;
+            this.lblOldCode.Location = new System.Drawing.Point(11, 46);
+            this.lblOldCode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblOldCode.Name = "lblOldCode";
+            this.lblOldCode.Size = new System.Drawing.Size(59, 13);
+            this.lblOldCode.TabIndex = 4;
+            this.lblOldCode.Text = "Mã hiện tại";
             // 
             // btnHuy
             // 
@@ -358,15 +358,15 @@
         private V6Controls.V6VvarTextBox txtOldCode;
         private V6Controls.V6ColorTextBox txtName;
         private V6Controls.V6ColorTextBox txtNewCode;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblNewCode;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblOldCode;
         private V6Controls.V6DateTimeColor txtNgayHHSDmoi;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblHSDMoi;
         private V6Controls.V6DateTimeColor txtNgayHHSD;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblNgayHHSD;
         private V6Controls.V6ColorTextBox txtMaVt;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblMaVt;
         private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.Button btnNhan;
     }

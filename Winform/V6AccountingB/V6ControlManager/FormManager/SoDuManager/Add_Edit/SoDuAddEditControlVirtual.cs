@@ -692,11 +692,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     }
                     else if (selectResult.Data.Rows.Count > 1)
                     {
-                        throw new Exception("Lấy dữ liệu sai >1");
+                        throw new Exception(V6Text.WrongData + " >1");
                     }
                     else
                     {
-                        throw new Exception("Không lấy được dữ liệu!");
+                        throw new Exception(V6Text.NoData);
                     }
                 }
             }
@@ -856,7 +856,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     {
                         if (((V6DateTimeColor)control).Value == null)
                         {
-                            string message = "Chưa nhập giá trị: " + field;
+                            string message = string.Format("{0}: [{1}] {2}", V6Text.Text("CHUANHAPGIATRI"), field, V6Text.FieldCaption(field));
                             error += message + "\n";
                             this.ShowWarningMessage(message);
                             control.Focus();
@@ -866,7 +866,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     {
                         if (((V6NumberTextBox)control).Value == 0)
                         {
-                            string message = "Chưa nhập giá trị: " + field;
+                            string message = string.Format("{0}: [{1}] {2}", V6Text.Text("CHUANHAPGIATRI"), field, V6Text.FieldCaption(field));
                             error += message + "\n";
                             this.ShowWarningMessage(message);
                             control.Focus();
@@ -876,7 +876,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     {
                         if (string.IsNullOrEmpty(control.Text))
                         {
-                            string message = "Chưa nhập giá trị: " + field;
+                            string message = string.Format("{0}: [{1}] {2}", V6Text.Text("CHUANHAPGIATRI"), field, V6Text.FieldCaption(field));
                             error += message + "\n";
                             this.ShowWarningMessage(message);
                             control.Focus();
@@ -886,7 +886,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
             else
             {
-                V6ControlFormHelper.SetStatusText("No V6Valid info!");
+                V6ControlFormHelper.SetStatusText(V6Text.Text("NoInfo") + " V6Valid!");
             }
             return error;
         }
@@ -951,7 +951,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 }
                 else
                 {
-                    ShowMainMessage("No V6Valid info!");
+                    ShowMainMessage(V6Text.Text("NoInfo") + " V6Valid!");
                 }
             }
             catch (Exception ex)

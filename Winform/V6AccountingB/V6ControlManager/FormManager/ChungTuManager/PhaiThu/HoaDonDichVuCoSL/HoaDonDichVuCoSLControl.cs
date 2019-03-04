@@ -1129,7 +1129,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
 
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
-                if (!data.ContainsKey("TK_I") || data["TK_I"].ToString().Trim() == "") error += "\nChưa nhập tài khoản.";
+                if (!data.ContainsKey("TK_I") || data["TK_I"].ToString().Trim() == "")
+                {
+                    var label = "TK_I";
+                    var lbl = detail1.GetControlByName("lbl" + label);
+                    if (lbl != null) label = lbl.Text;
+                    error += V6Text.NoInput + " [" + label + "]\n";
+                }
                 //if (!data.ContainsKey("MA_KHO_I") || data["MA_KHO_I"].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00166") + " " + V6Text.Empty;
                 if (error == "")
                 {
@@ -6084,33 +6090,33 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
 
                 if (V6Login.MadvcsTotal > 0 && txtMadvcs.Text.Trim() == "")
                 {
-                    this.ShowWarningMessage("Chưa nhập mã đơn vị!");
+                    this.ShowWarningMessage(V6Text.NoInput + lblMaDVCS.Text);
                     txtMadvcs.Focus();
                     return false;
                 }
 
                 if (txtMaKh.Text.Trim() == "")
                 {
-                    this.ShowWarningMessage("Chưa nhập mã khách hàng!");
+                    this.ShowWarningMessage(V6Text.NoInput + lblMaKH.Text);
                     txtMaKh.Focus();
                     return false;
                 }
 
                 if (txtManx.Text.Trim() == "")
                 {
-                    this.ShowWarningMessage("Chưa nhập tài khoản!");
+                    this.ShowWarningMessage(V6Text.NoInput + lblMaNX.Text);
                     txtManx.Focus();
                     return false;
                 }
                 if (txtManx.Int_Data("Loai_tk") == 0)
                 {
-                    this.ShowWarningMessage("Tài khoản không phải chi tiết!");
+                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
                     txtManx.Focus();
                     return false;
                 }
                 if (cboKieuPost.SelectedIndex == -1)
                 {
-                    this.ShowWarningMessage("Chưa chọn kiểu post!");
+                    this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"));
                     cboKieuPost.Focus();
                     return false;
                 }
@@ -6121,7 +6127,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 // Check Detail
                 if (AD.Rows.Count == 0)
                 {
-                    this.ShowWarningMessage("Chưa nhập chi tiết!");
+                    this.ShowWarningMessage(V6Text.NoInputDetail);
                     return false;
                 }
 
@@ -6153,7 +6159,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     var group = item.Value;
                     if (group[0] != group[1])
                     {
-                        checkChiTietError += string.Format("Kiểm tra nhóm định khoản (Phát sinh nợ <> Phát sinh có) {0}\n", item.Key);
+                        checkChiTietError += string.Format(V6Text.Text("KTNDKPSNKPSC") + " {0}\n", item.Key);
                     }
                 }
                 if (checkChiTietError.Length > 0)
@@ -6263,7 +6269,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             {
                 if (_tkDt.Int_Data("Loai_tk") == 0)
                 {
-                    this.ShowWarningMessage("Tài khoản không phải chi tiết !");
+                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
                     _tkDt.Focus();
                     return false;
                 }

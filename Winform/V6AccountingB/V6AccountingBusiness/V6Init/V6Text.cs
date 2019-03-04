@@ -2,6 +2,16 @@
 {
     public static class V6Text
     {
+        public static string FieldCaption(string field)
+        {
+            return CorpLan2.GetFieldHeader(field);
+        }
+        
+        public static string LabelCaption(string accessibleName)
+        {
+            return CorpLan.GetText(accessibleName);
+        }
+
         public static string Text(string ID)
         {
             return CorpLan1.GetText(ID);
@@ -357,7 +367,8 @@
         /// <summary>
         /// Chưa nhập giá trị. (Chưa nhập liệu)
         /// </summary>
-        public static string NoInput { get { return V6Setting.Language == "V" ? "Chưa nhập giá trị." : "No input."; } }
+        public static string NoInput { get { return V6Setting.Language == "V" ? "Chưa nhập giá trị. " : "No input. "; } }
+        public static string NoInputDetail { get { return V6Setting.Language == "V" ? "Chưa nhập chi tiết." : "No detail(s) input."; } }
         /// <summary>
         /// Không có chứng từ nào như vậy!
         /// </summary>
@@ -399,6 +410,7 @@
         public static string Voucher_exist_not_save { get { return V6Setting.Language == "V" ? "Chứng từ trùng số , không lưu được!" : "This voucher is exist, Not save!"; } }
         public static string Warning { get { return V6Setting.Language == "V" ? "Cảnh báo!" : "Warning!"; } }
         public static string Wrong { get { return V6Setting.Language == "V" ? "Nhập thông tin chưa đúng!" : "Wrong information!"; } }
+        public static string WrongData { get { return Text("WRONGDATA"); } }
         public static string ZoomIn { get { return V6Setting.Language == "V" ? "Phóng" : "ZoomIn"; } }
         public static string ZoomOut { get { return V6Setting.Language == "V" ? "Thu" : "ZoomOut"; } }
         
@@ -409,5 +421,6 @@
 
         #endregion
 
+        
     }
 }

@@ -93,7 +93,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
             {
                 if (newDate == null)
                 {
-                    this.ShowWarningMessage("Chưa nhập hạn sử dụng mới.");
+                    this.ShowWarningMessage(V6Text.NoInput + lblHSDMoi.Text);
                     return;
                 }
                 ctype = "1";
@@ -103,13 +103,13 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
             {
                 if (newCode == "" )
                 {
-                    this.ShowWarningMessage("Không được dùng mã rỗng!");
+                    this.ShowWarningMessage(V6Text.NoInput + lblNewCode.Text);
                     return;
                 }
 
                 if (newCode.ToUpper() == oldCode.ToUpper())
                 {
-                    this.ShowWarningMessage("Mã mới phải khác mã cũ!");
+                    this.ShowWarningMessage(V6Text.Text("MAMOIPHAIKHAC"));
                     return;
                 }
 
@@ -120,7 +120,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
             {
                 if (newDate == null || newCode == "")
                 {
-                    this.ShowWarningMessage("Chưa nhập đủ thông tin.");
+                    this.ShowWarningMessage(V6Text.NoInput + lblHSDMoi.Text + ", " + lblNewCode.Text);
                     return;
                 }
                 ctype = "3";
@@ -132,7 +132,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
             if (!a)
             {
                 if (this.ShowConfirmMessage(V6Text.Exist
-                    + " Có muốn đổi mã không?") != DialogResult.Yes)
+                    + V6Text.Text("ASKCHANGECODE")) != DialogResult.Yes)
                     return;
             }
 
@@ -145,7 +145,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
             try
             {
                 OnDoChangeCodeFinish(newData);
-                ShowTopLeftMessage("Đã thực hiện xong!");
+                ShowTopLeftMessage(V6Text.Finish);
                 Close();
             }
             catch (Exception ex)

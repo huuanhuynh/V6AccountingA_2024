@@ -41,7 +41,7 @@
             this.lineMaVatTu = new V6ReportControls.FilterLineVvarTextBox();
             this.lineMaVitri = new V6ReportControls.FilterLineVvarTextBox();
             this.txtMaKh = new V6Controls.V6VvarTextBox();
-            this.v6Label10 = new V6Controls.V6Label();
+            this.lblMaKH = new V6Controls.V6Label();
             this.dateYear = new V6Controls.V6DateTimePicker();
             this.dateMonth = new V6Controls.V6DateTimePicker();
             this.txtma_dvcs = new V6ReportControls.FilterLineVvarTextBox();
@@ -55,7 +55,7 @@
             this.panel1.Controls.Add(this.dateYear);
             this.panel1.Controls.Add(this.dateMonth);
             this.panel1.Controls.Add(this.txtMaKh);
-            this.panel1.Controls.Add(this.v6Label10);
+            this.panel1.Controls.Add(this.lblMaKH);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.dataGridView1);
             this.panel1.Controls.Add(this.label3);
@@ -206,15 +206,15 @@
             this.txtMaKh.TabIndex = 8;
             this.txtMaKh.VVar = "ma_kh";
             // 
-            // v6Label10
+            // lblMaKH
             // 
-            this.v6Label10.AccessibleDescription = "XULYL00041";
-            this.v6Label10.AutoSize = true;
-            this.v6Label10.Location = new System.Drawing.Point(3, 63);
-            this.v6Label10.Name = "v6Label10";
-            this.v6Label10.Size = new System.Drawing.Size(82, 13);
-            this.v6Label10.TabIndex = 7;
-            this.v6Label10.Text = "Mã khách hàng";
+            this.lblMaKH.AccessibleDescription = "XULYL00041";
+            this.lblMaKH.AutoSize = true;
+            this.lblMaKH.Location = new System.Drawing.Point(3, 63);
+            this.lblMaKH.Name = "lblMaKH";
+            this.lblMaKH.Size = new System.Drawing.Size(82, 13);
+            this.lblMaKH.TabIndex = 7;
+            this.lblMaKH.Text = "Mã khách hàng";
             // 
             // dateYear
             // 
@@ -278,7 +278,7 @@
         private V6ReportControls.FilterLineVvarTextBox lineMaKho;
         private V6ReportControls.FilterLineVvarTextBox lineMaVitri;
         private V6Controls.V6VvarTextBox txtMaKh;
-        private V6Controls.V6Label v6Label10;
+        private V6Controls.V6Label lblMaKH;
         private V6Controls.V6DateTimePicker dateYear;
         private V6Controls.V6DateTimePicker dateMonth;
         private V6ReportControls.FilterLineVvarTextBox lineMaVatTu;

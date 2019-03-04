@@ -3995,31 +3995,31 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
                 if (V6Login.MadvcsTotal > 0 && txtMadvcs.Text.Trim() == "")
                 {
-                    this.ShowWarningMessage("Chưa nhập mã đơn vị!");
+                    this.ShowWarningMessage(V6Text.NoInput + lblMaDVCS.Text);
                     txtMadvcs.Focus();
                     return false;
                 }
                 if (txtMaKh.Text.Trim() == "")
                 {
-                    this.ShowWarningMessage("Chưa nhập mã khách hàng!");
+                    this.ShowWarningMessage(V6Text.NoInput + lblMaKH.Text);
                     txtMaKh.Focus();
                     return false;
                 }
                 if (txtManx.Text.Trim() == "")
                 {
-                    this.ShowWarningMessage("Chưa nhập tài khoản!");
+                    this.ShowWarningMessage(V6Text.NoInput + lblMaNX.Text);
                     txtManx.Focus();
                     return false;
                 }
                 if (txtManx.Int_Data("Loai_tk") == 0)
                 {
-                    this.ShowWarningMessage("Tài khoản không phải chi tiết!");
+                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
                     txtManx.Focus();
                     return false;
                 }
                 if (cboKieuPost.SelectedIndex == -1)
                 {
-                    this.ShowWarningMessage("Chưa chọn kiểu post!");
+                    this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"));
                     cboKieuPost.Focus();
                     return false;
                 }
@@ -4030,13 +4030,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 // Check Detail
                 if (AD.Rows.Count == 0)
                 {
-                    this.ShowWarningMessage("Chưa nhập chi tiết!");
+                    this.ShowWarningMessage(V6Text.NoInputDetail);
                     return false;
                 }
 
                 if (!CheckPhanBo(dataGridView3ChiPhi, TxtT_cp_nt.Value))
                 {
-                    this.ShowWarningMessage("Kiểm tra lại số tiền phân bổ chưa đúng!");
+                    this.ShowWarningMessage(V6Text.Text("CHECKPHANBO"));
                     return false;
                 }
 
@@ -4162,7 +4162,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             {
                 //if (_tkDt.Int_Data("Loai_tk") == 0)
                 //{
-                //    this.ShowWarningMessage("Tài khoản không phải chi tiết !");
+                //    this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
                 //    return false;
                 //}
             }

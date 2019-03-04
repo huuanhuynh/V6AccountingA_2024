@@ -68,7 +68,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
                 if (!a)
                 {
                     if (this.ShowConfirmMessage(V6Text.Exist
-                        + " Có muốn đổi mã không?") != DialogResult.Yes)
+                        + V6Text.Text("ASKCHANGECODE")) != DialogResult.Yes)
                         return;
                 }
                 //Thuc hien sua

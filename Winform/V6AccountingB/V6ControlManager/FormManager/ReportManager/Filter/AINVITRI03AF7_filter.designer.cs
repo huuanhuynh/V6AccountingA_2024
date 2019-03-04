@@ -31,7 +31,7 @@
             this.dateYear = new V6Controls.V6DateTimePicker();
             this.dateMonth = new V6Controls.V6DateTimePicker();
             this.txtMaKh = new V6Controls.V6VvarTextBox();
-            this.v6Label10 = new V6Controls.V6Label();
+            this.lblMaKH = new V6Controls.V6Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radOr = new System.Windows.Forms.RadioButton();
             this.radAnd = new System.Windows.Forms.RadioButton();
@@ -88,15 +88,15 @@
             this.txtMaKh.TabIndex = 31;
             this.txtMaKh.VVar = "ma_kh";
             // 
-            // v6Label10
+            // lblMaKH
             // 
-            this.v6Label10.AccessibleDescription = "FILTERL00007";
-            this.v6Label10.AutoSize = true;
-            this.v6Label10.Location = new System.Drawing.Point(5, 61);
-            this.v6Label10.Name = "v6Label10";
-            this.v6Label10.Size = new System.Drawing.Size(82, 13);
-            this.v6Label10.TabIndex = 30;
-            this.v6Label10.Text = "Mã khách hàng";
+            this.lblMaKH.AccessibleDescription = "FILTERL00007";
+            this.lblMaKH.AutoSize = true;
+            this.lblMaKH.Location = new System.Drawing.Point(5, 61);
+            this.lblMaKH.Name = "lblMaKH";
+            this.lblMaKH.Size = new System.Drawing.Size(82, 13);
+            this.lblMaKH.TabIndex = 30;
+            this.lblMaKH.Text = "Mã khách hàng";
             // 
             // groupBox1
             // 
@@ -203,7 +203,7 @@
             this.Controls.Add(this.dateYear);
             this.Controls.Add(this.dateMonth);
             this.Controls.Add(this.txtMaKh);
-            this.Controls.Add(this.v6Label10);
+            this.Controls.Add(this.lblMaKH);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -221,7 +221,7 @@
         private V6Controls.V6DateTimePicker dateYear;
         private V6Controls.V6DateTimePicker dateMonth;
         private V6Controls.V6VvarTextBox txtMaKh;
-        private V6Controls.V6Label v6Label10;
+        private V6Controls.V6Label lblMaKH;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radOr;
         private System.Windows.Forms.RadioButton radAnd;
