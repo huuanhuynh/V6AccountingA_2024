@@ -37,7 +37,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dateNgay_ct1 = new V6Controls.V6DateTimePicker();
-            this.v6Label9 = new V6Controls.V6Label();
+            this.lblMaVT = new V6Controls.V6Label();
             this.TxtMa_vt = new V6Controls.V6VvarTextBox();
             this.Chk_Tinh_dc = new V6Controls.V6CheckBox();
             this.groupBox1.SuspendLayout();
@@ -155,15 +155,15 @@
             this.dateNgay_ct1.Size = new System.Drawing.Size(100, 20);
             this.dateNgay_ct1.TabIndex = 1;
             // 
-            // v6Label9
+            // lblMaVT
             // 
-            this.v6Label9.AccessibleDescription = "FILTERL00020";
-            this.v6Label9.AutoSize = true;
-            this.v6Label9.Location = new System.Drawing.Point(6, 69);
-            this.v6Label9.Name = "v6Label9";
-            this.v6Label9.Size = new System.Drawing.Size(55, 13);
-            this.v6Label9.TabIndex = 4;
-            this.v6Label9.Text = "Mã  vật tư";
+            this.lblMaVT.AccessibleDescription = "FILTERL00020";
+            this.lblMaVT.AutoSize = true;
+            this.lblMaVT.Location = new System.Drawing.Point(6, 69);
+            this.lblMaVT.Name = "lblMaVT";
+            this.lblMaVT.Size = new System.Drawing.Size(55, 13);
+            this.lblMaVT.TabIndex = 4;
+            this.lblMaVT.Text = "Mã  vật tư";
             // 
             // TxtMa_vt
             // 
@@ -199,7 +199,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.Chk_Tinh_dc);
-            this.Controls.Add(this.v6Label9);
+            this.Controls.Add(this.lblMaVT);
             this.Controls.Add(this.TxtMa_vt);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dateNgay_ct1);
@@ -226,7 +226,7 @@
         private V6ReportControls.FilterLineVvarTextBox TxtMakho;
         private System.Windows.Forms.Label label2;
         private V6Controls.V6DateTimePicker dateNgay_ct1;
-        private V6Controls.V6Label v6Label9;
+        private V6Controls.V6Label lblMaVT;
         private V6Controls.V6VvarTextBox TxtMa_vt;
         private V6Controls.V6CheckBox Chk_Tinh_dc;
     }

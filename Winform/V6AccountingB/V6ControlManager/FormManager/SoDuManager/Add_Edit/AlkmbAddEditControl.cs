@@ -81,6 +81,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.toolTipV6FormControl.SetToolTip(this.BtchonExcel, V6Text.Text("ShiftClickForDelete"));
             this.toolTipV6FormControl.SetToolTip(this.btnChonKH5, V6Text.Text("ShiftClickForDelete"));
             this.toolTipV6FormControl.SetToolTip(this.BtchonExcel5, V6Text.Text("ShiftClickForDelete"));
+            this.toolTipV6FormControl.SetToolTip(this.gView5, V6Text.Text("F8DELETEAROW"));
         }
 
         public override void DoBeforeAdd()
@@ -661,21 +662,21 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_KM",
                  txtMaKm.Text.Trim(), DataOld["MA_KM"].ToString());
                 if (!b)
-                    throw new Exception("Không được sửa mã đã tồn tại: "
-                                                    + "MA_KM = " + txtMaKm.Text.Trim());
+                    throw new Exception(V6Text.Exist + V6Text.EditDenied
+                                                    + lblMaKM.Text + " = " + txtMaKm.Text.Trim());
             }
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_KM",
                  txtMaKm.Text.Trim(), txtMaKm.Text.Trim());
                 if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
-                                                    + "MA_KM = " + txtMaKm.Text.Trim());
+                    throw new Exception(V6Text.Exist + V6Text.AddDenied
+                                                    + lblMaKM.Text + " = " + txtMaKm.Text.Trim());
             }
 
             if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit ||detail3.MODE == V6Mode.Add || detail3.MODE == V6Mode.Edit)
             {
-                errors += "Chưa hoàn tất chi tiết!\r\n";
+                errors += V6Text.DetailNotComplete;
             }
 
             if (errors.Length > 0) throw new Exception(errors);
@@ -1639,17 +1640,14 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     }
                     else
                     {
-                        if (!exist) _message += " Danh mục khácg hàng không tồn tại mã: " + cMaKh;
-                        
+                        _message += string.Format("{0} [{1}]", V6Text.NotExist, cMaKh);
                     }
                 }
-                ShowMainMessage(count > 0
-                ? string.Format("Đã thêm {0} chi tiết từ excel.", count) + _message
-                : "Không thêm được chi tiết nào từ excel." + _message);
+                ShowMainMessage(string.Format(V6Text.Added + "[{0}].", count) + _message);
             }
             else
             {
-                ShowMainMessage("Không có đủ thông tin!");
+                ShowMainMessage(V6Text.Text("LACKINFO"));
             }
         }
         
@@ -1677,17 +1675,14 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     }
                     else
                     {
-                        if (!exist) _message += " Danh mục khácg hàng không tồn tại mã: " + cMaKh;
-                        
+                        _message += string.Format("{0} [{1}]", V6Text.NotExist, cMaKh);
                     }
                 }
-                ShowMainMessage(count > 0
-                ? string.Format("Đã thêm {0} chi tiết từ excel.", count) + _message
-                : "Không thêm được chi tiết nào từ excel." + _message);
+                ShowMainMessage(string.Format(V6Text.Added + "[{0}].", count) + _message);
             }
             else
             {
-                ShowMainMessage("Không có đủ thông tin!");
+                ShowMainMessage(V6Text.Text("LACKINFO"));
             }
         }
 
@@ -1708,9 +1703,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 var error = "";
                 if (!data.ContainsKey("MA_KH_I") || data["MA_KH_I"].ToString().Trim() == "")
                 {
-                   error += "\nMã khách rỗng.";
+                    error += V6Text.FieldCaption("MA_KH") + " " + V6Text.Empty;
                 }
-
 
                 if (error == "")
                 {
@@ -1763,10 +1757,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 var error = "";
                 if (!data.ContainsKey("MA_KH_I") || data["MA_KH_I"].ToString().Trim() == "")
                 {
-                   error += "\nMã khách rỗng.";
+                    error += V6Text.FieldCaption("MA_KH") + " " + V6Text.Empty;
                 }
-
-
+                
                 if (error == "")
                 {
                     //Tạo dòng dữ liệu mới.
@@ -1848,7 +1841,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
                 if (e.KeyData == (Keys.Control | Keys.F3))
                 {
-                    if (this.ShowConfirmMessage("Thay thế cột hiện tại với giá trị đang chọn?") != DialogResult.Yes) return;
+                    if (this.ShowConfirmMessage(V6Text.Text("COLVALWITHSELECTED")) != DialogResult.Yes) return;
 
                     var currentRow = dataGridView1.CurrentRow;
                     var currentCell = dataGridView1.CurrentCell;
@@ -1884,7 +1877,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
             else
             {
-                V6lookupConfig lookupInfo = V6Lookup.GetV6lookupConfig("MA_KH");// V6ControlsHelper.LayThongTinCauHinh("MA_KH");
+                V6lookupConfig lookupInfo = V6Lookup.GetV6lookupConfig("MA_KH");
                 V6VvarTextBoxForm lookupForm = new V6VvarTextBoxForm(txtMaKH, lookupInfo, txtMaKH.InitFilter, LookupMode.Data, false);
                 lookupForm.AcceptSelectedtData += lookupForm_AcceptSelectedtData;
                 lookupForm.ShowDialog(this);
@@ -1959,7 +1952,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     if (cIndex >= 0 && cIndex < data4.Rows.Count)
                     {
                         var currentRow = data4.Rows[cIndex];
-                        var details = "Mã khách hàng: " + currentRow["Ma_kh_i"];
+                        var details = V6Text.FieldCaption("MA_KH") + ": " + currentRow["Ma_kh_i"];
                         if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details)
                             == DialogResult.Yes)
                         {
@@ -1990,7 +1983,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     if (cIndex >= 0 && cIndex < data5.Rows.Count)
                     {
                         var currentRow = data5.Rows[cIndex];
-                        var details = "Mã khách hàng: " + currentRow["Ma_kh_i"];
+                        var details = V6Text.FieldCaption("MA_KH") + ": " + currentRow["Ma_kh_i"];
                         if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details)
                             == DialogResult.Yes)
                         {
@@ -2022,14 +2015,14 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         private void gView4_MouseHover(object sender, EventArgs e)
         {
-            V6ControlFormHelper.SetStatusText("F8 xóa 1 dòng");
-            V6ControlFormHelper.SetStatusText2("F8 xóa 1 dòng");
+            V6ControlFormHelper.SetStatusText(V6Text.Text("F8DELETEAROW"));
+            V6ControlFormHelper.SetStatusText2(V6Text.Text("F8DELETEAROW"));
         }
 
         private void gView5_MouseHover(object sender, EventArgs e)
         {
-            V6ControlFormHelper.SetStatusText("F8 xóa 1 dòng");
-            V6ControlFormHelper.SetStatusText2("F8 xóa 1 dòng");
+            V6ControlFormHelper.SetStatusText(V6Text.Text("F8DELETEAROW"));
+            V6ControlFormHelper.SetStatusText2(V6Text.Text("F8DELETEAROW"));
         }
 
         private void dataGridView1_ColumnAdded(object sender, DataGridViewColumnEventArgs e)

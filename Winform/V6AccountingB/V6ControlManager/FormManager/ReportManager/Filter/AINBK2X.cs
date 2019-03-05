@@ -75,14 +75,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             if (TxtMa_vt.Text.Trim() == "")
             {
-                throw new Exception("Chưa chọn mã vật tư!");
+                throw new Exception(V6Text.NoInput + lblMaVT.Text);
             }
 
-                      //@ngay_ct1 char(8),
-                      //@ngay_ct2 char(8),
-                      //@item nvarchar(50),
-                      //@advance nvarchar(max)
-              result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));
+            result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));
             result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.YYYYMMDD));
             result.Add(new SqlParameter("@item", TxtMa_vt.Text.Trim()));
             var and = radAnd.Checked;

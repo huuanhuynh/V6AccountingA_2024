@@ -144,7 +144,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     + (f9ErrorAll.Length > 0 ? "Error: " : "")
                     + f9ErrorAll);
 
-                V6ControlFormHelper.ShowMainMessage("F9 Xử lý xong!");
+                V6ControlFormHelper.ShowMainMessage("F9 " + V6Text.Finish);
             }
         }
         #endregion xulyF9
@@ -210,7 +210,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     else
                     {
-                        this.ShowWarningMessage("Không được phép sửa chi tiết!");
+                        this.ShowWarningMessage(V6Text.EditDenied);
                     }
 
                 }

@@ -294,8 +294,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 else
                 {
-                    if (ma_kh == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã khách hàng!\n" : "Customers ID needs to enter!\n";
-                    if (ma_dvcs == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã đơn vị." : "Agent ID needs to enter!";
+                    if (ma_kh == "") message += V6Text.NoInput + lblMaKH.Text;
+                    if (ma_dvcs == "") message += V6Text.NoInput + lblMaDVCS.Text;
                     this.ShowWarningMessage(message);
                 }
             }
@@ -328,7 +328,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                if (this.ShowConfirmMessage("Có chắc chắn xóa chọn hay không?") == DialogResult.Yes)
+                if (this.ShowConfirmMessage(V6Text.Text("ASKXOACHON")) == DialogResult.Yes)
                 {
                     int isAuto = 0;
                     SqlParameter[] plist =

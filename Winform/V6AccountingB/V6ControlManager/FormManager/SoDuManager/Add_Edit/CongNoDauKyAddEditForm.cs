@@ -40,14 +40,13 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 || (TxtMa_KH.Text.Trim() == "")
                 || (TxtTk.Text.Trim() == ""))
             {
-                throw new Exception("Chưa nhập đủ thông tin!");
+                throw new Exception(V6Text.Text("LACKINFO"));
             }
             else
             {
                 // Check data 
                 if (Mode == V6Mode.Edit)
                 {
-
                     if (DataDic.ContainsKey("MA_DVCS") && DataOld.ContainsKey("MA_DVCS")
                         && DataDic.ContainsKey("MA_KH") && DataOld.ContainsKey("MA_KH")
                          && DataDic.ContainsKey("TK") && DataOld.ContainsKey("TK")
@@ -60,11 +59,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                             "NAM", Convert.ToInt32(TxtNam.Value), Convert.ToInt32(TxtNam.Value));
 
                         if (!b)
-                            throw new Exception("Không được thêm mã đã tồn tại: ");
+                            throw new Exception(V6Text.Exist + V6Text.EditDenied);
 
                     }
-
-
                 }
                 else if (Mode == V6Mode.Add)
                 {
@@ -80,7 +77,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                             "NAM", Convert.ToInt32(TxtNam.Value), Convert.ToInt32(TxtNam.Value));
 
                         if (!b)
-                            throw new Exception("Không được thêm mã đã tồn tại: ");
+                            throw new Exception(V6Text.Exist + V6Text.AddDenied);
 
                     }
                 }

@@ -1087,8 +1087,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 }
                 else
                 {
-                    if (ma_kh == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã khách hàng!\n" : "Customers ID needs to enter!\n";
-                    if (ma_dvcs == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã đơn vị." : "Agent ID needs to enter!";
+                    if (ma_kh == "") message += V6Text.NoInput + lblMaKH.Text;
+                    if (ma_dvcs == "") message += V6Text.NoInput + lblMaDVCS.Text;
                     this.ShowWarningMessage(message);
                 }
             }

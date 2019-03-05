@@ -234,7 +234,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     else
                     {
-                        V6ControlFormHelper.ShowMessage("Chưa chọn mã nguồn và đích.");
+                        V6ControlFormHelper.ShowMessage(V6Text.Text("NoFromTo"));
                     }
                 }
                 FixData();

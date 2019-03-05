@@ -678,30 +678,30 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             if (txtMa_bpcc.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblMaBPCC.Text + "!\r\n";
 
             if (V6Login.MadvcsTotal > 0 && txtMaDVCS.Text.Trim() == "")
-                errors += "Chưa nhập đơn vị cơ sở !\r\n";
+                errors += V6Text.NoInput + lblMaDVCS.Text;
 
             if (Mode == V6Mode.Edit)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "SO_THE_CC",
                  txtMaCongCu.Text.Trim(), DataOld["SO_THE_CC"].ToString());
                 if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
-                                                    + "SO_THE_CC = " + txtMaCongCu.Text.Trim());
+                    throw new Exception(V6Text.Exist + V6Text.EditDenied
+                                                    + lblMaCC.Text + " = " + txtMaCongCu.Text.Trim());
             }
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "SO_THE_CC",
                  txtMaCongCu.Text.Trim(), txtMaCongCu.Text.Trim());
                 if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
-                                                    + "SO_THE_CC = " + txtMaCongCu.Text.Trim());
+                    throw new Exception(V6Text.Exist + V6Text.AddDenied
+                                                    + lblMaCC.Text + " = " + txtMaCongCu.Text.Trim());
             }
 
             if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit ||
                 detail3.MODE == V6Mode.Add || detail3.MODE == V6Mode.Edit ||
                 detail4.MODE == V6Mode.Add || detail4.MODE == V6Mode.Edit)
             {
-                errors += "Chưa hoàn tất chi tiết!\r\n";
+                errors += V6Text.DetailNotComplete;
             }
 
             if (errors.Length > 0) throw new Exception(errors);
@@ -846,7 +846,13 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
-                if (!data.ContainsKey("MA_NV") || data["MA_NV"].ToString().Trim() == "") error += "\nMã nguồn vốn rỗng.";
+                if (!data.ContainsKey("MA_NV") || data["MA_NV"].ToString().Trim() == "")
+                {
+                    var label = "MA_NV";
+                    var lbl = detail1.GetControlByName("lbl" + label);
+                    if (lbl != null) label = lbl.Text;
+                    error += V6Text.NoInput + " [" + label + "]\n";
+                }
                 
                 if (error == "")
                 {

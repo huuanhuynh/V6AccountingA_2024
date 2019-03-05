@@ -77,7 +77,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             if (TxtMa_vt.Text.Trim() == "")
             {
-                throw new Exception("Chưa chọn mã vật tư!");
+                throw new Exception(V6Text.NoInput + lblMaVT.Text);
             }
             
             V6Setting.M_ngay_ct1 = dateNgay_ct1.Date;

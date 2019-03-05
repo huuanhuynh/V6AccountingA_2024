@@ -700,7 +700,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             {
                 if (_tk_i_33.Int_Data("Tk_cn") == 1 && data["MA_KH_I"].ToString().Trim() == "")
                 {
-                    this.ShowWarningMessage("Tài khoản công nợ thiếu mã khách hàng !");
+                    this.ShowWarningMessage(V6Text.Text("TKCNTHIEUMAKH"));
                     return false;
                 }
             }
@@ -4298,86 +4298,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
         void chonExcel_AcceptData(DataTable table)
         {
-            //var count = 0;
-            //_message = "";
-
-            //if (table.Columns.Contains("MA_VT") && table.Columns.Contains("MA_KHO_I")
-            //    && table.Columns.Contains("TIEN_NT0") && table.Columns.Contains("SO_LUONG1")
-            //    && table.Columns.Contains("GIA_NT01"))
-            //{
-            //    if (table.Rows.Count > 0)
-            //    {
-            //        if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
-            //        {
-            //            detail1.MODE = V6Mode.Init;
-            //        }
-            //    }
-
-            //    foreach (DataRow row in table.Rows)
-            //    {
-            //        var data = row.ToDataDictionary(_sttRec);
-            //        var cMaVt = data["MA_VT"].ToString().Trim();
-            //        var cMaKhoI = data["MA_KHO_I"].ToString().Trim();
-            //        var exist = V6BusinessHelper.IsExistOneCode_List("ALVT", "MA_VT", cMaVt);
-            //        var exist2 = V6BusinessHelper.IsExistOneCode_List("ALKHO", "MA_KHO", cMaKhoI);
-
-            //        //{ Tuanmh 31/08/2016 Them thong tin ALVT
-            //        _maVt.Text = cMaVt;
-            //        var datavt = _maVt.Data;
-
-
-            //        if (datavt != null)
-            //        {
-            //            //Nếu dữ liệu không (!) chứa mã nào thì thêm vào dữ liệu cho mã đó.
-            //            if (!data.ContainsKey("TEN_VT")) data.Add("TEN_VT", (datavt["TEN_VT"] ?? "").ToString().Trim());
-            //            if (!data.ContainsKey("DVT1")) data.Add("DVT1", (datavt["DVT"] ?? "").ToString().Trim());
-            //            if (!data.ContainsKey("DVT")) data.Add("DVT", (datavt["DVT"] ?? "").ToString().Trim());
-            //            if (!data.ContainsKey("TK_VT")) data.Add("TK_VT", (datavt["TK_VT"] ?? "").ToString().Trim());
-            //            if (!data.ContainsKey("HE_SO1")) data.Add("HE_SO1", 1);
-            //            if (!data.ContainsKey("SO_LUONG")) data.Add("SO_LUONG", data["SO_LUONG1"]);
-
-            //            var __tien_nt0 = ObjectAndString.ToObject<decimal>(data["TIEN_NT0"]);
-            //            var __gia_nt0 = ObjectAndString.ObjectToDecimal(data["GIA_NT01"]);
-            //            var __tien0 = V6BusinessHelper.Vround(__tien_nt0 * txtTyGia.Value, M_ROUND);
-            //            var __gia0 = V6BusinessHelper.Vround(__gia_nt0 * txtTyGia.Value, M_ROUND_GIA);
-
-            //            if (!data.ContainsKey("TIEN0")) data.Add("TIEN0", __tien0);
-
-            //            if (!data.ContainsKey("TIEN_NT")) data.Add("TIEN_NT", data["TIEN_NT0"]);
-            //            if (!data.ContainsKey("TIEN")) data.Add("TIEN", __tien0);
-            //            if (!data.ContainsKey("GIA01")) data.Add("GIA01", __gia0);
-            //            if (!data.ContainsKey("GIA0")) data.Add("GIA0", __gia0);
-            //            if (!data.ContainsKey("GIA")) data.Add("GIA", __gia0);
-            //            if (!data.ContainsKey("GIA1")) data.Add("GIA1", __gia0);
-            //            if (!data.ContainsKey("GIA_NT0")) data.Add("GIA_NT0", data["GIA_NT01"]);
-            //            if (!data.ContainsKey("GIA_NT")) data.Add("GIA_NT", data["GIA_NT01"]);
-            //            if (!data.ContainsKey("GIA_NT1")) data.Add("GIA_NT1", data["GIA_NT01"]);
-            //        }
-            //        //}
-
-
-
-            //        if (exist && exist2)
-            //        {
-            //            if (XuLyThemDetail(data))
-            //            {
-            //                count++;
-            //            }
-            //        }
-            //        else
-            //        {
-            //            if (!exist) _message += " Danh mục vật tư không tồn tại mã: " + cMaVt;
-            //            if (!exist2) _message += " Danh mục kho không tồn tại mã: " + cMaKhoI;
-            //        }
-            //    }
-            //    ShowParentMessage(count > 0
-            //    ? string.Format("Đã thêm {0} chi tiết từ excel.", count) + _message
-            //    : "Không thêm được chi tiết nào từ excel." + _message);
-            //}
-            //else
-            //{
-            //    ShowParentMessage("Không có đủ thông tin!");
-            //}
+            
         }
 
         private void ChucNang_ThuCongNo()

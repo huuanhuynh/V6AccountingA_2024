@@ -56,11 +56,11 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
             var oldCode = txtOldCode.Text.Trim().ToUpper();
             if (newCode == "")
             {
-                this.ShowWarningMessage("Không được dùng mã rỗng!");
+                this.ShowWarningMessage(V6Text.NoInput + lblNewCode.Text);
             }
             else if (newCode == oldCode)
             {
-                this.ShowWarningMessage("Trùng mã cũ!");
+                this.ShowWarningMessage(V6Text.Text("TRUNGMACU"));
             }
             else
             {

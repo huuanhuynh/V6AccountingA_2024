@@ -33,7 +33,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.v6LabelTextBox2 = new V6Controls.V6LabelTextBox();
             this.txtma_ytcp = new V6Controls.V6VvarTextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblMaYTCP = new System.Windows.Forms.Label();
             this.v6LabelTextBox1 = new V6Controls.V6LabelTextBox();
             this.txtten_bpht = new V6Controls.V6LabelTextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -41,13 +41,13 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label8 = new System.Windows.Forms.Label();
             this.txttien_dd_nt = new V6Controls.NumberTienNt();
             this.TxtNam = new V6Controls.V6NumberTextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblDuDauNT = new System.Windows.Forms.Label();
             this.txttien_dd = new V6Controls.NumberTien();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblDuDau = new System.Windows.Forms.Label();
             this.TxtMa_sp = new V6Controls.V6VvarTextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblMaSP = new System.Windows.Forms.Label();
             this.TxtMa_bpht = new V6Controls.V6VvarTextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblMaBPHT = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -60,7 +60,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             this.groupBox1.Controls.Add(this.v6LabelTextBox2);
             this.groupBox1.Controls.Add(this.txtma_ytcp);
-            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.lblMaYTCP);
             this.groupBox1.Controls.Add(this.v6LabelTextBox1);
             this.groupBox1.Controls.Add(this.txtten_bpht);
             this.groupBox1.Controls.Add(this.label5);
@@ -68,13 +68,13 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.txttien_dd_nt);
             this.groupBox1.Controls.Add(this.TxtNam);
-            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.lblDuDauNT);
             this.groupBox1.Controls.Add(this.txttien_dd);
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lblDuDau);
             this.groupBox1.Controls.Add(this.TxtMa_sp);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblMaSP);
             this.groupBox1.Controls.Add(this.TxtMa_bpht);
-            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.lblMaBPHT);
             this.groupBox1.Location = new System.Drawing.Point(5, 3);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.groupBox1.Name = "groupBox1";
@@ -114,17 +114,17 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtma_ytcp.TabIndex = 2;
             this.txtma_ytcp.VVar = "MA_YTCP";
             // 
-            // label6
+            // lblMaYTCP
             // 
-            this.label6.AccessibleDescription = "FILTERL00223";
-            this.label6.AccessibleName = "";
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(16, 76);
-            this.label6.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(70, 17);
-            this.label6.TabIndex = 116;
-            this.label6.Text = "Mã yếu tố";
+            this.lblMaYTCP.AccessibleDescription = "FILTERL00223";
+            this.lblMaYTCP.AccessibleName = "";
+            this.lblMaYTCP.AutoSize = true;
+            this.lblMaYTCP.Location = new System.Drawing.Point(16, 76);
+            this.lblMaYTCP.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblMaYTCP.Name = "lblMaYTCP";
+            this.lblMaYTCP.Size = new System.Drawing.Size(70, 17);
+            this.lblMaYTCP.TabIndex = 116;
+            this.lblMaYTCP.Text = "Mã yếu tố";
             // 
             // v6LabelTextBox1
             // 
@@ -249,16 +249,16 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0});
             // 
-            // label4
+            // lblDuDauNT
             // 
-            this.label4.AccessibleDescription = "FILTERL00225";
-            this.label4.AccessibleName = "";
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 133);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 17);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Dư đầu NT";
+            this.lblDuDauNT.AccessibleDescription = "FILTERL00225";
+            this.lblDuDauNT.AccessibleName = "";
+            this.lblDuDauNT.AutoSize = true;
+            this.lblDuDauNT.Location = new System.Drawing.Point(16, 133);
+            this.lblDuDauNT.Name = "lblDuDauNT";
+            this.lblDuDauNT.Size = new System.Drawing.Size(77, 17);
+            this.lblDuDauNT.TabIndex = 12;
+            this.lblDuDauNT.Text = "Dư đầu NT";
             // 
             // txttien_dd
             // 
@@ -283,16 +283,16 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0});
             // 
-            // label2
+            // lblDuDau
             // 
-            this.label2.AccessibleDescription = "FILTERL00224";
-            this.label2.AccessibleName = "";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 105);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 17);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Dư đầu";
+            this.lblDuDau.AccessibleDescription = "FILTERL00224";
+            this.lblDuDau.AccessibleName = "";
+            this.lblDuDau.AutoSize = true;
+            this.lblDuDau.Location = new System.Drawing.Point(16, 105);
+            this.lblDuDau.Name = "lblDuDau";
+            this.lblDuDau.Size = new System.Drawing.Size(54, 17);
+            this.lblDuDau.TabIndex = 10;
+            this.lblDuDau.Text = "Dư đầu";
             // 
             // TxtMa_sp
             // 
@@ -312,17 +312,17 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtMa_sp.TabIndex = 1;
             this.TxtMa_sp.VVar = "MA_VT";
             // 
-            // label1
+            // lblMaSP
             // 
-            this.label1.AccessibleDescription = "XULYL00028";
-            this.label1.AccessibleName = "";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 47);
-            this.label1.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 17);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Mã sản phẩm";
+            this.lblMaSP.AccessibleDescription = "XULYL00028";
+            this.lblMaSP.AccessibleName = "";
+            this.lblMaSP.AutoSize = true;
+            this.lblMaSP.Location = new System.Drawing.Point(16, 47);
+            this.lblMaSP.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblMaSP.Name = "lblMaSP";
+            this.lblMaSP.Size = new System.Drawing.Size(93, 17);
+            this.lblMaSP.TabIndex = 8;
+            this.lblMaSP.Text = "Mã sản phẩm";
             // 
             // TxtMa_bpht
             // 
@@ -341,17 +341,17 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtMa_bpht.TabIndex = 0;
             this.TxtMa_bpht.VVar = "MA_BPHT";
             // 
-            // label3
+            // lblMaBPHT
             // 
-            this.label3.AccessibleDescription = "XULYL00026";
-            this.label3.AccessibleName = "";
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 18);
-            this.label3.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(106, 17);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Mã bộ phận HT";
+            this.lblMaBPHT.AccessibleDescription = "XULYL00026";
+            this.lblMaBPHT.AccessibleName = "";
+            this.lblMaBPHT.AutoSize = true;
+            this.lblMaBPHT.Location = new System.Drawing.Point(16, 18);
+            this.lblMaBPHT.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblMaBPHT.Name = "lblMaBPHT";
+            this.lblMaBPHT.Size = new System.Drawing.Size(106, 17);
+            this.lblMaBPHT.TabIndex = 4;
+            this.lblMaBPHT.Text = "Mã bộ phận HT";
             // 
             // v6TabControl1
             // 
@@ -430,14 +430,14 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private V6VvarTextBox TxtMa_bpht;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblMaBPHT;
         private System.Windows.Forms.TabPage tabPage1;
         private V6VvarTextBox TxtMa_sp;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblMaSP;
         private NumberTienNt txttien_dd_nt;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblDuDauNT;
         private NumberTien txttien_dd;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblDuDau;
         private System.Windows.Forms.Label label8;
         private V6NumberTextBox TxtNam;
         private System.Windows.Forms.Label label5;
@@ -446,6 +446,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private V6LabelTextBox txtten_bpht;
         private V6LabelTextBox v6LabelTextBox2;
         private V6VvarTextBox txtma_ytcp;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblMaYTCP;
     }
 }

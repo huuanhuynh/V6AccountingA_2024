@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.v6Label1 = new V6Controls.V6Label();
+            this.lblMaLo = new V6Controls.V6Label();
             this.TxtMa_lo = new V6Controls.V6VvarTextBox();
-            this.v6Label9 = new V6Controls.V6Label();
+            this.lblMaVT = new V6Controls.V6Label();
             this.TxtMa_vt = new V6Controls.V6VvarTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dateNgay_ct1 = new V6Controls.V6DateTimePicker();
@@ -45,15 +45,15 @@
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // v6Label1
+            // lblMaLo
             // 
-            this.v6Label1.AccessibleDescription = "FILTERL00159";
-            this.v6Label1.AutoSize = true;
-            this.v6Label1.Location = new System.Drawing.Point(5, 85);
-            this.v6Label1.Name = "v6Label1";
-            this.v6Label1.Size = new System.Drawing.Size(36, 13);
-            this.v6Label1.TabIndex = 19;
-            this.v6Label1.Text = "Mã  lô";
+            this.lblMaLo.AccessibleDescription = "FILTERL00159";
+            this.lblMaLo.AutoSize = true;
+            this.lblMaLo.Location = new System.Drawing.Point(5, 85);
+            this.lblMaLo.Name = "lblMaLo";
+            this.lblMaLo.Size = new System.Drawing.Size(36, 13);
+            this.lblMaLo.TabIndex = 19;
+            this.lblMaLo.Text = "Mã  lô";
             // 
             // TxtMa_lo
             // 
@@ -71,15 +71,15 @@
             this.TxtMa_lo.TabIndex = 3;
             this.TxtMa_lo.VVar = "MA_LO";
             // 
-            // v6Label9
+            // lblMaVT
             // 
-            this.v6Label9.AccessibleDescription = "FILTERL00020";
-            this.v6Label9.AutoSize = true;
-            this.v6Label9.Location = new System.Drawing.Point(5, 62);
-            this.v6Label9.Name = "v6Label9";
-            this.v6Label9.Size = new System.Drawing.Size(55, 13);
-            this.v6Label9.TabIndex = 17;
-            this.v6Label9.Text = "Mã  vật tư";
+            this.lblMaVT.AccessibleDescription = "FILTERL00020";
+            this.lblMaVT.AutoSize = true;
+            this.lblMaVT.Location = new System.Drawing.Point(5, 62);
+            this.lblMaVT.Name = "lblMaVT";
+            this.lblMaVT.Size = new System.Drawing.Size(55, 13);
+            this.lblMaVT.TabIndex = 17;
+            this.lblMaVT.Text = "Mã  vật tư";
             // 
             // TxtMa_vt
             // 
@@ -157,7 +157,7 @@
             this.groupBox1.Controls.Add(this.txtMaDvcs);
             this.groupBox1.Location = new System.Drawing.Point(2, 132);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(289, 115);
+            this.groupBox1.Size = new System.Drawing.Size(289, 126);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -228,9 +228,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.Chk_Tinh_dc);
-            this.Controls.Add(this.v6Label1);
+            this.Controls.Add(this.lblMaLo);
             this.Controls.Add(this.TxtMa_lo);
-            this.Controls.Add(this.v6Label9);
+            this.Controls.Add(this.lblMaVT);
             this.Controls.Add(this.TxtMa_vt);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dateNgay_ct1);
@@ -257,9 +257,9 @@
         private V6ReportControls.FilterLineVvarTextBox TxtMakho;
         private System.Windows.Forms.Label label2;
         private V6Controls.V6DateTimePicker dateNgay_ct1;
-        private V6Controls.V6Label v6Label9;
+        private V6Controls.V6Label lblMaVT;
         private V6Controls.V6VvarTextBox TxtMa_vt;
-        private V6Controls.V6Label v6Label1;
+        private V6Controls.V6Label lblMaLo;
         private V6Controls.V6VvarTextBox TxtMa_lo;
         private V6Controls.V6CheckBox Chk_Tinh_dc;
     }

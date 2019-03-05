@@ -60,7 +60,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     else
                     {
-                        V6ControlFormHelper.ShowMessage("Chưa chọn mã nguồn và đích.");
+                        V6ControlFormHelper.ShowMessage(V6Text.Text("NoFromTo"));
                     }
                 }
                 //FIX DATA
@@ -269,8 +269,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         }
                         else
                         {
-                            f9Error += item.Key + ": " + "Thêm lỗi " + Invoice.V6Message;
-                            f9ErrorAll += item.Key + ": " + "Thêm lỗi " + Invoice.V6Message;
+                            f9Error += item.Key + ": " + V6Text.AddFail + Invoice.V6Message;
+                            f9ErrorAll += item.Key + ": " + V6Text.AddFail + Invoice.V6Message;
                         }
                     }
                     catch (Exception ex)

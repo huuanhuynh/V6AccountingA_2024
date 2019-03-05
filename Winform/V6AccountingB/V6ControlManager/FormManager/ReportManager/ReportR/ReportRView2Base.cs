@@ -1329,7 +1329,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     }
                     else
                     {
-                        this.ShowWarningMessage("Không được phép sửa chi tiết!");
+                        this.ShowWarningMessage(V6Text.EditDenied);
                     }
 
                 }

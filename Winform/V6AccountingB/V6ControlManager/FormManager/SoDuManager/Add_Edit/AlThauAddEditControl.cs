@@ -379,21 +379,21 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_THAU",
                  txtMaThau.Text.Trim(), DataOld["MA_THAU"].ToString());
                 if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
-                                                    + "MA_THAU = " + txtMaThau.Text.Trim());
+                    throw new Exception(V6Text.Exist + V6Text.EditDenied
+                                                    + lblMaThau.Text + " = " + txtMaThau.Text.Trim());
             }
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_THAU",
                  txtMaThau.Text.Trim(), txtMaThau.Text.Trim());
                 if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
-                                                    + "MA_THAU = " + txtMaThau.Text.Trim());
+                    throw new Exception(V6Text.Exist + V6Text.AddDenied
+                                                    + lblMaThau.Text + " = " + txtMaThau.Text.Trim());
             }
 
             if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
             {
-                errors += "Chưa hoàn tất chi tiết!\r\n";
+                errors += V6Text.DetailNotComplete;
             }
 
             if (errors.Length > 0) throw new Exception(errors);

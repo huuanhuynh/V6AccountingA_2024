@@ -1042,7 +1042,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             {
                 if (_tk_i_33.Int_Data("Tk_cn") == 1 && data["MA_KH_I"].ToString().Trim() == "")
                 {
-                    this.ShowWarningMessage("Tài khoản công nợ thiếu mã khách hàng !");
+                    this.ShowWarningMessage(V6Text.Text("TKCNTHIEUMAKH"));
                     return false;
                 }
             }

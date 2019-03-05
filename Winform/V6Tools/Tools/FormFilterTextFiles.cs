@@ -188,13 +188,62 @@ namespace Tools
                     }
 
                     //Check headText and tailText
-                    if (useHead && txtAContains.Text != "")
+                    if (useHead)
                     {
-                        if (!headText.Contains(txtAContains.Text)) continue;
+                        if (txtAContains.Text != "")
+                        {
+                            if (!headText.Contains(txtAContains.Text)) continue;
+                        }
+                        if (txtAContains2.Text != "")
+                        {
+                            if (!headText.Contains(txtAContains2.Text)) continue;
+                        }
+                        if (txtAContains3.Text != "")
+                        {
+                            if (!headText.Contains(txtAContains3.Text)) continue;
+                        }
+
+                        if (txtANoContains.Text != "")
+                        {
+                            if (headText.Contains(txtANoContains.Text)) continue;
+                        }
+                        if (txtANoContains2.Text != "")
+                        {
+                            if (headText.Contains(txtANoContains2.Text)) continue;
+                        }
+                        if (txtANoContains3.Text != "")
+                        {
+                            if (headText.Contains(txtANoContains3.Text)) continue;
+                        }
                     }
-                    if (useTail && txtBContains.Text != "")
+
+                    if (useTail)
                     {
-                        if (!tailText.Contains(txtBContains.Text)) continue;
+                        if (txtBContains.Text != "")
+                        {
+                            if (!tailText.Contains(txtBContains.Text)) continue;
+                        }
+                        if (txtBContains2.Text != "")
+                        {
+                            if (!tailText.Contains(txtBContains2.Text)) continue;
+                        }
+                        if (txtBContains3.Text != "")
+                        {
+                            if (!tailText.Contains(txtBContains3.Text)) continue;
+                        }
+
+                        if (txtBNoContains.Text != "")
+                        {
+                            if (tailText.Contains(txtBNoContains.Text)) continue;
+                        }
+                        if (txtBNoContains2.Text != "")
+                        {
+                            if (tailText.Contains(txtBNoContains2.Text)) continue;
+                        }
+                        if (txtBNoContains3.Text != "")
+                        {
+                            if (tailText.Contains(txtBNoContains3.Text)) continue;
+                        }
                     }
 
                     try

@@ -61,7 +61,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             V6Setting.M_ngay_ct1 = dateNgay_ct1.Date;
             V6Setting.M_ngay_ct2 = dateNgay_ct2.Date;
             
-            if(maChungTu.StringValue == "") throw new Exception("Chưa nhập mã chứng từ.");
+            if(maChungTu.StringValue == "") throw new Exception(V6Text.NoInput + maChungTu.Caption);
 
             result.Add(new SqlParameter("@StartDate", dateNgay_ct1.YYYYMMDD));
             result.Add(new SqlParameter("@EndDate", dateNgay_ct2.YYYYMMDD));

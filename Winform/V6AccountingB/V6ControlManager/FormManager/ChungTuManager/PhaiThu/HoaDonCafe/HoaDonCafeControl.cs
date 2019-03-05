@@ -1106,7 +1106,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             {
                 if (_tk_i_33.Int_Data("Tk_cn") == 1 && data["MA_KH_I"].ToString().Trim() == "")
                 {
-                    this.ShowWarningMessage("Tài khoản công nợ thiếu mã khách hàng !");
+                    this.ShowWarningMessage(V6Text.Text("TKCNTHIEUMAKH"));
                     return false;
                 }
             }
@@ -1159,10 +1159,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     if (cIndex >= 0 && cIndex < AD3.Rows.Count)
                     {
                         var currentRow = AD3.Rows[cIndex];
-                        var details = "Tài khoản: " + currentRow["TK_I"];
-                        if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" +
-                                                                   details)
-                            == DialogResult.Yes)
+                        var details = V6Text.FieldCaption("TK") + ": " + currentRow["TK_I"];
+                        if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details) == DialogResult.Yes)
                         {
                             AD3.Rows.Remove(currentRow);
                             dataGridView3.DataSource = AD3;
@@ -5300,13 +5298,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     {
                         if (_tien2.Value != 0)
                         {
-                            var message = string.Format("Mã thuế của vật tư này ({0}) khác với mã thuế đã chọn ({1})",
-                                maThue, txtMa_thue.Text);
-                            if (V6Setting.Language != "V")
-                            {
-                                message = string.Format("This item tax code ({0}) is different from the selected tax code ({1})",
-                                maThue, txtMa_thue.Text);
-                            }
+                            var message = string.Format(V6Text.Text("MATHUEVTKHACCHON"), maThue, txtMa_thue.Text);
                             ShowParentMessage(message);
                             this.ShowWarningMessage(message);
                         }
@@ -5389,9 +5381,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                             {
                                 if (_tien2.Value != 0)
                                 {
-                                    var message =
-                                        string.Format("Mã thuế của vật tư này ({0}) khác với mã thuế đã chọn ({1})",
-                                            maThue, txtMa_thue.Text);
+                                    var message = string.Format(V6Text.Text("MATHUEVTKHACCHON"), maThue, txtMa_thue.Text);
                                     ShowParentMessage(message);
                                     this.ShowWarningMessage(message);
                                 }
@@ -6152,8 +6142,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 }
                 else
                 {
-                    if (ma_kh == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã khách hàng!\n" : "Customers ID needs to enter!\n";
-                    if (ma_dvcs == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã đơn vị." : "Agent ID needs to enter!";
+                    if (ma_kh == "") message += V6Text.NoInput + lblMaKH.Text;
+                    if (ma_dvcs == "") message += V6Text.NoInput + lblMaDVCS.Text;
                     this.ShowWarningMessage(message);
                     if (ma_kh == "") txtMaKh.Focus();
                     else if (ma_dvcs == "") txtMadvcs.Focus();
@@ -6182,8 +6172,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 }
                 else
                 {
-                    if (ma_kh == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã khách hàng!\n" : "Customers ID needs to enter!\n";
-                    if (ma_dvcs == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã đơn vị." : "Agent ID needs to enter!";
+                    if (ma_kh == "") message += V6Text.NoInput + lblMaKH.Text;
+                    if (ma_dvcs == "") message += V6Text.NoInput + lblMaDVCS.Text;
                     this.ShowWarningMessage(message);
                     if (ma_kh == "") txtMaKh.Focus();
                     else if (ma_dvcs == "") txtMadvcs.Focus();
@@ -6321,20 +6311,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     }
                     else
                     {
-                        if (!exist) _message += " Danh mục vật tư không tồn tại mã: " + cMaVt;
-                        if (!exist2) _message += " Danh mục kho không tồn tại mã: " + cMaKhoI;
+                        if (!exist) _message += string.Format("{0} [{1}]", V6Text.NotExist, cMaVt);
+                        if (!exist2) _message += string.Format("{0} [{1}]", V6Text.NotExist, cMaKhoI);
                     }
                 }
-                ShowParentMessage(count > 0
-                ? string.Format("Đã thêm {0} chi tiết từ excel.", count) + _message
-                : "Không thêm được chi tiết nào từ excel." + _message);
+                ShowParentMessage(string.Format(V6Text.Added + "[{0}].", count) + _message);
             }
             else
             {
-                ShowParentMessage("Không có đủ thông tin!");
+                ShowParentMessage(V6Text.Text("LACKINFO"));
             }
-
-
         }
 
         #endregion chức năng
@@ -6373,7 +6359,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             var data = txtMaKh.Data;
             if (data == null)
             {
-                this.ShowWarningMessage("Chưa chọn mã khách hàng!", 300);
+                this.ShowWarningMessage(V6Text.NoInput + lblMaKH.Text, 300);
                 return;
             }
             txtDiaChiGiaoHang.ParentData = data.ToDataDictionary();
@@ -6411,11 +6397,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 else
                 {
                     if (ma_kh == "")
-                        message += V6Setting.IsVietnamese
-                            ? "Chưa chọn mã khách hàng!\n"
-                            : "Customers ID needs to enter!\n";
+                        message += V6Text.NoInput + lblMaKH.Text;
                     if (ma_dvcs == "")
-                        message += V6Setting.IsVietnamese ? "Chưa chọn mã đơn vị." : "Agent ID needs to enter!";
+                        message += V6Text.NoInput + lblMaDVCS.Text;
                     this.ShowWarningMessage(message);
                     if (ma_kh == "") txtMaKh.Focus();
                     else if (ma_dvcs == "") txtMadvcs.Focus();
@@ -6449,10 +6433,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 }
                 if (txtMaGia.Text.Trim() == "")
                 {
-                    ShowParentMessage("Chọn mã giá trước.");
+                    ShowParentMessage(V6Text.NoInput + btnApGia.Text);
                     return;
                 }
-                if (this.ShowConfirmMessage("Có chắc chắn áp giá bán cho tất cả mặt hàng hay không?") != DialogResult.Yes)
+                if (this.ShowConfirmMessage(V6Text.Text("ASKAPGIABANALL")) != DialogResult.Yes)
                 {
                     return;
                 }
@@ -6661,20 +6645,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     }
                     else
                     {
-                        if (!exist) _message += " Danh mục vật tư không tồn tại mã: " + cMaVt;
-                        if (!exist2) _message += " Danh mục kho không tồn tại mã: " + cMaKhoI;
+                        if (!exist) _message += string.Format("{0} [{1}]", V6Text.NotExist, cMaVt);
+                        if (!exist2) _message += string.Format("{0} [{1}]", V6Text.NotExist, cMaKhoI);
                     }
                 }
 
                 if (count > 0) Luu(MA_KHOPH, MA_VITRIPH, false);
-                
-                ShowParentMessage(count > 0
-                ? string.Format("Đã thêm {0} chi tiết.", count) + _message
-                : "Không thêm được chi tiết nào." + _message);
+
+                ShowParentMessage(string.Format(V6Text.Added + "[{0}].", count) + _message);
             }
             else
             {
-                ShowParentMessage("Không có đủ thông tin!");
+                ShowParentMessage(V6Text.Text("LACKINFO"));
             }
 
 

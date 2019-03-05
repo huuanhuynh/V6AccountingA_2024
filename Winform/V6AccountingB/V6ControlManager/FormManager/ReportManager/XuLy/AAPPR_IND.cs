@@ -27,7 +27,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F4:Bổ sung thông tin, F9: Xử lý chứng từ, F10: Xử lý bổ sung, F8: Hủy xử lý, F7: In.");
+            V6ControlFormHelper.SetStatusText2(string.Format("F4: {0}, F9: {1}, F10: {2}, F8: {3}, F7: {4}.", V6Text.Text("BoSungThongTin"), V6Text.Text("XULYCT"), V6Text.Text("XULYBOSUNG"), V6Text.Text("HUYXULY"), V6Text.Text("Print")));
         }
 
         protected override void MakeReport2()
@@ -101,9 +101,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     else
                     {
-                        this.ShowWarningMessage("Không được phép sửa chi tiết!");
+                        this.ShowWarningMessage(V6Text.EditDenied);
                     }
-
                 }
             }
             catch (Exception ex)
@@ -118,7 +117,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (string.IsNullOrEmpty(_ma_xuly))
                 {
-                    ShowMainMessage("Chưa có mã xử lý. Nhấn F9 để tạo.");
+                    ShowMainMessage(V6Text.Text("MAXULYNULL"));
                     return;
                 }
 
@@ -217,7 +216,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     + (F8ErrorAll.Length > 0 ? "Error: " : "")
                     + F8ErrorAll);
 
-                V6ControlFormHelper.ShowMainMessage("F8 Xử lý xong!");
+                V6ControlFormHelper.ShowMainMessage("F8 " + V6Text.Finish);
             }
         }
         #endregion xulyF8
@@ -402,7 +401,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     + (f9ErrorAll.Length > 0 ? "Error: " : "")
                     + f9ErrorAll);
 
-                V6ControlFormHelper.ShowMainMessage("F9 Xử lý xong!");
+                V6ControlFormHelper.ShowMainMessage("F9 " + V6Text.Finish);
             }
         }
         #endregion xulyF9

@@ -34,8 +34,8 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
             this.txtOldCode = new V6Controls.V6VvarTextBox();
             this.txtName = new V6Controls.V6ColorTextBox();
             this.txtNewCode = new V6Controls.V6ColorTextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblNewCode = new System.Windows.Forms.Label();
+            this.lblCurrentCode = new System.Windows.Forms.Label();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -47,8 +47,8 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
             this.groupBox1.Controls.Add(this.txtOldCode);
             this.groupBox1.Controls.Add(this.txtName);
             this.groupBox1.Controls.Add(this.txtNewCode);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblNewCode);
+            this.groupBox1.Controls.Add(this.lblCurrentCode);
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
@@ -109,27 +109,27 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
             this.txtNewCode.Size = new System.Drawing.Size(144, 20);
             this.txtNewCode.TabIndex = 4;
             // 
-            // label2
+            // lblNewCode
             // 
-            this.label2.AccessibleDescription = "CHANGECODEL00002";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 52);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Mã mới";
+            this.lblNewCode.AccessibleDescription = "CHANGECODEL00002";
+            this.lblNewCode.AutoSize = true;
+            this.lblNewCode.Location = new System.Drawing.Point(32, 52);
+            this.lblNewCode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNewCode.Name = "lblNewCode";
+            this.lblNewCode.Size = new System.Drawing.Size(41, 13);
+            this.lblNewCode.TabIndex = 3;
+            this.lblNewCode.Text = "Mã mới";
             // 
-            // label1
+            // lblCurrentCode
             // 
-            this.label1.AccessibleDescription = "CHANGECODEL0000";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 20);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã hiện tại";
+            this.lblCurrentCode.AccessibleDescription = "CHANGECODEL0000";
+            this.lblCurrentCode.AutoSize = true;
+            this.lblCurrentCode.Location = new System.Drawing.Point(32, 20);
+            this.lblCurrentCode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCurrentCode.Name = "lblCurrentCode";
+            this.lblCurrentCode.Size = new System.Drawing.Size(59, 13);
+            this.lblCurrentCode.TabIndex = 0;
+            this.lblCurrentCode.Text = "Mã hiện tại";
             // 
             // btnHuy
             // 
@@ -193,8 +193,8 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
         private V6VvarTextBox txtOldCode;
         private V6ColorTextBox txtName;
         private V6ColorTextBox txtNewCode;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblNewCode;
+        private System.Windows.Forms.Label lblCurrentCode;
         private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.Button btnNhan;
     }

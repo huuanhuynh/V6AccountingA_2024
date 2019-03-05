@@ -70,23 +70,17 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             if (TxtMa_vt.Text.Trim() == "")
             {
-                throw new Exception("Chưa chọn mã vật tư!");
+                throw new Exception(V6Text.NoInput + lblMaVT.Text);
             }
             if (TxtMa_lo.Text.Trim() == "")
             {
-                throw new Exception("Chưa chọn mã lô!");
+                throw new Exception(V6Text.NoInput + lblMaLo.Text);
             }
-            
-
 
             V6Setting.M_ngay_ct1 = dateNgay_ct1.Date;
             V6Setting.M_ngay_ct2 = dateNgay_ct2.Date;
             
-
-
             var result = new List<SqlParameter>();
-
-
             result.Add(new SqlParameter("@StartDate", dateNgay_ct1.YYYYMMDD));
             result.Add(new SqlParameter("@EndDate", dateNgay_ct2.YYYYMMDD));
             int tinh_dc = 0;
@@ -97,10 +91,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             var and = radAnd.Checked;
 
             var cKey = " MA_VT='" + TxtMa_vt.Text.Trim() + "'";
-
-              cKey = cKey+ "  AND  MA_LO='" + TxtMa_lo.Text.Trim() + "'";
-
-
+            cKey = cKey + "  AND  MA_LO='" + TxtMa_lo.Text.Trim() + "'";
             
             var key0 = GetFilterStringByFields(new List<string>()
             {
@@ -118,13 +109,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     cKey = cKey + " AND " + string.Format("(1=2 OR {0})", key0);
                 }
             }
-           
 
             result.Add(new SqlParameter("@Condition", cKey));
             result.Add(new SqlParameter("@Ma_ct", ""));
-
-
-          
 
             return result;
         }

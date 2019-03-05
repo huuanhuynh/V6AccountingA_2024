@@ -49,13 +49,13 @@
             this.v6Label5 = new V6Controls.V6Label();
             this.v6Label4 = new V6Controls.V6Label();
             this.txttk = new V6Controls.V6VvarTextBox();
-            this.v6Label2 = new V6Controls.V6Label();
+            this.lblMaKH = new V6Controls.V6Label();
             this.txtma_kh = new V6Controls.V6VvarTextBox();
             this.v6Label9 = new V6Controls.V6Label();
             this.label1 = new System.Windows.Forms.Label();
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label7 = new V6Controls.V6Label();
-            this.v6Label1 = new V6Controls.V6Label();
+            this.lblMaDVCS = new V6Controls.V6Label();
             this.txtso_ct_tt = new V6Controls.V6VvarTextBox();
             this.v6LabelTextBox1 = new V6Controls.V6LabelTextBox();
             this.v6Label10 = new V6Controls.V6Label();
@@ -161,7 +161,7 @@
             0,
             0,
             0,
-            131072});
+            0});
             this.txtty_gia.TextChanged += new System.EventHandler(this.txtty_gia_TextChanged);
             // 
             // txtt_tien_nt
@@ -185,7 +185,7 @@
             0,
             0,
             0,
-            131072});
+            0});
             this.txtt_tien_nt.TextChanged += new System.EventHandler(this.txtt_tien_nt_TextChanged);
             // 
             // txtso_ct
@@ -419,15 +419,15 @@
             this.txttk.TabIndex = 5;
             this.txttk.VVar = "tk";
             // 
-            // v6Label2
+            // lblMaKH
             // 
-            this.v6Label2.AccessibleDescription = "ADDEDITL00002";
-            this.v6Label2.AutoSize = true;
-            this.v6Label2.Location = new System.Drawing.Point(13, 103);
-            this.v6Label2.Name = "v6Label2";
-            this.v6Label2.Size = new System.Drawing.Size(65, 13);
-            this.v6Label2.TabIndex = 44;
-            this.v6Label2.Text = "Khách hàng";
+            this.lblMaKH.AccessibleDescription = "ADDEDITL00002";
+            this.lblMaKH.AutoSize = true;
+            this.lblMaKH.Location = new System.Drawing.Point(13, 103);
+            this.lblMaKH.Name = "lblMaKH";
+            this.lblMaKH.Size = new System.Drawing.Size(65, 13);
+            this.lblMaKH.TabIndex = 44;
+            this.lblMaKH.Text = "Khách hàng";
             // 
             // txtma_kh
             // 
@@ -487,15 +487,15 @@
             this.v6Label7.TabIndex = 55;
             this.v6Label7.Text = "Tổng tiền NT";
             // 
-            // v6Label1
+            // lblMaDVCS
             // 
-            this.v6Label1.AccessibleDescription = "ADDEDITL00165";
-            this.v6Label1.AutoSize = true;
-            this.v6Label1.Location = new System.Drawing.Point(13, 28);
-            this.v6Label1.Name = "v6Label1";
-            this.v6Label1.Size = new System.Drawing.Size(55, 13);
-            this.v6Label1.TabIndex = 37;
-            this.v6Label1.Text = "Mã đơn vị";
+            this.lblMaDVCS.AccessibleDescription = "ADDEDITL00165";
+            this.lblMaDVCS.AutoSize = true;
+            this.lblMaDVCS.Location = new System.Drawing.Point(13, 28);
+            this.lblMaDVCS.Name = "lblMaDVCS";
+            this.lblMaDVCS.Size = new System.Drawing.Size(55, 13);
+            this.lblMaDVCS.TabIndex = 37;
+            this.lblMaDVCS.Text = "Mã đơn vị";
             // 
             // txtso_ct_tt
             // 
@@ -825,13 +825,13 @@
             this.Controls.Add(this.v6Label4);
             this.Controls.Add(this.txttk_i);
             this.Controls.Add(this.txttk);
-            this.Controls.Add(this.v6Label2);
+            this.Controls.Add(this.lblMaKH);
             this.Controls.Add(this.txtma_kh);
             this.Controls.Add(this.v6Label9);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.v6Label3);
             this.Controls.Add(this.v6Label7);
-            this.Controls.Add(this.v6Label1);
+            this.Controls.Add(this.lblMaDVCS);
             this.Controls.Add(this.v6Label17);
             this.Controls.Add(this.txtMaCt);
             this.Controls.Add(this.btnHuy);
@@ -867,13 +867,13 @@
         private V6Controls.V6Label v6Label5;
         private V6Controls.V6Label v6Label4;
         private V6Controls.V6VvarTextBox txttk;
-        private V6Controls.V6Label v6Label2;
+        private V6Controls.V6Label lblMaKH;
         private V6Controls.V6VvarTextBox txtma_kh;
         private V6Controls.V6Label v6Label9;
         private System.Windows.Forms.Label label1;
         private V6Controls.V6Label v6Label3;
         private V6Controls.V6Label v6Label7;
-        private V6Controls.V6Label v6Label1;
+        private V6Controls.V6Label lblMaDVCS;
         private V6Controls.V6VvarTextBox txtso_ct_tt;
         private V6Controls.V6LabelTextBox v6LabelTextBox1;
         private V6Controls.V6Label v6Label10;

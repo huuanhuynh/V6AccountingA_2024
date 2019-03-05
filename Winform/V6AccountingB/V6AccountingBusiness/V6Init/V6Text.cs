@@ -319,6 +319,7 @@
         public static string Action { get { return V6Setting.Language == "V" ? "Xử lý dữ liệu." : "Action."; } }
         public static string Add { get { return V6Setting.Language == "V" ? "Thêm " : "Add "; } }
         public static string AddInParentheses { get { return V6Setting.Language == "V" ? "(Thêm)" : "(Add)"; } }
+        public static string Added { get { return V6Setting.Language == "V" ? "Đã thêm " : "Added "; } }
         public static string AddDenied { get { return V6Setting.Language == "V" ? "Không được thêm." : "Add denied."; } }
         public static string AddSuccess { get { return V6Setting.Language == "V" ? "Thêm xong!" : "Add success!"; }}
         public static string AddFail { get { return V6Setting.Language == "V" ? "Thêm lỗi!" : "Add fail!"; } }

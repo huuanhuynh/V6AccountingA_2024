@@ -4805,8 +4805,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     }
                     //}
 
-
-
                     if (exist && exist2)
                     {
                         if (XuLyThemDetail(data))
@@ -4816,20 +4814,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     }
                     else
                     {
-                        if (!exist) _message += " Danh mục vật tư không tồn tại mã: " + cMaVt;
-                        if (!exist2) _message += " Danh mục kho không tồn tại mã: " + cMaKhoI;
+                        if (!exist) _message += string.Format("{0} [{1}]", V6Text.NotExist, cMaVt);
+                        if (!exist2) _message += string.Format("{0} [{1}]", V6Text.NotExist, cMaKhoI);
                     }
                 }
-                ShowParentMessage(count > 0
-                ? string.Format("Đã thêm {0} chi tiết từ excel.", count) + _message
-                : "Không thêm được chi tiết nào từ excel." + _message);
+                ShowParentMessage(string.Format(V6Text.Added + "[{0}].", count) + _message);
             }
             else
             {
-                ShowParentMessage("Không có đủ thông tin!");
+                ShowParentMessage(V6Text.Text("LACKINFO"));
             }
-
-
         }
 
         #endregion chức năng

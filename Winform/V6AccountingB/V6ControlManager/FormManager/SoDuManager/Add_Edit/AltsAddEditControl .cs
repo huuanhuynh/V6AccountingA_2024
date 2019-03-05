@@ -679,23 +679,23 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "SO_THE_TS",
                  txtMaTaiSan.Text.Trim(), DataOld["SO_THE_TS"].ToString());
                 if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
-                                                    + "SO_THE_TS = " + txtMaTaiSan.Text.Trim());
+                    throw new Exception(V6Text.Exist + V6Text.EditDenied
+                                                    + lblMaTS.Text + " = " + txtMaTaiSan.Text.Trim());
             }
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "SO_THE_TS",
                  txtMaTaiSan.Text.Trim(), txtMaTaiSan.Text.Trim());
                 if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
-                                                    + "SO_THE_TS = " + txtMaTaiSan.Text.Trim());
+                    throw new Exception(V6Text.Exist + V6Text.AddDenied
+                                                    + lblMaTS.Text + " = " + txtMaTaiSan.Text.Trim());
             }
 
             if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit ||
                 detail3.MODE == V6Mode.Add || detail3.MODE == V6Mode.Edit||
                 detail4.MODE == V6Mode.Add || detail4.MODE == V6Mode.Edit)
             {
-                errors += "Chưa hoàn tất chi tiết!\r\n";
+                errors += V6Text.DetailNotComplete;
             }
 
             if (errors.Length > 0) throw new Exception(errors);

@@ -6,6 +6,7 @@ using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Controls;
 using V6Controls.Forms;
+using V6Init;
 using V6Tools;
 using Timer = System.Windows.Forms.Timer;
 
@@ -198,7 +199,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     + (f9ErrorAll.Length > 0 ? "Error: " : "")
                     + f9ErrorAll);
 
-                V6ControlFormHelper.ShowMainMessage("F9 Xử lý xong!");
+                V6ControlFormHelper.ShowMainMessage("F9 " + V6Text.Finish);
             }
         }
         #endregion xulyF9
@@ -214,7 +215,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
 
-                if (this.ShowConfirmMessage("Có chắc chắn in liên tục không?") != DialogResult.Yes)
+                if (this.ShowConfirmMessage(V6Text.Text("ASKINLIENTUC")) != DialogResult.Yes)
                 {
                     return;
                 }
@@ -348,7 +349,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     + (f10ErrorAll.Length > 0 ? "Error: " : "")
                     + f10ErrorAll);
 
-                V6ControlFormHelper.ShowMainMessage("F10 Xử lý xong!");
+                V6ControlFormHelper.ShowMainMessage("F10 " + V6Text.Finish);
             }
         }
         V6Invoice81 invoice = new V6Invoice81();

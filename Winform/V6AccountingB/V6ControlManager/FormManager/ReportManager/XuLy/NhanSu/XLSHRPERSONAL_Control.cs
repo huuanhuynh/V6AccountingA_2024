@@ -61,7 +61,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                     }
                     else
                     {
-                        V6ControlFormHelper.ShowMessage("Chưa chọn mã nguồn và đích.");
+                        V6ControlFormHelper.ShowMessage(V6Text.Text("NoFromTo"));
                     }
                 }
                 dataGridView1.DataSource = data;
@@ -148,7 +148,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                     }
                     else
                     {
-                        V6ControlFormHelper.ShowMessage("Dữ liệu không đủ thông tin");
+                        V6ControlFormHelper.ShowMessage(V6Text.Text("LACKINFO"));
                     }
                 }
                 else

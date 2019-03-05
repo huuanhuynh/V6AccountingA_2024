@@ -4445,20 +4445,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                     }
                     else
                     {
-                        if (!exist) _message += " Danh mục vật tư không tồn tại mã: " + cMaVt;
-                        if (!exist2) _message += " Danh mục kho không tồn tại mã: " + cMaKhoI;
+                        if (!exist) _message += string.Format("{0} [{1}]", V6Text.NotExist, cMaVt);
+                        if (!exist2) _message += string.Format("{0} [{1}]", V6Text.NotExist, cMaKhoI);
                     }
                 }
-                ShowParentMessage(count > 0
-                ? string.Format("Đã thêm {0} chi tiết từ excel.", count) + _message
-                : "Không thêm được chi tiết nào từ excel." + _message);
+                ShowParentMessage(string.Format(V6Text.Added + "[{0}].", count) + _message);
             }
             else
             {
-                ShowParentMessage("Không có đủ thông tin!");
+                ShowParentMessage(V6Text.Text("LACKINFO"));
             }
-
-
         }
 
         #endregion chức năng
@@ -4496,10 +4492,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                 }
                 if (txtMaGia.Text.Trim() == "")
                 {
-                    ShowParentMessage("Chọn mã giá trước.");
+                    ShowParentMessage(V6Text.NoInput + btnApGia.Text);
                     return;
                 }
-                if (this.ShowConfirmMessage("Có chắc chắn áp giá bán cho tất cả mặt hàng hay không?") != DialogResult.Yes)
+                if (this.ShowConfirmMessage(V6Text.Text("ASKAPGIABANALL")) != DialogResult.Yes)
                 {
                     return;
                 }
@@ -4713,7 +4709,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
             if (shift_is_down)
             {
-                if (this.ShowConfirmMessage("Có chắc bạn muốn xóa Chiết khấu - Khuyến mãi?") == DialogResult.Yes)
+                if (this.ShowConfirmMessage(V6Text.Text("ASKXOACKKM")) == DialogResult.Yes)
                 {
                     XoaKhuyenMai();
                     XoaChietKhau();
@@ -4925,7 +4921,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             try
             {
                 if (datakmct != null && datakmct.Rows.Count > 0)
-                    ShowMainMessage("Có khuyến mãi");
+                    ShowMainMessage(V6Text.Text("COKM"));
                 else return;
 
                 foreach (DataRow row in datakmct.Rows)
@@ -5207,8 +5203,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                 }
                 else
                 {
-                    if (ma_kh == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã khách hàng!\n" : "Customers ID needs to enter!\n";
-                    if (ma_dvcs == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã đơn vị." : "Agent ID needs to enter!";
+                    if (ma_kh == "") message += V6Text.NoInput + lblMaKH.Text;
+                    if (ma_dvcs == "") message += V6Text.NoInput + lblMaDVCS.Text;
                     this.ShowWarningMessage(message);
                     if (ma_kh == "") txtMaKh.Focus();
                     else if (ma_dvcs == "") txtMadvcs.Focus();
@@ -5280,7 +5276,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                 var data = txtMaKh.Data;
                 if (data == null)
                 {
-                    this.ShowWarningMessage("Chưa chọn mã khách hàng!", 300);
+                    this.ShowWarningMessage(V6Text.NoInput + lblMaKH.Text, 300);
                     return;
                 }
                 txtDiaChi2.ParentData = data.ToDataDictionary();

@@ -1564,7 +1564,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                     }
                     else
                     {
-                        this.ShowWarningMessage("Không được phép sửa chi tiết!");
+                        this.ShowWarningMessage(V6Text.EditDenied);
                     }
 
                 }

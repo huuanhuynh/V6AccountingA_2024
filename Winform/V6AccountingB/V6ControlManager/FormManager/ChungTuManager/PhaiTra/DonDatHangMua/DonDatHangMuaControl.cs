@@ -4926,20 +4926,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                     }
                     else
                     {
-                        if (!exist) _message += " Danh mục vật tư không tồn tại mã: " + cMaVt;
-                        if (!exist2) _message += " Danh mục kho không tồn tại mã: " + cMaKhoI;
+                        if (!exist) _message += string.Format("{0} [{1}]", V6Text.NotExist, cMaVt);
+                        if (!exist2) _message += string.Format("{0} [{1}]", V6Text.NotExist, cMaKhoI);
                     }
                 }
-                ShowParentMessage(count > 0
-                ? string.Format("Đã thêm {0} chi tiết từ excel.", count) + _message
-                : "Không thêm được chi tiết nào từ excel." + _message);
+                ShowParentMessage(string.Format(V6Text.Added + "[{0}].", count) + _message);
             }
             else
             {
-                ShowParentMessage("Không có đủ thông tin!");
+                ShowParentMessage(V6Text.Text("LACKINFO"));
             }
-
-
         }
 
         #endregion chức năng
@@ -5046,7 +5042,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 var data = txtMaKh.Data;
                 if (data == null)
                 {
-                    this.ShowWarningMessage("Chưa chọn mã khách hàng!", 300);
+                    this.ShowWarningMessage(V6Text.NoInput + lblMaKH.Text, 300);
                     return;
                 }
                 txtDiaChi2.ParentData = data.ToDataDictionary();
@@ -5205,10 +5201,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 }
                 if (txtMaGia.Text.Trim() == "")
                 {
-                    ShowParentMessage("Chọn mã giá trước.");
+                    ShowParentMessage(V6Text.NoInput + btnApGia.Text);
                     return;
                 }
-                if (this.ShowConfirmMessage("Có chắc chắn áp giá mua cho tất cả mặt hàng hay không?") != DialogResult.Yes)
+                if (this.ShowConfirmMessage(V6Text.Text("ASKAPGIAMUAALL")) != DialogResult.Yes)
                 {
                     return;
                 }

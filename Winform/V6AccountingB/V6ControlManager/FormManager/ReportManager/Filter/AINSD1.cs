@@ -53,16 +53,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// <returns>cKey</returns>
         public override List<SqlParameter> GetFilterParameters()
         {
-               
-           
-            //@ma_vt VARCHAR(50),
-            //@ma_kho VARCHAR(50),
-            //@ngay_ct2 SMALLDATETIME,
-            //@ma_dvcs VARCHAR(50)
-
             if (TxtMavt.VvarTextBox.Text.Trim() == "")
             {
-                throw new Exception("Chưa chọn mã vật tư!");
+                throw new Exception(V6Text.NoInput + TxtMavt.Caption);
             }
 
             if (TxtMakho.VvarTextBox.Text != "")

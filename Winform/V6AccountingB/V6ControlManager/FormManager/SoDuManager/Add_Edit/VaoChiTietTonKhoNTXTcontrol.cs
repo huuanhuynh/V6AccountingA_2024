@@ -44,7 +44,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             if ((txtSoCt.Text.Trim() == "") || (txtMaKho.Text.Trim() == "")
                 || (TxtMaVatTu.Text.Trim() == "") || (txtMaKho.Text.Trim() == ""))
             {
-                throw new Exception("Chưa nhập đủ thông tin!");
+                throw new Exception(V6Text.Text("LACKINFO"));
             }
             
             {

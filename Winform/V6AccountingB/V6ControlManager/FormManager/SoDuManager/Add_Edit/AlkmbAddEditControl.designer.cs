@@ -2337,7 +2337,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.gView5.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.gView5.Size = new System.Drawing.Size(790, 122);
             this.gView5.TabIndex = 54;
-            this.toolTipV6FormControl.SetToolTip(this.gView5, "F8 xóa 1 dòng");
             this.gView5.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.gView5_ColumnAdded);
             this.gView5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gView5_KeyDown);
             this.gView5.MouseHover += new System.EventHandler(this.gView5_MouseHover);

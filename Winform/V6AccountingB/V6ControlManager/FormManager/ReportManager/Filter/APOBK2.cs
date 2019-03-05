@@ -84,7 +84,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             if (TxtMa_vt.Text.Trim() == "")
             {
-                throw new Exception("Chưa chọn mã vật tư!");
+                throw new Exception(V6Text.NoInput + lblMaVT.Text);
             }
 
             //@ngay_ct1 char(8),

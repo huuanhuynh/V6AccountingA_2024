@@ -3469,7 +3469,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             {
                 if (_tk_vt.Int_Data("Tk_cn") == 1 && data["MA_KH_I"].ToString().Trim() == "")
                 {
-                    this.ShowWarningMessage("Tài khoản công nợ thiếu mã khách hàng !");
+                    this.ShowWarningMessage(V6Text.Text("TKCNTHIEUMAKH"));
                     return false;
                 }
 

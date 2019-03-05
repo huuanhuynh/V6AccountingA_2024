@@ -3271,7 +3271,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             {
                 if (_tk_i.Int_Data("Tk_cn") == 1 && data["MA_KH_I"].ToString().Trim() == "")
                 {
-                    this.ShowWarningMessage("Tài khoản công nợ thiếu mã khách hàng !");
+                    this.ShowWarningMessage(V6Text.Text("TKCNTHIEUMAKH"));
                     return false;
                 }
 

@@ -31,7 +31,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             
             if (Invoice.Alct == null)
             {
-                this.ShowWarningMessage("Kiểm tra mã chứng từ!");
+                this.ShowWarningMessage(V6Text.Text("KTMACT"));
                 Hide();
             }
             else

@@ -1296,7 +1296,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             {
                 if (_tk_i_33.Int_Data("Tk_cn") == 1 && data["MA_KH_I"].ToString().Trim() == "")
                 {
-                    this.ShowWarningMessage("Tài khoản công nợ thiếu mã khách hàng !");
+                    this.ShowWarningMessage(V6Text.Text("TKCNTHIEUMAKH"));
                     return false;
                 }
             }
@@ -5393,8 +5393,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 }
                 else
                 {
-                    if (ma_kh == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã khách hàng!\n" : "Customers ID needs to enter!\n";
-                    if (ma_dvcs == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã đơn vị." : "Agent ID needs to enter!";
+                    if (ma_kh == "") message += V6Text.NoInput + lblMaKH.Text;
+                    if (ma_dvcs == "") message += V6Text.NoInput + lblMaDVCS.Text;
                     this.ShowWarningMessage(message);
                     if (ma_kh == "") txtMaKh.Focus();
                     else if (ma_dvcs == "") txtMadvcs.Focus();
@@ -5589,9 +5589,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         if (!exist2) _message += " MA_KHO_I: " + cMaKhoI;
                     }
                 }
-                var view_message = count > 0
-                    ? string.Format("Đã thêm {0} chi tiết từ excel.", count)
-                    : "Không thêm được chi tiết nào từ excel.";
+                var view_message = string.Format(V6Text.Added + "[{0}].", count) + _message;
                 if (count_not_exist > 0)
                 {
                     view_message += "\n" + V6Text.NotExist + ":" + _message;
@@ -5602,10 +5600,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             else
             {
-                ShowParentMessage("Không có đủ thông tin!");
+                ShowParentMessage(V6Text.Text("LACKINFO"));
             }
-
-            
         }
 
         #endregion chức năng
@@ -6611,9 +6607,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 else
                 {
                     if (ma_kh == "")
-                        message += V6Setting.IsVietnamese ? "Chưa chọn mã khách hàng!\n" : "Customers ID must entry!\n";
+                        message += V6Text.NoInput + lblMaKH.Text;
                     if (ma_dvcs == "")
-                        message += V6Setting.IsVietnamese ? "Chưa chọn mã đơn vị." : "Agent ID must entry!";
+                        message += V6Text.NoInput + lblMaDVCS.Text;
                     this.ShowWarningMessage(message);
                     if (ma_kh == "") txtMaKh.Focus();
                     else if (ma_dvcs == "") txtMadvcs.Focus();
@@ -6671,10 +6667,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 }
                 if (txtMaGia.Text.Trim() == "")
                 {
-                    ShowParentMessage("Chọn mã giá trước.");
+                    ShowParentMessage(V6Text.NoInput + btnApGia.Text);
                     return;
                 }
-                if (this.ShowConfirmMessage("Có chắc chắn áp giá mua cho tất cả mặt hàng hay không?") != DialogResult.Yes)
+                if (this.ShowConfirmMessage(V6Text.Text("ASKAPGIAMUAALL")) != DialogResult.Yes)
                 {
                     return;
                 }

@@ -53,7 +53,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtMa_sp = new V6Controls.V6VvarTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtMa_bpht = new V6Controls.V6VvarTextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblMaBPHT = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -97,7 +97,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.groupBox1.Controls.Add(this.TxtMa_sp);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.TxtMa_bpht);
-            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.lblMaBPHT);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.groupBox1.Name = "groupBox1";
@@ -203,7 +203,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             this.txttl_ht.TextChanged += new System.EventHandler(this.txtsl_dd_TextChanged);
             // 
             // label7
@@ -473,17 +473,17 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtMa_bpht.TabIndex = 0;
             this.TxtMa_bpht.VVar = "MA_BPHT";
             // 
-            // label3
+            // lblMaBPHT
             // 
-            this.label3.AccessibleDescription = "ADDEDITL00196";
-            this.label3.AccessibleName = "";
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 18);
-            this.label3.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(106, 17);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Mã bộ phận HT";
+            this.lblMaBPHT.AccessibleDescription = "ADDEDITL00196";
+            this.lblMaBPHT.AccessibleName = "";
+            this.lblMaBPHT.AutoSize = true;
+            this.lblMaBPHT.Location = new System.Drawing.Point(16, 18);
+            this.lblMaBPHT.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblMaBPHT.Name = "lblMaBPHT";
+            this.lblMaBPHT.Size = new System.Drawing.Size(106, 17);
+            this.lblMaBPHT.TabIndex = 4;
+            this.lblMaBPHT.Text = "Mã bộ phận HT";
             // 
             // v6TabControl1
             // 
@@ -532,7 +532,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage2.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage2.Size = new System.Drawing.Size(881, 274);
+            this.tabPage2.Size = new System.Drawing.Size(889, 285);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tự định nghĩa";
             // 
@@ -658,7 +658,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6NumberTextBox2
             // 
@@ -686,7 +686,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // label14
             // 
@@ -722,7 +722,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage3.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage3.Size = new System.Drawing.Size(881, 274);
+            this.tabPage3.Size = new System.Drawing.Size(889, 285);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
             // 
@@ -762,7 +762,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TabPage tabPage3;
         private V6VvarTextBox TxtMa_bpht;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblMaBPHT;
         private System.Windows.Forms.TabPage tabPage1;
         private V6VvarTextBox TxtMa_sp;
         private System.Windows.Forms.Label label1;

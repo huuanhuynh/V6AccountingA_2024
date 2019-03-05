@@ -303,12 +303,12 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             if (txtMaKh.Text + txtLNH_KH1.Text + txtLNH_KH2.Text
                 + txtLNH_KH3.Text + txtLNH_KH4.Text + txtLNH_KH5.Text + txtLNH_KH6.Text + txtMaDvcs.Text == "")
             {
-                errors += "Chưa nhập thông tin khuyến mãi!\r\n";
+                errors += V6Text.Text("CHUANHAPTTKM");
             }
 
             if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
             {
-                errors += "Chưa hoàn tất chi tiết!\r\n";
+                errors += V6Text.DetailNotComplete;
             }
 
             if (errors.Length > 0) throw new Exception(errors);
