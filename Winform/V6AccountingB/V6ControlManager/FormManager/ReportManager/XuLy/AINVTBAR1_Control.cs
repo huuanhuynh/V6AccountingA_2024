@@ -81,7 +81,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             };
         }
 
-
         private void AINVTBAR1_Control_Load(object sender, EventArgs e)
         {
             
@@ -89,10 +88,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F9 in, F10 xuất Excel.");
+            V6ControlFormHelper.SetStatusText2(string.Format("F9 {0}, F10 {1}.", V6Text.Text("IN"), V6Text.Text("ExportExcel")));
         }
 
-        
         protected override void Nhan()
         {
             try

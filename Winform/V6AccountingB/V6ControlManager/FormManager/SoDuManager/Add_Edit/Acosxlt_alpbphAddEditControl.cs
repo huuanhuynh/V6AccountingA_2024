@@ -323,7 +323,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
             if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
             {
-                errors += "Chưa hoàn tất chi tiết!\r\n";
+                errors += V6Text.DetailNotComplete;
             }
 
             errors += ValidateMasterData(_maCt);

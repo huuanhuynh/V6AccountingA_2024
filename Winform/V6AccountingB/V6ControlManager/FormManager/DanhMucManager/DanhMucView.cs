@@ -1082,7 +1082,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         }
                         else
                         {
-                            this.ShowWarningMessage("Không có khóa UID. Vẫn xóa!");
+                            this.ShowWarningMessage(V6Text.NoUID);
 
                             _categories.Delete(_tableName, _data);
                         }

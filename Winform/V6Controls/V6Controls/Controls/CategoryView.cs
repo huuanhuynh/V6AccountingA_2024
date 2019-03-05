@@ -738,7 +738,7 @@ namespace V6Controls.Controls
                         }
                         else
                         {
-                            this.ShowWarningMessage("Không có khóa UID. Vẫn xóa!");
+                            this.ShowWarningMessage(V6Text.NoUID);
                             
                             _categories.Delete(CurrentTable, _data);
                         }

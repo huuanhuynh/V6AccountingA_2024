@@ -771,7 +771,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                                 break;
                             }
                         }
-                        if (not_found) errors += "\nKhông tìm thấy Field: " + di.Field;
+                        if (not_found) errors += string.Format("\n{0}: {1}", V6Text.Text("NoField"), di.Field);
                     }
                     else
                     {

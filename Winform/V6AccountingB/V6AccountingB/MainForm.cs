@@ -416,7 +416,7 @@ namespace V6AccountingB
             string message = "";
             if (V6ControlFormHelper.RunningList.Count>0)
             {
-                message = "Các chứng từ đang mở, vẫn muốn thoát?";
+                message = V6Setting.IsVietnamese ? "Có chứng từ đang mở. Vẫn muốn thoát?" : "There are open documents. Still want to exit?";
                 message +="\r\n" + V6ControlFormHelper.RunningListString;
             }
 

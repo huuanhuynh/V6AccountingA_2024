@@ -195,7 +195,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             };
         }
 
-
         private void AINVTBAR5_Control_Load(object sender, EventArgs e)
         {
             
@@ -203,9 +202,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F9 Chấp nhận, F10 Tạo phiếu xuất.");
+            V6ControlFormHelper.SetStatusText2(string.Format("F9 {0}, F10 {1}.", V6Text.Text("Accept"), V6Text.Text("TaoPX")));
         }
-
         
         protected override void Nhan()
         {

@@ -726,7 +726,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             var column = dataGridView2.Columns[order_field];
             if (column == null)
             {
-                V6ControlFormHelper.ShowMainMessage("Không tìm thấy trường " + order_field);
+                V6ControlFormHelper.ShowMainMessage(string.Format("{0} {1}", V6Text.Text("NoField"), order_field));
                 return;
             }
             

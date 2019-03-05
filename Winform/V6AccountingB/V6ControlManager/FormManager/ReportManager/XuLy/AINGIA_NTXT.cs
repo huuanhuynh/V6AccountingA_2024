@@ -30,7 +30,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("Tính giá nhập trước xuất trước (FIFO).");
+            V6ControlFormHelper.SetStatusText2(V6Text.Text("TINHGIANTXT") + " (FIFO).");
         }
 
         public override void SetStatusText(string text)

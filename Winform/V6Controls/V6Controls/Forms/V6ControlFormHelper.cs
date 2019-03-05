@@ -4371,7 +4371,7 @@ namespace V6Controls.Forms
             }
             if (!File.Exists(ExportExcelTemplateHTKK_excelTemplateFile))
             {
-                ShowWarningMessage("Không có file mẫu: " + ExportExcelTemplateHTKK_excelTemplateFile);
+                ShowWarningMessage(string.Format("{0} {1}: {2}", V6Text.Text("TEMPLATE"), V6Text.NotExist, ExportExcelTemplateHTKK_excelTemplateFile));
                 //return;
             }
             try
