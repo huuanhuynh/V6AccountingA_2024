@@ -21,7 +21,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F3: Sửa,F4:Thêm tỷ lệ khấu hao CCDC, F8: Xóa tỷ lệ CCDC");
+            V6ControlFormHelper.SetStatusText2(string.Format("F3: {0}, F4: {1}, F8: {2}", V6Text.Text("SUA"), V6Text.Text("TTLKHCC"), V6Text.Text("XTLCC")));
         }
 
         protected override void MakeReport2()
@@ -132,7 +132,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     }
                                     else
                                     {
-                                        V6ControlFormHelper.ShowMainMessage("Xóa 0");
+                                        V6ControlFormHelper.ShowMainMessage(V6Text.DeleteFail);
                                     }
                                 }
                             }
@@ -189,7 +189,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                     if (CC0 == 1)
                     {
-                        this.ShowWarningMessage("Không được sửa phần này!");
+                        this.ShowWarningMessage(V6Text.EditDenied);
 
                     }
                     else
@@ -257,7 +257,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         }
                         else
                         {
-                            this.ShowWarningMessage("Không được phép sửa!");
+                            this.ShowWarningMessage(V6Text.EditDenied);
                         }
                     }
                 }
@@ -332,7 +332,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     else
                     {
-                        this.ShowWarningMessage("Không được phép thêm!");
+                        this.ShowWarningMessage(V6Text.AddDenied);
                     }
 
                 }

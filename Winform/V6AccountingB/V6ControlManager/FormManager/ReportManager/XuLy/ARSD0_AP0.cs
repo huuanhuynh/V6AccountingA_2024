@@ -80,7 +80,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     else
                     {
-                        V6ControlFormHelper.ShowMainMessage("Xóa 0");
+                        V6ControlFormHelper.ShowMainMessage(V6Text.DeleteFail);
                     }
                 }
             }
@@ -175,7 +175,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         }
                         else
                         {
-                            this.ShowWarningMessage("Không được phép sửa!");
+                            this.ShowWarningMessage(V6Text.EditDenied);
                         }
                     }
                 }

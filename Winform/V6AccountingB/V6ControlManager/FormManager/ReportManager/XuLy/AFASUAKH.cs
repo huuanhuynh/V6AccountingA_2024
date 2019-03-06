@@ -20,7 +20,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F3: Sửa khấu hao, F8: Xóa khấu hao");
+            V6ControlFormHelper.SetStatusText2(string.Format("F3: {0}, F8: {1}", V6Text.Text("SUAKHAUHAO"), V6Text.Text("XOAKHAUHAO")));
         }
 
         protected override void MakeReport2()
@@ -72,7 +72,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         }
                         else
                         {
-                            V6ControlFormHelper.ShowMainMessage("Xóa 0");
+                            V6ControlFormHelper.ShowMainMessage(V6Text.DeleteFail);
                         }
                     }
                     else
@@ -117,7 +117,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                     var formView = new V6Form
                     {
-                        Text = "Sửa khấu hao",
+                        Text = V6Text.Text("SUAKHAUHAO"),
                         AutoSize = true,
                         FormBorderStyle = FormBorderStyle.FixedSingle
                     };

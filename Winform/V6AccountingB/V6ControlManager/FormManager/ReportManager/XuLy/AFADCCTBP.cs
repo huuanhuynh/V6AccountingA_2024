@@ -21,7 +21,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F3: Sửa,F4:Thêm tỷ lệ khấu hao TSCĐ, F8: Xóa tỷ lệ TSCĐ");
+            V6ControlFormHelper.SetStatusText2(string.Format("F3: {0}, F4: {1}, F8: {2}Xóa tỷ lệ TSCĐ", V6Text.Text("SUA"), V6Text.Text("TTLKHTSCD"), V6Text.Text("XTLKHTSCD")));
         }
 
         protected override void MakeReport2()
@@ -132,7 +132,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     }
                                     else
                                     {
-                                        V6ControlFormHelper.ShowMainMessage("Xóa 0");
+                                        V6ControlFormHelper.ShowMainMessage(V6Text.DeleteFail);
                                     }
                                 }
                             }
@@ -185,16 +185,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     int TS0 = currentRowData.ContainsKey("TS0")
                         ? ObjectAndString.ObjectToInt(currentRowData["TS0"])
                         : 1;
-
-
-                 
                     
-
-                
                     if (TS0 == 1)
                     {
-                        this.ShowWarningMessage("Không được sửa phần này!");
-
+                        this.ShowWarningMessage(V6Text.EditDenied);
                     }
                     else
                     {
@@ -219,54 +213,43 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             var uid = currentRow.Cells
                               ["UID"].Value;
 
-                        
+
                             if (!string.IsNullOrEmpty(selectedSttRec) && !string.IsNullOrEmpty(selectedMaCt))
                             {
-
                                 var plist = new List<SqlParameter>
-                                    {
-                                        new SqlParameter("@uid", uid)
-                                    };
+                                {
+                                    new SqlParameter("@uid", uid)
+                                };
 
-                                    var am = V6BusinessHelper.Select("ADCTTSBP", "*",
-                                        "UID=@uid",
-                                        "", "", plist.ToArray()).Data;
+                                var am = V6BusinessHelper.Select("ADCTTSBP", "*",
+                                    "UID=@uid",
+                                    "", "", plist.ToArray()).Data;
 
-                              
+                                var fText = V6Text.Text("SUATYLEKHAUHAO") + ": " + sothets;
+                                var f = new V6Form
+                                {
+                                    Text = fText,
+                                    AutoSize = true,
+                                    FormBorderStyle = FormBorderStyle.FixedSingle
+                                };
 
-                                    var fText = "Sửa tỷ lệ khấu hao : " + sothets;
-                                    var f = new V6Form
-                                    {
-                                        Text = fText,
-                                        AutoSize = true,
-                                        FormBorderStyle = FormBorderStyle.FixedSingle
-                                    };
+                                var hoaDonForm = new AFADCCTBP_F3(selectedSttRec, am.Rows[0]);
 
+                                f.Controls.Add(hoaDonForm);
+                                hoaDonForm.Disposed += delegate
+                                {
+                                    f.Dispose();
+                                };
 
-                                  
-                                    var hoaDonForm = new AFADCCTBP_F3(selectedSttRec, am.Rows[0]);
-                                    
-
-                                    f.Controls.Add(hoaDonForm);
-                                    hoaDonForm.Disposed += delegate
-                                    {
-                                        f.Dispose();
-                                    };
-
-                                    f.ShowDialog(this);
-                                    SetStatus2Text();
-                                    btnNhan.PerformClick();
-
-                                
+                                f.ShowDialog(this);
+                                SetStatus2Text();
+                                btnNhan.PerformClick();
                             }
                         }
-
-
                         else
                         {
-                            this.ShowWarningMessage("Không được phép sửa!");
+                            this.ShowWarningMessage(V6Text.EditDenied);
                         }
-
                     }
                 }
             }
@@ -315,7 +298,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 var am = V6BusinessHelper.Select(amName, "*", "STT_REC=@stt_rec and MA_CT=@maCT",
                                     "", "", plist.ToArray()).Data;
 
-                                var fText = "Thêm tỷ lệ khấu hao : " + sothets;
+                                var fText = V6Text.Text("TTLKH") + ": " + sothets;
                                 var f = new V6Form
                                 {
                                     Text = fText,
@@ -340,7 +323,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     else
                     {
-                        this.ShowWarningMessage("Không được phép thêm!");
+                        this.ShowWarningMessage(V6Text.AddDenied);
                     }
 
                 }

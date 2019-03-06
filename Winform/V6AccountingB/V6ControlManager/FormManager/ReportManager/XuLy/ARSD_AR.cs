@@ -125,7 +125,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         }
                         else
                         {
-                            this.ShowWarningMessage("Không được phép sửa!");
+                            this.ShowWarningMessage(V6Text.EditDenied);
                         }
                     }
                 }

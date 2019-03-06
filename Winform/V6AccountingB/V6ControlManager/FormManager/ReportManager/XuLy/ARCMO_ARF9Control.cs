@@ -622,7 +622,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                         var c = new InChungTuViewBase(Invoice, program, program, _reportFile, repTitle, repTitle2,
                             "", "", "", sttRec);
-                        c.Text = "In phiếu xuất kho";
+                        c.Text = V6Text.Text("InPXK");
                         c.Report_Stt_rec = sttRec;
                         c.TTT = ObjectAndString.ObjectToDecimal(row.Cells["T_TT"].Value);
                         c.TTT_NT = ObjectAndString.ObjectToDecimal(row.Cells["T_TT_NT"].Value);

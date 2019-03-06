@@ -635,7 +635,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 LoadDefaultData(4, "", _Ma_File, m_itemId);
                 //Gán điều kiện sum cho gridViewSummary1
                 GetSumCondition();
-
+                SetToolTip(txtNumber, V6Text.Text("NSVNEDNBC"));
                 if (!V6Login.IsAdmin)
                 {
                     var menuRow = V6Menu.GetRow(ItemID);

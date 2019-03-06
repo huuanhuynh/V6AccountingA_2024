@@ -221,17 +221,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
 
         private void lichView1_ClickNextEvent(LichViewEventArgs obj)
         {
-            ShowMainMessage("Bạn đã bấm nút Next.");
+            ShowMainMessage("Next.");
         }
 
         private void lichView1_ClickPreviousEvent(LichViewEventArgs obj)
         {
-            ShowMainMessage("Bạn đã bấm nút Previous.");
+            ShowMainMessage("Previous.");
         }
 
         void lichView1_ClickCellEvent(LichViewControl sender, LichViewEventArgs obj)
         {
-            string message = string.Format("Bạn đã click ô {0}.", obj.CellData.Key);
+            string message = string.Format("Click {0}.", obj.CellData.Key);
             if (obj.IsClickDetail1)
             {
                 message += " Detail1";

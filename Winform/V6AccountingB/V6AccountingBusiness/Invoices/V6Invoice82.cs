@@ -96,9 +96,9 @@ namespace V6AccountingBusiness.Invoices
 
                 Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " Exception", ex, "");
                 V6Message = "Rollback: "
-                    + (!insert_success ? "Thêm AM không thành công." : "")
-                    + (j != adList.Count ? "Thêm AD không hoàn tất." : "")
-                    + (j3 != adList3.Count ? "Thêm AD3 không hoàn tất." : "");
+                    + (!insert_success ? V6Text.Text("AMUNSUCCESS") : "")
+                    + (j != adList.Count ? V6Text.Text("ADNOTCOMPLETE") : "")
+                    + (j3 != adList3.Count ? V6Text.Text("AD3NOTCOMPLETE") : "");
                 #endregion Rollback
 
                 return false;
@@ -243,8 +243,8 @@ namespace V6AccountingBusiness.Invoices
                 Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " Exception", ex, "");
                 V6Message = "Rollback: "
                           + (!insert_success ? "Sửa AM không thành công." : "")
-                          + (j != adList.Count ? "Thêm AD không hoàn tất." : "")
-                          + (j3 != adList3.Count ? "Thêm AD3 không hoàn tất." : "");
+                          + (j != adList.Count ? V6Text.Text("ADNOTCOMPLETE") : "")
+                          + (j3 != adList3.Count ? V6Text.Text("AD3NOTCOMPLETE") : "");
                 #endregion Rollback
                 return false;
             }

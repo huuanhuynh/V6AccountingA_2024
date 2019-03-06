@@ -190,7 +190,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 var data0 = invoice.AlPost;
                 var limitChars = "*";
-                var description = V6Setting.IsVietnamese ? "* Tất cả" : "* All";
+                var description = "* " + V6Text.Text("ALL");
                 var ten_post_field = V6Setting.IsVietnamese ? "ten_post" : "ten_post2";
                 foreach (DataRow row in data0.Rows)
                 {

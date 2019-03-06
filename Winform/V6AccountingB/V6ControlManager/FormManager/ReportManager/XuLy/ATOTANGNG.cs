@@ -119,7 +119,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     }
                                     else
                                     {
-                                        V6ControlFormHelper.ShowMainMessage("Xóa 0");
+                                        V6ControlFormHelper.ShowMainMessage(V6Text.DeleteFail);
                                     }
                                 }
                             }
@@ -180,7 +180,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 
                     if (CC0 == 1)
                     {
-                        this.ShowWarningMessage("Không được sửa phần này!");
+                        this.ShowWarningMessage(V6Text.EditDenied);
 
                     }
                     else
@@ -251,7 +251,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                         else
                         {
-                            this.ShowWarningMessage("Không được phép sửa!");
+                            this.ShowWarningMessage(V6Text.EditDenied);
                         }
 
                     }
@@ -327,7 +327,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     else
                     {
-                        this.ShowWarningMessage("Không được phép thêm!");
+                        this.ShowWarningMessage(V6Text.AddDenied);
                     }
 
                 }

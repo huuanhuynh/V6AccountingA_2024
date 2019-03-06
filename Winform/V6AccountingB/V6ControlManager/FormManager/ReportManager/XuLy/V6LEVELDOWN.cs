@@ -23,7 +23,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F9: Hạ cấp chứng từ, F8: Trở lại người nhập ban đầu.");
+            V6ControlFormHelper.SetStatusText2(string.Format("F9: {0}, F8: {1}.", V6Text.Text("HaCapCT"), V6Text.Text("TLNNBD")));
         }
 
         protected override void MakeReport2()
@@ -62,7 +62,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 var am = V6BusinessHelper.Select(amName, "*", "STT_REC=@stt_rec and MA_CT=@maCT",
                                     "", "", plist.ToArray()).Data;
 
-                                var fText = "Ghi chú chứng từ";
+                                var fText = V6Text.Text("GCCT");
                                 var f = new V6Form
                                 {
                                     Text = fText,

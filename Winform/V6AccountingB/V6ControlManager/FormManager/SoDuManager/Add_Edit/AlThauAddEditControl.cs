@@ -118,38 +118,38 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             _t_sl1 = new NumberSoluong()
             {
                 AccessibleName = "t_sl1",
-                GrayText = "Số lượng trúng thầu "
+                GrayText = V6Text.Text("SLTRUNGTHAU")
             };
             _t_sl2 = new NumberSoluong()
             {
                 AccessibleName = "t_sl2",
-                GrayText = "Số lượng đã xuất "
+                GrayText = V6Text.Text("SLDAXUAT")
             };
             _gia2 = new NumberGia()
             {
                 AccessibleName = "gia2",
-                GrayText = "Đơn giá "
+                GrayText = V6Text.Text("DONGIA")
             };
             _gia_km = new NumberGia()
             {
                 AccessibleName = "gia_km",
-                GrayText = "Đơn giá dự thầu "
+                GrayText = V6Text.Text("DONGIATHAU")
             };
             _sl_km = new NumberSoluong()
             {
                 AccessibleName = "sl_km",
-                GrayText = "Số lượng dự thầu "
+                GrayText = V6Text.Text("SLDUTHAU")
             };
             _Ghi_chukm = new V6ColorTextBox
             {
                 AccessibleName = "ghi_chukm",
-                GrayText = "Ghi chú dự thầu",
+                GrayText = V6Text.Text("GCDUTHAU"),
                 Width = 200
             };
             _Ghi_chuck = new V6ColorTextBox
             {
                 AccessibleName = "ghi_chuck",
-                GrayText = "Ghi chú trúng thầu",
+                GrayText = V6Text.Text("GCTRUNGTHAU"),
                 Width = 200
             };
 

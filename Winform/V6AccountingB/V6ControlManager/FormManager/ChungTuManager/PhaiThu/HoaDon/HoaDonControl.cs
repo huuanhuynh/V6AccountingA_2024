@@ -6917,7 +6917,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
             else
             {
-                this.ShowWarningMessage("Chưa chọn đúng loại phiếu=[B](Xuất bán không kiêm PX) !", 300);
+                this.ShowWarningMessage(V6Text.Text("CCDLP=B"), 300);
             }
         }
 

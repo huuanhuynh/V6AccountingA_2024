@@ -224,7 +224,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             // 
             // txtNumber
             // 
-            this.txtNumber.AccessibleDescription = "Nhập số và bấm enter để nhận báo cáo";
             this.txtNumber.AccessibleName = "Phần báo cáo";
             this.txtNumber.BackColor = System.Drawing.SystemColors.Window;
             this.txtNumber.BackColorDisabled = System.Drawing.SystemColors.Control;

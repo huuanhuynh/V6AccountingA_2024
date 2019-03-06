@@ -6577,15 +6577,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
         private void btnChonPX_Click(object sender, EventArgs e)
         {
-            //if (txtLoaiPhieu.Text.Trim() == "B")
-            //{
             bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
-                ChonPhieuXuat_A(shift);
-            //}
-            //else
-            //{
-            //    this.ShowWarningMessage("Chưa chọn đúng loại phiếu=[B](Xuất bán không kiêm PX) !", 300);
-            //}
+            ChonPhieuXuat_A(shift);
         }
 
         private string _chon_px = "";

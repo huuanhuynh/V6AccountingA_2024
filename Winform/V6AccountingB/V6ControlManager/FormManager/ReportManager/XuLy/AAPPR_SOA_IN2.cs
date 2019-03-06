@@ -26,7 +26,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("Phím cách chọn,F4: Bổ sung thông tin, F9: In phiếu xuất kho");
+            V6ControlFormHelper.SetStatusText2(string.Format("{0}, F4: {1}, F9: {2}.", V6Text.Text("SBSelect"), V6Text.Text("BoSungThongTin"), V6Text.Text("InPXK")));
         }
 
         protected override void MakeReport2()
@@ -63,23 +63,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 var am = V6BusinessHelper.Select(amName, "*", "STT_REC=@stt_rec and MA_CT=@maCT",
                                     "", "", plist.ToArray()).Data;
 
-                                var fText = "Ghi chú chứng từ";
-                                var f = new V6Form
-                                {
-                                    Text = fText,
-                                    AutoSize = true,
-                                    FormBorderStyle = FormBorderStyle.FixedSingle
-                                };
-
+                                var fText = V6Text.Text("GCCT");
                                 var hoaDonForm = new AAPPR_SOA1_F4(selectedSttRec, am.Rows[0], EXTRA_INFOR["FIELDS_F4"]);
+                                hoaDonForm.ShowToForm(this, fText);
 
-                                f.Controls.Add(hoaDonForm);
-                                hoaDonForm.Disposed += delegate
-                                {
-                                    f.Dispose();
-                                };
-
-                                f.ShowDialog(this);
                                 SetStatus2Text();
                             }
                         }
@@ -177,7 +164,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                         var c = new InChungTuViewBase(Invoice, program, program, _reportFile, repTitle, repTitle2,
                             "", "", "", sttRec);
-                        c.Text = "In phiếu xuất kho";
+                        c.Text = V6Text.Text("InPXK");
                         c.Report_Stt_rec = sttRec;
                         c.TTT = ObjectAndString.ObjectToDecimal(row.Cells["T_TT"].Value);
                         c.TTT_NT = ObjectAndString.ObjectToDecimal(row.Cells["T_TT_NT"].Value);

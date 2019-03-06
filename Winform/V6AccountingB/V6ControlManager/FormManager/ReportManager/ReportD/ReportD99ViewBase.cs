@@ -612,7 +612,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 LoadComboboxSource();
                 txtReportTitle.Text = ReportTitle;
                 LoadDefaultData(4, "", _Ma_File, m_itemId);
-                
+                SetToolTip(txtNumber, V6Text.Text("NSVNEDNBC"));
                 if (!V6Login.IsAdmin)
                 {
                     var menuRow = V6Menu.GetRow(ItemID);

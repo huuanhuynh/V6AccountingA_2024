@@ -22,7 +22,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F4: Cho phép in lại (kẹt giấy), F10: Cho phép in lại (kẹt giấy) hàng loạt");
+            V6ControlFormHelper.SetStatusText2(string.Format("F4: {0}, F10: {1}", V6Text.Text("INLAIKETGIAY"), "INLAIKETGIAY2"));
         }
 
         protected override void MakeReport2()
@@ -41,7 +41,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                var fText = "Cho phép in lại (kẹt giấy)";
+                var fText = V6Text.Text("INLAIKETGIAY");
                 var f = new V6Form
                 {
                     Text = fText,

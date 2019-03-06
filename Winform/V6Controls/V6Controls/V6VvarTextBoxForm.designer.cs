@@ -268,6 +268,7 @@ namespace V6Controls
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -277,6 +278,7 @@ namespace V6Controls
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Control_S = true;
             this.dataGridView1.Location = new System.Drawing.Point(0, 60);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
@@ -289,7 +291,7 @@ namespace V6Controls
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             // 
-            // this
+            // V6VvarTextBoxForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.CancelButton = this.btnESC;
@@ -310,6 +312,7 @@ namespace V6Controls
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_FormClosing);
             this.Load += new System.EventHandler(this.Form_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_KeyDown);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.pBar, 0);
             this.Controls.SetChildIndex(this.dataGridView1, 0);

@@ -63,8 +63,8 @@ namespace V6AccountingBusiness.Invoices
 
                 Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " Exception", ex, "");
                 V6Message = "Rollback: "
-                    + (!insert_success ? "Thêm AM không thành công." : "")
-                    + (j != adList.Count ? "Thêm AD không hoàn tất." : "");
+                    + (!insert_success ? V6Text.Text("AMUNSUCCESS") : "")
+                    + (j != adList.Count ? V6Text.Text("ADNOTCOMPLETE") : "");
                 #endregion Rollback
 
                 return false;
@@ -100,8 +100,8 @@ namespace V6AccountingBusiness.Invoices
             }
             else//
             {
-                if (!insert_success) V6Message = "Thêm AM không thành công.";
-                if (j != adList.Count) V6Message += "Thêm AD không hoàn tất.";
+                if (!insert_success) V6Message = V6Text.Text("AMUNSUCCESS");
+                if (j != adList.Count) V6Message += V6Text.Text("ADNOTCOMPLETE");
                 V6Message += " Bắt đầu RollBack.";
                 TRANSACTION.Rollback();
                 V6Message += " RollBack xong.";
@@ -143,8 +143,8 @@ namespace V6AccountingBusiness.Invoices
 
                 Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " Exception", ex, "");
                 V6Message = "Rollback: "
-                    + (!insert_success ? "Thêm AM không thành công." : "")
-                    + (j != adList.Count ? "Thêm AD không hoàn tất." : "");
+                    + (!insert_success ? V6Text.Text("AMUNSUCCESS") : "")
+                    + (j != adList.Count ? V6Text.Text("ADNOTCOMPLETE") : "");
                 #endregion Rollback
 
                 return false;
@@ -180,8 +180,8 @@ namespace V6AccountingBusiness.Invoices
             }
             else
             {
-                if (!insert_success) V6Message = "Thêm AM không thành công.";
-                if (j != adList.Count) V6Message += "Thêm AD không hoàn tất.";
+                if (!insert_success) V6Message = V6Text.Text("AMUNSUCCESS");
+                if (j != adList.Count) V6Message += V6Text.Text("ADNOTCOMPLETE");
                 V6Message += " Bắt đầu RollBack.";
                 TRANSACTION.Rollback();
                 V6Message += " RollBack xong.";

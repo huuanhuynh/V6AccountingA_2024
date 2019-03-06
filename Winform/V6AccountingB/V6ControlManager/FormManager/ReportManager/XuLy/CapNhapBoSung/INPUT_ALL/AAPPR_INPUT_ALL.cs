@@ -276,7 +276,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 var am = V6BusinessHelper.Select(amName, "*", "STT_REC=@stt_rec and MA_CT=@maCT",
                                     "", "", plist.ToArray()).Data;
 
-                                var fText = "Ghi chú chứng từ";
+                                var fText = V6Text.Text("GCCT");
                                 var f = new V6Form
                                 {
                                     Text = fText,
