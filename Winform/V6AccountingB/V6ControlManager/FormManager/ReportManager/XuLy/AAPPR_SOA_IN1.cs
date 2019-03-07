@@ -28,7 +28,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F4: Bổ sung thông tin, F9: In hóa đơn bán hàng, F10: Tạo số hóa đơn tự động");
+            V6ControlFormHelper.SetStatusText2(string.Format("F4: {0}, F9: {1}, F10: {2}", V6Text.Text("BOSUNGTHONGTIN"), V6Text.Text("PRINTHDBH"), V6Text.Text("TAOSOHDTD")));
         }
 
         protected override void MakeReport2()

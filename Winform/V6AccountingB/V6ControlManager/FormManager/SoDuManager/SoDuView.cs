@@ -362,7 +362,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                             var gia_ton = ObjectAndString.ObjectToInt(data["Gia_ton"]);
                             if (gia_ton == 3)
                             {
-                                V6ControlFormHelper.ShowMainMessage("Vật tư NTXT không được xóa ở phần này.");
+                                V6ControlFormHelper.ShowMainMessage(V6Text.Text("VTNTXTKOXOA"));
                                 return;
                             }
                         }
@@ -393,7 +393,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                 }
                 else
                 {
-                    this.ShowWarningMessage("Không có khóa.");
+                    this.ShowWarningMessage(V6Text.Text("NOKEY"));
                     _data = row.ToDataDictionary();
                     _categories.Delete(CurrentTable, _data);
                 }
@@ -401,7 +401,7 @@ namespace V6ControlManager.FormManager.SoDuManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".Xóa lỗi!\n", ex);
+                this.ShowErrorException(GetType() + " " + V6Text.Text("XOALOI"), ex);
             }
         }
 

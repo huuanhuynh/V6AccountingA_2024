@@ -20,7 +20,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F3: Sửa,F4:Thêm tăng giá trị TSCĐ, F8: Xóa tăng TSCĐ");
+            V6ControlFormHelper.SetStatusText2(string.Format("F3: {0}, F4: {1}, F8: {2}", V6Text.Text("SUA"), V6Text.Text("THEMTANGGTTSCD"), V6Text.Text("XOATANGTSCD")));
         }
 
         protected override void MakeReport2()

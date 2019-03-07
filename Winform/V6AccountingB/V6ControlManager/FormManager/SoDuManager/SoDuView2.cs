@@ -526,7 +526,7 @@ namespace V6ControlManager.FormManager.SoDuManager
             catch (Exception ex)
             {
                 TRANSACTION.Rollback();
-                this.ShowErrorException(GetType() + ".Xóa lỗi!\n", ex);
+                this.ShowErrorException(GetType() + " " + V6Text.Text("XOALOI"), ex);
             }
             TRANSACTION.Dispose();
         }

@@ -209,7 +209,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F9 Chuyển. F10 Update.");
+            V6ControlFormHelper.SetStatusText2(string.Format("F9 {0}, F10: {1}.", V6Text.Text("CHUYEN"), V6Text.Text("UPDATE")));
         }
 
         protected override void MakeReport2()

@@ -1237,7 +1237,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         if (alThue.TotalRows > 0)
                         {
                             _tk_thue_i.Text = alThue.Data.Rows[0]["TK_THUE_CO"].ToString().Trim();
-                            txtTkThueCo.Text = _tk_thue_i.Text;
+                            if(_tk_thue_i.Text != "") txtTkThueCo.Text = _tk_thue_i.Text;
                         }
                     }
                 }

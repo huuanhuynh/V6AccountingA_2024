@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
+using V6Init;
 using V6Structs;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
@@ -125,7 +126,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (result == 1)
                 {
                     Dispose();
-                    V6ControlFormHelper.ShowMainMessage("Sửa thành công");
+                    V6ControlFormHelper.ShowMainMessage(V6Text.EditSuccess);
                     OnUpdateSuccessEvent(data);
                 }
                 else
@@ -155,7 +156,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (result)
                 {
                     Dispose();
-                    V6ControlFormHelper.ShowMainMessage("Thêm thành công");
+                    V6ControlFormHelper.ShowMainMessage(V6Text.AddSuccess);
                     OnInsertSuccessEvent(data);
                 }
                 else

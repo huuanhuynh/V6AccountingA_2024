@@ -243,11 +243,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 };
                 if (V6BusinessHelper.UpdateSimple("ALKC", data, keys) > 0)
                 {
-                    V6ControlFormHelper.ShowMainMessage("Đã cập nhập.");
+                    V6ControlFormHelper.ShowMainMessage(V6Text.Text("UPDATED"));
                 }
                 else
                 {
-                    V6ControlFormHelper.ShowMainMessage("Không cập nhập.");
+                    V6ControlFormHelper.ShowMainMessage(V6Text.Text("NOUPDATE"));
                 }
             }
             catch (Exception ex)

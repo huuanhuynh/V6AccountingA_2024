@@ -25,7 +25,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F4: Bổ sung thông tin. Ctrl+F4: Sửa chi tiết. F9: Bổ sung thông tin nhiều chứng từ.");
+            V6ControlFormHelper.SetStatusText2(string.Format("F4: {0}. Ctrl+F4: {2}. F9: {1}.", V6Text.Text("BOSUNGTHONGTIN"), V6Text.Text("BOSUNGTTNCT"), V6Text.Text("SUACHITIET")));
         }
 
         protected override void MakeReport2()
