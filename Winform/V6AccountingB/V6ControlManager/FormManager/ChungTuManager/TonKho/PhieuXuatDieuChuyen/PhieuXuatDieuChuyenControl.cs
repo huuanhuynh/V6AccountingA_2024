@@ -988,7 +988,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 }
                 else
                 {
-                    ShowMainMessage("Không có tồn kho theo vị trí.");
+                    ShowMainMessage(V6Text.Text("KCTKTVT"));
                 }
             }
             catch (Exception ex)

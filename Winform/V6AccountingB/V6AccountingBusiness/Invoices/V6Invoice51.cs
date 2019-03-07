@@ -186,7 +186,7 @@ namespace V6AccountingBusiness.Invoices
                 catch (Exception ex)
                 {
                     V6Message = ex.Message;
-                    V6Message = "POST lỗi: " + V6Message;
+                    V6Message = V6Text.Text("POSTLOI") + V6Message;
                     
                     return false;
                 }
@@ -310,7 +310,7 @@ namespace V6AccountingBusiness.Invoices
                 catch (Exception ex)
                 {
                     V6Message = ex.Message;
-                    V6Message = "POST lỗi: " + V6Message;
+                    V6Message = V6Text.Text("POSTLOI") + V6Message;
                     
                     return false;
                 }

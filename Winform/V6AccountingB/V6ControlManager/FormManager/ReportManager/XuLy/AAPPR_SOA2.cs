@@ -146,11 +146,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                         if (string.IsNullOrEmpty(error))
                         {
-                            f9MessageAll += string.Format("\nThành công Soct:{0}, sohd:{1}, id:{2}\nResult:{3}", soct, sohoadon, id, result);
+                            f9MessageAll += string.Format("\n{4} Soct:{0}, sohd:{1}, id:{2}\nResult:{3}", soct, sohoadon, id, result, V6Text.Text("ThanhCong"));
                         }
                         else
                         {
-                            f9MessageAll += string.Format("\nCó lỗi Soct:{0}, error:{1}\nResult:{2}", soct, error, result);
+                            f9MessageAll += string.Format("\n{3} Soct:{0}, error:{1}\nResult:{2}", soct, error, result, V6Text.Text("COLOI"));
                         }
                         
                         remove_list_g.Add(row);

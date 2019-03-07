@@ -1176,20 +1176,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
                     flag = 9;
                 }
-
-                
             }
             catch(Exception ex)
             {
                 if(flag == 3)
-                ShowTopLeftMessage("Kiểm tra thông tin trường tính toán drop_line [" + checkField + "]");
+                    ShowTopLeftMessage(string.Format(V6Text.Text("CHECKDROPLINEFIELD0"), checkField));
                 this.WriteExLog(GetType() + ".SetCrossLineRpt", ex);
             }
         }
 
         private IDictionary<string, object> ReportDocumentParameters; 
         /// <summary>
-        /// Lưu ý: chạy sau khi add dataSource để tránh lỗi nhập parameter value
+        /// Lưu ý: chạy sau khi add dataSource để tránh l ỗi nhập parameter value
         /// </summary>
         private void SetAllReportParams(ReportDocument rpDoc, ReportDocument rpDoc2, ReportDocument rpDoc3, ReportDocument rpDoc4)
         {
@@ -1920,7 +1918,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         }
                         catch (Exception ex)
                         {
-                            throw new Exception("In liên 1 lỗi:\nNgừng in!\n" + ex.Message);
+                            throw new Exception(string.Format(V6Text.Text("PRINTXERRORSTOP"), 1) + ex.Message);
                         }
 
                         if (_soLienIn > 1)
@@ -1938,7 +1936,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                             }
                             catch (Exception ex)
                             {
-                                throw new Exception("In liên 2 lỗi:\nNgừng in!\n" + ex.Message);
+                                throw new Exception(string.Format(V6Text.Text("PRINTXERRORSTOP"), 2) + ex.Message);
                             }
                         if (_soLienIn > 2)
                         {
@@ -1956,7 +1954,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                             }
                             catch (Exception ex)
                             {
-                                this.ShowErrorMessage(GetType() + ".In liên 3 lỗi:\n" + ex.Message);
+                                this.ShowErrorMessage(GetType() + string.Format(V6Text.Text("PRINTXERROR"), 3) + ex.Message);
                             }
                         }
                         if (_soLienIn > 3)
@@ -1975,7 +1973,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                             }
                             catch (Exception ex)
                             {
-                                this.ShowErrorMessage(GetType() + ".In liên 3 lỗi:\n" + ex.Message);
+                                this.ShowErrorMessage(GetType() + string.Format(V6Text.Text("PRINTXERROR"), 4) + ex.Message);
                             }
                         }
                     }
@@ -1995,31 +1993,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         }
                         catch (Exception ex)
                         {
-                            throw new Exception("In lỗi:\nNgừng in!\n" + ex.Message);
+                            throw new Exception(V6Text.Text("PRINTERRORSTOP") + ex.Message);
                         }
-
-                        //if (_soLienIn > 1)
-                        //    try
-                        //    {
-                        //        rpDoc.PrintToPrinter(1, false, 1, 1);
-                        //        intDaGuiDenMayIn++;
-                        //    }
-                        //    catch (Exception ex)
-                        //    {
-                        //        throw new Exception("In liên 2 lỗi:\nNgừng in!\n" + ex.Message);
-                        //    }
-                        //if (_soLienIn > 2)
-                        //{
-                        //    try
-                        //    {
-                        //        rpDoc.PrintToPrinter(1, false, 1, 1);
-                        //        intDaGuiDenMayIn++;
-                        //    }
-                        //    catch (Exception ex)
-                        //    {
-                        //        this.ShowErrorMessage(GetType() + ".In liên 3 lỗi:\n" + ex.Message);
-                        //    }
-                        //}
                     }
                     
                     //if (!xemMau)
@@ -2036,14 +2011,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 }
                 catch (Exception ex)
                 {
-                    this.ShowErrorMessage(GetType() + ".In lỗi!\n" + ex.Message, "V6Soft");
+                    this.ShowErrorMessage(string.Format("{0} {1} {2}", GetType(), V6Text.Text("PRINTERROR"), ex.Message));
                 }
             }
             else
             {
                 //isInHoaDonClicked = false;
                 btnIn.Enabled = true;
-                this.ShowErrorMessage(GetType() + ".Không thể truy cập máy in!", "V6Soft");
+                this.ShowErrorMessage(string.Format("{0} {1}", GetType(), V6Text.Text("PRINTERAE")));
             }
             //reset default printer
             //try { V6Tools.PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter); }

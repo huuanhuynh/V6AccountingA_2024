@@ -139,7 +139,7 @@ namespace V6AccountingBusiness.Invoices
                     catch (Exception ex)
                     {
                         V6Message = ex.Message;
-                        V6Message = "POST lỗi: " + V6Message;
+                        V6Message = V6Text.Text("POSTLOI") + V6Message;
                         return false;
 
                     }
@@ -198,13 +198,13 @@ namespace V6AccountingBusiness.Invoices
                         catch (Exception ex2)
                         {
                             V6Message = ex2.Message;
-                            V6Message = "POST2 lỗi: " + V6Message;
+                            V6Message = V6Text.Text("POST2LOI") + V6Message;
                             return false;
                         }//end catch2
                     }
                     else
                     {
-                        V6Message = "POST lỗi: " + V6Message;
+                        V6Message = V6Text.Text("POSTLOI") + V6Message;
                         return false;
                     }
                 }// end catch1
@@ -323,7 +323,7 @@ namespace V6AccountingBusiness.Invoices
                     catch (Exception ex)
                     {
                         V6Message = ex.Message;
-                        V6Message = "POST lỗi: " + V6Message;
+                        V6Message = V6Text.Text("POSTLOI") + V6Message;
                         return false;
                     }
                 }
@@ -380,13 +380,13 @@ namespace V6AccountingBusiness.Invoices
                             catch (Exception ex2)
                             {
                                 V6Message = ex2.Message;
-                                V6Message = "POST2 lỗi: " + V6Message;
+                                V6Message = V6Text.Text("POST2LOI") + V6Message;
                                 return false;
                             } //end catch2
                         }
                         else
                         {
-                            V6Message = "POST lỗi: " + V6Message;
+                            V6Message = V6Text.Text("POSTLOI") + V6Message;
                             return false;
                         }
                     } // end catch1
@@ -394,7 +394,7 @@ namespace V6AccountingBusiness.Invoices
                 catch (Exception ex)
                 {
                     V6Message = ex.Message;
-                    V6Message = "POST lỗi: " + V6Message;
+                    V6Message = V6Text.Text("POSTLOI") + V6Message;
                     return false;
                 }
             }

@@ -61,7 +61,7 @@ namespace V6AccountingB
             }
             catch (Exception ex)
             {
-                this.ShowInfoMessage("Có lỗi xảy ra!");
+                this.ShowInfoMessage(V6Text.Text("COLOI1"));
                 this.WriteExLog(GetType() + "", ex);
             }
         }

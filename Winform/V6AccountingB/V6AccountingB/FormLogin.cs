@@ -303,7 +303,7 @@ namespace V6AccountingB
             }
             catch (SqlException ex)
             {
-                this.ShowErrorMessage(GetType() + ".Có lỗi kết nối!\n" + ex.Message, "V6Soft");
+                this.ShowErrorMessage(GetType() + (V6Setting.IsVietnamese ? ".Có lỗi kết nối!\n" : ". There is a connection error!") + ex.Message, "V6Soft");
             }
             catch (Exception ex)
             {

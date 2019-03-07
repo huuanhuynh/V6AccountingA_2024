@@ -4082,7 +4082,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     if (cIndex >= 0 && cIndex < AD.Rows.Count)
                     {
                         var currentRow = AD.Rows[cIndex];
-                        var details = "Mã vật tư: " + currentRow["Ma_vt"];
+                        var details = string.Format("{0}: {1}", V6Text.FieldCaption("MA_VT"), currentRow["Ma_vt"]);
                         if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details)
                             == DialogResult.Yes)
                         {

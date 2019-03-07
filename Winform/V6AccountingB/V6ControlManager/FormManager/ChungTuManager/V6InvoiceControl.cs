@@ -1530,7 +1530,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + "ValidateData_Master_CheckTon " + _sttRec, ex);
-                ShowParentMessage("Có lỗi khi check tồn: " + ex.Message);
+                ShowParentMessage(string.Format("{0}: {1}", V6Text.Text("LOICHECKTON"), ex.Message));
                 return true;
             }
         }

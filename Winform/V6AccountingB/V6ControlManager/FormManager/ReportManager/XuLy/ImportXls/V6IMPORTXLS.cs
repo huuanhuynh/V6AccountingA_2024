@@ -551,7 +551,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         }
                         else
                         {
-                            var s = "Dòng " + stt + " không có đủ " + CHECK_FIELDS;
+                            var s = string.Format(V6Text.Text("DONG0KOCODU1"), stt, CHECK_FIELDS);
                             f9Error += s;
                             f9MessageAll += s;
                         }
@@ -808,7 +808,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         else
                         {
                             skip++;
-                            var s = "Dòng " + stt + " không có đủ " + CHECK_FIELDS;
+                            var s = string.Format(V6Text.Text("DONG0KOCODU1"), stt, CHECK_FIELDS);
                             F10Error += s;
                             F10ErrorAll += s;
                         }

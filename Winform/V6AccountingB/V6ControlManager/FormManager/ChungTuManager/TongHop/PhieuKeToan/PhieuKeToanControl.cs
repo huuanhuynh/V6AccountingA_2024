@@ -3164,7 +3164,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                 }
                 if (count2 > 0)
                 {
-                    checkChiTietError += string.Format("Có hạch toán nhiều nợ, nhiều có trong các nhóm định khoản " + nhom_list);
+                    checkChiTietError += string.Format(V6Text.Text("CHTNNNCTCNDK") + nhom_list);
                 }
 
                 if (checkChiTietError.Length > 0)

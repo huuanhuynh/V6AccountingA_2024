@@ -1013,7 +1013,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 else
                                 {
                                     skip++;
-                                    var s = string.Format("Dòng {0,3}-ID:{1} sửa không được", stt, ID0);
+                                    var s = string.Format(V6Text.Text("DONG0ID1SUAKDC"), stt, ID0);
                                     F10Error += s;
                                     F10ErrorAll += s;
                                 }
@@ -1026,7 +1026,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         else
                         {
                             skip++;
-                            var s = "Dòng " + stt + " không có đủ " + CHECK_FIELDS;
+                            var s = string.Format(V6Text.Text("DONG0KOCODU1"), stt, CHECK_FIELDS);
                             F10Error += s;
                             F10ErrorAll += s;
                         }

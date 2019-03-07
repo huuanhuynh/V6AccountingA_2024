@@ -158,7 +158,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 _message = ex.Message;
                 SetStatusText(_message);
                 Logger.WriteToLog(GetType() + ".TinhGia_NTXT " + ex.Message);
-                SetStatusText("Tính lỗi: " + ex.Message);
+                SetStatusText(string.Format("{0}: {1}", V6Text.Text("TinhLoi"), ex.Message));
             }
         }
 

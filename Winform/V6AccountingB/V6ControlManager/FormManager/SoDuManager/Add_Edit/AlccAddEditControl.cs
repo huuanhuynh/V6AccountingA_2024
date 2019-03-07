@@ -353,27 +353,27 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 AccessibleName = "ma_bp_i",
                 VVar = "MA_BPCC",
-                GrayText = "Mã bộ phận"
+                GrayText = V6Text.FieldCaption("MA_BP")
             };
             ma_bp_i.Upper();
             ma_bpht_i = new V6VvarTextBox
             {
                 AccessibleName = "ma_bpht_i",
                 VVar = "MA_BPHT",
-                GrayText = "Mã BPHT"
+                GrayText = V6Text.FieldCaption("MABPHT")
             };
             ma_vv_i = new V6VvarTextBox
             {
                 AccessibleName = "ma_vv_i",
                 VVar = "ma_vv",
-                GrayText = "Mã vụ việc"
+                GrayText = V6Text.FieldCaption("ma_vv_i")
             };
 
             tk_pb_i = new V6VvarTextBox
             {
                 AccessibleName = "tk_pb_i",
                 VVar = "tk",
-                GrayText = "Tk Phân bổ"
+                GrayText = V6Text.FieldCaption("tk_pb")
             };
             tk_pb_i.FilterStart = true;
             tk_pb_i.SetInitFilter("Loai_tk = 1");
@@ -381,45 +381,45 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 AccessibleName = "tk_cp_i",
                 VVar = "tk",
-                GrayText = "Tk chi phí"
+                GrayText = V6Text.FieldCaption("TK_CP")
             };
             tk_cp_i.FilterStart = true;
             tk_cp_i.SetInitFilter("Loai_tk = 1");
             he_so = new NumberSoluong()
             {
                 AccessibleName = "he_so",
-                GrayText = "Hệ số"
+                GrayText = V6Text.FieldCaption("HE_SO")
             };
             ma_phi = new V6VvarTextBox()
             {
                 AccessibleName = "ma_phi",
                 VVar = "MA_PHI",
-                GrayText = "Mã phí"
+                GrayText = V6Text.FieldCaption("MA_PHI")
             };
             ma_td_i = new V6VvarTextBox()
             {
                 AccessibleName = "ma_td_i",
                 VVar = "MA_TD",
-                GrayText = "Mã ĐN"
+                GrayText = V6Text.FieldCaption("ma_td_i")
             };
             ma_td2_i = new V6VvarTextBox()
             {
                 AccessibleName = "ma_td2_i",
                 VVar = "MA_TD2",
-                GrayText = "Mã ĐN2"
+                GrayText = V6Text.FieldCaption("ma_td2_i")
             };
             ma_td3_i = new V6VvarTextBox()
             {
                 AccessibleName = "ma_td3_i",
                 VVar = "MA_TD3",
-                GrayText = "Mã ĐN3"
+                GrayText = V6Text.FieldCaption("ma_td3_i")
             };
 
             ma_sp = new V6VvarTextBox()
             {
                 AccessibleName = "ma_sp",
-                VVar = "MA_VT",                
-                GrayText = "Mã sản phẩm"
+                VVar = "MA_VT",
+                GrayText = V6Text.FieldCaption("ma_sp")
             };
             ma_sp.SetInitFilter("Loai_vt='55'");
 

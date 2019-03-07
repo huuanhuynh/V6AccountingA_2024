@@ -1613,7 +1613,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                ShowTopLeftMessage("Có lỗi khi in: " + ex.Message);
+                ShowTopLeftMessage(string.Format("{0}: {1}", V6Text.Text("LOIIN"), ex.Message));
                 this.WriteExLog(GetType() + ".btnIn_Click", ex);
             }
         }

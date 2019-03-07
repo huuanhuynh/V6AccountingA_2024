@@ -63,7 +63,7 @@ namespace V6Controls.Forms
                     }
                     else
                     {
-                        this.ShowWarningMessage("Có lỗi xảy ra!");// + ct.Message);
+                        this.ShowWarningMessage(V6Text.Text("COLOI1"));// + ct.Message);
                     }
                 }
                 else

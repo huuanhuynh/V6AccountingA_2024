@@ -24,7 +24,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F5: Chi tiết,F9: In từng trang");
+            V6ControlFormHelper.SetStatusText2(string.Format("F5: {0}, F9: {1}", V6Text.Text("CHITIET"), V6Text.Text("INTUNGTRANG")));
             
         }
 
@@ -48,7 +48,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                 if (this.ShowConfirmMessage("Có chắc chắn in từng trang (trực tiếp ra máy in) không?") != DialogResult.Yes)
+                 if (this.ShowConfirmMessage(V6Text.Text("ASKINTUNGTRANG1")) != DialogResult.Yes)
                    {
                        return;
                    }

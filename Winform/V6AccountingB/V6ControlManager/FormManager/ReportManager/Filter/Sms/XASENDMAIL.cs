@@ -151,16 +151,16 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
                     switch (a)
                     {
                         case GSM_Phone.SendSmsStatus.ERROR:
-                            lblNoiDung.Text = "Gửi lỗi!";
+                            lblNoiDung.Text = V6Text.Text("SENTERROR");
                             break;
                         case GSM_Phone.SendSmsStatus.NONE:
-                            lblNoiDung.Text = "Không gửi được hay gì đó!";
+                            lblNoiDung.Text = V6Text.Text("SENTNONE");
                             break;
                         case GSM_Phone.SendSmsStatus.OK:
-                            lblNoiDung.Text = "Gửi Ok";
+                            lblNoiDung.Text = V6Text.Text("SENTOK");
                             break;
                         case GSM_Phone.SendSmsStatus.UNKNOWN:
-                            lblNoiDung.Text = "Không biết gửi được không";
+                            lblNoiDung.Text = V6Text.Text("SENTUNKNOWN");
                             break;
                         default:
                             lblNoiDung.Text = "???";
@@ -169,7 +169,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
                 }
                 else
                 {
-                    MessageBox.Show("Chưa kết nối!");
+                    MessageBox.Show(V6Text.Text("CHUAKETNOI"));
                 }
             }
             catch (Exception ex)
@@ -256,17 +256,17 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
 
         private void btnGuiDanhSach_Click(object sender, EventArgs e)
         {
-            if (this.ShowConfirmMessage("Gửi tin nhắn cho danh sách đã chọn?", "Xác nhận") != DialogResult.Yes) return;
+            if (this.ShowConfirmMessage(V6Text.Text("ASKGUITINNHANDS")) != DialogResult.Yes) return;
             
             if (tugo_noidung_tinnhan && txtMessage.Text.Trim() == "")
             {
-                MessageBox.Show("Chưa nhập nội dung tin nhắn!");
+                MessageBox.Show(V6Text.Text("CHUANHAPNDTN"));
                 return;
             }
 
             if(sending)
             {
-                MessageBox.Show("Đang gửi");
+                MessageBox.Show(V6Text.Text("SENDING"));
                 return;
             }
 
@@ -285,7 +285,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
                 }
                 else
                 {
-                    MessageBox.Show("Chưa kết nối!");
+                    MessageBox.Show(V6Text.Text("CHUAKETNOI"));
                 }
             }
             catch (Exception ex)
@@ -312,7 +312,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
                 }
                 else
                 {
-                    MessageBox.Show("Chưa kết nối!");
+                    MessageBox.Show(V6Text.Text("CHUAKETNOI"));
                 }
             }
             catch (Exception ex)

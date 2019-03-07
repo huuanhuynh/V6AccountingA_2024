@@ -141,7 +141,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 _executing = false;
                 _success = false;
                 Logger.WriteToLog(GetType() + ".TinhGia_TB " + ex.Message);
-                SetStatusText("Tính lỗi: " + ex.Message);
+                SetStatusText(string.Format("{0}: {1}", V6Text.Text("TinhLoi"), ex.Message));
             }
         }
         public void TinhGia_TB_All()
@@ -210,7 +210,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 _executing = false;
                 _success = false;
                 Logger.WriteToLog(GetType() + ".TinhGia_TB " + ex.Message);
-                SetStatusText("Tính lỗi: " + ex.Message);
+                SetStatusText(string.Format("{0}: {1}", V6Text.Text("TinhLoi"), ex.Message));
             }
         }
 

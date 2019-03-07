@@ -55,18 +55,16 @@ namespace V6AccountingB
                 }
                 else
                 {
-                    this.ShowWarningMessage("Sai khóa!");
+                    this.ShowWarningMessage(V6Setting.IsVietnamese ? "Sai khóa!" : "Wrong key!");
                     DialogResult = DialogResult.No;
                 }
             }
             catch (Exception ex)
             {
-                this.ShowInfoMessage("Có lỗi xảy ra!");
+                this.ShowInfoMessage(V6Text.Text("COLOI1"));
                 this.WriteExLog(GetType() + "", ex);
             }
         }
-
-        
 
         private void cboDatabase_SelectedIndexChanged(object sender, EventArgs e)
         {
