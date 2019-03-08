@@ -427,6 +427,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 f9Running = true;
                 f9MessageAll = "";
+                string makho = "";
+                string madvcs = "";
 
                 //Gom chi tiet theo SO_CT va NGAY_CT
                 Dictionary<string, List<DataRow>> data_dictionary = new Dictionary<string, List<DataRow>>();
@@ -442,6 +444,31 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         dateMax = date;
                     }
+
+                    // Tuanmh them 08/03/2019
+                      switch (_selected_ma_ct)
+                        {
+                            case "SOA":
+                            case "SOH":
+                            case "POA":
+                            case "POH":
+                            case "POB":
+                            case "IND":
+                            case "IXA":
+                            case "IXC":
+                            case "SOF":
+                            case "SOB":
+                            case "SOC":
+                                makho = row["MA_KHO_I"].ToString().Trim().ToUpper();
+                                break;
+                            case "IXB":
+                                makho = row["MA_KHO"].ToString().Trim().ToUpper();
+                                break;
+                            default:
+                                break;
+                        }
+                    madvcs = row["MA_DVCS"].ToString().Trim().ToUpper();
+
                     string so_ct = row["SO_CT"].ToString().Trim().ToUpper();
                     string ma_kh = row["MA_KH"].ToString().Trim().ToUpper();
                     string ngay_ct = date.ToString("yyyyMMdd");
@@ -509,7 +536,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         {
                             string ma_sonb;
                             DateTime ngay_ct = ObjectAndString.ObjectToFullDateTime(AM_DATA["NGAY_CT"]);
-                            var so_ct = V6BusinessHelper.GetNewSoCt_date(Invoice.Mact, ngay_ct, "1", out ma_sonb);
+                            var so_ct = V6BusinessHelper.GetNewSoCt_date(Invoice.Mact, ngay_ct, "1", madvcs, makho, V6Login.UserId, out ma_sonb);
                             AM_DATA["SO_CT"] = so_ct;
                             AM_DATA["MA_SONB"] = ma_sonb;
                         }

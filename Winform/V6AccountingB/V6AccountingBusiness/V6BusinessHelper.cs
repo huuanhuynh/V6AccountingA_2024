@@ -1164,7 +1164,7 @@ namespace V6AccountingBusiness
             return sResult;
         }
 
-        public static string GetNewSoCt_date(string maCt, DateTime date, string type, out string ma_sonb)
+        public static string GetNewSoCt_date(string maCt, DateTime date, string type, string maDvcs, string makho, int userId, out string ma_sonb)
         {
             ma_sonb = "";
             SqlParameter[] prlist =
@@ -1172,6 +1172,9 @@ namespace V6AccountingBusiness
                 new SqlParameter("@Ma_ct", maCt),
                 new SqlParameter("@Ngay_ct", date.Date),
                 new SqlParameter("@Type", type),
+                new SqlParameter("@ma_dvcs", maDvcs),
+                new SqlParameter("@ma_kho", makho),
+                new SqlParameter("@User_id", userId)
             };
             var result = SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_GetNewSoct_Date", prlist);
             if (result.Tables.Count == 0) return "";

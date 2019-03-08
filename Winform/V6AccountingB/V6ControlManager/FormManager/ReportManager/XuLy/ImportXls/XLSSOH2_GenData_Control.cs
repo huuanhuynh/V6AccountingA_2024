@@ -25,6 +25,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private DataTable _tbl0;
         private int _fixColumn;
         private Config _config = null;
+        public string M_SOA_MULTI_VAT = "0";
         /// <summary>
         /// Kiem tra du lieu hop le
         /// </summary>
@@ -33,7 +34,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         public XLSSOH2_GenData_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, false)
         {
-            
+            try
+            {
+                M_SOA_MULTI_VAT = V6Options.GetValue("M_SOA_MULTI_VAT");
+            }
+            catch (Exception)
+            {
+                
+            }
         }
 
         public override void SetStatus2Text()
@@ -352,6 +360,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 f9Running = true;
                 f9MessageAll = "";
+                string makho = "";
+                string madvcs = "";
 
                 //Gom chi tiet theo SO_CT va NGAY_CT
                 Dictionary<string, List<DataRow>> data_dictionary = new Dictionary<string, List<DataRow>>();
@@ -367,6 +377,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         dateMax = date;
                     }
+
+                    // Tuanmh them 08/03/2019
+                    makho = row["MA_KHO_I"].ToString().Trim().ToUpper();
+                    madvcs = row["MA_DVCS"].ToString().Trim().ToUpper();
+
                     string ma_kh = row["MA_KH"].ToString().Trim().ToUpper();
                     string ngay_ct = date.ToString("yyyyMMdd");
                     if (ma_kh != "" && ngay_ct != "")
@@ -414,7 +429,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                         string ma_sonb;
                         DateTime ngay_ct = ObjectAndString.ObjectToFullDateTime(AM_DATA["NGAY_CT"]);
-                        var so_ct = V6BusinessHelper.GetNewSoCt_date(Invoice.Mact, ngay_ct, "1", out ma_sonb);
+                        var so_ct = V6BusinessHelper.GetNewSoCt_date(Invoice.Mact, ngay_ct, "1", madvcs, makho, V6Login.UserId, out ma_sonb);
 
                         AM_DATA["STT_REC"] = sttRec;
                         AM_DATA["SO_CT"] = so_ct;
@@ -569,29 +584,32 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 AM["T_TT_NT"] = t_tt_nt;
                 AM["T_TT"] = t_tt_nt * ty_gia;
 
-                if (AM.ContainsKey("MA_THUE"))
+                if (M_SOA_MULTI_VAT == "0")
                 {
-                    SqlParameter[] plist=
+                    if (AM.ContainsKey("MA_THUE"))
                     {
-                        new SqlParameter("@ma_thue",AM["MA_THUE"].ToString()), 
-                    };
-                    var althue = V6BusinessHelper.Select("ALTHUE", "*", "MA_THUE=@ma_thue","","",plist).Data;
-                    if (althue.Rows.Count > 0)
-                    {
-                        var row_thue = althue.Rows[0];
-                        AM["THUE_SUAT"] = row_thue["THUE_SUAT"];
-                        AM["TK_THUE_CO"] = row_thue["TK_THUE_CO"];
+                        SqlParameter[] plist =
+                        {
+                            new SqlParameter("@ma_thue", AM["MA_THUE"].ToString()),
+                        };
+                        var althue = V6BusinessHelper.Select("ALTHUE", "*", "MA_THUE=@ma_thue", "", "", plist).Data;
+                        if (althue.Rows.Count > 0)
+                        {
+                            var row_thue = althue.Rows[0];
+                            AM["THUE_SUAT"] = row_thue["THUE_SUAT"];
+                            AM["TK_THUE_CO"] = row_thue["TK_THUE_CO"];
+                        }
+                        else
+                        {
+                            AM["THUE_SUAT"] = 0m;
+                            AM["TK_THUE_CO"] = "";
+                        }
                     }
                     else
                     {
                         AM["THUE_SUAT"] = 0m;
                         AM["TK_THUE_CO"] = "";
                     }
-                }
-                else
-                {
-                    AM["THUE_SUAT"] = 0m;
-                    AM["TK_THUE_CO"] = "";
                 }
 
                 //fIX

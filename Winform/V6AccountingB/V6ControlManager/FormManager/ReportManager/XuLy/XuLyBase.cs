@@ -339,7 +339,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             MyInit();
         }
 
-        private void MyInit()
+        protected void MyInit()
         {
             Text = _reportCaption;
             All_Objects["thisForm"] = this;

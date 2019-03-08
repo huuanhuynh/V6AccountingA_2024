@@ -222,6 +222,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 f9Running = true;
                 f9ErrorAll = "";
+                string makho = "";
+                string madvcs = "";
 
                 //Gom chi tiet theo SO_CT va NGAY_CT
                 Dictionary<string, List<DataRow>> data_dictionary = new Dictionary<string, List<DataRow>>();
@@ -237,9 +239,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     if (dateMax == null || date > dateMax)
                     {
                         dateMax = date;
-                    }                    
-                    
+                    }
+
+                    // Tuanmh them 08/03/2019
+                    makho = row["MA_KHO_I"].ToString().Trim().ToUpper();
+                    madvcs = row["MA_DVCS"].ToString().Trim().ToUpper();
+
                     string soct_or_makh = row["SO_CT"].ToString().Trim().ToUpper();
+
                     if (chkAutoSoCt_Checked)
                     {
                         soct_or_makh = row["MA_KH"].ToString().Trim().ToUpper();
@@ -298,7 +305,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         {
                             string ma_sonb;
                             DateTime ngay_ct = ObjectAndString.ObjectToFullDateTime(AM_DATA["NGAY_CT"]);
-                            var so_ct = V6BusinessHelper.GetNewSoCt_date(Invoice.Mact, ngay_ct, "1", out ma_sonb);
+                            // Tuanmh 08/03/2019 them madvcs,makho, V6Login.UserId
+                            var so_ct = V6BusinessHelper.GetNewSoCt_date(Invoice.Mact, ngay_ct, "1", madvcs, makho, V6Login.UserId, out ma_sonb);
                             AM_DATA["SO_CT"] = so_ct;
                             AM_DATA["MA_SONB"] = ma_sonb;
                         }
