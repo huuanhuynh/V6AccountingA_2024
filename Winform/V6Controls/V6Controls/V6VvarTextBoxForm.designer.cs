@@ -288,8 +288,7 @@ namespace V6Controls
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(732, 441);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.RowSelectChanged += new System.EventHandler(this.dataGridView1_RowSelectChanged);
-            this.dataGridView1.V6Changed += new System.EventHandler(this.dataGridView1_V6Changed);
+            this.dataGridView1.RowSelectChanged += new V6Controls.V6ColorDataGridView.RowSelectEventHandler(this.dataGridView1_RowSelectChanged);
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView1_DataError);
             // 

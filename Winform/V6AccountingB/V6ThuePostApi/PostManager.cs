@@ -154,7 +154,7 @@ namespace V6ThuePostManager
 
                 if (mode == "M")
                 {
-                    jsonBody = ReadData();
+                    jsonBody = ReadData_Bkav();
                     //File.Create(flagFileName1).Close();
                     result = POST(remoteCommand, jsonBody, BkavConst._100_CreateNew);
                     string sGUID = null;
@@ -167,7 +167,7 @@ namespace V6ThuePostManager
                 }
                 else if (mode == "S")
                 {
-                    jsonBody = ReadData();
+                    jsonBody = ReadData_Bkav();
                     //File.Create(flagFileName1).Close();
                     result = POST(remoteCommand, jsonBody, BkavConst._121_CreateAdjust);
                     string sGUID = null;
@@ -180,7 +180,7 @@ namespace V6ThuePostManager
                 }
                 else if (mode.StartsWith("T"))
                 {
-                    jsonBody = ReadData();
+                    jsonBody = ReadData_Bkav();
                     //File.Create(flagFileName1).Close();
                     result = POST(remoteCommand, jsonBody, BkavConst._120_CreateReplace);
                 }
@@ -207,7 +207,7 @@ namespace V6ThuePostManager
 
 
 
-        public static string ReadData()
+        public static string ReadData_Bkav()
         {
             string result = "";
             try
@@ -265,7 +265,11 @@ namespace V6ThuePostManager
                 if (summarizeInfoConfig.ContainsKey("PartnerInvoiceID"))
                 {
                     postObject.PartnerInvoiceID =
-                        ObjectAndString.ObjectToInt64(GetValue(row0, summarizeInfoConfig["PartnerInvoiceID"]).ToString());
+                        ObjectAndString.ObjectToString(GetValue(row0, summarizeInfoConfig["PartnerInvoiceID"]), "ddMMyyyyHHmmss");
+                    if (postObject.PartnerInvoiceID.ToString().Length < 14 && ObjectAndString.ObjectToInt(postObject.PartnerInvoiceID) != 0)
+                    {
+                        postObject.PartnerInvoiceID = ("00000000000000" + postObject.PartnerInvoiceID).Right("ddMMyyyyHHmmss".Length);
+                    }
                 }
                 if (summarizeInfoConfig.ContainsKey("PartnerInvoiceStringID"))
                 {
@@ -1608,9 +1612,10 @@ namespace V6ThuePostManager
                         }
                         else
                         {
-                            return fieldValue.ToString() == "1" ||
-                                   fieldValue.ToString().ToLower() == "true" ||
-                                   fieldValue.ToString().ToLower() == "yes";
+                            return fieldValue != null &&
+                                (fieldValue.ToString() == "1" ||
+                                    fieldValue.ToString().ToLower() == "true" ||
+                                    fieldValue.ToString().ToLower() == "yes");
                         }
                     case "DATE":
                     case "DATETIME":
@@ -1618,6 +1623,11 @@ namespace V6ThuePostManager
                         break;
                     case "N2C":
                         return MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "V", "VND");
+                    case "INT":
+                        return ObjectAndString.ObjectToInt(fieldValue);
+                    case "INT64":
+                    case "LONG":
+                        return ObjectAndString.ObjectToInt64(fieldValue);
                     default:
                         return fieldValue;
                 }

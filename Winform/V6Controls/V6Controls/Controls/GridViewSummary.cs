@@ -93,7 +93,7 @@ namespace V6Controls.Controls
                 if (dgv is V6ColorDataGridView)
                 {
                     var dgv6 = dgv as V6ColorDataGridView;
-                    dgv6.RowSelectChanged += dgv_SelectionChanged;
+                    dgv6.RowSelectChanged += dgv_SelectionChanged_row;
                 }
                 dgv.Paint += dgv_Paint;
                 dgv.DataSourceChanged += dgv_DataSourceChanged;
@@ -115,6 +115,17 @@ namespace V6Controls.Controls
             }            
         }
 
+        void dgv_SelectionChanged_row(object sender, DataGridViewRow row)
+        {
+            try
+            {
+                if (_dgv.RowCount > 1) CaculateSumValues();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
         void dgv_SelectionChanged(object sender, EventArgs e)
         {
             try

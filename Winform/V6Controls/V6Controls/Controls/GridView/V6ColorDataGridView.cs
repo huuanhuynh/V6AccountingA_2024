@@ -954,11 +954,16 @@ namespace V6Controls
             }
         }
 
-        public event EventHandler RowSelectChanged;
-        public virtual void OnRowSelectChanged()
+        public delegate void RowSelectEventHandler(object sender, DataGridViewRow row);
+
+        /// <summary>
+        /// Sự kiện thay đổi trạng thái select khi dùng hàm Select mở rộng.
+        /// </summary>
+        public event RowSelectEventHandler RowSelectChanged;
+        public virtual void OnRowSelectChanged(DataGridViewRow row)
         {
             var handler = RowSelectChanged;
-            if (handler != null) handler(this, EventArgs.Empty);
+            if (handler != null) handler(this, row);
         }
 
         public event EventHandler V6Changed;

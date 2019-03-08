@@ -41,6 +41,7 @@ namespace V6Controls
         private HelpProvider _helpProvider1;
         public LookupMode _lookupMode;
         public bool _filterStart;
+        public SortedDictionary<string, string> _f2_selected = new SortedDictionary<string, string>();
 
         /// <summary>
         /// Sự kiện xảy ra khi nhận ở lookupMode == Data.
@@ -124,6 +125,7 @@ namespace V6Controls
             try
             {
                 dataGridView1.DataSource = _standDao.LayTatCaDanhMuc();
+                ApplyF2Selected();
             }
             catch (Exception ex)
             {
@@ -171,12 +173,18 @@ namespace V6Controls
                     else if (_lookupMode == LookupMode.Multi)
                     {
                         var selectedValues = "";
-                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        //foreach (DataGridViewRow row in dataGridView1.Rows)
+                        //{
+                        //    if (row.IsSelect())
+                        //    {
+                        //        selectedValues += "," + row.Cells[_config.vValue].Value.ToString().Trim();
+                        //    }
+                        //}
+
+                        selectedValues = "";
+                        foreach (KeyValuePair<string, string> item in _f2_selected)
                         {
-                            if (row.IsSelect())
-                            {
-                                selectedValues += "," + row.Cells[_config.vValue].Value.ToString().Trim();
-                            }
+                            selectedValues += "," + item.Value;
                         }
 
                         if (selectedValues.Length > 0) selectedValues = selectedValues.Substring(1);
@@ -242,6 +250,16 @@ namespace V6Controls
                 if (_lookupMode == LookupMode.Multi || _lookupMode == LookupMode.Data)
                 {
                     cRow.ChangeSelect();
+                    //var cRow_value = cRow.Cells[_config.vValue].Value.ToString().Trim();
+                    //var cRow_key = cRow_value.ToUpper();
+                    //if (cRow.IsSelect())
+                    //{
+                    //    _f2_selected[cRow_key] = cRow_value;
+                    //}
+                    //else if (_f2_selected.ContainsKey(cRow_key))
+                    //{
+                    //    _f2_selected.Remove(cRow_key);
+                    //}
                 }
 
 
@@ -568,6 +586,7 @@ namespace V6Controls
                 string vSearchFields = _config.V_Search;
                 _vSearchFilter = GenVSearchFilter(vSearchFields);
                 dataGridView1.DataSource = _standDao.LayTatCaDanhMuc(_vSearchFilter);
+                ApplyF2Selected();
 
                 if(_standDao.tableRoot.Rows.Count>0)
                     dataGridView1.Focus();
@@ -621,6 +640,7 @@ namespace V6Controls
                 string vSearchFields = _config.V_Search;
                 _vSearchFilter = GenVSearchFilter(vSearchFields);
                 dataGridView1.DataSource = _standDao.LayTatCaDanhMuc(_vSearchFilter);
+                ApplyF2Selected();
             }
             catch (Exception ex)
             {
@@ -635,16 +655,22 @@ namespace V6Controls
                 && _vSearchFilter.Contains(","))
             {
                 var sss = _vSearchFilter.Split(',');
-
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                foreach (string s in sss)
                 {
-                    foreach (string s in sss)
-                    {
-                        if (row.Cells[_config.vValue].Value.ToString().Trim().ToUpper() == s.ToUpper())
-                        {
-                            row.Select();
-                        }
-                    }
+                    _f2_selected[s.ToUpper()] = s;
+                }
+
+                ApplyF2Selected();
+            }
+        }
+
+        private void ApplyF2Selected()
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (_f2_selected.ContainsKey(row.Cells[_config.vValue].Value.ToString().Trim().ToUpper()))
+                {
+                    row.Select();
                 }
             }
         }
@@ -652,6 +678,24 @@ namespace V6Controls
         private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             e.ThrowException = false;
+        }
+
+        private void dataGridView1_RowSelectChanged(object sender, DataGridViewRow cRow)
+        {
+            if (_lookupMode == LookupMode.Multi)// || _lookupMode == LookupMode.Data)
+            {
+                //cRow.ChangeSelect();
+                var cRow_value = cRow.Cells[_config.vValue].Value.ToString().Trim();
+                var cRow_key = cRow_value.ToUpper();
+                if (cRow.IsSelect())
+                {
+                    _f2_selected[cRow_key] = cRow_value;
+                }
+                else if (_f2_selected.ContainsKey(cRow_key))
+                {
+                    _f2_selected.Remove(cRow_key);
+                }
+            }
         }
         
     }
