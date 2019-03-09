@@ -265,9 +265,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                //string[] data_fields = "MA_KH,MA_VT".Split(',');
-                //string[] check_fields = "MA_KH,MA_VT".Split(',');
-                //string[] check_tables = "ALKH,ALVT".Split(',');
+                //string[] data_fields = "MA_KH,MA_VT,MA_KHO_I".Split(',');
+                //string[] check_fields = "MA_KH,MA_VT,MA_KHO".Split(',');
+                //string[] check_tables = "ALKH,ALVT,ALKHO".Split(',');
                 //this.ShowWarningMessage("Thời gian check lâu do tạo nhiều dòng!");
                 check = CheckDataInGridView();
 

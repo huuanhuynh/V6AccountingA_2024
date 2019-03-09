@@ -107,9 +107,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 All_Objects["data"] = _data;
                 InvokeFormEvent(FormDynamicEvent.DYNAMICFIXEXCEL);
                 dataGridView1.DataSource = _data;
-                string[] data_fields = "MA_KH,MA_VT".Split(',');
-                string[] check_fields = "MA_KH,MA_VT".Split(',');
-                string[] check_tables = "ALKH,ALVT".Split(',');
+                string[] data_fields = "MA_KH,MA_VT,MA_KHO_I".Split(',');
+                string[] check_fields = "MA_KH,MA_VT,MA_KHO".Split(',');
+                string[] check_tables = "ALKH,ALVT,ALKHO".Split(',');
                 check = V6ControlFormHelper.CheckDataInGridView(dataGridView1, data_fields, check_fields, check_tables);
 
                 if (!check)
