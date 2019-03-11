@@ -38,11 +38,25 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 txtMaDvcs.Enabled = false;
             }
-            txtMa_ct.Text = "SOA";
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@Ma_ct", ""),
+                new SqlParameter("@User_id", V6Login.UserId),
+                new SqlParameter("@Advance", ""),
+            };
+            var data = V6BusinessHelper.ExecuteProcedure("VPA_GET_ALCTCT_DEFAULT", plist).Tables[0];
+            if (data.Rows.Count > 0)
+            {
+                txtMaCtProc.Text = data.Rows[0]["MA_CT"].ToString().Trim();
+            }
+            else
+            {
+                txtMaCtProc.Text = "";
+            }
 
-            txtMa_ct.SetInitFilter("M_MA_VV='1'");
+            txtMaCtProc.SetInitFilter("M_MA_VV='1'");
             
-            LoadComboboxSource(txtMa_ct.Text);
+            LoadComboboxSource(txtMaCtProc.Text);
             
             Txtnh_kh1.VvarTextBox.SetInitFilter("loai_nh=1");
             Txtnh_kh2.VvarTextBox.SetInitFilter("loai_nh=2");
@@ -60,16 +74,30 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             try
             {
-                cboMa_xuly.ValueMember = "MA_XULY1";
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@Ma_ct", txtMaCtProc.Text),
+                    new SqlParameter("@User_id", V6Login.UserId),
+                    new SqlParameter("@Advance", ""),
+                };
+                var data = V6BusinessHelper.ExecuteProcedure("VPA_GET_ALXULY", plist).Tables[0];
+
+                cboMa_xuly.ValueMember = "MA_XULY";
                 cboMa_xuly.DisplayMember = V6Setting.IsVietnamese ? "Ten_xuly" : "Ten_xuly2";
-                cboMa_xuly.DataSource = V6BusinessHelper.Select("Alxuly", "ma_xuly as MA_XULY1,Ten_xuly,Ten_xuly2",
-                                    "Ma_ct=@mact and Status = '1'", "", "Ma_xuly",
-                                    new SqlParameter("@mact", maCt)).Data;
-                cboMa_xuly.ValueMember = "MA_XULY1";
+                //cboMa_xuly.DataSource = V6BusinessHelper.Select("Alxuly", "ma_xuly as MA_XULY1,Ten_xuly,Ten_xuly2",
+                //                    "Ma_ct=@mact and Status = '1'", "", "Ma_xuly",
+                //                    new SqlParameter("@mact", maCt)).Data;
+                cboMa_xuly.DataSource = data;
+                cboMa_xuly.ValueMember = "MA_XULY";
                 cboMa_xuly.DisplayMember = V6Setting.IsVietnamese ? "Ten_xuly" : "Ten_xuly2";
 
-                string selectValue = (V6BusinessHelper.ExecuteScalar("Select MA_XULY from ALXULY where Ma_ct=@mact and Status = '1' And SL_TD2=1", new SqlParameter("@mact", maCt)) + "").Trim();
-                if (selectValue != "") cboMa_xuly.SelectedValue = selectValue;
+                var viewXuly = new DataView(data);
+                viewXuly.RowFilter = "Ma_ct='"+ maCt+ "' and Status='1' And SL_TD2=1";
+                if (viewXuly.Count == 1)
+                {
+                    string selectValue = viewXuly.ToTable().Rows[0]["MA_XULY"].ToString().Trim();
+                    if (!string.IsNullOrEmpty(selectValue)) cboMa_xuly.SelectedValue = selectValue;
+                }
             }
             catch (Exception ex)
             {
@@ -94,7 +122,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             var result = new List<SqlParameter>();
             result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));
             result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.YYYYMMDD));
-            result.Add(new SqlParameter("@ma_ct", txtMa_ct.Text.Trim()));
+            result.Add(new SqlParameter("@ma_ct", txtMaCtProc.Text.Trim()));
             result.Add(new SqlParameter("@user_id", V6Login.UserId));
 
             var and = radAnd.Checked;
@@ -135,9 +163,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 cKey = cKey + string.Format(" and ma_kh in (select ma_kh from alkh where {0})", key1);
             }
-            if (!string.IsNullOrEmpty(key2) && txtMa_ct.Data != null && ObjectAndString.ObjectToInt(txtMa_ct.Data["CT_NXT"]) != 0)
+            if (!string.IsNullOrEmpty(key2) && txtMaCtProc.Data != null && ObjectAndString.ObjectToInt(txtMaCtProc.Data["CT_NXT"]) != 0)
             {
-                string AD = ("" + txtMa_ct.Data["m_ctdbf"]).Trim();
+                string AD = ("" + txtMaCtProc.Data["m_ctdbf"]).Trim();
                 if(AD != "")
                 cKey = cKey + string.Format(" AND STT_REC IN (SELECT STT_REC FROM {3} WHERE NGAY_CT between '{1}' and '{2}' and ma_kho_i in (select ma_kho from alkho where {0}))",
                     key2, dateNgay_ct1.YYYYMMDD, dateNgay_ct2.YYYYMMDD, AD);
@@ -332,8 +360,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             if (IsReady)
             {
-                LoadComboboxSource(txtMa_ct.Text);
-                lineMa_xuly.VvarTextBox.SetInitFilter(string.Format("Ma_ct='{0}'", txtMa_ct.Text.Trim()));
+                LoadComboboxSource(txtMaCtProc.Text);
+                lineMa_xuly.VvarTextBox.SetInitFilter(string.Format("Ma_ct='{0}'", txtMaCtProc.Text.Trim()));
             }
         }
 
@@ -344,7 +372,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
                 if (chkView_all.Checked)
                 {
-                    _gridView1.Filter("ma_ct", "=",txtMa_ct.Text.Trim(), "value2", false, false);
+                    _gridView1.Filter("ma_ct", "=",txtMaCtProc.Text.Trim(), "value2", false, false);
                     _xulyBase.FormatGridViewExtern();
                     _xulyBase.UpdateGridView2(_gridView1.CurrentRow);
                 }

@@ -115,12 +115,12 @@ namespace V6AccountingB
             if (flagCheckConnectFinish)
             {
                 ((Timer)sender).Stop();
-
                 if (flagCheckConnectSuccess && _tblsLoaded)
                 {
                     lblStatus.Text = "______________________________________________";
                     panel1.Enabled = true;
                     txtUserName.Focus();
+                    Ready();
                 }
                 else
                 {
@@ -183,18 +183,16 @@ namespace V6AccountingB
                     : countDvcs > 0 ? "dbo.VFA_Inlist_MEMO(ma_dvcs, '" + V6Login.UserInfo["r_dvcs"] + "')=1" : "";
                 
                 DataTable agentData = V6Login.GetAgentTable(key);
-
                 V6Login.MadvcsCount = agentData.Rows.Count;
-
                 cboAgent.ValueMember = "Ma_dvcs";
-                cboAgent.DisplayMember = "Name";
+                cboAgent.DisplayMember = V6Setting.IsVietnamese ? "Name" : "Name2";
                 cboAgent.DataSource = agentData;
                 cboAgent.ValueMember = "Ma_dvcs";
-                cboAgent.DisplayMember = "Name";
+                cboAgent.DisplayMember = V6Setting.IsVietnamese ? "Name" : "Name2";
             }
-            catch// (Exception ex)
+            catch (Exception ex)
             {
-                //V6ControlFormHelper
+                this.WriteExLog("FormLogin", ex);
             }
         }
         
@@ -218,8 +216,6 @@ namespace V6AccountingB
             }
             return result;
         }
-
-        
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -351,6 +347,18 @@ namespace V6AccountingB
             //{
                 
             //}
+        }
+
+        private void cboLang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (IsReady)
+            {
+                V6Login.SelectedLanguage = cboLang.SelectedValue.ToString().Trim().ToUpper();
+                if (cboAgent.DataSource != null)
+                {
+                    cboAgent.DisplayMember = V6Setting.IsVietnamese ? "Name" : "Name2";
+                }
+            }
         }
         
     }    

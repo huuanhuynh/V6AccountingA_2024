@@ -237,18 +237,18 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
                 _viewGroup.RowFilter = "Loai_nh = " + (comboBox1.SelectedIndex + 1);
                 _viewGroup.Sort = "Ma_nh";
 
-                listBox1.DisplayMember = "Ten_nh";
+                listBox1.DisplayMember = V6Setting.IsVietnamese ? "Ten_nh" : "Ten_nh2";
                 listBox1.ValueMember = "Ma_nh";
                 listBox1.DataSource = _viewGroup;
-                listBox1.DisplayMember = "Ten_nh";
+                listBox1.DisplayMember = V6Setting.IsVietnamese ? "Ten_nh" : "Ten_nh2";
                 listBox1.ValueMember = "Ma_nh";
 
                 var viewGroup2 = new DataView(_viewGroup.ToTable());
 
-                cboToGroupList.DisplayMember = "Ten_nh";
+                cboToGroupList.DisplayMember = V6Setting.IsVietnamese ? "Ten_nh" : "Ten_nh2";
                 cboToGroupList.ValueMember = "Ma_nh";
                 cboToGroupList.DataSource = viewGroup2;
-                cboToGroupList.DisplayMember = "Ten_nh";
+                cboToGroupList.DisplayMember = V6Setting.IsVietnamese ? "Ten_nh" : "Ten_nh2";
                 cboToGroupList.ValueMember = "Ma_nh";
                 
 

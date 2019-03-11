@@ -146,7 +146,6 @@ namespace V6AccountingB
                 {
                     lblStatus.Text = "___________ / _";
                     V6Message.Show("Kiểm tra lại kết nối và cấu hình!\n" + exMessage);
-
                 }
 
                 ((Timer)sender).Dispose();

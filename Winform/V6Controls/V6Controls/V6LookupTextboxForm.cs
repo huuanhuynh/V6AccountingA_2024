@@ -658,6 +658,7 @@ namespace V6Controls
                 V6ControlFormHelper.ShowErrorMessage("V6LookupTextboxForm CmdKey: " + ex.Message);
                 return false;
             }
+            if(dataGridView1.Focused)
             dataGridView1_KeyDown(dataGridView1, new KeyEventArgs(keyData));
             return base.ProcessCmdKey(ref msg, keyData);
         }

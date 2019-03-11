@@ -21,8 +21,6 @@ namespace V6AccountingBusiness.Invoices
             get { return "ACACTBN1"; }
         }
 
-        public override string Name { get { return "Báo nợ"; } }
-
         /// <summary>
         /// Ẩn đi thuộc tính này
         /// </summary>

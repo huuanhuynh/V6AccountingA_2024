@@ -28,8 +28,6 @@ namespace V6AccountingBusiness.Invoices
             get { return "ASOCTSOA"; }
         }
 
-        public override string Name { get { return "Hóa đơn"; } }
-
         public override bool InsertInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> ad1List)
         {
             // Gọi lại ngay hàm bên dưới với chi tiết khác = rỗng.

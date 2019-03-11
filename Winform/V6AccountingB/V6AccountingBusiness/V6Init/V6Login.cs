@@ -561,12 +561,16 @@ namespace V6Init
             }
         }
 
+        /// <summary>
+        /// Ma_dvcs, Ten_dvcs as Name, Ten_dvcs2 as Name2
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public static DataTable GetAgentTable(string key)
         {
             if (GetDataMode == GetDataMode.Local)
             {
-                var data = SqlConnect.Select("Aldvcs", "Ma_dvcs,"
-                    + (V6Setting.Language == "V" ? "Ten_dvcs as Name" : "Ten_dvcs2 as Name"),
+                var data = SqlConnect.Select("Aldvcs", "Ma_dvcs, Ten_dvcs as Name, Ten_dvcs2 as Name2",
                     key, "", "ma_dvcs").Data;
                 return data;
             }

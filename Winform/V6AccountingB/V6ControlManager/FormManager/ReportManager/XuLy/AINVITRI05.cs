@@ -591,7 +591,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var data = V6BusinessHelper.Select("ALVITRI", "*", "MA_VITRI like @p1", "", "MA_VITRI", plist).Data;
                 
                 listBoxAlvitri.DataSource = data;
-                listBoxAlvitri.DisplayMember = "TEN";
+                listBoxAlvitri.DisplayMember = V6Setting.IsVietnamese ? "TEN" : "TEN2";
                 listBoxAlvitri.ValueMember = "MA_VITRI";
             }
             catch (Exception ex)

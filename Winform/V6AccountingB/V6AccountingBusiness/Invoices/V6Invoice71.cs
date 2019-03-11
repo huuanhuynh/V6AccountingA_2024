@@ -24,10 +24,7 @@ namespace V6AccountingBusiness.Invoices
             get { return "APOCTPOA"; }
         }
 
-        public override string Name { get { return _name; } set {  } }
-        private string _name = "Phiếu nhập mua";
         private DataTable _alct2;
-
         public DataTable Alct2
         {
             get

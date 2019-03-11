@@ -21,8 +21,6 @@ namespace V6AccountingBusiness.Invoices
             get { return "AARCTAR1"; }
         }
 
-        public override string Name { get { return "Hóa đơn dịch vụ"; } }
-
         public bool InsertInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> adList, List<IDictionary<string, object>> adList3)
         {
             object stt_rec = amData["STT_REC"];

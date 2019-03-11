@@ -42,7 +42,6 @@
             this.cboMa_xuly = new V6Controls.V6ComboBox();
             this.v6Label1 = new V6Controls.V6Label();
             this.v6Label9 = new V6Controls.V6Label();
-            this.txtMa_ct = new V6Controls.V6VvarTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dateNgay_ct2 = new V6Controls.V6DateTimePicker();
@@ -68,6 +67,7 @@
             this.filterLineVvarTextBox3 = new V6ReportControls.FilterLineVvarTextBox();
             this.radOr = new System.Windows.Forms.RadioButton();
             this.radAnd = new System.Windows.Forms.RadioButton();
+            this.txtMaCtProc = new V6Controls.V6LookupProc();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -244,24 +244,6 @@
             this.v6Label9.Size = new System.Drawing.Size(70, 13);
             this.v6Label9.TabIndex = 4;
             this.v6Label9.Text = "Mã  chứng từ";
-            // 
-            // txtMa_ct
-            // 
-            this.txtMa_ct.AccessibleName = "MA_CT";
-            this.txtMa_ct.BackColor = System.Drawing.SystemColors.Window;
-            this.txtMa_ct.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtMa_ct.CheckNotEmpty = true;
-            this.txtMa_ct.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtMa_ct.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtMa_ct.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtMa_ct.HoverColor = System.Drawing.Color.Yellow;
-            this.txtMa_ct.LeaveColor = System.Drawing.Color.White;
-            this.txtMa_ct.Location = new System.Drawing.Point(112, 46);
-            this.txtMa_ct.Name = "txtMa_ct";
-            this.txtMa_ct.Size = new System.Drawing.Size(100, 20);
-            this.txtMa_ct.TabIndex = 2;
-            this.txtMa_ct.VVar = "MA_CT";
-            this.txtMa_ct.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMa_ct_V6LostFocus);
             // 
             // label2
             // 
@@ -586,7 +568,30 @@
             this.radAnd.Text = "Tất cả điều kiện (and)";
             this.radAnd.UseVisualStyleBackColor = true;
             // 
-            // AAPPR_XULY_ALL
+            // txtMaCtProc
+            // 
+            this.txtMaCtProc.AccessibleName = "MA_CT";
+            this.txtMaCtProc.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaCtProc.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaCtProc.CheckNotEmpty = true;
+            this.txtMaCtProc.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaCtProc.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaCtProc.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaCtProc.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaCtProc.LeaveColor = System.Drawing.Color.White;
+            this.txtMaCtProc.Location = new System.Drawing.Point(112, 46);
+            this.txtMaCtProc.MA_CT = "MA_CT";
+            this.txtMaCtProc.Ma_dm = "VPA_GET_ALCT";
+            this.txtMaCtProc.Name = "txtMaCtProc";
+            this.txtMaCtProc.ParentData = null;
+            this.txtMaCtProc.ShowName = true;
+            this.txtMaCtProc.ShowTextField = "MA_CT";
+            this.txtMaCtProc.Size = new System.Drawing.Size(100, 20);
+            this.txtMaCtProc.TabIndex = 2;
+            this.txtMaCtProc.ValueField = "MA_CT";
+            this.txtMaCtProc.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMa_ct_V6LostFocus);
+            // 
+            // AAPPR_XULY_ALL_Filter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -604,7 +609,7 @@
             this.Controls.Add(this.cboMa_xuly);
             this.Controls.Add(this.v6Label1);
             this.Controls.Add(this.v6Label9);
-            this.Controls.Add(this.txtMa_ct);
+            this.Controls.Add(this.txtMaCtProc);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dateNgay_ct2);
@@ -634,7 +639,6 @@
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox4;
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox3;
         private V6Controls.V6Label v6Label9;
-        private V6Controls.V6VvarTextBox txtMa_ct;
         private V6Controls.V6Label v6Label1;
         private V6Controls.V6ComboBox cboMa_xuly;
         private V6Controls.V6Label v6Label2;
@@ -661,5 +665,6 @@
         private V6ReportControls.FilterLineVvarTextBox lineNH_KH8;
         private V6ReportControls.FilterLineVvarTextBox lineNH_KH7;
         private V6Controls.V6CheckBox chkView_all;
+        private V6Controls.V6LookupProc txtMaCtProc;
     }
 }

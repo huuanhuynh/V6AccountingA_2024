@@ -28,14 +28,12 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong
                     : V6Login.MadvcsTotal > 0 ? "dbo.VFA_Inlist_MEMO(ma_dvcs, '" + V6Login.UserInfo["r_dvcs"] + "')=1" : "";
 
                 DataTable agentData = V6Login.GetAgentTable(key);
-
                 V6Login.MadvcsCount = agentData.Rows.Count;
-
                 cboAgent.ValueMember = "Ma_dvcs";
-                cboAgent.DisplayMember = "Name";
+                cboAgent.DisplayMember = V6Setting.IsVietnamese ? "Name" : "Name2";
                 cboAgent.DataSource = agentData;
                 cboAgent.ValueMember = "Ma_dvcs";
-                cboAgent.DisplayMember = "Name";
+                cboAgent.DisplayMember = V6Setting.IsVietnamese ? "Name" : "Name2";
 
                 cboAgent.SelectedValue = V6Login.Madvcs;
             }

@@ -22,9 +22,6 @@ namespace V6AccountingBusiness.Invoices
         /// <param name="mact"></param>
         public V6Invoice51(string mact):base(mact)
         {
-            //_mact = mact;
-            if (mact == "CA1") Name = "Phiếu chi";
-            else if (mact == "BN1") Name = "Báo nợ";
         }
 
         public override string PrintReportProcedure
@@ -36,10 +33,7 @@ namespace V6AccountingBusiness.Invoices
                 return "";
             }
         }
-
-        public override string Name { get { return _name; } set { _name = value; } }
-        private string _name = "Phiếu chi";
-
+        
         /// <summary>
         /// Ẩn đi thuộc tính này
         /// </summary>

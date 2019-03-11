@@ -28,9 +28,7 @@ namespace V6AccountingBusiness.Invoices
             get { return "AGLCTGL1"; }
         }
 
-        public override string Name { get { return "Phiếu kế toán"; } }
         private DataTable _alct2;
-
         public DataTable Alct2
         {
             get

@@ -2158,10 +2158,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             try
             {
                 cboMaNt.ValueMember = "ma_nt";
-                cboMaNt.DisplayMember = "Ten_nt";
+                cboMaNt.DisplayMember = V6Setting.IsVietnamese ? "Ten_nt" : "Ten_nt2";
                 cboMaNt.DataSource = Invoice.Alnt;
                 cboMaNt.ValueMember = "ma_nt";
-                cboMaNt.DisplayMember = "Ten_nt";
+                cboMaNt.DisplayMember = V6Setting.IsVietnamese ? "Ten_nt" : "Ten_nt2";
             }
             catch (Exception ex)
             {

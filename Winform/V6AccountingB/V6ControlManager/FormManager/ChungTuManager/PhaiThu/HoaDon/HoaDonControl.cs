@@ -7879,5 +7879,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             FixMenuChucNangItemShiftText(chonBaoGiaToolStripMenuItem);
         }
+
+        private void txtMa_sonb_TextChanged(object sender, EventArgs e)
+        {
+            DoNothing();
+        }
     }
 }

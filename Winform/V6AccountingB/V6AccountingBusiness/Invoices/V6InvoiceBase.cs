@@ -1009,8 +1009,26 @@ namespace V6AccountingBusiness.Invoices
             return Mact + ": " + Name;
         }
 
-        public virtual string Name { get { return _base_name; } set { _base_name = value; } }
-        protected string _base_name = "Chứng từ";
+        public virtual string Name
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_base_name))
+                {
+                    try
+                    {
+                        _base_name = Alct[V6Setting.IsVietnamese ? "Ten_ct" : "Ten_ct2"].ToString().Trim();
+                    }
+                    catch
+                    {
+                        //
+                    }
+                }
+                return _base_name;
+            }
+            set { _base_name = value; }
+        }
+        protected string _base_name = null;
 
         private SortedDictionary<string, DefineInfo> _templateSettingAM = null;
         /// <summary>
