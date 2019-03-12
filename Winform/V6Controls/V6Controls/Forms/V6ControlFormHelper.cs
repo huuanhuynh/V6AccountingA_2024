@@ -765,6 +765,10 @@ namespace V6Controls.Forms
                 {
                     AddTagString(c, "readonly");
                     c.TabStop = false;
+                    //if (c.AccessibleName.StartsWith("DVTP"))
+                    //{
+                    //    string st = "";
+                    //}
                 }
 
                 if (c != temp_control)
@@ -919,6 +923,11 @@ namespace V6Controls.Forms
                 {
                     AddTagString(c, "readonly");
                     c.TabStop = false;
+                    //if (c.AccessibleName.StartsWith("DVTP"))
+                    //{
+                    //    string st = "";
+                    //    c.TabStopChanged += c_TabStopChanged;
+                    //}
                 }
 
                 if (c != temp_control)
@@ -962,6 +971,11 @@ namespace V6Controls.Forms
             alct1Dic = _alct1Dic;
             //carryList = _carryList;
             return result;
+        }
+
+        static void c_TabStopChanged(object sender, EventArgs e)
+        {
+            string st = "";
         }
 
         /// <summary>
@@ -3707,7 +3721,7 @@ namespace V6Controls.Forms
 
                         if (ExportData.ToExcelTemplate(
                             ExportExcelTemplate_ExcelTemplateFileFull, ExportExcelTemplate_data, ExportExcelTemplate_saveFileName, firstCell,
-                            excelColumns.Replace("[", "").Replace("]", "").Split(excelColumns.Contains(";") ? ';' : ','),
+                            ObjectAndString.SplitString(excelColumns.Replace("[", "").Replace("]", "")),//.Split(excelColumns.Contains(";") ? ';' : ','),
                             parameters, V6Setting.V6_number_format_info,
                             insertRow, drawLine))
                         {

@@ -347,7 +347,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                         _soLuong1 = (V6NumberTextBox)control;
                         _soLuong1.LostFocus += delegate
                         {
-                            CheckSoLuong1();
+                            CheckSoLuong1(_soLuong1);
                         };
                         _soLuong1.V6LostFocus += SoLuong1_V6LostFocus;
                         _soLuong1.V6LostFocusNoChange += delegate
@@ -379,10 +379,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                             }
                             if (IsReady && (Mode == V6Mode.Add || Mode == V6Mode.Edit) && (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit))
                             {
-                                if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
-                                if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+                                if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _heSo1);
+                                if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _heSo1);
                                 _soLuong.Value = _soLuong1.Value * _heSo1.Value;
-                                if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+                                if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _heSo1);
                             }
                         };
                         break;
@@ -613,17 +613,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                             }
                             _sl_qd.V6LostFocus += delegate
                             {
-                                TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
-                                TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+                                TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
+                                TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
                                 _soLuong.Value = _soLuong1.Value * _heSo1.Value;
 
                                 if (M_CAL_SL_QD_ALL == "1")
                                 {
-                                    CheckSoLuong1();
+                                    CheckSoLuong1(_sl_qd);
                                     chkT_THUE_NT.Checked = false;
                                     Tinh_thue_ct();
                                 }
-                                TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+                                TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
                             };
 
                             if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
@@ -1042,11 +1042,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         {
             try
             {
-                CheckSoLuong1();
+                CheckSoLuong1(_soLuong1);
                 chkT_THUE_NT.Checked = false;
                 Tinh_thue_ct();
 
-                TinhTienNt2();
+                TinhTienNt2(_soLuong1);
             }
             catch (Exception ex)
             {
@@ -1056,7 +1056,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
         public void GiaNt21_V6LostFocus(object sender)
         {
-            TinhTienNt2();
+            TinhTienNt2(_giaNt21);
         }
 
         void Hs_qd4_V6LostFocus(object sender)
@@ -1181,7 +1181,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         /// <summary>
         /// Check so luong roi tinh tien Nt2
         /// </summary>
-        public void CheckSoLuong1()
+        public void CheckSoLuong1(Control actionControl = null)
         {
             try
             {
@@ -1202,7 +1202,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                         }
                     }
                 }
-                TinhTienNt2();
+                TinhTienNt2(actionControl);
                 //TinhTienVon();
             }
             catch (Exception ex)
@@ -1583,7 +1583,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             }
         }
 
-        public void TinhTienNt2()
+        public void TinhTienNt2(Control actionControl = null)
         {
             try
             {
@@ -1601,7 +1601,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 TinhVanChuyen();
                 TinhGiamGiaCt();
 
-                if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+                if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
             }
             catch (Exception ex)
             {

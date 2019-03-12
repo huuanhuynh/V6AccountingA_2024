@@ -320,18 +320,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                             {
                                 if (M_CAL_SL_QD_ALL == "1")
                                 {
-                                    TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+                                    TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _heSo1);
                                     _soLuong.Value = _soLuong1.Value * _heSo1.Value;
                                 }
                                 else if (M_CAL_SL_QD_ALL == "0")
                                 {
                                     _soLuong.Value = _soLuong1.Value * _heSo1.Value;
-                                    TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+                                    TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _heSo1);
                                 }
                                 else if (M_CAL_SL_QD_ALL == "2")
                                 {
                                     _soLuong.Value = _soLuong1.Value * _heSo1.Value;
-                                    TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+                                    TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _heSo1);
                                 }
                             }
                         };
@@ -354,14 +354,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                             }
                             _sl_qd.V6LostFocus += delegate
                             {
-                                TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
-                                TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+                                TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
+                                TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
                                 _soLuong.Value = _soLuong1.Value * _heSo1.Value;
                                 if (M_CAL_SL_QD_ALL == "1")
                                 {
-                                    TinhTienNt2();
+                                    TinhTienNt2(_sl_qd);
                                 }
-                                TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+                                TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
                             };
 
                             if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
@@ -962,12 +962,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
         void SoLuong1_V6LostFocus(object sender)
         {
-           TinhTienNt2();
+           TinhTienNt2(_soLuong1);
         }
 
         public void GiaNt21_V6LostFocus(object sender)
         {
-            TinhTienNt2();
+            TinhTienNt2(_giaNt21);
         }
 
         #endregion events
@@ -1403,12 +1403,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
         }
 
-        public void TinhTienNt2()
+        public void TinhTienNt2(Control actionControl = null)
         {
             try
             {
-                if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
-                if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+                if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
+                if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
                 
                 _soLuong.Value = _soLuong1.Value * _heSo1.Value;
                 _tienNt2.Value = V6BusinessHelper.Vround(_soLuong1.Value * _giaNt21.Value, M_ROUND_NT);
@@ -1422,7 +1422,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 TinhChietKhauChiTiet(false, _ck, _ckNt, txtTyGia, _tienNt2, _pt_cki);
                 TinhGiaNt2();
 
-                if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+                if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
             }
             catch (Exception ex)
             {

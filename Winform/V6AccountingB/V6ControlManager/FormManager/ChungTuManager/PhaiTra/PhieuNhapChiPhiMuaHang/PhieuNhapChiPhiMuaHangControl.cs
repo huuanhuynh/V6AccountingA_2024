@@ -929,7 +929,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
         public void GiaNt01_V6LostFocus(object sender)
         {
-            TinhTienNt0();
+            TinhTienNt0(_giaNt01);
         }
 
         #endregion events
@@ -1159,10 +1159,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             TinhTienNt0();
         }
 
-        public void TinhTienNt0()
+        public void TinhTienNt0(Control actionControl = null)
         {
-
-
             try
             {
                 _soLuong.Value = _soLuong1.Value * _heSo1.Value;

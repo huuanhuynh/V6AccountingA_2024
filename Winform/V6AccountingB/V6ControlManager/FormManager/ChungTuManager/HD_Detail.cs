@@ -500,7 +500,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
                 if (c.Tag == null || c.IsVisibleTag())
                 {
-                    c.TabStop = true;
+                    //c.TabStop = true;
                     if (c is V6ColorTextBox)
                     {
                         var vc = c as V6ColorTextBox;

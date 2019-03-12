@@ -838,6 +838,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <summary>
         /// Tính số lượng quy đổi.
         /// </summary>
+        /// <param name="actionControl">Control gây ra sự kiện.</param>
         /// <param name="_soLuong1">Số lượng nhập theo DVT đang chọn.</param>
         /// <param name="_sl_qd">Quy đổi ra sl theo DVT quy đổi (sẽ được tính toán ra).</param>
         /// <param name="_sl_qd2"></param>
@@ -845,7 +846,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <param name="_hs_qd2">100 viên / thùng</param>
         public void TinhSoluongQuyDoi_0(V6NumberTextBox _soLuong1
             , V6NumberTextBox _sl_qd, V6NumberTextBox _sl_qd2
-            , V6NumberTextBox _hs_qd1, V6NumberTextBox _hs_qd2)
+            , V6NumberTextBox _hs_qd1, V6NumberTextBox _hs_qd2, Control actionControl)
         {
             try
             {
@@ -855,8 +856,24 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     //Phần nguyên, (ví dụ 1.5 thùng)
                     if (_hs_qd1.Value != 0)
                     {
-                        var sl_qd = _soLuong1.Value*_hs_qd1.Value;
-                        _sl_qd.Value = V6BusinessHelper.Vround(sl_qd, M_ROUND_SL);
+                        if (M_TYPE_SL_QD_ALL == "0E" && actionControl != null)
+                        {
+                            string ACN = actionControl.AccessibleName.ToUpper();
+                            if (ACN == "SL_QD" || ACN == "GIA_NT21" || ACN == "GIA_NT01" || ACN == "GIA_NT1")
+                            {
+                                DoNothing();
+                            }
+                            else
+                            {
+                                var sl_qd = _soLuong1.Value * _hs_qd1.Value;
+                                _sl_qd.Value = V6BusinessHelper.Vround(sl_qd, M_ROUND_SL);
+                            }
+                        }
+                        else
+                        {
+                            var sl_qd = _soLuong1.Value * _hs_qd1.Value;
+                            _sl_qd.Value = V6BusinessHelper.Vround(sl_qd, M_ROUND_SL);
+                        }
                     }
                     else if (M_TYPE_SL_QD_ALL == "00")
                     {
@@ -880,7 +897,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         public void TinhSoluongQuyDoi_2(V6NumberTextBox _soLuong1
             , V6NumberTextBox _sl_qd, V6NumberTextBox _sl_qd2
-            , V6NumberTextBox _hs_qd1, V6NumberTextBox _hs_qd2)
+            , V6NumberTextBox _hs_qd1, V6NumberTextBox _hs_qd2, Control actionControl)
         {
             try
             {
@@ -889,8 +906,24 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     //Quy đổi chia
                     if (_hs_qd1.Value != 0)
                     {
-                        var sl_qd = _soLuong1.Value/_hs_qd1.Value;
-                        _sl_qd.Value = V6BusinessHelper.Vround(sl_qd, M_ROUND_SL);
+                        if (M_TYPE_SL_QD_ALL == "2E" && actionControl != null)
+                        {
+                            string ACN = actionControl.AccessibleName.ToUpper();
+                            if (ACN == "SL_QD" || ACN == "GIA_NT21" || ACN == "GIA_NT01" || ACN == "GIA_NT1")
+                            {
+                                DoNothing();
+                            }
+                            else
+                            {
+                                var sl_qd = _soLuong1.Value / _hs_qd1.Value;
+                                _sl_qd.Value = V6BusinessHelper.Vround(sl_qd, M_ROUND_SL);
+                            }
+                        }
+                        else
+                        {
+                            var sl_qd = _soLuong1.Value / _hs_qd1.Value;
+                            _sl_qd.Value = V6BusinessHelper.Vround(sl_qd, M_ROUND_SL);
+                        }
                     }
                     else if (M_TYPE_SL_QD_ALL == "20")
                     {
@@ -914,7 +947,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         public void TinhSoluongQuyDoi_1(V6NumberTextBox _soLuong1
             , V6NumberTextBox _sl_qd, V6NumberTextBox _sl_qd2
-            , V6NumberTextBox _hs_qd1, V6NumberTextBox _hs_qd2)
+            , V6NumberTextBox _hs_qd1, V6NumberTextBox _hs_qd2, Control actionControl)
         {
             try
             {
@@ -922,8 +955,24 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 {
                     if (_hs_qd1.Value != 0)
                     {
-                        var soLuong1 = _sl_qd.Value*_hs_qd1.Value;
-                        _soLuong1.Value = V6BusinessHelper.Vround(soLuong1, M_ROUND_SL);
+                        if (M_TYPE_SL_QD_ALL == "1E" && actionControl != null)
+                        {
+                            string ACN = actionControl.AccessibleName.ToUpper();
+                            if (ACN == "SO_LUONG1" || ACN == "GIA_NT21" || ACN == "GIA_NT01" || ACN == "GIA_NT1")
+                            {
+                                DoNothing();
+                            }
+                            else
+                            {
+                                var soLuong1 = _sl_qd.Value * _hs_qd1.Value;
+                                _soLuong1.Value = V6BusinessHelper.Vround(soLuong1, M_ROUND_SL);
+                            }
+                        }
+                        else
+                        {
+                            var soLuong1 = _sl_qd.Value * _hs_qd1.Value;
+                            _soLuong1.Value = V6BusinessHelper.Vround(soLuong1, M_ROUND_SL);
+                        }
                     }
                     else if (M_TYPE_SL_QD_ALL == "10")
                     {
