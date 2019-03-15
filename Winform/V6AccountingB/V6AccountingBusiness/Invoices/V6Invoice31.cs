@@ -296,7 +296,9 @@ namespace V6AccountingBusiness.Invoices
         {
             //c=AD, d=Alvt, e=ABVT13
             string sql = "SELECT c.*,d.Ten_tk AS Ten_tk" + ADSELECTMORE + " FROM " + AD_TableName
-                + " c LEFT JOIN Altk d ON c.Tk_vt= d.Tk Where c.stt_rec = @rec Order by c.stt_rec0";
+                + " c LEFT JOIN Altk d ON c.Tk_vt= d.Tk ";
+            sql += string.IsNullOrEmpty(sttRec) ? " Where 1=0" : " Where c.stt_rec=@rec";
+            sql += " Order by c.stt_rec0";
             var listParameters = new SqlParameter("@rec", sttRec);
             var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql, listParameters).Tables[0];
             return tbl;
@@ -304,7 +306,9 @@ namespace V6AccountingBusiness.Invoices
         public DataTable LoadAd2(string sttRec)
         {
             //c=AD, d=Alvt, e=ABVT13
-            string sql = "SELECT * FROM " + AD2 + " Where stt_rec = @rec Order by stt_rec0";
+            string sql = "SELECT * FROM " + AD2 + " c ";
+            sql += string.IsNullOrEmpty(sttRec) ? " Where 1=0" : " Where c.stt_rec=@rec";
+            sql += " Order by c.stt_rec0";
             var listParameters = new SqlParameter("@rec", sttRec);
             var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql, listParameters).Tables[0];
             return tbl;
@@ -312,7 +316,9 @@ namespace V6AccountingBusiness.Invoices
         public DataTable LoadAd3(string sttRec)
         {
             string sql = "SELECT c.*,d.Ten_tk AS Ten_tk FROM " + AD3_TableName
-                + " c LEFT JOIN Altk d ON c.Tk_i= d.Tk Where c.stt_rec = @rec Order by c.stt_rec0";
+                + " c LEFT JOIN Altk d ON c.Tk_i= d.Tk ";
+            sql += string.IsNullOrEmpty(sttRec) ? " Where 1=0" : " Where c.stt_rec=@rec";
+            sql += " Order by c.stt_rec0";
             var listParameters = new SqlParameter("@rec", sttRec);
             var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql, listParameters).Tables[0];
             return tbl;

@@ -203,6 +203,9 @@ namespace V6Init
         {
         }
 
+        /// <summary>
+        /// Tạo object rỗng.
+        /// </summary>
         public AldmConfig()
         {
             NoInfo = true;

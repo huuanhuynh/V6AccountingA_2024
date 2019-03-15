@@ -4208,6 +4208,12 @@
     <Compile Include="FormManager\ReportManager\ReportR\ReportR45ViewBase.designer.cs">
       <DependentUpon>ReportR45ViewBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\ReportR\ReportRDev.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\ReportR\ReportRDev.designer.cs">
+      <DependentUpon>ReportRDev.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\ReportR\ReportRWWView2Base.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -7542,6 +7548,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportR45ViewBase.resx">
       <DependentUpon>ReportR45ViewBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportRDev.resx">
+      <DependentUpon>ReportRDev.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportRWWView2Base.resx">
       <DependentUpon>ReportRWWView2Base.cs</DependentUpon>

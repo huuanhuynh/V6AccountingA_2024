@@ -119,17 +119,8 @@ namespace V6ControlManager.FormManager.MenuManager
                             {
                                 if (check)
                                 {
-                                    bool is_aldm = false, check_admin = false, check_v6 = false;
-                                    IDictionary<string, object> keys = new Dictionary<string, object>();
-                                    keys.Add("MA_DM", TABLE_NAME);
-                                    var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
-                                    if (aldm.Rows.Count == 1)
-                                    {
-                                        is_aldm = aldm.Rows[0]["IS_ALDM"].ToString() == "1";
-                                        check_admin = aldm.Rows[0]["CHECK_ADMIN"].ToString() == "1";
-                                        check_v6 = aldm.Rows[0]["CHECK_V6"].ToString() == "1";
-                                    }
-
+                                    AldmConfig aldmConfig = ConfigManager.GetAldmConfig(TABLE_NAME);
+                                    
                                     var where = "";
                                     if (TABLE_NAME == "ALKC")
                                     {
@@ -139,7 +130,7 @@ namespace V6ControlManager.FormManager.MenuManager
 
                                             where = filterForm.QueryString;
                                             c = new DanhMucView(item_id, mButton.Text, TABLE_NAME,
-                                                V6Login.GetInitFilter(TABLE_NAME, V6ControlFormHelper.FindFilterType(owner)), null, is_aldm)
+                                                V6Login.GetInitFilter(TABLE_NAME, V6ControlFormHelper.FindFilterType(owner)), null, aldmConfig)
                                             {
                                                 Name = item_id,
                                                 ReportFile = repFile,
@@ -151,13 +142,13 @@ namespace V6ControlManager.FormManager.MenuManager
                                     }
                                     else
                                     {
-                                        if (is_aldm)
+                                        if (aldmConfig.IS_ALDM)
                                         {
-                                            if (check_admin && V6Login.IsAdmin)
+                                            if (aldmConfig.CHECK_ADMIN && V6Login.IsAdmin)
                                             {
                                                 check = CheckPassword(owner);
                                             }
-                                            else if (check_v6)
+                                            else if (aldmConfig.CHECK_V6)
                                             {
                                                 check = CheckPasswordV6(owner);
                                             }
@@ -166,7 +157,7 @@ namespace V6ControlManager.FormManager.MenuManager
                                         if (!check) return null;
 
                                         c = new DanhMucView(item_id, mButton.Text, TABLE_NAME,
-                                            V6Login.GetInitFilter(TABLE_NAME, V6ControlFormHelper.FindFilterType(owner)), null, is_aldm)
+                                            V6Login.GetInitFilter(TABLE_NAME, V6ControlFormHelper.FindFilterType(owner)), null, aldmConfig)
                                         {
                                             Name = item_id,
                                             ReportFile = repFile,
@@ -340,24 +331,15 @@ namespace V6ControlManager.FormManager.MenuManager
                             {
                                 if (check1)
                                 {
-                                    bool is_aldm = false, check_admin = false, check_v6 = false;
-                                    IDictionary<string, object> keys = new Dictionary<string, object>();
-                                    keys.Add("MA_DM", TABLE_NAME);
-                                    var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
-                                    if (aldm.Rows.Count == 1)
+                                    AldmConfig aldmConfig = ConfigManager.GetAldmConfig(TABLE_NAME);
+                                    
+                                    if (aldmConfig.IS_ALDM)
                                     {
-                                        is_aldm = aldm.Rows[0]["IS_ALDM"].ToString() == "1";
-                                        check_admin = aldm.Rows[0]["CHECK_ADMIN"].ToString() == "1";
-                                        check_v6 = aldm.Rows[0]["CHECK_V6"].ToString() == "1";
-                                    }
-
-                                    if (is_aldm)
-                                    {
-                                        if (check_admin && V6Login.IsAdmin)
+                                        if (aldmConfig.CHECK_ADMIN && V6Login.IsAdmin)
                                         {
                                             check = CheckPassword(owner);
                                         }
-                                        else if (check_v6)
+                                        else if (aldmConfig.CHECK_V6)
                                         {
                                             check = CheckPasswordV6(owner);
                                         }
@@ -365,7 +347,7 @@ namespace V6ControlManager.FormManager.MenuManager
 
                                     if (!check) return null;
 
-                                    c = new DanhMucView(item_id, mButton.Text, tableNameEdit, getInitFilter, "", false)
+                                    c = new DanhMucView(item_id, mButton.Text, tableNameEdit, getInitFilter, "", aldmConfig)
                                     {
                                         Name = item_id,
                                         ReportFile = repFile,
@@ -397,7 +379,7 @@ namespace V6ControlManager.FormManager.MenuManager
                             if (V6Login.UserRight.AllowRun(item_id, codeform))
                             {
                                 c = new DanhMucView(item_id, mButton.Text, tableNameView,
-                                    V6Login.GetInitFilter(tableNameView, V6ControlFormHelper.FindFilterType(owner)), null, false)
+                                    V6Login.GetInitFilter(tableNameView, V6ControlFormHelper.FindFilterType(owner)), null, new AldmConfig())
                                 {
                                     Name = item_id,
                                     ReportFile = repFile,
@@ -712,25 +694,15 @@ namespace V6ControlManager.FormManager.MenuManager
                             {
                                 if (check)
                                 {
-                                    //var where = "";
-                                    bool is_aldm = false, check_admin = false, check_v6 = false;
-                                    IDictionary<string, object> keys = new Dictionary<string, object>();
-                                    keys.Add("MA_DM", TABLE_NAME);
-                                    var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
-                                    if (aldm.Rows.Count == 1)
+                                    AldmConfig aldmConfig = ConfigManager.GetAldmConfig(TABLE_NAME);
+                                    
+                                    if (aldmConfig.IS_ALDM)
                                     {
-                                        is_aldm = aldm.Rows[0]["IS_ALDM"].ToString() == "1";
-                                        check_admin = aldm.Rows[0]["CHECK_ADMIN"].ToString() == "1";
-                                        check_v6 = aldm.Rows[0]["CHECK_V6"].ToString() == "1";
-                                    }
-
-                                    if (is_aldm)
-                                    {
-                                        if (check_admin && V6Login.IsAdmin)
+                                        if (aldmConfig.CHECK_ADMIN && V6Login.IsAdmin)
                                         {
                                             check = CheckPassword(owner);
                                         }
-                                        else if (check_v6)
+                                        else if (aldmConfig.CHECK_V6)
                                         {
                                             check = CheckPasswordV6(owner);
                                         }
@@ -739,7 +711,7 @@ namespace V6ControlManager.FormManager.MenuManager
                                     if (!check) return null;
 
                                     c = new DanhMucView(item_id, mButton.Text, TABLE_NAME,
-                                        V6Login.GetInitFilter(TABLE_NAME, V6ControlFormHelper.FindFilterType(owner)), null, is_aldm)
+                                        V6Login.GetInitFilter(TABLE_NAME, V6ControlFormHelper.FindFilterType(owner)), null, aldmConfig)
                                     {
                                         Name = item_id,
                                         ReportFile = repFile,

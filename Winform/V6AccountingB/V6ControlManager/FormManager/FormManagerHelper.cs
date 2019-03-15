@@ -60,15 +60,15 @@ namespace V6ControlManager.FormManager
                     if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift)
                     {
                         //shift_is_down = true;
-                        return new DanhMucView(itemId, code, V6TableName.CorpLan.ToString(), "", "", false);
+                        return new DanhMucView(itemId, code, V6TableName.CorpLan.ToString(), "", "", new AldmConfig());
                     }
                     else if ((Control.ModifierKeys & Keys.Control) == Keys.Control)
                     {
-                        return new DanhMucView(itemId, code, V6TableName.CorpLan1.ToString(), "", "", false);
+                        return new DanhMucView(itemId, code, V6TableName.CorpLan1.ToString(), "", "", new AldmConfig());
                     }
                     else if ((Control.ModifierKeys & Keys.Alt) == Keys.Alt)
                     {
-                        return new DanhMucView(itemId, code, V6TableName.CorpLan2.ToString(), "", "", false);
+                        return new DanhMucView(itemId, code, V6TableName.CorpLan2.ToString(), "", "", new AldmConfig());
                     }
                     else
                     {

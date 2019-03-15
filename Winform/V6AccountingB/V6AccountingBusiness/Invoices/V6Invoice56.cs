@@ -325,7 +325,9 @@ namespace V6AccountingBusiness.Invoices
 
         public override DataTable LoadAD(string sttRec)
         {
-            string sql = "SELECT c.*,d.Ten_tk AS Ten_tk_i" + ADSELECTMORE + " FROM [" + AD_TableName + "] c LEFT JOIN Altk d ON c.tk_i= d.tk Where c.stt_rec = @rec Order by c.stt_rec0";
+            string sql = "SELECT c.*,d.Ten_tk AS Ten_tk_i" + ADSELECTMORE + " FROM [" + AD_TableName + "] c LEFT JOIN Altk d ON c.tk_i= d.tk ";
+            sql += string.IsNullOrEmpty(sttRec) ? " Where 1=0" : " Where c.stt_rec=@rec";
+            sql += " Order by c.stt_rec0";
             SqlParameter[] listParameters = { new SqlParameter("@rec", sttRec) };
             var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql, listParameters).Tables[0];
             return tbl;
@@ -333,7 +335,9 @@ namespace V6AccountingBusiness.Invoices
         public DataTable LoadAd2(string sttRec)
         {
             //c=AD, d=Alvt, e=ABVT13
-            string sql = "SELECT * FROM [" + AD2 + "] Where stt_rec = @rec Order by stt_rec0";
+            string sql = "SELECT * FROM [" + AD2 + "] c ";
+            sql += string.IsNullOrEmpty(sttRec) ? " Where 1=0" : " Where c.stt_rec=@rec";
+            sql += " Order by c.stt_rec0";
             var listParameters = new SqlParameter("@rec", sttRec);
             var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql, listParameters).Tables[0];
             return tbl;

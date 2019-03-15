@@ -889,6 +889,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             try
             {
+                //gridViewSummary1.NoSumColumns = Report_GRDT_V1;
                 if (MauInSelectedRow != null)
                 {
                     //gridViewSummary1.SumCondition = new Condition()

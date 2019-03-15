@@ -27,7 +27,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
     public partial class DanhMucView : V6FormControl
     {
         #region ===== VAR =====
-        private bool _aldm;
+        //private bool _aldm0;
         private readonly V6Categories _categories = new V6Categories();
         private SortedDictionary<string, string> _hideColumnDic;
         /// <summary>
@@ -111,9 +111,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             get
             {
-                string result;
-                if (_aldm) result = _aldmConfig == null ? null : _aldmConfig.FILTER_FIELD;
-                else result = v6lookup_config.FILTER_FIELD;
+                var result = _aldmConfig.IS_ALDM ? _aldmConfig.FILTER_FIELD : _v6lookupConfig.FILTER_FIELD;
 
                 if (string.IsNullOrEmpty(result) && CurrentTable == V6TableName.CorpLan)
                 {
@@ -175,11 +173,10 @@ namespace V6ControlManager.FormManager.DanhMucManager
         /// <param name="tableName"></param>
         /// <param name="initFilter">Không có thì truyền null</param>
         /// <param name="sort">Không có thì truyền null</param>
-        /// <param name="aldm">Có lấy thông tin quản lý dm trong aldm hay không?</param>
-        public DanhMucView(string itemId, string title, string tableName, string initFilter, string sort, bool aldm)
+        /// <param name="aldmConfig">Có lấy thông tin quản lý dm trong aldm hay không?</param>
+        public DanhMucView(string itemId, string title, string tableName, string initFilter, string sort, AldmConfig aldmConfig)
         {
             m_itemId = itemId;
-            _aldm = aldm;
             
             InitializeComponent();
 
@@ -192,17 +189,17 @@ namespace V6ControlManager.FormManager.DanhMucManager
             SelectResult = new V6SelectResult();
             SelectResult.SortField = sort;
 
-            _aldmConfig = ConfigManager.GetAldmConfig(_tableName);
-            if (aldm)
+            _aldmConfig = aldmConfig;
+            if (_aldmConfig.IS_ALDM)
             {
                 if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(_aldmConfig.ORDER))
                     SelectResult.SortField = _aldmConfig.ORDER;
             }
             else
             {
-                v6lookup_config = V6Lookup.GetV6lookupConfigByTableName(_tableName);
-                if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(v6lookup_config.vOrder))
-                    SelectResult.SortField = v6lookup_config.vOrder;
+                _v6lookupConfig = V6Lookup.GetV6lookupConfigByTableName(_tableName);
+                if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(_v6lookupConfig.vOrder))
+                    SelectResult.SortField = _v6lookupConfig.vOrder;
             }
 
             GetExtraInitFilter();
@@ -223,7 +220,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             {
                 btnNhom.Enabled = true;
             }
-            else if (aldm && _aldmConfig.IsGroup)
+            else if (_aldmConfig.IS_ALDM && _aldmConfig.IsGroup)
             {
                 btnNhom.Enabled = true;
             }
@@ -248,7 +245,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
                 SqlParameter[] plist =
                 {
-                    new SqlParameter("@IsAldm", _aldm),
+                    new SqlParameter("@IsAldm", _aldmConfig.IS_ALDM),
                     new SqlParameter("@TableName", _tableName),
                     new SqlParameter("@Type", filterType),
                     new SqlParameter("@User_id", V6Login.UserId),
@@ -428,7 +425,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 }
             
                 // Đè format cũ
-                if (_aldm)
+                if (_aldmConfig.IS_ALDM)
                 {
                     V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, _aldmConfig.GRDS_V1, _aldmConfig.GRDF_V1,
                         V6Setting.IsVietnamese ? _aldmConfig.GRDHV_V1 : _aldmConfig.GRDHE_V1);
@@ -441,15 +438,15 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 }
                 else
                 {
-                    string showFields = v6lookup_config.GRDS_V1;
-                    string formatStrings = v6lookup_config.GRDF_V1;
-                    string headerString = V6Setting.IsVietnamese ? v6lookup_config.GRDHV_V1 : v6lookup_config.GRDHE_V1;
+                    string showFields = _v6lookupConfig.GRDS_V1;
+                    string formatStrings = _v6lookupConfig.GRDF_V1;
+                    string headerString = V6Setting.IsVietnamese ? _v6lookupConfig.GRDHV_V1 : _v6lookupConfig.GRDHE_V1;
                     V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
-                    var conditionColor = ObjectAndString.StringToColor(v6lookup_config.COLORV);
-                    V6ControlFormHelper.FormatGridView(dataGridView1, v6lookup_config.FIELDV, v6lookup_config.OPERV, v6lookup_config.VALUEV,
-                        v6lookup_config.BOLD_YN, v6lookup_config.COLOR_YN, conditionColor);
+                    var conditionColor = ObjectAndString.StringToColor(_v6lookupConfig.COLORV);
+                    V6ControlFormHelper.FormatGridView(dataGridView1, _v6lookupConfig.FIELDV, _v6lookupConfig.OPERV, _v6lookupConfig.VALUEV,
+                        _v6lookupConfig.BOLD_YN, _v6lookupConfig.COLOR_YN, conditionColor);
 
-                    int frozen = ObjectAndString.ObjectToInt(v6lookup_config.FROZENV);
+                    int frozen = ObjectAndString.ObjectToInt(_v6lookupConfig.FROZENV);
                     dataGridView1.SetFrozen(frozen);
                 }
             }
@@ -460,7 +457,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         }
 
         private AldmConfig _aldmConfig;
-        private V6lookupConfig v6lookup_config;
+        private V6lookupConfig _v6lookupConfig;
         #region ==== Do method ====
 
         public override void DoHotKey(Keys keyData)
@@ -913,11 +910,11 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     {
                         // Tuanmh 23/08/2017
                         //id = _aldm ? aldm_config.KEY:
-                        var id = _aldm ? _aldmConfig.TABLE_KEY: v6lookup_config.vValue;
-                        
-                        var id_check = _aldm ? _aldmConfig.DOI_MA : v6lookup_config.vValue;
+                        var id = _aldmConfig.IS_ALDM ? _aldmConfig.TABLE_KEY: _v6lookupConfig.vValue;
 
-                        var listTable = _aldm?_aldmConfig.F8_TABLE: v6lookup_config.ListTable;
+                        var id_check = _aldmConfig.IS_ALDM ? _aldmConfig.DOI_MA : _v6lookupConfig.vValue;
+
+                        var listTable = _aldmConfig.IS_ALDM ? _aldmConfig.F8_TABLE : _v6lookupConfig.ListTable;
                         var value = "";
                         var value_show = "";
 
@@ -932,7 +929,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                                 return;
                             }
                             // Change id-> f_name
-                            if (_aldm)
+                            if (_aldmConfig.IS_ALDM)
                             {
                                value_show = string.IsNullOrEmpty(_aldmConfig.F_NAME) ? "" : row.Cells[_aldmConfig.F_NAME].Value.ToString().Trim();
                             }
@@ -1270,7 +1267,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     form.ShowDialog(this);
                     return;
                 }
-                else if(_aldm && _aldmConfig.IsGroup)
+                else if (_aldmConfig.IS_ALDM && _aldmConfig.IsGroup)
                 {
                     string L_ALDM = _aldmConfig.L_ALDM;
                     var sss = ObjectAndString.SplitString(L_ALDM);
@@ -1760,8 +1757,8 @@ namespace V6ControlManager.FormManager.DanhMucManager
             {
                 V6TableStruct structTable = V6BusinessHelper.GetTableStruct(_tableName);
                 //var keys = new SortedDictionary<string, object>();
-                string[] fields = _aldm ? ObjectAndString.SplitString(_aldmConfig.F_SEARCH) :
-                     ObjectAndString.SplitString(V6Setting.IsVietnamese ? v6lookup_config.vFields : v6lookup_config.eFields);
+                string[] fields = _aldmConfig.IS_ALDM ? ObjectAndString.SplitString(_aldmConfig.F_SEARCH) :
+                     ObjectAndString.SplitString(V6Setting.IsVietnamese ? _v6lookupConfig.vFields : _v6lookupConfig.eFields);
                 if (fields.Length == 0 && CurrentTable == V6TableName.CorpLan)
                 {
                     // Hỗ trợ cho CorpLan

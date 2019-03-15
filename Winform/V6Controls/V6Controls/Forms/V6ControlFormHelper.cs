@@ -592,12 +592,31 @@ namespace V6Controls.Forms
 
         public static Image LoadCopyImage(string path)
         {
-            Bitmap bm;
-            using (Image im = Image.FromFile(path))
+            Image img;
+            using (var bmpTemp = new Bitmap(path))
             {
-                bm = new Bitmap(im);
+                img = new Bitmap(bmpTemp);
             }
-            return bm;
+            return img;
+
+            //Image im;
+            //byte[] data = File.ReadAllBytes(path);
+            //im = GetImage(data);
+            //return im;
+
+            //using (Image im = Image.FromFile(path))
+            //{
+            //    bm = new Bitmap(im);
+            //}
+            //return bm;
+        }
+
+        private static Image GetImage(byte[] data)
+        {
+            using (MemoryStream ms = new MemoryStream(data))
+            {
+                return Image.FromStream(ms);
+            }
         }
         
         public static void MoveTo(Control c, Point p)

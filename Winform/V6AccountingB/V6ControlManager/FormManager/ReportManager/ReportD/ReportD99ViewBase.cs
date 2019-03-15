@@ -517,6 +517,19 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 return result;
             }
         }
+
+        private string Report_GRDT_V1
+        {
+            get
+            {
+                var result = "";
+                if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
+                {
+                    result = MauInSelectedRow["GRDT_V1"].ToString().Trim();
+                }
+                return result;
+            }
+        }
         
         private int F_START
         {
@@ -645,6 +658,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         {
             try
             {
+                gridViewSummary1.NoSumColumns = Report_GRDT_V1;
                 if (MauInSelectedRow != null)
                 {
                     gridViewSummary1.SumCondition = new Condition()
@@ -1910,7 +1924,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             {
                 var title = V6Setting.IsVietnamese ? "Sửa báo cáo động" : "Edit dynamic report";
                 var f = new DanhMucView(ItemID, title, "Alreport", "ma_bc='" + _program + "'",
-                    V6TableHelper.GetDefaultSortField(V6TableName.Alreport), false);
+                    V6TableHelper.GetDefaultSortField(V6TableName.Alreport), new AldmConfig());
                 f.EnableAdd = false;
                 f.EnableCopy = false;
                 f.EnableDelete = false;

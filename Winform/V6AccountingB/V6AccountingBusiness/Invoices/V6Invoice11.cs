@@ -289,8 +289,9 @@ namespace V6AccountingBusiness.Invoices
             //c=AD, d=Alvt, e=ABVT13
             string sql = "SELECT c.*,d.Ten_tk AS Ten_tk, k.Ten_kh as Ten_kh_i" + ADSELECTMORE + " FROM " + AD_TableName
                 + " c LEFT JOIN Altk d ON c.Tk_i= d.Tk "
-                + " LEFT JOIN Alkh k ON c.MA_KH_I= k.MA_KH "
-                + " Where c.stt_rec = @rec Order by c.stt_rec0";
+                + " LEFT JOIN Alkh k ON c.MA_KH_I= k.MA_KH ";
+            sql += string.IsNullOrEmpty(sttRec) ? " Where 1=0" : " Where c.stt_rec=@rec";
+            sql += " Order by c.stt_rec0";
             var listParameters = new SqlParameter("@rec", sttRec);
             var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql, listParameters).Tables[0];
             
@@ -299,7 +300,9 @@ namespace V6AccountingBusiness.Invoices
         public DataTable LoadAd2(string sttRec)
         {
             //c=AD, d=Alvt, e=ABVT13
-            string sql = "SELECT * FROM " + AD2 + " Where stt_rec = @rec Order by stt_rec0";
+            string sql = "SELECT * FROM " + AD2 + " c ";
+            sql += string.IsNullOrEmpty(sttRec) ? " Where 1=0" : " Where c.stt_rec=@rec";
+            sql += " Order by c.stt_rec0";
             var listParameters = new SqlParameter("@rec", sttRec);
             var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql, listParameters).Tables[0];
             return tbl;

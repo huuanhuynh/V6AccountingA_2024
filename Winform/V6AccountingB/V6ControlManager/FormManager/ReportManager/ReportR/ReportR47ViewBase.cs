@@ -719,6 +719,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
+                gridViewSummary1.NoSumColumns = Report_GRDT_V1;
                 if (MauInSelectedRow != null)
                 {
                     gridViewSummary1.SumCondition = new Condition()
@@ -1714,7 +1715,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 var title = V6Setting.IsVietnamese ? "Sửa báo cáo động" : "Edit dynamic report";
                 var f = new DanhMucView(ItemID, title, "Alreport", "ma_bc='"+_program+"'",
-                    V6TableHelper.GetDefaultSortField(V6TableName.Alreport), false);
+                    V6TableHelper.GetDefaultSortField(V6TableName.Alreport), new AldmConfig());
                 f.EnableAdd = false;
                 f.EnableCopy = false;
                 f.EnableDelete = false;

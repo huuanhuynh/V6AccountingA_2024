@@ -131,7 +131,7 @@ namespace V6ControlManager.FormManager.NhanSu
 
                                         where = filterForm.QueryString;
                                         c = new DanhMucView(item_id, bar_text, TABLE_NAME,
-                                            V6Login.GetInitFilter(TABLE_NAME, V6ControlFormHelper.FindFilterType(owner)), null, false)
+                                            V6Login.GetInitFilter(TABLE_NAME, V6ControlFormHelper.FindFilterType(owner)), null, new AldmConfig())
                                         {
                                             Name = item_id,
                                             ReportFile = repFile,
@@ -144,7 +144,7 @@ namespace V6ControlManager.FormManager.NhanSu
                                 else
                                 {
                                     c = new DanhMucView(item_id, bar_text, TABLE_NAME,
-                                        V6Login.GetInitFilter(TABLE_NAME, V6ControlFormHelper.FindFilterType(owner)), null, false)
+                                        V6Login.GetInitFilter(TABLE_NAME, V6ControlFormHelper.FindFilterType(owner)), null, new AldmConfig())
                                     {
                                         Name = item_id,
                                         ReportFile = repFile,
