@@ -271,7 +271,6 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 
                 if (!string.IsNullOrEmpty(filter_field))
                 {
-                    //Get filter data
                     var data = V6BusinessHelper.Select(LOAD_TABLE, "distinct " + filter_field, "", "", filter_field).Data;
                     data.Rows.Add(data.NewRow());
                     var view = new DataView(data);

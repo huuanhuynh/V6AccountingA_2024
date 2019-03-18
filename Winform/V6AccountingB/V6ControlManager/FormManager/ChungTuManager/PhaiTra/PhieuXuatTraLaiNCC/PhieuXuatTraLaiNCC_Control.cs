@@ -290,7 +290,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                     //_ton13.V6LostFocus += Ton13_V6LostFocus;
                     case "SO_LUONG1":
                         _soLuong1 = (V6NumberTextBox)control;
-                        _soLuong1.LostFocus += delegate
+                        _soLuong1.V6LostFocus += delegate
                         {
                             CheckSoLuong1(_soLuong1);
                         };
@@ -722,11 +722,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                     {
                         ShowParentMessage(V6Text.StockoutWarning);
                         _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
-                        if (M_CAL_SL_QD_ALL == "1")
-                        {
-                            if (_hs_qd1.Value != 0)
-                                _sl_qd.Value = _soLuong1.Value / _hs_qd1.Value;
-                        }
+                        //if (M_CAL_SL_QD_ALL == "1")
+                        //{
+                        //    if (_hs_qd1.Value != 0)
+                        //        _sl_qd.Value = _soLuong1.Value / _hs_qd1.Value;
+                        //}
                     }
                 }
                 TinhTienVon1(actionControl);

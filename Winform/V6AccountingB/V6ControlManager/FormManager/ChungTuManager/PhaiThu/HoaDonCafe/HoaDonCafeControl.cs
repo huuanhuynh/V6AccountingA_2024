@@ -350,7 +350,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                         if (_soLuong1 != null)
                         {
                             _soLuong1.Font = new Font(_soLuong1.Font.FontFamily, 10f, FontStyle.Bold);
-                            _soLuong1.LostFocus += delegate
+                            _soLuong1.V6LostFocus += delegate
                             {
                                 CheckSoLuong1(_soLuong1);
                             };
@@ -1438,11 +1438,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     {
                         ShowParentMessage(V6Text.StockoutWarning);
                         _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
-                        if (M_CAL_SL_QD_ALL == "1")
-                        {
-                            if (_hs_qd1.Value != 0)
-                                _sl_qd.Value = _soLuong1.Value / _hs_qd1.Value;
-                        }
+                        //if (M_CAL_SL_QD_ALL == "1")
+                        //{
+                        //    if (_hs_qd1.Value != 0)
+                        //        _sl_qd.Value = _soLuong1.Value / _hs_qd1.Value;
+                        //}
                     }
                 }
                 TinhTienNt2(actionControl);

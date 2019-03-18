@@ -316,10 +316,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                                 Tinh_thue_ct();
                             };
 
-                            _soLuong1.LostFocus += delegate
-                            {
-                                CheckSoLuong1(_soLuong1);
-                            };
+                            //_soLuong1.LostFocus += delegate
+                            //{
+                            //    CheckSoLuong1(_soLuong1);
+                            //};
 
                             if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                             {
@@ -1832,11 +1832,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     {
                         ShowParentMessage(V6Text.StockoutWarning);
                         _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
-                        if (M_CAL_SL_QD_ALL == "1")
-                        {
-                            if (_hs_qd1.Value != 0)
-                                _sl_qd.Value = _soLuong1.Value / _hs_qd1.Value;
-                        }
+                        //if (M_CAL_SL_QD_ALL == "1")
+                        //{
+                        //    if (_hs_qd1.Value != 0)
+                        //        _sl_qd.Value = _soLuong1.Value / _hs_qd1.Value;
+                        //}
                     }
                 }
                 TinhTienNt2(actionControl);

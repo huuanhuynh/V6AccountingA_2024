@@ -267,7 +267,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         _dvt1.SetInitFilter("");
                         _dvt1.BrotherFields = "ten_dvt";
                         _dvt1.V6LostFocus += Dvt1_V6LostFocus;
-                        _dvt1.V6LostFocusNoChange += Dvt1_V6LostFocusNoChange;
+                        _dvt1.V6LostFocusNoChange += Dvt1_V6LostFocusNoChange; // !!!!!
                         _dvt1.GotFocus += (s, e) =>
                         {
                             _dvt1.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
@@ -357,10 +357,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                                 Tinh_thue_ct();
                             };
 
-                            _soLuong1.LostFocus += delegate
-                            {
-                                CheckSoLuong1(_soLuong1);
-                            };
+                            //_soLuong1.LostFocus += delegate
+                            //{
+                            //    CheckSoLuong1(_soLuong1);
+                            //};
 
                             if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
                             {
@@ -388,10 +388,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             }
                             if (IsReady && (Mode == V6Mode.Add || Mode == V6Mode.Edit) && (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit))
                             {
-                                if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0(_heSo1, _soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
-                                if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2(_heSo1, _soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+                                if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _heSo1);
+                                if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _heSo1);
                                 _soLuong.Value = _soLuong1.Value * _heSo1.Value;
-                                if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1(_heSo1, _soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+                                if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _heSo1);
                             }
                         };
                         break;
@@ -685,8 +685,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                             _sl_qd.V6LostFocus += delegate
                             {
-                                TinhSoluongQuyDoi_0(_sl_qd, _soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
-                                TinhSoluongQuyDoi_2(_sl_qd, _soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+                                TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
+                                TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
                                 _soLuong.Value = _soLuong1.Value * _heSo1.Value;
                                 
                                 if (M_CAL_SL_QD_ALL == "1")
@@ -695,7 +695,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                                     chkT_THUE_NT.Checked = false;
                                     Tinh_thue_ct();
                                 }
-                                TinhSoluongQuyDoi_1(_sl_qd, _soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2);
+                                TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
                             };
 
                             if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
@@ -1820,11 +1820,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     {
                         ShowParentMessage(V6Text.StockoutWarning);
                         _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
-                        if (M_CAL_SL_QD_ALL == "1")
-                        {
-                            if (_hs_qd1.Value != 0)
-                                _sl_qd.Value = _soLuong1.Value / _hs_qd1.Value;
-                        }
+                        //if (M_CAL_SL_QD_ALL == "1") //sai, ==1 tinh Nhaan, da viet lai trong tinhtiennt2
+                        //{
+                        //    if (_hs_qd1.Value != 0)
+                        //        _sl_qd.Value = _soLuong1.Value / _hs_qd1.Value;TinhSoluongQuyDoi_1();
+                        //}
                     }
                 }
                 TinhTienNt2(actionControl);
@@ -2066,11 +2066,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 var he_so = ObjectAndString.ObjectToDecimal(_dvt1.Data["he_so"]);
                 if (he_so == 0) he_so = 1;
-                _heSo1.Value = he_so;
+                if (_heSo1.Value != he_so) _heSo1.Value = he_so;
             }
             else
             {
-                _heSo1.Value = 1;
+                if (_heSo1.Value != 1) _heSo1.Value = 1;
             }
         }
 

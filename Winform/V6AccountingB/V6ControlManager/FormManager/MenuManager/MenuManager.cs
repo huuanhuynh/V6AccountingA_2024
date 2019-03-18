@@ -173,7 +173,6 @@ namespace V6ControlManager.FormManager.MenuManager
                                             dv.EnableChangeGroup = false;
                                         }
                                     }
-
                                 }
                                 else
                                 {
