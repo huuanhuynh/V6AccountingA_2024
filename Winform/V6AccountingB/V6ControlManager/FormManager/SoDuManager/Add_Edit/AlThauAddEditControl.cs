@@ -106,7 +106,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             //    {
             //        var he_so = ObjectAndString.ObjectToDecimal(_dvt.Data["he_so"]);
             //        if (he_so == 0) he_so = 1;
-            //        _heSo1.Value = he_so;
+            //        if (_heSo1.Value != he_so) _heSo1.Value = he_so;
             //    }
             //    else
             //    {

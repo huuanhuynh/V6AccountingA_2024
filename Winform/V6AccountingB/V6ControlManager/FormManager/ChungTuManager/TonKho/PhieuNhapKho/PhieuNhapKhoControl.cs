@@ -908,7 +908,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             {
                 var he_so = ObjectAndString.ObjectToDecimal(_dvt1.Data["he_so"]);
                 if (he_so == 0) he_so = 1;
-                _heSo1.Value = he_so;
+                if (_heSo1.Value != he_so) _heSo1.Value = he_so;
             }
             else
             {
