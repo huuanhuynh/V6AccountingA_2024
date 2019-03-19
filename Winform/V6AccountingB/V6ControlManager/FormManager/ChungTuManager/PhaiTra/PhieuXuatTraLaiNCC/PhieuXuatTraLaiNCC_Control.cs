@@ -244,12 +244,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                             {
                                 TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
                                 TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
+                                TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
                                 _soLuong.Value = _soLuong1.Value * _heSo1.Value;
                                 if (M_CAL_SL_QD_ALL == "1")
                                 {
                                     CheckSoLuong1(_sl_qd);
                                 }
-                                TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
+                                
                             };
 
                             if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
@@ -722,12 +723,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                     {
                         ShowParentMessage(V6Text.StockoutWarning);
                         _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
-                        //if (M_CAL_SL_QD_ALL == "1")
-                        //{
-                        //    if (_hs_qd1.Value != 0)
-                        //        _sl_qd.Value = _soLuong1.Value / _hs_qd1.Value;
-                        //}
+                        if (M_CAL_SL_QD_ALL == "1")
+                        {
+                            if (_hs_qd1.Value != 0)
+                                _sl_qd.Value = _soLuong1.Value / _hs_qd1.Value;
+                        }
+                        _soLuong.Value = _soLuong1.Value * _heSo1.Value;
+                        //TinhTienNt2(null);
+                        TinhTienVon1(null);
+                        TinhTienVon();
                     }
+                    //if (_soLuong1.Value > _ton13.Value)
+                    //{
+                    //    ShowParentMessage(V6Text.StockoutWarning);
+                    //    _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
+                    //    //if (M_CAL_SL_QD_ALL == "1")
+                    //    //{
+                    //    //    if (_hs_qd1.Value != 0)
+                    //    //        _sl_qd.Value = _soLuong1.Value / _hs_qd1.Value;
+                    //    //}
+                    //}
                 }
                 TinhTienVon1(actionControl);
             }
@@ -1505,6 +1520,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
         {
             if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
             if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
+            if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
 
             _soLuong.Value = _soLuong1.Value * _heSo1.Value;
             _tienNt.Value = V6BusinessHelper.Vround((_soLuong1.Value * _gia_nt1.Value), M_ROUND_NT);
@@ -1514,7 +1530,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                 _tien.Value = _tienNt.Value;
 
             }
-            if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
+            
         }
         
         public void TinhTienVon()
