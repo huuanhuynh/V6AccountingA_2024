@@ -1,5 +1,6 @@
 ﻿using System;
 using V6AccountingBusiness;
+using V6Controls;
 using V6Init;
 using V6Structs;
 
@@ -11,7 +12,25 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
             InitializeComponent();
 
-            TxtMa_vt.SetInitFilter("VITRI_YN=1");
+            MyInit();
+        }
+
+        private void MyInit()
+        {
+            try
+            {
+                TxtMa_vt.SetInitFilter("VITRI_YN=1");
+
+                if (V6Options.GetValueNull("M_QLY_TON_QD") == "1")
+                {
+                    lblTon00qd.Visible = true;
+                    txtTon00qd.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "INIT", ex);
+            }
         }
 
         public override void DoBeforeAdd()

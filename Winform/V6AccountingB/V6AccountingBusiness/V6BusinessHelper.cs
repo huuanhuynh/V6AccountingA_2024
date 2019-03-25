@@ -634,7 +634,7 @@ namespace V6AccountingBusiness
                 return true;
             }
             message = string.Format(
-                "Ngày nhập không hợp lệ.\r\nNgày khóa sổ: {0}. Ngày đầu kỳ: {1}. Ngày cuối kỳ: {2}.",
+                V6Text.Text("NgayNhap0KDC012"),//"Ngày nhập không hợp lệ.\r\nNgày khóa sổ: {0}. Ngày đầu kỳ: {1}. Ngày cuối kỳ: {2}."
                 ngayks.ToString("dd/MM/yyyy"),
                 ngaydk.ToString("dd/MM/yyyy"),
                 ngayck.ToString("dd/MM/yyyy")
@@ -1202,7 +1202,7 @@ namespace V6AccountingBusiness
             string sttRec = SqlConnect.ExecuteScalar(CommandType.StoredProcedure, "VPA_sGet_stt_rec", param).ToString();
             if (String.IsNullOrEmpty(sttRec))
             {
-                throw new Exception("Không tạo mới được.");
+                throw new Exception(V6Setting.IsVietnamese ? "Không tạo mới được." : "Can not create new.");
             }
             return sttRec;
         }

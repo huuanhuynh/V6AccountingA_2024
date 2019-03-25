@@ -14,10 +14,27 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
             InitializeComponent();
 
-            TxtMa_kho.SetInitFilter("LO_YN=1");
-            TxtMa_vt.SetInitFilter("LO_YN=1");
+            MyInit();
+        }
 
-            TxtMa_vitri.Enabled = false;
+        private void MyInit()
+        {
+            try
+            {
+                TxtMa_kho.SetInitFilter("LO_YN=1");
+                TxtMa_vt.SetInitFilter("LO_YN=1");
+                TxtMa_vitri.Enabled = false;
+
+                if (V6Options.GetValueNull("M_QLY_TON_QD") == "1")
+                {
+                    lblTon00qd.Visible = true;
+                    txtTon00qd.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "INIT", ex);
+            }
         }
 
         public override void DoBeforeAdd()

@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using V6Controls;
 using V6Controls.Forms;
+using V6Init;
 using V6SqlConnect;
 using V6Tools.V6Convert;
 
@@ -17,7 +18,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("Kết chuyển số dư của các bộ phận khách hàng sang năm sau.");
+            V6ControlFormHelper.SetStatusText2(V6Text.Text("KETCSDBPKHSNS"));
         }
 
         protected override void Nhan()

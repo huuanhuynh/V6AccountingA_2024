@@ -18,7 +18,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("Chuyển tồn kho sang năm sau.");
+            V6ControlFormHelper.SetStatusText2(V6Text.Text("CHUYENTONKSNS"));
         }
 
         protected override void Nhan()

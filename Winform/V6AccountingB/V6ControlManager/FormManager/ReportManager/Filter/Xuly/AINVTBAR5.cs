@@ -116,7 +116,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
 
             if (txtSL_TD2.Value == 0)
             {
-                lblStatus1.Text = "Hết hạn sử dụng (hoặc khóa không sử dụng hoặc chưa in)!";
+                lblStatus1.Text = V6Text.Text("HHSDKI");
             }
             else
             {
