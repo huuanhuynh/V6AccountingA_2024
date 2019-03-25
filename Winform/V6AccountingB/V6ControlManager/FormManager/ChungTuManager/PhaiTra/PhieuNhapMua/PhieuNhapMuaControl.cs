@@ -276,7 +276,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         {
 
                         };
-                        if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                        if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                         {
                             _soLuong1.ReadOnlyTag();
                         }
@@ -313,7 +313,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             {
                                 _giaNt.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                             {
                                 _giaNt.ReadOnlyTag();
                             }
@@ -327,7 +327,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             {
                                 _gia.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                             {
                                 _gia.ReadOnlyTag();
                             }
@@ -341,7 +341,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             {
                                 _gia0.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                             {
                                 _gia0.ReadOnlyTag();
                             }
@@ -355,7 +355,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             {
                                 _gia01.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                             {
                                 _gia01.ReadOnlyTag();
                             }
@@ -370,7 +370,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             {
                                 _gia_Nt0.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                             {
                                 _gia_Nt0.ReadOnlyTag();
                             }
@@ -385,7 +385,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             {
                                 _giaNt01.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                             {
                                 _giaNt01.ReadOnlyTag();
                             }
@@ -399,7 +399,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             {
                                 _tien.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                             {
                                 _tien.ReadOnlyTag();
                             }
@@ -413,7 +413,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             {
                                 _tienNt.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                             {
                                 _tienNt.ReadOnlyTag();
                             }
@@ -438,7 +438,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             {
                                 _tienNt0.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                             {
                                 _tienNt0.ReadOnlyTag();
                             }
@@ -452,7 +452,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             {
                                 _tien0.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                             {
                                 _tien0.ReadOnlyTag();
                             }
@@ -573,7 +573,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                                 
                             };
 
-                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                             {
                                 _sl_qd.ReadOnlyTag();
                             }
@@ -765,7 +765,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             {
                                 _gia_Nt022.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                             {
                                 _gia_Nt022.ReadOnlyTag();
                             }
@@ -788,7 +788,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             {
                                 _t_tien22.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                             {
                                 _t_tien22.ReadOnlyTag();
                             }
@@ -808,7 +808,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             {
                                 _t_tien_nt22.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                             {
                                 _t_tien_nt22.ReadOnlyTag();
                             }
@@ -855,7 +855,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             {
                                 _t_thue22.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                             {
                                 _t_thue22.ReadOnlyTag();
                             }
@@ -869,7 +869,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             {
                                 _t_thue_nt22.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                             {
                                 _t_thue_nt22.ReadOnlyTag();
                             }

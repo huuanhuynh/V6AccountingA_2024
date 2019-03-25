@@ -540,7 +540,7 @@ namespace V6AccountingBusiness.Invoices
         }
         
         /// <summary>
-        /// Các trường chỉ đọc [Alctct]
+        /// Các trường chỉ đọc [Alctct] FIELD:MSI MSI=Mới Sửa In
         /// </summary>
         public string[] GRD_READONLY
         {

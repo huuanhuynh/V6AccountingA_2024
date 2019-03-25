@@ -27,6 +27,8 @@ namespace V6Controls.Forms.Viewer
         private IDictionary<string, object> _defaultData = null;
         private bool newRowNeeded;
         private bool _updateDatabase;
+        public SortedDictionary<string, string> HideFields = new SortedDictionary<string, string>();
+        public SortedDictionary<string, string> ReadOnlyFields = new SortedDictionary<string, string>();
         public sealed override string Text
         {
             get { return base.Text; }
@@ -70,16 +72,14 @@ namespace V6Controls.Forms.Viewer
             _showFields = showFields;
             _keyFields = ObjectAndString.SplitString(keyFields);
             
-            MyInit();
         }
 
         void dataGridView1_V6Changed(object sender, EventArgs e)
         {
             RefreshOwner();
         }
-
         
-        private void MyInit()
+        private void MyInit2()
         {
             try
             {
@@ -97,6 +97,11 @@ namespace V6Controls.Forms.Viewer
             {
                 this.ShowErrorMessage(GetType() + ".MyInit " + ex.Message);
             }
+        }
+
+        private void DataEditorForm_Load(object sender, EventArgs e)
+        {
+            MyInit2();
         }
 
         private string congthuc1 = "", congthuc2 = "", congthuc3 = "";
@@ -370,18 +375,30 @@ namespace V6Controls.Forms.Viewer
                         if (field.Contains(":"))
                         {
                             var ss = field.Split(':');
-                            showFieldList.Add(ss[0]);
-                            GetHeader(ss[0]);
-                            var column = dataGridView1.Columns[ss[0]];
-                            if (ss[1].ToUpper() == "R" && column != null)
+                            string FIELD = ss[0].Trim().ToUpper();
+                            // Rigth hide-readonly
+                            if (HideFields.ContainsKey(FIELD)) continue;
+
+                            showFieldList.Add(FIELD);
+                            GetHeader(FIELD);
+                            var column = dataGridView1.Columns[FIELD];
+                            if (column != null && (ss[1].ToUpper() == "R" || ReadOnlyFields.ContainsKey(FIELD)))
                             {
                                 column.ReadOnly = true;
                             }
                         }
                         else
                         {
-                            showFieldList.Add(field);
-                            GetHeader(field);
+                            string FIELD = field.Trim().ToUpper();
+                            if (HideFields.ContainsKey(FIELD)) continue;
+                            showFieldList.Add(FIELD);
+                            GetHeader(FIELD);
+                            
+                            if (ReadOnlyFields.ContainsKey(FIELD))
+                            {
+                                var column = dataGridView1.Columns[FIELD];
+                                if (column != null) column.ReadOnly = true;
+                            }
                         }
                     }
 
@@ -773,5 +790,38 @@ namespace V6Controls.Forms.Viewer
             RefreshOwner();
         }
 
+        /// <summary>
+        /// Chỉ định các trường ẩn đi bắt buộc.
+        /// </summary>
+        /// <param name="fields"></param>
+        public void SetHideFields(params string[] fields)
+        {
+            foreach (string field in fields)
+            {
+                string FIELD = ObjectAndString.SplitStringBy(field, ':')[0].Trim().ToUpper();
+                HideFields[FIELD] = FIELD;
+            }
+        }
+
+        /// <summary>
+        /// Chỉ định các trường chỉ đọc bắt buộc.
+        /// </summary>
+        /// <param name="fields"></param>
+        public void SetReadOnlyFields(params string[] fields)
+        {
+            foreach (string field in fields)
+            {
+                var ss = ObjectAndString.SplitStringBy(field, ':');
+                if (ss.Length > 1)
+                {
+                    string mode_config = ss[1];
+                    if (!mode_config.Contains("S")) continue;
+                }
+                string FIELD = ss[0].Trim().ToUpper();
+                ReadOnlyFields[FIELD] = FIELD;
+            }
+        }
+
+        
     }
 }

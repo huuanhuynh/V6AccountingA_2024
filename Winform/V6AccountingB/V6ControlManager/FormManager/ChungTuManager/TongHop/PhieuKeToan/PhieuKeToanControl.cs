@@ -372,7 +372,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                             {
                                 _t_thue22.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                             {
                                 _t_thue22.ReadOnlyTag();
                             }
@@ -386,7 +386,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                             {
                                 _t_thue_nt22.InvisibleTag();
                             }
-                            if (!V6Login.IsAdmin && Invoice.GRD_READONLY.Contains(NAME))
+                            if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                             {
                                 _t_thue_nt22.ReadOnlyTag();
                             }

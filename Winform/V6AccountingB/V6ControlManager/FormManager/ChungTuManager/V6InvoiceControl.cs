@@ -2353,6 +2353,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 string adFields = invoice.EXTRA_INFOR.ContainsKey("ADFIELDS") ? invoice.EXTRA_INFOR["ADFIELDS"] : "";
                 string tableName = invoice.Mact + "_REPLACE";
                 var f = new DataEditorForm(this, AD, tableName, adFields, null, V6Text.Edit + " " + V6TableHelper.V6TableCaption(tableName, V6Setting.Language), false, false, true, false);
+                f.SetHideFields(invoice.GRD_HIDE);
+                f.SetReadOnlyFields(invoice.GRD_READONLY);
                 All_Objects["dataGridView"] = f.DataGridView;
                 InvokeFormEvent(FormDynamicEvent.SUANHIEUDONG);
                 f.ShowDialog(this);

@@ -11,6 +11,27 @@ namespace V6Tools
     public static class V6ToolExtensionMethods
     {
         /// <summary>
+        /// Xác định xem một danh sách chuỗi có chuỗi nào bắt đầu bằng một chuỗi được chỉ định hay không.
+        /// </summary>
+        public static bool ContainsEndsWith(this IList<string> source, string value)
+        {
+            foreach (string s in source)
+            {
+                if (s.EndsWith(value)) return true;
+            }
+            return false;
+        }
+        
+        public static bool ContainsStartsWith(this IList<string> source, string value)
+        {
+            foreach (string s in source)
+            {
+                if (s.StartsWith(value)) return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Cắt chuỗi lấy phần bên trái.
         /// </summary>
         /// <param name="str">Chuỗi nguồn</param>

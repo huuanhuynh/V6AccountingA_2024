@@ -500,6 +500,12 @@ namespace V6Tools.V6Convert
             return string.IsNullOrEmpty(s) ? new string[]{} : s.Split(s.Contains(";") ? new []{';'} : new []{','},
                 removeEmptyEntries ? StringSplitOptions.RemoveEmptyEntries : StringSplitOptions.None);
         }
+        
+        public static string[] SplitStringBy(string s, char splitChar, bool removeEmptyEntries = true)
+        {
+            return string.IsNullOrEmpty(s) ? new string[]{} : s.Split(new []{splitChar},
+                removeEmptyEntries ? StringSplitOptions.RemoveEmptyEntries : StringSplitOptions.None);
+        }
 
         public static float ObjectToFloat(string s)
         {
