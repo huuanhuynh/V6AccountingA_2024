@@ -166,7 +166,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     }
                                     else
                                     {
-                                        var s = string.Format("Dòng {0,3}-ID:{1} thêm không được", stt, ID0);
+                                        var s = string.Format("Dòng {0,3}-ID:{1} {2}", stt, ID0, V6Text.Text("ADD0"));
                                         f9Error += s;
                                         f9ErrorAll += s;
                                     }
@@ -193,7 +193,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 }
                                 else
                                 {
-                                    var s = string.Format("Dòng {0,3}-ID:{1} thêm không được", stt, ID0);
+                                    var s = string.Format("Dòng {0,3}-ID:{1} {2}", stt, ID0, V6Text.Text("ADD0"));
                                     f9Error += s;
                                     f9ErrorAll += s;
                                 }

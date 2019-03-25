@@ -107,7 +107,7 @@ namespace V6AccountingBusiness.Invoices
 
                 Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " Exception", ex, "");
                 V6Message = "Rollback: "
-                    + (!insert_success ? V6Text.Text("AMUNSUCCESS") : "")
+                    + (!insert_success ? V6Text.Text("AAMUNSUCCESS") : "")
                     + (j != adList.Count ? V6Text.Text("ADNOTCOMPLETE") : "")
                     + (j3 != adList3.Count ? V6Text.Text("AD3NOTCOMPLETE") : "");
                 #endregion Rollback
@@ -150,7 +150,7 @@ namespace V6AccountingBusiness.Invoices
             }
             else
             {
-                if (!insert_success) V6Message = V6Text.Text("AMUNSUCCESS");
+                if (!insert_success) V6Message = V6Text.Text("AAMUNSUCCESS");
                 if (j != adList.Count) V6Message += V6Text.Text("ADNOTCOMPLETE");
                 if (j3 != adList3.Count) V6Message += V6Text.Text("AD3NOTCOMPLETE");
                 V6Message += " Bắt đầu RollBack.";
@@ -217,7 +217,7 @@ namespace V6AccountingBusiness.Invoices
 
                 Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " Exception", ex, "");
                 V6Message = "Rollback: "
-                    + (!insert_success ? V6Text.Text("AMUNSUCCESS") : "")
+                    + (!insert_success ? V6Text.Text("EAMUNSUCCESS") : "")
                     + (j != adList.Count ? V6Text.Text("ADNOTCOMPLETE") : "")
                     + (j3 != adList3.Count ? V6Text.Text("AD3NOTCOMPLETE") : "");
                 #endregion Rollback
@@ -259,7 +259,7 @@ namespace V6AccountingBusiness.Invoices
             }
             else
             {
-                if (!insert_success) V6Message = V6Text.Text("AMUNSUCCESS");
+                if (!insert_success) V6Message = V6Text.Text("AAMUNSUCCESS");
                 if (j != adList.Count) V6Message += V6Text.Text("ADNOTCOMPLETE");
                 if (j3 != adList3.Count) V6Message += V6Text.Text("AD3NOTCOMPLETE");
                 V6Message += " Bắt đầu RollBack.";

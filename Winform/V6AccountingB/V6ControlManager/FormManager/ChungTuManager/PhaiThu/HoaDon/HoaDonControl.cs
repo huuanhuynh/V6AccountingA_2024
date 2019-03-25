@@ -3477,6 +3477,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             var tPsCoNt = V6BusinessHelper.TinhTongOper(AD3, "PS_CO_NT", "OPER_TT");
             txtTongTangGiamNt.Value = tPsNoNt;
             var tTienNt2 = TinhTong(AD, "TIEN_NT2");
+            if (tPsNoNt != 0)
+            {
+                ShowParentMessage("tPsNoNt=" + tPsNoNt);
+            }
             txtTongTienNt2.Value = V6BusinessHelper.Vround(tTienNt2 + tPsNoNt, M_ROUND_NT);
 
             var tPsNo = V6BusinessHelper.TinhTongOper(AD3, "PS_NO", "OPER_TT");
@@ -4722,7 +4726,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 else
                 {
                     flagAddSuccess = false;
-                    addErrorMessage = "Thêm không thành công";
+                    addErrorMessage = V6Text.Text("ADD0");
                     Invoice.PostErrorLog(_sttRec, "M");
                 }
             }
@@ -4855,7 +4859,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 else
                 {
                     flagEditSuccess = false;
-                    editErrorMessage = "Sửa không thành công";
+                    editErrorMessage = V6Text.Text("SUA0");
                     Invoice.PostErrorLog(_sttRec, "S");
                 }
             }
@@ -4972,7 +4976,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 else
                 {
                     flagDeleteSuccess = false;
-                    deleteErrorMessage = "Xóa không thành công.";
+                    deleteErrorMessage = V6Text.Text("XOA0");
                     Invoice.PostErrorLog(_sttRec, "X");
                 }
             }

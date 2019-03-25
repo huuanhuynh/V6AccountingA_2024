@@ -989,7 +989,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         public decimal TinhTong(DataTable AD_table, string colName)
         {
-            return V6BusinessHelper.TinhTong(AD_table, colName);
+            return V6BusinessHelper.TinhTong(AD_table, colName, true);
         }
 
         public void TinhChietKhauChiTiet(bool nhapTien, V6NumberTextBox _ck_textbox, V6NumberTextBox _ck_nt_textbox,
@@ -2255,85 +2255,82 @@ namespace V6ControlManager.FormManager.ChungTuManager
             try
             {
                 //Hien form chuc nang co options *-1 or input
-                if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+                if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
+
+                var detail1 = GetControlByName("detail1") as HD_Detail;
+                if (detail1 == null)
                 {
-                    var detail1 = GetControlByName("detail1") as HD_Detail;
-                    if (detail1 == null)
+                    ShowParentMessage(V6Text.Text("UNKNOWNOBJECT") + ": [detail1].");
+                    return;
+                }
+                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                {
+                    this.ShowWarningMessage(V6Text.DetailNotComplete);
+                    return;
+                }
+
+                var dataGridView1 = GetControlByName("dataGridView1") as DataGridView;
+                if (dataGridView1 == null)
+                {
+                    ShowParentMessage(V6Text.Text("UNKNOWNOBJECT") + ": [dataGridView1].");
+                    return;
+                }
+
+                int field_index = dataGridView1.CurrentCell.ColumnIndex;
+                string FIELD = dataGridView1.CurrentCell.OwningColumn.DataPropertyName.ToUpper();
+                V6ColorTextBox textBox = detail1.GetControlByAccessibleName(FIELD) as V6ColorTextBox;
+                Type valueType = dataGridView1.CurrentCell.OwningColumn.ValueType;
+
+                //Check
+                if (textBox == null)
+                {
+                    ShowParentMessage(V6Text.Text("UNKNOWNOBJECT"));
+                    return;
+                }
+                        
+                ChucNangThayTheForm f = new ChucNangThayTheForm(ObjectAndString.IsNumberType(dataGridView1.CurrentCell.OwningColumn.ValueType), textBox);
+                if (f.ShowDialog(this) == DialogResult.OK)
+                {
+                    if (f.ChucNangDaChon == f._ThayThe)
                     {
-                        ShowParentMessage("Không xác định được control: [detail1].");
-                        return;
+                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        {
+                            object newValue = ObjectAndString.ObjectTo(valueType, f.Value);
+                            if (ObjectAndString.IsDateTimeType(valueType) && newValue != null)
+                            {
+                                DateTime newDate = (DateTime) newValue;
+                                if (newDate < new DateTime(1700, 1, 1))
+                                {
+                                    newValue = null;
+                                }
+                            }
+
+                            SortedDictionary<string, object> newData = new SortedDictionary<string, object>();
+                            newData.Add(FIELD, newValue);
+                            V6ControlFormHelper.UpdateGridViewRow(row, newData);
+                        }
+                    }
+                    else // Đảo ngược
+                    {
+                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        {
+                            var newValue = ObjectAndString.ObjectToDecimal(row.Cells[field_index].Value) * -1;
+                            SortedDictionary<string, object> newData = new SortedDictionary<string, object>();
+                            newData.Add(FIELD, newValue);
+                            V6ControlFormHelper.UpdateGridViewRow(row, newData);
+                        }
                     }
 
-                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                    All_Objects["replaceField"] = FIELD;
+                    All_Objects["dataGridView1"] = dataGridView1;
+                    All_Objects["detail1"] = detail1;
+                    if (Event_Methods.ContainsKey(FormDynamicEvent.AFTERREPLACE))
                     {
-                        this.ShowWarningMessage(V6Text.DetailNotComplete);
+                        InvokeFormEvent(FormDynamicEvent.AFTERREPLACE);
                     }
                     else
                     {
-                        var dataGridView1 = GetControlByName("dataGridView1") as DataGridView;
-                        if (dataGridView1 == null)
-                        {
-                            ShowParentMessage("Không xác định được control: [dataGridView1].");
-                            return;
-                        }
-
-                        int field_index = dataGridView1.CurrentCell.ColumnIndex;
-                        string FIELD = dataGridView1.CurrentCell.OwningColumn.DataPropertyName.ToUpper();
-                        V6ColorTextBox textBox = detail1.GetControlByAccessibleName(FIELD) as V6ColorTextBox;
-                        Type valueType = dataGridView1.CurrentCell.OwningColumn.ValueType;
-
-                        //Check
-                        if (textBox == null)
-                        {
-                            ShowParentMessage("Không xác định được control.");
-                            return;
-                        }
-                        
-                        ChucNangThayTheForm f = new ChucNangThayTheForm(ObjectAndString.IsNumberType(dataGridView1.CurrentCell.OwningColumn.ValueType), textBox);
-                        if (f.ShowDialog(this) == DialogResult.OK)
-                        {
-                            if (f.ChucNangDaChon == f._ThayThe)
-                            {
-                                foreach (DataGridViewRow row in dataGridView1.Rows)
-                                {
-                                    object newValue = ObjectAndString.ObjectTo(valueType, f.Value);
-                                    if (ObjectAndString.IsDateTimeType(valueType) && newValue != null)
-                                    {
-                                        DateTime newDate = (DateTime) newValue;
-                                        if (newDate < new DateTime(1700, 1, 1))
-                                        {
-                                            newValue = null;
-                                        }
-                                    }
-
-                                    SortedDictionary<string, object> newData = new SortedDictionary<string, object>();
-                                    newData.Add(FIELD, newValue);
-                                    V6ControlFormHelper.UpdateGridViewRow(row, newData);
-                                }
-                            }
-                            else // Đảo ngược
-                            {
-                                foreach (DataGridViewRow row in dataGridView1.Rows)
-                                {
-                                    var newValue = ObjectAndString.ObjectToDecimal(row.Cells[field_index].Value) * -1;
-                                    SortedDictionary<string, object> newData = new SortedDictionary<string, object>();
-                                    newData.Add(FIELD, newValue);
-                                    V6ControlFormHelper.UpdateGridViewRow(row, newData);
-                                }
-                            }
-
-                            All_Objects["replaceField"] = FIELD;
-                            All_Objects["dataGridView1"] = dataGridView1;
-                            All_Objects["detail1"] = detail1;
-                            if (Event_Methods.ContainsKey(FormDynamicEvent.AFTERREPLACE))
-                            {
-                                InvokeFormEvent(FormDynamicEvent.AFTERREPLACE);
-                            }
-                            else
-                            {
-                                AfterReplace(All_Objects);
-                            }
-                        }
+                        AfterReplace(All_Objects);
                     }
                 }
             }
@@ -2349,15 +2346,22 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <param name="invoice"></param>
         public void ChucNang_SuaNhieuDong(V6InvoiceBase invoice)
         {
-            if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+            try
             {
+                if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
+
                 string adFields = invoice.EXTRA_INFOR.ContainsKey("ADFIELDS") ? invoice.EXTRA_INFOR["ADFIELDS"] : "";
-                //V6ControlFormHelper.ShowDataEditorForm(AD, invoice.Mact + "_REPLACE", adFields, null, false, false, true, false);
                 string tableName = invoice.Mact + "_REPLACE";
                 var f = new DataEditorForm(this, AD, tableName, adFields, null, V6Text.Edit + " " + V6TableHelper.V6TableCaption(tableName, V6Setting.Language), false, false, true, false);
                 All_Objects["dataGridView"] = f.DataGridView;
                 InvokeFormEvent(FormDynamicEvent.SUANHIEUDONG);
                 f.ShowDialog(this);
+
+                TinhTongThanhToan("SuaNhieuDong");
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".ChucNang_SuaNhieuDong " + _sttRec, ex);
             }
         }
 

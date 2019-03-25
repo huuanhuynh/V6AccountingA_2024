@@ -3141,7 +3141,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 else
                 {
                     flagAddSuccess = false;
-                    //addErrorMessage = "Thêm không thành công";
+                    //addErrorMessage = V6Text.Text("ADD0");
                     addErrorMessage = Invoice.V6Message;
                     Invoice.PostErrorLog(_sttRec, "M");
                 }
@@ -3384,7 +3384,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 else
                 {
                     flagDeleteSuccess = false;
-                    deleteErrorMessage = "Xóa không thành công.";
+                    deleteErrorMessage = V6Text.Text("XOA0");
                     Invoice.PostErrorLog(_sttRec, "X", "Invoice81.DeleteInvoice return false." + Invoice.V6Message);
                 }
             }

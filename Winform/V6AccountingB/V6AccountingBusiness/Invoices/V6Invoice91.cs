@@ -68,7 +68,7 @@ namespace V6AccountingBusiness.Invoices
 
                 Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " Exception", ex, "");
                 V6Message = "Rollback: "
-                            + (!insert_success ? V6Text.Text("AMUNSUCCESS") : "")
+                            + (!insert_success ? V6Text.Text("AAMUNSUCCESS") : "")
                             + (j != adList.Count ? V6Text.Text("ADNOTCOMPLETE") : "");
 
                 #endregion Rollback
@@ -150,7 +150,7 @@ namespace V6AccountingBusiness.Invoices
 
                 Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " Exception", ex, "");
                 V6Message = "Rollback: "
-                            + (!insert_success ? V6Text.Text("AMUNSUCCESS") : "")
+                            + (!insert_success ? V6Text.Text("AAMUNSUCCESS") : "")
                             + (j != adList.Count ? V6Text.Text("ADNOTCOMPLETE") : "");
 
                 #endregion Rollback

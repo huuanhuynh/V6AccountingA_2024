@@ -3159,7 +3159,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 else
                 {
                     flagAddSuccess = false;
-                    addErrorMessage = "Thêm không thành công";
+                    addErrorMessage = V6Text.Text("ADD0");
                     Invoice.PostErrorLog(_sttRec, "M");
                 }
             }
@@ -3281,7 +3281,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 else
                 {
                     flagEditSuccess = false;
-                    editErrorMessage = "Sửa không thành công";
+                    editErrorMessage = V6Text.Text("SUA0");
                     Invoice.PostErrorLog(_sttRec, "S");
                 }
             }
@@ -3399,7 +3399,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 else
                 {
                     flagDeleteSuccess = false;
-                    deleteErrorMessage = "Xóa không thành công.";
+                    deleteErrorMessage = V6Text.Text("XOA0");
                     Invoice.PostErrorLog(_sttRec, "X", "Invoice81.DeleteInvoice return false." + Invoice.V6Message);
                 }
             }

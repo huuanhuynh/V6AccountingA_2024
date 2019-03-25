@@ -2736,7 +2736,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 else
                 {
                     flagAddSuccess = false;
-                    addErrorMessage = "Thêm không thành công";
+                    addErrorMessage = V6Text.Text("ADD0");
                     Invoice.PostErrorLog(_sttRec, "M");
                 }
             }
@@ -2962,7 +2962,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 {
                     V6ControlFormHelper.AddLastAction("\nInvoice.UpdateInvoice() End Fail: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
                     flagEditSuccess = false;
-                    editErrorMessage = "Sửa không thành công";
+                    editErrorMessage = V6Text.Text("SUA0");
                     Invoice.PostErrorLog(_sttRec, "S");
                 }
             }
@@ -3090,7 +3090,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 else
                 {
                     flagDeleteSuccess = false;
-                    deleteErrorMessage = "Xóa không thành công.";
+                    deleteErrorMessage = V6Text.Text("XOA0");
                     Invoice.PostErrorLog(_sttRec, "X", "Invoice41.DeleteInvoice return false." + Invoice.V6Message);
                 }
             }

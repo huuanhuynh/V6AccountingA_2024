@@ -1483,6 +1483,13 @@ namespace V6AccountingBusiness
             }
         }
 
+        /// <summary>
+        /// Tính tổng theo dấu oper, + thì cộng, - thì trừ.
+        /// </summary>
+        /// <param name="data">Bảng dữ liệu.</param>
+        /// <param name="colName">Cột tính tổng.</param>
+        /// <param name="oper_column">Cột dấu + hoặc -</param>
+        /// <returns></returns>
         public static decimal TinhTongOper(DataTable data, string colName, string oper_column)
         {
             var total = 0m;
