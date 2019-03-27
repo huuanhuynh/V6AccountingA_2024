@@ -38,7 +38,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 nMonth = 1;
                 nYear++;
             }
-            btnChuyen.Text = string.Format("Chuyển sang tháng {0} năm {1}", nMonth, nYear);
+            btnChuyen.Text = string.Format(V6Text.Text("CHUYENM0Y1"), nMonth, nYear);
         }
 
         

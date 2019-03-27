@@ -29,17 +29,17 @@ namespace V6Tools
                 if (string.IsNullOrEmpty(fileName)) return;
                 Thread t = new Thread(o =>
                     {
-                        FileInfo fi = new FileInfo(fileName);
-                        var s = 0;
-                        while (IsFileLocked(fi))
-                        {
-                            s++;
-                            if (s == 3600) return;
-                            Thread.Sleep(1000);
-                        }
-
                         try
                         {
+                            FileInfo fi = new FileInfo(fileName);
+                            var s = 0;
+                            while (IsFileLocked(fi))
+                            {
+                                s++;
+                                if (s == 3600) return;
+                                Thread.Sleep(1000);
+                            }
+                        
                             UploadDownloadFTP du = new UploadDownloadFTP(ip, user, ePass);
                             du.Upload(fileName, subfolder);
                         }
@@ -138,10 +138,17 @@ namespace V6Tools
 
         public static void DirectoryCopyWithParentFolder(string sourceDirName, string destDirName, bool copySubDirs)
         {
-            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
-            string newFolderPath = destDirName;
-            if(dir.Parent == null) newFolderPath = Path.Combine(destDirName, dir.Name);
-            DirectoryCopy(sourceDirName, newFolderPath, copySubDirs);
+            try
+            {
+                DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+                string newFolderPath = destDirName;
+                if (dir.Parent == null) newFolderPath = Path.Combine(destDirName, dir.Name);
+                DirectoryCopy(sourceDirName, newFolderPath, copySubDirs);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteToLog(string.Format("DirectoryCopyWithParentFolder from {0} to {1} error: {2}", sourceDirName, destDirName, ex.Message), "V6Tools");
+            }
         }
 
         /// <summary>

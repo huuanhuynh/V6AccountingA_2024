@@ -13,14 +13,24 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
     {
         public VaoChiTietTonKhoNTXTcontrol()
         {
-            InitializeComponent();
+            MyInit();
+        }
+
+        private void MyInit()
+        {
             try
             {
                 TxtMaVatTu.SetInitFilter("gia_ton=3");
+
+                if (V6Options.GetValueNull("M_QLY_TON_QD") == "1")
+                {
+                    lblTon00qd.Visible = true;
+                    txtTon00qd.Visible = true;
+                }
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".Init", ex);
+                this.WriteExLog(GetType() + "INIT", ex);
             }
         }
 

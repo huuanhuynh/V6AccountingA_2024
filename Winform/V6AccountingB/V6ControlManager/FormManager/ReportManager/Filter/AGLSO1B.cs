@@ -78,7 +78,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             
             if (TxtTk.Text.Trim() == "")
             {
-                throw new Exception("Chưa chọn tài khoản!");
+                throw new Exception(V6Text.Text("CHUACHONTK"));
             }
 
             V6Setting.M_TK = TxtTk.Text;

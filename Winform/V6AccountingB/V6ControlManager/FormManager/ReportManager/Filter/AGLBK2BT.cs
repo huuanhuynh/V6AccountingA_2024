@@ -106,7 +106,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.YYYYMMDD));
             if (TxtTk.Text.Trim() == "")
             {
-                throw new Exception("Chưa chọn tài khoản!");
+                throw new Exception(V6Text.Text("CHUACHONTK"));
             }
             result.Add(new SqlParameter("@Tk", TxtTk.Text.Trim()));
             result.Add(new SqlParameter("@noco", TxtGroupby.Text.Trim()));

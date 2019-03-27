@@ -112,9 +112,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     txtKy2.Value = txtKy1.Value;
 
                 if (txtKy1.Value == txtKy2.Value)
-                    txtDien_giai.Text = "Bút toán PB công cụ của kỳ " + txtKy1.Value.ToString("#") + "  năm " + txtNam.Value.ToString("#");
+                    txtDien_giai.Text = "Bút toán PB công cụ của kỳ " + txtKy1.Value.ToString("#") + V6Text.Text("_year_") + txtNam.Value.ToString("#");
                 else
-                    txtDien_giai.Text = "Bút toán PB công cụ từ kỳ " + txtKy1.Value.ToString("#") + "  đến kỳ " + txtKy2.Value.ToString("#") + "  năm " + txtNam.Value.ToString("#");
+                    txtDien_giai.Text = "Bút toán PB công cụ từ kỳ " + txtKy1.Value.ToString("#") + "  đến kỳ " + txtKy2.Value.ToString("#") + V6Text.Text("_year_") + txtNam.Value.ToString("#");
 
                 
             }

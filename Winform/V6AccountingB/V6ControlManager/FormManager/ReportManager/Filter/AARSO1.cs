@@ -62,11 +62,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             if (TxtTk.Text.Trim() == "")
             {
-                throw new Exception("Chưa chọn tài khoản!");
+                throw new Exception(V6Text.Text("CHUACHONTK"));
             }
             if (TxtMa_kh.Text.Trim() == "")
             {
-                throw new Exception("Chưa chọn khách hàng!");
+                throw new Exception(V6Text.Text("CHUACHONKH"));
             }
 
             V6Setting.M_TK = TxtTk.Text;

@@ -37,7 +37,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             if (TxtMa_kh.Text.Trim() == "")
             {
-                throw new Exception("Chưa chọn khách hàng!");
+                throw new Exception(V6Text.Text("CHUACHONKH"));
             }
 
             var tu_so = ctTuSo.Text.Trim().Replace("'", "");

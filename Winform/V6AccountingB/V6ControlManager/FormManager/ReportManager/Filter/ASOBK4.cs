@@ -87,7 +87,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                   //@advance nvarchar(max)
             if (TxtMa_kh.Text.Trim() == "")
             {
-                throw new Exception("Chưa chọn khách hàng!");
+                throw new Exception(V6Text.Text("CHUACHONKH"));
             }
 
             String1 = TxtMakho.StringValue;

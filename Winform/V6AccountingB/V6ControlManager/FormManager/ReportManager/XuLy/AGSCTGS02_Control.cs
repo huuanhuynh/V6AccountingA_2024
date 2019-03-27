@@ -23,7 +23,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F4: Đăng ký chứng từ ghi sổ, F8: Xóa đăng ký CTGS");
+            V6ControlFormHelper.SetStatusText2(string.Format("F4: {0}, F8: {1}", V6Text.Text("DKCTGS"), V6Text.Text("XDKCTGS")));
         }
 
         protected override void MakeReport2()
@@ -80,7 +80,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 _numlist = _numlist.Substring(1);
 
 
-                                var fText = "Xóa đăng ký chứng từ ghi sổ";
+                                var fText = V6Text.Text("XDKCTGS");
                                 var f = new V6Form
                                 {
                                     Text = fText,
@@ -165,7 +165,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             (currentRow.Cells["THANG"].Value);
 
                         form_F4 = new AGSCTGS02_F4(selectedNam, selectedthang, selectedthang, _program);
-                        form_F4.Text = "Đăng ký chứng từ ghi sổ";
+                        form_F4.Text = V6Text.Text("DKCTGS");
                         form_F4.ShowDialog(this);
                         SetStatus2Text();
                         if (form_F4.DialogResult == DialogResult.OK)

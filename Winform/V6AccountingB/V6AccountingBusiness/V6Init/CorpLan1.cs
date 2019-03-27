@@ -38,7 +38,7 @@ namespace V6Init
                         row =>
                             row[1].ToString().Replace("\\r\\n", "\r\n").Trim().Length > 0
                                 ? row[1].ToString().Trim()
-                                : row[0].ToString().Trim());
+                                : row[0].ToString());
 
                     dataDictionary.AddRange(d);
                 }

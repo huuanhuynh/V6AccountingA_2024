@@ -62,7 +62,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 AccessibleName = "user_name",
                 VVar = "USER_NAME",
-                GrayText = "Tên đăng nhập",
+                GrayText = V6Text.Text("TENDANGNHAP"),
                 BrotherFields = "Comment"
             };
             _user_name.Upper();

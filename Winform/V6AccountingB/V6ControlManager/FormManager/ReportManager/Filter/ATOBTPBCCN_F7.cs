@@ -145,9 +145,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     txtKy2.Value = txtKy1.Value;
 
                 if (txtKy1.Value == txtKy2.Value)
-                    txtDien_giai.Text = "Bút toán PB KH TSCĐ của kỳ " + txtKy1.Value.ToString("#") + "  năm " + txtNam.Value.ToString("#");
+                    txtDien_giai.Text = string.Format("{0} {1} {2} {3}", V6Text.Text("BTPBKHTSCDCK"), txtKy1.Value.ToString("#"), V6Text.Text("year"), txtNam.Value.ToString("#"));
                 else
-                    txtDien_giai.Text = "Bút toán PB KH TSCĐ từ kỳ " + txtKy1.Value.ToString("#") + "  đến kỳ " + txtKy2.Value.ToString("#") + "  năm " + txtNam.Value.ToString("#");
+                    txtDien_giai.Text = string.Format("{0} {1} {2} {3} {4} {5}", V6Text.Text("BTPBKHTSCDTK"), txtKy1.Value.ToString("#"), V6Text.Text("DENKY"), txtKy2.Value.ToString("#"), V6Text.Text("year"), txtNam.Value.ToString("#"));
 
                 
             }
@@ -156,12 +156,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             }
         }
+
         private void txtNam_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 Change_DienGiai();
-
             }
             catch (Exception)
             {

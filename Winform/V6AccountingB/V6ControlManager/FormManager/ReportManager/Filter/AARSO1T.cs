@@ -91,7 +91,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             if (TxtTk.Text.Trim() == "")
             {
-                throw new Exception("Chưa chọn tài khoản!");
+                throw new Exception(V6Text.Text("CHUACHONTK"));
             }
 
             var result = new List<SqlParameter>();

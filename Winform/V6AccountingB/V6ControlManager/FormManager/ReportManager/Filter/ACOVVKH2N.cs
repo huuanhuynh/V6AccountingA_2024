@@ -24,7 +24,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         public override List<SqlParameter> GetFilterParameters()
         {
             if(txtTaiKhoan.Text.Trim() == "")
-                throw new Exception("Chưa nhập tài khoản.");
+                throw new Exception(V6Text.Text("CHUANHAPTK"));
             var result = new List<SqlParameter>
             {
                 new SqlParameter("@cAcct", txtTaiKhoan.Text),

@@ -72,7 +72,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             //if (TxtTk.Text.Trim() == "")
             //{
-            //    throw new Exception("Chưa chọn tài khoản!");
+            //    throw new Exception(V6Text.Text("CHUACHONTK"));
             //}
             // result.Add(new SqlParameter("@Tk", TxtTk.Text.Trim()));
 
@@ -81,7 +81,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             V6Setting.M_ngay_ct2 = dateNgay_ct2.Date;
             if (TxtTkcn.Text.Trim() == "")
             {
-                throw new Exception("Chưa chọn tài khoản!");
+                throw new Exception(V6Text.Text("CHUACHONTK"));
             }
             result.Add(new SqlParameter("@Tk_cn", TxtTkcn.Text.Trim()));
             result.Add(new SqlParameter("@StartDate", dateNgay_ct1.YYYYMMDD));

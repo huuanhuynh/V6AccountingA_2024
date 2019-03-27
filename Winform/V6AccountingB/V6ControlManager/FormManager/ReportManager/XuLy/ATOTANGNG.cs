@@ -219,9 +219,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                         "UID=@uid",
                                         "", "", plist.ToArray()).Data;
 
-                              
 
-                                    var fText = "Sửa Tăng nguyên giá: " + sothets;
+
+                                    var fText = V6Text.Text("SUATANGNGG") + sothets;
                                     var f = new V6Form
                                     {
                                         Text = fText,
@@ -302,7 +302,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 var am = V6BusinessHelper.Select(amName, "*", "STT_REC=@stt_rec and MA_CT=@maCT",
                                     "", "", plist.ToArray()).Data;
 
-                                var fText = "Thêm tăng nguyên giá: " + sothecc;
+                                var fText = V6Text.Text("THEMTANGNGG") + sothecc;
                                 var f = new V6Form
                                 {
                                     Text = fText,
