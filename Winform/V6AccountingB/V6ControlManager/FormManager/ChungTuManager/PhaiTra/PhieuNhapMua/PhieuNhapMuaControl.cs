@@ -4739,12 +4739,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     _ten_kh22.Text = txtTenKh.Text;
                     _dia_chi22.Text = txtDiaChi.Text;
                     _ma_so_thue22.Text = txtMaSoThue.Text;
-                    
+
 
                     if (TxtMa_kh_i_ao.Text.Trim() == txtMaKh.Text.Trim())
                     {
                         _t_tien22.Value = txtTongTien0.Value - txtTongGiam.Value - txtTongCk.Value + TxtT_cp.Value + TxtT_TIENVC.Value;
-                        _t_tien_nt22.Value = txtTongTienNt0.Value - txtTongGiamNt.Value - txtTongCkNt.Value + TxtT_cp_nt.Value + TxtT_TIENVCNT.Value;    
+                        _t_tien_nt22.Value = txtTongTienNt0.Value - txtTongGiamNt.Value - txtTongCkNt.Value + TxtT_cp_nt.Value + TxtT_TIENVCNT.Value;
                     }
                     else
                     {
@@ -4768,7 +4768,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         _ma_so_thue22.Enabled = _ma_so_thue22.Text.Trim() == "";
                     }
                     //TinhTienThue22();
-                    Tinh_TienThueNtVaTienThue_TheoThueSuat(_thue_suat22.Value, _t_tien_nt22.Value, _t_tien22.Value, _t_thue_nt22, _t_thue22);
+                    Tinh_TienThueNtVaTienThue_TheoThueSuat(_thue_suat22.Value, _t_tien_nt22.Value, _t_tien22.Value,
+                        _t_thue_nt22, _t_thue22);
+                }
+                else
+                {
+                    _so_ct022.Text = txtSoCt0.Text;
+                    _ngay_ct022.Value = txtNgayCt0.Value;
+                    _so_seri022.Text = txtSoSeri0.Text;
+                    _ma_kh22.Text = txtMaKh.Text;
+                    _ten_kh22.Text = txtTenKh.Text;
+                    _dia_chi22.Text = txtDiaChi.Text;
+                    _ma_so_thue22.Text = txtMaSoThue.Text;
+                    
+                    _tk_thue_no22.Text = txtTkThueNo.Text.Trim();
+                    _tk_du22.Text = txtManx.Text.Trim();
+                    _han_tt22.Value = txtHanTT.Value;
+                    _mau_bc.Value = 1;
                 }
                 _mau_bc.Focus();
             }

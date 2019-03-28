@@ -154,77 +154,21 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
-        public string RequestWeather(string word, string toLanguage)
-        {
-            string url0 = "https://translate.google.com/#view=home&op=translate&sl=en&tl=zh-CN&text=like";
-            string fromLanguage = "en";
-            var ur1 = string.Format("https://translate.google.com/translate_a/single?client=webapp&sl=en&tl=zh-CN&hl=vi&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&dt=t&source=bh&ssel=0&tsel=0&kc=1&tk=318115.151379&q=amount", fromLanguage, toLanguage, (word));
-            var ur2 = string.Format("https://translate.google.com/translate_a/single?client=webapp&sl=en&tl=zh-CN&hl=vi&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&dt=t&source=bh&ssel=0&tsel=0&kc=1&tk=480477.114989&q=love", fromLanguage, toLanguage, (word));
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url0);
-            request.Method = "GET";
-
-            var webResponse = request.GetResponse();
-            var webStream = webResponse.GetResponseStream();
-            var responseReader = new StreamReader(webStream);
-            var response = responseReader.ReadToEnd();
-            Console.WriteLine("Response: " + response);
-            responseReader.Close();
-            return response;
-        }
-
-        private void GoogleTranslate()
+       private void GoogleTranslate()
         {
             try
             {
                 if (txtTextE.Text.Trim() == "") return;
-                txtC.Text = RequestWeather(txtTextE.Text, LanguagePair.China);
-                txtC.Text = TranslateText(txtTextE.Text, LanguagePair.China);
-                txtF.Text = SingleTranslate(txtTextE.Text, LanguagePair.France);
+                //txtC.Text = RequestWeather(txtTextE.Text, LanguagePair.China);
+                //txtC.Text = TranslateText(txtTextE.Text, LanguagePair.China);
+                //txtF.Text = SingleTranslate(txtTextE.Text, LanguagePair.France);
             }
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".GoogleTranslate", ex);
             }
         }
-
-        public string TranslateText(string input, string languagePair)
-        {
-            //string url = String.Format("http://www.google.com/translate_t?hl=en&ie=UTF8&text={0}&langpair={1}", input, languagePair);
-            var url = string.Format("https://translate.google.com/translate_a/single?client=webapp&sl={0}&tl={1}&hl=vi&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&dt=t&source=bh&ssel=0&tsel=0&kc=1&tk=318115.151379&q={2}",
-                    "en", languagePair, (input));
-            WebClient webClient = new WebClient();
-            webClient.Encoding = System.Text.Encoding.UTF8;
-            string result = webClient.DownloadString(url);
-            result = result.Substring(result.IndexOf("<span title=\"") + "<span title=\"".Length);
-            result = result.Substring(result.IndexOf(">") + 1);
-            result = result.Substring(0, result.IndexOf("</span>"));
-            return result.Trim();
-        }
-
-        public string SingleTranslate(string word, string toLanguage)
-        {
-            //var toLanguage = "en"; //English
-            var fromLanguage = "en"; //Deutsch
-            var url =
-                //String.Format("https://translate.googleapis.com/translate_a/single?client=gtx&sl={0}&tl={1}&dt=t&q={2}",
-                String.Format("https://translate.google.com/translate_a/single?client=webapp&sl={0}&tl={1}&hl=vi&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&dt=t&source=bh&ssel=0&tsel=0&kc=1&tk=318115.151379&q={2}",
-                    fromLanguage, toLanguage, (word));
-            var webClient = new WebClient
-            {
-                Encoding = System.Text.Encoding.UTF8
-            };
-            var result = webClient.DownloadString(url);
-            try
-            {
-                result = result.Substring(4, result.IndexOf("\"", 4, StringComparison.Ordinal) - 4);
-                return result;
-            }
-            catch
-            {
-                return "Error";
-            }
-        }
-
+        
         private class LanguagePair
         {
             public static string China = "zh-CN";

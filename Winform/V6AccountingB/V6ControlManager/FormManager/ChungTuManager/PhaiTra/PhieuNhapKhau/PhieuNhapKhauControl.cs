@@ -152,7 +152,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             _dia_chi22,_ma_so_thue22;
         private V6VvarTextBox _ma_kh22, _tk_du22, _tk_thue_no22, _ma_thue22;
         private V6DateTimeColor _ngay_ct022;
-        private V6NumberTextBox _t_tien22, _t_tien_nt22, _thue_suat22, _t_thue22, _t_thue_nt22, _tien_cn_nt22, _tien_cn22;
+        private V6NumberTextBox _t_tien22, _t_tien_nt22, _thue_suat22, _t_thue22, _t_thue_nt22, _tien_cn_nt22, _tien_cn22, _han_tt22;
         
         private void LoadDetailControls()
         {
@@ -782,6 +782,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         {
                         
                         }
+                        break;
+                    case "HAN_TT":
+                        _han_tt22 = control as V6NumberTextBox;
                         break;
                     case "T_TIEN":
                         _t_tien22 = control as V6NumberTextBox;
@@ -4690,7 +4693,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     _t_tien_nt22.Value = txtTongTienNt0.Value;
                     _thue_suat22.Value = txtThueSuat.Value;
                     _tk_thue_no22.Text = txtTkThueNo.Text.Trim();
-                    _tk_du22.Text = txtManx.Text.Trim();
+                    _tk_du22.Text = txtTkThueCo.Text.Trim();
+                    _han_tt22.Value = txtHanTT.Value;
                     _mau_bc.Value = 1;
                     if (_ma_kh22.Text.Trim() == "")
                     {
@@ -4704,6 +4708,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     }
                     //TinhTienThue22();
                     Tinh_TienThueNtVaTienThue_TheoThueSuat(_thue_suat22.Value, _t_tien_nt22.Value, _t_tien22.Value, _t_thue_nt22, _t_thue22);
+                }
+                else
+                {
+                    _so_ct022.Text = txtSoCt0.Text;
+                    _ngay_ct022.Value = txtNgayCt0.Value;
+                    _so_seri022.Text = txtSoSeri0.Text;
+                    _ma_kh22.Text = txtMaKh.Text;
+                    _ten_kh22.Text = txtTenKh.Text;
+                    _dia_chi22.Text = txtDiaChi.Text;
+                    _ma_so_thue22.Text = txtMaSoThue.Text;
+
+                    _tk_thue_no22.Text = txtTkThueNo.Text.Trim();
+                    _tk_du22.Text = txtTkThueCo.Text.Trim();
+                    _han_tt22.Value = txtHanTT.Value;
+                    _mau_bc.Value = 1;
                 }
                 _mau_bc.Focus();
             }
