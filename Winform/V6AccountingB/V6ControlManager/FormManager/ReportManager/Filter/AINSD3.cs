@@ -27,8 +27,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             if (V6Setting.Language != "V")
             {
-                cbbLoaiBaoCao.Items[0] = "Quantity";
-                cbbLoaiBaoCao.Items[1] = "Amount";
+                cbbLoaiBaoCao.Items[0] = V6Text.Text("SL");
+                cbbLoaiBaoCao.Items[1] = V6Text.Text("Tien");
                 
                 cbbKhoHangGuiBan.Items[0] = "1 - Chi tiết theo kho hàng gửi bán";
                 cbbKhoHangGuiBan.Items[1] = "2 - Gộp các kho hàng gửi bán";

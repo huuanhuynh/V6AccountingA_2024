@@ -29,6 +29,16 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtK = new V6Controls.V6ColorTextBox();
+            this.txtJ = new V6Controls.V6ColorTextBox();
+            this.lblK = new System.Windows.Forms.Label();
+            this.txtC = new V6Controls.V6ColorTextBox();
+            this.lblJ = new System.Windows.Forms.Label();
+            this.lblC = new System.Windows.Forms.Label();
+            this.txtR = new V6Controls.V6ColorTextBox();
+            this.lblR = new System.Windows.Forms.Label();
+            this.txtF = new V6Controls.V6ColorTextBox();
+            this.lblF = new System.Windows.Forms.Label();
             this.btnKhongDau = new System.Windows.Forms.Button();
             this.chkAutoCopyID = new System.Windows.Forms.CheckBox();
             this.txtTen = new V6Controls.V6ColorTextBox();
@@ -51,16 +61,7 @@
             this.lblTextE = new System.Windows.Forms.Label();
             this.lblTextV = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
-            this.txtF = new V6Controls.V6ColorTextBox();
-            this.lblF = new System.Windows.Forms.Label();
-            this.lblC = new System.Windows.Forms.Label();
-            this.txtC = new V6Controls.V6ColorTextBox();
-            this.lblR = new System.Windows.Forms.Label();
-            this.txtR = new V6Controls.V6ColorTextBox();
-            this.lblJ = new System.Windows.Forms.Label();
-            this.txtJ = new V6Controls.V6ColorTextBox();
-            this.lblK = new System.Windows.Forms.Label();
-            this.txtK = new V6Controls.V6ColorTextBox();
+            this.btnGoogleTranslate = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,6 +80,7 @@
             this.groupBox1.Controls.Add(this.lblR);
             this.groupBox1.Controls.Add(this.txtF);
             this.groupBox1.Controls.Add(this.lblF);
+            this.groupBox1.Controls.Add(this.btnGoogleTranslate);
             this.groupBox1.Controls.Add(this.btnKhongDau);
             this.groupBox1.Controls.Add(this.chkAutoCopyID);
             this.groupBox1.Controls.Add(this.txtTen);
@@ -108,6 +110,131 @@
             this.groupBox1.Size = new System.Drawing.Size(698, 245);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // txtK
+            // 
+            this.txtK.AccessibleName = "K";
+            this.txtK.BackColor = System.Drawing.SystemColors.Window;
+            this.txtK.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtK.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtK.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtK.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtK.HoverColor = System.Drawing.Color.Yellow;
+            this.txtK.LeaveColor = System.Drawing.Color.White;
+            this.txtK.Location = new System.Drawing.Point(514, 211);
+            this.txtK.Name = "txtK";
+            this.txtK.Size = new System.Drawing.Size(174, 23);
+            this.txtK.TabIndex = 31;
+            // 
+            // txtJ
+            // 
+            this.txtJ.AccessibleName = "J";
+            this.txtJ.BackColor = System.Drawing.SystemColors.Window;
+            this.txtJ.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtJ.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtJ.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtJ.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtJ.HoverColor = System.Drawing.Color.Yellow;
+            this.txtJ.LeaveColor = System.Drawing.Color.White;
+            this.txtJ.Location = new System.Drawing.Point(514, 187);
+            this.txtJ.Name = "txtJ";
+            this.txtJ.Size = new System.Drawing.Size(174, 23);
+            this.txtJ.TabIndex = 29;
+            // 
+            // lblK
+            // 
+            this.lblK.AutoSize = true;
+            this.lblK.Location = new System.Drawing.Point(456, 214);
+            this.lblK.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblK.Name = "lblK";
+            this.lblK.Size = new System.Drawing.Size(48, 17);
+            this.lblK.TabIndex = 30;
+            this.lblK.Text = "Text K";
+            // 
+            // txtC
+            // 
+            this.txtC.AccessibleName = "C";
+            this.txtC.BackColor = System.Drawing.SystemColors.Window;
+            this.txtC.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtC.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtC.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtC.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtC.HoverColor = System.Drawing.Color.Yellow;
+            this.txtC.LeaveColor = System.Drawing.Color.White;
+            this.txtC.Location = new System.Drawing.Point(514, 139);
+            this.txtC.Name = "txtC";
+            this.txtC.Size = new System.Drawing.Size(174, 23);
+            this.txtC.TabIndex = 25;
+            // 
+            // lblJ
+            // 
+            this.lblJ.AutoSize = true;
+            this.lblJ.Location = new System.Drawing.Point(456, 190);
+            this.lblJ.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblJ.Name = "lblJ";
+            this.lblJ.Size = new System.Drawing.Size(46, 17);
+            this.lblJ.TabIndex = 28;
+            this.lblJ.Text = "Text J";
+            // 
+            // lblC
+            // 
+            this.lblC.AutoSize = true;
+            this.lblC.Location = new System.Drawing.Point(456, 142);
+            this.lblC.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblC.Name = "lblC";
+            this.lblC.Size = new System.Drawing.Size(48, 17);
+            this.lblC.TabIndex = 24;
+            this.lblC.Text = "Text C";
+            // 
+            // txtR
+            // 
+            this.txtR.AccessibleName = "R";
+            this.txtR.BackColor = System.Drawing.SystemColors.Window;
+            this.txtR.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtR.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtR.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtR.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtR.HoverColor = System.Drawing.Color.Yellow;
+            this.txtR.LeaveColor = System.Drawing.Color.White;
+            this.txtR.Location = new System.Drawing.Point(514, 163);
+            this.txtR.Name = "txtR";
+            this.txtR.Size = new System.Drawing.Size(174, 23);
+            this.txtR.TabIndex = 27;
+            // 
+            // lblR
+            // 
+            this.lblR.AutoSize = true;
+            this.lblR.Location = new System.Drawing.Point(456, 166);
+            this.lblR.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblR.Name = "lblR";
+            this.lblR.Size = new System.Drawing.Size(49, 17);
+            this.lblR.TabIndex = 26;
+            this.lblR.Text = "Text R";
+            // 
+            // txtF
+            // 
+            this.txtF.AccessibleName = "F";
+            this.txtF.BackColor = System.Drawing.SystemColors.Window;
+            this.txtF.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtF.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtF.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtF.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtF.HoverColor = System.Drawing.Color.Yellow;
+            this.txtF.LeaveColor = System.Drawing.Color.White;
+            this.txtF.Location = new System.Drawing.Point(514, 115);
+            this.txtF.Name = "txtF";
+            this.txtF.Size = new System.Drawing.Size(174, 23);
+            this.txtF.TabIndex = 23;
+            // 
+            // lblF
+            // 
+            this.lblF.AutoSize = true;
+            this.lblF.Location = new System.Drawing.Point(456, 118);
+            this.lblF.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblF.Name = "lblF";
+            this.lblF.Size = new System.Drawing.Size(47, 17);
+            this.lblF.TabIndex = 22;
+            this.lblF.Text = "Text F";
             // 
             // btnKhongDau
             // 
@@ -408,140 +535,16 @@
             this.lblID.TabIndex = 0;
             this.lblID.Text = "ID";
             // 
-            // txtF
+            // btnGoogleTranslate
             // 
-            this.txtF.AccessibleName = "F";
-            this.txtF.BackColor = System.Drawing.SystemColors.Window;
-            this.txtF.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtF.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtF.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtF.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtF.HoverColor = System.Drawing.Color.Yellow;
-            this.txtF.LeaveColor = System.Drawing.Color.White;
-            this.txtF.Location = new System.Drawing.Point(514, 115);
-            this.txtF.Name = "txtF";
-            this.txtF.Size = new System.Drawing.Size(174, 23);
-            this.txtF.TabIndex = 23;
-            this.txtF.Visible = false;
-            // 
-            // lblF
-            // 
-            this.lblF.AutoSize = true;
-            this.lblF.Location = new System.Drawing.Point(456, 118);
-            this.lblF.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.lblF.Name = "lblF";
-            this.lblF.Size = new System.Drawing.Size(47, 17);
-            this.lblF.TabIndex = 22;
-            this.lblF.Text = "Text F";
-            this.lblF.Visible = false;
-            // 
-            // lblC
-            // 
-            this.lblC.AutoSize = true;
-            this.lblC.Location = new System.Drawing.Point(456, 142);
-            this.lblC.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.lblC.Name = "lblC";
-            this.lblC.Size = new System.Drawing.Size(48, 17);
-            this.lblC.TabIndex = 24;
-            this.lblC.Text = "Text C";
-            this.lblC.Visible = false;
-            // 
-            // txtC
-            // 
-            this.txtC.AccessibleName = "C";
-            this.txtC.BackColor = System.Drawing.SystemColors.Window;
-            this.txtC.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtC.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtC.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtC.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtC.HoverColor = System.Drawing.Color.Yellow;
-            this.txtC.LeaveColor = System.Drawing.Color.White;
-            this.txtC.Location = new System.Drawing.Point(514, 139);
-            this.txtC.Name = "txtC";
-            this.txtC.Size = new System.Drawing.Size(174, 23);
-            this.txtC.TabIndex = 25;
-            this.txtC.Visible = false;
-            // 
-            // lblR
-            // 
-            this.lblR.AutoSize = true;
-            this.lblR.Location = new System.Drawing.Point(456, 166);
-            this.lblR.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.lblR.Name = "lblR";
-            this.lblR.Size = new System.Drawing.Size(49, 17);
-            this.lblR.TabIndex = 26;
-            this.lblR.Text = "Text R";
-            this.lblR.Visible = false;
-            // 
-            // txtR
-            // 
-            this.txtR.AccessibleName = "R";
-            this.txtR.BackColor = System.Drawing.SystemColors.Window;
-            this.txtR.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtR.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtR.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtR.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtR.HoverColor = System.Drawing.Color.Yellow;
-            this.txtR.LeaveColor = System.Drawing.Color.White;
-            this.txtR.Location = new System.Drawing.Point(514, 163);
-            this.txtR.Name = "txtR";
-            this.txtR.Size = new System.Drawing.Size(174, 23);
-            this.txtR.TabIndex = 27;
-            this.txtR.Visible = false;
-            // 
-            // lblJ
-            // 
-            this.lblJ.AutoSize = true;
-            this.lblJ.Location = new System.Drawing.Point(456, 190);
-            this.lblJ.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.lblJ.Name = "lblJ";
-            this.lblJ.Size = new System.Drawing.Size(46, 17);
-            this.lblJ.TabIndex = 28;
-            this.lblJ.Text = "Text J";
-            this.lblJ.Visible = false;
-            // 
-            // txtJ
-            // 
-            this.txtJ.AccessibleName = "J";
-            this.txtJ.BackColor = System.Drawing.SystemColors.Window;
-            this.txtJ.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtJ.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtJ.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtJ.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtJ.HoverColor = System.Drawing.Color.Yellow;
-            this.txtJ.LeaveColor = System.Drawing.Color.White;
-            this.txtJ.Location = new System.Drawing.Point(514, 187);
-            this.txtJ.Name = "txtJ";
-            this.txtJ.Size = new System.Drawing.Size(174, 23);
-            this.txtJ.TabIndex = 29;
-            this.txtJ.Visible = false;
-            // 
-            // lblK
-            // 
-            this.lblK.AutoSize = true;
-            this.lblK.Location = new System.Drawing.Point(456, 214);
-            this.lblK.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.lblK.Name = "lblK";
-            this.lblK.Size = new System.Drawing.Size(48, 17);
-            this.lblK.TabIndex = 30;
-            this.lblK.Text = "Text K";
-            this.lblK.Visible = false;
-            // 
-            // txtK
-            // 
-            this.txtK.AccessibleName = "K";
-            this.txtK.BackColor = System.Drawing.SystemColors.Window;
-            this.txtK.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtK.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtK.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtK.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtK.HoverColor = System.Drawing.Color.Yellow;
-            this.txtK.LeaveColor = System.Drawing.Color.White;
-            this.txtK.Location = new System.Drawing.Point(514, 211);
-            this.txtK.Name = "txtK";
-            this.txtK.Size = new System.Drawing.Size(174, 23);
-            this.txtK.TabIndex = 31;
-            this.txtK.Visible = false;
+            this.btnGoogleTranslate.AccessibleDescription = "AECORPLANB00002";
+            this.btnGoogleTranslate.Location = new System.Drawing.Point(331, 180);
+            this.btnGoogleTranslate.Name = "btnGoogleTranslate";
+            this.btnGoogleTranslate.Size = new System.Drawing.Size(115, 27);
+            this.btnGoogleTranslate.TabIndex = 11;
+            this.btnGoogleTranslate.Text = "Google Translate";
+            this.btnGoogleTranslate.UseVisualStyleBackColor = true;
+            this.btnGoogleTranslate.Click += new System.EventHandler(this.btnGoogleTranslate_Click);
             // 
             // CorpLanAddEditForm
             // 
@@ -594,5 +597,6 @@
         private System.Windows.Forms.Label lblR;
         private V6ColorTextBox txtF;
         private System.Windows.Forms.Label lblF;
+        private System.Windows.Forms.Button btnGoogleTranslate;
     }
 }

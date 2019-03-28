@@ -430,7 +430,13 @@ namespace V6Init
         public string ten { get { return GetString("ten"); } }
         public string table_name { get { return GetString("table_name"); } }
         public string table_view { get { return GetString("table_view"); } }
+        /// <summary>
+        /// Các trường chi tiết bắt buộc nhập liệu.
+        /// </summary>
         public string A_field { get { return GetString("A_field"); } }
+        /// <summary>
+        /// Trường vvar cần kiểm tra hợp lệ dữ liệu.
+        /// </summary>
         public string A_field2 { get { return GetString("A_field2"); } }
         public string UID { get { return GetString("UID"); } }
 
@@ -530,7 +536,7 @@ namespace V6Init
         /// Lấy thông tin V6Valid cho chứng từ theo ma_ct.
         /// </summary>
         /// <param name="ma_ct"></param>
-        /// <param name="attribute"></param>
+        /// <param name="attribute">2 detail1 3 danh mục 4 detail3</param>
         /// <returns></returns>
         public static V6ValidConfig GetV6ValidConfig(string ma_ct, int attribute)
         {

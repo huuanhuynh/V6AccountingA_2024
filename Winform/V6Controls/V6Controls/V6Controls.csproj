@@ -369,10 +369,10 @@
     <Compile Include="Forms\DanhMuc\Add_Edit\ChietKhauAddEditForm.Designer.cs">
       <DependentUpon>ChietKhauAddEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\CorpLanAddEditForm.cs">
+    <Compile Include="Forms\DanhMuc\Add_Edit\Language\CorpLanAddEditForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\CorpLanAddEditForm.Designer.cs">
+    <Compile Include="Forms\DanhMuc\Add_Edit\Language\CorpLanAddEditForm.Designer.cs">
       <DependentUpon>CorpLanAddEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\DonViCoSoAddEditForm.cs">
@@ -1602,7 +1602,7 @@
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\ChietKhauAddEditForm.resx">
       <DependentUpon>ChietKhauAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\CorpLanAddEditForm.resx">
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Language\CorpLanAddEditForm.resx">
       <DependentUpon>CorpLanAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\DonViCoSoAddEditForm.resx">

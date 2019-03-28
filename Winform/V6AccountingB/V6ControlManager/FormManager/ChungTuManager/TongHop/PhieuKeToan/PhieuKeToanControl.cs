@@ -3292,11 +3292,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             return true;
         }
 
-        private bool ValidateData_Detail2(IDictionary<string, object> data)
+        private bool ValidateData_Detail2(IDictionary<string, object>  data)
         {
             try
             {
-                
+                string firstErrorField;
+                string errors = ValidateDetail2Data(detail2, Invoice, data, out firstErrorField);
+                if (!string.IsNullOrEmpty(errors))
+                {
+                    this.ShowWarningMessage(errors);
+                    var c = detail1.GetControlByAccessibleName(firstErrorField);
+                    if (c != null) c.Focus();
+                    return false;
+                }
             }
             catch (Exception ex)
             {

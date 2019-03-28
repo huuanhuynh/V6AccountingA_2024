@@ -1286,7 +1286,100 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 }
                 else
                 {
-                    ShowMainMessage(V6Text.Text("NoInfo") + " V6Valid!");
+                    SetStatusText(V6Text.Text("NoInfo") + " V6Valid!");
+                }
+            }
+            catch (Exception ex)
+            {
+                //error += ex.Message;//Lỗi chương trình không liên quan lỗi nhập liệu
+                this.WriteExLog(GetType() + ".ValidateData_Detail " + _sttRec, ex);
+            }
+            return error;
+        }
+        
+        /// <summary>
+        /// <para>Kiểm tra dữ liệu chi tiết thuế hợp lệ quy định trong V6Valid.</para>
+        /// <para>Nếu hợp lệ trả về rỗng hoặc null, Nếu ko trả về message.</para>
+        /// </summary>
+        /// <param name="detail3"></param>
+        /// <param name="Invoice"></param>
+        /// <param name="data"></param>
+        /// <param name="firstField"></param>
+        /// <returns></returns>
+        public string ValidateDetail2Data(HD_Detail detail3, V6InvoiceBase Invoice, IDictionary<string, object> data, out string firstField)
+        {
+            string error = "";
+            firstField = null;
+            try
+            {
+                var config = ConfigManager.GetV6ValidConfig(Invoice.Mact, 4);
+                
+                if (config != null && config.HaveInfo)
+                {
+                    //Trường bắt buột nhập dữ liệu.
+                    var a_fields = ObjectAndString.SplitString(config.A_field);
+                    foreach (string field in a_fields)
+                    {
+                        string FIELD = field.Trim().ToUpper();
+                        string label = FIELD;
+                        if (!data.ContainsKey(FIELD))
+                        {
+                            //error += string.Format("{0}: [{1}]\n", V6Text.NoData, FIELD);
+                            continue;
+                        }
+
+                        V6ColumnStruct columnS = Invoice.ADStruct[FIELD];
+                        object value = data[FIELD];
+                        
+                        if (ObjectAndString.IsDateTimeType(columnS.DataType))
+                        {
+                            if (value == null)
+                            {
+                                var lbl = detail3.GetControlByName("lbl" + FIELD);
+                                if (lbl != null) label = lbl.Text;
+                                error += V6Text.NoInput + " [" + label + "]\n";
+                                if (firstField == null) firstField = FIELD;
+                            }
+                        }
+                        else if (ObjectAndString.IsNumberType(columnS.DataType))
+                        {
+                            if (ObjectAndString.ObjectToDecimal(value) == 0)
+                            {
+                                var lbl = detail3.GetControlByName("lbl" + FIELD);
+                                if (lbl != null) label = lbl.Text;
+                                error += V6Text.NoInput + " [" + label + "]\n";
+                                if (firstField == null) firstField = FIELD;
+                            }
+                        }
+                        else // string
+                        {
+                            if (("" + value).Trim() == "")
+                            {
+                                var lbl = detail3.GetControlByName("lbl" + FIELD);
+                                if (lbl != null) label = lbl.Text;
+                                error += V6Text.NoInput + " [" + label + "]\n";
+                                if (firstField == null) firstField = FIELD;
+                            }
+                        }
+                    }
+
+                    //Trường vvar
+                    var a_field2s = ObjectAndString.SplitString(config.A_field2);
+                    foreach (string field2 in a_field2s)
+                    {
+                        var vvar = GetControlByAccessibleName(field2) as V6VvarTextBox;
+                        if (vvar != null)
+                        {
+                            if (vvar.CheckNotEmpty && vvar.CheckOnLeave && !vvar.ExistRowInTable(true))
+                            {
+                                error += V6Text.Wrong + " [" + field2 + "]\n";
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    SetStatusText(V6Text.Text("NoInfo") + " V6Valid!");
                 }
             }
             catch (Exception ex)

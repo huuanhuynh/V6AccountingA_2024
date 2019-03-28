@@ -3490,7 +3490,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             return true;
         }
 
-        private bool ValidateData_Detail2(IDictionary<string, object> data)
+        private bool ValidateData_Detail2(IDictionary<string, object>  data)
         {
             try
             {
@@ -3499,6 +3499,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                 //    this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
                 //    return false;
                 //}
+                string firstErrorField;
+                string errors = ValidateDetail2Data(detail2, Invoice, data, out firstErrorField);
+                if (!string.IsNullOrEmpty(errors))
+                {
+                    this.ShowWarningMessage(errors);
+                    var c = detail1.GetControlByAccessibleName(firstErrorField);
+                    if (c != null) c.Focus();
+                    return false;
+                }
             }
             catch (Exception ex)
             {
