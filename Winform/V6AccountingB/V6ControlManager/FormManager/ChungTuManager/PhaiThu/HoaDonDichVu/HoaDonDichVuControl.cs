@@ -697,7 +697,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                     if (cIndex >= 0 && cIndex < AD3.Rows.Count)
                     {
                         var currentRow = AD3.Rows[cIndex];
-                        var details = "Tài khoản: " + currentRow["TK_I"];
+                        var details = V6Text.FieldCaption("TK") + ": " + currentRow["TK_I"];
                         if (this.ShowConfirmMessage(V6Text.DeleteConfirm +
                                                                    details)
                             == DialogResult.Yes)
@@ -751,9 +751,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2(V6Setting.IsVietnamese ?
-                "F4-Nhận/thêm chi tiết, F7-Lưu và in, F8-Xóa chi tiết" :
-                "F4-Add detail, F7-Save and print, F8-Delete detail");
+            V6ControlFormHelper.SetStatusText2(V6Setting.IsVietnamese ? "F4-Nhận/thêm chi tiết, F7-Lưu và in, F8-Xóa chi tiết" : "F4-Add detail, F7-Save and print, F8-Delete detail");
         }
         
         public override bool DoHotKey0(Keys keyData)
@@ -2837,7 +2835,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
 
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
-                if (!data.ContainsKey("TK_DT") || data["TK_DT"].ToString().Trim() == "") error += "\nTài khoản doanh thu rỗng.";
+                if (!data.ContainsKey("TK_DT") || data["TK_DT"].ToString().Trim() == "")
+                {
+                    var label = "TK_DT";
+                    var lbl = detail1.GetControlByName("lbl" + label);
+                    if (lbl != null) label = lbl.Text;
+                    error += V6Text.NoInput + " [" + label + "]\n";
+                }
                 
                 if (error == "")
                 {
@@ -2898,7 +2902,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                         //Kiem tra du lieu truoc khi them sua
                         var error = "";
                         if (!data.ContainsKey("TK_DT") || data["TK_DT"].ToString().Trim() == "")
-                            error += "\nTài khoản doanh thu rỗng.";
+                        {
+                            var label = "TK_DT";
+                            var lbl = detail1.GetControlByName("lbl" + label);
+                            if (lbl != null) label = lbl.Text;
+                            error += V6Text.NoInput + " [" + label + "]\n";
+                        }
                         
                         if (error == "")
                         {

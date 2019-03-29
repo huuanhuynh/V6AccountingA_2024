@@ -99,11 +99,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
                 //vMaFile = LstConfig[1];
                 
                 _helpProvider1 = new HelpProvider();
-                _helpProvider1.SetHelpString(txtV_Search, "Gõ bất kỳ thông tin bạn nhớ để tìm kiếm!");
-                _helpProvider1.SetHelpString(btnVSearch, "Tìm...");
-                //_helpProvider1.SetHelpString(rbtLocTiep, "Click chọn để lọc tiếp từ kết quả đã lọc!");
+                _helpProvider1.SetHelpString(txtV_Search, V6Text.Text("TYPETOSEARCH"));
+                _helpProvider1.SetHelpString(btnVSearch, V6Text.Text("TIM"));
+                //_helpProvider1.SetHelpString(rbtLocTiep, V6Text.Text("CHKLOCTIEP"));
 
-                _helpProvider1.SetHelpString(dataGridView1, "Chọn một dòng và nhấn enter để nhận giá trị!");
+                _helpProvider1.SetHelpString(dataGridView1, V6Text.Text("SELECT1ENTER"));
                 //_helpProvider1.SetHelpString(btnTatCa, "Hiện tất cả.");
                 //helpProvider1.SetHelpString(, "Hien tat ca danh muc.");
                 txtV_Search.Focus();

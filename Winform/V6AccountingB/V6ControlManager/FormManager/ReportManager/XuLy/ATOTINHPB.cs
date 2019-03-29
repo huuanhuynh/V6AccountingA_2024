@@ -1,4 +1,5 @@
 ﻿using V6Controls.Forms;
+using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
@@ -12,7 +13,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("Tính phân bổ tháng.");
+            V6ControlFormHelper.SetStatusText2(V6Text.Text("TINHPBTHANG"));
         }
 
         //protected override void ExecuteProcedure()

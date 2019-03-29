@@ -112,7 +112,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             _ten_vt = new V6ColorTextBox
             {
                 AccessibleName = "TEN_VT0",
-                GrayText = "Tên vật tư",
+                GrayText = V6Text.FieldCaption("Ten_vt"),
                 Width = 300,
                 Enabled = false,
                 Tag = "disable"
@@ -120,7 +120,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             _dvt = new V6ColorTextBox
             {
                 AccessibleName = "DVT",
-                GrayText = "ĐVT",
+                GrayText = V6Text.FieldCaption("DVT"),
                 Enabled = false,
                 Tag = "disable"
             };
@@ -128,29 +128,29 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             _dinhMucKeHoach = new NumberSoluong
             {
                 AccessibleName = "sl_dm_kh",
-                GrayText = "Định mức kế hoạch"
+                GrayText = V6Text.Text("DMKH")
             };
             _dinhMucDonHang = new NumberSoluong
             {
                 AccessibleName = "sl_dm_dh",
-                GrayText = "Định mức đơn hàng"
+                GrayText = V6Text.Text("DMDH")
             };
             _soLuongThucTe = new NumberSoluong
             {
                 AccessibleName = "sl_tt",
-                GrayText = "Số lượng thực tế"
+                GrayText = V6Text.Text("SLTT")
             };
             _ngayBatDau = new V6DateTimeColor
             {
                 AccessibleName = "ngay_hl1",
-                GrayText = "Ngày bắt đầu",
+                GrayText = V6Text.Text("NgayBD"),
                 Visible = false,
                 Tag = "hide"
             };
             _ngayKetThuc = new V6DateTimeColor
             {
                 AccessibleName = "ngay_hl2",
-                GrayText = "Ngày kết thúc",
+                GrayText = V6Text.Text("NgayKT"),
                 Visible = false,
                 Tag = "hide"
             };

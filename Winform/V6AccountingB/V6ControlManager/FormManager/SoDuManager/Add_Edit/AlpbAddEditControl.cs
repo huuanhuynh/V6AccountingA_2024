@@ -481,7 +481,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     if (cIndex >= 0 && cIndex < AD.Rows.Count)
                     {
                         var currentRow = AD.Rows[cIndex];
-                        var details = "Tài khoản : " + currentRow["tk"];
+                        var details = V6Text.FieldCaption("TK") + " : " + currentRow["tk"];
                         if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details)
                             == DialogResult.Yes)
                         {

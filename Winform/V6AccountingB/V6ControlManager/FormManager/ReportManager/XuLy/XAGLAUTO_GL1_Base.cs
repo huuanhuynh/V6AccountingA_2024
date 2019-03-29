@@ -15,7 +15,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("Tạo chứng từ phiếu kế toán từ Phiếu chi/ Báo nợ.");
+            V6ControlFormHelper.SetStatusText2(V6Text.Text("TAOPKTTPCHI"));
         }
 
         protected override void Nhan()

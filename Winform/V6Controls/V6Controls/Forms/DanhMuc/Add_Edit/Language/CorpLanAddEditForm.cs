@@ -38,20 +38,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void Form_Load(object sender, EventArgs e)
         {
-            //if (TableName != V6TableName.CorpLan)
-            //{
-            //    txtCtype.Visible = false;
-            //    lblCtype.Visible = false;
-                
-            //    txtTen.Visible = false;
-            //    txtTen2.Visible = false;
+            if (TableName != V6TableName.CorpLan)
+            {
+                txtCtype.Visible = false;
+                lblCtype.Visible = false;
 
-            //    lblTen.Visible = false;
-            //    lblTen2.Visible = false;
+                txtTen.Visible = false;
+                txtTen2.Visible = false;
 
-            //    txtSname.Visible = false;
-            //    lblSName.Visible = false;
-            //}
+                lblTen.Visible = false;
+                lblTen2.Visible = false;
+
+                txtSname.Visible = false;
+                lblSName.Visible = false;
+            }
         }
 
         public override void DoBeforeAdd()
@@ -134,6 +134,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             try
             {
                 if (!IsReady) return;
+                if (TableName != V6TableName.CorpLan) return;
 
                 var CType = txtCtype.Text.Trim();
                 var SFile = txtSfile.Text.Trim();

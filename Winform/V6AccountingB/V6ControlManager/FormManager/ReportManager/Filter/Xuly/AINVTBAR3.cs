@@ -131,7 +131,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
 
                     infor_lo = txtMalo.Data["GC_TD1"].ToString().Trim();
                     infor_lo = infor_lo.Replace(",", "---");
-                    infor_lo += " ngày " + ngay_td1;
+                    infor_lo += V6Text.Text("_NGAY_") + ngay_td1;
                 }
                 else
                 {

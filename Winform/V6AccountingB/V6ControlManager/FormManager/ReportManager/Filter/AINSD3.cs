@@ -29,16 +29,16 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 cbbLoaiBaoCao.Items[0] = V6Text.Text("SL");
                 cbbLoaiBaoCao.Items[1] = V6Text.Text("Tien");
-                
-                cbbKhoHangGuiBan.Items[0] = "1 - Chi tiết theo kho hàng gửi bán";
-                cbbKhoHangGuiBan.Items[1] = "2 - Gộp các kho hàng gửi bán";
+
+                cbbKhoHangGuiBan.Items[0] = "1 - " + V6Text.Text("CTTKHGB");
+                cbbKhoHangGuiBan.Items[1] = "2 - " + V6Text.Text("GOPCKHGB");
 
                 cbbKieuIn.Items[0] = "0 - Quantity < 0";
                 cbbKieuIn.Items[1] = "1 - Quantity >= 0";
                 cbbKieuIn.Items[2] = "2 - All";
 
-                cbbLoaiTonKho.Items[0] = "0 - Không";
-                cbbLoaiTonKho.Items[1] = "1 - Quản lý tồn kho";
+                cbbLoaiTonKho.Items[0] = "0 - No";
+                cbbLoaiTonKho.Items[1] = "1 - Inventory management";
                 cbbLoaiTonKho.Items[2] = "2 - All";
             }
 

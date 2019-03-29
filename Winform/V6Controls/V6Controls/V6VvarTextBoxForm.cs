@@ -85,11 +85,11 @@ namespace V6Controls
 
                 //this.HelpButtonClicked +=new CancelEventHandler(Form_HelpButtonClicked);
                 _helpProvider1 = new HelpProvider();
-                _helpProvider1.SetHelpString(txtV_Search, ChuyenMaTiengViet.ToUnSign("Gõ bất kỳ thông tin bạn nhớ để tìm kiếm!"));
-                _helpProvider1.SetHelpString(btnVSearch, ChuyenMaTiengViet.ToUnSign("Tìm..."));
-                _helpProvider1.SetHelpString(rbtLocTiep, ChuyenMaTiengViet.ToUnSign("Click chọn để lọc tiếp từ kết quả đã lọc!"));
+                _helpProvider1.SetHelpString(txtV_Search, ChuyenMaTiengViet.ToUnSign(V6Text.Text("TYPETOSEARCH")));
+                _helpProvider1.SetHelpString(btnVSearch, ChuyenMaTiengViet.ToUnSign(V6Text.Text("TIM")));
+                _helpProvider1.SetHelpString(rbtLocTiep, ChuyenMaTiengViet.ToUnSign(V6Text.Text("CHKLOCTIEP")));
 
-                _helpProvider1.SetHelpString(dataGridView1, ChuyenMaTiengViet.ToUnSign("Chọn một dòng và nhấn enter để nhận giá trị!"));
+                _helpProvider1.SetHelpString(dataGridView1, ChuyenMaTiengViet.ToUnSign(V6Text.Text("SELECT1ENTER")));
                 _helpProvider1.SetHelpString(btnTatCa, ChuyenMaTiengViet.ToUnSign("Hiện tất cả."));
                 //helpProvider1.SetHelpString(, "Hien tat ca danh muc.");
                 toolStripStatusLabel1.Text = V6Setting.IsVietnamese ? "F1-Hướng dẫn, F2-Xem, F3-Sửa, F4-Thêm, Enter-Chọn, ESC-Quay ra" : "F1-Help, F2-View, F3-Edit, F4-Add, Enter-Choose, ESC-Back";

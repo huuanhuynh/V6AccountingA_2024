@@ -306,6 +306,10 @@ namespace V6ControlManager.FormManager.DanhMucManager
             {
                 KeyFields = new[] {"MA_KH"};
             }
+            else if (CurrentTable == V6TableName.CorpLan2)
+            {
+                KeyFields = new[] { "ID" };
+            }
             MakeStatus2Text();
             SetStatus2Text();
             InvokeFormEvent(ControlDynamicEvent.INIT2);
@@ -1765,13 +1769,11 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 }
                 else if (fields.Length == 0 && CurrentTable == V6TableName.CorpLan1)
                 {
-                    // Hỗ trợ cho CorpLan
-                    fields = new[] { "Sfile", "ID", "Ctype", "D", "V", "E" };
+                    fields = new[] { "ID", "Ctype", "D", "V", "E" };
                 }
                 else if (fields.Length == 0 && CurrentTable == V6TableName.CorpLan2)
                 {
-                    // Hỗ trợ cho CorpLan
-                    fields = new[] { "Sfile", "ID", "Ctype", "D", "V", "E" };
+                    fields = new[] { "ID", "Ctype", "D", "V", "E" };
                 }
 
                 _filterForm = new FilterForm(structTable, fields);

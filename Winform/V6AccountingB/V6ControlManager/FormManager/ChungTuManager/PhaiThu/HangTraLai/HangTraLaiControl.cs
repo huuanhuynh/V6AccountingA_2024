@@ -766,9 +766,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2(V6Setting.IsVietnamese ?
-                "F4-Nhận/thêm chi tiết, F7-Lưu và in, F8-Xóa chi tiết" :
-                "F4-Add detail, F7-Save and print, F8-Delete detail");
+            V6ControlFormHelper.SetStatusText2(V6Setting.IsVietnamese ? "F4-Nhận/thêm chi tiết, F7-Lưu và in, F8-Xóa chi tiết" : "F4-Add detail, F7-Save and print, F8-Delete detail");
         }
 
         public override bool DoHotKey0(Keys keyData)

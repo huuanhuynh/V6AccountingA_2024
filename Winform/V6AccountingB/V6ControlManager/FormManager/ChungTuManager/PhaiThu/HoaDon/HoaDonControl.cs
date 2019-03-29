@@ -1222,7 +1222,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         var currentRow = AD3.Rows[cIndex];
                         var label = "TK_I";
                         var lbl = detail3.GetControlByName("lbl" + label);
-                        var details = (lbl == null? "Tài khoản: " : lbl.Text + ": ") + currentRow["TK_I"];
+                        var details = (lbl == null ? "Tài khoản: " : lbl.Text + ": ") + currentRow["TK_I"];
                         if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details)
                             == DialogResult.Yes)
                         {

@@ -1095,7 +1095,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     if (cIndex >= 0 && cIndex < AD3.Rows.Count)
                     {
                         var currentRow = AD3.Rows[cIndex];
-                        var details = "Tài khoản: " + currentRow["TK_I"];
+                        var details = V6Text.FieldCaption("TK") + ": " + currentRow["TK_I"];
                         if (this.ShowConfirmMessage(V6Text.DeleteConfirm +
                                                                    details)
                             == DialogResult.Yes)
@@ -1318,9 +1318,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2(V6Setting.IsVietnamese ?
-                "F4-Nhận/thêm chi tiết, F7-Lưu và in, F8-Xóa chi tiết" :
-                "F4-Add detail, F7-Save and print, F8-Delete detail");
+            V6ControlFormHelper.SetStatusText2(V6Setting.IsVietnamese ? "F4-Nhận/thêm chi tiết, F7-Lưu và in, F8-Xóa chi tiết" : "F4-Add detail, F7-Save and print, F8-Delete detail");
         }
 
         public override bool DoHotKey0(Keys keyData)
@@ -3659,7 +3657,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 var error = "";
                 if (_MA_GD == "1")
                 {
-                    if (!dic.ContainsKey("SO_CT0") || dic["SO_CT0"].ToString().Trim() == "") error += "\nSố hóa đơn rỗng.";
+                    if (!dic.ContainsKey("SO_CT0") || dic["SO_CT0"].ToString().Trim() == "")
+                    {
+                        var label = "SO_CT0";
+                        var lbl = detail1.GetControlByName("lbl" + label);
+                        if (lbl != null) label = lbl.Text;
+                        error += V6Text.NoInput + " [" + label + "]\n";
+                    }
                 }
                 else if (_MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9")
                 {
@@ -4872,9 +4876,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
                 if (!data.ContainsKey("SO_CT0") || data["SO_CT0"].ToString().Trim() == "")
-                    error += "\nSố hóa đơn rỗng.";
+                {
+                    var label = "SO_CT0";
+                    var lbl = detail2.GetControlByName("lbl" + label);
+                    if (lbl != null) label = lbl.Text;
+                    error += V6Text.NoInput + " [" + label + "]\n";
+                }
                 if (!data.ContainsKey("NGAY_CT0") || data["NGAY_CT0"] == DBNull.Value)
-                    error += "\nNgày hóa đơn rỗng.";
+                {
+                    var label = "NGAY_CT0";
+                    var lbl = detail2.GetControlByName("lbl" + label);
+                    if (lbl != null) label = lbl.Text;
+                    error += V6Text.NoInput + " [" + label + "]\n";
+                }
                 if (error == "")
                 {
                     //Tạo dòng dữ liệu mới.
@@ -4928,9 +4942,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                         //Kiem tra du lieu truoc khi them sua
                         var error = "";
                         if (!data.ContainsKey("SO_CT0") || data["SO_CT0"].ToString().Trim() == "")
-                            error += "\nSố hóa đơn rỗng.";
+                        {
+                            var label = "SO_CT0";
+                            var lbl = detail2.GetControlByName("lbl" + label);
+                            if (lbl != null) label = lbl.Text;
+                            error += V6Text.NoInput + " [" + label + "]\n";
+                        }
                         if (!data.ContainsKey("NGAY_CT0") || data["NGAY_CT0"] == DBNull.Value)
-                            error += "\nNgày hóa đơn rỗng.";
+                        {
+                            var label = "NGAY_CT0";
+                            var lbl = detail2.GetControlByName("lbl" + label);
+                            if (lbl != null) label = lbl.Text;
+                            error += V6Text.NoInput + " [" + label + "]\n";
+                        }
                         if (error == "")
                         {
                             //Sửa dòng dữ liệu.

@@ -104,22 +104,22 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 AccessibleName = "ma_nv",
                 VVar = "ma_nv",
-                GrayText = "Nguồn vốn",
+                GrayText = V6Text.FieldCaption("Ma_nv"),
                 BrotherFields = "TEN_NV"
             };
             ma_nv.Upper();
             ngay_ct = new V6DateTimeColor()
             {
-                AccessibleName = "Ngay_ct", GrayText = "Ngày ct"
+                AccessibleName = "Ngay_ct", GrayText = V6Text.FieldCaption("Ngay_ct")
             };
             so_ct = new V6ColorTextBox()
             {
                 AccessibleName = "So_ct",
-                GrayText = "Số ct"
+                GrayText = V6Text.FieldCaption("So_ct")
             };
             nguyen_gia = new NumberTien()
             {
-                AccessibleName = "nguyen_gia", GrayText = "Nguyên giá"
+                AccessibleName = "nguyen_gia", GrayText = V6Text.FieldCaption("NGUYEN_GIA")
             };
             nguyen_gia.V6LostFocus += delegate
             {
@@ -129,7 +129,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             gt_da_pb = new NumberTien()
             {
                 AccessibleName = "gt_da_pb",
-                GrayText = "Giá trị đã pb"
+                GrayText = V6Text.FieldCaption("GT_DA_PB1")
             };
             gt_da_pb.V6LostFocus += delegate
             {
@@ -139,7 +139,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             gt_cl = new NumberTien()
             {
                 AccessibleName = "gt_cl",
-                GrayText = "Giá trị còn lại",
+                GrayText = V6Text.Text("GT_CL"),
                 ReadOnly = true,
                 Tag = "readonly",
                 TabStop = false
@@ -161,7 +161,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             dien_giai = new V6ColorTextBox()
             {
                 AccessibleName = "dien_giai",
-                GrayText = "Diễn giải"
+                GrayText = V6Text.FieldCaption("Dien_giai")
             };
             
 

@@ -803,9 +803,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2(V6Setting.IsVietnamese ?
-                "F4-Nhận/thêm chi tiết, F7-Lưu và in, F8-Xóa chi tiết" :
-                "F4-Add detail, F7-Save and print, F8-Delete detail");
+            V6ControlFormHelper.SetStatusText2(V6Setting.IsVietnamese ? "F4-Nhận/thêm chi tiết, F7-Lưu và in, F8-Xóa chi tiết" : "F4-Add detail, F7-Save and print, F8-Delete detail");
         }
 
         public override bool DoHotKey0(Keys keyData)
@@ -3584,9 +3582,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
                 if (!data.ContainsKey("SO_CT0") || data["SO_CT0"].ToString().Trim() == "")
-                    error += "\nSố hóa đơn rỗng.";
+                {
+                    var label = "SO_CT0";
+                    var lbl = detail2.GetControlByName("lbl" + label);
+                    if (lbl != null) label = lbl.Text;
+                    error += V6Text.NoInput + " [" + label + "]\n";
+                }
                 if (!data.ContainsKey("NGAY_CT0") || data["NGAY_CT0"] == DBNull.Value)
-                    error += "\nNgày hóa đơn rỗng.";
+                {
+                    var label = "NGAY_CT0";
+                    var lbl = detail2.GetControlByName("lbl" + label);
+                    if (lbl != null) label = lbl.Text;
+                    error += V6Text.NoInput + " [" + label + "]\n";
+                }
                 if (error == "")
                 {
                     //Tạo dòng dữ liệu mới.
@@ -3704,9 +3712,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                         //Kiem tra du lieu truoc khi them sua
                         var error = "";
                         if (!data.ContainsKey("SO_CT0") || data["SO_CT0"].ToString().Trim() == "")
-                            error += "\nSố hóa đơn rỗng.";
+                        {
+                            var label = "SO_CT0";
+                            var lbl = detail2.GetControlByName("lbl" + label);
+                            if (lbl != null) label = lbl.Text;
+                            error += V6Text.NoInput + " [" + label + "]\n";
+                        }
                         if (!data.ContainsKey("NGAY_CT0") || data["NGAY_CT0"] == DBNull.Value)
-                            error += "\nNgày hóa đơn rỗng.";
+                        {
+                            var label = "NGAY_CT0";
+                            var lbl = detail2.GetControlByName("lbl" + label);
+                            if (lbl != null) label = lbl.Text;
+                            error += V6Text.NoInput + " [" + label + "]\n";
+                        }
                         if (error == "")
                         {
                             //Sửa dòng dữ liệu.

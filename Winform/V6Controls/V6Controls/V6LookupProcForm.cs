@@ -83,11 +83,11 @@ namespace V6Controls
 
                 //this.HelpButtonClicked +=new CancelEventHandler(V6LookupProcForm_HelpButtonClicked);
                 _helpProvider1 = new HelpProvider();
-                _helpProvider1.SetHelpString(txtV_Search, ChuyenMaTiengViet.ToUnSign("Gõ bất kỳ thông tin bạn nhớ để tìm kiếm!"));
-                _helpProvider1.SetHelpString(btnVSearch, ChuyenMaTiengViet.ToUnSign("Tìm..."));
-                _helpProvider1.SetHelpString(rbtLocTiep, ChuyenMaTiengViet.ToUnSign("Click chọn để lọc tiếp từ kết quả đã lọc!"));
+                _helpProvider1.SetHelpString(txtV_Search, ChuyenMaTiengViet.ToUnSign(V6Text.Text("TYPETOSEARCH")));
+                _helpProvider1.SetHelpString(btnVSearch, ChuyenMaTiengViet.ToUnSign(V6Text.Text("TIM")));
+                _helpProvider1.SetHelpString(rbtLocTiep, ChuyenMaTiengViet.ToUnSign(V6Text.Text("CHKLOCTIEP")));
 
-                _helpProvider1.SetHelpString(dataGridView1, ChuyenMaTiengViet.ToUnSign("Chọn một dòng và nhấn enter để nhận giá trị!"));
+                _helpProvider1.SetHelpString(dataGridView1, ChuyenMaTiengViet.ToUnSign(V6Text.Text("SELECT1ENTER")));
                 _helpProvider1.SetHelpString(btnTatCa, ChuyenMaTiengViet.ToUnSign("Hiện tất cả."));
                 //helpProvider1.SetHelpString(, "Hien tat ca danh muc.");
                 toolStripStatusLabel1.Text = string.Format("F1-Hướng dẫn{3}{4}, Enter-Chọn, ESC-Quay ra",

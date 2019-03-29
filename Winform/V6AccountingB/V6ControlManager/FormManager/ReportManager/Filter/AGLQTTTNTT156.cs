@@ -94,7 +94,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             if (txtThang1.Value<=0 || txtThang1.Value >12 || txtThang2.Value <= 0 || txtThang2.Value > 12)
             {
-                throw new Exception("Sai tháng!");
+                throw new Exception(V6Text.Text("SAITHANG"));
             }
 
 

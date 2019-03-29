@@ -96,7 +96,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 AccessibleName = "ma_sp",
                 VVar = "MA_VT",
-                GrayText = "Mã sản phẩm",
+                GrayText = V6Text.FieldCaption("MA_SP"),
                 BrotherFields = "TEN_SP",
                 NeighborFields = "TEN_SP0"
             };
@@ -111,7 +111,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             _ten_sp = new V6ColorTextBox
             {
                 AccessibleName = "TEN_SP0",
-                GrayText = "Tên sản phẩm",
+                GrayText = V6Text.FieldCaption("Ten_SP"),
                 Width = 300,
                 Enabled = false,
                 Tag = "disable"
@@ -119,7 +119,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             _dvt = new V6ColorTextBox
             {
                 AccessibleName = "DVT",
-                GrayText = "ĐVT",
+                GrayText = V6Text.FieldCaption("DVT"),
                 Enabled = false,
                 Tag = "disable"
             };
@@ -127,20 +127,20 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             _heso = new NumberSoluong
             {
                 AccessibleName = "he_so",
-                GrayText = "Hệ số "
+                GrayText = V6Text.FieldCaption("HE_SO")
             };
             
             _ngayBatDau = new V6DateTimeColor
             {
                 AccessibleName = "ngay_hl1",
-                GrayText = "Ngày bắt đầu",
+                GrayText = V6Text.Text("NgayBD"),
                 Visible = false,
                 Tag = "hide"
             };
             _ngayKetThuc = new V6DateTimeColor
             {
                 AccessibleName = "ngay_hl2",
-                GrayText = "Ngày kết thúc",
+                GrayText = V6Text.Text("NgayKT"),
                 Visible = false,
                 Tag = "hide"
             };

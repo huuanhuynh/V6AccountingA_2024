@@ -616,7 +616,7 @@ namespace V6Tools.V6Convert
         /// <returns></returns>
         public static object TrimSpecial(string toString, string moreSpecialChars = null)
         {
-            string specialChars = "\r\n\n\r" + moreSpecialChars;
+            string specialChars = "\r﻿　" + moreSpecialChars;//"A◀﻿▶"//Sau \r là \u65279, là ký tự giữa 2 tam giác ◀﻿▶, và sau đó là \u12288
             foreach (char special_char in specialChars)
             {
                 toString = toString.Replace("" + special_char, "");
@@ -627,6 +627,7 @@ namespace V6Tools.V6Convert
                 if (char.IsWhiteSpace(i_char))
                 {
                     toString = toString.Replace("" + i_char, "");
+                    if (i > toString.Length) i = toString.Length;
                 }
             }
             toString = toString.Trim();
