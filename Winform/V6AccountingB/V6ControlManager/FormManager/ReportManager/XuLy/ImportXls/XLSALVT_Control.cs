@@ -10,6 +10,7 @@ using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6Tools;
+using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
@@ -72,7 +73,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (data != null)
                 {
-                    check_list = CHECK_FIELDS.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                    check_field_list = CHECK_FIELDS.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                     if (data.Columns.Contains(ID_FIELD) && data.Columns.Contains(NAME_FIELD))
                     {
                         Timer timerF9 = new Timer { Interval = 1000 };
@@ -106,7 +107,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private int total, index;
         private string f9Error = "";
         private string f9ErrorAll = "";
-        private string[] check_list = { };
+        private string[] check_field_list = { };
         private void F9Thread()
         {
             try
@@ -122,6 +123,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 int stt = 0;
                 total = data.Rows.Count;
+                var id_list = IDS_CHECK.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+
                 for (int i = 0; i < total; i++)
                 {
                     DataRow row = data.Rows[i];
@@ -130,7 +133,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     try
                     {
                         var check_ok = true;
-                        foreach (string field in check_list)
+                        foreach (string field in check_field_list)
                         {
                             if (row[field] == null || row[field] == DBNull.Value || row[field].ToString().Trim() == "")
                             {
@@ -141,7 +144,22 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         if (check_ok)
                         {
                             var dataDic = row.ToDataDictionary();
-                            var id_list = IDS_CHECK.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                            //fix dataDic id fields.
+                            foreach (string id in id_list)
+                            {
+                                if (dataDic[id] is string)
+                                {
+                                    dataDic[id] = ObjectAndString.TrimSpecial(dataDic[id].ToString());
+                                }
+                            }
+                            foreach (string id in check_field_list)
+                            {
+                                if (dataDic[id] is string)
+                                {
+                                    dataDic[id] = ObjectAndString.TrimSpecial(dataDic[id].ToString());
+                                }
+                            }
+                            
                             var ID0 = dataDic[id_list[0]].ToString().Trim();
                             var exist = false;
                             switch (TYPE_CHECK)

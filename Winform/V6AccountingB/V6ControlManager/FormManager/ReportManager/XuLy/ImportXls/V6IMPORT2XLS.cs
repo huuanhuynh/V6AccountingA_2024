@@ -954,6 +954,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 int stt = 0, skip = 0;
                 total = _data.Rows.Count;
+                var id_list = IDS_CHECK.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+
                 for (int i = 0; i < total; i++)
                 {
                     DataRow row = _data.Rows[i];
@@ -984,7 +986,22 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         if (check_ok)
                         {
                             var dataDic = row.ToDataDictionary();
-                            var id_list = IDS_CHECK.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                            //fix dataDic id fields.
+                            foreach (string id in id_list)
+                            {
+                                if (dataDic[id] is string)
+                                {
+                                    dataDic[id] = ObjectAndString.TrimSpecial(dataDic[id].ToString());
+                                }
+                            }
+                            foreach (string id in check_field_list)
+                            {
+                                if (dataDic[id] is string)
+                                {
+                                    dataDic[id] = ObjectAndString.TrimSpecial(dataDic[id].ToString());
+                                }
+                            }
+                            
                             var ID0 = dataDic[id_list[0].ToUpper()].ToString().Trim();
                             
                             var keys1 = new SortedDictionary<string, object>();

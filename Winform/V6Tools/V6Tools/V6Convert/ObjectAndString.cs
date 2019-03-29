@@ -607,5 +607,30 @@ namespace V6Tools.V6Convert
             }
             return result;
         }
+
+        /// <summary>
+        /// Loại bỏ tất cả các ký tự khoảng trắng và khoảng trắng đặc biệt ở đầu, cuối và bên trong chuỗi.
+        /// </summary>
+        /// <param name="toString"></param>
+        /// <param name="moreSpecialChars"></param>
+        /// <returns></returns>
+        public static object TrimSpecial(string toString, string moreSpecialChars = null)
+        {
+            string specialChars = "\r\n\n\r" + moreSpecialChars;
+            foreach (char special_char in specialChars)
+            {
+                toString = toString.Replace("" + special_char, "");
+            }
+            for (int i = toString.Length-1; i >=0 ; i--)
+            {
+                char i_char = toString[i];
+                if (char.IsWhiteSpace(i_char))
+                {
+                    toString = toString.Replace("" + i_char, "");
+                }
+            }
+            toString = toString.Trim();
+            return toString;
+        }
     }
 }
