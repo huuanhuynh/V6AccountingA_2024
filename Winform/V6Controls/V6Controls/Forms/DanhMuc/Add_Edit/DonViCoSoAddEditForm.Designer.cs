@@ -52,7 +52,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblDVCS = new System.Windows.Forms.Label();
             this.txtDIEN_THOAI = new V6Controls.V6ColorTextBox();
             this.txtMst = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox2 = new V6Controls.V6ColorTextBox();
@@ -67,7 +67,7 @@
             this.txtTenDvcsX = new V6Controls.V6ColorTextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtTenDvcs = new V6Controls.V6ColorTextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblTenDVCS = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -99,7 +99,7 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.v6ColorTextBox3);
             this.groupBox1.Controls.Add(this.label19);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblDVCS);
             this.groupBox1.Controls.Add(this.txtDIEN_THOAI);
             this.groupBox1.Controls.Add(this.txtMst);
             this.groupBox1.Controls.Add(this.v6ColorTextBox2);
@@ -114,7 +114,7 @@
             this.groupBox1.Controls.Add(this.txtTenDvcsX);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.txtTenDvcs);
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lblTenDVCS);
             this.groupBox1.Location = new System.Drawing.Point(3, 2);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBox1.Name = "groupBox1";
@@ -442,16 +442,16 @@
             this.label19.TabIndex = 25;
             this.label19.Text = "Chức danh \"KT trưởng\"";
             // 
-            // label1
+            // lblDVCS
             // 
-            this.label1.AccessibleDescription = "ADDEDITL00005";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 22);
-            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã DVCS";
+            this.lblDVCS.AccessibleDescription = "ADDEDITL00005";
+            this.lblDVCS.AutoSize = true;
+            this.lblDVCS.Location = new System.Drawing.Point(13, 22);
+            this.lblDVCS.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblDVCS.Name = "lblDVCS";
+            this.lblDVCS.Size = new System.Drawing.Size(68, 17);
+            this.lblDVCS.TabIndex = 0;
+            this.lblDVCS.Text = "Mã DVCS";
             // 
             // txtDIEN_THOAI
             // 
@@ -653,17 +653,17 @@
             this.txtTenDvcs.Size = new System.Drawing.Size(562, 23);
             this.txtTenDvcs.TabIndex = 5;
             // 
-            // label2
+            // lblTenDVCS
             // 
-            this.label2.AccessibleDescription = "ADDEDITL00279";
-            this.label2.AccessibleName = "";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 49);
-            this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 17);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Tên DVCS";
+            this.lblTenDVCS.AccessibleDescription = "ADDEDITL00279";
+            this.lblTenDVCS.AccessibleName = "";
+            this.lblTenDVCS.AutoSize = true;
+            this.lblTenDVCS.Location = new System.Drawing.Point(13, 49);
+            this.lblTenDVCS.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblTenDVCS.Name = "lblTenDVCS";
+            this.lblTenDVCS.Size = new System.Drawing.Size(74, 17);
+            this.lblTenDVCS.TabIndex = 4;
+            this.lblTenDVCS.Text = "Tên DVCS";
             // 
             // DonViCoSoAddEditForm
             // 
@@ -687,9 +687,9 @@
         private System.Windows.Forms.Label label4;
         private V6ColorTextBox txtTen2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblDVCS;
         private V6ColorTextBox txtTenDvcs;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblTenDVCS;
         private V6ColorTextBox TxtNH_DVCS1;
         private System.Windows.Forms.Label label3;
         private V6VvarTextBox TxtMa_dvcs;

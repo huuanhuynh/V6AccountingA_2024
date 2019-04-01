@@ -31,12 +31,12 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.TxtSTT_KEY = new V6Controls.V6NumberTextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.TXTMA_BC = new V6Controls.V6VvarTextBox();
+            this.txtMa_bc = new V6Controls.V6VvarTextBox();
             this.Txtten2 = new V6Controls.V6ColorTextBox();
             this.TXTTEN = new V6Controls.V6ColorTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblMa_bc = new System.Windows.Forms.Label();
             this.TxtSTT_FILTER = new V6Controls.V6NumberTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -78,12 +78,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.TxtSTT_KEY);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.TXTMA_BC);
+            this.groupBox1.Controls.Add(this.txtMa_bc);
             this.groupBox1.Controls.Add(this.Txtten2);
             this.groupBox1.Controls.Add(this.TXTTEN);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblMa_bc);
             this.groupBox1.Controls.Add(this.TxtSTT_FILTER);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
@@ -130,20 +130,20 @@
             this.label7.TabIndex = 8;
             this.label7.Text = "Sắp xếp Key";
             // 
-            // TXTMA_BC
+            // txtMa_bc
             // 
-            this.TXTMA_BC.AccessibleName = "MA_BC";
-            this.TXTMA_BC.BackColor = System.Drawing.Color.White;
-            this.TXTMA_BC.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TXTMA_BC.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TXTMA_BC.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TXTMA_BC.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TXTMA_BC.HoverColor = System.Drawing.Color.Yellow;
-            this.TXTMA_BC.LeaveColor = System.Drawing.Color.White;
-            this.TXTMA_BC.Location = new System.Drawing.Point(119, 17);
-            this.TXTMA_BC.Name = "TXTMA_BC";
-            this.TXTMA_BC.Size = new System.Drawing.Size(150, 23);
-            this.TXTMA_BC.TabIndex = 0;
+            this.txtMa_bc.AccessibleName = "MA_BC";
+            this.txtMa_bc.BackColor = System.Drawing.Color.White;
+            this.txtMa_bc.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMa_bc.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMa_bc.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMa_bc.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMa_bc.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMa_bc.LeaveColor = System.Drawing.Color.White;
+            this.txtMa_bc.Location = new System.Drawing.Point(119, 17);
+            this.txtMa_bc.Name = "txtMa_bc";
+            this.txtMa_bc.Size = new System.Drawing.Size(150, 23);
+            this.txtMa_bc.TabIndex = 0;
             // 
             // Txtten2
             // 
@@ -203,16 +203,16 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Tên báo cáo";
             // 
-            // label1
+            // lblMa_bc
             // 
-            this.label1.AccessibleDescription = "ADDEDITL00228";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 20);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã báo cáo";
+            this.lblMa_bc.AccessibleDescription = "ADDEDITL00228";
+            this.lblMa_bc.AutoSize = true;
+            this.lblMa_bc.Location = new System.Drawing.Point(8, 20);
+            this.lblMa_bc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMa_bc.Name = "lblMa_bc";
+            this.lblMa_bc.Size = new System.Drawing.Size(82, 17);
+            this.lblMa_bc.TabIndex = 0;
+            this.lblMa_bc.Text = "Mã báo cáo";
             // 
             // TxtSTT_FILTER
             // 
@@ -678,10 +678,10 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblMa_bc;
         private V6Controls.V6ColorTextBox Txtten2;
         private V6Controls.V6ColorTextBox TXTTEN;
-        private V6VvarTextBox TXTMA_BC;
+        private V6VvarTextBox txtMa_bc;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage1;
         private V6Controls.V6TabControl v6TabControl1;

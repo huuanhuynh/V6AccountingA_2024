@@ -31,7 +31,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
-        private void KhachHangFrom_Load(object sender, System.EventArgs e)
+        private void KhachHangFrom_Load(object sender, EventArgs e)
         {
             InitCTView();
             txtNhomKH1.SetInitFilter("Loai_nh=1");
@@ -91,28 +91,22 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         public override void ValidateData()
         {
-             
-               var errors = "";
+            var errors = "";
+
             if (txtMaKH.Text.Trim() == "" || txtTenKH.Text.Trim() == "")
-                errors += V6Init.V6Text.CheckInfor + " !\r\n";
+                errors += V6Text.CheckInfor + " !\r\n";
             if (V6Login.MadvcsTotal > 0 && TxtMa_dvcs.Text.Trim() == "")
-                errors += "Chưa nhập đơn vị cơ sở !\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblDVCS.Text;
 
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0,"MA_KH",
-                 txtMaKH.Text.Trim(), DataOld["MA_KH"].ToString());
-                if (!b)
-                    throw new Exception(V6Init.V6Text.ExistData
-                                                    + "MA_KH = " + txtMaKH.Text.Trim());
+                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0,"MA_KH", txtMaKH.Text.Trim(), DataOld["MA_KH"].ToString());
+                if (!b) throw new Exception(string.Format("{0} {1} = {2}", V6Text.ExistData, lblMaKH.Text, txtMaKH.Text));
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_KH",
-                 txtMaKH.Text.Trim(), txtMaKH.Text.Trim());
-                if (!b)
-                    throw new Exception(V6Init.V6Text.ExistData
-                                                    + "MA_KH = " + txtMaKH.Text.Trim());
+                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_KH", txtMaKH.Text.Trim(), txtMaKH.Text.Trim());
+                if (!b) throw new Exception(string.Format("{0} {1} = {2}", V6Text.ExistData, lblMaKH.Text, txtMaKH.Text));
             }
 
             if (txtMaSoThueVAT.Text.Trim().Length >= 10)
@@ -476,7 +470,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             try
             {
                 linkLabel1.LinkVisited = true;
-                if (txtHomePage.Text.Trim() != "") System.Diagnostics.Process.Start(txtHomePage.Text);
+                if (txtHomePage.Text.Trim() != "") Process.Start(txtHomePage.Text);
             }
             catch (Exception)
             {

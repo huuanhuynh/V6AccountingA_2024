@@ -31,13 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KhachHangAddEditFrom));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.TxtMa_dvcs = new V6Controls.V6VvarTextBox();
-            this.label41 = new System.Windows.Forms.Label();
+            this.lblDVCS = new System.Windows.Forms.Label();
             this.txtMaKH = new V6Controls.V6VvarTextBox();
-            this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
+            this.txtTenKH2 = new V6Controls.V6ColorTextBox();
             this.txtTenKH = new V6Controls.V6ColorTextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTen2 = new System.Windows.Forms.Label();
+            this.lblTenKH = new System.Windows.Forms.Label();
+            this.lblMaKH = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
@@ -137,6 +137,7 @@
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnChonFile2 = new V6Controls.Controls.FileButton();
             this.btnChonFile1 = new V6Controls.Controls.FileButton();
             this.pictureBoxS = new System.Windows.Forms.PictureBox();
             this.ptbPHOTOGRAPH = new System.Windows.Forms.PictureBox();
@@ -151,7 +152,6 @@
             this.btnChonPDF = new V6Controls.Controls.V6FormButton();
             this.btnChonhinh = new V6Controls.Controls.V6FormButton();
             this.tabChiTiet = new System.Windows.Forms.TabPage();
-            this.btnChonFile2 = new V6Controls.Controls.FileButton();
             this.groupBox1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -168,13 +168,13 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.TxtMa_dvcs);
-            this.groupBox1.Controls.Add(this.label41);
+            this.groupBox1.Controls.Add(this.lblDVCS);
             this.groupBox1.Controls.Add(this.txtMaKH);
-            this.groupBox1.Controls.Add(this.v6ColorTextBox3);
+            this.groupBox1.Controls.Add(this.txtTenKH2);
             this.groupBox1.Controls.Add(this.txtTenKH);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblTen2);
+            this.groupBox1.Controls.Add(this.lblTenKH);
+            this.groupBox1.Controls.Add(this.lblMaKH);
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
@@ -200,17 +200,17 @@
             this.TxtMa_dvcs.TabIndex = 1;
             this.TxtMa_dvcs.VVar = "MA_DVCS";
             // 
-            // label41
+            // lblDVCS
             // 
-            this.label41.AccessibleDescription = "ADDEDITL00005";
-            this.label41.AccessibleName = "";
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(453, 20);
-            this.label41.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(60, 17);
-            this.label41.TabIndex = 7;
-            this.label41.Text = "Mã đvcs";
+            this.lblDVCS.AccessibleDescription = "ADDEDITL00005";
+            this.lblDVCS.AccessibleName = "";
+            this.lblDVCS.AutoSize = true;
+            this.lblDVCS.Location = new System.Drawing.Point(453, 20);
+            this.lblDVCS.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblDVCS.Name = "lblDVCS";
+            this.lblDVCS.Size = new System.Drawing.Size(60, 17);
+            this.lblDVCS.TabIndex = 7;
+            this.lblDVCS.Text = "Mã đvcs";
             // 
             // txtMaKH
             // 
@@ -230,23 +230,23 @@
             this.txtMaKH.TabIndex = 0;
             this.txtMaKH.UseLimitCharacters0 = true;
             // 
-            // v6ColorTextBox3
+            // txtTenKH2
             // 
-            this.v6ColorTextBox3.AccessibleName = "ten_kh2";
-            this.v6ColorTextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtTenKH2.AccessibleName = "ten_kh2";
+            this.txtTenKH2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox3.BackColor = System.Drawing.Color.White;
-            this.v6ColorTextBox3.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox3.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox3.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox3.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox3.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox3.Location = new System.Drawing.Point(165, 78);
-            this.v6ColorTextBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.v6ColorTextBox3.Name = "v6ColorTextBox3";
-            this.v6ColorTextBox3.Size = new System.Drawing.Size(564, 23);
-            this.v6ColorTextBox3.TabIndex = 3;
+            this.txtTenKH2.BackColor = System.Drawing.Color.White;
+            this.txtTenKH2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTenKH2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTenKH2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTenKH2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTenKH2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTenKH2.LeaveColor = System.Drawing.Color.White;
+            this.txtTenKH2.Location = new System.Drawing.Point(165, 78);
+            this.txtTenKH2.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTenKH2.Name = "txtTenKH2";
+            this.txtTenKH2.Size = new System.Drawing.Size(564, 23);
+            this.txtTenKH2.TabIndex = 3;
             // 
             // txtTenKH
             // 
@@ -266,38 +266,38 @@
             this.txtTenKH.Size = new System.Drawing.Size(564, 23);
             this.txtTenKH.TabIndex = 2;
             // 
-            // label3
+            // lblTen2
             // 
-            this.label3.AccessibleDescription = "ADDEDITL00004";
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 82);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 17);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Tên khác";
+            this.lblTen2.AccessibleDescription = "ADDEDITL00004";
+            this.lblTen2.AutoSize = true;
+            this.lblTen2.Location = new System.Drawing.Point(10, 82);
+            this.lblTen2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTen2.Name = "lblTen2";
+            this.lblTen2.Size = new System.Drawing.Size(67, 17);
+            this.lblTen2.TabIndex = 4;
+            this.lblTen2.Text = "Tên khác";
             // 
-            // label2
+            // lblTenKH
             // 
-            this.label2.AccessibleDescription = "ADDEDITL00003";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 51);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(111, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Tên khách hàng";
+            this.lblTenKH.AccessibleDescription = "ADDEDITL00003";
+            this.lblTenKH.AutoSize = true;
+            this.lblTenKH.Location = new System.Drawing.Point(10, 51);
+            this.lblTenKH.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTenKH.Name = "lblTenKH";
+            this.lblTenKH.Size = new System.Drawing.Size(111, 17);
+            this.lblTenKH.TabIndex = 2;
+            this.lblTenKH.Text = "Tên khách hàng";
             // 
-            // label1
+            // lblMaKH
             // 
-            this.label1.AccessibleDescription = "ADDEDITL00002";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 20);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã khách hàng";
+            this.lblMaKH.AccessibleDescription = "ADDEDITL00002";
+            this.lblMaKH.AutoSize = true;
+            this.lblMaKH.Location = new System.Drawing.Point(10, 20);
+            this.lblMaKH.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMaKH.Name = "lblMaKH";
+            this.lblMaKH.Size = new System.Drawing.Size(105, 17);
+            this.lblMaKH.TabIndex = 0;
+            this.lblMaKH.Text = "Mã khách hàng";
             // 
             // v6TabControl1
             // 
@@ -1854,6 +1854,24 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Thông tin khác";
             // 
+            // btnChonFile2
+            // 
+            this.btnChonFile2.AccessibleName = "FILE_NAME2";
+            this.btnChonFile2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnChonFile2.Image = ((System.Drawing.Image)(resources.GetObject("btnChonFile2.Image")));
+            this.btnChonFile2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChonFile2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnChonFile2.Location = new System.Drawing.Point(377, 339);
+            this.btnChonFile2.Name = "btnChonFile2";
+            this.btnChonFile2.ReadOnly = false;
+            this.btnChonFile2.Size = new System.Drawing.Size(187, 32);
+            this.btnChonFile2.TabIndex = 43;
+            this.btnChonFile2.Text = "Chọn file 2";
+            this.btnChonFile2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnChonFile2.UseVisualStyleBackColor = true;
+            this.btnChonFile2.FileNameChanged += new System.EventHandler<V6Controls.Controls.FileButton.Event_Args>(this.btnChonFile0_FileNameChanged);
+            this.btnChonFile2.AfterProcess += new System.EventHandler<V6Controls.Controls.FileButton.Event_Args>(this.btnChonFile0_AfterProcess);
+            // 
             // btnChonFile1
             // 
             this.btnChonFile1.AccessibleName = "FILE_NAME1";
@@ -2049,24 +2067,6 @@
             this.tabChiTiet.TabIndex = 4;
             this.tabChiTiet.Text = "Chi tiết";
             // 
-            // btnChonFile2
-            // 
-            this.btnChonFile2.AccessibleName = "FILE_NAME2";
-            this.btnChonFile2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnChonFile2.Image = ((System.Drawing.Image)(resources.GetObject("btnChonFile2.Image")));
-            this.btnChonFile2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnChonFile2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnChonFile2.Location = new System.Drawing.Point(377, 339);
-            this.btnChonFile2.Name = "btnChonFile2";
-            this.btnChonFile2.ReadOnly = false;
-            this.btnChonFile2.Size = new System.Drawing.Size(187, 32);
-            this.btnChonFile2.TabIndex = 43;
-            this.btnChonFile2.Text = "Chọn file 2";
-            this.btnChonFile2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnChonFile2.UseVisualStyleBackColor = true;
-            this.btnChonFile2.FileNameChanged += new System.EventHandler<V6Controls.Controls.FileButton.Event_Args>(this.btnChonFile0_FileNameChanged);
-            this.btnChonFile2.AfterProcess += new System.EventHandler<V6Controls.Controls.FileButton.Event_Args>(this.btnChonFile0_AfterProcess);
-            // 
             // KhachHangAddEditFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2096,13 +2096,13 @@
 
         #endregion
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private V6Controls.V6ColorTextBox v6ColorTextBox3;
+        private System.Windows.Forms.Label lblTen2;
+        private System.Windows.Forms.Label lblTenKH;
+        private System.Windows.Forms.Label lblMaKH;
+        private V6Controls.V6ColorTextBox txtTenKH2;
         private V6VvarTextBox txtMaKH;
         private V6VvarTextBox TxtMa_dvcs;
-        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label lblDVCS;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.PictureBox pictureBoxS;
         private System.Windows.Forms.PictureBox ptbPHOTOGRAPH;

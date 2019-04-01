@@ -52,9 +52,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             var errors = "";
             if (txtMaKH.Text.Trim() == "")
-                errors += "Chưa nhập mã!\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblMaKH.Text;
             if (V6Login.MadvcsTotal > 0 && TxtMa_dvcs.Text.Trim() == "")
-                errors += "Chưa nhập đơn vị cơ sở !\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblDVCS.Text;
 
             if (Mode == V6Mode.Edit)
             {

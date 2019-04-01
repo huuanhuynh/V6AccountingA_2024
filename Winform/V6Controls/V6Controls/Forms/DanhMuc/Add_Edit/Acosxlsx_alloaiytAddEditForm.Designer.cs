@@ -33,10 +33,10 @@
             this.txtghi_chu = new V6Controls.V6ColorTextBox();
             this.chkStatus = new V6Controls.V6CheckBox();
             this.txtLoai_yt = new V6Controls.V6VvarTextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.lblTen2 = new System.Windows.Forms.Label();
+            this.lblLoai_yt = new System.Windows.Forms.Label();
+            this.lblTenLoai_yt = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,10 +49,10 @@
             this.groupBox1.Controls.Add(this.txtghi_chu);
             this.groupBox1.Controls.Add(this.chkStatus);
             this.groupBox1.Controls.Add(this.txtLoai_yt);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lblStatus);
+            this.groupBox1.Controls.Add(this.lblTen2);
+            this.groupBox1.Controls.Add(this.lblLoai_yt);
+            this.groupBox1.Controls.Add(this.lblTenLoai_yt);
             this.groupBox1.Location = new System.Drawing.Point(7, 6);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBox1.Name = "groupBox1";
@@ -129,50 +129,50 @@
             this.txtLoai_yt.Size = new System.Drawing.Size(171, 23);
             this.txtLoai_yt.TabIndex = 4;
             // 
-            // label4
+            // lblStatus
             // 
-            this.label4.AccessibleDescription = "ADDEDITL00022";
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(23, 126);
-            this.label4.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 17);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Trạng thái";
+            this.lblStatus.AccessibleDescription = "ADDEDITL00022";
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(23, 126);
+            this.lblStatus.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(73, 17);
+            this.lblStatus.TabIndex = 12;
+            this.lblStatus.Text = "Trạng thái";
             // 
-            // label5
+            // lblTen2
             // 
-            this.label5.AccessibleDescription = "ADDEDITL00004";
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(23, 92);
-            this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 17);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "Tên 2 ";
+            this.lblTen2.AccessibleDescription = "ADDEDITL00004";
+            this.lblTen2.AutoSize = true;
+            this.lblTen2.Location = new System.Drawing.Point(23, 92);
+            this.lblTen2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblTen2.Name = "lblTen2";
+            this.lblTen2.Size = new System.Drawing.Size(49, 17);
+            this.lblTen2.TabIndex = 6;
+            this.lblTen2.Text = "Tên 2 ";
             // 
-            // label1
+            // lblLoai_yt
             // 
-            this.label1.AccessibleDescription = "ADDEDITL00444";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 28);
-            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Loại yếu tố CP";
+            this.lblLoai_yt.AccessibleDescription = "ADDEDITL00444";
+            this.lblLoai_yt.AutoSize = true;
+            this.lblLoai_yt.Location = new System.Drawing.Point(23, 28);
+            this.lblLoai_yt.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblLoai_yt.Name = "lblLoai_yt";
+            this.lblLoai_yt.Size = new System.Drawing.Size(100, 17);
+            this.lblLoai_yt.TabIndex = 0;
+            this.lblLoai_yt.Text = "Loại yếu tố CP";
             // 
-            // label2
+            // lblTenLoai_yt
             // 
-            this.label2.AccessibleDescription = "ADDEDITL00445";
-            this.label2.AccessibleName = "";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 60);
-            this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(102, 17);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Tên loại yếu tố";
+            this.lblTenLoai_yt.AccessibleDescription = "ADDEDITL00445";
+            this.lblTenLoai_yt.AccessibleName = "";
+            this.lblTenLoai_yt.AutoSize = true;
+            this.lblTenLoai_yt.Location = new System.Drawing.Point(23, 60);
+            this.lblTenLoai_yt.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblTenLoai_yt.Name = "lblTenLoai_yt";
+            this.lblTenLoai_yt.Size = new System.Drawing.Size(102, 17);
+            this.lblTenLoai_yt.TabIndex = 4;
+            this.lblTenLoai_yt.Text = "Tên loại yếu tố";
             // 
             // Acosxlsx_alloaiytAddEditForm
             // 
@@ -192,11 +192,11 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblTen2;
+        private System.Windows.Forms.Label lblLoai_yt;
+        private System.Windows.Forms.Label lblTenLoai_yt;
         private V6VvarTextBox txtLoai_yt;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblStatus;
         private V6CheckBox chkStatus;
         private V6ColorTextBox txtghi_chu2;
         private V6ColorTextBox txtghi_chu;

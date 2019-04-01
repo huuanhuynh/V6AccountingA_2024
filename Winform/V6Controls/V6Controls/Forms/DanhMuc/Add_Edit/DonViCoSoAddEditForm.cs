@@ -29,9 +29,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             var errors = "";
             if (TxtMa_dvcs.Text.Trim() == "")
-                errors += "Chưa nhập mã!\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblDVCS.Text;
             if (txtTenDvcs.Text.Trim() == "")
-                errors += "Chưa nhập tên !\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblTenDVCS.Text;
 
 
             if (Mode == V6Mode.Edit)

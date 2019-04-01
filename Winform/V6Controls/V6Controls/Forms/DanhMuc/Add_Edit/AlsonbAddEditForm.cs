@@ -16,43 +16,38 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 if (V6Login.MadvcsCount == 1)
                 {
-                    TxtMa_dvcs.Text = V6Login.Madvcs;
+                    txtMaDVCS.Text = V6Login.Madvcs;
                 }
             }
         }
         public override void DoBeforeEdit()
         {
-            var v = Categories.IsExistOneCode_List("ARI70,ARA00", "MA_SONB", TxtMa_sonb.Text);
-            TxtMa_sonb.Enabled = !v;
+            var v = Categories.IsExistOneCode_List("ARI70,ARA00", "MA_SONB", txtMa_sonb.Text);
+            txtMa_sonb.Enabled = !v;
         }
 
         public override void ValidateData()
         {
             var errors = "";
-            if (TxtMa_sonb.Text.Trim() == "")
-                errors += "Chưa nhập mã!\r\n";
-            if (TxtTen_sonb.Text.Trim() == "")
-                errors += "Chưa nhập tên !\r\n";
-            if (V6Login.MadvcsTotal > 0 && TxtMa_dvcs.Text.Trim() == "")
-                errors += "Chưa nhập đơn vị cơ sở !\r\n";
+            if (txtMa_sonb.Text.Trim() == "")
+                errors += V6Text.Text("CHUANHAP") + " " + lblMa_sonb.Text;
+            if (txtTen_sonb.Text.Trim() == "")
+                errors += V6Text.Text("CHUANHAP") + " " + lblTen_sonb.Text;
+            if (V6Login.MadvcsTotal > 0 && txtMaDVCS.Text.Trim() == "")
+                errors += V6Text.Text("CHUANHAP") + " " + lblMaDVCS.Text;
             if (TxtPhandau.Text.Trim() == "" && TxtPhancuoi.Text.Trim() == "" && TxtDinhdang.Text.Trim() == "")
-                errors += "Chưa có định dạng, đầu ngữ, vị ngữ !\r\n";
+                errors += string.Format("{0} {1}, {2}, {3}", V6Text.Text("CHUANHAP"), lblDauNgu.Text, lblViNgu.Text, lblDinhDangSo.Text);
 
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_SONB",
-                 TxtMa_sonb.Text.Trim(), DataOld["MA_SONB"].ToString());
-                if (!b)
-                    throw new Exception("Không được sửa mã đã tồn tại: "
-                                                    + "MA_SONB = " + TxtMa_sonb.Text.Trim());
+                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_SONB", txtMa_sonb.Text.Trim(), DataOld["MA_SONB"].ToString());
+                if (!b) throw new Exception(string.Format("{0} {1} = {2}", V6Text.ExistData, lblMa_sonb.Text, txtMa_sonb.Text));
+                
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_SONB",
-                 TxtMa_sonb.Text.Trim(), TxtMa_sonb.Text.Trim());
-                if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
-                                                    + "MA_SONB = " + TxtMa_sonb.Text.Trim());
+                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_SONB", txtMa_sonb.Text.Trim(), txtMa_sonb.Text.Trim());
+                if (!b) throw new Exception(string.Format("{0} {1} = {2}", V6Text.ExistData, lblMa_sonb.Text, txtMa_sonb.Text));
             }
 
             if (errors.Length > 0) throw new Exception(errors);
@@ -65,22 +60,17 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void btnMa_ctnb_Click(object sender, EventArgs e)
         {
+            using (PhanQuyen.DanhSachChungTu chungtu = new PhanQuyen.DanhSachChungTu
             {
-                using (PhanQuyen.DanhSachChungTu chungtu    = new PhanQuyen.DanhSachChungTu
+                Text = V6Text.Text("DSCT"),
+                VLists_ct = TxtMa_ctnb.Text
+            })
+            {
+                if (chungtu.ShowDialog(this) == DialogResult.OK)
                 {
-                    Text = "Danh sách chứng từ.",
-                    VLists_ct = TxtMa_ctnb.Text
-
-                })
-                {
-                    if (chungtu.ShowDialog(this) == DialogResult.OK)
-                    {
-                        TxtMa_ctnb.Text = chungtu.VLists_ct;
-
-                    }
+                    TxtMa_ctnb.Text = chungtu.VLists_ct;
                 }
             }
-
         }
 
         private void TxtPhandau_TextChanged(object sender, EventArgs e)

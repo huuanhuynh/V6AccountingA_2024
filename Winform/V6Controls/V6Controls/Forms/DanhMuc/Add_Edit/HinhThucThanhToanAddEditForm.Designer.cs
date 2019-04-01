@@ -32,9 +32,9 @@
             this.txtMaHttt = new V6Controls.V6VvarTextBox();
             this.txtTenHttt2 = new V6Controls.V6ColorTextBox();
             this.txtTenHttt = new V6Controls.V6ColorTextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTenHttt2 = new System.Windows.Forms.Label();
+            this.lblTenHttt = new System.Windows.Forms.Label();
+            this.lblMaHttt = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.TxtTk_no = new V6Controls.V6VvarTextBox();
@@ -85,9 +85,9 @@
             this.groupBox1.Controls.Add(this.txtMaHttt);
             this.groupBox1.Controls.Add(this.txtTenHttt2);
             this.groupBox1.Controls.Add(this.txtTenHttt);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblTenHttt2);
+            this.groupBox1.Controls.Add(this.lblTenHttt);
+            this.groupBox1.Controls.Add(this.lblMaHttt);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
@@ -149,38 +149,38 @@
             this.txtTenHttt.Size = new System.Drawing.Size(545, 23);
             this.txtTenHttt.TabIndex = 1;
             // 
-            // label3
+            // lblTenHttt2
             // 
-            this.label3.AccessibleDescription = "";
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(32, 80);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 17);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Tên khác";
+            this.lblTenHttt2.AccessibleDescription = "ADDEDITL00722";
+            this.lblTenHttt2.AutoSize = true;
+            this.lblTenHttt2.Location = new System.Drawing.Point(8, 80);
+            this.lblTenHttt2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTenHttt2.Name = "lblTenHttt2";
+            this.lblTenHttt2.Size = new System.Drawing.Size(67, 17);
+            this.lblTenHttt2.TabIndex = 4;
+            this.lblTenHttt2.Text = "Tên khác";
             // 
-            // label2
+            // lblTenHttt
             // 
-            this.label2.AccessibleDescription = "";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 50);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(167, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Tên hình thức thanh toán";
+            this.lblTenHttt.AccessibleDescription = "ADDEDITL00721";
+            this.lblTenHttt.AutoSize = true;
+            this.lblTenHttt.Location = new System.Drawing.Point(8, 50);
+            this.lblTenHttt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTenHttt.Name = "lblTenHttt";
+            this.lblTenHttt.Size = new System.Drawing.Size(167, 17);
+            this.lblTenHttt.TabIndex = 2;
+            this.lblTenHttt.Text = "Tên hình thức thanh toán";
             // 
-            // label1
+            // lblMaHttt
             // 
-            this.label1.AccessibleDescription = "";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 20);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(161, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã hình thức thanh toán";
+            this.lblMaHttt.AccessibleDescription = "ADDEDITL00720";
+            this.lblMaHttt.AutoSize = true;
+            this.lblMaHttt.Location = new System.Drawing.Point(8, 20);
+            this.lblMaHttt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMaHttt.Name = "lblMaHttt";
+            this.lblMaHttt.Size = new System.Drawing.Size(161, 17);
+            this.lblMaHttt.TabIndex = 0;
+            this.lblMaHttt.Text = "Mã hình thức thanh toán";
             // 
             // v6TabControl1
             // 
@@ -215,7 +215,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(748, 386);
+            this.tabPage1.Size = new System.Drawing.Size(748, 343);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 
@@ -260,8 +260,9 @@
             // 
             // label19
             // 
+            this.label19.AccessibleDescription = "ADDEDITL00329";
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(34, 43);
+            this.label19.Location = new System.Drawing.Point(8, 43);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(91, 17);
@@ -270,8 +271,9 @@
             // 
             // label15
             // 
+            this.label15.AccessibleDescription = "ADDEDITL00034";
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(35, 13);
+            this.label15.Location = new System.Drawing.Point(8, 13);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(56, 17);
@@ -280,6 +282,7 @@
             // 
             // chkStatus
             // 
+            this.chkStatus.AccessibleDescription = "ADDEDITC00001";
             this.chkStatus.AccessibleName = "status";
             this.chkStatus.AutoSize = true;
             this.chkStatus.Location = new System.Drawing.Point(196, 127);
@@ -309,8 +312,9 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "ADDEDITL00022";
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(35, 128);
+            this.label5.Location = new System.Drawing.Point(8, 128);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(78, 17);
@@ -319,8 +323,9 @@
             // 
             // label4
             // 
+            this.label4.AccessibleDescription = "ADDEDITL00036";
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(35, 69);
+            this.label4.Location = new System.Drawing.Point(8, 69);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(57, 17);
@@ -800,7 +805,7 @@
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage3.Size = new System.Drawing.Size(748, 386);
+            this.tabPage3.Size = new System.Drawing.Size(748, 343);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
             // 
@@ -830,9 +835,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private V6ColorTextBox txtTenHttt2;
         private V6ColorTextBox txtTenHttt;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTenHttt2;
+        private System.Windows.Forms.Label lblTenHttt;
+        private System.Windows.Forms.Label lblMaHttt;
         private V6TabControl v6TabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private V6NumberTextBox txtHanTt;

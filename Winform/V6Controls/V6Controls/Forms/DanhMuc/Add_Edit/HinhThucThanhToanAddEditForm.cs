@@ -1,5 +1,6 @@
 ﻿using System;
 using V6AccountingBusiness;
+using V6Init;
 using V6Structs;
 using V6Tools;
 
@@ -35,9 +36,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             var errors = "";
             if (txtMaHttt.Text.Trim() == "")
-                errors += "Chưa nhập mã !\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblMaHttt.Text;
             if (txtTenHttt.Text.Trim() == "")
-                errors += "Chưa nhập tên !\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblTenHttt.Text;
 
             if (Mode == V6Mode.Edit)
             {

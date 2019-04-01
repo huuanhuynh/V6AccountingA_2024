@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using V6AccountingBusiness;
+using V6Init;
 using V6Structs;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
@@ -13,17 +14,17 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         }
         public override void DoBeforeEdit()
         {
-            var v = Categories.IsExistOneCode_List("ALVT,ARI70", "Dvt", TxtDvt.Text);
-            TxtDvt.Enabled = !v;
+            var v = Categories.IsExistOneCode_List("ALVT,ARI70", "Dvt", txtDVT.Text);
+            txtDVT.Enabled = !v;
         }
 
         public override void ValidateData()
         {
             var errors = "";
-            if (TxtDvt.Text.Trim() == "")
-                errors += "Chưa nhập đơn vị tính!\r\n";
-            if (TxtTen_dvt.Text.Trim() == "")
-                errors += "Chưa nhập tên đơn vị tính!\r\n";
+            if (txtDVT.Text.Trim() == "")
+                errors += V6Text.Text("CHUANHAP") + " " + lblDVT.Text;
+            if (txtTenDVT.Text.Trim() == "")
+                errors += V6Text.Text("CHUANHAP") + " " + lblTenDVT.Text;
 
             if (Mode == V6Mode.Edit)
             {
@@ -44,7 +45,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
 
                 var keys = new SortedDictionary<string, object>();
-                keys.Add("DVT", TxtDvt.Text.Trim());
+                keys.Add("DVT", txtDVT.Text.Trim());
 
                 foreach (KeyValuePair<string, object> key in keys)
                 {

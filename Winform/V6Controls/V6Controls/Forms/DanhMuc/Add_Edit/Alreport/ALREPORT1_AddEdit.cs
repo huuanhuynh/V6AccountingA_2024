@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using V6Controls.Forms.Editor;
+using V6Init;
 using V6Structs;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
@@ -13,7 +14,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
             InitializeComponent();
         }
 
-        private void KhachHangFrom_Load(object sender, System.EventArgs e)
+        private void KhachHangFrom_Load(object sender, EventArgs e)
         {
            // txtval.Focus();
         }
@@ -32,8 +33,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
         public override void ValidateData()
         {
             var errors = "";
-            if (TXTMA_BC.Text.Trim() == "")
-                errors += "Chưa nhập mã!\r\n";
+            if (txtMa_bc.Text.Trim() == "")
+                errors += V6Text.Text("CHUANHAP") + " " + lblMa_bc.Text;
             
             if (errors.Length > 0) throw new Exception(errors);
         }
@@ -81,7 +82,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
         {
             try
             {
-                var file_xml = TXTMA_BC.Text.Trim().ToUpper() + ".xml";
+                var file_xml = txtMa_bc.Text.Trim().ToUpper() + ".xml";
                 new XmlEditorForm(txtDmethod, file_xml, "Table0", "event,using,method,content".Split(',')).ShowDialog(this);
             }
             catch (Exception ex)
@@ -94,7 +95,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
         {
             try
             {
-                var file_xml = TXTMA_BC.Text.Trim().ToUpper() + "_M.xml";
+                var file_xml = txtMa_bc.Text.Trim().ToUpper() + "_M.xml";
                 new XmlEditorForm(txtDmethod_M, file_xml, "Table0", "event,using,method,content".Split(',')).ShowDialog(this);
             }
             catch (Exception ex)

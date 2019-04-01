@@ -34,7 +34,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblSTT = new System.Windows.Forms.Label();
             this.txtstt = new V6Controls.V6NumberTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtFileMauBc = new V6Controls.V6VvarTextBox();
@@ -43,9 +43,9 @@
             this.v6VvarTextBox1 = new V6Controls.V6VvarTextBox();
             this.txtMaSo = new V6Controls.V6VvarTextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
+            this.lblMauBC = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblMaSo = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
@@ -156,7 +156,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.lblSTT);
             this.groupBox1.Controls.Add(this.txtstt);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtFileMauBc);
@@ -165,9 +165,9 @@
             this.groupBox1.Controls.Add(this.v6VvarTextBox1);
             this.groupBox1.Controls.Add(this.txtMaSo);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label19);
+            this.groupBox1.Controls.Add(this.lblMauBC);
             this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lblMaSo);
             this.groupBox1.Location = new System.Drawing.Point(5, 1);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBox1.Name = "groupBox1";
@@ -176,17 +176,17 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // label3
+            // lblSTT
             // 
-            this.label3.AccessibleDescription = "ADDEDITL00246";
-            this.label3.AccessibleName = "";
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 19);
-            this.label3.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 17);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Số thứ tự";
+            this.lblSTT.AccessibleDescription = "ADDEDITL00246";
+            this.lblSTT.AccessibleName = "";
+            this.lblSTT.AutoSize = true;
+            this.lblSTT.Location = new System.Drawing.Point(9, 19);
+            this.lblSTT.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblSTT.Name = "lblSTT";
+            this.lblSTT.Size = new System.Drawing.Size(65, 17);
+            this.lblSTT.TabIndex = 0;
+            this.lblSTT.Text = "Số thứ tự";
             // 
             // txtstt
             // 
@@ -320,17 +320,17 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "Chỉ tiêu";
             // 
-            // label19
+            // lblMauBC
             // 
-            this.label19.AccessibleDescription = "ADDEDITL00490";
-            this.label19.AccessibleName = "";
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(321, 19);
-            this.label19.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(90, 17);
-            this.label19.TabIndex = 2;
-            this.label19.Text = "Mẫu báo cáo";
+            this.lblMauBC.AccessibleDescription = "ADDEDITL00490";
+            this.lblMauBC.AccessibleName = "";
+            this.lblMauBC.AutoSize = true;
+            this.lblMauBC.Location = new System.Drawing.Point(321, 19);
+            this.lblMauBC.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblMauBC.Name = "lblMauBC";
+            this.lblMauBC.Size = new System.Drawing.Size(90, 17);
+            this.lblMauBC.TabIndex = 2;
+            this.lblMauBC.Text = "Mẫu báo cáo";
             // 
             // label11
             // 
@@ -344,17 +344,17 @@
             this.label11.TabIndex = 6;
             this.label11.Text = "Thuyết minh";
             // 
-            // label2
+            // lblMaSo
             // 
-            this.label2.AccessibleDescription = "ADDEDITL00489";
-            this.label2.AccessibleName = "";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 48);
-            this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 17);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Mã số";
+            this.lblMaSo.AccessibleDescription = "ADDEDITL00489";
+            this.lblMaSo.AccessibleName = "";
+            this.lblMaSo.AutoSize = true;
+            this.lblMaSo.Location = new System.Drawing.Point(9, 48);
+            this.lblMaSo.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblMaSo.Name = "lblMaSo";
+            this.lblMaSo.Size = new System.Drawing.Size(46, 17);
+            this.lblMaSo.TabIndex = 4;
+            this.lblMaSo.Text = "Mã số";
             // 
             // groupBox3
             // 
@@ -575,7 +575,6 @@
             0,
             0,
             0});
-            this.txtkind.V6LostFocusNoChange += new V6Controls.ControlEventHandle(this.txtkind_V6LostFocusNoChange);
             this.txtkind.TextChanged += new System.EventHandler(this.txtkind_TextChanged);
             // 
             // groupBoxB
@@ -880,12 +879,12 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblMaSo;
         private System.Windows.Forms.Label label4;
         private V6VvarTextBox txtTenMauBc2;
         private V6VvarTextBox txtMaSo;
         private V6VvarTextBox txtFileMauBc;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblSTT;
         private V6NumberTextBox txtstt;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label9;
@@ -915,7 +914,7 @@
         private V6CheckBox v6CheckBox2;
         private System.Windows.Forms.Label label18;
         private V6VvarTextBox txtMauBc;
-        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label lblMauBC;
         private System.Windows.Forms.GroupBox groupBoxC;
         private V6VvarTextBox v6VvarTextBox5;
         private V6VvarTextBox v6VvarTextBox6;

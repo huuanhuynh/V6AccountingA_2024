@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblMaBp = new System.Windows.Forms.Label();
+            this.lblTenBp = new System.Windows.Forms.Label();
+            this.lblTen2 = new System.Windows.Forms.Label();
             this.TxtTen_bp = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.TxtMa_dvcs = new V6Controls.V6VvarTextBox();
-            this.label41 = new System.Windows.Forms.Label();
+            this.lblMaDVCS = new System.Windows.Forms.Label();
             this.TxtMa_bp = new V6Controls.V6VvarTextBox();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -75,38 +75,38 @@
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // lblMaBp
             // 
-            this.label1.AccessibleDescription = "ADDEDITL00208";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 15);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã bộ phận";
+            this.lblMaBp.AccessibleDescription = "ADDEDITL00208";
+            this.lblMaBp.AutoSize = true;
+            this.lblMaBp.Location = new System.Drawing.Point(7, 15);
+            this.lblMaBp.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMaBp.Name = "lblMaBp";
+            this.lblMaBp.Size = new System.Drawing.Size(83, 17);
+            this.lblMaBp.TabIndex = 0;
+            this.lblMaBp.Text = "Mã bộ phận";
             // 
-            // label2
+            // lblTenBp
             // 
-            this.label2.AccessibleDescription = "ADDEDITL00269";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 40);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Tên bộ phận";
+            this.lblTenBp.AccessibleDescription = "ADDEDITL00269";
+            this.lblTenBp.AutoSize = true;
+            this.lblTenBp.Location = new System.Drawing.Point(7, 40);
+            this.lblTenBp.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTenBp.Name = "lblTenBp";
+            this.lblTenBp.Size = new System.Drawing.Size(89, 17);
+            this.lblTenBp.TabIndex = 2;
+            this.lblTenBp.Text = "Tên bộ phận";
             // 
-            // label3
+            // lblTen2
             // 
-            this.label3.AccessibleDescription = "ADDEDITL00270";
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 66);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(101, 17);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Tên bộ phận 2";
+            this.lblTen2.AccessibleDescription = "ADDEDITL00270";
+            this.lblTen2.AutoSize = true;
+            this.lblTen2.Location = new System.Drawing.Point(6, 66);
+            this.lblTen2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTen2.Name = "lblTen2";
+            this.lblTen2.Size = new System.Drawing.Size(101, 17);
+            this.lblTen2.TabIndex = 4;
+            this.lblTen2.Text = "Tên bộ phận 2";
             // 
             // TxtTen_bp
             // 
@@ -145,13 +145,13 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.TxtMa_dvcs);
-            this.groupBox1.Controls.Add(this.label41);
+            this.groupBox1.Controls.Add(this.lblMaDVCS);
             this.groupBox1.Controls.Add(this.TxtMa_bp);
             this.groupBox1.Controls.Add(this.v6ColorTextBox3);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblMaBp);
             this.groupBox1.Controls.Add(this.TxtTen_bp);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.lblTenBp);
+            this.groupBox1.Controls.Add(this.lblTen2);
             this.groupBox1.Location = new System.Drawing.Point(2, 1);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
@@ -177,17 +177,17 @@
             this.TxtMa_dvcs.TabIndex = 8;
             this.TxtMa_dvcs.VVar = "MA_DVCS";
             // 
-            // label41
+            // lblMaDVCS
             // 
-            this.label41.AccessibleDescription = "ADDEDITL00005";
-            this.label41.AccessibleName = "";
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(490, 15);
-            this.label41.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(60, 17);
-            this.label41.TabIndex = 9;
-            this.label41.Text = "Mã đvcs";
+            this.lblMaDVCS.AccessibleDescription = "ADDEDITL00005";
+            this.lblMaDVCS.AccessibleName = "";
+            this.lblMaDVCS.AutoSize = true;
+            this.lblMaDVCS.Location = new System.Drawing.Point(490, 15);
+            this.lblMaDVCS.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblMaDVCS.Name = "lblMaDVCS";
+            this.lblMaDVCS.Size = new System.Drawing.Size(60, 17);
+            this.lblMaDVCS.TabIndex = 9;
+            this.lblMaDVCS.Text = "Mã đvcs";
             // 
             // TxtMa_bp
             // 
@@ -753,9 +753,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblMaBp;
+        private System.Windows.Forms.Label lblTenBp;
+        private System.Windows.Forms.Label lblTen2;
         private V6ColorTextBox TxtTen_bp;
         private V6ColorTextBox v6ColorTextBox3;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -769,7 +769,7 @@
         private System.Windows.Forms.TabPage tabPage3;
         private V6VvarTextBox TxtMa_bp;
         private V6VvarTextBox TxtMa_dvcs;
-        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label lblMaDVCS;
         private V6Controls.V6VvarTextBox txtGC_TD3;
         private V6Controls.V6VvarTextBox txtGC_TD2;
         private V6Controls.V6VvarTextBox txtGC_TD1;

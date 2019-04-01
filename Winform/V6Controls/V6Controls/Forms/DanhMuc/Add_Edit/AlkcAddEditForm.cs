@@ -38,10 +38,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             var errors = "";
             if (txtstt.Value == 0)
-                errors += V6Text.ChuaNhapSTT;
+                errors += V6Text.Text("CHUANHAP") + " " + lblSTT.Text;
             if (txtTen_bt.Text.Trim() == "")
-                errors += V6Text.Text("ChuaNhapTenButToan");
-                //errors += "Chưa nhập tên bút toán !\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblTenBt.Text;
             
             AldmConfig config = ConfigManager.GetAldmConfig(TableName.ToString());
             if (config != null && config.HaveInfo && !string.IsNullOrEmpty(config.KEY))

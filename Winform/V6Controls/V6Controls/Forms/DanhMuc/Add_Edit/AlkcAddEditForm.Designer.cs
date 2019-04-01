@@ -31,7 +31,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chk_kc_hd_yn = new V6Controls.V6CheckBox();
             this.TxtMa_dvcs = new V6Controls.V6VvarTextBox();
-            this.label41 = new System.Windows.Forms.Label();
+            this.lblMaDVCS = new System.Windows.Forms.Label();
             this.chk_kc_ku_yn = new V6Controls.V6CheckBox();
             this.chk_kc_phi_yn = new V6Controls.V6CheckBox();
             this.chk_kc_td3_yn = new V6Controls.V6CheckBox();
@@ -54,8 +54,8 @@
             this.txtTk_no = new V6Controls.V6VvarTextBox();
             this.checkBox1 = new V6Controls.V6CheckBox();
             this.txtTen_bt = new V6Controls.V6ColorTextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblSTT = new System.Windows.Forms.Label();
+            this.lblTenBt = new System.Windows.Forms.Label();
             this.txtstt = new V6Controls.V6NumberTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.TxtNam = new V6Controls.V6NumberTextBox();
@@ -69,7 +69,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.chk_kc_hd_yn);
             this.groupBox1.Controls.Add(this.TxtMa_dvcs);
-            this.groupBox1.Controls.Add(this.label41);
+            this.groupBox1.Controls.Add(this.lblMaDVCS);
             this.groupBox1.Controls.Add(this.chk_kc_ku_yn);
             this.groupBox1.Controls.Add(this.chk_kc_phi_yn);
             this.groupBox1.Controls.Add(this.chk_kc_td3_yn);
@@ -92,8 +92,8 @@
             this.groupBox1.Controls.Add(this.txtTk_no);
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.txtTen_bt);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblSTT);
+            this.groupBox1.Controls.Add(this.lblTenBt);
             this.groupBox1.Controls.Add(this.txtstt);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.TxtNam);
@@ -135,17 +135,17 @@
             this.TxtMa_dvcs.TabIndex = 1;
             this.TxtMa_dvcs.VVar = "MA_DVCS";
             // 
-            // label41
+            // lblMaDVCS
             // 
-            this.label41.AccessibleDescription = "ADDEDITL00005";
-            this.label41.AccessibleName = "";
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(299, 23);
-            this.label41.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(60, 17);
-            this.label41.TabIndex = 124;
-            this.label41.Text = "Mã đvcs";
+            this.lblMaDVCS.AccessibleDescription = "ADDEDITL00005";
+            this.lblMaDVCS.AccessibleName = "";
+            this.lblMaDVCS.AutoSize = true;
+            this.lblMaDVCS.Location = new System.Drawing.Point(299, 23);
+            this.lblMaDVCS.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblMaDVCS.Name = "lblMaDVCS";
+            this.lblMaDVCS.Size = new System.Drawing.Size(60, 17);
+            this.lblMaDVCS.TabIndex = 124;
+            this.lblMaDVCS.Text = "Mã đvcs";
             // 
             // chk_kc_ku_yn
             // 
@@ -456,29 +456,29 @@
             this.txtTen_bt.Size = new System.Drawing.Size(548, 23);
             this.txtTen_bt.TabIndex = 2;
             // 
-            // label3
+            // lblSTT
             // 
-            this.label3.AccessibleDescription = "ADDEDITL00246";
-            this.label3.AccessibleName = "";
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 20);
-            this.label3.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 17);
-            this.label3.TabIndex = 107;
-            this.label3.Text = "Số thứ tự";
+            this.lblSTT.AccessibleDescription = "ADDEDITL00246";
+            this.lblSTT.AccessibleName = "";
+            this.lblSTT.AutoSize = true;
+            this.lblSTT.Location = new System.Drawing.Point(13, 20);
+            this.lblSTT.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblSTT.Name = "lblSTT";
+            this.lblSTT.Size = new System.Drawing.Size(65, 17);
+            this.lblSTT.TabIndex = 107;
+            this.lblSTT.Text = "Số thứ tự";
             // 
-            // label1
+            // lblTenBt
             // 
-            this.label1.AccessibleDescription = "ADDEDITL00485";
-            this.label1.AccessibleName = "";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 46);
-            this.label1.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 17);
-            this.label1.TabIndex = 108;
-            this.label1.Text = "Tên bút toán";
+            this.lblTenBt.AccessibleDescription = "ADDEDITL00485";
+            this.lblTenBt.AccessibleName = "";
+            this.lblTenBt.AutoSize = true;
+            this.lblTenBt.Location = new System.Drawing.Point(13, 46);
+            this.lblTenBt.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblTenBt.Name = "lblTenBt";
+            this.lblTenBt.Size = new System.Drawing.Size(89, 17);
+            this.lblTenBt.TabIndex = 108;
+            this.lblTenBt.Text = "Tên bút toán";
             // 
             // txtstt
             // 
@@ -564,8 +564,8 @@
         private V6NumberTextBox TxtNam;
         private V6CheckBox checkBox1;
         private V6ColorTextBox txtTen_bt;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblSTT;
+        private System.Windows.Forms.Label lblTenBt;
         private V6NumberTextBox txtstt;
         private V6Label v6Label3;
         private V6VvarTextBox txtTk_no;
@@ -588,7 +588,7 @@
         private System.Windows.Forms.Label label5;
         private V6ColorTextBox txtloai_kc;
         private V6VvarTextBox TxtMa_dvcs;
-        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label lblMaDVCS;
         private V6CheckBox chk_kc_hd_yn;
     }
 }

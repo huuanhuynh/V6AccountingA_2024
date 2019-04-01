@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.IO;
-using System.Net;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Init;
@@ -85,17 +83,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             if (txtID.Text.Trim() == "")
                 errors += V6Text.Text("CHUANHAPMA");
             if (txtTextD.Text.Trim() == "")
-                errors += "Chưa nhập mặc định !\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblMacDinh.Text;
             //if (txtTextV.Text.Trim() == "")
-            //    errors += "Chưa nhập TextV !\r\n";
             //if (txtTextE.Text.Trim() == "")
-            //    errors += "Chưa nhập TextE !\r\n";
-
             //if (Mode == V6Mode.Add && txtTen.Text.Trim() == "")
-            //    errors += "Chưa nhập Tên !\r\n";
             //if (Mode == V6Mode.Add && txtTen2.Text.Trim() == "")
-            //    errors += "Chưa nhập Tên 2 !\r\n";
-
+            
             if (Mode == V6Mode.Edit)
             {
                
@@ -103,10 +96,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "ID", txtID.Text.Trim(), txtID.Text.Trim());
-                if (!b)
-                {
-                    throw new Exception("Không được thêm mã đã tồn tại: ID = " + txtID.Text.Trim());
-                }
+                if (!b) throw new Exception(string.Format("{0} {1} = {2}", V6Text.ExistData, lblID.Text, txtID.Text));
             }
 
             if (errors.Length > 0) throw new Exception(errors);
@@ -159,7 +149,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                if (txtTextE.Text.Trim() == "") return;
+                //if (txtTextE.Text.Trim() == "") return;
                 //txtC.Text = RequestWeather(txtTextE.Text, LanguagePair.China);
                 //txtC.Text = TranslateText(txtTextE.Text, LanguagePair.China);
                 //txtF.Text = SingleTranslate(txtTextE.Text, LanguagePair.France);
@@ -170,12 +160,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
         
-        private class LanguagePair
-        {
-            public static string China = "zh-CN";
-            public static string English = "en";
-            public static string France = "FR";
-        }
+        //private class LanguagePair
+        //{
+        //    public static string China = "zh-CN";
+        //    public static string English = "en";
+        //    public static string France = "FR";
+        //}
 
         private void txtCtype_TextChanged(object sender, EventArgs e)
         {

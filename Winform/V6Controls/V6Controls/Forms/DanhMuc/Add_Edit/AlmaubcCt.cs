@@ -22,7 +22,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             var errors = "";
             if (txtMaSo.Text.Trim() == "")
-                errors += "Chưa nhập mã số!\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblMaSo.Text;
 
             if (txtcach_tinh.Text.Trim() != "" &&
                 !V6BusinessHelper.CheckValidFormula(TableName.ToString(),
@@ -37,15 +37,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             
             if (errors.Length > 0) throw new Exception(errors);
         }
-
         
-
-        private void txtkind_V6LostFocusNoChange(object sender)
-        {
-            
-
-        }
-
         private void txtkind_TextChanged(object sender, EventArgs e)
         {
             if (txtkind.Value == 1 || txtkind.Value == 2)

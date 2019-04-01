@@ -47,21 +47,21 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
         public override void ValidateData()
         {
             var errors = "";
-            if (TXTMA_BC.Text.Trim() == "")
-                errors += "Chưa nhập mã!\r\n";
+            if (txtMa_bc.Text.Trim() == "")
+                errors += V6Text.Text("CHUANHAP") + " " + lblMa_bc.Text;
             if (Mode == V6Mode.Edit)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_BC",
-                 TXTMA_BC.Text.Trim(), DataOld["MA_BC"].ToString());
+                 txtMa_bc.Text.Trim(), DataOld["MA_BC"].ToString());
                 if (!b)
-                    throw new Exception(V6Text.EditDenied + " MA_BC = " + TXTMA_BC.Text.Trim());
+                    throw new Exception(V6Text.EditDenied + " MA_BC = " + txtMa_bc.Text.Trim());
             }
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_BC",
-                 TXTMA_BC.Text.Trim(), TXTMA_BC.Text.Trim());
+                 txtMa_bc.Text.Trim(), txtMa_bc.Text.Trim());
                 if (!b)
-                    throw new Exception(V6Text.AddDenied + " MA_BC = " + TXTMA_BC.Text.Trim());
+                    throw new Exception(V6Text.AddDenied + " MA_BC = " + txtMa_bc.Text.Trim());
             }
             
             if (errors.Length > 0) throw new Exception(errors);
@@ -73,7 +73,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
             {
                 var not_in = "";
                 {
-                    not_in += string.Format(",'{0}'", TXTMA_BC.Text);
+                    not_in += string.Format(",'{0}'", txtMa_bc.Text);
                 }
                 if (not_in.Length > 1) not_in = not_in.Substring(1);
 
@@ -90,7 +90,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
                         
                         var data = row.ToDataDictionary();
                         //Ghi đè dữ liệu mới.
-                        data["MA_BC"] = TXTMA_BC.Text.Trim();
+                        data["MA_BC"] = txtMa_bc.Text.Trim();
                         data["UID_CT"] = DataOld["UID"];
                         if (Categories.Insert(V6TableName.Alreport1, data))
                         {
@@ -138,7 +138,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
         {
             try
             {
-                var file_xml = TXTMA_BC.Text.Trim().ToUpper() + ".xml";
+                var file_xml = txtMa_bc.Text.Trim().ToUpper() + ".xml";
                 new XmlEditorForm(txtDmethod, file_xml, "Table0", "event,using,method,content".Split(',')).ShowDialog(this);
             }
             catch (Exception ex)
@@ -160,7 +160,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
                 exportDataSet.Tables.Add(alreportTable.Copy());
                 var keys = new SortedDictionary<string, object>
                 {
-                    {"MA_BC", TXTMA_BC.Text}
+                    {"MA_BC", txtMa_bc.Text}
                 };
                 var alreport1_data = V6BusinessHelper.Select("Alreport1", keys, "*").Data;
                 exportDataSet.Tables.Add(alreport1_data.Copy());
@@ -202,7 +202,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
                     int delete_count = 0, add_count = 0;
                     var keys = new SortedDictionary<string, object>
                     {
-                        {"MA_BC", TXTMA_BC.Text}
+                        {"MA_BC", txtMa_bc.Text}
                     };
                     delete_count = V6BusinessHelper.Delete(V6TableName.Alreport1, keys);
 
@@ -211,7 +211,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
                     {
                         var data = row.ToDataDictionary();
                         //Ghi đè dữ liệu mới.
-                        data["MA_BC"] = TXTMA_BC.Text.Trim();
+                        data["MA_BC"] = txtMa_bc.Text.Trim();
                         data["UID_CT"] = DataOld["UID"];
                         if (Categories.Insert(V6TableName.Alreport1, data))
                         {
