@@ -69,7 +69,7 @@
             this.v6ColorDateTimePick1 = new V6Controls.V6DateTimeColor();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblMaKU = new System.Windows.Forms.Label();
             this.txtMaKu = new V6Controls.V6VvarTextBox();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -772,7 +772,7 @@
             this.groupBox1.AccessibleName = "groupBox1";
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblMaKU);
             this.groupBox1.Controls.Add(this.txtMaKu);
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
@@ -782,16 +782,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // label1
+            // lblMaKU
             // 
-            this.label1.AccessibleDescription = "ADDEDITL00135";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 24);
-            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 17);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Mã khế ước";
+            this.lblMaKU.AccessibleDescription = "ADDEDITL00135";
+            this.lblMaKU.AutoSize = true;
+            this.lblMaKU.Location = new System.Drawing.Point(27, 24);
+            this.lblMaKU.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblMaKU.Name = "lblMaKU";
+            this.lblMaKU.Size = new System.Drawing.Size(81, 17);
+            this.lblMaKU.TabIndex = 1;
+            this.lblMaKU.Text = "Mã khế ước";
             // 
             // txtMaKu
             // 
@@ -870,7 +870,7 @@
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label28;
         private V6VvarTextBox txtMaKu;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblMaKU;
         private V6DateTimePicker txtNgay_ku2;
         private V6DateTimePicker TxtNgay_ku1;
         private System.Windows.Forms.Label label2;

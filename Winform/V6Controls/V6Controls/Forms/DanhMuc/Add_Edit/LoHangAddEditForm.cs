@@ -1,5 +1,6 @@
 ﻿using System;
 using V6AccountingBusiness;
+using V6Init;
 using V6Structs;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
@@ -15,39 +16,39 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void MyInit()
         {
-            TxtMa_vt.SetInitFilter("Lo_yn='1'");
+            txtMaVT.SetInitFilter("Lo_yn='1'");
             KeyField1 = "MA_LO";
             KeyField2 = "MA_VT";
         }
 
         public override void DoBeforeEdit()
         {
-            var v = Categories.IsExistTwoCode_List("ABLO,ARI70", "Ma_vt", TxtMa_vt.Text.Trim(), "Ma_lo",
-                TxtMa_lo.Text.Trim());
-            TxtMa_lo.Enabled = !v;
-            TxtMa_vt.Enabled = !v;
+            var v = Categories.IsExistTwoCode_List("ABLO,ARI70", "Ma_vt", txtMaVT.Text.Trim(), "Ma_lo",
+                txtMaLo.Text.Trim());
+            txtMaLo.Enabled = !v;
+            txtMaVT.Enabled = !v;
             txtngay_hhsd.Enabled = !v;
         }
 
         public override void ValidateData()
         {
             var errors = "";
-            if (TxtMa_lo.Text.Trim() == "")
+            if (txtMaLo.Text.Trim() == "")
             {
-                errors += "Chưa nhập mã lô!\r\n";
-                TxtMa_lo.Focus();
+                errors += V6Text.Text("CHUANHAP") + " " + lblMaLo.Text;
+                txtMaLo.Focus();
             }
-            if (TxtMa_vt.Text.Trim() == "")
+            if (txtMaVT.Text.Trim() == "")
             {
-                errors += "Chưa nhập mã vật tư!\r\n";
-                TxtMa_vt.Focus();
+                errors += V6Text.Text("CHUANHAP") + " " + lblMaVT.Text;
+                txtMaVT.Focus();
             }
-            TxtMa_vt.RefreshLoDateYnValue();
-            if (TxtMa_vt.DATE_YN)
+            txtMaVT.RefreshLoDateYnValue();
+            if (txtMaVT.DATE_YN)
             {
                 if (txtngay_hhsd.Value == null)
                 {
-                    errors += "Chưa nhập hạn sử dụng\r\n";
+                    errors += V6Text.Text("CHUANHAP") + " " + lblNgayHHSD.Text;
                     txtngay_hhsd.Focus();
                 }
             }
@@ -56,8 +57,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             if (Mode == V6Mode.Edit)
             {
                 bool b = V6BusinessHelper.IsValidTwoCode_Full(TableName.ToString(), 0,
-                    "MA_VT", TxtMa_vt.Text.Trim(), DataOld["MA_VT"].ToString(),
-                    "MA_LO", TxtMa_lo.Text.Trim(), DataOld["MA_LO"].ToString());
+                    "MA_VT", txtMaVT.Text.Trim(), DataOld["MA_VT"].ToString(),
+                    "MA_LO", txtMaLo.Text.Trim(), DataOld["MA_LO"].ToString());
 
                 if (!b)
                     throw new Exception("Không được thêm mã đã tồn tại: ");
@@ -66,8 +67,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidTwoCode_Full(TableName.ToString(), 1,
-                    "MA_VT", TxtMa_vt.Text, TxtMa_vt.Text,
-                    "MA_LO", TxtMa_lo.Text, TxtMa_lo.Text);
+                    "MA_VT", txtMaVT.Text, txtMaVT.Text,
+                    "MA_LO", txtMaLo.Text, txtMaLo.Text);
 
                 if (!b)
                     throw new Exception("Không được thêm mã đã tồn tại: ");
@@ -80,8 +81,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             if (_ready0 && Mode == V6Mode.Add)
             {
-                txtTenLo.Text = TxtMa_lo.Text;
-                txtSoLo.Text = TxtMa_lo.Text;
+                txtTenLo.Text = txtMaLo.Text;
+                txtSoLo.Text = txtMaLo.Text;
             }
         }
     }

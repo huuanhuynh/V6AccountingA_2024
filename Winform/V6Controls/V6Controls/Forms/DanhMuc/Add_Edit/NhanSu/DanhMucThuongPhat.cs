@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using V6AccountingBusiness;
+using V6Init;
 using V6Tools;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
@@ -45,9 +46,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
         {
             var errors = "";
             if (txtMaLoai.Text.Trim() == "")
-                errors += "Chưa nhập mã!\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblMaLoai.Text;
             if (txtTenLoai.Text.Trim() == "")
-                errors += "Chưa nhập tên !\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblTenLoai.Text;
 
             if (Mode == V6Mode.Edit)
             {

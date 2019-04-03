@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtten_cong2 = new V6Controls.V6ColorTextBox();
-            this.txtten_cong = new V6Controls.V6ColorTextBox();
-            this.v6Label1 = new V6Controls.V6Label();
-            this.v6Label17 = new V6Controls.V6Label();
+            this.txtTenCong2 = new V6Controls.V6ColorTextBox();
+            this.txtTenCong = new V6Controls.V6ColorTextBox();
+            this.lblTenCong2 = new V6Controls.V6Label();
+            this.lblTenCong = new V6Controls.V6Label();
             this.txtSTT = new V6Controls.V6NumberTextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.TXTma_cong_in = new V6Controls.V6ColorTextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblSTT = new System.Windows.Forms.Label();
+            this.txtMaCongIn = new V6Controls.V6ColorTextBox();
+            this.lblMaCongIn = new System.Windows.Forms.Label();
             this.txtMaCong = new V6Controls.V6ColorTextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblMaCong = new System.Windows.Forms.Label();
             this.TxtNHOM_CONG = new V6Controls.V6VvarTextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblNhomCong = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label13 = new System.Windows.Forms.Label();
@@ -94,65 +94,65 @@
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // txtten_cong2
+            // txtTenCong2
             // 
-            this.txtten_cong2.AccessibleName = "TEN_CONG2";
-            this.txtten_cong2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtTenCong2.AccessibleName = "TEN_CONG2";
+            this.txtTenCong2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtten_cong2.BackColor = System.Drawing.SystemColors.Window;
-            this.txtten_cong2.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtten_cong2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtten_cong2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtten_cong2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtten_cong2.HoverColor = System.Drawing.Color.Yellow;
-            this.txtten_cong2.LeaveColor = System.Drawing.Color.White;
-            this.txtten_cong2.Location = new System.Drawing.Point(172, 96);
-            this.txtten_cong2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.txtten_cong2.Name = "txtten_cong2";
-            this.txtten_cong2.Size = new System.Drawing.Size(454, 23);
-            this.txtten_cong2.TabIndex = 5;
+            this.txtTenCong2.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTenCong2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTenCong2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTenCong2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTenCong2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTenCong2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTenCong2.LeaveColor = System.Drawing.Color.White;
+            this.txtTenCong2.Location = new System.Drawing.Point(172, 96);
+            this.txtTenCong2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.txtTenCong2.Name = "txtTenCong2";
+            this.txtTenCong2.Size = new System.Drawing.Size(454, 23);
+            this.txtTenCong2.TabIndex = 5;
             // 
-            // txtten_cong
+            // txtTenCong
             // 
-            this.txtten_cong.AccessibleName = "TEN_CONG";
-            this.txtten_cong.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtTenCong.AccessibleName = "TEN_CONG";
+            this.txtTenCong.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtten_cong.BackColor = System.Drawing.SystemColors.Window;
-            this.txtten_cong.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtten_cong.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtten_cong.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtten_cong.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtten_cong.HoverColor = System.Drawing.Color.Yellow;
-            this.txtten_cong.LeaveColor = System.Drawing.Color.White;
-            this.txtten_cong.Location = new System.Drawing.Point(172, 68);
-            this.txtten_cong.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.txtten_cong.Name = "txtten_cong";
-            this.txtten_cong.Size = new System.Drawing.Size(454, 23);
-            this.txtten_cong.TabIndex = 4;
+            this.txtTenCong.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTenCong.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTenCong.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTenCong.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTenCong.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTenCong.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTenCong.LeaveColor = System.Drawing.Color.White;
+            this.txtTenCong.Location = new System.Drawing.Point(172, 68);
+            this.txtTenCong.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.txtTenCong.Name = "txtTenCong";
+            this.txtTenCong.Size = new System.Drawing.Size(454, 23);
+            this.txtTenCong.TabIndex = 4;
             // 
-            // v6Label1
+            // lblTenCong2
             // 
-            this.v6Label1.AccessibleDescription = "ADDEDITL00576";
-            this.v6Label1.AutoSize = true;
-            this.v6Label1.Location = new System.Drawing.Point(12, 98);
-            this.v6Label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label1.Name = "v6Label1";
-            this.v6Label1.Size = new System.Drawing.Size(80, 17);
-            this.v6Label1.TabIndex = 10;
-            this.v6Label1.Text = "Tên công 2";
+            this.lblTenCong2.AccessibleDescription = "ADDEDITL00576";
+            this.lblTenCong2.AutoSize = true;
+            this.lblTenCong2.Location = new System.Drawing.Point(12, 98);
+            this.lblTenCong2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTenCong2.Name = "lblTenCong2";
+            this.lblTenCong2.Size = new System.Drawing.Size(80, 17);
+            this.lblTenCong2.TabIndex = 10;
+            this.lblTenCong2.Text = "Tên công 2";
             // 
-            // v6Label17
+            // lblTenCong
             // 
-            this.v6Label17.AccessibleDescription = "ADDEDITL00575";
-            this.v6Label17.AutoSize = true;
-            this.v6Label17.Location = new System.Drawing.Point(12, 70);
-            this.v6Label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label17.Name = "v6Label17";
-            this.v6Label17.Size = new System.Drawing.Size(68, 17);
-            this.v6Label17.TabIndex = 8;
-            this.v6Label17.Text = "Tên công";
+            this.lblTenCong.AccessibleDescription = "ADDEDITL00575";
+            this.lblTenCong.AutoSize = true;
+            this.lblTenCong.Location = new System.Drawing.Point(12, 70);
+            this.lblTenCong.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTenCong.Name = "lblTenCong";
+            this.lblTenCong.Size = new System.Drawing.Size(68, 17);
+            this.lblTenCong.TabIndex = 8;
+            this.lblTenCong.Text = "Tên công";
             // 
             // txtSTT
             // 
@@ -177,46 +177,46 @@
             0,
             0});
             // 
-            // label2
+            // lblSTT
             // 
-            this.label2.AccessibleDescription = "ADDEDITL00246";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(330, 14);
-            this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 17);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Số thứ tự";
+            this.lblSTT.AccessibleDescription = "ADDEDITL00246";
+            this.lblSTT.AutoSize = true;
+            this.lblSTT.Location = new System.Drawing.Point(330, 14);
+            this.lblSTT.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblSTT.Name = "lblSTT";
+            this.lblSTT.Size = new System.Drawing.Size(65, 17);
+            this.lblSTT.TabIndex = 7;
+            this.lblSTT.Text = "Số thứ tự";
             // 
-            // TXTma_cong_in
+            // txtMaCongIn
             // 
-            this.TXTma_cong_in.AccessibleName = "ma_cong_in";
-            this.TXTma_cong_in.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtMaCongIn.AccessibleName = "ma_cong_in";
+            this.txtMaCongIn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TXTma_cong_in.BackColor = System.Drawing.SystemColors.Window;
-            this.TXTma_cong_in.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TXTma_cong_in.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TXTma_cong_in.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TXTma_cong_in.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TXTma_cong_in.HoverColor = System.Drawing.Color.Yellow;
-            this.TXTma_cong_in.LeaveColor = System.Drawing.Color.White;
-            this.TXTma_cong_in.Location = new System.Drawing.Point(172, 40);
-            this.TXTma_cong_in.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.TXTma_cong_in.Name = "TXTma_cong_in";
-            this.TXTma_cong_in.Size = new System.Drawing.Size(142, 23);
-            this.TXTma_cong_in.TabIndex = 2;
+            this.txtMaCongIn.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaCongIn.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaCongIn.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaCongIn.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaCongIn.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaCongIn.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaCongIn.LeaveColor = System.Drawing.Color.White;
+            this.txtMaCongIn.Location = new System.Drawing.Point(172, 40);
+            this.txtMaCongIn.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.txtMaCongIn.Name = "txtMaCongIn";
+            this.txtMaCongIn.Size = new System.Drawing.Size(142, 23);
+            this.txtMaCongIn.TabIndex = 2;
             // 
-            // label1
+            // lblMaCongIn
             // 
-            this.label1.AccessibleDescription = "ADDEDITL00573";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 42);
-            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 17);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Mã công khi in";
+            this.lblMaCongIn.AccessibleDescription = "ADDEDITL00573";
+            this.lblMaCongIn.AutoSize = true;
+            this.lblMaCongIn.Location = new System.Drawing.Point(12, 42);
+            this.lblMaCongIn.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblMaCongIn.Name = "lblMaCongIn";
+            this.lblMaCongIn.Size = new System.Drawing.Size(99, 17);
+            this.lblMaCongIn.TabIndex = 4;
+            this.lblMaCongIn.Text = "Mã công khi in";
             // 
             // txtMaCong
             // 
@@ -239,16 +239,16 @@
             this.txtMaCong.Size = new System.Drawing.Size(142, 23);
             this.txtMaCong.TabIndex = 0;
             // 
-            // label5
+            // lblMaCong
             // 
-            this.label5.AccessibleDescription = "ADDEDITL00219";
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 14);
-            this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 17);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Mã công";
+            this.lblMaCong.AccessibleDescription = "ADDEDITL00219";
+            this.lblMaCong.AutoSize = true;
+            this.lblMaCong.Location = new System.Drawing.Point(12, 14);
+            this.lblMaCong.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblMaCong.Name = "lblMaCong";
+            this.lblMaCong.Size = new System.Drawing.Size(62, 17);
+            this.lblMaCong.TabIndex = 2;
+            this.lblMaCong.Text = "Mã công";
             // 
             // TxtNHOM_CONG
             // 
@@ -266,16 +266,16 @@
             this.TxtNHOM_CONG.TabIndex = 3;
             this.TxtNHOM_CONG.VVar = "NHOM_CONG";
             // 
-            // label3
+            // lblNhomCong
             // 
-            this.label3.AccessibleDescription = "ADDEDITL00574";
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(330, 42);
-            this.label3.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 17);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Nhóm công";
+            this.lblNhomCong.AccessibleDescription = "ADDEDITL00574";
+            this.lblNhomCong.AutoSize = true;
+            this.lblNhomCong.Location = new System.Drawing.Point(330, 42);
+            this.lblNhomCong.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblNhomCong.Name = "lblNhomCong";
+            this.lblNhomCong.Size = new System.Drawing.Size(80, 17);
+            this.lblNhomCong.TabIndex = 14;
+            this.lblNhomCong.Text = "Nhóm công";
             // 
             // v6TabControl1
             // 
@@ -1116,7 +1116,7 @@
             this.tabPage3.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.tabPage3.Size = new System.Drawing.Size(630, 380);
+            this.tabPage3.Size = new System.Drawing.Size(630, 356);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
             // 
@@ -1125,18 +1125,18 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.v6TabControl1);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblNhomCong);
             this.Controls.Add(this.TxtNHOM_CONG);
-            this.Controls.Add(this.txtten_cong2);
-            this.Controls.Add(this.txtten_cong);
-            this.Controls.Add(this.v6Label1);
-            this.Controls.Add(this.v6Label17);
+            this.Controls.Add(this.txtTenCong2);
+            this.Controls.Add(this.txtTenCong);
+            this.Controls.Add(this.lblTenCong2);
+            this.Controls.Add(this.lblTenCong);
             this.Controls.Add(this.txtSTT);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.TXTma_cong_in);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblSTT);
+            this.Controls.Add(this.txtMaCongIn);
+            this.Controls.Add(this.lblMaCongIn);
             this.Controls.Add(this.txtMaCong);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblMaCong);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DanhMucKyHieuCongForm";
@@ -1154,17 +1154,17 @@
         #endregion
 
         private V6ColorTextBox txtMaCong;
-        private System.Windows.Forms.Label label5;
-        private V6ColorTextBox TXTma_cong_in;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblMaCong;
+        private V6ColorTextBox txtMaCongIn;
+        private System.Windows.Forms.Label lblMaCongIn;
         private V6NumberTextBox txtSTT;
-        private System.Windows.Forms.Label label2;
-        private V6Label v6Label17;
-        private V6Label v6Label1;
-        private V6ColorTextBox txtten_cong;
-        private V6ColorTextBox txtten_cong2;
+        private System.Windows.Forms.Label lblSTT;
+        private V6Label lblTenCong;
+        private V6Label lblTenCong2;
+        private V6ColorTextBox txtTenCong;
+        private V6ColorTextBox txtTenCong2;
         private V6VvarTextBox TxtNHOM_CONG;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblNhomCong;
         private V6TabControl v6TabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private V6CheckBox Chkcong_lv_yn;

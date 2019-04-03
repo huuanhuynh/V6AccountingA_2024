@@ -31,11 +31,11 @@
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.TXTTIEN = new V6Controls.V6NumberTextBox();
-            this.v6Label6 = new V6Controls.V6Label();
+            this.lblTienPC = new V6Controls.V6Label();
             this.txtTyLe = new V6Controls.V6NumberTextBox();
-            this.v6Label1 = new V6Controls.V6Label();
-            this.checkBox1 = new V6Controls.V6CheckBox();
-            this.label15 = new System.Windows.Forms.Label();
+            this.lblTyLe = new V6Controls.V6Label();
+            this.chkStatus = new V6Controls.V6CheckBox();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.txtGC_TD3 = new V6Controls.V6VvarTextBox();
             this.txtGC_TD2 = new V6Controls.V6VvarTextBox();
@@ -63,11 +63,11 @@
             this.v6ColorDateTimePick1 = new V6Controls.V6DateTimeColor();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.txtTenPC2 = new V6Controls.V6ColorTextBox();
-            this.txtTen2 = new V6Controls.V6Label();
+            this.lblTenPC2 = new V6Controls.V6Label();
             this.txtTenPC = new V6Controls.V6ColorTextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTenPC = new System.Windows.Forms.Label();
             this.txtMaPC = new V6Controls.V6ColorTextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblMaPC = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -95,11 +95,11 @@
             this.tabPage1.AccessibleDescription = "ADDEDITT00001";
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage1.Controls.Add(this.TXTTIEN);
-            this.tabPage1.Controls.Add(this.v6Label6);
+            this.tabPage1.Controls.Add(this.lblTienPC);
             this.tabPage1.Controls.Add(this.txtTyLe);
-            this.tabPage1.Controls.Add(this.v6Label1);
-            this.tabPage1.Controls.Add(this.checkBox1);
-            this.tabPage1.Controls.Add(this.label15);
+            this.tabPage1.Controls.Add(this.lblTyLe);
+            this.tabPage1.Controls.Add(this.chkStatus);
+            this.tabPage1.Controls.Add(this.lblStatus);
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.tabPage1.Name = "tabPage1";
@@ -132,16 +132,16 @@
             0,
             0});
             // 
-            // v6Label6
+            // lblTienPC
             // 
-            this.v6Label6.AccessibleDescription = "ADDEDITL00436";
-            this.v6Label6.AutoSize = true;
-            this.v6Label6.Location = new System.Drawing.Point(17, 39);
-            this.v6Label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label6.Name = "v6Label6";
-            this.v6Label6.Size = new System.Drawing.Size(91, 17);
-            this.v6Label6.TabIndex = 97;
-            this.v6Label6.Text = "Tiền phụ cấp";
+            this.lblTienPC.AccessibleDescription = "ADDEDITL00436";
+            this.lblTienPC.AutoSize = true;
+            this.lblTienPC.Location = new System.Drawing.Point(17, 39);
+            this.lblTienPC.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTienPC.Name = "lblTienPC";
+            this.lblTienPC.Size = new System.Drawing.Size(91, 17);
+            this.lblTienPC.TabIndex = 97;
+            this.lblTienPC.Text = "Tiền phụ cấp";
             // 
             // txtTyLe
             // 
@@ -167,40 +167,40 @@
             0,
             0});
             // 
-            // v6Label1
+            // lblTyLe
             // 
-            this.v6Label1.AccessibleDescription = "ADDEDITL00435";
-            this.v6Label1.AutoSize = true;
-            this.v6Label1.Location = new System.Drawing.Point(17, 13);
-            this.v6Label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label1.Name = "v6Label1";
-            this.v6Label1.Size = new System.Drawing.Size(39, 17);
-            this.v6Label1.TabIndex = 95;
-            this.v6Label1.Text = "Tỷ lệ";
+            this.lblTyLe.AccessibleDescription = "ADDEDITL00435";
+            this.lblTyLe.AutoSize = true;
+            this.lblTyLe.Location = new System.Drawing.Point(17, 13);
+            this.lblTyLe.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTyLe.Name = "lblTyLe";
+            this.lblTyLe.Size = new System.Drawing.Size(39, 17);
+            this.lblTyLe.TabIndex = 95;
+            this.lblTyLe.Text = "Tỷ lệ";
             // 
-            // checkBox1
+            // chkStatus
             // 
-            this.checkBox1.AccessibleDescription = "ADDEDITC00001";
-            this.checkBox1.AccessibleName = "status";
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(149, 87);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(107, 21);
-            this.checkBox1.TabIndex = 2;
-            this.checkBox1.Text = "Có sử dụng?";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chkStatus.AccessibleDescription = "ADDEDITC00001";
+            this.chkStatus.AccessibleName = "status";
+            this.chkStatus.AutoSize = true;
+            this.chkStatus.Location = new System.Drawing.Point(149, 87);
+            this.chkStatus.Margin = new System.Windows.Forms.Padding(4);
+            this.chkStatus.Name = "chkStatus";
+            this.chkStatus.Size = new System.Drawing.Size(107, 21);
+            this.chkStatus.TabIndex = 2;
+            this.chkStatus.Text = "Có sử dụng?";
+            this.chkStatus.UseVisualStyleBackColor = true;
             // 
-            // label15
+            // lblStatus
             // 
-            this.label15.AccessibleDescription = "ADDEDITL00022";
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(17, 88);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(73, 17);
-            this.label15.TabIndex = 51;
-            this.label15.Text = "Trạng thái";
+            this.lblStatus.AccessibleDescription = "ADDEDITL00022";
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(17, 88);
+            this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(73, 17);
+            this.lblStatus.TabIndex = 51;
+            this.lblStatus.Text = "Trạng thái";
             // 
             // tabPage2
             // 
@@ -689,16 +689,16 @@
             this.txtTenPC2.Size = new System.Drawing.Size(454, 23);
             this.txtTenPC2.TabIndex = 2;
             // 
-            // txtTen2
+            // lblTenPC2
             // 
-            this.txtTen2.AccessibleDescription = "ADDEDITL00004";
-            this.txtTen2.AutoSize = true;
-            this.txtTen2.Location = new System.Drawing.Point(21, 74);
-            this.txtTen2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.txtTen2.Name = "txtTen2";
-            this.txtTen2.Size = new System.Drawing.Size(45, 17);
-            this.txtTen2.TabIndex = 8;
-            this.txtTen2.Text = "Tên 2";
+            this.lblTenPC2.AccessibleDescription = "ADDEDITL00004";
+            this.lblTenPC2.AutoSize = true;
+            this.lblTenPC2.Location = new System.Drawing.Point(21, 74);
+            this.lblTenPC2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTenPC2.Name = "lblTenPC2";
+            this.lblTenPC2.Size = new System.Drawing.Size(45, 17);
+            this.lblTenPC2.TabIndex = 8;
+            this.lblTenPC2.Text = "Tên 2";
             // 
             // txtTenPC
             // 
@@ -719,16 +719,16 @@
             this.txtTenPC.Size = new System.Drawing.Size(454, 23);
             this.txtTenPC.TabIndex = 1;
             // 
-            // label1
+            // lblTenPC
             // 
-            this.label1.AccessibleDescription = "ADDEDITL00434";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 48);
-            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 17);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Tên phụ cấp";
+            this.lblTenPC.AccessibleDescription = "ADDEDITL00434";
+            this.lblTenPC.AutoSize = true;
+            this.lblTenPC.Location = new System.Drawing.Point(21, 48);
+            this.lblTenPC.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblTenPC.Name = "lblTenPC";
+            this.lblTenPC.Size = new System.Drawing.Size(88, 17);
+            this.lblTenPC.TabIndex = 4;
+            this.lblTenPC.Text = "Tên phụ cấp";
             // 
             // txtMaPC
             // 
@@ -750,16 +750,16 @@
             this.txtMaPC.Size = new System.Drawing.Size(151, 23);
             this.txtMaPC.TabIndex = 0;
             // 
-            // label5
+            // lblMaPC
             // 
-            this.label5.AccessibleDescription = "ADDEDITL00433";
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(21, 21);
-            this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 17);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Mã phụ cấp";
+            this.lblMaPC.AccessibleDescription = "ADDEDITL00433";
+            this.lblMaPC.AutoSize = true;
+            this.lblMaPC.Location = new System.Drawing.Point(21, 21);
+            this.lblMaPC.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblMaPC.Name = "lblMaPC";
+            this.lblMaPC.Size = new System.Drawing.Size(82, 17);
+            this.lblMaPC.TabIndex = 2;
+            this.lblMaPC.Text = "Mã phụ cấp";
             // 
             // DanhMucCacKhoanPhuCap
             // 
@@ -767,11 +767,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.v6TabControl1);
             this.Controls.Add(this.txtTenPC2);
-            this.Controls.Add(this.txtTen2);
+            this.Controls.Add(this.lblTenPC2);
             this.Controls.Add(this.txtTenPC);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblTenPC);
             this.Controls.Add(this.txtMaPC);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblMaPC);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DanhMucCacKhoanPhuCap";
@@ -789,15 +789,15 @@
         #endregion
 
         private V6ColorTextBox txtMaPC;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblMaPC;
         private V6ColorTextBox txtTenPC;
-        private System.Windows.Forms.Label label1;
-        private V6Label txtTen2;
+        private System.Windows.Forms.Label lblTenPC;
+        private V6Label lblTenPC2;
         private V6ColorTextBox txtTenPC2;
         private V6TabControl v6TabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private V6CheckBox checkBox1;
-        private System.Windows.Forms.Label label15;
+        private V6CheckBox chkStatus;
+        private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.TabPage tabPage2;
         private V6Controls.V6VvarTextBox txtGC_TD3;
         private V6Controls.V6VvarTextBox txtGC_TD2;
@@ -825,8 +825,8 @@
         private V6DateTimeColor v6ColorDateTimePick1;
         private System.Windows.Forms.TabPage tabPage3;
         private V6NumberTextBox txtTyLe;
-        private V6Label v6Label1;
+        private V6Label lblTyLe;
         private V6NumberTextBox TXTTIEN;
-        private V6Label v6Label6;
+        private V6Label lblTienPC;
     }
 }

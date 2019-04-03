@@ -50,9 +50,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
         {
             var errors = "";
             if (txtMa_loai_tn.Text.Trim() == "")
-                errors += "Chưa nhập mã!\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblMaLoai.Text;
             if (txtTenLoaiTN.Text.Trim() == "")
-                errors += "Chưa nhập tên !\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblTenLoai.Text;
 
             if (Mode == V6Mode.Edit)
             {

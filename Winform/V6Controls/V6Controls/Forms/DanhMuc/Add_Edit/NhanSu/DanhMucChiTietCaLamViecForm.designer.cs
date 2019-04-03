@@ -31,7 +31,7 @@
             this.txtMa_ca = new V6Controls.V6VvarTextBox();
             this.txtManhCa = new V6Controls.V6VvarTextBox();
             this.tenNhCa = new V6Controls.V6LabelTextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblMaCtCa = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtten_kh = new V6Controls.V6LabelTextBox();
@@ -44,7 +44,7 @@
             this.v6Label5 = new V6Controls.V6Label();
             this.v6Label7 = new V6Controls.V6Label();
             this.txtLoai = new V6Controls.V6ColorTextBox();
-            this.v6Label6 = new V6Controls.V6Label();
+            this.lblMaCong = new V6Controls.V6Label();
             this.txtKcMin = new V6Controls.V6NumberTextBox();
             this.v6Label2 = new V6Controls.V6Label();
             this.v6Label1 = new V6Controls.V6Label();
@@ -79,10 +79,10 @@
             this.v6ColorDateTimePick1 = new V6Controls.V6DateTimeColor();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.txtTenCa2 = new V6Controls.V6ColorTextBox();
-            this.v6Label17 = new V6Controls.V6Label();
+            this.lblTenCa2 = new V6Controls.V6Label();
             this.txtTenCa = new V6Controls.V6ColorTextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblTenCa = new System.Windows.Forms.Label();
+            this.lblMaCa = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -136,16 +136,16 @@
             this.tenNhCa.TabStop = false;
             this.tenNhCa.Tag = "readonly";
             // 
-            // label2
+            // lblMaCtCa
             // 
-            this.label2.AccessibleDescription = "ADDEDITL00402";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 37);
-            this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 17);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Mã chi tiết ca";
+            this.lblMaCtCa.AccessibleDescription = "ADDEDITL00402";
+            this.lblMaCtCa.AutoSize = true;
+            this.lblMaCtCa.Location = new System.Drawing.Point(12, 37);
+            this.lblMaCtCa.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblMaCtCa.Name = "lblMaCtCa";
+            this.lblMaCtCa.Size = new System.Drawing.Size(91, 17);
+            this.lblMaCtCa.TabIndex = 9;
+            this.lblMaCtCa.Text = "Mã chi tiết ca";
             // 
             // v6TabControl1
             // 
@@ -178,7 +178,7 @@
             this.tabPage1.Controls.Add(this.v6Label5);
             this.tabPage1.Controls.Add(this.v6Label7);
             this.tabPage1.Controls.Add(this.txtLoai);
-            this.tabPage1.Controls.Add(this.v6Label6);
+            this.tabPage1.Controls.Add(this.lblMaCong);
             this.tabPage1.Controls.Add(this.txtKcMin);
             this.tabPage1.Controls.Add(this.v6Label2);
             this.tabPage1.Controls.Add(this.v6Label1);
@@ -372,16 +372,16 @@
             this.txtLoai.Size = new System.Drawing.Size(41, 23);
             this.txtLoai.TabIndex = 5;
             // 
-            // v6Label6
+            // lblMaCong
             // 
-            this.v6Label6.AccessibleDescription = "ADDEDITL00219";
-            this.v6Label6.AutoSize = true;
-            this.v6Label6.Location = new System.Drawing.Point(8, 169);
-            this.v6Label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label6.Name = "v6Label6";
-            this.v6Label6.Size = new System.Drawing.Size(62, 17);
-            this.v6Label6.TabIndex = 56;
-            this.v6Label6.Text = "Mã công";
+            this.lblMaCong.AccessibleDescription = "ADDEDITL00219";
+            this.lblMaCong.AutoSize = true;
+            this.lblMaCong.Location = new System.Drawing.Point(8, 169);
+            this.lblMaCong.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMaCong.Name = "lblMaCong";
+            this.lblMaCong.Size = new System.Drawing.Size(62, 17);
+            this.lblMaCong.TabIndex = 56;
+            this.lblMaCong.Text = "Mã công";
             // 
             // txtKcMin
             // 
@@ -934,16 +934,16 @@
             this.txtTenCa2.Size = new System.Drawing.Size(490, 23);
             this.txtTenCa2.TabIndex = 3;
             // 
-            // v6Label17
+            // lblTenCa2
             // 
-            this.v6Label17.AccessibleDescription = "ADDEDITL00404";
-            this.v6Label17.AutoSize = true;
-            this.v6Label17.Location = new System.Drawing.Point(12, 91);
-            this.v6Label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label17.Name = "v6Label17";
-            this.v6Label17.Size = new System.Drawing.Size(64, 17);
-            this.v6Label17.TabIndex = 8;
-            this.v6Label17.Text = "Tên ca 2";
+            this.lblTenCa2.AccessibleDescription = "ADDEDITL00404";
+            this.lblTenCa2.AutoSize = true;
+            this.lblTenCa2.Location = new System.Drawing.Point(12, 91);
+            this.lblTenCa2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTenCa2.Name = "lblTenCa2";
+            this.lblTenCa2.Size = new System.Drawing.Size(64, 17);
+            this.lblTenCa2.TabIndex = 8;
+            this.lblTenCa2.Text = "Tên ca 2";
             // 
             // txtTenCa
             // 
@@ -961,27 +961,27 @@
             this.txtTenCa.Size = new System.Drawing.Size(490, 23);
             this.txtTenCa.TabIndex = 2;
             // 
-            // label1
+            // lblTenCa
             // 
-            this.label1.AccessibleDescription = "ADDEDITL00403";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 64);
-            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 17);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Tên ca";
+            this.lblTenCa.AccessibleDescription = "ADDEDITL00403";
+            this.lblTenCa.AutoSize = true;
+            this.lblTenCa.Location = new System.Drawing.Point(12, 64);
+            this.lblTenCa.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblTenCa.Name = "lblTenCa";
+            this.lblTenCa.Size = new System.Drawing.Size(52, 17);
+            this.lblTenCa.TabIndex = 4;
+            this.lblTenCa.Text = "Tên ca";
             // 
-            // label5
+            // lblMaCa
             // 
-            this.label5.AccessibleDescription = "ADDEDITL00401";
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 8);
-            this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 17);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Mã ca";
+            this.lblMaCa.AccessibleDescription = "ADDEDITL00401";
+            this.lblMaCa.AutoSize = true;
+            this.lblMaCa.Location = new System.Drawing.Point(12, 8);
+            this.lblMaCa.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblMaCa.Name = "lblMaCa";
+            this.lblMaCa.Size = new System.Drawing.Size(46, 17);
+            this.lblMaCa.TabIndex = 2;
+            this.lblMaCa.Text = "Mã ca";
             // 
             // DanhMucChiTietCaLamViecForm
             // 
@@ -990,13 +990,13 @@
             this.Controls.Add(this.txtMa_ca);
             this.Controls.Add(this.txtManhCa);
             this.Controls.Add(this.tenNhCa);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblMaCtCa);
             this.Controls.Add(this.v6TabControl1);
             this.Controls.Add(this.txtTenCa2);
-            this.Controls.Add(this.v6Label17);
+            this.Controls.Add(this.lblTenCa2);
             this.Controls.Add(this.txtTenCa);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblTenCa);
+            this.Controls.Add(this.lblMaCa);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DanhMucChiTietCaLamViecForm";
@@ -1012,10 +1012,10 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblMaCa;
         private V6ColorTextBox txtTenCa;
-        private System.Windows.Forms.Label label1;
-        private V6Label v6Label17;
+        private System.Windows.Forms.Label lblTenCa;
+        private V6Label lblTenCa2;
         private V6ColorTextBox txtTenCa2;
         private V6TabControl v6TabControl1;
         private System.Windows.Forms.TabPage tabPage1;
@@ -1049,12 +1049,12 @@
         private System.Windows.Forms.TabPage tabPage3;
         private V6Label v6Label3;
         private V6Label v6Label4;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblMaCtCa;
         private V6NumberTextBox txtKcMin;
         private V6Label v6Label2;
         private V6Label v6Label1;
         private V6ColorTextBox txtLoai;
-        private V6Label v6Label6;
+        private V6Label lblMaCong;
         private V6Label v6Label5;
         private V6Label v6Label7;
         private V6LabelTextBox tenNhCa;

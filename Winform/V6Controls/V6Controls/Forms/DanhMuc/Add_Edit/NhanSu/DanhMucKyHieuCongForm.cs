@@ -1,5 +1,6 @@
 ﻿using V6AccountingBusiness;
 using System;
+using V6Init;
 using V6Structs;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
@@ -24,9 +25,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
         {
             var errors = "";
             if (txtMaCong.Text.Trim() == "")
-                errors += "Chưa nhập mã!\r\n";
-            if (txtten_cong.Text.Trim() == "")
-                errors += "Chưa nhập tên !\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblMaCong.Text;
+            if (txtTenCong.Text.Trim() == "")
+                errors += V6Text.Text("CHUANHAP") + " " + lblTenCong.Text;
 
             if (Mode == V6Mode.Edit)
             {
@@ -38,10 +39,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
                                                     + "MA_CONG = " + txtMaCong.Text.Trim());
 
                 bool a = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_CONG_IN",
-               TXTma_cong_in.Text.Trim(), DataOld["MA_CONG_IN"].ToString());
+               txtMaCongIn.Text.Trim(), DataOld["MA_CONG_IN"].ToString());
                 if (!a)
                     throw new Exception("Không được sửa mã đã tồn tại: "
-                                                    + "MA_CONG_IN = " + TXTma_cong_in.Text.Trim());
+                                                    + "MA_CONG_IN = " + txtMaCongIn.Text.Trim());
             }
             else if (Mode == V6Mode.Add)
             {
@@ -52,10 +53,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
                                         + "MA_CONG = " + txtMaCong.Text.Trim());
 
                 bool a = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_CONG_IN",
-                  TXTma_cong_in.Text.Trim(), txtMaCong.Text.Trim());
+                  txtMaCongIn.Text.Trim(), txtMaCong.Text.Trim());
                 if (!a)
                     throw new Exception("Không được thêm mã đã tồn tại: "
-                                        + "MA_CONG_IN = " + TXTma_cong_in.Text.Trim());
+                                        + "MA_CONG_IN = " + txtMaCongIn.Text.Trim());
             }
             if (errors.Length > 0) throw new Exception(errors);
         }

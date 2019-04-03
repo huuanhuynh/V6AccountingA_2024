@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using V6Init;
 using V6Structs;
 using V6Tools;
 
@@ -40,7 +41,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             var errors = "";
             if (txtMaKu.Text.Trim() == "")
-                errors += "Chưa nhập mã!\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblMaKU.Text;
             
             if (Mode == V6Mode.Edit)
             {

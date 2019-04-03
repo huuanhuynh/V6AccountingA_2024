@@ -30,7 +30,7 @@
         {
             this.txtName = new V6Controls.V6ColorTextBox();
             this.txtID = new V6Controls.V6ColorTextBox();
-            this.v6Label17 = new V6Controls.V6Label();
+            this.lblName = new V6Controls.V6Label();
             this.txtLastName = new V6Controls.V6ColorTextBox();
             this.v6Label4 = new V6Controls.V6Label();
             this.SuspendLayout();
@@ -70,16 +70,16 @@
             this.txtID.TabIndex = 2;
             this.txtID.Visible = false;
             // 
-            // v6Label17
+            // lblName
             // 
-            this.v6Label17.AccessibleDescription = "";
-            this.v6Label17.AutoSize = true;
-            this.v6Label17.Location = new System.Drawing.Point(5, 33);
-            this.v6Label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label17.Name = "v6Label17";
-            this.v6Label17.Size = new System.Drawing.Size(135, 17);
-            this.v6Label17.TabIndex = 0;
-            this.v6Label17.Text = "Tên chuyên nghành";
+            this.lblName.AccessibleDescription = "";
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(5, 33);
+            this.lblName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(135, 17);
+            this.lblName.TabIndex = 0;
+            this.lblName.Text = "Tên chuyên nghành";
             // 
             // txtLastName
             // 
@@ -114,7 +114,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.txtID);
-            this.Controls.Add(this.v6Label17);
+            this.Controls.Add(this.lblName);
             this.Controls.Add(this.txtLastName);
             this.Controls.Add(this.v6Label4);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -130,7 +130,7 @@
 
         private V6Controls.V6Label v6Label4;
         private V6Controls.V6ColorTextBox txtLastName;
-        private V6Controls.V6Label v6Label17;
+        private V6Controls.V6Label lblName;
         private V6ColorTextBox txtID;
         private V6ColorTextBox txtName;
     }

@@ -41,7 +41,7 @@
             this.checkBox1 = new V6Controls.V6CheckBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblMaCong = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,7 +62,7 @@
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.lblMaCong);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.groupBox1.Name = "groupBox1";
@@ -243,16 +243,16 @@
             this.label1.TabIndex = 88;
             this.label1.Text = "Ngày";
             // 
-            // label5
+            // lblMaCong
             // 
-            this.label5.AccessibleDescription = "ADDEDITL00548";
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 50);
-            this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(103, 17);
-            this.label5.TabIndex = 87;
-            this.label5.Text = "Mã công đi làm";
+            this.lblMaCong.AccessibleDescription = "ADDEDITL00548";
+            this.lblMaCong.AutoSize = true;
+            this.lblMaCong.Location = new System.Drawing.Point(16, 50);
+            this.lblMaCong.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblMaCong.Name = "lblMaCong";
+            this.lblMaCong.Size = new System.Drawing.Size(103, 17);
+            this.lblMaCong.TabIndex = 87;
+            this.lblMaCong.Text = "Mã công đi làm";
             // 
             // KhaiBaoNgayNghiLe
             // 
@@ -282,7 +282,7 @@
         private V6CheckBox checkBox1;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblMaCong;
         private V6LabelTextBox txtten_kh;
         private V6DateTimePicker txtNgay;
     }

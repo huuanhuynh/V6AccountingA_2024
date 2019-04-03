@@ -22,7 +22,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 if (V6Login.MadvcsCount == 1)
                 {
-                    TxtMa_dvcs.Text = V6Login.Madvcs;
+                    txtMaDVCS.Text = V6Login.Madvcs;
                 }
             }
             else if (Mode == V6Mode.Edit)
@@ -56,9 +56,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 var v = Categories.IsExistOneCode_List("ABKH,ARA00,ARI70", "Ma_kh", txtMaKH.Text);
                 txtMaKH.Enabled = !v;
 
-                if (!V6Login.IsAdmin && TxtMa_dvcs.Text.ToUpper() != V6Login.Madvcs.ToUpper())
+                if (!V6Login.IsAdmin && txtMaDVCS.Text.ToUpper() != V6Login.Madvcs.ToUpper())
                 {
-                    TxtMa_dvcs.Enabled = false;
+                    txtMaDVCS.Enabled = false;
                 }
 
                 LoadImageData();
@@ -95,8 +95,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             if (txtMaKH.Text.Trim() == "" || txtTenKH.Text.Trim() == "")
                 errors += V6Text.CheckInfor + " !\r\n";
-            if (V6Login.MadvcsTotal > 0 && TxtMa_dvcs.Text.Trim() == "")
-                errors += V6Text.Text("CHUANHAP") + " " + lblDVCS.Text;
+            if (V6Login.MadvcsTotal > 0 && txtMaDVCS.Text.Trim() == "")
+                errors += V6Text.Text("CHUANHAP") + " " + lblMaDVCS.Text;
 
             if (Mode == V6Mode.Edit)
             {

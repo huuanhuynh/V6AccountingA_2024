@@ -1,6 +1,7 @@
 ﻿using V6AccountingBusiness;
 using V6Structs;
 using System;
+using V6Init;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 {
@@ -31,8 +32,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
         {
             var errors = "";
             if (txtMaCong.Text.Trim() == "")
-                errors += "Chưa nhập mã!\r\n";
-
+                errors += V6Text.Text("CHUANHAP") + " " + lblMaCong.Text;
 
             if (Mode == V6Mode.Edit)
             {

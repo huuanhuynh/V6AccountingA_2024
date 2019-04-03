@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.TXTbirth_date = new V6Controls.V6ColorMaskedTextBox();
+            this.txtBirth_date = new V6Controls.V6ColorMaskedTextBox();
             this.txtSttRec0 = new V6Controls.V6ColorTextBox();
             this.txtSttRec = new V6Controls.V6ColorTextBox();
             this.v6Label1 = new V6Controls.V6Label();
             this.TxTnick_name = new V6Controls.V6ColorTextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblNickName = new System.Windows.Forms.Label();
             this.txtgender = new V6Controls.V6ColorTextBox();
             this.panelGioiTinh = new System.Windows.Forms.Panel();
             this.radNam = new System.Windows.Forms.RadioButton();
             this.radNu = new System.Windows.Forms.RadioButton();
-            this.v6Label2 = new V6Controls.V6Label();
+            this.lblBirth_date = new V6Controls.V6Label();
             this.TxTfirst_name = new V6Controls.V6ColorTextBox();
             this.TxTmid_name = new V6Controls.V6ColorTextBox();
             this.TxTlast_name = new V6Controls.V6ColorTextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lbl3Name = new System.Windows.Forms.Label();
             this.txtEmp_ID = new V6Controls.V6ColorTextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblEmpID = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.v6LookupTextBox6 = new V6Controls.V6LookupTextBox();
@@ -148,45 +148,45 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.TXTbirth_date);
+            this.groupBox2.Controls.Add(this.txtBirth_date);
             this.groupBox2.Controls.Add(this.txtSttRec0);
             this.groupBox2.Controls.Add(this.txtSttRec);
             this.groupBox2.Controls.Add(this.v6Label1);
             this.groupBox2.Controls.Add(this.TxTnick_name);
-            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.lblNickName);
             this.groupBox2.Controls.Add(this.txtgender);
             this.groupBox2.Controls.Add(this.panelGioiTinh);
-            this.groupBox2.Controls.Add(this.v6Label2);
+            this.groupBox2.Controls.Add(this.lblBirth_date);
             this.groupBox2.Controls.Add(this.TxTfirst_name);
             this.groupBox2.Controls.Add(this.TxTmid_name);
             this.groupBox2.Controls.Add(this.TxTlast_name);
-            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.lbl3Name);
             this.groupBox2.Controls.Add(this.txtEmp_ID);
-            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.lblEmpID);
             this.groupBox2.Location = new System.Drawing.Point(9, -2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(722, 130);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             // 
-            // TXTbirth_date
+            // txtBirth_date
             // 
-            this.TXTbirth_date.AccessibleName = "birth_date";
-            this.TXTbirth_date.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtBirth_date.AccessibleName = "birth_date";
+            this.txtBirth_date.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TXTbirth_date.BackColor = System.Drawing.SystemColors.Window;
-            this.TXTbirth_date.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TXTbirth_date.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TXTbirth_date.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TXTbirth_date.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TXTbirth_date.HoverColor = System.Drawing.Color.Yellow;
-            this.TXTbirth_date.LeaveColor = System.Drawing.Color.White;
-            this.TXTbirth_date.Location = new System.Drawing.Point(149, 95);
-            this.TXTbirth_date.Mask = "00/00/0000    ";
-            this.TXTbirth_date.Name = "TXTbirth_date";
-            this.TXTbirth_date.Size = new System.Drawing.Size(154, 23);
-            this.TXTbirth_date.TabIndex = 5;
+            this.txtBirth_date.BackColor = System.Drawing.SystemColors.Window;
+            this.txtBirth_date.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtBirth_date.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtBirth_date.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtBirth_date.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtBirth_date.HoverColor = System.Drawing.Color.Yellow;
+            this.txtBirth_date.LeaveColor = System.Drawing.Color.White;
+            this.txtBirth_date.Location = new System.Drawing.Point(149, 95);
+            this.txtBirth_date.Mask = "00/00/0000    ";
+            this.txtBirth_date.Name = "txtBirth_date";
+            this.txtBirth_date.Size = new System.Drawing.Size(154, 23);
+            this.txtBirth_date.TabIndex = 5;
             // 
             // txtSttRec0
             // 
@@ -262,16 +262,16 @@
             this.TxTnick_name.Size = new System.Drawing.Size(154, 23);
             this.TxTnick_name.TabIndex = 4;
             // 
-            // label1
+            // lblNickName
             // 
-            this.label1.AccessibleDescription = "ADDEDITL00521";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 71);
-            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 17);
-            this.label1.TabIndex = 55;
-            this.label1.Text = "Tên thân mật";
+            this.lblNickName.AccessibleDescription = "ADDEDITL00521";
+            this.lblNickName.AutoSize = true;
+            this.lblNickName.Location = new System.Drawing.Point(7, 71);
+            this.lblNickName.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblNickName.Name = "lblNickName";
+            this.lblNickName.Size = new System.Drawing.Size(92, 17);
+            this.lblNickName.TabIndex = 55;
+            this.lblNickName.Text = "Tên thân mật";
             // 
             // txtgender
             // 
@@ -333,16 +333,16 @@
             this.radNu.Text = "Nữ";
             this.radNu.UseVisualStyleBackColor = true;
             // 
-            // v6Label2
+            // lblBirth_date
             // 
-            this.v6Label2.AccessibleDescription = "ADDEDITL00522";
-            this.v6Label2.AutoSize = true;
-            this.v6Label2.Location = new System.Drawing.Point(7, 98);
-            this.v6Label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label2.Name = "v6Label2";
-            this.v6Label2.Size = new System.Drawing.Size(71, 17);
-            this.v6Label2.TabIndex = 54;
-            this.v6Label2.Text = "Ngày sinh";
+            this.lblBirth_date.AccessibleDescription = "ADDEDITL00522";
+            this.lblBirth_date.AutoSize = true;
+            this.lblBirth_date.Location = new System.Drawing.Point(7, 98);
+            this.lblBirth_date.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBirth_date.Name = "lblBirth_date";
+            this.lblBirth_date.Size = new System.Drawing.Size(71, 17);
+            this.lblBirth_date.TabIndex = 54;
+            this.lblBirth_date.Text = "Ngày sinh";
             // 
             // TxTfirst_name
             // 
@@ -401,16 +401,16 @@
             this.TxTlast_name.Size = new System.Drawing.Size(154, 23);
             this.TxTlast_name.TabIndex = 1;
             // 
-            // label3
+            // lbl3Name
             // 
-            this.label3.AccessibleDescription = "ADDEDITL00520";
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 45);
-            this.label3.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(115, 17);
-            this.label3.TabIndex = 47;
-            this.label3.Text = "Họ/Tên đệm/Tên";
+            this.lbl3Name.AccessibleDescription = "ADDEDITL00520";
+            this.lbl3Name.AutoSize = true;
+            this.lbl3Name.Location = new System.Drawing.Point(7, 45);
+            this.lbl3Name.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lbl3Name.Name = "lbl3Name";
+            this.lbl3Name.Size = new System.Drawing.Size(115, 17);
+            this.lbl3Name.TabIndex = 47;
+            this.lbl3Name.Text = "Họ/Tên đệm/Tên";
             // 
             // txtEmp_ID
             // 
@@ -432,16 +432,16 @@
             this.txtEmp_ID.Size = new System.Drawing.Size(154, 23);
             this.txtEmp_ID.TabIndex = 0;
             // 
-            // label5
+            // lblEmpID
             // 
-            this.label5.AccessibleDescription = "ADDEDITL00032";
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 17);
-            this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(93, 17);
-            this.label5.TabIndex = 43;
-            this.label5.Text = "Mã nhân viên";
+            this.lblEmpID.AccessibleDescription = "ADDEDITL00032";
+            this.lblEmpID.AutoSize = true;
+            this.lblEmpID.Location = new System.Drawing.Point(7, 17);
+            this.lblEmpID.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblEmpID.Name = "lblEmpID";
+            this.lblEmpID.Size = new System.Drawing.Size(93, 17);
+            this.lblEmpID.TabIndex = 43;
+            this.lblEmpID.Text = "Mã nhân viên";
             // 
             // v6TabControl1
             // 
@@ -2065,18 +2065,18 @@
         private V6ColorTextBox txtSttRec;
         private V6Label v6Label1;
         private V6ColorTextBox TxTnick_name;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblNickName;
         private V6ColorTextBox txtgender;
         private System.Windows.Forms.Panel panelGioiTinh;
         private System.Windows.Forms.RadioButton radNam;
         private System.Windows.Forms.RadioButton radNu;
-        private V6Label v6Label2;
+        private V6Label lblBirth_date;
         private V6ColorTextBox TxTfirst_name;
         private V6ColorTextBox TxTmid_name;
         private V6ColorTextBox TxTlast_name;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbl3Name;
         private V6ColorTextBox txtEmp_ID;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblEmpID;
         private V6TabControl v6TabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private V6DateTimeColor txtNgayCuoi;
@@ -2166,6 +2166,6 @@
         private V6LookupTextBox v6LookupTextBox1;
         private V6ColorTextBox txtGhiChuHocTap;
         private V6LookupTextBox v6LookupTextBox6;
-        private V6ColorMaskedTextBox TXTbirth_date;
+        private V6ColorMaskedTextBox txtBirth_date;
     }
 }

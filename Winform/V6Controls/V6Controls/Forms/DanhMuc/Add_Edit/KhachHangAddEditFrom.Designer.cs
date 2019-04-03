@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KhachHangAddEditFrom));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.TxtMa_dvcs = new V6Controls.V6VvarTextBox();
-            this.lblDVCS = new System.Windows.Forms.Label();
+            this.txtMaDVCS = new V6Controls.V6VvarTextBox();
+            this.lblMaDVCS = new System.Windows.Forms.Label();
             this.txtMaKH = new V6Controls.V6VvarTextBox();
             this.txtTenKH2 = new V6Controls.V6ColorTextBox();
             this.txtTenKH = new V6Controls.V6ColorTextBox();
@@ -167,8 +167,8 @@
             this.groupBox1.AccessibleName = "groupBox1";
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.TxtMa_dvcs);
-            this.groupBox1.Controls.Add(this.lblDVCS);
+            this.groupBox1.Controls.Add(this.txtMaDVCS);
+            this.groupBox1.Controls.Add(this.lblMaDVCS);
             this.groupBox1.Controls.Add(this.txtMaKH);
             this.groupBox1.Controls.Add(this.txtTenKH2);
             this.groupBox1.Controls.Add(this.txtTenKH);
@@ -183,34 +183,34 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // TxtMa_dvcs
+            // txtMaDVCS
             // 
-            this.TxtMa_dvcs.AccessibleName = "Ma_dvcs";
-            this.TxtMa_dvcs.BackColor = System.Drawing.Color.White;
-            this.TxtMa_dvcs.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtMa_dvcs.CheckNotEmpty = true;
-            this.TxtMa_dvcs.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtMa_dvcs.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtMa_dvcs.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtMa_dvcs.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtMa_dvcs.LeaveColor = System.Drawing.Color.White;
-            this.TxtMa_dvcs.Location = new System.Drawing.Point(541, 20);
-            this.TxtMa_dvcs.Name = "TxtMa_dvcs";
-            this.TxtMa_dvcs.Size = new System.Drawing.Size(188, 23);
-            this.TxtMa_dvcs.TabIndex = 1;
-            this.TxtMa_dvcs.VVar = "MA_DVCS";
+            this.txtMaDVCS.AccessibleName = "Ma_dvcs";
+            this.txtMaDVCS.BackColor = System.Drawing.Color.White;
+            this.txtMaDVCS.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaDVCS.CheckNotEmpty = true;
+            this.txtMaDVCS.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaDVCS.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaDVCS.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaDVCS.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaDVCS.LeaveColor = System.Drawing.Color.White;
+            this.txtMaDVCS.Location = new System.Drawing.Point(541, 20);
+            this.txtMaDVCS.Name = "txtMaDVCS";
+            this.txtMaDVCS.Size = new System.Drawing.Size(188, 23);
+            this.txtMaDVCS.TabIndex = 1;
+            this.txtMaDVCS.VVar = "MA_DVCS";
             // 
-            // lblDVCS
+            // lblMaDVCS
             // 
-            this.lblDVCS.AccessibleDescription = "ADDEDITL00005";
-            this.lblDVCS.AccessibleName = "";
-            this.lblDVCS.AutoSize = true;
-            this.lblDVCS.Location = new System.Drawing.Point(453, 20);
-            this.lblDVCS.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.lblDVCS.Name = "lblDVCS";
-            this.lblDVCS.Size = new System.Drawing.Size(60, 17);
-            this.lblDVCS.TabIndex = 7;
-            this.lblDVCS.Text = "Mã đvcs";
+            this.lblMaDVCS.AccessibleDescription = "ADDEDITL00005";
+            this.lblMaDVCS.AccessibleName = "";
+            this.lblMaDVCS.AutoSize = true;
+            this.lblMaDVCS.Location = new System.Drawing.Point(453, 20);
+            this.lblMaDVCS.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblMaDVCS.Name = "lblMaDVCS";
+            this.lblMaDVCS.Size = new System.Drawing.Size(60, 17);
+            this.lblMaDVCS.TabIndex = 7;
+            this.lblMaDVCS.Text = "Mã đvcs";
             // 
             // txtMaKH
             // 
@@ -2101,8 +2101,8 @@
         private System.Windows.Forms.Label lblMaKH;
         private V6Controls.V6ColorTextBox txtTenKH2;
         private V6VvarTextBox txtMaKH;
-        private V6VvarTextBox TxtMa_dvcs;
-        private System.Windows.Forms.Label lblDVCS;
+        private V6VvarTextBox txtMaDVCS;
+        private System.Windows.Forms.Label lblMaDVCS;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.PictureBox pictureBoxS;
         private System.Windows.Forms.PictureBox ptbPHOTOGRAPH;

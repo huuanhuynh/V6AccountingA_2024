@@ -74,10 +74,10 @@
             this.v6ColorDateTimePick1 = new V6Controls.V6DateTimeColor();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.txtTen2 = new V6Controls.V6ColorTextBox();
-            this.v6Label17 = new V6Controls.V6Label();
+            this.lblTen2 = new V6Controls.V6Label();
             this.txtTenLoaiTN = new V6Controls.V6ColorTextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblTenLoai = new System.Windows.Forms.Label();
+            this.lblMaLoai = new System.Windows.Forms.Label();
             this.txtMa_loai_tn = new V6Controls.V6VvarTextBox();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -862,22 +862,22 @@
             this.txtTen2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTen2.HoverColor = System.Drawing.Color.Yellow;
             this.txtTen2.LeaveColor = System.Drawing.Color.White;
-            this.txtTen2.Location = new System.Drawing.Point(169, 65);
+            this.txtTen2.Location = new System.Drawing.Point(166, 65);
             this.txtTen2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtTen2.Name = "txtTen2";
             this.txtTen2.Size = new System.Drawing.Size(546, 23);
             this.txtTen2.TabIndex = 2;
             // 
-            // v6Label17
+            // lblTen2
             // 
-            this.v6Label17.AccessibleDescription = "ADDEDITL00004";
-            this.v6Label17.AutoSize = true;
-            this.v6Label17.Location = new System.Drawing.Point(12, 65);
-            this.v6Label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label17.Name = "v6Label17";
-            this.v6Label17.Size = new System.Drawing.Size(45, 17);
-            this.v6Label17.TabIndex = 8;
-            this.v6Label17.Text = "Tên 2";
+            this.lblTen2.AccessibleDescription = "ADDEDITL00004";
+            this.lblTen2.AutoSize = true;
+            this.lblTen2.Location = new System.Drawing.Point(12, 65);
+            this.lblTen2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTen2.Name = "lblTen2";
+            this.lblTen2.Size = new System.Drawing.Size(45, 17);
+            this.lblTen2.TabIndex = 8;
+            this.lblTen2.Text = "Tên 2";
             // 
             // txtTenLoaiTN
             // 
@@ -892,33 +892,33 @@
             this.txtTenLoaiTN.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTenLoaiTN.HoverColor = System.Drawing.Color.Yellow;
             this.txtTenLoaiTN.LeaveColor = System.Drawing.Color.White;
-            this.txtTenLoaiTN.Location = new System.Drawing.Point(169, 38);
+            this.txtTenLoaiTN.Location = new System.Drawing.Point(166, 38);
             this.txtTenLoaiTN.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.txtTenLoaiTN.Name = "txtTenLoaiTN";
             this.txtTenLoaiTN.Size = new System.Drawing.Size(546, 23);
             this.txtTenLoaiTN.TabIndex = 1;
             // 
-            // label1
+            // lblTenLoai
             // 
-            this.label1.AccessibleDescription = "ADDEDITL00427";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 40);
-            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 17);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Tên thu nhập";
+            this.lblTenLoai.AccessibleDescription = "ADDEDITL00427";
+            this.lblTenLoai.AutoSize = true;
+            this.lblTenLoai.Location = new System.Drawing.Point(12, 40);
+            this.lblTenLoai.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblTenLoai.Name = "lblTenLoai";
+            this.lblTenLoai.Size = new System.Drawing.Size(93, 17);
+            this.lblTenLoai.TabIndex = 4;
+            this.lblTenLoai.Text = "Tên thu nhập";
             // 
-            // label2
+            // lblMaLoai
             // 
-            this.label2.AccessibleDescription = "ADDEDITL00420";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 15);
-            this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 17);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Loại thu nhập";
+            this.lblMaLoai.AccessibleDescription = "ADDEDITL00420";
+            this.lblMaLoai.AutoSize = true;
+            this.lblMaLoai.Location = new System.Drawing.Point(12, 15);
+            this.lblMaLoai.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblMaLoai.Name = "lblMaLoai";
+            this.lblMaLoai.Size = new System.Drawing.Size(95, 17);
+            this.lblMaLoai.TabIndex = 9;
+            this.lblMaLoai.Text = "Loại thu nhập";
             // 
             // txtMa_loai_tn
             // 
@@ -931,7 +931,7 @@
             this.txtMa_loai_tn.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMa_loai_tn.HoverColor = System.Drawing.Color.Yellow;
             this.txtMa_loai_tn.LeaveColor = System.Drawing.Color.White;
-            this.txtMa_loai_tn.Location = new System.Drawing.Point(170, 12);
+            this.txtMa_loai_tn.Location = new System.Drawing.Point(166, 12);
             this.txtMa_loai_tn.Name = "txtMa_loai_tn";
             this.txtMa_loai_tn.Size = new System.Drawing.Size(133, 23);
             this.txtMa_loai_tn.TabIndex = 0;
@@ -941,12 +941,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.txtMa_loai_tn);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblMaLoai);
             this.Controls.Add(this.v6TabControl1);
             this.Controls.Add(this.txtTen2);
-            this.Controls.Add(this.v6Label17);
+            this.Controls.Add(this.lblTen2);
             this.Controls.Add(this.txtTenLoaiTN);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblTenLoai);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DanhMucLoaiThuNhapTinhThue";
@@ -963,8 +963,8 @@
 
         #endregion
         private V6ColorTextBox txtTenLoaiTN;
-        private System.Windows.Forms.Label label1;
-        private V6Label v6Label17;
+        private System.Windows.Forms.Label lblTenLoai;
+        private V6Label lblTen2;
         private V6ColorTextBox txtTen2;
         private V6TabControl v6TabControl1;
         private System.Windows.Forms.TabPage tabPage1;
@@ -998,7 +998,7 @@
         private System.Windows.Forms.TabPage tabPage3;
         private V6Label v6Label3;
         private V6Label v6Label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblMaLoai;
         private V6VvarTextBox txtMa_loai_tn;
         private V6Label v6Label5;
         private V6ColorTextBox v6ColorTextBox17;

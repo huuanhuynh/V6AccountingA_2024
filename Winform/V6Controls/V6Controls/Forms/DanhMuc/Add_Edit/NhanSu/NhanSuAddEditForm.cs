@@ -93,11 +93,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
         
         public override void ValidateData()
         {
-
             var errors = "";
             if (txtEmp_ID.Text.Trim() == "")
-                errors += "Chưa nhập mã nhân viên!\r\n";
-
+                errors += V6Text.Text("CHUANHAP") + " " + lblEmpID.Text;
 
             if (Mode == V6Mode.Edit)
             {

@@ -38,8 +38,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
                     //code_field = row[""].ToString().Trim();
                 }
 
-                var v = Categories.IsExistOneCode_List(F8_table, "MA_LOAI_LG", txtMa_loai_luong.Text);
-                txtMa_loai_luong.Enabled = !v;
+                var v = Categories.IsExistOneCode_List(F8_table, "MA_LOAI_LG", txtMaLoaiLuong.Text);
+                txtMaLoaiLuong.Enabled = !v;
             }
             catch (Exception ex)
             {
@@ -50,27 +50,27 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
         public override void ValidateData()
         {
             var errors = "";
-            if (txtMa_loai_luong.Text.Trim() == "")
-                errors += "Chưa nhập mã!\r\n";
+            if (txtMaLoaiLuong.Text.Trim() == "")
+                errors += V6Text.Text("CHUANHAP") + " " + lblMaLoaiLuong.Text;
             if (txtTenLoaiLg.Text.Trim() == "")
-                errors += "Chưa nhập tên !\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblTenLoaiLg.Text;
 
             if (Mode == V6Mode.Edit)
             {
              
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_LOAI_LG",
-                 txtMa_loai_luong.Text.Trim(), DataOld["MA_LOAI_LG"].ToString());
+                 txtMaLoaiLuong.Text.Trim(), DataOld["MA_LOAI_LG"].ToString());
                 if (!b)
                     throw new Exception("Không được sửa mã đã tồn tại: "
-                                                    + "MA_LOAI_LG = " + txtMa_loai_luong.Text.Trim());
+                                                    + "MA_LOAI_LG = " + txtMaLoaiLuong.Text.Trim());
             }
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_LOAI_LG",
-                    txtMa_loai_luong.Text.Trim(), txtMa_loai_luong.Text.Trim());
+                    txtMaLoaiLuong.Text.Trim(), txtMaLoaiLuong.Text.Trim());
                 if (!b)
                     throw new Exception("Không được thêm mã đã tồn tại: "
-                                        + "MA_LOAI_LG = " + txtMa_loai_luong.Text.Trim());
+                                        + "MA_LOAI_LG = " + txtMaLoaiLuong.Text.Trim());
             }
             if (errors.Length > 0) throw new Exception(errors);
         }
