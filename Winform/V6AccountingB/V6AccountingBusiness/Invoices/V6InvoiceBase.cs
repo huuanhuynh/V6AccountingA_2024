@@ -560,6 +560,10 @@ namespace V6AccountingBusiness.Invoices
         }
 
         #region ===== EXTRA_INFOR =====
+        /// <summary>
+        /// <para></para>
+        /// <para>ADFIELDS FIELD:R/E:FORMAT</para>
+        /// </summary>
         public SortedDictionary<string, string> EXTRA_INFOR
         {
             get

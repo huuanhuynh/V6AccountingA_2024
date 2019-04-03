@@ -93,6 +93,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.xuLyKhacToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thayTheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thayThe2toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chkTempSuaCT = new V6Controls.V6CheckBox();
             this.chkSuaTien = new V6Controls.V6CheckBox();
             this.txtTongSoLuong1 = new V6Controls.NumberSoluong();
             this.cboKieuPost = new V6Controls.V6ComboBox();
@@ -947,6 +948,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.group4.Controls.Add(this.cboChuyenData);
             this.group4.Controls.Add(this.v6Label28);
             this.group4.Controls.Add(this.btnChucNang);
+            this.group4.Controls.Add(this.chkTempSuaCT);
             this.group4.Controls.Add(this.chkSuaTien);
             this.group4.Controls.Add(this.txtTongSoLuong1);
             this.group4.Controls.Add(this.cboKieuPost);
@@ -1097,6 +1099,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.thayThe2toolStripMenuItem.Text = "Sửa nhiều dòng";
             this.thayThe2toolStripMenuItem.Click += new System.EventHandler(this.thayThe2toolStripMenuItem_Click);
             // 
+            // chkTempSuaCT
+            // 
+            this.chkTempSuaCT.AccessibleName = "TEMP_SUACT";
+            this.chkTempSuaCT.AutoSize = true;
+            this.chkTempSuaCT.Location = new System.Drawing.Point(7, 24);
+            this.chkTempSuaCT.Name = "chkTempSuaCT";
+            this.chkTempSuaCT.Size = new System.Drawing.Size(79, 17);
+            this.chkTempSuaCT.TabIndex = 20;
+            this.chkTempSuaCT.TabStop = false;
+            this.chkTempSuaCT.Text = "Sửa chi tiết";
+            this.chkTempSuaCT.UseVisualStyleBackColor = true;
+            this.chkTempSuaCT.CheckedChanged += new System.EventHandler(this.chkTempSuaCT_CheckedChanged);
+            // 
             // chkSuaTien
             // 
             this.chkSuaTien.AccessibleDescription = "AINCTINDH00031";
@@ -1172,7 +1187,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             // 
             this.lblTongSoDong.AccessibleDescription = ".";
             this.lblTongSoDong.AutoSize = true;
-            this.lblTongSoDong.Location = new System.Drawing.Point(6, 14);
+            this.lblTongSoDong.Location = new System.Drawing.Point(6, 9);
             this.lblTongSoDong.Name = "lblTongSoDong";
             this.lblTongSoDong.Size = new System.Drawing.Size(40, 13);
             this.lblTongSoDong.TabIndex = 0;
@@ -2236,5 +2251,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         private System.Windows.Forms.ToolStripMenuItem thayThe2toolStripMenuItem;
         private NumberSoluong txtTongSoLuong;
         private V6Label lblKieuPostColor;
+        private V6CheckBox chkTempSuaCT;
     }
 }

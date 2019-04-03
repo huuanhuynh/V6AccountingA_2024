@@ -986,6 +986,161 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
+        /// <summary>
+        /// Tính số lượng quy đổi.
+        /// </summary>
+        /// <param name="row">Dòng chi tiết đang xử lý.</param>
+        /// <param name="actionControl">Control gây ra sự kiện.</param>
+        public void TinhSoluongQuyDoiG_0(DataGridViewRow row, string actionControl)
+        {
+            try
+            {
+                var _hs_qd1 = row.Cells["HS_QD1"];
+                var _hs_qd2 = row.Cells["HS_QD2"];
+                var _sl_qd = row.Cells["SL_QD"];
+                var _sl_qd2 = row.Cells["SL_QD2"];
+                var _soLuong1 = row.Cells["SO_LUONG1"];
+                if (M_CAL_SL_QD_ALL == "0")
+                {
+                    //Phần nguyên, (ví dụ 1.5 thùng)
+                    if (ObjectAndString.ObjectToDecimal(_hs_qd1.Value) != 0)
+                    {
+                        if (M_TYPE_SL_QD_ALL == "0E" && actionControl != null)
+                        {
+                            string ACN = actionControl.ToUpper();
+                            if (ACN == "SL_QD" || ACN == "GIA_NT21" || ACN == "GIA_NT01" || ACN == "GIA_NT1")
+                            {
+                                DoNothing();
+                            }
+                            else
+                            {
+                                var sl_qd = ObjectAndString.ObjectToDecimal(_soLuong1.Value) * ObjectAndString.ObjectToDecimal(_hs_qd1.Value);
+                                _sl_qd.Value = V6BusinessHelper.Vround(sl_qd, M_ROUND_SL);
+                            }
+                        }
+                        else
+                        {
+                            var sl_qd = ObjectAndString.ObjectToDecimal(_soLuong1.Value) * ObjectAndString.ObjectToDecimal(_hs_qd1.Value);
+                            _sl_qd.Value = V6BusinessHelper.Vround(sl_qd, M_ROUND_SL);
+                        }
+                    }
+                    else if (M_TYPE_SL_QD_ALL == "00")
+                    {
+                        _sl_qd.Value = 0;
+                    }
+                    //Phần lẻ (ví dụ 50 viên = 0.5 thùng bên trên)
+                    //Tuanmh 26/02/2019 _hs_qd2.Value != 0 
+                    if (ObjectAndString.ObjectToDecimal(_hs_qd2.Value) != 0)
+                    {
+                        var tong = ObjectAndString.ObjectToDecimal(_sl_qd.Value) * ObjectAndString.ObjectToDecimal(_hs_qd2.Value);
+                        var sl_nguyen_thung = ((int)ObjectAndString.ObjectToDecimal(_sl_qd.Value)) * ObjectAndString.ObjectToDecimal(_hs_qd2.Value);
+                        _sl_qd2.Value = V6BusinessHelper.Vround(tong - sl_nguyen_thung, 1);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".TinhSoluongQuyDoi_0 " + _sttRec, ex);
+            }
+        }
+
+        public void TinhSoluongQuyDoiG_2(DataGridViewRow row, string actionControl)
+        {
+            try
+            {
+                var _hs_qd1 = row.Cells["HS_QD1"];
+                var _hs_qd2 = row.Cells["HS_QD2"];
+                var _sl_qd = row.Cells["SL_QD"];
+                var _sl_qd2 = row.Cells["SL_QD2"];
+                var _soLuong1 = row.Cells["SO_LUONG1"];
+                if (M_CAL_SL_QD_ALL == "2")
+                {
+                    //Quy đổi chia
+                    if (ObjectAndString.ObjectToDecimal(_hs_qd1.Value) != 0)
+                    {
+                        if (M_TYPE_SL_QD_ALL == "2E" && actionControl != null)
+                        {
+                            string ACN = actionControl.ToUpper();
+                            if (ACN == "SL_QD" || ACN == "GIA_NT21" || ACN == "GIA_NT01" || ACN == "GIA_NT1")
+                            {
+                                DoNothing();
+                            }
+                            else
+                            {
+                                var sl_qd = ObjectAndString.ObjectToDecimal(_soLuong1.Value) / ObjectAndString.ObjectToDecimal(_hs_qd1.Value);
+                                _sl_qd.Value = V6BusinessHelper.Vround(sl_qd, M_ROUND_SL);
+                            }
+                        }
+                        else
+                        {
+                            var sl_qd = ObjectAndString.ObjectToDecimal(_soLuong1.Value) / ObjectAndString.ObjectToDecimal(_hs_qd1.Value);
+                            _sl_qd.Value = V6BusinessHelper.Vround(sl_qd, M_ROUND_SL);
+                        }
+                    }
+                    else if (M_TYPE_SL_QD_ALL == "20")
+                    {
+                        _sl_qd.Value = 0;
+                    }
+                    //Phần lẻ (ví dụ 50 viên = 0.5 thùng bên trên)
+                    //Tuanmh 26/02/2019 _hs_qd2.Value != 0 
+                    if (ObjectAndString.ObjectToDecimal(_hs_qd2.Value) != 0)
+                    {
+                        var tong = ObjectAndString.ObjectToDecimal(_sl_qd.Value) * ObjectAndString.ObjectToDecimal(_hs_qd2.Value);
+                        var sl_nguyen_thung = ((int)ObjectAndString.ObjectToDecimal(_sl_qd.Value)) * ObjectAndString.ObjectToDecimal(_hs_qd2.Value);
+                        _sl_qd2.Value = V6BusinessHelper.Vround(tong - sl_nguyen_thung, 1);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".TinhSoluongQuyDoi_0 " + _sttRec, ex);
+            }
+        }
+
+        public void TinhSoluongQuyDoiG_1(DataGridViewRow row, string actionControl)
+        {
+            try
+            {
+                var _hs_qd1 = row.Cells["HS_QD1"];
+                var _hs_qd2 = row.Cells["HS_QD2"];
+                var _sl_qd = row.Cells["SL_QD"];
+                var _sl_qd2 = row.Cells["SL_QD2"];
+                var _soLuong1 = row.Cells["SO_LUONG1"];
+                if (M_CAL_SL_QD_ALL == "1")
+                {
+                    if (ObjectAndString.ObjectToDecimal(_hs_qd1.Value) != 0)
+                    {
+                        if (M_TYPE_SL_QD_ALL == "1E" && actionControl != null)
+                        {
+                            string ACN = actionControl.ToUpper();
+                            if (ACN == "SO_LUONG1" || ACN == "GIA_NT21" || ACN == "GIA_NT01" || ACN == "GIA_NT1")
+                            {
+                                DoNothing();
+                            }
+                            else
+                            {
+                                var soLuong1 = ObjectAndString.ObjectToDecimal(_sl_qd.Value) * ObjectAndString.ObjectToDecimal(_hs_qd1.Value);
+                                _soLuong1.Value = V6BusinessHelper.Vround(soLuong1, M_ROUND_SL);
+                            }
+                        }
+                        else
+                        {
+                            var soLuong1 = ObjectAndString.ObjectToDecimal(_sl_qd.Value) * ObjectAndString.ObjectToDecimal(_hs_qd1.Value);
+                            _soLuong1.Value = V6BusinessHelper.Vround(soLuong1, M_ROUND_SL);
+                        }
+                    }
+                    else if (M_TYPE_SL_QD_ALL == "10")
+                    {
+                        _soLuong1.Value = 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".TinhSoluongQuyDoi_1 " + _sttRec, ex);
+            }
+        }
+
 
         public decimal TinhTong(DataTable AD_table, string colName)
         {

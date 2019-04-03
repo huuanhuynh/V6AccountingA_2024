@@ -654,7 +654,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                         {
                             if (!_maLo.ReadOnly)
                             {
-                                CheckMaLoTon();
+                                CheckMaLoTon(_maLo.HaveValueChanged);
                             }
                         };
                         break;
@@ -1244,7 +1244,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             CheckSoLuong1();
         }
 
-        private void CheckMaLoTon()
+        private void CheckMaLoTon(bool isChanged)
         {
             if (NotAddEdit) return;
             if (detail1.MODE != V6Mode.Add && detail1.MODE != V6Mode.Edit) return;
@@ -1272,7 +1272,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                         {
                             //
                             _maLo.Tag = row;
-                            XuLyKhiNhanMaLo(row.ToDataDictionary());
+                            XuLyKhiNhanMaLo(row.ToDataDictionary(), isChanged);
                             break;
                         }
                     }
@@ -1289,9 +1289,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                             if (d == DialogResult.OK)
                             {
                                 if (_maLo.Tag is DataRow)
-                                    XuLyKhiNhanMaLo(((DataRow)_maLo.Tag).ToDataDictionary());
+                                    XuLyKhiNhanMaLo(((DataRow)_maLo.Tag).ToDataDictionary(), isChanged);
                                 else if (_maLo.Tag is DataGridViewRow)
-                                    XuLyKhiNhanMaLo(((DataGridViewRow)_maLo.Tag).ToDataDictionary());
+                                    XuLyKhiNhanMaLo(((DataGridViewRow)_maLo.Tag).ToDataDictionary(), isChanged);
                             }
                             else
                             {
@@ -1404,7 +1404,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             }
         }
 
-        private void XuLyKhiNhanMaLo(IDictionary<string, object> row)//, DataRow row0)
+        private void XuLyKhiNhanMaLo(IDictionary<string, object> row, bool isChanged)
         {
             try
             {
@@ -1414,7 +1414,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 _maLo.Enabled = true;
                 //_maLo.ReadOnlyTag();
 
-                CheckSoLuong1();
+                if (isChanged) CheckSoLuong1();
             }
             catch (Exception ex)
             {
