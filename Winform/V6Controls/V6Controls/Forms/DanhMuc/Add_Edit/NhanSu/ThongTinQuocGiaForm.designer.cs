@@ -37,7 +37,7 @@
             // 
             // v6Label4
             // 
-            this.v6Label4.AccessibleDescription = "";
+            this.v6Label4.AccessibleDescription = "ADDEDITL00749";
             this.v6Label4.AutoSize = true;
             this.v6Label4.Location = new System.Drawing.Point(5, 66);
             this.v6Label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -64,7 +64,7 @@
             // 
             // v6Label17
             // 
-            this.v6Label17.AccessibleDescription = "";
+            this.v6Label17.AccessibleDescription = "ADDEDITL00320";
             this.v6Label17.AutoSize = true;
             this.v6Label17.Location = new System.Drawing.Point(5, 35);
             this.v6Label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);

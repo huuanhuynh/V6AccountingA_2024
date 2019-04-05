@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.txtID = new V6Controls.V6ColorTextBox();
-            this.v6Label17 = new V6Controls.V6Label();
-            this.txtLastName = new V6Controls.V6ColorTextBox();
-            this.v6Label4 = new V6Controls.V6Label();
+            this.lblName = new V6Controls.V6Label();
+            this.txtName2 = new V6Controls.V6ColorTextBox();
+            this.lblTen2 = new V6Controls.V6Label();
             this.txtName = new V6Controls.V6ColorTextBox();
             this.SuspendLayout();
             // 
@@ -54,43 +54,43 @@
             this.txtID.TabIndex = 2;
             this.txtID.Visible = false;
             // 
-            // v6Label17
+            // lblName
             // 
-            this.v6Label17.AccessibleDescription = "";
-            this.v6Label17.AutoSize = true;
-            this.v6Label17.Location = new System.Drawing.Point(5, 33);
-            this.v6Label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label17.Name = "v6Label17";
-            this.v6Label17.Size = new System.Drawing.Size(88, 17);
-            this.v6Label17.TabIndex = 0;
-            this.v6Label17.Text = "Tên tôn giáo";
+            this.lblName.AccessibleDescription = "ADDEDITL00735";
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(5, 33);
+            this.lblName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(88, 17);
+            this.lblName.TabIndex = 0;
+            this.lblName.Text = "Tên tôn giáo";
             // 
-            // txtLastName
+            // txtName2
             // 
-            this.txtLastName.AccessibleName = "NAME2";
-            this.txtLastName.BackColor = System.Drawing.Color.White;
-            this.txtLastName.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtLastName.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtLastName.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtLastName.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtLastName.HoverColor = System.Drawing.Color.Yellow;
-            this.txtLastName.LeaveColor = System.Drawing.Color.White;
-            this.txtLastName.Location = new System.Drawing.Point(139, 59);
-            this.txtLastName.Margin = new System.Windows.Forms.Padding(5);
-            this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(493, 23);
-            this.txtLastName.TabIndex = 1;
+            this.txtName2.AccessibleName = "NAME2";
+            this.txtName2.BackColor = System.Drawing.Color.White;
+            this.txtName2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtName2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtName2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtName2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtName2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtName2.LeaveColor = System.Drawing.Color.White;
+            this.txtName2.Location = new System.Drawing.Point(139, 59);
+            this.txtName2.Margin = new System.Windows.Forms.Padding(5);
+            this.txtName2.Name = "txtName2";
+            this.txtName2.Size = new System.Drawing.Size(493, 23);
+            this.txtName2.TabIndex = 1;
             // 
-            // v6Label4
+            // lblTen2
             // 
-            this.v6Label4.AccessibleDescription = "";
-            this.v6Label4.AutoSize = true;
-            this.v6Label4.Location = new System.Drawing.Point(5, 63);
-            this.v6Label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label4.Name = "v6Label4";
-            this.v6Label4.Size = new System.Drawing.Size(100, 17);
-            this.v6Label4.TabIndex = 3;
-            this.v6Label4.Text = "Tên tôn giáo 2";
+            this.lblTen2.AccessibleDescription = "ADDEDITL00736";
+            this.lblTen2.AutoSize = true;
+            this.lblTen2.Location = new System.Drawing.Point(5, 63);
+            this.lblTen2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTen2.Name = "lblTen2";
+            this.lblTen2.Size = new System.Drawing.Size(100, 17);
+            this.lblTen2.TabIndex = 3;
+            this.lblTen2.Text = "Tên tôn giáo 2";
             // 
             // txtName
             // 
@@ -114,9 +114,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.txtID);
-            this.Controls.Add(this.v6Label17);
-            this.Controls.Add(this.txtLastName);
-            this.Controls.Add(this.v6Label4);
+            this.Controls.Add(this.lblName);
+            this.Controls.Add(this.txtName2);
+            this.Controls.Add(this.lblTen2);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ThongTinTonGiaoForm";
@@ -128,9 +128,9 @@
 
         #endregion
 
-        private V6Controls.V6Label v6Label4;
-        private V6Controls.V6ColorTextBox txtLastName;
-        private V6Controls.V6Label v6Label17;
+        private V6Controls.V6Label lblTen2;
+        private V6Controls.V6ColorTextBox txtName2;
+        private V6Controls.V6Label lblName;
         private V6ColorTextBox txtID;
         private V6ColorTextBox txtName;
     }

@@ -32,9 +32,9 @@
             this.TXTNGAY_SINH = new V6Controls.V6ColorTextBox();
             this.txtMA_NS = new V6Controls.V6ColorTextBox();
             this.txtTEN_NS = new V6Controls.V6ColorTextBox();
-            this.v6Label2 = new V6Controls.V6Label();
+            this.lblNgaySinh = new V6Controls.V6Label();
             this.v6Label1 = new V6Controls.V6Label();
-            this.v6Label4 = new V6Controls.V6Label();
+            this.lblHoVaTen = new V6Controls.V6Label();
             this.lblAmLich = new V6Controls.V6Label();
             this.SuspendLayout();
             // 
@@ -101,16 +101,16 @@
             this.txtTEN_NS.Size = new System.Drawing.Size(431, 23);
             this.txtTEN_NS.TabIndex = 15;
             // 
-            // v6Label2
+            // lblNgaySinh
             // 
-            this.v6Label2.AccessibleDescription = "";
-            this.v6Label2.AutoSize = true;
-            this.v6Label2.Location = new System.Drawing.Point(5, 26);
-            this.v6Label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label2.Name = "v6Label2";
-            this.v6Label2.Size = new System.Drawing.Size(71, 17);
-            this.v6Label2.TabIndex = 12;
-            this.v6Label2.Text = "Ngày sinh";
+            this.lblNgaySinh.AccessibleDescription = "ADDEDITL00522";
+            this.lblNgaySinh.AutoSize = true;
+            this.lblNgaySinh.Location = new System.Drawing.Point(5, 26);
+            this.lblNgaySinh.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNgaySinh.Name = "lblNgaySinh";
+            this.lblNgaySinh.Size = new System.Drawing.Size(71, 17);
+            this.lblNgaySinh.TabIndex = 12;
+            this.lblNgaySinh.Text = "Ngày sinh";
             // 
             // v6Label1
             // 
@@ -122,20 +122,20 @@
             this.v6Label1.Size = new System.Drawing.Size(0, 17);
             this.v6Label1.TabIndex = 8;
             // 
-            // v6Label4
+            // lblHoVaTen
             // 
-            this.v6Label4.AccessibleDescription = "";
-            this.v6Label4.AutoSize = true;
-            this.v6Label4.Location = new System.Drawing.Point(5, 3);
-            this.v6Label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label4.Name = "v6Label4";
-            this.v6Label4.Size = new System.Drawing.Size(69, 17);
-            this.v6Label4.TabIndex = 3;
-            this.v6Label4.Text = "Họ và tên";
+            this.lblHoVaTen.AccessibleDescription = "ADDEDITL00751";
+            this.lblHoVaTen.AutoSize = true;
+            this.lblHoVaTen.Location = new System.Drawing.Point(5, 3);
+            this.lblHoVaTen.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblHoVaTen.Name = "lblHoVaTen";
+            this.lblHoVaTen.Size = new System.Drawing.Size(69, 17);
+            this.lblHoVaTen.TabIndex = 3;
+            this.lblHoVaTen.Text = "Họ và tên";
             // 
             // lblAmLich
             // 
-            this.lblAmLich.AccessibleDescription = "";
+            this.lblAmLich.AccessibleDescription = "ADDEDITL00770";
             this.lblAmLich.AutoSize = true;
             this.lblAmLich.Location = new System.Drawing.Point(367, 28);
             this.lblAmLich.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -153,9 +153,9 @@
             this.Controls.Add(this.txtMA_NS);
             this.Controls.Add(this.txtTEN_NS);
             this.Controls.Add(this.lblAmLich);
-            this.Controls.Add(this.v6Label2);
+            this.Controls.Add(this.lblNgaySinh);
             this.Controls.Add(this.v6Label1);
-            this.Controls.Add(this.v6Label4);
+            this.Controls.Add(this.lblHoVaTen);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "HINFOR_NS";
@@ -167,9 +167,9 @@
 
         #endregion
 
-        private V6Controls.V6Label v6Label4;
+        private V6Controls.V6Label lblHoVaTen;
         private V6Controls.V6Label v6Label1;
-        private V6Controls.V6Label v6Label2;
+        private V6Controls.V6Label lblNgaySinh;
         private V6Controls.V6ColorTextBox txtTEN_NS;
         private V6ColorTextBox txtMA_NS;
         private V6ColorTextBox TXTNGAY_SINH;

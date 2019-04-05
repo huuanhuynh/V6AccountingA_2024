@@ -32,7 +32,7 @@
             this.txtID = new V6Controls.V6ColorTextBox();
             this.lblName = new V6Controls.V6Label();
             this.txtLastName = new V6Controls.V6ColorTextBox();
-            this.v6Label4 = new V6Controls.V6Label();
+            this.lblName2 = new V6Controls.V6Label();
             this.SuspendLayout();
             // 
             // txtName
@@ -72,7 +72,7 @@
             // 
             // lblName
             // 
-            this.lblName.AccessibleDescription = "";
+            this.lblName.AccessibleDescription = "ADDEDITL00759";
             this.lblName.AutoSize = true;
             this.lblName.Location = new System.Drawing.Point(5, 33);
             this.lblName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -97,16 +97,16 @@
             this.txtLastName.Size = new System.Drawing.Size(469, 23);
             this.txtLastName.TabIndex = 1;
             // 
-            // v6Label4
+            // lblName2
             // 
-            this.v6Label4.AccessibleDescription = "";
-            this.v6Label4.AutoSize = true;
-            this.v6Label4.Location = new System.Drawing.Point(5, 63);
-            this.v6Label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label4.Name = "v6Label4";
-            this.v6Label4.Size = new System.Drawing.Size(147, 17);
-            this.v6Label4.TabIndex = 3;
-            this.v6Label4.Text = "Tên chuyên nghành 2";
+            this.lblName2.AccessibleDescription = "ADDEDITL00760";
+            this.lblName2.AutoSize = true;
+            this.lblName2.Location = new System.Drawing.Point(5, 63);
+            this.lblName2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblName2.Name = "lblName2";
+            this.lblName2.Size = new System.Drawing.Size(147, 17);
+            this.lblName2.TabIndex = 3;
+            this.lblName2.Text = "Tên chuyên nghành 2";
             // 
             // ThongTinChuyenNghanhForm
             // 
@@ -116,7 +116,7 @@
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.txtLastName);
-            this.Controls.Add(this.v6Label4);
+            this.Controls.Add(this.lblName2);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ThongTinChuyenNghanhForm";
@@ -128,7 +128,7 @@
 
         #endregion
 
-        private V6Controls.V6Label v6Label4;
+        private V6Controls.V6Label lblName2;
         private V6Controls.V6ColorTextBox txtLastName;
         private V6Controls.V6Label lblName;
         private V6ColorTextBox txtID;

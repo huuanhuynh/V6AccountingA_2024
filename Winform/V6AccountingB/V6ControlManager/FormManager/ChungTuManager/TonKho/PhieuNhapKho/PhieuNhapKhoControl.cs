@@ -1460,11 +1460,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
 
         void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            string FIELD = null;
             try
             {
                 var row = dataGridView1.Rows[e.RowIndex];
                 var col = dataGridView1.Columns[e.ColumnIndex];
-                var FIELD = col.DataPropertyName.ToUpper();
+                FIELD = col.DataPropertyName.ToUpper();
                 var cell = row.Cells[e.ColumnIndex];
                 var cell_MA_VT = row.Cells["MA_VT"];
                 var cell_SO_LUONG1 = row.Cells["SO_LUONG1"];
@@ -1517,7 +1518,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                         row.Cells["TIEN0"].Value = _maNt == _mMaNt0
                             ? row.Cells["TIEN_NT0"].Value
                             : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT0"].Value) * txtTyGia.Value, M_ROUND);
-                        TinhGiaVon();
+                        //TinhGiaVon();
                         row.Cells["GIA01"].Value = _maNt == _mMaNt0
                             ? row.Cells["GIA_NT01"].Value
                             : V6BusinessHelper.Vround((ObjectAndString.ObjectToDecimal(row.Cells["GIA_NT01"].Value) * txtTyGia.Value), M_ROUND_GIA_NT);
@@ -1541,6 +1542,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
+            TinhTongThanhToan("CellEndEdit_" + FIELD);
         }
 
         void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)

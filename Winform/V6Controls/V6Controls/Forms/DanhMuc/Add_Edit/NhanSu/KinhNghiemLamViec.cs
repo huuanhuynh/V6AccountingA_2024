@@ -13,10 +13,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
         public KinhNghiemLamViec()
         {
             InitializeComponent();
+           
         }
 
         public override void DoBeforeEdit()
         {
+
+           
+
+        }
+        public override void DoBeforeAdd()
+        {
+
+           
+
         }
 
         public override void SetDataKeys(SortedDictionary<string, object> keyData)
@@ -52,6 +62,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
                 Logger.WriteToLog(V6Login.ClientName + " " +GetType() + ".SetDataKeys " + ex.Message);
             }
         }
+
+       
+
+     
 
     }
 }

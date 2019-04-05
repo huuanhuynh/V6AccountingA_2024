@@ -1,6 +1,7 @@
 ﻿using System.Data.SqlClient;
 using V6AccountingBusiness;
 using System;
+using V6Init;
 using V6Structs;
 namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 {
@@ -31,17 +32,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             var txtID_Text = V6BusinessHelper.ExecuteProcedureScalar("VPA_sGet_Key_Like_stt_rec_tt", plist);
             txtID.Text = "" + txtID_Text;
         }
-
-        private void txtclass_TextChanged(object sender, System.EventArgs e)
-        {
-           
-        }
-
+        
         public override void ValidateData()
         {
             var errors = "";
             if (txtName.Text.Trim() == "")
-                errors += V6Init.V6Text.CheckInfor + " !\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblName.Text;
 
             if (Mode == V6Mode.Edit)
             {

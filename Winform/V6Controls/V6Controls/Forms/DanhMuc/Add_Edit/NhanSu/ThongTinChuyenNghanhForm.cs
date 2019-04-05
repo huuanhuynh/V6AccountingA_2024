@@ -32,10 +32,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             txtID.Text = "" + txtID_Text;
         }
 
-        private void txtclass_TextChanged(object sender, System.EventArgs e)
-        {
-           
-        }
         public override void ValidateData()
         {
             var errors = "";

@@ -28,7 +28,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             buttonHuy.Enabled = false;
         }
        
-        public void LoadData(string stt_rec)
+        public override void LoadData(string stt_rec)
         {
             try
             {
@@ -61,8 +61,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             {
                 this.ShowErrorException(GetType() + ".LoadData", ex);
             }
-           
         }
+
         public  int UpdateData()
         {
             try
@@ -86,6 +86,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
                 return 0;
             }
         }
+
         public override void SetData(IDictionary<string, object> d)
         {
 

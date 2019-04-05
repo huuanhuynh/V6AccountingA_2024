@@ -4,7 +4,6 @@ using V6AccountingBusiness;
 using V6Init;
 using V6Structs;
 using V6Tools;
-using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 {
@@ -29,11 +28,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             buttonHuy.Enabled = false;
         }
        
-        public  void LoadData(string stt_rec)
+        public override void LoadData(string stt_rec)
         {
             try
             {
-              
                 var _keys = new SortedDictionary<string, object> { { "STT_REC",stt_rec } };
                 if (_keys != null && _keys.Count > 0)
                 {
@@ -62,13 +60,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             {
                 this.ShowErrorException(GetType() + ".LoadData", ex);
             }
-           
         }
+
         public  int UpdateData()
         {
             try
             {
-
                // FixFormData();
                 DataDic = GetData();
                 //ValidateData();
@@ -87,6 +84,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
                 return 0;
             }
         }
+
         public override void SetData(IDictionary<string, object> d)
         {
 
@@ -100,7 +98,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             buttonNhan.Enabled = true;
             buttonHuy.Enabled = true;
             V6ControlFormHelper.SetFormControlsReadOnly(this, false);
-           
         }
 
         private void buttonNhan_Click_1(object sender, EventArgs e)

@@ -28,29 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.v6Label4 = new V6Controls.V6Label();
+            this.lblName2 = new V6Controls.V6Label();
             this.txtLastName = new V6Controls.V6ColorTextBox();
-            this.v6Label14 = new V6Controls.V6Label();
-            this.v6Label17 = new V6Controls.V6Label();
+            this.lblPhuThuoc = new V6Controls.V6Label();
+            this.lblName = new V6Controls.V6Label();
             this.chkPhuThuoc = new System.Windows.Forms.CheckBox();
             this.txtID = new V6Controls.V6ColorTextBox();
-            this.v6Label1 = new V6Controls.V6Label();
+            this.lblNhom = new V6Controls.V6Label();
             this.radclass2 = new System.Windows.Forms.RadioButton();
             this.radclass1 = new System.Windows.Forms.RadioButton();
             this.txtclass = new V6Controls.V6ColorTextBox();
             this.txtName = new V6Controls.V6ColorTextBox();
             this.SuspendLayout();
             // 
-            // v6Label4
+            // lblName2
             // 
-            this.v6Label4.AccessibleDescription = "";
-            this.v6Label4.AutoSize = true;
-            this.v6Label4.Location = new System.Drawing.Point(5, 40);
-            this.v6Label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label4.Name = "v6Label4";
-            this.v6Label4.Size = new System.Drawing.Size(127, 17);
-            this.v6Label4.TabIndex = 3;
-            this.v6Label4.Text = "Tên mối quan hệ 2";
+            this.lblName2.AccessibleDescription = "ADDEDITL00734";
+            this.lblName2.AutoSize = true;
+            this.lblName2.Location = new System.Drawing.Point(5, 40);
+            this.lblName2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblName2.Name = "lblName2";
+            this.lblName2.Size = new System.Drawing.Size(127, 17);
+            this.lblName2.TabIndex = 3;
+            this.lblName2.Text = "Tên mối quan hệ 2";
             // 
             // txtLastName
             // 
@@ -68,27 +68,27 @@
             this.txtLastName.Size = new System.Drawing.Size(493, 23);
             this.txtLastName.TabIndex = 1;
             // 
-            // v6Label14
+            // lblPhuThuoc
             // 
-            this.v6Label14.AccessibleDescription = "";
-            this.v6Label14.AutoSize = true;
-            this.v6Label14.Location = new System.Drawing.Point(5, 63);
-            this.v6Label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label14.Name = "v6Label14";
-            this.v6Label14.Size = new System.Drawing.Size(72, 17);
-            this.v6Label14.TabIndex = 5;
-            this.v6Label14.Text = "Phụ thuộc";
+            this.lblPhuThuoc.AccessibleDescription = "";
+            this.lblPhuThuoc.AutoSize = true;
+            this.lblPhuThuoc.Location = new System.Drawing.Point(5, 63);
+            this.lblPhuThuoc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPhuThuoc.Name = "lblPhuThuoc";
+            this.lblPhuThuoc.Size = new System.Drawing.Size(72, 17);
+            this.lblPhuThuoc.TabIndex = 5;
+            this.lblPhuThuoc.Text = "Phụ thuộc";
             // 
-            // v6Label17
+            // lblName
             // 
-            this.v6Label17.AccessibleDescription = "";
-            this.v6Label17.AutoSize = true;
-            this.v6Label17.Location = new System.Drawing.Point(5, 11);
-            this.v6Label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label17.Name = "v6Label17";
-            this.v6Label17.Size = new System.Drawing.Size(115, 17);
-            this.v6Label17.TabIndex = 0;
-            this.v6Label17.Text = "Tên mối quan hệ";
+            this.lblName.AccessibleDescription = "ADDEDITL00733";
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(5, 11);
+            this.lblName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(115, 17);
+            this.lblName.TabIndex = 0;
+            this.lblName.Text = "Tên mối quan hệ";
             // 
             // chkPhuThuoc
             // 
@@ -119,16 +119,16 @@
             this.txtID.TabIndex = 2;
             this.txtID.Visible = false;
             // 
-            // v6Label1
+            // lblNhom
             // 
-            this.v6Label1.AccessibleDescription = "";
-            this.v6Label1.AutoSize = true;
-            this.v6Label1.Location = new System.Drawing.Point(5, 89);
-            this.v6Label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label1.Name = "v6Label1";
-            this.v6Label1.Size = new System.Drawing.Size(49, 17);
-            this.v6Label1.TabIndex = 7;
-            this.v6Label1.Text = "Nhóm ";
+            this.lblNhom.AccessibleDescription = "";
+            this.lblNhom.AutoSize = true;
+            this.lblNhom.Location = new System.Drawing.Point(5, 89);
+            this.lblNhom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNhom.Name = "lblNhom";
+            this.lblNhom.Size = new System.Drawing.Size(49, 17);
+            this.lblNhom.TabIndex = 7;
+            this.lblNhom.Text = "Nhóm ";
             // 
             // radclass2
             // 
@@ -196,13 +196,13 @@
             this.Controls.Add(this.txtclass);
             this.Controls.Add(this.radclass2);
             this.Controls.Add(this.radclass1);
-            this.Controls.Add(this.v6Label1);
+            this.Controls.Add(this.lblNhom);
             this.Controls.Add(this.chkPhuThuoc);
             this.Controls.Add(this.txtID);
-            this.Controls.Add(this.v6Label14);
-            this.Controls.Add(this.v6Label17);
+            this.Controls.Add(this.lblPhuThuoc);
+            this.Controls.Add(this.lblName);
             this.Controls.Add(this.txtLastName);
-            this.Controls.Add(this.v6Label4);
+            this.Controls.Add(this.lblName2);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ThongTinQuanHeForm";
@@ -214,13 +214,13 @@
 
         #endregion
 
-        private V6Controls.V6Label v6Label4;
+        private V6Controls.V6Label lblName2;
         private V6Controls.V6ColorTextBox txtLastName;
-        private V6Controls.V6Label v6Label14;
-        private V6Controls.V6Label v6Label17;
+        private V6Controls.V6Label lblPhuThuoc;
+        private V6Controls.V6Label lblName;
         private System.Windows.Forms.CheckBox chkPhuThuoc;
         private V6ColorTextBox txtID;
-        private V6Label v6Label1;
+        private V6Label lblNhom;
         private System.Windows.Forms.RadioButton radclass2;
         private System.Windows.Forms.RadioButton radclass1;
         private V6ColorTextBox txtclass;

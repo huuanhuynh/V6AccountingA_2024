@@ -28,25 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.v6Label1 = new V6Controls.V6Label();
+            this.lblMaTinh = new V6Controls.V6Label();
             this.txtID = new V6Controls.V6ColorTextBox();
-            this.v6Label17 = new V6Controls.V6Label();
+            this.lblTenTinh = new V6Controls.V6Label();
             this.txtLastName = new V6Controls.V6ColorTextBox();
-            this.v6Label4 = new V6Controls.V6Label();
+            this.lblTenTinh2 = new V6Controls.V6Label();
             this.txtName = new V6Controls.V6ColorTextBox();
             this.txtMaCode = new V6Controls.V6ColorTextBox();
             this.SuspendLayout();
             // 
-            // v6Label1
+            // lblMaTinh
             // 
-            this.v6Label1.AccessibleDescription = "";
-            this.v6Label1.AutoSize = true;
-            this.v6Label1.Location = new System.Drawing.Point(5, 27);
-            this.v6Label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label1.Name = "v6Label1";
-            this.v6Label1.Size = new System.Drawing.Size(94, 17);
-            this.v6Label1.TabIndex = 7;
-            this.v6Label1.Text = "Mã tỉnh thành";
+            this.lblMaTinh.AccessibleDescription = "ADDEDITL00737";
+            this.lblMaTinh.AutoSize = true;
+            this.lblMaTinh.Location = new System.Drawing.Point(5, 27);
+            this.lblMaTinh.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMaTinh.Name = "lblMaTinh";
+            this.lblMaTinh.Size = new System.Drawing.Size(94, 17);
+            this.lblMaTinh.TabIndex = 7;
+            this.lblMaTinh.Text = "Mã tỉnh thành";
             // 
             // txtID
             // 
@@ -67,16 +67,16 @@
             this.txtID.TabIndex = 3;
             this.txtID.Visible = false;
             // 
-            // v6Label17
+            // lblTenTinh
             // 
-            this.v6Label17.AccessibleDescription = "";
-            this.v6Label17.AutoSize = true;
-            this.v6Label17.Location = new System.Drawing.Point(5, 53);
-            this.v6Label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label17.Name = "v6Label17";
-            this.v6Label17.Size = new System.Drawing.Size(100, 17);
-            this.v6Label17.TabIndex = 0;
-            this.v6Label17.Text = "Tên tỉnh thành";
+            this.lblTenTinh.AccessibleDescription = "ADDEDITL00384";
+            this.lblTenTinh.AutoSize = true;
+            this.lblTenTinh.Location = new System.Drawing.Point(5, 53);
+            this.lblTenTinh.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTenTinh.Name = "lblTenTinh";
+            this.lblTenTinh.Size = new System.Drawing.Size(100, 17);
+            this.lblTenTinh.TabIndex = 0;
+            this.lblTenTinh.Text = "Tên tỉnh thành";
             // 
             // txtLastName
             // 
@@ -94,16 +94,16 @@
             this.txtLastName.Size = new System.Drawing.Size(493, 23);
             this.txtLastName.TabIndex = 2;
             // 
-            // v6Label4
+            // lblTenTinh2
             // 
-            this.v6Label4.AccessibleDescription = "";
-            this.v6Label4.AutoSize = true;
-            this.v6Label4.Location = new System.Drawing.Point(5, 81);
-            this.v6Label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label4.Name = "v6Label4";
-            this.v6Label4.Size = new System.Drawing.Size(112, 17);
-            this.v6Label4.TabIndex = 3;
-            this.v6Label4.Text = "Tên tỉnh thành 2";
+            this.lblTenTinh2.AccessibleDescription = "ADDEDITL00738";
+            this.lblTenTinh2.AutoSize = true;
+            this.lblTenTinh2.Location = new System.Drawing.Point(5, 81);
+            this.lblTenTinh2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTenTinh2.Name = "lblTenTinh2";
+            this.lblTenTinh2.Size = new System.Drawing.Size(112, 17);
+            this.lblTenTinh2.TabIndex = 3;
+            this.lblTenTinh2.Text = "Tên tỉnh thành 2";
             // 
             // txtName
             // 
@@ -143,11 +143,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.txtMaCode);
             this.Controls.Add(this.txtName);
-            this.Controls.Add(this.v6Label1);
+            this.Controls.Add(this.lblMaTinh);
             this.Controls.Add(this.txtID);
-            this.Controls.Add(this.v6Label17);
+            this.Controls.Add(this.lblTenTinh);
             this.Controls.Add(this.txtLastName);
-            this.Controls.Add(this.v6Label4);
+            this.Controls.Add(this.lblTenTinh2);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ThongTinTinhThanhForm";
@@ -159,11 +159,11 @@
 
         #endregion
 
-        private V6Controls.V6Label v6Label4;
+        private V6Controls.V6Label lblTenTinh2;
         private V6Controls.V6ColorTextBox txtLastName;
-        private V6Controls.V6Label v6Label17;
+        private V6Controls.V6Label lblTenTinh;
         private V6ColorTextBox txtID;
-        private V6Label v6Label1;
+        private V6Label lblMaTinh;
         private V6ColorTextBox txtName;
         private V6ColorTextBox txtMaCode;
     }

@@ -71,7 +71,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
         {
             var errors = "";
             if (txtName.Text.Trim() == "")
-                errors += V6Init.V6Text.CheckInfor + " !\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblName.Text;
 
             if (Mode == V6Mode.Edit)
             {

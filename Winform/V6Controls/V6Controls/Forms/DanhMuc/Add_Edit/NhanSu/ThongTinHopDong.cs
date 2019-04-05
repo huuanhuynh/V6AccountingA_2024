@@ -2,6 +2,8 @@
 using V6AccountingBusiness;
 using V6Structs;
 using System;
+using V6Init;
+
 namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 {
     public partial class ThongTinHopDong : AddEditControlVirtual
@@ -31,16 +33,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             txtID.Text = "" + txtID_Text;
         }
 
-        private void txtclass_TextChanged(object sender, System.EventArgs e)
-        {
-           
-        }
         public override void ValidateData()
         {
 
             var errors = "";
             if (txtName.Text.Trim() == "")
-                errors += "Chưa nhập tên !\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblName.Text;
             if (errors.Length > 0) throw new Exception(errors);
 
             if (Mode == V6Mode.Edit)

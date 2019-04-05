@@ -30,22 +30,22 @@
         {
             this.txtSttRec = new V6Controls.V6ColorTextBox();
             this.txthealth_type = new V6Controls.V6LookupTextBox();
-            this.v6Label3 = new V6Controls.V6Label();
-            this.v6Label1 = new V6Controls.V6Label();
+            this.lblHealthType = new V6Controls.V6Label();
+            this.lblBlood = new V6Controls.V6Label();
             this.txtblood = new V6Controls.V6LookupTextBox();
-            this.v6Label2 = new V6Controls.V6Label();
+            this.lblDiUng = new V6Controls.V6Label();
             this.txtallergies = new V6Controls.V6ColorTextBox();
-            this.v6Label4 = new V6Controls.V6Label();
+            this.lblBenhTat = new V6Controls.V6Label();
             this.txtdiseaseds = new V6Controls.V6ColorTextBox();
-            this.v6Label5 = new V6Controls.V6Label();
+            this.lblTatNguyen = new V6Controls.V6Label();
             this.txthandicaps = new V6Controls.V6ColorTextBox();
-            this.v6Label6 = new V6Controls.V6Label();
+            this.lblTiemVacXin = new V6Controls.V6Label();
             this.txtvaccinations = new V6Controls.V6ColorTextBox();
-            this.v6Label7 = new V6Controls.V6Label();
+            this.lblKhac = new V6Controls.V6Label();
             this.txtothers = new V6Controls.V6ColorTextBox();
-            this.v6Label8 = new V6Controls.V6Label();
-            this.v6Label9 = new V6Controls.V6Label();
-            this.v6Label10 = new V6Controls.V6Label();
+            this.lblChieuCao = new V6Controls.V6Label();
+            this.lblCanNang = new V6Controls.V6Label();
+            this.lblGhiChu = new V6Controls.V6Label();
             this.txtremarks = new V6Controls.V6ColorTextBox();
             this.buttonSua = new System.Windows.Forms.Button();
             this.buttonHuy = new System.Windows.Forms.Button();
@@ -95,27 +95,27 @@
             this.txthealth_type.TabIndex = 0;
             this.txthealth_type.ValueField = "";
             // 
-            // v6Label3
+            // lblHealthType
             // 
-            this.v6Label3.AccessibleDescription = "";
-            this.v6Label3.AutoSize = true;
-            this.v6Label3.Location = new System.Drawing.Point(12, 7);
-            this.v6Label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label3.Name = "v6Label3";
-            this.v6Label3.Size = new System.Drawing.Size(134, 17);
-            this.v6Label3.TabIndex = 129;
-            this.v6Label3.Text = "Tình trạng sức khỏe";
+            this.lblHealthType.AccessibleDescription = "ADDEDITL00739";
+            this.lblHealthType.AutoSize = true;
+            this.lblHealthType.Location = new System.Drawing.Point(12, 7);
+            this.lblHealthType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblHealthType.Name = "lblHealthType";
+            this.lblHealthType.Size = new System.Drawing.Size(134, 17);
+            this.lblHealthType.TabIndex = 129;
+            this.lblHealthType.Text = "Tình trạng sức khỏe";
             // 
-            // v6Label1
+            // lblBlood
             // 
-            this.v6Label1.AccessibleDescription = "";
-            this.v6Label1.AutoSize = true;
-            this.v6Label1.Location = new System.Drawing.Point(12, 38);
-            this.v6Label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label1.Name = "v6Label1";
-            this.v6Label1.Size = new System.Drawing.Size(76, 17);
-            this.v6Label1.TabIndex = 130;
-            this.v6Label1.Text = "Nhóm máu";
+            this.lblBlood.AccessibleDescription = "ADDEDITL00740";
+            this.lblBlood.AutoSize = true;
+            this.lblBlood.Location = new System.Drawing.Point(12, 38);
+            this.lblBlood.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBlood.Name = "lblBlood";
+            this.lblBlood.Size = new System.Drawing.Size(76, 17);
+            this.lblBlood.TabIndex = 130;
+            this.lblBlood.Text = "Nhóm máu";
             // 
             // txtblood
             // 
@@ -140,16 +140,16 @@
             this.txtblood.TabIndex = 1;
             this.txtblood.ValueField = "ID";
             // 
-            // v6Label2
+            // lblDiUng
             // 
-            this.v6Label2.AccessibleDescription = "";
-            this.v6Label2.AutoSize = true;
-            this.v6Label2.Location = new System.Drawing.Point(12, 69);
-            this.v6Label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label2.Name = "v6Label2";
-            this.v6Label2.Size = new System.Drawing.Size(49, 17);
-            this.v6Label2.TabIndex = 132;
-            this.v6Label2.Text = "Dị ứng";
+            this.lblDiUng.AccessibleDescription = "ADDEDITL00741";
+            this.lblDiUng.AutoSize = true;
+            this.lblDiUng.Location = new System.Drawing.Point(12, 69);
+            this.lblDiUng.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDiUng.Name = "lblDiUng";
+            this.lblDiUng.Size = new System.Drawing.Size(49, 17);
+            this.lblDiUng.TabIndex = 132;
+            this.lblDiUng.Text = "Dị ứng";
             // 
             // txtallergies
             // 
@@ -169,16 +169,16 @@
             this.txtallergies.Size = new System.Drawing.Size(185, 23);
             this.txtallergies.TabIndex = 2;
             // 
-            // v6Label4
+            // lblBenhTat
             // 
-            this.v6Label4.AccessibleDescription = "";
-            this.v6Label4.AutoSize = true;
-            this.v6Label4.Location = new System.Drawing.Point(12, 100);
-            this.v6Label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label4.Name = "v6Label4";
-            this.v6Label4.Size = new System.Drawing.Size(61, 17);
-            this.v6Label4.TabIndex = 134;
-            this.v6Label4.Text = "Bệnh tật";
+            this.lblBenhTat.AccessibleDescription = "ADDEDITL00742";
+            this.lblBenhTat.AutoSize = true;
+            this.lblBenhTat.Location = new System.Drawing.Point(12, 100);
+            this.lblBenhTat.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBenhTat.Name = "lblBenhTat";
+            this.lblBenhTat.Size = new System.Drawing.Size(61, 17);
+            this.lblBenhTat.TabIndex = 134;
+            this.lblBenhTat.Text = "Bệnh tật";
             // 
             // txtdiseaseds
             // 
@@ -198,16 +198,16 @@
             this.txtdiseaseds.Size = new System.Drawing.Size(185, 23);
             this.txtdiseaseds.TabIndex = 3;
             // 
-            // v6Label5
+            // lblTatNguyen
             // 
-            this.v6Label5.AccessibleDescription = "";
-            this.v6Label5.AutoSize = true;
-            this.v6Label5.Location = new System.Drawing.Point(12, 131);
-            this.v6Label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label5.Name = "v6Label5";
-            this.v6Label5.Size = new System.Drawing.Size(80, 17);
-            this.v6Label5.TabIndex = 136;
-            this.v6Label5.Text = "Tật nguyền";
+            this.lblTatNguyen.AccessibleDescription = "ADDEDITL00743";
+            this.lblTatNguyen.AutoSize = true;
+            this.lblTatNguyen.Location = new System.Drawing.Point(12, 131);
+            this.lblTatNguyen.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTatNguyen.Name = "lblTatNguyen";
+            this.lblTatNguyen.Size = new System.Drawing.Size(80, 17);
+            this.lblTatNguyen.TabIndex = 136;
+            this.lblTatNguyen.Text = "Tật nguyền";
             // 
             // txthandicaps
             // 
@@ -227,16 +227,16 @@
             this.txthandicaps.Size = new System.Drawing.Size(185, 23);
             this.txthandicaps.TabIndex = 4;
             // 
-            // v6Label6
+            // lblTiemVacXin
             // 
-            this.v6Label6.AccessibleDescription = "";
-            this.v6Label6.AutoSize = true;
-            this.v6Label6.Location = new System.Drawing.Point(12, 162);
-            this.v6Label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label6.Name = "v6Label6";
-            this.v6Label6.Size = new System.Drawing.Size(86, 17);
-            this.v6Label6.TabIndex = 138;
-            this.v6Label6.Text = "Tiêm vắc xin";
+            this.lblTiemVacXin.AccessibleDescription = "ADDEDITL00744";
+            this.lblTiemVacXin.AutoSize = true;
+            this.lblTiemVacXin.Location = new System.Drawing.Point(12, 162);
+            this.lblTiemVacXin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTiemVacXin.Name = "lblTiemVacXin";
+            this.lblTiemVacXin.Size = new System.Drawing.Size(86, 17);
+            this.lblTiemVacXin.TabIndex = 138;
+            this.lblTiemVacXin.Text = "Tiêm vắc xin";
             // 
             // txtvaccinations
             // 
@@ -256,16 +256,16 @@
             this.txtvaccinations.Size = new System.Drawing.Size(185, 23);
             this.txtvaccinations.TabIndex = 5;
             // 
-            // v6Label7
+            // lblKhac
             // 
-            this.v6Label7.AccessibleDescription = "";
-            this.v6Label7.AutoSize = true;
-            this.v6Label7.Location = new System.Drawing.Point(12, 193);
-            this.v6Label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label7.Name = "v6Label7";
-            this.v6Label7.Size = new System.Drawing.Size(40, 17);
-            this.v6Label7.TabIndex = 140;
-            this.v6Label7.Text = "Khác";
+            this.lblKhac.AccessibleDescription = "V6REASKL00021";
+            this.lblKhac.AutoSize = true;
+            this.lblKhac.Location = new System.Drawing.Point(12, 193);
+            this.lblKhac.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblKhac.Name = "lblKhac";
+            this.lblKhac.Size = new System.Drawing.Size(40, 17);
+            this.lblKhac.TabIndex = 140;
+            this.lblKhac.Text = "Khác";
             // 
             // txtothers
             // 
@@ -285,38 +285,38 @@
             this.txtothers.Size = new System.Drawing.Size(185, 23);
             this.txtothers.TabIndex = 6;
             // 
-            // v6Label8
+            // lblChieuCao
             // 
-            this.v6Label8.AccessibleDescription = "";
-            this.v6Label8.AutoSize = true;
-            this.v6Label8.Location = new System.Drawing.Point(12, 224);
-            this.v6Label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label8.Name = "v6Label8";
-            this.v6Label8.Size = new System.Drawing.Size(71, 17);
-            this.v6Label8.TabIndex = 142;
-            this.v6Label8.Text = "Chiều cao";
+            this.lblChieuCao.AccessibleDescription = "ADDEDITL00745";
+            this.lblChieuCao.AutoSize = true;
+            this.lblChieuCao.Location = new System.Drawing.Point(12, 224);
+            this.lblChieuCao.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblChieuCao.Name = "lblChieuCao";
+            this.lblChieuCao.Size = new System.Drawing.Size(71, 17);
+            this.lblChieuCao.TabIndex = 142;
+            this.lblChieuCao.Text = "Chiều cao";
             // 
-            // v6Label9
+            // lblCanNang
             // 
-            this.v6Label9.AccessibleDescription = "";
-            this.v6Label9.AutoSize = true;
-            this.v6Label9.Location = new System.Drawing.Point(12, 255);
-            this.v6Label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label9.Name = "v6Label9";
-            this.v6Label9.Size = new System.Drawing.Size(69, 17);
-            this.v6Label9.TabIndex = 143;
-            this.v6Label9.Text = "Cân nặng";
+            this.lblCanNang.AccessibleDescription = "ADDEDITL00746";
+            this.lblCanNang.AutoSize = true;
+            this.lblCanNang.Location = new System.Drawing.Point(12, 255);
+            this.lblCanNang.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCanNang.Name = "lblCanNang";
+            this.lblCanNang.Size = new System.Drawing.Size(69, 17);
+            this.lblCanNang.TabIndex = 143;
+            this.lblCanNang.Text = "Cân nặng";
             // 
-            // v6Label10
+            // lblGhiChu
             // 
-            this.v6Label10.AccessibleDescription = "";
-            this.v6Label10.AutoSize = true;
-            this.v6Label10.Location = new System.Drawing.Point(12, 286);
-            this.v6Label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.v6Label10.Name = "v6Label10";
-            this.v6Label10.Size = new System.Drawing.Size(57, 17);
-            this.v6Label10.TabIndex = 146;
-            this.v6Label10.Text = "Ghi chú";
+            this.lblGhiChu.AccessibleDescription = "ADDEDITL00036";
+            this.lblGhiChu.AutoSize = true;
+            this.lblGhiChu.Location = new System.Drawing.Point(12, 286);
+            this.lblGhiChu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblGhiChu.Name = "lblGhiChu";
+            this.lblGhiChu.Size = new System.Drawing.Size(57, 17);
+            this.lblGhiChu.TabIndex = 146;
+            this.lblGhiChu.Text = "Ghi chú";
             // 
             // txtremarks
             // 
@@ -406,7 +406,7 @@
             0,
             0,
             0,
-            131072});
+            0});
             // 
             // txtweight
             // 
@@ -429,7 +429,7 @@
             0,
             0,
             0,
-            131072});
+            0});
             // 
             // ThongTinSucKhoe
             // 
@@ -438,23 +438,23 @@
             this.Controls.Add(this.txtweight);
             this.Controls.Add(this.txtheight);
             this.Controls.Add(this.txtremarks);
-            this.Controls.Add(this.v6Label10);
-            this.Controls.Add(this.v6Label9);
-            this.Controls.Add(this.v6Label8);
+            this.Controls.Add(this.lblGhiChu);
+            this.Controls.Add(this.lblCanNang);
+            this.Controls.Add(this.lblChieuCao);
             this.Controls.Add(this.txtothers);
-            this.Controls.Add(this.v6Label7);
+            this.Controls.Add(this.lblKhac);
             this.Controls.Add(this.txtvaccinations);
-            this.Controls.Add(this.v6Label6);
+            this.Controls.Add(this.lblTiemVacXin);
             this.Controls.Add(this.txthandicaps);
-            this.Controls.Add(this.v6Label5);
+            this.Controls.Add(this.lblTatNguyen);
             this.Controls.Add(this.txtdiseaseds);
-            this.Controls.Add(this.v6Label4);
+            this.Controls.Add(this.lblBenhTat);
             this.Controls.Add(this.txtallergies);
-            this.Controls.Add(this.v6Label2);
+            this.Controls.Add(this.lblDiUng);
             this.Controls.Add(this.txtblood);
-            this.Controls.Add(this.v6Label1);
+            this.Controls.Add(this.lblBlood);
             this.Controls.Add(this.txthealth_type);
-            this.Controls.Add(this.v6Label3);
+            this.Controls.Add(this.lblHealthType);
             this.Controls.Add(this.buttonSua);
             this.Controls.Add(this.buttonHuy);
             this.Controls.Add(this.buttonNhan);
@@ -474,22 +474,22 @@
         protected System.Windows.Forms.Button buttonNhan;
         private V6ColorTextBox txtSttRec;
         private V6LookupTextBox txthealth_type;
-        private V6Label v6Label3;
-        private V6Label v6Label1;
+        private V6Label lblHealthType;
+        private V6Label lblBlood;
         private V6LookupTextBox txtblood;
-        private V6Label v6Label2;
+        private V6Label lblDiUng;
         private V6ColorTextBox txtallergies;
-        private V6Label v6Label4;
+        private V6Label lblBenhTat;
         private V6ColorTextBox txtdiseaseds;
-        private V6Label v6Label5;
+        private V6Label lblTatNguyen;
         private V6ColorTextBox txthandicaps;
-        private V6Label v6Label6;
+        private V6Label lblTiemVacXin;
         private V6ColorTextBox txtvaccinations;
-        private V6Label v6Label7;
+        private V6Label lblKhac;
         private V6ColorTextBox txtothers;
-        private V6Label v6Label8;
-        private V6Label v6Label9;
-        private V6Label v6Label10;
+        private V6Label lblChieuCao;
+        private V6Label lblCanNang;
+        private V6Label lblGhiChu;
         private V6ColorTextBox txtremarks;
         private V6NumberTextBox txtheight;
         private V6NumberTextBox txtweight;
