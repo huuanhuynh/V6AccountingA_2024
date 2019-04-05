@@ -1437,7 +1437,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             }
 
             SetControlReadOnlyHide(this, Invoice, Mode);
-            
         }
 
         #region ==== DataGridView ====
@@ -1499,9 +1498,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                             : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT0"].Value) * txtTyGia.Value, M_ROUND);
                         
                         //TinhTienVon(_soLuong1);
-                        if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoiG_0(row, FIELD);
-                        if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoiG_2(row, FIELD);
-                        if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoiG_1(row, FIELD);
+                        if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0_Row(row, FIELD);
+                        if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2_Row(row, FIELD);
+                        if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1_Row(row, FIELD);
                         //_tienNt.Value = _tienNt0.Value;
                         //_tien.Value = _tien0.Value;
                         row.Cells["TIEN_NT"].Value = row.Cells["TIEN_NT0"].Value;
@@ -1567,108 +1566,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             //Ex:
             //--dataGridView1.ThemCongThuc("SO_LUONG1", "SO_LUONG=SO_LUONG1*HE_SO1");
             //--dataGridView1.ThemCongThuc("SO_LUONG1", "THANH_TIEN=SO_LUONG*DON_GIA");
-
-            //Real:
-            //SetControlValue(_sl_td1, _soLuong1.Value, Invoice.GetTemplateSettingAD("SL_TD1"));
-            dataGridView1.ThemCongThuc("SO_LUONG1", "SL_TD1=SO_LUONG1");
-
-            //_soLuong.Value = _soLuong1.Value * _heSo1.Value;
-            //TinhTienVon1(_soLuong1);
-            _soLuong.Value = _soLuong1.Value * _heSo1.Value;
-            _tienNt0.Value = V6BusinessHelper.Vround(_soLuong1.Value * _gia_nt01.Value, M_ROUND_NT);
-            _tien0.Value = V6BusinessHelper.Vround(_tienNt0.Value * txtTyGia.Value, M_ROUND);
-            if (_maNt == _mMaNt0)
-            {
-                _tien0.Value = _tienNt0.Value;
-            }
-            _tienNt.Value = _tienNt0.Value;
-            _tien.Value = _tien0.Value;
-            //TinhTienVon(_soLuong1);
-            _tienNt.Value = _tienNt0.Value;
-            _tien.Value = _tien0.Value;
-
+            
             #endregion ==== SO_LUONG1 ====
 
             //--dataGridView1.ThemCongThuc("DON_GIA", "THANH_TIEN=SO_LUONG*DON_GIA");
-        }
-
-        private void SetGridViewReadonly()
-        {
-            try
-            {
-                if (Mode != V6Mode.Edit || !chkTempSuaCT.Checked)
-                {
-                    dataGridView1.ReadOnly = true;
-                    return;
-                }
-
-                dataGridView1.ReadOnly = false;
-                //dataGridView1.SetEditColumn();
-                foreach (DataGridViewColumn column in dataGridView1.Columns)
-                {
-                    column.ReadOnly = true;
-                }
-                //dataGridView1.SetEditColumn();//Alctct right. copy dataeditor sua nhieu dong.
-                //invoice.GRD_READONLY
-                // FIELD:E/R invoice extra info ADFIELDS
-
-                string _showFields = null;
-                if (Invoice.EXTRA_INFOR != null && Invoice.EXTRA_INFOR.ContainsKey("ADFIELDS"))
-                {
-                    _showFields = Invoice.EXTRA_INFOR["ADFIELDS"];
-                }
-
-                if (_showFields != null)
-                {
-                    var showFieldSplit = ObjectAndString.SplitString(_showFields);
-                    foreach (string field in showFieldSplit)
-                    {
-                        if (field.Contains(":"))
-                        {
-                            var ss = field.Split(':');
-                            DataGridViewColumn column = null;
-
-                            if (ss.Length > 2)
-                            {
-                                string NM_IP = ss[2].ToUpper(); // N2 hoac NM_IP_SL
-                                if (NM_IP.StartsWith("N"))
-                                {
-                                    string newFormat = NM_IP.Length == 2
-                                        ? NM_IP
-                                        : V6Options.GetValueNull(NM_IP.Substring(1));
-                                    column = dataGridView1.ChangeColumnType(ss[0],
-                                        typeof(V6NumberDataGridViewColumn), newFormat);
-                                }
-                                else if (NM_IP.StartsWith("C")) // CVvar
-                                {
-                                    column = dataGridView1.ChangeColumnType(ss[0],
-                                        typeof(V6VvarDataGridViewColumn), null);
-                                    ((V6VvarDataGridViewColumn)column).Vvar = NM_IP.Substring(1);
-                                }
-                                else if (NM_IP.StartsWith("D0")) // ColorDateTime
-                                {
-                                    column = dataGridView1.ChangeColumnType(ss[0],
-                                        typeof(V6DateTimeColorGridViewColumn), null);
-                                }
-                                else if (NM_IP.StartsWith("D1")) // DateTimePicker
-                                {
-                                    column = dataGridView1.ChangeColumnType(ss[0],
-                                        typeof(V6DateTimePickerGridViewColumn), null);
-                                }
-                            }
-
-                            if (ss[1].ToUpper() == "R" && column != null)
-                            {
-                                column.ReadOnly = true;
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
         }
 
         private void ReorderDataGridViewColumns()
@@ -4131,7 +4032,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
 
         private void chkTempSuaCT_CheckedChanged(object sender, EventArgs e)
         {
-            SetGridViewReadonly();
+            if (chkTempSuaCT.Checked)
+            {
+                SetGridViewReadonly(dataGridView1, Invoice);
+            }
+            else
+            {
+                dataGridView1.ReadOnly = true;
+            }
         }
 
     }

@@ -13,6 +13,7 @@ using V6ControlManager.FormManager.ChungTuManager.Filter;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6Controls;
 using V6Controls.Controls;
+using V6Controls.Controls.GridView;
 using V6Controls.Forms;
 using V6Controls.Forms.Viewer;
 using V6Init;
@@ -590,6 +591,90 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
 
         /// <summary>
+        /// Bật tắt chỉnh sửa trực tiếp trên dataGridView1
+        /// </summary>
+        /// <param name="dataGridView1"></param>
+        /// <param name="Invoice"></param>
+        public void SetGridViewReadonly(V6ColorDataGridView dataGridView1, V6InvoiceBase Invoice)
+        {
+            try
+            {
+                if (Mode != V6Mode.Edit)
+                {
+                    dataGridView1.ReadOnly = true;
+                    return;
+                }
+
+                dataGridView1.ReadOnly = false;
+                //dataGridView1.SetEditColumn();
+                foreach (DataGridViewColumn column in dataGridView1.Columns)
+                {
+                    column.ReadOnly = true;
+                }
+                //dataGridView1.SetEditColumn();//Alctct right. copy dataeditor sua nhieu dong.
+                //invoice.GRD_READONLY
+                // FIELD:E/R invoice extra info ADFIELDS
+
+                string _showFields = null;
+                if (Invoice.EXTRA_INFOR != null && Invoice.EXTRA_INFOR.ContainsKey("ADFIELDS"))
+                {
+                    _showFields = Invoice.EXTRA_INFOR["ADFIELDS"];
+                }
+
+                if (_showFields != null)
+                {
+                    var showFieldSplit = ObjectAndString.SplitString(_showFields);
+                    foreach (string field in showFieldSplit)
+                    {
+                        if (field.Contains(":"))
+                        {
+                            var ss = field.Split(':');
+                            DataGridViewColumn column = null;
+
+                            if (ss.Length > 2)
+                            {
+                                string NM_IP = ss[2].ToUpper(); // N2 hoac NM_IP_SL
+                                if (NM_IP.StartsWith("N"))
+                                {
+                                    string newFormat = NM_IP.Length == 2
+                                        ? NM_IP
+                                        : V6Options.GetValueNull(NM_IP.Substring(1));
+                                    column = dataGridView1.ChangeColumnType(ss[0],
+                                        typeof(V6NumberDataGridViewColumn), newFormat);
+                                }
+                                else if (NM_IP.StartsWith("C")) // CVvar
+                                {
+                                    column = dataGridView1.ChangeColumnType(ss[0],
+                                        typeof(V6VvarDataGridViewColumn), null);
+                                    ((V6VvarDataGridViewColumn)column).Vvar = NM_IP.Substring(1);
+                                }
+                                else if (NM_IP.StartsWith("D0")) // ColorDateTime
+                                {
+                                    column = dataGridView1.ChangeColumnType(ss[0],
+                                        typeof(V6DateTimeColorGridViewColumn), null);
+                                }
+                                else if (NM_IP.StartsWith("D1")) // DateTimePicker
+                                {
+                                    column = dataGridView1.ChangeColumnType(ss[0],
+                                        typeof(V6DateTimePickerGridViewColumn), null);
+                                }
+                            }
+
+                            if (ss[1].ToUpper() == "R" && column != null)
+                            {
+                                column.ReadOnly = true;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        /// <summary>
         /// Gán dữ liệu mặc định theo chứng từ. (VPA_GetDefaultvalue)
         /// </summary>
         /// <param name="invoice"></param>
@@ -991,7 +1076,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// </summary>
         /// <param name="row">Dòng chi tiết đang xử lý.</param>
         /// <param name="actionControl">Control gây ra sự kiện.</param>
-        public void TinhSoluongQuyDoiG_0(DataGridViewRow row, string actionControl)
+        public void TinhSoluongQuyDoi_0_Row(DataGridViewRow row, string actionControl)
         {
             try
             {
@@ -1044,7 +1129,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
-        public void TinhSoluongQuyDoiG_2(DataGridViewRow row, string actionControl)
+        public void TinhSoluongQuyDoi_2_Row(DataGridViewRow row, string actionControl)
         {
             try
             {
@@ -1097,7 +1182,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
-        public void TinhSoluongQuyDoiG_1(DataGridViewRow row, string actionControl)
+        public void TinhSoluongQuyDoi_1_Row(DataGridViewRow row, string actionControl)
         {
             try
             {
@@ -1176,6 +1261,31 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.ShowErrorException(GetType() + ".TinhChietKhauChiTiet " + _sttRec, ex);
             }
         }
+        
+        public void TinhChietKhauChiTietRow(bool nhapTien, DataGridViewRow row,
+            Decimal txtTyGia_Value)
+        {
+            try
+            {
+                var _ck = row.Cells["CK"];
+                var _ck_nt = row.Cells["CK_NT"];
+                var _pt_cki = row.Cells["PT_CKI"];
+                var _tien_nt2 = row.Cells["TIEN_NT2"];
+                if (nhapTien)
+                {
+                    _ck.Value = _maNt == _mMaNt0 ? _ck_nt.Value : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(_ck_nt.Value) * txtTyGia_Value, M_ROUND);
+                }
+                else
+                {
+                    _ck_nt.Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(_tien_nt2.Value) * ObjectAndString.ObjectToDecimal(_pt_cki.Value) / 100, M_ROUND_NT);
+                    _ck.Value = _maNt == _mMaNt0 ? _ck_nt.Value : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(_ck_nt.Value) * txtTyGia_Value, M_ROUND);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".TinhChietKhauChiTietG " + _sttRec, ex);
+            }
+        }
 
 
         #region ==== Tính toán trong chi tiết ====
@@ -1230,6 +1340,22 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 {
                     txtTienThue.Value = txtTienThueNt.Value;
                 }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
+        }
+
+        public void Tinh_TienThueNtVaTienThue_TheoThueSuat_Row(decimal thueSuat, decimal tienNt, decimal tien, DataGridViewRow row)
+        {
+            try
+            {
+                var thue_nt = row.Cells["THUE_NT"];
+                var thue = row.Cells["THUE"];
+
+                thue_nt.Value = V6BusinessHelper.Vround(tienNt * thueSuat / 100, M_ROUND_NT);
+                thue.Value = _maNt == _mMaNt0 ? thue_nt.Value : V6BusinessHelper.Vround(tien * thueSuat / 100, M_ROUND_NT);
             }
             catch (Exception ex)
             {
@@ -2814,5 +2940,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
+        
     }
 }

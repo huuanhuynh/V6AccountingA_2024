@@ -241,6 +241,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.v6Label5 = new V6Controls.V6Label();
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label1 = new V6Controls.V6Label();
+            this.chkTempSuaCT = new V6Controls.V6CheckBox();
             this.menuChucNang.SuspendLayout();
             this.menuDetail1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -2146,6 +2147,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             // 
             this.group4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.group4.Controls.Add(this.chkTempSuaCT);
             this.group4.Controls.Add(this.lblKieuPostColor);
             this.group4.Controls.Add(this.txtTongSoLuong);
             this.group4.Controls.Add(this.cboChuyenData);
@@ -3539,6 +3541,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.v6Label1.TabIndex = 0;
             this.v6Label1.Text = "Số nội bộ";
             // 
+            // chkTempSuaCT
+            // 
+            this.chkTempSuaCT.AccessibleName = "TEMP_SUACT";
+            this.chkTempSuaCT.AutoSize = true;
+            this.chkTempSuaCT.Location = new System.Drawing.Point(7, 30);
+            this.chkTempSuaCT.Name = "chkTempSuaCT";
+            this.chkTempSuaCT.Size = new System.Drawing.Size(79, 17);
+            this.chkTempSuaCT.TabIndex = 26;
+            this.chkTempSuaCT.TabStop = false;
+            this.chkTempSuaCT.Text = "Sửa chi tiết";
+            this.chkTempSuaCT.UseVisualStyleBackColor = true;
+            this.chkTempSuaCT.CheckedChanged += new System.EventHandler(this.chkTempSuaCT_CheckedChanged);
+            // 
             // HoaDonControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3812,5 +3827,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private System.Windows.Forms.DataGridViewTextBoxColumn STT_REC_CT;
         private System.Windows.Forms.DataGridViewTextBoxColumn STT_REC0_CT;
         private System.Windows.Forms.ToolStripMenuItem ChonDonHangBanThemMenu;
+        private V6CheckBox chkTempSuaCT;
     }
 }
