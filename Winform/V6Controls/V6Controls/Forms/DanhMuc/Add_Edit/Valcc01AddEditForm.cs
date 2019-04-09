@@ -55,17 +55,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 //bool b = V6Categories.IsValidOneCode_Full(TableName.ToString(), 0, "MA_BP",
                 // txtma_gia.Text.Trim(), DataOld["MA_BP"].ToString());
-                //if (!b)
-                //    throw new Exception("Không được thêm mã đã tồn tại: "
-                //                                    + "MA_BP = " + txtma_gia.Text.Trim());
+                //if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblMa.Text + "=" + txtMa.Text;
             }
             else if (Mode == V6Mode.Add)
             {
                 //bool b = V6Categories.IsValidOneCode_Full(TableName.ToString(), 1, "MA_BP",
                 // txtma_gia.Text.Trim(), txtma_gia.Text.Trim());
-                //if (!b)
-                //    throw new Exception("Không được thêm mã đã tồn tại: "
-                //                                    + "MA_BP = " + txtma_gia.Text.Trim());
+                //if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblMa.Text + "=" + txtMa.Text;
             }
 
             if (errors.Length > 0) throw new Exception(errors);

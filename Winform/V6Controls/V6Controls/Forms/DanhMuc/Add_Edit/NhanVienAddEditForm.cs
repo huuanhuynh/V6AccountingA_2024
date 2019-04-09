@@ -43,17 +43,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_NVIEN",
                  TxtMa_nvien.Text.Trim(), DataOld["MA_NVIEN"].ToString());
-                if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
-                                                    + "MA_NVIEN = " + TxtMa_nvien.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblMaNvien.Text + "=" + TxtMa_nvien.Text;
             }
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_NVIEN",
                  TxtMa_nvien.Text.Trim(), TxtMa_nvien.Text.Trim());
-                if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
-                                                    + "MA_NVIEN = " + TxtMa_nvien.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblMaNvien.Text + "=" + TxtMa_nvien.Text;
             }
 
             if (errors.Length > 0) throw new Exception(errors);

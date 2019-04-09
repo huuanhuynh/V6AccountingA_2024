@@ -31,32 +31,23 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 
             if (Mode == V6Mode.Edit)
             {
-
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_CONG",
                  txtMaCong.Text.Trim(), DataOld["MA_CONG"].ToString());
-                if (!b)
-                    throw new Exception("Không được sửa mã đã tồn tại: "
-                                                    + "MA_CONG = " + txtMaCong.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblMaCong.Text + "=" + txtMaCong.Text;
 
                 bool a = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_CONG_IN",
                txtMaCongIn.Text.Trim(), DataOld["MA_CONG_IN"].ToString());
-                if (!a)
-                    throw new Exception("Không được sửa mã đã tồn tại: "
-                                                    + "MA_CONG_IN = " + txtMaCongIn.Text.Trim());
+                if (!a) errors += V6Text.DataExist + V6Text.EditDenied + lblMaCongIn.Text + "=" + txtMaCongIn.Text;
             }
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_CONG",
                     txtMaCong.Text.Trim(), txtMaCong.Text.Trim());
-                if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
-                                        + "MA_CONG = " + txtMaCong.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblMaCong.Text + "=" + txtMaCong.Text;
 
                 bool a = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_CONG_IN",
                   txtMaCongIn.Text.Trim(), txtMaCong.Text.Trim());
-                if (!a)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
-                                        + "MA_CONG_IN = " + txtMaCongIn.Text.Trim());
+                if (!a) errors += V6Text.DataExist + V6Text.AddDenied + lblMaCongIn.Text + "=" + txtMaCongIn.Text;
             }
             if (errors.Length > 0) throw new Exception(errors);
         }

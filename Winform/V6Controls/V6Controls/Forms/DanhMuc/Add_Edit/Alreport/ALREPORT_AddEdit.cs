@@ -53,15 +53,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_BC",
                  txtMa_bc.Text.Trim(), DataOld["MA_BC"].ToString());
-                if (!b)
-                    throw new Exception(V6Text.EditDenied + " MA_BC = " + txtMa_bc.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblMa_bc.Text + "=" + txtMa_bc.Text;
             }
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_BC",
                  txtMa_bc.Text.Trim(), txtMa_bc.Text.Trim());
-                if (!b)
-                    throw new Exception(V6Text.AddDenied + " MA_BC = " + txtMa_bc.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblMa_bc.Text + "=" + txtMa_bc.Text;
             }
             
             if (errors.Length > 0) throw new Exception(errors);

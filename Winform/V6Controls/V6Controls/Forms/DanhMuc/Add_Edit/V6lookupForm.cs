@@ -56,26 +56,22 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public override void ValidateData()
         {
             var errors = "";
-            if (TxtFcolumn.Text.Trim() == "")
-                errors +=V6Text.CheckInfor+ "\r\n";
-            if (TxtVMA_FILE.Text.Trim() == "")
-                errors += V6Text.CheckInfor + "!\r\n";
+            if (txtVvar.Text.Trim() == "")
+                errors += V6Text.Text("CHUANHAP") + " " + lblVvar.Text;
+            if (txtVma_file.Text.Trim() == "")
+                errors += V6Text.Text("CHUANHAP") + " " + lblVma_file.Text;
            
             if (Mode == V6Mode.Edit)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "VVAR",
-                 TxtFcolumn.Text.Trim(), DataOld["VVAR"].ToString());
-                if (!b)
-                    throw new Exception(V6Text.EditDenied
-                                                    + "VVAR = " + TxtFcolumn.Text.Trim());
+                 txtVvar.Text.Trim(), DataOld["VVAR"].ToString());
+                if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblVvar.Text + "=" + txtVvar.Text;
             }
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "VVAR",
-                 TxtFcolumn.Text.Trim(), TxtFcolumn.Text.Trim());
-                if (!b)
-                    throw new Exception(V6Text.AddDenied
-                                                    + "VVAR = " + TxtFcolumn.Text.Trim());
+                 txtVvar.Text.Trim(), txtVvar.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblVvar.Text + "=" + txtVvar.Text;
             }
 
             if (errors.Length > 0) throw new Exception(errors);

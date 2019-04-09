@@ -50,36 +50,19 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             var errors = "";
             if (TxtMa_vitri.Text.Trim() == "")
-                errors += V6Text.CheckInfor+"!\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblMaVitri.Text;
             if (TxtTen_vitri.Text.Trim() == "")
-                errors += V6Text.CheckInfor + "!\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblTenVitri.Text;
 
             if (Mode == V6Mode.Edit)
             {
-                var keys = new List<string>() { "MA_VITRI" };
-                foreach (string key in keys)
-                {
-                    if (DataDic.ContainsKey(key) && DataOld.ContainsKey(key))
-                    {
-                        bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, key,
-                            DataDic[key].ToString(), DataOld[key].ToString());
-                        if (!b)
-                            throw new Exception(V6Text.EditDenied + key + "=" + DataDic[key]);
-                    }
-                }
+                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_VITRI", DataDic["MA_VITRI"].ToString(), DataOld["MA_VITRI"].ToString());
+                if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblMaVitri.Text + "=" + TxtMa_vitri.Text;
             }
             else if (Mode == V6Mode.Add)
             {
-
-                var keys = new SortedDictionary<string, object>();
-                keys.Add("MA_VITRI", TxtMa_vitri.Text.Trim());
-
-                foreach (KeyValuePair<string, object> key in keys)
-                {
-                    bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, key.Key,
-                        DataDic[key.Key].ToString(), "");
-                    if (!b) throw new Exception(V6Text.AddDenied+ key.Key + "=" + DataDic[key.Key]);
-                }
+                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_VITRI", TxtMa_vitri.Text, "");
+                if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblMaVitri.Text + "=" + TxtMa_vitri.Text;
             }
 
             if (errors.Length > 0) throw new Exception(errors);

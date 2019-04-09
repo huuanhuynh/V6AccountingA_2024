@@ -50,6 +50,7 @@
             this.lblMessage.AccessibleDescription = ".";
             this.lblMessage.AutoSize = true;
             this.lblMessage.Location = new System.Drawing.Point(79, 30);
+            this.lblMessage.MaximumSize = new System.Drawing.Size(800, 600);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(62, 13);
             this.lblMessage.TabIndex = 0;

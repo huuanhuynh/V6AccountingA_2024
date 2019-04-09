@@ -54,8 +54,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     "MA_VT",TxtMa_vt.Text, DataOld["MA_VT"].ToString(),
                     "DVT", TxtDvt.Text, DataOld["DVT"].ToString());
 
-                if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: ");
+                if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblMaVT.Text + "," + lblDVT.Text;
             }
             else if (Mode == V6Mode.Add)
             {
@@ -63,8 +62,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     "MA_VT", TxtMa_vt.Text, TxtMa_vt.Text,
                     "DVT", TxtDvt.Text, TxtDvt.Text);
 
-                if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: ");
+                if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblMaVT.Text + "," + lblDVT.Text;
             }
 
             if (errors.Length > 0) throw new Exception(errors);

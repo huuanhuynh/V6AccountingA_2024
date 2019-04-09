@@ -70,18 +70,18 @@
             this.TxtCodeUser = new V6Controls.V6ColorTextBox();
             this.txtRightAdd = new System.Windows.Forms.RichTextBox();
             this.TxtPassword = new V6Controls.V6ColorTextBox();
-            this.TxtComment = new V6Controls.V6ColorTextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.TxtPassword2 = new V6Controls.V6ColorTextBox();
-            this.TxtPassword1 = new V6Controls.V6ColorTextBox();
+            this.txtComment = new V6Controls.V6ColorTextBox();
+            this.lblComment = new System.Windows.Forms.Label();
+            this.txtPassword2 = new V6Controls.V6ColorTextBox();
+            this.txtPassword1 = new V6Controls.V6ColorTextBox();
             this.txtModuleID = new V6Controls.V6ColorTextBox();
-            this.TxtUser_name = new V6Controls.V6ColorTextBox();
+            this.txtUser_name = new V6Controls.V6ColorTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.TxtUser_id = new V6Controls.V6NumberTextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblPassword2 = new System.Windows.Forms.Label();
+            this.lblPassword1 = new System.Windows.Forms.Label();
+            this.lblUserName = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -393,18 +393,18 @@
             this.groupBox1.Controls.Add(this.TxtCodeUser);
             this.groupBox1.Controls.Add(this.txtRightAdd);
             this.groupBox1.Controls.Add(this.TxtPassword);
-            this.groupBox1.Controls.Add(this.TxtComment);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.TxtPassword2);
-            this.groupBox1.Controls.Add(this.TxtPassword1);
+            this.groupBox1.Controls.Add(this.txtComment);
+            this.groupBox1.Controls.Add(this.lblComment);
+            this.groupBox1.Controls.Add(this.txtPassword2);
+            this.groupBox1.Controls.Add(this.txtPassword1);
             this.groupBox1.Controls.Add(this.txtModuleID);
-            this.groupBox1.Controls.Add(this.TxtUser_name);
+            this.groupBox1.Controls.Add(this.txtUser_name);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.TxtUser_id);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblPassword2);
+            this.groupBox1.Controls.Add(this.lblPassword1);
+            this.groupBox1.Controls.Add(this.lblUserName);
             this.groupBox1.Location = new System.Drawing.Point(4, 0);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
@@ -677,75 +677,75 @@
             this.TxtPassword.TabIndex = 21;
             this.TxtPassword.Visible = false;
             // 
-            // TxtComment
+            // txtComment
             // 
-            this.TxtComment.AccessibleName = "Comment";
-            this.TxtComment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtComment.AccessibleName = "Comment";
+            this.txtComment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtComment.BackColor = System.Drawing.SystemColors.Window;
-            this.TxtComment.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtComment.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtComment.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtComment.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtComment.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtComment.LeaveColor = System.Drawing.Color.White;
-            this.TxtComment.Location = new System.Drawing.Point(153, 43);
-            this.TxtComment.Margin = new System.Windows.Forms.Padding(4);
-            this.TxtComment.Name = "TxtComment";
-            this.TxtComment.Size = new System.Drawing.Size(321, 23);
-            this.TxtComment.TabIndex = 2;
+            this.txtComment.BackColor = System.Drawing.SystemColors.Window;
+            this.txtComment.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtComment.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtComment.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtComment.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtComment.HoverColor = System.Drawing.Color.Yellow;
+            this.txtComment.LeaveColor = System.Drawing.Color.White;
+            this.txtComment.Location = new System.Drawing.Point(153, 43);
+            this.txtComment.Margin = new System.Windows.Forms.Padding(4);
+            this.txtComment.Name = "txtComment";
+            this.txtComment.Size = new System.Drawing.Size(321, 23);
+            this.txtComment.TabIndex = 2;
             // 
-            // label5
+            // lblComment
             // 
-            this.label5.AccessibleDescription = "ADDEDITL00438";
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(20, 46);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(80, 17);
-            this.label5.TabIndex = 20;
-            this.label5.Text = "Tên đầy đủ";
+            this.lblComment.AccessibleDescription = "ADDEDITL00438";
+            this.lblComment.AutoSize = true;
+            this.lblComment.Location = new System.Drawing.Point(5, 46);
+            this.lblComment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblComment.Name = "lblComment";
+            this.lblComment.Size = new System.Drawing.Size(80, 17);
+            this.lblComment.TabIndex = 20;
+            this.lblComment.Text = "Tên đầy đủ";
             // 
-            // TxtPassword2
+            // txtPassword2
             // 
-            this.TxtPassword2.AccessibleName = "";
-            this.TxtPassword2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtPassword2.AccessibleName = "";
+            this.txtPassword2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtPassword2.BackColor = System.Drawing.SystemColors.Window;
-            this.TxtPassword2.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtPassword2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtPassword2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtPassword2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtPassword2.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtPassword2.LeaveColor = System.Drawing.Color.White;
-            this.TxtPassword2.Location = new System.Drawing.Point(153, 95);
-            this.TxtPassword2.Margin = new System.Windows.Forms.Padding(4);
-            this.TxtPassword2.Name = "TxtPassword2";
-            this.TxtPassword2.PasswordChar = '*';
-            this.TxtPassword2.Size = new System.Drawing.Size(321, 23);
-            this.TxtPassword2.TabIndex = 4;
+            this.txtPassword2.BackColor = System.Drawing.SystemColors.Window;
+            this.txtPassword2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtPassword2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtPassword2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtPassword2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtPassword2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtPassword2.LeaveColor = System.Drawing.Color.White;
+            this.txtPassword2.Location = new System.Drawing.Point(153, 95);
+            this.txtPassword2.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPassword2.Name = "txtPassword2";
+            this.txtPassword2.PasswordChar = '*';
+            this.txtPassword2.Size = new System.Drawing.Size(321, 23);
+            this.txtPassword2.TabIndex = 4;
             // 
-            // TxtPassword1
+            // txtPassword1
             // 
-            this.TxtPassword1.AccessibleName = "";
-            this.TxtPassword1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtPassword1.AccessibleName = "";
+            this.txtPassword1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtPassword1.BackColor = System.Drawing.SystemColors.Window;
-            this.TxtPassword1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtPassword1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtPassword1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtPassword1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtPassword1.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtPassword1.LeaveColor = System.Drawing.Color.White;
-            this.TxtPassword1.Location = new System.Drawing.Point(153, 69);
-            this.TxtPassword1.Margin = new System.Windows.Forms.Padding(4);
-            this.TxtPassword1.Name = "TxtPassword1";
-            this.TxtPassword1.PasswordChar = '*';
-            this.TxtPassword1.Size = new System.Drawing.Size(321, 23);
-            this.TxtPassword1.TabIndex = 3;
+            this.txtPassword1.BackColor = System.Drawing.SystemColors.Window;
+            this.txtPassword1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtPassword1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtPassword1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtPassword1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtPassword1.HoverColor = System.Drawing.Color.Yellow;
+            this.txtPassword1.LeaveColor = System.Drawing.Color.White;
+            this.txtPassword1.Location = new System.Drawing.Point(153, 69);
+            this.txtPassword1.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPassword1.Name = "txtPassword1";
+            this.txtPassword1.PasswordChar = '*';
+            this.txtPassword1.Size = new System.Drawing.Size(321, 23);
+            this.txtPassword1.TabIndex = 3;
             // 
             // txtModuleID
             // 
@@ -767,25 +767,25 @@
             this.txtModuleID.Size = new System.Drawing.Size(110, 23);
             this.txtModuleID.TabIndex = 1;
             // 
-            // TxtUser_name
+            // txtUser_name
             // 
-            this.TxtUser_name.AccessibleName = "user_name";
-            this.TxtUser_name.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtUser_name.AccessibleName = "user_name";
+            this.txtUser_name.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtUser_name.BackColor = System.Drawing.SystemColors.Window;
-            this.TxtUser_name.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtUser_name.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.TxtUser_name.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtUser_name.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtUser_name.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtUser_name.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtUser_name.LeaveColor = System.Drawing.Color.White;
-            this.TxtUser_name.Location = new System.Drawing.Point(153, 17);
-            this.TxtUser_name.Margin = new System.Windows.Forms.Padding(4);
-            this.TxtUser_name.Name = "TxtUser_name";
-            this.TxtUser_name.Size = new System.Drawing.Size(321, 23);
-            this.TxtUser_name.TabIndex = 1;
+            this.txtUser_name.BackColor = System.Drawing.SystemColors.Window;
+            this.txtUser_name.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtUser_name.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtUser_name.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtUser_name.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtUser_name.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtUser_name.HoverColor = System.Drawing.Color.Yellow;
+            this.txtUser_name.LeaveColor = System.Drawing.Color.White;
+            this.txtUser_name.Location = new System.Drawing.Point(153, 17);
+            this.txtUser_name.Margin = new System.Windows.Forms.Padding(4);
+            this.txtUser_name.Name = "txtUser_name";
+            this.txtUser_name.Size = new System.Drawing.Size(321, 23);
+            this.txtUser_name.TabIndex = 1;
             // 
             // label8
             // 
@@ -836,38 +836,38 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "User ID";
             // 
-            // label3
+            // lblPassword2
             // 
-            this.label3.AccessibleDescription = "ADDEDITL00440";
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 98);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(122, 17);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Kiểm tra mật khẩu";
+            this.lblPassword2.AccessibleDescription = "ADDEDITL00440";
+            this.lblPassword2.AutoSize = true;
+            this.lblPassword2.Location = new System.Drawing.Point(5, 98);
+            this.lblPassword2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPassword2.Name = "lblPassword2";
+            this.lblPassword2.Size = new System.Drawing.Size(122, 17);
+            this.lblPassword2.TabIndex = 4;
+            this.lblPassword2.Text = "Kiểm tra mật khẩu";
             // 
-            // label2
+            // lblPassword1
             // 
-            this.label2.AccessibleDescription = "ADDEDITL00439";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 72);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Mật khẩu";
+            this.lblPassword1.AccessibleDescription = "ADDEDITL00439";
+            this.lblPassword1.AutoSize = true;
+            this.lblPassword1.Location = new System.Drawing.Point(5, 72);
+            this.lblPassword1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPassword1.Name = "lblPassword1";
+            this.lblPassword1.Size = new System.Drawing.Size(66, 17);
+            this.lblPassword1.TabIndex = 2;
+            this.lblPassword1.Text = "Mật khẩu";
             // 
-            // label1
+            // lblUserName
             // 
-            this.label1.AccessibleDescription = "ADDEDITL00437";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 20);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(127, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Tên người sử dụng";
+            this.lblUserName.AccessibleDescription = "ADDEDITL00437";
+            this.lblUserName.AutoSize = true;
+            this.lblUserName.Location = new System.Drawing.Point(5, 20);
+            this.lblUserName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(127, 17);
+            this.lblUserName.TabIndex = 0;
+            this.lblUserName.Text = "Tên người sử dụng";
             // 
             // NguoiSuDungAddEditForm
             // 
@@ -894,20 +894,20 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblPassword2;
+        private System.Windows.Forms.Label lblPassword1;
+        private System.Windows.Forms.Label lblUserName;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage1;
         private V6Controls.V6TabControl v6TabControl1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label4;
         private V6NumberTextBox TxtUser_id;
-        private V6ColorTextBox TxtComment;
-        private System.Windows.Forms.Label label5;
-        private V6ColorTextBox TxtPassword2;
-        private V6ColorTextBox TxtPassword1;
-        private V6ColorTextBox TxtUser_name;
+        private V6ColorTextBox txtComment;
+        private System.Windows.Forms.Label lblComment;
+        private V6ColorTextBox txtPassword2;
+        private V6ColorTextBox txtPassword1;
+        private V6ColorTextBox txtUser_name;
         private V6ColorTextBox TxtPassword;
         private V6Controls.V6CheckBox chkIs_admin;
         private V6ColorTextBox TxtCodeUser;

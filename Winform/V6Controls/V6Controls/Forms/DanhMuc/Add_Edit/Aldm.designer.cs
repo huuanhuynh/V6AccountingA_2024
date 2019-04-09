@@ -132,11 +132,11 @@
             this.v6VvarTextBox1 = new V6Controls.V6VvarTextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.TXTMA_DM = new V6Controls.V6VvarTextBox();
-            this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
+            this.txtTable_name = new V6Controls.V6ColorTextBox();
             this.TXTTEN_DM = new V6Controls.V6ColorTextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTable_name = new System.Windows.Forms.Label();
+            this.lblTenDM = new System.Windows.Forms.Label();
+            this.lblMaDM = new System.Windows.Forms.Label();
             this.TxtForder = new V6Controls.V6NumberTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
@@ -1653,11 +1653,11 @@
             this.groupBox1.Controls.Add(this.v6VvarTextBox1);
             this.groupBox1.Controls.Add(this.label24);
             this.groupBox1.Controls.Add(this.TXTMA_DM);
-            this.groupBox1.Controls.Add(this.v6ColorTextBox3);
+            this.groupBox1.Controls.Add(this.txtTable_name);
             this.groupBox1.Controls.Add(this.TXTTEN_DM);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblTable_name);
+            this.groupBox1.Controls.Add(this.lblTenDM);
+            this.groupBox1.Controls.Add(this.lblMaDM);
             this.groupBox1.Controls.Add(this.TxtForder);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
@@ -1756,23 +1756,23 @@
             this.TXTMA_DM.Size = new System.Drawing.Size(150, 23);
             this.TXTMA_DM.TabIndex = 1;
             // 
-            // v6ColorTextBox3
+            // txtTable_name
             // 
-            this.v6ColorTextBox3.AccessibleName = "table_name";
-            this.v6ColorTextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtTable_name.AccessibleName = "table_name";
+            this.txtTable_name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox3.BackColor = System.Drawing.Color.White;
-            this.v6ColorTextBox3.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox3.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox3.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox3.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox3.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox3.Location = new System.Drawing.Point(119, 69);
-            this.v6ColorTextBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.v6ColorTextBox3.Name = "v6ColorTextBox3";
-            this.v6ColorTextBox3.Size = new System.Drawing.Size(150, 23);
-            this.v6ColorTextBox3.TabIndex = 5;
+            this.txtTable_name.BackColor = System.Drawing.Color.White;
+            this.txtTable_name.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTable_name.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTable_name.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTable_name.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTable_name.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTable_name.LeaveColor = System.Drawing.Color.White;
+            this.txtTable_name.Location = new System.Drawing.Point(119, 69);
+            this.txtTable_name.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTable_name.Name = "txtTable_name";
+            this.txtTable_name.Size = new System.Drawing.Size(150, 23);
+            this.txtTable_name.TabIndex = 5;
             // 
             // TXTTEN_DM
             // 
@@ -1792,38 +1792,38 @@
             this.TXTTEN_DM.Size = new System.Drawing.Size(672, 23);
             this.TXTTEN_DM.TabIndex = 3;
             // 
-            // label3
+            // lblTable_name
             // 
-            this.label3.AccessibleDescription = ".";
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 72);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(87, 17);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Table_name";
+            this.lblTable_name.AccessibleDescription = ".";
+            this.lblTable_name.AutoSize = true;
+            this.lblTable_name.Location = new System.Drawing.Point(8, 72);
+            this.lblTable_name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTable_name.Name = "lblTable_name";
+            this.lblTable_name.Size = new System.Drawing.Size(87, 17);
+            this.lblTable_name.TabIndex = 4;
+            this.lblTable_name.Text = "Table_name";
             // 
-            // label2
+            // lblTenDM
             // 
-            this.label2.AccessibleDescription = "ADDEDITL00447";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 46);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Tên danh mục";
+            this.lblTenDM.AccessibleDescription = "ADDEDITL00447";
+            this.lblTenDM.AutoSize = true;
+            this.lblTenDM.Location = new System.Drawing.Point(8, 46);
+            this.lblTenDM.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTenDM.Name = "lblTenDM";
+            this.lblTenDM.Size = new System.Drawing.Size(99, 17);
+            this.lblTenDM.TabIndex = 2;
+            this.lblTenDM.Text = "Tên danh mục";
             // 
-            // label1
+            // lblMaDM
             // 
-            this.label1.AccessibleDescription = "ADDEDITL00446";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 20);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã danh mục";
+            this.lblMaDM.AccessibleDescription = "ADDEDITL00446";
+            this.lblMaDM.AutoSize = true;
+            this.lblMaDM.Location = new System.Drawing.Point(8, 20);
+            this.lblMaDM.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMaDM.Name = "lblMaDM";
+            this.lblMaDM.Size = new System.Drawing.Size(93, 17);
+            this.lblMaDM.TabIndex = 0;
+            this.lblMaDM.Text = "Mã danh mục";
             // 
             // TxtForder
             // 
@@ -1890,10 +1890,10 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private V6Controls.V6ColorTextBox v6ColorTextBox3;
+        private System.Windows.Forms.Label lblTable_name;
+        private System.Windows.Forms.Label lblTenDM;
+        private System.Windows.Forms.Label lblMaDM;
+        private V6Controls.V6ColorTextBox txtTable_name;
         private V6Controls.V6ColorTextBox TXTTEN_DM;
         private V6VvarTextBox TXTMA_DM;
         private System.Windows.Forms.TabPage tabPage3;

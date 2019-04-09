@@ -83,7 +83,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void TxtKho_dl_V6LostFocus(object sender)
         {
-
             if (TxtKho_dl.Value == 1)
             {
                 TxtTk_dl.Enabled = true;
@@ -95,9 +94,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 TxtTk_dl.Enabled = false;
                 TxtTk_dl.Text = "";
             }
-
-
         }
+
         public override void ValidateData()
         {
             var errors = "";
@@ -110,16 +108,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_KHO",
                  txtMaKho.Text.Trim(), DataOld["MA_KHO"].ToString());
-                if (!b)
-                    throw new Exception("Không được sửa mã đã tồn tại: " + "MA_KHO = " + txtMaKho.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblMaKho.Text + "=" + txtMaKho.Text;
             }
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_KHO",
                  txtMaKho.Text.Trim(), txtMaKho.Text.Trim());
-                if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
-                                                    + "MA_KHO = " + txtMaKho.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblMaKho.Text + "=" + txtMaKho.Text;
             }
 
             if (errors.Length > 0) throw new Exception(errors);

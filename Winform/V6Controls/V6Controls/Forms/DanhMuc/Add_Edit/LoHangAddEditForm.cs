@@ -60,8 +60,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     "MA_VT", txtMaVT.Text.Trim(), DataOld["MA_VT"].ToString(),
                     "MA_LO", txtMaLo.Text.Trim(), DataOld["MA_LO"].ToString());
 
-                if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: ");
+                if (!b) errors += V6Text.DataExist + V6Text.EditDenied;
 
             }
             else if (Mode == V6Mode.Add)
@@ -70,8 +69,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     "MA_VT", txtMaVT.Text, txtMaVT.Text,
                     "MA_LO", txtMaLo.Text, txtMaLo.Text);
 
-                if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: ");
+                if (!b) errors += V6Text.DataExist + V6Text.AddDenied;
             }
 
             if (errors.Length > 0) throw new Exception(errors);

@@ -38,7 +38,7 @@
             this.v6Label6 = new V6Controls.V6Label();
             this.checkBox1 = new V6Controls.V6CheckBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblSTT = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +56,7 @@
             this.groupBox1.Controls.Add(this.v6Label6);
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.label15);
-            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.lblSTT);
             this.groupBox1.Location = new System.Drawing.Point(9, 7);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.groupBox1.Name = "groupBox1";
@@ -218,16 +218,16 @@
             this.label15.TabIndex = 89;
             this.label15.Text = "Trạng thái";
             // 
-            // label5
+            // lblSTT
             // 
-            this.label5.AccessibleDescription = "ADDEDITL00246";
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(20, 29);
-            this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 17);
-            this.label5.TabIndex = 87;
-            this.label5.Text = "Số thứ tự";
+            this.lblSTT.AccessibleDescription = "ADDEDITL00246";
+            this.lblSTT.AutoSize = true;
+            this.lblSTT.Location = new System.Drawing.Point(20, 29);
+            this.lblSTT.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblSTT.Name = "lblSTT";
+            this.lblSTT.Size = new System.Drawing.Size(65, 17);
+            this.lblSTT.TabIndex = 87;
+            this.lblSTT.Text = "Số thứ tự";
             // 
             // DanhMucThueTNCN
             // 
@@ -251,7 +251,7 @@
         private V6CheckBox checkBox1;
         private System.Windows.Forms.Label label15;
         private V6Label v6Label1;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblSTT;
         private System.Windows.Forms.Label label1;
         private V6NumberTextBox TXTTIEN;
         private V6NumberTextBox txtTyLe;

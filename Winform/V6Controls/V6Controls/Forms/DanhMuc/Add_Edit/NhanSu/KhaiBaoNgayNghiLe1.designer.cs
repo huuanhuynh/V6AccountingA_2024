@@ -40,7 +40,7 @@
             this.v6Label8 = new V6Controls.V6Label();
             this.checkBox1 = new V6Controls.V6CheckBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblNgay = new System.Windows.Forms.Label();
             this.lblMaCong = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -61,7 +61,7 @@
             this.groupBox1.Controls.Add(this.v6Label8);
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.label15);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblNgay);
             this.groupBox1.Controls.Add(this.lblMaCong);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
@@ -232,16 +232,16 @@
             this.label15.TabIndex = 89;
             this.label15.Text = "Trạng thái";
             // 
-            // label1
+            // lblNgay
             // 
-            this.label1.AccessibleDescription = "ADDEDITL00217";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 23);
-            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 17);
-            this.label1.TabIndex = 88;
-            this.label1.Text = "Ngày";
+            this.lblNgay.AccessibleDescription = "ADDEDITL00217";
+            this.lblNgay.AutoSize = true;
+            this.lblNgay.Location = new System.Drawing.Point(16, 23);
+            this.lblNgay.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblNgay.Name = "lblNgay";
+            this.lblNgay.Size = new System.Drawing.Size(41, 17);
+            this.lblNgay.TabIndex = 88;
+            this.lblNgay.Text = "Ngày";
             // 
             // lblMaCong
             // 
@@ -281,7 +281,7 @@
         private V6Label v6Label8;
         private V6CheckBox checkBox1;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblNgay;
         private System.Windows.Forms.Label lblMaCong;
         private V6LabelTextBox txtten_kh;
         private V6DateTimePicker txtNgay;

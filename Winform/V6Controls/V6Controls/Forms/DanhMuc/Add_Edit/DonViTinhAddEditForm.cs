@@ -28,32 +28,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             if (Mode == V6Mode.Edit)
             {
-                var keys = new List<string>() { "DVT" };
-                foreach (string key in keys)
-                {
-                    if (DataDic.ContainsKey(key) && DataOld.ContainsKey(key))
-                    {
-                        bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, key,
-                            DataDic[key].ToString(), DataOld[key].ToString());
-                        if (!b)
-                            throw new Exception("Không được thêm mã đã tồn tại: "
-                                                            + key + "=" + DataDic[key]);
-                    }
-                }
+                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "DVT", txtDVT.Text,
+                    DataOld["DVT"].ToString());
+                if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblDVT.Text + "=" + txtDVT.Text;
             }
             else if (Mode == V6Mode.Add)
             {
-
-                var keys = new SortedDictionary<string, object>();
-                keys.Add("DVT", txtDVT.Text.Trim());
-
-                foreach (KeyValuePair<string, object> key in keys)
-                {
-                    bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, key.Key,
-                        DataDic[key.Key].ToString(), "");
-                    if (!b) throw new Exception("Không được thêm mã đã tồn tại: "
-                        + key.Key + "=" + DataDic[key.Key]);
-                }
+                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "DVT", txtDVT.Text, "");
+                if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblDVT.Text + "=" + txtDVT.Text;
             }
 
             if (errors.Length > 0) throw new Exception(errors);

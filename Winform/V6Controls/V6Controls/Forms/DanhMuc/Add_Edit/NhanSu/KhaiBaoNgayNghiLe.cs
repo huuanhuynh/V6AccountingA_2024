@@ -33,22 +33,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             var errors = "";
             if (txtMaCong.Text.Trim() == "")
                 errors += V6Text.Text("CHUANHAP") + " " + lblMaCong.Text;
+            if (txtNgay.Text.Trim() == "")
+                errors += V6Text.Text("CHUANHAP") + " " + lblNgay.Text;
 
             if (Mode == V6Mode.Edit)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_OneDate(TableName.ToString(), 0, "MA_CONG","NGAY",
                  txtMaCong.Text.Trim(), txtNgay.YYYYMMDD, DataOld["MA_CONG"].ToString(), DataOld["NGAY"].ToString());
-                if (!b)
-                    throw new Exception("Không được sửa mã đã tồn tại: "
-                                                    + "MA_CONG = " + txtMaCong.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblMaCong.Text + "," + lblNgay.Text;
             }
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_OneDate(TableName.ToString(), 0, "MA_CONG", "NGAY",
                   txtMaCong.Text.Trim(), txtNgay.YYYYMMDD, DataOld["MA_CONG"].ToString(), DataOld["NGAY"].ToString());
-                if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
-                                                    + "MA_CONG = " + txtMaCong.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblMaCong.Text + "," + lblNgay.Text;
             }
 
             if (errors.Length > 0) throw new Exception(errors);

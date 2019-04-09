@@ -31,12 +31,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             var txtID_Text = V6BusinessHelper.ExecuteProcedureScalar("VPA_sGet_Key_Like_stt_rec_tt", plist);
             txtID.Text = "" + txtID_Text;
         }
-
-        private void txtclass_TextChanged(object sender, System.EventArgs e)
-        {
-           
-        }
-
+        
         public override void ValidateData()
         {
             var errors = "";
@@ -47,17 +42,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "NAME",
                  txtName.Text.Trim(), DataOld["NAME"].ToString());
-                if (!b)
-                    throw new Exception("Không được sửa tên đã tồn tại: "
-                                                    + "NAME = " + txtName.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblName.Text + "=" + txtName.Text;
             }
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "NAME",
                  txtName.Text.Trim(), txtName.Text.Trim());
-                if (!b)
-                    throw new Exception("Không được thêm tên đã tồn tại: "
-                                                    + "NAME = " + txtName.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblName.Text + "=" + txtName.Text;
             }
 
             if (errors.Length > 0) throw new Exception(errors);

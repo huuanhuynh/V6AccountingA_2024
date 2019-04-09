@@ -45,7 +45,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.v6Label1 = new V6Controls.V6Label();
             this.v6Label17 = new V6Controls.V6Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblMaTg = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,7 +70,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.v6Label1);
             this.groupBox1.Controls.Add(this.v6Label17);
-            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.lblMaTg);
             this.groupBox1.Location = new System.Drawing.Point(9, 7);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.groupBox1.Name = "groupBox1";
@@ -344,16 +344,16 @@
             this.v6Label17.TabIndex = 50;
             this.v6Label17.Text = "Kỳ";
             // 
-            // label5
+            // lblMaTg
             // 
-            this.label5.AccessibleDescription = "ADDEDITL00414";
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 23);
-            this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(85, 17);
-            this.label5.TabIndex = 49;
-            this.label5.Text = "Mã thời gian";
+            this.lblMaTg.AccessibleDescription = "ADDEDITL00414";
+            this.lblMaTg.AutoSize = true;
+            this.lblMaTg.Location = new System.Drawing.Point(16, 23);
+            this.lblMaTg.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblMaTg.Name = "lblMaTg";
+            this.lblMaTg.Size = new System.Drawing.Size(85, 17);
+            this.lblMaTg.TabIndex = 49;
+            this.lblMaTg.Text = "Mã thời gian";
             // 
             // KhaiBaoKyTinhLuong
             // 
@@ -387,7 +387,7 @@
         private System.Windows.Forms.Label label4;
         private V6Label v6Label1;
         private V6Label v6Label17;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblMaTg;
         private V6DateTimePicker DateNGAY2;
         private V6DateTimePicker DateNGAY1;
     }

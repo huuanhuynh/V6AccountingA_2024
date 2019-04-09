@@ -27,6 +27,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             var errors = "";
             if (txtMa_NT.Text.Trim() == "")
                 errors += V6Text.Text("CHUANHAP") + " " + lblMa.Text;
+            if (TxtNgay_ct.Text.Trim() == "")
+                errors += V6Text.Text("CHUANHAP") + " " + lblNgayCT.Text;
             
             if (Mode == V6Mode.Edit)
             {
@@ -35,8 +37,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     txtMa_NT.Text, TxtNgay_ct.YYYYMMDD,
                     DataOld["MA_NT"].ToString(), DataOld["NGAY_CT"].ToString());
 
-                if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: ");
+                if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblMa.Text + "," + lblNgayCT.Text;
             }
             else if (Mode == V6Mode.Add)
             {
@@ -45,8 +46,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     txtMa_NT.Text, TxtNgay_ct.YYYYMMDD,
                     txtMa_NT.Text, TxtNgay_ct.YYYYMMDD);
 
-                if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: ");
+                if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblMa.Text + "," + lblNgayCT.Text;
             }
 
             if (errors.Length > 0) throw new Exception(errors);

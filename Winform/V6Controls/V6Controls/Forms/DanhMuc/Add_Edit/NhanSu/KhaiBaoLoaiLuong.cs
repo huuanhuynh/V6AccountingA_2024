@@ -60,17 +60,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
              
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_LOAI_LG",
                  txtMaLoaiLuong.Text.Trim(), DataOld["MA_LOAI_LG"].ToString());
-                if (!b)
-                    throw new Exception("Không được sửa mã đã tồn tại: "
-                                                    + "MA_LOAI_LG = " + txtMaLoaiLuong.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblMaLoaiLuong.Text + "=" + txtMaLoaiLuong.Text;
             }
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_LOAI_LG",
                     txtMaLoaiLuong.Text.Trim(), txtMaLoaiLuong.Text.Trim());
-                if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
-                                        + "MA_LOAI_LG = " + txtMaLoaiLuong.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblMaLoaiLuong.Text + "=" + txtMaLoaiLuong.Text;
             }
             if (errors.Length > 0) throw new Exception(errors);
         }

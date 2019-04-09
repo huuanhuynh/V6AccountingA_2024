@@ -39,17 +39,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "STT",
                  txtStt.Text.Trim(), DataOld["STT"].ToString());
-                if (!b)
-                    throw new Exception("Không được sửa số thứ tự đã tồn tại: "
-                                                    + "STT = " + txtStt.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblSTT.Text + "=" + txtStt.Text;
             }
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "STT",
                  txtStt.Text.Trim(), txtStt.Text.Trim());
-                if (!b)
-                    throw new Exception("Không được thêm số thứ tự đã tồn tại: "
-                                                    + "STT = " + txtStt.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblSTT.Text + "=" + txtStt.Text;
             }
 
             if (errors.Length > 0) throw new Exception(errors);

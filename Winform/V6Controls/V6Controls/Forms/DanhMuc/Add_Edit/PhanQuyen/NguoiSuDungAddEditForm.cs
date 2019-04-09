@@ -55,12 +55,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
                 if (TxtPassword.Text.Trim() != "")
                 {
                     var descript = UtilityHelper.DeCrypt(TxtPassword.Text);
-                    if (descript.Length >= TxtUser_name.Text.Trim().Length)
+                    if (descript.Length >= txtUser_name.Text.Trim().Length)
                     {
-                        TxtPassword1.Text = descript.Substring(TxtUser_name.Text.Trim().Length);
+                        txtPassword1.Text = descript.Substring(txtUser_name.Text.Trim().Length);
                     }
                 }
-                TxtPassword2.Text = TxtPassword1.Text;
+                txtPassword2.Text = txtPassword1.Text;
                 if (TxtCodeUser.Text.Trim() != "")
                 {
                     var code = UtilityHelper.DeCrypt(TxtCodeUser.Text);
@@ -109,7 +109,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
         {
             try
             {
-                TxtPassword1.PasswordChar = '\0';
+                txtPassword1.PasswordChar = '\0';
                 txtXmlInfor.ReadOnly = false;
             }
             catch (Exception ex)
@@ -159,9 +159,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
 
         public override void FixFormData()
         {
-            TxtPassword.Text = UtilityHelper.EnCrypt(TxtUser_name.Text.Trim() + TxtPassword1.Text.Trim());
+            TxtPassword.Text = UtilityHelper.EnCrypt(txtUser_name.Text.Trim() + txtPassword1.Text.Trim());
             TxtCodeUser.Text =
-                UtilityHelper.EnCrypt(TxtUser_name.Text.Trim() + TxtPassword1.Text.Trim() +
+                UtilityHelper.EnCrypt(txtUser_name.Text.Trim() + txtPassword1.Text.Trim() +
                                         (chkIs_admin.Checked ? "1" : "0"));
 
             if (Mode == V6Mode.Add)
@@ -196,28 +196,25 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
                 throw new Exception(GetType() + ".ValidateData " + V6Text.NoRight);
             }
 
-            var error = "";
-            if (TxtUser_name.Text.Trim() == "") error +=V6Text.CheckInfor+"!\n";
-            if (TxtComment.Text.Trim() == "") error += V6Text.CheckInfor + "!\n";
-            if (TxtPassword1.Text != TxtPassword2.Text) error += V6Text.Wrong + "!\n";
+            var errors = "";
+            if (txtUser_name.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + " " + lblUserName.Text;
+            if (txtComment.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + " " + lblComment.Text;
+            if (txtPassword1.Text != txtPassword2.Text) errors += V6Text.Wrong + "!\n";
 
             if (Mode == V6Mode.Edit)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "USER_NAME",
-                 TxtUser_name.Text.Trim(), DataOld["USER_NAME"].ToString());
-                if (!b)
-                    throw new Exception(V6Text.Exist + " USER_NAME = " + TxtUser_name.Text.Trim());
+                 txtUser_name.Text.Trim(), DataOld["USER_NAME"].ToString());
+                if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblUserName.Text + "=" + txtUser_name.Text;
             }
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "USER_NAME",
-                 TxtUser_name.Text.Trim(), TxtUser_name.Text.Trim());
-                if (!b)
-                    throw new Exception(V6Text.Exist + " USER_NAME = " + TxtUser_name.Text.Trim());
+                 txtUser_name.Text.Trim(), txtUser_name.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblUserName.Text + "=" + txtUser_name.Text;
             }
 
-            if (error.Length > 0)
-                throw new Exception(error);
+            if (errors.Length > 0) throw new Exception(errors);
         }
 
         private void btnPhanQuyen_Click(object sender, EventArgs e)
@@ -448,7 +445,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
         {
             try
             {
-                var file_xml = TxtUser_name.Text.Trim().ToUpper() + ".xml";
+                var file_xml = txtUser_name.Text.Trim().ToUpper() + ".xml";
                 new XmlEditorForm(txtXmlInfor, file_xml, "Table0", "KEY,VALUE,NOTE,ENCRYPT_YN".Split(',')).ShowDialog(this);
             }
             catch (Exception ex)

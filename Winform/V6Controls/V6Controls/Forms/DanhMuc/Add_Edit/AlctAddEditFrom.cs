@@ -33,7 +33,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public override void ValidateData()
         {
             if (Mode != V6Mode.Add) return;
-            if (txtMaCt.Text.Trim() == "") throw new Exception(V6Text.Text("CHUANHAP") + lblMaCT.Text + "!");
+            if (txtMaCt.Text.Trim() == "") throw new Exception (V6Text.Text("CHUANHAP") + lblMaCT.Text + "!");
         }
 
         private void LoadAlpost()

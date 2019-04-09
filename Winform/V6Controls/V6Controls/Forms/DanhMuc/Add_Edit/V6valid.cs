@@ -47,12 +47,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             if (Mode == V6Mode.Edit)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA", txtMa.Text.Trim(), DataOld["MA"].ToString());
-                if (!b) throw new Exception("Không được sửa thành mã đã tồn tại: " + "MA = " + txtMa.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblMa.Text + "=" + txtMa.Text;
             }
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA", txtMa.Text.Trim(), txtMa.Text.Trim());
-                if (!b) throw new Exception("Không được thêm mã đã tồn tại: " + "MA = " + txtMa.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblMa.Text + "=" + txtMa.Text;
             }
 
             if (errors.Length > 0) throw new Exception(errors);

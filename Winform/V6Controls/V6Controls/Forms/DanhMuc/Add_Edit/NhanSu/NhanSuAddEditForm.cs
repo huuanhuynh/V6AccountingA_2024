@@ -101,17 +101,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "EMP_ID",
                  txtEmp_ID.Text.Trim(), DataOld["EMP_ID"].ToString());
-                if (!b)
-                    throw new Exception("Không được sửa mã đã tồn tại: "
-                                                    + "EMP_ID = " + txtEmp_ID.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblEmpID.Text + "=" + txtEmp_ID.Text;
             }
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "EMP_ID",
                  txtEmp_ID.Text.Trim(), txtEmp_ID.Text.Trim());
-                if (!b)
-                    throw new Exception("Không được thêm mã đã tồn tại: "
-                                                    + "EMP_ID = " + txtEmp_ID.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblEmpID.Text + "=" + txtEmp_ID.Text;
             }
 
             if (errors.Length > 0) throw new Exception(errors);

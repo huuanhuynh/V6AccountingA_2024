@@ -33,11 +33,11 @@
             this.TxtMa_vitri = new V6Controls.V6VvarTextBox();
             this.TxtMa_kho = new V6Controls.V6VvarTextBox();
             this.TxtTen_vitri = new V6Controls.V6ColorTextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblTenVitri = new System.Windows.Forms.Label();
+            this.txtTenVitri2 = new V6Controls.V6ColorTextBox();
+            this.lblMaKho = new System.Windows.Forms.Label();
+            this.lblMaVitri = new System.Windows.Forms.Label();
+            this.lblTenVitri2 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label14 = new System.Windows.Forms.Label();
@@ -103,11 +103,11 @@
             this.groupBox1.Controls.Add(this.TxtMa_vitri);
             this.groupBox1.Controls.Add(this.TxtMa_kho);
             this.groupBox1.Controls.Add(this.TxtTen_vitri);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.v6ColorTextBox3);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.lblTenVitri);
+            this.groupBox1.Controls.Add(this.txtTenVitri2);
+            this.groupBox1.Controls.Add(this.lblMaKho);
+            this.groupBox1.Controls.Add(this.lblMaVitri);
+            this.groupBox1.Controls.Add(this.lblTenVitri2);
             this.groupBox1.Location = new System.Drawing.Point(2, 0);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.groupBox1.Name = "groupBox1";
@@ -189,68 +189,68 @@
             this.TxtTen_vitri.Size = new System.Drawing.Size(540, 23);
             this.TxtTen_vitri.TabIndex = 6;
             // 
-            // label4
+            // lblTenVitri
             // 
-            this.label4.AccessibleDescription = "ADDEDITL00324";
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 75);
-            this.label4.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 17);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Tên vị trí";
+            this.lblTenVitri.AccessibleDescription = "ADDEDITL00324";
+            this.lblTenVitri.AutoSize = true;
+            this.lblTenVitri.Location = new System.Drawing.Point(10, 75);
+            this.lblTenVitri.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblTenVitri.Name = "lblTenVitri";
+            this.lblTenVitri.Size = new System.Drawing.Size(63, 17);
+            this.lblTenVitri.TabIndex = 5;
+            this.lblTenVitri.Text = "Tên vị trí";
             // 
-            // v6ColorTextBox3
+            // txtTenVitri2
             // 
-            this.v6ColorTextBox3.AccessibleName = "ten_vitri2";
-            this.v6ColorTextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtTenVitri2.AccessibleName = "ten_vitri2";
+            this.txtTenVitri2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox3.BackColor = System.Drawing.SystemColors.Window;
-            this.v6ColorTextBox3.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox3.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox3.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox3.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox3.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox3.Location = new System.Drawing.Point(154, 100);
-            this.v6ColorTextBox3.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
-            this.v6ColorTextBox3.Name = "v6ColorTextBox3";
-            this.v6ColorTextBox3.Size = new System.Drawing.Size(540, 23);
-            this.v6ColorTextBox3.TabIndex = 8;
+            this.txtTenVitri2.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTenVitri2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTenVitri2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTenVitri2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTenVitri2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTenVitri2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTenVitri2.LeaveColor = System.Drawing.Color.White;
+            this.txtTenVitri2.Location = new System.Drawing.Point(154, 100);
+            this.txtTenVitri2.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
+            this.txtTenVitri2.Name = "txtTenVitri2";
+            this.txtTenVitri2.Size = new System.Drawing.Size(540, 23);
+            this.txtTenVitri2.TabIndex = 8;
             // 
-            // label1
+            // lblMaKho
             // 
-            this.label1.AccessibleDescription = "ADDEDITL00166";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 19);
-            this.label1.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã kho";
+            this.lblMaKho.AccessibleDescription = "ADDEDITL00166";
+            this.lblMaKho.AutoSize = true;
+            this.lblMaKho.Location = new System.Drawing.Point(10, 19);
+            this.lblMaKho.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblMaKho.Name = "lblMaKho";
+            this.lblMaKho.Size = new System.Drawing.Size(54, 17);
+            this.lblMaKho.TabIndex = 0;
+            this.lblMaKho.Text = "Mã kho";
             // 
-            // label2
+            // lblMaVitri
             // 
-            this.label2.AccessibleDescription = "ADDEDITL00194";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 47);
-            this.label2.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 17);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Mã vị trí";
+            this.lblMaVitri.AccessibleDescription = "ADDEDITL00194";
+            this.lblMaVitri.AutoSize = true;
+            this.lblMaVitri.Location = new System.Drawing.Point(10, 47);
+            this.lblMaVitri.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblMaVitri.Name = "lblMaVitri";
+            this.lblMaVitri.Size = new System.Drawing.Size(57, 17);
+            this.lblMaVitri.TabIndex = 3;
+            this.lblMaVitri.Text = "Mã vị trí";
             // 
-            // label3
+            // lblTenVitri2
             // 
-            this.label3.AccessibleDescription = "ADDEDITL00004";
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 103);
-            this.label3.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 17);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Tên 2";
+            this.lblTenVitri2.AccessibleDescription = "ADDEDITL00004";
+            this.lblTenVitri2.AutoSize = true;
+            this.lblTenVitri2.Location = new System.Drawing.Point(10, 103);
+            this.lblTenVitri2.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblTenVitri2.Name = "lblTenVitri2";
+            this.lblTenVitri2.Size = new System.Drawing.Size(45, 17);
+            this.lblTenVitri2.TabIndex = 7;
+            this.lblTenVitri2.Text = "Tên 2";
             // 
             // v6TabControl1
             // 
@@ -1141,12 +1141,12 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private V6ColorTextBox v6ColorTextBox3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private V6ColorTextBox txtTenVitri2;
+        private System.Windows.Forms.Label lblMaKho;
+        private System.Windows.Forms.Label lblMaVitri;
+        private System.Windows.Forms.Label lblTenVitri2;
         private V6ColorTextBox TxtTen_vitri;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblTenVitri;
         private V6TabControl v6TabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private V6Controls.V6CheckBox checkBox1;

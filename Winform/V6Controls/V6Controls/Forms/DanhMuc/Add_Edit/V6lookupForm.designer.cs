@@ -30,15 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(V6lookupForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.TxtFcolumn = new V6Controls.V6VvarTextBox();
+            this.txtVvar = new V6Controls.V6VvarTextBox();
             this.txtVName2 = new V6Controls.V6ColorTextBox();
             this.txtVName = new V6Controls.V6ColorTextBox();
             this.txtVvalue = new V6Controls.V6ColorTextBox();
             this.label31 = new System.Windows.Forms.Label();
-            this.TxtVMA_FILE = new V6Controls.V6ColorTextBox();
+            this.txtVma_file = new V6Controls.V6ColorTextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblVma_file = new System.Windows.Forms.Label();
+            this.lblVvar = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.v6CheckBox1 = new V6Controls.V6CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -125,15 +125,15 @@
             this.groupBox1.AccessibleName = "groupBox1";
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.TxtFcolumn);
+            this.groupBox1.Controls.Add(this.txtVvar);
             this.groupBox1.Controls.Add(this.txtVName2);
             this.groupBox1.Controls.Add(this.txtVName);
             this.groupBox1.Controls.Add(this.txtVvalue);
             this.groupBox1.Controls.Add(this.label31);
-            this.groupBox1.Controls.Add(this.TxtVMA_FILE);
+            this.groupBox1.Controls.Add(this.txtVma_file);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblVma_file);
+            this.groupBox1.Controls.Add(this.lblVvar);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.v6CheckBox1);
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
@@ -144,21 +144,21 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // TxtFcolumn
+            // txtVvar
             // 
-            this.TxtFcolumn.AccessibleName = "VVAR";
-            this.TxtFcolumn.BackColor = System.Drawing.Color.White;
-            this.TxtFcolumn.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtFcolumn.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtFcolumn.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtFcolumn.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtFcolumn.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtFcolumn.LeaveColor = System.Drawing.Color.White;
-            this.TxtFcolumn.Location = new System.Drawing.Point(119, 17);
-            this.TxtFcolumn.Name = "TxtFcolumn";
-            this.TxtFcolumn.Size = new System.Drawing.Size(150, 23);
-            this.TxtFcolumn.TabIndex = 1;
-            this.TxtFcolumn.UseLimitCharacters0 = true;
+            this.txtVvar.AccessibleName = "VVAR";
+            this.txtVvar.BackColor = System.Drawing.Color.White;
+            this.txtVvar.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtVvar.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtVvar.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtVvar.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtVvar.HoverColor = System.Drawing.Color.Yellow;
+            this.txtVvar.LeaveColor = System.Drawing.Color.White;
+            this.txtVvar.Location = new System.Drawing.Point(119, 17);
+            this.txtVvar.Name = "txtVvar";
+            this.txtVvar.Size = new System.Drawing.Size(150, 23);
+            this.txtVvar.TabIndex = 1;
+            this.txtVvar.UseLimitCharacters0 = true;
             // 
             // txtVName2
             // 
@@ -225,23 +225,23 @@
             this.label31.TabIndex = 8;
             this.label31.Text = "VName / VName2";
             // 
-            // TxtVMA_FILE
+            // txtVma_file
             // 
-            this.TxtVMA_FILE.AccessibleName = "VMA_FILE";
-            this.TxtVMA_FILE.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtVma_file.AccessibleName = "VMA_FILE";
+            this.txtVma_file.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtVMA_FILE.BackColor = System.Drawing.Color.White;
-            this.TxtVMA_FILE.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtVMA_FILE.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtVMA_FILE.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtVMA_FILE.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtVMA_FILE.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtVMA_FILE.LeaveColor = System.Drawing.Color.White;
-            this.TxtVMA_FILE.Location = new System.Drawing.Point(119, 43);
-            this.TxtVMA_FILE.Margin = new System.Windows.Forms.Padding(4);
-            this.TxtVMA_FILE.Name = "TxtVMA_FILE";
-            this.TxtVMA_FILE.Size = new System.Drawing.Size(150, 23);
-            this.TxtVMA_FILE.TabIndex = 5;
+            this.txtVma_file.BackColor = System.Drawing.Color.White;
+            this.txtVma_file.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtVma_file.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtVma_file.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtVma_file.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtVma_file.HoverColor = System.Drawing.Color.Yellow;
+            this.txtVma_file.LeaveColor = System.Drawing.Color.White;
+            this.txtVma_file.Location = new System.Drawing.Point(119, 43);
+            this.txtVma_file.Margin = new System.Windows.Forms.Padding(4);
+            this.txtVma_file.Name = "txtVma_file";
+            this.txtVma_file.Size = new System.Drawing.Size(150, 23);
+            this.txtVma_file.TabIndex = 5;
             // 
             // label3
             // 
@@ -254,27 +254,27 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Vvalue";
             // 
-            // label2
+            // lblVma_file
             // 
-            this.label2.AccessibleDescription = ".";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 47);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 17);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Vma_file";
+            this.lblVma_file.AccessibleDescription = ".";
+            this.lblVma_file.AutoSize = true;
+            this.lblVma_file.Location = new System.Drawing.Point(11, 47);
+            this.lblVma_file.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblVma_file.Name = "lblVma_file";
+            this.lblVma_file.Size = new System.Drawing.Size(62, 17);
+            this.lblVma_file.TabIndex = 4;
+            this.lblVma_file.Text = "Vma_file";
             // 
-            // label1
+            // lblVvar
             // 
-            this.label1.AccessibleDescription = ".";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 21);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Vvar";
+            this.lblVvar.AccessibleDescription = ".";
+            this.lblVvar.AutoSize = true;
+            this.lblVvar.Location = new System.Drawing.Point(11, 21);
+            this.lblVvar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblVvar.Name = "lblVvar";
+            this.lblVvar.Size = new System.Drawing.Size(37, 17);
+            this.lblVvar.TabIndex = 0;
+            this.lblVvar.Text = "Vvar";
             // 
             // label6
             // 
@@ -1373,11 +1373,11 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblVma_file;
+        private System.Windows.Forms.Label lblVvar;
         private V6Controls.V6ColorTextBox txtVvalue;
-        private V6Controls.V6ColorTextBox TxtVMA_FILE;
-        private V6VvarTextBox TxtFcolumn;
+        private V6Controls.V6ColorTextBox txtVma_file;
+        private V6VvarTextBox txtVvar;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage1;
         private V6Controls.V6TabControl v6TabControl1;

@@ -82,25 +82,21 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             var errors = "";
             if (TXTMA_DM.Text.Trim() == "")
-                errors += V6Text.CheckInfor+"\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblMaDM.Text;
             if (TXTTEN_DM.Text.Trim() == "")
-                errors += V6Text.CheckInfor + "\r\n";
-
+                errors += V6Text.Text("CHUANHAP") + " " + lblTenDM.Text;
             
-
             if (Mode == V6Mode.Edit)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_DM",
                  TXTMA_DM.Text.Trim(), DataOld["MA_DM"].ToString());
-                if (!b)
-                    throw new Exception(V6Text.EditDenied + " MA_DM = " + TXTMA_DM.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblMaDM.Text + "=" + TXTMA_DM.Text;
             }
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_DM",
                  TXTMA_DM.Text.Trim(), TXTMA_DM.Text.Trim());
-                if (!b)
-                    throw new Exception(V6Text.AddDenied + " MA_DM = " + TXTMA_DM.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblMaDM.Text + "=" + TXTMA_DM.Text;
             }
 
             if (errors.Length > 0) throw new Exception(errors);
