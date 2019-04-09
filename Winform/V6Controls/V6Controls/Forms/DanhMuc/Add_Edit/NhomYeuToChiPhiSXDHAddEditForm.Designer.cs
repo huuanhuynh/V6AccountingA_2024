@@ -35,8 +35,8 @@
             this.txtNhom = new V6Controls.V6VvarTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblNhom = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,8 +51,8 @@
             this.groupBox1.Controls.Add(this.txtNhom);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lblNhom);
+            this.groupBox1.Controls.Add(this.lblName);
             this.groupBox1.Location = new System.Drawing.Point(7, 6);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBox1.Name = "groupBox1";
@@ -152,28 +152,28 @@
             this.label5.TabIndex = 6;
             this.label5.Text = "Tên 2 ";
             // 
-            // label1
+            // lblNhom
             // 
-            this.label1.AccessibleDescription = "ADDEDITL00313";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 28);
-            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã nhóm";
+            this.lblNhom.AccessibleDescription = "ADDEDITL00313";
+            this.lblNhom.AutoSize = true;
+            this.lblNhom.Location = new System.Drawing.Point(20, 28);
+            this.lblNhom.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblNhom.Name = "lblNhom";
+            this.lblNhom.Size = new System.Drawing.Size(66, 17);
+            this.lblNhom.TabIndex = 0;
+            this.lblNhom.Text = "Mã nhóm";
             // 
-            // label2
+            // lblName
             // 
-            this.label2.AccessibleDescription = "ADDEDITL00314";
-            this.label2.AccessibleName = "";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 60);
-            this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 17);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Tên nhóm yếu tố";
+            this.lblName.AccessibleDescription = "ADDEDITL00314";
+            this.lblName.AccessibleName = "";
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(20, 60);
+            this.lblName.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(115, 17);
+            this.lblName.TabIndex = 4;
+            this.lblName.Text = "Tên nhóm yếu tố";
             // 
             // NhomYeuToChiPhiSXDHAddEditForm
             // 
@@ -194,8 +194,8 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblNhom;
+        private System.Windows.Forms.Label lblName;
         private V6VvarTextBox txtNhom;
         private System.Windows.Forms.Label label4;
         private V6CheckBox chkStatus;

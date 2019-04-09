@@ -39,17 +39,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_VV",
                     TxtMa_vv.Text.Trim(), DataOld["MA_VV"].ToString());
-                if (!b)
-                    throw new Exception(V6Text.ExistData
-                                        + "MA_VV = " + TxtMa_vv.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.EditDenied;
             }
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_VV",
                     TxtMa_vv.Text.Trim(), TxtMa_vv.Text.Trim());
-                if (!b)
-                    throw new Exception(V6Text.ExistData
-                                        + "MA_VV = " + TxtMa_vv.Text.Trim());
+                if (!b) errors += V6Text.DataExist + V6Text.AddDenied;
             }
 
             if (errors.Length > 0) throw new Exception(errors);

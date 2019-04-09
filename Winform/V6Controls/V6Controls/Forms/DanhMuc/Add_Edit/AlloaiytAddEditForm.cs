@@ -46,7 +46,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "LOAI_YT",
                     txtLoai_yt.Text.Trim(), DataOld["LOAI_YT"].ToString());
                 if (!b)
-                    throw new Exception(V6Init.V6Text.ExistData
+                    throw new Exception(V6Init.V6Text.DataExist
                                         + "LOAI_YT = " + txtLoai_yt.Text.Trim());
             }
             else if (Mode == V6Mode.Add)
@@ -54,7 +54,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "LOAI_YT",
                     txtLoai_yt.Text.Trim(), txtLoai_yt.Text.Trim());
                 if (!b)
-                    throw new Exception(V6Init.V6Text.ExistData
+                    throw new Exception(V6Init.V6Text.DataExist
                                         + "LOAI_YT = " + txtLoai_yt.Text.Trim());
             }
 

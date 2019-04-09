@@ -349,7 +349,7 @@
         public static string ExportFail { get { return V6Setting.Language == "V" ? "Xuất lỗi." : "Export fail."; } }
         public static string Exporting { get { return V6Setting.Language == "V" ? "Đang xuất..." : "Exporting..."; } }
         public static string Exist { get { return V6Setting.Language == "V" ? "Đã tồn tại." : "Exist."; } }
-        public static string ExistData { get { return V6Setting.Language == "V" ? "Dữ liệu đã tồn tại." : "Data Exist."; } }
+        public static string DataExist { get { return V6Setting.Language == "V" ? "Dữ liệu đã tồn tại." : "Data Exist."; } }
         public static string EditSuccess { get { return V6Setting.Language == "V" ? "Sửa xong!" : "Edit success!"; } }
         public static string EditFail { get { return V6Setting.Language == "V" ? "Sửa bị lỗi!" : "Edit fail!"; } }
         public static object Empty { get { return V6Setting.Language == "V" ? "Rỗng" : "Empty"; } }

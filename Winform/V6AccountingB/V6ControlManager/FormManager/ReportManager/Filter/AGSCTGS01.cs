@@ -99,7 +99,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 var count = V6BusinessHelper.SelectCount("Arctgs01", "Thang", "Thang = @nMonth and Nam = @nYear", plist);
                 if (count > 0)
                 {
-                    if (this.ShowConfirmMessage(V6Text.ExistData, V6Text.Confirm)
+                    if (this.ShowConfirmMessage(V6Text.DataExist, V6Text.Confirm)
                         != DialogResult.Yes)
                     {
                         return;

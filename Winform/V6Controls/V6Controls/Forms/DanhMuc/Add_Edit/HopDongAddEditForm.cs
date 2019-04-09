@@ -47,7 +47,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_HD",
                     txtMaHD.Text.Trim(), DataOld["MA_HD"].ToString());
                 if (!b)
-                    throw new Exception(V6Init.V6Text.ExistData
+                    throw new Exception(V6Init.V6Text.DataExist
                                         + "MA_HD = " + txtMaHD.Text.Trim());
             }
             else if (Mode == V6Mode.Add)
@@ -55,7 +55,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_HD",
                     txtMaHD.Text.Trim(), txtMaHD.Text.Trim());
                 if (!b)
-                    throw new Exception(V6Init.V6Text.ExistData
+                    throw new Exception(V6Init.V6Text.DataExist
                                         + "MA_HD = " + txtMaHD.Text.Trim());
             }
 

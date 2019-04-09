@@ -101,12 +101,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             if (Mode == V6Mode.Edit)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0,"MA_KH", txtMaKH.Text.Trim(), DataOld["MA_KH"].ToString());
-                if (!b) throw new Exception(string.Format("{0} {1} = {2}", V6Text.ExistData, lblMaKH.Text, txtMaKH.Text));
+                if (!b) throw new Exception(string.Format("{0} {1} = {2}", V6Text.DataExist, lblMaKH.Text, txtMaKH.Text));
             }
             else if (Mode == V6Mode.Add)
             {
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_KH", txtMaKH.Text.Trim(), txtMaKH.Text.Trim());
-                if (!b) throw new Exception(string.Format("{0} {1} = {2}", V6Text.ExistData, lblMaKH.Text, txtMaKH.Text));
+                if (!b) throw new Exception(string.Format("{0} {1} = {2}", V6Text.DataExist, lblMaKH.Text, txtMaKH.Text));
             }
 
             if (txtMaSoThueVAT.Text.Trim().Length >= 10)

@@ -32,15 +32,15 @@
             this.TxtDvtC = new V6Controls.V6VvarTextBox();
             this.txtTenVatTu = new V6Controls.V6VvarTextBox();
             this.TxtDvtqd = new V6Controls.V6VvarTextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblDVTQD = new System.Windows.Forms.Label();
             this.TxtXtype = new V6Controls.V6VvarTextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblHeSo = new System.Windows.Forms.Label();
             this.TxtHe_so = new V6Controls.V6NumberTextBox();
             this.TxtDvt = new V6Controls.V6VvarTextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblDVTTonKho = new System.Windows.Forms.Label();
             this.TxtMa_vt = new V6Controls.V6VvarTextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblMaVT = new System.Windows.Forms.Label();
+            this.lblDVT = new System.Windows.Forms.Label();
             this.checkBox1 = new V6Controls.V6CheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
@@ -84,15 +84,15 @@
             this.groupBox1.Controls.Add(this.TxtDvtC);
             this.groupBox1.Controls.Add(this.txtTenVatTu);
             this.groupBox1.Controls.Add(this.TxtDvtqd);
-            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.lblDVTQD);
             this.groupBox1.Controls.Add(this.TxtXtype);
-            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.lblHeSo);
             this.groupBox1.Controls.Add(this.TxtHe_so);
             this.groupBox1.Controls.Add(this.TxtDvt);
-            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.lblDVTTonKho);
             this.groupBox1.Controls.Add(this.TxtMa_vt);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lblMaVT);
+            this.groupBox1.Controls.Add(this.lblDVT);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.groupBox1.Name = "groupBox1";
@@ -158,16 +158,16 @@
             this.TxtDvtqd.TabIndex = 9;
             this.TxtDvtqd.VVar = "DVT";
             // 
-            // label5
+            // lblDVTQD
             // 
-            this.label5.AccessibleDescription = "ADDEDITL00323";
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 94);
-            this.label5.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 17);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Ra ĐVT";
+            this.lblDVTQD.AccessibleDescription = "ADDEDITL00323";
+            this.lblDVTQD.AutoSize = true;
+            this.lblDVTQD.Location = new System.Drawing.Point(14, 94);
+            this.lblDVTQD.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblDVTQD.Name = "lblDVTQD";
+            this.lblDVTQD.Size = new System.Drawing.Size(58, 17);
+            this.lblDVTQD.TabIndex = 8;
+            this.lblDVTQD.Text = "Ra ĐVT";
             // 
             // TxtXtype
             // 
@@ -189,16 +189,16 @@
             this.TxtXtype.Size = new System.Drawing.Size(42, 23);
             this.TxtXtype.TabIndex = 6;
             // 
-            // label4
+            // lblHeSo
             // 
-            this.label4.AccessibleDescription = "ADDEDITL00110";
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 120);
-            this.label4.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 17);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Hệ số";
+            this.lblHeSo.AccessibleDescription = "ADDEDITL00110";
+            this.lblHeSo.AutoSize = true;
+            this.lblHeSo.Location = new System.Drawing.Point(14, 120);
+            this.lblHeSo.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblHeSo.Name = "lblHeSo";
+            this.lblHeSo.Size = new System.Drawing.Size(45, 17);
+            this.lblHeSo.TabIndex = 10;
+            this.lblHeSo.Text = "Hệ số";
             // 
             // TxtHe_so
             // 
@@ -241,16 +241,16 @@
             this.TxtDvt.TabIndex = 4;
             this.TxtDvt.VVar = "DVT";
             // 
-            // label3
+            // lblDVTTonKho
             // 
-            this.label3.AccessibleDescription = "ADDEDITL00322";
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 68);
-            this.label3.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(109, 17);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Ra ĐVT tồn kho";
+            this.lblDVTTonKho.AccessibleDescription = "ADDEDITL00322";
+            this.lblDVTTonKho.AutoSize = true;
+            this.lblDVTTonKho.Location = new System.Drawing.Point(14, 68);
+            this.lblDVTTonKho.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblDVTTonKho.Name = "lblDVTTonKho";
+            this.lblDVTTonKho.Size = new System.Drawing.Size(109, 17);
+            this.lblDVTTonKho.TabIndex = 5;
+            this.lblDVTTonKho.Text = "Ra ĐVT tồn kho";
             // 
             // TxtMa_vt
             // 
@@ -271,27 +271,27 @@
             this.TxtMa_vt.VVar = "ma_vt";
             this.TxtMa_vt.V6LostFocus += new V6Controls.ControlEventHandle(this.TxtMa_vt_V6LostFocus);
             // 
-            // label1
+            // lblMaVT
             // 
-            this.label1.AccessibleDescription = "ADDEDITL00195";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 16);
-            this.label1.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã vật tư";
+            this.lblMaVT.AccessibleDescription = "ADDEDITL00195";
+            this.lblMaVT.AutoSize = true;
+            this.lblMaVT.Location = new System.Drawing.Point(14, 16);
+            this.lblMaVT.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblMaVT.Name = "lblMaVT";
+            this.lblMaVT.Size = new System.Drawing.Size(66, 17);
+            this.lblMaVT.TabIndex = 0;
+            this.lblMaVT.Text = "Mã vật tư";
             // 
-            // label2
+            // lblDVT
             // 
-            this.label2.AccessibleDescription = "ADDEDITL00321";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 42);
-            this.label2.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 17);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Quy đổi từ ĐVT";
+            this.lblDVT.AccessibleDescription = "ADDEDITL00321";
+            this.lblDVT.AutoSize = true;
+            this.lblDVT.Location = new System.Drawing.Point(14, 42);
+            this.lblDVT.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblDVT.Name = "lblDVT";
+            this.lblDVT.Size = new System.Drawing.Size(105, 17);
+            this.lblDVT.TabIndex = 3;
+            this.lblDVT.Text = "Quy đổi từ ĐVT";
             // 
             // checkBox1
             // 
@@ -823,8 +823,8 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblMaVT;
+        private System.Windows.Forms.Label lblDVT;
         private V6TabControl v6TabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private V6Controls.V6CheckBox checkBox1;
@@ -832,13 +832,13 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private V6VvarTextBox TxtMa_vt;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblDVTTonKho;
         private V6VvarTextBox TxtDvt;
         private V6VvarTextBox TxtDvtC;
         private V6VvarTextBox TxtDvtqd;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblDVTQD;
         private V6VvarTextBox TxtXtype;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblHeSo;
         private V6NumberTextBox TxtHe_so;
         private V6VvarTextBox txtTenVatTu;
         private V6Controls.V6VvarTextBox txtGC_TD3;

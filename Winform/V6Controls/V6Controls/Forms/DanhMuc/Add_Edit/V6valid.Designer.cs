@@ -45,8 +45,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblTen = new System.Windows.Forms.Label();
+            this.lblMa = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -75,8 +75,8 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.lblTen);
+            this.groupBox1.Controls.Add(this.lblMa);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label5);
@@ -341,27 +341,27 @@
             this.label9.TabIndex = 12;
             this.label9.Text = "Table name";
             // 
-            // label8
+            // lblTen
             // 
-            this.label8.AccessibleDescription = "ADDEDITL00568";
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(25, 146);
-            this.label8.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(33, 17);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Tên";
+            this.lblTen.AccessibleDescription = "ADDEDITL00568";
+            this.lblTen.AutoSize = true;
+            this.lblTen.Location = new System.Drawing.Point(25, 146);
+            this.lblTen.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblTen.Name = "lblTen";
+            this.lblTen.Size = new System.Drawing.Size(33, 17);
+            this.lblTen.TabIndex = 10;
+            this.lblTen.Text = "Tên";
             // 
-            // label7
+            // lblMa
             // 
-            this.label7.AccessibleDescription = "ADDEDITL00567";
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(25, 117);
-            this.label7.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(27, 17);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "Mã";
+            this.lblMa.AccessibleDescription = "ADDEDITL00567";
+            this.lblMa.AutoSize = true;
+            this.lblMa.Location = new System.Drawing.Point(25, 117);
+            this.lblMa.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblMa.Name = "lblMa";
+            this.lblMa.Size = new System.Drawing.Size(27, 17);
+            this.lblMa.TabIndex = 8;
+            this.lblMa.Text = "Mã";
             // 
             // label1
             // 
@@ -440,8 +440,8 @@
         private V6Controls.V6NumberTextBox txtSTT;
         private V6VvarTextBox txtTen;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblTen;
+        private System.Windows.Forms.Label lblMa;
         private V6VvarTextBox txtMa;
         private V6VvarTextBox txtAfield2;
         private V6VvarTextBox txtAfield;

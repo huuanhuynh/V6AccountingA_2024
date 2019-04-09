@@ -32,7 +32,7 @@
             this.dateNgayThoiPB = new V6Controls.V6DateTimePicker();
             this.txtMaCC = new V6Controls.V6VvarTextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblMa = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,7 +44,7 @@
             this.groupBox1.Controls.Add(this.dateNgayThoiPB);
             this.groupBox1.Controls.Add(this.txtMaCC);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lblMa);
             this.groupBox1.Location = new System.Drawing.Point(7, 3);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBox1.Name = "groupBox1";
@@ -101,17 +101,17 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Ngày thôi phân bổ";
             // 
-            // label2
+            // lblMa
             // 
-            this.label2.AccessibleDescription = "ADDEDITL00386";
-            this.label2.AccessibleName = "";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 28);
-            this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 17);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Mã công cụ";
+            this.lblMa.AccessibleDescription = "ADDEDITL00386";
+            this.lblMa.AccessibleName = "";
+            this.lblMa.AutoSize = true;
+            this.lblMa.Location = new System.Drawing.Point(25, 28);
+            this.lblMa.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblMa.Name = "lblMa";
+            this.lblMa.Size = new System.Drawing.Size(81, 17);
+            this.lblMa.TabIndex = 0;
+            this.lblMa.Text = "Mã công cụ";
             // 
             // Valcc01AddEditForm
             // 
@@ -133,7 +133,7 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblMa;
         private V6VvarTextBox txtMaCC;
         private V6DateTimePicker dateNgayThoiPB;
     }

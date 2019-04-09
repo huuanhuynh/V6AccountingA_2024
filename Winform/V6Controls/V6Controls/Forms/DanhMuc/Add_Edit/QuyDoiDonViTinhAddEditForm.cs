@@ -1,5 +1,6 @@
 ﻿using System;
 using V6AccountingBusiness;
+using V6Init;
 using V6Structs;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
@@ -38,11 +39,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             var errors = "";
             if (TxtDvt.Text.Trim() == "")
-                errors += "Chưa nhập ĐVT!\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblDVT.Text;
             if (TxtDvtqd.Text.Trim() == "")
-                errors += "Chưa nhập ĐVT QĐ!\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblDVTQD.Text;
             if (TxtMa_vt.Text.Trim() == "")
-                errors += "Chưa nhập mã vật tư!\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblMaVT.Text;
 
             if (TxtDvt.Text.Trim() == TxtDvtqd.Text.Trim())
                 errors += "Trùng đơn vị tính !\r\n";

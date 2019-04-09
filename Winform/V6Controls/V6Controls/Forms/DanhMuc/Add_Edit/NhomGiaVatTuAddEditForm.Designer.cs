@@ -31,10 +31,10 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtMa_nh = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblMaNhom = new System.Windows.Forms.Label();
             this.txtten_nh = new V6Controls.V6ColorTextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
+            this.lblName2 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label20 = new System.Windows.Forms.Label();
@@ -84,10 +84,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.txtMa_nh);
             this.groupBox1.Controls.Add(this.v6ColorTextBox3);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblMaNhom);
             this.groupBox1.Controls.Add(this.txtten_nh);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.lblName);
+            this.groupBox1.Controls.Add(this.lblName2);
             this.groupBox1.Location = new System.Drawing.Point(4, 4);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
@@ -131,16 +131,16 @@
             this.v6ColorTextBox3.Size = new System.Drawing.Size(616, 23);
             this.v6ColorTextBox3.TabIndex = 5;
             // 
-            // label1
+            // lblMaNhom
             // 
-            this.label1.AccessibleDescription = "ADDEDITL00313";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 23);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã nhóm";
+            this.lblMaNhom.AccessibleDescription = "ADDEDITL00313";
+            this.lblMaNhom.AutoSize = true;
+            this.lblMaNhom.Location = new System.Drawing.Point(12, 23);
+            this.lblMaNhom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMaNhom.Name = "lblMaNhom";
+            this.lblMaNhom.Size = new System.Drawing.Size(66, 17);
+            this.lblMaNhom.TabIndex = 0;
+            this.lblMaNhom.Text = "Mã nhóm";
             // 
             // txtten_nh
             // 
@@ -160,27 +160,27 @@
             this.txtten_nh.Size = new System.Drawing.Size(616, 23);
             this.txtten_nh.TabIndex = 3;
             // 
-            // label2
+            // lblName
             // 
-            this.label2.AccessibleDescription = "ADDEDITL00314";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 53);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Tên nhóm";
+            this.lblName.AccessibleDescription = "ADDEDITL00314";
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(12, 53);
+            this.lblName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(72, 17);
+            this.lblName.TabIndex = 2;
+            this.lblName.Text = "Tên nhóm";
             // 
-            // label3
+            // lblName2
             // 
-            this.label3.AccessibleDescription = "ADDEDITL00315";
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 84);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 17);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Tên nhóm 2";
+            this.lblName2.AccessibleDescription = "ADDEDITL00315";
+            this.lblName2.AutoSize = true;
+            this.lblName2.Location = new System.Drawing.Point(12, 84);
+            this.lblName2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblName2.Name = "lblName2";
+            this.lblName2.Size = new System.Drawing.Size(84, 17);
+            this.lblName2.TabIndex = 4;
+            this.lblName2.Text = "Tên nhóm 2";
             // 
             // v6TabControl1
             // 
@@ -836,10 +836,10 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private V6ColorTextBox v6ColorTextBox3;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblMaNhom;
         private V6ColorTextBox txtten_nh;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblName2;
         private V6TabControl v6TabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label label20;

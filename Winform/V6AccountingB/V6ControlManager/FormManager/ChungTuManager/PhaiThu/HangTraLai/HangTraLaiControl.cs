@@ -984,13 +984,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                     txtMaSoThue.Text = "";
                     txtTenKh.Text = "";
                     txtDiaChi.Text = "";
-                    txtMaGia.Text = "";
+                    //txtMaGia.Text = "";
+                    SetControlValue(txtMaGia, null, Invoice.GetTemplateSettingAM("MA_GIA"));
                     return;
                 }
                 var mst = (data["ma_so_thue"] ?? "").ToString().Trim();
                 txtMaSoThue.Text = mst;
                 txtTenKh.Text = (data["ten_kh"] ?? "").ToString().Trim();
                 txtDiaChi.Text = (data["dia_chi"] ?? "").ToString().Trim();
+                SetControlValue(txtMaGia, data["MA_GIA"], Invoice.GetTemplateSettingAM("MA_GIA"));
 
                 SetDefaultDataReference(Invoice, ItemID, "TXTMAKH", data);
             }

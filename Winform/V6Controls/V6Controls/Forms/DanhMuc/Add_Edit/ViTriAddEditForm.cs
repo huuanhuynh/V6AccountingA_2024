@@ -64,7 +64,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, key,
                             DataDic[key].ToString(), DataOld[key].ToString());
                         if (!b)
-                            throw new Exception(V6Text.EditDenied+ key + "=" + DataDic[key]);
+                            throw new Exception(V6Text.EditDenied + key + "=" + DataDic[key]);
                     }
                 }
             }

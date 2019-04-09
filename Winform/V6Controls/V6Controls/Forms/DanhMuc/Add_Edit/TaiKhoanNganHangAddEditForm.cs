@@ -42,7 +42,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "TKNH",
                     txtTKNH.Text.Trim(), DataOld["TKNH"].ToString());
                 if (!b)
-                    throw new System.Exception(V6Init.V6Text.ExistData
+                    throw new System.Exception(V6Init.V6Text.DataExist
                                         + "TKNH = " + txtTKNH.Text.Trim());
             }
             else if (Mode == V6Structs.V6Mode.Add)
@@ -50,7 +50,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "TKNH",
                     txtTKNH.Text.Trim(), txtTKNH.Text.Trim());
                 if (!b)
-                    throw new System.Exception(V6Init.V6Text.ExistData
+                    throw new System.Exception(V6Init.V6Text.DataExist
                                         + "TKNH = " + txtTKNH.Text.Trim());
             }
 

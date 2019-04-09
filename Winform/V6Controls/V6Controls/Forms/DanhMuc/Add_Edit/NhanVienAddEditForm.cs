@@ -33,11 +33,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             var errors = "";
             if (TxtMa_nvien.Text.Trim() == "")
-                errors += "Chưa nhập mã!\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblMaNvien.Text;
             if (TxtTen_nvien.Text.Trim() == "")
-                errors += "Chưa nhập tên !\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblTenNvien.Text;
             if (V6Login.MadvcsTotal > 0 && TxtMa_dvcs.Text.Trim() == "")
-                errors += "Chưa nhập đơn vị cơ sở !\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblMaDVCS.Text;
 
             if (Mode == V6Mode.Edit)
             {

@@ -17,7 +17,7 @@
                 bool b = V6AccountingBusiness.V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "tk2",
                     txttk2.Text.Trim(), DataOld["tk2"].ToString());
                 if (!b)
-                    throw new System.Exception(V6Init.V6Text.ExistData
+                    throw new System.Exception(V6Init.V6Text.DataExist
                                         + "tk2 = " + txttk2.Text.Trim());
             }
             //else if (Mode == V6Structs.V6Mode.Add)

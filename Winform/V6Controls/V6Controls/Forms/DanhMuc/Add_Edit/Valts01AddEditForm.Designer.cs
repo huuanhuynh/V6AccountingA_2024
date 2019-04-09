@@ -32,7 +32,7 @@
             this.dateNgayThoiKH = new V6Controls.V6DateTimePicker();
             this.txtMaTS = new V6Controls.V6VvarTextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblMa = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,7 +44,7 @@
             this.groupBox1.Controls.Add(this.dateNgayThoiKH);
             this.groupBox1.Controls.Add(this.txtMaTS);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lblMa);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBox1.Name = "groupBox1";
@@ -98,17 +98,17 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Ngày thôi khấu hao";
             // 
-            // label2
+            // lblMa
             // 
-            this.label2.AccessibleDescription = "ADDEDITL00389";
-            this.label2.AccessibleName = "";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 28);
-            this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 17);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Mã tài sản";
+            this.lblMa.AccessibleDescription = "ADDEDITL00389";
+            this.lblMa.AccessibleName = "";
+            this.lblMa.AutoSize = true;
+            this.lblMa.Location = new System.Drawing.Point(25, 28);
+            this.lblMa.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblMa.Name = "lblMa";
+            this.lblMa.Size = new System.Drawing.Size(73, 17);
+            this.lblMa.TabIndex = 0;
+            this.lblMa.Text = "Mã tài sản";
             // 
             // Valts01AddEditForm
             // 
@@ -130,7 +130,7 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblMa;
         private V6VvarTextBox txtMaTS;
         private V6DateTimePicker dateNgayThoiKH;
     }

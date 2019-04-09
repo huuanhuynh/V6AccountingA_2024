@@ -45,7 +45,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_TD3",
                     txtMA_TD3.Text.Trim(), DataOld["MA_TD3"].ToString());
                 if (!b)
-                    throw new Exception(V6Init.V6Text.ExistData
+                    throw new Exception(V6Init.V6Text.DataExist
                                         + "MA_TD3 = " + txtMA_TD3.Text.Trim());
             }
             else if (Mode == V6Structs.V6Mode.Add)
@@ -53,7 +53,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_TD3",
                     txtMA_TD3.Text.Trim(), txtMA_TD3.Text.Trim());
                 if (!b)
-                    throw new Exception(V6Init.V6Text.ExistData
+                    throw new Exception(V6Init.V6Text.DataExist
                                         + "MA_TD3 = " + txtMA_TD3.Text.Trim());
             }
 

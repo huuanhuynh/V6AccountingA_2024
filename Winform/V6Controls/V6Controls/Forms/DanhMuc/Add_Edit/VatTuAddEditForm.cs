@@ -121,9 +121,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             var errors = "";
             if (txtMaVT.Text.Trim() == "")
-                errors += "Chưa nhập mã vật tư!\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblMa.Text;
             if (TxtTenVT.Text.Trim() == "")
-                errors += "Chưa nhập tên vật tư!\r\n";
+                errors += V6Text.Text("CHUANHAP") + " " + lblTen.Text;
 
             if (Mode == V6Mode.Edit)
             {

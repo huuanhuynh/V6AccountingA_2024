@@ -31,13 +31,13 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.TxtNgay_ct = new V6Controls.V6DateTimePicker();
             this.checkBox1 = new V6Controls.V6CheckBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.lblNgayCT = new System.Windows.Forms.Label();
             this.txtTenNt = new V6Controls.V6VvarTextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblTyGia = new System.Windows.Forms.Label();
             this.TxtTy_gia = new V6Controls.V6NumberTextBox();
-            this.TxtMa_nt = new V6Controls.V6VvarTextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.txtMa_NT = new V6Controls.V6VvarTextBox();
+            this.lblMa = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,13 +47,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.TxtNgay_ct);
             this.groupBox1.Controls.Add(this.checkBox1);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lblStatus);
+            this.groupBox1.Controls.Add(this.lblNgayCT);
             this.groupBox1.Controls.Add(this.txtTenNt);
-            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.lblTyGia);
             this.groupBox1.Controls.Add(this.TxtTy_gia);
-            this.groupBox1.Controls.Add(this.TxtMa_nt);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.txtMa_NT);
+            this.groupBox1.Controls.Add(this.lblMa);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(9, 7, 9, 7);
             this.groupBox1.Name = "groupBox1";
@@ -91,27 +91,27 @@
             this.checkBox1.Text = "Có sử dụng ?";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // label8
+            // lblStatus
             // 
-            this.label8.AccessibleDescription = "ADDEDITL00022";
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(17, 110);
-            this.label8.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(78, 17);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "Trạng Thái";
+            this.lblStatus.AccessibleDescription = "ADDEDITL00022";
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(17, 110);
+            this.lblStatus.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(78, 17);
+            this.lblStatus.TabIndex = 18;
+            this.lblStatus.Text = "Trạng Thái";
             // 
-            // label2
+            // lblNgayCT
             // 
-            this.label2.AccessibleDescription = "ADDEDITL00206";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 23);
-            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 17);
-            this.label2.TabIndex = 98;
-            this.label2.Text = "Ngày chứng từ";
+            this.lblNgayCT.AccessibleDescription = "ADDEDITL00206";
+            this.lblNgayCT.AutoSize = true;
+            this.lblNgayCT.Location = new System.Drawing.Point(17, 23);
+            this.lblNgayCT.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblNgayCT.Name = "lblNgayCT";
+            this.lblNgayCT.Size = new System.Drawing.Size(100, 17);
+            this.lblNgayCT.TabIndex = 98;
+            this.lblNgayCT.Text = "Ngày chứng từ";
             // 
             // txtTenNt
             // 
@@ -133,16 +133,16 @@
             this.txtTenNt.TabStop = false;
             this.txtTenNt.VVar = "DVT";
             // 
-            // label4
+            // lblTyGia
             // 
-            this.label4.AccessibleDescription = "ADDEDITL00212";
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(17, 81);
-            this.label4.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 17);
-            this.label4.TabIndex = 23;
-            this.label4.Text = "Tỷ giá";
+            this.lblTyGia.AccessibleDescription = "ADDEDITL00212";
+            this.lblTyGia.AutoSize = true;
+            this.lblTyGia.Location = new System.Drawing.Point(17, 81);
+            this.lblTyGia.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblTyGia.Name = "lblTyGia";
+            this.lblTyGia.Size = new System.Drawing.Size(47, 17);
+            this.lblTyGia.TabIndex = 23;
+            this.lblTyGia.Text = "Tỷ giá";
             // 
             // TxtTy_gia
             // 
@@ -168,34 +168,34 @@
             0,
             0});
             // 
-            // TxtMa_nt
+            // txtMa_NT
             // 
-            this.TxtMa_nt.AccessibleName = "MA_NT";
-            this.TxtMa_nt.BackColor = System.Drawing.SystemColors.Window;
-            this.TxtMa_nt.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtMa_nt.BrotherFields = "TEN_NT";
-            this.TxtMa_nt.CheckNotEmpty = true;
-            this.TxtMa_nt.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtMa_nt.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtMa_nt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtMa_nt.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtMa_nt.LeaveColor = System.Drawing.Color.White;
-            this.TxtMa_nt.Location = new System.Drawing.Point(175, 49);
-            this.TxtMa_nt.Name = "TxtMa_nt";
-            this.TxtMa_nt.Size = new System.Drawing.Size(140, 23);
-            this.TxtMa_nt.TabIndex = 1;
-            this.TxtMa_nt.VVar = "ma_nt";
+            this.txtMa_NT.AccessibleName = "MA_NT";
+            this.txtMa_NT.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMa_NT.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMa_NT.BrotherFields = "TEN_NT";
+            this.txtMa_NT.CheckNotEmpty = true;
+            this.txtMa_NT.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMa_NT.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMa_NT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMa_NT.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMa_NT.LeaveColor = System.Drawing.Color.White;
+            this.txtMa_NT.Location = new System.Drawing.Point(175, 49);
+            this.txtMa_NT.Name = "txtMa_NT";
+            this.txtMa_NT.Size = new System.Drawing.Size(140, 23);
+            this.txtMa_NT.TabIndex = 1;
+            this.txtMa_NT.VVar = "ma_nt";
             // 
-            // label1
+            // lblMa
             // 
-            this.label1.AccessibleDescription = "ADDEDITL00127";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 52);
-            this.label1.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã ngoại tệ";
+            this.lblMa.AccessibleDescription = "ADDEDITL00127";
+            this.lblMa.AutoSize = true;
+            this.lblMa.Location = new System.Drawing.Point(17, 52);
+            this.lblMa.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblMa.Name = "lblMa";
+            this.lblMa.Size = new System.Drawing.Size(82, 17);
+            this.lblMa.TabIndex = 0;
+            this.lblMa.Text = "Mã ngoại tệ";
             // 
             // TyGiaNgoaiTeAddEditForm
             // 
@@ -216,14 +216,14 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblMa;
         private V6Controls.V6CheckBox checkBox1;
-        private System.Windows.Forms.Label label8;
-        private V6VvarTextBox TxtMa_nt;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblStatus;
+        private V6VvarTextBox txtMa_NT;
+        private System.Windows.Forms.Label lblTyGia;
         private V6NumberTextBox TxtTy_gia;
         private V6VvarTextBox txtTenNt;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblNgayCT;
         private V6DateTimePicker TxtNgay_ct;
 
 

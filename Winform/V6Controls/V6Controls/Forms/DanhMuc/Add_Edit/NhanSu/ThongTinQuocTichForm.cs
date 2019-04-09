@@ -1,6 +1,7 @@
 ﻿using System.Data.SqlClient;
 using V6AccountingBusiness;
 using System;
+using V6Init;
 using V6Structs;
 namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 {
@@ -16,7 +17,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 
             
         }
-
        
         public override void DoBeforeAdd()
         {
@@ -37,8 +37,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
         {
             var errors = "";
             if (txtName.Text.Trim() == "")
-                errors += "Chưa nhập tên !\r\n";
-            if (errors.Length > 0) throw new Exception(errors);
+                errors += V6Text.Text("CHUANHAP") + " " + lblName.Text;
 
             if (Mode == V6Mode.Edit)
             {

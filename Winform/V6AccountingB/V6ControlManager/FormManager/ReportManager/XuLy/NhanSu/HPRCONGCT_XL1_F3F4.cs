@@ -214,7 +214,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             }
             else
             {
-                ShowMainMessage(V6Text.ExistData);
+                ShowMainMessage(V6Text.DataExist);
             }
         }
 

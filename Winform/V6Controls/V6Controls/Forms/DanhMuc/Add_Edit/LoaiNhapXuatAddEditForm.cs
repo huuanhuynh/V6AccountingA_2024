@@ -45,7 +45,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 bool b = V6BusinessHelper.IsValidTwoCode_Full(TableName.ToString(), 0, "MA_LNX", TXTma_lnx.Text.Trim(), DataOld["MA_LNX"].ToString(),
                     "LOAI",TxtLoai.Text.Trim(), DataOld["LOAI"].ToString());
                 if (!b)
-                    throw new Exception(V6Init.V6Text.ExistData
+                    throw new Exception(V6Init.V6Text.DataExist
                                         + "MA_LNX = " + TXTma_lnx.Text.Trim());
             }
             else if (Mode == V6Structs.V6Mode.Add)
@@ -53,7 +53,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 bool b = V6BusinessHelper.IsValidTwoCode_Full(TableName.ToString(), 1, "MA_LNX",TXTma_lnx.Text.Trim(), TXTma_lnx.Text.Trim(),
                     "LOAI",TxtLoai.Text.Trim(),TxtLoai.Text.Trim());
                 if (!b)
-                    throw new Exception(V6Init.V6Text.ExistData
+                    throw new Exception(V6Init.V6Text.DataExist
                                         + "MA_LNX = " + TXTma_lnx.Text.Trim());
             }
 

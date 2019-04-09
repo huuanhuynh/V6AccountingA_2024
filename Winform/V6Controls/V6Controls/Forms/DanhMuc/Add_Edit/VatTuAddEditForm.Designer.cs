@@ -267,10 +267,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label40 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblTen = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblMa = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -3787,10 +3787,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.groupBox1.Controls.Add(this.label40);
             this.groupBox1.Controls.Add(this.label22);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lblTen);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblMa);
             this.groupBox1.Location = new System.Drawing.Point(3, -3);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
@@ -3967,16 +3967,16 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label3.TabIndex = 6;
             this.label3.Text = "Tên khác";
             // 
-            // label2
+            // lblTen
             // 
-            this.label2.AccessibleDescription = "ADDEDITL00037";
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 41);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 17);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Tên vật tư";
+            this.lblTen.AccessibleDescription = "ADDEDITL00037";
+            this.lblTen.AutoSize = true;
+            this.lblTen.Location = new System.Drawing.Point(13, 41);
+            this.lblTen.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTen.Name = "lblTen";
+            this.lblTen.Size = new System.Drawing.Size(72, 17);
+            this.lblTen.TabIndex = 4;
+            this.lblTen.Text = "Tên vật tư";
             // 
             // label17
             // 
@@ -4000,16 +4000,16 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label16.TabIndex = 2;
             this.label16.Text = "Tên ngắn";
             // 
-            // label1
+            // lblMa
             // 
-            this.label1.AccessibleDescription = "ADDEDITL00195";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 15);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã vật tư";
+            this.lblMa.AccessibleDescription = "ADDEDITL00195";
+            this.lblMa.AutoSize = true;
+            this.lblMa.Location = new System.Drawing.Point(13, 15);
+            this.lblMa.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMa.Name = "lblMa";
+            this.lblMa.Size = new System.Drawing.Size(66, 17);
+            this.lblMa.TabIndex = 0;
+            this.lblMa.Text = "Mã vật tư";
             // 
             // VatTuAddEditForm
             // 
@@ -4048,8 +4048,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTen;
+        private System.Windows.Forms.Label lblMa;
         private V6Controls.V6ColorTextBox v6ColorTextBox3;
         private V6Controls.V6ColorTextBox TxtTenVT;
         private V6Controls.V6ColorTextBox v6ColorTextBox1;

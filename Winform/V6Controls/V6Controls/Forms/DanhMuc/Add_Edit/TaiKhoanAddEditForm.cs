@@ -67,7 +67,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "TK",
                  TxtTk.Text.Trim(), DataOld["TK"].ToString());
                 if (!b)
-                    throw new Exception(V6Init.V6Text.ExistData
+                    throw new Exception(V6Init.V6Text.DataExist
                                                     + "TK = " + TxtTk.Text.Trim());
             }
             else if (Mode == V6Mode.Add)
@@ -75,7 +75,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "TK",
                  TxtTk.Text.Trim(), TxtTk.Text.Trim());
                 if (!b)
-                    throw new Exception(V6Init.V6Text.ExistData
+                    throw new Exception(V6Init.V6Text.DataExist
                                                     + "TK = " + TxtTk.Text.Trim());
             }
 

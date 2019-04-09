@@ -34,7 +34,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, key,
                             DataDic[key].ToString(), DataOld[key].ToString());
                         if (!b)
-                            throw new Exception(V6Init.V6Text.ExistData
+                            throw new Exception(V6Init.V6Text.DataExist
                                                             + key + "=" + DataDic[key]);
                     }
                 }
@@ -48,7 +48,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 {
                     bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, key.Key,
                         DataDic[key.Key].ToString(), "");
-                    if (!b) throw new Exception(V6Init.V6Text.ExistData
+                    if (!b) throw new Exception(V6Init.V6Text.DataExist
                         + key.Key + "=" + DataDic[key.Key]);
                 }
             }
