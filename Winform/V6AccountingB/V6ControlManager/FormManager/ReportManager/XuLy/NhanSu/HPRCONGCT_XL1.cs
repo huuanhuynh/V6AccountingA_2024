@@ -280,9 +280,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         private object begin_cell_value;
         void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            edit_cell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            begin_cell_value = edit_cell.Value;
+            try
+            {
+                edit_cell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                begin_cell_value = edit_cell.Value;
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
         }
+
         void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             if (FilterControl.Check1 && !ExistRowInTable(edit_cell.Value.ToString().Trim()))
@@ -312,8 +320,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             {
                 int nTime = 0;
                 int nAmount = 0;
-
-                
 
                 SqlParameter[] plist =
                 {

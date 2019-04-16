@@ -52,7 +52,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         /// <param name="itemId"></param>
         /// <param name="sttRec">Có mã hợp lệ sẽ tải dữ liệu lên để sửa.</param>
         public PhieuNhapKhauControl(string maCt, string itemId, string sttRec)
-            : base(maCt, itemId)
+            : base(new V6Invoice72(), itemId)
         {
             m_itemId = itemId;
             InitializeComponent();
@@ -118,6 +118,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof(string);
             dataGridViewColumn = dataGridView3.Columns["STT_REC0"];
             if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof(string);
+
+            SetGridViewFomular();
+            SetGridViewEvent();
 
             cboKieuPost.SelectedIndex = 0;
             cboLoai_pb.SelectedIndex = 0;
@@ -2015,8 +2018,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
                 TinhTienNt();
                 TinhGiaNt();
-
-                
             }
             catch (Exception ex)
             {
@@ -2099,6 +2100,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     detail1.MODE = V6Mode.Lock;
                     detail2.MODE = V6Mode.Lock;
                     detail3.MODE = V6Mode.Lock;
+                    dataGridView1.ReadOnly = true;
                     dataGridView3ChiPhi.ReadOnly = true;
 
                     ChonDonHangMuaMenu.Enabled = false;
@@ -2157,6 +2159,157 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             ReorderDataGridViewColumns();
             FormatGridView();
         }
+
+        private void SetGridViewEvent()
+        {
+            dataGridView1.CellBeginEdit += dataGridView1_CellBeginEdit;
+            dataGridView1.CellEndEdit += dataGridView1_CellEndEdit;
+        }
+
+        void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            string FIELD = null;
+            try
+            {
+                var row = dataGridView1.Rows[e.RowIndex];
+                var col = dataGridView1.Columns[e.ColumnIndex];
+                FIELD = col.DataPropertyName.ToUpper();
+                var cell = row.Cells[e.ColumnIndex];
+                var cell_MA_VT = row.Cells["MA_VT"];
+                var cell_SO_LUONG1 = row.Cells["SO_LUONG1"];
+
+                ShowMainMessage("cell_end_edit: " + FIELD);
+
+                switch (FIELD)
+                {
+                    case "SO_LUONG1":
+
+                        //TinhTienNt0(actionControl);
+                        //==========================
+                        //if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
+                        //if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
+                        //if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
+                        //_soLuong.Value = _soLuong1.Value * _heSo1.Value;
+                        //_tienNt0.Value = V6BusinessHelper.Vround((_soLuong1.Value * _giaNt01.Value), M_ROUND_NT);
+                        //_tien0.Value = V6BusinessHelper.Vround((_tienNt0.Value * txtTyGia.Value), M_ROUND);
+                        //TinhChietKhauChiTiet(false, _ck, _ckNt, txtTyGia, _tienNt0, _pt_cki);
+                        //TinhThueNhapKhau();
+                        //TinhTienNt();
+                        //TinhGiaNt();
+
+                        //Tinh_thue_ct();
+                        //===============
+                        //V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - M_POA_MULTI_VAT = " + M_POA_MULTI_VAT);
+                        //if (M_POA_MULTI_VAT == "1")
+                        //{
+                        //    Tinh_TienThueNtVaTienThue_TheoThueSuat(_thue_suat_i.Value, _tienNt0.Value - _ckNt.Value - _ggNt.Value, _tien0.Value - _ck.Value - _gg.Value, _thue_nt, _thue);
+                        //    V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - Tinh thue ct M_POA_MULTY_VAT = 1.");
+                        //}
+                        #region ==== SO_LUONG1 ====
+
+                        if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0_Row(row, FIELD);
+                        if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2_Row(row, FIELD);
+                        if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1_Row(row, FIELD);
+                        row.Cells["SO_LUONG"].Value = ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value) * ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1"].Value);
+                        row.Cells["TIEN_NT0"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value)
+                            * ObjectAndString.ObjectToDecimal(row.Cells["GIA_NT01"].Value), M_ROUND_NT);
+                        row.Cells["TIEN0"].Value = _maNt == _mMaNt0
+                            ? row.Cells["TIEN_NT0"].Value
+                            : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT0"].Value) * txtTyGia.Value, M_ROUND);
+                        TinhChietKhauChiTietRow(false, row, txtTyGia.Value);
+                        TinhThueNhapKhauRow(row);
+                        //TinhTienNt();
+                        //TinhGiaNt();
+
+                        #endregion ==== SO_LUONG1 ====
+                        break;
+
+                    case "GIA_NT21":
+                        #region ==== GIA_NT21 ====
+
+                        //TinhTienVon1(_gia_nt21);
+                        row.Cells["TIEN_NT2"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value)
+                            * ObjectAndString.ObjectToDecimal(row.Cells["GIA_NT21"].Value), M_ROUND_NT);
+                        row.Cells["TIEN2"].Value = _maNt == _mMaNt0
+                            ? row.Cells["TIEN_NT2"].Value
+                            : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT2"].Value) * txtTyGia.Value, M_ROUND);
+                        //TinhChietKhauChiTiet
+                        TinhChietKhauChiTietRow(false, row, txtTyGia.Value);
+                        //TinhGiaVon();
+                        row.Cells["GIA21"].Value = _maNt == _mMaNt0
+                            ? row.Cells["GIA_NT21"].Value
+                            : V6BusinessHelper.Vround((ObjectAndString.ObjectToDecimal(row.Cells["GIA_NT21"].Value) * txtTyGia.Value), M_ROUND_GIA_NT);
+                        //TinhGiaNt2
+                        if (ObjectAndString.ObjectToDecimal(row.Cells["SO_LUONG"].Value) != 0)
+                        {
+                            row.Cells["GIA_NT2"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT2"].Value) / ObjectAndString.ObjectToDecimal(row.Cells["SO_LUONG"].Value), M_ROUND_GIA_NT);
+                            row.Cells["GIA2"].Value = _maNt == _mMaNt0
+                                ? row.Cells["GIA_NT2"].Value
+                                : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN2"].Value)
+                                    / ObjectAndString.ObjectToDecimal(row.Cells["SO_LUONG"].Value), M_ROUND_GIA);
+                        }
+                        //TinhVanChuyenRow(row);
+                        //TinhGiamGiaCtRow(row);
+                        //Tinh_thue_ct_row(row);
+
+                        #endregion ==== GIA_NT21 ====
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+            TinhTongThanhToan("CellEndEdit_" + FIELD);
+        }
+
+        void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            string FIELD = null;
+            try
+            {
+                var row = dataGridView1.Rows[e.RowIndex];
+                var col = dataGridView1.Columns[e.ColumnIndex];
+                FIELD = col.DataPropertyName.ToUpper();
+
+                ShowMainMessage("cell_end_edit: " + FIELD);
+
+                switch (FIELD)
+                {
+                    case "SO_LUONG1":
+                        #region ==== SO_LUONG1 ====
+                        GetTonRow(row, detail1, dateNgayCT.Value);
+                        #endregion ==== SO_LUONG1 ====
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        /// <summary>
+        /// Gán công thức tính toán cho GridView theo các trường, Các công thức được tham chiếu từ các hàm xử lý (vd so_luong1.V6lostfocus...).
+        /// </summary>
+        private void SetGridViewFomular()
+        {
+            return;//Dùng sự kiện cell_endedit để viết lại sự kiện.
+            #region ==== SO_LUONG1 ====
+            //Ex:
+            //--dataGridView1.ThemCongThuc("SO_LUONG1", "SO_LUONG=SO_LUONG1*HE_SO1");
+            //--dataGridView1.ThemCongThuc("SO_LUONG1", "THANH_TIEN=SO_LUONG*DON_GIA");
+
+
+            #endregion ==== SO_LUONG1 ====
+
+            //--dataGridView1.ThemCongThuc("DON_GIA", "THANH_TIEN=SO_LUONG*DON_GIA");
+        }
+
         private void ReorderDataGridViewColumns()
         {
             V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView1, _orderList);
@@ -2921,6 +3074,30 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 if (_maNt == _mMaNt0)
                 {
                     _nk.Value = _nkNt.Value;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        public void TinhThueNhapKhauRow(DataGridViewRow row)
+        {
+            try
+            {
+                var cell_NK_NT = row.Cells["NK_NT"];
+                var cell_NK = row.Cells["NK"];
+                var cell_Tien_NT0 = row.Cells["TIEN_NT0"];
+                var cell_TS_NK = row.Cells["TS_NK"];
+                cell_NK_NT.Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_Tien_NT0.Value) * ObjectAndString.ObjectToDecimal(cell_TS_NK.Value) / 100, M_ROUND_NT);
+                if (_maNt == _mMaNt0)
+                {
+                    cell_NK.Value = cell_NK_NT.Value;
+                }
+                else
+                {
+                    cell_NK.Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_NK_NT.Value) * txtTyGia.Value, M_ROUND);
                 }
             }
             catch (Exception ex)
@@ -6242,7 +6419,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             if (tabControl1.SelectedTab == tabChiTiet)
             {
-                detail1.AutoFocus();
+                if (!chkTempSuaCT.Checked) detail1.AutoFocus();
             }
             else if (tabControl1.SelectedTab == tabThue)
             {
@@ -6764,6 +6941,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             if (tabControl1.SelectedTab == tabThue)
             {
                 NhapThueTuDong();
+            }
+        }
+
+        private void chkTempSuaCT_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkTempSuaCT.Checked)
+            {
+                SetGridViewReadonly(dataGridView1, Invoice);
+            }
+            else
+            {
+                dataGridView1.ReadOnly = true;
             }
         }
     }

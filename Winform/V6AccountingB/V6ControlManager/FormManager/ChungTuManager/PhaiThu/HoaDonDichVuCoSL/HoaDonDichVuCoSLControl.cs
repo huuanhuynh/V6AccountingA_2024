@@ -59,7 +59,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         /// <param name="itemId"></param>
         /// <param name="sttRec">Có mã hợp lệ sẽ tải dữ liệu lên để sửa.</param>
         public HoaDonDichVuCoSLControl(string maCt, string itemId, string sttRec)
-            : base(maCt, itemId)
+            : base(new V6Invoice82(), itemId)
         {
             m_itemId = itemId;
             InitializeComponent();

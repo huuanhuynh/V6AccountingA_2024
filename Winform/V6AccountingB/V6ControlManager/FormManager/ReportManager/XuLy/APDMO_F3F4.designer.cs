@@ -681,9 +681,9 @@
             this.v6Label14.AutoSize = true;
             this.v6Label14.Location = new System.Drawing.Point(227, 374);
             this.v6Label14.Name = "v6Label14";
-            this.v6Label14.Size = new System.Drawing.Size(117, 13);
+            this.v6Label14.Size = new System.Drawing.Size(113, 13);
             this.v6Label14.TabIndex = 73;
-            this.v6Label14.Text = "1- Thu, 2- Giảm (trả lại )";
+            this.v6Label14.Text = "1-Chi, 2-Giảm (trả lại)";
             // 
             // v6Label15
             // 

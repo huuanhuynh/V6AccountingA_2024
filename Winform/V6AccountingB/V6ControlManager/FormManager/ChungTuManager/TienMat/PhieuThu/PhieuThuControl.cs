@@ -52,7 +52,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         /// <param name="itemId"></param>
         /// <param name="sttRec">Có mã hợp lệ sẽ tải dữ liệu lên để sửa.</param>
         public PhieuThuControl(string maCt, string itemId, string sttRec)
-            : base(maCt, itemId)
+            : base(new V6Invoice41(maCt), itemId)
         {
             m_itemId = itemId;
             InitializeComponent();

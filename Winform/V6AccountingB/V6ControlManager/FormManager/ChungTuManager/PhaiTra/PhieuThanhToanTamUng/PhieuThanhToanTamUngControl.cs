@@ -49,7 +49,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
         /// <param name="itemId"></param>
         /// <param name="sttRec">Có mã hợp lệ sẽ tải dữ liệu lên để sửa.</param>
         public PhieuThanhToanTamUngControl(string maCt, string itemId, string sttRec)
-            : base(maCt, itemId)
+            : base(new V6Invoice32(), itemId)
         {
             m_itemId = itemId;
             InitializeComponent();

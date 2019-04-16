@@ -51,7 +51,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         /// <param name="itemId"></param>
         /// <param name="sttRec">Có mã hợp lệ sẽ tải dữ liệu lên để sửa.</param>
         public PhieuNhapKhoControl(string maCt, string itemId, string sttRec)
-            : base(maCt, itemId)
+            : base(new V6Invoice74(), itemId)
         {
             m_itemId = itemId;
             InitializeComponent();
@@ -1546,9 +1546,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
 
         void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
+            string FIELD = null;
             try
             {
+                var row = dataGridView1.Rows[e.RowIndex];
+                var col = dataGridView1.Columns[e.ColumnIndex];
+                FIELD = col.DataPropertyName.ToUpper();
 
+                ShowMainMessage("cell_end_edit: " + FIELD);
+
+                switch (FIELD)
+                {
+                    case "SO_LUONG1":
+                        #region ==== SO_LUONG1 ====
+                        GetTonRow(row, detail1, dateNgayCT.Value);
+                        #endregion ==== SO_LUONG1 ====
+                        break;
+                    default:
+                        break;
+                }
             }
             catch (Exception ex)
             {

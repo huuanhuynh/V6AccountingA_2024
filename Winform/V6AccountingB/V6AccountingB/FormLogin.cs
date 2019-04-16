@@ -198,7 +198,7 @@ namespace V6AccountingB
         
         private int GetLangIndex(DataTable data, string langID)
         {
-            int result = 0;
+            int result = 3;
             try
             {
                 for(int i = 0; i<data.Rows.Count;i++)
@@ -210,9 +210,9 @@ namespace V6AccountingB
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                result = 0;
+                this.WriteExLog(GetType() + ".GetLangIndex", ex);
             }
             return result;
         }

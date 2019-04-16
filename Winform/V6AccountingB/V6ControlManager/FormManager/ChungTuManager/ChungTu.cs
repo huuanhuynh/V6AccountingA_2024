@@ -234,7 +234,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
                 #region ==== Tồn kho ====
                 case "IXA":
-                    return new PhieuXuatKhoControl(maCt, itemId, sttRec) { Name = itemId };
+                    return new PhieuXuatKhoControl(new V6Invoice84(), itemId, sttRec) { Name = itemId };
                 case "IXB":
                     return new PhieuXuatDieuChuyenControl(maCt, itemId, sttRec) { Name = itemId };
                 case "IND":

@@ -60,7 +60,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         /// <param name="itemId"></param>
         /// <param name="sttRec">Có mã hợp lệ sẽ tải dữ liệu lên để sửa.</param>
         public HoaDonControl(string maCt, string itemId, string sttRec)
-            : base(maCt, itemId)
+            : base(new V6Invoice81(), itemId)
         {
             m_itemId = itemId;
             InitializeComponent();
@@ -3273,7 +3273,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         //TinhTienVon1(_soLuong1);
                         row.Cells["TIEN_NT2"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value)
                             * ObjectAndString.ObjectToDecimal(row.Cells["GIA_NT21"].Value), M_ROUND_NT);
-                        row.Cells["TIEN0"].Value = _maNt == _mMaNt0
+                        row.Cells["TIEN2"].Value = _maNt == _mMaNt0
                             ? row.Cells["TIEN_NT2"].Value
                             : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT2"].Value) * txtTyGia.Value, M_ROUND);
 
@@ -3283,8 +3283,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1_Row(row, FIELD);
                         //_tienNt.Value = _tienNt0.Value;
                         //_tien.Value = _tien0.Value;
-                        row.Cells["TIEN_NT"].Value = row.Cells["TIEN_NT2"].Value;
-                        row.Cells["TIEN"].Value = row.Cells["TIEN0"].Value;
+                        //row.Cells["TIEN_NT"].Value = row.Cells["TIEN_NT2"].Value;
+                        //row.Cells["TIEN"].Value = row.Cells["TIEN0"].Value;
 
                         #endregion ==== SO_LUONG1 ====
                         break;
@@ -3332,9 +3332,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
+            string FIELD = null;
             try
             {
+                var row = dataGridView1.Rows[e.RowIndex];
+                var col = dataGridView1.Columns[e.ColumnIndex];
+                FIELD = col.DataPropertyName.ToUpper();
 
+                ShowMainMessage("cell_end_edit: " + FIELD);
+
+                switch (FIELD)
+                {
+                    case "SO_LUONG1":
+                        #region ==== SO_LUONG1 ====
+                        GetTonRow(row, detail1, dateNgayCT.Value);
+                        #endregion ==== SO_LUONG1 ====
+                        break;
+                    default:
+                        break;
+                }
             }
             catch (Exception ex)
             {
