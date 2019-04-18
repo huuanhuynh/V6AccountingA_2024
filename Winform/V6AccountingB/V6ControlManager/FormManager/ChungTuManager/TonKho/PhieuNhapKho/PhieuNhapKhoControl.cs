@@ -117,7 +117,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         private V6CheckTextBox _nhap_tb;
         private V6VvarTextBox _maVt, _dvt1, _maKho2, _Ma_nx_i, _tkVt, _maLo, _maKhoI, _maViTri;
         private V6NumberTextBox _soLuong1, _soLuong, _heSo1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_td1;
-        private V6NumberTextBox _ton13, _gia,_gia_nt, _gia0, _gia_nt0, _tien, _tienNt, _tien0, _tienNt0, _gia01, _gia_nt01;
+        private V6NumberTextBox _ton13, _ton13Qd, _gia, _gia_nt, _gia0, _gia_nt0, _tien, _tienNt, _tien0, _tienNt0, _gia01, _gia_nt01;
         private V6DateTimeColor _hanSd;
         
         private void LoadDetailControls()
@@ -211,7 +211,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                         _ton13 = (V6NumberTextBox)control;
                         _ton13.Tag = "disable";
                         break;
-                    //_ton13.V6LostFocus += Ton13_V6LostFocus;
+                    case "TON13QD":
+                        _ton13Qd = control as V6NumberTextBox;
+                        if (_ton13Qd.Tag == null || _ton13Qd.Tag.ToString() != "hide")
+                        {
+                            _ton13Qd.Tag = "disable";
+                        }
+                        break;
                     case "SO_LUONG1":
                         _soLuong1 = (V6NumberTextBox)control;
                         
@@ -1150,10 +1156,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                     {
                         DataRow row0 = _dataViTri.Rows[0];
                         _ton13.Value = ObjectAndString.ObjectToDecimal(row0["ton00"]);
+                        if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E") _ton13Qd.Value = ObjectAndString.ObjectToDecimal(row0["ton00Qd"]);
                     }
                     else
                     {
                         _ton13.Value = 0;
+                        if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E") _ton13Qd.Value = 0;
                     }
                 }
             }

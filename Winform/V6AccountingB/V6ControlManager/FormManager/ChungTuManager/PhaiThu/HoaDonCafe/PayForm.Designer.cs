@@ -86,17 +86,17 @@
             // 
             // btnIn
             // 
-            this.btnIn.AccessibleDescription = "REPORTB00006";
+            this.btnIn.AccessibleDescription = "REPORTB00012";
             this.btnIn.AccessibleName = "";
             this.btnIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnIn.Image = global::V6ControlManager.Properties.Resources.Print24;
             this.btnIn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnIn.Location = new System.Drawing.Point(240, 281);
+            this.btnIn.Location = new System.Drawing.Point(204, 281);
             this.btnIn.Name = "btnIn";
-            this.btnIn.Size = new System.Drawing.Size(88, 40);
+            this.btnIn.Size = new System.Drawing.Size(124, 40);
             this.btnIn.TabIndex = 2;
             this.btnIn.Tag = "F7";
-            this.btnIn.Text = "Lưu và &In";
+            this.btnIn.Text = "Lưu và &In (F7)";
             this.btnIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnIn.UseVisualStyleBackColor = true;
             this.btnIn.Click += new System.EventHandler(this.btnIn_Click);

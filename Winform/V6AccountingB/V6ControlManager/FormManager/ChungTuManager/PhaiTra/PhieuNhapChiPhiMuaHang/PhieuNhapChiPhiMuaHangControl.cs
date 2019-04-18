@@ -117,7 +117,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         private V6VvarTextBox _maVt, _dvt1, _maKho, _maKhoI, _tkVt,_maLo;
         private V6NumberTextBox _soLuong1, _soLuong, _heSo1, _giaNt, _giaNt01, _tien0, _tienNt0,
             _ck, _ckNt, _gia0, _gia01, _gia, _gia_Nt0;
-        private V6NumberTextBox _ton13, _tienNt, _tien, _mau_bc;
+        private V6NumberTextBox _ton13, _ton13Qd, _tienNt, _tien, _mau_bc;
         private V6DateTimeColor _hanSd;
         private V6ColorTextBox _so_ct022,_so_seri022,_ten_kh22,
             _dia_chi22,_ma_so_thue22;
@@ -204,7 +204,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                         _ton13 = (V6NumberTextBox)control;
                         _ton13.Tag = "disable";
                         break;
-                    //_ton13.V6LostFocus += Ton13_V6LostFocus;
+                    case "TON13QD":
+                        _ton13Qd = control as V6NumberTextBox;
+                        if (_ton13Qd.Tag == null || _ton13Qd.Tag.ToString() != "hide")
+                        {
+                            _ton13Qd.Tag = "disable";
+                        }
+                        break;
                     case "SO_LUONG1":
                         _soLuong1 = (V6NumberTextBox)control;
                         _soLuong1.V6LostFocus += SoLuong1_V6LostFocus;

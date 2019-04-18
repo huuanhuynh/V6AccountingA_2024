@@ -266,7 +266,7 @@ namespace V6AccountingBusiness.Invoices
         public virtual DataTable LoadAD(string sttRec)
         {
             //c=AD81, d=Alvt, e=ABVT13
-            string sql = "SELECT c.*,d.Ten_vt AS Ten_vt, c.So_luong1*0 as Ton13" + ADSELECTMORE + " FROM [" + AD_TableName
+            string sql = "SELECT c.*,d.Ten_vt AS Ten_vt, c.So_luong1*0 as Ton13, c.So_luong1*0 as Ton13Qd" + ADSELECTMORE + " FROM [" + AD_TableName
                 + "] c LEFT JOIN Alvt d ON c.Ma_vt= d.Ma_vt ";
             sql += string.IsNullOrEmpty(sttRec) ? " Where 1=0" : " Where c.stt_rec=@rec";
             sql += " Order by c.stt_rec0";
@@ -969,7 +969,7 @@ namespace V6AccountingBusiness.Invoices
             return AlVitriTon;
         }
 
-        public DataTable AlLoTon;
+        public DataTable AlLoTon { get; set; }
         public DataTable GetAlLoTon(DateTime ngay_ct, string sttRec, string mavt, string makho)// string makh, string madvcs)
         {
             mavt = mavt.Replace("'", "''");

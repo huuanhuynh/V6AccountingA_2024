@@ -228,7 +228,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         private V6CheckTextBox _tang, _xuat_dd;
         private V6VvarTextBox _maVt, _dvt1, _maKhoI, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo; //_maKho
         private V6NumberTextBox _soLuong1, _soLuong, _heSo1, _giaNt2, _giaNt21,_tien2, _tienNt2, _ck, _ckNt,_gia2,_gia21;
-        private V6NumberTextBox _ton13,_gia,_gia_nt, _tien, _tienNt, _pt_cki;
+        private V6NumberTextBox _ton13, _ton13Qd, _gia, _gia_nt, _tien, _tienNt, _pt_cki;
         private V6NumberTextBox _sl_qd, _sl_qd2, _tien_vcNt, _tien_vc, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4,_ggNt,_gg;
         private V6DateTimeColor _hanSd;
         
@@ -347,7 +347,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                             //CheckSoLuong1();
                         };
                         break;
-                    //_ton13.V6LostFocus += Ton13_V6LostFocus;
+                    case "TON13QD":
+                        _ton13Qd = control as V6NumberTextBox;
+                        if (_ton13Qd.Tag == null || _ton13Qd.Tag.ToString() != "hide")
+                        {
+                            _ton13Qd.Tag = "disable";
+                        }
+                        break;
                     case "SO_LUONG1":
                         _soLuong1 = control as V6NumberTextBox;
                         if (_soLuong1 != null)
@@ -1414,6 +1420,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 //_maLo.Text = row["MA_LO"].ToString().Trim();
                 _hanSd.Value = ObjectAndString.ObjectToDate(row["HSD"]);
                 _ton13.Value = ObjectAndString.ObjectToDecimal(row["TON_DAU"]);
+                if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E") _ton13Qd.Value = ObjectAndString.ObjectToDecimal(row["TON_DAU_QD"]);
                 _maLo.Enabled = true;
                 //_maLo.ReadOnlyTag();
 
@@ -2005,9 +2012,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 _dataLoDate = V6BusinessHelper.GetLoDate13(maVt, maKhoI, maLo, _sttRec, dateNgayCT.Date);
                 if (_dataLoDate.Rows.Count == 0)
                 {
-                    _ton13.Value = 0;
-                    _maLo.Clear();
-                    _hanSd.Value = null;
+                    ResetTonLoHsd(_ton13, _maLo, _hanSd, _ton13Qd);
                 }
                 //Xử lý - tồn
                 //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
@@ -2026,11 +2031,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     {
                         //- so luong
                         decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
+                        decimal data_soLuong_qd = ObjectAndString.ObjectToDecimal(data_row["Ton_dau_qd"]);
                         decimal new_soLuong = data_soLuong;
+                        decimal new_soLuong_qd = data_soLuong_qd;
 
                         foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
                         {
-
                             string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
                             string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
                             string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
@@ -2041,11 +2047,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                             //if (detail1.MODE == V6Mode.Edit && c_sttRec0 == sttRec0) break;
 
                             decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+                            decimal c_soLuong_qd = ObjectAndString.ObjectToDecimal(row["SL_QD"]);
                             if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
                             {
                                 if (maVt == c_maVt && maKhoI == c_maKhoI && maLo == c_maLo)
                                 {
                                     new_soLuong -= c_soLuong;
+                                    new_soLuong_qd -= c_soLuong_qd;
                                 }
                             }
                         }
@@ -2060,7 +2068,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                             {
                                 _ton13.Value = new_soLuong;
                             }
-                            
+                            if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E") _ton13Qd.Value = new_soLuong_qd;
                             _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
                             break;
                         }
@@ -2157,9 +2165,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 _dataLoDate = V6BusinessHelper.GetLoDate(maVt, maKhoI, _sttRec, dateNgayCT.Date);
                 if (_dataLoDate.Rows.Count == 0)
                 {
-                    _ton13.Value = 0;
-                    _maLo.Clear();
-                    _hanSd.Value = null;
+                    ResetTonLoHsd(_ton13, _maLo, _hanSd, _ton13Qd);
                 }
                 //Xử lý - tồn
                 //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
@@ -2178,7 +2184,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     {
                         //- so luong
                         decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
+                        decimal data_soLuong_qd = ObjectAndString.ObjectToDecimal(data_row["Ton_dau_qd"]);
                         decimal new_soLuong = data_soLuong;
+                        decimal new_soLuong_qd = data_soLuong_qd;
 
                         foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
                         {
@@ -2187,6 +2195,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                             string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
                             string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
                             decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+                            decimal c_soLuong_qd = ObjectAndString.ObjectToDecimal(row["SL_QD"]);
 
                             //Add 31-07-2016
                             //Nếu khi sửa chỉ trừ dần những dòng trên dòng đang đứng thì dùng dòng if sau:
@@ -2197,6 +2206,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                                 if (maVt == c_maVt && maKhoI == c_maKhoI && data_maLo == c_maLo)
                                 {
                                     new_soLuong -= c_soLuong;
+                                    new_soLuong_qd -= c_soLuong_qd;
                                 }
                             }
                         }
@@ -2204,13 +2214,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                         if (new_soLuong > 0)
                         {
                             _ton13.Value = new_soLuong / _heSo1.Value;
+                            if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E") _ton13Qd.Value = new_soLuong_qd;
                             _maLo.Text = data_row["Ma_lo"].ToString().Trim();
                             _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
                             break;
                         }
                         else
                         {
-                            ResetTonLoHsd(_ton13, _maLo, _hanSd);
+                            ResetTonLoHsd(_ton13, _maLo, _hanSd, _ton13Qd);
                         }
                     }
                 }
@@ -2250,7 +2261,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                             {
                                 //- so luong
                                 decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton00"]);
+                                decimal data_soLuong_qd = ObjectAndString.ObjectToDecimal(data_row["Ton00QD"]);
                                 decimal new_soLuong = data_soLuong;
+                                decimal new_soLuong_qd = data_soLuong_qd;
 
                                 foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
                                 {
@@ -2259,6 +2272,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                                     string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
                                     
                                     decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+                                    decimal c_soLuong_qd = ObjectAndString.ObjectToDecimal(row["SL_QD"]);
 
                                     //Add 31-07-2016
                                     //Nếu khi sửa chỉ trừ dần những dòng trên dòng đang đứng thì dùng dòng if sau:
@@ -2269,6 +2283,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                                         if (maVt == c_maVt && maKhoI == c_maKhoI)
                                         {
                                             new_soLuong -= c_soLuong;
+                                            new_soLuong_qd -= c_soLuong_qd;
                                         }
                                     }
                                 }
@@ -2276,6 +2291,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                                 //if (new_soLuong < 0) new_soLuong = 0;
                                 {
                                     _ton13.Value = new_soLuong / _heSo1.Value;
+                                    if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E") _ton13Qd.Value = new_soLuong_qd;
                                     break;
                                 }
                             }
@@ -2285,6 +2301,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     else
                     {
                         _ton13.Value = 0;
+                        if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E") _ton13Qd.Value = 0;
                     }
                 }
             }
@@ -2724,8 +2741,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
                 if (readOnly)
                 {
-                    detail1.MODE = V6Mode.Lock;
-                    detail3.MODE = V6Mode.Lock;
+                    detail1.MODE = V6Mode.Init;
+                    detail3.MODE = V6Mode.Init;
                     dataGridView1.ReadOnly = true;
                 }
                 else
@@ -2886,31 +2903,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
                     case "GIA_NT21":
                         #region ==== GIA_NT21 ====
-
-                        //TinhTienVon1(_gia_nt21);
-                        row.Cells["TIEN_NT2"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value)
-                            * ObjectAndString.ObjectToDecimal(row.Cells["GIA_NT21"].Value), M_ROUND_NT);
-                        row.Cells["TIEN2"].Value = _maNt == _mMaNt0
-                            ? row.Cells["TIEN_NT2"].Value
-                            : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT2"].Value) * txtTyGia.Value, M_ROUND);
-                        //TinhChietKhauChiTiet
-                        TinhChietKhauChiTietRow(false, row, txtTyGia.Value);
-                        //TinhGiaVon();
-                        row.Cells["GIA21"].Value = _maNt == _mMaNt0
-                            ? row.Cells["GIA_NT21"].Value
-                            : V6BusinessHelper.Vround((ObjectAndString.ObjectToDecimal(row.Cells["GIA_NT21"].Value) * txtTyGia.Value), M_ROUND_GIA_NT);
-                        //TinhGiaNt2
-                        if (ObjectAndString.ObjectToDecimal(row.Cells["SO_LUONG"].Value) != 0)
+                        //TinhTienNt2(_giaNt21)
                         {
-                            row.Cells["GIA_NT2"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT2"].Value) / ObjectAndString.ObjectToDecimal(row.Cells["SO_LUONG"].Value), M_ROUND_GIA_NT);
-                            row.Cells["GIA2"].Value = _maNt == _mMaNt0
-                                ? row.Cells["GIA_NT2"].Value
-                                : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN2"].Value)
-                                    / ObjectAndString.ObjectToDecimal(row.Cells["SO_LUONG"].Value), M_ROUND_GIA);
+                            if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0_Row(row, FIELD);
+                            if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2_Row(row, FIELD);
+                            if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1_Row(row, FIELD);
+                            row.Cells["SO_LUONG"].Value = ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value) *
+                                                          ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1"].Value);
+                            row.Cells["TIEN_NT2"].Value =
+                                V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value)
+                                                        * ObjectAndString.ObjectToDecimal(row.Cells["GIA_NT21"].Value),
+                                    M_ROUND_NT);
+                            row.Cells["TIEN2"].Value = _maNt == _mMaNt0
+                                ? row.Cells["TIEN_NT2"].Value
+                                : V6BusinessHelper.Vround(
+                                    ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT2"].Value) * txtTyGia.Value, M_ROUND);
+
+                            TinhChietKhauChiTietRow(false, row, txtTyGia.Value);
+                            //TinhGiaNt2Row(row); tạm đóng
+                            TinhVanChuyenRow(row);
+                            TinhGiamGiaCtRow(row);
                         }
-                        TinhVanChuyenRow(row);
-                        TinhGiamGiaCtRow(row);
-                        //Tinh_thue_ct_row(row);
 
                         #endregion ==== GIA_NT21 ====
                         break;
@@ -4621,6 +4634,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             _post = post;
             try
             {
+                if (Mode == V6Mode.Edit)
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
                     ShowMainMessage(V6Text.DetailNotComplete);
@@ -5055,14 +5069,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             {
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
-                    ShowMainMessage(V6Text.DetailNotComplete);
+                    //ShowMainMessage(V6Text.DetailNotComplete);
+                    //detail1.btnNhan.PerformClick();
+                    detail1.OnNhanClick();
+                    //return;
+                }
+                if (!ValidateData_Master())
+                {
+                    _print_flag = V6PrintMode.DoNoThing;
+                    //ShowMainMessage(V6Text.CheckData);
                     return;
                 }
-                //_print_flag = true;
-                //_sttRec_In = _sttRec;
-                //Luu(MA_KHOPH, MA_VITRIPH, true);
-                //Status = "3";
-
+                
                 var payform = new PayForm(TongThanhToan, txtTongTienNt2.DecimalPlaces);
                 var dr = payform.ShowDialog(this);
                 if (dr == DialogResult.Yes) // luu va in
@@ -5070,27 +5088,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     _print_flag = V6PrintMode.AutoPrint;
                     _sttRec_In = _sttRec;
                     txtSL_UD1.Value = payform.KhachDua;
-                    if (ValidateData_Master())
-                    {
-                        Luu(MA_KHOPH, MA_VITRIPH, true);
-                        Status = "3";
-                    }
-                    else
-                    {
-                        _print_flag = V6PrintMode.DoNoThing;
-                    }
                     
+                    Luu(MA_KHOPH, MA_VITRIPH, true);
+                    Status = "3";
                 }
                 else if (dr == DialogResult.OK) // luu ko in
                 {
                     _print_flag = V6PrintMode.DoNoThing;
                     _sttRec_In = _sttRec;
                     txtSL_UD1.Value = payform.KhachDua;
-                    if (ValidateData_Master())
-                    {
-                        Luu(MA_KHOPH, MA_VITRIPH, true);
-                        Status = "3";
-                    }
+                    
+                    Luu(MA_KHOPH, MA_VITRIPH, true);
+                    Status = "3";
                 }
                 else
                 {

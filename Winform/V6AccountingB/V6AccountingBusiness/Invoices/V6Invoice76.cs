@@ -284,7 +284,7 @@ namespace V6AccountingBusiness.Invoices
         public override DataTable LoadAD(string sttRec)
         {
             //c=AD81, d=Alvt, e=ABVT13
-            string sql = "SELECT c.*,d.Ten_vt AS Ten_vt, c.So_luong1*0 as Ton13" + ADSELECTMORE + " FROM [" + AD_TableName + "]"
+            string sql = "SELECT c.*,d.Ten_vt AS Ten_vt, c.So_luong1*0 as Ton13, c.So_luong1*0 as Ton13Qd" + ADSELECTMORE + " FROM [" + AD_TableName + "]"
                 + " c LEFT JOIN Alvt d ON c.Ma_vt= d.Ma_vt ";
             sql += string.IsNullOrEmpty(sttRec) ? " Where 1=0" : " Where c.stt_rec=@rec";
             sql += " Order by c.stt_rec0";
@@ -302,7 +302,7 @@ namespace V6AccountingBusiness.Invoices
                 where += string.Format(" or c.stt_rec = {0}", sttRec.Replace("'", "''"));
             }
             //c=AD81, d=Alvt, e=ABVT13
-            string sql = "SELECT c.*,d.Ten_vt AS Ten_vt, c.So_luong1*0 as Ton13 FROM [AD81]"
+            string sql = "SELECT c.*,d.Ten_vt AS Ten_vt, c.So_luong1*0 as Ton13, c.So_luong1*0 as Ton13Qd FROM [AD81]"
                 + " c LEFT JOIN Alvt d ON c.Ma_vt= d.Ma_vt Where " + where + " Order by c.stt_rec0";
             
             var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql).Tables[0];

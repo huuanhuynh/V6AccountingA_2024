@@ -129,7 +129,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
         private V6CheckTextBox _tang, _xuat_dd;
         private V6VvarTextBox _maVt, _dvt1, _maKho, _maKhoI, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo, _ma_thue_i, _tk_thue_i;
         private V6NumberTextBox _soLuong1, _soLuong, _heSo1, _giaNt2, _giaNt21,_tien2, _tienNt2, _ck, _ckNt,_gia2,_gia21;
-        private V6NumberTextBox _ton13, _gia, _gia_nt, _tien, _tienNt, _pt_cki, _thue_suat_i, _thue_nt, _thue;
+        private V6NumberTextBox _ton13, _ton13Qd, _gia, _gia_nt, _tien, _tienNt, _pt_cki, _thue_suat_i, _thue_nt, _thue;
         private V6NumberTextBox _sl_qd, _sl_qd2, _tien_vcNt, _tien_vc, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4, _ggNt, _gg;
         private V6DateTimeColor _hanSd;
         
@@ -263,7 +263,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                         _ton13 = (V6NumberTextBox)control;
                         if (_ton13.Tag == null || _ton13.Tag.ToString() != "hide") _ton13.Tag = "disable";
                         break;
-                    //_ton13.V6LostFocus += Ton13_V6LostFocus;
+                    case "TON13QD":
+                        _ton13Qd = control as V6NumberTextBox;
+                        if (_ton13Qd.Tag == null || _ton13Qd.Tag.ToString() != "hide")
+                        {
+                            _ton13Qd.Tag = "disable";
+                        }
+                        break;
                     case "SO_LUONG1":
                         _soLuong1 = (V6NumberTextBox)control;
                         _soLuong1.V6LostFocus += SoLuong1_V6LostFocus;
@@ -1030,9 +1036,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                 _dataLoDate = Invoice.GetLoDate13(maVt, maKhoI, maLo, _sttRec, dateNgayCT.Date);
                 if (_dataLoDate.Rows.Count == 0)
                 {
-                    _ton13.Value = 0;
-                    _maLo.Clear();
-                    _hanSd.Value = null;
+                   ResetTonLoHsd(_ton13, _maLo, _hanSd, _ton13Qd);
                 }
                 //Xử lý - tồn
                 //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
@@ -1050,7 +1054,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                     {
                         //- so luong
                         decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
+                        decimal data_soLuong_qd = ObjectAndString.ObjectToDecimal(data_row["Ton_dau_qd"]);
                         decimal new_soLuong = data_soLuong;
+                        decimal new_soLuong_qd = data_soLuong_qd;
 
                         foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
                         {
@@ -1061,11 +1067,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                             string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
 
                             decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+                            decimal c_soLuong_qd = ObjectAndString.ObjectToDecimal(row["SL_QD"]);
                             if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
                             {
                                 if (maVt == c_maVt && maKhoI == c_maKhoI && maLo == c_maLo)
                                 {
                                     new_soLuong -= c_soLuong;
+                                    new_soLuong_qd -= c_soLuong_qd;
                                 }
                             }
                         }
@@ -1073,6 +1081,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                         //if (new_soLuong < 0) new_soLuong = 0;
                         {
                             _ton13.Value = new_soLuong / _heSo1.Value;
+                            if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E") _ton13Qd.Value = new_soLuong_qd;
                             _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
                             break;
                         }
@@ -1102,9 +1111,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                 _dataLoDate = Invoice.GetLoDate(maVt, maKhoI, _sttRec, dateNgayCT.Date);
                 if (_dataLoDate.Rows.Count == 0)
                 {
-                    _ton13.Value = 0;
-                    _maLo.Clear();
-                    _hanSd.Value = null;
+                    ResetTonLoHsd(_ton13, _maLo, _hanSd, _ton13Qd);
                 }
                 //Xử lý - tồn
                 //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
@@ -1122,21 +1129,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                     {
                         //- so luong
                         decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
+                        decimal data_soLuong_qd = ObjectAndString.ObjectToDecimal(data_row["Ton_dau_qd"]);
                         decimal new_soLuong = data_soLuong;
+                        decimal new_soLuong_qd = data_soLuong_qd;
 
                         foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
                         {
-
                             string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
                             string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
                             string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
                             string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
                             decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+                            decimal c_soLuong_qd = ObjectAndString.ObjectToDecimal(row["SL_QD"]);
                             if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
                             {
                                 if (maVt == c_maVt && maKhoI == c_maKhoI && data_maLo == c_maLo)
                                 {
                                     new_soLuong -= c_soLuong;
+                                    new_soLuong_qd -= c_soLuong_qd;
                                 }
                             }
                         }
@@ -1144,13 +1154,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                         if (new_soLuong > 0)
                         {
                             _ton13.Value = new_soLuong / _heSo1.Value;
+                            if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E") _ton13Qd.Value = new_soLuong_qd;
                             _maLo.Text = data_row["Ma_lo"].ToString().Trim();
                             _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
                             break;
                         }
                         else
                         {
-                            ResetTonLoHsd(_ton13, _maLo, _hanSd);
+                            ResetTonLoHsd(_ton13, _maLo, _hanSd, _ton13Qd);
                         }
                     }
                 }
@@ -1174,10 +1185,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                     {
                         DataRow row0 = _dataLoDate.Rows[0];
                         _ton13.Value = ObjectAndString.ObjectToDecimal(row0["ton00"]);
+                        if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E") _ton13Qd.Value = ObjectAndString.ObjectToDecimal(row0["ton00Qd"]);
                     }
                     else
                     {
                         _ton13.Value = 0;
+                        if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E") _ton13Qd.Value = 0;
                     }
                 }
             }
