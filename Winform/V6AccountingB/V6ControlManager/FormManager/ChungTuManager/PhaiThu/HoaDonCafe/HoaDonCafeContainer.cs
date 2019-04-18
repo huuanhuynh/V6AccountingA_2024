@@ -54,17 +54,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         /// </summary>
         private void AddTab0()
         {
-            // Thêm một khu mới.
-            // Hiển thị danh sách kho để chọn, trừ kho đã có. (kho = khu)
             try
             {
                 if (V6Setting.IsDesignTime) return;
-                IDictionary<string, object> keys = new SortedDictionary<string, object>();
-                keys.Add("LOAI_KHO", "1");
-                var kho_data = V6BusinessHelper.Select(V6TableName.Alkho, keys, "top 1 *").Data;
+                //IDictionary<string, object> keys = new SortedDictionary<string, object>();
+                //keys.Add("LOAI_KHO", "1");
+                //var kho_data = V6BusinessHelper.Select(V6TableName.Alkho, keys, "top 1 *").Data;
+                var kho_data = V6BusinessHelper.Select("Alkho", "Top 1 *", V6Login.IsAdmin ? "Vitri_yn='1'"
+                    : " Vitri_yn='1' and dbo.VFA_Inlist_MEMO(MA_KHO,'" + V6Login.UserRight.RightKho + "')=1").Data;
                 if (kho_data.Rows.Count != 1)
                 {
-                    this.ShowWarningMessage("LOAI_KHO ERROR");
+                    this.ShowWarningMessage("KHO ERROR");
                     return;
                 }
 

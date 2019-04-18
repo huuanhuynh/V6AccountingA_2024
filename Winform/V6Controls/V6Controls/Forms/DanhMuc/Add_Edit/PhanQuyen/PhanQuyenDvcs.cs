@@ -54,7 +54,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             item.Name = Ma_dvcs;
 
             treeListView1.Items.Add(item);
-            if (Vrights_dvcs.Contains(Ma_dvcs))
+            if (("/" + Vrights_dvcs + "/").Contains("/" + Ma_dvcs + "/"))
             {
                 item.Checked = true;
             }

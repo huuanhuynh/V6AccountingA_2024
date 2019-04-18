@@ -40,7 +40,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             item.Name = Ma_ct;
 
             treeListView1.Items.Add(item);
-            if (VLists_ct.Contains(Ma_ct))
+            if (("," + VLists_ct + ",").Contains("," + Ma_ct + ","))
             {
                 item.Checked = true;
             }

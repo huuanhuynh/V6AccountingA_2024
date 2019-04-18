@@ -28,7 +28,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
                 var and_not_in = string.IsNullOrEmpty(NotInList) ? "" : " AND MA_KHO NOT IN (" + NotInList + ")";
                 var kho_data = V6BusinessHelper.Select("Alkho", "*",
-                    (V6Login.IsAdmin ? "1=1" : " dbo.VFA_Inlist_MEMO(MA_KHO,'" + V6Login.UserRight.RightKho +"')=1")
+                    (V6Login.IsAdmin ? "Vitri_yn='1'" : " Vitri_yn='1' and dbo.VFA_Inlist_MEMO(MA_KHO,'" + V6Login.UserRight.RightKho +"')=1")
                         + and_not_in).Data;
                 if (kho_data.Rows.Count == 0)
                 {

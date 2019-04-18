@@ -62,7 +62,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             item.Name = Ma_sonb;
 
             treeListView1.Items.Add(item);
-            if (Vrights_sonb.Contains(Ma_sonb))
+            if (("/" + Vrights_sonb + "/").Contains("/" + Ma_sonb + "/"))
             {
                 item.Checked = true;
             }

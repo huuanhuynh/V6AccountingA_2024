@@ -46,7 +46,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             }
         }
 
-      
         private void MakeList1(DataRow row)
         {
             var text = "";
@@ -55,20 +54,16 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             else
                 text = row["Ten_kho2"].ToString().Trim();
 
-
-
             var Ma_kho = row["Ma_kho"].ToString().Trim();
             TreeListViewItem item = new TreeListViewItem(text);
             item.Name = Ma_kho;
 
             treeListView1.Items.Add(item);
-            if (Vrights_kho.Contains(Ma_kho))
+            if (("/" + Vrights_kho + "/").Contains("/" + Ma_kho + "/"))
             {
                 item.Checked = true;
             }
-          
         }
-
 
         private DataTable GetKho1()
         {

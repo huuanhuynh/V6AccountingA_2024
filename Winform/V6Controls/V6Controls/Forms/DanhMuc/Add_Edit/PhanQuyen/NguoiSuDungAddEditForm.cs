@@ -293,7 +293,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
                     if (phanQuyenKho.ShowDialog(this) == DialogResult.OK)
                     {
                         txtRightKho.Text = phanQuyenKho.Vrights_kho;
-
                     }
                 }
             }
