@@ -725,7 +725,7 @@
             this.lblNotEmpty.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNotEmpty.Name = "lblNotEmpty";
             this.lblNotEmpty.Size = new System.Drawing.Size(66, 17);
-            this.lblNotEmpty.TabIndex = 10;
+            this.lblNotEmpty.TabIndex = 18;
             this.lblNotEmpty.Text = "notempty";
             this.lblNotEmpty.Visible = false;
             // 
@@ -762,7 +762,7 @@
             this.chkNotEmpty.Margin = new System.Windows.Forms.Padding(4);
             this.chkNotEmpty.Name = "chkNotEmpty";
             this.chkNotEmpty.Size = new System.Drawing.Size(219, 21);
-            this.chkNotEmpty.TabIndex = 11;
+            this.chkNotEmpty.TabIndex = 19;
             this.chkNotEmpty.Text = "Kiểm tra textbox cần có dữ liệu";
             this.chkNotEmpty.UseVisualStyleBackColor = true;
             this.chkNotEmpty.Visible = false;
@@ -813,7 +813,7 @@
             this.lblCheckVvar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCheckVvar.Name = "lblCheckVvar";
             this.lblCheckVvar.Size = new System.Drawing.Size(72, 17);
-            this.lblCheckVvar.TabIndex = 8;
+            this.lblCheckVvar.TabIndex = 16;
             this.lblCheckVvar.Text = "checkvvar";
             this.lblCheckVvar.Visible = false;
             // 
@@ -874,7 +874,7 @@
             this.chkCheckVvar.Margin = new System.Windows.Forms.Padding(4);
             this.chkCheckVvar.Name = "chkCheckVvar";
             this.chkCheckVvar.Size = new System.Drawing.Size(237, 21);
-            this.chkCheckVvar.TabIndex = 9;
+            this.chkCheckVvar.TabIndex = 17;
             this.chkCheckVvar.Text = "Kiểm tra dữ liệu hợp lệ khi ra khỏi";
             this.chkCheckVvar.UseVisualStyleBackColor = true;
             this.chkCheckVvar.Visible = false;

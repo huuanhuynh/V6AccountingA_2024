@@ -265,6 +265,7 @@ namespace V6Controls
             KeyDown += V6CurrencyTextBox2_KeyDown;
             KeyPress += V6CurrencyTextBox2_KeyPress;
             GotFocus += V6NumberTextBox_GotFocus;
+            LostFocus += V6NumberTextBox_LostFocus;
             
             ResumeLayout(false);
         }
@@ -307,6 +308,11 @@ namespace V6Controls
             SelectAll();
         }
 
+        void V6NumberTextBox_LostFocus(object sender, EventArgs e)
+        {
+            CorrectValueFromLimitChar();
+        }
+
         public override void Refresh()
         {
             Write();
@@ -323,6 +329,27 @@ namespace V6Controls
 
             Text = ((_isNegative?"-":"") + writeText);
             DrawGrayText();
+        }
+
+        private void CorrectValueFromLimitChar()
+        {
+            if (string.IsNullOrEmpty(LimitCharacters)) return;
+
+            var limits = ObjectAndString.SplitStringBy(LimitCharacters, ';');
+            foreach (string limit in limits)
+            {
+                if (IsEqual(limit))
+                {
+                    return;
+                }
+            }
+            
+            Value = ObjectAndString.ObjectToDecimal(limits[0]);
+        }
+
+        public bool IsEqual(object value)
+        {
+            return ObjectAndString.ObjectToDecimal(value) == Value;
         }
 
         protected override void DrawGrayText()
@@ -676,15 +703,15 @@ namespace V6Controls
             {
                 e.Handled = true;
 
-                if (!string.IsNullOrEmpty(LimitCharacters))
-                {
-                    var c = e.KeyChar;
-                    if (LimitCharacters.IndexOf(c) >= 0)
-                    {
-                        InsertStringValue(e.KeyChar);
-                    }
-                }
-                else
+                //if (!string.IsNullOrEmpty(LimitCharacters)) // Đổi chức năng LimitCharacters thành correct value.
+                //{
+                //    var c = e.KeyChar;
+                //    if (LimitCharacters.IndexOf(c) >= 0)
+                //    {
+                //        InsertStringValue(e.KeyChar);
+                //    }
+                //}
+                //else
                 {
                     InsertStringValue(e.KeyChar);
                 }

@@ -27,7 +27,7 @@ using Timer = System.Windows.Forms.Timer;
 namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 {
     /// <summary>
-    /// Hóa đơn bán hàng kiêm phiếu xuất
+    /// Phiếu bán lẻ
     /// </summary>
     public partial class HoaDonCafeControl : V6InvoiceControl
     {
@@ -4637,8 +4637,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 if (Mode == V6Mode.Edit)
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
-                    ShowMainMessage(V6Text.DetailNotComplete);
-                    return;
+                    //ShowMainMessage(V6Text.DetailNotComplete);
+                    //return;
+                    detail1.OnNhanClick();
                 }
 
                 if (_post) V6ControlFormHelper.RemoveRunningList(_sttRec);
@@ -5105,6 +5106,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 {
                     DoNothing();
                 }
+            }
+            else if (Status == "3")
+            {
+                BasePrint(Invoice, _sttRec, V6PrintMode.AutoPrint, TongThanhToan, TongThanhToanNT, true);
             }
         }
 

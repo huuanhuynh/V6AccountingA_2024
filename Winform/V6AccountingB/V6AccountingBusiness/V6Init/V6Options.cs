@@ -301,7 +301,7 @@ namespace V6Init
         }
 
         /// <summary>
-        /// Cho phép xuất âm?
+        /// Cho xuất âm. 0: Không cho phép xuất âm. 1: Cho phép xuất âm.
         /// </summary>
         public static string M_CHK_XUAT
         {

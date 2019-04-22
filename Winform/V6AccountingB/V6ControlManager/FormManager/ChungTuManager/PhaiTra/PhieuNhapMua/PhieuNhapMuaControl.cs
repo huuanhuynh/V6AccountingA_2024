@@ -139,7 +139,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private V6NumberTextBox _sl_qd, _sl_qd2, _tien_vcNt, _tien_vc, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4;//, _ggNt, _gg;
         private V6DateTimeColor _hanSd;
         private V6ColorTextBox _so_ct022,_so_seri022,_ten_kh22,
-            _dia_chi22,_ma_so_thue22;
+            _dia_chi22,_ma_so_thue22, _ten_vt22;
         private V6VvarTextBox _ma_kh22, _tk_du22, _tk_thue_no22, _ma_thue22;
         private V6DateTimeColor _ngay_ct022;
         private V6NumberTextBox _t_tien22, _t_tien_nt22, _thue_suat22, _t_thue22, _t_thue_nt22, _gia_Nt022, _han_tt22;
@@ -730,6 +730,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     case "MA_SO_THUE":
                         _ma_so_thue22 = control as V6ColorTextBox;
                         if (_ma_so_thue22 != null)
+                        {
+
+                        }
+                        break;
+                    case "TEN_VT":
+                        _ten_vt22 = control as V6ColorTextBox;
+                        if (_ten_vt22 != null)
                         {
 
                         }
@@ -4945,7 +4952,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     _ten_kh22.Text = txtTenKh.Text;
                     _dia_chi22.Text = txtDiaChi.Text;
                     _ma_so_thue22.Text = txtMaSoThue.Text;
-
+                    _ten_vt22.Text = txtDienGiai.Text;
 
                     if (TxtMa_kh_i_ao.Text.Trim() == txtMaKh.Text.Trim())
                     {
@@ -4986,6 +4993,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     _ten_kh22.Text = txtTenKh.Text;
                     _dia_chi22.Text = txtDiaChi.Text;
                     _ma_so_thue22.Text = txtMaSoThue.Text;
+                    _ten_vt22.Text = txtDienGiai.Text;
                     
                     _tk_thue_no22.Text = txtTkThueNo.Text.Trim();
                     _tk_du22.Text = txtManx.Text.Trim();

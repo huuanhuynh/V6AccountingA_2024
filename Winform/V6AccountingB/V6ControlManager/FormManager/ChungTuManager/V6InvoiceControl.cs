@@ -2397,7 +2397,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try
             {
-                if (V6Options.M_CHK_XUAT == "0") return true;
+                if (V6Options.M_CHK_XUAT == "1") return true;
 
                 var M_CHECK_SAVE_STOCK = V6Options.GetValue("M_CHECK_SAVE_STOCK");
                 string message = "";

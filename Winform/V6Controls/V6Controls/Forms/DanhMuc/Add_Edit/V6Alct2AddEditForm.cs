@@ -32,10 +32,32 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         }
         public override void V6F3Execute()
         {
-            ShowTopLeftMessage("V6 Confirm ......OK....");
-            ChkVisible.Enabled = true;
+            ChkVisible.Enabled = true; //ChkVisible.Visible = true;
             TxtForder.Enabled = true;
             TxtWidth.Enabled = true;
+
+            lblFtype.Visible = true;
+            txtFtype.Visible = true;
+            txtFtype.Enabled = true;
+            txtFdecimal.Visible = true;
+            lblFdecimal.Visible = true;
+            txtFdecimal.Enabled = true;
+
+            lblCheckVvar.Visible = true;
+            chkCheckVvar.Visible = true;
+            lblNotEmpty.Visible = true;
+            chkNotEmpty.Visible = true;
+
+            //txtDmethod.Visible = true;
+            //lblXML.Visible = true;
+            //btnEditXml.Visible = true;
+
+            //lblFilterM.Visible = true;
+            //txtFilter_M.Visible = true;
+            //btnEditFilterM.Visible = true;
+            //lblDmethodM.Visible = true;
+            //txtDmethod_M.Visible = true;
+            //btnEditXmlM.Visible = true;
         }
     }
 }
