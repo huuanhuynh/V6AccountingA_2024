@@ -677,6 +677,7 @@ namespace V6Controls.Forms
                 _alct1Dic.Add(fcolumn, row);
 
                 var fcaption = row[V6Setting.Language == "V" ? "caption" : "caption2"].ToString().Trim();
+                var limits = row["limits"].ToString().Trim();
                 var fvvar = row["fvvar"].ToString().Trim();
                 var fstatus = Convert.ToBoolean(row["fstatus"]);
 
@@ -694,61 +695,61 @@ namespace V6Controls.Forms
                     case "A0":
                         if (fcolumn == "TANG")
                         {
-                            c = CreateCheckTextBox(fcolumn, "a", fcaption, width, fstatus, carry);
+                            c = CreateCheckTextBox(fcolumn, "a", fcaption, limits, width, fstatus, carry);
                         }
                         else if (fcolumn == "PX_GIA_DDI")
                         {
-                            c = CreateCheckTextBox(fcolumn, "a", fcaption, width, fstatus, carry);
+                            c = CreateCheckTextBox(fcolumn, "a", fcaption, limits, width, fstatus, carry);
                         }
                         else if (fcolumn == "PN_GIA_TBI")
                         {
-                            c = CreateCheckTextBox(fcolumn, "a", fcaption, width, fstatus, carry);
+                            c = CreateCheckTextBox(fcolumn, "a", fcaption, limits, width, fstatus, carry);
                         }
                         break;
                     case "A1":
-                        c = CreateCheckTextBox(fcolumn, "a", fcaption, width, fstatus, carry);
+                        c = CreateCheckTextBox(fcolumn, "a", fcaption, limits, width, fstatus, carry);
                         break;
                     case "C0":
                         if (fvvar != "")
                         {
                             var checkvvar = Convert.ToBoolean(row["checkvvar"]);
                             var notempty = Convert.ToBoolean(row["notempty"]);
-                            c = CreateVvarTextBox(fcolumn, fvvar, fcaption, width, fstatus, checkvvar, notempty, carry);
+                            c = CreateVvarTextBox(fcolumn, fvvar, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
                         }
                         else
                         {
-                            c = CreateColorTextBox(fcolumn, fcaption, width, fstatus, carry);
+                            c = CreateColorTextBox(fcolumn, fcaption, limits, width, fstatus, carry);
                         }
                         break;
                     case "N9"://Kieu so bat ky
                         decimals = row["fdecimal"] == null ? V6Setting.DecimalsNumber : Convert.ToInt32(row["fdecimal"]);
-                        c = CreateNumberTextBox(fcolumn, fcaption, decimals, width, fstatus, carry);
+                        c = CreateNumberTextBox(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
 
                         break;
 
                     case "N0"://Tien
                         decimals = V6Options.M_IP_TIEN;// row["fdecimal"] == null ? V6Setting.DecilalsNumber : Convert.ToInt32(row["fdecimal"]);
-                        c = CreateNumberTien(fcolumn, fcaption, decimals, width, fstatus, carry);
+                        c = CreateNumberTien(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
 
                         break;
 
                     case "N1"://Ngoai te
                         decimals = V6Options.M_IP_TIEN_NT;
 
-                        c = CreateNumberTienNt(fcolumn, fcaption, decimals, width, fstatus, carry);
+                        c = CreateNumberTienNt(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
                         break;
                     case "N2"://so luong
 
                         decimals = V6Options.M_IP_SL;
 
-                        c = CreateNumberSoLuong(fcolumn, fcaption, decimals, width, fstatus, carry);
+                        c = CreateNumberSoLuong(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
 
                         break;
                     case "N3"://GIA
 
                         decimals = V6Options.M_IP_GIA;
                         //Tuanmh 06/08/2017 - loi CreateNumberSoLuong
-                        c = CreateNumberGia(fcolumn, fcaption, decimals, width, fstatus, carry);
+                        c = CreateNumberGia(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
 
 
                         break;
@@ -756,13 +757,13 @@ namespace V6Controls.Forms
 
                         decimals = V6Options.M_IP_GIA_NT;
                         //Tuanmh 06/08/2017 - loi CreateNumberSoLuong
-                        c = CreateNumberGiaNt(fcolumn, fcaption, decimals, width, fstatus, carry);
+                        c = CreateNumberGiaNt(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
 
                         break;
                     case "N5"://Ty gia
                         decimals = V6Options.M_IP_TY_GIA;
 
-                        c = CreateNumberTyGia(fcolumn, fcaption, decimals, width, fstatus, carry);
+                        c = CreateNumberTyGia(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
 
                         break;
                     case "D0": // Allow null
@@ -835,6 +836,7 @@ namespace V6Controls.Forms
                 _alct1Dic.Add(fcolumn, row);
 
                 var fcaption = row[V6Setting.Language == "V" ? "caption" : "caption2"].ToString().Trim();
+                var limits = row["limits"].ToString().Trim();
                 var fvvar = row["fvvar"].ToString().Trim();
                 var fstatus = Convert.ToBoolean(row["fstatus"]);
 
@@ -852,61 +854,61 @@ namespace V6Controls.Forms
                     case "A0":
                         if (fcolumn == "TANG")
                         {
-                            c = CreateCheckTextBox(fcolumn, "a", fcaption, width, fstatus, carry);
+                            c = CreateCheckTextBox(fcolumn, "a", fcaption, limits, width, fstatus, carry);
                         }
                         else if (fcolumn == "PX_GIA_DDI")
                         {
-                            c = CreateCheckTextBox(fcolumn, "a", fcaption, width, fstatus, carry);
+                            c = CreateCheckTextBox(fcolumn, "a", fcaption, limits, width, fstatus, carry);
                         }
                         else if (fcolumn == "PN_GIA_TBI")
                         {
-                            c = CreateCheckTextBox(fcolumn, "a", fcaption, width, fstatus, carry);
+                            c = CreateCheckTextBox(fcolumn, "a", fcaption, limits, width, fstatus, carry);
                         }
                         break;
                     case "A1":
-                        c = CreateCheckTextBox(fcolumn, "a", fcaption, width, fstatus, carry);
+                        c = CreateCheckTextBox(fcolumn, "a", fcaption, limits, width, fstatus, carry);
                         break;
                     case "C0":
                         if (fvvar != "")
                         {
                             var checkvvar = Convert.ToBoolean(row["checkvvar"]);
                             var notempty = Convert.ToBoolean(row["notempty"]);
-                            c = CreateVvarTextBox(fcolumn, fvvar, fcaption, width, fstatus, checkvvar, notempty, carry);
+                            c = CreateVvarTextBox(fcolumn, fvvar, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
                         }
                         else
                         {
-                            c = CreateColorTextBox(fcolumn, fcaption, width, fstatus, carry);
+                            c = CreateColorTextBox(fcolumn, fcaption, limits, width, fstatus, carry);
                         }
                         break;
                     case "N9"://Kieu so bat ky
                         decimals = row["fdecimal"] == null ? V6Setting.DecimalsNumber : Convert.ToInt32(row["fdecimal"]);
-                        c = CreateNumberTextBox(fcolumn, fcaption, decimals, width, fstatus, carry);
+                        c = CreateNumberTextBox(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
 
                         break;
 
                     case "N0"://Tien
                         decimals = V6Options.M_IP_TIEN;// row["fdecimal"] == null ? V6Setting.DecilalsNumber : Convert.ToInt32(row["fdecimal"]);
-                        c = CreateNumberTien(fcolumn, fcaption, decimals, width, fstatus, carry);
+                        c = CreateNumberTien(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
 
                         break;
 
                     case "N1"://Ngoai te
                         decimals = V6Options.M_IP_TIEN_NT;
 
-                        c = CreateNumberTienNt(fcolumn, fcaption, decimals, width, fstatus, carry);
+                        c = CreateNumberTienNt(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
                         break;
                     case "N2"://so luong
 
                         decimals = V6Options.M_IP_SL;
 
-                        c = CreateNumberSoLuong(fcolumn, fcaption, decimals, width, fstatus, carry);
+                        c = CreateNumberSoLuong(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
 
                         break;
                     case "N3"://GIA
 
                         decimals = V6Options.M_IP_GIA;
                         //Tuanmh 06/08/2017 - loi CreateNumberSoLuong
-                        c = CreateNumberGia(fcolumn, fcaption, decimals, width, fstatus, carry);
+                        c = CreateNumberGia(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
 
 
                         break;
@@ -914,13 +916,13 @@ namespace V6Controls.Forms
 
                         decimals = V6Options.M_IP_GIA_NT;
                         //Tuanmh 06/08/2017 - loi CreateNumberSoLuong
-                        c = CreateNumberGiaNt(fcolumn, fcaption, decimals, width, fstatus, carry);
+                        c = CreateNumberGiaNt(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
 
                         break;
                     case "N5"://Ty gia
                         decimals = V6Options.M_IP_TY_GIA;
 
-                        c = CreateNumberTyGia(fcolumn, fcaption, decimals, width, fstatus, carry);
+                        c = CreateNumberTyGia(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
 
                         break;
                     case "D0": // Allow null
@@ -2627,7 +2629,7 @@ namespace V6Controls.Forms
         }
 
 
-        public static V6ColorTextBox CreateColorTextBox(string accessibleName, string caption, int width, bool visible, bool carry = false)
+        public static V6ColorTextBox CreateColorTextBox(string accessibleName, string caption, string limits, int width, bool visible, bool carry = false)
         {
             return new V6ColorTextBox
             {
@@ -2635,12 +2637,13 @@ namespace V6Controls.Forms
                 AccessibleName = accessibleName,
                 Carry = carry,
                 GrayText = caption,
+                LimitCharacters = limits,
                 Width = width,
                 Visible = visible,
                 Tag = visible ? null : "hide"
             };
         }
-        public static V6NumberTextBox CreateNumberTextBox(string accessibleName, string caption, int decimals, int width, bool visible, bool carry = false)
+        public static V6NumberTextBox CreateNumberTextBox(string accessibleName, string caption, int decimals, string limits, int width, bool visible, bool carry = false)
         {
             return new V6NumberTextBox
             {
@@ -2649,12 +2652,13 @@ namespace V6Controls.Forms
                 Carry = carry,
                 GrayText = caption,
                 DecimalPlaces = decimals,
+                LimitCharacters = limits,
                 Width = width,
                 Visible = visible,
                 Tag = visible ? null : "hide"
             };
         }
-        public static NumberTien CreateNumberTien(string accessibleName, string caption, int decimals, int width, bool visible, bool carry = false)
+        public static NumberTien CreateNumberTien(string accessibleName, string caption, int decimals, string limits, int width, bool visible, bool carry = false)
         {
             return new NumberTien
             {
@@ -2663,12 +2667,13 @@ namespace V6Controls.Forms
                 Carry = carry,
                 GrayText = caption,
                 DecimalPlaces = decimals,
+                LimitCharacters = limits,
                 Width = width,
                 Visible = visible,
                 Tag = visible ? null : "hide"
             };
         }
-        public static NumberTienNt CreateNumberTienNt(string accessibleName, string caption, int decimals, int width, bool visible, bool carry = false)
+        public static NumberTienNt CreateNumberTienNt(string accessibleName, string caption, int decimals, string limits, int width, bool visible, bool carry = false)
         {
             return new NumberTienNt
             {
@@ -2677,12 +2682,13 @@ namespace V6Controls.Forms
                 Carry = carry,
                 GrayText = caption,
                 DecimalPlaces = decimals,
+                LimitCharacters = limits,
                 Width = width,
                 Visible = visible,
                 Tag = visible ? null : "hide"
             };
         }
-        public static NumberSoluong CreateNumberSoLuong(string accessibleName, string caption, int decimals, int width, bool visible, bool carry = false)
+        public static NumberSoluong CreateNumberSoLuong(string accessibleName, string caption, int decimals, string limits, int width, bool visible, bool carry = false)
         {
             return new NumberSoluong
             {
@@ -2691,13 +2697,14 @@ namespace V6Controls.Forms
                 Carry = carry,
                 GrayText = caption,
                 DecimalPlaces = decimals,
+                LimitCharacters = limits,
                 Width = width,
                 Visible = visible,
                 Tag = visible ? null : "hide"
             };
         }
         //Tuanmh 06/08/2017
-        public static NumberGia CreateNumberGia(string accessibleName, string caption, int decimals, int width, bool visible, bool carry = false)
+        public static NumberGia CreateNumberGia(string accessibleName, string caption, int decimals, string limits, int width, bool visible, bool carry = false)
         {
             return new NumberGia
             {
@@ -2706,13 +2713,14 @@ namespace V6Controls.Forms
                 Carry = carry,
                 GrayText = caption,
                 DecimalPlaces = decimals,
+                LimitCharacters = limits,
                 Width = width,
                 Visible = visible,
                 Tag = visible ? null : "hide"
             };
         }
         //Tuanmh 06/08/2017
-        public static NumberGiaNt CreateNumberGiaNt(string accessibleName, string caption, int decimals, int width, bool visible, bool carry = false)
+        public static NumberGiaNt CreateNumberGiaNt(string accessibleName, string caption, int decimals, string limits, int width, bool visible, bool carry = false)
         {
             return new NumberGiaNt
             {
@@ -2721,12 +2729,13 @@ namespace V6Controls.Forms
                 Carry = carry,
                 GrayText = caption,
                 DecimalPlaces = decimals,
+                LimitCharacters = limits,
                 Width = width,
                 Visible = visible,
                 Tag = visible ? null : "hide"
             };
         }
-        public static NumberTygia CreateNumberTyGia(string accessibleName, string caption, int decimals, int width, bool visible, bool carry = false)
+        public static NumberTygia CreateNumberTyGia(string accessibleName, string caption, int decimals, string limits, int width, bool visible, bool carry = false)
         {
             return new NumberTygia
             {
@@ -2735,13 +2744,14 @@ namespace V6Controls.Forms
                 Carry = carry,
                 GrayText = caption,
                 DecimalPlaces = decimals,
+                LimitCharacters = limits,
                 Width = width,
                 Visible = visible,
                 Tag = visible ? null : "hide"
             };
         }
 
-        public static V6VvarTextBox CreateVvarTextBox(string accessibleName, string vvar, string caption, int width, bool visible,
+        public static V6VvarTextBox CreateVvarTextBox(string accessibleName, string vvar, string caption, string limits, int width, bool visible,
             bool checkOnLeave, bool checkNotEmpty, bool carry = false)
         {
             return new V6VvarTextBox
@@ -2755,6 +2765,7 @@ namespace V6Controls.Forms
                 F5 = checkOnLeave, // F5 = false => chạy v6lostfocus (checkton)
                 F2 = false,
                 GrayText = caption,
+                LimitCharacters = limits,
                 Width = width,
                 Visible = visible,
                 Tag = visible ? null : "hide"
@@ -2763,7 +2774,7 @@ namespace V6Controls.Forms
 
         public static V6LookupTextBox CreateLookupTextBox(string accessibleName,
             string ma_dm, string value_field, string text_field, string brother, string neighbor,
-            string caption, int width, bool visible,
+            string caption, string limits, int width, bool visible,
             bool checkOnLeave, bool checkNotEmpty, bool carry = false)
         {
             return new V6LookupTextBox
@@ -2781,13 +2792,14 @@ namespace V6Controls.Forms
                 CheckOnLeave = checkOnLeave,
                 CheckNotEmpty = checkNotEmpty,
                 GrayText = caption,
+                LimitCharacters = limits,
                 Width = width,
                 Visible = visible,
                 Tag = visible ? null : "hide"
             };
         }
 
-        public static V6ColorTextBox CreateLimitTextBox(string accessibleName, string limit, string caption, int width, bool visible, bool carry = false)
+        public static V6ColorTextBox CreateLimitTextBox(string accessibleName, string limit, string caption, string limits, int width, bool visible, bool carry = false)
         {
             var a = new V6ColorTextBox
             {
@@ -2796,6 +2808,7 @@ namespace V6Controls.Forms
                 Carry = carry,
                 //LimitCharacters = limit,
                 GrayText = caption,
+                LimitCharacters = limits,
                 Width = width,
                 Visible = visible,
                 Tag = visible ? null : "hide"
@@ -2803,7 +2816,7 @@ namespace V6Controls.Forms
             a.SetLimitCharacters(limit);
             return a;
         }
-        public static V6CheckTextBox CreateCheckTextBox(string accessibleName, string textValue, string caption, int width, bool visible, bool carry = false)
+        public static V6CheckTextBox CreateCheckTextBox(string accessibleName, string textValue, string caption, string limits, int width, bool visible, bool carry = false)
         {
             var a = new V6CheckTextBox
             {
@@ -2812,6 +2825,7 @@ namespace V6Controls.Forms
                 Carry = carry,
                 //LimitCharacters = limit,
                 GrayText = caption,
+                LimitCharacters = limits,
                 TextValue = textValue,
                 Width = width,
                 Visible = visible,

@@ -82,6 +82,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.txtLimits = new V6Controls.V6ColorTextBox();
             this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -611,6 +612,7 @@
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage1.Controls.Add(this.txtFdecimal);
             this.tabPage1.Controls.Add(this.lblFdecimal);
+            this.tabPage1.Controls.Add(this.txtLimits);
             this.tabPage1.Controls.Add(this.txtFtype);
             this.tabPage1.Controls.Add(this.lblFtype);
             this.tabPage1.Controls.Add(this.label16);
@@ -640,8 +642,6 @@
             // txtFdecimal
             // 
             this.txtFdecimal.AccessibleName = "FDECIMAL";
-            this.txtFdecimal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFdecimal.BackColor = System.Drawing.SystemColors.Window;
             this.txtFdecimal.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtFdecimal.Enabled = false;
@@ -650,7 +650,7 @@
             this.txtFdecimal.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtFdecimal.HoverColor = System.Drawing.Color.Yellow;
             this.txtFdecimal.LeaveColor = System.Drawing.Color.White;
-            this.txtFdecimal.Location = new System.Drawing.Point(376, 7);
+            this.txtFdecimal.Location = new System.Drawing.Point(342, 7);
             this.txtFdecimal.Margin = new System.Windows.Forms.Padding(4);
             this.txtFdecimal.Name = "txtFdecimal";
             this.txtFdecimal.Size = new System.Drawing.Size(126, 23);
@@ -674,8 +674,6 @@
             // txtFtype
             // 
             this.txtFtype.AccessibleName = "FTYPE";
-            this.txtFtype.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFtype.BackColor = System.Drawing.Color.White;
             this.txtFtype.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtFtype.Enabled = false;
@@ -959,6 +957,29 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Thông tin ngầm định";
             // 
+            // txtLimits
+            // 
+            this.txtLimits.AccessibleName = "LIMITS";
+            this.txtLimits.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtLimits.BackColor = System.Drawing.Color.White;
+            this.txtLimits.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtLimits.Enabled = false;
+            this.txtLimits.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtLimits.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtLimits.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtLimits.GrayText = "Limits";
+            this.txtLimits.HoverColor = System.Drawing.Color.Yellow;
+            this.txtLimits.LeaveColor = System.Drawing.Color.White;
+            this.txtLimits.Location = new System.Drawing.Point(510, 7);
+            this.txtLimits.Margin = new System.Windows.Forms.Padding(4);
+            this.txtLimits.Name = "txtLimits";
+            this.txtLimits.Size = new System.Drawing.Size(224, 23);
+            this.txtLimits.TabIndex = 1;
+            this.toolTipV6FormControl.SetToolTip(this.txtLimits, "Các ký tự được phép gõ đối với TextBox.\r\nDanh sách số được nhập cách nhau bởi ; đ" +
+        "ối với kiểu số .");
+            this.txtLimits.Visible = false;
+            // 
             // V6Alct1AddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1037,5 +1058,6 @@
         private System.Windows.Forms.Label lblDmethodM;
         private V6ColorTextBox txtFilter_M;
         private System.Windows.Forms.Label lblFilterM;
+        private V6ColorTextBox txtLimits;
     }
 }

@@ -266,7 +266,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         InvokeFormEvent("BEFOREINSERT");
                         if (Invoice.InsertInvoice(AM, AD1_List))
                         {
-                            f9Error += "Đã thêm: " + item.Key;
+                            f9Error += V6Text.Added + item.Key;
                             //Danh dau xóa data.
                             foreach (DataRow remove_row in item.Value)
                             {

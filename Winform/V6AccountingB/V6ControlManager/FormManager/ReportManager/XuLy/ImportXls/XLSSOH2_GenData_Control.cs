@@ -436,9 +436,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         AM_DATA["MA_SONB"] = ma_sonb;
                         var AD1_List = GET_AD1_List(data_rows, sttRec);
                         
-                        if (Invoice.InsertInvoice(AM_DATA, AD1_List))//!!!!!!!!
+                        if (Invoice.InsertInvoice(AM_DATA, AD1_List))
                         {
-                            f9Message += "Đã thêm: " + item.Key;
+                            f9Message += V6Text.Added + item.Key;
                             //Danh dau xóa data.
                             foreach (DataRow remove_row in item.Value)
                             {

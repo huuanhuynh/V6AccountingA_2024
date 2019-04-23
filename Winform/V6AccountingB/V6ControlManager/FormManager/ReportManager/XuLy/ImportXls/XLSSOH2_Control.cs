@@ -288,14 +288,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         AM_DATA["STT_REC"] = sttRec;
                         var AD1_List = GET_AD1_List(data_rows, sttRec);
                         
-                        if (Invoice.InsertInvoice(AM_DATA, AD1_List))//!!!!!!!!
+                        if (Invoice.InsertInvoice(AM_DATA, AD1_List))
                         {
-                            f9Message += "Đã thêm: " + item.Key;
-                            //Danh dau xóa data.
-                            //foreach (DataRow remove_row in item.Value)
-                            //{
-                            //    remove_list_d.Add(remove_row);
-                            //}
+                            f9Message += V6Text.Added + item.Key;
                         }
                         else
                         {

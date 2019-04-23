@@ -464,7 +464,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     button.ChangeStatus(V6Mode.Edit, "1", button.Stt_Rec, hoadonCafe.CurrentIndex,
                         hoadonCafe.TongThanhToan, hoadonCafe.GC_UD1, hoadonCafe.Time0, hoadonCafe.Time2);
                 }
-                //!!!!!
             }
             catch (Exception ex)
             {

@@ -347,7 +347,6 @@
             this.soTienDen.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.soTienDen.HoverColor = System.Drawing.Color.Yellow;
             this.soTienDen.LeaveColor = System.Drawing.Color.White;
-            this.soTienDen.LimitCharacters = ".0123456789";
             this.soTienDen.Location = new System.Drawing.Point(365, 79);
             this.soTienDen.Name = "soTienDen";
             this.soTienDen.Size = new System.Drawing.Size(132, 20);
@@ -449,7 +448,6 @@
             this.soTienTu.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.soTienTu.HoverColor = System.Drawing.Color.Yellow;
             this.soTienTu.LeaveColor = System.Drawing.Color.White;
-            this.soTienTu.LimitCharacters = ".0123456789";
             this.soTienTu.Location = new System.Drawing.Point(87, 99);
             this.soTienTu.Name = "soTienTu";
             this.soTienTu.Size = new System.Drawing.Size(132, 20);

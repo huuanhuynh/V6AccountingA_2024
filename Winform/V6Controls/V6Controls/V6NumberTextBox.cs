@@ -335,7 +335,7 @@ namespace V6Controls
         {
             if (string.IsNullOrEmpty(LimitCharacters)) return;
 
-            var limits = ObjectAndString.SplitStringBy(LimitCharacters, ';');
+            var limits = LimitCharacters.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string limit in limits)
             {
                 if (IsEqual(limit))

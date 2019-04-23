@@ -707,7 +707,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         _mau_bc = control as V6NumberTextBox;
                         if (_mau_bc != null)
                         {
-                            _mau_bc.LimitCharacters = "123458";
+                            //_mau_bc.LimitCharacters = "1;2;3;4;5;8";
                             _mau_bc.MaxNumLength = 1;
                             _mau_bc.MaxLength = 1;
                             _mau_bc.GotFocus += _mau_bc_GotFocus;
@@ -1056,7 +1056,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     _operTT_33 = control as V6ColorTextBox;
                     if (_operTT_33 != null)
                     {
-                        _operTT_33.LimitCharacters = "0+-";
                         _operTT_33.MaxLength = 1;
                     }
                 }

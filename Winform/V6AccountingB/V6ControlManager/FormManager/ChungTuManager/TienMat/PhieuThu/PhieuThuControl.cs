@@ -145,8 +145,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             try
             {
                 //Thêm các control thiết kế cứng.
-                _sttRecTt = V6ControlFormHelper.CreateColorTextBox("STT_REC_TT", "sttRecTt", 10, false,false);
-                _soSeri0 = V6ControlFormHelper.CreateColorTextBox("SO_SERI0", "so seri", 10, false,false);
+                _sttRecTt = V6ControlFormHelper.CreateColorTextBox("STT_REC_TT", "sttRecTt", null, 10, false, false);
+                _soSeri0 = V6ControlFormHelper.CreateColorTextBox("SO_SERI0", "so seri", null, 10, false, false);
 
                 var _check_f_ps_co_nt = false;
                 var _check_f_ps_co = false;
@@ -301,27 +301,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 //Bo sung cac f cung
                 if (_check_f_tien_nt == false)
                 {
-                    _tienNt = V6ControlFormHelper.CreateNumberTienNt("TIEN_NT", "tiennt", M_ROUND_NT,10, false,false);
+                    _tienNt = V6ControlFormHelper.CreateNumberTienNt("TIEN_NT", "tiennt", M_ROUND_NT, null,10, false,false);
                     dynamicControlList.Add(9997, new AlctControls {DetailControl = _tienNt});
                 }
                 if (_check_f_tien == false)
                 {
-                    _tien = V6ControlFormHelper.CreateNumberTien("TIEN", "tien", M_ROUND, 10, false, false);
+                    _tien = V6ControlFormHelper.CreateNumberTien("TIEN", "tien", M_ROUND, null, 10, false, false);
                     dynamicControlList.Add(9996, new AlctControls {DetailControl = _tien});
                 }
                 if (_check_f_ps_co_nt == false)
                 {
-                    _pscoNt = V6ControlFormHelper.CreateNumberTienNt("PS_CO_NT", "pscont", M_ROUND_NT, 10, false, false);
+                    _pscoNt = V6ControlFormHelper.CreateNumberTienNt("PS_CO_NT", "pscont", M_ROUND_NT, null, 10, false, false);
                     dynamicControlList.Add(9995, new AlctControls {DetailControl = _pscoNt});
                 }
                 if (_check_f_ps_co == false)
                 {
-                    _psCo = V6ControlFormHelper.CreateNumberTien("PS_CO", "psco", M_ROUND, 10, false, false);
+                    _psCo = V6ControlFormHelper.CreateNumberTien("PS_CO", "psco", M_ROUND, null, 10, false, false);
                     dynamicControlList.Add(9994, new AlctControls {DetailControl = _psCo});
                 }
                 if (_check_f_tien_tt == false)
                 {
-                    _tientt = V6ControlFormHelper.CreateNumberTien("TIEN_TT", "tientt", M_ROUND, 10, false, false);
+                    _tientt = V6ControlFormHelper.CreateNumberTien("TIEN_TT", "tientt", M_ROUND, null, 10, false, false);
                     dynamicControlList.Add(9993, new AlctControls {DetailControl = _tientt});
                 }
 

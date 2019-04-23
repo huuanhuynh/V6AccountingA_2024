@@ -121,7 +121,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.chkSuaTkThue = new V6Controls.V6CheckBox();
             this.v6Label32 = new V6Controls.V6Label();
             this.chkSuaTien = new V6Controls.V6CheckBox();
-            this.txtTongSoLuong1 = new V6Controls.NumberSoluong();
             this.cboKieuPost = new V6Controls.V6ComboBox();
             this.btnChonPX = new V6Controls.Controls.V6FormButton();
             this.lblTongSoDong = new V6Controls.V6Label();
@@ -1310,7 +1309,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.group4.Controls.Add(this.chkSuaTkThue);
             this.group4.Controls.Add(this.v6Label32);
             this.group4.Controls.Add(this.chkSuaTien);
-            this.group4.Controls.Add(this.txtTongSoLuong1);
             this.group4.Controls.Add(this.cboKieuPost);
             this.group4.Controls.Add(this.btnChonPX);
             this.group4.Controls.Add(this.lblTongSoDong);
@@ -1541,34 +1539,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.chkSuaTien.Text = "Sửa tiền";
             this.chkSuaTien.UseVisualStyleBackColor = true;
             this.chkSuaTien.CheckedChanged += new System.EventHandler(this.chkSuaTien_CheckedChanged);
-            // 
-            // txtTongSoLuong1
-            // 
-            this.txtTongSoLuong1.AccessibleDescription = "";
-            this.txtTongSoLuong1.AccessibleName = "TSO_LUONG1";
-            this.txtTongSoLuong1.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.txtTongSoLuong1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtTongSoLuong1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTongSoLuong1.DecimalPlaces = 2;
-            this.txtTongSoLuong1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtTongSoLuong1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtTongSoLuong1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtTongSoLuong1.HoverColor = System.Drawing.Color.Yellow;
-            this.txtTongSoLuong1.LeaveColor = System.Drawing.Color.White;
-            this.txtTongSoLuong1.Location = new System.Drawing.Point(315, 10);
-            this.txtTongSoLuong1.Name = "txtTongSoLuong1";
-            this.txtTongSoLuong1.ReadOnly = true;
-            this.txtTongSoLuong1.Size = new System.Drawing.Size(92, 20);
-            this.txtTongSoLuong1.TabIndex = 1;
-            this.txtTongSoLuong1.TabStop = false;
-            this.txtTongSoLuong1.Tag = "readonly";
-            this.txtTongSoLuong1.Text = "0,00";
-            this.txtTongSoLuong1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtTongSoLuong1.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
             // 
             // cboKieuPost
             // 
@@ -2747,7 +2717,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
         private V6Controls.V6ComboBox cboMaNt;
         private V6NumberTextBox txtTyGia;
         private V6Controls.V6CheckBox chkSuaTienThue;
-        private NumberSoluong txtTongSoLuong1;
         private V6Label lblDocSoTien;
         private V6VvarTextBox txtMa_ct;
         private V6VvarTextBox txtMaHttt;

@@ -51,6 +51,16 @@
             this.v6ColorTextBox1 = new V6Controls.V6ColorTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txtFdecimal = new V6Controls.V6ColorTextBox();
+            this.lblFdecimal = new System.Windows.Forms.Label();
+            this.txtFtype = new V6Controls.V6ColorTextBox();
+            this.lblFtype = new System.Windows.Forms.Label();
+            this.lblNotEmpty = new System.Windows.Forms.Label();
+            this.chkNotEmpty = new V6Controls.V6CheckBox();
+            this.lblCheckVvar = new System.Windows.Forms.Label();
+            this.chkCheckVvar = new V6Controls.V6CheckBox();
+            this.ChkVisible = new V6Controls.V6CheckBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.v6CheckBox1 = new V6Controls.V6CheckBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -63,16 +73,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.txtFdecimal = new V6Controls.V6ColorTextBox();
-            this.lblFdecimal = new System.Windows.Forms.Label();
-            this.txtFtype = new V6Controls.V6ColorTextBox();
-            this.lblFtype = new System.Windows.Forms.Label();
-            this.lblNotEmpty = new System.Windows.Forms.Label();
-            this.chkNotEmpty = new V6Controls.V6CheckBox();
-            this.lblCheckVvar = new System.Windows.Forms.Label();
-            this.chkCheckVvar = new V6Controls.V6CheckBox();
-            this.ChkVisible = new V6Controls.V6CheckBox();
-            this.label17 = new System.Windows.Forms.Label();
+            this.txtLimits = new V6Controls.V6ColorTextBox();
             this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -448,6 +449,7 @@
             this.tabPage1.AccessibleDescription = "ADDEDITT00001";
             this.tabPage1.AutoScroll = true;
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage1.Controls.Add(this.txtLimits);
             this.tabPage1.Controls.Add(this.txtFdecimal);
             this.tabPage1.Controls.Add(this.lblFdecimal);
             this.tabPage1.Controls.Add(this.txtFtype);
@@ -475,6 +477,152 @@
             this.tabPage1.Size = new System.Drawing.Size(742, 233);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
+            // 
+            // txtFdecimal
+            // 
+            this.txtFdecimal.AccessibleName = "FDECIMAL";
+            this.txtFdecimal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFdecimal.BackColor = System.Drawing.SystemColors.Window;
+            this.txtFdecimal.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtFdecimal.Enabled = false;
+            this.txtFdecimal.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtFdecimal.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtFdecimal.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtFdecimal.HoverColor = System.Drawing.Color.Yellow;
+            this.txtFdecimal.LeaveColor = System.Drawing.Color.White;
+            this.txtFdecimal.Location = new System.Drawing.Point(342, 7);
+            this.txtFdecimal.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFdecimal.Name = "txtFdecimal";
+            this.txtFdecimal.Size = new System.Drawing.Size(126, 23);
+            this.txtFdecimal.TabIndex = 3;
+            this.toolTipV6FormControl.SetToolTip(this.txtFdecimal, "Số chữ số lẽ cho Ftype N9");
+            this.txtFdecimal.Visible = false;
+            // 
+            // lblFdecimal
+            // 
+            this.lblFdecimal.AccessibleDescription = ".";
+            this.lblFdecimal.AccessibleName = "";
+            this.lblFdecimal.AutoSize = true;
+            this.lblFdecimal.Location = new System.Drawing.Point(270, 10);
+            this.lblFdecimal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFdecimal.Name = "lblFdecimal";
+            this.lblFdecimal.Size = new System.Drawing.Size(64, 17);
+            this.lblFdecimal.TabIndex = 2;
+            this.lblFdecimal.Text = "Fdecimal";
+            this.lblFdecimal.Visible = false;
+            // 
+            // txtFtype
+            // 
+            this.txtFtype.AccessibleName = "FTYPE";
+            this.txtFtype.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFtype.BackColor = System.Drawing.Color.White;
+            this.txtFtype.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtFtype.Enabled = false;
+            this.txtFtype.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtFtype.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtFtype.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtFtype.HoverColor = System.Drawing.Color.Yellow;
+            this.txtFtype.LeaveColor = System.Drawing.Color.White;
+            this.txtFtype.Location = new System.Drawing.Point(111, 7);
+            this.txtFtype.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFtype.Name = "txtFtype";
+            this.txtFtype.Size = new System.Drawing.Size(126, 23);
+            this.txtFtype.TabIndex = 1;
+            this.toolTipV6FormControl.SetToolTip(this.txtFtype, "A0 tặng, A1, C0 vvar,\r\nN9, N0 tiền, N1 ngoại tệ, N2 số lượng, N3 giá. N4 giá NT, " +
+        "N5 tỷ giá.\r\nD0 date null, D1 date pick.");
+            this.txtFtype.Visible = false;
+            // 
+            // lblFtype
+            // 
+            this.lblFtype.AccessibleDescription = ".";
+            this.lblFtype.AccessibleName = "";
+            this.lblFtype.AutoSize = true;
+            this.lblFtype.Location = new System.Drawing.Point(5, 10);
+            this.lblFtype.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFtype.Name = "lblFtype";
+            this.lblFtype.Size = new System.Drawing.Size(43, 17);
+            this.lblFtype.TabIndex = 0;
+            this.lblFtype.Text = "Ftype";
+            this.lblFtype.Visible = false;
+            // 
+            // lblNotEmpty
+            // 
+            this.lblNotEmpty.AccessibleDescription = ".";
+            this.lblNotEmpty.AutoSize = true;
+            this.lblNotEmpty.Location = new System.Drawing.Point(270, 127);
+            this.lblNotEmpty.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNotEmpty.Name = "lblNotEmpty";
+            this.lblNotEmpty.Size = new System.Drawing.Size(66, 17);
+            this.lblNotEmpty.TabIndex = 18;
+            this.lblNotEmpty.Text = "notempty";
+            this.lblNotEmpty.Visible = false;
+            // 
+            // chkNotEmpty
+            // 
+            this.chkNotEmpty.AccessibleDescription = "ADDEDITC00041";
+            this.chkNotEmpty.AccessibleName = "notempty";
+            this.chkNotEmpty.AutoSize = true;
+            this.chkNotEmpty.Location = new System.Drawing.Point(376, 126);
+            this.chkNotEmpty.Margin = new System.Windows.Forms.Padding(4);
+            this.chkNotEmpty.Name = "chkNotEmpty";
+            this.chkNotEmpty.Size = new System.Drawing.Size(219, 21);
+            this.chkNotEmpty.TabIndex = 19;
+            this.chkNotEmpty.Text = "Kiểm tra textbox cần có dữ liệu";
+            this.chkNotEmpty.UseVisualStyleBackColor = true;
+            this.chkNotEmpty.Visible = false;
+            // 
+            // lblCheckVvar
+            // 
+            this.lblCheckVvar.AccessibleDescription = ".";
+            this.lblCheckVvar.AutoSize = true;
+            this.lblCheckVvar.Location = new System.Drawing.Point(270, 98);
+            this.lblCheckVvar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCheckVvar.Name = "lblCheckVvar";
+            this.lblCheckVvar.Size = new System.Drawing.Size(72, 17);
+            this.lblCheckVvar.TabIndex = 16;
+            this.lblCheckVvar.Text = "checkvvar";
+            this.lblCheckVvar.Visible = false;
+            // 
+            // chkCheckVvar
+            // 
+            this.chkCheckVvar.AccessibleDescription = "ADDEDITC00040";
+            this.chkCheckVvar.AccessibleName = "checkvvar";
+            this.chkCheckVvar.AutoSize = true;
+            this.chkCheckVvar.Location = new System.Drawing.Point(376, 97);
+            this.chkCheckVvar.Margin = new System.Windows.Forms.Padding(4);
+            this.chkCheckVvar.Name = "chkCheckVvar";
+            this.chkCheckVvar.Size = new System.Drawing.Size(237, 21);
+            this.chkCheckVvar.TabIndex = 17;
+            this.chkCheckVvar.Text = "Kiểm tra dữ liệu hợp lệ khi ra khỏi";
+            this.chkCheckVvar.UseVisualStyleBackColor = true;
+            this.chkCheckVvar.Visible = false;
+            // 
+            // ChkVisible
+            // 
+            this.ChkVisible.AccessibleDescription = "ADDEDITC00001";
+            this.ChkVisible.AccessibleName = "VISIBLE";
+            this.ChkVisible.AutoSize = true;
+            this.ChkVisible.Location = new System.Drawing.Point(111, 183);
+            this.ChkVisible.Margin = new System.Windows.Forms.Padding(4);
+            this.ChkVisible.Name = "ChkVisible";
+            this.ChkVisible.Size = new System.Drawing.Size(56, 21);
+            this.ChkVisible.TabIndex = 15;
+            this.ChkVisible.Text = "Có ?";
+            this.ChkVisible.UseVisualStyleBackColor = true;
+            // 
+            // label17
+            // 
+            this.label17.AccessibleDescription = "ADDEDITL00670";
+            this.label17.AccessibleName = "";
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(5, 183);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(68, 17);
+            this.label17.TabIndex = 14;
+            this.label17.Text = "Readonly";
             // 
             // label16
             // 
@@ -646,151 +794,28 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Thông tin ngầm định";
             // 
-            // txtFdecimal
+            // txtLimits
             // 
-            this.txtFdecimal.AccessibleName = "FDECIMAL";
-            this.txtFdecimal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtLimits.AccessibleName = "LIMITS";
+            this.txtLimits.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFdecimal.BackColor = System.Drawing.SystemColors.Window;
-            this.txtFdecimal.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtFdecimal.Enabled = false;
-            this.txtFdecimal.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtFdecimal.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtFdecimal.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtFdecimal.HoverColor = System.Drawing.Color.Yellow;
-            this.txtFdecimal.LeaveColor = System.Drawing.Color.White;
-            this.txtFdecimal.Location = new System.Drawing.Point(376, 7);
-            this.txtFdecimal.Margin = new System.Windows.Forms.Padding(4);
-            this.txtFdecimal.Name = "txtFdecimal";
-            this.txtFdecimal.Size = new System.Drawing.Size(126, 23);
-            this.txtFdecimal.TabIndex = 3;
-            this.toolTipV6FormControl.SetToolTip(this.txtFdecimal, "Số chữ số lẽ cho Ftype N9");
-            this.txtFdecimal.Visible = false;
-            // 
-            // lblFdecimal
-            // 
-            this.lblFdecimal.AccessibleDescription = ".";
-            this.lblFdecimal.AccessibleName = "";
-            this.lblFdecimal.AutoSize = true;
-            this.lblFdecimal.Location = new System.Drawing.Point(270, 10);
-            this.lblFdecimal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblFdecimal.Name = "lblFdecimal";
-            this.lblFdecimal.Size = new System.Drawing.Size(64, 17);
-            this.lblFdecimal.TabIndex = 2;
-            this.lblFdecimal.Text = "Fdecimal";
-            this.lblFdecimal.Visible = false;
-            // 
-            // txtFtype
-            // 
-            this.txtFtype.AccessibleName = "FTYPE";
-            this.txtFtype.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFtype.BackColor = System.Drawing.Color.White;
-            this.txtFtype.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtFtype.Enabled = false;
-            this.txtFtype.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtFtype.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtFtype.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtFtype.HoverColor = System.Drawing.Color.Yellow;
-            this.txtFtype.LeaveColor = System.Drawing.Color.White;
-            this.txtFtype.Location = new System.Drawing.Point(111, 7);
-            this.txtFtype.Margin = new System.Windows.Forms.Padding(4);
-            this.txtFtype.Name = "txtFtype";
-            this.txtFtype.Size = new System.Drawing.Size(126, 23);
-            this.txtFtype.TabIndex = 1;
-            this.toolTipV6FormControl.SetToolTip(this.txtFtype, "A0 tặng, A1, C0 vvar,\r\nN9, N0 tiền, N1 ngoại tệ, N2 số lượng, N3 giá. N4 giá NT, " +
-        "N5 tỷ giá.\r\nD0 date null, D1 date pick.");
-            this.txtFtype.Visible = false;
-            // 
-            // lblFtype
-            // 
-            this.lblFtype.AccessibleDescription = ".";
-            this.lblFtype.AccessibleName = "";
-            this.lblFtype.AutoSize = true;
-            this.lblFtype.Location = new System.Drawing.Point(5, 10);
-            this.lblFtype.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblFtype.Name = "lblFtype";
-            this.lblFtype.Size = new System.Drawing.Size(43, 17);
-            this.lblFtype.TabIndex = 0;
-            this.lblFtype.Text = "Ftype";
-            this.lblFtype.Visible = false;
-            // 
-            // lblNotEmpty
-            // 
-            this.lblNotEmpty.AccessibleDescription = ".";
-            this.lblNotEmpty.AutoSize = true;
-            this.lblNotEmpty.Location = new System.Drawing.Point(270, 127);
-            this.lblNotEmpty.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblNotEmpty.Name = "lblNotEmpty";
-            this.lblNotEmpty.Size = new System.Drawing.Size(66, 17);
-            this.lblNotEmpty.TabIndex = 18;
-            this.lblNotEmpty.Text = "notempty";
-            this.lblNotEmpty.Visible = false;
-            // 
-            // chkNotEmpty
-            // 
-            this.chkNotEmpty.AccessibleDescription = "ADDEDITC00041";
-            this.chkNotEmpty.AccessibleName = "notempty";
-            this.chkNotEmpty.AutoSize = true;
-            this.chkNotEmpty.Location = new System.Drawing.Point(376, 126);
-            this.chkNotEmpty.Margin = new System.Windows.Forms.Padding(4);
-            this.chkNotEmpty.Name = "chkNotEmpty";
-            this.chkNotEmpty.Size = new System.Drawing.Size(219, 21);
-            this.chkNotEmpty.TabIndex = 19;
-            this.chkNotEmpty.Text = "Kiểm tra textbox cần có dữ liệu";
-            this.chkNotEmpty.UseVisualStyleBackColor = true;
-            this.chkNotEmpty.Visible = false;
-            // 
-            // lblCheckVvar
-            // 
-            this.lblCheckVvar.AccessibleDescription = ".";
-            this.lblCheckVvar.AutoSize = true;
-            this.lblCheckVvar.Location = new System.Drawing.Point(270, 98);
-            this.lblCheckVvar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCheckVvar.Name = "lblCheckVvar";
-            this.lblCheckVvar.Size = new System.Drawing.Size(72, 17);
-            this.lblCheckVvar.TabIndex = 16;
-            this.lblCheckVvar.Text = "checkvvar";
-            this.lblCheckVvar.Visible = false;
-            // 
-            // chkCheckVvar
-            // 
-            this.chkCheckVvar.AccessibleDescription = "ADDEDITC00040";
-            this.chkCheckVvar.AccessibleName = "checkvvar";
-            this.chkCheckVvar.AutoSize = true;
-            this.chkCheckVvar.Location = new System.Drawing.Point(376, 97);
-            this.chkCheckVvar.Margin = new System.Windows.Forms.Padding(4);
-            this.chkCheckVvar.Name = "chkCheckVvar";
-            this.chkCheckVvar.Size = new System.Drawing.Size(237, 21);
-            this.chkCheckVvar.TabIndex = 17;
-            this.chkCheckVvar.Text = "Kiểm tra dữ liệu hợp lệ khi ra khỏi";
-            this.chkCheckVvar.UseVisualStyleBackColor = true;
-            this.chkCheckVvar.Visible = false;
-            // 
-            // ChkVisible
-            // 
-            this.ChkVisible.AccessibleDescription = "ADDEDITC00001";
-            this.ChkVisible.AccessibleName = "VISIBLE";
-            this.ChkVisible.AutoSize = true;
-            this.ChkVisible.Location = new System.Drawing.Point(111, 183);
-            this.ChkVisible.Margin = new System.Windows.Forms.Padding(4);
-            this.ChkVisible.Name = "ChkVisible";
-            this.ChkVisible.Size = new System.Drawing.Size(56, 21);
-            this.ChkVisible.TabIndex = 15;
-            this.ChkVisible.Text = "Có ?";
-            this.ChkVisible.UseVisualStyleBackColor = true;
-            // 
-            // label17
-            // 
-            this.label17.AccessibleDescription = "ADDEDITL00670";
-            this.label17.AccessibleName = "";
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(5, 183);
-            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(68, 17);
-            this.label17.TabIndex = 14;
-            this.label17.Text = "Readonly";
+            this.txtLimits.BackColor = System.Drawing.Color.White;
+            this.txtLimits.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtLimits.Enabled = false;
+            this.txtLimits.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtLimits.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtLimits.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtLimits.GrayText = "Limits";
+            this.txtLimits.HoverColor = System.Drawing.Color.Yellow;
+            this.txtLimits.LeaveColor = System.Drawing.Color.White;
+            this.txtLimits.Location = new System.Drawing.Point(510, 7);
+            this.txtLimits.Margin = new System.Windows.Forms.Padding(4);
+            this.txtLimits.Name = "txtLimits";
+            this.txtLimits.Size = new System.Drawing.Size(224, 23);
+            this.txtLimits.TabIndex = 20;
+            this.toolTipV6FormControl.SetToolTip(this.txtLimits, "Các ký tự được phép gõ đối với TextBox.\r\nDanh sách số được nhập cách nhau bởi ; đ" +
+        "ối với kiểu số .");
+            this.txtLimits.Visible = false;
             // 
             // V6Alct2AddEditForm
             // 
@@ -861,5 +886,6 @@
         private V6CheckBox chkCheckVvar;
         private V6CheckBox ChkVisible;
         private System.Windows.Forms.Label label17;
+        private V6ColorTextBox txtLimits;
     }
 }

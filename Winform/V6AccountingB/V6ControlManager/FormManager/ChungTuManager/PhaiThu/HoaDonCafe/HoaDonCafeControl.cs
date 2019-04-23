@@ -861,7 +861,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     _operTT_33 = control as V6ColorTextBox;
                     if (_operTT_33 != null)
                     {
-                        _operTT_33.LimitCharacters = "0+-";
                         _operTT_33.MaxLength = 1;
                     }
                 }
@@ -5702,7 +5701,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         {
             Moi();
             Luu(MA_KHOPH, MA_VITRIPH, false);
-            CurrentIndex = AM.Rows.Count - 1;//!!!!!
+            CurrentIndex = AM.Rows.Count - 1;
             //Time0, Time2
             var time = V6BusinessHelper.GetServerDateTime();
             Time0 = time.ToString("HH:mm:ss");

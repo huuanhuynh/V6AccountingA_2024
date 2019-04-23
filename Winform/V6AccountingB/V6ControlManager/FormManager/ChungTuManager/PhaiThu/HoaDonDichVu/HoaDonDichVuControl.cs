@@ -389,7 +389,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                     _operTT_33 = control as V6ColorTextBox;
                     if (_operTT_33 != null)
                     {
-                        _operTT_33.LimitCharacters = "0+-";
                         _operTT_33.MaxLength = 1;
                     }
                 }
@@ -1356,7 +1355,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
         
         public void TinhTongValues()
         {
-            txtTongSoLuong1.Value = TinhTong(AD, "SO_LUONG1");
+            //txtTongSoLuong1.Value = TinhTong(AD, "SO_LUONG1");
             txtTongSoLuong.Value = TinhTong(AD, "SO_LUONG");
 
             var tTienNt2 = TinhTong(AD, "TIEN_NT2");

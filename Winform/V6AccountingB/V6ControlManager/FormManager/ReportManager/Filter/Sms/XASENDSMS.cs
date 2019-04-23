@@ -322,7 +322,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
                     for (int i = 0; i < count; i++)
                     {
                         int currentIndex = indexDaGui[0];
-                        //!!!!! check đã gửi, nên đổi thành màu sắc.
+                        // check đã gửi, nên đổi thành màu sắc.
                         DataGridViewRow currentRow = dataGridView1.Rows[currentIndex];
                         listRow.Add(currentRow);
                         //currentRow.DefaultCellStyle.BackColor = Color.GreenYellow;
