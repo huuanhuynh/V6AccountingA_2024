@@ -469,7 +469,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                         _mau_bc = control as V6NumberTextBox;
                         if (_mau_bc != null)
                         {
-
+                            _mau_bc.MaxNumLength = 1;
+                            _mau_bc.MaxLength = 1;
                         }
                         break;
                     case "TEN_KH":

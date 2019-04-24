@@ -58,6 +58,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             //lblDmethodM.Visible = true;
             //txtDmethod_M.Visible = true;
             //btnEditXmlM.Visible = true;
+            txtLimits.Visible = true;
         }
     }
 }

@@ -62,6 +62,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtFdecimal = new V6Controls.V6ColorTextBox();
             this.lblFdecimal = new System.Windows.Forms.Label();
+            this.txtLimits = new V6Controls.V6ColorTextBox();
             this.txtFtype = new V6Controls.V6ColorTextBox();
             this.lblFtype = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -82,7 +83,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.txtLimits = new V6Controls.V6ColorTextBox();
             this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -671,6 +671,28 @@
             this.lblFdecimal.Text = "Fdecimal";
             this.lblFdecimal.Visible = false;
             // 
+            // txtLimits
+            // 
+            this.txtLimits.AccessibleName = "LIMITS";
+            this.txtLimits.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtLimits.BackColor = System.Drawing.Color.White;
+            this.txtLimits.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtLimits.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtLimits.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtLimits.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtLimits.GrayText = "Limits";
+            this.txtLimits.HoverColor = System.Drawing.Color.Yellow;
+            this.txtLimits.LeaveColor = System.Drawing.Color.White;
+            this.txtLimits.Location = new System.Drawing.Point(510, 7);
+            this.txtLimits.Margin = new System.Windows.Forms.Padding(4);
+            this.txtLimits.Name = "txtLimits";
+            this.txtLimits.Size = new System.Drawing.Size(224, 23);
+            this.txtLimits.TabIndex = 1;
+            this.toolTipV6FormControl.SetToolTip(this.txtLimits, "Các ký tự được phép gõ đối với TextBox.\r\nDanh sách số được nhập cách nhau bởi ; đ" +
+        "ối với kiểu số .");
+            this.txtLimits.Visible = false;
+            // 
             // txtFtype
             // 
             this.txtFtype.AccessibleName = "FTYPE";
@@ -956,29 +978,6 @@
             this.tabPage2.Size = new System.Drawing.Size(742, 408);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Thông tin ngầm định";
-            // 
-            // txtLimits
-            // 
-            this.txtLimits.AccessibleName = "LIMITS";
-            this.txtLimits.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLimits.BackColor = System.Drawing.Color.White;
-            this.txtLimits.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtLimits.Enabled = false;
-            this.txtLimits.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtLimits.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtLimits.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtLimits.GrayText = "Limits";
-            this.txtLimits.HoverColor = System.Drawing.Color.Yellow;
-            this.txtLimits.LeaveColor = System.Drawing.Color.White;
-            this.txtLimits.Location = new System.Drawing.Point(510, 7);
-            this.txtLimits.Margin = new System.Windows.Forms.Padding(4);
-            this.txtLimits.Name = "txtLimits";
-            this.txtLimits.Size = new System.Drawing.Size(224, 23);
-            this.txtLimits.TabIndex = 1;
-            this.toolTipV6FormControl.SetToolTip(this.txtLimits, "Các ký tự được phép gõ đối với TextBox.\r\nDanh sách số được nhập cách nhau bởi ; đ" +
-        "ối với kiểu số .");
-            this.txtLimits.Visible = false;
             // 
             // V6Alct1AddEditForm
             // 

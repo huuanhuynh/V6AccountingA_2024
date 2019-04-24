@@ -62,6 +62,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             lblDmethodM.Visible = true;
             txtDmethod_M.Visible = true;
             btnEditXmlM.Visible = true;
+            txtLimits.Visible = true;
         }
 
         public override void V6F3ExecuteUndo()

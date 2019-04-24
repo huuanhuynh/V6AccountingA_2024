@@ -116,7 +116,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             _dia_chi22, _ma_so_thue22, _ten_kh_t, _ten_vt_t, _dia_chi_t, _mst_t, _soCt0, _dien_giaii;
         private V6VvarTextBox _ma_kh22, _tk_du22, _tk_thue_no22, _ma_thue22, _ma_kh_i, _ma_kh_t;
         private V6DateTimeColor _ngay_ct022, _ngayCt0;
-        private V6NumberTextBox _t_tien22, _t_tien_nt22, _thue_suat22, _t_thue22, _t_thue_nt22, _gia_Nt022;
+        private V6NumberTextBox _t_tien22, _t_tien_nt22, _thue_suat22, _t_thue22, _t_thue_nt22, _gia_Nt022, _mau_bc22;
 
         
         private void LoadDetailControls()
@@ -281,12 +281,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                     case "SO_CT0":
                         _soCt0 = (V6ColorTextBox) control;
                         break;
-
                     case "NGAY_CT0":
                         _ngayCt0 = (V6DateTimeColor) control;
                         break;
-
+                    case "MAU_BC":
+                        _mau_bc = control as V6NumberTextBox;
+                        if (_mau_bc != null)
+                        {
+                            _mau_bc.MaxNumLength = 1;
+                            _mau_bc.MaxLength = 1;
+                        }
+                        break;
                 }
+
+
                 V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
             }
 
@@ -330,13 +338,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                 else if (NAME == "MAU_BC")
                 {
 
-                    _mau_bc = control as V6NumberTextBox;
-                    if (_mau_bc != null)
+                    _mau_bc22 = control as V6NumberTextBox;
+                    if (_mau_bc22 != null)
                     {
-                        _mau_bc.LimitCharacters = "123458";
-                        _mau_bc.MaxNumLength = 1;
-                        _mau_bc.MaxLength = 1;
-                        _mau_bc.GotFocus += _mau_bc_GotFocus;
+                        _mau_bc22.MaxNumLength = 1;
+                        _mau_bc22.MaxLength = 1;
+                        _mau_bc22.GotFocus += _mau_bc22_GotFocus;
                     }
                 }
                 else if (NAME == "TEN_KH")
@@ -521,11 +528,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             V6ControlFormHelper.RecaptionDataGridViewColumns(dataGridView1, _alct1Dic, _maNt, _mMaNt0);
         }
 
-        void _mau_bc_GotFocus(object sender, EventArgs e)
+        void _mau_bc22_GotFocus(object sender, EventArgs e)
         {
-            if (_mau_bc.Value == 0)
+            if (_mau_bc22.Value == 0)
             {
-                _mau_bc.Value = 1;
+                _mau_bc22.Value = 1;
             }
         }
         void _dien_giaii_GotFocus(object sender, EventArgs e)
@@ -2510,7 +2517,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                     //_thue_suat22.Value = txtThueSuat.Value;
                     //_tk_thue_no22.Text = txtTkThueNo.Text.Trim();
                     _tk_du22.Text = txtManx.Text.Trim();
-                    _mau_bc.Value = 1;
+                    _mau_bc22.Value = 1;
 
                     _thue_suat22.Enabled = false;
 
@@ -2526,7 +2533,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                     }
                     TinhTien22TienThue22();
                 }
-                _mau_bc.Focus();
+                _mau_bc22.Focus();
             }
             catch (Exception ex)
             {
@@ -2989,7 +2996,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                                 _dia_chi22.Enabled = _dia_chi22.Text.Trim() == "";
                                 _ma_so_thue22.Enabled = _ma_so_thue22.Text.Trim() == "";
                             }
-                            _mau_bc.Focus();
+                            _mau_bc22.Focus();
                         }
                     }
                 }

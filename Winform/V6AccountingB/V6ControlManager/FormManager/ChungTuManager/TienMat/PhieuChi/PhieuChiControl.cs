@@ -152,7 +152,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             _dia_chi22, _ma_so_thue22, _so_seri0;
         private V6VvarTextBox _ma_kh22, _tk_du22, _tk_thue_no22;
         private V6DateTimeColor _ngay_ct022;
-        private V6NumberTextBox _t_tien22, _t_tien_nt22, _thue_suat22, _t_thue22, _t_thue_nt22, _gia_Nt022;
+        private V6NumberTextBox _t_tien22, _t_tien_nt22, _thue_suat22, _t_thue22, _t_thue_nt22, _gia_Nt022, _mau_bc22;
 
         
         DataTable alct1_01, alct1_02, alct1_03;
@@ -260,6 +260,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                                 };
                             }
                             break;
+
+                        case "MAU_BC":
+                            _mau_bc = control as V6NumberTextBox;
+                            if (_mau_bc != null)
+                            {
+                                _mau_bc.MaxNumLength = 1;
+                                _mau_bc.MaxLength = 1;
+                            }
+                            break;
+
                         case "THUE_SUAT":
                             _thue_suat = control as V6NumberTextBox;
                             _thue_suat.Enabled = false;
@@ -498,13 +508,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                             }
                             break;
                         case "MAU_BC":
-                            _mau_bc = control as V6NumberTextBox;
-                            if (_mau_bc != null)
+                            _mau_bc22 = control as V6NumberTextBox;
+                            if (_mau_bc22 != null)
                             {
-                                _mau_bc.LimitCharacters = "123458";
-                                _mau_bc.MaxNumLength = 1;
-                                _mau_bc.MaxLength = 1;
-                                _mau_bc.GotFocus += _mau_bc_GotFocus;
+                                _mau_bc22.MaxNumLength = 1;
+                                _mau_bc22.MaxLength = 1;
+                                _mau_bc22.GotFocus += _mau_bc22_GotFocus;
                             }
                             break;
                         case "TEN_KH":
@@ -1128,11 +1137,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             lblNameT.Text = ((Label)sender).Text;
         }
         
-        void _mau_bc_GotFocus(object sender, EventArgs e)
+        void _mau_bc22_GotFocus(object sender, EventArgs e)
         {
-            if (_mau_bc.Value == 0)
+            if (_mau_bc22.Value == 0)
             {
-                _mau_bc.Value = 1;
+                _mau_bc22.Value = 1;
             }
         }
 
@@ -4835,7 +4844,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     //_thue_suat22.Value = txtThueSuat.Value;
                     //_tk_thue_no22.Text = txtTkThueNo.Text.Trim();
                     _tk_du22.Text = txtTk.Text.Trim();
-                    _mau_bc.Value = 1;
+                    _mau_bc22.Value = 1;
                     if (_ma_kh22.Text.Trim() == "")
                     {
                         //enable
@@ -4848,7 +4857,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     }
                     TinhTienThue22();
                 }
-                _mau_bc.Focus();
+                _mau_bc22.Focus();
             }
             catch (Exception ex)
             {
@@ -5055,7 +5064,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                             _dia_chi22.Enabled = _dia_chi22.Text.Trim() == "";
                             _ma_so_thue22.Enabled = _ma_so_thue22.Text.Trim() == "";
                         }
-                        _mau_bc.Focus();
+                        _mau_bc22.Focus();
                     }
                 }
             }
