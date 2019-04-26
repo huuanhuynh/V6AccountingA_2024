@@ -1387,7 +1387,7 @@
             this.v6NumberTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox1.LimitCharacters = "01";
+            this.v6NumberTextBox1.LimitCharacters = "0;1";
             this.v6NumberTextBox1.Location = new System.Drawing.Point(97, 250);
             this.v6NumberTextBox1.MaxLength = 1;
             this.v6NumberTextBox1.Name = "v6NumberTextBox1";

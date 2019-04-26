@@ -458,7 +458,7 @@
             this.TxtKho_dl.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtKho_dl.HoverColor = System.Drawing.Color.Yellow;
             this.TxtKho_dl.LeaveColor = System.Drawing.Color.White;
-            this.TxtKho_dl.LimitCharacters = "01";
+            this.TxtKho_dl.LimitCharacters = "0;1";
             this.TxtKho_dl.Location = new System.Drawing.Point(193, 10);
             this.TxtKho_dl.Margin = new System.Windows.Forms.Padding(4);
             this.TxtKho_dl.MaxLength = 1;

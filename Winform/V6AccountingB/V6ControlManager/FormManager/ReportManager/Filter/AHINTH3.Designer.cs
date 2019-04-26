@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label3 = new System.Windows.Forms.Label();
-            this.txtLoaiBaoCao = new V6Controls.V6NumberTextBox();
+            this.txtLoaiBaoCao = new V6Controls.V6ColorTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dateNgay_ct2 = new V6Controls.V6DateTimePicker();
@@ -64,7 +64,7 @@
             this.Txtnh_kh3 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtma_ct = new V6ReportControls.FilterLineVvarTextBox();
             this.filterLineVvarTextBox3 = new V6ReportControls.FilterLineVvarTextBox();
-            this.txtChiTietTheo = new V6Controls.V6NumberTextBox();
+            this.txtChiTietTheo = new V6Controls.V6ColorTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -88,7 +88,6 @@
             this.txtLoaiBaoCao.AccessibleName = "LOAI_BC";
             this.txtLoaiBaoCao.BackColor = System.Drawing.SystemColors.Window;
             this.txtLoaiBaoCao.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtLoaiBaoCao.DecimalPlaces = 0;
             this.txtLoaiBaoCao.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtLoaiBaoCao.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtLoaiBaoCao.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -104,11 +103,6 @@
             this.txtLoaiBaoCao.TabIndex = 3;
             this.txtLoaiBaoCao.Text = "2";
             this.txtLoaiBaoCao.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtLoaiBaoCao.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
             this.txtLoaiBaoCao.TextChanged += new System.EventHandler(this.txtLoaiBaoCao_ChiTietTheo_TextChanged);
             // 
             // label2
@@ -554,7 +548,6 @@
             this.txtChiTietTheo.AccessibleName = "CHI_TIET_THEO";
             this.txtChiTietTheo.BackColor = System.Drawing.SystemColors.Window;
             this.txtChiTietTheo.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtChiTietTheo.DecimalPlaces = 0;
             this.txtChiTietTheo.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtChiTietTheo.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtChiTietTheo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -570,12 +563,7 @@
             this.txtChiTietTheo.TabIndex = 4;
             this.txtChiTietTheo.Text = "1";
             this.txtChiTietTheo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtChiTietTheo.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.txtChiTietTheo.TextChanged += new System.EventHandler(this.txtLoaiBaoCao_ChiTietTheo_TextChanged);
+           this.txtChiTietTheo.TextChanged += new System.EventHandler(this.txtLoaiBaoCao_ChiTietTheo_TextChanged);
             // 
             // label4
             // 
@@ -663,8 +651,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private V6Controls.V6NumberTextBox txtLoaiBaoCao;
-        private V6Controls.V6NumberTextBox txtChiTietTheo;
+        private V6Controls.V6ColorTextBox txtLoaiBaoCao;
+        private V6Controls.V6ColorTextBox txtChiTietTheo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;

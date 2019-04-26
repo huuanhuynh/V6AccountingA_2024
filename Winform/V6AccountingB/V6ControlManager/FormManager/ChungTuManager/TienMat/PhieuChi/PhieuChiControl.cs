@@ -796,7 +796,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     _operTT_33 = control as V6ColorTextBox;
                     if (_operTT_33 != null)
                     {
-                        _operTT_33.LimitCharacters = "0+-";
                         _operTT_33.MaxLength = 1;
                     }
                 }

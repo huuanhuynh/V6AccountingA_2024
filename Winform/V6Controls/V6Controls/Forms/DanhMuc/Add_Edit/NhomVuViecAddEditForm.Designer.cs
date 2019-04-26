@@ -119,7 +119,7 @@
             this.Txtloai_nh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.Txtloai_nh.HoverColor = System.Drawing.Color.Yellow;
             this.Txtloai_nh.LeaveColor = System.Drawing.Color.White;
-            this.Txtloai_nh.LimitCharacters = "123";
+            this.Txtloai_nh.LimitCharacters = "1;2;3";
             this.Txtloai_nh.Location = new System.Drawing.Point(169, 22);
             this.Txtloai_nh.MaxLength = 1;
             this.Txtloai_nh.Name = "Txtloai_nh";

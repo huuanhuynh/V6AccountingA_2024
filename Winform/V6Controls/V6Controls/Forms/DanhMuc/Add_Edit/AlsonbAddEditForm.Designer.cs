@@ -328,7 +328,7 @@
             this.txttype_soct.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txttype_soct.HoverColor = System.Drawing.Color.Yellow;
             this.txttype_soct.LeaveColor = System.Drawing.Color.White;
-            this.txttype_soct.LimitCharacters = "012";
+            this.txttype_soct.LimitCharacters = "0;1;2";
             this.txttype_soct.Location = new System.Drawing.Point(219, 126);
             this.txttype_soct.Margin = new System.Windows.Forms.Padding(5);
             this.txttype_soct.MaxLength = 1;
@@ -378,7 +378,7 @@
             this.txtchkso_ct.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtchkso_ct.HoverColor = System.Drawing.Color.Yellow;
             this.txtchkso_ct.LeaveColor = System.Drawing.Color.White;
-            this.txtchkso_ct.LimitCharacters = "012";
+            this.txtchkso_ct.LimitCharacters = "0;1;2";
             this.txtchkso_ct.Location = new System.Drawing.Point(219, 103);
             this.txtchkso_ct.Margin = new System.Windows.Forms.Padding(5);
             this.txtchkso_ct.MaxLength = 1;

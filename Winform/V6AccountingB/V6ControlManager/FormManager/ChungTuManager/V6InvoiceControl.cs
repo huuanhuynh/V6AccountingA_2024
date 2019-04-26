@@ -527,6 +527,24 @@ namespace V6ControlManager.FormManager.ChungTuManager
             return result;
         }
 
+        public string GetThuNo131InitFilter()
+        {
+            var result = "";
+            try
+            {
+                foreach (DataRow row in AD.Rows)
+                {
+                    result += " And MA_KH <> '" + row["MA_KH_I"].ToString().Trim() + "'";
+                }
+                if (result.Length > 4) result = result.Substring(4);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+            return result;
+        }
+
         public string GetAlVitriTonInitFilter()
         {
             var result = "";

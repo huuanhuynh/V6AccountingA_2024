@@ -81,8 +81,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));
             result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.YYYYMMDD));
-            result.Add(new SqlParameter("@Loai_bc", (int)txtLoaiBaoCao.Value));
-            result.Add(new SqlParameter("@Ct_theo", (int)txtChiTietTheo.Value));
+            result.Add(new SqlParameter("@Loai_bc", txtLoaiBaoCao.Text));
+            result.Add(new SqlParameter("@Ct_theo", txtChiTietTheo.Text));
             result.Add(new SqlParameter("@giam_tru", chkGiamTru.Checked ? 1 : 0));
 
 
@@ -149,12 +149,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     if (txtChiTietTheo.LimitCharacters[0] == e.KeyChar)
                     {
                         txtChiTietTheo.Text = txtChiTietTheo.LimitCharacters[1].ToString();
-                        txtChiTietTheo.Value = Convert.ToInt32(txtChiTietTheo.Text);
                     }
                     else
                     {
                         txtChiTietTheo.Text = txtChiTietTheo.LimitCharacters[0].ToString();
-                        txtChiTietTheo.Value = Convert.ToInt32(txtChiTietTheo.Text);
                     }
                 }
             }
@@ -173,12 +171,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     if (txtLoaiBaoCao.LimitCharacters[0] == e.KeyChar)
                     {
                         txtLoaiBaoCao.Text = txtLoaiBaoCao.LimitCharacters[1].ToString();
-                        txtLoaiBaoCao.Value = Convert.ToInt32(txtLoaiBaoCao.Text);
+                        
                     }
                     else
                     {
                         txtLoaiBaoCao.Text = txtLoaiBaoCao.LimitCharacters[0].ToString();
-                        txtLoaiBaoCao.Value = Convert.ToInt32(txtLoaiBaoCao.Text);
+                        
                     }
                 }
             }

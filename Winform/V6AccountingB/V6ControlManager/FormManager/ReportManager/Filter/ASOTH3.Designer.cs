@@ -29,12 +29,15 @@
         private void InitializeComponent()
         {
             this.label3 = new System.Windows.Forms.Label();
-            this.txtLoaiBaoCao = new V6Controls.V6NumberTextBox();
+            this.txtLoaiBaoCao = new V6Controls.V6ColorTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dateNgay_ct2 = new V6Controls.V6DateTimePicker();
             this.dateNgay_ct1 = new V6Controls.V6DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lineNH_KH9 = new V6ReportControls.FilterLineVvarTextBox();
+            this.lineNH_KH8 = new V6ReportControls.FilterLineVvarTextBox();
+            this.lineNH_KH7 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_vt6 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_vt4 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtnh_vt5 = new V6ReportControls.FilterLineVvarTextBox();
@@ -61,14 +64,11 @@
             this.Txtnh_kh3 = new V6ReportControls.FilterLineVvarTextBox();
             this.Txtma_ct = new V6ReportControls.FilterLineVvarTextBox();
             this.filterLineVvarTextBox3 = new V6ReportControls.FilterLineVvarTextBox();
-            this.txtChiTietTheo = new V6Controls.V6NumberTextBox();
+            this.txtChiTietTheo = new V6Controls.V6ColorTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.chkGiamTru = new V6Controls.V6CheckBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.lineNH_KH9 = new V6ReportControls.FilterLineVvarTextBox();
-            this.lineNH_KH8 = new V6ReportControls.FilterLineVvarTextBox();
-            this.lineNH_KH7 = new V6ReportControls.FilterLineVvarTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,7 +87,6 @@
             this.txtLoaiBaoCao.AccessibleName = "LOAI_BC";
             this.txtLoaiBaoCao.BackColor = System.Drawing.SystemColors.Window;
             this.txtLoaiBaoCao.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtLoaiBaoCao.DecimalPlaces = 0;
             this.txtLoaiBaoCao.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtLoaiBaoCao.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtLoaiBaoCao.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -103,11 +102,6 @@
             this.txtLoaiBaoCao.TabIndex = 3;
             this.txtLoaiBaoCao.Text = "2";
             this.txtLoaiBaoCao.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtLoaiBaoCao.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
             this.txtLoaiBaoCao.TextChanged += new System.EventHandler(this.txtLoaiBaoCao_ChiTietTheo_TextChanged);
             this.txtLoaiBaoCao.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLoaiBaoCao_KeyPress);
             // 
@@ -198,6 +192,42 @@
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
+            // 
+            // lineNH_KH9
+            // 
+            this.lineNH_KH9.AccessibleDescription = "FILTERL00019";
+            this.lineNH_KH9.AccessibleName2 = "NH_KH9";
+            this.lineNH_KH9.Caption = "Nhóm khách hàng 9";
+            this.lineNH_KH9.FieldName = "NH_KH9";
+            this.lineNH_KH9.Location = new System.Drawing.Point(6, 394);
+            this.lineNH_KH9.Name = "lineNH_KH9";
+            this.lineNH_KH9.Size = new System.Drawing.Size(292, 22);
+            this.lineNH_KH9.TabIndex = 16;
+            this.lineNH_KH9.Vvar = "NH_KH";
+            // 
+            // lineNH_KH8
+            // 
+            this.lineNH_KH8.AccessibleDescription = "FILTERL00018";
+            this.lineNH_KH8.AccessibleName2 = "NH_KH8";
+            this.lineNH_KH8.Caption = "Nhóm khách hàng 8";
+            this.lineNH_KH8.FieldName = "NH_KH8";
+            this.lineNH_KH8.Location = new System.Drawing.Point(6, 372);
+            this.lineNH_KH8.Name = "lineNH_KH8";
+            this.lineNH_KH8.Size = new System.Drawing.Size(292, 22);
+            this.lineNH_KH8.TabIndex = 15;
+            this.lineNH_KH8.Vvar = "NH_KH";
+            // 
+            // lineNH_KH7
+            // 
+            this.lineNH_KH7.AccessibleDescription = "FILTERL00017";
+            this.lineNH_KH7.AccessibleName2 = "NH_KH7";
+            this.lineNH_KH7.Caption = "Nhóm khách hàng 7";
+            this.lineNH_KH7.FieldName = "NH_KH7";
+            this.lineNH_KH7.Location = new System.Drawing.Point(6, 350);
+            this.lineNH_KH7.Name = "lineNH_KH7";
+            this.lineNH_KH7.Size = new System.Drawing.Size(292, 22);
+            this.lineNH_KH7.TabIndex = 14;
+            this.lineNH_KH7.Vvar = "NH_KH";
             // 
             // Txtnh_vt6
             // 
@@ -518,7 +548,6 @@
             this.txtChiTietTheo.AccessibleName = "CHI_TIET_THEO";
             this.txtChiTietTheo.BackColor = System.Drawing.SystemColors.Window;
             this.txtChiTietTheo.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtChiTietTheo.DecimalPlaces = 0;
             this.txtChiTietTheo.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtChiTietTheo.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtChiTietTheo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -534,11 +563,7 @@
             this.txtChiTietTheo.TabIndex = 4;
             this.txtChiTietTheo.Text = "1";
             this.txtChiTietTheo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtChiTietTheo.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            
             this.txtChiTietTheo.TextChanged += new System.EventHandler(this.txtLoaiBaoCao_ChiTietTheo_TextChanged);
             this.txtChiTietTheo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtChiTietTheo_KeyPress);
             // 
@@ -582,40 +607,6 @@
             this.label7.TabIndex = 14;
             this.label7.Text = "5-Mã BP,6-Mã N viên, 7-Mã BPHT, 8-Mã đơn vị";
             // 
-            // lineNH_KH9
-            // 
-            this.lineNH_KH9.AccessibleDescription = "FILTERL00019"; this.lineNH_KH9.AccessibleName2 = "NH_KH9";
-            this.lineNH_KH9.Caption = "Nhóm khách hàng 9";
-            this.lineNH_KH9.FieldName = "NH_KH9";
-            this.lineNH_KH9.Location = new System.Drawing.Point(6, 394);
-            this.lineNH_KH9.Name = "lineNH_KH9";
-            this.lineNH_KH9.Size = new System.Drawing.Size(292, 22);
-            this.lineNH_KH9.TabIndex = 16;
-            this.lineNH_KH9.Vvar = "NH_KH";
-            // 
-            // lineNH_KH8
-            // 
-            this.lineNH_KH8.AccessibleDescription = "FILTERL00018"; this.lineNH_KH8.AccessibleName2 = "NH_KH8";
-            this.lineNH_KH8.Caption = "Nhóm khách hàng 8";
-            this.lineNH_KH8.FieldName = "NH_KH8";
-            this.lineNH_KH8.Location = new System.Drawing.Point(6, 372);
-            this.lineNH_KH8.Name = "lineNH_KH8";
-            this.lineNH_KH8.Size = new System.Drawing.Size(292, 22);
-            this.lineNH_KH8.TabIndex = 15;
-            this.lineNH_KH8.Vvar = "NH_KH";
-            // 
-            // lineNH_KH7
-            // 
-            this.lineNH_KH7.AccessibleDescription = "FILTERL00017";
-            this.lineNH_KH7.AccessibleName2 = "NH_KH7";
-            this.lineNH_KH7.Caption = "Nhóm khách hàng 7";
-            this.lineNH_KH7.FieldName = "NH_KH7";
-            this.lineNH_KH7.Location = new System.Drawing.Point(6, 350);
-            this.lineNH_KH7.Name = "lineNH_KH7";
-            this.lineNH_KH7.Size = new System.Drawing.Size(292, 22);
-            this.lineNH_KH7.TabIndex = 14;
-            this.lineNH_KH7.Vvar = "NH_KH";
-            // 
             // ASOTH3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -650,8 +641,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private V6Controls.V6NumberTextBox txtLoaiBaoCao;
-        private V6Controls.V6NumberTextBox txtChiTietTheo;
+        private V6Controls.V6ColorTextBox txtLoaiBaoCao;
+        private V6Controls.V6ColorTextBox txtChiTietTheo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private V6Controls.V6CheckBox chkGiamTru;

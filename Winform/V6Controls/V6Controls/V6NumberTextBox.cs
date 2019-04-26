@@ -14,6 +14,8 @@ namespace V6Controls
     {
         #region ==== Properties ====
 
+        //string LimitCharacters { get; set; }
+        //public string LimitCharacters { get; private set; }
         //public override string Text { get; private set; }
 
         protected int _decimals = 3;

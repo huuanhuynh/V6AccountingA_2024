@@ -1393,7 +1393,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox35.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox35.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox35.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox35.LimitCharacters = "10";
+            this.v6NumberTextBox35.LimitCharacters = "1;0";
             this.v6NumberTextBox35.Location = new System.Drawing.Point(163, 308);
             this.v6NumberTextBox35.MaxLength = 1;
             this.v6NumberTextBox35.Name = "v6NumberTextBox35";
@@ -1418,7 +1418,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox34.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox34.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox34.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox34.LimitCharacters = "10";
+            this.v6NumberTextBox34.LimitCharacters = "1;0";
             this.v6NumberTextBox34.Location = new System.Drawing.Point(163, 281);
             this.v6NumberTextBox34.MaxLength = 1;
             this.v6NumberTextBox34.Name = "v6NumberTextBox34";
@@ -1443,7 +1443,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox33.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox33.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox33.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox33.LimitCharacters = "10";
+            this.v6NumberTextBox33.LimitCharacters = "1;0";
             this.v6NumberTextBox33.Location = new System.Drawing.Point(163, 254);
             this.v6NumberTextBox33.MaxLength = 1;
             this.v6NumberTextBox33.Name = "v6NumberTextBox33";
@@ -1468,7 +1468,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox32.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox32.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox32.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox32.LimitCharacters = "1234";
+            this.v6NumberTextBox32.LimitCharacters = "1;2;3;4";
             this.v6NumberTextBox32.Location = new System.Drawing.Point(163, 227);
             this.v6NumberTextBox32.MaxLength = 1;
             this.v6NumberTextBox32.Name = "v6NumberTextBox32";
@@ -1493,7 +1493,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox31.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox31.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox31.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox31.LimitCharacters = "12";
+            this.v6NumberTextBox31.LimitCharacters = "1;2";
             this.v6NumberTextBox31.Location = new System.Drawing.Point(163, 200);
             this.v6NumberTextBox31.MaxLength = 1;
             this.v6NumberTextBox31.Name = "v6NumberTextBox31";
@@ -1518,7 +1518,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.v6NumberTextBox22.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox22.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox22.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox22.LimitCharacters = "01";
+            this.v6NumberTextBox22.LimitCharacters = "0;1";
             this.v6NumberTextBox22.Location = new System.Drawing.Point(163, 173);
             this.v6NumberTextBox22.MaxLength = 1;
             this.v6NumberTextBox22.Name = "v6NumberTextBox22";

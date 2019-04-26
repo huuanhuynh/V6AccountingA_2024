@@ -132,7 +132,7 @@
             this.txtLoai_tk.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtLoai_tk.HoverColor = System.Drawing.Color.Yellow;
             this.txtLoai_tk.LeaveColor = System.Drawing.Color.White;
-            this.txtLoai_tk.LimitCharacters = "01234";
+            this.txtLoai_tk.LimitCharacters = "0;1;2;3;4";
             this.txtLoai_tk.Location = new System.Drawing.Point(192, 279);
             this.txtLoai_tk.MaxLength = 1;
             this.txtLoai_tk.Name = "txtLoai_tk";
@@ -530,7 +530,7 @@
             this.v6NumberTextBox4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox4.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox4.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox4.LimitCharacters = "01";
+            this.v6NumberTextBox4.LimitCharacters = "0;1";
             this.v6NumberTextBox4.Location = new System.Drawing.Point(192, 217);
             this.v6NumberTextBox4.MaxLength = 1;
             this.v6NumberTextBox4.Name = "v6NumberTextBox4";
@@ -565,7 +565,7 @@
             this.v6NumberTextBox3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox3.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox3.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox3.LimitCharacters = "01";
+            this.v6NumberTextBox3.LimitCharacters = "0;1";
             this.v6NumberTextBox3.Location = new System.Drawing.Point(192, 246);
             this.v6NumberTextBox3.MaxLength = 1;
             this.v6NumberTextBox3.Name = "v6NumberTextBox3";
@@ -601,7 +601,7 @@
             this.v6NumberTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox2.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox2.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox2.LimitCharacters = "01234";
+            this.v6NumberTextBox2.LimitCharacters = "0;1;2;3;4";
             this.v6NumberTextBox2.Location = new System.Drawing.Point(192, 342);
             this.v6NumberTextBox2.MaxLength = 1;
             this.v6NumberTextBox2.Name = "v6NumberTextBox2";
@@ -643,7 +643,7 @@
             this.v6NumberTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox1.LimitCharacters = "01234";
+            this.v6NumberTextBox1.LimitCharacters = "0;1;2;3;4";
             this.v6NumberTextBox1.Location = new System.Drawing.Point(192, 371);
             this.v6NumberTextBox1.MaxLength = 1;
             this.v6NumberTextBox1.Name = "v6NumberTextBox1";

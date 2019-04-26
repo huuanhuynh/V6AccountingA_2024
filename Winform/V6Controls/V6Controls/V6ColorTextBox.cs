@@ -154,7 +154,7 @@ namespace V6Controls
         [Category("V6")]
         [DefaultValue(null)]
         [Description("Những ký tự được phép sử dụng khi gõ.")]
-        public string LimitCharacters
+        public virtual string LimitCharacters
         {
             get { return _lmChars; }
             set { _lmChars = value; }

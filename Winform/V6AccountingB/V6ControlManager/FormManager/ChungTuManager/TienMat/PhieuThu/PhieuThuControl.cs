@@ -445,7 +445,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     _operTT_33 = control as V6ColorTextBox;
                     if (_operTT_33 != null)
                     {
-                        _operTT_33.LimitCharacters = "0+-";
                         _operTT_33.MaxLength = 1;
                     }
                 }
@@ -4450,9 +4449,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 if (_MA_GD == "3")
                 {
                     detail1.MODE = V6Mode.View;
-
-
-                    var initFilter = GetSoCt0InitFilter();
+                    
+                    var initFilter = GetThuNo131InitFilter();
                     var f = new FilterView_ARSODU0TK(Invoice, new V6ColorTextBox(), _sttRec, txtMadvcs.Text, initFilter);
                     f.MultiSeletion = true;
                     f.ChoseEvent += data =>
