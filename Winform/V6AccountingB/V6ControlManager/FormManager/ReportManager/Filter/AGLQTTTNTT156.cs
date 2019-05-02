@@ -2,8 +2,15 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
+using System.Windows.Forms;
+using V6AccountingBusiness;
 using V6Controls;
+using V6Controls.Forms;
+using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
+using V6Structs;
+using V6Tools;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
@@ -22,15 +29,39 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             txtNam2.Value = V6Setting.M_ngay_ct2.Year;
 
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
-            
+            txtma_maubc.Text = "GLQTTTNTT";
+
             if (V6Login.MadvcsCount <= 1)
             {
                 txtMaDvcs.Enabled = false;
             }
 
             SetHideFields(RTien);
+            LoadAlmaubc();
         }
 
+        private DataTable maubcData;
+        private void LoadAlmaubc()
+        {
+            try
+            {
+                //ma_maubc,ten_maubc,ten_maubc2,file_maubc
+                maubcData = V6BusinessHelper.Select("ALMAUBC",
+                   "ma_maubc,ten_maubc,ten_maubc2,file_maubc,UID", "ma_maubc='" + txtma_maubc.Text.ToUpper() + "'",
+                   "", "[ORDER]").Data;
+
+                cboMaubc.ValueMember = "file_maubc";
+                cboMaubc.DisplayMember = V6Setting.IsVietnamese ? "ten_maubc" : "ten_maubc2";
+                cboMaubc.DataSource = maubcData;
+                cboMaubc.ValueMember = "file_maubc";
+                cboMaubc.DisplayMember = V6Setting.IsVietnamese ? "ten_maubc" : "ten_maubc2";
+
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(string.Format("{0} {1} {2} {3}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, ex.Message));
+            }
+        }
         public override void LoadDataFinish(DataSet ds)
         {
             _ds = ds;
@@ -98,6 +129,17 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
 
 
+            string maubc = "";
+            if (cboMaubc.Items.Count > 0 && cboMaubc.SelectedIndex >= 0)
+            {
+                maubc = cboMaubc.SelectedValue.ToString().Trim();
+            }
+
+            if (maubc == "")
+            {
+                maubc = "GLQTTTNTT156";
+            }
+
             var result = new List<SqlParameter>();
 
      
@@ -108,7 +150,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             result.Add(new SqlParameter("@Year1", (int)txtNam.Value));
             result.Add(new SqlParameter("@Period2", (int)txtThang2.Value));
             result.Add(new SqlParameter("@Year2", (int)txtNam2.Value));
-            result.Add(new SqlParameter("@Mau", "GLQTTTNTT156"));
+            result.Add(new SqlParameter("@Mau", maubc));
 
 
             var and = radAnd.Checked;
@@ -154,5 +196,221 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             }
         }
+
+        V6TableName CurrentTable = V6TableName.Almaubc;
+        private void DoAdd()
+        {
+            try
+            {
+                if (CurrentTable == V6TableName.None)
+                {
+                    this.ShowWarningMessage("Hãy chọn danh mục!");
+                }
+                else
+                {
+
+
+                    if (maubcData != null)
+                    {
+                        var row0 = maubcData.Rows[cboMaubc.SelectedIndex];
+
+                        var keys = new SortedDictionary<string, object>();
+                        if (maubcData.Columns.Contains("UID"))
+                            keys.Add("UID", row0["UID"]);
+
+                        //if (KeyFields != null)
+                        //    foreach (var keyField in KeyFields)
+                        //    {
+                        //        if (dataGridView1.Columns.Contains(keyField))
+                        //        {
+                        //            keys[keyField] = row.Cells[keyField].Value;
+                        //        }
+                        //    }
+
+                        var _data = row0.ToDataDictionary();
+                        var f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);
+                        f.AfterInitControl += f_AfterInitControl;
+                        f.InitFormControl();
+                        f.InsertSuccessEvent += f_InsertSuccess;
+                        f.ShowDialog(this);
+                    }
+                    else
+                    {
+                        var f = new FormAddEdit(CurrentTable);
+                        f.AfterInitControl += f_AfterInitControl;
+                        f.InitFormControl();
+                        f.InsertSuccessEvent += f_InsertSuccess;
+                        f.ShowDialog(this);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                V6Message.Show(ex.Message);
+            }
+        }
+
+        void f_AfterInitControl(object sender, EventArgs e)
+        {
+            LoadAdvanceControls((Control)sender, CurrentTable.ToString());
+        }
+
+        protected void LoadAdvanceControls(Control form, string ma_ct)
+        {
+            try
+            {
+                FormManagerHelper.CreateAdvanceFormControls(form, ma_ct, new Dictionary<string, object>());
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadAdvanceControls " + ma_ct, ex);
+            }
+        }
+
+        void f_InsertSuccess(IDictionary<string, object> dataDic)
+        {
+            try
+            {
+                var newRow = maubcData.NewRow();
+                foreach (KeyValuePair<string, object> item in dataDic)
+                {
+                    if (maubcData.Columns.Contains(item.Key))
+                        newRow[item.Key] = item.Value;
+                }
+                maubcData.Rows.Add(newRow);
+                cboMaubc.SelectedIndex = maubcData.Rows.Count - 1;
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".InsertSuccessHandler: " + ex.Message);
+            }
+        }
+
+        private void DoEdit()
+        {
+            try
+            {
+                if (CurrentTable == V6TableName.None)
+                {
+                    this.ShowWarningMessage("Hãy chọn danh mục!");
+                }
+                else
+                {
+                    //DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
+
+                    if (cboMaubc.SelectedIndex >= 0)
+                    {
+                        var row0 = maubcData.Rows[cboMaubc.SelectedIndex];
+                        var keys = new SortedDictionary<string, object>();
+                        if (maubcData.Columns.Contains("UID")) //Luôn có trong thiết kế rồi.
+                            keys.Add("UID", row0["UID"]);
+
+                        //if (KeyFields != null)
+                        //    foreach (var keyField in KeyFields)
+                        //    {
+                        //        if (dataGridView1.Columns.Contains(keyField))
+                        //        {
+                        //            keys[keyField] = row.Cells[keyField].Value;
+                        //        }
+                        //    }
+
+                        var _data = row0.ToDataDictionary();
+                        var f = new FormAddEdit(CurrentTable, V6Mode.Edit, keys, _data);
+                        f.AfterInitControl += f_AfterInitControl;
+                        f.InitFormControl();
+                        f.UpdateSuccessEvent += f_UpdateSuccess;
+                        f.CallReloadEvent += FCallReloadEvent;
+                        f.ShowDialog(this);
+                    }
+                    else
+                    {
+                        this.ShowWarningMessage(V6Text.NoSelection);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".DoEdit", ex);
+            }
+        }
+
+        private void FCallReloadEvent(object sender, EventArgs e)
+        {
+
+        }
+
+        private void f_UpdateSuccess(IDictionary<string, object> dataDic)
+        {
+            try
+            {
+                var editRow = maubcData.Rows[cboMaubc.SelectedIndex];
+                foreach (KeyValuePair<string, object> item in dataDic)
+                {
+                    if (maubcData.Columns.Contains(item.Key))
+                        editRow[item.Key] = item.Value;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".UpdateSuccessHandler: " + ex.Message);
+            }
+        }
+
+        private void DoEditDetails()
+        {
+            try
+            {
+                if (cboMaubc.SelectedIndex >= 0)
+                {
+                    var row0 = maubcData.Rows[cboMaubc.SelectedIndex];
+                    var ma_maubc = row0["file_maubc"].ToString().Trim();
+                    var filter = "mau_bc='" + ma_maubc + "'";
+                    BangCanDoiTaiChinhForm form = new BangCanDoiTaiChinhForm(filter);
+                    form.ShowDialog(this);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".DoEditDetails: " + ex.Message);
+            }
+        }
+
+        private void btnThemMau_Click(object sender, EventArgs e)
+        {
+            if (V6Login.UserRight.AllowAdd("", "Almaubc".ToUpper() + "6"))
+            {
+                DoAdd();
+            }
+            else
+            {
+                V6ControlFormHelper.NoRightWarning();
+            }
+        }
+
+        private void btnSuaTTMau_Click(object sender, EventArgs e)
+        {
+            if (V6Login.UserRight.AllowEdit("", CurrentTable.ToString().ToUpper() + "6"))
+            {
+                DoEdit();
+            }
+            else
+            {
+                V6ControlFormHelper.NoRightWarning();
+            }
+        }
+
+        private void btnSuaCTMau_Click(object sender, EventArgs e)
+        {
+            if (V6Login.UserRight.AllowEdit("", CurrentTable.ToString().ToUpper() + "6"))
+            {
+                DoEditDetails();
+            }
+            else
+            {
+                V6ControlFormHelper.NoRightWarning();
+            }
+        }
+
+        
     }
 }

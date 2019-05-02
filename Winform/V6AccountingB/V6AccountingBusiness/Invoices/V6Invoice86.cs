@@ -368,7 +368,41 @@ namespace V6AccountingBusiness.Invoices
             }
             return null;
         }
-        
+
+        //Tuanmh 30/08/2018 copy from 71 PO->IXC 20190502
+        public DataRow GetGiaMua(string field, string mact, DateTime ngayct,
+            string mant, string mavt, string dvt1, string makh, string magia)
+        {
+            try
+            {
+
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@cField", field),
+                    new SqlParameter("@cVCID", mact),
+                    new SqlParameter("@dPrice", ngayct),
+                    new SqlParameter("@cFC", mant),
+                    new SqlParameter("@cItem", mavt),
+                    new SqlParameter("@cUOM", dvt1),
+                    new SqlParameter("@cCust", makh),
+                    new SqlParameter("@cMaGia", magia)
+                };
+
+                var resultData = SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_GetIXCIDPrice", plist).Tables[0];
+                if (resultData != null && resultData.Rows.Count >= 1)
+                {
+                    return resultData.Rows[0];
+                }
+                else
+                {
+                    throw new Exception("GetGiaMua return null.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("V6Invoice86 GetGiaMua " + ex.Message);
+            }
+        }
     }
 
 }

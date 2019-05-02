@@ -74,6 +74,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     groupBoxB.Visible = true;
                     groupBoxC.Visible = true;
                     break;
+                default:
+                    groupBoxB.Visible = true;
+                    groupBoxC.Visible = true;
+                    break;
             }
         }
     }

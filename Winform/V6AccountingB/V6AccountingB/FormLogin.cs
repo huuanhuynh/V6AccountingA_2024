@@ -104,7 +104,9 @@ namespace V6AccountingB
                 cboLang.DataSource = TblLanguage;
                 cboLang.ValueMember = "Lan_Id";
                 cboLang.DisplayMember = "Lan_name2";
-                cboLang.SelectedIndex = GetLangIndex(TblLanguage, V6Setting.Language);
+                if (string.IsNullOrEmpty(V6Setting.Language)) V6Setting.Language = "V";
+                cboLang.SelectedValue = V6Setting.Language;
+                //cboLang.SelectedIndex = GetLangIndex(TblLanguage, V6Setting.Language);
 
                 cboModule.ValueMember = "module_id";
                 cboModule.DisplayMember = "name";

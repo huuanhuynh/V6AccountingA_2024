@@ -449,7 +449,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                             }
                         }
                         break;
-                 
+                    
                     case "PX_GIA_DDI":
                         _xuat_dd = control as V6CheckTextBox;
                         if (_xuat_dd != null)
@@ -518,6 +518,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             detail1.SetStruct(Invoice.ADStruct);
             detail1.MODE = detail1.MODE;
             V6ControlFormHelper.RecaptionDataGridViewColumns(dataGridView1, _alct1Dic, _maNt, _mMaNt0);
+        }
+
+        public void GiaNt01_V6LostFocus(object sender)
+        {
+            //chkT_THUE_NT.Checked = false;
+            //TinhTienNt0(_giaNt01);
+            //Tinh_thue_ct();
         }
 
         void _maLo_V6LostFocus(object sender)
@@ -971,12 +978,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                     txtMaSoThue.Text = "";
                     txtTenKh.Text = "";
                     txtDiaChi.Text = "";
+                    SetControlValue(txtMaGia, null, Invoice.GetTemplateSettingAM("MA_GIA"));
                     return;
                 }
                 var mst = (data["ma_so_thue"] ?? "").ToString().Trim();
                 txtMaSoThue.Text = mst;
                 txtTenKh.Text = (data["ten_kh"] ?? "").ToString().Trim();
                 txtDiaChi.Text = (data["dia_chi"] ?? "").ToString().Trim();
+                SetControlValue(txtMaGia, data["MA_GIA"], Invoice.GetTemplateSettingAM("MA_GIA"));
 
                 SetDefaultDataReference(Invoice, ItemID, "TXTMAKH", data);
             }
@@ -1052,11 +1061,118 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             if (_maKhoI.Text != "")
                 XuLyLayThongTinKhiChonMaKhoI();
             //}
-
+            GetGia();
             GetTon13();
             GetLoDate();
             TinhTienVon1(_maVt);
+            TinhGiaVon();
         }
+
+        public void GetGia()
+        {
+            try
+            {
+                if (txtMaGia.Text.Trim() == "") return;
+
+                var dataGia = Invoice.GetGiaMua("MA_VT", Invoice.Mact, dateNgayCT.Date,
+                        cboMaNt.SelectedValue.ToString().Trim(), _maVt.Text, _dvt1.Text, txtMaKh.Text, txtMaGia.Text);
+                _gia_nt1.Value = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT0"]);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        private void ApGiaMua()
+        {
+            try
+            {
+                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                {
+                    this.ShowWarningMessage(V6Text.DetailNotComplete);
+                    return;
+                }
+                if (txtMaGia.Text.Trim() == "")
+                {
+                    ShowParentMessage(V6Text.NoInput + btnApGia.Text);
+                    return;
+                }
+                if (this.ShowConfirmMessage(V6Text.Text("ASKAPGIAMUAALL")) != DialogResult.Yes)
+                {
+                    return;
+                }
+
+                foreach (DataRow row in AD.Rows)
+                {
+                    var maVatTu = row["MA_VT"].ToString().Trim();
+                    var dvt = row["DVT"].ToString().Trim();
+                    var dvt1 = row["DVT1"].ToString().Trim();
+                    
+                    var soLuong = ObjectAndString.ObjectToDecimal(row["SO_LUONG"]);
+                    var soLuong1 = ObjectAndString.ObjectToDecimal(row["SO_LUONG1"]);
+                    
+                    var dataGia = Invoice.GetGiaMua("MA_VT", Invoice.Mact, dateNgayCT.Date,
+                        cboMaNt.SelectedValue.ToString().Trim(), maVatTu, dvt1, txtMaKh.Text, txtMaGia.Text);
+
+                    var giaNt1 = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT0"]);
+                    row["GIA_NT1"] = giaNt1;
+                    //_soLuong.Value = _soLuong1.Value * _heSo1.Value;
+                    var tienNt = V6BusinessHelper.Vround((soLuong1 * giaNt1), M_ROUND_NT);
+                    var tien = V6BusinessHelper.Vround((tienNt * txtTyGia.Value), M_ROUND);
+
+                    row["tien_Nt"] = tienNt;
+                    row["tien"] = tien;
+                    
+                    if (_maNt == _mMaNt0)
+                    {
+                        row["tien"] = tienNt;
+                    }
+                    
+                    row["Gia"] = V6BusinessHelper.Vround((giaNt1 * txtTyGia.Value), M_ROUND_GIA_NT);
+                    if (_maNt == _mMaNt0)
+                    {
+                        row["Gia"] = row["Gia_nt1"];
+                    }
+
+                    if (soLuong != 0)
+                    {
+                        row["gia_nt"] = V6BusinessHelper.Vround((tienNt / soLuong), M_ROUND_GIA_NT);
+                        row["gia"] = V6BusinessHelper.Vround((tien / soLuong), M_ROUND_GIA);
+
+                        if (_maNt == _mMaNt0)
+                        {
+                            row["gia"] = row["gia_nt1"];
+                            row["gia_nt"] = row["gia_nt1"];
+                        }
+                    }
+                    //End TinhGiaNt2
+
+                    //====================
+
+                    if (dvt.ToUpper().Trim() == dvt1.ToUpper().Trim())
+                    {
+                        row["GIA_NT"] = row["GIA_NT1"];
+                    }
+                    else
+                    {
+                        if (soLuong != 0)
+                        {
+                            row["GIA_NT"] = tienNt / soLuong;
+                        }
+                    }
+                }
+
+                dataGridView1.DataSource = AD;
+
+                TinhTongThanhToan("ApGiaMua");
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
 
         private void XuLyLayThongTinKhiChonMaKhoI()
         {
@@ -1534,7 +1650,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             }
             _soLuong.Value = _soLuong1.Value * _heSo1.Value;
             CheckSoLuong1(_dvt1);
-            //TinhTienVon();
+
+            GetGia();
+            TinhTienVon1(_dvt1);
         }
 
         public void TinhTienVon1(Control actionControl)
@@ -4681,6 +4799,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             {
                 dataGridView1.ReadOnly = true;
             }
+        }
+
+        private void btnApGia_Click(object sender, EventArgs e)
+        {
+            ApGiaMua();
+            _sttRec0 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow);
         }
     }
 }

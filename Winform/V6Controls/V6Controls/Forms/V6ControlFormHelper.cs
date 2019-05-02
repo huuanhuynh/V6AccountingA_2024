@@ -2635,6 +2635,7 @@ namespace V6Controls.Forms
             {
                 Name = accessibleName,
                 AccessibleName = accessibleName,
+                BorderStyle = BorderStyle.FixedSingle,
                 Carry = carry,
                 GrayText = caption,
                 LimitCharacters = limits,
@@ -2649,6 +2650,7 @@ namespace V6Controls.Forms
             {
                 Name = accessibleName,
                 AccessibleName = accessibleName,
+                BorderStyle = BorderStyle.FixedSingle,
                 Carry = carry,
                 GrayText = caption,
                 DecimalPlaces = decimals,
@@ -2664,6 +2666,7 @@ namespace V6Controls.Forms
             {
                 Name = accessibleName,
                 AccessibleName = accessibleName,
+                BorderStyle = BorderStyle.FixedSingle,
                 Carry = carry,
                 GrayText = caption,
                 DecimalPlaces = decimals,
@@ -2679,6 +2682,7 @@ namespace V6Controls.Forms
             {
                 Name = accessibleName,
                 AccessibleName = accessibleName,
+                BorderStyle = BorderStyle.FixedSingle,
                 Carry = carry,
                 GrayText = caption,
                 DecimalPlaces = decimals,
@@ -2694,6 +2698,7 @@ namespace V6Controls.Forms
             {
                 Name = accessibleName,
                 AccessibleName = accessibleName,
+                BorderStyle = BorderStyle.FixedSingle,
                 Carry = carry,
                 GrayText = caption,
                 DecimalPlaces = decimals,
@@ -2710,6 +2715,7 @@ namespace V6Controls.Forms
             {
                 Name = accessibleName,
                 AccessibleName = accessibleName,
+                BorderStyle = BorderStyle.FixedSingle,
                 Carry = carry,
                 GrayText = caption,
                 DecimalPlaces = decimals,
@@ -2726,6 +2732,7 @@ namespace V6Controls.Forms
             {
                 Name = accessibleName,
                 AccessibleName = accessibleName,
+                BorderStyle = BorderStyle.FixedSingle,
                 Carry = carry,
                 GrayText = caption,
                 DecimalPlaces = decimals,
@@ -2741,6 +2748,7 @@ namespace V6Controls.Forms
             {
                 Name = accessibleName,
                 AccessibleName = accessibleName,
+                BorderStyle = BorderStyle.FixedSingle,
                 Carry = carry,
                 GrayText = caption,
                 DecimalPlaces = decimals,
@@ -2758,6 +2766,7 @@ namespace V6Controls.Forms
             {
                 Name = accessibleName,
                 AccessibleName = accessibleName,
+                BorderStyle = BorderStyle.FixedSingle,
                 Carry = carry,
                 VVar = vvar,
                 CheckOnLeave = checkOnLeave,
@@ -2781,6 +2790,7 @@ namespace V6Controls.Forms
             {
                 Name = accessibleName,
                 AccessibleName = accessibleName,
+                BorderStyle = BorderStyle.FixedSingle,
                 AccessibleName2 = accessibleName + "2",
                 Carry = carry,
                 Ma_dm = ma_dm,
@@ -2805,6 +2815,7 @@ namespace V6Controls.Forms
             {
                 Name = accessibleName,
                 AccessibleName = accessibleName,
+                BorderStyle = BorderStyle.FixedSingle,
                 Carry = carry,
                 //LimitCharacters = limit,
                 GrayText = caption,
@@ -2822,6 +2833,7 @@ namespace V6Controls.Forms
             {
                 Name = accessibleName,
                 AccessibleName = accessibleName,
+                BorderStyle = BorderStyle.FixedSingle,
                 Carry = carry,
                 //LimitCharacters = limit,
                 GrayText = caption,
@@ -2840,6 +2852,7 @@ namespace V6Controls.Forms
             {
                 Name = accessibleName,
                 AccessibleName = accessibleName,
+                //BorderStyle = BorderStyle.FixedSingle,
                 Carry = carry,
                 //Text = caption,
                 TextTitle = caption,
@@ -2854,6 +2867,7 @@ namespace V6Controls.Forms
             {
                 Name = accessibleName,
                 AccessibleName = accessibleName,
+                //BorderStyle = BorderStyle.FixedSingle,
                 Carry = carry,
                 CustomFormat = "HH:mm dd/MM/yyyy",
                 //Text = caption,
@@ -2869,6 +2883,7 @@ namespace V6Controls.Forms
             {
                 Name = accessibleName,
                 AccessibleName = accessibleName,
+                BorderStyle = BorderStyle.FixedSingle,
                 Carry = carry,
                 //Text = caption,
                 //TextTitle = caption,
@@ -2883,6 +2898,7 @@ namespace V6Controls.Forms
             {
                 Name = accessibleName,
                 AccessibleName = accessibleName,
+                BorderStyle = BorderStyle.FixedSingle,
                 Carry = carry,
                 GrayText = caption,
                 Width = width,

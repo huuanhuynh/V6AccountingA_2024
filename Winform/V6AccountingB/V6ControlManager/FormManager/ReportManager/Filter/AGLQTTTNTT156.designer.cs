@@ -40,6 +40,12 @@
             this.txtThang2 = new V6Controls.V6NumberTextBox();
             this.txtNam2 = new V6Controls.V6NumberTextBox();
             this.v6Label1 = new V6Controls.V6Label();
+            this.btnSuaCTMau = new V6Controls.Controls.V6FormButton();
+            this.btnSuaTTMau = new V6Controls.Controls.V6FormButton();
+            this.btnThemMau = new V6Controls.Controls.V6FormButton();
+            this.txtma_maubc = new V6Controls.V6VvarTextBox();
+            this.cboMaubc = new V6Controls.V6ComboBox();
+            this.v6Label20 = new V6Controls.V6Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,9 +70,9 @@
             this.groupBox1.Controls.Add(this.radOr);
             this.groupBox1.Controls.Add(this.radAnd);
             this.groupBox1.Controls.Add(this.txtMaDvcs);
-            this.groupBox1.Location = new System.Drawing.Point(0, 133);
+            this.groupBox1.Location = new System.Drawing.Point(0, 219);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(289, 80);
+            this.groupBox1.Size = new System.Drawing.Size(289, 98);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -233,10 +239,89 @@
             this.v6Label1.TabIndex = 12;
             this.v6Label1.Text = "Năm";
             // 
+            // btnSuaCTMau
+            // 
+            this.btnSuaCTMau.AccessibleDescription = "REPORTB00003";
+            this.btnSuaCTMau.Location = new System.Drawing.Point(169, 149);
+            this.btnSuaCTMau.Name = "btnSuaCTMau";
+            this.btnSuaCTMau.Size = new System.Drawing.Size(48, 23);
+            this.btnSuaCTMau.TabIndex = 40;
+            this.btnSuaCTMau.Text = "Sửa ct";
+            this.btnSuaCTMau.UseVisualStyleBackColor = true;
+            this.btnSuaCTMau.Click += new System.EventHandler(this.btnSuaCTMau_Click);
+            // 
+            // btnSuaTTMau
+            // 
+            this.btnSuaTTMau.AccessibleDescription = "REPORTB00001";
+            this.btnSuaTTMau.Location = new System.Drawing.Point(125, 149);
+            this.btnSuaTTMau.Name = "btnSuaTTMau";
+            this.btnSuaTTMau.Size = new System.Drawing.Size(43, 23);
+            this.btnSuaTTMau.TabIndex = 41;
+            this.btnSuaTTMau.Text = "Sửa tt";
+            this.btnSuaTTMau.UseVisualStyleBackColor = true;
+            this.btnSuaTTMau.Click += new System.EventHandler(this.btnSuaTTMau_Click);
+            // 
+            // btnThemMau
+            // 
+            this.btnThemMau.AccessibleDescription = "REPORTB00002";
+            this.btnThemMau.Location = new System.Drawing.Point(81, 149);
+            this.btnThemMau.Name = "btnThemMau";
+            this.btnThemMau.Size = new System.Drawing.Size(43, 23);
+            this.btnThemMau.TabIndex = 42;
+            this.btnThemMau.Text = "Thêm";
+            this.btnThemMau.UseVisualStyleBackColor = true;
+            this.btnThemMau.Click += new System.EventHandler(this.btnThemMau_Click);
+            // 
+            // txtma_maubc
+            // 
+            this.txtma_maubc.AccessibleName = "MA_MABC";
+            this.txtma_maubc.BackColor = System.Drawing.SystemColors.Window;
+            this.txtma_maubc.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtma_maubc.CheckNotEmpty = true;
+            this.txtma_maubc.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtma_maubc.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtma_maubc.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtma_maubc.HoverColor = System.Drawing.Color.Yellow;
+            this.txtma_maubc.LeaveColor = System.Drawing.Color.White;
+            this.txtma_maubc.Location = new System.Drawing.Point(82, 172);
+            this.txtma_maubc.Name = "txtma_maubc";
+            this.txtma_maubc.Size = new System.Drawing.Size(132, 20);
+            this.txtma_maubc.TabIndex = 39;
+            this.txtma_maubc.Visible = false;
+            // 
+            // cboMaubc
+            // 
+            this.cboMaubc.AccessibleName = "MAU_BC";
+            this.cboMaubc.BackColor = System.Drawing.SystemColors.Window;
+            this.cboMaubc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboMaubc.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.cboMaubc.FormattingEnabled = true;
+            this.cboMaubc.Location = new System.Drawing.Point(51, 128);
+            this.cboMaubc.Name = "cboMaubc";
+            this.cboMaubc.Size = new System.Drawing.Size(239, 21);
+            this.cboMaubc.TabIndex = 38;
+            this.cboMaubc.TabStop = false;
+            // 
+            // v6Label20
+            // 
+            this.v6Label20.AccessibleDescription = "FILTERL00138";
+            this.v6Label20.AutoSize = true;
+            this.v6Label20.Location = new System.Drawing.Point(5, 131);
+            this.v6Label20.Name = "v6Label20";
+            this.v6Label20.Size = new System.Drawing.Size(28, 13);
+            this.v6Label20.TabIndex = 37;
+            this.v6Label20.Text = "Mẫu";
+            // 
             // AGLQTTTNTT156
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnSuaCTMau);
+            this.Controls.Add(this.btnSuaTTMau);
+            this.Controls.Add(this.btnThemMau);
+            this.Controls.Add(this.txtma_maubc);
+            this.Controls.Add(this.cboMaubc);
+            this.Controls.Add(this.v6Label20);
             this.Controls.Add(this.txtNam2);
             this.Controls.Add(this.v6Label1);
             this.Controls.Add(this.txtNam);
@@ -247,7 +332,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox1);
             this.Name = "AGLQTTTNTT156";
-            this.Size = new System.Drawing.Size(295, 216);
+            this.Size = new System.Drawing.Size(295, 320);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -269,5 +354,11 @@
         private V6Controls.V6NumberTextBox txtThang2;
         private V6Controls.V6NumberTextBox txtNam2;
         private V6Controls.V6Label v6Label1;
+        private V6Controls.Controls.V6FormButton btnSuaCTMau;
+        private V6Controls.Controls.V6FormButton btnSuaTTMau;
+        private V6Controls.Controls.V6FormButton btnThemMau;
+        private V6Controls.V6VvarTextBox txtma_maubc;
+        private V6Controls.V6ComboBox cboMaubc;
+        private V6Controls.V6Label v6Label20;
     }
 }
