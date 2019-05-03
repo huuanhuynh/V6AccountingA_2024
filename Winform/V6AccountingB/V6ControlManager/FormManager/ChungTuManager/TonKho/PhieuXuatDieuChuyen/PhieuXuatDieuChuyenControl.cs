@@ -3188,8 +3188,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                         textBox.DecimalPlaces = V6Options.M_IP_TIEN;
                 }
                 //AD
-                //_tienNt.DecimalPlaces = decimalPlaces;
-                //_phaiTtNt.DecimalPlaces = decimalPlaces;
                 _tienNt.DecimalPlaces = decimalPlaces;
             }
             catch (Exception ex)

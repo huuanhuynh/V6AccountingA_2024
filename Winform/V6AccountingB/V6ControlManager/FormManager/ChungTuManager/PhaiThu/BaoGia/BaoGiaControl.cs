@@ -3030,9 +3030,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 
 
                 //AD
-                //_tienNt.DecimalPlaces = decimalPlaces;
-                //_phaiTtNt.DecimalPlaces = decimalPlaces;
                 _tienNt.DecimalPlaces = decimalTienNt;
+                _tienNt2.DecimalPlaces = decimalTienNt;
+                _thue_nt.DecimalPlaces = decimalTienNt;
+                _ggNt.DecimalPlaces = decimalTienNt;
+                _tien_vcNt.DecimalPlaces = decimalTienNt;
+                _ckNt.DecimalPlaces = decimalTienNt;
+
+                //_PsNoNt_33.DecimalPlaces = decimalTienNt;
+                //_PsCoNt_33.DecimalPlaces = decimalTienNt;
             }
             catch (Exception ex)
             {

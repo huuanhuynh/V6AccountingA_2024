@@ -2593,11 +2593,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                         textBox.DecimalPlaces = V6Options.M_IP_TIEN;
                 }
                 
-
                 //AD
-                //_tienNt.DecimalPlaces = decimalPlaces;
-                //_phaiTtNt.DecimalPlaces = decimalPlaces;
                 _tienNt.DecimalPlaces = decimalTienNt;
+                _ckNt.DecimalPlaces = decimalTienNt;
             }
             catch (Exception ex)
             {

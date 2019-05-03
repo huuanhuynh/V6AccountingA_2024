@@ -2095,7 +2095,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                         textBox.DecimalPlaces = V6Options.M_IP_TIEN;
                 }
                 //AD
-                //_tienNt.DecimalPlaces = decimalPlaces;
+                _tienNt.DecimalPlaces = decimalPlaces;
                 //_phaiTtNt.DecimalPlaces = decimalPlaces;
                 _tienNt0.DecimalPlaces = decimalPlaces;
             }

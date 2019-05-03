@@ -2051,7 +2051,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                         textBox.DecimalPlaces = V6Options.M_IP_TIEN;
                 }
                 //AD
-                //_tienNt.DecimalPlaces = decimalPlaces;
+                _tienNt.DecimalPlaces = decimalPlaces;
                 //_phaiTtNt.DecimalPlaces = decimalPlaces;
                 _pscoNt.DecimalPlaces = decimalPlaces;
 

@@ -1887,8 +1887,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                         textBox.DecimalPlaces = V6Options.M_IP_TIEN;
                 }
                 //AD
-                //_tienNt.DecimalPlaces = decimalPlaces;
-                //_phaiTtNt.DecimalPlaces = decimalPlaces;
                 _tienNt.DecimalPlaces = decimalPlaces;
 
                 _t_tien_nt22.DecimalPlaces = decimalPlaces;

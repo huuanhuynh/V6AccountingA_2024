@@ -3609,13 +3609,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             try
             {
-                var decimalPlaces = _maNt == _mMaNt0 ? V6Options.M_IP_TIEN : V6Options.M_IP_TIEN_NT;
+                var decimalTienNt = _maNt == _mMaNt0 ? V6Options.M_IP_TIEN : V6Options.M_IP_TIEN_NT;
                 //AM
                 foreach (Control control in panelNT.Controls)
                 {
                     V6NumberTextBox textBox = control as V6NumberTextBox;
                     if (textBox != null)
-                        textBox.DecimalPlaces = decimalPlaces;
+                        textBox.DecimalPlaces = decimalTienNt;
                 }
                 foreach (Control control in panelVND.Controls)
                 {
@@ -3624,15 +3624,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         textBox.DecimalPlaces = V6Options.M_IP_TIEN;
                 }
                 //AD
-                //_tienNt.DecimalPlaces = decimalPlaces;
-                //_phaiTtNt.DecimalPlaces = decimalPlaces;
-                _tienNt.DecimalPlaces = decimalPlaces;
+                _tienNt.DecimalPlaces = decimalTienNt;
+                _tienNt0.DecimalPlaces = decimalTienNt;
+                _thue_nt.DecimalPlaces = decimalTienNt;
+                _ggNt.DecimalPlaces = decimalTienNt;
+                //_tien_vcNt.DecimalPlaces = decimalTienNt;
+                _ckNt.DecimalPlaces = decimalTienNt;
 
-                _t_tien_nt22.DecimalPlaces = decimalPlaces;
-                _t_thue_nt22.DecimalPlaces = decimalPlaces;
+                _t_tien_nt22.DecimalPlaces = decimalTienNt;
+                _t_thue_nt22.DecimalPlaces = decimalTienNt;
 
-                _PsNoNt_33.DecimalPlaces = decimalPlaces;
-                _PsCoNt_33.DecimalPlaces = decimalPlaces;
+                _PsNoNt_33.DecimalPlaces = decimalTienNt;
+                _PsCoNt_33.DecimalPlaces = decimalTienNt;
             }
             catch (Exception ex)
             {
