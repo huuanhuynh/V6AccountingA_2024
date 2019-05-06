@@ -901,7 +901,7 @@ namespace V6SqlConnect
                 case "varchar":
                 case "text":
                 case "xml":
-                    string text = objValue==null? null:objValue.ToString().Trim();
+                    string text = objValue==null? null:objValue.ToString();
                     if (length > 0 && text != null && text.Length > length)
                     {
                         text = text.Left(length);
@@ -918,7 +918,7 @@ namespace V6SqlConnect
                     break;
             }
             
-            var value = objValue==null? null:objValue.ToString().Trim();
+            var value = objValue==null? null:objValue.ToString();
 
             return GenSqlStringValueF(value, sqltype, defaultValue, allowNull, like);
         }
@@ -960,7 +960,7 @@ namespace V6SqlConnect
                 case "varchar":
                 case "text":
                 case "xml":
-                    string text = objValue == null ? null : objValue.ToString().Trim();
+                    string text = objValue == null ? null : objValue.ToString();
                     if (length > 0 && text != null && text.Length > length)
                     {
                         text = text.Left(length);
@@ -976,7 +976,7 @@ namespace V6SqlConnect
                     break;
             }
 
-            var value = objValue == null ? null : objValue.ToString().Trim();
+            var value = objValue == null ? null : objValue.ToString();
 
             return GenSqlStringValueF_oper(value, sqltype, defaultValue, allowNull, oper);
         }

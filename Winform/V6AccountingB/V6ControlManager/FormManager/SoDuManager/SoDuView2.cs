@@ -680,10 +680,14 @@ namespace V6ControlManager.FormManager.SoDuManager
             
             dataGridView1.DataSource =  SelectResult.Data;
             dataGridView1.HideColumnsAldm(_alctConfig.TableNameAM);
-            
-            var column = dataGridView1.Columns[SelectResult.SortField];
-            if (column != null)
-                column.HeaderCell.SortGlyphDirection = SelectResult.IsSortOrderAscending ? SortOrder.Ascending : SortOrder.Descending;
+
+            if (!string.IsNullOrEmpty(SelectResult.SortField))
+            {
+                var column = dataGridView1.Columns[SelectResult.SortField];
+                if (column != null) column.HeaderCell.SortGlyphDirection = SelectResult.IsSortOrderAscending
+                        ? SortOrder.Ascending
+                        : SortOrder.Descending;
+            }
             
             //var st = V6BusinessHelper.GetTableStruct("V6struct1".ToString());
             

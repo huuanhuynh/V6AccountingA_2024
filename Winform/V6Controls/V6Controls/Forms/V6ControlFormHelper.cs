@@ -6457,7 +6457,7 @@ namespace V6Controls.Forms
                 var com = control as ComboBox;
                 try
                 {
-                    var VALUE = ObjectAndString.ObjectToString(value).Trim();
+                    var VALUE = ObjectAndString.ObjectToString(value).TrimEnd();
                     if (com.Items.Count > 0 && VALUE != "")
                     {
                         if (string.IsNullOrEmpty(com.ValueMember))
@@ -6524,8 +6524,8 @@ namespace V6Controls.Forms
             {
                 var vvarTextBox = control as V6VvarTextBox;
                 vvarTextBox.SetDataRow(null);
-                
-                var text = ObjectAndString.ObjectToString(value).Trim();
+
+                var text = ObjectAndString.ObjectToString(value).TrimEnd();
                 if (vvarTextBox.UseChangeTextOnSetFormData)
                     vvarTextBox.ChangeText(text);
                 else vvarTextBox.Text = text;
@@ -6545,7 +6545,7 @@ namespace V6Controls.Forms
             else if (control is V6ColorTextBox)
             {
                 var text_box = control as V6ColorTextBox;
-                var text = ObjectAndString.ObjectToString(value).Trim();
+                var text = ObjectAndString.ObjectToString(value).TrimEnd();
                 if (text_box.UseChangeTextOnSetFormData)
                     text_box.ChangeText(text);
                 else text_box.Text = text;
@@ -6553,7 +6553,7 @@ namespace V6Controls.Forms
             else if (control is V6ColorMaskedTextBox)
             {
                 var text_box = control as V6ColorMaskedTextBox;
-                var text = ObjectAndString.ObjectToString(value).Trim();
+                var text = ObjectAndString.ObjectToString(value).TrimEnd();
                 if (text_box.UseChangeTextOnSetFormData)
                     text_box.ChangeText(text);
                 else text_box.Text = text;
@@ -6561,11 +6561,11 @@ namespace V6Controls.Forms
             else if (control is FileButton)
             {
                 var file_button = control as FileButton;
-                file_button.FileName = ObjectAndString.ObjectToString(value).Trim();
+                file_button.FileName = ObjectAndString.ObjectToString(value).TrimEnd();
             }
             else if (control is CheckBox)
             {
-                string value1 = value.ToString().Trim();
+                string value1 = value.ToString().TrimEnd();
                 if (value1 == "1" || value1.ToLower() == "true")
                 {
                     ((CheckBox)control).Checked = true;
@@ -6592,7 +6592,7 @@ namespace V6Controls.Forms
             else
             {
                 control.Text = ObjectAndString
-                    .ObjectToString(value).Trim();
+                    .ObjectToString(value).TrimEnd();
             }
         }
 

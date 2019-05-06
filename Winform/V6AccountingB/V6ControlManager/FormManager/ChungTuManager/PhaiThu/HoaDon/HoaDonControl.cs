@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -3727,9 +3728,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             txtTongSoLuong1.Value = TinhTong(AD, "SO_LUONG1");
             txtTongSoLuong.Value = TinhTong(AD, "SO_LUONG");
 
-            var tPsNoNt = V6BusinessHelper.TinhTongOper(AD3, "PS_NO_NT", "OPER_TT");
-            var tPsCoNt = V6BusinessHelper.TinhTongOper(AD3, "PS_CO_NT", "OPER_TT");
-            txtTongTangGiamNt.Value = tPsNoNt;
+            decimal tPsNoNt = 0, tPsCoNt = 0;
+            try
+            {
+                tPsNoNt = V6BusinessHelper.TinhTongOper(AD3, "PS_NO_NT", "OPER_TT");
+                //tPsCoNt = V6BusinessHelper.TinhTongOper(AD3, "PS_CO_NT", "OPER_TT");
+                txtTongTangGiamNt.Value = tPsNoNt;
+            }
+            catch
+            {
+                //
+            }
             var tTienNt2 = TinhTong(AD, "TIEN_NT2");
             if (tPsNoNt != 0)
             {
@@ -3738,7 +3747,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             txtTongTienNt2.Value = V6BusinessHelper.Vround(tTienNt2 + tPsNoNt, M_ROUND_NT);
 
             var tPsNo = V6BusinessHelper.TinhTongOper(AD3, "PS_NO", "OPER_TT");
-            var tPsCo = V6BusinessHelper.TinhTongOper(AD3, "PS_CO", "OPER_TT");
+            //var tPsCo = V6BusinessHelper.TinhTongOper(AD3, "PS_CO", "OPER_TT");
             txtTongTangGiam.Value = tPsNo;
             var tTien2 = TinhTong(AD, "TIEN2");
             txtTongTien2.Value = V6BusinessHelper.Vround(tTien2 + tPsNo, M_ROUND);
@@ -4118,27 +4127,41 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         public override void TinhTongThanhToan(string debug)
         {
+            string debug_flag = "start";
             try
             {
                 ChungTu.ViewMoney(lblDocSoTien, txtTongThanhToanNt.Value, _maNt);
                 if (NotAddEdit) return;
             
                 HienThiTongSoDong(lblTongSoDong);
+                debug_flag = "TinhTongValues";
                 TinhTongValues();
-                TinhChietKhau(); //Đã tính //t_tien_nt2, T_CK_NT, PT_CK
-                TinhPhanBoGiamGia();//Tuanmh bo sung 05/12/2017
-
-                if (M_SOA_MULTI_VAT == "1")
+                try
                 {
-                    TinhLaiTienThueCT();
-                    TinhTongThue_ct();
+                    debug_flag = "TinhChietKhau";
+                    TinhChietKhau(); //Đã tính //t_tien_nt2, T_CK_NT, PT_CK
+                    debug_flag = "TinhPhanBoGiamGia";
+                    TinhPhanBoGiamGia();//Tuanmh bo sung 05/12/2017
+
+                    if (M_SOA_MULTI_VAT == "1")
+                    {
+                        debug_flag = "TinhLaiTienThueCT";
+                        TinhLaiTienThueCT();
+                        debug_flag = "TinhTongThue_ct";
+                        TinhTongThue_ct();
+                    }
+                    else
+                    {
+                        debug_flag = "TinhThue";
+                        TinhThue();
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    TinhThue();
+                    this.ShowErrorException(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec + " " + debug_flag, "TTTT_1(" + debug + ")"), ex);
                 }
 
-                if (string.IsNullOrEmpty(_mMaNt0)) return;
+                //if (string.IsNullOrEmpty(_mMaNt0)) return;
                 
                 var t_tien_nt2 = txtTongTienNt2.Value;
                 var t_gg_nt = txtTongGiamNt.Value;
@@ -4157,7 +4180,38 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec, "TTTT(" + debug + ")"), ex);
+                this.ShowErrorException(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec + " " + debug_flag, "TTTT(" + debug + ")"), ex);
+            }
+
+            try // Log
+            {
+                var tTienNt2 = TinhTong(AD, "TIEN_NT2");
+                if (txtTongThanhToanNt.Value < tTienNt2)
+                {
+                    string timeString = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                    string fileNameAM = string.Format("TTTT_AM_{0}_{1}.xls", CurrentIndex, timeString);
+                    string fileNameAD = string.Format("TTTT_AD_{0}.xls", timeString);
+                    V6Tools.V6Export.ExportData.ToExcel(AM, fileNameAM, "TTTT AM log");
+                    V6Tools.V6Export.ExportData.ToExcel(AD, fileNameAD, "TTTT AD log");
+                    this.WriteToLog("TTTT txtTongThanhToanNt.Value < tTienNt2", string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec + " " + debug_flag, "TTTT(" + debug + ")"));
+                    //this.ShowWarningMessage("Tổng < chi tiết!");
+
+                    var filePath = "V6Log" + DateTime.Now.ToString("yyyyMMdd") + ".log";
+                    var _setting = new H.Setting(Path.Combine(V6Login.StartupPath, "Setting.ini"));
+                    var info = new V6IOInfo()
+                    {
+                        FileName = filePath,
+                        FTP_IP = _setting.GetSetting("FTP_IP"),
+                        FTP_USER = _setting.GetSetting("FTP_USER"),
+                        FTP_EPASS = _setting.GetSetting("FTP_EPASS"),
+                        FTP_SUBFOLDER = _setting.GetSetting("FTP_V6DOCSFOLDER"), // + "/ChildFolder"
+                    };
+                    V6FileIO.CopyToVPN(info);
+                }
+            }
+            catch
+            {
+                //
             }
         }
 

@@ -12,7 +12,7 @@ namespace V6Init
             {
                 if (lTable == null)
                 {
-                    DataTable langTable = SqlConnect.Select("CorpLang", "*", "[status]='1'").Data;
+                    DataTable langTable = SqlConnect.Select("CorpLang", "*", "[status]='1'", "", "STT").Data;
                     lTable = langTable;
                 }
                 return lTable;

@@ -1914,6 +1914,12 @@
     <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSSOH2_Filter.Designer.cs">
       <DependentUpon>XLSSOH2_Filter.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_SOA4.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_SOA4.Designer.cs">
+      <DependentUpon>AAPPR_SOA4.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_XULY_ALL_Filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -4301,6 +4307,9 @@
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_CA1_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA4.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\CapNhapBoSung\POH1\AAPPR_POH1.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -6402,6 +6411,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSSOH2_Filter.resx">
       <DependentUpon>XLSSOH2_Filter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AAPPR_SOA4.resx">
+      <DependentUpon>AAPPR_SOA4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AAPPR_XULY_ALL_Filter.resx">
       <DependentUpon>AAPPR_XULY_ALL_Filter.cs</DependentUpon>

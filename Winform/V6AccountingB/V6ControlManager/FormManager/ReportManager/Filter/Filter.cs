@@ -1039,6 +1039,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 case "AAPPR_SOA1":
                     result = new AAPPR_SOA1();
                     break;
+                case "AAPPR_SOA4":
+                    result = new AAPPR_SOA4();
+                    break;
                 case "AAPPR_POH1":
                     result = new AAPPR_POH1();
                     break;

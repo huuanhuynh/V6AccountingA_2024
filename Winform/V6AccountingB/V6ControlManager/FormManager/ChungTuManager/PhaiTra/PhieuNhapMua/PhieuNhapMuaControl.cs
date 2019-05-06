@@ -3812,13 +3812,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 //AD
                 _tienNt.DecimalPlaces = decimalTienNt;
                 _tienNt0.DecimalPlaces = decimalTienNt;
-                _thue_nt.DecimalPlaces = decimalTienNt;
+                if (_thue_nt != null) _thue_nt.DecimalPlaces = decimalTienNt;
                 _ggNt.DecimalPlaces = decimalTienNt;
                 _tien_vcNt.DecimalPlaces = decimalTienNt;
                 _ckNt.DecimalPlaces = decimalTienNt;
-
-                _PsNoNt_33.DecimalPlaces = decimalTienNt;
-                _PsCoNt_33.DecimalPlaces = decimalTienNt;
 
                 _t_tien_nt22.DecimalPlaces = decimalTienNt;
                 _t_thue_nt22.DecimalPlaces = decimalTienNt;
