@@ -1902,10 +1902,16 @@
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_BC1_IN1.Designer.cs">
       <DependentUpon>AAPPR_BC1_IN1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\AAPPR_SOA2.cs">
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_SOA3.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\AAPPR_SOA2.Designer.cs">
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_SOA3.Designer.cs">
+      <DependentUpon>AAPPR_SOA3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_SOA2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_SOA2.Designer.cs">
       <DependentUpon>AAPPR_SOA2.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSSOH2_Filter.cs">
@@ -4307,6 +4313,9 @@
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_CA1_IN1.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA3.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA4.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -6406,7 +6415,10 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_BC1_IN1.resx">
       <DependentUpon>AAPPR_BC1_IN1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_SOA2.resx">
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AAPPR_SOA3.resx">
+      <DependentUpon>AAPPR_SOA3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AAPPR_SOA2.resx">
       <DependentUpon>AAPPR_SOA2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSSOH2_Filter.resx">

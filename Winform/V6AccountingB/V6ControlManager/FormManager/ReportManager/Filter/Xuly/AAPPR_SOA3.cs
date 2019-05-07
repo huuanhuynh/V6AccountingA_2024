@@ -1,18 +1,25 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 using V6AccountingBusiness;
+using V6Controls.Forms;
 using V6Init;
 using V6Tools;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class AAPPR_SOA4: FilterBase
+    public partial class AAPPR_SOA3 : FilterBase
     {
-        public AAPPR_SOA4()
+        public string MAU
+        {
+            get { return rTienViet.Checked ? "VN" : "FC"; }
+            set { rTienViet.Checked = value == "VN"; }
+        }
+
+        public AAPPR_SOA3()
         {
             InitializeComponent();
             F3 = true;
-            F4 = true;
+            F4 = false;
             F5 = false;
             F9 = true;
             
@@ -20,32 +27,20 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             dateNgay_ct2.SetValue(V6Setting.M_SV_DATE);
 
             TxtXtag.Text = "2";
-            
+            ctDenSo.Enabled = false;
+            chkHoaDonDaIn.Checked = true;
+            cboSendType.SelectedIndex = 0;
+
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
 
             if (V6Login.MadvcsCount <= 1)
             {
                 txtMaDvcs.Enabled = false;
             }
-            txtMa_ct.Text = "SOA";
-            txtMa_ct.Enabled = false;
-            TxtXtag.Enabled = false;
+            TxtMa_ct.Text = "SOA";
+            TxtMa_ct.Enabled = false;
 
-            ctDenSo.Enabled = false;
-            chkHoaDonDaIn.Checked = true;
-            chkMa_bp.Checked = true;
-            chkMa_nvien.Checked = true;
-            chkGc_ud1.Checked = false;
-            cboKieuPost.ValueMember = "kieu_post";
-            cboKieuPost.DisplayMember = V6Setting.IsVietnamese ? "Ten_post" : "Ten_post2";
-            cboKieuPost.DataSource = V6BusinessHelper.Select("AlPost", "Kieu_post,Ten_post,Ten_post2",
-                                "Ma_ct=@mact", "", "Kieu_post",
-                                new SqlParameter("@mact", txtMa_ct.Text)).Data;
-            cboKieuPost.ValueMember = "kieu_post";
-            cboKieuPost.DisplayMember = V6Setting.IsVietnamese ? "Ten_post" : "Ten_post2";
-            
-            cboKieuPost.SelectedValue = "2";
-
+           
             Txtnh_kh1.VvarTextBox.SetInitFilter("loai_nh=1");
             Txtnh_kh2.VvarTextBox.SetInitFilter("loai_nh=2");
             Txtnh_kh3.VvarTextBox.SetInitFilter("loai_nh=3");
@@ -57,24 +52,22 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             lineNH_KH9.VvarTextBox.SetInitFilter("loai_nh=9");
         }
 
-        public override string Kieu_post
-        {
-            get
-            {
-                return cboKieuPost.SelectedValue.ToString().Trim();
-            }
-        }
-
+        
         /// <summary>
         /// Lay cac tham so cho procedure
         /// </summary>
         /// <returns>cKey</returns>
         public override List<SqlParameter> GetFilterParameters()
         {
+            String1 = (cboSendType.SelectedIndex + 1).ToString();
+            String2 = MAU;
+
             var result = new List<SqlParameter>();
             result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));
             result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.YYYYMMDD));
-            result.Add(new SqlParameter("@ma_ct", txtMa_ct.Text.Trim()));
+            result.Add(new SqlParameter("@ma_ct", TxtMa_ct.Text.Trim()));
+            result.Add(new SqlParameter("@ma_td1", String1.Trim()));
+
             var and = radAnd.Checked;
             
             var cKey = "";
@@ -82,11 +75,15 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             var key0 = GetFilterStringByFields(new List<string>()
             {
-                "MA_DVCS","MA_BP", "MA_KH", "MA_NX","MA_NVIEN","MA_TD_PH","MA_XULY"
+                "MA_DVCS","MA_BP", "MA_KH", "MA_NX"
             }, and);
             var key1 = GetFilterStringByFields(new List<string>()
             {
-               "NH_KH1","NH_KH2","NH_KH3","NH_KH4","NH_KH5","NH_KH6","NH_KH7","NH_KH8","NH_KH9"
+                "NH_KH1","NH_KH2","NH_KH3","NH_KH4","NH_KH5","NH_KH6","NH_KH7","NH_KH8","NH_KH9"
+            }, and);
+            var key2 = GetFilterStringByFields(new List<string>()
+            {
+               "MA_KHO"
             }, and);
            
             if (!string.IsNullOrEmpty(key0))
@@ -107,7 +104,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             if (!string.IsNullOrEmpty(key1))
             {
-                cKey = cKey + string.Format(" and ma_kh in (select ma_kh from alkh where {0} )", key1);
+                cKey = cKey + string.Format(" and ma_kh in (select ma_kh from alkh where {0})", key1);
+            }
+            if (!string.IsNullOrEmpty(key2))
+            {
+                cKey = cKey + string.Format(" AND STT_REC IN (SELECT STT_REC FROM AD81 WHERE NGAY_CT between '{1}' and '{2}' and ma_kho_i in (select ma_kho from alkho where {0}))",
+                    key2, dateNgay_ct1.YYYYMMDD, dateNgay_ct2.YYYYMMDD);
             }
             switch (TxtXtag.Text.Trim())
             {
@@ -132,18 +134,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 cKey = cKey + " and [Sl_in] = 0";
             }
-            if (chkMa_bp.Checked)
-            {
-                cKey = cKey + " and ISNULL(Ma_bp,'')=''";
-            }
-            if (chkMa_nvien.Checked)
-            {
-                cKey = cKey + " and ISNULL(Ma_nvien,'')=''";
-            }
-            if (chkGc_ud1.Checked)
-            {
-                cKey = cKey + " and ISNULL(GC_UD1,'')=''";
-            }
+
+
             // Tu so den so
             var tu_so = ctTuSo.Text.Trim().Replace("'", "");
             var den_so = ctDenSo.Text.Trim().Replace("'", "");
@@ -199,13 +191,25 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             return result;
         }
 
-       
         private void chkLike_CheckedChanged(object sender, System.EventArgs e)
         {
             ctDenSo.Enabled = !chkLike.Checked;
         }
 
-       
+        private void btnSuaChiTieu_Click(object sender, System.EventArgs e)
+        {
+            string tableName = "V6MAPINFO";
+            string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
+            var data = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA3' and (MA_TD1='"+String1+"' or ma_td1='0' or ma_td1='') order by date0,time0").Data;
+            IDictionary<string, object> defaultData = new Dictionary<string, object>();
+            defaultData.Add("LOAI", "AAPPR_SOA3");
+            V6ControlFormHelper.ShowDataEditorForm(this, data, tableName, null, keys, false, false, true, true, defaultData);
+        }
+
+        private void cboSendType_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            String1 = (cboSendType.SelectedIndex + 1).ToString();
+        }
 
         
     }

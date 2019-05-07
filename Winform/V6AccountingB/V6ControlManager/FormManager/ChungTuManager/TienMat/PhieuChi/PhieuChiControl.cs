@@ -72,6 +72,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             LoadLanguage();
             LoadTag(Invoice, detail1.Controls);
+            ReorderGroup1TabIndex();
 
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
             txtMaKh.Upper();
@@ -3185,8 +3186,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     detail1.DoAddButtonClick();
                     SetControlReadOnlyHide(detail1, Invoice, V6Mode.Add);
                     SetDefaultDetail();
-                    
-                    txtMa_sonb.Focus();
+
+                    GoToFirstFocus(txtMa_sonb);
                 }
                 else
                 {
@@ -3224,7 +3225,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                             detail1.MODE = V6Mode.View;
                             if (chkSuaThue.Checked) detail2.MODE = V6Mode.View;
                             detail3.MODE = V6Mode.View;
-                            txtMa_sonb.Focus();
+                            GoToFirstFocus(txtMa_sonb);
                         }
                     }
                     else
@@ -3304,7 +3305,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                             if (chkSuaThue.Checked)
                                 detail2.MODE = V6Mode.View;
                             detail3.MODE = V6Mode.View;
-                            txtMa_sonb.Focus();
+                            GoToFirstFocus(txtMa_sonb);
                         }
                     }
                 }
@@ -3323,7 +3324,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             try
             {
-                txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text);
+                txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
                 dateNgayCT.SetValue(V6Setting.M_SV_DATE);
                 dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
                 ResetAMADbyConfig(Invoice);
@@ -3599,7 +3600,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         private void GetSoPhieu()
         {
             //txtSoPhieu.Text = V6BusinessHelper.GetSoCT("M", "", Invoice.Mact, "", V6LoginInfo.UserId);
-            txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text);
+            txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
 
         }
 

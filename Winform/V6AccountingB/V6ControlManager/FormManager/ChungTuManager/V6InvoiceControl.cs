@@ -3447,6 +3447,33 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
-        
+
+        protected void GoToFirstFocus(Control defaultControl)
+        {
+            if (_invoice.EXTRA_INFOR.ContainsKey("TABINDEX"))
+            {
+                var list = ObjectAndString.SplitString(_invoice.EXTRA_INFOR["TABINDEX"]);
+                Control c = GetControlByAccessibleName(list[0]);
+                if (c != null)
+                {
+                    c.Focus();
+                    return;
+                }
+            }
+            defaultControl.Focus();
+        }
+
+        public void ReorderGroup1TabIndex()
+        {
+            if (_invoice.EXTRA_INFOR.ContainsKey("TABINDEX"))
+            {
+                var list = ObjectAndString.SplitString(_invoice.EXTRA_INFOR["TABINDEX"]);
+                for (int i = list.Length-1; i >= 0; i--)
+                {
+                    Control c = GetControlByAccessibleName(list[i]);
+                    if (c != null) c.TabIndex = i;
+                }
+            }
+        }
     }
 }

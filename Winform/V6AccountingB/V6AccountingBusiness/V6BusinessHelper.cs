@@ -1147,11 +1147,12 @@ namespace V6AccountingBusiness
             return result;
         }
 
-        public static string GetNewSoCt(string masonb)
+        public static string GetNewSoCt(string masonb, DateTime ngayct)
         {
             SqlParameter[] prlist =
             {
-                new SqlParameter("@Ma_sonb", masonb)
+                new SqlParameter("@Ma_sonb", masonb),
+                new SqlParameter("@ngay_ct", ngayct.ToString("yyyyMMdd")),
             };
             var result = SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_GetNewSoct", prlist);
             if (result.Tables.Count == 0) return "";

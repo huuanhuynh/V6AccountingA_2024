@@ -60,6 +60,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         {   
             LoadLanguage();
             LoadTag(Invoice, detail1.Controls);
+            ReorderGroup1TabIndex();
 
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
             txtMaKh.Upper();
@@ -2562,7 +2563,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             {
                 txtMa_sonb.Text = AM_old["Ma_sonb"].ToString().Trim();
                 if (txtSoPhieu.Text.Trim()=="" && txtMa_sonb.Text.Trim() != "")
-                    txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text);
+                    txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
 
             }
         }
@@ -3452,7 +3453,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                     detail1.DoAddButtonClick();
                     SetControlReadOnlyHide(detail1, Invoice, V6Mode.Add);
                     SetDefaultDetail();
-                    txtMa_sonb.Focus();
+                    GoToFirstFocus(txtMa_sonb);
                 }
                 else
                 {
@@ -3489,7 +3490,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                             {
                                 Mode = V6Mode.Edit;
                                 detail1.MODE = V6Mode.View;
-                                txtMa_sonb.Focus();
+                                GoToFirstFocus(txtMa_sonb);
                             }
                         }
                         else
@@ -3567,7 +3568,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                             V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
                             Mode = V6Mode.Add;
                             detail1.MODE = V6Mode.View;
-                            txtMa_sonb.Focus();
+                            GoToFirstFocus(txtMa_sonb);
                         }
                     }
                 }
@@ -3586,7 +3587,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         {
             try
             {
-                txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text);
+                txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
                 dateNgayCT.SetValue(V6Setting.M_SV_DATE);
                 dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
                 ResetAMADbyConfig(Invoice);
@@ -3867,7 +3868,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         private void GetSoPhieu()
         {
             //TxtSo_ct.Text = V6BusinessHelper.GetSoCT("M", "", Invoice.Mact, "", V6LoginInfo.UserId);
-            txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text);
+            txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
         }
 
         private void SetTabPageText(string text)

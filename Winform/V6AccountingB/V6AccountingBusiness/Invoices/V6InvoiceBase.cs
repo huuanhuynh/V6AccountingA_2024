@@ -581,7 +581,7 @@ namespace V6AccountingBusiness.Invoices
         private void GetExtraInfor()
         {
             _extraInfor = new SortedDictionary<string, string>();
-            string s = _alct["EXTRA_INFOR"].ToString().Trim();
+            string s = Alct["EXTRA_INFOR"].ToString().Trim();
             if (s != "")
             {
                 var sss = s.Split(';');

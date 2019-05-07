@@ -1,4 +1,4 @@
-﻿namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
+﻿namespace V6ControlManager.FormManager.ReportManager.Filter
 {
     partial class AMAP01CFilter
     {

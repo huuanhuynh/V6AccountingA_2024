@@ -14,6 +14,9 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
+    /// <summary>
+    /// Nouse
+    /// </summary>
     public class AAPPR_SOA4 : XuLyBase
     {
         public AAPPR_SOA4(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)

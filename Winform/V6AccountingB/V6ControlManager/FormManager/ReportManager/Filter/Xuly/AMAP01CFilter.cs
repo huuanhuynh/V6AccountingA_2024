@@ -5,7 +5,7 @@ using System.Reflection;
 using V6Controls;
 using V6Init;
 
-namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
+namespace V6ControlManager.FormManager.ReportManager.Filter
 {
     public partial class AMAP01CFilter : FilterBase
     {

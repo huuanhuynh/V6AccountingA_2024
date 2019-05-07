@@ -126,9 +126,25 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 result += TxtPhancuoi.Text.Trim();
                 result_mau += TxtPhancuoi.Text.Trim();
             }
-
             
             TxtTransform.Text = result;
+            if (txtTypeAuto.Value == 1)
+            {
+                int openindex = result_mau.IndexOf("<", StringComparison.Ordinal);
+                int closeindex = result_mau.IndexOf(">", StringComparison.Ordinal);
+                int formatlength = closeindex - openindex - 1;
+                if (formatlength > 0)
+                {
+                    string dateformat = result_mau.Substring(openindex + 1, formatlength);
+                    string mask = "<" + dateformat + ">";
+                    dateformat = dateformat.Replace("D", "d");
+                    dateformat = dateformat.Replace("m", "M");
+                    dateformat = dateformat.Replace("Y", "y");
+
+                    result_mau = result_mau.Replace(mask, DateTime.Now.ToString(dateformat));
+                }
+            }
+            
             TxtMau.Text = result_mau;
             if (TxtMau.Text.Trim().Length > V6Setting.M_Size_ct)
             {
@@ -136,10 +152,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 TxtPhandau.Text = "";
                 TxtDinhdang.Text = "";
                 this.ShowWarningMessage("Quá giới hạn số chứng từ !");
-
             }
-
-
         }
+
     }
 }

@@ -151,7 +151,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         private void MyInit()
         {
             LoadTag(Invoice, detail1.Controls);
-            
+            ReorderGroup1TabIndex();
+
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
             txtMaKh.Upper();
             txtDiaChiGiaoHang.DisableUpperLower();
@@ -3720,7 +3721,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             {
                 txtMa_sonb.Text = AM_old["Ma_sonb"].ToString().Trim();
                 if (txtSoPhieu.Text.Trim()=="")
-                        txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text);
+                    txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
 
                 if (txtso_seri.Text.Trim() == "")
                     txtso_seri.Text = AM_old["SO_SERI"].ToString().Trim();
@@ -4756,7 +4757,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     SetControlReadOnlyHide(detail1, Invoice, V6Mode.Add);
                     SetDefaultDetail();
                     detail3.MODE = V6Mode.Init;
-                    txtMa_sonb.Focus();
+                    GoToFirstFocus(txtMa_sonb);
                 }
                 else
                 {
@@ -4809,7 +4810,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                                 //Mode = V6Mode.Edit;
                                 detail1.MODE = V6Mode.View;
                                 detail3.MODE = V6Mode.View;
-                                txtMa_sonb.Focus();
+                                GoToFirstFocus(txtMa_sonb);
                                 Luu(MA_KHOPH, MA_VITRIPH, false);
                             }
                         }
@@ -4898,7 +4899,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                             Mode = V6Mode.Add;
                             detail1.MODE = V6Mode.View;
                             detail3.MODE = V6Mode.View;
-                            txtMa_sonb.Focus();
+                            GoToFirstFocus(txtMa_sonb);
                         }
                     }
                 }
@@ -4917,7 +4918,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         {
             try
             {
-                txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text);
+                txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
                 dateNgayCT.SetValue(V6Setting.M_SV_DATE);
                 dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
                 ResetAMADbyConfig(Invoice);
@@ -5393,7 +5394,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
         private void GetSoPhieu(string ma_so_nb)
         {
-            txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(ma_so_nb);
+            txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(ma_so_nb, dateNgayCT.Date);
         }
 
         private void SetTabPageText(string text)

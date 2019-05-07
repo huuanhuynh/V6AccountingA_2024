@@ -61,6 +61,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
         {   
             LoadLanguage();
             LoadTag(Invoice, detail1.Controls);
+            ReorderGroup1TabIndex();
 
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
             txtMaKh.Upper();
@@ -2095,8 +2096,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                     detail1.DoAddButtonClick();
                     SetControlReadOnlyHide(detail1, Invoice, V6Mode.Add);
                     SetDefaultDetail();
-                    
-                    txtMa_sonb.Focus();
+
+                    GoToFirstFocus(txtMa_sonb);
                 }
                 else
                 {
@@ -2136,7 +2137,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                                 detail1.MODE = V6Mode.View;
                                 detail2.MODE = V6Mode.View;
                                 //SetDataGridView3ChiPhiReadOnly();
-                                txtMa_sonb.Focus();
+                                GoToFirstFocus(txtMa_sonb);
                             }
                         }
                         else
@@ -2214,7 +2215,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                         detail1.MODE = V6Mode.View;
                         if (chkSuaThue.Checked)
                             detail2.MODE = V6Mode.View;
-                        txtMa_sonb.Focus();
+                        GoToFirstFocus(txtMa_sonb);
                     }
                 }
                 else
@@ -2232,7 +2233,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
         {
             try
             {
-                txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text);
+                txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
                 dateNgayCT.SetValue(V6Setting.M_SV_DATE);
                 dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
                 ResetAMADbyConfig(Invoice);
@@ -2466,7 +2467,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
 
         private void GetSoPhieu()
         {
-            txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text);
+            txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
         }
 
         private void SetTabPageText(string text)
