@@ -20,6 +20,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 }
             }
         }
+
+        private void AlsonbAddEditForm_Load(object sender, EventArgs e)
+        {
+            Make_Mau();
+        }
+
         public override void DoBeforeEdit()
         {
             var v = Categories.IsExistOneCode_List("ARI70,ARA00", "MA_SONB", txtMa_sonb.Text);
@@ -93,6 +99,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         }
         private void Make_Mau()
         {
+            if (!IsReady) return;
+
             var result = "";
             var result_mau = "";
             var _so_ct = Convert.ToString((int)TxtSo_ct.Value);
@@ -128,22 +136,47 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             
             TxtTransform.Text = result;
-            if (txtTypeAuto.Value == 1)
+            int openindex = result_mau.IndexOf("<", StringComparison.Ordinal);
+            int closeindex = result_mau.IndexOf(">", StringComparison.Ordinal);
+            int formatlength = closeindex - openindex - 1;
+            if (formatlength > 0)
             {
-                int openindex = result_mau.IndexOf("<", StringComparison.Ordinal);
-                int closeindex = result_mau.IndexOf(">", StringComparison.Ordinal);
-                int formatlength = closeindex - openindex - 1;
-                if (formatlength > 0)
+                if (txtTypeAuto.Value == 1 || txtTypeAuto.Value == 2)
                 {
-                    string dateformat = result_mau.Substring(openindex + 1, formatlength);
-                    string mask = "<" + dateformat + ">";
-                    dateformat = dateformat.Replace("D", "d");
-                    dateformat = dateformat.Replace("m", "M");
-                    dateformat = dateformat.Replace("Y", "y");
+                    //int openindex = result_mau.IndexOf("<", StringComparison.Ordinal);
+                    //int closeindex = result_mau.IndexOf(">", StringComparison.Ordinal);
+                    //int formatlength = closeindex - openindex - 1;
+                    //if (formatlength > 0)
+                    {
+                        string dateformat = result_mau.Substring(openindex + 1, formatlength);
+                        string mask = "<" + dateformat + ">";
+                        dateformat = dateformat.Replace("D", "d");
+                        dateformat = dateformat.Replace("m", "M");
+                        dateformat = dateformat.Replace("Y", "y");
 
-                    result_mau = result_mau.Replace(mask, DateTime.Now.ToString(dateformat));
+                        result_mau = result_mau.Replace(mask, DateTime.Now.ToString(dateformat));
+                    }
+                }
+                else
+                {
+                    // giữ nguyên <>
                 }
             }
+            else
+            {
+                if (txtTypeAuto.Value == 1 || txtTypeAuto.Value == 2)
+                {
+                    // xóa <>
+                    result_mau = result_mau.Replace("<", "");
+                    result_mau = result_mau.Replace(">", "");
+                }
+                else
+                {
+                    // giữ nguyên <>
+                }
+            }
+
+            
             
             TxtMau.Text = result_mau;
             if (TxtMau.Text.Trim().Length > V6Setting.M_Size_ct)

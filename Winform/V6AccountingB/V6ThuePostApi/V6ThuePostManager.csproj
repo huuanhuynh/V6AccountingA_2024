@@ -56,10 +56,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Lib\Winform\V6ThuePost\V6ThuePostBkavApi.dll</HintPath>
     </Reference>
-    <Reference Include="V6ThuePostViettelApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Lib\Winform\V6ThuePost\V6ThuePostViettelApi.dll</HintPath>
-    </Reference>
     <Reference Include="V6ThuePostXmlApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Lib\Winform\V6ThuePost\V6ThuePostXmlApi.dll</HintPath>
@@ -84,6 +80,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\Copy\Code\HoaDonDienTu\VIETTEL_OLD\V6ThuePost\ApiConnect\V6ThuePostViettelApi.csproj">
+      <Project>{938cf42a-d1a7-46d4-866c-1222495a1c4c}</Project>
+      <Name>V6ThuePostViettelApi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\V6Controls\V6Controls\V6Controls.csproj">
       <Project>{311b600d-e1ae-4172-9cc6-1a24dbcd67c2}</Project>
       <Name>V6Controls</Name>

@@ -18,8 +18,7 @@ namespace V6Controls
     {
         public static bool DisableLookup { get; set; }
 
-        public static readonly string V6SoftLocalAppData_Directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "V6Soft");
-        public static readonly string SystemUserAppDataLocalTemp_Directory = Path.GetTempPath();
+        
         /// <summary>
         /// Tạo thư mục tạm cho chương trình.
         /// </summary>
@@ -28,13 +27,13 @@ namespace V6Controls
         {
             try
             {
-                if (!Directory.Exists(V6SoftLocalAppData_Directory)) Directory.CreateDirectory(V6SoftLocalAppData_Directory);
+                if (!Directory.Exists(V6Setting.V6SoftLocalAppData_Directory)) Directory.CreateDirectory(V6Setting.V6SoftLocalAppData_Directory);
             }
             catch
             {
                 //
             }
-            return V6SoftLocalAppData_Directory;
+            return V6Setting.V6SoftLocalAppData_Directory;
         }
 
         public static void CreateKtmpDirectory()
@@ -50,7 +49,7 @@ namespace V6Controls
         {
             try
             {
-                DirectoryInfo di = new DirectoryInfo(V6SoftLocalAppData_Directory);
+                DirectoryInfo di = new DirectoryInfo(V6Setting.V6SoftLocalAppData_Directory);
 
                 foreach (FileInfo file in di.GetFiles())
                 {
@@ -71,7 +70,7 @@ namespace V6Controls
         {
             try
             {
-                DirectoryInfo di = new DirectoryInfo(SystemUserAppDataLocalTemp_Directory);
+                DirectoryInfo di = new DirectoryInfo(V6Setting.SystemUserAppDataLocalTemp_Directory);
 
                 foreach (FileInfo file in di.GetFiles("*.rpt"))
                 {
@@ -88,7 +87,7 @@ namespace V6Controls
         {
             try
             {
-                DirectoryInfo di = new DirectoryInfo(SystemUserAppDataLocalTemp_Directory);
+                DirectoryInfo di = new DirectoryInfo(V6Setting.SystemUserAppDataLocalTemp_Directory);
 
                 foreach (DirectoryInfo dir in di.GetDirectories())
                 {
@@ -171,7 +170,7 @@ namespace V6Controls
                 parameters.GenerateExecutable = false;
                 
                 CreateV6SoftLocalAppDataDirectory();
-                string path = Path.Combine(V6SoftLocalAppData_Directory, dllName + DateTime.Now.Ticks + ".dll");
+                string path = Path.Combine(V6Setting.V6SoftLocalAppData_Directory, dllName + DateTime.Now.Ticks + ".dll");
                 parameters.OutputAssembly = path;
                 
                 parameters.CompilerOptions = "/target:library /optimize";

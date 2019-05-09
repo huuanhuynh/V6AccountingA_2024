@@ -39,7 +39,10 @@
             this.txtMa_sonb = new V6Controls.V6VvarTextBox();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txtTypeAuto = new V6Controls.V6NumberTextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.txttype_soct = new V6Controls.V6NumberTextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.txtchkso_ct = new V6Controls.V6NumberTextBox();
@@ -104,9 +107,6 @@
             this.v6ColorDateTimePick2 = new V6Controls.V6DateTimeColor();
             this.v6ColorDateTimePick1 = new V6Controls.V6DateTimeColor();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtTypeAuto = new V6Controls.V6NumberTextBox();
             this.groupBox1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -323,6 +323,44 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
             // 
+            // txtTypeAuto
+            // 
+            this.txtTypeAuto.AccessibleName = "TYPE_AUTO";
+            this.txtTypeAuto.BackColor = System.Drawing.Color.White;
+            this.txtTypeAuto.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTypeAuto.DecimalPlaces = 0;
+            this.txtTypeAuto.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTypeAuto.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTypeAuto.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTypeAuto.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTypeAuto.LeaveColor = System.Drawing.Color.White;
+            this.txtTypeAuto.LimitCharacters = "0;1;2";
+            this.txtTypeAuto.Location = new System.Drawing.Point(219, 149);
+            this.txtTypeAuto.Margin = new System.Windows.Forms.Padding(5);
+            this.txtTypeAuto.MaxLength = 1;
+            this.txtTypeAuto.Name = "txtTypeAuto";
+            this.txtTypeAuto.Size = new System.Drawing.Size(79, 23);
+            this.txtTypeAuto.TabIndex = 149;
+            this.txtTypeAuto.Text = "0";
+            this.txtTypeAuto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTypeAuto.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // label2
+            // 
+            this.label2.AccessibleDescription = "";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(309, 152);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(359, 17);
+            this.label2.TabIndex = 151;
+            this.label2.Text = "0 - Không tự động, 1 -Theo ngày, 2- Theo tháng";
+            // 
             // txttype_soct
             // 
             this.txttype_soct.AccessibleName = "typeso_ct";
@@ -348,6 +386,17 @@
             0,
             0,
             0});
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(9, 150);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(137, 17);
+            this.label1.TabIndex = 150;
+            this.label1.Text = "Kiểu tăng tự động";
             // 
             // label18
             // 
@@ -947,7 +996,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(787, 389);
+            this.tabPage2.Size = new System.Drawing.Size(790, 400);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Tự định nghĩa";
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
@@ -1389,58 +1438,9 @@
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage3.Size = new System.Drawing.Size(787, 389);
+            this.tabPage3.Size = new System.Drawing.Size(790, 400);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 150);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(137, 17);
-            this.label1.TabIndex = 150;
-            this.label1.Text = "Kiểu tăng tự động";
-            // 
-            // label2
-            // 
-            this.label2.AccessibleDescription = "";
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(309, 152);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(359, 17);
-            this.label2.TabIndex = 151;
-            this.label2.Text = "0 - Không tự động, 1 -Theo ngày, 2- Theo tháng";
-            // 
-            // txtTypeAuto
-            // 
-            this.txtTypeAuto.AccessibleName = "TYPE_AUTO";
-            this.txtTypeAuto.BackColor = System.Drawing.Color.White;
-            this.txtTypeAuto.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtTypeAuto.DecimalPlaces = 0;
-            this.txtTypeAuto.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtTypeAuto.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtTypeAuto.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtTypeAuto.HoverColor = System.Drawing.Color.Yellow;
-            this.txtTypeAuto.LeaveColor = System.Drawing.Color.White;
-            this.txtTypeAuto.LimitCharacters = "0;1;2";
-            this.txtTypeAuto.Location = new System.Drawing.Point(219, 149);
-            this.txtTypeAuto.Margin = new System.Windows.Forms.Padding(5);
-            this.txtTypeAuto.MaxLength = 1;
-            this.txtTypeAuto.Name = "txtTypeAuto";
-            this.txtTypeAuto.Size = new System.Drawing.Size(79, 23);
-            this.txtTypeAuto.TabIndex = 149;
-            this.txtTypeAuto.Text = "0";
-            this.txtTypeAuto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtTypeAuto.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
             // 
             // AlsonbAddEditForm
             // 
@@ -1452,6 +1452,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AlsonbAddEditForm";
             this.Size = new System.Drawing.Size(800, 559);
+            this.Load += new System.EventHandler(this.AlsonbAddEditForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.v6TabControl1.ResumeLayout(false);

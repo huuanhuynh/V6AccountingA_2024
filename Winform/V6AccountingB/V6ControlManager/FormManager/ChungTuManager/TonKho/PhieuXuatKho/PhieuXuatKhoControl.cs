@@ -3843,9 +3843,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         {
             try
             {
-                txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
                 dateNgayCT.SetValue(V6Setting.M_SV_DATE);
                 dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
+                txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
                 ResetAMADbyConfig(Invoice);
                 foreach (DataRow dataRow in AD.Rows)
                 {

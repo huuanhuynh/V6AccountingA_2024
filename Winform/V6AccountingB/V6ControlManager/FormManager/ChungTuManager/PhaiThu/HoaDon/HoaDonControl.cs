@@ -4789,8 +4789,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 {
                     if (parent is ChungTuChungContainer)
                     {
-                        ((ChungTuChungContainer)parent)
-                            .ShowMessage(message);
+                        ((ChungTuChungContainer)parent).ShowMessage(message);
                         return;
                     }
                     else
@@ -5557,9 +5556,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
-                txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
                 dateNgayCT.SetValue(V6Setting.M_SV_DATE);
                 dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
+                txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
                 
                 ResetAMADbyConfig(Invoice);
 

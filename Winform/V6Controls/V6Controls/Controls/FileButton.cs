@@ -179,11 +179,11 @@ namespace V6Controls.Controls
                     FTP_USER = _setting.GetSetting("FTP_USER"),
                     FTP_EPASS = _setting.GetSetting("FTP_EPASS"),
                     FTP_SUBFOLDER = _setting.GetSetting("FTP_V6DOCSFOLDER"),
-                    LOCAL_FOLDER = V6ControlsHelper.V6SoftLocalAppData_Directory,
+                    LOCAL_FOLDER = V6Setting.V6SoftLocalAppData_Directory,
                 };
                 if (V6FileIO.CopyFromVPN(info))
                 {
-                    string tempFile = Path.Combine(V6ControlsHelper.V6SoftLocalAppData_Directory, _fileName);
+                    string tempFile = Path.Combine(V6Setting.V6SoftLocalAppData_Directory, _fileName);
                     Process.Start(tempFile);
                     return tempFile;
                 }

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using V6Tools;
 using System.Data;
 using System.Globalization;
+using System.IO;
 using Microsoft.Win32;
 using V6SqlConnect;
 
@@ -14,6 +15,15 @@ namespace V6Init
 {
     public static class V6Setting
     {
+        /// <summary>
+        /// <para>Đường dẫn thư mục tạm của chương trình trên máy client.</para>
+        /// <para>File sẽ bị xóa khi khởi động chương trình.</para>
+        /// </summary>
+        public static readonly string V6SoftLocalAppData_Directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "V6Soft");
+        /// <summary>
+        /// Thư mục tạm trong appdata trên máy.
+        /// </summary>
+        public static readonly string SystemUserAppDataLocalTemp_Directory = Path.GetTempPath();
         /// <summary>
         /// InvariantCulture (dấu . ngăn cách phần thập phân).
         /// </summary>

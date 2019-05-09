@@ -342,11 +342,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     FTP_USER = _setting.GetSetting("FTP_USER"),
                     FTP_EPASS = _setting.GetSetting("FTP_EPASS"),
                     FTP_SUBFOLDER = _setting.GetSetting("FTP_V6DOCSFOLDER"),
-                    LOCAL_FOLDER = V6ControlsHelper.V6SoftLocalAppData_Directory,
+                    LOCAL_FOLDER = V6Setting.V6SoftLocalAppData_Directory,
                 };
                 if (V6FileIO.CopyFromVPN(info))
                 {
-                    string tempFile = Path.Combine(V6ControlsHelper.V6SoftLocalAppData_Directory, fileName);
+                    string tempFile = Path.Combine(V6Setting.V6SoftLocalAppData_Directory, fileName);
                     Process.Start(tempFile);
                 }
                 else

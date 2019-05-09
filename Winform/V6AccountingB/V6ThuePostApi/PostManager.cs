@@ -42,7 +42,8 @@ namespace V6ThuePostManager
 
         public static string _username = "";
         public static string _password = "";
-        private static string baseUrl = "", createInvoiceUrl = "", modifyUrl = "";
+        public static string _codetax = "";
+        private static string baseUrl = "", _createInvoiceUrl = "", _modifylink = "", _downloadlink = "";
 
         /// <summary>
         /// key trong data
@@ -87,7 +88,7 @@ namespace V6ThuePostManager
         public static string BkavPartnerToken = "";
 
         /// <summary>
-        /// Hàm post chính, sẽ chuyển hướng theo string1.
+        /// Hàm post chính, sẽ chuyển hướng theo string1-pmparams.Branch
         /// </summary>
         /// <param name="pmparams"></param>
         /// <param name="sohoadon">Số hóa đơn nhận về.</param>
@@ -132,6 +133,42 @@ namespace V6ThuePostManager
             id = id0;
             error = error0;
             return result0;
+        }
+
+        public static string PowerDownloadPDF(PostManagerParams pmparams)
+        {
+            string result = null;
+            try
+            {
+                map_table = pmparams.DataSet.Tables[0];
+                ad_table = pmparams.DataSet.Tables[1];
+                am_table = pmparams.DataSet.Tables[2];
+                DataRow row0 = am_table.Rows[0];
+                ad2_table = pmparams.DataSet.Tables[3];
+
+                ReadConfigInfo(map_table);
+
+                switch (pmparams.Branch)
+                {
+                    case "1":
+                        result = ViettelDownloadInvoice(pmparams);
+                        break;
+                    case "2":
+                        //result = EXECUTE_VNPT(pmparams, out sohoadon0, out id0, out error0);
+                        break;
+                    case "3":
+                        //result = EXECUTE_BKAV(pmparams.Mode, out sohoadon0, out id0, out error0);
+                        break;
+                    default:
+                        //error0 = V6Text.NotSupported + pmparams.Branch;
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                V6ControlFormHelper.WriteExLog("RequestManager.PowerDownloadPDF", ex);
+            }
+            return result;
         }
 
         #region ==== BKAV ====
@@ -837,6 +874,11 @@ namespace V6ThuePostManager
             return result;
         }
 
+        /// <summary>
+        /// Download invoice VNPT
+        /// </summary>
+        /// <param name="fkey"></param>
+        /// <returns></returns>
         public static string DownloadInvFkeyNoPay(string fkey)
         {
             string result = null;
@@ -1474,7 +1516,7 @@ namespace V6ThuePostManager
             string result;
             try
             {
-                result = _V6Http.POST(createInvoiceUrl, jsonBody);
+                result = _V6Http.POST(_createInvoiceUrl, jsonBody);
             }
             catch (Exception ex)
             {
@@ -1489,7 +1531,7 @@ namespace V6ThuePostManager
             string result;
             try
             {
-                result = _V6Http.POST(modifyUrl, jsonBody);
+                result = _V6Http.POST(_modifylink, jsonBody);
             }
             catch (Exception ex)
             {
@@ -1560,6 +1602,14 @@ namespace V6ThuePostManager
                 V6ControlFormHelper.WriteExLog("RequestManager.ReadData", ex);
             }
             return result;
+        }
+
+
+        public static string ViettelDownloadInvoice(PostManagerParams postManagerParams)
+        {
+            V6Http viettel_http = new V6Http(baseUrl, _username, _password);
+            
+            return viettel_http.DownloadInvoicePDF(_codetax, _downloadlink, V6Setting.V6SoftLocalAppData_Directory);
         }
 
         #endregion viettel
@@ -1677,6 +1727,9 @@ namespace V6ThuePostManager
                                 case "username":
                                     _username = line.Value;
                                     break;
+                                case "codetax":
+                                    _codetax = line.Value;
+                                    break;
                                 case "password":
                                     _password = UtilityHelper.DeCrypt(line.Value);
                                     break;
@@ -1693,21 +1746,31 @@ namespace V6ThuePostManager
                                 case "createlink":
                                     if (line.Type == "ENCRYPT")
                                     {
-                                        createInvoiceUrl = UtilityHelper.DeCrypt(line.Value);
+                                        _createInvoiceUrl = UtilityHelper.DeCrypt(line.Value);
                                     }
                                     else
                                     {
-                                        createInvoiceUrl = line.Value;
+                                        _createInvoiceUrl = line.Value;
                                     }
                                     break;
                                 case "modifylink":
                                     if (line.Type == "ENCRYPT")
                                     {
-                                        modifyUrl = UtilityHelper.DeCrypt(line.Value);
+                                        _modifylink = UtilityHelper.DeCrypt(line.Value);
                                     }
                                     else
                                     {
-                                        modifyUrl = line.Value;
+                                        _modifylink = line.Value;
+                                    }
+                                    break;
+                                case "downloadlink":
+                                    if (line.Type == "ENCRYPT")
+                                    {
+                                        _downloadlink = UtilityHelper.DeCrypt(line.Value);
+                                    }
+                                    else
+                                    {
+                                        _downloadlink = line.Value;
                                     }
                                     break;
                                     //Vnpt, có dùng cả username, password

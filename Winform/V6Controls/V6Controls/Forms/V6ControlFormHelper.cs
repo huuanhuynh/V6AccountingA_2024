@@ -7378,7 +7378,7 @@ namespace V6Controls.Forms
 
         public static void OpenFileBytes(byte[] bytes, string ext = "bin")
         {
-            var tempFile = Path.Combine(V6ControlsHelper.V6SoftLocalAppData_Directory, "temp." + ext);
+            var tempFile = Path.Combine(V6Setting.V6SoftLocalAppData_Directory, "temp." + ext);
             File.WriteAllBytes(tempFile, bytes);
             Process.Start(tempFile);
         }

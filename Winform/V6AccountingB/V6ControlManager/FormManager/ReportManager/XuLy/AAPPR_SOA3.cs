@@ -60,7 +60,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F9: Duyệt chứng từ, F8: Hủy duyệt.");
+            V6ControlFormHelper.SetStatusText2("F9: In liên tục.");
         }
 
         protected override void MakeReport2()
@@ -69,8 +69,19 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             base.MakeReport2();
         }
 
-        
-        
+        protected override void XuLyHienThiFormSuaChungTuF3()
+        {
+            try
+            {
+                AAPPR_SOA3_ViewPDF view = new AAPPR_SOA3_ViewPDF();
+                view.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(this.GetType() + ".XuLyHienThiFormSuaChungTuF3", ex);
+            }
+        }
+
         #region ==== Xử lý F9 ====
         
         private bool f9Running;
@@ -112,11 +123,41 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     if (row.IsSelect())
                     {
+                        //Lấy giá trị
                         string mode = row.Cells["Kieu_in"].Value.ToString();
                         string soct = row.Cells["So_ct"].Value.ToString().Trim();
                         string dir = row.Cells["Dir_in"].Value.ToString().Trim();
                         string file = row.Cells["File_in"].Value.ToString().Trim();
                         string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
+                        // Download
+                        // 1:VIETTEL 2:VNPT 3:BKAV
+                        if (FilterControl.String1 == "1")
+                        {
+                            var pmparams_viettel = new PostManagerParams
+                            {
+                                //DataSet = ds,
+                                Mode = mode,
+                                Branch = FilterControl.String1,
+                                Dir = dir,
+                                FileName = file,
+                                RptFileFull = ReportFileFull,
+                                Fkey_hd = fkey_hd,
+                            };
+                            var download = PostManager.PowerDownloadPDF(pmparams_viettel);
+                            string folder = V6Setting.V6SoftLocalAppData_Directory;
+                        }
+                        else if (FilterControl.String1 == "2")
+                        {
+                            var download = PostManager.DownloadInvFkeyNoPay(fkey_hd);
+                        }
+                        else if (FilterControl.String1 == "3")
+                        {
+
+                        }
+                        else
+                        {
+                            //CHUA HO TRO
+                        }
 
                         SqlParameter[] plist =
                         {
