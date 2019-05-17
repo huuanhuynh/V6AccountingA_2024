@@ -61,6 +61,13 @@ namespace V6Controls.Forms.Viewer
                 dataGridView1.Height = dataGridView1.Bottom - dataGridView1.Top + gridViewSummary1.Height;
                 gridViewSummary1.Visible = false;
             }
+            
+            if ((!allowAdd || !allowDelete) && V6Setting.V6Special_AllowAdd)
+            {
+                owner.ShowInfoMessage("Allow add and edit by V6Special_AllowAdd.");
+                allowAdd = true;
+                allowDelete = true;
+            }
             dataGridView1.AllowUserToAddRows = allowAdd;
             dataGridView1.AllowUserToDeleteRows = allowDelete;
             dataGridView1.V6Changed += dataGridView1_V6Changed;

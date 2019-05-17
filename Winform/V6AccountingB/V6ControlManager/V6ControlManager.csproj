@@ -7616,6 +7616,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_IND_F4.resx">
       <DependentUpon>AAPPR_IND_F4.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_SOA3.resx">
+      <DependentUpon>AAPPR_SOA3.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_SOA3_ViewPDF.resx">
       <DependentUpon>AAPPR_SOA3_ViewPDF.cs</DependentUpon>
     </EmbeddedResource>

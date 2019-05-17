@@ -33,9 +33,6 @@
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
-            this.TxtMa_nvien = new V6Controls.V6VvarTextBox();
-            this.TxtMa_bp = new V6Controls.V6VvarTextBox();
-            this.v6Label8 = new V6Controls.V6Label();
             this.button1 = new System.Windows.Forms.Button();
             this.pdfViewer1 = new PdfiumViewer.PdfViewer();
             this.SuspendLayout();
@@ -77,64 +74,17 @@
             this.btnNhan.UseVisualStyleBackColor = true;
             this.btnNhan.Click += new System.EventHandler(this.btnNhan_Click);
             // 
-            // TxtMa_nvien
-            // 
-            this.TxtMa_nvien.AccessibleName = "ma_nvien";
-            this.TxtMa_nvien.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtMa_nvien.BackColor = System.Drawing.SystemColors.Window;
-            this.TxtMa_nvien.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtMa_nvien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtMa_nvien.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtMa_nvien.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtMa_nvien.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtMa_nvien.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtMa_nvien.LeaveColor = System.Drawing.Color.White;
-            this.TxtMa_nvien.Location = new System.Drawing.Point(218, 12);
-            this.TxtMa_nvien.Name = "TxtMa_nvien";
-            this.TxtMa_nvien.Size = new System.Drawing.Size(91, 20);
-            this.TxtMa_nvien.TabIndex = 2;
-            this.TxtMa_nvien.VVar = "ma_nvien";
-            // 
-            // TxtMa_bp
-            // 
-            this.TxtMa_bp.AccessibleName = "ma_bp";
-            this.TxtMa_bp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtMa_bp.BackColor = System.Drawing.SystemColors.Window;
-            this.TxtMa_bp.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtMa_bp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtMa_bp.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtMa_bp.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtMa_bp.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtMa_bp.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtMa_bp.LeaveColor = System.Drawing.Color.White;
-            this.TxtMa_bp.Location = new System.Drawing.Point(100, 12);
-            this.TxtMa_bp.Name = "TxtMa_bp";
-            this.TxtMa_bp.Size = new System.Drawing.Size(97, 20);
-            this.TxtMa_bp.TabIndex = 1;
-            this.TxtMa_bp.VVar = "ma_bp";
-            // 
-            // v6Label8
-            // 
-            this.v6Label8.AccessibleDescription = "XULYL00046";
-            this.v6Label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6Label8.AutoSize = true;
-            this.v6Label8.Location = new System.Drawing.Point(11, 15);
-            this.v6Label8.Name = "v6Label8";
-            this.v6Label8.Size = new System.Drawing.Size(41, 13);
-            this.v6Label8.TabIndex = 0;
-            this.v6Label8.Text = "BP/NV";
-            // 
             // button1
             // 
             this.button1.AccessibleName = "";
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Image = global::V6ControlManager.Properties.Resources.Apply;
+            this.button1.Image = global::V6ControlManager.Properties.Resources.Print;
             this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1.Location = new System.Drawing.Point(46, 489);
+            this.button1.Location = new System.Drawing.Point(6, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(88, 40);
             this.button1.TabIndex = 3;
-            this.button1.Text = "Test";
+            this.button1.Text = "Print";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -145,10 +95,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pdfViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pdfViewer1.Location = new System.Drawing.Point(383, 0);
+            this.pdfViewer1.Location = new System.Drawing.Point(206, 0);
             this.pdfViewer1.Name = "pdfViewer1";
             this.pdfViewer1.ShowToolbar = false;
-            this.pdfViewer1.Size = new System.Drawing.Size(793, 696);
+            this.pdfViewer1.Size = new System.Drawing.Size(657, 696);
             this.pdfViewer1.TabIndex = 10;
             this.pdfViewer1.ZoomMode = PdfiumViewer.PdfViewerZoomMode.FitWidth;
             this.pdfViewer1.Load += new System.EventHandler(this.pdfViewer1_Load);
@@ -157,26 +107,21 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1179, 696);
+            this.ClientSize = new System.Drawing.Size(866, 696);
             this.Controls.Add(this.pdfViewer1);
-            this.Controls.Add(this.TxtMa_nvien);
-            this.Controls.Add(this.TxtMa_bp);
-            this.Controls.Add(this.v6Label8);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnNhan);
             this.Name = "AAPPR_SOA3_ViewPDF";
+            this.Text = "PDF viewer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AAPPR_SOA3_ViewPDF_FormClosing);
             this.Load += new System.EventHandler(this.Form_Load);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.button1, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
-            this.Controls.SetChildIndex(this.v6Label8, 0);
-            this.Controls.SetChildIndex(this.TxtMa_bp, 0);
-            this.Controls.SetChildIndex(this.TxtMa_nvien, 0);
             this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.pdfViewer1, 0);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -186,9 +131,6 @@
         private System.Windows.Forms.Timer timerViewReport;
         protected System.Windows.Forms.Button btnNhan;
         protected System.Windows.Forms.Button btnHuy;
-        public V6Controls.V6VvarTextBox TxtMa_nvien;
-        public V6Controls.V6VvarTextBox TxtMa_bp;
-        private V6Controls.V6Label v6Label8;
         protected System.Windows.Forms.Button button1;
         private PdfiumViewer.PdfViewer pdfViewer1;
 

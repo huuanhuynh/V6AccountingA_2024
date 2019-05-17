@@ -179,7 +179,8 @@
             // 
             // lineNH_KH9
             // 
-            this.lineNH_KH9.AccessibleDescription = "FILTERL00019"; this.lineNH_KH9.AccessibleName2 = "NH_KH9";
+            this.lineNH_KH9.AccessibleDescription = "FILTERL00019";
+            this.lineNH_KH9.AccessibleName2 = "NH_KH9";
             this.lineNH_KH9.Caption = "Nhóm khách hàng 9";
             this.lineNH_KH9.FieldName = "NH_KH9";
             this.lineNH_KH9.Location = new System.Drawing.Point(4, 325);
@@ -190,7 +191,8 @@
             // 
             // lineNH_KH8
             // 
-            this.lineNH_KH8.AccessibleDescription = "FILTERL00018"; this.lineNH_KH8.AccessibleName2 = "NH_KH8";
+            this.lineNH_KH8.AccessibleDescription = "FILTERL00018";
+            this.lineNH_KH8.AccessibleName2 = "NH_KH8";
             this.lineNH_KH8.Caption = "Nhóm khách hàng 8";
             this.lineNH_KH8.FieldName = "NH_KH8";
             this.lineNH_KH8.Location = new System.Drawing.Point(4, 303);
@@ -522,7 +524,8 @@
             this.cboSendType.Items.AddRange(new object[] {
             "VIETTEL",
             "VNPT",
-            "BKAV"});
+            "BKAV",
+            "VNPT_TOKEN"});
             this.cboSendType.Location = new System.Drawing.Point(11, 140);
             this.cboSendType.Name = "cboSendType";
             this.cboSendType.Size = new System.Drawing.Size(121, 21);

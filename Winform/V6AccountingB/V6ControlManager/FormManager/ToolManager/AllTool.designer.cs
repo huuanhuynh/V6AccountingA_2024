@@ -46,16 +46,17 @@
             this.btnModelHelp = new System.Windows.Forms.Button();
             this.btnTestInvoice = new System.Windows.Forms.Button();
             this.grbOptions = new System.Windows.Forms.GroupBox();
+            this.chkAllowAdd = new System.Windows.Forms.CheckBox();
             this.chkWriteExtraLog = new System.Windows.Forms.CheckBox();
             this.chkAutoFixInvoiceVvar = new System.Windows.Forms.CheckBox();
             this.chkMouseRightTriple = new System.Windows.Forms.CheckBox();
             this.grbTools = new System.Windows.Forms.GroupBox();
             this.grbFunctions = new System.Windows.Forms.GroupBox();
+            this.btnQuayRa = new System.Windows.Forms.Button();
             this.btnTeamViewer = new System.Windows.Forms.Button();
             this.btnHDSD2 = new System.Windows.Forms.Button();
             this.btnHDSDDT = new System.Windows.Forms.Button();
             this.btnChuyenMa = new System.Windows.Forms.Button();
-            this.btnQuayRa = new System.Windows.Forms.Button();
             this.grbOptions.SuspendLayout();
             this.grbTools.SuspendLayout();
             this.grbFunctions.SuspendLayout();
@@ -229,6 +230,7 @@
             // 
             this.grbOptions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grbOptions.Controls.Add(this.chkAllowAdd);
             this.grbOptions.Controls.Add(this.chkWriteExtraLog);
             this.grbOptions.Controls.Add(this.chkAutoFixInvoiceVvar);
             this.grbOptions.Controls.Add(this.chkMouseRightTriple);
@@ -239,15 +241,28 @@
             this.grbOptions.TabStop = false;
             this.grbOptions.Text = "Tùy chọn";
             // 
+            // chkAllowAdd
+            // 
+            this.chkAllowAdd.AutoSize = true;
+            this.chkAllowAdd.Location = new System.Drawing.Point(6, 88);
+            this.chkAllowAdd.Name = "chkAllowAdd";
+            this.chkAllowAdd.Size = new System.Drawing.Size(70, 17);
+            this.chkAllowAdd.TabIndex = 3;
+            this.chkAllowAdd.Text = "AllowAdd";
+            this.chkAllowAdd.UseVisualStyleBackColor = true;
+            this.chkAllowAdd.Visible = false;
+            this.chkAllowAdd.CheckedChanged += new System.EventHandler(this.chkAllowAdd_CheckedChanged);
+            // 
             // chkWriteExtraLog
             // 
             this.chkWriteExtraLog.AutoSize = true;
             this.chkWriteExtraLog.Location = new System.Drawing.Point(6, 65);
             this.chkWriteExtraLog.Name = "chkWriteExtraLog";
             this.chkWriteExtraLog.Size = new System.Drawing.Size(93, 17);
-            this.chkWriteExtraLog.TabIndex = 1;
+            this.chkWriteExtraLog.TabIndex = 2;
             this.chkWriteExtraLog.Text = "WriteExtraLog";
             this.chkWriteExtraLog.UseVisualStyleBackColor = true;
+            this.chkWriteExtraLog.Visible = false;
             this.chkWriteExtraLog.CheckedChanged += new System.EventHandler(this.chkWriteExtraLog_CheckedChanged);
             // 
             // chkAutoFixInvoiceVvar
@@ -259,6 +274,7 @@
             this.chkAutoFixInvoiceVvar.TabIndex = 1;
             this.chkAutoFixInvoiceVvar.Text = "Tự gán thông tin liên quan Vvar trong Invoice";
             this.chkAutoFixInvoiceVvar.UseVisualStyleBackColor = true;
+            this.chkAutoFixInvoiceVvar.Visible = false;
             this.chkAutoFixInvoiceVvar.CheckedChanged += new System.EventHandler(this.chkAutoFixInvoiceVvar_CheckedChanged);
             // 
             // chkMouseRightTriple
@@ -318,6 +334,21 @@
             this.grbFunctions.TabStop = false;
             this.grbFunctions.Text = "Chức năng";
             // 
+            // btnQuayRa
+            // 
+            this.btnQuayRa.AccessibleDescription = "CORPMODUB00008";
+            this.btnQuayRa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnQuayRa.Image = global::V6ControlManager.Properties.Resources.BackArrow24;
+            this.btnQuayRa.Location = new System.Drawing.Point(8, 515);
+            this.btnQuayRa.Name = "btnQuayRa";
+            this.btnQuayRa.Size = new System.Drawing.Size(118, 41);
+            this.btnQuayRa.TabIndex = 17;
+            this.btnQuayRa.Tag = "Escape";
+            this.btnQuayRa.Text = "&Quay ra";
+            this.btnQuayRa.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnQuayRa.UseVisualStyleBackColor = true;
+            this.btnQuayRa.Click += new System.EventHandler(this.btnQuayRa_Click);
+            // 
             // btnTeamViewer
             // 
             this.btnTeamViewer.Image = global::V6ControlManager.Properties.Resources.TeamViewer32;
@@ -363,21 +394,6 @@
             this.btnChuyenMa.Text = "Chuyển mã";
             this.btnChuyenMa.UseVisualStyleBackColor = true;
             this.btnChuyenMa.Click += new System.EventHandler(this.btnChuyenMa_Click);
-            // 
-            // btnQuayRa
-            // 
-            this.btnQuayRa.AccessibleDescription = "CORPMODUB00008";
-            this.btnQuayRa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnQuayRa.Image = global::V6ControlManager.Properties.Resources.BackArrow24;
-            this.btnQuayRa.Location = new System.Drawing.Point(8, 515);
-            this.btnQuayRa.Name = "btnQuayRa";
-            this.btnQuayRa.Size = new System.Drawing.Size(118, 41);
-            this.btnQuayRa.TabIndex = 17;
-            this.btnQuayRa.Tag = "Escape";
-            this.btnQuayRa.Text = "&Quay ra";
-            this.btnQuayRa.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnQuayRa.UseVisualStyleBackColor = true;
-            this.btnQuayRa.Click += new System.EventHandler(this.btnQuayRa_Click);
             // 
             // AllTool
             // 
@@ -427,5 +443,6 @@
         private System.Windows.Forms.Button btnChuyenMa;
         private System.Windows.Forms.CheckBox chkWriteExtraLog;
         private System.Windows.Forms.Button btnQuayRa;
+        private System.Windows.Forms.CheckBox chkAllowAdd;
     }
 }

@@ -43,6 +43,12 @@
     <Reference Include="RemoteCommand">
       <HintPath>..\..\..\Lib\Winform\BkavCommand35\RemoteCommand.dll</HintPath>
     </Reference>
+    <Reference Include="SignTokenCore">
+      <HintPath>..\..\..\Lib\Winform\V6ThuePost\VNPT_HCM\SignTokenCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Spy001">
+      <HintPath>..\..\..\Lib\Winform\V6ThuePost\VNPT_HCM\Spy001.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
@@ -52,14 +58,6 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="V6ThuePostBkavApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Lib\Winform\V6ThuePost\V6ThuePostBkavApi.dll</HintPath>
-    </Reference>
-    <Reference Include="V6ThuePostXmlApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Lib\Winform\V6ThuePost\V6ThuePostXmlApi.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.Designer.cs">
@@ -80,9 +78,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\Copy\Code\HoaDonDienTu\BKAV\V6ThuePost_BKAV\ApiConnect\V6ThuePostBkavApi.csproj">
+      <Project>{3d8928f4-81c7-443e-98b3-c155eee33927}</Project>
+      <Name>V6ThuePostBkavApi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\..\Copy\Code\HoaDonDienTu\VIETTEL_OLD\V6ThuePost\ApiConnect\V6ThuePostViettelApi.csproj">
       <Project>{938cf42a-d1a7-46d4-866c-1222495a1c4c}</Project>
       <Name>V6ThuePostViettelApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Copy\Code\HoaDonDienTu\VNPT\V6ThuePost_Xml\ApiConnect\V6ThuePostXmlApi.csproj">
+      <Project>{abc35001-3755-4aff-88d6-b48598bbc651}</Project>
+      <Name>V6ThuePostXmlApi</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\V6Controls\V6Controls\V6Controls.csproj">
       <Project>{311b600d-e1ae-4172-9cc6-1a24dbcd67c2}</Project>

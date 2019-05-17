@@ -109,7 +109,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 if (!b) throw new Exception(string.Format("{0} {1} = {2}", V6Text.DataExist, lblMaKH.Text, txtMaKH.Text));
             }
 
-            if (txtMaSoThueVAT.Text.Trim().Length >= 10)
+            if (txtMaSoThueVAT.Text.Trim().Length >= 10 && V6Options.M_QLY_MA_SO_THUE.StartsWith("1"))
             {
                 if (!V6BusinessHelper.CheckMST(txtMaSoThueVAT.Text.Trim()))
                 {

@@ -157,6 +157,11 @@ namespace V6Init
             }
         }
 
+        public static bool V6Special_AllowAdd
+        {
+            get { return V6Special.Contains("AllowAdd"); }
+        }
+
         public static bool Triple
         {
             get { return V6Special.Contains("Triple"); }

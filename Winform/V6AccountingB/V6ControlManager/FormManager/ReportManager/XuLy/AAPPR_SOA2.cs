@@ -147,6 +147,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         if (string.IsNullOrEmpty(error))
                         {
                             f9MessageAll += string.Format("\n{4} Soct:{0}, sohd:{1}, id:{2}\nResult:{3}", soct, sohoadon, id, result, V6Text.Text("ThanhCong"));
+                            //[AAPPR_SOA2_UPDATE]
+                            SqlParameter[] plist2 =
+                            {
+                                new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
+                                new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
+                                new SqlParameter("@Set_so_ct", sohoadon),
+                                new SqlParameter("@Set_fkey_hd", id),
+                                new SqlParameter("@MA_TD1", FilterControl.String1),
+                                new SqlParameter("@User_ID", V6Login.UserId)
+                            };
+                            V6BusinessHelper.ExecuteProcedureNoneQuery(_program + "_UPDATE", plist2);
+                            //row[]
                         }
                         else
                         {

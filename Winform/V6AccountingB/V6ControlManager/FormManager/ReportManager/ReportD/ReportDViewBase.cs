@@ -1364,7 +1364,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                     string field_header_template = sss[0];
                     // Text and [Field] and [Another_Field]
                     int i = 0;
-                    while (field_header_template.IndexOf("[", i, StringComparison.Ordinal) >= 0)
+                    while (i < field_header_template.Length && field_header_template.IndexOf("[", i, StringComparison.Ordinal) >= 0)
                     {
                         int i0 = field_header_template.IndexOf("[", i, StringComparison.Ordinal);
                         int i1 = field_header_template.IndexOf("]", i, StringComparison.Ordinal);

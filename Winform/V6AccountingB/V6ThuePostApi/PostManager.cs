@@ -1,14 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows.Forms;
 using BSECUS;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 using Newtonsoft.Json;
+using SignTokenCore;
+using Spy;
+using Spy.SpyObjects;
 using V6AccountingBusiness;
 using V6Controls.Forms;
 using V6Init;
@@ -39,11 +45,22 @@ namespace V6ThuePostManager
         static DataTable am_table;
         static DataTable ad2_table;
 
-
+        /// <summary>
+        /// Tài khoản ws
+        /// </summary>
         public static string _username = "";
         public static string _password = "";
         public static string _codetax = "";
-        private static string baseUrl = "", _createInvoiceUrl = "", _modifylink = "", _downloadlink = "";
+        private static string baseUrl = "", _createInvoiceUrl = "", _modifylink = "";
+        /// <summary>
+        /// InvoiceAPI/InvoiceUtilsWS/getInvoiceRepresentationFile (getInvoiceRepresentationFile url part.)
+        /// </summary>
+        private static string _downloadlinkpdf = "";
+
+        public static string _link_Publish = "";
+        public static string _link_Portal = "";
+        public static string _link_Business = "";
+        public static string _link_Attachment = "";
 
         /// <summary>
         /// key trong data
@@ -59,10 +76,16 @@ namespace V6ThuePostManager
         private static string fkeyP;
 
         private static string fkeyexcel0 = "V6";
-        private static string account;
-        private static string accountpassword;
-        private static string partten, partten_field;
-        private static string seri, seri_field;
+        /// <summary>
+        /// Tài khoản đăng nhập
+        /// </summary>
+        private static string _account = null;
+        private static string _accountpassword = null;
+        private static string _SERIAL_CERT = null;
+        private static string _token_password_title = null;
+        private static string _token_password = null;
+        private static string __partten, partten_field;
+        private static string __serial, seri_field;
         private static string convert = "0";
 
 
@@ -86,6 +109,7 @@ namespace V6ThuePostManager
         //private static RemoteCommand remoteCommand = null;
         public static string BkavPartnerGUID = "";
         public static string BkavPartnerToken = "";
+        public static int BkavCommandTypeNew = 112;
 
         /// <summary>
         /// Hàm post chính, sẽ chuyển hướng theo string1-pmparams.Branch
@@ -119,6 +143,9 @@ namespace V6ThuePostManager
                     case "3":
                         result0 = EXECUTE_BKAV(pmparams.Mode, out sohoadon0, out id0, out error0);
                         break;
+                    case "4":
+                        result0 = EXECUTE_VNPT_TOKEN(pmparams, out sohoadon0, out id0, out error0);
+                        break;
                     default:
                         error0 = V6Text.NotSupported + pmparams.Branch;
                         break;
@@ -126,6 +153,7 @@ namespace V6ThuePostManager
             }
             catch (Exception ex)
             {
+                error0 = ex.Message;
                 V6ControlFormHelper.WriteExLog("RequestManager.PowerPost", ex);
             }
             
@@ -135,29 +163,39 @@ namespace V6ThuePostManager
             return result0;
         }
 
-        public static string PowerDownloadPDF(PostManagerParams pmparams)
+        /// <summary>
+        /// <para>Tham số cần thiết: DataSet[map_table][ad_table][am_table], Branch[1viettel][2vnpt]</para>
+        /// </summary>
+        /// <param name="pmparams"></param>
+        /// <param name="error">Lỗi trả về.</param>
+        /// <returns>Trả về đường dẫn file pdf.</returns>
+        public static string PowerDownloadPDF(PostManagerParams pmparams, out string error)
         {
             string result = null;
+            error = null;
             try
             {
                 map_table = pmparams.DataSet.Tables[0];
-                ad_table = pmparams.DataSet.Tables[1];
-                am_table = pmparams.DataSet.Tables[2];
-                DataRow row0 = am_table.Rows[0];
-                ad2_table = pmparams.DataSet.Tables[3];
+                //ad_table = pmparams.DataSet.Tables[1];
+                //am_table = pmparams.DataSet.Tables[2];
+                //DataRow row0 = am_table.Rows[0];
+                //ad2_table = pmparams.DataSet.Tables[3];
 
                 ReadConfigInfo(map_table);
 
                 switch (pmparams.Branch)
                 {
                     case "1":
-                        result = ViettelDownloadInvoice(pmparams);
+                        result = ViettelDownloadInvoicePDF(pmparams);
                         break;
                     case "2":
-                        //result = EXECUTE_VNPT(pmparams, out sohoadon0, out id0, out error0);
+                        result = VnptWS.DownloadInvPDFFkey(_link_Portal, pmparams.Fkey_hd, _username, _password, V6Setting.V6SoftLocalAppData_Directory);
                         break;
                     case "3":
-                        //result = EXECUTE_BKAV(pmparams.Mode, out sohoadon0, out id0, out error0);
+                        result = BkavDownloadInvoicePDF(pmparams);
+                        break;
+                    case "4":
+                        result = VnptWS.DownloadInvPDFFkey(_link_Portal, pmparams.Fkey_hd, _username, _password, V6Setting.V6SoftLocalAppData_Directory);
                         break;
                     default:
                         //error0 = V6Text.NotSupported + pmparams.Branch;
@@ -166,7 +204,8 @@ namespace V6ThuePostManager
             }
             catch (Exception ex)
             {
-                V6ControlFormHelper.WriteExLog("RequestManager.PowerDownloadPDF", ex);
+                error = ex.Message;
+                V6ControlFormHelper.WriteExLog("PostManager.PowerDownloadPDF", ex);
             }
             return result;
         }
@@ -181,6 +220,7 @@ namespace V6ThuePostManager
             error = null;
             try
             {
+                BkavWS bkavWS = new BkavWS();
                 ExecCommandFunc wsExecCommand = null;
                 var webservice = new V6ThuePostBkavApi.vn.ehoadon.wsdemo.WSPublicEHoaDon();
                 wsExecCommand = webservice.ExecuteCommand;
@@ -193,7 +233,7 @@ namespace V6ThuePostManager
                 {
                     jsonBody = ReadData_Bkav();
                     //File.Create(flagFileName1).Close();
-                    result = POST(remoteCommand, jsonBody, BkavConst._100_CreateNew);
+                    result = bkavWS.POST(remoteCommand, jsonBody, BkavCommandTypeNew);// BkavConst._100_CreateNew0);
                     string sGUID = null;
                     if (result.Contains("; ")) sGUID = result.Substring(result.IndexOf("; ", StringComparison.Ordinal) + 2);
                     if (!string.IsNullOrEmpty(sGUID))
@@ -206,7 +246,7 @@ namespace V6ThuePostManager
                 {
                     jsonBody = ReadData_Bkav();
                     //File.Create(flagFileName1).Close();
-                    result = POST(remoteCommand, jsonBody, BkavConst._121_CreateAdjust);
+                    result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._121_CreateAdjust);
                     string sGUID = null;
                     if (result.Contains("; ")) sGUID = result.Substring(result.IndexOf("; ", StringComparison.Ordinal) + 2);
                     if (!string.IsNullOrEmpty(sGUID))
@@ -219,7 +259,7 @@ namespace V6ThuePostManager
                 {
                     jsonBody = ReadData_Bkav();
                     //File.Create(flagFileName1).Close();
-                    result = POST(remoteCommand, jsonBody, BkavConst._120_CreateReplace);
+                    result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._120_CreateReplace);
                 }
 
                 if (result.StartsWith("ERR"))
@@ -330,117 +370,8 @@ namespace V6ThuePostManager
             return "[" + result + "]";
         }
 
-        public static string POST(RemoteCommand remoteCommand, string jsonBody, int comandType)
-        {
-            string result = null;
-            try
-            {
-                string sGUID = null;
-                string msg = "";
-                switch (comandType)
-                {
-                    case BkavConst._100_CreateNew:
-                        msg = DoCreateInvoice(remoteCommand, jsonBody, out sGUID);
-                        break;
-                    case BkavConst._121_CreateAdjust:
-                        msg = DoAdjustInvoice(remoteCommand, jsonBody, out sGUID);
-                        break;
-                    case BkavConst._120_CreateReplace:
-                        msg = DoReplaceInvoice(remoteCommand, jsonBody, out sGUID);
-                        break;
-                    default:
-                        msg = "V6 not supported.";
-                        break;
-                }
-
-                if (msg.Length > 0)
-                {
-                    result = "ERR: " + msg;
-                }
-                else
-                {
-                    result += "\r\nGUID: " + sGUID;
-                }
-            }
-            catch (Exception ex)
-            {
-                result = ex.Message;
-            }
-
-            Logger.WriteToLog("POST " + result);
-            return result;
-        }
-
-        static string DoCreateInvoice(RemoteCommand remoteCommand, string listInvoice_json, out string sGUID)
-        {
-            string msg = "";
-            sGUID = null;
-
-            Result result = null;
-
-            msg = remoteCommand.TransferCommandAndProcessResult(BkavConst._100_CreateNew, listInvoice_json, out result);
-            if (msg.Length > 0) return msg;
-
-            // Không có lỗi, Hệ thống trả ra danh sách kết quả của Hóa đơn
-            List<InvoiceResult> listInvoiceResult = null;
-            msg = Convertor.StringToObject(false, Convert.ToString(result.Object), out listInvoiceResult);
-            if (msg.Length > 0) return msg;
-
-            foreach (InvoiceResult invoiceResult in listInvoiceResult)
-            {
-                if (invoiceResult.Status == 0) sGUID = sGUID + "; " + invoiceResult.InvoiceGUID;
-                else msg = msg + "; " + invoiceResult.MessLog;
-            }
-
-            return msg;
-        }
-
-        static string DoAdjustInvoice(RemoteCommand remoteCommand, string listInvoice_json, out string sGUID)
-        {
-            string msg = "";
-            sGUID = null;
-
-            Result result = null;
-
-            msg = remoteCommand.TransferCommandAndProcessResult(BkavConst._121_CreateAdjust, listInvoice_json, out result);
-            if (msg.Length > 0) return msg;
-
-            List<InvoiceResult> listInvoiceResult = null;
-            msg = Convertor.StringToObject(false, Convert.ToString(result.Object), out listInvoiceResult);
-            if (msg.Length > 0) return msg;
-
-            foreach (InvoiceResult invoiceResult in listInvoiceResult)
-            {
-                if (invoiceResult.Status == 0) sGUID = sGUID + "; " + invoiceResult.InvoiceGUID;
-                else msg = msg + "; " + invoiceResult.MessLog;
-            }
-
-            return msg;
-        }
-
-        static string DoReplaceInvoice(RemoteCommand remoteCommand, string listInvoice_json, out string sGUID)
-        {
-            string msg = "";
-            sGUID = null;
-
-            Result result = null;
-
-            msg = remoteCommand.TransferCommandAndProcessResult(BkavConst._120_CreateReplace, listInvoice_json, out result);
-            if (msg.Length > 0) return msg;
-
-            List<InvoiceResult> listInvoiceResult = null;
-            msg = Convertor.StringToObject(false, Convert.ToString(result.Object), out listInvoiceResult);
-            if (msg.Length > 0) return msg;
-
-            foreach (InvoiceResult invoiceResult in listInvoiceResult)
-            {
-                if (invoiceResult.Status == 0) sGUID = sGUID + "; " + invoiceResult.InvoiceGUID;
-                else msg = msg + "; " + invoiceResult.MessLog;
-            }
-
-            return msg;
-        }
-
+        
+        
 
         #endregion bkav
 
@@ -752,8 +683,8 @@ namespace V6ThuePostManager
                 //}
 
                 inv.key = fkeyA;
-                partten = row0[partten_field].ToString().Trim();
-                seri = row0[seri_field].ToString().Trim();
+                __partten = row0[partten_field].ToString().Trim();
+                __serial = row0[seri_field].ToString().Trim();
                 //flagName = fkeyA;
                 //MakeFlagNames(fkeyA);
 
@@ -829,8 +760,8 @@ namespace V6ThuePostManager
             string result = null;
             try
             {
-                var publishService = new PublishService(baseUrl);
-                result = publishService.ImportAndPublishInv(account, accountpassword, xml, _username, _password, partten, seri, convert == "1" ? 1 : 0);
+                var publishService = new PublishService(_link_Publish);
+                result = publishService.ImportAndPublishInv(_account, _accountpassword, xml, _username, _password, __partten, __serial, convert == "1" ? 1 : 0);
 
                 if (result.StartsWith("ERR:20"))
                 {
@@ -885,7 +816,7 @@ namespace V6ThuePostManager
             try
             {
                 //if (string.IsNullOrEmpty(baseUrl)) baseUrl = "https://www.google.com/";
-                result = new PortalService().downloadInvFkeyNoPay(fkey, _username, _password);
+                result = new PortalService(_link_Portal).downloadInvFkeyNoPay(fkey, _username, _password);
 
                 if (result.StartsWith("ERR:7"))
                 {
@@ -924,7 +855,7 @@ namespace V6ThuePostManager
                 string ext = Path.GetExtension(file);
                 if (ext.Length > 0) ext = ext.Substring(1);
                 string attachmentName = Path.GetFileNameWithoutExtension(file);
-                result = new AttachmentService().uploadInvAttachmentFkey(fkey, _username, _password, attachment64, ext, attachmentName);
+                result = new AttachmentService(_link_Attachment).uploadInvAttachmentFkey(fkey, _username, _password, attachment64, ext, attachmentName);
 
                 if (result.StartsWith("ERR:11"))
                 {
@@ -984,7 +915,7 @@ namespace V6ThuePostManager
             string result = null;
             try
             {
-                result = new BusinessService().adjustInv(account, accountpassword, xml, _username, _password, fkey_old, 0);
+                result = new BusinessService(_link_Business).adjustInv(_account, _accountpassword, xml, _username, _password, fkey_old, 0);
 
                 if (result.StartsWith("ERR:9"))
                 {
@@ -1033,7 +964,7 @@ namespace V6ThuePostManager
             string result = null;
             try
             {
-                result = new BusinessService().replaceInv(account, accountpassword, xml, _username, _password, fkey_old, 0);
+                result = new BusinessService(_link_Business).replaceInv(_account, _accountpassword, xml, _username, _password, fkey_old, 0);
 
                 if (result.StartsWith("ERR:9"))
                 {
@@ -1087,7 +1018,7 @@ namespace V6ThuePostManager
             string result = null;
             try
             {
-                result = new BusinessService().confirmPaymentFkey(fkey_old, _username, _password);
+                result = new BusinessService(_link_Business).confirmPaymentFkey(fkey_old, _username, _password);
 
                 if (result.StartsWith("ERR:13"))
                 {
@@ -1125,7 +1056,7 @@ namespace V6ThuePostManager
             string result = null;
             try
             {
-                result = new BusinessService().confirmPayment(fkey_old, _username, _password);
+                result = new BusinessService(_link_Business).confirmPayment(fkey_old, _username, _password);
 
                 if (result.StartsWith("ERR:13"))
                 {
@@ -1158,7 +1089,7 @@ namespace V6ThuePostManager
             string result = null;
             try
             {
-                result = new BusinessService().UnConfirmPaymentFkey(fkey_old, _username, _password);
+                result = new BusinessService(_link_Business).UnConfirmPaymentFkey(fkey_old, _username, _password);
 
                 if (result.StartsWith("ERR:13"))
                 {
@@ -1196,7 +1127,7 @@ namespace V6ThuePostManager
             string result = null;
             try
             {
-                result = new BusinessService().cancelInv(account, accountpassword, fkey_old, _username, _password);
+                result = new BusinessService(_link_Business).cancelInv(_account, _accountpassword, fkey_old, _username, _password);
 
                 if (result.StartsWith("ERR:9"))
                 {
@@ -1401,7 +1332,540 @@ namespace V6ThuePostManager
             return false;
         }
 
-        #endregion vnpt
+        #endregion ==== VNPT ====
+
+
+        #region ==== VNPT_TOKEN ====
+
+        public static void StartAutoInputTokenPassword()
+        {
+            StopAutoInputTokenPassword();
+            if (string.IsNullOrEmpty(_token_password)) return;
+            if (string.IsNullOrEmpty(_token_password_title)) return;
+            autoToken = new Thread(AutoInputTokenPassword);
+            //autoToken.IsBackground = true;
+            autoToken.Start();
+        }
+
+        private static Thread autoToken = null;
+        public static void StopAutoInputTokenPassword()
+        {
+            if (autoToken != null && autoToken.IsAlive) autoToken.Abort();
+        }
+        private static void AutoInputTokenPassword()
+        {
+            try
+            {
+                //Find input password windows.
+                Spy001 spy = new Spy001();
+                var thisProcessID = Process.GetCurrentProcess().Id;
+                SpyWindowHandle input_password_window = spy.FindWindow(_token_password_title, thisProcessID);
+
+                while (input_password_window == null)
+                {
+                    input_password_window = spy.FindWindow(_token_password_title, thisProcessID);
+                }
+                //Find input password textbox, ok button
+                //SpyWindowHandle input_handle = null;
+                //SpyWindowHandle chk_soft_handle = null;
+                //SpyWindowHandle ok_button_handle = null;
+                //SpyWindowHandle soft_keyboard = null;
+
+                //foreach (KeyValuePair<string, SpyWindowHandle> child_item in input_password_window.Childs)
+                //{
+                //    if (child_item.Value.Class.ClassName == "Edit")//Kích hoạt bàn phím ảo
+                //    {
+                //        input_handle = child_item.Value;
+                //    }
+                //    else if (child_item.Value.Text == "Đăng nhập")
+                //    {
+                //        ok_button_handle = child_item.Value;
+                //    }
+                //    else if (child_item.Value.Text.StartsWith("Kích hoạt"))
+                //    {
+                //        chk_soft_handle = child_item.Value;
+                //    }
+                //    else if (child_item.Value.Text == "soft keyboard")
+                //    {
+                //        soft_keyboard = child_item.Value;
+                //    }
+                //}
+
+                //Input password
+                {
+                    input_password_window.SetForegroundWindow();
+                    //if (input_handle != null) input_handle.SetFocus();
+                    foreach (char c in _token_password)
+                    {
+                        spy.SendKeyPress(c);
+                    }
+                    spy.SendKeyPressEnter();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteToLog("Program.AutoInputTokenPassword " + ex.Message);
+            }
+        }
+
+        private static string EXECUTE_VNPT_TOKEN(PostManagerParams pmp, out string sohoadon, out string id, out string error)
+        {
+            string result = "";
+            sohoadon = null;
+            id = null;
+            error = null;
+            try
+            {
+                var row0 = am_table.Rows[0];
+                //MSHDT//Mới Sửa Hủy ĐiềuChỉnh(S) ThayThế
+                if (pmp.Mode.StartsWith("M") || pmp.Mode == "")
+                {
+                    var xml = ReadDataXml();
+                    //File.Create(flagFileName1).Close();
+                    StartAutoInputTokenPassword();
+                    string resultM = PublishInvWithToken_Dll(xml);
+                    result = resultM;
+                    //"OK:mẫu số;ký hiệu-Fkey_Số hóa đơn,"
+                    //"OK:01GTKT0/001;VT/19E-A0283806HDA_XXX"
+                    if (resultM.StartsWith("OK"))
+                    {
+                        sohoadon = GetSoHoaDon_Dll(resultM);
+                        //WriteFlag(flagFileName4, so_hoa_don);
+                    }
+                    else // chạy lần 2
+                    {
+                        StartAutoInputTokenPassword();
+                        resultM = PublishInvWithToken_Dll(xml);
+                        result = resultM;
+                        if (resultM.StartsWith("OK"))
+                        {
+                            sohoadon = GetSoHoaDon_Dll(resultM);
+                            //WriteFlag(flagFileName4, so_hoa_don);
+                        }
+                        else // Đã chạy 2 lần vẫn không được.
+                        {
+                            //WriteFlag(flagFileName3, resultM);
+                        }
+                    }
+
+                    // Gửi file.
+                    //WriteFlag(flagFileName4, so_hoa_don);
+                    string filePath = Path.Combine(pmp.Dir, pmp.FileName);
+                    if (filePath.Length > 0 && result.StartsWith("OK"))
+                    {
+                        if (pmp.Mode.EndsWith("1"))//Gửi file excel có sẵn
+                        {
+                            if (File.Exists(filePath))
+                            {
+                                result += UploadInvAttachmentFkey(fkeyA, filePath);
+                            }
+                            else
+                            {
+                                result += "Không tồn tại " + filePath;
+                            }
+                        }
+                        else if (pmp.Mode.EndsWith("2")) // Tự xuất excel rồi gửi.
+                        {
+                            string export_file;
+                            bool export_ok = ExportExcel(am_table, ad2_table, out export_file, ref result);
+
+                            if (export_ok && File.Exists(export_file))
+                            {
+                                result += UploadInvAttachmentFkey(fkeyA, export_file);
+                            }
+                        }
+                        else if (pmp.Mode.EndsWith("3")) // Tự xuất pdf rồi gửi
+                        {
+                            string export_file = null;
+                            if (string.IsNullOrEmpty(exportName))
+                            {
+                                var save = new SaveFileDialog
+                                {
+                                    Filter = "Pdf files (*.pdf)|*.pdf",
+                                    Title = "Xuất pdf để gửi đi.",
+                                };
+                                if (save.ShowDialog() == DialogResult.OK)
+                                {
+                                    export_file = save.FileName;
+                                }
+                                else
+                                {
+                                    export_file = null;
+                                    goto End;
+                                }
+                            }
+                            else
+                            {
+                                export_file = exportName + ".pdf";
+                            }
+
+                            string rptFile = Path.Combine(pmp.Dir, pmp.RptFileFull);
+                            ReportDocument rpt = new ReportDocument();
+                            rpt.Load(rptFile);
+                            DataSet ds = new DataSet();
+                            DataTable data1 = ad_table.Copy();
+                            data1.TableName = "DataTable1";
+                            DataTable data2 = am_table.Copy();
+                            data2.TableName = "DataTable2";
+                            ds.Tables.Add(data1);
+                            ds.Tables.Add(data2);
+                            string tien_bang_chu = MoneyToWords(ObjectAndString.ObjectToDecimal(row0["T_TT"]), "V", "VND");
+                            rpt.SetDataSource(ds);
+                            rpt.SetParameterValue("SoTienVietBangChu", tien_bang_chu);
+                            bool export_ok = ExportRptToPdf(null, rpt, export_file);
+                            if (export_ok)
+                            {
+                                result += "\r\nExport ok.";
+                            }
+                            else
+                            {
+                                result += "\r\nExport fail.";
+                            }
+
+                            if (export_ok && File.Exists(export_file))
+                            {
+                                result += UploadInvAttachmentFkey(fkeyA, export_file);
+                            }
+                        }
+                    }
+                }
+                else if (pmp.Mode.ToLower() == "DownloadInvFkeyNoPay".ToLower())
+                {
+                    fkeyA = pmp.Fkey_hd;
+
+                    string invXml = DownloadInvFkeyNoPay(fkeyA);
+                    string so_hoa_don = GetSoHoaDon(invXml);
+                    //WriteFlag(flagFileName4, so_hoa_don);
+                    result += so_hoa_don;
+                    //result += invXml;
+                }
+                else if (pmp.Mode == "S" || pmp.Mode == "D")
+                {
+                    var xml = ReadDataXml();// ReadDataXmlS(dbfFile: arg2);
+                    //File.Create(flagFileName1).Close();
+                    result = adjustInv(xml, fkey_old: pmp.Fkey_hd);
+                    string filePath = Path.Combine(pmp.Dir, pmp.FileName);
+                    if (filePath.Length > 0 && result.StartsWith("OK"))
+                    {
+                        if (File.Exists(filePath))
+                        {
+                            result += UploadInvAttachmentFkey(fkeyA, filePath);
+                        }
+                        else
+                        {
+                            result += "Không tồn tại " + filePath;
+                        }
+                    }
+                }
+                else if (pmp.Mode == "T")
+                {
+                    var xml = ReadDataXml();// ReadDataXmlT(arg2);
+                    //File.Create(flagFileName1).Close();
+                    result = replaceInv(xml, pmp.Fkey_hd);
+                }
+                else if (pmp.Mode.StartsWith("G"))
+                {
+                    if (pmp.Mode == "G1") // Gạch nợ theo fkey
+                    {
+                        //File.Create(flagFileName1).Close();
+                        confirmPaymentFkey(pmp.Fkey_hd);
+                    }
+                    else if (pmp.Mode == "G2") // Gạch nợ theo lstInvToken(01GTKT2/001;AA/13E;10)
+                    {
+                        //File.Create(flagFileName1).Close();
+                        confirmPayment(pmp.Fkey_hd);
+                    }
+                    else if (pmp.Mode == "G3") // Hủy gạch nợ theo fkey
+                    {
+                        //File.Create(flagFileName1).Close();
+                        UnconfirmPaymentFkey(pmp.Fkey_hd);
+                    }
+                }
+                else if (pmp.Mode == "H")
+                {
+                    //File.Create(flagFileName1).Close();
+                    result = cancelInv(fkey_old: pmp.Fkey_hd);
+                }
+                else if (pmp.Mode == "D")
+                {
+                    //== S
+                }
+                else if (pmp.Mode.StartsWith("U"))//U1,U2
+                {
+                    if (pmp.Mode == "U")        // upload file có sẵn, fkey truyền vào
+                    {
+                        string fkey = pmp.Fkey_hd;
+                        string file = Path.Combine(pmp.Dir, pmp.FileName);
+                        UploadInvAttachmentFkey(fkey, file);
+                    }
+                    else if (pmp.Mode == "U1") // upload file có sẵn, fkey tự đọc từ data
+                    {
+                        //ReadDataXml(arg2);
+                        string fkey = pmp.Fkey_hd;
+                        UploadInvAttachmentFkey(fkey, fkey + ".xls");
+                    }
+                    else if (pmp.Mode == "U2") // Đọc dữ liệu hóa đơn, lấy fkey, đọc dữ liệu excel và xuất excel rồi upload.
+                    {
+                        string export_file;
+                        //ReadDataXml(arg2);
+                        bool export_ok = ExportExcel(am_table, ad2_table, out export_file, ref result);
+
+                        if (export_ok && File.Exists(export_file))
+                        {
+                            result += UploadInvAttachmentFkey(fkeyA, export_file);
+                        }
+                    }
+                    else if (pmp.Mode == "U3") // Đọc dữ liệu hóa đơn, lấy fkey, đọc dữ liệu excel và xuất excel để đó xem.
+                    {
+                        string export_file;
+                        //ReadDataXml(arg2);
+                        bool export_ok = ExportExcel(am_table, ad2_table, out export_file, ref result);
+
+                        if (export_ok && File.Exists(export_file))
+                        {
+                            result += "\r\nExport ok.";
+                        }
+                    }
+                }
+                else if (pmp.Mode.StartsWith("E"))
+                {
+                    if (pmp.Mode == "E")
+                    {
+
+                    }
+                    else if (pmp.Mode == "E1")
+                    {
+                        string rptFile = pmp.RptFileFull;
+                        //string saveFile = arg4;
+
+                        string export_file;
+                        //ReadDataXml(arg2);
+                        bool export_ok = ExportExcel(am_table, ad2_table, out export_file, ref result);
+
+                        if (export_ok && File.Exists(export_file))
+                        {
+                            result += "\r\nExport ok.";
+                        }
+                    }
+                    else if (pmp.Mode == "E2")  // Xuất PDF bằng RPT
+                    {
+                        string rptFile = pmp.RptFileFull;
+                        string saveFile = Path.Combine(pmp.Dir, pmp.FileName);// arg4;
+
+                        ReportDocument rpt = new ReportDocument();
+                        rpt.Load(rptFile);
+                        DataSet ds = new DataSet();
+                        DataTable data1 = ad_table.Copy();
+                        data1.TableName = "DataTable1";
+                        DataTable data2 = am_table.Copy();
+                        data2.TableName = "DataTable2";
+                        ds.Tables.Add(data1);
+                        ds.Tables.Add(data2);
+                        string tien_bang_chu = MoneyToWords(ObjectAndString.ObjectToDecimal(row0["T_TT"]), "V", "VND");
+                        rpt.SetDataSource(ds);
+                        rpt.SetParameterValue("SoTienVietBangChu", tien_bang_chu);
+
+                        bool export_ok = false;
+                        if (string.IsNullOrEmpty(saveFile))
+                        {
+                            export_ok = ExportRptToPdf_As(null, rpt, saveFile);
+                        }
+                        else
+                        {
+                            export_ok = ExportRptToPdf(null, rpt, saveFile);
+                        }
+
+                        if (export_ok)
+                        {
+                            result += "\r\nExport ok.";
+                        }
+                        else
+                        {
+                            result += "\r\nExport fail.";
+                        }
+                    }
+                }
+
+
+
+                if (result.StartsWith("ERR"))
+                {
+                    error += result;
+                    //File.Create(flagFileName3).Close();
+                }
+                else
+                {
+                    //File.Create(flagFileName2).Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                //File.Create(flagFileName3).Close();
+                result += "ERR:EX\r\n" + ex.Message;
+                error += result;
+            }
+            StopAutoInputTokenPassword();
+        //File.Create(flagFileName9).Close();
+        //BaseMessage.Show(result, 500);
+        End:
+            return result;
+        }
+
+
+        /// <summary>
+        /// Đẩy lên và phát hành hóa đơn có ký chữ ký số (Token).
+        /// </summary>
+        /// <param name="xmlInvData">chuỗi xml hóa đơn.</param>
+        /// <returns>Thành công: trả về "OK:" + mẫu số + “;” + ký hiệu + “-” + Fkey + “_” + Số hóa đơn + “,”</returns>
+        public static string PublishInvWithToken_Dll(string xmlInvData)
+        {
+            string result = null;
+            try
+            {
+                result = VNPTEInvoiceSignToken.PublishInvWithToken(_account, _accountpassword, xmlInvData, _username, _password, _SERIAL_CERT, __partten, __serial, _link_Publish);
+                result += GetResultDescription_Dll(result);
+            }
+            catch (Exception ex)
+            {
+                result = "ERR:EX\r\n" + ex.Message;
+            }
+            Logger.WriteToLog("Program.PublishInvWithToken " + result);
+            return result;
+        }
+
+        private static string GetResultDescription_Dll(string result)
+        {
+            string description = null;
+            if (result.StartsWith("OK"))
+            {
+
+            }
+            else if (result.StartsWith("ERR:-3"))
+            {
+                description = "\r\nCó lỗi trong quá trình lấy chứng thư.";
+            }
+            else if (result.StartsWith("ERR:-2"))
+            {
+                description = "\r\nChứng thư không có privatekey.";
+            }
+            else if (result.StartsWith("ERR:-1"))
+            {
+                description = "\r\nẤn nút hủy khi nhập mã pin của chứng thư.";
+            }
+            else if (result.StartsWith("ERR:30"))
+            {
+                description = "\r\nTạo mới lô hóa đơn lỗi (fkey trùng,…).";
+            }
+            else if (result.StartsWith("ERR:28"))
+            {
+                description = "\r\nThông tin chứng thư chưa có trong hệ thống.";
+            }
+            else if (result.StartsWith("ERR:27"))
+            {
+                description = "\r\nChứng thư chưa đến thời điểm sử dụng.";
+            }
+            else if (result.StartsWith("ERR:26"))
+            {
+                description = "\r\nChứng thư đã hết hạn.";
+            }
+            else if (result.StartsWith("ERR:24"))
+            {
+                description = "\r\nChứng thư truyền lên không đúng với chứng thư công ty đăng ký trên hệ thống";
+            }
+            else if (result.StartsWith("ERR:23"))
+            {
+                description = "\r\nChứng thư truyền lên không đúng định dạng.";
+            }
+            else if (result.StartsWith("ERR:22"))
+            {
+                description = "\r\nCông ty chưa đăng ký thông tin keystore.";
+            }
+            else if (result.StartsWith("ERR:21"))
+            {
+                description = "\r\nKhông tìm thấy công ty trên hệ thống.";
+            }
+            else if (result.StartsWith("ERR:20"))
+            {
+                description = "\r\nTham số mẫu số và ký hiệu truyền vào không hợp lệ.";
+            }
+            else if (result.StartsWith("ERR:19"))
+            {
+                description = "\r\npattern truyền vào không giống với pattern của hoá đơn cần điều chỉnh/thay thế.";
+            }
+            else if (result.StartsWith("ERR:10"))
+            {
+                description = "\r\nSố lượng hóa đơn truyền vào lớn hơn maxBlockInv.";
+            }
+            else if (result.StartsWith("ERR:9"))
+            {
+                description = "\r\n???.";
+            }
+            else if (result.StartsWith("ERR:8"))
+            {
+                description = "\r\nHoá đơn đã được điều chỉnh, thay thế.";
+            }
+            else if (result.StartsWith("ERR:7"))
+            {
+                description = "\r\nKhông tìm thấy chứng thư trong máy. Hãy cắm token.";
+            }
+            else if (result.StartsWith("ERR:6"))
+            {
+                description = "\r\nKhông còn đủ số hóa đơn cho lô phát hành.";
+            }
+            else if (result.StartsWith("ERR:5"))
+            {
+                description = "\r\nCó lỗi xảy ra.";
+            }
+            else if (result.StartsWith("ERR:4"))
+            {
+                description = "\r\ntoken hóa đơn sai định dạng.";
+            }
+            else if (result.StartsWith("ERR:3"))
+            {
+                description = "\r\nĐịnh dạng file xml hóa đơn không đúng.";
+            }
+            else if (result.StartsWith("ERR:2"))
+            {
+                description = "\r\nKhông tồn tại hoá đơn cần thay thế/điều chỉnh.";
+            }
+            else if (result.StartsWith("ERR:1"))
+            {
+                description = "\r\nKhông có quyền truy cập webservice.";
+            }
+            else if (result.StartsWith("ERR:0"))
+            {
+                description = "\r\nLỗi Fkey đã tồn tại.";
+            }
+            else
+            {
+                description = "???";
+            }
+
+            return description;
+        }
+
+        /// <summary>
+        /// Lấy số hóa đơn từ chuỗi OK:ký hiệu;mẫu số-fkey_Số hóa đơn.
+        /// </summary>
+        /// <param name="result_string">OK:01GTKT0/001;VT/19E-A0283806HDA_XXX</param>
+        /// <returns></returns>
+        private static string GetSoHoaDon_Dll(string result_string)
+        {
+            string result = "";
+            try
+            {
+                int _index = result_string.IndexOf("_", StringComparison.InvariantCulture);
+                if (_index < 5) return null;
+                result = result_string.Substring(_index + 1, result_string.Length - _index - 1);
+                if (result.EndsWith(",")) result = result.Substring(0, result.Length - 1);
+            }
+            catch (Exception ex)
+            {
+                result = "Error: " + ex.Message;
+            }
+            return result;
+        }
+        #endregion ==== VNPT_TOKEN ====
 
         #region ==== VIETTEL ====
 
@@ -1414,7 +1878,7 @@ namespace V6ThuePostManager
             try
             {
                 string jsonBody = "";
-                var _V6Http = new V6Http(baseUrl, _username, _password);
+                var _V6Http = new ViettelWS(baseUrl, _username, _password);
                 if (mode.StartsWith("M"))
                 {
                     generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
@@ -1486,17 +1950,19 @@ namespace V6ThuePostManager
                     if (responseObject.result != null && !string.IsNullOrEmpty(responseObject.result.invoiceNo))
                     {
                         sohoadon = responseObject.result.invoiceNo;
+                        id = responseObject.result.transactionID;
                         message += " " + responseObject.result.invoiceNo;
                         //WriteFlag(flagFileName4, responseObject.result.invoiceNo);
                         //File.Create(flagFileName2).Close();
                     }
                     else
                     {
-                        error += "Không có số hóa đơn.";
+                        error += responseObject.errorCode;
                     }
                 }
                 catch (Exception ex)
                 {
+                    error += ex.Message;
                     Logger.WriteToLog("Program.Main ConverResultObjectException: " + ex.Message);
                     message = "Kết quả:";
                 }
@@ -1511,7 +1977,7 @@ namespace V6ThuePostManager
             return result;
         }
 
-        public static string POST_NEW(V6Http _V6Http, string jsonBody)
+        public static string POST_NEW(ViettelWS _V6Http, string jsonBody)
         {
             string result;
             try
@@ -1526,7 +1992,7 @@ namespace V6ThuePostManager
             return result;
         }
 
-        public static string POST_EDIT(V6Http _V6Http, string jsonBody)
+        public static string POST_EDIT(ViettelWS _V6Http, string jsonBody)
         {
             string result;
             try
@@ -1604,12 +2070,32 @@ namespace V6ThuePostManager
             return result;
         }
 
-
-        public static string ViettelDownloadInvoice(PostManagerParams postManagerParams)
+        /// <summary>
+        /// Trả về đường dẫn file pdf.
+        /// </summary>
+        /// <param name="postManagerParams"></param>
+        /// <returns>Trả về đường dẫn file pdf.</returns>
+        public static string BkavDownloadInvoicePDF(PostManagerParams postManagerParams)
         {
-            V6Http viettel_http = new V6Http(baseUrl, _username, _password);
+            BkavWS bkav_ws = new BkavWS();
+            ExecCommandFunc wsExecCommand = null;
+            var webservice = new V6ThuePostBkavApi.vn.ehoadon.wsdemo.WSPublicEHoaDon();
+            wsExecCommand = webservice.ExecuteCommand;
+            uint Constants_Mode = RemoteCommand.DefaultMode;
+            var remoteCommand = new RemoteCommand(wsExecCommand, BkavPartnerGUID, BkavPartnerToken, Constants_Mode);
+            return bkav_ws.DownloadInvoicePDF(remoteCommand, postManagerParams.Fkey_hd, V6Setting.V6SoftLocalAppData_Directory);
+        }
+
+        /// <summary>
+        /// Trả về đường dẫn file pdf.
+        /// </summary>
+        /// <param name="postManagerParams"></param>
+        /// <returns>Trả về đường dẫn file pdf.</returns>
+        public static string ViettelDownloadInvoicePDF(PostManagerParams postManagerParams)
+        {
+            ViettelWS viettel_http = new ViettelWS(baseUrl, _username, _password);
             
-            return viettel_http.DownloadInvoicePDF(_codetax, _downloadlink, V6Setting.V6SoftLocalAppData_Directory);
+            return viettel_http.DownloadInvoicePDF(_codetax, _downloadlinkpdf, postManagerParams.InvoiceNo, postManagerParams.Parttern, V6Setting.V6SoftLocalAppData_Directory);
         }
 
         #endregion viettel
@@ -1763,32 +2249,43 @@ namespace V6ThuePostManager
                                         _modifylink = line.Value;
                                     }
                                     break;
-                                case "downloadlink":
+                                case "downloadlinkpdf":
                                     if (line.Type == "ENCRYPT")
                                     {
-                                        _downloadlink = UtilityHelper.DeCrypt(line.Value);
+                                        _downloadlinkpdf = UtilityHelper.DeCrypt(line.Value);
                                     }
                                     else
                                     {
-                                        _downloadlink = line.Value;
+                                        _downloadlinkpdf = line.Value;
                                     }
                                     break;
                                     //Vnpt, có dùng cả username, password
-                                case "link":
-                                    //if (line.Type == "ENCRYPT")
-                                    {
-                                        baseUrl = UtilityHelper.DeCrypt(line.Value);
-                                    }
-                                    //else
-                                    //{
-                                    //    baseUrl = line.Value;
-                                    //}
+                                case "link_publish":
+                                        _link_Publish = UtilityHelper.DeCrypt(line.Value);
+                                    break;
+                                case "link_business":
+                                    _link_Business = UtilityHelper.DeCrypt(line.Value);
+                                    break;
+                                case "link_portal":
+                                    _link_Portal = UtilityHelper.DeCrypt(line.Value);
+                                    break;
+                                case "link_attachment":
+                                    _link_Attachment = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "account":
-                                    account = line.Value;
+                                    _account = line.Value;
                                     break;
                                 case "accountpassword":
-                                    accountpassword = UtilityHelper.DeCrypt(line.Value);
+                                    _accountpassword = UtilityHelper.DeCrypt(line.Value);
+                                    break;
+                                case "serialcert":
+                                    _SERIAL_CERT = UtilityHelper.DeCrypt(line.Value).ToUpper();
+                                    break;
+                                case "token_password_title":
+                                    _token_password_title = line.Value;
+                                    break;
+                                case "token_password":
+                                    _token_password = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "partten":
                                     partten_field = line.Value;
@@ -1803,6 +2300,11 @@ namespace V6ThuePostManager
                                 case "bkavpartnertoken":
                                     BkavPartnerToken = UtilityHelper.DeCrypt(line.Value);
                                     break;
+                                case "bkavcommandtypenew":
+                                    BkavCommandTypeNew = ObjectAndString.ObjectToInt(UtilityHelper.DeCrypt(line.Value));
+                                    break;
+
+                                    
                             }
                             break;
                         }

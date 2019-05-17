@@ -151,9 +151,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.v6Label11 = new V6Controls.V6Label();
             this.lblMaKH = new V6Controls.V6Label();
             this.group2 = new System.Windows.Forms.GroupBox();
+            this.lblMauKyHieu = new V6Controls.V6Label();
+            this.txtMaMauHD = new V6Controls.V6VvarTextBox();
             this.v6VvarTextBox2 = new V6Controls.V6VvarTextBox();
             this.v6VvarTextBox1 = new V6Controls.V6VvarTextBox();
-            this.v6Label6 = new V6Controls.V6Label();
             this.v6Label7 = new V6Controls.V6Label();
             this.v6Label8 = new V6Controls.V6Label();
             this.lblMaNX = new V6Controls.V6Label();
@@ -2002,9 +2003,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             // 
             this.group2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.group2.Controls.Add(this.lblMauKyHieu);
+            this.group2.Controls.Add(this.txtMaMauHD);
             this.group2.Controls.Add(this.v6VvarTextBox2);
             this.group2.Controls.Add(this.v6VvarTextBox1);
-            this.group2.Controls.Add(this.v6Label6);
             this.group2.Controls.Add(this.v6Label7);
             this.group2.Controls.Add(this.v6Label8);
             this.group2.Controls.Add(this.lblMaNX);
@@ -2016,6 +2018,34 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.group2.Size = new System.Drawing.Size(474, 57);
             this.group2.TabIndex = 1;
             this.group2.TabStop = false;
+            // 
+            // lblMauKyHieu
+            // 
+            this.lblMauKyHieu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMauKyHieu.AutoSize = true;
+            this.lblMauKyHieu.Location = new System.Drawing.Point(253, 35);
+            this.lblMauKyHieu.Name = "lblMauKyHieu";
+            this.lblMauKyHieu.Size = new System.Drawing.Size(68, 13);
+            this.lblMauKyHieu.TabIndex = 7;
+            this.lblMauKyHieu.Text = "Mẫu/Ký hiệu";
+            // 
+            // txtMaMauHD
+            // 
+            this.txtMaMauHD.AccessibleName = "MA_MAUHD";
+            this.txtMaMauHD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMaMauHD.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaMauHD.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaMauHD.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMaMauHD.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMaMauHD.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaMauHD.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaMauHD.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaMauHD.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaMauHD.LeaveColor = System.Drawing.Color.White;
+            this.txtMaMauHD.Location = new System.Drawing.Point(327, 31);
+            this.txtMaMauHD.Name = "txtMaMauHD";
+            this.txtMaMauHD.Size = new System.Drawing.Size(80, 20);
+            this.txtMaMauHD.TabIndex = 8;
             // 
             // v6VvarTextBox2
             // 
@@ -2032,7 +2062,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.v6VvarTextBox2.Location = new System.Drawing.Point(376, 10);
             this.v6VvarTextBox2.Name = "v6VvarTextBox2";
             this.v6VvarTextBox2.Size = new System.Drawing.Size(91, 20);
-            this.v6VvarTextBox2.TabIndex = 15;
+            this.v6VvarTextBox2.TabIndex = 6;
             this.v6VvarTextBox2.VVar = "ma_nvien";
             // 
             // v6VvarTextBox1
@@ -2050,19 +2080,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.v6VvarTextBox1.Location = new System.Drawing.Point(257, 10);
             this.v6VvarTextBox1.Name = "v6VvarTextBox1";
             this.v6VvarTextBox1.Size = new System.Drawing.Size(91, 20);
-            this.v6VvarTextBox1.TabIndex = 14;
+            this.v6VvarTextBox1.TabIndex = 5;
             this.v6VvarTextBox1.VVar = "ma_bp";
-            // 
-            // v6Label6
-            // 
-            this.v6Label6.AccessibleDescription = "AARCTAR1L00032";
-            this.v6Label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6Label6.AutoSize = true;
-            this.v6Label6.Location = new System.Drawing.Point(335, 34);
-            this.v6Label6.Name = "v6Label6";
-            this.v6Label6.Size = new System.Drawing.Size(39, 13);
-            this.v6Label6.TabIndex = 7;
-            this.v6Label6.Text = "Số seri";
             // 
             // v6Label7
             // 
@@ -2110,8 +2129,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.v6ColorTextBox1.LeaveColor = System.Drawing.Color.White;
             this.v6ColorTextBox1.Location = new System.Drawing.Point(73, 32);
             this.v6ColorTextBox1.Name = "v6ColorTextBox1";
-            this.v6ColorTextBox1.Size = new System.Drawing.Size(257, 20);
-            this.v6ColorTextBox1.TabIndex = 13;
+            this.v6ColorTextBox1.Size = new System.Drawing.Size(178, 20);
+            this.v6ColorTextBox1.TabIndex = 3;
             // 
             // txtso_seri
             // 
@@ -2125,10 +2144,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.txtso_seri.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtso_seri.HoverColor = System.Drawing.Color.Yellow;
             this.txtso_seri.LeaveColor = System.Drawing.Color.White;
-            this.txtso_seri.Location = new System.Drawing.Point(376, 31);
+            this.txtso_seri.Location = new System.Drawing.Point(412, 31);
             this.txtso_seri.Name = "txtso_seri";
-            this.txtso_seri.Size = new System.Drawing.Size(91, 20);
-            this.txtso_seri.TabIndex = 16;
+            this.txtso_seri.Size = new System.Drawing.Size(55, 20);
+            this.txtso_seri.TabIndex = 9;
             // 
             // txtManx
             // 
@@ -2148,7 +2167,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.txtManx.Location = new System.Drawing.Point(73, 10);
             this.txtManx.Name = "txtManx";
             this.txtManx.Size = new System.Drawing.Size(126, 20);
-            this.txtManx.TabIndex = 12;
+            this.txtManx.TabIndex = 1;
             this.txtManx.VVar = "ma_nx";
             this.txtManx.Leave += new System.EventHandler(this.txtManx_Leave);
             // 
@@ -2667,7 +2686,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
         private V6DateTimePicker dateNgayLCT;
         private V6Label v6Label5;
         private System.Windows.Forms.GroupBox group2;
-        private V6Label v6Label6;
         private V6Label v6Label7;
         private V6Label v6Label8;
         private V6Label lblMaNX;
@@ -2805,5 +2823,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
         private System.Windows.Forms.ToolStripMenuItem thayThe2toolStripMenuItem;
         private NumberSoluong txtTongSoLuong;
         private V6Label lblKieuPostColor;
+        private V6Label lblMauKyHieu;
+        private V6VvarTextBox txtMaMauHD;
     }
 }

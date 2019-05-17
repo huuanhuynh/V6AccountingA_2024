@@ -40,6 +40,7 @@ namespace V6ControlManager.FormManager.ToolManager
                 chkMouseRightTriple.Checked = V6Setting.Triple;
                 chkAutoFixInvoiceVvar.Checked = V6Setting.FixInvoiceVvar;
                 chkWriteExtraLog.Checked = V6Setting.WriteExtraLog;
+                chkAllowAdd.Checked = V6Setting.V6Special_AllowAdd;
             }
             catch (Exception ex)
             {
@@ -51,6 +52,9 @@ namespace V6ControlManager.FormManager.ToolManager
         public override void V6F3Execute()
         {
             grbTools.Visible = true;
+            chkAutoFixInvoiceVvar.Visible = true;
+            chkWriteExtraLog.Visible = true;
+            chkAllowAdd.Visible = true;
         }
 
         private void btnTestInvoice_Click(object sender, EventArgs e)
@@ -144,6 +148,20 @@ namespace V6ControlManager.FormManager.ToolManager
             else
             {
                 V6Setting.V6Special = V6Setting.V6Special.Replace("WriteExtraLog", "");
+            }
+        }
+
+        private void chkAllowAdd_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!IsReady) return;
+
+            if (chkAllowAdd.Checked)
+            {
+                V6Setting.V6Special = V6Setting.V6Special + "AllowAdd";
+            }
+            else
+            {
+                V6Setting.V6Special = V6Setting.V6Special.Replace("AllowAdd", "");
             }
         }
 

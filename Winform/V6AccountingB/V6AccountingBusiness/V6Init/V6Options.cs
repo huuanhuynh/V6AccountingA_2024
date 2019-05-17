@@ -185,6 +185,7 @@ namespace V6Init
             }
         }
         private static string _k_tmp;
+        
 
 
         public static string M_MA_NT0
@@ -232,6 +233,11 @@ namespace V6Init
         public static int M_IP_R_GIANT
         {
             get { return Convert.ToInt32(GetValue("M_IP_R_GIANT").Substring(1)); }
+        }
+
+        public static string M_QLY_MA_SO_THUE
+        {
+            get { return GetValue("M_QLY_MA_SO_THUE").Trim(); }
         }
 
         /// <summary>
