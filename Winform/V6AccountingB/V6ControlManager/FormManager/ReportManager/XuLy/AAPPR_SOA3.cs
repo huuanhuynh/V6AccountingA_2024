@@ -363,7 +363,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.btnTestView.Name = "btnTestView";
             this.btnTestView.Size = new System.Drawing.Size(111, 23);
             this.btnTestView.TabIndex = 22;
-            this.btnTestView.Text = "Test view";
+            this.btnTestView.Text = "Bản thể hiện";
             this.btnTestView.UseVisualStyleBackColor = true;
             this.btnTestView.Click += new System.EventHandler(this.btnTestView_Click);
             // 

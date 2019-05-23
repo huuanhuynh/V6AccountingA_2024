@@ -199,6 +199,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return new AAPPR_IXB_IN1(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                     #endregion In liên tục
 
+                case "AAPPR_EINVOICE1": // Xử lý hóa đơn điện tử.
+                    return new AAPPR_EINVOICE1(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+
 
             }
             return new XuLyBase(itemId, program, procedure, reportFile, reportCaption, reportCaption2, false);

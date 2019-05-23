@@ -993,7 +993,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     result = new AAPPR_SOA2();
                     break;
                 case "AAPPR_SOA3": //Hệ thống/Quản lý người sử dụng/ In hóa đơn điện tử liên tục.
-                    result = new AAPPR_SOA3();
+                    result = new AAPPR_SOA3_filter();
                     break;
                 case "AGLAUTOSO_CT":
                     result = new XAGLAUTOSO_CT();
@@ -1181,7 +1181,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
                     break;
                 case "AGLTHUEBK2TT156":
-                    result = new AGLTHUEBK2TT156();
+                    result = new AGLTHUEBK2TT156_Filter();
                     break;
                 case "AGLTHUEBK3TT156":
                     result = new AGLTHUEBK3TT156();
@@ -1461,10 +1461,14 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     break;
                 case "AAPPR_IXB_IN1":
                     result = new AAPPR_IXB_IN1();
+                    break;
 
+                case "AAPPR_EINVOICE1":
+                    result = new AAPPR_EINVOICE1_Filter();
+                    break;
                     #endregion In liên tục
 
-                    break;
+                    
                 case "AINVTBAR1":
                     result = new FilterDanhMuc("ALVT");
                     break;

@@ -609,7 +609,7 @@ namespace V6Tools.V6Convert
         }
 
         /// <summary>
-        /// Loại bỏ tất cả các ký tự khoảng trắng và khoảng trắng đặc biệt ở đầu, cuối và bên trong chuỗi.
+        /// Loại bỏ tất cả các ký tự khoảng trắng và khoảng trắng đặc biệt ở đầu và cuối chuỗi. Loại bỏ ký tự đặc biệt bên trong chuỗi.
         /// </summary>
         /// <param name="toString"></param>
         /// <param name="moreSpecialChars"></param>
@@ -621,16 +621,12 @@ namespace V6Tools.V6Convert
             {
                 toString = toString.Replace("" + special_char, "");
             }
-            for (int i = toString.Length-1; i >=0 ; i--)
+            //Loại bỏ khoảng trắng đầu chuỗi.
+            while (toString.Length>0 && char.IsWhiteSpace(toString[0]))
             {
-                char i_char = toString[i];
-                if (char.IsWhiteSpace(i_char))
-                {
-                    toString = toString.Replace("" + i_char, "");
-                    if (i > toString.Length) i = toString.Length;
-                }
+                toString = toString.Substring(1);
             }
-            toString = toString.Trim();
+            
             return toString;
         }
     }

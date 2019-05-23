@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using V6AccountingBusiness;
 using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Controls;
 using V6Controls.Forms;
@@ -10,14 +11,14 @@ using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class AGLTHUEBK2TT156 : FilterBase
+    public partial class AAPPR_EINVOICE1_Filter : FilterBase
     {
-        public AGLTHUEBK2TT156()
+        public AAPPR_EINVOICE1_Filter()
         {
             InitializeComponent();
             
             F3 = true;
-            F5 = false;
+            F9 = true;
 
             dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
             dateNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
@@ -212,6 +213,17 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         private void btnChon_Click(object sender, EventArgs e)
         {
             ChonFileExcelSaveAs();
+        }
+
+        private void btnSuaChiTieu_Click(object sender, EventArgs e)
+        {
+            if (new ConfirmPasswordV6().ShowDialog(this) != DialogResult.OK) return;
+            string tableName = "V6MAPINFO";
+            string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
+            var data = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='" + String1 + "' or ma_td1='0' or ma_td1='') order by date0,time0").Data;
+            IDictionary<string, object> defaultData = new Dictionary<string, object>();
+            defaultData.Add("LOAI", "AAPPR_SOA2");
+            V6ControlFormHelper.ShowDataEditorForm(this, data, tableName, null, keys, false, false, true, true, defaultData);
         }
 
         

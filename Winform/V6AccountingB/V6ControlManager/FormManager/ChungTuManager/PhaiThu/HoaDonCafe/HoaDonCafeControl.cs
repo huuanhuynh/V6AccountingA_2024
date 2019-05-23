@@ -4653,7 +4653,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 addDataAM["MA_KHOPH"] = ma_khoPH;
                 addDataAM["MA_VITRIPH"] = ma_vitriPH;
                 
-                addDataAM["STATUS"] = _post ? "3" : Status;
+                //addDataAM["STATUS"] = _post ? "3" : Status;
+                addDataAM["STATUS"] = Status;
                 //Update to AM
                 V6BusinessHelper.UpdateRowToDataTable(AM, "Stt_rec", _sttRec, addDataAM);
 
@@ -4806,7 +4807,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
                             if (check_edit == true)
                             {
-                                Status = "1";
+                                Status = "2";
                                 //Mode = V6Mode.Edit;
                                 detail1.MODE = V6Mode.View;
                                 detail3.MODE = V6Mode.View;

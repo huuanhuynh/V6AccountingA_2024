@@ -1,6 +1,6 @@
 ﻿namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    partial class AAPPR_SOA3
+    partial class AAPPR_SOA3_filter
     {
         /// <summary> 
         /// Required designer variable.
@@ -597,7 +597,7 @@
             this.Controls.Add(this.dateNgay_ct2);
             this.Controls.Add(this.dateNgay_ct1);
             this.Controls.Add(this.groupBox1);
-            this.Name = "AAPPR_SOA3";
+            this.Name = "AAPPR_SOA3_filter";
             this.Size = new System.Drawing.Size(299, 615);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

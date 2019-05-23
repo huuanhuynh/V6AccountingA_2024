@@ -1906,11 +1906,11 @@
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_BC1_IN1.Designer.cs">
       <DependentUpon>AAPPR_BC1_IN1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_SOA3.cs">
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_SOA3_filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_SOA3.Designer.cs">
-      <DependentUpon>AAPPR_SOA3.cs</DependentUpon>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_SOA3_filter.Designer.cs">
+      <DependentUpon>AAPPR_SOA3_filter.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_SOA2.cs">
       <SubType>UserControl</SubType>
@@ -1995,6 +1995,12 @@
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_POH1.Designer.cs">
       <DependentUpon>AAPPR_POH1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_EINVOICE1_Filter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_EINVOICE1_Filter.designer.cs">
+      <DependentUpon>AAPPR_EINVOICE1_Filter.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\Xuly\AINVTBAR5.cs">
       <SubType>UserControl</SubType>
@@ -3238,11 +3244,11 @@
     <Compile Include="FormManager\ReportManager\Filter\AGLSO3T.designer.cs">
       <DependentUpon>AGLSO3T.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\AGLTHUEBK2TT156.cs">
+    <Compile Include="FormManager\ReportManager\Filter\AGLTHUEBK2TT156_Filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\AGLTHUEBK2TT156.designer.cs">
-      <DependentUpon>AGLTHUEBK2TT156.cs</DependentUpon>
+    <Compile Include="FormManager\ReportManager\Filter\AGLTHUEBK2TT156_Filter.designer.cs">
+      <DependentUpon>AGLTHUEBK2TT156_Filter.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AINCDHSDF.cs">
       <SubType>UserControl</SubType>
@@ -4316,6 +4322,15 @@
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_CA1_IN1.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_EINVOICE1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_EINVOICE1_F9.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_EINVOICE1_F9.designer.cs">
+      <DependentUpon>AAPPR_EINVOICE1_F9.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_SOA3_ViewPDF.cs">
       <SubType>Form</SubType>
@@ -6431,8 +6446,8 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_BC1_IN1.resx">
       <DependentUpon>AAPPR_BC1_IN1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AAPPR_SOA3.resx">
-      <DependentUpon>AAPPR_SOA3.cs</DependentUpon>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AAPPR_SOA3_filter.resx">
+      <DependentUpon>AAPPR_SOA3_filter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AAPPR_SOA2.resx">
       <DependentUpon>AAPPR_SOA2.cs</DependentUpon>
@@ -6475,6 +6490,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AAPPR_POH1.resx">
       <DependentUpon>AAPPR_POH1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AAPPR_EINVOICE1_Filter.resx">
+      <DependentUpon>AAPPR_EINVOICE1_Filter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AINVTBAR5.resx">
       <DependentUpon>AINVTBAR5.cs</DependentUpon>
@@ -7100,8 +7118,8 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AGLSO3T.resx">
       <DependentUpon>AGLSO3T.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\Filter\AGLTHUEBK2TT156.resx">
-      <DependentUpon>AGLTHUEBK2TT156.cs</DependentUpon>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AGLTHUEBK2TT156_Filter.resx">
+      <DependentUpon>AGLTHUEBK2TT156_Filter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AINCDHSDF.resx">
       <DependentUpon>AINCDHSDF.cs</DependentUpon>
@@ -7615,6 +7633,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_IND_F4.resx">
       <DependentUpon>AAPPR_IND_F4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_EINVOICE1_F9.resx">
+      <DependentUpon>AAPPR_EINVOICE1_F9.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_SOA3.resx">
       <DependentUpon>AAPPR_SOA3.cs</DependentUpon>

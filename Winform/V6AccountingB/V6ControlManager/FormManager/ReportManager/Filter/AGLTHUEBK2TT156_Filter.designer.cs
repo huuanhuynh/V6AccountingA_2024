@@ -1,6 +1,6 @@
 ﻿namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    partial class AGLTHUEBK2TT156
+    partial class AGLTHUEBK2TT156_Filter
     {
         /// <summary> 
         /// Required designer variable.
@@ -344,7 +344,7 @@
             this.Controls.Add(this.dateNgay_ct2);
             this.Controls.Add(this.dateNgay_ct1);
             this.Controls.Add(this.groupBox1);
-            this.Name = "AGLTHUEBK2TT156";
+            this.Name = "AGLTHUEBK2TT156_Filter";
             this.Size = new System.Drawing.Size(295, 362);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

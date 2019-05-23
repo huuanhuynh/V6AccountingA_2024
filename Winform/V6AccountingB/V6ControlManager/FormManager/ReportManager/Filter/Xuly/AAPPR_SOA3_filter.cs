@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls.Forms;
 using V6Init;
@@ -7,7 +8,7 @@ using V6Tools;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class AAPPR_SOA3 : FilterBase
+    public partial class AAPPR_SOA3_filter : FilterBase
     {
         public string MAU
         {
@@ -15,7 +16,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             set { rTienViet.Checked = value == "VN"; }
         }
 
-        public AAPPR_SOA3()
+        public AAPPR_SOA3_filter()
         {
             InitializeComponent();
             F3 = true;
@@ -196,6 +197,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         private void btnSuaChiTieu_Click(object sender, System.EventArgs e)
         {
+            if (new ConfirmPasswordV6().ShowDialog(this) != DialogResult.OK) return;
             string tableName = "V6MAPINFO";
             string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
             var data = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='" + String1 + "' or ma_td1='0' or ma_td1='') order by date0,time0").Data;
