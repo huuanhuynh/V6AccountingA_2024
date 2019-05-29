@@ -25,6 +25,10 @@ namespace V6ThuePostManager
         public string RptFileFull { get; set; }
         public string Fkey_hd { get; set; }
         /// <summary>
+        /// Key hóa đơn cũ dùng cho thay thế.
+        /// </summary>
+        public string Fkey_hd_tt { get; set; }
+        /// <summary>
         /// Số hóa đơn
         /// </summary>
         public string InvoiceNo { get; set; }
@@ -58,6 +62,11 @@ namespace V6ThuePostManager
                     return ObjectAndString.ObjectToString(ResultDictionary[RESULT_STRING]);
                 }
                 return null;
+            }
+            set
+            {
+                if (ResultDictionary == null) ResultDictionary = new SortedDictionary<string, object>();
+                ResultDictionary[RESULT_STRING] = value;
             }
         }
         public string ResultError
@@ -150,6 +159,10 @@ namespace V6ThuePostManager
                 {
                     return ResultDictionary[SECRET_CODE].ToString();
                 }
+                else if (ResultDictionary != null && ResultDictionary.ContainsKey("MTC"))
+                {
+                    return ResultDictionary["MCT"].ToString();
+                }
                 return null;
             }
         }
@@ -221,7 +234,9 @@ namespace V6ThuePostManager
             }
             else
             {
-                return false;
+                if (!string.IsNullOrEmpty(ResultError)) return false;
+                if (!string.IsNullOrEmpty(ExceptionMessage)) return false;
+                return true;
             }
 
             return false;

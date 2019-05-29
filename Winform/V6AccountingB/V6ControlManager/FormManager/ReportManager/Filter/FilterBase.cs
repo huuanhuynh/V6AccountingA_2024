@@ -136,6 +136,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// </summary>
         public bool F5 { get; set; }
         /// <summary>
+        /// Thay thế
+        /// </summary>
+        public bool F6 { get; set; }
+        /// <summary>
         /// Đồ thị
         /// </summary>
         public bool F7 { get; set; }

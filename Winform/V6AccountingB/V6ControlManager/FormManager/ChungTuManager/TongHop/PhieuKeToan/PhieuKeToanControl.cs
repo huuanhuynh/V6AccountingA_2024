@@ -1066,23 +1066,29 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
 
         private void GetDefault_Other()
         {
-            txtMa_ct.Text = Invoice.Mact;
-            dateNgayCT.SetValue(V6Setting.M_SV_DATE);
-            dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
-            //Tuanmh 25/01/2016- Ma_dvcs
-            if (V6Login.MadvcsCount >= 1)
+            try
             {
-                if (V6Login.Madvcs != "")
+                txtMa_ct.Text = Invoice.Mact;
+                dateNgayCT.SetValue(V6Setting.M_SV_DATE);
+                dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
+                //Tuanmh 25/01/2016- Ma_dvcs
+                if (V6Login.MadvcsCount >= 1)
                 {
-                    txtMadvcs.Text = V6Login.Madvcs;
-                    txtMadvcs.ExistRowInTable();
+                    if (V6Login.Madvcs != "")
+                    {
+                        txtMadvcs.Text = V6Login.Madvcs;
+                        txtMadvcs.ExistRowInTable();
+                    }
                 }
+
+                //M_Ma_nk
+                Txtma_nk.Text = Invoice.Alct["M_MA_NK"].ToString().Trim();
+                cboKieuPost.SelectedValue = Invoice.Alct["M_K_POST"].ToString().Trim();
             }
-
-            //M_Ma_nk
-            Txtma_nk.Text = Invoice.Alct["M_MA_NK"].ToString().Trim();
-            cboKieuPost.SelectedValue = Invoice.Alct["M_K_POST"].ToString().Trim();
-
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
         }
 
         private void XuLyThayDoiMaNt()

@@ -99,8 +99,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         // E_G1: gạch nợ    E_H1: hủy hóa đơn   E_S1: sửa hd    E_T1: thay thế hd
                         string mode = form.SelectedMode;
                         string soct = row.Cells["So_ct"].Value.ToString().Trim();
-                        string dir = row.Cells["Dir_in"].Value.ToString().Trim();
-                        string file = row.Cells["File_in"].Value.ToString().Trim();
+                        //string dir = row.Cells["Dir_in"].Value.ToString().Trim();
+                        //string file = row.Cells["File_in"].Value.ToString().Trim();
                         string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
 
                         SqlParameter[] plist =
@@ -122,8 +122,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             DataSet = ds,
                             Mode = mode,
                             Branch = FilterControl.String1,
-                            Dir = dir,
-                            FileName = file,
+                            //Dir = dir,
+                            //FileName = file,
                             Fkey_hd = fkey_hd,
                         };
                         result = PostManager.PowerPost(paras);
@@ -137,7 +137,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
                                 new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
                                 new SqlParameter("@Set_so_ct", paras.Result.InvoiceNo),
-                                new SqlParameter("@Set_fkey_hd", paras.Result.Id),
+                                new SqlParameter("@Action", mode),
+                                new SqlParameter("@fkey_hd", paras.Result.Id),
                                 new SqlParameter("@MA_TD1", FilterControl.String1),
                                 new SqlParameter("@Partner_infors", paras.Result.PartnerInfors),
                                 new SqlParameter("@User_ID", V6Login.UserId)
@@ -187,15 +188,93 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
         #endregion xulyF9
 
-        protected override void XuLyBoSungThongTinChungTuF4()
+        protected override void XuLyF6()
         {
             try
             {
-                this.ShowInfoMessage(V6Text.NotSupported);
+                f9Error = "";
+                f9ErrorAll = "";
+                if (dataGridView1.CurrentRow == null) return;
+
+                var form = new AAPPR_EINVOICE1_F6();
+                if (form.ShowDialog(this) != DialogResult.OK || form.SelectedGridViewRow == null)
+                {
+                    return;
+                }
+                DataGridViewRow row = dataGridView1.CurrentRow;
+
+                try
+                {
+                    // E_G1: gạch nợ    E_H1: hủy hóa đơn   E_S1: sửa hd    E_T1: thay thế hd
+                    //string mode = form.SelectedMode;
+                    string soct = row.Cells["So_ct"].Value.ToString().Trim();
+                    string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
+
+                    SqlParameter[] plist =
+                    {
+                        new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
+                        new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
+                        new SqlParameter("@HoaDonMau", "0"),
+                        new SqlParameter("@isInvoice", "1"),
+                        new SqlParameter("@ReportFile", ""),
+                        new SqlParameter("@MA_TD1", FilterControl.String1),
+                        new SqlParameter("@UserID", V6Login.UserId)
+                    };
+
+                    DataSet ds = V6BusinessHelper.ExecuteProcedure(_program + "F9", plist);
+                    //DataTable data0 = ds.Tables[0];
+                    string result = ""; //, error = "", sohoadon = "", id = "";
+                    var paras = new PostManagerParams
+                    {
+                        DataSet = ds,
+                        Mode = "E_T1",
+                        Branch = FilterControl.String1,
+                        Fkey_hd = fkey_hd,
+                        Fkey_hd_tt = form.SelectedGridViewRow.Cells["FKEY_HD_TT"].Value.ToString().Trim(), // "[01GTKT0/003]_[AA/17E]_[0000105]",
+                    };
+                    result = PostManager.PowerPost(paras);
+
+                    if (paras.Result.IsSuccess(paras.Mode))
+                    {
+                        f9MessageAll += string.Format("\n{4} Soct:{0}, sohd:{1}, id:{2}\nResult:{3}", soct,
+                            paras.Result.InvoiceNo, paras.Result.Id, paras.Result.ResultString,
+                            V6Text.Text("ThanhCong"));
+
+                        SqlParameter[] plist2 =
+                        {
+                            new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
+                            new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
+                            new SqlParameter("@Set_so_ct", paras.Result.InvoiceNo),
+                            new SqlParameter("@Action", paras.Mode),
+                            new SqlParameter("@fkey_hd", paras.Result.Id),
+                            new SqlParameter("@V6PARTNER_ID", paras.Result.Id),
+                            new SqlParameter("@FKEY_HD_TT", paras.Fkey_hd_tt),
+                            new SqlParameter("@MA_TD1", FilterControl.String1),
+                            //new SqlParameter("@Partner_infors", paras.Result.PartnerInfors),
+                            new SqlParameter("@User_ID", V6Login.UserId)
+                        };
+                        V6BusinessHelper.ExecuteProcedureNoneQuery(_program + "_UPDATE", plist2);
+                    }
+                    else
+                    {
+                        f9MessageAll += string.Format("\n{3} Soct:{0}, error:{1}\nResult:{2}", soct,
+                            paras.Result.ResultError, paras.Result.ResultString, V6Text.Text("COLOI"));
+                    }
+
+                    remove_list_g.Add(row);
+                }
+                catch (Exception ex)
+                {
+                    f9Error += ex.Message;
+                    f9ErrorAll += ex.Message;
+                }
+
+                // Thông báo hoàn thành:
+                this.ShowMessage(f9MessageAll);
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".XuLyBoSungThongTinChungTuF4", ex);
+                this.ShowErrorException(GetType() + ".XuLyF6", ex);
             }
         }
 

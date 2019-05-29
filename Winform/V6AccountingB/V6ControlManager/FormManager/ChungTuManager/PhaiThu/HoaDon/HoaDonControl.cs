@@ -4315,53 +4315,61 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private void GetDefault_Other()
         {
-            txtMa_ct.Text = Invoice.Mact;
-            dateNgayCT.SetValue(V6Setting.M_SV_DATE);
-            dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
-            //Tuanmh 25/01/2016- Ma_dvcs
-            if (V6Login.MadvcsCount >= 1)
-            {
-                if (V6Login.Madvcs != "")
-                {
-                    txtMadvcs.Text = V6Login.Madvcs;
-                    txtMadvcs.ExistRowInTable();
-                }
-            }
-            
-            //M_Ma_nk
-            Txtma_nk.Text = Invoice.Alct["M_MA_NK"].ToString().Trim();
-            //txtLoaiPhieu.Text = "1";
-            //
-            txtManx.Text = Invoice.Alct["TK_NO"].ToString().Trim();
-            txtTkThueNo.Text = txtManx.Text;
             try
             {
-                cboKieuPost.SelectedValue = Invoice.Alct["M_K_POST"].ToString().Trim();
-            }
-            catch
-            {
-                // ignored
-            }
-            
-            if (AM_old != null)
-            {
-                var txtt = new V6VvarTextBox();
-                txtt.VVar = txtMa_sonb.VVar;
-                var old_masonb = AM_old["Ma_sonb"].ToString().Trim();
-                txtt.Text = old_masonb;
-                if (txtt.Data != null && txtt.Data["Status"].ToString().Trim() == "1")
+                txtMa_ct.Text = Invoice.Mact;
+                dateNgayCT.SetValue(V6Setting.M_SV_DATE);
+                dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
+                //Tuanmh 25/01/2016- Ma_dvcs
+                if (V6Login.MadvcsCount >= 1)
                 {
-                    txtMa_sonb.Text = old_masonb;
-                    if (txtSoPhieu.Text.Trim() == "")
+                    if (V6Login.Madvcs != "")
                     {
-                        txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(old_masonb, dateNgayCT.Date);
-                    }
-
-                    if (txtso_seri.Text.Trim() == "")
-                    {
-                        txtso_seri.Text = AM_old["SO_SERI"].ToString().Trim();
+                        txtMadvcs.Text = V6Login.Madvcs;
+                        txtMadvcs.ExistRowInTable();
                     }
                 }
+
+                //M_Ma_nk
+                Txtma_nk.Text = Invoice.Alct["M_MA_NK"].ToString().Trim();
+                //txtLoaiPhieu.Text = "1";
+                //
+                txtManx.Text = Invoice.Alct["TK_NO"].ToString().Trim();
+                txtTkThueNo.Text = txtManx.Text;
+                try
+                {
+                    cboKieuPost.SelectedValue = Invoice.Alct["M_K_POST"].ToString().Trim();
+                }
+                catch
+                {
+                    // ignored
+                }
+
+                if (AM_old != null)
+                {
+                    var txtt = new V6VvarTextBox();
+                    txtt.VVar = txtMa_sonb.VVar;
+                    var old_masonb = AM_old["Ma_sonb"].ToString().Trim();
+                    txtt.Text = old_masonb;
+                    if (txtt.Data != null && txtt.Data["Status"].ToString().Trim() == "1")
+                    {
+                        txtMa_sonb.Text = old_masonb;
+                        if (txtSoPhieu.Text.Trim() == "")
+                        {
+                            txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(old_masonb, dateNgayCT.Date);
+                        }
+
+                        if (txtso_seri.Text.Trim() == "")
+                        {
+                            txtso_seri.Text = AM_old["SO_SERI"].ToString().Trim();
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 

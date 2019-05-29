@@ -2130,6 +2130,10 @@ namespace V6Controls.Forms
                     goto CANCELALL;
                 
                 var NAME = control is RadioButton ? control.Name : control.AccessibleName;
+                if (NAME != null && NAME.ToUpper() == "MA_SONB")
+                {
+                    string A = "A";
+                }
                 if (data != null && !string.IsNullOrEmpty(NAME) && data.ContainsKey(NAME.ToUpper()))
                 {
                     NAME = NAME.ToUpper();

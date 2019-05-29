@@ -30,7 +30,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected List<DataGridViewRow> remove_list_g = new List<DataGridViewRow>();
         protected List<DataRow> remove_list_d = new List<DataRow>(); 
 
-        protected string _reportProcedure, _reportFile;
+        public string _reportProcedure, _reportFile;
         protected string _program, _reportCaption, _reportCaption2;
         protected string _reportFileF5, _reportTitleF5, _reportTitle2F5;
 
@@ -444,7 +444,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
         
         public FilterBase FilterControl { get; set; }
-        protected void AddFilterControl(string program)
+        public void AddFilterControl(string program)
         {
             FilterControl = Filter.Filter.GetFilterControl(program);
             panel1.Controls.Add(FilterControl);
@@ -879,6 +879,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             //    if(dataGridView1.Focused || dataGridView2.Focused) XuLyXemChiTietF5();
             //    else return base.DoHotKey0(keyData);
             //}
+            else if (keyData == Keys.F6 && FilterControl.F6)
+            {
+                XuLyF6();
+            }
             else if (keyData == Keys.F7 && FilterControl.F7)
             {
                 XuLyF7();
@@ -1009,6 +1013,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             //view.btnNhan_Click(null, null);
             //f.ShowDialog(this);
             SetStatus2Text();
+        }
+
+        protected virtual void XuLyF6()
+        {
+            throw new NotImplementedException();
         }
 
         protected virtual void XuLyF7()

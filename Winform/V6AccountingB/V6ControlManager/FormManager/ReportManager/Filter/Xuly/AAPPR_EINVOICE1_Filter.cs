@@ -18,11 +18,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             InitializeComponent();
             
             F3 = true;
+            F6 = true;
             F9 = true;
-
+            
             dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
             dateNgay_ct2.SetValue(V6Setting.M_ngay_ct2);
 
+            cboSendType.SelectedIndex = 0;
             txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
             
             if (V6Login.MadvcsCount <= 1)
@@ -110,7 +112,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             var key0 = GetFilterStringByFields(new List<string>()
             {
-               "MA_DVCS","MA_KH","MA_CT","TK_THUE_CO","MA_THUE"
+               "MA_DVCS", "MA_SONB", "MA_MAUHD", "SO_SERI", "MA_KH", "MA_CT", "TK_THUE_CO", "MA_THUE"
             }, and);
            if (!string.IsNullOrEmpty(key0))
             {
@@ -224,6 +226,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             IDictionary<string, object> defaultData = new Dictionary<string, object>();
             defaultData.Add("LOAI", "AAPPR_SOA2");
             V6ControlFormHelper.ShowDataEditorForm(this, data, tableName, null, keys, false, false, true, true, defaultData);
+        }
+
+        private void cboSendType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            String1 = (cboSendType.SelectedIndex + 1).ToString();
         }
 
         

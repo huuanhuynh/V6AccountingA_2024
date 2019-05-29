@@ -3664,72 +3664,76 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
         private void GetDefault_Other()
         {
-            txtMa_ct.Text = Invoice.Mact;
-            dateNgayCT.SetValue(V6Setting.M_SV_DATE);
-            dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
-            //Tuanmh 14/05/2017- Ma_dvcs
-            if (V6Login.MadvcsCount >= 1)
-            {
-                if (MA_KHOPH != "")
-                {
-                    var alkho = V6BusinessHelper.Select("ALKHO", "MA_DVCS", "MA_KHO = '" + MA_KHOPH.Trim() + "'");
-                    if (alkho.TotalRows > 0)
-                    {
-                        txtMadvcs.Text = alkho.Data.Rows[0]["MA_DVCS"].ToString().Trim();
-                    }
-
-                }
-                else
-                {
-                    if (V6Login.Madvcs != "")
-                    {
-                        txtMadvcs.Text = V6Login.Madvcs;
-                        txtMadvcs.ExistRowInTable();
-                    }
-                }
-            }
-           //Tuanmh 04/06/2017 ma_kh in alvitri
-            if (MA_VITRIPH != "")
-            {
-                var alvitri = V6BusinessHelper.Select("ALVITRI", "MA_KH", "MA_VITRI = '" + MA_VITRIPH.Trim() + "'");
-                if (alvitri.TotalRows > 0)
-                {
-                    if (!string.IsNullOrEmpty(alvitri.Data.Rows[0]["MA_KH"].ToString()))
-                    {
-                        txtMaKh.Text = alvitri.Data.Rows[0]["MA_KH"].ToString().Trim();
-                        XuLyChonMaKhachHang();
-
-                    }
-                }
-            }
-            //M_Ma_nk
-            Txtma_nk.Text = Invoice.Alct["M_MA_NK"].ToString().Trim();
-            //txtLoaiPhieu.Text = "1";
-            //
-            txtManx.Text = Invoice.Alct["TK_NO"].ToString().Trim();
-            txtTkThueNo.Text = txtManx.Text;
             try
             {
-                cboKieuPost.SelectedValue = Invoice.Alct["M_K_POST"].ToString().Trim();
+                txtMa_ct.Text = Invoice.Mact;
+                dateNgayCT.SetValue(V6Setting.M_SV_DATE);
+                dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
+                //Tuanmh 14/05/2017- Ma_dvcs
+                if (V6Login.MadvcsCount >= 1)
+                {
+                    if (MA_KHOPH != "")
+                    {
+                        var alkho = V6BusinessHelper.Select("ALKHO", "MA_DVCS", "MA_KHO = '" + MA_KHOPH.Trim() + "'");
+                        if (alkho.TotalRows > 0)
+                        {
+                            txtMadvcs.Text = alkho.Data.Rows[0]["MA_DVCS"].ToString().Trim();
+                        }
+
+                    }
+                    else
+                    {
+                        if (V6Login.Madvcs != "")
+                        {
+                            txtMadvcs.Text = V6Login.Madvcs;
+                            txtMadvcs.ExistRowInTable();
+                        }
+                    }
+                }
+                //Tuanmh 04/06/2017 ma_kh in alvitri
+                if (MA_VITRIPH != "")
+                {
+                    var alvitri = V6BusinessHelper.Select("ALVITRI", "MA_KH", "MA_VITRI = '" + MA_VITRIPH.Trim() + "'");
+                    if (alvitri.TotalRows > 0)
+                    {
+                        if (!string.IsNullOrEmpty(alvitri.Data.Rows[0]["MA_KH"].ToString()))
+                        {
+                            txtMaKh.Text = alvitri.Data.Rows[0]["MA_KH"].ToString().Trim();
+                            XuLyChonMaKhachHang();
+
+                        }
+                    }
+                }
+                //M_Ma_nk
+                Txtma_nk.Text = Invoice.Alct["M_MA_NK"].ToString().Trim();
+                //txtLoaiPhieu.Text = "1";
+                //
+                txtManx.Text = Invoice.Alct["TK_NO"].ToString().Trim();
+                txtTkThueNo.Text = txtManx.Text;
+                try
+                {
+                    cboKieuPost.SelectedValue = Invoice.Alct["M_K_POST"].ToString().Trim();
+                }
+                catch
+                {
+                    // ignored
+                }
+
+                if (AM_old != null)
+                {
+                    txtMa_sonb.Text = AM_old["Ma_sonb"].ToString().Trim();
+                    if (txtSoPhieu.Text.Trim() == "")
+                        txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
+
+                    if (txtso_seri.Text.Trim() == "")
+                        txtso_seri.Text = AM_old["SO_SERI"].ToString().Trim();
+
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                // ignored
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
-            
-            if (AM_old != null)
-            {
-                txtMa_sonb.Text = AM_old["Ma_sonb"].ToString().Trim();
-                if (txtSoPhieu.Text.Trim()=="")
-                    txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
-
-                if (txtso_seri.Text.Trim() == "")
-                    txtso_seri.Text = AM_old["SO_SERI"].ToString().Trim();
-
-            }
-          
-            
-
         }
 
         /// <summary>
@@ -5395,7 +5399,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
         private void GetSoPhieu(string ma_so_nb)
         {
-            txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(ma_so_nb, dateNgayCT.Date);
+            try
+            {
+                txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(ma_so_nb, dateNgayCT.Date);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
         }
 
         private void SetTabPageText(string text)

@@ -26,10 +26,10 @@ using V6ThuePostViettelApi.PostObjects;
 using V6ThuePostViettelApi.ResponseObjects;
 using V6ThuePostXmlApi;
 using V6ThuePostXmlApi.AttachmentService;
+using V6ThuePostXmlApi.BusinessService;
 using V6ThuePostXmlApi.PortalService;
 using V6ThuePostXmlApi.PostObjects;
 using V6ThuePostXmlApi.PublishService;
-using V6ThuePostXmlApi.Web_References.BusinessService;
 using V6Tools;
 using V6Tools.V6Convert;
 
@@ -43,6 +43,7 @@ namespace V6ThuePostManager
         static DataTable map_table;
         static DataTable ad_table;
         static DataTable am_table;
+        private static string Fkey_hd_tt = null;
         static DataTable ad2_table;
 
         /// <summary>
@@ -127,9 +128,10 @@ namespace V6ThuePostManager
                 map_table = paras.DataSet.Tables[0];
                 ad_table = paras.DataSet.Tables[1];
                 am_table = paras.DataSet.Tables[2];
+                Fkey_hd_tt = paras.Fkey_hd_tt;
                 DataRow row0 = am_table.Rows[0];
                 ad2_table = paras.DataSet.Tables[3];
-
+                
                 ReadConfigInfo(map_table);
 
                 switch (paras.Branch)
@@ -250,27 +252,27 @@ namespace V6ThuePostManager
                 }
                 else if (paras.Mode == "E_S1")
                 {
-                    jsonBody = ReadData_Bkav();
+                    jsonBody = ReadData_Bkav("S");
                     result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._121_CreateAdjust, out paras.Result.ResultDictionary);
                 }
                 else if (paras.Mode == "E_T1")
                 {
-                    jsonBody = ReadData_Bkav();
+                    jsonBody = ReadData_Bkav("T");
                     result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._120_CreateReplace, out paras.Result.ResultDictionary);
                 }
                 else if (paras.Mode == "M")
                 {
-                    jsonBody = ReadData_Bkav();
+                    jsonBody = ReadData_Bkav("M");
                     result = bkavWS.POST(remoteCommand, jsonBody, BkavCommandTypeNew, out paras.Result.ResultDictionary);
                 }
                 else if (paras.Mode == "S")
                 {
-                    jsonBody = ReadData_Bkav();
+                    jsonBody = ReadData_Bkav("S");
                     result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._121_CreateAdjust, out paras.Result.ResultDictionary);
                 }
                 else if (paras.Mode.StartsWith("T"))
                 {
-                    jsonBody = ReadData_Bkav();
+                    jsonBody = ReadData_Bkav("T");
                     result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._120_CreateReplace, out paras.Result.ResultDictionary);
                 }
 
@@ -294,12 +296,14 @@ namespace V6ThuePostManager
 
 
 
-        public static string ReadData_Bkav()
+        public static string ReadData_Bkav(string mode)
         {
             string result = "";
             try
             {
                 var postObject = new PostObjectBkav();
+
+                
                 
                 DataRow row0 = am_table.Rows[0];
                 fkeyA = "" + row0["FKEY_HD"];
@@ -307,8 +311,30 @@ namespace V6ThuePostManager
                 //private static Dictionary<string, XmlLine> generalInvoiceInfoConfig = null;
                 foreach (KeyValuePair<string, ConfigLine> item in generalInvoiceInfoConfig)
                 {
-                    postObject.Invoice[item.Key] = GetValue(row0, item.Value);
+                    if (item.Key == "OriginalInvoiceIdentify")
+                    {
+                        if (mode == "T")
+                        {
+                            postObject.Invoice[item.Key] = Fkey_hd_tt;// GetValue(row0, item.Value);
+                            
+                            //postObject.Invoice.InvoiceNo = 0;
+                            //postObject.Invoice.InvoiceForm = "";
+                            //postObject.Invoice.InvoiceSerial = "";
+                            //string OriginalInvoiceIdentify = string.Format("[{0}]_[{1}]_[{2}]",     //  "[01GTKT0/003]_[AA/17E]_[0000105]";
+                            //    postObject.Invoice["InvoiceForm"],
+                            //    postObject.Invoice["InvoiceSerial"],
+                            //    postObject.Invoice["InvoiceNo"]);
+
+                            //postObject.Invoice["OriginalInvoiceIdentify"] = OriginalInvoiceIdentify;
+                        }
+                    }
+                    else
+                    {
+                        postObject.Invoice[item.Key] = GetValue(row0, item.Value);
+                    }
                 }
+
+                
 
                 //foreach (KeyValuePair<string, ConfigLine> item in buyerInfoConfig)
                 //{
@@ -411,12 +437,11 @@ namespace V6ThuePostManager
                     }
                     else if (paras.Mode == "E_G2") // Gạch nợ theo lstInvToken(01GTKT2/001;AA/13E;10)
                     {
-                        //File.Create(flagFileName1).Close();
-                        confirmPayment(paras.Fkey_hd);
+                        result = VnptWS.ConfirmPayment(_link_Business, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
                     }
                     else if (paras.Mode == "E_G3") // Hủy gạch nợ theo fkey
                     {
-                        result = UnconfirmPaymentFkey(paras.Fkey_hd);
+                        result = VnptWS.UnconfirmPaymentFkey(_link_Business, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
                     }
                     else if (paras.Mode == "E_H1")
                     {
@@ -440,7 +465,7 @@ namespace V6ThuePostManager
                     result = ImportAndPublishInv(xml);
 
                     string invXml = DownloadInvFkeyNoPay(fkeyA);
-                    paras.Result.InvoiceNo = GetSoHoaDon(invXml);
+                    paras.Result.InvoiceNo = GetSoHoaDon_VNPT(invXml);
                     
                     string filePath = Path.Combine(paras.Dir, paras.FileName);
                     if (filePath.Length > 0 && result.StartsWith("OK"))
@@ -520,13 +545,23 @@ namespace V6ThuePostManager
                             }
                         }
                     }
+                    else if (!result.StartsWith("OK"))       // Hoặc đã có trên hệ thống HDDT ERR:0
+                    {
+                        invXml = DownloadInvFkeyNoPay(fkeyA);
+                        paras.Result.InvoiceNo = GetSoHoaDon_VNPT(invXml);
+                        if (!string.IsNullOrEmpty(paras.Result.InvoiceNo))
+                        {
+                            result = "OK-Đã tồn tại fkey.";
+                            paras.Result.ResultString = result;
+                        }
+                    }
                 }
                 else if (paras.Mode.ToLower() == "DownloadInvFkeyNoPay".ToLower())
                 {
                     fkeyA = paras.Fkey_hd;
                     
                     string invXml = DownloadInvFkeyNoPay(fkeyA);
-                    paras.Result.InvoiceNo = GetSoHoaDon(invXml);
+                    paras.Result.InvoiceNo = GetSoHoaDon_VNPT(invXml);
                     //WriteFlag(flagFileName4, so_hoa_don);
                     result += paras.Result.InvoiceNo;
                     //result += invXml;
@@ -557,15 +592,15 @@ namespace V6ThuePostManager
                 {
                     if (paras.Mode == "G1") // Gạch nợ theo fkey
                     {
-                        VnptWS.ConfirmPaymentFkey(_link_Business, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
+                        result = VnptWS.ConfirmPaymentFkey(_link_Business, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
                     }
                     else if (paras.Mode == "G2") // Gạch nợ theo lstInvToken(01GTKT2/001;AA/13E;10)
                     {
-                        confirmPayment(paras.Fkey_hd);
+                        result = VnptWS.ConfirmPayment(_link_Business, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
                     }
                     else if (paras.Mode == "G3") // Hủy gạch nợ theo fkey
                     {
-                        UnconfirmPaymentFkey(paras.Fkey_hd);
+                        result = VnptWS.UnconfirmPaymentFkey(_link_Business, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
                     }
                 }
                 else if (paras.Mode == "H")
@@ -1232,77 +1267,6 @@ namespace V6ThuePostManager
         }
 
         /// <summary>
-        /// Gạch nợ hóa đơn theo lstInvToken(01GTKT2/001;AA/13E;10)
-        /// </summary>
-        /// <param name="fkey_old"></param>
-        /// <returns></returns>
-        public static string confirmPayment(string fkey_old)
-        {
-            string result = null;
-            try
-            {
-                result = new BusinessService(_link_Business).confirmPayment(fkey_old, _username, _password);
-
-                if (result.StartsWith("ERR:13"))
-                {
-                    result += "\r\nHóa đơn đã được gạch nợ.";
-                }
-                else if (result.StartsWith("ERR:7"))
-                {
-                    result += "\r\nKhông gạch nợ được.";
-                }
-                else if (result.StartsWith("ERR:6"))
-                {
-                    result += "\r\nKhông tìm thấy hóa đơn tương ứng chuỗi đưa vào.";
-                }
-                else if (result.StartsWith("ERR:1"))
-                {
-                    result += "\r\nTài khoản đăng nhập sai.";
-                }
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
-
-            Logger.WriteToLog("Program.confirmPayment " + result);
-            return result;
-        }
-
-        public static string UnconfirmPaymentFkey(string fkey_old)
-        {
-            string result = null;
-            try
-            {
-                result = new BusinessService(_link_Business).UnConfirmPaymentFkey(fkey_old, _username, _password);
-
-                if (result.StartsWith("ERR:13"))
-                {
-                    result += "\r\nHóa đơn đã được bỏ gạch nợ.";
-                }
-                else if (result.StartsWith("ERR:7"))
-                {
-                    result += "\r\nKhông bỏ gạch nợ được.";
-                }
-                else if (result.StartsWith("ERR:6"))
-                {
-                    result += "\r\nKhông tìm thấy hóa đơn tương ứng chuỗi đưa vào.";
-                }
-                else if (result.StartsWith("ERR:1"))
-                {
-                    result += "\r\nTài khoản đăng nhập sai.";
-                }
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
-
-            Logger.WriteToLog("Program.UnconfirmPaymentFkey " + result);
-            return result;
-        }
-
-        /// <summary>
         /// Hủy hóa đơn.
         /// </summary>
         /// <param name="fkey_old"></param>
@@ -1340,7 +1304,7 @@ namespace V6ThuePostManager
             return result;
         }
 
-        private static string GetSoHoaDon(string invXml)
+        private static string GetSoHoaDon_VNPT(string invXml)
         {
             string result = "";
             try
@@ -1604,35 +1568,42 @@ namespace V6ThuePostManager
                 if (paras.Mode.StartsWith("M") || paras.Mode == "")
                 {
                     var xml = ReadDataXml();
-                    //File.Create(flagFileName1).Close();
                     StartAutoInputTokenPassword();
                     string resultM = PublishInvWithToken_Dll(xml);
                     result = resultM;
+                    paras.Result.ResultString = result;
                     //"OK:mẫu số;ký hiệu-Fkey_Số hóa đơn,"
                     //"OK:01GTKT0/001;VT/19E-A0283806HDA_XXX"
                     if (resultM.StartsWith("OK"))
                     {
                         paras.Result.InvoiceNo = GetSoHoaDon_Dll(resultM);
-                        //WriteFlag(flagFileName4, so_hoa_don);
+                    }
+                    else if (resultM.StartsWith("ERR:0"))       // Hoặc đã có trên hệ thống HDDT ERR:0
+                    {
+                        string invXml = DownloadInvFkeyNoPay(fkeyA);
+                        paras.Result.InvoiceNo = GetSoHoaDon_VNPT(invXml);
+                        if (!string.IsNullOrEmpty(paras.Result.InvoiceNo))
+                        {
+                            paras.Result.ResultString = "OK-Đã tồn tại fkey.";
+                        }
                     }
                     else // chạy lần 2
                     {
                         StartAutoInputTokenPassword();
                         resultM = PublishInvWithToken_Dll(xml);
                         result = resultM;
+                        paras.Result.ResultString = result;
                         if (resultM.StartsWith("OK"))
                         {
                             paras.Result.InvoiceNo = GetSoHoaDon_Dll(resultM);
-                            //WriteFlag(flagFileName4, so_hoa_don);
                         }
                         else // Đã chạy 2 lần vẫn không được.
                         {
-                            //WriteFlag(flagFileName3, resultM);
+                            paras.Result.ResultError = resultM;
                         }
                     }
 
                     // Gửi file.
-                    //WriteFlag(flagFileName4, so_hoa_don);
                     string filePath = Path.Combine(paras.Dir, paras.FileName);
                     if (filePath.Length > 0 && result.StartsWith("OK"))
                     {
@@ -1712,21 +1683,19 @@ namespace V6ThuePostManager
                         }
                     }
                 }
-                else if (paras.Mode.ToLower() == "DownloadInvFkeyNoPay".ToLower())
+                else if (String.Equals(paras.Mode, "DownloadInvFkeyNoPay", StringComparison.CurrentCultureIgnoreCase))
                 {
                     fkeyA = paras.Fkey_hd;
-
                     string invXml = DownloadInvFkeyNoPay(fkeyA);
-                    string so_hoa_don = GetSoHoaDon(invXml);
-                    //WriteFlag(flagFileName4, so_hoa_don);
+                    string so_hoa_don = GetSoHoaDon_VNPT(invXml);
+                    paras.Result.InvoiceNo = so_hoa_don;
                     result += so_hoa_don;
-                    //result += invXml;
                 }
                 else if (paras.Mode == "S" || paras.Mode == "D")
                 {
-                    var xml = ReadDataXml();// ReadDataXmlS(dbfFile: arg2);
-                    //File.Create(flagFileName1).Close();
-                    result = adjustInv(xml, fkey_old: paras.Fkey_hd);
+                    var xml = ReadDataXmlS();
+                    result = adjustInv(xml, paras.Fkey_hd);
+                    paras.Result.ResultString = result;
                     string filePath = Path.Combine(paras.Dir, paras.FileName);
                     if (filePath.Length > 0 && result.StartsWith("OK"))
                     {
@@ -1742,9 +1711,9 @@ namespace V6ThuePostManager
                 }
                 else if (paras.Mode == "T")
                 {
-                    var xml = ReadDataXml();// ReadDataXmlT(arg2);
-                    //File.Create(flagFileName1).Close();
+                    var xml = ReadDataXmlT();
                     result = replaceInv(xml, paras.Fkey_hd);
+                    paras.Result.ResultString = result;
                 }
                 else if (paras.Mode.StartsWith("G"))
                 {
@@ -1754,13 +1723,11 @@ namespace V6ThuePostManager
                     }
                     else if (paras.Mode == "G2") // Gạch nợ theo lstInvToken(01GTKT2/001;AA/13E;10)
                     {
-                        //File.Create(flagFileName1).Close();
-                        confirmPayment(paras.Fkey_hd);
+                        VnptWS.ConfirmPayment(_link_Business, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
                     }
                     else if (paras.Mode == "G3") // Hủy gạch nợ theo fkey
                     {
-                        //File.Create(flagFileName1).Close();
-                        UnconfirmPaymentFkey(paras.Fkey_hd);
+                        VnptWS.UnconfirmPaymentFkey(_link_Business, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
                     }
                 }
                 else if (paras.Mode == "H")

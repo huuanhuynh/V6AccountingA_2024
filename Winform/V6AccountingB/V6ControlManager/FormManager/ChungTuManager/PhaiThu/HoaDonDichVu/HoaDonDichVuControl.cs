@@ -1473,39 +1473,47 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
 
         private void GetDefault_Other()
         {
-            txtMa_ct.Text = Invoice.Mact;
-            dateNgayCT.SetValue(V6Setting.M_SV_DATE);
-            dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
-            //Tuanmh 25/01/2016- Ma_dvcs
-            if (V6Login.MadvcsCount >= 1)
-            {
-                if (V6Login.Madvcs != "")
-                {
-                    txtMadvcs.Text = V6Login.Madvcs;
-                    txtMadvcs.ExistRowInTable();
-                }
-            }
-
-            //M_Ma_nk
-            Txtma_nk.Text = Invoice.Alct["M_MA_NK"].ToString().Trim();
-            //
-            txtManx.Text = Invoice.Alct["TK_NO"].ToString().Trim();
-            txtTkThueNo.Text = txtManx.Text;
             try
             {
-                cboKieuPost.SelectedValue = Invoice.Alct["M_K_POST"].ToString().Trim();
-            }
-            catch
-            {
-                // ignored
-            }
-            
-            if (AM_old != null)
-            {
-                txtMa_sonb.Text = AM_old["Ma_sonb"].ToString().Trim();
-                if (txtSoPhieu.Text.Trim()=="")
-                    txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
+                txtMa_ct.Text = Invoice.Mact;
+                dateNgayCT.SetValue(V6Setting.M_SV_DATE);
+                dateNgayLCT.SetValue(V6Setting.M_SV_DATE);
+                //Tuanmh 25/01/2016- Ma_dvcs
+                if (V6Login.MadvcsCount >= 1)
+                {
+                    if (V6Login.Madvcs != "")
+                    {
+                        txtMadvcs.Text = V6Login.Madvcs;
+                        txtMadvcs.ExistRowInTable();
+                    }
+                }
 
+                //M_Ma_nk
+                Txtma_nk.Text = Invoice.Alct["M_MA_NK"].ToString().Trim();
+                //
+                txtManx.Text = Invoice.Alct["TK_NO"].ToString().Trim();
+                txtTkThueNo.Text = txtManx.Text;
+                try
+                {
+                    cboKieuPost.SelectedValue = Invoice.Alct["M_K_POST"].ToString().Trim();
+                }
+                catch
+                {
+                    // ignored
+                }
+
+                if (AM_old != null)
+                {
+                    txtMa_sonb.Text = AM_old["Ma_sonb"].ToString().Trim();
+                    if (txtSoPhieu.Text.Trim() == "")
+                        txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 

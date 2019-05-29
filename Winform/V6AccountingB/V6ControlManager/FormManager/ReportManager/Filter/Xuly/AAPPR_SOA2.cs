@@ -32,11 +32,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             chkHoaDonDaIn.Checked = true;
             cboSendType.SelectedIndex = 0;
 
-            txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
+            lineMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
 
             if (V6Login.MadvcsCount <= 1)
             {
-                txtMaDvcs.Enabled = false;
+                lineMaDvcs.Enabled = false;
             }
             TxtMa_ct.Text = "SOA";
             TxtMa_ct.Enabled = false;
@@ -76,7 +76,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             var key0 = GetFilterStringByFields(new List<string>()
             {
-                "MA_DVCS","MA_BP", "MA_KH", "MA_NX"
+                "MA_DVCS", "MA_SONB", "MA_MAUHD", "SO_SERI", "MA_BP", "MA_KH", "MA_NX"
             }, and);
             var key1 = GetFilterStringByFields(new List<string>()
             {
