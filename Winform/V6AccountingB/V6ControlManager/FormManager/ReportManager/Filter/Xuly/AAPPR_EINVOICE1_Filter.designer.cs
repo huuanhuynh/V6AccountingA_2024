@@ -30,6 +30,8 @@
         {
             this.txtMaDvcs = new V6ReportControls.FilterLineVvarTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lineTrangThai = new V6ReportControls.FilterLineVvarTextBox();
+            this.lineMaXuly = new V6ReportControls.FilterLineVvarTextBox();
             this.lineSO_SERI = new V6ReportControls.FilterLineVvarTextBox();
             this.lineMaMauHD = new V6ReportControls.FilterLineVvarTextBox();
             this.lineMA_SONB = new V6ReportControls.FilterLineVvarTextBox();
@@ -53,7 +55,7 @@
             this.v6Label1 = new V6Controls.V6Label();
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label4 = new V6Controls.V6Label();
-            this.cboSendType = new System.Windows.Forms.ComboBox();
+            this.cboSendType = new V6Controls.Controls.V6IndexComboBox();
             this.btnSuaChiTieu = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -76,6 +78,8 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.lineTrangThai);
+            this.groupBox1.Controls.Add(this.lineMaXuly);
             this.groupBox1.Controls.Add(this.lineSO_SERI);
             this.groupBox1.Controls.Add(this.lineMaMauHD);
             this.groupBox1.Controls.Add(this.lineMA_SONB);
@@ -88,10 +92,34 @@
             this.groupBox1.Controls.Add(this.txtMaDvcs);
             this.groupBox1.Location = new System.Drawing.Point(0, 218);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(289, 227);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.Size = new System.Drawing.Size(289, 274);
+            this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
+            // 
+            // lineTrangThai
+            // 
+            this.lineTrangThai.AccessibleDescription = "FILTERL00272";
+            this.lineTrangThai.AccessibleName2 = "STATUS_IN";
+            this.lineTrangThai.Caption = "Trạng thái";
+            this.lineTrangThai.FieldName = "STATUS_IN";
+            this.lineTrangThai.Location = new System.Drawing.Point(6, 149);
+            this.lineTrangThai.Name = "lineTrangThai";
+            this.lineTrangThai.Size = new System.Drawing.Size(282, 22);
+            this.lineTrangThai.TabIndex = 7;
+            this.lineTrangThai.Vvar = "";
+            // 
+            // lineMaXuly
+            // 
+            this.lineMaXuly.AccessibleDescription = "FILTERL00271";
+            this.lineMaXuly.AccessibleName2 = "MA_XULY";
+            this.lineMaXuly.Caption = "Mã xử lý";
+            this.lineMaXuly.FieldName = "MA_XULY";
+            this.lineMaXuly.Location = new System.Drawing.Point(6, 127);
+            this.lineMaXuly.Name = "lineMaXuly";
+            this.lineMaXuly.Size = new System.Drawing.Size(282, 22);
+            this.lineMaXuly.TabIndex = 6;
+            this.lineMaXuly.Vvar = "MA_XULY";
             // 
             // lineSO_SERI
             // 
@@ -135,10 +163,10 @@
             this.txtma_thue.AccessibleName2 = "MA_THUE";
             this.txtma_thue.Caption = "Mã thuế";
             this.txtma_thue.FieldName = "MA_THUE";
-            this.txtma_thue.Location = new System.Drawing.Point(6, 196);
+            this.txtma_thue.Location = new System.Drawing.Point(6, 237);
             this.txtma_thue.Name = "txtma_thue";
             this.txtma_thue.Size = new System.Drawing.Size(282, 22);
-            this.txtma_thue.TabIndex = 9;
+            this.txtma_thue.TabIndex = 11;
             this.txtma_thue.Vvar = "MA_THUE";
             // 
             // filterLineVvarTextBox11
@@ -147,10 +175,10 @@
             this.filterLineVvarTextBox11.AccessibleName2 = "MA_CT";
             this.filterLineVvarTextBox11.Caption = "Mã chứng từ";
             this.filterLineVvarTextBox11.FieldName = "MA_CT";
-            this.filterLineVvarTextBox11.Location = new System.Drawing.Point(6, 150);
+            this.filterLineVvarTextBox11.Location = new System.Drawing.Point(6, 193);
             this.filterLineVvarTextBox11.Name = "filterLineVvarTextBox11";
             this.filterLineVvarTextBox11.Size = new System.Drawing.Size(282, 22);
-            this.filterLineVvarTextBox11.TabIndex = 7;
+            this.filterLineVvarTextBox11.TabIndex = 9;
             this.filterLineVvarTextBox11.Vvar = "MA_CT";
             // 
             // radOr
@@ -170,10 +198,10 @@
             this.txtTk_thue_co.AccessibleName2 = "TK_THUE_CO";
             this.txtTk_thue_co.Caption = "Tài khoản thuế";
             this.txtTk_thue_co.FieldName = "TK_THUE_CO";
-            this.txtTk_thue_co.Location = new System.Drawing.Point(6, 173);
+            this.txtTk_thue_co.Location = new System.Drawing.Point(6, 215);
             this.txtTk_thue_co.Name = "txtTk_thue_co";
             this.txtTk_thue_co.Size = new System.Drawing.Size(282, 22);
-            this.txtTk_thue_co.TabIndex = 8;
+            this.txtTk_thue_co.TabIndex = 10;
             this.txtTk_thue_co.Vvar = "TK";
             // 
             // radAnd
@@ -195,10 +223,10 @@
             this.Txtma_kh.AccessibleName2 = "MA_KH";
             this.Txtma_kh.Caption = "Mã khách";
             this.Txtma_kh.FieldName = "MA_KH";
-            this.Txtma_kh.Location = new System.Drawing.Point(6, 127);
+            this.Txtma_kh.Location = new System.Drawing.Point(6, 171);
             this.Txtma_kh.Name = "Txtma_kh";
             this.Txtma_kh.Size = new System.Drawing.Size(282, 22);
-            this.Txtma_kh.TabIndex = 6;
+            this.Txtma_kh.TabIndex = 8;
             this.Txtma_kh.Vvar = "MA_KH";
             // 
             // dateNgay_ct1
@@ -257,7 +285,7 @@
             this.btnChuyenExcelHTKK.Location = new System.Drawing.Point(3, 193);
             this.btnChuyenExcelHTKK.Name = "btnChuyenExcelHTKK";
             this.btnChuyenExcelHTKK.Size = new System.Drawing.Size(136, 23);
-            this.btnChuyenExcelHTKK.TabIndex = 8;
+            this.btnChuyenExcelHTKK.TabIndex = 14;
             this.btnChuyenExcelHTKK.Text = "Chuyển Excel HTKK";
             this.btnChuyenExcelHTKK.UseVisualStyleBackColor = true;
             this.btnChuyenExcelHTKK.Click += new System.EventHandler(this.btnChuyenExcelHTKK_Click);
@@ -268,7 +296,7 @@
             this.btnChuyenExcelTaxOnline.Location = new System.Drawing.Point(145, 193);
             this.btnChuyenExcelTaxOnline.Name = "btnChuyenExcelTaxOnline";
             this.btnChuyenExcelTaxOnline.Size = new System.Drawing.Size(146, 23);
-            this.btnChuyenExcelTaxOnline.TabIndex = 9;
+            this.btnChuyenExcelTaxOnline.TabIndex = 15;
             this.btnChuyenExcelTaxOnline.Text = "Chuyển Excel Tax online";
             this.btnChuyenExcelTaxOnline.UseVisualStyleBackColor = true;
             this.btnChuyenExcelTaxOnline.Click += new System.EventHandler(this.btnChuyenExcelTaxOnline_Click);
@@ -287,7 +315,7 @@
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.ReadOnly = true;
             this.txtFileName.Size = new System.Drawing.Size(246, 20);
-            this.txtFileName.TabIndex = 5;
+            this.txtFileName.TabIndex = 12;
             this.txtFileName.TabStop = false;
             // 
             // btnChon
@@ -295,7 +323,7 @@
             this.btnChon.Location = new System.Drawing.Point(255, 162);
             this.btnChon.Name = "btnChon";
             this.btnChon.Size = new System.Drawing.Size(36, 23);
-            this.btnChon.TabIndex = 6;
+            this.btnChon.TabIndex = 13;
             this.btnChon.Text = "...";
             this.btnChon.UseVisualStyleBackColor = true;
             this.btnChon.Click += new System.EventHandler(this.btnChon_Click);
@@ -319,7 +347,7 @@
             this.v6Label2.Location = new System.Drawing.Point(5, 84);
             this.v6Label2.Name = "v6Label2";
             this.v6Label2.Size = new System.Drawing.Size(27, 13);
-            this.v6Label2.TabIndex = 12;
+            this.v6Label2.TabIndex = 5;
             this.v6Label2.Text = "Loại";
             // 
             // txtLoai
@@ -337,7 +365,7 @@
             this.txtLoai.MaxLength = 1;
             this.txtLoai.Name = "txtLoai";
             this.txtLoai.Size = new System.Drawing.Size(18, 20);
-            this.txtLoai.TabIndex = 13;
+            this.txtLoai.TabIndex = 6;
             this.txtLoai.Text = "0";
             // 
             // v6Label1
@@ -347,7 +375,7 @@
             this.v6Label1.Location = new System.Drawing.Point(108, 84);
             this.v6Label1.Name = "v6Label1";
             this.v6Label1.Size = new System.Drawing.Size(132, 13);
-            this.v6Label1.TabIndex = 12;
+            this.v6Label1.TabIndex = 7;
             this.v6Label1.Text = "0 - Không lấy hóa đơn hủy";
             // 
             // v6Label3
@@ -357,7 +385,7 @@
             this.v6Label3.Location = new System.Drawing.Point(108, 97);
             this.v6Label3.Name = "v6Label3";
             this.v6Label3.Size = new System.Drawing.Size(116, 13);
-            this.v6Label3.TabIndex = 12;
+            this.v6Label3.TabIndex = 8;
             this.v6Label3.Text = "1 - Chỉ lấy hóa đơn hủy";
             // 
             // v6Label4
@@ -367,7 +395,7 @@
             this.v6Label4.Location = new System.Drawing.Point(108, 110);
             this.v6Label4.Name = "v6Label4";
             this.v6Label4.Size = new System.Drawing.Size(53, 13);
-            this.v6Label4.TabIndex = 12;
+            this.v6Label4.TabIndex = 9;
             this.v6Label4.Text = "2 - Tất cả";
             // 
             // cboSendType
@@ -382,7 +410,7 @@
             this.cboSendType.Location = new System.Drawing.Point(3, 134);
             this.cboSendType.Name = "cboSendType";
             this.cboSendType.Size = new System.Drawing.Size(121, 21);
-            this.cboSendType.TabIndex = 24;
+            this.cboSendType.TabIndex = 10;
             this.cboSendType.SelectedIndexChanged += new System.EventHandler(this.cboSendType_SelectedIndexChanged);
             // 
             // btnSuaChiTieu
@@ -391,7 +419,7 @@
             this.btnSuaChiTieu.Location = new System.Drawing.Point(137, 133);
             this.btnSuaChiTieu.Name = "btnSuaChiTieu";
             this.btnSuaChiTieu.Size = new System.Drawing.Size(184, 23);
-            this.btnSuaChiTieu.TabIndex = 23;
+            this.btnSuaChiTieu.TabIndex = 11;
             this.btnSuaChiTieu.Text = "Sửa thông tin dữ liệu và kết nối";
             this.btnSuaChiTieu.UseVisualStyleBackColor = true;
             this.btnSuaChiTieu.Click += new System.EventHandler(this.btnSuaChiTieu_Click);
@@ -418,7 +446,7 @@
             this.Controls.Add(this.dateNgay_ct1);
             this.Controls.Add(this.groupBox1);
             this.Name = "AAPPR_EINVOICE1_Filter";
-            this.Size = new System.Drawing.Size(295, 448);
+            this.Size = new System.Drawing.Size(295, 495);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -450,10 +478,12 @@
         private V6Controls.V6Label v6Label1;
         private V6Controls.V6Label v6Label3;
         private V6Controls.V6Label v6Label4;
-        private System.Windows.Forms.ComboBox cboSendType;
+        private V6Controls.Controls.V6IndexComboBox cboSendType;
         private System.Windows.Forms.Button btnSuaChiTieu;
         private V6ReportControls.FilterLineVvarTextBox lineSO_SERI;
         private V6ReportControls.FilterLineVvarTextBox lineMaMauHD;
         private V6ReportControls.FilterLineVvarTextBox lineMA_SONB;
+        private V6ReportControls.FilterLineVvarTextBox lineTrangThai;
+        private V6ReportControls.FilterLineVvarTextBox lineMaXuly;
     }
 }

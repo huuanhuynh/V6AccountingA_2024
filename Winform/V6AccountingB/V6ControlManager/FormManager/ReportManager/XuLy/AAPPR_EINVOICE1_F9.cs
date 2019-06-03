@@ -25,6 +25,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //Load Alxuly
                 IDictionary<string, object> keys = new Dictionary<string, object>();
                 keys.Add("MA_CT", "S14");
+                keys.Add("STATUS", 1);
                 DataTable data = V6BusinessHelper.Select("Alxuly", keys, "*", "", "STT").Data;
 
                 cboAlxuly.ValueMember = "Ma_xuly";

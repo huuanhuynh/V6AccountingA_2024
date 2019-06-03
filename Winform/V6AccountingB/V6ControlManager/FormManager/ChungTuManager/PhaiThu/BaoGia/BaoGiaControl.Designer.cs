@@ -3477,6 +3477,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             // 
             // chkTempSuaCT
             // 
+            this.chkTempSuaCT.AccessibleDescription = "ASOCTSOAC00045";
             this.chkTempSuaCT.AccessibleName = "TEMP_SUACT";
             this.chkTempSuaCT.AutoSize = true;
             this.chkTempSuaCT.Location = new System.Drawing.Point(7, 26);

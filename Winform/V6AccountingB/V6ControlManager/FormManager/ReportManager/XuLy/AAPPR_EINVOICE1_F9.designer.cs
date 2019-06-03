@@ -34,7 +34,7 @@
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
             this.cboAlxuly = new System.Windows.Forms.ComboBox();
-            this.v6Label2 = new V6Controls.V6Label();
+            this.lblXuLy = new V6Controls.V6Label();
             this.lblTenXuLy = new V6Controls.V6Label();
             this.SuspendLayout();
             // 
@@ -91,14 +91,15 @@
             this.cboAlxuly.TabIndex = 25;
             this.cboAlxuly.SelectedIndexChanged += new System.EventHandler(this.cboAlxuly_SelectedIndexChanged);
             // 
-            // v6Label2
+            // lblXuLy
             // 
-            this.v6Label2.AutoSize = true;
-            this.v6Label2.Location = new System.Drawing.Point(97, 52);
-            this.v6Label2.Name = "v6Label2";
-            this.v6Label2.Size = new System.Drawing.Size(30, 13);
-            this.v6Label2.TabIndex = 26;
-            this.v6Label2.Text = "Xử lý";
+            this.lblXuLy.AccessibleDescription = "FILTERL00010";
+            this.lblXuLy.AutoSize = true;
+            this.lblXuLy.Location = new System.Drawing.Point(97, 52);
+            this.lblXuLy.Name = "lblXuLy";
+            this.lblXuLy.Size = new System.Drawing.Size(30, 13);
+            this.lblXuLy.TabIndex = 26;
+            this.lblXuLy.Text = "Xử lý";
             // 
             // lblTenXuLy
             // 
@@ -115,17 +116,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(543, 158);
             this.Controls.Add(this.lblTenXuLy);
-            this.Controls.Add(this.v6Label2);
+            this.Controls.Add(this.lblXuLy);
             this.Controls.Add(this.cboAlxuly);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
             this.Name = "AAPPR_EINVOICE1_F9";
+            this.Text = "Chọn xử lý";
             this.Load += new System.EventHandler(this.Form_Load);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.cboAlxuly, 0);
-            this.Controls.SetChildIndex(this.v6Label2, 0);
+            this.Controls.SetChildIndex(this.lblXuLy, 0);
             this.Controls.SetChildIndex(this.lblTenXuLy, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -139,7 +141,7 @@
         protected System.Windows.Forms.Button btnNhan;
         protected System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.ComboBox cboAlxuly;
-        private V6Controls.V6Label v6Label2;
+        private V6Controls.V6Label lblXuLy;
         private V6Controls.V6Label lblTenXuLy;
 
 

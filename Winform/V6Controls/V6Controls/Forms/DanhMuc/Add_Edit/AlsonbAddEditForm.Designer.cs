@@ -42,7 +42,7 @@
             this.txtTypeAuto = new V6Controls.V6NumberTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txttype_soct = new V6Controls.V6NumberTextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblKieuTangtd = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.txtchkso_ct = new V6Controls.V6NumberTextBox();
@@ -276,7 +276,7 @@
             this.tabPage1.Controls.Add(this.txtTypeAuto);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.txttype_soct);
-            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.lblKieuTangtd);
             this.tabPage1.Controls.Add(this.label18);
             this.tabPage1.Controls.Add(this.label36);
             this.tabPage1.Controls.Add(this.txtchkso_ct);
@@ -351,7 +351,7 @@
             // 
             // label2
             // 
-            this.label2.AccessibleDescription = "";
+            this.label2.AccessibleDescription = "ADDEDITL00771";
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(309, 152);
@@ -387,28 +387,29 @@
             0,
             0});
             // 
-            // label1
+            // lblKieuTangtd
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 150);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(137, 17);
-            this.label1.TabIndex = 150;
-            this.label1.Text = "Kiểu tăng tự động";
+            this.lblKieuTangtd.AccessibleDescription = "ADDEDITL00774";
+            this.lblKieuTangtd.AutoSize = true;
+            this.lblKieuTangtd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKieuTangtd.Location = new System.Drawing.Point(9, 150);
+            this.lblKieuTangtd.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblKieuTangtd.Name = "lblKieuTangtd";
+            this.lblKieuTangtd.Size = new System.Drawing.Size(137, 17);
+            this.lblKieuTangtd.TabIndex = 150;
+            this.lblKieuTangtd.Text = "Kiểu tăng tự động";
             // 
             // label18
             // 
-            this.label18.AccessibleDescription = "";
+            this.label18.AccessibleDescription = "ADDEDITL00773";
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.Location = new System.Drawing.Point(309, 129);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(453, 17);
+            this.label18.Size = new System.Drawing.Size(468, 17);
             this.label18.TabIndex = 151;
-            this.label18.Text = "0 -Không tăng, 1 -Theo số hiện thời , 2- Lấy lại số chưa chọn";
+            this.label18.Text = "0 - Không tăng, 1 - Theo số hiện thời , 2 - Lấy lại số chưa chọn";
             // 
             // label36
             // 
@@ -573,15 +574,15 @@
             // 
             // label24
             // 
-            this.label24.AccessibleDescription = "";
+            this.label24.AccessibleDescription = "ADDEDITL00772";
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.Location = new System.Drawing.Point(309, 106);
             this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(380, 17);
+            this.label24.Size = new System.Drawing.Size(390, 17);
             this.label24.TabIndex = 142;
-            this.label24.Text = "0 -Không kiểm tra, 1 - Cảnh báo , 2- Không cho lưu";
+            this.label24.Text = "0 - Không kiểm tra, 1 - Cảnh báo , 2 - Không cho lưu";
             // 
             // label23
             // 
@@ -1544,6 +1545,6 @@
         private System.Windows.Forms.Label label36;
         private V6NumberTextBox txtTypeAuto;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblKieuTangtd;
     }
 }

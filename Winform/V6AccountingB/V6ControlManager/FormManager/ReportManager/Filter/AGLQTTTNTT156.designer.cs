@@ -241,7 +241,7 @@
             // 
             // btnSuaCTMau
             // 
-            this.btnSuaCTMau.AccessibleDescription = "REPORTB00003";
+            this.btnSuaCTMau.AccessibleDescription = "REPORTB00013";
             this.btnSuaCTMau.Location = new System.Drawing.Point(169, 149);
             this.btnSuaCTMau.Name = "btnSuaCTMau";
             this.btnSuaCTMau.Size = new System.Drawing.Size(48, 23);

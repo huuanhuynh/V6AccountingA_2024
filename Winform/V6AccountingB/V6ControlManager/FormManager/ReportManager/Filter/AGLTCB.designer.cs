@@ -112,7 +112,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             // 
             // btnSuaCTMau
             // 
-            this.btnSuaCTMau.AccessibleDescription = "REPORTB00003";
+            this.btnSuaCTMau.AccessibleDescription = "REPORTB00013";
             this.btnSuaCTMau.Location = new System.Drawing.Point(141, 96);
             this.btnSuaCTMau.Name = "btnSuaCTMau";
             this.btnSuaCTMau.Size = new System.Drawing.Size(48, 23);

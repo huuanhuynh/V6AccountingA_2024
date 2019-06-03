@@ -99,6 +99,7 @@
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
             this.Name = "AAPPR_EINVOICE1_F6";
+            this.Text = "Chọn hóa đơn cũ cần thay thế.";
             this.Load += new System.EventHandler(this.Form_Load);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);

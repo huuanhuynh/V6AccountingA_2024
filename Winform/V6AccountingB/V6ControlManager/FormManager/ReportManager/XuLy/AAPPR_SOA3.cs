@@ -240,18 +240,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         }
                         // Update
 
-                        //SqlParameter[] plist =
-                        //{
-                        //    new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
-                        //    new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
-                        //    new SqlParameter("@HoaDonMau","0"),
-                        //    new SqlParameter("@isInvoice","1"),
-                        //    new SqlParameter("@ReportFile",""),
-                        //    new SqlParameter("@MA_TD1", FilterControl.String1),
-                        //    new SqlParameter("@UserID", V6Login.UserId)
-                        //};
+                        SqlParameter[] plist =
+                        {
+                            new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
+                                new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
+                                new SqlParameter("@Set_so_ct", ""),
+                                new SqlParameter("@Set_fkey_hd", ""),
+                                new SqlParameter("@MA_TD1", FilterControl.String1),
+                                //new SqlParameter("@Partner_infors", paras.Result.PartnerInfors),
+                                new SqlParameter("@User_ID", V6Login.UserId)
+                        };
 
-                        //DataSet ds = V6BusinessHelper.ExecuteProcedure(_program + "F9", plist);
+                        V6BusinessHelper.ExecuteProcedureNoneQuery(_program + "_UPDATE", plist);
                         
                         remove_list_g.Add(row);
                     }
@@ -285,7 +285,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 string message = "F9 " + V6Text.Finish + " " + (f9ErrorAll.Length > 0 ? "Error: " : "") + f9ErrorAll;
                 V6ControlFormHelper.SetStatusText(message);
                 V6ControlFormHelper.ShowMainMessage(message);
-                this.ShowMessage("F9 " + V6Text.Finish + " " + f9MessageAll);
+                this.ShowMessage("F9 " + V6Text.Finish + " " + f9MessageAll, 300);
             }
         }
         #endregion xulyF9

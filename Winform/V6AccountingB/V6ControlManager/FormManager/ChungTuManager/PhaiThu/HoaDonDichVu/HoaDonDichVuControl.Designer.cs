@@ -2021,6 +2021,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             // 
             // lblMauKyHieu
             // 
+            this.lblMauKyHieu.AccessibleDescription = "ASOCTSOAL00125";
             this.lblMauKyHieu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMauKyHieu.AutoSize = true;
             this.lblMauKyHieu.Location = new System.Drawing.Point(253, 35);

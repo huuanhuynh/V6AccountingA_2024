@@ -712,6 +712,13 @@ namespace V6Controls
         }
 
         #region ---- ShowMessage ----
+        /// <summary>
+        /// Hiển thị hộp thông báo.
+        /// </summary>
+        /// <param name="owner">Nơi hình thành.</param>
+        /// <param name="message">Nội dung thông báo.</param>
+        /// <param name="showTime">Thời gian tự ẩn tính bằng % giây (100=1s).</param>
+        /// <returns></returns>
         public static DialogResult ShowMessage(this IWin32Window owner, string message, int showTime = 0)
         {
             return V6Message.Show(message, showTime, owner);

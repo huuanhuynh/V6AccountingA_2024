@@ -2185,6 +2185,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             // 
             // chkTempSuaCT
             // 
+            this.chkTempSuaCT.AccessibleDescription = "ASOCTSOAC00045";
             this.chkTempSuaCT.AccessibleName = "TEMP_SUACT";
             this.chkTempSuaCT.AutoSize = true;
             this.chkTempSuaCT.Location = new System.Drawing.Point(7, 30);
@@ -2209,7 +2210,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             // 
             // txtTongSoLuong
             // 
-            this.txtTongSoLuong.AccessibleDescription = "";
             this.txtTongSoLuong.AccessibleName = "T_SO_LUONG";
             this.txtTongSoLuong.BackColor = System.Drawing.Color.AntiqueWhite;
             this.txtTongSoLuong.BackColorDisabled = System.Drawing.SystemColors.Control;
@@ -3320,6 +3320,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             // 
             // lblMauKyHieu
             // 
+            this.lblMauKyHieu.AccessibleDescription = "ASOCTSOAL00125";
             this.lblMauKyHieu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMauKyHieu.AutoSize = true;
             this.lblMauKyHieu.Location = new System.Drawing.Point(250, 35);

@@ -60,7 +60,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F9: Duyệt chứng từ, F8: Hủy duyệt.");
+            V6ControlFormHelper.SetStatusText2("F9: Chuyển.");
         }
 
         protected override void MakeReport2()
@@ -198,7 +198,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 string message = "F9 " + V6Text.Finish + " " + (f9ErrorAll.Length > 0 ? "Error: " : "") + f9ErrorAll;
                 V6ControlFormHelper.SetStatusText(message);
                 V6ControlFormHelper.ShowMainMessage(message);
-                this.ShowMessage("F9 " + V6Text.Finish + " " + f9MessageAll);
+                this.ShowMessage("F9 " + V6Text.Finish + " " + f9MessageAll, 300);
             }
         }
         #endregion xulyF9

@@ -248,7 +248,18 @@ namespace V6ThuePostManager
                 }
                 else if (paras.Mode == "E_H1")
                 {
-                    paras.Result.ResultError = V6Text.NotSupported;
+                    jsonBody = paras.Fkey_hd;
+                    result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._202_CancelInvoiceByPartnerInvoiceID, out paras.Result.ResultDictionary);
+                }
+                else if (paras.Mode == "E_H2") // Hủy và ký hủy
+                {
+                    jsonBody = paras.Fkey_hd;
+                    result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._202_CancelInvoiceByPartnerInvoiceID, out paras.Result.ResultDictionary);
+                    if (!result.StartsWith("ERR"))
+                    {
+                        result = bkavWS.POST(remoteCommand, paras.V6PartnerID, BkavConst._205_SignGUID, out paras.Result.ResultDictionary);
+                        result = bkavWS.POST(remoteCommand, "0f8fad5b-d9cb-469f-a165-70867728950e", BkavConst._205_SignGUID, out paras.Result.ResultDictionary);
+                    }
                 }
                 else if (paras.Mode == "E_S1")
                 {
@@ -258,7 +269,7 @@ namespace V6ThuePostManager
                 else if (paras.Mode == "E_T1")
                 {
                     jsonBody = ReadData_Bkav("T");
-                    result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._120_CreateReplace, out paras.Result.ResultDictionary);
+                    result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._123_CreateReplace, out paras.Result.ResultDictionary);
                 }
                 else if (paras.Mode == "M")
                 {
@@ -273,7 +284,7 @@ namespace V6ThuePostManager
                 else if (paras.Mode.StartsWith("T"))
                 {
                     jsonBody = ReadData_Bkav("T");
-                    result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._120_CreateReplace, out paras.Result.ResultDictionary);
+                    result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._123_CreateReplace, out paras.Result.ResultDictionary);
                 }
 
                 if (result.StartsWith("ERR"))
@@ -316,10 +327,12 @@ namespace V6ThuePostManager
                         if (mode == "T")
                         {
                             postObject.Invoice[item.Key] = Fkey_hd_tt;// GetValue(row0, item.Value);
-                            
-                            //postObject.Invoice.InvoiceNo = 0;
-                            //postObject.Invoice.InvoiceForm = "";
-                            //postObject.Invoice.InvoiceSerial = "";
+                            //postObject.Invoice["InvoiceStatusID"] = "1";
+                            postObject.Invoice["InvoiceCode"] = null;
+                            //postObject.Invoice["InvoiceNo"] = 0;
+                            //postObject.Invoice["InvoiceForm"] = "";
+                            //postObject.Invoice["InvoiceSerial"] = "";
+
                             //string OriginalInvoiceIdentify = string.Format("[{0}]_[{1}]_[{2}]",     //  "[01GTKT0/003]_[AA/17E]_[0000105]";
                             //    postObject.Invoice["InvoiceForm"],
                             //    postObject.Invoice["InvoiceSerial"],

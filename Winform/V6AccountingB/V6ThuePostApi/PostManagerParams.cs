@@ -34,6 +34,17 @@ namespace V6ThuePostManager
         public string InvoiceNo { get; set; }
 
         /// <summary>
+        /// Dữ liệu hóa đơn bị thay thế.
+        /// </summary>
+        public IDictionary<string, object> AM_old { get; set; }
+        /// <summary>
+        /// Dữ liệu hóa đơn mới.
+        /// </summary>
+        public IDictionary<string, object> AM_new { get; set; }
+
+        public string V6PartnerID { get; set; }
+
+        /// <summary>
         /// Mẫu hóa đơn vd:01GTKT0/001
         /// </summary>
         public string Parttern;
@@ -48,6 +59,7 @@ namespace V6ThuePostManager
     {
         private const string EXCEPTION_MESSAGE = "EXCEPTION_MESSAGE";
         private const string RESULT_ERROR = "RESULT_ERROR";
+        private const string RESULT_MESSAGE = "RESULT_MESSAGE";
         private const string RESULT_OBJECT = "RESULT_OBJECT";
         private const string RESULT_STRING = "RESULT_STRING";
         private const string SO_HD = "SO_HD";
@@ -67,6 +79,22 @@ namespace V6ThuePostManager
             {
                 if (ResultDictionary == null) ResultDictionary = new SortedDictionary<string, object>();
                 ResultDictionary[RESULT_STRING] = value;
+            }
+        }
+        public string ResultMessage
+        {
+            get
+            {
+                if (ResultDictionary != null && ResultDictionary.ContainsKey(RESULT_MESSAGE))
+                {
+                    return ObjectAndString.ObjectToString(ResultDictionary[RESULT_MESSAGE]);
+                }
+                return null;
+            }
+            set
+            {
+                if(ResultDictionary == null) ResultDictionary = new SortedDictionary<string, object>();
+                ResultDictionary[RESULT_MESSAGE] = value;
             }
         }
         public string ResultError
@@ -189,20 +217,20 @@ namespace V6ThuePostManager
             // Trong mỗi nhánh phải có return true của riêng nó.
             if (mode == "E_G1")
             {
-                if (string.IsNullOrEmpty(ResultError)) return false;
-                if (string.IsNullOrEmpty(ExceptionMessage)) return false;
+                if (!string.IsNullOrEmpty(ResultError)) return false;
+                if (!string.IsNullOrEmpty(ExceptionMessage)) return false;
                 return true;
             }
             else if (mode == "E_H1")
             {
-                if (string.IsNullOrEmpty(ResultError)) return false;
-                if (string.IsNullOrEmpty(ExceptionMessage)) return false;
+                if (!string.IsNullOrEmpty(ResultError)) return false;
+                if (!string.IsNullOrEmpty(ExceptionMessage)) return false;
                 return true;
             }
             else if (mode == "E_T1")
             {
-                if (string.IsNullOrEmpty(ResultError)) return false;
-                if (string.IsNullOrEmpty(ExceptionMessage)) return false;
+                if (!string.IsNullOrEmpty(ResultError)) return false;
+                if (!string.IsNullOrEmpty(ExceptionMessage)) return false;
                 return true;
             }
             else if (mode == "E_S1")
@@ -222,8 +250,8 @@ namespace V6ThuePostManager
             }
             else if (mode == "E_T1")
             {
-                if (string.IsNullOrEmpty(ResultError)) return false;
-                if (string.IsNullOrEmpty(ExceptionMessage)) return false;
+                if (!string.IsNullOrEmpty(ResultError)) return false;
+                if (!string.IsNullOrEmpty(ExceptionMessage)) return false;
                 return true;
             }
             else if (mode == "M")
