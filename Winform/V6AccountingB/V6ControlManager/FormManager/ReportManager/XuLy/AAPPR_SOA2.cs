@@ -60,7 +60,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F9: Chuyển.");
+            V6ControlFormHelper.SetStatusText2("F4: Tạo HĐĐT trắng, F6: Sửa HĐĐT, F9: Chuyển.");
         }
 
         protected override void MakeReport2()
@@ -72,7 +72,26 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         
         #region ==== Xử lý F9 ====
-        
+
+        private string Key_Down = "";
+        protected override void XuLyBoSungThongTinChungTuF4()
+        {
+            if (FilterControl.String1 == "3")
+            {
+                Key_Down = "F4";
+                XuLyF9();
+            }
+        }
+
+        protected override void XuLyF6()
+        {
+            if (FilterControl.String1 == "3")
+            {
+                Key_Down = "F6";
+                XuLyF9();
+            }
+        }
+
         private bool f9Running;
         private string f9Error = "";
         private string f9ErrorAll = "";
@@ -139,6 +158,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             Branch = FilterControl.String1,
                             Dir = dir,
                             FileName = file,
+                            Key_Down = Key_Down,
                             RptFileFull = ReportFileFull,
                             Fkey_hd = fkey_hd,
                         };
@@ -156,6 +176,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 new SqlParameter("@Set_fkey_hd", paras.Result.Id),
                                 new SqlParameter("@MA_TD1", FilterControl.String1),
                                 new SqlParameter("@Partner_infors", paras.Result.PartnerInfors),
+                                new SqlParameter("@Key_down", paras.Key_Down),
                                 new SqlParameter("@User_ID", V6Login.UserId)
                             };
                             V6BusinessHelper.ExecuteProcedureNoneQuery(_program + "_UPDATE", plist2);
@@ -193,6 +214,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             else
             {
                 ((Timer)sender).Stop();
+                Key_Down = "";
                 RemoveGridViewRow();
                 btnNhan.PerformClick();
                 string message = "F9 " + V6Text.Finish + " " + (f9ErrorAll.Length > 0 ? "Error: " : "") + f9ErrorAll;

@@ -3879,6 +3879,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             // 
             this.chkTempSuaCT.AccessibleDescription = "ASOCTSOAC00045";
             this.chkTempSuaCT.AccessibleName = "TEMP_SUACT";
+            this.chkTempSuaCT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chkTempSuaCT.AutoSize = true;
             this.chkTempSuaCT.Location = new System.Drawing.Point(8, 526);
             this.chkTempSuaCT.Name = "chkTempSuaCT";

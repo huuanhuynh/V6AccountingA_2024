@@ -16,7 +16,7 @@ namespace V6ThuePostManager
         public DataSet DataSet { get; set; }
         public string Mode { get; set; }
         /// <summary>
-        /// 1:Viettel   2:Vnpt  3:Bkav
+        /// 1:Viettel   2:Vnpt  3:Bkav  4:Vnpt_token
         /// </summary>
         public string Branch { get; set; }
 
@@ -43,6 +43,7 @@ namespace V6ThuePostManager
         public IDictionary<string, object> AM_new { get; set; }
 
         public string V6PartnerID { get; set; }
+        public string Key_Down { get; set; }
 
         /// <summary>
         /// Mẫu hóa đơn vd:01GTKT0/001

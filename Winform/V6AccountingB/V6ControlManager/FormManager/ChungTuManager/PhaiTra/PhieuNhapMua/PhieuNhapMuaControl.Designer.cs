@@ -143,6 +143,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.txtTongThanhToanNt = new V6Controls.NumberTienNt();
             this.v6Label4 = new V6Controls.V6Label();
             this.group4 = new System.Windows.Forms.GroupBox();
+            this.chkTempSuaCT = new V6Controls.V6CheckBox();
             this.lblKieuPostColor = new V6Controls.V6Label();
             this.txtTongSoLuong = new V6Controls.NumberSoluong();
             this.cboChuyenData = new V6Controls.Controls.V6IndexComboBox();
@@ -259,7 +260,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.menuXemPhieuNhap = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.chkTempSuaCT = new V6Controls.V6CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -1997,6 +1997,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.group4.TabIndex = 4;
             this.group4.TabStop = false;
             // 
+            // chkTempSuaCT
+            // 
+            this.chkTempSuaCT.AccessibleDescription = "ASOCTSOAC00045";
+            this.chkTempSuaCT.AccessibleName = "TEMP_SUACT";
+            this.chkTempSuaCT.AutoSize = true;
+            this.chkTempSuaCT.Location = new System.Drawing.Point(7, 34);
+            this.chkTempSuaCT.Name = "chkTempSuaCT";
+            this.chkTempSuaCT.Size = new System.Drawing.Size(79, 17);
+            this.chkTempSuaCT.TabIndex = 27;
+            this.chkTempSuaCT.TabStop = false;
+            this.chkTempSuaCT.Text = "Sửa chi tiết";
+            this.chkTempSuaCT.UseVisualStyleBackColor = true;
+            this.chkTempSuaCT.CheckedChanged += new System.EventHandler(this.chkTempSuaCT_CheckedChanged);
+            // 
             // lblKieuPostColor
             // 
             this.lblKieuPostColor.AccessibleDescription = ".";
@@ -2377,7 +2391,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.thayTheToolStripMenuItem,
             this.thayThe2toolStripMenuItem});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(185, 136);
+            this.menuChucNang.Size = new System.Drawing.Size(185, 158);
             this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
             // 
             // ChonDonHangMuaMenu
@@ -2421,6 +2435,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             // 
             // thayThe2toolStripMenuItem
             // 
+            this.thayThe2toolStripMenuItem.AccessibleDescription = "INVOICEM00009";
             this.thayThe2toolStripMenuItem.Name = "thayThe2toolStripMenuItem";
             this.thayThe2toolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.thayThe2toolStripMenuItem.Text = "Sửa nhiều dòng";
@@ -3680,20 +3695,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(161, 22);
             this.toolStripMenuItem3.Text = "...";
-            // 
-            // chkTempSuaCT
-            // 
-            this.chkTempSuaCT.AccessibleDescription = "ASOCTSOAC00045";
-            this.chkTempSuaCT.AccessibleName = "TEMP_SUACT";
-            this.chkTempSuaCT.AutoSize = true;
-            this.chkTempSuaCT.Location = new System.Drawing.Point(7, 34);
-            this.chkTempSuaCT.Name = "chkTempSuaCT";
-            this.chkTempSuaCT.Size = new System.Drawing.Size(79, 17);
-            this.chkTempSuaCT.TabIndex = 27;
-            this.chkTempSuaCT.TabStop = false;
-            this.chkTempSuaCT.Text = "Sửa chi tiết";
-            this.chkTempSuaCT.UseVisualStyleBackColor = true;
-            this.chkTempSuaCT.CheckedChanged += new System.EventHandler(this.chkTempSuaCT_CheckedChanged);
             // 
             // PhieuNhapMuaControl
             // 

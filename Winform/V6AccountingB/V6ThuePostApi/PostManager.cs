@@ -274,7 +274,11 @@ namespace V6ThuePostManager
                 else if (paras.Mode == "M")
                 {
                     jsonBody = ReadData_Bkav("M");
-                    result = bkavWS.POST(remoteCommand, jsonBody, BkavCommandTypeNew, out paras.Result.ResultDictionary);
+                    int commandType = BkavCommandTypeNew;
+                    if (paras.Key_Down == "F4") commandType = BkavConst._101_CreateEmpty;
+                    else if (paras.Key_Down == "F6") commandType = BkavConst._200_Update;
+
+                    result = bkavWS.POST(remoteCommand, jsonBody, commandType, out paras.Result.ResultDictionary);
                 }
                 else if (paras.Mode == "S")
                 {
@@ -2045,6 +2049,17 @@ namespace V6ThuePostManager
                 {
                     rd["RESULT_ERROR"] = V6Text.NotSupported;
                 }
+                else if (paras.Mode == "E_H1") // Hủy hóa đơn
+                {
+                    ViettelWS viettel_http = new ViettelWS(baseUrl, _username, _password);
+                    DataRow row0 = am_table.Rows[0];
+                    var item = generalInvoiceInfoConfig["invoiceIssuedDate"];
+                    string strIssueDate = ((DateTime)GetValue(row0, item)).ToString("yyyyMMddHHmmss");
+                    string additionalReferenceDesc = paras.AM_new["STT_REC"].ToString();
+                    paras.InvoiceNo = paras.AM_new["SO_SERI"].ToString().Trim() + paras.AM_new["SO_CT"].ToString().Trim();
+                    result = viettel_http.CancelTransactionInvoice(_codetax, paras.InvoiceNo, strIssueDate, additionalReferenceDesc, strIssueDate);
+                    //rd["RESULT_ERROR"] = V6Text.NotSupported;
+                }
                 else if (paras.Mode.StartsWith("M"))
                 {
                     generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
@@ -2125,6 +2140,7 @@ namespace V6ThuePostManager
                 }
                 catch (Exception ex)
                 {
+                    paras.Result.ResultDictionary["RESULT_ERROR"] = ex.Message;
                     paras.Result.ResultDictionary["EXCEPTION_MESSAGE"] = ex.Message;
                     Logger.WriteToLog("EXECUTE_VIETTEL ConverResultObjectException: " + ex.Message);
                     message = "Kết quả:";
@@ -2133,6 +2149,7 @@ namespace V6ThuePostManager
             }
             catch (Exception ex)
             {
+                paras.Result.ResultDictionary["RESULT_ERROR"] = ex.Message;
                 paras.Result.ResultDictionary["EXCEPTION_MESSAGE"] = ex.Message;
                 V6ControlFormHelper.WriteExLog("PostManager.EXECUTE_VIETTEL", ex);
             }
@@ -2260,7 +2277,7 @@ namespace V6ThuePostManager
             
             return viettel_http.DownloadInvoicePDF(_codetax, _downloadlinkpdf, postManagerParams.InvoiceNo, postManagerParams.Parttern, V6Setting.V6SoftLocalAppData_Directory);
         }
-
+        
         #endregion viettel
 
         private static object GetValue(DataRow row, ConfigLine config)
@@ -2322,11 +2339,16 @@ namespace V6ThuePostManager
                         break;
                     case "N2C":
                         return MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "V", "VND");
+                    case "DECIMAL":
+                    case "MONEY":
+                        return ObjectAndString.ObjectToDecimal(fieldValue);
                     case "INT":
                         return ObjectAndString.ObjectToInt(fieldValue);
                     case "INT64":
                     case "LONG":
                         return ObjectAndString.ObjectToInt64(fieldValue);
+                    //case "UPPER": // Chỉ dùng ở exe gọi bằng Foxpro.
+                    //    return fieldValue.ToString().ToUpper();
                     default:
                         return fieldValue;
                 }
