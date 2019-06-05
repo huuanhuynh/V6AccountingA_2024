@@ -58,6 +58,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.tabThue = new System.Windows.Forms.TabPage();
             this.detail2 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
             this.dataGridView2 = new V6Controls.V6ColorDataGridView();
+            this.gridViewSummary2 = new V6Controls.Controls.GridViewSummary();
             this.tabChiPhi = new System.Windows.Forms.TabPage();
             this.TxtT_TIENVC = new V6Controls.V6NumberTextBox();
             this.TxtT_TIENVCNT = new V6Controls.V6NumberTextBox();
@@ -260,6 +261,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.menuXemPhieuNhap = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.gridViewSummary3 = new V6Controls.Controls.GridViewSummary();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -425,6 +427,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.tabThue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabThue.Controls.Add(this.detail2);
             this.tabThue.Controls.Add(this.dataGridView2);
+            this.tabThue.Controls.Add(this.gridViewSummary2);
             this.tabThue.Location = new System.Drawing.Point(4, 22);
             this.tabThue.Name = "tabThue";
             this.tabThue.Padding = new System.Windows.Forms.Padding(3);
@@ -482,11 +485,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(875, 136);
+            this.dataGridView2.Size = new System.Drawing.Size(875, 113);
             this.dataGridView2.TabIndex = 3;
             this.dataGridView2.DataSourceChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             this.dataGridView2.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView2_ColumnAdded);
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
+            // 
+            // gridViewSummary2
+            // 
+            this.gridViewSummary2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridViewSummary2.DataGridView = this.dataGridView2;
+            this.gridViewSummary2.Location = new System.Drawing.Point(2, 165);
+            this.gridViewSummary2.Name = "gridViewSummary2";
+            this.gridViewSummary2.NoSumColumns = "MAU_BC;GIA;GIA_NT;TY_GIA;HAN_TT;THUE_SUAT";
+            this.gridViewSummary2.Size = new System.Drawing.Size(875, 23);
+            this.gridViewSummary2.SumCondition = null;
+            this.gridViewSummary2.TabIndex = 0;
             // 
             // tabChiPhi
             // 
@@ -1385,6 +1399,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.tabChiTietBoSung.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabChiTietBoSung.Controls.Add(this.detail3);
             this.tabChiTietBoSung.Controls.Add(this.dataGridView3);
+            this.tabChiTietBoSung.Controls.Add(this.gridViewSummary3);
             this.tabChiTietBoSung.Location = new System.Drawing.Point(4, 22);
             this.tabChiTietBoSung.Name = "tabChiTietBoSung";
             this.tabChiTietBoSung.Padding = new System.Windows.Forms.Padding(3);
@@ -1447,7 +1462,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             dataGridViewCellStyle14.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView3.RowsDefaultCellStyle = dataGridViewCellStyle14;
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView3.Size = new System.Drawing.Size(875, 136);
+            this.dataGridView3.Size = new System.Drawing.Size(875, 112);
             this.dataGridView3.TabIndex = 9;
             this.dataGridView3.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView3_ColumnAdded);
             this.dataGridView3.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView3_DataError);
@@ -2391,7 +2406,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.thayTheToolStripMenuItem,
             this.thayThe2toolStripMenuItem});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(185, 158);
+            this.menuChucNang.Size = new System.Drawing.Size(185, 136);
             this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
             // 
             // ChonDonHangMuaMenu
@@ -3232,7 +3247,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             // txtMa_sonb
             // 
             this.txtMa_sonb.AccessibleName = "ma_sonb";
-            this.txtMa_sonb.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMa_sonb.BackColor = System.Drawing.Color.White;
             this.txtMa_sonb.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMa_sonb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMa_sonb.BrotherFields = "";
@@ -3696,6 +3711,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.toolStripMenuItem3.Size = new System.Drawing.Size(161, 22);
             this.toolStripMenuItem3.Text = "...";
             // 
+            // gridViewSummary3
+            // 
+            this.gridViewSummary3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridViewSummary3.DataGridView = this.dataGridView3;
+            this.gridViewSummary3.Location = new System.Drawing.Point(2, 164);
+            this.gridViewSummary3.Name = "gridViewSummary3";
+            this.gridViewSummary3.NoSumColumns = "MAU_BC;GIA;GIA_NT;TY_GIA;HAN_TT;THUE_SUAT";
+            this.gridViewSummary3.Size = new System.Drawing.Size(875, 23);
+            this.gridViewSummary3.SumCondition = null;
+            this.gridViewSummary3.TabIndex = 0;
+            // 
             // PhieuNhapMuaControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3983,5 +4009,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private V6VvarTextBox txtSoDH;
         private V6Label lblSoDH;
         private V6CheckBox chkTempSuaCT;
+        private GridViewSummary gridViewSummary2;
+        private GridViewSummary gridViewSummary3;
     }
 }

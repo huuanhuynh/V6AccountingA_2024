@@ -1924,6 +1924,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Invoice.GRDS_AD, Invoice.GRDF_AD,
                         V6Setting.IsVietnamese ? Invoice.GRDHV_AD : Invoice.GRDHE_AD);
+            //V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, Invoice.Config2.GRDS_V1, Invoice.Config2.GRDF_V1, V6Setting.IsVietnamese ? Invoice.Config2.GRDHV_V1 : Invoice.Config2.GRDHE_V1);
+            //V6ControlFormHelper.FormatGridViewAndHeader(dataGridView3, Invoice.Config3.GRDS_V1, Invoice.Config3.GRDF_V1, V6Setting.IsVietnamese ? Invoice.Config3.GRDHV_V1 : Invoice.Config3.GRDHE_V1);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView1, Invoice.Mact);
         }
         #endregion datagridview

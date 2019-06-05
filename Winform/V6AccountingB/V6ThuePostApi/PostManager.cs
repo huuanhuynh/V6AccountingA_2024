@@ -2060,6 +2060,11 @@ namespace V6ThuePostManager
                     result = viettel_http.CancelTransactionInvoice(_codetax, paras.InvoiceNo, strIssueDate, additionalReferenceDesc, strIssueDate);
                     //rd["RESULT_ERROR"] = V6Text.NotSupported;
                 }
+                else if (paras.Mode == "E_T1")
+                {
+                    jsonBody = ReadData_Viettel(paras);
+                    result = POST_REPLACE(_V6Http, jsonBody);
+                }
                 else if (paras.Mode.StartsWith("M"))
                 {
                     generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
@@ -2076,7 +2081,7 @@ namespace V6ThuePostManager
                             Value = "" + new_uid,
                         };
                     }
-                    jsonBody = ReadData_Viettel();
+                    jsonBody = ReadData_Viettel(paras);
                     //File.Create(flagFileName1).Close();
                     result = POST_NEW(_V6Http, jsonBody);
                 }
@@ -2107,7 +2112,7 @@ namespace V6ThuePostManager
                         };
                     }
 
-                    jsonBody = ReadData_Viettel();
+                    jsonBody = ReadData_Viettel(paras);
                     //File.Create(flagFileName1).Close();
                     result = POST_EDIT(_V6Http, jsonBody);
                 }
@@ -2187,7 +2192,37 @@ namespace V6ThuePostManager
             return result;
         }
 
-        public static string ReadData_Viettel()
+        public static string POST_REPLACE(ViettelWS _V6Http, string jsonBody)
+        {
+            string result;
+            try
+            {
+                result = _V6Http.POST(_createInvoiceUrl, jsonBody);
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+            }
+            Logger.WriteToLog("Program.POST_NEW " + result);
+            return result;
+        }
+
+        public static string POST_DRAFT(ViettelWS _V6Http, string jsonBody)
+        {
+            string result;
+            try
+            {
+                result = _V6Http.POST("InvoiceAPI/InvoiceWS/createOrUpdateInvoiceDraft/" + _codetax, jsonBody);
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+            }
+            Logger.WriteToLog("Program.POST_NEW " + result);
+            return result;
+        }
+
+        public static string ReadData_Viettel(PostManagerParams paras)
         {
             string result = "";
             try
@@ -2200,6 +2235,26 @@ namespace V6ThuePostManager
                 {
                     postObject.generalInvoiceInfo[item.Key] = GetValue(row0, item.Value);
                 }
+
+                if (paras.Mode == "E_T1")
+                {
+                    //Lập hóa đơn thay thế:
+                    //adjustmentType = ‘3’
+                    postObject.generalInvoiceInfo["adjustmentType"] = "3";
+                    //Các trường dữ liệu về hóa đơn gốc là bắt buộc
+                    //originalInvoiceId
+                    postObject.generalInvoiceInfo["originalInvoiceId"] =  paras.AM_old["FKEY_TT"].ToString().Trim();  // [AA/17E0003470]
+                    //originalInvoiceIssueDate
+                    postObject.generalInvoiceInfo["originalInvoiceIssueDate"] = paras.AM_old["NGAY_CT"];
+
+                    //Thông tin về biên bản đính kèm hóa đơn gốc:
+                    //additionalReferenceDate
+                    postObject.generalInvoiceInfo["additionalReferenceDate"] = paras.AM_old["NGAY_CT"];
+                    //additionalReferenceDesc
+                    postObject.generalInvoiceInfo["additionalReferenceDesc"] = paras.AM_new["GHI_CHU03"];
+                }
+                
+
                 //private static Dictionary<string, XmlLine> buyerInfoConfig = null;
                 foreach (KeyValuePair<string, ConfigLine> item in buyerInfoConfig)
                 {

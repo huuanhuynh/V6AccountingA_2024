@@ -2105,72 +2105,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             FormatGridView();
         }
 
-        private void ReorderDataGridViewColumns()
-        {
-            if (_MA_GD == "1" || _MA_GD == "A")
-            {
-                var dataGridViewColumn = dataGridView1.Columns["TK_I"];
-                if (dataGridViewColumn != null)
-                {
-                    dataGridViewColumn.Visible = false;
-                    //dataGridViewColumn.DisplayIndex = 0;
-                }
-
-                var gridViewColumn = dataGridView1.Columns["TEN_TK_I"];
-                if (gridViewColumn != null)
-                {
-                    gridViewColumn.Visible = false;
-                    //gridViewColumn.DisplayIndex = 1;
-                }
-            }
-            else //if (_maGd == "2")
-            {
-                var dataGridViewColumn = dataGridView1.Columns["TK_I"];
-                if (dataGridViewColumn != null)
-                {
-                    dataGridViewColumn.Visible = true;
-                    dataGridViewColumn.DisplayIndex = 0;
-                }
-
-                var gridViewColumn = dataGridView1.Columns["TEN_TK_I"];
-                if (gridViewColumn != null)
-                {
-                    gridViewColumn.Visible = true;
-                    gridViewColumn.DisplayIndex = 1;
-                }
-            }
-
-            //V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView1, _orderList, i);
-            V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView3, _orderList3);
-
-            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Invoice.GRDS_AD, Invoice.GRDF_AD,
-                V6Setting.IsVietnamese ? Invoice.GRDHV_AD : Invoice.GRDHE_AD);
-            V6ControlFormHelper.FormatGridViewHideColumns(dataGridView1, Invoice.Mact);
-
-            foreach (DataGridViewColumn column in dataGridView1.Columns)
-            {
-                var field = column.DataPropertyName.ToUpper();
-                if (_orderList.Contains(field))
-                {
-                    //column.Visible = true;
-                    //if (field != "TK_I")
-                    //column.DisplayIndex = _orderList.IndexOf(column.DataPropertyName.ToUpper()) + index;
-                }
-                else
-                {
-                    if ("A3".Contains(_MA_GD) && field == "TEN_KH_I")
-                    {
-                        continue;
-                    }
-
-                    if (field != "TK_I" && field != "TEN_TK_I")
-                    {
-                        column.Visible = false;
-                    }
-                }
-            }
-        }
-
         private void FormatGridView()
         {
             //GridView1 !!!!!
@@ -2245,6 +2179,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Invoice.GRDS_AD, Invoice.GRDF_AD,
                     V6Setting.IsVietnamese ? Invoice.GRDHV_AD : Invoice.GRDHE_AD);
+            //V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, Invoice.Config2.GRDS_V1, Invoice.Config2.GRDF_V1, V6Setting.IsVietnamese ? Invoice.Config2.GRDHV_V1 : Invoice.Config2.GRDHE_V1);
+            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView3, Invoice.Config3.GRDS_V1, Invoice.Config3.GRDF_V1, V6Setting.IsVietnamese ? Invoice.Config3.GRDHV_V1 : Invoice.Config3.GRDHE_V1);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView1, Invoice.Mact);
             V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView3, _orderList3);
         }

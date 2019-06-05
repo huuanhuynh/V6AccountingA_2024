@@ -1668,33 +1668,30 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             if (_maNt == _mMaNt0)
             {
                 _tien.Value = _tienNt.Value;
-
             }
-            
         }
         
         public void TinhTienVon()
         {
-            
             _tien.Value = V6BusinessHelper.Vround((_tienNt.Value * txtTyGia.Value), M_ROUND);
             if (_maNt == _mMaNt0)
             {
                 _tien.Value = _tienNt.Value;
-
             }
-            
         }
         public void TinhGiaVon()
         {
-            _gia1.Value = V6BusinessHelper.Vround((_gia_nt1.Value * txtTyGia.Value), M_ROUND_GIA_NT);
             if (_maNt == _mMaNt0)
             {
                 _gia1.Value = _gia_nt1.Value;
             }
+            else
+            {
+                _gia1.Value = V6BusinessHelper.Vround((_gia_nt1.Value * txtTyGia.Value), M_ROUND_GIA);
+            }
 
             if (_soLuong.Value != 0 )
             {
-
                 _gia_nt.Value = V6BusinessHelper.Vround((_tienNt.Value / _soLuong.Value), M_ROUND_GIA_NT);
                 _gia.Value = V6BusinessHelper.Vround((_tien.Value / _soLuong.Value), M_ROUND_GIA);
 
@@ -2097,6 +2094,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
 
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Invoice.GRDS_AD, Invoice.GRDF_AD,
                         V6Setting.IsVietnamese ? Invoice.GRDHV_AD : Invoice.GRDHE_AD);
+            //V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, Invoice.Config2.GRDS_V1, Invoice.Config2.GRDF_V1, V6Setting.IsVietnamese ? Invoice.Config2.GRDHV_V1 : Invoice.Config2.GRDHE_V1);
+            //V6ControlFormHelper.FormatGridViewAndHeader(dataGridView3, Invoice.Config3.GRDS_V1, Invoice.Config3.GRDF_V1, V6Setting.IsVietnamese ? Invoice.Config3.GRDHV_V1 : Invoice.Config3.GRDHE_V1);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView1, Invoice.Mact);
         }
         #endregion datagridview

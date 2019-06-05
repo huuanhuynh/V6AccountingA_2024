@@ -65,6 +65,39 @@ namespace V6AccountingBusiness.Invoices
                 return Alct["m_gtdbf"].ToString().Trim();
             }
         }
+
+        public AldmConfig Config2
+        {
+            get
+            {
+                if (_config2 == null) GetConfig2();
+                return _config2;
+            }
+        }
+
+        private void GetConfig2()
+        {
+            _config2 = ConfigManager.GetAldmConfig(AD2);
+        }
+
+        private AldmConfig _config2;
+
+        public AldmConfig Config3
+        {
+            get
+            {
+                if (_config3 == null) GetConfig3();
+                return _config3;
+            }
+        }
+
+        private void GetConfig3()
+        {
+            _config3 = ConfigManager.GetAldmConfig(AD3_TableName);
+        }
+
+        private AldmConfig _config3;
+
         /// <summary>
         /// m_ktdbf
         /// </summary>

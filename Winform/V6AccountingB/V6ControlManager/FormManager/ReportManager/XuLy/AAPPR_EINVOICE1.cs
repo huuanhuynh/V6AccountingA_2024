@@ -221,7 +221,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                     string info = string.Format("Thay thế HDDT [{0}] = {1} bằng hóa đơn mới [{2}] = {3}",
                         am_old["SO_CT"], am_old["T_TIEN2"], am_new["SO_CT"], am_new["T_TIEN2"]);
-                    this.ShowInfoMessage(info);
+                    this.ShowMainMessage(info);
 
                     SqlParameter[] plist =
                     {
@@ -241,6 +241,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         DataSet = ds,
                         AM_old = am_old,
+                        AM_new = am_new,
                         Mode = "E_T1",
                         Branch = FilterControl.String1,
                         Fkey_hd = fkey_hd,

@@ -55,7 +55,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 cboProcList.ValueMember = "proc";
                 cboProcList.DisplayMember = V6Setting.IsVietnamese ? "ten" : "ten2";
-                cboProcList.DataSource = V6BusinessHelper.SelectTable("V6Check_Data");
+                cboProcList.DataSource = V6BusinessHelper.Select("V6Check_Data", "*", "", "", "STT").Data;
                 cboProcList.ValueMember = "proc";
                 cboProcList.DisplayMember = V6Setting.IsVietnamese ? "ten" : "ten2";
                 cboProcList.SelectedIndex = 0;

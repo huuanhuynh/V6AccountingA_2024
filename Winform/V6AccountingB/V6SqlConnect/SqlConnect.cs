@@ -141,6 +141,7 @@ namespace V6SqlConnect
         {
             if (CheckV6Key())
             {
+                tableName = tableName.Replace("'", "''");
                 var result = new V6SelectResult {TotalRows = CountRows(tableName)};
                 var t = SqlHelper.ExecuteDataset(DatabaseConfig.ConnectionString, CommandType.Text,
                     "Select * from [" + tableName + "]", DatabaseConfig.TimeOut).Tables[0];
@@ -155,6 +156,7 @@ namespace V6SqlConnect
         {
             if (CheckV6Key())
             {
+                tableName = tableName.Replace("'", "''");
                 var data = SqlHelper.ExecuteDataset(DatabaseConfig.ConnectionString, CommandType.Text,
                     "Select * from [" + tableName + "]", DatabaseConfig.TimeOut).Tables[0];
                 data.TableName = tableName;

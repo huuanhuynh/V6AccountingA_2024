@@ -61,7 +61,7 @@ namespace V6Controls
         public bool ShowName { get { return _showName; } set { _showName = value; } }
         private void V6VvarTextBox_Enter(object sender, EventArgs e)
         {
-            SelectionStart = TextLength;    //  Bỏ bôi xanh.
+            //SelectionStart = TextLength;    //  Bỏ bôi xanh.
             if (_showName || _checkOnLeave)
             {
                 V6ControlsHelper.ShowVvarName(this);

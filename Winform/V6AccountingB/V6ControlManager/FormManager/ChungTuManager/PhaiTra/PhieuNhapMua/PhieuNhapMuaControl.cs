@@ -135,7 +135,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private V6ColorTextBox _dvt;
         private V6VvarTextBox _maVt, _dvt1, _maKho, _maKhoI, _tkVt, _maLo, _maVt_excel, _ma_thue_i;
         private V6NumberTextBox _soLuong1, _soLuong, _heSo1, _giaNt, _giaNt01, _tien0, _tienNt0,
-            _ck, _ckNt, _gia0, _gia01, _gia, _gia_Nt0, _pt_cki, _cpNt, _cp, _ggNt, _gg;
+            _ck, _ckNt, _gia0, _gia1, _gia_nt1, _gia01, _gia, _gia_Nt0, _pt_cki, _cpNt, _cp, _ggNt, _gg;
         private V6NumberTextBox _ton13, _ton13Qd, _tienNt, _tien, _mau_bc, _thue, _thue_nt, _thue_suat_i;
         private V6NumberTextBox _sl_qd, _sl_qd2, _tien_vcNt, _tien_vc, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4;//, _ggNt, _gg;
         private V6DateTimeColor _hanSd;
@@ -354,6 +354,34 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                             {
                                 _gia0.ReadOnlyTag();
+                            }
+                        }
+                        break;
+                    case "GIA1":
+                        _gia1 = control as V6NumberTextBox;
+                        if (_gia1 != null)
+                        {
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
+                            {
+                                _gia1.InvisibleTag();
+                            }
+                            if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
+                            {
+                                _gia1.ReadOnlyTag();
+                            }
+                        }
+                        break;
+                    case "GIA_NT1":
+                        _gia_nt1 = control as V6NumberTextBox;
+                        if (_gia_nt1 != null)
+                        {
+                            if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME))
+                            {
+                                _gia_nt1.InvisibleTag();
+                            }
+                            if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
+                            {
+                                _gia_nt1.ReadOnlyTag();
                             }
                         }
                         break;
@@ -2071,10 +2099,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             {
                 if (_soLuong1.Value != 0)
                 {
-                    _gia01.Value = V6BusinessHelper.Vround((_giaNt01.Value * txtTyGia.Value), M_ROUND_GIA_NT);
                     if (_maNt == _mMaNt0)
                     {
                         _gia01.Value = _giaNt01.Value;
+                    }
+                    else
+                    {
+                        _gia01.Value = V6BusinessHelper.Vround((_giaNt01.Value * txtTyGia.Value), M_ROUND_GIA);
+                    }
+
+                    _gia_nt1.Value = V6BusinessHelper.Vround((_tienNt.Value / _soLuong1.Value), M_ROUND_GIA_NT);
+                    _gia1.Value = V6BusinessHelper.Vround((_tien.Value / _soLuong1.Value), M_ROUND_GIA);
+
+                    if (_maNt == _mMaNt0)
+                    {
+                        _gia1.Value = _gia_nt1.Value;
                     }
                 }
 
@@ -2641,6 +2680,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Invoice.GRDS_AD, Invoice.GRDF_AD,
                         V6Setting.IsVietnamese ? Invoice.GRDHV_AD : Invoice.GRDHE_AD);
+            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, Invoice.Config2.GRDS_V1, Invoice.Config2.GRDF_V1, V6Setting.IsVietnamese ? Invoice.Config2.GRDHV_V1 : Invoice.Config2.GRDHE_V1);
+            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView3, Invoice.Config3.GRDS_V1, Invoice.Config3.GRDF_V1, V6Setting.IsVietnamese ? Invoice.Config3.GRDHV_V1 : Invoice.Config3.GRDHE_V1);
+            
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView1, Invoice.Mact);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView2, Invoice.Mact);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView3, Invoice.Mact);
@@ -6742,7 +6784,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
         private void tabControl1_SizeChanged(object sender, EventArgs e)
         {
-            FixDataGridViewSize(dataGridView1, dataGridView2, dataGridView3, dataGridView3ChiPhi);
+            FixDataGridViewSize(dataGridView1, dataGridView3ChiPhi);
         }
 
 
@@ -7149,6 +7191,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             {
                 dataGridView1.ReadOnly = true;
             }
+        }
+
+        private void hoaDonDetail1_AddHandle()
+        {
+
+        }
+
+        private void hoaDonDetail1_EditHandle()
+        {
+
+        }
+
+        private void hoaDonDetail2_AddHandle()
+        {
+
         }
 
     }
