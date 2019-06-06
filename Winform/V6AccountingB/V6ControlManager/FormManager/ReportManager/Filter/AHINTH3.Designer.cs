@@ -563,7 +563,7 @@
             this.txtChiTietTheo.TabIndex = 4;
             this.txtChiTietTheo.Text = "1";
             this.txtChiTietTheo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-           this.txtChiTietTheo.TextChanged += new System.EventHandler(this.txtLoaiBaoCao_ChiTietTheo_TextChanged);
+            this.txtChiTietTheo.TextChanged += new System.EventHandler(this.txtLoaiBaoCao_ChiTietTheo_TextChanged);
             // 
             // label4
             // 
@@ -609,6 +609,7 @@
             // 
             // label7
             // 
+            this.label7.AccessibleDescription = "FILTERL00273";
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(41, 125);
             this.label7.Name = "label7";

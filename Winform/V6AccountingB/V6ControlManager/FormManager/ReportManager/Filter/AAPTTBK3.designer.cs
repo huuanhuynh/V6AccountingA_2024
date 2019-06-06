@@ -367,7 +367,7 @@
             // 
             // label2
             // 
-            this.label2.AccessibleDescription = "FILTERL000041";
+            this.label2.AccessibleDescription = "FILTERL00041";
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(21, 17);
             this.label2.Name = "label2";

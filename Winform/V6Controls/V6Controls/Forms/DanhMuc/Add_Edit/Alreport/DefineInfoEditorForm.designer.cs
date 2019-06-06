@@ -653,9 +653,9 @@
             this.btnHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnHuy.Image = global::V6Controls.Properties.Resources.Cancel;
             this.btnHuy.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnHuy.Location = new System.Drawing.Point(95, 520);
+            this.btnHuy.Location = new System.Drawing.Point(110, 520);
             this.btnHuy.Name = "btnHuy";
-            this.btnHuy.Size = new System.Drawing.Size(88, 40);
+            this.btnHuy.Size = new System.Drawing.Size(100, 40);
             this.btnHuy.TabIndex = 2;
             this.btnHuy.Tag = "Escape";
             this.btnHuy.Text = "&Hủy";
@@ -671,7 +671,7 @@
             this.btnNhan.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnNhan.Location = new System.Drawing.Point(7, 520);
             this.btnNhan.Name = "btnNhan";
-            this.btnNhan.Size = new System.Drawing.Size(88, 40);
+            this.btnNhan.Size = new System.Drawing.Size(100, 40);
             this.btnNhan.TabIndex = 1;
             this.btnNhan.Tag = "Return, Control";
             this.btnNhan.Text = "&Nhận";
