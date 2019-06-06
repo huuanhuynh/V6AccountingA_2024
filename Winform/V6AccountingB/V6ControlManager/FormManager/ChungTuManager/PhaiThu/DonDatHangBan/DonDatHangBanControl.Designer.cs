@@ -117,7 +117,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.lblKieuPostColor = new V6Controls.V6Label();
             this.txtTongSoLuong = new V6Controls.NumberSoluong();
             this.chkAuto_Ck = new V6Controls.V6CheckBox();
-            this.cboChuyenData = new V6Controls.Controls.V6IndexComboBox();
+            this.cboChuyenData = new V6Controls.V6ComboBox();
             this.v6Label28 = new V6Controls.V6Label();
             this.txtConLai = new V6Controls.V6NumberTextBox();
             this.btnChucNang = new V6Controls.Controls.DropDownButton();
@@ -1699,10 +1699,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.cboChuyenData.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboChuyenData.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cboChuyenData.FormattingEnabled = true;
-            this.cboChuyenData.Items.AddRange(new object[] {
-            "0 - Không chuyển",
-            "1 - Chuyển",
-            "2 - Không xử lý"});
             this.cboChuyenData.Location = new System.Drawing.Point(357, 109);
             this.cboChuyenData.Name = "cboChuyenData";
             this.cboChuyenData.Size = new System.Drawing.Size(112, 21);
@@ -3459,7 +3455,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         private V6DateTimeColor txtngay_ct1;
         private V6Label v6Label26;
         private V6Label v6Label25;
-        private V6IndexComboBox cboChuyenData;
+        private V6Controls.V6ComboBox cboChuyenData;
         private V6Label v6Label28;
         private V6CheckBox chkAuto_Ck;
         private V6VvarTextBox TxtL_AM_INFO;

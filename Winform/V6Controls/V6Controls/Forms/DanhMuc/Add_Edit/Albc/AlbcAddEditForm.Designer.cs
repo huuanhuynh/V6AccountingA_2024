@@ -1089,6 +1089,7 @@
             // 
             // grbSum
             // 
+            this.grbSum.AccessibleDescription = "ADDEDITG00002";
             this.grbSum.Controls.Add(this.label7);
             this.grbSum.Controls.Add(this.label29);
             this.grbSum.Controls.Add(this.label34);

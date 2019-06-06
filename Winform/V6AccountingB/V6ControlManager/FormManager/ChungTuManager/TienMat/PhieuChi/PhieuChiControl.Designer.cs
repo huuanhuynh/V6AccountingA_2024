@@ -109,7 +109,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.txtTongThanhToanNt = new V6Controls.NumberTienNt();
             this.group4 = new System.Windows.Forms.GroupBox();
             this.lblKieuPostColor = new V6Controls.V6Label();
-            this.cboChuyenData = new V6Controls.Controls.V6IndexComboBox();
+            this.cboChuyenData = new V6Controls.V6ComboBox();
             this.btnChucNang = new V6Controls.Controls.DropDownButton();
             this.menuChucNang = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.xulyKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -187,6 +187,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.btnTim = new System.Windows.Forms.Button();
             this.btnViewInfoData = new System.Windows.Forms.Button();
             this.lblNameT = new V6Controls.V6Label();
+            this.gridViewSummary2 = new V6Controls.Controls.GridViewSummary();
+            this.gridViewSummary3 = new V6Controls.Controls.GridViewSummary();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -344,6 +346,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             // 
             this.tabThue.AccessibleDescription = "ACACTCA1H00071";
             this.tabThue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThue.Controls.Add(this.gridViewSummary2);
             this.tabThue.Controls.Add(this.detail2);
             this.tabThue.Controls.Add(this.dataGridView2);
             this.tabThue.Location = new System.Drawing.Point(4, 22);
@@ -402,7 +405,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(876, 138);
+            this.dataGridView2.Size = new System.Drawing.Size(876, 115);
             this.dataGridView2.TabIndex = 5;
             this.dataGridView2.DataSourceChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             this.dataGridView2.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView2_ColumnAdded);
@@ -949,6 +952,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             // 
             this.tabChiTietBoSung.AccessibleDescription = "ACACTCA1L00034";
             this.tabChiTietBoSung.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabChiTietBoSung.Controls.Add(this.gridViewSummary3);
             this.tabChiTietBoSung.Controls.Add(this.detail3);
             this.tabChiTietBoSung.Controls.Add(this.dataGridView3);
             this.tabChiTietBoSung.Location = new System.Drawing.Point(4, 22);
@@ -1013,7 +1017,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             dataGridViewCellStyle9.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView3.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView3.Size = new System.Drawing.Size(876, 138);
+            this.dataGridView3.Size = new System.Drawing.Size(876, 115);
             this.dataGridView3.TabIndex = 5;
             this.dataGridView3.DataSourceChanged += new System.EventHandler(this.dataGridView3_SelectionChanged);
             this.dataGridView3.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView3_ColumnAdded);
@@ -1390,10 +1394,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.cboChuyenData.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboChuyenData.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cboChuyenData.FormattingEnabled = true;
-            this.cboChuyenData.Items.AddRange(new object[] {
-            "0 - Không chuyển",
-            "1 - Chuyển",
-            "2 - Không xử lý"});
             this.cboChuyenData.Location = new System.Drawing.Point(301, 74);
             this.cboChuyenData.Name = "cboChuyenData";
             this.cboChuyenData.Size = new System.Drawing.Size(112, 21);
@@ -1442,6 +1442,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             // 
             // thayThe2toolStripMenuItem
             // 
+            this.thayThe2toolStripMenuItem.AccessibleDescription = "INVOICEM00009";
             this.thayThe2toolStripMenuItem.Name = "thayThe2toolStripMenuItem";
             this.thayThe2toolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.thayThe2toolStripMenuItem.Text = "Sửa nhiều dòng";
@@ -2469,6 +2470,28 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.lblNameT.TabIndex = 22;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // gridViewSummary2
+            // 
+            this.gridViewSummary2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridViewSummary2.DataGridView = this.dataGridView2;
+            this.gridViewSummary2.Location = new System.Drawing.Point(2, 167);
+            this.gridViewSummary2.Name = "gridViewSummary2";
+            this.gridViewSummary2.NoSumColumns = "MAU_BC;GIA;GIA_NT;TY_GIA;HAN_TT;THUE_SUAT";
+            this.gridViewSummary2.Size = new System.Drawing.Size(876, 23);
+            this.gridViewSummary2.SumCondition = null;
+            this.gridViewSummary2.TabIndex = 0;
+            // 
+            // gridViewSummary3
+            // 
+            this.gridViewSummary3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridViewSummary3.DataGridView = this.dataGridView3;
+            this.gridViewSummary3.Location = new System.Drawing.Point(2, 167);
+            this.gridViewSummary3.Name = "gridViewSummary3";
+            this.gridViewSummary3.NoSumColumns = "MAU_BC;GIA;GIA_NT;TY_GIA;HAN_TT;THUE_SUAT";
+            this.gridViewSummary3.Size = new System.Drawing.Size(876, 23);
+            this.gridViewSummary3.SumCondition = null;
+            this.gridViewSummary3.TabIndex = 0;
+            // 
             // PhieuChiControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2669,7 +2692,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         private V6VvarTextBox txtSoCtKemt;
         private Label label2;
         private Label label1;
-        private V6IndexComboBox cboChuyenData;
+        private V6Controls.V6ComboBox cboChuyenData;
         private V6Label v6Label28;
         private DropDownButton btnChucNang;
         private ContextMenuStrip menuChucNang;
@@ -2678,5 +2701,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         private ToolStripMenuItem thayThe2toolStripMenuItem;
         private V6Label lblKieuPostColor;
         private ToolStripMenuItem thuNoTaiKhoanToolStripMenuItem;
+        private GridViewSummary gridViewSummary2;
+        private GridViewSummary gridViewSummary3;
     }
 }

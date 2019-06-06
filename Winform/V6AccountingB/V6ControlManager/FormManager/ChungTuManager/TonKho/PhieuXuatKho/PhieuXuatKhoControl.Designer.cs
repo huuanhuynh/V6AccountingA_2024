@@ -83,7 +83,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.group4 = new System.Windows.Forms.GroupBox();
             this.lblKieuPostColor = new V6Controls.V6Label();
             this.txtTongSoLuong = new V6Controls.NumberSoluong();
-            this.cboChuyenData = new V6Controls.Controls.V6IndexComboBox();
+            this.cboChuyenData = new V6Controls.V6ComboBox();
             this.v6Label28 = new V6Controls.V6Label();
             this.btnChucNang = new V6Controls.Controls.DropDownButton();
             this.menuChucNang = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -1027,10 +1027,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.cboChuyenData.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboChuyenData.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cboChuyenData.FormattingEnabled = true;
-            this.cboChuyenData.Items.AddRange(new object[] {
-            "0 - Không chuyển",
-            "1 - Chuyển",
-            "2 - Không xử lý"});
             this.cboChuyenData.Location = new System.Drawing.Point(295, 55);
             this.cboChuyenData.Name = "cboChuyenData";
             this.cboChuyenData.Size = new System.Drawing.Size(112, 21);
@@ -1100,6 +1096,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             // 
             // tinhHaoHutToolStripMenuItem
             // 
+            this.tinhHaoHutToolStripMenuItem.AccessibleDescription = "INVOICEM00016";
             this.tinhHaoHutToolStripMenuItem.Name = "tinhHaoHutToolStripMenuItem";
             this.tinhHaoHutToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.tinhHaoHutToolStripMenuItem.Text = "Tính hao hụt";
@@ -1107,6 +1104,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             // 
             // xuLyKhacToolStripMenuItem
             // 
+            this.xuLyKhacToolStripMenuItem.AccessibleDescription = "INVOICEM00010";
             this.xuLyKhacToolStripMenuItem.Name = "xuLyKhacToolStripMenuItem";
             this.xuLyKhacToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.xuLyKhacToolStripMenuItem.Text = "Xử lý khác";
@@ -1122,6 +1120,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             // 
             // thayThe2toolStripMenuItem
             // 
+            this.thayThe2toolStripMenuItem.AccessibleDescription = "INVOICEM00009";
             this.thayThe2toolStripMenuItem.Name = "thayThe2toolStripMenuItem";
             this.thayThe2toolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.thayThe2toolStripMenuItem.Text = "Sửa nhiều dòng";
@@ -2331,6 +2330,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             // 
             // menuXemPhieuNhap
             // 
+            this.menuXemPhieuNhap.AccessibleDescription = "INVOICEM00018";
             this.menuXemPhieuNhap.Name = "menuXemPhieuNhap";
             this.menuXemPhieuNhap.Size = new System.Drawing.Size(161, 22);
             this.menuXemPhieuNhap.Text = "Xem phiếu nhập";
@@ -2338,12 +2338,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             // 
             // toolStripMenuItem2
             // 
+            this.toolStripMenuItem2.AccessibleDescription = "INVOICEM00019";
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(161, 22);
             this.toolStripMenuItem2.Text = "...";
             // 
             // toolStripMenuItem3
             // 
+            this.toolStripMenuItem3.AccessibleDescription = "INVOICEM00020";
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(161, 22);
             this.toolStripMenuItem3.Text = "...";
@@ -2558,7 +2560,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem tinhHaoHutToolStripMenuItem;
-        private V6IndexComboBox cboChuyenData;
+        private V6Controls.V6ComboBox cboChuyenData;
         private V6Label v6Label28;
         private System.Windows.Forms.ToolStripMenuItem xuLyKhacToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thayTheToolStripMenuItem;

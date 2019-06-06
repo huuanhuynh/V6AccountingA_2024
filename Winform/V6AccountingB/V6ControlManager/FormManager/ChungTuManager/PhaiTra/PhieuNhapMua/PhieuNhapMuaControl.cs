@@ -3519,50 +3519,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             AM = Invoice.SearchAM("1=0", "1=0", "", "", "");//Làm AM khác null
             EnableControls();
             GetSoPhieuInit();
-            LoadAlMaGia();
-            LoadAlnt();
-            LoadAlpost();
+            LoadAlnt(cboMaNt);
+            LoadAlpost(cboKieuPost);
+            LoadAlimtype(cboChuyenData);
             GetM_ma_nt0();
             V6ControlFormHelper.LoadAndSetFormInfoDefine(Invoice.Mact, tabKhac, this);
             Ready();
         }
-
-        private void LoadAlMaGia()
-        {
-        }
-
-        private void LoadAlnt()
-        {
-            try
-            {
-                cboMaNt.ValueMember = "ma_nt";
-                cboMaNt.DisplayMember = V6Setting.IsVietnamese ? "Ten_nt" : "Ten_nt2";
-                cboMaNt.DataSource = Invoice.Alnt;
-                cboMaNt.ValueMember = "ma_nt";
-                cboMaNt.DisplayMember = V6Setting.IsVietnamese ? "Ten_nt" : "Ten_nt2";
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
-
-        private void LoadAlpost()
-        {
-            try
-            {
-                cboKieuPost.ValueMember = "kieu_post";
-                cboKieuPost.DisplayMember = V6Setting.IsVietnamese ? "Ten_post" : "Ten_post2";
-                cboKieuPost.DataSource = Invoice.AlPost;
-                cboKieuPost.ValueMember = "kieu_post";
-                cboKieuPost.DisplayMember = V6Setting.IsVietnamese ? "Ten_post" : "Ten_post2";
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
-
+        
         private void GetM_ma_nt0()
         {
             _mMaNt0 = V6Options.M_MA_NT0;
@@ -6784,7 +6748,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
         private void tabControl1_SizeChanged(object sender, EventArgs e)
         {
-            FixDataGridViewSize(dataGridView1, dataGridView3ChiPhi);
+            FixDataGridViewSize(dataGridView1, dataGridView2, dataGridView3, dataGridView3ChiPhi);
         }
 
 
@@ -7193,20 +7157,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
         }
 
-        private void hoaDonDetail1_AddHandle()
-        {
-
-        }
-
-        private void hoaDonDetail1_EditHandle()
-        {
-
-        }
-
-        private void hoaDonDetail2_AddHandle()
-        {
-
-        }
 
     }
 }

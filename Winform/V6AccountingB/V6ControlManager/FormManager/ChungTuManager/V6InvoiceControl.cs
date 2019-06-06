@@ -429,7 +429,14 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     if (gpa != null)
                     {
                         dgv.Top = 52;
-                        dgv.Height = gpa.Height - 55;
+                        if (HaveGridViewSummary(gpa))
+                        {
+                            dgv.Height = gpa.Height - 75;
+                        }
+                        else
+                        {
+                            dgv.Height = gpa.Height - 55;
+                        }
                         dgv.Left = 2;
                         dgv.Width = gpa.Width - 5;
                     }
@@ -439,6 +446,18 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 this.WriteExLog(GetType() + ".FixDataGridViewSize " + _sttRec, ex);
             }
+        }
+
+        private bool HaveGridViewSummary(Control container)
+        {
+            if (container != null)
+            {
+                foreach (Control control in container.Controls)
+                {
+                    if (control is GridViewSummary) return true;
+                }
+            }
+            return false;
         }
         
         public IDictionary<string, object> PreparingDataAM(V6InvoiceBase invoice)
@@ -2851,6 +2870,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
+            SetStatus2Text();
         }
 
         public bool CheckEditAll(V6InvoiceBase Invoice, string status, string kieupost, string soct_sophieu, string ma_sonb,
@@ -3474,6 +3494,55 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     if (c != null) c.TabIndex = i;
                 }
             }
+        }
+
+        public void LoadAlnt(ComboBox cboMaNt)
+        {
+            try
+            {
+                cboMaNt.ValueMember = "ma_nt";
+                cboMaNt.DisplayMember = V6Setting.IsVietnamese ? "Ten_nt" : "Ten_nt2";
+                cboMaNt.DataSource = _invoice.Alnt;
+                cboMaNt.ValueMember = "ma_nt";
+                cboMaNt.DisplayMember = V6Setting.IsVietnamese ? "Ten_nt" : "Ten_nt2";
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        public void LoadAlpost(ComboBox cboKieuPost)
+        {
+            try
+            {
+                cboKieuPost.ValueMember = "kieu_post";
+                cboKieuPost.DisplayMember = V6Setting.IsVietnamese ? "Ten_post" : "Ten_post2";
+                cboKieuPost.DataSource = _invoice.AlPost;
+                cboKieuPost.ValueMember = "kieu_post";
+                cboKieuPost.DisplayMember = V6Setting.IsVietnamese ? "Ten_post" : "Ten_post2";
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        protected void LoadAlimtype(ComboBox cbo)
+        {
+            try
+            {
+                cbo.ValueMember = "IMTYPE";
+                cbo.DisplayMember = V6Setting.IsVietnamese ? "Ten" : "Ten2";
+                cbo.DataSource = _invoice.AlImtype;
+                cbo.ValueMember = "IMTYPE";
+                cbo.DisplayMember = V6Setting.IsVietnamese ? "Ten" : "Ten2";
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        
         }
     }
 }

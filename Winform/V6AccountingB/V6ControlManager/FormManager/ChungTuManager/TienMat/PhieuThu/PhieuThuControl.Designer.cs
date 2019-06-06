@@ -79,13 +79,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.txtNGAY_UD2 = new V6Controls.V6DateTimeColor();
             this.txtNGAY_UD1 = new V6Controls.V6DateTimeColor();
             this.tabChiTietBoSung = new System.Windows.Forms.TabPage();
-            this.detail3 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
+            this.gridViewSummary3 = new V6Controls.Controls.GridViewSummary();
             this.dataGridView3 = new V6Controls.V6ColorDataGridView();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TEN_TK = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.detail3 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
             this.group5 = new System.Windows.Forms.GroupBox();
             this.panelVND = new System.Windows.Forms.Panel();
             this.txtTongThanhToan = new V6Controls.NumberTien();
@@ -97,7 +98,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.txtTongThanhToanNt = new V6Controls.NumberTienNt();
             this.group4 = new System.Windows.Forms.GroupBox();
             this.lblKieuPostColor = new V6Controls.V6Label();
-            this.cboChuyenData = new V6Controls.Controls.V6IndexComboBox();
+            this.cboChuyenData = new V6Controls.V6ComboBox();
             this.v6Label28 = new V6Controls.V6Label();
             this.btnChucNang = new V6Controls.Controls.DropDownButton();
             this.menuChucNang = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -865,6 +866,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             // 
             this.tabChiTietBoSung.AccessibleDescription = "ACACTTA1L00070";
             this.tabChiTietBoSung.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabChiTietBoSung.Controls.Add(this.gridViewSummary3);
             this.tabChiTietBoSung.Controls.Add(this.detail3);
             this.tabChiTietBoSung.Controls.Add(this.dataGridView3);
             this.tabChiTietBoSung.Location = new System.Drawing.Point(4, 22);
@@ -875,28 +877,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.tabChiTietBoSung.Tag = "cancelall";
             this.tabChiTietBoSung.Text = "Chi tiết bổ sung";
             // 
-            // detail3
+            // gridViewSummary3
             // 
-            this.detail3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.detail3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.detail3.CodeForm = null;
-            this.detail3.Location = new System.Drawing.Point(2, 2);
-            this.detail3.MODE = V6Structs.V6Mode.Init;
-            this.detail3.Name = "detail3";
-            this.detail3.ShowLblName = false;
-            this.detail3.Size = new System.Drawing.Size(876, 50);
-            this.detail3.Sua_tien = false;
-            this.detail3.TabIndex = 4;
-            this.detail3.Tag = "cancelall";
-            this.detail3.Vtype = null;
-            this.detail3.ClickAdd += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.Detail3_ClickAdd);
-            this.detail3.ClickEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.Detail3_ClickEdit);
-            this.detail3.ClickCancelEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.Detail3_ClickCancelEdit);
-            this.detail3.AddHandle += new V6Controls.HandleData(this.Detail3_AddHandle);
-            this.detail3.EditHandle += new V6Controls.HandleData(this.Detail3_EditHandle);
-            this.detail3.DeleteHandle += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.Detail3_DeleteHandle);
-            this.detail3.LabelNameTextChanged += new System.EventHandler(this.detail3_LabelNameTextChanged);
+            this.gridViewSummary3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridViewSummary3.DataGridView = this.dataGridView3;
+            this.gridViewSummary3.Location = new System.Drawing.Point(2, 167);
+            this.gridViewSummary3.Name = "gridViewSummary3";
+            this.gridViewSummary3.NoSumColumns = "MAU_BC;GIA;GIA_NT;TY_GIA;HAN_TT;THUE_SUAT";
+            this.gridViewSummary3.Size = new System.Drawing.Size(876, 23);
+            this.gridViewSummary3.SumCondition = null;
+            this.gridViewSummary3.TabIndex = 0;
             // 
             // dataGridView3
             // 
@@ -930,7 +920,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView3.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView3.Size = new System.Drawing.Size(876, 138);
+            this.dataGridView3.Size = new System.Drawing.Size(876, 115);
             this.dataGridView3.TabIndex = 3;
             this.dataGridView3.DataSourceChanged += new System.EventHandler(this.dataGridView3_SelectionChanged);
             this.dataGridView3.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView3_ColumnAdded);
@@ -976,6 +966,29 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             this.dataGridViewTextBoxColumn9.ReadOnly = true;
             this.dataGridViewTextBoxColumn9.Visible = false;
+            // 
+            // detail3
+            // 
+            this.detail3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.detail3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.detail3.CodeForm = null;
+            this.detail3.Location = new System.Drawing.Point(2, 2);
+            this.detail3.MODE = V6Structs.V6Mode.Init;
+            this.detail3.Name = "detail3";
+            this.detail3.ShowLblName = false;
+            this.detail3.Size = new System.Drawing.Size(876, 50);
+            this.detail3.Sua_tien = false;
+            this.detail3.TabIndex = 4;
+            this.detail3.Tag = "cancelall";
+            this.detail3.Vtype = null;
+            this.detail3.ClickAdd += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.Detail3_ClickAdd);
+            this.detail3.ClickEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.Detail3_ClickEdit);
+            this.detail3.ClickCancelEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.Detail3_ClickCancelEdit);
+            this.detail3.AddHandle += new V6Controls.HandleData(this.Detail3_AddHandle);
+            this.detail3.EditHandle += new V6Controls.HandleData(this.Detail3_EditHandle);
+            this.detail3.DeleteHandle += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.Detail3_DeleteHandle);
+            this.detail3.LabelNameTextChanged += new System.EventHandler(this.detail3_LabelNameTextChanged);
             // 
             // group5
             // 
@@ -1172,10 +1185,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.cboChuyenData.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboChuyenData.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cboChuyenData.FormattingEnabled = true;
-            this.cboChuyenData.Items.AddRange(new object[] {
-            "0 - Không chuyển",
-            "1 - Chuyển",
-            "2 - Không xử lý"});
             this.cboChuyenData.Location = new System.Drawing.Point(295, 74);
             this.cboChuyenData.Name = "cboChuyenData";
             this.cboChuyenData.Size = new System.Drawing.Size(112, 21);
@@ -1221,6 +1230,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             // 
             // ThuCongNo
             // 
+            this.ThuCongNo.AccessibleDescription = "INVOICEM00015";
             this.ThuCongNo.Name = "ThuCongNo";
             this.ThuCongNo.Size = new System.Drawing.Size(164, 22);
             this.ThuCongNo.Text = "Thu công nợ";
@@ -1245,6 +1255,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             // 
             // xuLyKhacToolStripMenuItem
             // 
+            this.xuLyKhacToolStripMenuItem.AccessibleDescription = "INVOICEM00010";
             this.xuLyKhacToolStripMenuItem.Name = "xuLyKhacToolStripMenuItem";
             this.xuLyKhacToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.xuLyKhacToolStripMenuItem.Text = "Xử lý khác";
@@ -1260,6 +1271,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             // 
             // thayThe2toolStripMenuItem
             // 
+            this.thayThe2toolStripMenuItem.AccessibleDescription = "INVOICEM00009";
             this.thayThe2toolStripMenuItem.Name = "thayThe2toolStripMenuItem";
             this.thayThe2toolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.thayThe2toolStripMenuItem.Text = "Sửa nhiều dòng";
@@ -1267,6 +1279,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             // 
             // thuNoTaiKhoanToolStripMenuItem
             // 
+            this.thuNoTaiKhoanToolStripMenuItem.AccessibleDescription = "INVOICEM00017";
             this.thuNoTaiKhoanToolStripMenuItem.Name = "thuNoTaiKhoanToolStripMenuItem";
             this.thuNoTaiKhoanToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.thuNoTaiKhoanToolStripMenuItem.Text = "Thu nợ tài khoản";
@@ -2418,12 +2431,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         private ToolStripMenuItem TroGiupMenu;
         private ToolStripMenuItem chonTuExcelToolStripMenuItem;
         private DropDownButton btnChucNang;
-        private V6IndexComboBox cboChuyenData;
+        private V6Controls.V6ComboBox cboChuyenData;
         private V6Label v6Label28;
         private ToolStripMenuItem xuLyKhacToolStripMenuItem;
         private ToolStripMenuItem thayTheToolStripMenuItem;
         private ToolStripMenuItem thayThe2toolStripMenuItem;
         private V6Label lblKieuPostColor;
         private ToolStripMenuItem thuNoTaiKhoanToolStripMenuItem;
+        private GridViewSummary gridViewSummary3;
     }
 }

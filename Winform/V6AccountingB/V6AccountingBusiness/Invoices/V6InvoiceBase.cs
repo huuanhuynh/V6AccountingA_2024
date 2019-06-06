@@ -33,7 +33,7 @@ namespace V6AccountingBusiness.Invoices
         public string V6Message = "";
 
         protected V6TableStruct _amStruct, _adStruct, _ad2Struct, _ad3Struct;
-        protected DataTable _alnt, _alct1, _alct3, _alpost;
+        protected DataTable _alnt, _alct1, _alct3, _alpost, _alimtype;
         protected DataRow _alct, _alctct;
         protected AlctConfig _alctConfig;
         
@@ -362,6 +362,17 @@ namespace V6AccountingBusiness.Invoices
                     "VPA_GET_AUTO_COLUMN_KT", plist).Tables[0];
         }
 
+        public DataTable AlImtype
+        {
+            get { return _alimtype ?? (_alimtype = GetAlImtype()); }
+        }
+
+        private DataTable GetAlImtype()
+        {
+            return SqlConnect.Select("AlImtype", "IMTYPE, [default], ten, ten2",
+                "Ma_ct=@mact", "", "[Status]", new SqlParameter("@mact", Mact)).Data;
+        }
+        
         public DataTable AlPost
         {
             get { return _alpost ?? (_alpost = GetAlPost()); }
