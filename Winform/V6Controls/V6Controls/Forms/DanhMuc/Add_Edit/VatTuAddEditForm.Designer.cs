@@ -655,7 +655,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             // label45
             // 
-            this.label45.AccessibleDescription = "nh_vt3";
+            this.label45.AccessibleDescription = "FILTERL00038";
             this.label45.AutoSize = true;
             this.label45.Location = new System.Drawing.Point(407, 206);
             this.label45.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -677,7 +677,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             // label43
             // 
-            this.label43.AccessibleDescription = "nh_vt3";
+            this.label43.AccessibleDescription = "FILTERL00036";
             this.label43.AutoSize = true;
             this.label43.Location = new System.Drawing.Point(407, 149);
             this.label43.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -699,7 +699,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             // label42
             // 
-            this.label42.AccessibleDescription = "nh_vt1";
+            this.label42.AccessibleDescription = "FILTERL00034";
             this.label42.AutoSize = true;
             this.label42.Location = new System.Drawing.Point(407, 94);
             this.label42.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -743,7 +743,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             // label44
             // 
-            this.label44.AccessibleDescription = "nh_vt2";
+            this.label44.AccessibleDescription = "FILTERL00037";
             this.label44.AutoSize = true;
             this.label44.Location = new System.Drawing.Point(407, 179);
             this.label44.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -765,7 +765,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             // 
             // label41
             // 
-            this.label41.AccessibleDescription = "nh_vt2";
+            this.label41.AccessibleDescription = "FILTERL00035";
             this.label41.AutoSize = true;
             this.label41.Location = new System.Drawing.Point(407, 123);
             this.label41.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);

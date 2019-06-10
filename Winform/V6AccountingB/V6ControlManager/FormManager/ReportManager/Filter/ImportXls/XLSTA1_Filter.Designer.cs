@@ -179,7 +179,7 @@
             this.btnSuaChiTieu.AccessibleDescription = "FILTERB00001";
             this.btnSuaChiTieu.Location = new System.Drawing.Point(180, 84);
             this.btnSuaChiTieu.Name = "btnSuaChiTieu";
-            this.btnSuaChiTieu.Size = new System.Drawing.Size(75, 28);
+            this.btnSuaChiTieu.Size = new System.Drawing.Size(90, 28);
             this.btnSuaChiTieu.TabIndex = 9;
             this.btnSuaChiTieu.Text = "Sửa chỉ tiêu";
             this.btnSuaChiTieu.UseVisualStyleBackColor = true;
@@ -204,7 +204,7 @@
             this.btnXemMauExcel.AccessibleDescription = "FILTERB00013";
             this.btnXemMauExcel.Location = new System.Drawing.Point(3, 268);
             this.btnXemMauExcel.Name = "btnXemMauExcel";
-            this.btnXemMauExcel.Size = new System.Drawing.Size(88, 29);
+            this.btnXemMauExcel.Size = new System.Drawing.Size(134, 29);
             this.btnXemMauExcel.TabIndex = 12;
             this.btnXemMauExcel.Text = "Xem mẫu excel";
             this.btnXemMauExcel.UseVisualStyleBackColor = true;

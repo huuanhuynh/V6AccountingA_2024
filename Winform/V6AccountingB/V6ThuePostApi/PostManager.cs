@@ -2058,7 +2058,7 @@ namespace V6ThuePostManager
                     string additionalReferenceDesc = paras.AM_new["STT_REC"].ToString();
                     paras.InvoiceNo = paras.AM_new["SO_SERI"].ToString().Trim() + paras.AM_new["SO_CT"].ToString().Trim();
                     result = viettel_http.CancelTransactionInvoice(_codetax, paras.InvoiceNo, strIssueDate, additionalReferenceDesc, strIssueDate);
-                    //rd["RESULT_ERROR"] = V6Text.NotSupported;
+                    
                 }
                 else if (paras.Mode == "E_T1")
                 {

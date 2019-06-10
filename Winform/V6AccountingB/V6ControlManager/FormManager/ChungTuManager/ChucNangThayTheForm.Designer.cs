@@ -135,6 +135,7 @@
             // 
             // ChucNangThayTheForm
             // 
+            this.AccessibleDescription = "ASOCTSOAF00002";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(227, 183);
@@ -147,7 +148,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ChucNangThayTheForm";
-            this.Text = "ChucNangThayThe";
+            this.Text = "Thay thế";
             this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.textBox1, 0);

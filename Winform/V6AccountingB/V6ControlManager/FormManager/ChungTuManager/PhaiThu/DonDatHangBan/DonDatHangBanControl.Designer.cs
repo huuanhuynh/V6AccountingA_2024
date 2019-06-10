@@ -32,9 +32,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabChiTiet = new System.Windows.Forms.TabPage();
             this.detail1 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
@@ -114,6 +114,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtTongThanhToanNt = new V6Controls.NumberTienNt();
             this.v6Label4 = new V6Controls.V6Label();
             this.group4 = new System.Windows.Forms.GroupBox();
+            this.chkTempSuaCT = new V6Controls.V6CheckBox();
             this.lblKieuPostColor = new V6Controls.V6Label();
             this.txtTongSoLuong = new V6Controls.NumberSoluong();
             this.chkAuto_Ck = new V6Controls.V6CheckBox();
@@ -224,7 +225,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnTim = new System.Windows.Forms.Button();
             this.lblNameT = new V6Controls.V6Label();
-            this.chkTempSuaCT = new V6Controls.V6CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -300,20 +300,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MA_VT,
@@ -325,8 +325,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle21;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(875, 142);
             this.dataGridView1.TabIndex = 1;
@@ -1096,6 +1096,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             // tabThongTin
             // 
+            this.tabThongTin.AccessibleDescription = "ASOCTSOFP00065";
             this.tabThongTin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabThongTin.Controls.Add(this.dateTG_NHAN);
             this.tabThongTin.Controls.Add(this.lblTG_NHAN);
@@ -1117,7 +1118,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.dateTG_NHAN.AccessibleName = "TG_NHAN";
             this.dateTG_NHAN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.dateTG_NHAN.CodeForm = null;
-            this.dateTG_NHAN.Location = new System.Drawing.Point(134, 79);
+            this.dateTG_NHAN.Location = new System.Drawing.Point(181, 79);
             this.dateTG_NHAN.Name = "dateTG_NHAN";
             this.dateTG_NHAN.Size = new System.Drawing.Size(150, 20);
             this.dateTG_NHAN.TabIndex = 10;
@@ -1127,7 +1128,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             this.lblTG_NHAN.AccessibleDescription = "ASOCTSOAL00121";
             this.lblTG_NHAN.AutoSize = true;
-            this.lblTG_NHAN.Location = new System.Drawing.Point(3, 83);
+            this.lblTG_NHAN.Location = new System.Drawing.Point(3, 81);
             this.lblTG_NHAN.Name = "lblTG_NHAN";
             this.lblTG_NHAN.Size = new System.Drawing.Size(60, 13);
             this.lblTG_NHAN.TabIndex = 8;
@@ -1147,9 +1148,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtDiaChi2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtDiaChi2.HoverColor = System.Drawing.Color.Yellow;
             this.txtDiaChi2.LeaveColor = System.Drawing.Color.White;
-            this.txtDiaChi2.Location = new System.Drawing.Point(134, 4);
+            this.txtDiaChi2.Location = new System.Drawing.Point(181, 4);
             this.txtDiaChi2.Name = "txtDiaChi2";
-            this.txtDiaChi2.Size = new System.Drawing.Size(738, 20);
+            this.txtDiaChi2.Size = new System.Drawing.Size(692, 20);
             this.txtDiaChi2.TabIndex = 1;
             this.txtDiaChi2.VVar = "DIA_CHI2";
             this.txtDiaChi2.Enter += new System.EventHandler(this.txtDiaChi2_Enter);
@@ -1158,7 +1159,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             this.lblNGAY_NOHD.AccessibleDescription = "ASOCTSOAL00120";
             this.lblNGAY_NOHD.AutoSize = true;
-            this.lblNGAY_NOHD.Location = new System.Drawing.Point(3, 55);
+            this.lblNGAY_NOHD.Location = new System.Drawing.Point(3, 56);
             this.lblNGAY_NOHD.Name = "lblNGAY_NOHD";
             this.lblNGAY_NOHD.Size = new System.Drawing.Size(106, 13);
             this.lblNGAY_NOHD.TabIndex = 6;
@@ -1177,7 +1178,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtNgayNoHD.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtNgayNoHD.HoverColor = System.Drawing.Color.Yellow;
             this.txtNgayNoHD.LeaveColor = System.Drawing.Color.White;
-            this.txtNgayNoHD.Location = new System.Drawing.Point(134, 53);
+            this.txtNgayNoHD.Location = new System.Drawing.Point(181, 53);
             this.txtNgayNoHD.Name = "txtNgayNoHD";
             this.txtNgayNoHD.Size = new System.Drawing.Size(100, 20);
             this.txtNgayNoHD.TabIndex = 7;
@@ -1201,7 +1202,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtMaPTVC.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaPTVC.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaPTVC.LeaveColor = System.Drawing.Color.White;
-            this.txtMaPTVC.Location = new System.Drawing.Point(134, 29);
+            this.txtMaPTVC.Location = new System.Drawing.Point(181, 29);
             this.txtMaPTVC.Name = "txtMaPTVC";
             this.txtMaPTVC.Size = new System.Drawing.Size(100, 20);
             this.txtMaPTVC.TabIndex = 3;
@@ -1211,7 +1212,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             this.lblMA_HTVC.AccessibleDescription = "ASOCTSOAL00119";
             this.lblMA_HTVC.AutoSize = true;
-            this.lblMA_HTVC.Location = new System.Drawing.Point(3, 32);
+            this.lblMA_HTVC.Location = new System.Drawing.Point(3, 31);
             this.lblMA_HTVC.Name = "lblMA_HTVC";
             this.lblMA_HTVC.Size = new System.Drawing.Size(118, 13);
             this.lblMA_HTVC.TabIndex = 2;
@@ -1557,6 +1558,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             // v6Label21
             // 
+            this.v6Label21.AccessibleDescription = "ASOCTSOAH00065";
             this.v6Label21.AutoSize = true;
             this.v6Label21.Location = new System.Drawing.Point(8, 31);
             this.v6Label21.Name = "v6Label21";
@@ -1638,6 +1640,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.group4.Size = new System.Drawing.Size(478, 133);
             this.group4.TabIndex = 4;
             this.group4.TabStop = false;
+            // 
+            // chkTempSuaCT
+            // 
+            this.chkTempSuaCT.AccessibleDescription = "ASOCTSOAC00045";
+            this.chkTempSuaCT.AccessibleName = "TEMP_SUACT";
+            this.chkTempSuaCT.AutoSize = true;
+            this.chkTempSuaCT.Location = new System.Drawing.Point(7, 29);
+            this.chkTempSuaCT.Name = "chkTempSuaCT";
+            this.chkTempSuaCT.Size = new System.Drawing.Size(79, 17);
+            this.chkTempSuaCT.TabIndex = 42;
+            this.chkTempSuaCT.TabStop = false;
+            this.chkTempSuaCT.Text = "Sửa chi tiết";
+            this.chkTempSuaCT.UseVisualStyleBackColor = true;
+            this.chkTempSuaCT.CheckedChanged += new System.EventHandler(this.chkTempSuaCT_CheckedChanged);
             // 
             // lblKieuPostColor
             // 
@@ -1827,6 +1843,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             // chkSuaTien
             // 
+            this.chkSuaTien.AccessibleDescription = "ASOCTSOAR00026";
             this.chkSuaTien.AccessibleName = "sua_tien";
             this.chkSuaTien.AutoSize = true;
             this.chkSuaTien.Location = new System.Drawing.Point(7, 49);
@@ -2122,6 +2139,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             // v6Label19
             // 
+            this.v6Label19.AccessibleDescription = "ASOCTSOAL00007";
             this.v6Label19.AutoSize = true;
             this.v6Label19.Location = new System.Drawing.Point(6, 90);
             this.v6Label19.Name = "v6Label19";
@@ -2720,6 +2738,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             // v6Label37
             // 
+            this.v6Label37.AccessibleDescription = "ASOCTSOAL00008";
             this.v6Label37.AutoSize = true;
             this.v6Label37.Location = new System.Drawing.Point(138, 13);
             this.v6Label37.Name = "v6Label37";
@@ -2912,6 +2931,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             // v6Label1
             // 
+            this.v6Label1.AccessibleDescription = "ASOCTSOAC00042";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(6, 13);
             this.v6Label1.Name = "v6Label1";
@@ -3215,20 +3235,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.lblNameT.Size = new System.Drawing.Size(669, 18);
             this.lblNameT.TabIndex = 21;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // chkTempSuaCT
-            // 
-            this.chkTempSuaCT.AccessibleDescription = "ASOCTSOAC00045";
-            this.chkTempSuaCT.AccessibleName = "TEMP_SUACT";
-            this.chkTempSuaCT.AutoSize = true;
-            this.chkTempSuaCT.Location = new System.Drawing.Point(7, 29);
-            this.chkTempSuaCT.Name = "chkTempSuaCT";
-            this.chkTempSuaCT.Size = new System.Drawing.Size(79, 17);
-            this.chkTempSuaCT.TabIndex = 42;
-            this.chkTempSuaCT.TabStop = false;
-            this.chkTempSuaCT.Text = "Sửa chi tiết";
-            this.chkTempSuaCT.UseVisualStyleBackColor = true;
-            this.chkTempSuaCT.CheckedChanged += new System.EventHandler(this.chkTempSuaCT_CheckedChanged);
             // 
             // DonDatHangBanControl
             // 

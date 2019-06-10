@@ -581,6 +581,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.Loc
             // 
             // v6Label8
             // 
+            this.v6Label8.AccessibleDescription = "SEARCHL00002";
             this.v6Label8.AutoSize = true;
             this.v6Label8.Location = new System.Drawing.Point(4, 22);
             this.v6Label8.Name = "v6Label8";

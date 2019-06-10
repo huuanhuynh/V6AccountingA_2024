@@ -269,7 +269,7 @@
             // 
             // v6Label3
             // 
-            this.v6Label3.AccessibleDescription = "ASOCTSOAL00106";
+            this.v6Label3.AccessibleDescription = "SEARCHL00056";
             this.v6Label3.AutoSize = true;
             this.v6Label3.Location = new System.Drawing.Point(529, 58);
             this.v6Label3.Name = "v6Label3";
@@ -288,7 +288,7 @@
             // 
             // v6Label6
             // 
-            this.v6Label6.AccessibleDescription = "ASOCTSOAL00106";
+            this.v6Label6.AccessibleDescription = "SEARCHL00053";
             this.v6Label6.AutoSize = true;
             this.v6Label6.Location = new System.Drawing.Point(279, 58);
             this.v6Label6.Name = "v6Label6";
@@ -298,7 +298,7 @@
             // 
             // v6Label2
             // 
-            this.v6Label2.AccessibleDescription = "ASOCTSOAL00105";
+            this.v6Label2.AccessibleDescription = "SEARCHL00055";
             this.v6Label2.AutoSize = true;
             this.v6Label2.Location = new System.Drawing.Point(529, 38);
             this.v6Label2.Name = "v6Label2";
@@ -318,7 +318,7 @@
             // 
             // v6Label1
             // 
-            this.v6Label1.AccessibleDescription = "ASOCTSOAL00104";
+            this.v6Label1.AccessibleDescription = "SEARCHL00054";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(529, 18);
             this.v6Label1.Name = "v6Label1";
@@ -328,7 +328,7 @@
             // 
             // v6Label7
             // 
-            this.v6Label7.AccessibleDescription = "ASOCTSOAL00105";
+            this.v6Label7.AccessibleDescription = "SEARCHL00052";
             this.v6Label7.AutoSize = true;
             this.v6Label7.Location = new System.Drawing.Point(279, 38);
             this.v6Label7.Name = "v6Label7";
@@ -338,7 +338,7 @@
             // 
             // v6Label8
             // 
-            this.v6Label8.AccessibleDescription = "ASOCTSOAL00104";
+            this.v6Label8.AccessibleDescription = "SEARCHL00051";
             this.v6Label8.AutoSize = true;
             this.v6Label8.Location = new System.Drawing.Point(279, 18);
             this.v6Label8.Name = "v6Label8";

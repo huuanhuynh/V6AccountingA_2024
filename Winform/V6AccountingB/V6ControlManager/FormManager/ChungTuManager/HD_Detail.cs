@@ -354,6 +354,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             _p = new Point(0, 0);
             _p0 = new Point(0, 0);
+            if (!V6Setting.IsVietnamese) lblName.AccessibleName = "TEN_VT2";
         }
 
         public string Vtype { get; set; }

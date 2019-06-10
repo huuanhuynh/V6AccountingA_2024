@@ -144,10 +144,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtten_ku.AccessibleName = "ten_ku";
             this.txtten_ku.BackColor = System.Drawing.SystemColors.Control;
             this.txtten_ku.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtten_ku.Location = new System.Drawing.Point(274, 49);
+            this.txtten_ku.Location = new System.Drawing.Point(320, 49);
             this.txtten_ku.Name = "txtten_ku";
             this.txtten_ku.ReadOnly = true;
-            this.txtten_ku.Size = new System.Drawing.Size(379, 16);
+            this.txtten_ku.Size = new System.Drawing.Size(340, 16);
             this.txtten_ku.TabIndex = 12;
             this.txtten_ku.TabStop = false;
             this.txtten_ku.Tag = "readonly";
@@ -200,7 +200,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtTk.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtTk.HoverColor = System.Drawing.Color.Yellow;
             this.TxtTk.LeaveColor = System.Drawing.Color.White;
-            this.TxtTk.Location = new System.Drawing.Point(120, 74);
+            this.TxtTk.Location = new System.Drawing.Point(165, 74);
             this.TxtTk.Name = "TxtTk";
             this.TxtTk.Size = new System.Drawing.Size(150, 23);
             this.TxtTk.TabIndex = 2;
@@ -299,7 +299,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtDu_no_nt00.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtDu_no_nt00.HoverColor = System.Drawing.Color.Yellow;
             this.TxtDu_no_nt00.LeaveColor = System.Drawing.Color.White;
-            this.TxtDu_no_nt00.Location = new System.Drawing.Point(120, 130);
+            this.TxtDu_no_nt00.Location = new System.Drawing.Point(165, 130);
             this.TxtDu_no_nt00.Name = "TxtDu_no_nt00";
             this.TxtDu_no_nt00.Size = new System.Drawing.Size(150, 23);
             this.TxtDu_no_nt00.TabIndex = 4;
@@ -334,7 +334,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtDu_no00.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtDu_no00.HoverColor = System.Drawing.Color.Yellow;
             this.TxtDu_no00.LeaveColor = System.Drawing.Color.White;
-            this.TxtDu_no00.Location = new System.Drawing.Point(120, 102);
+            this.TxtDu_no00.Location = new System.Drawing.Point(165, 102);
             this.TxtDu_no00.Name = "TxtDu_no00";
             this.TxtDu_no00.Size = new System.Drawing.Size(150, 23);
             this.TxtDu_no00.TabIndex = 3;
@@ -370,7 +370,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtMa_ku.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtMa_ku.HoverColor = System.Drawing.Color.Yellow;
             this.TxtMa_ku.LeaveColor = System.Drawing.Color.White;
-            this.TxtMa_ku.Location = new System.Drawing.Point(120, 46);
+            this.TxtMa_ku.Location = new System.Drawing.Point(165, 46);
             this.TxtMa_ku.Name = "TxtMa_ku";
             this.TxtMa_ku.Size = new System.Drawing.Size(150, 23);
             this.TxtMa_ku.TabIndex = 1;
@@ -399,7 +399,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtMa_dvcs.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtMa_dvcs.HoverColor = System.Drawing.Color.Yellow;
             this.TxtMa_dvcs.LeaveColor = System.Drawing.Color.White;
-            this.TxtMa_dvcs.Location = new System.Drawing.Point(120, 18);
+            this.TxtMa_dvcs.Location = new System.Drawing.Point(165, 18);
             this.TxtMa_dvcs.Name = "TxtMa_dvcs";
             this.TxtMa_dvcs.Size = new System.Drawing.Size(150, 23);
             this.TxtMa_dvcs.TabIndex = 0;
