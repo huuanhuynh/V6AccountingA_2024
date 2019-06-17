@@ -610,6 +610,7 @@
             // 
             // label7
             // 
+            this.label7.AccessibleDescription = "FILTERL00274";
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(31, 106);
             this.label7.Name = "label7";

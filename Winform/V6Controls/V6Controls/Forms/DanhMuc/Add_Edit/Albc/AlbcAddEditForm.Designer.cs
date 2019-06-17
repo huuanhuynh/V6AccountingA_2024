@@ -91,7 +91,7 @@
             this.label47 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.TxtSTT13 = new V6Controls.V6NumberTextBox();
-            this.label33 = new System.Windows.Forms.Label();
+            this.lblFrozen = new System.Windows.Forms.Label();
             this.lblThongTinThem = new System.Windows.Forms.Label();
             this.txtExtraInfo = new V6Controls.V6ColorTextBox();
             this.grbSum = new System.Windows.Forms.GroupBox();
@@ -987,7 +987,7 @@
             this.tabPage2.AccessibleDescription = "ADDEDITT00020";
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage2.Controls.Add(this.TxtSTT13);
-            this.tabPage2.Controls.Add(this.label33);
+            this.tabPage2.Controls.Add(this.lblFrozen);
             this.tabPage2.Controls.Add(this.lblThongTinThem);
             this.tabPage2.Controls.Add(this.txtExtraInfo);
             this.tabPage2.Controls.Add(this.grbSum);
@@ -1046,14 +1046,15 @@
             0,
             0});
             // 
-            // label33
+            // lblFrozen
             // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(343, 105);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(93, 13);
-            this.label33.TabIndex = 149;
-            this.label33.Text = "Số cột đông cứng";
+            this.lblFrozen.AccessibleDescription = "ADDEDITL00664";
+            this.lblFrozen.AutoSize = true;
+            this.lblFrozen.Location = new System.Drawing.Point(343, 105);
+            this.lblFrozen.Name = "lblFrozen";
+            this.lblFrozen.Size = new System.Drawing.Size(93, 13);
+            this.lblFrozen.TabIndex = 149;
+            this.lblFrozen.Text = "Số cột đông cứng";
             // 
             // lblThongTinThem
             // 
@@ -1844,6 +1845,6 @@
         private System.Windows.Forms.Label lblThongTinThem;
         private V6ColorTextBox txtExtraInfo;
         private V6NumberTextBox TxtSTT13;
-        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label lblFrozen;
     }
 }

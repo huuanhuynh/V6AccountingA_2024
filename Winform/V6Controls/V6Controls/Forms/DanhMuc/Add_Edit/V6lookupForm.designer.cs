@@ -43,7 +43,7 @@
             this.v6CheckBox1 = new V6Controls.V6CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.TxtSTT13 = new V6Controls.V6NumberTextBox();
-            this.label30 = new System.Windows.Forms.Label();
+            this.lblFrozen = new System.Windows.Forms.Label();
             this.grbBold = new System.Windows.Forms.GroupBox();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
@@ -304,7 +304,7 @@
             this.tabPage3.AutoScroll = true;
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage3.Controls.Add(this.TxtSTT13);
-            this.tabPage3.Controls.Add(this.label30);
+            this.tabPage3.Controls.Add(this.lblFrozen);
             this.tabPage3.Controls.Add(this.grbBold);
             this.tabPage3.Controls.Add(this.cboColorList);
             this.tabPage3.Controls.Add(this.cboColor);
@@ -350,15 +350,15 @@
             0,
             0});
             // 
-            // label30
+            // lblFrozen
             // 
-            this.label30.AccessibleDescription = "ADDEDITL00664";
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(358, 151);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(119, 17);
-            this.label30.TabIndex = 37;
-            this.label30.Text = "Số cột đông cứng";
+            this.lblFrozen.AccessibleDescription = "ADDEDITL00664";
+            this.lblFrozen.AutoSize = true;
+            this.lblFrozen.Location = new System.Drawing.Point(358, 151);
+            this.lblFrozen.Name = "lblFrozen";
+            this.lblFrozen.Size = new System.Drawing.Size(119, 17);
+            this.lblFrozen.TabIndex = 37;
+            this.lblFrozen.Text = "Số cột đông cứng";
             // 
             // grbBold
             // 
@@ -1443,7 +1443,7 @@
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label lblTenMau;
-        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label lblFrozen;
         private V6NumberTextBox TxtSTT13;
         private V6ColorTextBox txtVName2;
         private V6ColorTextBox txtVName;

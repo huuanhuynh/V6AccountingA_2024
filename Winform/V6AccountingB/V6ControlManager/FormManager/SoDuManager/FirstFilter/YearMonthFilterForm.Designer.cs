@@ -88,11 +88,11 @@
             this.txtYear.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtYear.HoverColor = System.Drawing.Color.Yellow;
             this.txtYear.LeaveColor = System.Drawing.Color.White;
-            this.txtYear.Location = new System.Drawing.Point(76, 12);
+            this.txtYear.Location = new System.Drawing.Point(86, 12);
             this.txtYear.MaxLength = 5;
             this.txtYear.MaxNumLength = 4;
             this.txtYear.Name = "txtYear";
-            this.txtYear.Size = new System.Drawing.Size(112, 20);
+            this.txtYear.Size = new System.Drawing.Size(100, 20);
             this.txtYear.TabIndex = 0;
             this.txtYear.Text = "0";
             this.txtYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -129,11 +129,11 @@
             this.TxtThang.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtThang.HoverColor = System.Drawing.Color.Yellow;
             this.TxtThang.LeaveColor = System.Drawing.Color.White;
-            this.TxtThang.Location = new System.Drawing.Point(77, 37);
+            this.TxtThang.Location = new System.Drawing.Point(86, 37);
             this.TxtThang.MaxLength = 5;
             this.TxtThang.MaxNumLength = 4;
             this.TxtThang.Name = "TxtThang";
-            this.TxtThang.Size = new System.Drawing.Size(112, 20);
+            this.TxtThang.Size = new System.Drawing.Size(100, 20);
             this.TxtThang.TabIndex = 1;
             this.TxtThang.Text = "0";
             this.TxtThang.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -147,7 +147,7 @@
             // 
             // YearMonthFilterForm
             // 
-            this.AccessibleDescription = "FILTERF00001";
+            this.AccessibleDescription = "V6YEARR00003";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;

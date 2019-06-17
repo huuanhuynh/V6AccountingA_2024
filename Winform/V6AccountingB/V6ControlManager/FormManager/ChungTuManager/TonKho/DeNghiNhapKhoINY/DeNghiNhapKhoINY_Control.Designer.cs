@@ -1308,7 +1308,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             // 
             // label1
             // 
-            this.label1.AccessibleDescription = "ACACTCA1H00042";
+            this.label1.AccessibleDescription = "INVOICEL00008";
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -1754,6 +1754,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             // 
             // tabThongTin
             // 
+            this.tabThongTin.AccessibleDescription = "ASOCTSOAH00080";
             this.tabThongTin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabThongTin.Controls.Add(this.dateTG_NHAN);
             this.tabThongTin.Controls.Add(this.lblTG_NHAN);
@@ -2722,7 +2723,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             // 
             // btnChonPX
             // 
-            this.btnChonPX.AccessibleDescription = "APOCTPOAB00030";
+            this.btnChonPX.AccessibleDescription = "ASOCTSOAB00046";
             this.btnChonPX.Location = new System.Drawing.Point(195, 28);
             this.btnChonPX.Name = "btnChonPX";
             this.btnChonPX.Size = new System.Drawing.Size(75, 23);
@@ -2872,6 +2873,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             // 
             // lblSoDH
             // 
+            this.lblSoDH.AccessibleDescription = "ASOCTSOAL00126";
             this.lblSoDH.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSoDH.AutoSize = true;
             this.lblSoDH.Location = new System.Drawing.Point(627, 11);

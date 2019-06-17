@@ -144,29 +144,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 this.WriteExLog(GetType() + ".FixID", ex);
             }
         }
-
-       private void GoogleTranslate()
-        {
-            try
-            {
-                //if (txtTextE.Text.Trim() == "") return;
-                //txtC.Text = RequestWeather(txtTextE.Text, LanguagePair.China);
-                //txtC.Text = TranslateText(txtTextE.Text, LanguagePair.China);
-                //txtF.Text = SingleTranslate(txtTextE.Text, LanguagePair.France);
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".GoogleTranslate", ex);
-            }
-        }
         
-        //private class LanguagePair
-        //{
-        //    public static string China = "zh-CN";
-        //    public static string English = "en";
-        //    public static string France = "FR";
-        //}
-
         private void txtCtype_TextChanged(object sender, EventArgs e)
         {
             FixID();
@@ -196,12 +174,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             txtTextE.Text = ChuyenMaTiengViet.ToUnSign(txtTextE.Text);
         }
-
-        private void btnGoogleTranslate_Click(object sender, EventArgs e)
-        {
-            GoogleTranslate();
-        }
-
         
     }
 }

@@ -30,7 +30,7 @@
         {
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblMaCT = new System.Windows.Forms.Label();
             this.txtMaCt = new V6Controls.V6VvarTextBox();
             this.v6Label2 = new V6Controls.V6Label();
             this.v6ColorDateTimePick2 = new V6Controls.V6DateTimePicker();
@@ -39,7 +39,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radOr = new System.Windows.Forms.RadioButton();
             this.radAnd = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblMaDVCS = new System.Windows.Forms.Label();
             this.txtMaDvcs = new V6Controls.V6VvarTextBox();
             this.txtMaSoNB = new V6Controls.V6VvarTextBox();
             this.txtTK = new V6Controls.V6VvarTextBox();
@@ -69,16 +69,16 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Mã số nội bộ";
             // 
-            // label8
+            // lblMaCT
             // 
-            this.label8.AccessibleDescription = "FILTERL00079";
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(7, 12);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(67, 13);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Mã chứng từ";
+            this.lblMaCT.AccessibleDescription = "FILTERL00004";
+            this.lblMaCT.AutoSize = true;
+            this.lblMaCT.Location = new System.Drawing.Point(7, 12);
+            this.lblMaCT.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMaCT.Name = "lblMaCT";
+            this.lblMaCT.Size = new System.Drawing.Size(67, 13);
+            this.lblMaCT.TabIndex = 0;
+            this.lblMaCT.Text = "Mã chứng từ";
             // 
             // txtMaCt
             // 
@@ -184,16 +184,16 @@
             this.radAnd.Text = "Điều kiện (AND)";
             this.radAnd.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // lblMaDVCS
             // 
-            this.label1.AccessibleDescription = "FILTERL00079";
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 37);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Mã đơn vị cơ sở";
+            this.lblMaDVCS.AccessibleDescription = "FILTERL00079";
+            this.lblMaDVCS.AutoSize = true;
+            this.lblMaDVCS.Location = new System.Drawing.Point(7, 37);
+            this.lblMaDVCS.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMaDVCS.Name = "lblMaDVCS";
+            this.lblMaDVCS.Size = new System.Drawing.Size(84, 13);
+            this.lblMaDVCS.TabIndex = 2;
+            this.lblMaDVCS.Text = "Mã đơn vị cơ sở";
             // 
             // txtMaDvcs
             // 
@@ -275,8 +275,8 @@
             this.Controls.Add(this.txtMaSoNB);
             this.Controls.Add(this.txtMaDvcs);
             this.Controls.Add(this.txtMaCt);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.lblMaDVCS);
+            this.Controls.Add(this.lblMaCT);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label4);
             this.Name = "XAGLAUTO_GL1";
@@ -293,7 +293,7 @@
 
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblMaCT;
         private V6Controls.V6VvarTextBox txtMaCt;
         private V6Controls.V6Label v6Label2;
         private V6Controls.V6DateTimePicker v6ColorDateTimePick2;
@@ -302,7 +302,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radOr;
         private System.Windows.Forms.RadioButton radAnd;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblMaDVCS;
         private V6Controls.V6VvarTextBox txtMaDvcs;
         private V6Controls.V6VvarTextBox txtMaSoNB;
         private V6Controls.V6VvarTextBox txtTK;

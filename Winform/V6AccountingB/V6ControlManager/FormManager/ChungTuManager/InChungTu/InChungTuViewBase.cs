@@ -2089,7 +2089,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("In chứng từ.");
+            V6ControlFormHelper.SetStatusText2(V6Text.Text("PRINT" + Invoice.Mact));
         }
         
         private void dataGridView1_ColumnAdded(object sender, DataGridViewColumnEventArgs e)

@@ -364,7 +364,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             // 
             // rTiengViet
             // 
-            this.rTiengViet.AccessibleDescription = "ASOCTSOA-INL00018";
+            this.rTiengViet.AccessibleDescription = "ADDEDITL00775";
             this.rTiengViet.AccessibleName = "Tiếng Việt";
             this.rTiengViet.AutoSize = true;
             this.rTiengViet.Checked = true;

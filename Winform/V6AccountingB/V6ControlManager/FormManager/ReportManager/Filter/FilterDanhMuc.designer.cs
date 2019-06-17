@@ -120,7 +120,7 @@
             // 
             this.radOr.AccessibleDescription = "FILTERR00002";
             this.radOr.AutoSize = true;
-            this.radOr.Location = new System.Drawing.Point(146, 0);
+            this.radOr.Location = new System.Drawing.Point(177, 0);
             this.radOr.Name = "radOr";
             this.radOr.Size = new System.Drawing.Size(95, 17);
             this.radOr.TabIndex = 1;
@@ -132,7 +132,7 @@
             this.radAnd.AccessibleDescription = "FILTERR00001";
             this.radAnd.AutoSize = true;
             this.radAnd.Checked = true;
-            this.radAnd.Location = new System.Drawing.Point(38, 0);
+            this.radAnd.Location = new System.Drawing.Point(74, 0);
             this.radAnd.Name = "radAnd";
             this.radAnd.Size = new System.Drawing.Size(102, 17);
             this.radAnd.TabIndex = 0;

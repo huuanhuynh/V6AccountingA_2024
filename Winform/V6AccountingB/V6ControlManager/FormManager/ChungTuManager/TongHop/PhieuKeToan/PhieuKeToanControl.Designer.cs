@@ -472,7 +472,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             // 
             // label1
             // 
-            this.label1.AccessibleDescription = "ACACTCA1H00042";
+            this.label1.AccessibleDescription = "INVOICEL00008";
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -486,7 +486,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             // 
             // btnInfos
             // 
-            this.btnInfos.AccessibleDescription = "AGLCTGL1H00004";
+            this.btnInfos.AccessibleDescription = "ASOCTSOAB00040";
             this.btnInfos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInfos.Location = new System.Drawing.Point(672, 9);
             this.btnInfos.Name = "btnInfos";
@@ -1065,7 +1065,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             // 
             // v6Label23
             // 
-            this.v6Label23.AccessibleDescription = "AGLCTGL1L00057";
+            this.v6Label23.AccessibleDescription = "INVOICEL00006";
             this.v6Label23.AutoSize = true;
             this.v6Label23.Location = new System.Drawing.Point(8, 35);
             this.v6Label23.Name = "v6Label23";
@@ -1075,7 +1075,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             // 
             // v6Label4
             // 
-            this.v6Label4.AccessibleDescription = "AGLCTGL1L00056";
+            this.v6Label4.AccessibleDescription = "INVOICEL00007";
             this.v6Label4.AutoSize = true;
             this.v6Label4.Location = new System.Drawing.Point(8, 11);
             this.v6Label4.Name = "v6Label4";
@@ -1189,7 +1189,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             // 
             // chkSuaTien
             // 
-            this.chkSuaTien.AccessibleDescription = "AGLCTGL1H00005";
+            this.chkSuaTien.AccessibleDescription = "ASOCTSOAR00026";
             this.chkSuaTien.AccessibleName = "sua_tien";
             this.chkSuaTien.AutoSize = true;
             this.chkSuaTien.Location = new System.Drawing.Point(7, 59);
@@ -1249,7 +1249,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             // 
             // btnChonPX
             // 
-            this.btnChonPX.AccessibleDescription = "AGLCTGL1B00036";
+            this.btnChonPX.AccessibleDescription = "ASOCTSOAB00046";
             this.btnChonPX.Location = new System.Drawing.Point(195, 36);
             this.btnChonPX.Name = "btnChonPX";
             this.btnChonPX.Size = new System.Drawing.Size(75, 23);
@@ -1269,7 +1269,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             // 
             // v6Label20
             // 
-            this.v6Label20.AccessibleDescription = "AGLCTGL1L00018";
+            this.v6Label20.AccessibleDescription = "ASOCTSOAL00045";
             this.v6Label20.AutoSize = true;
             this.v6Label20.Location = new System.Drawing.Point(6, 84);
             this.v6Label20.Name = "v6Label20";
@@ -1279,7 +1279,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             // 
             // v6Label32
             // 
-            this.v6Label32.AccessibleDescription = "AGLCTGL1L00060";
+            this.v6Label32.AccessibleDescription = "ASOCTSOAL00011";
             this.v6Label32.AutoSize = true;
             this.v6Label32.Location = new System.Drawing.Point(191, 63);
             this.v6Label32.Name = "v6Label32";

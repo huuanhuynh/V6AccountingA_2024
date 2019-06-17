@@ -165,7 +165,8 @@ namespace V6Controls.Forms
 
 
         private bool ApplyControlTripleClick;
-        protected void LoadLanguage()
+
+        public void LoadLanguage()
         {
             if (V6Setting.IsDesignTime) return;
             

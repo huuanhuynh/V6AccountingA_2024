@@ -61,7 +61,6 @@
             this.lblTextE = new System.Windows.Forms.Label();
             this.lblTextV = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
-            this.btnGoogleTranslate = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,7 +79,6 @@
             this.groupBox1.Controls.Add(this.lblR);
             this.groupBox1.Controls.Add(this.txtF);
             this.groupBox1.Controls.Add(this.lblF);
-            this.groupBox1.Controls.Add(this.btnGoogleTranslate);
             this.groupBox1.Controls.Add(this.btnKhongDau);
             this.groupBox1.Controls.Add(this.chkAutoCopyID);
             this.groupBox1.Controls.Add(this.txtTen);
@@ -535,17 +533,6 @@
             this.lblID.TabIndex = 0;
             this.lblID.Text = "ID";
             // 
-            // btnGoogleTranslate
-            // 
-            this.btnGoogleTranslate.AccessibleDescription = "AECORPLANB00002";
-            this.btnGoogleTranslate.Location = new System.Drawing.Point(331, 180);
-            this.btnGoogleTranslate.Name = "btnGoogleTranslate";
-            this.btnGoogleTranslate.Size = new System.Drawing.Size(115, 27);
-            this.btnGoogleTranslate.TabIndex = 11;
-            this.btnGoogleTranslate.Text = "Google Translate";
-            this.btnGoogleTranslate.UseVisualStyleBackColor = true;
-            this.btnGoogleTranslate.Click += new System.EventHandler(this.btnGoogleTranslate_Click);
-            // 
             // CorpLanAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -597,6 +584,5 @@
         private System.Windows.Forms.Label lblR;
         private V6ColorTextBox txtF;
         private System.Windows.Forms.Label lblF;
-        private System.Windows.Forms.Button btnGoogleTranslate;
     }
 }

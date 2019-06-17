@@ -197,7 +197,7 @@
             // 
             // label34
             // 
-            this.label34.AccessibleDescription = "Định dạng số";
+            this.label34.AccessibleDescription = "FILTERL00209";
             this.label34.AutoSize = true;
             this.label34.Location = new System.Drawing.Point(5, 191);
             this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);

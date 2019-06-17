@@ -82,7 +82,7 @@
             this.label46 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.v6NumberTextBox1 = new V6Controls.V6NumberTextBox();
-            this.label41 = new System.Windows.Forms.Label();
+            this.lblFrozen = new System.Windows.Forms.Label();
             this.grbBold = new System.Windows.Forms.GroupBox();
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
@@ -963,7 +963,7 @@
             this.tabPage3.AutoScroll = true;
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.tabPage3.Controls.Add(this.v6NumberTextBox1);
-            this.tabPage3.Controls.Add(this.label41);
+            this.tabPage3.Controls.Add(this.lblFrozen);
             this.tabPage3.Controls.Add(this.grbBold);
             this.tabPage3.Controls.Add(this.cboColorList);
             this.tabPage3.Controls.Add(this.cboColor);
@@ -1032,15 +1032,15 @@
             0,
             0});
             // 
-            // label41
+            // lblFrozen
             // 
-            this.label41.AccessibleDescription = "ADDEDITL00664";
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(378, 303);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(119, 17);
-            this.label41.TabIndex = 172;
-            this.label41.Text = "Số cột đông cứng";
+            this.lblFrozen.AccessibleDescription = "ADDEDITL00664";
+            this.lblFrozen.AutoSize = true;
+            this.lblFrozen.Location = new System.Drawing.Point(378, 303);
+            this.lblFrozen.Name = "lblFrozen";
+            this.lblFrozen.Size = new System.Drawing.Size(119, 17);
+            this.lblFrozen.TabIndex = 172;
+            this.lblFrozen.Text = "Số cột đông cứng";
             // 
             // grbBold
             // 
@@ -1053,7 +1053,7 @@
             this.grbBold.Controls.Add(this.cboOperV);
             this.grbBold.Location = new System.Drawing.Point(7, 296);
             this.grbBold.Name = "grbBold";
-            this.grbBold.Size = new System.Drawing.Size(350, 95);
+            this.grbBold.Size = new System.Drawing.Size(350, 102);
             this.grbBold.TabIndex = 171;
             this.grbBold.TabStop = false;
             this.grbBold.Text = "Điều kiện in đậm [FIELD] = Value?";
@@ -1996,7 +1996,7 @@
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label lblTenMau;
         private V6NumberTextBox v6NumberTextBox1;
-        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label lblFrozen;
         private V6ColorTextBox txtVName2;
         private V6ColorTextBox txtVName;
         private System.Windows.Forms.Label label42;

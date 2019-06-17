@@ -31,6 +31,7 @@ namespace V6ControlManager.FormManager.ReportManager
 
             var FilterControl = Filter.Filter.GetFilterControl44(program);
             panel1.Controls.Add(FilterControl);
+            FilterControl.LoadLanguage();
             FilterControl.Focus();
             return FilterControl;
         }

@@ -336,13 +336,13 @@
             // 
             // v6Label4
             // 
-            this.v6Label4.AccessibleDescription = "FILTERL00158";
+            this.v6Label4.AccessibleDescription = "FILTERL00278";
             this.v6Label4.AutoSize = true;
             this.v6Label4.Location = new System.Drawing.Point(98, 76);
             this.v6Label4.Name = "v6Label4";
             this.v6Label4.Size = new System.Drawing.Size(56, 13);
             this.v6Label4.TabIndex = 7;
-            this.v6Label4.Text = "2 - Tồn <0";
+            this.v6Label4.Text = "2 - Tồn < 0";
             // 
             // AINCDHSDC
             // 

@@ -502,7 +502,7 @@
             // 
             // label14
             // 
-            this.label14.AccessibleDescription = "AARCTAR1-INO00012";
+            this.label14.AccessibleDescription = "ADDEDITL00776";
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(326, 8);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -513,7 +513,7 @@
             // 
             // label13
             // 
-            this.label13.AccessibleDescription = "ASOCTSOA-INL00018";
+            this.label13.AccessibleDescription = "ADDEDITL00775";
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(155, 8);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);

@@ -222,6 +222,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     return new HoaDonControl(maCt, itemId, sttRec) { Name = itemId };
                 case "SOB":
                     return new HoaDonDichVuCoSLControl(maCt, itemId, sttRec) { Name = itemId };
+                case "SOC":
+                    return new HoaDonCafeControl(maCt, itemId, sttRec); 
                 case "SOH":
                     return new DonDatHangBanControl(maCt, itemId, sttRec) { Name = itemId };
                 case "SOR":

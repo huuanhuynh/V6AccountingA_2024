@@ -194,7 +194,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // v6Label13
             // 
-            this.v6Label13.AccessibleDescription = "";
+            this.v6Label13.AccessibleDescription = "ADDEDITL00777";
             this.v6Label13.AutoSize = true;
             this.v6Label13.Location = new System.Drawing.Point(218, 53);
             this.v6Label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);

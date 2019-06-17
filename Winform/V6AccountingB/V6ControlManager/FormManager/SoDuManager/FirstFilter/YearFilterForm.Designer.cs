@@ -62,7 +62,7 @@
             // 
             // label1
             // 
-            this.label1.AccessibleDescription = "V6YEARR00003";
+            this.label1.AccessibleDescription = "V6YEARL00003";
             this.label1.AccessibleName = "";
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(10, 15);
@@ -86,11 +86,11 @@
             this.txtYear.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtYear.HoverColor = System.Drawing.Color.Yellow;
             this.txtYear.LeaveColor = System.Drawing.Color.White;
-            this.txtYear.Location = new System.Drawing.Point(51, 12);
+            this.txtYear.Location = new System.Drawing.Point(86, 12);
             this.txtYear.MaxLength = 5;
             this.txtYear.MaxNumLength = 4;
             this.txtYear.Name = "txtYear";
-            this.txtYear.Size = new System.Drawing.Size(137, 20);
+            this.txtYear.Size = new System.Drawing.Size(100, 20);
             this.txtYear.TabIndex = 1;
             this.txtYear.Text = "0";
             this.txtYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -102,7 +102,7 @@
             // 
             // YearFilterForm
             // 
-            this.AccessibleDescription = "V6YEARR00004";
+            this.AccessibleDescription = "V6YEARR00003";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
@@ -119,6 +119,7 @@
             this.ShowInTaskbar = false;
             this.Text = "Lọc năm";
             this.Load += new System.EventHandler(this.FilterForm_Load);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.btnFilter, 0);
             this.Controls.SetChildIndex(this.txtYear, 0);
             this.Controls.SetChildIndex(this.btnCancel, 0);
