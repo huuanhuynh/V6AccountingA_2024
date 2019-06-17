@@ -26,6 +26,7 @@ namespace V6ReportControls
         {
             try
             {
+                //LoadLanguage();
                 IsSelected = true;
                 label1.Visible = false;
                 comboBox1.Visible = false;

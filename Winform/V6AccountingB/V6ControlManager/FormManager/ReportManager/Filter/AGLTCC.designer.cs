@@ -265,9 +265,9 @@
             // btnSuaCTMau
             // 
             this.btnSuaCTMau.AccessibleDescription = "REPORTB00013";
-            this.btnSuaCTMau.Location = new System.Drawing.Point(149, 174);
+            this.btnSuaCTMau.Location = new System.Drawing.Point(188, 174);
             this.btnSuaCTMau.Name = "btnSuaCTMau";
-            this.btnSuaCTMau.Size = new System.Drawing.Size(48, 23);
+            this.btnSuaCTMau.Size = new System.Drawing.Size(64, 23);
             this.btnSuaCTMau.TabIndex = 28;
             this.btnSuaCTMau.Text = "Sửa ct";
             this.btnSuaCTMau.UseVisualStyleBackColor = true;
@@ -276,9 +276,9 @@
             // btnSuaTTMau
             // 
             this.btnSuaTTMau.AccessibleDescription = "REPORTB00001";
-            this.btnSuaTTMau.Location = new System.Drawing.Point(105, 174);
+            this.btnSuaTTMau.Location = new System.Drawing.Point(124, 174);
             this.btnSuaTTMau.Name = "btnSuaTTMau";
-            this.btnSuaTTMau.Size = new System.Drawing.Size(43, 23);
+            this.btnSuaTTMau.Size = new System.Drawing.Size(64, 23);
             this.btnSuaTTMau.TabIndex = 29;
             this.btnSuaTTMau.Text = "Sửa tt";
             this.btnSuaTTMau.UseVisualStyleBackColor = true;
@@ -287,9 +287,9 @@
             // btnThemMau
             // 
             this.btnThemMau.AccessibleDescription = "REPORTB00002";
-            this.btnThemMau.Location = new System.Drawing.Point(61, 174);
+            this.btnThemMau.Location = new System.Drawing.Point(60, 174);
             this.btnThemMau.Name = "btnThemMau";
-            this.btnThemMau.Size = new System.Drawing.Size(43, 23);
+            this.btnThemMau.Size = new System.Drawing.Size(64, 23);
             this.btnThemMau.TabIndex = 30;
             this.btnThemMau.Text = "Thêm";
             this.btnThemMau.UseVisualStyleBackColor = true;

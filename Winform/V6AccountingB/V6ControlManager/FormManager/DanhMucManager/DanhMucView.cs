@@ -1101,7 +1101,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         }
                     }
                     
-                    var aev = AddEditManager.Init_Control(CurrentTable, _tableName); //ảo
+                    var aev = AddEditManager.Init_Control(CurrentTable, _tableName, _aldmConfig.FormCode); //ảo
                     if (!string.IsNullOrEmpty(aev.KeyField1))
                     {
                         var oldKey1 = _data[aev.KeyField1].ToString().Trim();

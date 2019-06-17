@@ -47,9 +47,9 @@
             // btnSuaCTMau
             // 
             this.btnSuaCTMau.AccessibleDescription = "REPORTB00003";
-            this.btnSuaCTMau.Location = new System.Drawing.Point(153, 27);
+            this.btnSuaCTMau.Location = new System.Drawing.Point(192, 27);
             this.btnSuaCTMau.Name = "btnSuaCTMau";
-            this.btnSuaCTMau.Size = new System.Drawing.Size(48, 23);
+            this.btnSuaCTMau.Size = new System.Drawing.Size(64, 23);
             this.btnSuaCTMau.TabIndex = 34;
             this.btnSuaCTMau.Text = "Sửa ct";
             this.btnSuaCTMau.UseVisualStyleBackColor = true;
@@ -58,9 +58,9 @@
             // btnSuaTTMau
             // 
             this.btnSuaTTMau.AccessibleDescription = "REPORTB00001";
-            this.btnSuaTTMau.Location = new System.Drawing.Point(109, 27);
+            this.btnSuaTTMau.Location = new System.Drawing.Point(128, 27);
             this.btnSuaTTMau.Name = "btnSuaTTMau";
-            this.btnSuaTTMau.Size = new System.Drawing.Size(43, 23);
+            this.btnSuaTTMau.Size = new System.Drawing.Size(64, 23);
             this.btnSuaTTMau.TabIndex = 35;
             this.btnSuaTTMau.Text = "Sửa tt";
             this.btnSuaTTMau.UseVisualStyleBackColor = true;
@@ -69,9 +69,9 @@
             // btnThemMau
             // 
             this.btnThemMau.AccessibleDescription = "REPORTB00002";
-            this.btnThemMau.Location = new System.Drawing.Point(65, 27);
+            this.btnThemMau.Location = new System.Drawing.Point(64, 27);
             this.btnThemMau.Name = "btnThemMau";
-            this.btnThemMau.Size = new System.Drawing.Size(43, 23);
+            this.btnThemMau.Size = new System.Drawing.Size(64, 23);
             this.btnThemMau.TabIndex = 36;
             this.btnThemMau.Text = "Thêm";
             this.btnThemMau.UseVisualStyleBackColor = true;
@@ -87,7 +87,7 @@
             this.txtma_maubc.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtma_maubc.HoverColor = System.Drawing.Color.Yellow;
             this.txtma_maubc.LeaveColor = System.Drawing.Color.White;
-            this.txtma_maubc.Location = new System.Drawing.Point(236, 30);
+            this.txtma_maubc.Location = new System.Drawing.Point(7, 30);
             this.txtma_maubc.Name = "txtma_maubc";
             this.txtma_maubc.Size = new System.Drawing.Size(44, 20);
             this.txtma_maubc.TabIndex = 33;

@@ -114,11 +114,23 @@
     <Compile Include="Controls\V6DateTimeFullPickerNull.Designer.cs">
       <DependentUpon>V6DateTimeFullPickerNull.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\KhachHangAddEditFrom_A1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\KhachHangAddEditFrom_A1.Designer.cs">
+      <DependentUpon>KhachHangAddEditFrom_A1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\V6MenuHideYN.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\PhanQuyen\V6MenuHideYN.Designer.cs">
       <DependentUpon>V6MenuHideYN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm_A1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm_A1.Designer.cs">
+      <DependentUpon>VatTuAddEditForm_A1.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Editor\ControlsPropertiesEditorForm.cs">
       <SubType>Form</SubType>
@@ -1602,6 +1614,9 @@
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\ChietKhauAddEditForm.resx">
       <DependentUpon>ChietKhauAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\KhachHangAddEditFrom_A1.resx">
+      <DependentUpon>KhachHangAddEditFrom_A1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Language\CorpLanAddEditForm.resx">
       <DependentUpon>CorpLanAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1961,6 +1976,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\VanChuyenAddEditForm.resx">
       <DependentUpon>VanChuyenAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm_A1.resx">
+      <DependentUpon>VatTuAddEditForm_A1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm.resx">
       <DependentUpon>VatTuAddEditForm.cs</DependentUpon>

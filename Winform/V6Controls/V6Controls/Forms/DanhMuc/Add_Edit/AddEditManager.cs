@@ -15,9 +15,16 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
     {
         
         #region ==== Init Control ====
-        public static AddEditControlVirtual Init_Control(V6TableName tableName, string name = null)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="name"></param>
+        /// <param name="formCode">Code form tùy chỉnh cho từng khác hàng của V6.</param>
+        /// <returns></returns>
+        public static AddEditControlVirtual Init_Control(V6TableName tableName, string name = null, string formCode = null)
         {
-
+            if (formCode != null) formCode = formCode.ToUpper();
             AddEditControlVirtual FormControl = null;
             //if (V6Check_Rights())
             switch (tableName)
@@ -65,7 +72,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     FormControl = new AlkcAddEditForm();
                     break;
                 case V6TableName.Alkh:
-                    FormControl = new KhachHangAddEditFrom();
+                    if (formCode == "ALKH_A1") FormControl = new KhachHangAddEditFrom_A1();
+                    else FormControl = new KhachHangAddEditFrom();
                     break;
                 case V6TableName.Alkhct:
                     FormControl = new KhachHangChiTietFrom();
@@ -215,7 +223,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     FormControl = new ViTriAddEditForm();
                     break;
                 case V6TableName.Alvt:
-                    FormControl = new VatTuAddEditForm();
+                    if (formCode == "ALVT_A1") FormControl = new VatTuAddEditForm_A1();
+                    else FormControl = new VatTuAddEditForm();
                     break;
                 case V6TableName.Alvttg:
                     FormControl = new SanPhamTrungGianAddEditForm();

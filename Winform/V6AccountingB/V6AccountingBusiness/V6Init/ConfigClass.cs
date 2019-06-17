@@ -327,6 +327,7 @@ namespace V6Init
         public bool INCREASE_YN { get { return GetString("INCREASE_YN") == "1"; } }
         public string VName { get { return GetString("VNAME"); } }
         public string VName2 { get { return GetString("VNAME2"); } }
+        public string FormCode { get { return GetString("FORMCODE"); } }
     }
 
     public class V6lookupConfig : Config

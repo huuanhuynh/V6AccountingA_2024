@@ -1,10 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+using V6Controls.Forms;
 
 namespace V6ReportControls
 {
-    public partial class FilterLineBase : UserControl
+    public partial class FilterLineBase : V6Control
     {
         
         public FilterLineBase()

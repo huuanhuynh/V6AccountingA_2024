@@ -119,7 +119,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                FormControl = AddEditManager.Init_Control(_tableName, _tableNameString);
+                LoadAldmConfig();
+
+                FormControl = AddEditManager.Init_Control(_tableName, _tableNameString, _aldmConfig.FormCode);
                 if (FormControl is NoRightAddEdit)
                 {
                     string keys_string = "";
@@ -152,12 +154,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
-        private void MyInit()
+        private void LoadAldmConfig()
         {
             try
             {
-                Text = FormControl.Mode + " - " + V6TableHelper.V6TableCaption(_tableName, V6Setting.Language);
-
                 _aldmConfig = ConfigManager.GetAldmConfig(_tableNameString);
                 if (_aldmConfig.HaveInfo)
                 {
@@ -166,11 +166,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         Text = FormControl.Mode + " - " + (V6Setting.IsVietnamese ? _aldmConfig.TITLE : _aldmConfig.TITLE2);
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadAldmConfig", ex);
+            }
+        }
 
-                //All_Objects["thisForm"] = this;
-                //CreateFormProgram();
-                //V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
-                //FormControl.InvokeFormEvent("INIT");
+        private void MyInit()
+        {
+            try
+            {
+                Text = FormControl.Mode + " - " + V6TableHelper.V6TableCaption(_tableName, V6Setting.Language);
             }
             catch (Exception ex)
             {
