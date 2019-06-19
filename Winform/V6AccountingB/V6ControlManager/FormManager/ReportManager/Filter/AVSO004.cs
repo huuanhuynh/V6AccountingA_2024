@@ -7,7 +7,7 @@ using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class AVSO004: FilterBase
+    public partial class AVSO004 : FilterBase
     {
         public AVSO004()
         {
@@ -18,7 +18,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             fstart = 14;
             ffixcolumn = 6;
-
+            if (!V6Setting.IsVietnamese)
+            {
+                cbbLoaiBaoCao.Items.Clear();
+                cbbLoaiBaoCao.Items.AddRange(new object[] { "Quantity", "Value", "Both - Qty&Val" });
+            }
             cbbLoaiBaoCao.SelectedIndex = 0;
  
             dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);

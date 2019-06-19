@@ -10,7 +10,7 @@ using V6Tools;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class AKSOTH5: FilterBase
+    public partial class AKSOTH5 : FilterBase
     {
         public AKSOTH5()
         {
@@ -24,7 +24,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             String2 = "TEN_VT";
             String1 = "MA_VT";
-
+            if (!V6Setting.IsVietnamese)
+            {
+                cbbLoaiBaoCao.Items.Clear();
+                cbbLoaiBaoCao.Items.AddRange(new object[] { "Quantity", "Value", "Both - Qty&Val" });
+            }
             cbbLoaiBaoCao.SelectedIndex = 0;
  
             dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
@@ -36,7 +40,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 txtMaDvcs.Enabled = false;
             }
 
-            TxtKieu_bc.Text = "1";
             chkGiamTru.Checked = true;
 
             Txtnh_kh1.VvarTextBox.SetInitFilter("loai_nh=1");
@@ -70,7 +73,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 //@giam_tru tinyint,
                 //@Maubc int = 0,
                 //@mLan char(1)='V',
-                //@Loaibc char(1)='G',    
+                //@Loaibc char(1)='G',
                 //@advance nvarchar(max)
 
             // S: So luong, G: gia tri , C: Ca hai

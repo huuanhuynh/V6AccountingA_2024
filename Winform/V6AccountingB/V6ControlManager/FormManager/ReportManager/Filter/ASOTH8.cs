@@ -20,7 +20,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             fstart = 35;
             ffixcolumn = 6;
-
+            if (!V6Setting.IsVietnamese)
+            {
+                cbbLoaiBaoCao.Items.Clear();
+                cbbLoaiBaoCao.Items.AddRange(new object[] { "Quantity", "Value", "Both - Qty&Val" });
+            }
             cbbLoaiBaoCao.SelectedIndex = 0;
  
             dateNgay_ct0.SetValue(V6Setting.M_ngay_ct1);

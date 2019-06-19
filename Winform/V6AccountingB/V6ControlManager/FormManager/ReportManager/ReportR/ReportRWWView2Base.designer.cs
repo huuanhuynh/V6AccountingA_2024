@@ -100,7 +100,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.viewDataToolStripMenuItem,
             this.exportToPdfToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 202);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 180);
             // 
             // exportToExcelTemplate
             // 
@@ -398,7 +398,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // 
             // rTiengViet
             // 
-            this.rTiengViet.AccessibleDescription = "REPORTL00011";
+            this.rTiengViet.AccessibleDescription = "REPORTR00004";
             this.rTiengViet.AccessibleName = "Tiếng Việt";
             this.rTiengViet.AutoSize = true;
             this.rTiengViet.Checked = true;
@@ -414,7 +414,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // 
             // rBothLang
             // 
-            this.rBothLang.AccessibleDescription = "REPORTL00013";
+            this.rBothLang.AccessibleDescription = "REPORTR00006";
             this.rBothLang.AccessibleName = "English";
             this.rBothLang.AutoSize = true;
             this.rBothLang.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -428,7 +428,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // 
             // rEnglish
             // 
-            this.rEnglish.AccessibleDescription = "REPORTL00012";
+            this.rEnglish.AccessibleDescription = "REPORTR00005";
             this.rEnglish.AccessibleName = "English";
             this.rEnglish.AutoSize = true;
             this.rEnglish.ImeMode = System.Windows.Forms.ImeMode.NoControl;

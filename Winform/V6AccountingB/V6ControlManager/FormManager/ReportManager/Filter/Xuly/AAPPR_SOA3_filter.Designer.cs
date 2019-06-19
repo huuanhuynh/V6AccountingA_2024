@@ -68,7 +68,7 @@
             this.chkHoaDonDaIn = new V6Controls.V6CheckBox();
             this.v6Label5 = new V6Controls.V6Label();
             this.btnSuaChiTieu = new System.Windows.Forms.Button();
-            this.cboSendType = new System.Windows.Forms.ComboBox();
+            this.cboSendType = new V6Controls.Controls.V6IndexComboBox();
             this.grbTienTe = new System.Windows.Forms.GroupBox();
             this.rNgoaiTe = new System.Windows.Forms.RadioButton();
             this.rTienViet = new System.Windows.Forms.RadioButton();
@@ -716,7 +716,7 @@
         private V6ReportControls.FilterLineVvarTextBox lineNH_KH9;
         private V6ReportControls.FilterLineVvarTextBox lineNH_KH8;
         private V6ReportControls.FilterLineVvarTextBox lineNH_KH7;
-        private System.Windows.Forms.ComboBox cboSendType;
+        private V6Controls.Controls.V6IndexComboBox cboSendType;
         private System.Windows.Forms.GroupBox grbTienTe;
         private System.Windows.Forms.RadioButton rNgoaiTe;
         private System.Windows.Forms.RadioButton rTienViet;

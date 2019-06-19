@@ -580,7 +580,7 @@
             this.cbbLoaiBaoCao.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cbbLoaiBaoCao.FormattingEnabled = true;
             this.cbbLoaiBaoCao.Items.AddRange(new object[] {
-            "Số lượng\t",
+            "Số lượng",
             "Giá trị",
             "Cả hai - SL&GT"});
             this.cbbLoaiBaoCao.Location = new System.Drawing.Point(216, 69);

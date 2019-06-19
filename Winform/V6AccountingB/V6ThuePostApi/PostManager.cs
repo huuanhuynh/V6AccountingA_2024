@@ -235,7 +235,7 @@ namespace V6ThuePostManager
                 BkavWS bkavWS = new BkavWS();
                 
                 ExecCommandFunc wsExecCommand = null;
-                var webservice = new V6ThuePostBkavApi.vn.ehoadon.wsdemo.WSPublicEHoaDon();
+                var webservice = new V6ThuePostBkavApi.vn.ehoadon.wsdemo.WSPublicEHoaDon(baseUrl);
                 wsExecCommand = webservice.ExecuteCommand;
                 uint Constants_Mode = RemoteCommand.DefaultMode;
                 var remoteCommand = new RemoteCommand(wsExecCommand, BkavPartnerGUID, BkavPartnerToken, Constants_Mode);
@@ -1052,7 +1052,6 @@ namespace V6ThuePostManager
             string result = null;
             try
             {
-                //if (string.IsNullOrEmpty(baseUrl)) baseUrl = "https://www.google.com/";
                 result = new PortalService(_link_Portal).downloadInvFkeyNoPay(fkey, _username, _password);
 
                 if (result.StartsWith("ERR:7"))
@@ -2137,6 +2136,11 @@ namespace V6ThuePostManager
                         message += " " + responseObject.result.invoiceNo;
                         
                     }
+                    else if (responseObject.errorCode == null)
+                    {
+                        paras.Result.ResultDictionary["SO_HD"] = paras.InvoiceNo;
+                        paras.Result.ResultDictionary["RESULT_MESSAGE"] = responseObject.description;
+                    }
                     else
                     {
                         paras.Result.ResultDictionary["RESULT_ERROR"] = responseObject.description;
@@ -2314,7 +2318,7 @@ namespace V6ThuePostManager
         {
             BkavWS bkav_ws = new BkavWS();
             ExecCommandFunc wsExecCommand = null;
-            var webservice = new V6ThuePostBkavApi.vn.ehoadon.wsdemo.WSPublicEHoaDon();
+            var webservice = new V6ThuePostBkavApi.vn.ehoadon.wsdemo.WSPublicEHoaDon(baseUrl);
             wsExecCommand = webservice.ExecuteCommand;
             uint Constants_Mode = RemoteCommand.DefaultMode;
             var remoteCommand = new RemoteCommand(wsExecCommand, BkavPartnerGUID, BkavPartnerToken, Constants_Mode);

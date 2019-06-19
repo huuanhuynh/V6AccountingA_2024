@@ -4186,10 +4186,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 this.ShowErrorException(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec + " " + debug_flag, "TTTT(" + debug + ")"), ex);
             }
 
+            //if(V6Setting.WriteExtraLog)
             try // Log
             {
                 var tTienNt2 = TinhTong(AD, "TIEN_NT2");
-                if (txtTongThanhToanNt.Value < tTienNt2)
+                if (txtTongThanhToanNt.Value < tTienNt2 && txtTongCkNt.Value == 0 && txtTongGiamNt.Value == 0)
                 {
                     string timeString = DateTime.Now.ToString("yyyyMMdd_HHmmss");
                     string fileNameAM = string.Format("TTTT_AM_{0}_{1}.xls", CurrentIndex, timeString);

@@ -46,6 +46,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 var v = Categories.IsExistOneCode_List("ABVT,ABLO,ARI70", "Ma_vt", txtMaVT.Text);
                 txtMaVT.Enabled = !v;
+                txtMa_ttsp1.Enabled = !v;
+                txtMa_ttsp2.Enabled = !v;
+                txtMa_ttsp3.Enabled = !v;
+                txtMa_ttsp4.Enabled = !v;
                 txtDVT.Enabled = !v;
 
                 txttk_vt.ExistRowInTable();
@@ -448,5 +452,29 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
+        private void ma_ttsp_TextChanged(object sender, EventArgs e)
+        {
+            MakeMaVt();
+        }
+
+        private void MakeMaVt()
+        {
+            try
+            {
+                if (!IsReady) return;
+                
+                string mavt = "";
+                if (txtMa_ttsp1.Data != null) mavt += txtMa_ttsp1.Data["MA_TTSP"].ToString().Trim();
+                if (txtMa_ttsp2.Data != null) mavt += txtMa_ttsp2.Data["MA_TTSP"].ToString().Trim();
+                if (txtMa_ttsp3.Data != null) mavt += txtMa_ttsp3.Data["MA_TTSP"].ToString().Trim();
+                if (txtMa_ttsp4.Data != null) mavt += txtMa_ttsp4.Data["MA_TTSP"].ToString().Trim();
+
+                txtMaVT.Text = mavt;
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".MakeMaVt", ex);
+            }
+        }
     }
 }

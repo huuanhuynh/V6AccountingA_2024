@@ -11,7 +11,7 @@ using V6Tools;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class AKSOTH6: FilterBase
+    public partial class AKSOTH6 : FilterBase
     {
         public AKSOTH6()
         {
@@ -25,7 +25,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             String2 = "TEN_VT";
             String1 = "MA_VT";
-
+            if (!V6Setting.IsVietnamese)
+            {
+                cbbLoaiBaoCao.Items.Clear();
+                cbbLoaiBaoCao.Items.AddRange(new object[] { "Quantity", "Value", "Both - Qty&Val" });
+            }
             cbbLoaiBaoCao.SelectedIndex = 0;
  
             dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
@@ -37,7 +41,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 txtMaDvcs.Enabled = false;
             }
 
-            TxtKieu_bc.Text = "1";
             TxtLoai_bc.Text = "1";
             chkGiamTru.Checked = true;
 

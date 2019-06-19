@@ -861,8 +861,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 }
                 foreach (string field in alctct_GRD_READONLY)
                 {
-                    TextBox c = V6ControlFormHelper.GetControlByAccessibleName(this, field) as TextBox;
-                    if (c != null) c.ReadOnlyTag();
+                    Control c = V6ControlFormHelper.GetControlByAccessibleName(this, field);
+                    if(c is TextBox) ((TextBox)c).ReadOnlyTag();
+                    if (c is ComboBox) ((ComboBox)c).DisableTag();
+                    if (c is RadioButton) ((RadioButton)c).DisableTag();
+                    if (c is DateTimePicker) ((DateTimePicker)c).DisableTag();
+
+                    //if (c != null) c.ReadOnlyTag();
                 }
             }
             catch (Exception ex)

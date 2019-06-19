@@ -3599,8 +3599,8 @@ namespace V6Controls.Forms
             string ReportFile, string ExcelTemplateFileFull, string saveFileName)
         {
             ExportExcelTemplate_owner = owner;
-            ExportExcelTemplate_data = data;
-            ExportExcelTemplate_tbl2 = tbl2;
+            ExportExcelTemplate_data = data.Copy();
+            ExportExcelTemplate_tbl2 = tbl2.Copy();
             ExportExcelTemplate_ReportDocumentParameters = ReportDocumentParameters;
             ExportExcelTemplate_MAU = MAU;
             ExportExcelTemplate_LAN = LAN;
@@ -4386,8 +4386,8 @@ namespace V6Controls.Forms
             string ReportFile, string excelTemplateFile, string saveFileName)
         {
             //ExportExcelTemplateHTKK_owner = owner;
-            ExportExcelTemplateHTKK_data = data;
-            ExportExcelTemplateHTKK_tbl2 = tbl2;
+            ExportExcelTemplateHTKK_data = data.Copy();
+            ExportExcelTemplateHTKK_tbl2 = tbl2.Copy();
             ExportExcelTemplateHTKK_ReportDocumentParameters = ReportDocumentParameters;
             ExportExcelTemplateHTKK_MAU = MAU;
             ExportExcelTemplateHTKK_LAN = LAN;
@@ -4623,8 +4623,8 @@ namespace V6Controls.Forms
             IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string excelTemplateFile, string saveFileName)
         {
-            ExportExcelTemplateONLINE_data = data;
-            ExportExcelTemplateONLINE_tbl2 = tbl2;
+            ExportExcelTemplateONLINE_data = data.Copy();
+            ExportExcelTemplateONLINE_tbl2 = tbl2.Copy();
             ExportExcelTemplateONLINE_ReportDocumentParameters = ReportDocumentParameters;
             ExportExcelTemplateONLINE_MAU = MAU;
             ExportExcelTemplateONLINE_LAN = LAN;
