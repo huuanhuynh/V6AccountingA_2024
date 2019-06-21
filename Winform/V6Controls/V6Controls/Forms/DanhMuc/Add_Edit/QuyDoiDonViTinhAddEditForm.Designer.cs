@@ -34,8 +34,11 @@
             this.TxtDvtqd = new V6Controls.V6VvarTextBox();
             this.lblDVTQD = new System.Windows.Forms.Label();
             this.TxtXtype = new V6Controls.V6VvarTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblGiaiThich = new System.Windows.Forms.Label();
             this.lblHeSo = new System.Windows.Forms.Label();
-            this.TxtHe_so = new V6Controls.V6NumberTextBox();
+            this.txtHE_SOM = new V6Controls.V6NumberTextBox();
+            this.txtHE_SOT = new V6Controls.V6NumberTextBox();
             this.TxtDvt = new V6Controls.V6VvarTextBox();
             this.lblDVTTonKho = new System.Windows.Forms.Label();
             this.TxtMa_vt = new V6Controls.V6VvarTextBox();
@@ -71,6 +74,7 @@
             this.v6ColorDateTimePick2 = new V6Controls.V6DateTimeColor();
             this.v6ColorDateTimePick1 = new V6Controls.V6DateTimeColor();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.txtHE_SO = new V6Controls.V6NumberTextBox();
             this.groupBox1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -86,8 +90,12 @@
             this.groupBox1.Controls.Add(this.TxtDvtqd);
             this.groupBox1.Controls.Add(this.lblDVTQD);
             this.groupBox1.Controls.Add(this.TxtXtype);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lblGiaiThich);
             this.groupBox1.Controls.Add(this.lblHeSo);
-            this.groupBox1.Controls.Add(this.TxtHe_so);
+            this.groupBox1.Controls.Add(this.txtHE_SOM);
+            this.groupBox1.Controls.Add(this.txtHE_SO);
+            this.groupBox1.Controls.Add(this.txtHE_SOT);
             this.groupBox1.Controls.Add(this.TxtDvt);
             this.groupBox1.Controls.Add(this.lblDVTTonKho);
             this.groupBox1.Controls.Add(this.TxtMa_vt);
@@ -189,6 +197,28 @@
             this.TxtXtype.Size = new System.Drawing.Size(42, 23);
             this.TxtXtype.TabIndex = 6;
             // 
+            // label2
+            // 
+            this.label2.AccessibleDescription = ".";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(286, 120);
+            this.label2.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(12, 17);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "/";
+            // 
+            // lblGiaiThich
+            // 
+            this.lblGiaiThich.AccessibleDescription = ".";
+            this.lblGiaiThich.AutoSize = true;
+            this.lblGiaiThich.Location = new System.Drawing.Point(421, 120);
+            this.lblGiaiThich.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
+            this.lblGiaiThich.Name = "lblGiaiThich";
+            this.lblGiaiThich.Size = new System.Drawing.Size(67, 17);
+            this.lblGiaiThich.TabIndex = 15;
+            this.lblGiaiThich.Text = "Giải thích";
+            // 
             // lblHeSo
             // 
             this.lblHeSo.AccessibleDescription = "ADDEDITL00110";
@@ -200,29 +230,57 @@
             this.lblHeSo.TabIndex = 10;
             this.lblHeSo.Text = "Hệ số";
             // 
-            // TxtHe_so
+            // txtHE_SOM
             // 
-            this.TxtHe_so.AccessibleName = "HE_SO";
-            this.TxtHe_so.BackColor = System.Drawing.Color.White;
-            this.TxtHe_so.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtHe_so.DecimalPlaces = 0;
-            this.TxtHe_so.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtHe_so.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtHe_so.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtHe_so.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtHe_so.LeaveColor = System.Drawing.Color.White;
-            this.TxtHe_so.Location = new System.Drawing.Point(178, 117);
-            this.TxtHe_so.Margin = new System.Windows.Forms.Padding(4);
-            this.TxtHe_so.Name = "TxtHe_so";
-            this.TxtHe_so.Size = new System.Drawing.Size(230, 23);
-            this.TxtHe_so.TabIndex = 11;
-            this.TxtHe_so.Text = "0";
-            this.TxtHe_so.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.TxtHe_so.Value = new decimal(new int[] {
+            this.txtHE_SOM.AccessibleName = "HE_SOM";
+            this.txtHE_SOM.BackColor = System.Drawing.Color.White;
+            this.txtHE_SOM.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtHE_SOM.DecimalPlaces = 0;
+            this.txtHE_SOM.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtHE_SOM.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtHE_SOM.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtHE_SOM.HoverColor = System.Drawing.Color.Yellow;
+            this.txtHE_SOM.LeaveColor = System.Drawing.Color.White;
+            this.txtHE_SOM.Location = new System.Drawing.Point(298, 117);
+            this.txtHE_SOM.Margin = new System.Windows.Forms.Padding(4);
+            this.txtHE_SOM.Name = "txtHE_SOM";
+            this.txtHE_SOM.Size = new System.Drawing.Size(110, 23);
+            this.txtHE_SOM.TabIndex = 14;
+            this.txtHE_SOM.Text = "0";
+            this.txtHE_SOM.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHE_SOM.Value = new decimal(new int[] {
             0,
             0,
             0,
             0});
+            this.txtHE_SOM.V6LostFocus += new V6Controls.ControlEventHandle(this.txtHE_SOM_V6LostFocus);
+            this.txtHE_SOM.TextChanged += new System.EventHandler(this.txtHE_SOT_TextChanged);
+            // 
+            // txtHE_SOT
+            // 
+            this.txtHE_SOT.AccessibleName = "HE_SOT";
+            this.txtHE_SOT.BackColor = System.Drawing.Color.White;
+            this.txtHE_SOT.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtHE_SOT.DecimalPlaces = 0;
+            this.txtHE_SOT.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtHE_SOT.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtHE_SOT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtHE_SOT.HoverColor = System.Drawing.Color.Yellow;
+            this.txtHE_SOT.LeaveColor = System.Drawing.Color.White;
+            this.txtHE_SOT.Location = new System.Drawing.Point(178, 117);
+            this.txtHE_SOT.Margin = new System.Windows.Forms.Padding(4);
+            this.txtHE_SOT.Name = "txtHE_SOT";
+            this.txtHE_SOT.Size = new System.Drawing.Size(110, 23);
+            this.txtHE_SOT.TabIndex = 12;
+            this.txtHE_SOT.Text = "0";
+            this.txtHE_SOT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHE_SOT.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtHE_SOT.V6LostFocus += new V6Controls.ControlEventHandle(this.txtHE_SOT_V6LostFocus);
+            this.txtHE_SOT.TextChanged += new System.EventHandler(this.txtHE_SOT_TextChanged);
             // 
             // TxtDvt
             // 
@@ -519,7 +577,7 @@
             // txtMA_TD1
             // 
             this.txtMA_TD1.AccessibleName = "MA_TD1";
-            this.txtMA_TD1.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMA_TD1.BackColor = System.Drawing.Color.White;
             this.txtMA_TD1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMA_TD1.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMA_TD1.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -798,6 +856,33 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
             // 
+            // txtHE_SO
+            // 
+            this.txtHE_SO.AccessibleName = "HE_SO";
+            this.txtHE_SO.BackColor = System.Drawing.Color.White;
+            this.txtHE_SO.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtHE_SO.DecimalPlaces = 0;
+            this.txtHE_SO.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtHE_SO.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtHE_SO.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtHE_SO.HoverColor = System.Drawing.Color.Yellow;
+            this.txtHE_SO.LeaveColor = System.Drawing.Color.White;
+            this.txtHE_SO.Location = new System.Drawing.Point(124, 117);
+            this.txtHE_SO.Margin = new System.Windows.Forms.Padding(4);
+            this.txtHE_SO.Name = "txtHE_SO";
+            this.txtHE_SO.Size = new System.Drawing.Size(46, 23);
+            this.txtHE_SO.TabIndex = 11;
+            this.txtHE_SO.Text = "0";
+            this.txtHE_SO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHE_SO.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtHE_SO.Visible = false;
+            this.txtHE_SO.V6LostFocus += new V6Controls.ControlEventHandle(this.txtHE_SOT_V6LostFocus);
+            this.txtHE_SO.TextChanged += new System.EventHandler(this.txtHE_SOT_TextChanged);
+            // 
             // QuyDoiDonViTinhAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -839,7 +924,7 @@
         private System.Windows.Forms.Label lblDVTQD;
         private V6VvarTextBox TxtXtype;
         private System.Windows.Forms.Label lblHeSo;
-        private V6NumberTextBox TxtHe_so;
+        private V6NumberTextBox txtHE_SOT;
         private V6VvarTextBox txtTenVatTu;
         private V6Controls.V6VvarTextBox txtGC_TD3;
         private V6Controls.V6VvarTextBox txtGC_TD2;
@@ -865,6 +950,10 @@
         private V6DateTimeColor v6ColorDateTimePick3;
         private V6DateTimeColor v6ColorDateTimePick2;
         private V6DateTimeColor v6ColorDateTimePick1;
+        private V6NumberTextBox txtHE_SOM;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblGiaiThich;
+        private V6NumberTextBox txtHE_SO;
 
 
 

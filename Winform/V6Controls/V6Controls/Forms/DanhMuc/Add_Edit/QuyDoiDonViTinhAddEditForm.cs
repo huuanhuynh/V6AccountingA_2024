@@ -28,6 +28,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 var v = Categories.IsExistTwoCode_List("ARI70", "Ma_vt", TxtMa_vt.Text.Trim(), "DVT1", TxtDvt.Text.Trim());
                 TxtDvt.Enabled = !v;
                 TxtMa_vt.Enabled = !v;
+                GiaiThich();
             }
             catch (Exception ex)
             {
@@ -80,6 +81,29 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 }
             }
         }
-        
+
+        private void txtHE_SOT_TextChanged(object sender, EventArgs e)
+        {
+            GiaiThich();
+        }
+
+        private void GiaiThich()
+        {
+            if (IsReady)
+            {
+                txtHE_SO.Value = txtHE_SOT.Value/txtHE_SOM.Value;
+                lblGiaiThich.Text = string.Format("1 {0} = {2:0}/{3:0} = {4:0.00} {1}", TxtDvt.Text, TxtDvtqd.Text, txtHE_SOT.Value, txtHE_SOM.Value, txtHE_SO.Value);
+            }
+        }
+
+        private void txtHE_SOT_V6LostFocus(object sender)
+        {
+            if (txtHE_SOT.Value == 0) txtHE_SOT.Value = 1;
+        }
+
+        private void txtHE_SOM_V6LostFocus(object sender)
+        {
+            if (txtHE_SOM.Value == 0) txtHE_SOM.Value = 1;
+        }
     }
 }
