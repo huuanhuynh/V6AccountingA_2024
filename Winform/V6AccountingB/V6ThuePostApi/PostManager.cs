@@ -2196,6 +2196,12 @@ namespace V6ThuePostManager
             return result;
         }
 
+        /// <summary>
+        /// Hàm giống tạo mới nhưng có khác biệt trong dữ liệu.
+        /// </summary>
+        /// <param name="_V6Http"></param>
+        /// <param name="jsonBody"></param>
+        /// <returns></returns>
         public static string POST_REPLACE(ViettelWS _V6Http, string jsonBody)
         {
             string result;

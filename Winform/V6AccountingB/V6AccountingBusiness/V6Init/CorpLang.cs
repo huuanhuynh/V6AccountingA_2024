@@ -1,4 +1,6 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
+using System.Reflection;
 using V6SqlConnect;
 
 namespace V6Init
@@ -10,12 +12,19 @@ namespace V6Init
         {
             get
             {
-                if (lTable == null)
+                try
                 {
-                    DataTable langTable = SqlConnect.Select("CorpLang", "*", "[status]='1'", "", "STT").Data;
-                    lTable = langTable;
+                    if (lTable == null)
+                    {
+                        DataTable langTable = SqlConnect.Select("CorpLang", "*", "[status]='1'", "", "STT").Data;
+                        lTable = langTable;
+                    }
+                    return lTable;
                 }
-                return lTable;
+                catch (Exception ex)
+                {
+                    throw new Exception(MethodBase.GetCurrentMethod().Name + ":" + ex.Message, ex);
+                }
             }
         }
 

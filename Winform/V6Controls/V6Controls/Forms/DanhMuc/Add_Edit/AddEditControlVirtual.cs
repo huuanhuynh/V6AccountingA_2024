@@ -854,20 +854,41 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         alctct_GRD_READONLY = ObjectAndString.SplitString(GRD_READONLY);
                     }
                 }
-                foreach (string field in alctct_GRD_HIDE)
+                foreach (string field_info in alctct_GRD_HIDE)
                 {
+                    var sss = field_info.Split(':');
+                    string field = sss[0];
+                    string format = sss.Length > 1 ? sss[1] : null;
+
                     Control c = V6ControlFormHelper.GetControlByAccessibleName(this, field);
-                    if (c != null) c.InvisibleTag();
+                    if (c != null)
+                    {
+                        c.InvisibleTag();
+                    }
+                    else
+                    {
+                        c = GetControlByName(field);
+                        if (c != null) c.InvisibleTag();
+                    }
                 }
-                foreach (string field in alctct_GRD_READONLY)
+
+                foreach (string field_info in alctct_GRD_READONLY)
                 {
+                    var sss = field_info.Split(':');
+                    string field = sss[0];
+                    string format = sss.Length > 1 ? sss[1] : null;
+
                     Control c = V6ControlFormHelper.GetControlByAccessibleName(this, field);
                     if(c is TextBox) ((TextBox)c).ReadOnlyTag();
                     if (c is ComboBox) ((ComboBox)c).DisableTag();
                     if (c is RadioButton) ((RadioButton)c).DisableTag();
                     if (c is DateTimePicker) ((DateTimePicker)c).DisableTag();
 
-                    //if (c != null) c.ReadOnlyTag();
+                    if (c == null)
+                    {
+                        c = GetControlByName(field);
+                        if (c != null) c.DisableTag();
+                    }
                 }
             }
             catch (Exception ex)

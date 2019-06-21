@@ -75,7 +75,7 @@
             // 
             // grbTuyChon
             // 
-            this.grbTuyChon.AccessibleDescription = "ASOCTSOAL00103";
+            this.grbTuyChon.AccessibleDescription = "SEARCHG00003";
             this.grbTuyChon.Controls.Add(this.txtNhomVT6);
             this.grbTuyChon.Controls.Add(this.txtNhomVT5);
             this.grbTuyChon.Controls.Add(this.txtNhomVT4);
@@ -155,7 +155,7 @@
             // 
             // v6Label3
             // 
-            this.v6Label3.AccessibleDescription = "ASOCTSOAL00106";
+            this.v6Label3.AccessibleDescription = "SEARCHL00056";
             this.v6Label3.AutoSize = true;
             this.v6Label3.Location = new System.Drawing.Point(538, 60);
             this.v6Label3.Name = "v6Label3";
@@ -165,7 +165,7 @@
             // 
             // v6Label2
             // 
-            this.v6Label2.AccessibleDescription = "ASOCTSOAL00105";
+            this.v6Label2.AccessibleDescription = "SEARCHL00055";
             this.v6Label2.AutoSize = true;
             this.v6Label2.Location = new System.Drawing.Point(538, 39);
             this.v6Label2.Name = "v6Label2";
@@ -175,7 +175,7 @@
             // 
             // v6Label1
             // 
-            this.v6Label1.AccessibleDescription = "ASOCTSOAL00104";
+            this.v6Label1.AccessibleDescription = "SEARCHL00054";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Location = new System.Drawing.Point(538, 18);
             this.v6Label1.Name = "v6Label1";
@@ -289,7 +289,7 @@
             // 
             // v6Label21
             // 
-            this.v6Label21.AccessibleDescription = "ASOCTSOAL00108";
+            this.v6Label21.AccessibleDescription = "SEARCHL00045";
             this.v6Label21.AutoSize = true;
             this.v6Label21.Location = new System.Drawing.Point(6, 57);
             this.v6Label21.Name = "v6Label21";
@@ -299,6 +299,7 @@
             // 
             // v6Label20
             // 
+            this.v6Label20.AccessibleDescription = "SEARCHL00044";
             this.v6Label20.AutoSize = true;
             this.v6Label20.Location = new System.Drawing.Point(6, 36);
             this.v6Label20.Name = "v6Label20";
@@ -308,7 +309,7 @@
             // 
             // v6Label6
             // 
-            this.v6Label6.AccessibleDescription = "ASOCTSOAL00106";
+            this.v6Label6.AccessibleDescription = "SEARCHL00056";
             this.v6Label6.AutoSize = true;
             this.v6Label6.Location = new System.Drawing.Point(282, 60);
             this.v6Label6.Name = "v6Label6";
@@ -318,7 +319,7 @@
             // 
             // v6Label26
             // 
-            this.v6Label26.AccessibleDescription = "ASOCTSOAL00107";
+            this.v6Label26.AccessibleDescription = "SEARCHL00043";
             this.v6Label26.AutoSize = true;
             this.v6Label26.Location = new System.Drawing.Point(6, 16);
             this.v6Label26.Name = "v6Label26";
@@ -328,7 +329,7 @@
             // 
             // v6Label7
             // 
-            this.v6Label7.AccessibleDescription = "ASOCTSOAL00105";
+            this.v6Label7.AccessibleDescription = "SEARCHL00052";
             this.v6Label7.AutoSize = true;
             this.v6Label7.Location = new System.Drawing.Point(282, 39);
             this.v6Label7.Name = "v6Label7";
@@ -338,7 +339,7 @@
             // 
             // v6Label8
             // 
-            this.v6Label8.AccessibleDescription = "ASOCTSOAL00104";
+            this.v6Label8.AccessibleDescription = "SEARCHL00051";
             this.v6Label8.AutoSize = true;
             this.v6Label8.Location = new System.Drawing.Point(284, 18);
             this.v6Label8.Name = "v6Label8";

@@ -77,7 +77,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
             // 
             // grbTuyChon
             // 
-            this.grbTuyChon.AccessibleDescription = "ASOCTSOAL00103";
+            this.grbTuyChon.AccessibleDescription = "SEARCHG00003";
             this.grbTuyChon.Controls.Add(this.txtNhomVT6);
             this.grbTuyChon.Controls.Add(this.txtNhomVT5);
             this.grbTuyChon.Controls.Add(this.txtNhomVT4);
@@ -291,7 +291,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
             // 
             // v6Label21
             // 
-            this.v6Label21.AccessibleDescription = "ASOCTSOAL00108";
+            this.v6Label21.AccessibleDescription = "SEARCHL00045";
             this.v6Label21.AutoSize = true;
             this.v6Label21.Location = new System.Drawing.Point(6, 62);
             this.v6Label21.Name = "v6Label21";
@@ -301,6 +301,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
             // 
             // v6Label20
             // 
+            this.v6Label20.AccessibleDescription = "SEARCHL00044";
             this.v6Label20.AutoSize = true;
             this.v6Label20.Location = new System.Drawing.Point(6, 41);
             this.v6Label20.Name = "v6Label20";
@@ -310,7 +311,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
             // 
             // v6Label6
             // 
-            this.v6Label6.AccessibleDescription = "ASOCTSOAL00106";
+            this.v6Label6.AccessibleDescription = "SEARCHL00053";
             this.v6Label6.AutoSize = true;
             this.v6Label6.Location = new System.Drawing.Point(284, 56);
             this.v6Label6.Name = "v6Label6";
@@ -320,7 +321,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
             // 
             // v6Label26
             // 
-            this.v6Label26.AccessibleDescription = "ASOCTSOAL00107";
+            this.v6Label26.AccessibleDescription = "SEARCHL00043";
             this.v6Label26.AutoSize = true;
             this.v6Label26.Location = new System.Drawing.Point(6, 18);
             this.v6Label26.Name = "v6Label26";
@@ -340,7 +341,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
             // 
             // v6Label8
             // 
-            this.v6Label8.AccessibleDescription = "ASOCTSOAL00104";
+            this.v6Label8.AccessibleDescription = "SEARCHL00051";
             this.v6Label8.AutoSize = true;
             this.v6Label8.Location = new System.Drawing.Point(286, 14);
             this.v6Label8.Name = "v6Label8";

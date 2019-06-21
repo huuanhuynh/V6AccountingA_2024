@@ -426,6 +426,7 @@
             // 
             // label5
             // 
+            this.label5.AccessibleDescription = "FILTERL00149";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(30, 87);
             this.label5.Name = "label5";
@@ -435,6 +436,7 @@
             // 
             // label6
             // 
+            this.label6.AccessibleDescription = "FILTERL00150";
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(30, 106);
             this.label6.Name = "label6";
@@ -455,6 +457,7 @@
             // 
             // label7
             // 
+            this.label7.AccessibleDescription = "FILTERL00273";
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(30, 127);
             this.label7.Name = "label7";
@@ -464,7 +467,8 @@
             // 
             // lineNH_KH9
             // 
-            this.lineNH_KH9.AccessibleDescription = "FILTERL00019"; this.lineNH_KH9.AccessibleName2 = "NH_KH9";
+            this.lineNH_KH9.AccessibleDescription = "FILTERL00019";
+            this.lineNH_KH9.AccessibleName2 = "NH_KH9";
             this.lineNH_KH9.Caption = "Nhóm khách hàng 9";
             this.lineNH_KH9.FieldName = "NH_KH9";
             this.lineNH_KH9.Location = new System.Drawing.Point(6, 376);
@@ -475,7 +479,8 @@
             // 
             // lineNH_KH8
             // 
-            this.lineNH_KH8.AccessibleDescription = "FILTERL00018"; this.lineNH_KH8.AccessibleName2 = "NH_KH8";
+            this.lineNH_KH8.AccessibleDescription = "FILTERL00018";
+            this.lineNH_KH8.AccessibleName2 = "NH_KH8";
             this.lineNH_KH8.Caption = "Nhóm khách hàng 8";
             this.lineNH_KH8.FieldName = "NH_KH8";
             this.lineNH_KH8.Location = new System.Drawing.Point(6, 354);
