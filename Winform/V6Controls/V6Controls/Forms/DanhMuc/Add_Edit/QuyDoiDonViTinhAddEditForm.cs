@@ -91,6 +91,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             if (IsReady)
             {
+                if (txtHE_SOM.Value == 0) txtHE_SOM.Value = 1;
                 txtHE_SO.Value = txtHE_SOT.Value/txtHE_SOM.Value;
                 lblGiaiThich.Text = string.Format("1 {0} = {2:0}/{3:0} = {4:0.00} {1}", TxtDvt.Text, TxtDvtqd.Text, txtHE_SOT.Value, txtHE_SOM.Value, txtHE_SO.Value);
             }

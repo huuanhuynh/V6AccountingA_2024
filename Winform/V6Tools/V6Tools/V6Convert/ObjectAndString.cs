@@ -178,6 +178,7 @@ namespace V6Tools.V6Convert
         /// <returns></returns>
         public static bool ObjectToBool(object o)
         {
+            if (o is DBNull) return false;
             if (o == null) return false;
             string s = o.ToString().Trim().ToLower();
             return s == "1" || s == "true" || s == "yes";
@@ -215,6 +216,7 @@ namespace V6Tools.V6Convert
         public static int ObjectToInt(object o)
         {
             decimal result = 0;
+            if (o is DBNull) return 0;
             if (o == null) return 0;
             switch (o.GetType().ToString())
             {
@@ -245,6 +247,7 @@ namespace V6Tools.V6Convert
         public static long ObjectToInt64(object o)
         {
             long result = 0;
+            if (o is DBNull) return 0;
             if (o == null) return 0;
             switch (o.GetType().ToString())
             {

@@ -2859,7 +2859,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             _he_so1T.Value = 1;
                             _he_so1M.Value = 1;
                         }
-                        
                     }
                     else
                     {
@@ -2916,31 +2915,29 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private void XuLyThayDoiDvt1()
         {
-            if (_dvt1.Data != null)
-            {
-                //he_soT, he_soM ,he_so1T, he_so1M
-                var he_soT = ObjectAndString.ObjectToDecimal(_dvt1.Data["he_soT"]);
-                var he_soM = ObjectAndString.ObjectToDecimal(_dvt1.Data["he_soM"]);
-                if (he_soT == 0) he_soT = 1;
-                if (he_soM == 0) he_soM = 1;
-                _he_so1T.Value = he_soT;
-                _he_so1M.Value = he_soM;
-
-                GetTon13();
-                if (_maKhoI.Text.Trim() != "" && _maLo.Text.Trim() != "")
-                {
-                    GetLoDate13();
-                }
-
-                GetGia();
-                CheckSoLuong1(null);
-                TinhTienNt2(null);
-            }
-            else
+            if (_dvt1.Data == null)
             {
                 _he_so1T.Value = 1;
                 _he_so1M.Value = 1;
+                return;
             }
+            
+            var he_soT = ObjectAndString.ObjectToDecimal(_dvt1.Data["he_soT"]);
+            var he_soM = ObjectAndString.ObjectToDecimal(_dvt1.Data["he_soM"]);
+            if (he_soT == 0) he_soT = 1;
+            if (he_soM == 0) he_soM = 1;
+            _he_so1T.Value = he_soT;
+            _he_so1M.Value = he_soM;
+
+            GetTon13();
+            if (_maKhoI.Text.Trim() != "" && _maLo.Text.Trim() != "")
+            {
+                GetLoDate13();
+            }
+
+            GetGia();
+            CheckSoLuong1(null);
+            TinhTienNt2(null);
         }
 
         public void TinhTienNt2(Control actionControl)

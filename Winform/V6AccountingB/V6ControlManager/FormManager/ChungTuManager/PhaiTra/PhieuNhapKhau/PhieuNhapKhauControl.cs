@@ -147,7 +147,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         #region ==== Khởi tạo Detail Form ====
         private V6ColorTextBox _dvt;
         private V6VvarTextBox _maVt, _dvt1, _maKho, _maKhoI, _tkVt,_maLo, _ma_thue_i;
-        private V6NumberTextBox _soLuong1, _soLuong, _heSo1, _giaNt, _giaNt01, _tien0, _tienNt0,
+        private V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _giaNt, _giaNt01, _tien0, _tienNt0,
             _ck, _ckNt, _gia0, _gia1, _gia_nt1, _gia01, _gia, _gia_Nt0, _mau_bc, _pt_cki, _cpNt, _cp, _ggNt, _gg;
         private V6NumberTextBox _ton13, _ton13Qd, _tienNt, _tien, _nkNt, _nk, _ts_nk, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2,
             _thue, _thue_nt, _thue_suat_i;
@@ -310,25 +310,47 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         _soLuong = (V6NumberTextBox)control;
                         _soLuong.Tag = "hide";
                         break;
-                    case "HE_SO1":
-                        _heSo1 = (V6NumberTextBox)control;
-                        _heSo1.Tag = "hide";
-                        _heSo1.DecimalPlaces = Invoice.ADStruct.ContainsKey("HE_SO1")
-                            ? Invoice.ADStruct["HE_SO1"].MaxNumDecimal
+                    case "HE_SO1T":
+                        _he_so1T = (V6NumberTextBox)control;
+                        _he_so1T.Tag = "hide";
+                        _he_so1T.DecimalPlaces = Invoice.ADStruct.ContainsKey("HE_SO1T")
+                            ? Invoice.ADStruct["HE_SO1T"].MaxNumDecimal
                             : 6;
-                        _heSo1.StringValueChange += (sender, args) =>
+                        _he_so1T.StringValueChange += (sender, args) =>
                         {
-                            if (_heSo1.Value == 0)
+                            if (_he_so1T.Value == 0)
                             {
-                                _heSo1.Value = 1;
+                                _he_so1T.Value = 1;
                                 return;
                             }
                             if (IsReady && (Mode == V6Mode.Add || Mode == V6Mode.Edit) && (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit))
                             {
-                                if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _heSo1);
-                                if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _heSo1);
-                                _soLuong.Value = _soLuong1.Value * _heSo1.Value;
-                                if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _heSo1);
+                                if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _he_so1T);
+                                if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _he_so1T);
+                                _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
+                                if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _he_so1T);
+                            }
+                        };
+                        break;
+                    case "HE_SO1M":
+                        _he_so1M = (V6NumberTextBox)control;
+                        _he_so1M.Tag = "hide";
+                        _he_so1M.DecimalPlaces = Invoice.ADStruct.ContainsKey("HE_SO1M")
+                            ? Invoice.ADStruct["HE_SO1M"].MaxNumDecimal
+                            : 6;
+                        _he_so1M.StringValueChange += (sender, args) =>
+                        {
+                            if (_he_so1M.Value == 0)
+                            {
+                                _he_so1M.Value = 1;
+                                return;
+                            }
+                            if (IsReady && (Mode == V6Mode.Add || Mode == V6Mode.Edit) && (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit))
+                            {
+                                if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _he_so1M);
+                                if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _he_so1M);
+                                _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
+                                if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _he_so1M);
                             }
                         };
                         break;
@@ -353,7 +375,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                                 TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
                                 TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
                                 TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
-                                _soLuong.Value = _soLuong1.Value * _heSo1.Value;
+                                _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
                                 if (M_CAL_SL_QD_ALL == "1")
                                 {
                                     CheckSoLuong1(_sl_qd);
@@ -1755,13 +1777,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             _dvt1.ExistRowInTable(true);
             if (_dvt1.Data != null)
             {
-                var he_so = ObjectAndString.ObjectToDecimal(_dvt1.Data["he_so"]);
-                if (he_so == 0) he_so = 1;
-                if (_heSo1.Value != he_so) _heSo1.Value = he_so;
+                var he_soT = ObjectAndString.ObjectToDecimal(_dvt1.Data["he_soT"]);
+                var he_soM = ObjectAndString.ObjectToDecimal(_dvt1.Data["he_soM"]);
+                if (he_soT == 0) he_soT = 1;
+                if (he_soM == 0) he_soM = 1;
+                if (_he_so1T.Value != he_soT) _he_so1T.Value = he_soT;
+                if (_he_so1M.Value != he_soM) _he_so1M.Value = he_soM;
             }
             else
             {
-                _heSo1.Value = 1;
+                if (_he_so1T.Value != 1) _he_so1T.Value = 1;
+                if (_he_so1M.Value != 1) _he_so1M.Value = 1;
             }
         }
 
@@ -1997,15 +2023,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     {
                         _dvt1.Tag = null;
                         _dvt1.ReadOnly = false;
-                        if (changeMavt) _heSo1.Value = 1;
-
+                        if (changeMavt)
+                        {
+                            _he_so1T.Value = 1;
+                            _he_so1M.Value = 1;
+                        }
                     }
                     else
                     {
                         _dvt1.Tag = "readonly";
                         _dvt1.ReadOnly = true;
                         if (changeMavt) _dvt1.Focus();
-                        if (changeMavt) _heSo1.Value = 1;
+                        if (changeMavt)
+                        {
+                            _he_so1T.Value = 1;
+                            _he_so1M.Value = 1;
+                        }
                     }
                 }
                 else
@@ -2023,11 +2056,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         
         private void XuLyThayDoiDvt1()
         {
-            if (_dvt1.Data == null) return;
-            var he_so = ObjectAndString.ObjectToDecimal(_dvt1.Data["he_so"]);
-            if (he_so == 0) he_so = 1;
-            _heSo1.Value = he_so;
-          
+            if (_dvt1.Data == null)
+            {
+                _he_so1T.Value = 1;
+                _he_so1M.Value = 1;
+                return;
+            }
+
+            var he_soT = ObjectAndString.ObjectToDecimal(_dvt1.Data["he_soT"]);
+            var he_soM = ObjectAndString.ObjectToDecimal(_dvt1.Data["he_soM"]);
+            if (he_soT == 0) he_soT = 1;
+            if (he_soM == 0) he_soM = 1;
+            _he_so1T.Value = he_soT;
+            _he_so1M.Value = he_soM;
+
             TinhTienNt0();
         }
 
@@ -2038,7 +2080,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
                 if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
                 if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
-                _soLuong.Value = _soLuong1.Value * _heSo1.Value;
+                _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
                 _tienNt0.Value = V6BusinessHelper.Vround((_soLuong1.Value * _giaNt01.Value), M_ROUND_NT);
                 _tien0.Value = V6BusinessHelper.Vround((_tienNt0.Value * txtTyGia.Value), M_ROUND);
 
@@ -2233,7 +2275,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         //if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
                         //if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
                         //if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
-                        //_soLuong.Value = _soLuong1.Value * _heSo1.Value;
+                        //_soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
                         //_tienNt0.Value = V6BusinessHelper.Vround((_soLuong1.Value * _giaNt01.Value), M_ROUND_NT);
                         //_tien0.Value = V6BusinessHelper.Vround((_tienNt0.Value * txtTyGia.Value), M_ROUND);
                         //TinhChietKhauChiTiet(false, _ck, _ckNt, txtTyGia, _tienNt0, _pt_cki);

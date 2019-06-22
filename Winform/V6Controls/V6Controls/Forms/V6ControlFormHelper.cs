@@ -669,7 +669,7 @@ namespace V6Controls.Forms
             Control temp_control = new Control();
             foreach (DataRow row in alct1.Rows)
             {
-                var read_only = 1 == Convert.ToInt32(row["visible"]);
+                var read_only = 1 == ObjectAndString.ObjectToInt(row["visible"]);
                 //if (!visible) continue;
 
                 var fcolumn = row["fcolumn"].ToString().Trim().ToUpper();
@@ -681,10 +681,10 @@ namespace V6Controls.Forms
                 var fvvar = row["fvvar"].ToString().Trim();
                 var fstatus = Convert.ToBoolean(row["fstatus"]);
 
-                var width = Convert.ToInt32(row["width"]);
+                var width = ObjectAndString.ObjectToInt(row["width"]);
                 var ftype = row["ftype"].ToString().Trim();
-                var fOrder = Convert.ToInt32(row["forder"]);
-                var carry = Convert.ToInt32(row["carry"]) == 1;
+                var fOrder = ObjectAndString.ObjectToInt(row["forder"]);
+                var carry = ObjectAndString.ObjectToInt(row["carry"]) == 1;
 
                 int decimals;
 
@@ -722,13 +722,13 @@ namespace V6Controls.Forms
                         }
                         break;
                     case "N9"://Kieu so bat ky
-                        decimals = row["fdecimal"] == null ? V6Setting.DecimalsNumber : Convert.ToInt32(row["fdecimal"]);
+                        decimals = row["fdecimal"] == null ? V6Setting.DecimalsNumber : ObjectAndString.ObjectToInt(row["fdecimal"]);
                         c = CreateNumberTextBox(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
 
                         break;
 
                     case "N0"://Tien
-                        decimals = V6Options.M_IP_TIEN;// row["fdecimal"] == null ? V6Setting.DecilalsNumber : Convert.ToInt32(row["fdecimal"]);
+                        decimals = V6Options.M_IP_TIEN;// row["fdecimal"] == null ? V6Setting.DecilalsNumber : ObjectAndString.ObjectToInt(row["fdecimal"]);
                         c = CreateNumberTien(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
 
                         break;
@@ -827,7 +827,7 @@ namespace V6Controls.Forms
             Control temp_control = new Control();
             foreach (DataRow row in alct1.Rows)
             {
-                var read_only = 1 == Convert.ToInt32(row["visible"]);
+                var read_only = 1 == ObjectAndString.ObjectToInt(row["visible"]);
                 //if (!visible) continue;
                 Config config = new Config(row.ToDataDictionary());
                 var filter_m = config.GetString("FILTER_M");
@@ -840,10 +840,10 @@ namespace V6Controls.Forms
                 var fvvar = row["fvvar"].ToString().Trim();
                 var fstatus = Convert.ToBoolean(row["fstatus"]);
 
-                var width = Convert.ToInt32(row["width"]);
+                var width = ObjectAndString.ObjectToInt(row["width"]);
                 var ftype = row["ftype"].ToString().Trim();
-                var fOrder = Convert.ToInt32(row["forder"]);
-                var carry = Convert.ToInt32(row["carry"]) == 1;
+                var fOrder = ObjectAndString.ObjectToInt(row["forder"]);
+                var carry = ObjectAndString.ObjectToInt(row["carry"]) == 1;
 
                 int decimals;
 
@@ -881,13 +881,13 @@ namespace V6Controls.Forms
                         }
                         break;
                     case "N9"://Kieu so bat ky
-                        decimals = row["fdecimal"] == null ? V6Setting.DecimalsNumber : Convert.ToInt32(row["fdecimal"]);
+                        decimals = row["fdecimal"] == null ? V6Setting.DecimalsNumber : ObjectAndString.ObjectToInt(row["fdecimal"]);
                         c = CreateNumberTextBox(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
 
                         break;
 
                     case "N0"://Tien
-                        decimals = V6Options.M_IP_TIEN;// row["fdecimal"] == null ? V6Setting.DecilalsNumber : Convert.ToInt32(row["fdecimal"]);
+                        decimals = V6Options.M_IP_TIEN;// row["fdecimal"] == null ? V6Setting.DecilalsNumber : ObjectAndString.ObjectToInt(row["fdecimal"]);
                         c = CreateNumberTien(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
 
                         break;
@@ -2431,8 +2431,7 @@ namespace V6Controls.Forms
                                 }
                                 else if (!string.IsNullOrEmpty(num.NumberFormatName))
                                 {
-                                    num.DecimalPlaces
-                                        = Convert.ToInt32(V6Options.GetValue(num.NumberFormatName));
+                                    num.DecimalPlaces = ObjectAndString.ObjectToInt(V6Options.GetValue(num.NumberFormatName));
                                 }
                                 else
                                 {
@@ -2486,7 +2485,7 @@ namespace V6Controls.Forms
                             {
                                 if (!string.IsNullOrEmpty(num.NumberFormatName))
                                 {
-                                    num.DecimalPlaces = Convert.ToInt32(V6Options.GetValue(num.NumberFormatName));
+                                    num.DecimalPlaces = ObjectAndString.ObjectToInt(V6Options.GetValue(num.NumberFormatName));
                                 }
                                 else
                                 {
