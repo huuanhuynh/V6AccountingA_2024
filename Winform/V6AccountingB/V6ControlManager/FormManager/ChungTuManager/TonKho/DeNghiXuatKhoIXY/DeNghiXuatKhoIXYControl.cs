@@ -12,6 +12,7 @@ using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY.Loc;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonBaoGia;
+using V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY.ChonDonHangBan;
 using V6Controls;
 using V6Controls.Forms;
 using V6Controls.Structs;
@@ -1611,9 +1612,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                 {
                     detail1.MODE = V6Mode.Lock;
                     dataGridView1.ReadOnly = true;
+                    ChonDonHangMuaMenu.Enabled = false;
+                    chonDonHangBanMenu.Enabled = false;
                 }
                 else
                 {
+                    ChonDonHangMuaMenu.Enabled = true;
+                    chonDonHangBanMenu.Enabled = true;
                     XuLyKhoaThongTinKhachHang();
 
                     txtTyGia.Enabled = _maNt != _mMaNt0;
@@ -5391,6 +5396,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             }
         }
 
+        private void chonDonHangBanMenuItem_Click(object sender, EventArgs e)
+        {
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            ChucNang_ChonDonHangBan(shift);
+        }
+
         private void thayTheToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ChucNang_ThayThe(Invoice);
@@ -5405,6 +5416,36 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
         {
             bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
             ChucNang_ChonBaoGia(shift);
+        }
+
+        private void ChucNang_ChonDonHangBan(bool add = false)
+        {
+            try
+            {
+                chon_accept_flag_add = add;
+                var ma_kh = txtMaKh.Text.Trim();
+                var ma_dvcs = txtMadvcs.Text.Trim();
+                var message = "";
+                if (ma_kh != "" && ma_dvcs != "")
+                {
+                    CDHB_IXYForm chon = new CDHB_IXYForm(dateNgayCT.Date, txtMadvcs.Text, txtMaKh.Text);
+                    //_chon_px = "DH";
+                    chon.AcceptSelectEvent += chon_AcceptSelectEvent;
+                    chon.ShowDialog(this);
+                }
+                else
+                {
+                    if (ma_kh == "") message += V6Text.NoInput + lblMaKH.Text;
+                    if (ma_dvcs == "") message += V6Text.NoInput + lblMaDVCS.Text;
+                    this.ShowWarningMessage(message);
+                    if (ma_kh == "") txtMaKh.Focus();
+                    else if (ma_dvcs == "") txtMadvcs.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".ChucNang_ChonDonHang " + _sttRec, ex);
+            }
         }
 
         private void ChucNang_ChonBaoGia(bool add = false)
@@ -5518,6 +5559,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             }
         }
 
+        private void chonDonHangBanToolStripMenuItem_MouseHover(object sender, EventArgs e)
+        {
+            FixMenuChucNangItemShiftText(chonDonHangBanMenu);
+        }
 
+        private void menuChucNang_MouseMove(object sender, MouseEventArgs e)
+        {
+            FixMenuChucNangItemShiftText(chonDonHangBanMenu);
+        }
+
+        private void menuChucNang_Paint(object sender, PaintEventArgs e)
+        {
+            FixMenuChucNangItemShiftText(chonDonHangBanMenu);
+        }
+        
     }
 }

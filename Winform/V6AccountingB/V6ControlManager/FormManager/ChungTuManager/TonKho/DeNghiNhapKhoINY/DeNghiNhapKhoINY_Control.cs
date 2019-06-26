@@ -9,6 +9,7 @@ using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY.ChonDonHangBan;
+using V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY.ChonDonHangMua;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY.Loc;
 using V6Controls;
 using V6Controls.Forms;
@@ -1537,14 +1538,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                     detail2.MODE = V6Mode.Lock;
                     dataGridView1.ReadOnly = true;
                     ChonDonHangMuaMenu.Enabled = false;
+                    ChonDonHangBanMenu.Enabled = false;
                     TroGiupMenu.Enabled = false;
-                    chonTuExcelToolStripMenuItem.Enabled = false;
+                    chonTuExcelMenu.Enabled = false;
                 }
                 else //Cac truong hop khac
                 {
                     ChonDonHangMuaMenu.Enabled = true;
+                    ChonDonHangBanMenu.Enabled = true;
                     TroGiupMenu.Enabled = true;
-                    chonTuExcelToolStripMenuItem.Enabled = true;
+                    chonTuExcelMenu.Enabled = true;
 
                     XuLyKhoaThongTinKhachHang();
 
@@ -5209,7 +5212,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             ChucNang_TroGiup();
         }
 
-        private void chonTuExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        private void chonTuExcelMenu_Click(object sender, EventArgs e)
         {
             ChucNang_ChonTuExcel();
         }
@@ -5270,17 +5273,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             }
         }
 
-        private void xuLyKhacToolStripMenuItem_Click(object sender, EventArgs e)
+        private void xuLyKhacMenu_Click(object sender, EventArgs e)
         {
             InvokeFormEvent(FormDynamicEvent.INKHAC);
         }
 
-        private void thayTheToolStripMenuItem_Click(object sender, EventArgs e)
+        private void thayTheMenu_Click(object sender, EventArgs e)
         {
             ChucNang_ThayThe(Invoice);
         }
 
-        private void thayThe2toolStripMenuItem_Click(object sender, EventArgs e)
+        private void thayThe2Menu_Click(object sender, EventArgs e)
         {
             ChucNang_SuaNhieuDong(Invoice);
         }
@@ -5317,10 +5320,45 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
         private void ChonDonHangMuaMenu_Click(object sender, EventArgs e)
         {
             bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
-            ChucNang_ChonDonHang(shift);
+            ChucNang_ChonDonHangMua(shift);
+        }
+        
+        private void ChonDonHangBanMenu_Click(object sender, EventArgs e)
+        {
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            ChucNang_ChonDonHangBan(shift);
         }
 
-        private void ChucNang_ChonDonHang(bool add = false)
+        private void ChucNang_ChonDonHangMua(bool add = false)
+        {
+            try
+            {
+                chon_accept_flag_add = add;
+                var ma_kh = txtMaKh.Text.Trim();
+                var ma_dvcs = txtMadvcs.Text.Trim();
+                var message = "";
+                if (ma_kh != "" && ma_dvcs != "")
+                {
+                    CDHM_INYForm chon = new CDHM_INYForm(dateNgayCT.Date, txtMadvcs.Text, txtMaKh.Text);
+                    chon.AcceptSelectEvent += chon_AcceptSelectEvent;
+                    chon.ShowDialog(this);
+                }
+                else
+                {
+                    if (ma_kh == "") message += V6Text.NoInput + lblMaKH.Text;
+                    if (ma_dvcs == "") message += V6Text.NoInput + lblMaDVCS.Text;
+                    this.ShowWarningMessage(message);
+                    if (ma_kh == "") txtMaKh.Focus();
+                    else if (ma_dvcs == "") txtMadvcs.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".ChucNang ChonDonHangMua " + _sttRec, ex);
+            }
+        }
+
+        private void ChucNang_ChonDonHangBan(bool add = false)
         {
             try
             {
@@ -5401,6 +5439,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             {
                 dataGridView1.ReadOnly = true;
             }
+        }
+
+        private void ChonDonHangMuaMenu_MouseHover(object sender, EventArgs e)
+        {
+            FixMenuChucNangItemShiftText(ChonDonHangBanMenu, ChonDonHangMuaMenu);
+        }
+
+        private void menuChucNang_MouseMove(object sender, MouseEventArgs e)
+        {
+            FixMenuChucNangItemShiftText(ChonDonHangBanMenu, ChonDonHangMuaMenu);
+        }
+
+        private void menuChucNang_Paint(object sender, PaintEventArgs e)
+        {
+            FixMenuChucNangItemShiftText(ChonDonHangBanMenu, ChonDonHangMuaMenu);
         }
     }
 }

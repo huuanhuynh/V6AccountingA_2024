@@ -39,7 +39,7 @@
             this.radNo = new System.Windows.Forms.RadioButton();
             this.comboBoxGroup = new System.Windows.Forms.ComboBox();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.reloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reloadMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.grbKhuVuc = new System.Windows.Forms.GroupBox();
             this.chkNone = new System.Windows.Forms.CheckBox();
             this.buttonChooseImage = new System.Windows.Forms.Button();
@@ -191,17 +191,17 @@
             // contextMenuStrip2
             // 
             this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.reloadToolStripMenuItem});
+            this.reloadMenu});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
             this.contextMenuStrip2.Size = new System.Drawing.Size(111, 26);
             // 
             // reloadToolStripMenuItem
             // 
-            this.reloadToolStripMenuItem.AccessibleDescription = "REPORTM00010";
-            this.reloadToolStripMenuItem.Name = "reloadToolStripMenuItem";
-            this.reloadToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
-            this.reloadToolStripMenuItem.Text = "Reload";
-            this.reloadToolStripMenuItem.Click += new System.EventHandler(this.reloadToolStripMenuItem_Click);
+            this.reloadMenu.AccessibleDescription = "REPORTM00010";
+            this.reloadMenu.Name = "reloadMenu";
+            this.reloadMenu.Size = new System.Drawing.Size(110, 22);
+            this.reloadMenu.Text = "Reload";
+            this.reloadMenu.Click += new System.EventHandler(this.reloadToolStripMenuItem_Click);
             // 
             // grbKhuVuc
             // 
@@ -362,7 +362,7 @@
         private System.Windows.Forms.RadioButton rbtTiengViet;
         private System.Windows.Forms.RadioButton rbtEnglish;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
-        private System.Windows.Forms.ToolStripMenuItem reloadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reloadMenu;
         private System.Windows.Forms.RadioButton radCopyFrom;
     }
 }

@@ -624,6 +624,18 @@
     <Compile Include="FormManager\ChungTuManager\TonKho\DeNghiNhapKhoINY\ChonDonHangBan\CDHB_DeNghiNhapKhoINYKetQua.Designer.cs">
       <DependentUpon>CDHB_DeNghiNhapKhoINYKetQua.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\DeNghiNhapKhoINY\ChonDonHangMua\CDHM_INYForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\DeNghiNhapKhoINY\ChonDonHangMua\CDHM_INYForm.Designer.cs">
+      <DependentUpon>CDHM_INYForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\DeNghiNhapKhoINY\ChonDonHangMua\CDHM_INYKetQua.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\DeNghiNhapKhoINY\ChonDonHangMua\CDHM_INYKetQua.Designer.cs">
+      <DependentUpon>CDHM_INYKetQua.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\TonKho\DeNghiNhapKhoINY\DeNghiNhapKhoINY_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1079,6 +1091,18 @@
     </Compile>
     <Compile Include="FormManager\ChungTuManager\TongHop\PhieuKeToan\Loc\TimPhieuKeToanForm.Designer.cs">
       <DependentUpon>TimPhieuKeToanForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\DeNghiXuatKhoIXY\ChonDonHangBan\CDHB_IXYForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\DeNghiXuatKhoIXY\ChonDonHangBan\CDHB_IXYForm.Designer.cs">
+      <DependentUpon>CDHB_IXYForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\DeNghiXuatKhoIXY\ChonDonHangBan\CDHB_IXYKetQua.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\DeNghiXuatKhoIXY\ChonDonHangBan\CDHB_IXYKetQua.Designer.cs">
+      <DependentUpon>CDHB_IXYKetQua.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\TonKho\DeNghiXuatKhoIXY\DeNghiXuatKhoIXYControl.cs">
       <SubType>UserControl</SubType>
@@ -5824,6 +5848,12 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\DeNghiNhapKhoINY\ChonDonHangBan\CDHB_DeNghiNhapKhoINYKetQua.resx">
       <DependentUpon>CDHB_DeNghiNhapKhoINYKetQua.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\DeNghiNhapKhoINY\ChonDonHangMua\CDHM_INYForm.resx">
+      <DependentUpon>CDHM_INYForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\DeNghiNhapKhoINY\ChonDonHangMua\CDHM_INYKetQua.resx">
+      <DependentUpon>CDHM_INYKetQua.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\DeNghiNhapKhoINY\DeNghiNhapKhoINY_Control.resx">
       <DependentUpon>DeNghiNhapKhoINY_Control.cs</DependentUpon>
     </EmbeddedResource>
@@ -6043,6 +6073,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TongHop\PhieuKeToan\Loc\TimPhieuKeToanForm.resx">
       <DependentUpon>TimPhieuKeToanForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\DeNghiXuatKhoIXY\ChonDonHangBan\CDHB_IXYForm.resx">
+      <DependentUpon>CDHB_IXYForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\DeNghiXuatKhoIXY\ChonDonHangBan\CDHB_IXYKetQua.resx">
+      <DependentUpon>CDHB_IXYKetQua.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\DeNghiXuatKhoIXY\DeNghiXuatKhoIXYControl.resx">
       <DependentUpon>DeNghiXuatKhoIXYControl.cs</DependentUpon>

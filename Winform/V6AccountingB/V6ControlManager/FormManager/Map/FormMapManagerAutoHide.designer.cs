@@ -44,7 +44,7 @@
             this.panel1_Image = new System.Windows.Forms.Panel();
             this.comboBoxGroup = new System.Windows.Forms.ComboBox();
             this.contextMenuStrip_Reload = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.reloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reloadMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.grbKhuVuc = new System.Windows.Forms.GroupBox();
             this.chkNone = new System.Windows.Forms.CheckBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -206,17 +206,17 @@
             // contextMenuStrip_Reload
             // 
             this.contextMenuStrip_Reload.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.reloadToolStripMenuItem});
+            this.reloadMenu});
             this.contextMenuStrip_Reload.Name = "contextMenuStrip2";
             this.contextMenuStrip_Reload.Size = new System.Drawing.Size(111, 26);
             // 
             // reloadToolStripMenuItem
             // 
-            this.reloadToolStripMenuItem.AccessibleDescription = "REPORTM00010";
-            this.reloadToolStripMenuItem.Name = "reloadToolStripMenuItem";
-            this.reloadToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
-            this.reloadToolStripMenuItem.Text = "Reload";
-            this.reloadToolStripMenuItem.Click += new System.EventHandler(this.reloadToolStripMenuItem_Click);
+            this.reloadMenu.AccessibleDescription = "REPORTM00010";
+            this.reloadMenu.Name = "reloadMenu";
+            this.reloadMenu.Size = new System.Drawing.Size(110, 22);
+            this.reloadMenu.Text = "Reload";
+            this.reloadMenu.Click += new System.EventHandler(this.reloadToolStripMenuItem_Click);
             // 
             // grbKhuVuc
             // 
@@ -409,7 +409,7 @@
         private System.Windows.Forms.ToolStripMenuItem printGrid;
         private System.Drawing.Printing.PrintDocument MyPrintDocument;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip_Reload;
-        private System.Windows.Forms.ToolStripMenuItem reloadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reloadMenu;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip_Pic1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip_Pic2;
         private System.Windows.Forms.ToolStripMenuItem menuPic1ReportKhu;

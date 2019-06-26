@@ -866,13 +866,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         var user_acc = V6Login.UserInfo["USER_ACC"].ToString().Trim();
                         if (user_acc != "1")
                         {
-                            if (!key3.Contains("1")) exportToExcelTemplate.Visible = false;
-                            //if (!key3.Contains("2")) exportToExcelView.Visible = false;
-                            if (!key3.Contains("3")) exportToExcel.Visible = false;
-                            //if (!key3.Contains("4")) exportToXmlToolStripMenuItem.Visible = false;
-                            if (!key3.Contains("5")) printGrid.Visible = false;
-                            //if (!key3.Contains("6")) viewDataToolStripMenuItem.Visible = false;
-                            if (!key3.Contains("7")) exportToPdfToolStripMenuItem.Visible = false;
+                            if (!key3.Contains("1")) exportToExcelTemplateMenu.Visible = false;
+                            //if (!key3.Contains("2")) exportToExcelViewMenu.Visible = false;
+                            if (!key3.Contains("3")) exportToExcelMenu.Visible = false;
+                            //if (!key3.Contains("4")) exportToXmlMenu.Visible = false;
+                            if (!key3.Contains("5")) printGridMenu.Visible = false;
+                            //if (!key3.Contains("6")) viewDataMenu.Visible = false;
+                            if (!key3.Contains("7")) exportToPdfMenu.Visible = false;
                         }
                     }
                 }
@@ -2509,7 +2509,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             //btnIn.Focus();
         }
 
-        private void exportToPdfToolStripMenuItem_Click(object sender, EventArgs e)
+        private void exportToPdfMenu_Click(object sender, EventArgs e)
         {
             try
             {

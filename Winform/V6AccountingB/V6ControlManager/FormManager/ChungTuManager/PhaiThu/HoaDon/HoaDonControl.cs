@@ -3201,17 +3201,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     dataGridView1.ReadOnly = true;
                     ChonDonHangBanMenu.Enabled = false;
                     ChonDonHangBanThemMenu.Enabled = false;
-                    chonBaoGiaToolStripMenuItem.Enabled = false;
-                    chonTuExcelToolStripMenuItem.Enabled = false;
-                    chonPhieuNhapToolStripMenuItem.Enabled = false;
+                    chonBaoGiaMenu.Enabled = false;
+                    chonTuExcelMenu.Enabled = false;
+                    chonPhieuNhapMenu.Enabled = false;
                 }
                 else
                 {
                     ChonDonHangBanMenu.Enabled = true;
                     ChonDonHangBanThemMenu.Enabled = true;
-                    chonBaoGiaToolStripMenuItem.Enabled = true;
-                    chonTuExcelToolStripMenuItem.Enabled = true;
-                    chonPhieuNhapToolStripMenuItem.Enabled = true;
+                    chonBaoGiaMenu.Enabled = true;
+                    chonTuExcelMenu.Enabled = true;
+                    chonPhieuNhapMenu.Enabled = true;
 
                     XuLyKhoaThongTinKhachHang();
 
@@ -7035,7 +7035,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
-        private void chonTuExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        private void chonTuExcelMenu_Click(object sender, EventArgs e)
         {
             ChucNang_ChonTuExcel();
         }
@@ -7145,7 +7145,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
-        private void xemCongNoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void xemCongNoMenu_Click(object sender, EventArgs e)
         {
             try
             {
@@ -7210,7 +7210,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".xemCongNoToolStripMenuItem_Click " + _sttRec, ex);
+                this.WriteExLog(GetType() + ".xemCongNoMenu_Click " + _sttRec, ex);
             }
         }
 
@@ -7531,7 +7531,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
-        private void menuXemPhieuNhap_Click(object sender, EventArgs e)
+        private void XemPhieuNhapMenu_Click(object sender, EventArgs e)
         {
             XemPhieuNhap();
         }
@@ -7600,7 +7600,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
-        private void chonPhieuNhapToolStripMenuItem_Click(object sender, EventArgs e)
+        private void chonPhieuNhapMenu_Click(object sender, EventArgs e)
         {
             XuLyChonPhieuNhap();
         }
@@ -8183,7 +8183,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         #endregion tinh khuyen mai
 
         #region ==== In khác ====
-        private void inKhacToolStripMenuItem_Click(object sender, EventArgs e)
+        private void inKhacMenu_Click(object sender, EventArgs e)
         {
             InvokeFormEvent(FormDynamicEvent.INKHAC);
         }
@@ -8196,12 +8196,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             txtLoaiPhieu.ExistRowInTable(true);
         }
 
-        private void thayTheToolStripMenuItem_Click(object sender, EventArgs e)
+        private void thayTheMenu_Click(object sender, EventArgs e)
         {
             ChucNang_ThayThe(Invoice);
         }
 
-        private void thayThe2toolStripMenuItem_Click(object sender, EventArgs e)
+        private void thayThe2Menu_Click(object sender, EventArgs e)
         {
             ChucNang_SuaNhieuDong(Invoice);
         }
@@ -8219,19 +8219,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
-        private void chonBaoGiaToolStripMenuItem_MouseHover(object sender, EventArgs e)
+        private void chonBaoGiaMenu_MouseHover(object sender, EventArgs e)
         {
-            FixMenuChucNangItemShiftText(chonBaoGiaToolStripMenuItem);
+            FixMenuChucNangItemShiftText(chonBaoGiaMenu);
         }
 
         private void menuChucNang_MouseMove(object sender, MouseEventArgs e)
         {
-            FixMenuChucNangItemShiftText(chonBaoGiaToolStripMenuItem);
+            FixMenuChucNangItemShiftText(chonBaoGiaMenu);
         }
 
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
-            FixMenuChucNangItemShiftText(chonBaoGiaToolStripMenuItem);
+            FixMenuChucNangItemShiftText(chonBaoGiaMenu);
         }
 
         private void txtMa_sonb_TextChanged(object sender, EventArgs e)

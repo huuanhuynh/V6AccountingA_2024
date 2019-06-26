@@ -46,18 +46,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuChucNang = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ChonDonHangBanMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.chonBaoGiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chonBaoGiaMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.TroGiupMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.chonTuExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.xemCongNoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.chonPhieuNhapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.inKhacToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.thayTheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.thayThe2toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chonTuExcelMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.xemCongNoMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.chonPhieuNhapMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.inKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.thayTheMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.thayThe2Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuDetail1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.menuXemPhieuNhap = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.XemPhieuNhapMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.chuaDatTen2Menu = new System.Windows.Forms.ToolStripMenuItem();
+            this.chuaDatTen3Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.lblNameT = new V6Controls.V6Label();
             this.btnViewInfoData = new System.Windows.Forms.Button();
             this.Txtma_nk = new V6Controls.V6VvarTextBox();
@@ -300,14 +300,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             // 
             this.menuChucNang.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ChonDonHangBanMenu,
-            this.chonBaoGiaToolStripMenuItem,
+            this.chonBaoGiaMenu,
             this.TroGiupMenu,
-            this.chonTuExcelToolStripMenuItem,
-            this.xemCongNoToolStripMenuItem,
-            this.chonPhieuNhapToolStripMenuItem,
-            this.inKhacToolStripMenuItem,
-            this.thayTheToolStripMenuItem,
-            this.thayThe2toolStripMenuItem});
+            this.chonTuExcelMenu,
+            this.xemCongNoMenu,
+            this.chonPhieuNhapMenu,
+            this.inKhacMenu,
+            this.thayTheMenu,
+            this.thayThe2Menu});
             this.menuChucNang.Name = "menuChucNang";
             this.menuChucNang.Size = new System.Drawing.Size(181, 202);
             // 
@@ -321,11 +321,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             // 
             // chonBaoGiaToolStripMenuItem
             // 
-            this.chonBaoGiaToolStripMenuItem.AccessibleDescription = "INVOICEM00002";
-            this.chonBaoGiaToolStripMenuItem.Name = "chonBaoGiaToolStripMenuItem";
-            this.chonBaoGiaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.chonBaoGiaToolStripMenuItem.Text = "Chọn báo giá";
-            this.chonBaoGiaToolStripMenuItem.Click += new System.EventHandler(this.chonBaoGiaMenu_Click);
+            this.chonBaoGiaMenu.AccessibleDescription = "INVOICEM00002";
+            this.chonBaoGiaMenu.Name = "chonBaoGiaMenu";
+            this.chonBaoGiaMenu.Size = new System.Drawing.Size(180, 22);
+            this.chonBaoGiaMenu.Text = "Chọn báo giá";
+            this.chonBaoGiaMenu.Click += new System.EventHandler(this.chonBaoGiaMenu_Click);
             // 
             // TroGiupMenu
             // 
@@ -336,82 +336,82 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             // 
             // chonTuExcelToolStripMenuItem
             // 
-            this.chonTuExcelToolStripMenuItem.AccessibleDescription = "INVOICEM00004";
-            this.chonTuExcelToolStripMenuItem.Name = "chonTuExcelToolStripMenuItem";
-            this.chonTuExcelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.chonTuExcelToolStripMenuItem.Text = "Chọn từ Excel";
-            this.chonTuExcelToolStripMenuItem.Click += new System.EventHandler(this.chonTuExcelToolStripMenuItem_Click);
+            this.chonTuExcelMenu.AccessibleDescription = "INVOICEM00004";
+            this.chonTuExcelMenu.Name = "chonTuExcelMenu";
+            this.chonTuExcelMenu.Size = new System.Drawing.Size(180, 22);
+            this.chonTuExcelMenu.Text = "Chọn từ Excel";
+            this.chonTuExcelMenu.Click += new System.EventHandler(this.chonTuExcelToolStripMenuItem_Click);
             // 
             // xemCongNoToolStripMenuItem
             // 
-            this.xemCongNoToolStripMenuItem.AccessibleDescription = "INVOICEM00005";
-            this.xemCongNoToolStripMenuItem.Name = "xemCongNoToolStripMenuItem";
-            this.xemCongNoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.xemCongNoToolStripMenuItem.Text = "Xem công nợ";
-            this.xemCongNoToolStripMenuItem.Click += new System.EventHandler(this.xemCongNoToolStripMenuItem_Click);
+            this.xemCongNoMenu.AccessibleDescription = "INVOICEM00005";
+            this.xemCongNoMenu.Name = "xemCongNoMenu";
+            this.xemCongNoMenu.Size = new System.Drawing.Size(180, 22);
+            this.xemCongNoMenu.Text = "Xem công nợ";
+            this.xemCongNoMenu.Click += new System.EventHandler(this.xemCongNoToolStripMenuItem_Click);
             // 
             // chonPhieuNhapToolStripMenuItem
             // 
-            this.chonPhieuNhapToolStripMenuItem.AccessibleDescription = "INVOICEM00006";
-            this.chonPhieuNhapToolStripMenuItem.Name = "chonPhieuNhapToolStripMenuItem";
-            this.chonPhieuNhapToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.chonPhieuNhapToolStripMenuItem.Text = "Chọn phiếu nhập";
-            this.chonPhieuNhapToolStripMenuItem.Click += new System.EventHandler(this.chonPhieuNhapToolStripMenuItem_Click);
+            this.chonPhieuNhapMenu.AccessibleDescription = "INVOICEM00006";
+            this.chonPhieuNhapMenu.Name = "chonPhieuNhapMenu";
+            this.chonPhieuNhapMenu.Size = new System.Drawing.Size(180, 22);
+            this.chonPhieuNhapMenu.Text = "Chọn phiếu nhập";
+            this.chonPhieuNhapMenu.Click += new System.EventHandler(this.chonPhieuNhapToolStripMenuItem_Click);
             // 
             // inKhacToolStripMenuItem
             // 
-            this.inKhacToolStripMenuItem.AccessibleDescription = "INVOICEM00007";
-            this.inKhacToolStripMenuItem.Name = "inKhacToolStripMenuItem";
-            this.inKhacToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.inKhacToolStripMenuItem.Text = "In khác";
-            this.inKhacToolStripMenuItem.Click += new System.EventHandler(this.inKhacToolStripMenuItem_Click);
+            this.inKhacMenu.AccessibleDescription = "INVOICEM00007";
+            this.inKhacMenu.Name = "inKhacMenu";
+            this.inKhacMenu.Size = new System.Drawing.Size(180, 22);
+            this.inKhacMenu.Text = "In khác";
+            this.inKhacMenu.Click += new System.EventHandler(this.inKhacToolStripMenuItem_Click);
             // 
             // thayTheToolStripMenuItem
             // 
-            this.thayTheToolStripMenuItem.AccessibleDescription = "INVOICEM00008";
-            this.thayTheToolStripMenuItem.Name = "thayTheToolStripMenuItem";
-            this.thayTheToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.thayTheToolStripMenuItem.Text = "Thay thế";
-            this.thayTheToolStripMenuItem.Click += new System.EventHandler(this.thayTheToolStripMenuItem_Click);
+            this.thayTheMenu.AccessibleDescription = "INVOICEM00008";
+            this.thayTheMenu.Name = "thayTheMenu";
+            this.thayTheMenu.Size = new System.Drawing.Size(180, 22);
+            this.thayTheMenu.Text = "Thay thế";
+            this.thayTheMenu.Click += new System.EventHandler(this.thayTheToolStripMenuItem_Click);
             // 
             // thayThe2toolStripMenuItem
             // 
-            this.thayThe2toolStripMenuItem.AccessibleDescription = "INVOICEM00009";
-            this.thayThe2toolStripMenuItem.Name = "thayThe2toolStripMenuItem";
-            this.thayThe2toolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.thayThe2toolStripMenuItem.Text = "Sửa nhiều dòng";
-            this.thayThe2toolStripMenuItem.Click += new System.EventHandler(this.thayThe2toolStripMenuItem_Click);
+            this.thayThe2Menu.AccessibleDescription = "INVOICEM00009";
+            this.thayThe2Menu.Name = "thayThe2Menu";
+            this.thayThe2Menu.Size = new System.Drawing.Size(180, 22);
+            this.thayThe2Menu.Text = "Sửa nhiều dòng";
+            this.thayThe2Menu.Click += new System.EventHandler(this.thayThe2toolStripMenuItem_Click);
             // 
             // menuDetail1
             // 
             this.menuDetail1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuXemPhieuNhap,
-            this.toolStripMenuItem2,
-            this.toolStripMenuItem3});
+            this.XemPhieuNhapMenu,
+            this.chuaDatTen2Menu,
+            this.chuaDatTen3Menu});
             this.menuDetail1.Name = "menuChucNang";
             this.menuDetail1.Size = new System.Drawing.Size(162, 70);
             // 
             // menuXemPhieuNhap
             // 
-            this.menuXemPhieuNhap.AccessibleDescription = "INVOICEM00018";
-            this.menuXemPhieuNhap.Name = "menuXemPhieuNhap";
-            this.menuXemPhieuNhap.Size = new System.Drawing.Size(161, 22);
-            this.menuXemPhieuNhap.Text = "Xem phiếu nhập";
-            this.menuXemPhieuNhap.Click += new System.EventHandler(this.menuXemPhieuNhap_Click);
+            this.XemPhieuNhapMenu.AccessibleDescription = "INVOICEM00018";
+            this.XemPhieuNhapMenu.Name = "XemPhieuNhapMenu";
+            this.XemPhieuNhapMenu.Size = new System.Drawing.Size(161, 22);
+            this.XemPhieuNhapMenu.Text = "Xem phiếu nhập";
+            this.XemPhieuNhapMenu.Click += new System.EventHandler(this.menuXemPhieuNhap_Click);
             // 
             // toolStripMenuItem2
             // 
-            this.toolStripMenuItem2.AccessibleDescription = "INVOICEM00019";
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(161, 22);
-            this.toolStripMenuItem2.Text = "...";
+            this.chuaDatTen2Menu.AccessibleDescription = "INVOICEM00019";
+            this.chuaDatTen2Menu.Name = "chuaDatTen2Menu";
+            this.chuaDatTen2Menu.Size = new System.Drawing.Size(161, 22);
+            this.chuaDatTen2Menu.Text = "...";
             // 
             // toolStripMenuItem3
             // 
-            this.toolStripMenuItem3.AccessibleDescription = "INVOICEM00020";
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(161, 22);
-            this.toolStripMenuItem3.Text = "...";
+            this.chuaDatTen3Menu.AccessibleDescription = "INVOICEM00020";
+            this.chuaDatTen3Menu.Name = "chuaDatTen3Menu";
+            this.chuaDatTen3Menu.Size = new System.Drawing.Size(161, 22);
+            this.chuaDatTen3Menu.Text = "...";
             // 
             // lblNameT
             // 
@@ -3771,8 +3771,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         private V6VvarTextBox txtGhiChuChung;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ToolStripMenuItem chonTuExcelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem chonBaoGiaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem chonTuExcelMenu;
+        private System.Windows.Forms.ToolStripMenuItem chonBaoGiaMenu;
         private V6VvarTextBox txtDiaChiGiaoHang;
         private V6Label v6Label25;
         private V6Label v6Label26;
@@ -3791,21 +3791,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         private V6VvarTextBox txtDienThoaiKH;
         private V6NumberTextBox txtConLai;
         private System.Windows.Forms.ContextMenuStrip menuDetail1;
-        private System.Windows.Forms.ToolStripMenuItem menuXemPhieuNhap;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem xemCongNoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem XemPhieuNhapMenu;
+        private System.Windows.Forms.ToolStripMenuItem chuaDatTen2Menu;
+        private System.Windows.Forms.ToolStripMenuItem chuaDatTen3Menu;
+        private System.Windows.Forms.ToolStripMenuItem xemCongNoMenu;
         private V6VvarTextBox Txtma_td_ph;
         private V6Label v6Label14;
-        private System.Windows.Forms.ToolStripMenuItem chonPhieuNhapToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem chonPhieuNhapMenu;
         private V6FormButton btnTinhCKKM;
         private V6VvarTextBox TxtL_AM_INFO;
         private V6CheckBox chkAuto_Ck;
         private V6Controls.V6ComboBox cboChuyenData;
         private V6Label v6Label28;
-        private System.Windows.Forms.ToolStripMenuItem inKhacToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem thayTheToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem thayThe2toolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem inKhacMenu;
+        private System.Windows.Forms.ToolStripMenuItem thayTheMenu;
+        private System.Windows.Forms.ToolStripMenuItem thayThe2Menu;
         private NumberSoluong txtTongSoLuong;
         private V6Label lblKieuPostColor;
         private GridViewSummary gridViewSummary3;

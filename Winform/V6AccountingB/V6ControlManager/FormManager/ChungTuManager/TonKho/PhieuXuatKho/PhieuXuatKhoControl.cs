@@ -2437,15 +2437,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     dataGridView1.ReadOnly = true;
                     XuatHetKhoMenu.Enabled = false;
                     TroGiupMenu.Enabled = false;
-                    chonTuExcelToolStripMenuItem.Enabled = false;
-                    tinhHaoHutToolStripMenuItem.Enabled = false;
+                    chonTuExcelMenu.Enabled = false;
+                    tinhHaoHutMenu.Enabled = false;
                 }
                 else //Cac truong hop khac
                 {
                     XuatHetKhoMenu.Enabled = true;
                     TroGiupMenu.Enabled = true;
-                    chonTuExcelToolStripMenuItem.Enabled = true;
-                    tinhHaoHutToolStripMenuItem.Enabled = true;
+                    chonTuExcelMenu.Enabled = true;
+                    tinhHaoHutMenu.Enabled = true;
 
                     XuLyKhoaThongTinKhachHang();
 

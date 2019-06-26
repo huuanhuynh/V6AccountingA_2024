@@ -4685,7 +4685,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             ChucNang_TroGiup();
         }
 
-        private void chonTuExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        private void chonTuExcelMenu_Click(object sender, EventArgs e)
         {
             ChucNang_ChonTuExcel();
         }
@@ -5371,7 +5371,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         #endregion tinh khuyen mai
 
-        private void inKhacToolStripMenuItem_Click(object sender, EventArgs e)
+        private void inKhacMenu_Click(object sender, EventArgs e)
         {
             InvokeFormEvent(FormDynamicEvent.INKHAC);
         }
@@ -5390,17 +5390,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             }
         }
 
-        private void thayTheToolStripMenuItem_Click(object sender, EventArgs e)
+        private void thayTheMenu_Click(object sender, EventArgs e)
         {
             ChucNang_ThayThe(Invoice);
         }
 
-        private void thayThe2toolStripMenuItem_Click(object sender, EventArgs e)
+        private void thayThe2Menu_Click(object sender, EventArgs e)
         {
             ChucNang_SuaNhieuDong(Invoice);
         }
 
-        private void chonBaoGiaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void chonBaoGiaMenu_Click(object sender, EventArgs e)
         {
             bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
             ChucNang_ChonBaoGia(shift);

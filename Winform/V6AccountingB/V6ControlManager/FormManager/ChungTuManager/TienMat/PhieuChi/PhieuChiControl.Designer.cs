@@ -113,9 +113,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.btnChucNang = new V6Controls.Controls.DropDownButton();
             this.menuChucNang = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.xulyKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.thayTheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.thayThe2toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.thuNoTaiKhoanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thayTheMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.thayThe2Menu = new System.Windows.Forms.ToolStripMenuItem();
+            this.thuNoTaiKhoanMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.v6Label28 = new V6Controls.V6Label();
             this.chkSuaThue = new V6Controls.V6CheckBox();
             this.chkSuaTien = new V6Controls.V6CheckBox();
@@ -1418,9 +1418,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             // 
             this.menuChucNang.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.xulyKhacMenu,
-            this.thayTheToolStripMenuItem,
-            this.thayThe2toolStripMenuItem,
-            this.thuNoTaiKhoanToolStripMenuItem});
+            this.thayTheMenu,
+            this.thayThe2Menu,
+            this.thuNoTaiKhoanMenu});
             this.menuChucNang.Name = "menuChucNang";
             this.menuChucNang.Size = new System.Drawing.Size(165, 92);
             // 
@@ -1434,28 +1434,28 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             // 
             // thayTheToolStripMenuItem
             // 
-            this.thayTheToolStripMenuItem.AccessibleDescription = "INVOICEM00008";
-            this.thayTheToolStripMenuItem.Name = "thayTheToolStripMenuItem";
-            this.thayTheToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.thayTheToolStripMenuItem.Text = "Thay thế";
-            this.thayTheToolStripMenuItem.Click += new System.EventHandler(this.thayTheToolStripMenuItem_Click);
+            this.thayTheMenu.AccessibleDescription = "INVOICEM00008";
+            this.thayTheMenu.Name = "thayTheMenu";
+            this.thayTheMenu.Size = new System.Drawing.Size(164, 22);
+            this.thayTheMenu.Text = "Thay thế";
+            this.thayTheMenu.Click += new System.EventHandler(this.thayTheToolStripMenuItem_Click);
             // 
             // thayThe2toolStripMenuItem
             // 
-            this.thayThe2toolStripMenuItem.AccessibleDescription = "INVOICEM00009";
-            this.thayThe2toolStripMenuItem.Name = "thayThe2toolStripMenuItem";
-            this.thayThe2toolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.thayThe2toolStripMenuItem.Text = "Sửa nhiều dòng";
-            this.thayThe2toolStripMenuItem.Click += new System.EventHandler(this.thayThe2toolStripMenuItem_Click);
+            this.thayThe2Menu.AccessibleDescription = "INVOICEM00009";
+            this.thayThe2Menu.Name = "thayThe2Menu";
+            this.thayThe2Menu.Size = new System.Drawing.Size(164, 22);
+            this.thayThe2Menu.Text = "Sửa nhiều dòng";
+            this.thayThe2Menu.Click += new System.EventHandler(this.thayThe2toolStripMenuItem_Click);
             // 
             // thuNoTaiKhoanToolStripMenuItem
             // 
-            this.thuNoTaiKhoanToolStripMenuItem.Name = "thuNoTaiKhoanToolStripMenuItem";
-            this.thuNoTaiKhoanToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.thuNoTaiKhoanToolStripMenuItem.Tag = "hide";
-            this.thuNoTaiKhoanToolStripMenuItem.Text = "Thu nợ tài khoản";
-            this.thuNoTaiKhoanToolStripMenuItem.Visible = false;
-            this.thuNoTaiKhoanToolStripMenuItem.Click += new System.EventHandler(this.thuNoTaiKhoanToolStripMenuItem_Click);
+            this.thuNoTaiKhoanMenu.Name = "thuNoTaiKhoanMenu";
+            this.thuNoTaiKhoanMenu.Size = new System.Drawing.Size(164, 22);
+            this.thuNoTaiKhoanMenu.Tag = "hide";
+            this.thuNoTaiKhoanMenu.Text = "Thu nợ tài khoản";
+            this.thuNoTaiKhoanMenu.Visible = false;
+            this.thuNoTaiKhoanMenu.Click += new System.EventHandler(this.thuNoTaiKhoanToolStripMenuItem_Click);
             // 
             // v6Label28
             // 
@@ -2697,10 +2697,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         private DropDownButton btnChucNang;
         private ContextMenuStrip menuChucNang;
         private ToolStripMenuItem xulyKhacMenu;
-        private ToolStripMenuItem thayTheToolStripMenuItem;
-        private ToolStripMenuItem thayThe2toolStripMenuItem;
+        private ToolStripMenuItem thayTheMenu;
+        private ToolStripMenuItem thayThe2Menu;
         private V6Label lblKieuPostColor;
-        private ToolStripMenuItem thuNoTaiKhoanToolStripMenuItem;
+        private ToolStripMenuItem thuNoTaiKhoanMenu;
         private GridViewSummary gridViewSummary2;
         private GridViewSummary gridViewSummary3;
     }

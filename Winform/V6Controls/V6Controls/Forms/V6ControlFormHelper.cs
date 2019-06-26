@@ -1149,26 +1149,52 @@ namespace V6Controls.Forms
             return null;
         }
 
-        public static List<Control> GetListControlByAccessibleNames(Control container, IList<string> accessibleName)
+        /// <summary>
+        /// Lấy danh sách control theo AccessibleName, nếu ko có thì lấy theo Name
+        /// </summary>
+        /// <param name="container"></param>
+        /// <param name="accessibleName"></param>
+        /// <returns></returns>
+        public static List<Object> GetListControlByAccessibleOrNames(Control container, IList<string> accessibleName)
         {
             try
             {
-                List<Control> ControlList = new List<Control>();
+                List<Object> ControlList = new List<Object>();
                 foreach (Control c in container.Controls)
                 {
                     if (accessibleName.Contains(c.AccessibleName, StringComparer.InvariantCultureIgnoreCase))
                     {
                         ControlList.Add(c);
                     }
-
-                    List<Control> cl = GetListControlByAccessibleNames(c, accessibleName);
+                    else if (accessibleName.Contains(c.Name, StringComparer.InvariantCultureIgnoreCase))
+                    {
+                        ControlList.Add(c);
+                    }
+                    if (c.Name.StartsWith("btnChucN"))
+                    {
+                        string a = "a";
+                    }
+                    List<Object> cl = GetListControlByAccessibleOrNames(c, accessibleName);
                     ControlList.AddRange(cl);
                 }
+
+                // Dò qua menu
+                if (container.ContextMenuStrip != null)
+                {
+                    foreach (ToolStripMenuItem item in container.ContextMenuStrip.Items)
+                    {
+                        if (accessibleName.Contains(item.Name, StringComparer.InvariantCultureIgnoreCase))
+                        {
+                            ControlList.Add(item);
+                        }
+                    }
+                }
+
                 return ControlList;
             }
             catch (Exception ex)
             {
-                throw new Exception("GetListControlByAccessibleNames error!\n" + ex.Message);
+                throw new Exception("GetListControlByAccessibleOrNames error!\n" + ex.Message);
             }
         }
 
@@ -6386,19 +6412,29 @@ namespace V6Controls.Forms
         {
             try
             {
-                var listControl = GetListControlByAccessibleNames(container, accNameList);
-                foreach (Control control in listControl)
+                var listControl = GetListControlByAccessibleOrNames(container, accNameList);
+                foreach (Object o in listControl)
                 {
-                    SetControlReadOnly(control, readOnly);
-                    // Ẩn dấu check liên quan
-                    if (control.Parent != null)
+                    if (o is Control)
                     {
-                        var chk = GetControlByName(control.Parent, "chk" + control.AccessibleName);
-                        if (chk != null)
+                        var control = o as Control;
+                        
+                        SetControlReadOnly(control, readOnly);
+                        // Ẩn dấu check liên quan
+                        if (control.Parent != null)
                         {
-                            if(readOnly) chk.InvisibleTag();
-                            else chk.VisibleTag();
+                            var chk = GetControlByName(control.Parent, "chk" + control.AccessibleName);
+                            if (chk != null)
+                            {
+                                if (readOnly) chk.InvisibleTag();
+                                else chk.VisibleTag();
+                            }
                         }
+                    }
+                    else if (o is ToolStripMenuItem)
+                    {
+                        var menuItem = o as ToolStripMenuItem;
+                        menuItem.Enabled = readOnly;
                     }
                 }
             }
@@ -6412,22 +6448,32 @@ namespace V6Controls.Forms
         {
             try
             {
-                var listControl = GetListControlByAccessibleNames(container, accNameList);
-                foreach (Control control in listControl)
+                var listControl = GetListControlByAccessibleOrNames(container, accNameList);
+                foreach (Object o in listControl)
                 {
-                    control.Visible = visible;
-                    // Ẩn các control liên quan lbl, chk...
-                    if (control.Parent != null)
+                    if (o is Control)
                     {
-                        var lbl = GetControlByName(control.Parent, "lbl" + control.AccessibleName);
-                        if (lbl != null) lbl.Visible = visible;
+                        var control = o as Control;
 
-                        var chk = GetControlByName(control.Parent, "chk" + control.AccessibleName);
-                        if (chk != null)
+                        control.Visible = visible;
+                        // Ẩn các control liên quan lbl, chk...
+                        if (control.Parent != null)
                         {
-                            if (visible) chk.Visible = true;
-                            else chk.InvisibleTag();
+                            var lbl = GetControlByName(control.Parent, "lbl" + control.AccessibleName);
+                            if (lbl != null) lbl.Visible = visible;
+
+                            var chk = GetControlByName(control.Parent, "chk" + control.AccessibleName);
+                            if (chk != null)
+                            {
+                                if (visible) chk.Visible = true;
+                                else chk.InvisibleTag();
+                            }
                         }
+                    }
+                    else if (o is ToolStripMenuItem)
+                    {
+                        var menuItem = o as ToolStripMenuItem;
+                        menuItem.Visible = visible;
                     }
                 }
             }

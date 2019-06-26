@@ -218,6 +218,26 @@ namespace V6Controls
 
         }
 
+        //protected override void OnPaintBackground(PaintEventArgs pevent)
+        //{
+        //    //base.OnPaintBackground(pevent);
+        //    if (DesignMode)
+        //    {
+        //        //' If this is in the designer let's put a nice gradient on the back
+        //        //' By default the tabcontrol has a fixed grey background. Yuck!
+        //        var backBrush = new LinearGradientBrush(Bounds, SystemColors.ControlLightLight,
+        //            SystemColors.ControlLight, LinearGradientMode.Vertical);
+        //        pevent.Graphics.FillRectangle(backBrush, Bounds);
+        //        backBrush.Dispose();
+        //    }
+        //    else{
+        //        //' At runtime we want a transparent background.
+        //        //' So let's paint the containing control (there has to be one).
+        //        InvokePaintBackground(Parent, pevent);
+        //        InvokePaint(Parent, pevent);
+        //    }
+        //}
+
         private void DrawTabHearderText(Graphics graphics, RectangleF tabTextArea, int nIndex)
         {
             var cTab = TabPages[nIndex];

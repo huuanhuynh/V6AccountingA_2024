@@ -38,7 +38,7 @@
             this.v6Label20 = new V6Controls.V6Label();
             this.lblTen = new V6Controls.V6Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.viewDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewDataMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -154,17 +154,17 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.viewDataToolStripMenuItem});
+            this.viewDataMenu});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(124, 26);
             // 
             // viewDataToolStripMenuItem
             // 
-            this.viewDataToolStripMenuItem.AccessibleDescription = "REPORTM00009";
-            this.viewDataToolStripMenuItem.Name = "viewDataToolStripMenuItem";
-            this.viewDataToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.viewDataToolStripMenuItem.Text = "View Data";
-            this.viewDataToolStripMenuItem.Click += new System.EventHandler(this.viewDataToolStripMenuItem_Click);
+            this.viewDataMenu.AccessibleDescription = "REPORTM00009";
+            this.viewDataMenu.Name = "viewDataMenu";
+            this.viewDataMenu.Size = new System.Drawing.Size(123, 22);
+            this.viewDataMenu.Text = "View Data";
+            this.viewDataMenu.Click += new System.EventHandler(this.viewDataToolStripMenuItem_Click);
             // 
             // V6CHECK_U1
             // 
@@ -191,6 +191,6 @@
         private V6Controls.V6Label v6Label20;
         private V6Controls.V6Label lblTen;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem viewDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewDataMenu;
     }
 }

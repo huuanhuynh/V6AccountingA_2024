@@ -4500,17 +4500,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             }
         }
 
-        private void inKhacToolStripMenuItem_Click(object sender, EventArgs e)
+        private void inKhacMenu_Click(object sender, EventArgs e)
         {
             InvokeFormEvent(FormDynamicEvent.INKHAC);
         }
 
-        private void thayTheToolStripMenuItem_Click(object sender, EventArgs e)
+        private void thayTheMenu_Click(object sender, EventArgs e)
         {
             ChucNang_ThayThe(Invoice);
         }
 
-        private void thayThe2toolStripMenuItem_Click(object sender, EventArgs e)
+        private void thayThe2Menu_Click(object sender, EventArgs e)
         {
             ChucNang_SuaNhieuDong(Invoice);
         }

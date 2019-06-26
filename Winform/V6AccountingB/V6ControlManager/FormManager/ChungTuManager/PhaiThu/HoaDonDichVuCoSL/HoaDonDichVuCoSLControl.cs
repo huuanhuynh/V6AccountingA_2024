@@ -3133,16 +3133,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     detail3.MODE = V6Mode.Lock;
 
                     ChonDonHangBanMenu.Enabled = false;
-                    chonBaoGiaToolStripMenuItem.Enabled = false;
-                    chonTuExcelToolStripMenuItem.Enabled = false;
-                    chonPhieuNhapToolStripMenuItem.Enabled = false;
+                    chonBaoGiaMenu.Enabled = false;
+                    chonTuExcelMenu.Enabled = false;
+                    chonPhieuNhapMenu.Enabled = false;
                 }
                 else
                 {
                     ChonDonHangBanMenu.Enabled = true;
-                    chonBaoGiaToolStripMenuItem.Enabled = true;
-                    chonTuExcelToolStripMenuItem.Enabled = true;
-                    chonPhieuNhapToolStripMenuItem.Enabled = true;
+                    chonBaoGiaMenu.Enabled = true;
+                    chonTuExcelMenu.Enabled = true;
+                    chonPhieuNhapMenu.Enabled = true;
 
                     XuLyKhoaThongTinKhachHang();
 

@@ -36,10 +36,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.exportToExcelTemplate = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportToExcel = new System.Windows.Forms.ToolStripMenuItem();
-            this.printGrid = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportToPdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToExcelTemplateMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToExcelMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.printGridMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToPdfMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.grbDieuKienLoc = new System.Windows.Forms.GroupBox();
             this.btnLs = new System.Windows.Forms.Button();
             this.btnLt = new System.Windows.Forms.Button();
@@ -127,44 +127,44 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exportToExcelTemplate,
-            this.exportToExcel,
-            this.printGrid,
-            this.exportToPdfToolStripMenuItem});
+            this.exportToExcelTemplateMenu,
+            this.exportToExcelMenu,
+            this.printGridMenu,
+            this.exportToPdfMenu});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(209, 114);
             // 
             // ExporttoExcelTemplate
             // 
-            this.exportToExcelTemplate.AccessibleDescription = "REPORTM00003";
-            this.exportToExcelTemplate.Name = "exportToExcelTemplate";
-            this.exportToExcelTemplate.Size = new System.Drawing.Size(208, 22);
-            this.exportToExcelTemplate.Text = "Export to Excel (template)";
-            this.exportToExcelTemplate.Click += new System.EventHandler(this.ExporttoExceltemplate_Click);
+            this.exportToExcelTemplateMenu.AccessibleDescription = "REPORTM00003";
+            this.exportToExcelTemplateMenu.Name = "exportToExcelTemplateMenu";
+            this.exportToExcelTemplateMenu.Size = new System.Drawing.Size(208, 22);
+            this.exportToExcelTemplateMenu.Text = "Export to Excel (template)";
+            this.exportToExcelTemplateMenu.Click += new System.EventHandler(this.ExporttoExceltemplate_Click);
             // 
             // exportToExcel
             // 
-            this.exportToExcel.AccessibleDescription = "REPORTM00001";
-            this.exportToExcel.Name = "exportToExcel";
-            this.exportToExcel.Size = new System.Drawing.Size(208, 22);
-            this.exportToExcel.Text = "Export To Excel";
-            this.exportToExcel.Click += new System.EventHandler(this.exportToExcel_Click);
+            this.exportToExcelMenu.AccessibleDescription = "REPORTM00001";
+            this.exportToExcelMenu.Name = "exportToExcelMenu";
+            this.exportToExcelMenu.Size = new System.Drawing.Size(208, 22);
+            this.exportToExcelMenu.Text = "Export To Excel";
+            this.exportToExcelMenu.Click += new System.EventHandler(this.exportToExcel_Click);
             // 
             // printGrid
             // 
-            this.printGrid.AccessibleDescription = "REPORTM00007";
-            this.printGrid.Name = "printGrid";
-            this.printGrid.Size = new System.Drawing.Size(208, 22);
-            this.printGrid.Text = "Print Grid";
-            this.printGrid.Click += new System.EventHandler(this.printGrid_Click);
+            this.printGridMenu.AccessibleDescription = "REPORTM00007";
+            this.printGridMenu.Name = "printGridMenu";
+            this.printGridMenu.Size = new System.Drawing.Size(208, 22);
+            this.printGridMenu.Text = "Print Grid";
+            this.printGridMenu.Click += new System.EventHandler(this.printGrid_Click);
             // 
-            // exportToPdfToolStripMenuItem
+            // exportToPdfMenu
             // 
-            this.exportToPdfToolStripMenuItem.AccessibleDescription = "REPORTM00006";
-            this.exportToPdfToolStripMenuItem.Name = "exportToPdfToolStripMenuItem";
-            this.exportToPdfToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.exportToPdfToolStripMenuItem.Text = "Export to PDF";
-            this.exportToPdfToolStripMenuItem.Click += new System.EventHandler(this.exportToPdfToolStripMenuItem_Click);
+            this.exportToPdfMenu.AccessibleDescription = "REPORTM00006";
+            this.exportToPdfMenu.Name = "exportToPdfMenu";
+            this.exportToPdfMenu.Size = new System.Drawing.Size(208, 22);
+            this.exportToPdfMenu.Text = "Export to PDF";
+            this.exportToPdfMenu.Click += new System.EventHandler(this.exportToPdfMenu_Click);
             // 
             // grbDieuKienLoc
             // 
@@ -755,8 +755,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         public System.Windows.Forms.Button btnNhan;
         public System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem exportToExcel;
-        private System.Windows.Forms.ToolStripMenuItem printGrid;
+        private System.Windows.Forms.ToolStripMenuItem exportToExcelMenu;
+        private System.Windows.Forms.ToolStripMenuItem printGridMenu;
         private System.Windows.Forms.GroupBox grbTienTe;
         private System.Windows.Forms.RadioButton rNgoaiTe;
         private System.Windows.Forms.RadioButton rTienViet;
@@ -791,9 +791,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         private System.Windows.Forms.Button btnLs;
         private System.Windows.Forms.Button btnLt;
         public System.Windows.Forms.Panel panelCRview;
-        private System.Windows.Forms.ToolStripMenuItem exportToExcelTemplate;
+        private System.Windows.Forms.ToolStripMenuItem exportToExcelTemplateMenu;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer4;
-        private System.Windows.Forms.ToolStripMenuItem exportToPdfToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportToPdfMenu;
         private System.Windows.Forms.RadioButton rCurrent;
         private DropDownButton btnExport2;
     }

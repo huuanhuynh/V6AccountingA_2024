@@ -1540,13 +1540,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                     dataGridView1.ReadOnly = true;
                     ChonDonHangMuaMenu.Enabled = false;
                     TroGiupMenu.Enabled = false;
-                    chonTuExcelToolStripMenuItem.Enabled = false;
+                    chonTuExcelMenu.Enabled = false;
                 }
                 else //Cac truong hop khac
                 {
                     ChonDonHangMuaMenu.Enabled = true;
                     TroGiupMenu.Enabled = true;
-                    chonTuExcelToolStripMenuItem.Enabled = true;
+                    chonTuExcelMenu.Enabled = true;
 
                     XuLyKhoaThongTinKhachHang();
 

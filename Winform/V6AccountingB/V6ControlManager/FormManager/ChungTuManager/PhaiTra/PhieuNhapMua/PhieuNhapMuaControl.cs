@@ -2213,13 +2213,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
                     ChonDonHangMuaMenu.Enabled = false;
                     TroGiupMenu.Enabled = false;
-                    chonTuExcelToolStripMenuItem.Enabled = false;
+                    chonTuExcelMenu.Enabled = false;
                 }
                 else //Cac truong hop khac
                 {
                     ChonDonHangMuaMenu.Enabled = true;
                     TroGiupMenu.Enabled = true;
-                    chonTuExcelToolStripMenuItem.Enabled = true;
+                    chonTuExcelMenu.Enabled = true;
 
                     XuLyKhoaThongTinKhachHang();
                     SetGridViewChiPhiEditAble(TxtLoai_pb.Text, chkSuaTien.Checked, dataGridView3ChiPhi);
@@ -6696,7 +6696,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             lblNameT.Text = ((Label)sender).Text;
         }
 
-        private void chonTuExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        private void chonTuExcelMenu_Click(object sender, EventArgs e)
         {
             ChucNang_ChonTuExcel();
         }
@@ -6859,17 +6859,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             XemPhieuNhapView(dateNgayCT.Date, Invoice.Mact, _maKhoI.Text, _maVt.Text);
         }
 
-        private void xuLyKhacToolStripMenuItem_Click(object sender, EventArgs e)
+        private void xuLyKhacMenu_Click(object sender, EventArgs e)
         {
             InvokeFormEvent(FormDynamicEvent.INKHAC);
         }
 
-        private void thayTheToolStripMenuItem_Click(object sender, EventArgs e)
+        private void thayTheMenu_Click(object sender, EventArgs e)
         {
             ChucNang_ThayThe(Invoice);
         }
 
-        private void thayThe2toolStripMenuItem_Click(object sender, EventArgs e)
+        private void thayThe2Menu_Click(object sender, EventArgs e)
         {
             ChucNang_SuaNhieuDong(Invoice);
         }

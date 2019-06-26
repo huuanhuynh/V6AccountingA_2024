@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -730,13 +730,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                         var user_acc = V6Login.UserInfo["USER_ACC"].ToString().Trim();
                         if (user_acc != "1")
                         {
-                            if (!key3.Contains("1")) exportToExcelTemplate.Visible = false;
+                            if (!key3.Contains("1")) exportToExcelTemplateMenu.Visible = false;
                             if (!key3.Contains("2")) exportToExcelView.Visible = false;
                             if (!key3.Contains("3")) exportToExcel.Visible = false;
-                            if (!key3.Contains("4")) exportToXmlToolStripMenuItem.Visible = false;
+                            if (!key3.Contains("4")) exportToXmlMenu.Visible = false;
                             if (!key3.Contains("5")) printGrid.Visible = false;
-                            if (!key3.Contains("6")) viewDataToolStripMenuItem.Visible = false;
-                            if (!key3.Contains("7")) exportToPdfToolStripMenuItem.Visible = false;
+                            if (!key3.Contains("6")) viewDataMenu.Visible = false;
+                            if (!key3.Contains("7")) exportToPdfMenu.Visible = false;
                         }
                     }
                 }
@@ -1905,7 +1905,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
-        private void exportToXmlToolStripMenuItem_Click(object sender, EventArgs e)
+        private void exportToXmlMenu_Click(object sender, EventArgs e)
         {
             if (_tbl1 == null)
             {
@@ -1939,7 +1939,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
-        private void viewDataToolStripMenuItem_Click(object sender, EventArgs e)
+        private void viewDataMenu_Click(object sender, EventArgs e)
         {
             dataGridView1.ViewDataToNewForm();
         }
@@ -1960,7 +1960,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             btnNhan.Focus();
         }
 
-        private void exportToPdfToolStripMenuItem_Click(object sender, EventArgs e)
+        private void exportToPdfMenu_Click(object sender, EventArgs e)
         {
             try
             {

@@ -1431,15 +1431,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     detail1.MODE = V6Mode.Lock;
                     detail3.MODE = V6Mode.Lock;
 
-                    ThuCongNo.Enabled = false;
+                    ThuCongNoMenu.Enabled = false;
                     TroGiupMenu.Enabled = false;
-                    chonTuExcelToolStripMenuItem.Enabled = false;
+                    chonTuExcelMenu.Enabled = false;
                 }
                 else //Cac truong hop khac
                 {
-                    ThuCongNo.Enabled = true;
+                    ThuCongNoMenu.Enabled = true;
                     TroGiupMenu.Enabled = true;
-                    chonTuExcelToolStripMenuItem.Enabled = true;
+                    chonTuExcelMenu.Enabled = true;
 
                     XuLyKhoaThongTinKhachHang();
                     txtTyGia.Enabled = _maNt != _mMaNt0;
