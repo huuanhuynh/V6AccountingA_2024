@@ -185,7 +185,7 @@
             // 
             // Txtnh_vt6
             // 
-            this.Txtnh_vt6.AccessibleDescription = "FILTERL0003";
+            this.Txtnh_vt6.AccessibleDescription = "FILTERL00036";
             this.Txtnh_vt6.AccessibleName2 = "NH_VT6";
             this.Txtnh_vt6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt6.Caption = "Nhóm vật tư 6";

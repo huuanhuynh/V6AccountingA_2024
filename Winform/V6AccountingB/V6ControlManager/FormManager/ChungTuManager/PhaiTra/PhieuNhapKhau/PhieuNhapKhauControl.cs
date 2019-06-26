@@ -124,6 +124,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             SetGridViewEvent();
 
             cboKieuPost.SelectedIndex = 0;
+            if (!V6Setting.IsVietnamese)
+            {
+                cboLoai_pb.Items.AddRange(new object[] {
+                "0 - Enter directly",
+                "1 - Allocated by value",
+                "2 - Allocated by quantity"});
+            }
             cboLoai_pb.SelectedIndex = 0;
 
             All_Objects["thisForm"] = this;

@@ -963,6 +963,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             // 
             // btnInfos
             // 
+            this.btnInfos.AccessibleDescription = "ASOCTSOAB00040";
             this.btnInfos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInfos.Location = new System.Drawing.Point(672, 9);
             this.btnInfos.Name = "btnInfos";
@@ -2498,6 +2499,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             // 
             // v6Label30
             // 
+            this.v6Label30.AccessibleDescription = "ASOCTSOAL00123";
             this.v6Label30.AutoSize = true;
             this.v6Label30.Location = new System.Drawing.Point(88, 55);
             this.v6Label30.Name = "v6Label30";
@@ -2536,6 +2538,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             // 
             // v6Label31
             // 
+            this.v6Label31.AccessibleDescription = "ASOCTSOAL00005";
             this.v6Label31.AutoSize = true;
             this.v6Label31.Location = new System.Drawing.Point(193, 77);
             this.v6Label31.Name = "v6Label31";

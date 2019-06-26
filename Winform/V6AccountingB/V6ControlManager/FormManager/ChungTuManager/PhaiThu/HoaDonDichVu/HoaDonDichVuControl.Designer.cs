@@ -453,7 +453,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             // 
             // btnInfos
             // 
-            this.btnInfos.AccessibleDescription = "AARCTAR1R00043";
+            this.btnInfos.AccessibleDescription = "ASOCTSOAB00040";
             this.btnInfos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInfos.Location = new System.Drawing.Point(672, 14);
             this.btnInfos.Name = "btnInfos";

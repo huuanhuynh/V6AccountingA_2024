@@ -683,6 +683,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             // 
             // v6Label22
             // 
+            this.v6Label22.AccessibleDescription = "SEARCHL00015";
             this.v6Label22.AutoSize = true;
             this.v6Label22.Location = new System.Drawing.Point(6, 75);
             this.v6Label22.Name = "v6Label22";

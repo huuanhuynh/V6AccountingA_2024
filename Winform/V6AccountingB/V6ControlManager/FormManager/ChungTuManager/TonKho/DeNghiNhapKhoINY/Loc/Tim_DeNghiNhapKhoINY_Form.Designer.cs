@@ -289,6 +289,7 @@
             // 
             // v6Label21
             // 
+            this.v6Label21.AccessibleDescription = "SEARCHL00045";
             this.v6Label21.AutoSize = true;
             this.v6Label21.Location = new System.Drawing.Point(6, 62);
             this.v6Label21.Name = "v6Label21";

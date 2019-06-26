@@ -3905,7 +3905,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.txtMa_ttsp4.BackColor = System.Drawing.SystemColors.Window;
             this.txtMa_ttsp4.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMa_ttsp4.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtMa_ttsp4.CheckOnLeave = false;
             this.txtMa_ttsp4.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMa_ttsp4.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMa_ttsp4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -3925,7 +3924,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.txtMa_ttsp3.BackColor = System.Drawing.SystemColors.Window;
             this.txtMa_ttsp3.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMa_ttsp3.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtMa_ttsp3.CheckOnLeave = false;
             this.txtMa_ttsp3.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMa_ttsp3.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMa_ttsp3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -3945,7 +3943,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.txtMa_ttsp2.BackColor = System.Drawing.SystemColors.Window;
             this.txtMa_ttsp2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMa_ttsp2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtMa_ttsp2.CheckOnLeave = false;
             this.txtMa_ttsp2.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMa_ttsp2.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMa_ttsp2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -3965,7 +3962,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.txtMa_ttsp1.BackColor = System.Drawing.SystemColors.Window;
             this.txtMa_ttsp1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMa_ttsp1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtMa_ttsp1.CheckOnLeave = false;
             this.txtMa_ttsp1.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMa_ttsp1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMa_ttsp1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -4099,7 +4095,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(113, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "SP/NSS/STT/QC";
+            this.label1.Text = "SP/NSX/STT/QC";
             // 
             // lblMa
             // 

@@ -396,6 +396,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.Loc
             // 
             // v6Label10
             // 
+            this.v6Label10.AccessibleDescription = "SEARCHL00024";
             this.v6Label10.AutoSize = true;
             this.v6Label10.Location = new System.Drawing.Point(6, 74);
             this.v6Label10.Name = "v6Label10";
@@ -455,6 +456,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.Loc
             // 
             // v6Label31
             // 
+            this.v6Label31.AccessibleDescription = "SEARCHL00008";
             this.v6Label31.AutoSize = true;
             this.v6Label31.Location = new System.Drawing.Point(6, 48);
             this.v6Label31.Name = "v6Label31";

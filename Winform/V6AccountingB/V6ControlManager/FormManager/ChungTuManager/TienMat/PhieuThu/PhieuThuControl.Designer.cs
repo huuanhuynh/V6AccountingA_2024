@@ -367,7 +367,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             // 
             // btnInfos
             // 
-            this.btnInfos.AccessibleDescription = "ACACTTA1R00050";
+            this.btnInfos.AccessibleDescription = "ASOCTSOAB00040";
             this.btnInfos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInfos.Location = new System.Drawing.Point(673, 9);
             this.btnInfos.Name = "btnInfos";

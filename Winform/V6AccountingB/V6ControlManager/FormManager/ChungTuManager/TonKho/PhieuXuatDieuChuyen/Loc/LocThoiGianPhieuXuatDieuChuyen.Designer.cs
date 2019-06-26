@@ -44,7 +44,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             // 
             // groupBox1
             // 
-            this.groupBox1.AccessibleDescription = "partial class LocThoiGianPhieuXuatDieuChuyen";
+            this.groupBox1.AccessibleDescription = "SEARCHG00004";
             this.groupBox1.Controls.Add(this.v6ColorTextBox2);
             this.groupBox1.Controls.Add(this.v6ColorTextBox1);
             this.groupBox1.Controls.Add(this.v6Label4);

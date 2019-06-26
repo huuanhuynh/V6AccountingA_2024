@@ -365,6 +365,7 @@
             // 
             // v6Label10
             // 
+            this.v6Label10.AccessibleDescription = "SEARCHL00063";
             this.v6Label10.AutoSize = true;
             this.v6Label10.Location = new System.Drawing.Point(6, 74);
             this.v6Label10.Name = "v6Label10";
