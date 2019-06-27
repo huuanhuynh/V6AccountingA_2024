@@ -1425,22 +1425,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             {
                 var readOnly = Mode != V6Mode.Edit && Mode != V6Mode.Add;
                 V6ControlFormHelper.SetFormControlsReadOnly(this, readOnly);
+                foreach (ToolStripMenuItem item in menuChucNang.Items)
+                {
+                    V6ControlFormHelper.SetFormMenuItemReadOnly(item, readOnly);
+                }
 
                 if (readOnly)
                 {
                     detail1.MODE = V6Mode.Lock;
                     detail3.MODE = V6Mode.Lock;
-
-                    ThuCongNoMenu.Enabled = false;
-                    TroGiupMenu.Enabled = false;
-                    chonTuExcelMenu.Enabled = false;
                 }
                 else //Cac truong hop khac
                 {
-                    ThuCongNoMenu.Enabled = true;
-                    TroGiupMenu.Enabled = true;
-                    chonTuExcelMenu.Enabled = true;
-
                     XuLyKhoaThongTinKhachHang();
                     txtTyGia.Enabled = _maNt != _mMaNt0;
                     //chkSuaPtck.Enabled = chkLoaiChietKhau.Checked;

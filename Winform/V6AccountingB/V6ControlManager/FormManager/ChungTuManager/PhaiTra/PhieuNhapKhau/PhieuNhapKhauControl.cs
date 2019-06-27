@@ -2187,6 +2187,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             {
                 var readOnly = Mode != V6Mode.Edit && Mode != V6Mode.Add;
                 V6ControlFormHelper.SetFormControlsReadOnly(this, readOnly);
+                foreach (ToolStripMenuItem item in menuChucNang.Items)
+                {
+                    V6ControlFormHelper.SetFormMenuItemReadOnly(item, readOnly);
+                }
 
                 if (readOnly)
                 {
@@ -2195,17 +2199,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     detail3.MODE = V6Mode.Lock;
                     dataGridView1.ReadOnly = true;
                     dataGridView3ChiPhi.ReadOnly = true;
-
-                    ChonDonHangMuaMenu.Enabled = false;
-                    TroGiupMenu.Enabled = false;
-                    chonTuExcelMenu.Enabled = false;
                 }
                 else //Cac truong hop khac
                 {
-                    ChonDonHangMuaMenu.Enabled = true;
-                    TroGiupMenu.Enabled = true;
-                    chonTuExcelMenu.Enabled = true;
-
                     XuLyKhoaThongTinKhachHang();
                     SetGridViewChiPhiEditAble(txtLoai_pb.Text, chkSuaTien.Checked, dataGridView3ChiPhi, "CP,CP_NT,NK,NK_NT", "CP_NT,NK_NT");
 

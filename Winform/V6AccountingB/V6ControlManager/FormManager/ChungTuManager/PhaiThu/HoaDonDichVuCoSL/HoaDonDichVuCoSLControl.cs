@@ -3126,24 +3126,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             {
                 var readOnly = Mode != V6Mode.Edit && Mode != V6Mode.Add;
                 V6ControlFormHelper.SetFormControlsReadOnly(this, readOnly);
+                foreach (ToolStripMenuItem item in menuChucNang.Items)
+                {
+                    V6ControlFormHelper.SetFormMenuItemReadOnly(item, readOnly);
+                }
 
                 if (readOnly)
                 {
                     detail1.MODE = V6Mode.Lock;
                     detail3.MODE = V6Mode.Lock;
-
-                    ChonDonHangBanMenu.Enabled = false;
-                    chonBaoGiaMenu.Enabled = false;
-                    chonTuExcelMenu.Enabled = false;
-                    chonPhieuNhapMenu.Enabled = false;
                 }
                 else
                 {
-                    ChonDonHangBanMenu.Enabled = true;
-                    chonBaoGiaMenu.Enabled = true;
-                    chonTuExcelMenu.Enabled = true;
-                    chonPhieuNhapMenu.Enabled = true;
-
                     XuLyKhoaThongTinKhachHang();
 
                     txtTyGia.Enabled = _maNt != _mMaNt0;

@@ -1607,18 +1607,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             {
                 var readOnly = Mode != V6Mode.Edit && Mode != V6Mode.Add;
                 V6ControlFormHelper.SetFormControlsReadOnly(this, readOnly);
+                foreach (ToolStripMenuItem item in menuChucNang.Items)
+                {
+                    V6ControlFormHelper.SetFormMenuItemReadOnly(item, readOnly);
+                }
 
                 if (readOnly)
                 {
                     detail1.MODE = V6Mode.Lock;
                     dataGridView1.ReadOnly = true;
-                    ChonDonHangMuaMenu.Enabled = false;
-                    chonDonHangBanMenu.Enabled = false;
                 }
                 else
                 {
-                    ChonDonHangMuaMenu.Enabled = true;
-                    chonDonHangBanMenu.Enabled = true;
                     XuLyKhoaThongTinKhachHang();
 
                     txtTyGia.Enabled = _maNt != _mMaNt0;

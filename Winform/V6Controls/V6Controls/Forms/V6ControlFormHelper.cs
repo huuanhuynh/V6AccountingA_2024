@@ -1179,6 +1179,18 @@ namespace V6Controls.Forms
                 }
 
                 // Dò qua menu
+                if (container is DropDownButton)
+                {
+                    var button = container as DropDownButton;
+                    if(button.Menu != null)
+                    foreach (ToolStripMenuItem item in button.Menu.Items)
+                    {
+                        if (accessibleName.Contains(item.Name, StringComparer.InvariantCultureIgnoreCase))
+                        {
+                            ControlList.Add(item);
+                        }
+                    }
+                }
                 if (container.ContextMenuStrip != null)
                 {
                     foreach (ToolStripMenuItem item in container.ContextMenuStrip.Items)
@@ -1961,6 +1973,30 @@ namespace V6Controls.Forms
                 }
             }
             CANCELALL:;
+        }
+
+        public static void SetFormMenuItemReadOnly(ToolStripMenuItem menuItem, bool readOnly)
+        {
+            var tagString = string.Format(";{0};", menuItem.Tag ?? "");
+
+            var cancelall = tagString.Contains(";cancelall;");
+            if (cancelall)
+                goto CANCELALL;
+            var cancel = tagString != "" && tagString.Contains(";cancel;");
+            if (cancel) goto CANCEL;
+
+            var readonl2 = tagString.Contains(";readonly;");
+            var disable = tagString.Contains(";disable;");
+            var enable = tagString.Contains(";enable;");
+
+
+            menuItem.Enabled = !(readOnly || readonl2);
+            if (disable) menuItem.Enabled = false;
+            if (enable) menuItem.Enabled = true;
+
+        CANCEL:
+        CANCELALL:
+            ;
         }
 
         /// <summary>
@@ -6434,7 +6470,8 @@ namespace V6Controls.Forms
                     else if (o is ToolStripMenuItem)
                     {
                         var menuItem = o as ToolStripMenuItem;
-                        menuItem.Enabled = readOnly;
+                        menuItem.Enabled = !readOnly;
+                        if (readOnly) menuItem.Tag = "disable";
                     }
                 }
             }
@@ -6474,6 +6511,7 @@ namespace V6Controls.Forms
                     {
                         var menuItem = o as ToolStripMenuItem;
                         menuItem.Visible = visible;
+                        if (!visible) menuItem.Tag = "invisible";
                     }
                 }
             }

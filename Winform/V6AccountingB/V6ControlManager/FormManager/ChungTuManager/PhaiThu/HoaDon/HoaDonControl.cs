@@ -3193,34 +3193,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 var readOnly = Mode != V6Mode.Edit && Mode != V6Mode.Add;
                 V6ControlFormHelper.SetFormControlsReadOnly(this, readOnly);
+                foreach (ToolStripMenuItem item in menuChucNang.Items)
+                {
+                    V6ControlFormHelper.SetFormMenuItemReadOnly(item, readOnly);
+                }
 
                 if (readOnly)
                 {
                     detail1.MODE = V6Mode.Lock;
                     detail3.MODE = V6Mode.Lock;
                     dataGridView1.ReadOnly = true;
-                    ChonDonHangBanMenu.Enabled = false;
-                    ChonDonHangBanThemMenu.Enabled = false;
-                    chonBaoGiaMenu.Enabled = false;
-                    chonTuExcelMenu.Enabled = false;
-                    chonPhieuNhapMenu.Enabled = false;
                 }
                 else
                 {
-                    ChonDonHangBanMenu.Enabled = true;
-                    ChonDonHangBanThemMenu.Enabled = true;
-                    chonBaoGiaMenu.Enabled = true;
-                    chonTuExcelMenu.Enabled = true;
-                    chonPhieuNhapMenu.Enabled = true;
-
                     XuLyKhoaThongTinKhachHang();
 
                     txtTyGia.Enabled = _maNt != _mMaNt0;
 
                     _tienNt2.Enabled = chkSuaTien.Checked;
                     _dvt1.Enabled = true;
-
-                    
 
                     //{Tuanmh 02/12/2016
                     _ckNt.Enabled = !chkLoaiChietKhau.Checked;

@@ -2430,33 +2430,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             {
                 var readOnly = Mode != V6Mode.Edit && Mode != V6Mode.Add;
                 V6ControlFormHelper.SetFormControlsReadOnly(this, readOnly);
+                foreach (ToolStripMenuItem item in menuChucNang.Items)
+                {
+                    V6ControlFormHelper.SetFormMenuItemReadOnly(item, readOnly);
+                }
 
                 if (readOnly)
                 {
                     detail1.MODE = V6Mode.Lock;
                     dataGridView1.ReadOnly = true;
-                    XuatHetKhoMenu.Enabled = false;
-                    TroGiupMenu.Enabled = false;
-                    chonTuExcelMenu.Enabled = false;
-                    tinhHaoHutMenu.Enabled = false;
                 }
                 else //Cac truong hop khac
                 {
-                    XuatHetKhoMenu.Enabled = true;
-                    TroGiupMenu.Enabled = true;
-                    chonTuExcelMenu.Enabled = true;
-                    tinhHaoHutMenu.Enabled = true;
-
                     XuLyKhoaThongTinKhachHang();
-
                     txtTyGia.Enabled = _maNt != _mMaNt0;
-
                     _dvt1.Enabled = true;
-
-                   
-
+                    
                     //{Tuanmh 20/02/2016
-
                     bool is_gia_dichdanh = _maVt.GIA_TON == 2 || _xuat_dd.Text != "";
 
                     _tienNt.Enabled = chkSuaTien.Checked && is_gia_dichdanh;
