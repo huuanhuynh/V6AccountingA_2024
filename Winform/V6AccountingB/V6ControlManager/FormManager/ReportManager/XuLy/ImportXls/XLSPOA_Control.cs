@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -26,13 +27,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// Kiem tra du lieu hop le
         /// </summary>
         private bool check = false;
-
+        
         public XLSPOA_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, false)
         {
-            
-        }
 
+        }
+        
         public override void SetStatus2Text()
         {
             V6ControlFormHelper.SetStatusText2(string.Format("F9: {0}", V6Text.Text("CHUYEN")));
@@ -63,25 +64,40 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         V6ControlFormHelper.ShowMessage(V6Text.Text("NoFromTo"));
                     }
                 }
+
+                FixData();
+                //
+            }
+            catch (Exception ex)
+            {
+                // ignored
+            }
+        }
+
+        private void FixData()
+        {
+            try
+            {
+                if (_data == null) return;
                 //FIX DATA
                 if (!_data.Columns.Contains("TY_GIA"))
                 {
-                    _data.Columns.Add("TY_GIA", typeof(decimal));
+                    _data.Columns.Add("TY_GIA", typeof (decimal));
                     V6ControlFormHelper.UpdateDKlist(_data, "TY_GIA", 1m);
                 }
                 if (!_data.Columns.Contains("THUE_NT"))
                 {
-                    _data.Columns.Add("THUE_NT", typeof(decimal));
+                    _data.Columns.Add("THUE_NT", typeof (decimal));
                     V6ControlFormHelper.UpdateDKlist(_data, "THUE_NT", 0m);
                 }
                 if (!_data.Columns.Contains("CP_NT"))
                 {
-                    _data.Columns.Add("CP_NT", typeof(decimal));
+                    _data.Columns.Add("CP_NT", typeof (decimal));
                     V6ControlFormHelper.UpdateDKlist(_data, "CP_NT", 0m);
                 }
                 if (!_data.Columns.Contains("TIEN_NT"))
                 {
-                    _data.Columns.Add("TIEN_NT", typeof(decimal));
+                    _data.Columns.Add("TIEN_NT", typeof (decimal));
                     V6ControlFormHelper.UpdateDKlist(_data, "TIEN_NT", 0m);
                 }
                 if (!_data.Columns.Contains("TIEN0"))
@@ -98,24 +114,24 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 if (!_data.Columns.Contains("THUE"))
                 {
-                    _data.Columns.Add("THUE", typeof(decimal));
+                    _data.Columns.Add("THUE", typeof (decimal));
                     foreach (DataRow row in _data.Rows)
                     {
                         row["THUE"] =
                             V6BusinessHelper.Vround(
-                                ObjectAndString.ObjectToDecimal(row["THUE_NT"]) *
+                                ObjectAndString.ObjectToDecimal(row["THUE_NT"])*
                                 ObjectAndString.ObjectToDecimal(row["TY_GIA"]), V6Setting.RoundTien);
 
                     }
                 }
                 if (!_data.Columns.Contains("CP"))
                 {
-                    _data.Columns.Add("CP", typeof(decimal));
+                    _data.Columns.Add("CP", typeof (decimal));
                     foreach (DataRow row in _data.Rows)
                     {
                         row["CP"] =
                             V6BusinessHelper.Vround(
-                                ObjectAndString.ObjectToDecimal(row["CP_NT"]) *
+                                ObjectAndString.ObjectToDecimal(row["CP_NT"])*
                                 ObjectAndString.ObjectToDecimal(row["TY_GIA"]), V6Setting.RoundTien);
 
                     }
@@ -160,13 +176,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // ignored
+                this.WriteExLog(GetType() + ".FixData", ex);
             }
         }
 
-        
         #region ==== Xử lý F9 ====
         protected override void XuLyF9()
         {

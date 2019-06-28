@@ -439,7 +439,13 @@ namespace V6ThuePostManager
             {
                 var row0 = am_table.Rows[0];
 
-                if (paras.Mode.StartsWith("E_"))
+                if (paras.Mode == "TestView")
+                {
+                    var xml = ReadDataXml();
+                    result = xml;
+                    paras.Result.ResultString = xml;
+                }
+                else if (paras.Mode.StartsWith("E_"))
                 {
                     if (paras.Mode == "E_G1") // Gạch nợ theo fkey
                     {
@@ -835,7 +841,7 @@ namespace V6ThuePostManager
             }
             catch (Exception ex)
             {
-                //
+                throw ex;
             }
             return result;
         }
@@ -2657,8 +2663,7 @@ namespace V6ThuePostManager
             }
             catch (Exception ex)
             {
-                //f9Error += ex.Message;
-                //f9ErrorAll += ex.Message;
+                throw;
             }
         }
 

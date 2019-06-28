@@ -11,6 +11,7 @@ using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
@@ -21,6 +22,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     {
         private readonly V6Categories _categories = new V6Categories();
         private DataTable _data;
+        /// <summary>
+        /// Kiem tra du lieu hop le
+        /// </summary>
+        private bool check = false;
         private DataTable ALIMXLS_DATA;
 
         private string _table_name;
@@ -216,8 +221,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                _data = V6Tools.V6Convert.Excel_File
-                    .Sheet1ToDataTable(txtFile.Text);
+                _data = Excel_File.Sheet1ToDataTable(txtFile.Text);
                 //Check1: chuyen ma, String12 A to U
                 string from0 = comboBox1.Text, to0 = comboBox2.Text;
                 if (chkChuyenMa.Checked)
@@ -230,7 +234,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var to = "U";
                         if (to0.StartsWith("TCVN3")) to = "A";
                         if (to0.StartsWith("VNI")) to = "V";
-                        _data = V6Tools.V6Convert.Data_Table.ChuyenMaTiengViet(_data, from, to);
+                        _data = Data_Table.ChuyenMaTiengViet(_data, from, to);
                     }
                     else
                     {
@@ -254,12 +258,110 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 if (_data == null) return;
+                //FIX DATA ... FROM XLSPOA
+                if (!_data.Columns.Contains("TY_GIA"))
+                {
+                    _data.Columns.Add("TY_GIA", typeof(decimal));
+                    V6ControlFormHelper.UpdateDKlist(_data, "TY_GIA", 1m);
+                }
+                if (!_data.Columns.Contains("THUE_NT"))
+                {
+                    _data.Columns.Add("THUE_NT", typeof(decimal));
+                    V6ControlFormHelper.UpdateDKlist(_data, "THUE_NT", 0m);
+                }
+                if (!_data.Columns.Contains("CP_NT"))
+                {
+                    _data.Columns.Add("CP_NT", typeof(decimal));
+                    V6ControlFormHelper.UpdateDKlist(_data, "CP_NT", 0m);
+                }
+                if (!_data.Columns.Contains("TIEN_NT"))
+                {
+                    _data.Columns.Add("TIEN_NT", typeof(decimal));
+                    V6ControlFormHelper.UpdateDKlist(_data, "TIEN_NT", 0m);
+                }
+                if (!_data.Columns.Contains("TIEN0"))
+                {
+                    _data.Columns.Add("TIEN0", typeof(decimal));
+                    foreach (DataRow row in _data.Rows)
+                    {
+                        row["TIEN0"] =
+                            V6BusinessHelper.Vround(
+                                ObjectAndString.ObjectToDecimal(row["TIEN_NT0"]) *
+                                ObjectAndString.ObjectToDecimal(row["TY_GIA"]), V6Setting.RoundTien);
+
+                    }
+                }
+                if (!_data.Columns.Contains("THUE"))
+                {
+                    _data.Columns.Add("THUE", typeof(decimal));
+                    foreach (DataRow row in _data.Rows)
+                    {
+                        row["THUE"] =
+                            V6BusinessHelper.Vround(
+                                ObjectAndString.ObjectToDecimal(row["THUE_NT"]) *
+                                ObjectAndString.ObjectToDecimal(row["TY_GIA"]), V6Setting.RoundTien);
+
+                    }
+                }
+                if (!_data.Columns.Contains("CP"))
+                {
+                    _data.Columns.Add("CP", typeof(decimal));
+                    foreach (DataRow row in _data.Rows)
+                    {
+                        row["CP"] =
+                            V6BusinessHelper.Vround(
+                                ObjectAndString.ObjectToDecimal(row["CP_NT"]) *
+                                ObjectAndString.ObjectToDecimal(row["TY_GIA"]), V6Setting.RoundTien);
+
+                    }
+                }
+
+                All_Objects["data"] = _data;
+                InvokeFormEvent(FormDynamicEvent.DYNAMICFIXEXCEL);
+                dataGridView1.DataSource = _data;
+
+                var alim2xls = V6BusinessHelper.Select("ALIM2XLS", "top 1 *", "MA_CT='POA'").Data;
+                if (alim2xls != null && alim2xls.Rows.Count > 0)
+                {
+                    var khoa = alim2xls.Rows[0]["KHOA"].ToString().Trim().Split(',');
+                    var lost_fields = "";
+                    foreach (string field in khoa)
+                    {
+                        if (!_data.Columns.Contains(field))
+                        {
+                            check = false;
+                            lost_fields += ", " + field;
+                        }
+                    }
+                    if (lost_fields.Length > 2)
+                    {
+                        lost_fields = lost_fields.Substring(2);
+                        this.ShowWarningMessage(V6Text.Text("DULIEUBITHIEU") + ": " + lost_fields);
+                    }
+                }
+                else
+                {
+                    check = false;
+                }
+
+                string[] data_fields = "MA_KH,MA_VT,MA_KHO_I".Split(',');
+                string[] check_fields0 = "MA_KH,MA_VT,MA_KHO".Split(',');
+                string[] check_tables = "ALKH,ALVT,ALKHO".Split(',');
+                check = V6ControlFormHelper.CheckDataInGridView(dataGridView1, data_fields, check_fields0, check_tables);
+
+                if (!check)
+                {
+                    this.ShowWarningMessage(V6Text.Text("KiemTraDuLieu"));
+                    return;
+                }
+
+                //Phần FixData cũ
                 List<DataRow> remove_list = new List<DataRow>();
-                var check_fields = ObjectAndString.SplitString(CHECK_FIELDS);
+                var check_fields1 = ObjectAndString.SplitString(CHECK_FIELDS);
                 foreach (DataRow row in _data.Rows)
                 {
                     bool remove = false;
-                    foreach (string field in check_fields)
+                    foreach (string field in check_fields1)
                     {
                         if (!_data.Columns.Contains(field) || row[field] == null || row[field].ToString().Trim() == "")
                         {
@@ -355,8 +457,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
+                if (!check)
+                {
+                    this.ShowWarningMessage(V6Text.Text("KiemTraDuLieu"));
+                    return;
+                }
                 if (_data != null)
                 {
+                    All_Objects["_data"] = _data;
+                    V6ControlsHelper.InvokeMethodDynamic(XLS_program, MA_IMEX + "F9", All_Objects);
+
                     check_field_list = CHECK_FIELDS.Split(new []{';'}, StringSplitOptions.RemoveEmptyEntries);
                     var check_ok = true;
                     foreach (string field in check_field_list)
@@ -635,6 +745,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             else
             {
+                V6ControlsHelper.InvokeMethodDynamic(XLS_program, MA_IMEX + "AFTERF9", All_Objects);
                 Unlock();
 
                 ((Timer)sender).Stop();

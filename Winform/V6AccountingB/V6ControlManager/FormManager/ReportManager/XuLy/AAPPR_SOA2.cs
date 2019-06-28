@@ -55,6 +55,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         public AAPPR_SOA2(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
+            InitializeComponent();
             dataGridView1.Control_S = true;
         }
 
@@ -225,6 +226,61 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
         #endregion xulyF9
 
+
+        private void btnTestView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dataGridView1.DataSource == null || dataGridView1.CurrentRow == null)
+                {
+                    return;
+                }
+
+                var row = dataGridView1.CurrentRow;
+
+                //string mode = row.Cells["Kieu_in"].Value.ToString();
+                string soct = row.Cells["So_ct"].Value.ToString().Trim();
+                string dir = row.Cells["Dir_in"].Value.ToString().Trim();
+                string file = row.Cells["File_in"].Value.ToString().Trim();
+                string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
+
+                SqlParameter[] plist =
+                        {
+                            new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
+                            new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
+                            new SqlParameter("@HoaDonMau","0"),
+                            new SqlParameter("@isInvoice","1"),
+                            new SqlParameter("@ReportFile",""),
+                            new SqlParameter("@MA_TD1", FilterControl.String1),
+                            new SqlParameter("@UserID", V6Login.UserId)
+                        };
+
+                DataSet ds = V6BusinessHelper.ExecuteProcedure(_program + "F9", plist);
+                //DataTable data0 = ds.Tables[0];
+                string result = "";//, error = "", sohoadon = "", id = "";
+                var paras = new PostManagerParams
+                {
+                    DataSet = ds,
+                    Mode = "TestView",
+                    Branch = FilterControl.String1,
+                    Dir = dir,
+                    FileName = file,
+                    Key_Down = "TestView",
+                    RptFileFull = ReportFileFull,
+                    Fkey_hd = fkey_hd,
+                };
+                result = PostManager.PowerPost(paras);
+                Clipboard.SetText(result);
+                //this.ShowMessage(result);
+                AAPPR_SOA2_ViewXml viewer = new AAPPR_SOA2_ViewXml(result);
+                viewer.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".btnTestView_Click", ex);
+            }
+        }
+
         V6Invoice81 invoice = new V6Invoice81();
         protected override void ViewDetails(DataGridViewRow row)
         {
@@ -239,6 +295,36 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 this.ShowErrorMessage(GetType() + ".AAPPR_SOA2 ViewDetails: " + ex.Message);
             }
         }
+
+        private void InitializeComponent()
+        {
+            this.btnTestView = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // btnTestView
+            // 
+            this.btnTestView.Location = new System.Drawing.Point(190, 28);
+            this.btnTestView.Name = "btnTestView";
+            this.btnTestView.Size = new System.Drawing.Size(111, 23);
+            this.btnTestView.TabIndex = 23;
+            this.btnTestView.Text = "Xem XML";
+            this.btnTestView.UseVisualStyleBackColor = true;
+            this.btnTestView.Click += new System.EventHandler(this.btnTestView_Click);
+            // 
+            // AAPPR_SOA2
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.Controls.Add(this.btnTestView);
+            this.Name = "AAPPR_SOA2";
+            this.Controls.SetChildIndex(this.btnNhan, 0);
+            this.Controls.SetChildIndex(this.btnHuy, 0);
+            this.Controls.SetChildIndex(this.btnTestView, 0);
+            this.ResumeLayout(false);
+
+        }
+
+        private Button btnTestView;
+
     }
 
     internal class ConfigLine
