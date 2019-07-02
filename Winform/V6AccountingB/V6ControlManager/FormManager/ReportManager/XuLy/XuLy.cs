@@ -18,6 +18,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return new AAPPR_SOA2(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AAPPR_SOA3":
                     return new AAPPR_SOA3(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                case "AAPPR_AR12":
+                    return new AAPPR_AR12(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                case "AAPPR_AR13":
+                    return new AAPPR_AR13(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+
                 case "AAPPR_XULY_SOA":
                     return new AAPPR_XULY_SOA(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AAPPR_XULY_ALL":

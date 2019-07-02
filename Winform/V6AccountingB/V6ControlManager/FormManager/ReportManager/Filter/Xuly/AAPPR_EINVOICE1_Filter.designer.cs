@@ -64,7 +64,9 @@
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
             this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
+            this.txtMaDvcs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtMaDvcs.Caption = "Mã đơn vị";
+            this.txtMaDvcs.CodeForm = null;
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 39);
             this.txtMaDvcs.Name = "txtMaDvcs";
@@ -101,7 +103,9 @@
             // 
             this.lineTrangThai.AccessibleDescription = "FILTERL00272";
             this.lineTrangThai.AccessibleName2 = "STATUS_IN";
+            this.lineTrangThai.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.lineTrangThai.Caption = "Trạng thái";
+            this.lineTrangThai.CodeForm = null;
             this.lineTrangThai.FieldName = "STATUS_IN";
             this.lineTrangThai.Location = new System.Drawing.Point(6, 149);
             this.lineTrangThai.Name = "lineTrangThai";
@@ -113,7 +117,9 @@
             // 
             this.lineMaXuly.AccessibleDescription = "FILTERL00271";
             this.lineMaXuly.AccessibleName2 = "MA_XULY";
+            this.lineMaXuly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.lineMaXuly.Caption = "Mã xử lý";
+            this.lineMaXuly.CodeForm = null;
             this.lineMaXuly.FieldName = "MA_XULY";
             this.lineMaXuly.Location = new System.Drawing.Point(6, 127);
             this.lineMaXuly.Name = "lineMaXuly";
@@ -125,7 +131,9 @@
             // 
             this.lineSO_SERI.AccessibleDescription = "FILTERF00003";
             this.lineSO_SERI.AccessibleName2 = "SO_SERI";
+            this.lineSO_SERI.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.lineSO_SERI.Caption = "Số seri";
+            this.lineSO_SERI.CodeForm = null;
             this.lineSO_SERI.FieldName = "SO_SERI";
             this.lineSO_SERI.Location = new System.Drawing.Point(6, 105);
             this.lineSO_SERI.Name = "lineSO_SERI";
@@ -137,7 +145,9 @@
             // 
             this.lineMaMauHD.AccessibleDescription = "FILTERF00002";
             this.lineMaMauHD.AccessibleName2 = "MA_MAUHD";
+            this.lineMaMauHD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.lineMaMauHD.Caption = "Mã mẫu hóa đơn";
+            this.lineMaMauHD.CodeForm = null;
             this.lineMaMauHD.FieldName = "MA_MAUHD";
             this.lineMaMauHD.Location = new System.Drawing.Point(6, 83);
             this.lineMaMauHD.Name = "lineMaMauHD";
@@ -149,7 +159,9 @@
             // 
             this.lineMA_SONB.AccessibleDescription = "FILTERL00079";
             this.lineMA_SONB.AccessibleName2 = "MA_SONB";
+            this.lineMA_SONB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.lineMA_SONB.Caption = "Mã số nội bộ";
+            this.lineMA_SONB.CodeForm = null;
             this.lineMA_SONB.FieldName = "MA_SONB";
             this.lineMA_SONB.Location = new System.Drawing.Point(6, 61);
             this.lineMA_SONB.Name = "lineMA_SONB";
@@ -161,7 +173,9 @@
             // 
             this.txtma_thue.AccessibleDescription = "FILTERL00143";
             this.txtma_thue.AccessibleName2 = "MA_THUE";
+            this.txtma_thue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtma_thue.Caption = "Mã thuế";
+            this.txtma_thue.CodeForm = null;
             this.txtma_thue.FieldName = "MA_THUE";
             this.txtma_thue.Location = new System.Drawing.Point(6, 237);
             this.txtma_thue.Name = "txtma_thue";
@@ -173,7 +187,9 @@
             // 
             this.filterLineVvarTextBox11.AccessibleDescription = "FILTERL00004";
             this.filterLineVvarTextBox11.AccessibleName2 = "MA_CT";
+            this.filterLineVvarTextBox11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.filterLineVvarTextBox11.Caption = "Mã chứng từ";
+            this.filterLineVvarTextBox11.CodeForm = null;
             this.filterLineVvarTextBox11.FieldName = "MA_CT";
             this.filterLineVvarTextBox11.Location = new System.Drawing.Point(6, 193);
             this.filterLineVvarTextBox11.Name = "filterLineVvarTextBox11";
@@ -196,7 +212,9 @@
             // 
             this.txtTk_thue_co.AccessibleDescription = "FILTERL00142";
             this.txtTk_thue_co.AccessibleName2 = "TK_THUE_CO";
+            this.txtTk_thue_co.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtTk_thue_co.Caption = "Tài khoản thuế";
+            this.txtTk_thue_co.CodeForm = null;
             this.txtTk_thue_co.FieldName = "TK_THUE_CO";
             this.txtTk_thue_co.Location = new System.Drawing.Point(6, 215);
             this.txtTk_thue_co.Name = "txtTk_thue_co";
@@ -221,7 +239,9 @@
             // 
             this.Txtma_kh.AccessibleDescription = "FILTERL00007";
             this.Txtma_kh.AccessibleName2 = "MA_KH";
+            this.Txtma_kh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtma_kh.Caption = "Mã khách";
+            this.Txtma_kh.CodeForm = null;
             this.Txtma_kh.FieldName = "MA_KH";
             this.Txtma_kh.Location = new System.Drawing.Point(6, 171);
             this.Txtma_kh.Name = "Txtma_kh";
@@ -418,9 +438,9 @@
             this.btnSuaChiTieu.AccessibleDescription = "FILTERB00001";
             this.btnSuaChiTieu.Location = new System.Drawing.Point(137, 133);
             this.btnSuaChiTieu.Name = "btnSuaChiTieu";
-            this.btnSuaChiTieu.Size = new System.Drawing.Size(184, 23);
+            this.btnSuaChiTieu.Size = new System.Drawing.Size(150, 23);
             this.btnSuaChiTieu.TabIndex = 11;
-            this.btnSuaChiTieu.Text = "Sửa thông tin dữ liệu và kết nối";
+            this.btnSuaChiTieu.Text = "Cấu hình dữ liệu, kết nối";
             this.btnSuaChiTieu.UseVisualStyleBackColor = true;
             this.btnSuaChiTieu.Click += new System.EventHandler(this.btnSuaChiTieu_Click);
             // 

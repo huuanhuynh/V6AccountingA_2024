@@ -990,11 +990,18 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     result = new AAPPR_SOA();
                     break;
                 case "AAPPR_SOA2": //Hệ thống/Quản lý người sử dụng/K.Chuyển sang hóa đơn điện tử.
-                    result = new AAPPR_SOA2();
+                    result = new AAPPR_SOA2_filter();
                     break;
                 case "AAPPR_SOA3": //Hệ thống/Quản lý người sử dụng/ In hóa đơn điện tử liên tục.
                     result = new AAPPR_SOA3_filter();
                     break;
+                case "AAPPR_AR12": //Hệ thống/Quản lý người sử dụng/K.Chuyển sang hóa đơn điện tử. dv
+                    result = new AAPPR_AR12_filter();
+                    break;
+                case "AAPPR_AR13": //Hệ thống/Quản lý người sử dụng/ In hóa đơn điện tử liên tục. dv
+                    result = new AAPPR_AR13_filter();
+                    break;
+
                 case "AGLAUTOSO_CT":
                     result = new XAGLAUTOSO_CT();
                     break;

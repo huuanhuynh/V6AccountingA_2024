@@ -18,7 +18,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     /// <summary>
     /// Chuyển sang hóa đơn điện tử.
     /// </summary>
-    public class AAPPR_SOA2 : XuLyBase
+    public class AAPPR_AR12 : XuLyBase
     {
         public string MAU
         {
@@ -52,7 +52,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
         
 
-        public AAPPR_SOA2(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
+        public AAPPR_AR12(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
             InitializeComponent();
@@ -168,7 +168,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         if (paras.Result.IsSuccess(paras.Mode))
                         {
                             f9MessageAll += string.Format("\n{4} Soct:{0}, sohd:{1}, id:{2}\nResult:{3}", soct, paras.Result.InvoiceNo, paras.Result.Id, result, V6Text.Text("ThanhCong"));
-                            //[AAPPR_SOA2_UPDATE]
+                            //[AAPPR_AR12_UPDATE]
                             SqlParameter[] plist2 =
                             {
                                 new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
@@ -281,7 +281,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        V6Invoice81 invoice = new V6Invoice81();
+        V6Invoice21 invoice = new V6Invoice21();
         protected override void ViewDetails(DataGridViewRow row)
         {
             try
@@ -292,7 +292,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".AAPPR_SOA2 ViewDetails: " + ex.Message);
+                this.ShowErrorMessage(GetType() + ".AAPPR_AR12 ViewDetails: " + ex.Message);
             }
         }
 
@@ -311,11 +311,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.btnTestView.UseVisualStyleBackColor = true;
             this.btnTestView.Click += new System.EventHandler(this.btnTestView_Click);
             // 
-            // AAPPR_SOA2
+            // AAPPR_AR12
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.Controls.Add(this.btnTestView);
-            this.Name = "AAPPR_SOA2";
+            this.Name = "AAPPR_AR12";
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.btnTestView, 0);
@@ -325,19 +325,5 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private Button btnTestView;
 
-    }
-
-    internal class ConfigLine
-    {
-        public string Field { get; set; }
-        public string Value { get; set; }
-        public string FieldV6 { get; set; }
-        /// <summary>
-        /// <para>Field -> lấy từ dữ liệu theo field.</para>
-        /// <para>Field:Date -> Date là kiểu dữ liệu để xử lý.</para>
-        /// </summary>
-        public string Type { get; set; }
-
-        public string DataType { get; set; }
     }
 }

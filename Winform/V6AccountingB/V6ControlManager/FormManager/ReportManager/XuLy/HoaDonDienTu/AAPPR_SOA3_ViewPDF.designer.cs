@@ -77,7 +77,6 @@
             // button1
             // 
             this.button1.AccessibleName = "";
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.Image = global::V6ControlManager.Properties.Resources.Print;
             this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.button1.Location = new System.Drawing.Point(6, 12);

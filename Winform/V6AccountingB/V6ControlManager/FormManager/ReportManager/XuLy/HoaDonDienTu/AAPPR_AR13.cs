@@ -20,7 +20,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     /// <summary>
     /// Chuyển sang hóa đơn điện tử.
     /// </summary>
-    public class AAPPR_SOA3 : XuLyBase
+    public class AAPPR_AR13 : XuLyBase
     {
         public string MAU
         {
@@ -54,7 +54,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
         
 
-        public AAPPR_SOA3(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
+        public AAPPR_AR13(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
             InitializeComponent();
@@ -72,18 +72,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             base.MakeReport2();
         }
 
-        protected override void XuLyHienThiFormSuaChungTuF3()
-        {
-            try
-            {
-                AAPPR_SOA3_ViewPDF view = new AAPPR_SOA3_ViewPDF();
-                view.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(this.GetType() + ".XuLyHienThiFormSuaChungTuF3", ex);
-            }
-        }
+        //protected override void XuLyHienThiFormSuaChungTuF3()
+        //{
+        //    try
+        //    {
+        //        AAPPR_AR13_ViewPDF view = new AAPPR_AR13_ViewPDF();
+        //        view.ShowDialog(this);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        this.ShowErrorException(this.GetType() + ".XuLyHienThiFormSuaChungTuF3", ex);
+        //    }
+        //}
 
         #region ==== Xử lý F9 ====
         
@@ -131,7 +131,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             string pdf_file = "";
             string tableName = "V6MAPINFO";
             string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
-            var map_table = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='" + FilterControl.String1 + "' or ma_td1='0' or ma_td1='') order by date0,time0").Data;
+            var map_table = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_AR12' and (MA_TD1='" + FilterControl.String1 + "' or ma_td1='0' or ma_td1='') order by date0,time0").Data;
 
             int i = 0;
             while(i<dataGridView1.Rows.Count)
@@ -337,7 +337,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        V6Invoice81 invoice = new V6Invoice81();
+        V6Invoice21 invoice = new V6Invoice21();
         protected override void ViewDetails(DataGridViewRow row)
         {
             try
@@ -348,7 +348,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".AAPPR_SOA3 ViewDetails: " + ex.Message);
+                this.ShowErrorMessage(GetType() + ".AAPPR_AR13 ViewDetails: " + ex.Message);
             }
         }
 
@@ -367,11 +367,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.btnTestView.UseVisualStyleBackColor = true;
             this.btnTestView.Click += new System.EventHandler(this.btnTestView_Click);
             // 
-            // AAPPR_SOA3
+            // AAPPR_AR13
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.Controls.Add(this.btnTestView);
-            this.Name = "AAPPR_SOA3";
+            this.Name = "AAPPR_AR13";
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.btnTestView, 0);
