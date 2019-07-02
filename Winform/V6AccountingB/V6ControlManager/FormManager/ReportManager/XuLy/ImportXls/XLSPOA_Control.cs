@@ -663,7 +663,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             newRow["STT_REC"] = sttRec;
             newRow["STT_REC0"] = "00001";
 
-            if (newRow.ContainsKey("T_THUE_NT") && ObjectAndString.ObjectToDecimal(newRow["T_THUE_NT"]) > 0)
+            if (newRow.ContainsKey("T_THUE_NT") && ObjectAndString.ObjectToDecimal(newRow["T_THUE_NT"]) != 0)
             {
                 result.Add(newRow);
             }

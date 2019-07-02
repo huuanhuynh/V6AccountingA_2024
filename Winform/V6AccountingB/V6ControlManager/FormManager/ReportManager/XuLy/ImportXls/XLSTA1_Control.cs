@@ -82,39 +82,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     _data.Columns.Add("TY_GIA", typeof(decimal));
                     V6ControlFormHelper.UpdateDKlist(_data, "TY_GIA", 1m);
                 }
-                if (!_data.Columns.Contains("THUE_NT"))
+                if (!_data.Columns.Contains("PS_CO_NT"))
                 {
-                    _data.Columns.Add("THUE_NT", typeof(decimal));
-                    V6ControlFormHelper.UpdateDKlist(_data, "THUE_NT", 0m);
-                }
-                if (!_data.Columns.Contains("TIEN_NT"))
-                {
-                    _data.Columns.Add("TIEN_NT", typeof(decimal));
-                    V6ControlFormHelper.UpdateDKlist(_data, "TIEN_NT", 0m);
-                }
-                if (!_data.Columns.Contains("TIEN0"))
-                {
-                    _data.Columns.Add("TIEN0", typeof(decimal));
-                    foreach (DataRow row in _data.Rows)
-                    {
-                        row["TIEN0"] =
-                            V6BusinessHelper.Vround(
-                                ObjectAndString.ObjectToDecimal(row["TIEN_NT0"]) *
-                                ObjectAndString.ObjectToDecimal(row["TY_GIA"]), V6Setting.RoundTien);
-
-                    }
-                }
-                if (!_data.Columns.Contains("THUE"))
-                {
-                    _data.Columns.Add("THUE", typeof(decimal));
-                    foreach (DataRow row in _data.Rows)
-                    {
-                        row["THUE"] =
-                            V6BusinessHelper.Vround(
-                                ObjectAndString.ObjectToDecimal(row["THUE_NT"]) *
-                                ObjectAndString.ObjectToDecimal(row["TY_GIA"]), V6Setting.RoundTien);
-
-                    }
+                    _data.Columns.Add("PS_CO_NT", typeof(decimal));
+                    V6ControlFormHelper.UpdateDKlist(_data, "PS_CO_NT", 0m);
                 }
                 if (!_data.Columns.Contains("PS_CO"))
                 {
@@ -128,30 +99,41 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                     }
                 }
-                //if (!data.Columns.Contains("THUE"))
-                //{
-                //    data.Columns.Add("THUE", typeof(decimal));
-                //    foreach (DataRow row in data.Rows)
-                //    {
-                //        row["THUE"] =
-                //            V6BusinessHelper.Vround(
-                //                ObjectAndString.ObjectToDecimal(row["THUE_NT"]) *
-                //                ObjectAndString.ObjectToDecimal(row["TY_GIA"]), V6Setting.RoundTien);
 
-                //    }
-                //}
-                //if (!data.Columns.Contains("TIEN"))
-                //{
-                //    data.Columns.Add("TIEN", typeof(decimal));
-                //    foreach (DataRow row in data.Rows)
-                //    {
-                //        row["TIEN"] =
-                //            V6BusinessHelper.Vround(
-                //                ObjectAndString.ObjectToDecimal(row["TIEN_NT"]) *
-                //                ObjectAndString.ObjectToDecimal(row["TY_GIA"]), V6Setting.RoundTien);
+                if (!_data.Columns.Contains("TIEN_NT"))
+                {
+                    _data.Columns.Add("TIEN_NT", typeof(decimal));
+                   
+                }
+                
+                if (!_data.Columns.Contains("TIEN"))
+                {
+                    _data.Columns.Add("TIEN", typeof(decimal));
+                }
 
-                //    }
-                //}
+                foreach (DataRow row in _data.Rows)
+                {
+                    row["TIEN_NT"] = ObjectAndString.ObjectToDecimal(row["PS_CO_NT"]);
+
+                    row["TIEN"] =
+                        V6BusinessHelper.Vround(
+                            ObjectAndString.ObjectToDecimal(row["PS_CO_NT"]) *
+                            ObjectAndString.ObjectToDecimal(row["TY_GIA"]), V6Setting.RoundTien);
+
+                }
+               
+                if (!_data.Columns.Contains("TIEN_TT"))
+                {
+                    _data.Columns.Add("TIEN_TT", typeof(decimal));
+                    foreach (DataRow row in _data.Rows)
+                    {
+                        row["TIEN_TT"] = ObjectAndString.ObjectToDecimal(row["PS_CO"]);
+
+                    }
+
+                    
+                }
+                
                 All_Objects["data"] = _data;
                 InvokeFormEvent(FormDynamicEvent.DYNAMICFIXEXCEL);
                 dataGridView1.DataSource = _data;
@@ -466,7 +448,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 var t_tt_nt = t_ps_co_nt ;
                 AM["T_TT_NT"] = t_tt_nt;
-                AM["T_TT"] = t_tt_nt * ty_gia;
+                AM["T_TT"] = V6BusinessHelper.Vround(t_tt_nt * ty_gia, V6Setting.RoundTien);
 
              
              

@@ -1314,7 +1314,9 @@ namespace V6ControlManager.FormManager.DanhMucManager
             get
             {
                 string load_table = _tableName;// CurrentTable.ToString();
-                if (CurrentTable == V6TableName.Notable && _aldmConfig != null)
+                // Tuanmh 01/07/2019 set TABLE_VIEW
+                //if (CurrentTable == V6TableName.Notable && _aldmConfig != null)
+                if (_aldmConfig != null)
                 {
                     if (!string.IsNullOrEmpty(_aldmConfig.TABLE_VIEW)
                         && V6BusinessHelper.IsExistDatabaseTable(_aldmConfig.TABLE_VIEW))
