@@ -651,11 +651,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             else
             {
-                V6ControlsHelper.InvokeMethodDynamic(XLS_program, MA_IMEX + "AFTERF9", All_Objects);
                 Unlock();
-
                 ((Timer)sender).Stop();
                 RemoveDataRows(_data);
+                V6ControlsHelper.InvokeMethodDynamic(XLS_program, MA_IMEX + "AFTERF9", All_Objects);
                 V6ControlFormHelper.SetStatusText("F9 finish "
                     + (f9Error.Length > 0 ? "Error: " : "")
                     + f9Error);

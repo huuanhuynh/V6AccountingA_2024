@@ -621,10 +621,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             else
             {
-                InvokeFormEvent("AFTERF9");
                 ((Timer)sender).Stop();
                 UnlockButtons();
-
+                InvokeFormEvent("AFTERF9");
                 //Remove
                 while (remove_list_d.Count > 0)
                 {

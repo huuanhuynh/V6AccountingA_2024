@@ -550,9 +550,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             }
             else
             {
-                InvokeFormEvent("AFTERF9");
                 ((Timer)sender).Stop();
                 RemoveDataRows(_data);
+                InvokeFormEvent("AFTERF9");
                 SetStatusText("F9 finish " + (f9Error.Length > 0 ? "Error: " : "") + f9Error);
                 ShowMainMessage("F9 " + V6Text.Finish + " " + f9ErrorAll);
                 this.ShowInfoMessage("F9 " + V6Text.Finish
