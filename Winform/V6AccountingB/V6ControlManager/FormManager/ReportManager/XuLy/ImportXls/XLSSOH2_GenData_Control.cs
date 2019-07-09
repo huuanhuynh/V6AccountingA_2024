@@ -29,7 +29,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// <summary>
         /// Kiem tra du lieu hop le
         /// </summary>
-        private bool check = false;
+        private string check = null;
 
         public XLSSOH2_GenData_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, false)
@@ -240,16 +240,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        public bool CheckDataInGridView()
+        public string CheckDataInGridView()
         {
-            var check = true;
+            string check = null;
             try
             {
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     if (row.Cells["CHECK"].Value.ToString() == "0")
                     {
-                        check = false;
+                        check += "CHECK=0";
                         row.DefaultCellStyle.BackColor = Color.Red;
                     }
                 }
@@ -269,7 +269,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //string[] check_fields = "MA_KH,MA_VT,MA_KHO".Split(',');
                 //string[] check_tables = "ALKH,ALVT,ALKHO".Split(',');
                 //this.ShowWarningMessage("Thời gian check lâu do tạo nhiều dòng!");
-                check = CheckDataInGridView();
+                check += CheckDataInGridView();
 
                 //var alim2xls = V6BusinessHelper.Select("ALIM2XLS", "top 1 *", "MA_CT='SOH'").Data;
                 if (_config != null && _config.HaveInfo)
@@ -280,7 +280,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         if (!_tbl.Columns.Contains(field))
                         {
-                            check = false;
+                            check += string.Format("{0} {1}", V6Text.NoData, field);
                             lost_fields += ", " + field;
                         }
                     }
@@ -292,12 +292,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 else
                 {
-                    check = false;
+                    check += V6Text.NoDefine + " alim2xls";
                 }
 
-                if (!check)
+                if (!string.IsNullOrEmpty(check))
                 {
-                    this.ShowWarningMessage(V6Text.Text("KiemTraDuLieu"));
+                    this.ShowWarningMessage(V6Text.Text("KiemTraDuLieu") + check);
+                    return;
                 }
             }
             catch (Exception ex)
@@ -311,9 +312,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                if (!check)
+                if (!string.IsNullOrEmpty(check))
                 {
-                    this.ShowWarningMessage(V6Text.Text("KiemTraDuLieu"));
+                    this.ShowWarningMessage(V6Text.Text("KiemTraDuLieu") + check);
                     return;
                 }
                 if (_tbl != null)
@@ -699,6 +700,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var vt_row_data = vt_data.Rows[0].ToDataDictionary();
                         one["DVT1"] = vt_row_data["DVT"];
                         one["HE_SO1"] = 1;
+                        one["HE_SO1T"] = 1;
+                        one["HE_SO1M"] = 1;
                         one["TK_VT"] = vt_row_data["TK_VT"];
                         one["DVT"] = vt_row_data["DVT"];
                         one["TK_DT"] = vt_row_data["TK_DT"];

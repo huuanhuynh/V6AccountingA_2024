@@ -40,6 +40,7 @@
             this.comboBox2 = new V6Controls.V6ComboBox();
             this.txtFile = new System.Windows.Forms.RichTextBox();
             this.btnXemMauExcel = new System.Windows.Forms.Button();
+            this.btnSuaChiTieu = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,7 +71,7 @@
             this.btnChon.Image = global::V6ControlManager.Properties.Resources.Excel16;
             this.btnChon.Location = new System.Drawing.Point(37, 86);
             this.btnChon.Name = "btnChon";
-            this.btnChon.Size = new System.Drawing.Size(119, 29);
+            this.btnChon.Size = new System.Drawing.Size(117, 24);
             this.btnChon.TabIndex = 2;
             this.btnChon.Text = "Chọn file Excel";
             this.btnChon.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -198,14 +199,26 @@
             this.btnXemMauExcel.UseVisualStyleBackColor = true;
             this.btnXemMauExcel.Click += new System.EventHandler(this.btnXemMauExcel_Click);
             // 
+            // btnSuaChiTieu
+            // 
+            this.btnSuaChiTieu.AccessibleDescription = "FILTERB00001";
+            this.btnSuaChiTieu.Location = new System.Drawing.Point(160, 86);
+            this.btnSuaChiTieu.Name = "btnSuaChiTieu";
+            this.btnSuaChiTieu.Size = new System.Drawing.Size(81, 24);
+            this.btnSuaChiTieu.TabIndex = 13;
+            this.btnSuaChiTieu.Text = "Sửa chỉ tiêu";
+            this.btnSuaChiTieu.UseVisualStyleBackColor = true;
+            this.btnSuaChiTieu.Click += new System.EventHandler(this.btnSuaChiTieu_Click);
+            // 
             // XLSIND_Filter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnSuaChiTieu);
+            this.Controls.Add(this.btnChon);
             this.Controls.Add(this.btnXemMauExcel);
             this.Controls.Add(this.txtFile);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnChon);
             this.Controls.Add(this.label1);
             this.Name = "XLSIND_Filter";
             this.Size = new System.Drawing.Size(275, 300);
@@ -230,5 +243,6 @@
         private System.Windows.Forms.RichTextBox txtFile;
         private System.Windows.Forms.Button btnXemMauExcel;
         private V6Controls.V6CheckBox chkAutoSoCt;
+        private System.Windows.Forms.Button btnSuaChiTieu;
     }
 }

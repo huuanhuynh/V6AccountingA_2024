@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
+using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonDeNghiNhap;
 using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonDonHang;
 using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonPhieuXuat;
 using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.Loc;
@@ -7201,6 +7202,32 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             else
             {
                 dataGridView1.ReadOnly = true;
+            }
+        }
+
+        private void chonDeNghiNhapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var ma_kh = txtMaKh.Text.Trim();
+                var ma_dvcs = txtMadvcs.Text.Trim();
+                var message = "";
+                if (ma_kh != "" && ma_dvcs != "")
+                {
+                    INY_PNMua_Form chon = new INY_PNMua_Form(dateNgayCT.Date.Date, txtMadvcs.Text, txtMaKh.Text);
+                    chon.AcceptSelectEvent += chon_AcceptSelectEvent;
+                    chon.ShowDialog(this);
+                }
+                else
+                {
+                    if (ma_kh == "") message += V6Text.NoInput + lblMaKH.Text;
+                    if (ma_dvcs == "") message += V6Text.NoInput + lblMaDVCS.Text;
+                    this.ShowWarningMessage(message);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 

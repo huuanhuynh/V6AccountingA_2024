@@ -558,6 +558,18 @@
     <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonBaoGia\CBG_HoaDonKetQua.Designer.cs">
       <DependentUpon>CBG_HoaDonKetQua.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonDeNghiXuat\IXY_HD_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonDeNghiXuat\IXY_HD_Form.Designer.cs">
+      <DependentUpon>IXY_HD_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonDeNghiXuat\IXY_HD_KetQua.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonDeNghiXuat\IXY_HD_KetQua.Designer.cs">
+      <DependentUpon>IXY_HD_KetQua.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonPhieuNhap\CPN_KetQua_HoaDon.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -611,6 +623,18 @@
     </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonDonHang\CDH_HoaDonKetQua.Designer.cs">
       <DependentUpon>CDH_HoaDonKetQua.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapMua\ChonDeNghiNhap\INY_PNMua_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapMua\ChonDeNghiNhap\INY_PNMua_Form.Designer.cs">
+      <DependentUpon>INY_PNMua_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapMua\ChonDeNghiNhap\INY_PNMua_KetQua.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapMua\ChonDeNghiNhap\INY_PNMua_KetQua.Designer.cs">
+      <DependentUpon>INY_PNMua_KetQua.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\TonKho\DeNghiNhapKhoINY\ChonDonHangBan\CDHB_DeNghiNhapKhoINYForm.cs">
       <SubType>Form</SubType>
@@ -1229,6 +1253,18 @@
     </Compile>
     <Compile Include="FormManager\ChungTuManager\ChucNangThayTheForm.Designer.cs">
       <DependentUpon>ChucNangThayTheForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\ChonDeNghiXuat\IXY_PXK_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\ChonDeNghiXuat\IXY_PXK_Form.Designer.cs">
+      <DependentUpon>IXY_PXK_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\ChonDeNghiXuat\IXY_PXK_KetQua.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\ChonDeNghiXuat\IXY_PXK_KetQua.Designer.cs">
+      <DependentUpon>IXY_PXK_KetQua.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\TinhHaoHutDataForm.cs">
       <SubType>Form</SubType>
@@ -1929,6 +1965,24 @@
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_BC1_IN1.Designer.cs">
       <DependentUpon>AAPPR_BC1_IN1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSAR1_Filter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSAR1_Filter.Designer.cs">
+      <DependentUpon>XLSAR1_Filter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSAP1_Filter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSAP1_Filter.Designer.cs">
+      <DependentUpon>XLSAP1_Filter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSSOH_Filter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSSOH_Filter.Designer.cs">
+      <DependentUpon>XLSSOH_Filter.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\Xuly\HoaDonDienTu\AAPPR_AR12_filter.cs">
       <SubType>UserControl</SubType>
@@ -4587,6 +4641,15 @@
     <Compile Include="FormManager\ReportManager\XuLy\ImportXls\V6IMPORT2XLS.Designer.cs">
       <DependentUpon>V6IMPORT2XLS.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSAR1_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSAP1_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSSOH_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSSOH2_GenData_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -5836,6 +5899,12 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonBaoGia\CBG_HoaDonKetQua.resx">
       <DependentUpon>CBG_HoaDonKetQua.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonDeNghiXuat\IXY_HD_Form.resx">
+      <DependentUpon>IXY_HD_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonDeNghiXuat\IXY_HD_KetQua.resx">
+      <DependentUpon>IXY_HD_KetQua.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonPhieuNhap\CPN_KetQua_HoaDon.resx">
       <DependentUpon>CPN_KetQua_HoaDon.cs</DependentUpon>
     </EmbeddedResource>
@@ -5865,6 +5934,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDon\Loc\LocThoiGianHoaDon.resx">
       <DependentUpon>LocThoiGianHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapMua\ChonDeNghiNhap\INY_PNMua_Form.resx">
+      <DependentUpon>INY_PNMua_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapMua\ChonDeNghiNhap\INY_PNMua_KetQua.resx">
+      <DependentUpon>INY_PNMua_KetQua.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\DeNghiNhapKhoINY\ChonDonHangBan\CDHB_DeNghiNhapKhoINYForm.resx">
       <DependentUpon>CDHB_DeNghiNhapKhoINYForm.cs</DependentUpon>
@@ -6170,6 +6245,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\ChucNangThayTheForm.resx">
       <DependentUpon>ChucNangThayTheForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\ChonDeNghiXuat\IXY_PXK_Form.resx">
+      <DependentUpon>IXY_PXK_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\ChonDeNghiXuat\IXY_PXK_KetQua.resx">
+      <DependentUpon>IXY_PXK_KetQua.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuXuatKho\Loc\LocThoiGianPhieuXuatKho.resx">
       <DependentUpon>LocThoiGianPhieuXuatKho.cs</DependentUpon>
@@ -6511,6 +6592,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_BC1_IN1.resx">
       <DependentUpon>AAPPR_BC1_IN1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSAR1_Filter.resx">
+      <DependentUpon>XLSAR1_Filter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSAP1_Filter.resx">
+      <DependentUpon>XLSAP1_Filter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSSOH_Filter.resx">
+      <DependentUpon>XLSSOH_Filter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\HoaDonDienTu\AAPPR_AR12_filter.resx">
       <DependentUpon>AAPPR_AR12_filter.cs</DependentUpon>
@@ -7846,6 +7936,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\V6IMPORT2XLS_Container.resx">
       <DependentUpon>V6IMPORT2XLS_Container.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSAR1_Control.resx">
+      <DependentUpon>XLSAR1_Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSAP1_Control.resx">
+      <DependentUpon>XLSAP1_Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSSOH_Control.resx">
+      <DependentUpon>XLSSOH_Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSSOH2_GenData_Control.resx">
       <DependentUpon>XLSSOH2_GenData_Control.cs</DependentUpon>

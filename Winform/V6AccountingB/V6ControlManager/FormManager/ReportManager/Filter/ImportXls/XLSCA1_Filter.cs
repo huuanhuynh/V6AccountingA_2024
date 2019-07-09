@@ -17,7 +17,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             F3 = false;
             F5 = false;
             F9 = true;
-            
+            txtMaCT.Text = "CA1";
+            txtMaCT.SetInitFilter("MA_CT='CA1' OR MA_CT='BN1'");
         }
         
         /// <summary>
@@ -91,19 +92,24 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             string tableName = "ALIM2XLS";
             string keys = "MA_CT";
-            var data = V6BusinessHelper.Select(tableName, "*", "MA_CT = 'CA1'").Data;
+            var data = V6BusinessHelper.Select(tableName, "*", "MA_CT = '" + txtMaCT.Text.Trim() + "'").Data;
             V6ControlFormHelper.ShowDataEditorForm(this, data, tableName, null, keys, false, false);
         }
 
         private void btnXemMauExcel_Click(object sender, EventArgs e)
         {
-            V6ControlFormHelper.OpenExcelTemplate("CA1_ALL.XLS", "IMPORT_EXCEL");
+            V6ControlFormHelper.OpenExcelTemplate(txtMaCT.Text.Trim() + "_ALL.XLS", "IMPORT_EXCEL");
         }
 
         private void chkAutoSoCt_CheckedChanged(object sender, EventArgs e)
         {
             ObjectDictionary["AUTOSOCT"] = chkAutoSoCt.Checked;
             Check3 = chkAutoSoCt.Checked;
+        }
+
+        private void txtMaCT_TextChanged(object sender, EventArgs e)
+        {
+            ObjectDictionary["MA_CT"] = txtMaCT.Text;
         }
     }
 }

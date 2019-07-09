@@ -41,6 +41,8 @@
             this.btnSuaChiTieu = new System.Windows.Forms.Button();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.btnXemMauExcel = new System.Windows.Forms.Button();
+            this.v6Label9 = new V6Controls.V6Label();
+            this.txtMaCT = new V6Controls.V6LookupProc();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,7 +63,7 @@
             this.v6Label2.Location = new System.Drawing.Point(5, 112);
             this.v6Label2.Name = "v6Label2";
             this.v6Label2.Size = new System.Drawing.Size(48, 13);
-            this.v6Label2.TabIndex = 4;
+            this.v6Label2.TabIndex = 5;
             this.v6Label2.Text = "Mã đích";
             // 
             // v6Label3
@@ -71,7 +73,7 @@
             this.v6Label3.Location = new System.Drawing.Point(6, 85);
             this.v6Label3.Name = "v6Label3";
             this.v6Label3.Size = new System.Drawing.Size(55, 13);
-            this.v6Label3.TabIndex = 2;
+            this.v6Label3.TabIndex = 3;
             this.v6Label3.Text = "Mã nguồn";
             // 
             // comboBox1
@@ -88,14 +90,13 @@
             this.comboBox1.Location = new System.Drawing.Point(98, 82);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(154, 21);
-            this.comboBox1.TabIndex = 3;
+            this.comboBox1.TabIndex = 4;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // groupBox1
             // 
             this.groupBox1.AccessibleDescription = "FILTERG00005";
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.chkAutoSoCt);
             this.groupBox1.Controls.Add(this.checkBox2);
@@ -104,10 +105,10 @@
             this.groupBox1.Controls.Add(this.v6Label3);
             this.groupBox1.Controls.Add(this.comboBox2);
             this.groupBox1.Controls.Add(this.v6Label2);
-            this.groupBox1.Location = new System.Drawing.Point(0, 118);
+            this.groupBox1.Location = new System.Drawing.Point(0, 155);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(269, 139);
-            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tùy chọn";
             // 
@@ -118,7 +119,7 @@
             this.chkAutoSoCt.Location = new System.Drawing.Point(94, 42);
             this.chkAutoSoCt.Name = "chkAutoSoCt";
             this.chkAutoSoCt.Size = new System.Drawing.Size(144, 17);
-            this.chkAutoSoCt.TabIndex = 7;
+            this.chkAutoSoCt.TabIndex = 2;
             this.chkAutoSoCt.Text = "Tự động tạo số chứng từ";
             this.chkAutoSoCt.UseVisualStyleBackColor = true;
             this.chkAutoSoCt.CheckedChanged += new System.EventHandler(this.chkAutoSoCt_CheckedChanged);
@@ -162,7 +163,7 @@
             this.comboBox2.Location = new System.Drawing.Point(98, 109);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(154, 21);
-            this.comboBox2.TabIndex = 5;
+            this.comboBox2.TabIndex = 6;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // txtFile
@@ -171,7 +172,7 @@
             this.txtFile.Name = "txtFile";
             this.txtFile.ReadOnly = true;
             this.txtFile.Size = new System.Drawing.Size(235, 75);
-            this.txtFile.TabIndex = 0;
+            this.txtFile.TabIndex = 1;
             this.txtFile.Text = "";
             // 
             // btnSuaChiTieu
@@ -180,7 +181,7 @@
             this.btnSuaChiTieu.Location = new System.Drawing.Point(180, 84);
             this.btnSuaChiTieu.Name = "btnSuaChiTieu";
             this.btnSuaChiTieu.Size = new System.Drawing.Size(90, 28);
-            this.btnSuaChiTieu.TabIndex = 9;
+            this.btnSuaChiTieu.TabIndex = 3;
             this.btnSuaChiTieu.Text = "Sửa chỉ tiêu";
             this.btnSuaChiTieu.UseVisualStyleBackColor = true;
             this.btnSuaChiTieu.Click += new System.EventHandler(this.btnSuaChiTieu_Click);
@@ -202,18 +203,54 @@
             // btnXemMauExcel
             // 
             this.btnXemMauExcel.AccessibleDescription = "FILTERB00013";
-            this.btnXemMauExcel.Location = new System.Drawing.Point(3, 268);
+            this.btnXemMauExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXemMauExcel.Location = new System.Drawing.Point(3, 305);
             this.btnXemMauExcel.Name = "btnXemMauExcel";
             this.btnXemMauExcel.Size = new System.Drawing.Size(134, 29);
-            this.btnXemMauExcel.TabIndex = 12;
+            this.btnXemMauExcel.TabIndex = 7;
             this.btnXemMauExcel.Text = "Xem mẫu excel";
             this.btnXemMauExcel.UseVisualStyleBackColor = true;
             this.btnXemMauExcel.Click += new System.EventHandler(this.btnXemMauExcel_Click);
+            // 
+            // v6Label9
+            // 
+            this.v6Label9.AccessibleDescription = "FILTERL00004";
+            this.v6Label9.AutoSize = true;
+            this.v6Label9.Location = new System.Drawing.Point(6, 129);
+            this.v6Label9.Name = "v6Label9";
+            this.v6Label9.Size = new System.Drawing.Size(70, 13);
+            this.v6Label9.TabIndex = 4;
+            this.v6Label9.Text = "Mã  chứng từ";
+            // 
+            // txtMaCT
+            // 
+            this.txtMaCT.AccessibleName = "MA_CT";
+            this.txtMaCT.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaCT.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaCT.CheckNotEmpty = true;
+            this.txtMaCT.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaCT.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaCT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaCT.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaCT.LeaveColor = System.Drawing.Color.White;
+            this.txtMaCT.Location = new System.Drawing.Point(110, 127);
+            this.txtMaCT.MA_CT = "MA_CT";
+            this.txtMaCT.Ma_dm = "VPA_GET_ALCT";
+            this.txtMaCT.Name = "txtMaCT";
+            this.txtMaCT.ParentData = null;
+            this.txtMaCT.ShowName = true;
+            this.txtMaCT.ShowTextField = "MA_CT";
+            this.txtMaCT.Size = new System.Drawing.Size(100, 20);
+            this.txtMaCT.TabIndex = 5;
+            this.txtMaCT.ValueField = "MA_CT";
+            this.txtMaCT.TextChanged += new System.EventHandler(this.txtMaCT_TextChanged);
             // 
             // XLSTA1_Filter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.v6Label9);
+            this.Controls.Add(this.txtMaCT);
             this.Controls.Add(this.btnXemMauExcel);
             this.Controls.Add(this.btnSuaChiTieu);
             this.Controls.Add(this.txtFile);
@@ -221,7 +258,7 @@
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.label1);
             this.Name = "XLSTA1_Filter";
-            this.Size = new System.Drawing.Size(275, 300);
+            this.Size = new System.Drawing.Size(275, 337);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -244,5 +281,7 @@
         private System.Windows.Forms.Button btnSuaChiTieu;
         private System.Windows.Forms.Button btnXemMauExcel;
         private V6Controls.V6CheckBox chkAutoSoCt;
+        private V6Controls.V6Label v6Label9;
+        private V6Controls.V6LookupProc txtMaCT;
     }
 }

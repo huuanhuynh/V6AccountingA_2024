@@ -10,7 +10,7 @@ using V6Tools;
 namespace V6AccountingBusiness.Invoices
 {
     /// <summary>
-    /// CA!, BN1: Phiếu chi(51) - Báo nợ(56)
+    /// CA1, BN1: Phiếu chi(51) - Báo nợ(56)
     /// </summary>
     public class V6Invoice51 : V6InvoiceBase
     {

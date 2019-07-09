@@ -1423,7 +1423,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.ChonDonHangBanMenu.Text = "Chọn đơn hàng bán";
             this.ChonDonHangBanMenu.Visible = false;
             // 
-            // chonBaoGiaToolStripMenuItem
+            // chonBaoGiaMenu
             // 
             this.chonBaoGiaMenu.AccessibleDescription = "INVOICEM00002";
             this.chonBaoGiaMenu.Name = "chonBaoGiaMenu";
@@ -1439,7 +1439,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.TroGiupMenu.Text = "Trợ giúp";
             this.TroGiupMenu.Visible = false;
             // 
-            // chonTuExcelToolStripMenuItem
+            // chonTuExcelMenu
             // 
             this.chonTuExcelMenu.AccessibleDescription = "INVOICEM00004";
             this.chonTuExcelMenu.Name = "chonTuExcelMenu";
@@ -1447,7 +1447,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.chonTuExcelMenu.Text = "Chọn từ Excel";
             this.chonTuExcelMenu.Visible = false;
             // 
-            // xemCongNoToolStripMenuItem
+            // xemCongNoMenu
             // 
             this.xemCongNoMenu.AccessibleDescription = "INVOICEM00005";
             this.xemCongNoMenu.Name = "xemCongNoMenu";
@@ -1456,7 +1456,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.xemCongNoMenu.Visible = false;
             this.xemCongNoMenu.Click += new System.EventHandler(this.xemCongNoToolStripMenuItem_Click);
             // 
-            // chonPhieuNhapToolStripMenuItem
+            // chonPhieuNhapMenu
             // 
             this.chonPhieuNhapMenu.AccessibleDescription = "INVOICEM00006";
             this.chonPhieuNhapMenu.Name = "chonPhieuNhapMenu";
@@ -1472,7 +1472,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.xuLyKhacMenu.Text = "Xử lý khác";
             this.xuLyKhacMenu.Click += new System.EventHandler(this.inKhacToolStripMenuItem_Click);
             // 
-            // thayTheToolStripMenuItem
+            // thayTheMenu
             // 
             this.thayTheMenu.AccessibleDescription = "INVOICEM00008";
             this.thayTheMenu.Name = "thayTheMenu";
@@ -1480,7 +1480,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.thayTheMenu.Text = "Thay thế";
             this.thayTheMenu.Click += new System.EventHandler(this.thayTheToolStripMenuItem_Click);
             // 
-            // thayThe2toolStripMenuItem
+            // thayThe2Menu
             // 
             this.thayThe2Menu.AccessibleDescription = "INVOICEM00009";
             this.thayThe2Menu.Name = "thayThe2Menu";
@@ -1642,6 +1642,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.v6Label16.Size = new System.Drawing.Size(58, 13);
             this.v6Label16.TabIndex = 24;
             this.v6Label16.Text = "Chiết khấu";
+            this.v6Label16.Visible = false;
             // 
             // chkLoaiChietKhau
             // 

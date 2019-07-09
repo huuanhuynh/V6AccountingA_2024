@@ -13,6 +13,7 @@ using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.Filter;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonBaoGia;
+using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDeNghiXuat;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuNhap;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuXuat;
@@ -7718,7 +7719,32 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-
+        
+        private void chonDeNghiXuatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var ma_kh = txtMaKh.Text.Trim();
+                var ma_dvcs = txtMadvcs.Text.Trim();
+                var message = "";
+                if (ma_kh != "" && ma_dvcs != "")
+                {
+                    IXY_HD_Form chon = new IXY_HD_Form(dateNgayCT.Date.Date, txtMadvcs.Text, txtMaKh.Text);
+                    chon.AcceptSelectEvent += chon_AcceptSelectEvent;
+                    chon.ShowDialog(this);
+                }
+                else
+                {
+                    if (ma_kh == "") message += V6Text.NoInput + lblMaKH.Text;
+                    if (ma_dvcs == "") message += V6Text.NoInput + lblMaDVCS.Text;
+                    this.ShowWarningMessage(message);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
         
         private void btnTinhCKKM_Click(object sender, EventArgs e)
         {
@@ -8241,5 +8267,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 dataGridView1.ReadOnly = true;
             }
         }
+
+        
     }
 }

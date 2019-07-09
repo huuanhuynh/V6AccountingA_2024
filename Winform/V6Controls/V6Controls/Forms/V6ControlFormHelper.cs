@@ -3344,10 +3344,10 @@ namespace V6Controls.Forms
         /// <param name="dataFields">Trường lấy dữ liệu kiểm tra</param>
         /// <param name="checkFields">Trường trong bảng cần kiểm tra</param>
         /// <param name="checkTables">Các bảng cần kiểm tra</param>
-        /// <returns></returns>
-        public static bool CheckDataInGridView(V6ColorDataGridView dataGridView1, string[] dataFields, string[] checkFields, string[] checkTables)
+        /// <returns>Trả về thông tin lỗi.</returns>
+        public static string CheckDataInGridView(V6ColorDataGridView dataGridView1, string[] dataFields, string[] checkFields, string[] checkTables)
         {
-            var check = true;
+            string check = null;
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 var max = dataFields.Length;
@@ -3362,7 +3362,7 @@ namespace V6Controls.Forms
                     var notexist = V6BusinessHelper.IsValidOneCode_Full(table, 1, checkField, value, value);
                     if (notexist)
                     {
-                        check = false;
+                        check += string.Format("{0} {1}={2}", V6Text.NotExist, checkField, value);
                         row.DefaultCellStyle.BackColor = Color.Red;
                     }
                 }

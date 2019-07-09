@@ -400,9 +400,6 @@ namespace V6AccountingBusiness.Invoices
             };
             var tbl = V6BusinessHelper.ExecuteProcedure("VPA_GET_STOCK_INY", plist).Tables[0];
             return tbl;
-
-            //var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql).Tables[0];
-            //return tbl;
         }
 
         public DataTable SearchPhieuXuat(string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)
@@ -441,6 +438,48 @@ namespace V6AccountingBusiness.Invoices
                 where0Ngay, where1AM, whereAD_Nhvt_Dvcs);
 
             var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql).Tables[0];
+            return tbl;
+        }
+
+        public DataTable SearchDeNghiNhap_PNMua(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)
+        {
+            if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
+            if (where1AM.Length > 0) where1AM = "And " + where1AM;
+
+            var whereAD_Nhvt_Dvcs = "";
+            if (where2AD.Length > 0 || where3NhVt.Length > 0 || where4Dvcs.Length > 0)
+            {
+                if (where2AD.Length > 0) where2AD = "And " + where2AD;
+                if (where3NhVt.Length > 0) where3NhVt = "And " + where3NhVt;
+                if (where4Dvcs.Length > 0)
+                    where4Dvcs
+                        = string.Format(" And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
+
+
+                whereAD_Nhvt_Dvcs = string.Format("\n Where d.Stt_rec in (SELECT Stt_rec FROM AD94 WHERE Ma_ct = 'INY' {0} {2}"
+                                     + (where3NhVt.Length == 0 ? "{3}" : "\n	And Ma_vt IN (SELECT Ma_vt FROM Alvt WHERE 1 = 1 {3})")
+                                     + "\n		{4})"
+                    , where0Ngay, "1", where2AD, where3NhVt, where4Dvcs);
+            }
+            else
+            {
+                whereAD_Nhvt_Dvcs = "";
+            }
+            
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@sType",  "Y"),
+	            new SqlParameter("@dFrom",  ngayCt.ToString("yyyyMMdd")),
+	            new SqlParameter("@cTableAM", "AM94"), 
+	            new SqlParameter("@cTableAD", "AD94"), 
+	            new SqlParameter("@cKey1AM", where0Ngay), 
+	            new SqlParameter("@cKey2AM", where1AM), 
+	            new SqlParameter("@cKey1AD", whereAD_Nhvt_Dvcs), 
+	            new SqlParameter("@cKey2AD", ""),
+	            new SqlParameter("@Advance", ""), 
+	            new SqlParameter("@Advance2", "")
+            };
+            var tbl = V6BusinessHelper.ExecuteProcedure("VPA_GET_STOCK_INY", plist).Tables[0];
             return tbl;
         }
     }

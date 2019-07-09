@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Reflection;
+using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
@@ -92,5 +93,19 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             ObjectDictionary["AUTOSOCT"] = chkAutoSoCt.Checked;
             Check3 = chkAutoSoCt.Checked;
         }
+
+        private void btnSuaChiTieu_Click(object sender, EventArgs e)
+        {
+            string tableName = "ALIM2XLS";
+            string keys = "MA_CT";
+            var data = V6BusinessHelper.Select(tableName, "*", "MA_CT = 'IXA'").Data;
+            V6ControlFormHelper.ShowDataEditorForm(this, data, tableName, null, keys, false, false);
+        }
+
+        private void btnXemMauExcel_Click(object sender, EventArgs e)
+        {
+            V6ControlFormHelper.OpenExcelTemplate("IXA_ALL.XLS", "IMPORT_EXCEL");
+        }
+
     }
 }

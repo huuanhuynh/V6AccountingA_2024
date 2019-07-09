@@ -612,12 +612,12 @@ namespace V6Tools.V6Convert
         }
 
         /// <summary>
-        /// Loại bỏ tất cả các ký tự khoảng trắng và khoảng trắng đặc biệt ở đầu và cuối chuỗi. Loại bỏ ký tự đặc biệt bên trong chuỗi.
+        /// Loại bỏ tất cả các ký tự khoảng trắng và khoảng trắng đặc biệt ở đầu chuỗi. Loại bỏ ký tự đặc biệt bên trong chuỗi.
         /// </summary>
         /// <param name="toString"></param>
         /// <param name="moreSpecialChars"></param>
         /// <returns></returns>
-        public static object TrimSpecial(string toString, string moreSpecialChars = null)
+        public static string TrimStartSpecial(string toString, string moreSpecialChars = null)
         {
             string specialChars = "\r﻿　" + moreSpecialChars;//"A◀﻿▶"//Sau \r là \u65279, là ký tự giữa 2 tam giác ◀﻿▶, và sau đó là \u12288
             foreach (char special_char in specialChars)
@@ -629,6 +629,33 @@ namespace V6Tools.V6Convert
             {
                 toString = toString.Substring(1);
             }
+            
+            return toString;
+        }
+
+        /// <summary>
+        /// Loại bỏ tất cả các ký tự khoảng trắng và khoảng trắng đặc biệt ở đầu và cuối chuỗi. Loại bỏ ký tự đặc biệt bên trong chuỗi.
+        /// </summary>
+        /// <param name="toString"></param>
+        /// <param name="moreSpecialChars"></param>
+        /// <returns></returns>
+        public static string TrimSpecial(string toString, string moreSpecialChars = null)
+        {
+            string specialChars = "\r﻿　" + moreSpecialChars;//"A◀﻿▶"//Sau \r là \u65279, là ký tự giữa 2 tam giác ◀﻿▶, và sau đó là \u12288
+            foreach (char special_char in specialChars)
+            {
+                toString = toString.Replace("" + special_char, "");
+            }
+            for (int i = toString.Length - 1; i >= 0; i--)
+            {
+                char i_char = toString[i];
+                if (char.IsWhiteSpace(i_char))
+                {
+                    toString = toString.Replace("" + i_char, "");
+                    if (i > toString.Length) i = toString.Length;
+                }
+            }
+            //toString = toString.Trim();
             
             return toString;
         }

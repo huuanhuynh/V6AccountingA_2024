@@ -72,6 +72,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 return result;
             }
         }
+        private string ID_CHECK
+        {
+            get
+            {
+                var result = "";
+                if (cboDanhMuc.SelectedIndex >= 0)
+                {
+                    result = ALIM2XLS_DATA.Rows[cboDanhMuc.SelectedIndex]["ID_CHECK"].ToString().Trim();
+                }
+                return result;
+            }
+        }
 
         private string MA_IMEX
         {
@@ -230,6 +242,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 FixData();
                 All_Objects["_data"] = _data;
+                All_Objects["data"] = _data.Copy();
                 string methodName = MA_IMEX + "AFTERFIXDATA";
                 SetStatusText(methodName);
                 V6ControlsHelper.InvokeMethodDynamic(XLS_program, methodName, All_Objects);
@@ -249,6 +262,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (_data == null) return;
                 List<DataRow> remove_list = new List<DataRow>();
                 var check_fields = ObjectAndString.SplitString(CHECK_FIELDS);
+                var id_check = ObjectAndString.SplitString(ID_CHECK);
                 foreach (DataRow row in _data.Rows)
                 {
                     bool remove = false;
@@ -260,7 +274,22 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             break;
                         }
                     }
-                    if(remove) remove_list.Add(row);
+
+                    if (remove)
+                    {
+                        remove_list.Add(row);
+                    }
+                    else
+                    {
+                        foreach (string field in id_check)
+                        {
+                            if (_data.Columns.Contains(field))
+                                if (row[field] is string)
+                                {
+                                    row[field] = ObjectAndString.TrimSpecial(row[field].ToString());
+                                }
+                        }
+                    }
                 }
 
                 foreach (DataRow row in remove_list)
@@ -805,6 +834,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var vt_row_data = vt_data.Rows[0].ToDataDictionary();
                         one["DVT1"] = vt_row_data["DVT"];
                         one["HE_SO1"] = 1;
+                        one["HE_SO1T"] = 1;
+                        one["HE_SO1M"] = 1;
                         one["TK_VT"] = vt_row_data["TK_VT"];
                         one["DVT"] = vt_row_data["DVT"];
                         one["TK_DT"] = vt_row_data["TK_DT"];
@@ -864,6 +895,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             else
             {
+                V6ControlsHelper.InvokeMethodDynamic(XLS_program, MA_IMEX + "AFTERF9", All_Objects);
                 Unlock();
 
                 ((Timer)sender).Stop();

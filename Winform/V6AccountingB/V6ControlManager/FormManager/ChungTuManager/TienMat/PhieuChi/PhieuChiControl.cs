@@ -1380,7 +1380,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 }
                 else
                 {
-                    btnQuayRa.PerformClick();
+                    if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+                    {
+                        btnHuy.PerformClick();
+                    }
+                    else
+                    {
+                        btnQuayRa.PerformClick();
+                    }
                 }
             }
             else if (keyData == Keys.F3) // Copy detail
