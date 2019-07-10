@@ -188,6 +188,10 @@ namespace V6Tools.V6Convert
             var result = 0m;
             if (o is DBNull) return 0;
             if (o == null) return result;
+            if (o is bool)
+            {
+                return (bool) o ? 1 : 0;
+            }
             if (o is decimal)
             {
                 result = (decimal)o;
@@ -218,6 +222,10 @@ namespace V6Tools.V6Convert
             decimal result = 0;
             if (o is DBNull) return 0;
             if (o == null) return 0;
+            if (o is bool)
+            {
+                return (bool)o ? 1 : 0;
+            }
             switch (o.GetType().ToString())
             {
                 case "System.DateTime":
@@ -249,6 +257,10 @@ namespace V6Tools.V6Convert
             long result = 0;
             if (o is DBNull) return 0;
             if (o == null) return 0;
+            if (o is bool)
+            {
+                return (bool)o ? 1 : 0;
+            }
             switch (o.GetType().ToString())
             {
                 case "System.DateTime":
@@ -510,7 +522,7 @@ namespace V6Tools.V6Convert
                 removeEmptyEntries ? StringSplitOptions.RemoveEmptyEntries : StringSplitOptions.None);
         }
 
-        public static float ObjectToFloat(string s)
+        public static float StringToFloat(string s)
         {
             return ToObject<float>(s);
         }

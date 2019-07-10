@@ -63,8 +63,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
         private void MyInit()
         {
-            LoadLanguage();
-            LoadTag(Invoice, detail1.Controls);
             ReorderGroup1TabIndex();
 
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
@@ -119,6 +117,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             LoadDetail3Controls();
             LoadAdvanceControls(Invoice.Mact);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
+            LoadTag(Invoice, detail1.Controls);
             ResetForm();
 
             _MA_GD = (Invoice.Alct["M_MA_GD"] ?? "2").ToString().Trim().ToUpper();

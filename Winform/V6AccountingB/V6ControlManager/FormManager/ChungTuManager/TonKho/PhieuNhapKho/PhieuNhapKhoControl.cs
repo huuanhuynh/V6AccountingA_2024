@@ -61,8 +61,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
 
         private void MyInit()
         {   
-            LoadLanguage();
-            LoadTag(Invoice, detail1.Controls);
             ReorderGroup1TabIndex();
 
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
@@ -101,6 +99,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             detail1.AddContexMenu(menuDetail1);
             LoadAdvanceControls(Invoice.Mact);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
+            LoadTag(Invoice, detail1.Controls);
             ResetForm();
 
             _maGd = (Invoice.Alct["M_MA_GD"] ?? "2").ToString().Trim();
@@ -563,9 +562,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                         break;
                     case "HSD":
                         _hanSd = (V6DateTimeColor)control;
-                        _hanSd.DisableTag();
-                        //_hanSd.Enabled = false;
-                        //_hanSd.Tag = "disable";
+                        //_hanSd.DisableTag();
                         break;
                     
                     case "MA_VITRI":
@@ -3967,6 +3964,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             XemPhieuNhapView(dateNgayCT.Date, Invoice.Mact, _maKhoI.Text, _maVt.Text);
         }
 
+        private void taoMaLoMenu_Click(object sender, EventArgs e)
+        {
+            InvokeFormEvent(FormDynamicEvent.TAOMALO);
+        }
+
         private void btnChonPX_Click(object sender, EventArgs e)
         {
             if (txtLoaiPhieu.Text == "A")
@@ -4090,5 +4092,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             }
         }
 
+        
     }
 }

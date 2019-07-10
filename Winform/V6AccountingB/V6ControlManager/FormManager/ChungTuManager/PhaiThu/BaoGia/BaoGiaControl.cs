@@ -63,8 +63,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
         private void MyInit()
         {   
-            LoadLanguage();
-            LoadTag(Invoice, detail1.Controls);
             ReorderGroup1TabIndex();
 
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
@@ -80,7 +78,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             {
                 txtMa_sonb.SetInitFilter("dbo.VFV_InList0('" + Invoice.Mact + "',MA_CTNB,'" + ",')=1" +
                     (V6Login.IsAdmin ? "" : " AND  dbo.VFA_Inlist_MEMO(MA_SONB,'" + V6Login.UserRight.RightSonb + "')=1"));
-                    
             }
             
             txtMaHttt.Upper();
@@ -109,6 +106,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             LoadDetailControls();
             LoadAdvanceControls(Invoice.Mact);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
+            LoadTag(Invoice, detail1.Controls);
             ResetForm();
 
             LoadAll();

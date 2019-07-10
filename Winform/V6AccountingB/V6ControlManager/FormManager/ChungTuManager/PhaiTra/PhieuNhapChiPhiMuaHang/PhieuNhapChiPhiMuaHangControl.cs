@@ -59,8 +59,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
         private void MyInit()
         {   
-            LoadLanguage();
-            LoadTag(Invoice, detail1.Controls);
             ReorderGroup1TabIndex();
 
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
@@ -111,6 +109,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             LoadDetail2Controls();
             LoadAdvanceControls(Invoice.Mact);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
+            LoadTag(Invoice, detail1.Controls);
             ResetForm();
 
             LoadAll();

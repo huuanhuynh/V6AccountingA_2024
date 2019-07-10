@@ -261,7 +261,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.TxtMa_gd = new V6Controls.V6VvarTextBox();
             this.menuDetail1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.XemPhieuNhapMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.chuaDatTen2Menu = new System.Windows.Forms.ToolStripMenuItem();
+            this.taoMaLoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chuaDatTen3Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
@@ -3712,7 +3712,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             // 
             this.menuDetail1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.XemPhieuNhapMenu,
-            this.chuaDatTen2Menu,
+            this.taoMaLoMenu,
             this.chuaDatTen3Menu});
             this.menuDetail1.Name = "menuChucNang";
             this.menuDetail1.Size = new System.Drawing.Size(162, 70);
@@ -3725,12 +3725,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.XemPhieuNhapMenu.Text = "Xem phiếu nhập";
             this.XemPhieuNhapMenu.Click += new System.EventHandler(this.menuXemPhieuNhap_Click);
             // 
-            // chuaDatTen2Menu
+            // taoMaLoMenu
             // 
-            this.chuaDatTen2Menu.AccessibleDescription = "INVOICEM00019";
-            this.chuaDatTen2Menu.Name = "chuaDatTen2Menu";
-            this.chuaDatTen2Menu.Size = new System.Drawing.Size(161, 22);
-            this.chuaDatTen2Menu.Text = "...";
+            this.taoMaLoMenu.AccessibleDescription = "INVOICEM00019";
+            this.taoMaLoMenu.Name = "taoMaLoMenu";
+            this.taoMaLoMenu.Size = new System.Drawing.Size(161, 22);
+            this.taoMaLoMenu.Text = "Tạo mã lô";
+            this.taoMaLoMenu.Click += new System.EventHandler(this.taoMaLoMenu_Click);
             // 
             // chuaDatTen3Menu
             // 
@@ -4000,7 +4001,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ContextMenuStrip menuDetail1;
         private System.Windows.Forms.ToolStripMenuItem XemPhieuNhapMenu;
-        private System.Windows.Forms.ToolStripMenuItem chuaDatTen2Menu;
+        private System.Windows.Forms.ToolStripMenuItem taoMaLoMenu;
         private System.Windows.Forms.ToolStripMenuItem chuaDatTen3Menu;
         private V6Controls.V6ComboBox cboChuyenData;
         private V6Label v6Label28;

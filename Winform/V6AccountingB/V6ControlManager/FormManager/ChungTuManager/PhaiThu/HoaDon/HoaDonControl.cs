@@ -74,8 +74,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private void MyInit()
         {
             //InitDebug();
-            LoadTag(1, Invoice.Mact, Invoice.Mact, m_itemId, "");
-            LoadTag(Invoice, detail1.Controls);
+            //LoadTag(1, Invoice.Mact, Invoice.Mact, m_itemId, "");
             ReorderGroup1TabIndex();
             
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
@@ -141,6 +140,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             LoadDetail3Controls();
             LoadAdvanceControls(Invoice.Mact);
             lblNameT.Left  = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
+            LoadTag(Invoice, detail1.Controls);
             ResetForm();
             
             txtLoaiPhieu.SetInitFilter(string.Format("Ma_ct = '{0}'", Invoice.Mact));   

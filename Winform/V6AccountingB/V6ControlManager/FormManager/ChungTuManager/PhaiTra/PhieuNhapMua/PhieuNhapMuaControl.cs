@@ -62,8 +62,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
         private void MyInit()
         {   
-            LoadLanguage();
-            LoadTag(Invoice, detail1.Controls);
             ReorderGroup1TabIndex();
 
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
@@ -130,6 +128,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             LoadDetail3Controls();
             LoadAdvanceControls(Invoice.Mact);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
+            LoadTag(Invoice, detail1.Controls);
             ResetForm();
 
             LoadAll();
@@ -610,8 +609,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         break;
                     case "HSD":
                         _hanSd = (V6DateTimeColor) control;
-                        _hanSd.Enabled = false;
-                        _hanSd.Tag = "disable";
+                        //_hanSd.DisableTag();
                         break;
                     case "SL_QD":
                         _sl_qd = control as V6NumberTextBox;
@@ -6855,6 +6853,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private void menuXemPhieuNhap_Click(object sender, EventArgs e)
         {
             XemPhieuNhapView(dateNgayCT.Date, Invoice.Mact, _maKhoI.Text, _maVt.Text);
+        }
+
+        private void taoMaLoMenu_Click(object sender, EventArgs e)
+        {
+            InvokeFormEvent(FormDynamicEvent.TAOMALO);
         }
 
         private void xuLyKhacMenu_Click(object sender, EventArgs e)

@@ -475,7 +475,7 @@ namespace V6Controls.Forms
 
         protected DataTable alinitData;
         private SortedDictionary<string, DefaultValueInfo> defaultData;
-        private SortedDictionary<string, string> tagData;
+        //private SortedDictionary<string, string> tagData;
         private SortedDictionary<string, string> readonlyData;
         private SortedDictionary<string, string> visibleData;
 
@@ -490,7 +490,7 @@ namespace V6Controls.Forms
         /// <returns></returns>
         private SortedDictionary<string, string> GetTagData(int loai, string mact, string madm, string itemId, string adv = "")
         {
-            if (tagData != null && tagData.Count > 0) return tagData;
+            //if (tagData != null && tagData.Count > 0) return tagData;
             if (alinitData == null || alinitData.Rows.Count == 0)
                 alinitData = V6BusinessHelper.GetDefaultValueData(loai, mact, madm, itemId, adv);
             var result = new SortedDictionary<string, string>();
@@ -502,7 +502,7 @@ namespace V6Controls.Forms
                 var name = row["NameTag"].ToString().Trim().ToUpper();
                 result[name] = value;
             }
-            tagData = result;
+            //tagData = result;
             return result;
         }
 

@@ -267,7 +267,7 @@ namespace V6AccountingBusiness.Invoices
                 whereAD_Nhvt_Dvcs = "";
             }
 
-            loai_ct_chon = "!";
+            loai_ct_chon = "";
             var sql = string.Format("Select ' ' Tag,  v.ten_vt,v.tk_tl , d.*, d.STT_REC AS STT_REC_PX, d.STT_REC0 AS STT_REC0PX "
                 //"Select a.*, b.Ma_so_thue, b.Ten_kh AS Ten_kh,f.Ten_nvien AS Ten_nvien,g.Ten_httt AS Ten_httt"
                 + "\nFROM AD81 d "//" LEFT JOIN Alkh b ON d.Ma_kh=b.Ma_kh "

@@ -426,7 +426,7 @@ namespace V6AccountingBusiness.Invoices
                 whereAD_Nhvt_Dvcs3 = "";
             }
 
-            loai_ct_chon = "!";
+            loai_ct_chon = "";
             var sql = string.Format(
                 "(Select ' ' Tag,  v.ten_vt," +
                 "\n d.Stt_rec, d.Stt_rec0, d.Ma_ct, d.Ngay_ct, d.So_ct, d.Ma_vt, d.Dvt1, " +

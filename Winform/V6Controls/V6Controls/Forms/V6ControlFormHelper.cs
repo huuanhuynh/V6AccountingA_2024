@@ -204,6 +204,41 @@ namespace V6Controls.Forms
             //control.Tag = null;
             //control.AddTagString(newTagString);
         }
+
+        public static void AddTagString(ToolStripMenuItem control, string tagString)
+        {
+            var newTagString = control.Tag + "";
+            if (!(";" + newTagString + ";").Contains("" + tagString + ";"))
+            {
+                newTagString += ";" + tagString;
+                newTagString = newTagString.Replace(";;", ";");
+                control.Tag = newTagString;
+            }
+
+            var checkTagString = ";" + newTagString + ";";
+            control.Enabled = !checkTagString.Contains(";disable;");
+            var visible = !checkTagString.Contains(";hide;");
+            if (checkTagString.Contains(";invisible;")) visible = false;
+            control.Visible = visible;
+            
+        }
+
+        public static void RemoveTagString(ToolStripMenuItem control, string tagString)
+        {
+            var checkTagString = ";" + tagString + ";";
+            //control.Enabled = checkTagString.Contains(";disable;");
+            if (checkTagString.Contains(";visible;")) control.Visible = false;
+            if (checkTagString.Contains(";hide;")) control.Visible = true;
+
+
+            var newTagString = ";" + control.Tag + ";";//Lấy tagString cũ
+            if (newTagString.Contains(checkTagString)) //Remove checkTag khỏi tagString cũ.
+                newTagString = newTagString.Replace(checkTagString, ";");
+            newTagString = newTagString.Trim(';');
+            control.Tag = newTagString;
+            //control.Tag = null;
+            //control.AddTagString(newTagString);
+        }
         #endregion tag
 
         #region ==== SHOW HIDE MESSAGE ====
@@ -2252,6 +2287,30 @@ namespace V6Controls.Forms
             }
         }
 
+        private static void SetMenuItemTag(ToolStripMenuItem control, SortedDictionary<string, string> tagData)
+        {
+            try
+            {
+                var tagString = string.Format(";{0};", control.Tag ?? "");
+                var cancelall = tagString.Contains(";cancelall;");
+                var canceldata = tagString.Contains(";canceldata;");
+                var cancelset = tagString.Contains(";cancelset;");
+                if (canceldata || cancelset || cancelall) goto CANCELALL;
+
+                var NAME = control.Name;
+                if (tagData != null && !string.IsNullOrEmpty(NAME) && tagData.ContainsKey(NAME.ToUpper()))
+                {
+                    NAME = NAME.ToUpper();
+                    AddTagString(control, tagData[NAME]);
+                }
+            CANCELALL: ;
+            }
+            catch (Exception ex)
+            {
+                _errors += "\r\nControlName: " + control.Name + "\r\nException: " + ex.Message;
+            }
+        }
+
         private static void SetFormTagDicRecursive(Control control, SortedDictionary<string, string> tagData)
         {
             try
@@ -2275,6 +2334,24 @@ namespace V6Controls.Forms
                     foreach (Control c in control.Controls)
                     {
                         SetFormTagDicRecursive(c, tagData);
+                    }
+                }
+
+                // Dò qua menu
+                if (control is DropDownButton)
+                {
+                    var button = control as DropDownButton;
+                    if (button.Menu != null)
+                        foreach (ToolStripMenuItem item in button.Menu.Items)
+                        {
+                            SetMenuItemTag(item, tagData);
+                        }
+                }
+                if (control.ContextMenuStrip != null)
+                {
+                    foreach (ToolStripMenuItem item in control.ContextMenuStrip.Items)
+                    {
+                        SetMenuItemTag(item, tagData);
                     }
                 }
 

@@ -1930,7 +1930,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         private void V6InvoiceControl_Load(object sender, EventArgs e)
         {
             SetInitFilterAll();
-            LoadLanguage();
+            LoadLanguage() ;
         }
 
         public bool ValidateNgayCt(string maCt, DateTimePicker dateNgayCT)
@@ -3118,6 +3118,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try
             {
+                SetStatusText("InvokeFormEvent " + eventName);
                 if (Event_Methods.ContainsKey(eventName))
                 {
                     var method_name = Event_Methods[eventName];
@@ -3126,6 +3127,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex1)
             {
+                SetStatusText("InvokeFormEvent " + eventName + " " + ex1.Message);
                 this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
             }
             return null;

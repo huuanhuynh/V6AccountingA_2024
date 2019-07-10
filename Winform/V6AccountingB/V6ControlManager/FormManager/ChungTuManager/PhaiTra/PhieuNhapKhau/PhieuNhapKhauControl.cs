@@ -61,9 +61,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         }
 
         private void MyInit()
-        {   
-            LoadLanguage();
-            LoadTag(Invoice, detail1.Controls);
+        {
             ReorderGroup1TabIndex();
 
             //_amStruct = Invoice.GetAMStruct();
@@ -142,8 +140,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             LoadDetail3Controls();
             LoadAdvanceControls(Invoice.Mact);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
-            ResetForm();
 
+            LoadTag(Invoice, detail1.Controls);
+
+            ResetForm();
             LoadAll();
             InvokeFormEvent(FormDynamicEvent.INIT);
             V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
@@ -704,8 +704,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         break;
                     case "HSD":
                         _hanSd = (V6DateTimeColor)control;
-                        _hanSd.Enabled = false;
-                        _hanSd.Tag = "disable";
+                        //_hanSd.DisableTag();
                         break;
                     case "NK_NT":
                         _nkNt = (V6NumberTextBox)control;
@@ -6888,6 +6887,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             XemPhieuNhapView(dateNgayCT.Date, Invoice.Mact, _maKhoI.Text, _maVt.Text);
         }
 
+        private void taoMaLoMenu_Click(object sender, EventArgs e)
+        {
+            InvokeFormEvent(FormDynamicEvent.TAOMALO);
+        }
+
+        private void taoPackingListMenu_Click(object sender, EventArgs e)
+        {
+            InvokeFormEvent(FormDynamicEvent.TAOPACKING);
+        }
+
+        private void taoGRToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InvokeFormEvent(FormDynamicEvent.TAOGRNO);
+        }
+
+        private void taoRRMenu_Click(object sender, EventArgs e)
+        {
+            InvokeFormEvent(FormDynamicEvent.TAORRNO);
+        }
+
         private void xuLyKhacMenu_Click(object sender, EventArgs e)
         {
             InvokeFormEvent(FormDynamicEvent.INKHAC);
@@ -7021,5 +7040,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 dataGridView1.ReadOnly = true;
             }
         }
+
+        
+
+        
     }
 }

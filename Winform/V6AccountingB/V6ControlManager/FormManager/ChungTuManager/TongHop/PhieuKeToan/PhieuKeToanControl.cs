@@ -73,8 +73,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
 
         private void MyInit()
         {   
-            LoadLanguage();
-            LoadTag(Invoice, detail1.Controls);
             ReorderGroup1TabIndex();
 
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
@@ -112,6 +110,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             LoadDetail2Controls();
             LoadAdvanceControls(Invoice.Mact);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
+            LoadTag(Invoice, detail1.Controls);
             ResetForm();
 
             LoadAll();
