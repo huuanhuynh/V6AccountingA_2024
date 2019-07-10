@@ -317,7 +317,7 @@ namespace V6AccountingBusiness.Invoices
             return null;
         }
 
-        public DataTable SearchPhieuXuat_HoaDon(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)
+        public DataTable SearchPhieuXuat_HoaDon(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, out string loai_ct_chon)
         {
             if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
             if (where1AM.Length > 0) where1AM = "And " + where1AM;
@@ -342,15 +342,7 @@ namespace V6AccountingBusiness.Invoices
                 whereAD_Nhvt_Dvcs = "";
             }
 
-            var sql = string.Format("Select ' ' Tag,  v.ten_vt,v.tk_dt,v.tk_gv , d.*, d.STT_REC AS STT_REC_PX, d.STT_REC0 AS STT_REC0PX "
-                + "\nFROM AD84 d "
-                + "\n LEFT JOIN Alvt v ON v.Ma_vt = d.Ma_vt "
-                + "\n  JOIN (SELECT Stt_rec FROM AM84 WHERE Ma_ct = 'IXA'" + "\n {0} {1}) AS m ON d.Stt_rec = m.Stt_rec"
-                + "\n {2}"
-                + "\n ORDER BY d.ngay_ct, d.so_ct, d.stt_rec",
-                where0Ngay, where1AM, whereAD_Nhvt_Dvcs);
-            //var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql).Tables[0];
-
+            loai_ct_chon = "I";
             SqlParameter[] plist =
             {
                 new SqlParameter("@sType",  "I"),
@@ -367,8 +359,8 @@ namespace V6AccountingBusiness.Invoices
             var tbl = V6BusinessHelper.ExecuteProcedure("VPA_GET_STOCK_IXA", plist).Tables[0];
             return tbl;
         }
-        
-        public DataTable SearchPhieuXuat_PhieuNhapKho(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)
+
+        public DataTable SearchPhieuXuat_PhieuNhapKho(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, out string loai_ct_chon)
         {
             if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
             if (where1AM.Length > 0) where1AM = "And " + where1AM;
@@ -393,15 +385,7 @@ namespace V6AccountingBusiness.Invoices
                 whereAD_Nhvt_Dvcs = "";
             }
 
-            var sql = string.Format("Select ' ' Tag,  v.ten_vt,v.tk_dt,v.tk_gv , d.*, d.STT_REC AS STT_REC_PX, d.STT_REC0 AS STT_REC0PX "
-                + "\nFROM AD84 d "
-                + "\n LEFT JOIN Alvt v ON v.Ma_vt = d.Ma_vt "
-                + "\n  JOIN (SELECT Stt_rec FROM AM84 WHERE Ma_ct = 'IXA'" + "\n {0} {1}) AS m ON d.Stt_rec = m.Stt_rec"
-                + "\n {2}"
-                + "\n ORDER BY d.ngay_ct, d.so_ct, d.stt_rec",
-                where0Ngay, where1AM, whereAD_Nhvt_Dvcs);
-            //var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql).Tables[0];
-
+            loai_ct_chon = "K";
             SqlParameter[] plist =
             {
                 new SqlParameter("@sType",  "K"),

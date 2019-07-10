@@ -1128,11 +1128,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         private bool co_chon_phieu_xuat { get; set; }
         private bool chonpx_flag = false;
         private string _chon_px = "";
-        void chonpx_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList)
+        void chonpx_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList, ChonEventArgs e)
         {
             chonpx_flag = true;
             try
             {
+                txtLoaiCt.Text = e.Loai_ct;
                 detail1.MODE = V6Mode.View;
                 AD.Rows.Clear();
                 int addCount = 0, failCount = 0;

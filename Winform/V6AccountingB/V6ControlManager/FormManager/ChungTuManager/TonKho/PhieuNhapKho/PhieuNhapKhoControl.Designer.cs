@@ -135,7 +135,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label1 = new V6Controls.V6Label();
             this.txtMa_ct = new V6Controls.V6VvarTextBox();
-            this.v6ColorTextBox2 = new V6Controls.V6VvarTextBox();
+            this.txtLoaiCt = new V6Controls.V6VvarTextBox();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -1066,7 +1066,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.TroGiupMenu.Text = "Trợ giúp";
             this.TroGiupMenu.Click += new System.EventHandler(this.TroGiupMenu_Click);
             // 
-            // chonTuExcelToolStripMenuItem
+            // chonTuExcelMenu
             // 
             this.chonTuExcelMenu.AccessibleDescription = "INVOICEM00004";
             this.chonTuExcelMenu.Name = "chonTuExcelMenu";
@@ -1074,7 +1074,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.chonTuExcelMenu.Text = "Chọn từ excel";
             this.chonTuExcelMenu.Click += new System.EventHandler(this.chonTuExcelMenu_Click);
             // 
-            // xuLyKhacToolStripMenuItem
+            // xuLyKhacMenu
             // 
             this.xuLyKhacMenu.AccessibleDescription = "INVOICEM00010";
             this.xuLyKhacMenu.Name = "xuLyKhacMenu";
@@ -1082,7 +1082,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.xuLyKhacMenu.Text = "Xử lý khác";
             this.xuLyKhacMenu.Click += new System.EventHandler(this.xuLyKhacMenu_Click);
             // 
-            // thayTheToolStripMenuItem
+            // thayTheMenu
             // 
             this.thayTheMenu.AccessibleDescription = "INVOICEM00008";
             this.thayTheMenu.Name = "thayTheMenu";
@@ -1090,7 +1090,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.thayTheMenu.Text = "Thay thế";
             this.thayTheMenu.Click += new System.EventHandler(this.thayTheMenu_Click);
             // 
-            // thayThe2toolStripMenuItem
+            // thayThe2Menu
             // 
             this.thayThe2Menu.AccessibleDescription = "INVOICEM00009";
             this.thayThe2Menu.Name = "thayThe2Menu";
@@ -1756,23 +1756,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.txtMa_ct.TabIndex = 3;
             this.txtMa_ct.Visible = false;
             // 
-            // v6ColorTextBox2
+            // txtLoaiCt
             // 
-            this.v6ColorTextBox2.AccessibleName = "loai_ct";
-            this.v6ColorTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox2.BackColor = System.Drawing.SystemColors.Window;
-            this.v6ColorTextBox2.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.v6ColorTextBox2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox2.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox2.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox2.Location = new System.Drawing.Point(695, 575);
-            this.v6ColorTextBox2.Name = "v6ColorTextBox2";
-            this.v6ColorTextBox2.Size = new System.Drawing.Size(10, 20);
-            this.v6ColorTextBox2.TabIndex = 3;
-            this.v6ColorTextBox2.Visible = false;
+            this.txtLoaiCt.AccessibleName = "loai_ct";
+            this.txtLoaiCt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtLoaiCt.BackColor = System.Drawing.SystemColors.Window;
+            this.txtLoaiCt.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtLoaiCt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLoaiCt.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtLoaiCt.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtLoaiCt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtLoaiCt.HoverColor = System.Drawing.Color.Yellow;
+            this.txtLoaiCt.LeaveColor = System.Drawing.Color.White;
+            this.txtLoaiCt.Location = new System.Drawing.Point(695, 575);
+            this.txtLoaiCt.Name = "txtLoaiCt";
+            this.txtLoaiCt.Size = new System.Drawing.Size(10, 20);
+            this.txtLoaiCt.TabIndex = 3;
+            this.txtLoaiCt.Visible = false;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -2044,7 +2044,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.menuDetail1.Name = "menuChucNang";
             this.menuDetail1.Size = new System.Drawing.Size(162, 70);
             // 
-            // menuXemPhieuNhap
+            // XemPhieuNhapMenu
             // 
             this.XemPhieuNhapMenu.AccessibleDescription = "INVOICEM00018";
             this.XemPhieuNhapMenu.Name = "XemPhieuNhapMenu";
@@ -2052,14 +2052,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.XemPhieuNhapMenu.Text = "Xem phiếu nhập";
             this.XemPhieuNhapMenu.Click += new System.EventHandler(this.menuXemPhieuNhap_Click);
             // 
-            // toolStripMenuItem2
+            // chuaDatTen2Menu
             // 
             this.chuaDatTen2Menu.AccessibleDescription = "INVOICEM00019";
             this.chuaDatTen2Menu.Name = "chuaDatTen2Menu";
             this.chuaDatTen2Menu.Size = new System.Drawing.Size(161, 22);
             this.chuaDatTen2Menu.Text = "...";
             // 
-            // toolStripMenuItem3
+            // chuaDatTen3Menu
             // 
             this.chuaDatTen3Menu.AccessibleDescription = "INVOICEM00020";
             this.chuaDatTen3Menu.Name = "chuaDatTen3Menu";
@@ -2082,7 +2082,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.Controls.Add(this.btnXem);
             this.Controls.Add(this.txtMa_ct);
             this.Controls.Add(this.btnXoa);
-            this.Controls.Add(this.v6ColorTextBox2);
+            this.Controls.Add(this.txtLoaiCt);
             this.Controls.Add(this.btnSua);
             this.Controls.Add(this.btnIn);
             this.Controls.Add(this.btnCopy);
@@ -2131,7 +2131,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         private System.Windows.Forms.GroupBox group1;
         private V6Label v6Label3;
         private V6Label v6Label1;
-        private V6VvarTextBox v6ColorTextBox2;
+        private V6VvarTextBox txtLoaiCt;
         private System.Windows.Forms.GroupBox group3;
         private System.Windows.Forms.GroupBox group4;
         private System.Windows.Forms.GroupBox group5;

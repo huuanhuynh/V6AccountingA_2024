@@ -18,12 +18,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
     {
         private readonly PhieuNhapChiPhiMuaHangControl _hoaDonForm;
         private CPNKetQuaPhieuNhapMua _locKetQua;
-        public delegate void AcceptSelectDataList(List<IDictionary<string, object>> selectedDataList, bool multiSelect, IDictionary<string, object> amData);
-        public event AcceptSelectDataList AcceptSelectEvent;
-        protected virtual void OnAcceptSelectEvent(List<IDictionary<string, object>> selecteddatalist, bool multiSelect, IDictionary<string, object> amData)
+        private string _loai_ct_chon;
+        //public delegate void AcceptSelectDataList(List<IDictionary<string, object>> selectedDataList, bool multiSelect, IDictionary<string, object> amData);
+        public event ChonAcceptSelectDataList AcceptSelectEvent;
+        protected virtual void OnAcceptSelectEvent(List<IDictionary<string, object>> selecteddatalist, ChonEventArgs e)
         {
             var handler = AcceptSelectEvent;
-            if (handler != null) handler(selecteddatalist, multiSelect, amData);
+            if (handler != null) handler(selecteddatalist, e);
         }
         //private bool __ready = false;
         //private List<string> _orderList;
@@ -163,7 +164,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                             dic["CP_NT"] = 0;
                             dic["CP"] = 0;
                         }
-                        OnAcceptSelectEvent(listData, _multiSelect, amData);
+                        ChonEventArgs e = new ChonEventArgs()
+                        {
+                            Loai_ct = _loai_ct_chon,
+                            multiSelect = _multiSelect,
+                            amData = amData
+                        };
+                        OnAcceptSelectEvent(listData, e);
                         Close();
                     }
                     else

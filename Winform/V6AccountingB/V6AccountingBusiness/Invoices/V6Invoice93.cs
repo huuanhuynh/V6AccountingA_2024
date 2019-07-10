@@ -233,8 +233,8 @@ namespace V6AccountingBusiness.Invoices
             var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql).Tables[0];
             return tbl;
         }
-        
-        public DataTable SearchBaoGia(string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)
+
+        public DataTable SearchBaoGia(string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, out string loai_ct_chon)
         {
             if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
             if (where1AM.Length > 0) where1AM = "And " + where1AM;
@@ -259,6 +259,7 @@ namespace V6AccountingBusiness.Invoices
                 whereAD_Nhvt_Dvcs = "";
             }
 
+            loai_ct_chon = "!";
             var sql = string.Format("Select ' ' Tag,  v.ten_vt,v.tk_tl , d.*, d.STT_REC AS STT_REC_PX, d.STT_REC0 AS STT_REC0PX "
                 + "\nFROM ["+AD_TableName+"] d "//" LEFT JOIN Alkh b ON d.Ma_kh=b.Ma_kh "
                 + "\n LEFT JOIN Alvt v ON v.Ma_vt = d.Ma_vt "

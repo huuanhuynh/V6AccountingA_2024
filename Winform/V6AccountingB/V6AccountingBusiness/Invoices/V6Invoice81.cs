@@ -404,7 +404,7 @@ namespace V6AccountingBusiness.Invoices
         }
 
         public DataTable SearchHoaDon_PhieuNhapMua(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD,
-            string where3NhVt, string where4Dvcs)
+            string where3NhVt, string where4Dvcs, out string loai_ct_chon)
         {
             if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
             if (where1AM.Length > 0) where1AM = "And " + where1AM;
@@ -431,6 +431,7 @@ namespace V6AccountingBusiness.Invoices
                 whereAD_Nhvt_Dvcs = "";
             }
 
+            loai_ct_chon = "1";
             SqlParameter[] plist =
             {
                 new SqlParameter("@sType", "1"),

@@ -5082,6 +5082,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
         #endregion chức năng
 
+        private void ChonDonHangMuaMenu_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void TroGiupMenu_Click(object sender, EventArgs e)
         {
             ChucNang_TroGiup();

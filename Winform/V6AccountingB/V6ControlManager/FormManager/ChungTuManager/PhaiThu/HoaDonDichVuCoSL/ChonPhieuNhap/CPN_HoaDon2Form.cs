@@ -19,13 +19,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
         //private readonly PhieuXuatTraLaiNCCControl _PhieuXuatTraLaiNCCForm;
         private CPN_KetQua_HoaDonDichVuCoSL _locKetQua;
         private V6Invoice74 Invoice = new V6Invoice74();
-        private string _ma_dvcs, _ma_kh;
+        private string _ma_dvcs, _ma_kh, _loai_ct_chon;
         private DateTime _ngayCt;
         //private bool __ready = false;
         private bool _viewMode;
         //private List<string> _orderListAD;
-        public delegate void AcceptSelectDataList(List<IDictionary<string, object>> selectedDataList);
-        public event AcceptSelectDataList AcceptSelectEvent;
+        //public delegate void AcceptSelectDataList(List<IDictionary<string, object>> selectedDataList);
+        public event ChonAcceptSelectDataList AcceptSelectEvent;
 
         public bool ViewMode
         {
@@ -121,7 +121,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
                     var data = _locKetQua.dataGridView1.GetSelectedData();
                     if (data.Count > 0)
                     {
-                        OnAcceptSelectEvent(data);
+                        ChonEventArgs e = new ChonEventArgs()
+                        {
+                            Loai_ct = _loai_ct_chon
+                        };
+                        OnAcceptSelectEvent(data, e);
                         Close();
                     }
                     else
@@ -217,7 +221,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
         {
             try
             {
-                tAM = Invoice.SearchPhieuNhap_HoaDon(_ngayCt, _where0Time, _where1AM, _where2AD, _w3NhomVt, _w4Dvcs);
+                tAM = Invoice.SearchPhieuNhap_HoaDon(_ngayCt, _where0Time, _where1AM, _where2AD, _w3NhomVt, _w4Dvcs, out _loai_ct_chon);
                 if (tAM != null && tAM.Rows.Count > 0)
                 {
                     flagSearchSuccess = true;
@@ -338,10 +342,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
             _locKetQua.Refresh0(_locKetQua.dataGridView1);
         }
 
-        protected virtual void OnAcceptSelectEvent(List<IDictionary<string, object>> selecteddatalist)
+        protected virtual void OnAcceptSelectEvent(List<IDictionary<string, object>> selecteddatalist, ChonEventArgs e)
         {
             var handler = AcceptSelectEvent;
-            if (handler != null) handler(selecteddatalist);
+            if (handler != null) handler(selecteddatalist, e);
         }
 
         private void CPN_HoaDonDichVuCoSLForm_VisibleChanged(object sender, EventArgs e)

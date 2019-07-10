@@ -6870,10 +6870,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
-        void  chon_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList)
+        void chon_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList, ChonEventArgs e)
         {
             try
             {
+                txtLoaiCt.Text = e.Loai_ct;
                 bool flag_add = chon_accept_flag_add;
                 chon_accept_flag_add = false;
                 detail1.MODE = V6Mode.View;
@@ -7624,10 +7625,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
-        void chonpn_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList)
+        void chonpn_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList, ChonEventArgs e)
         {
             try
             {
+                txtLoaiCt.Text = e.Loai_ct;
                 detail1.MODE = V6Mode.View;
                 AD.Rows.Clear();
                 int addCount = 0, failCount = 0;

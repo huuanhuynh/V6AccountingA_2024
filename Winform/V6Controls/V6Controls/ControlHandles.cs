@@ -31,5 +31,13 @@ namespace V6Controls
         public string MaCt { get; set; }
         public string Stt_rec { get; set; }
     }
+    
+    public delegate void ChonAcceptSelectDataList(List<IDictionary<string, object>> selectedDataList, ChonEventArgs e);
+    public class ChonEventArgs : EventArgs
+    {
+        public string Loai_ct { get; set; }
+        public bool multiSelect { get;set; }
+        public IDictionary<string, object> amData { get; set; }
+    }
 
 }

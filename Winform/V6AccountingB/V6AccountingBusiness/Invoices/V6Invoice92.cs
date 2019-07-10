@@ -353,7 +353,7 @@ namespace V6AccountingBusiness.Invoices
             return null;
         }
 
-        public DataTable SearchDonHang(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)
+        public DataTable SearchDonHang(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, out string loai_ct_chon)
         {
             if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
             if (where1AM.Length > 0) where1AM = "And " + where1AM;
@@ -378,16 +378,7 @@ namespace V6AccountingBusiness.Invoices
                 whereAD_Nhvt_Dvcs = "";
             }
 
-            var sql = string.Format("Select ' ' Tag,  v.ten_vt,v.tk_tl , d.*, d.STT_REC AS STT_RECDH, d.STT_REC0 AS STT_REC0DH "
-                //"Select a.*, b.Ma_so_thue, b.Ten_kh AS Ten_kh,f.Ten_nvien AS Ten_nvien,g.Ten_httt AS Ten_httt"
-                + "\nFROM AD92 d "//" LEFT JOIN Alkh b ON d.Ma_kh=b.Ma_kh "
-                //+ "\n LEFT JOIN alhttt AS g ON a.Ma_httt = g.Ma_httt "
-                + "\n LEFT JOIN Alvt v ON v.Ma_vt = d.Ma_vt "
-                + "\n  JOIN (SELECT Stt_rec FROM AM92 WHERE Ma_ct = 'POH'" + "\n {0} {1}) AS m ON d.Stt_rec = m.Stt_rec"
-                + "\n {2}"
-                + "\n ORDER BY d.ngay_ct, d.so_ct, d.stt_rec",
-                where0Ngay, where1AM, whereAD_Nhvt_Dvcs);
-            
+            loai_ct_chon = "P";
             SqlParameter[] plist =
             {
                 new SqlParameter("@sType",  "P"),
@@ -408,7 +399,7 @@ namespace V6AccountingBusiness.Invoices
             //return tbl;
         }
 
-        public DataTable SearchDonHangMua_INY(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)
+        public DataTable SearchDonHangMua_INY(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, out string loai_ct_chon)
         {
             if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
             if (where1AM.Length > 0) where1AM = "And " + where1AM;
@@ -432,7 +423,8 @@ namespace V6AccountingBusiness.Invoices
             {
                 whereAD_Nhvt_Dvcs = "";
             }
-            
+
+            loai_ct_chon = "Y";
             SqlParameter[] plist =
             {
                 new SqlParameter("@sType",  "Y"),

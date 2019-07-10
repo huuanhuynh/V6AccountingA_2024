@@ -4283,11 +4283,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
         private bool co_chon_phieu_nhap = false;
         private string _chon_px = "";
-        void chonpx_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList,
-            bool multiSelect, IDictionary<string, object> amData)
+        void chonpx_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList, ChonEventArgs e)
         {
             try
             {
+                txtLoaiCt.Text = e.Loai_ct;
                 bool flag_add = chon_accept_flag_add;
                 chon_accept_flag_add = false;
                 detail1.MODE = V6Mode.View;
@@ -4301,10 +4301,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     AD.Rows.Clear();
                 }
 
-                if (!multiSelect)
+                if (!e.multiSelect)
                 {
-                    txtSO_PN.Text = amData["SO_CT"].ToString().Trim();
-                    dateNgayPN.Value = ObjectAndString.ObjectToDate(amData["NGAY_CT"]);
+                    txtSO_PN.Text = e.amData["SO_CT"].ToString().Trim();
+                    dateNgayPN.Value = ObjectAndString.ObjectToDate(e.amData["NGAY_CT"]);
                 }
 
                 int addCount = 0, failCount = 0;
