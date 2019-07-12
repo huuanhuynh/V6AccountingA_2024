@@ -222,6 +222,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 _data = Excel_File.Sheet1ToDataTable(txtFile.Text);
+                check = null;
                 //Check1: chuyen ma, String12 A to U
                 string from0 = comboBox1.Text, to0 = comboBox2.Text;
                 if (chkChuyenMa.Checked)

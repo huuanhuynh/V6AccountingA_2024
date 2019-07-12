@@ -28,13 +28,16 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 txtMaDVCS.Enabled = false;
             }
+            
         }
 
         public override void DoBeforeAdd()
         {
             try
             {
-
+                Chk_khodaily.Checked = TxtTk_dl.Text != "";
+                TxtTk_dl.Enabled = (Chk_khodaily.Checked);
+                TxtTk_dl.ReadOnly = !(Chk_khodaily.Checked);
             }
             catch (Exception ex)
             {
@@ -49,6 +52,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 var v = Categories.IsExistOneCode_List("ABVT,ABLO,ARI70,ARS90", "Ma_kho", txtMaKho.Text);
                 txtMaKho.Enabled = !v;
                 txtMaDVCS.Enabled = !v;
+                
+                Chk_khodaily.Checked = TxtTk_dl.Text != "";
+                TxtTk_dl.Enabled = (Chk_khodaily.Checked);
+                TxtTk_dl.ReadOnly = !(Chk_khodaily.Checked);
 
                 LoadImageData();
             }
@@ -81,21 +88,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
-        private void TxtKho_dl_V6LostFocus(object sender)
-        {
-            if (TxtKho_dl.Value == 1)
-            {
-                TxtTk_dl.Enabled = true;
-                TxtTk_dl.ReadOnly = false;
-            }
-            else
-            {
-                TxtTk_dl.ReadOnly = true;
-                TxtTk_dl.Enabled = false;
-                TxtTk_dl.Text = "";
-            }
-        }
-
+        
         public override void ValidateData()
         {
             var errors = "";
@@ -183,6 +176,19 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 Logger.WriteToLog(V6Login.ClientName + " " + GetType() + ".ChonHinh " + ex.Message);
             }
+        }
+
+        private void Chk_khodaily_CheckedChanged(object sender, EventArgs e)
+        {
+            TxtTk_dl.Enabled = (Chk_khodaily.Checked);
+            TxtTk_dl.ReadOnly = !(Chk_khodaily.Checked);
+            if (Chk_khodaily.Checked==false)
+            {
+                TxtTk_dl.Text = "";
+            }
+
+
+
         }
         
     }

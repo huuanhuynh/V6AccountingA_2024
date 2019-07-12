@@ -439,6 +439,8 @@ namespace V6Init
         /// Trường vvar cần kiểm tra hợp lệ dữ liệu.
         /// </summary>
         public string A_field2 { get { return GetString("A_field2"); } }
+        public string A_field3 { get { return GetString("A_field3"); } }
+        public string A_field4 { get { return GetString("A_field4"); } }
         public string UID { get { return GetString("UID"); } }
 
     }

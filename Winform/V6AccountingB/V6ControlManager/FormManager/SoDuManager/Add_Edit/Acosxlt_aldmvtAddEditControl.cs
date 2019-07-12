@@ -326,9 +326,13 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         public override void ValidateData()
         {
             var errors = "";
-            if (txtMaSp.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblMaSP.Text + "!\r\n";
-            if (txtMaBpht.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblMaBPHT.Text + "!\r\n";
-            
+
+            if ((txtMaSp.Text.Trim() == "") && (txtMaBpht.Text.Trim() == ""))
+            {
+                errors += V6Text.Text("CHUANHAP") + "!\r\n";
+            }
+
+
             AldmConfig config = ConfigManager.GetAldmConfig(TableName.ToString());
             if (config != null && config.HaveInfo && !string.IsNullOrEmpty(config.KEY))
             {
@@ -347,7 +351,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
             V6ControlFormHelper.UpdateDKlistAll(DataDic, new[] { "MA_SP", "MA_BPHT", "MA_CT" }, AD);
             V6ControlFormHelper.UpdateDKlist(AD, "NGAY_HL1", dateNgayHL.Value);
-            //V6ControlFormHelper.UpdateDKlist(AD, "NGAY_HL2", dateNgayHL2.Value);
         }
 
         #region ==== Detail control events ====

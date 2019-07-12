@@ -242,6 +242,24 @@
     <Type>0</Type>
     <Key>m30C2TGYP48IwkzH7ns7GNYbcZaB06zfhbV9OAjGGnPQfsg2HYztvQ==</Key>
   </DatabaseList>
+   <DatabaseList>
+    <Stt>14</Stt>
+    <Server>192.168.1.99\SQLSERVER2K8</Server>
+    <Server2>192.168.1.99\SQLSERVER2K8</Server2>
+    <Database>NAMQUOC_19</Database>
+    <Database2>NAMQUOC_19</Database2>
+    <UserId>sa</UserId>
+    <UserId2>sa</UserId2>
+    <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
+    <Epassword2>l3q0CpB7reTyiOANz2nQMA==</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <Note>Dữ liệu NAMQUOC HL</Note>
+    <UseIsolation>1</UseIsolation>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>vqdBFVxpX2MIwkzH7ns7GNYbcZaB06zfbH/awrIjjfHRbf4mlVFNFQ==</Key>
+  </DatabaseList>
   <ServerConfig>
     <ServerName>HUUANV6</ServerName>
     <ServerIP>192.168.1.141</ServerIP>

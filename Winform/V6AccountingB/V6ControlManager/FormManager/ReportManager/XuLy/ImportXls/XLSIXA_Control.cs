@@ -45,6 +45,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 FilterControl.UpdateValues();
 
                 _data = Excel_File.Sheet1ToDataTable(FilterControl.String1);
+                check = null;
                 //Check1: chuyen ma, String12 A to U
                 if (FilterControl.Check1)
                 {

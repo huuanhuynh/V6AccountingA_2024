@@ -6524,7 +6524,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         }
                     }
                 }
-              
+
+                string error = ValidateDetailData_InMaster();
+                if (!string.IsNullOrEmpty(error))
+                {
+                    this.ShowWarningMessage(error);
+                    return false;
+                }
                 //OK
                 return true;
             }

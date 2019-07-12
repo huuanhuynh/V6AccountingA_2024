@@ -1044,8 +1044,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     break;
                 case "XLSCA1":
                     result = new XLSCA1_Filter();
-                    //NHAN SU
                     break;
+                case "XLSGL1":
+                    result = new XLSGL1_Filter();
+                    break;
+                    //NHAN SU
                 case "XLSPRCONG2":
                     result = new XLSPRCONG2();
                     break;

@@ -72,6 +72,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return new XLSTA1_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "XLSCA1":
                     return new XLSCA1_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                case "XLSGL1":
+                    return new XLSGL1_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                     //NHAN SU
                 case "XLSPRCONG2":
                     return new XLSPRCONG2_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);

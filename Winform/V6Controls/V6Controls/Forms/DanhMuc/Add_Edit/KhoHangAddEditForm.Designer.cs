@@ -49,14 +49,15 @@
             this.v6ColorTextBox13 = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox12 = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox8 = new V6Controls.V6ColorTextBox();
-            this.TxtKho_dl = new V6Controls.V6NumberTextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.chkVitri_yn = new V6Controls.V6CheckBox();
+            this.chkDate_yn = new V6Controls.V6CheckBox();
+            this.chkLo_yn = new V6Controls.V6CheckBox();
             this.checkBox1 = new V6Controls.V6CheckBox();
             this.v6ColorTextBox6 = new V6Controls.V6ColorTextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -90,9 +91,7 @@
             this.ptbPHOTOGRAPH = new System.Windows.Forms.PictureBox();
             this.btnXoahinh = new System.Windows.Forms.Button();
             this.btnChonhinh = new System.Windows.Forms.Button();
-            this.chkLo_yn = new V6Controls.V6CheckBox();
-            this.chkDate_yn = new V6Controls.V6CheckBox();
-            this.chkVitri_yn = new V6Controls.V6CheckBox();
+            this.Chk_khodaily = new V6Controls.V6CheckBox();
             this.groupBox1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -154,7 +153,7 @@
             this.v6ColorTextBox5.Location = new System.Drawing.Point(548, 17);
             this.v6ColorTextBox5.Margin = new System.Windows.Forms.Padding(5);
             this.v6ColorTextBox5.Name = "v6ColorTextBox5";
-            this.v6ColorTextBox5.Size = new System.Drawing.Size(111, 23);
+            this.v6ColorTextBox5.Size = new System.Drawing.Size(133, 23);
             this.v6ColorTextBox5.TabIndex = 3;
             this.v6ColorTextBox5.Visible = false;
             // 
@@ -291,6 +290,7 @@
             // 
             this.tabPage1.AccessibleDescription = "ADDEDITT00001";
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage1.Controls.Add(this.Chk_khodaily);
             this.tabPage1.Controls.Add(this.TxtLoai_kho);
             this.tabPage1.Controls.Add(this.label13);
             this.tabPage1.Controls.Add(this.TxtTk_dl);
@@ -299,14 +299,12 @@
             this.tabPage1.Controls.Add(this.v6ColorTextBox13);
             this.tabPage1.Controls.Add(this.v6ColorTextBox12);
             this.tabPage1.Controls.Add(this.v6ColorTextBox8);
-            this.tabPage1.Controls.Add(this.TxtKho_dl);
             this.tabPage1.Controls.Add(this.label23);
             this.tabPage1.Controls.Add(this.label22);
             this.tabPage1.Controls.Add(this.label21);
             this.tabPage1.Controls.Add(this.label20);
             this.tabPage1.Controls.Add(this.label19);
             this.tabPage1.Controls.Add(this.label9);
-            this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.chkVitri_yn);
             this.tabPage1.Controls.Add(this.chkDate_yn);
             this.tabPage1.Controls.Add(this.chkLo_yn);
@@ -447,33 +445,6 @@
             this.v6ColorTextBox8.Size = new System.Drawing.Size(237, 23);
             this.v6ColorTextBox8.TabIndex = 5;
             // 
-            // TxtKho_dl
-            // 
-            this.TxtKho_dl.AccessibleName = "kho_dl";
-            this.TxtKho_dl.BackColor = System.Drawing.Color.White;
-            this.TxtKho_dl.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TxtKho_dl.DecimalPlaces = 0;
-            this.TxtKho_dl.EnterColor = System.Drawing.Color.PaleGreen;
-            this.TxtKho_dl.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.TxtKho_dl.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.TxtKho_dl.HoverColor = System.Drawing.Color.Yellow;
-            this.TxtKho_dl.LeaveColor = System.Drawing.Color.White;
-            this.TxtKho_dl.LimitCharacters = "0;1";
-            this.TxtKho_dl.Location = new System.Drawing.Point(193, 10);
-            this.TxtKho_dl.Margin = new System.Windows.Forms.Padding(4);
-            this.TxtKho_dl.MaxLength = 1;
-            this.TxtKho_dl.Name = "TxtKho_dl";
-            this.TxtKho_dl.Size = new System.Drawing.Size(132, 23);
-            this.TxtKho_dl.TabIndex = 1;
-            this.TxtKho_dl.Text = "0";
-            this.TxtKho_dl.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.TxtKho_dl.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.TxtKho_dl.V6LostFocus += new V6Controls.ControlEventHandle(this.TxtKho_dl_V6LostFocus);
-            // 
             // label23
             // 
             this.label23.AccessibleDescription = "ADDEDITL00006";
@@ -540,16 +511,44 @@
             this.label9.TabIndex = 4;
             this.label9.Text = "Thủ kho";
             // 
-            // label8
+            // chkVitri_yn
             // 
-            this.label8.AccessibleDescription = "ADDEDITL00168";
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(10, 10);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(70, 17);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Kho/đại lý";
+            this.chkVitri_yn.AccessibleDescription = "ADDEDITL00068";
+            this.chkVitri_yn.AccessibleName = "vitri_yn";
+            this.chkVitri_yn.AutoSize = true;
+            this.chkVitri_yn.Location = new System.Drawing.Point(496, 128);
+            this.chkVitri_yn.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.chkVitri_yn.Name = "chkVitri_yn";
+            this.chkVitri_yn.Size = new System.Drawing.Size(113, 21);
+            this.chkVitri_yn.TabIndex = 22;
+            this.chkVitri_yn.Text = "Theo dõi vị trí";
+            this.chkVitri_yn.UseVisualStyleBackColor = true;
+            // 
+            // chkDate_yn
+            // 
+            this.chkDate_yn.AccessibleDescription = "ADDEDITL00069";
+            this.chkDate_yn.AccessibleName = "date_yn";
+            this.chkDate_yn.AutoSize = true;
+            this.chkDate_yn.Location = new System.Drawing.Point(496, 100);
+            this.chkDate_yn.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.chkDate_yn.Name = "chkDate_yn";
+            this.chkDate_yn.Size = new System.Drawing.Size(115, 21);
+            this.chkDate_yn.TabIndex = 21;
+            this.chkDate_yn.Text = "Theo dõi date";
+            this.chkDate_yn.UseVisualStyleBackColor = true;
+            // 
+            // chkLo_yn
+            // 
+            this.chkLo_yn.AccessibleDescription = "ADDEDITL00064";
+            this.chkLo_yn.AccessibleName = "lo_yn";
+            this.chkLo_yn.AutoSize = true;
+            this.chkLo_yn.Location = new System.Drawing.Point(496, 72);
+            this.chkLo_yn.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.chkLo_yn.Name = "chkLo_yn";
+            this.chkLo_yn.Size = new System.Drawing.Size(98, 21);
+            this.chkLo_yn.TabIndex = 20;
+            this.chkLo_yn.Text = "Theo dõi lô";
+            this.chkLo_yn.UseVisualStyleBackColor = true;
             // 
             // checkBox1
             // 
@@ -1117,44 +1116,19 @@
             this.btnChonhinh.UseVisualStyleBackColor = true;
             this.btnChonhinh.Click += new System.EventHandler(this.btnChonhinh_Click);
             // 
-            // chkLo_yn
+            // Chk_khodaily
             // 
-            this.chkLo_yn.AccessibleDescription = "ADDEDITL00064";
-            this.chkLo_yn.AccessibleName = "lo_yn";
-            this.chkLo_yn.AutoSize = true;
-            this.chkLo_yn.Location = new System.Drawing.Point(496, 72);
-            this.chkLo_yn.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.chkLo_yn.Name = "chkLo_yn";
-            this.chkLo_yn.Size = new System.Drawing.Size(98, 21);
-            this.chkLo_yn.TabIndex = 20;
-            this.chkLo_yn.Text = "Theo dõi lô";
-            this.chkLo_yn.UseVisualStyleBackColor = true;
-            // 
-            // chkDate_yn
-            // 
-            this.chkDate_yn.AccessibleDescription = "ADDEDITL00069";
-            this.chkDate_yn.AccessibleName = "date_yn";
-            this.chkDate_yn.AutoSize = true;
-            this.chkDate_yn.Location = new System.Drawing.Point(496, 100);
-            this.chkDate_yn.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.chkDate_yn.Name = "chkDate_yn";
-            this.chkDate_yn.Size = new System.Drawing.Size(115, 21);
-            this.chkDate_yn.TabIndex = 21;
-            this.chkDate_yn.Text = "Theo dõi date";
-            this.chkDate_yn.UseVisualStyleBackColor = true;
-            // 
-            // chkVitri_yn
-            // 
-            this.chkVitri_yn.AccessibleDescription = "ADDEDITL00068";
-            this.chkVitri_yn.AccessibleName = "vitri_yn";
-            this.chkVitri_yn.AutoSize = true;
-            this.chkVitri_yn.Location = new System.Drawing.Point(496, 128);
-            this.chkVitri_yn.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.chkVitri_yn.Name = "chkVitri_yn";
-            this.chkVitri_yn.Size = new System.Drawing.Size(113, 21);
-            this.chkVitri_yn.TabIndex = 22;
-            this.chkVitri_yn.Text = "Theo dõi vị trí";
-            this.chkVitri_yn.UseVisualStyleBackColor = true;
+            this.Chk_khodaily.AccessibleDescription = "ADDEDITL00168";
+            this.Chk_khodaily.AccessibleName = "";
+            this.Chk_khodaily.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Chk_khodaily.Location = new System.Drawing.Point(10, 12);
+            this.Chk_khodaily.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.Chk_khodaily.Name = "Chk_khodaily";
+            this.Chk_khodaily.Size = new System.Drawing.Size(197, 21);
+            this.Chk_khodaily.TabIndex = 23;
+            this.Chk_khodaily.Text = "Kho/ đại lý";
+            this.Chk_khodaily.UseVisualStyleBackColor = true;
+            this.Chk_khodaily.CheckedChanged += new System.EventHandler(this.Chk_khodaily_CheckedChanged);
             // 
             // KhoHangAddEditForm
             // 
@@ -1205,13 +1179,11 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
         private V6ColorTextBox v6ColorTextBox18;
         private V6ColorTextBox v6ColorTextBox17;
         private V6ColorTextBox v6ColorTextBox13;
         private V6ColorTextBox v6ColorTextBox12;
         private V6ColorTextBox v6ColorTextBox8;
-        private V6NumberTextBox TxtKho_dl;
         private V6VvarTextBox txtMaDVCS;
         private V6VvarTextBox TxtTk_dl;
         private V6Controls.V6VvarTextBox txtGC_TD3;
@@ -1246,5 +1218,6 @@
         private V6CheckBox chkVitri_yn;
         private V6CheckBox chkDate_yn;
         private V6CheckBox chkLo_yn;
+        private V6CheckBox Chk_khodaily;
     }
 }

@@ -55,7 +55,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
 
                 _data = Excel_File.Sheet1ToDataTable(FilterControl.String1);
-                
+                check = null;
                 //Check1: chuyen ma, String12 A to U
                 if (FilterControl.Check1)
                 {
@@ -586,7 +586,45 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             return result;
         }
+        
         private List<IDictionary<string, object>> GET_AD2_List(List<DataRow> dataRows, string sttRec, string maCT)
+        {
+            var result = new List<IDictionary<string, object>>();
+            for (int i = 0; i < dataRows.Count; i++)
+            {
+                var one = dataRows[i].ToDataDictionary(sttRec);
+
+                if (ObjectAndString.ObjectToDecimal(one["THUE_NT"]) == 0)
+                {
+                    continue;
+                }
+
+                one["MA_CT"] = maCT;
+                one["STT_REC0"] = ("00000" + (i + 1)).Right(5);
+
+                one["SO_CT"] = AM_DATA["SO_CT"];
+                one["NGAY_CT"] = AM_DATA["NGAY_CT"];
+                one["NGAY_LCT"] = AM_DATA["NGAY_LCT"];
+
+
+
+                one["MA_KH"] = one["MA_KH_T"];
+                one["TEN_KH"] = one["TEN_KH_T"];
+                one["DIA_CHI"] = one["DIA_CHI_T"];
+                one["MA_SO_THUE"] = one["MST_T"];
+                one["TEN_VT"] = one["TEN_VT_T"];
+                //Ten_vt,so_luong,gia,t_tien
+
+                one["MA_THUE"] = one["MA_THUE_I"];
+                one["TK_THUE_NO"] = one["TK_THUE_I"];
+                one["TK_DU"] = one["TK"];
+                
+
+                result.Add(one);
+            }
+            return result;
+        }
+        private List<IDictionary<string, object>> GET_AD2_List0(List<DataRow> dataRows, string sttRec, string maCT)
         {
             var result = new List<IDictionary<string, object>>();
             var newRow = new SortedDictionary<string, object>();

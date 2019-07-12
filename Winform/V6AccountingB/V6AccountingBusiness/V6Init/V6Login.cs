@@ -571,7 +571,7 @@ namespace V6Init
             if (GetDataMode == GetDataMode.Local)
             {
                 var data = SqlConnect.Select("Aldvcs", "Ma_dvcs, Ten_dvcs as Name, Ten_dvcs2 as Name2",
-                    key, "", "ma_dvcs").Data;
+                    key, "", "stt_order,ma_dvcs").Data;
                 return data;
             }
             else

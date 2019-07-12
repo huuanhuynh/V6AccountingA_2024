@@ -1,4 +1,4 @@
-﻿namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
+﻿namespace V6ControlManager.FormManager.ReportManager.Filter
 {
     partial class ZACOSXLT_TINHGIA_Filter
     {
@@ -123,7 +123,9 @@
             // lineMaBpHt
             // 
             this.lineMaBpHt.AccessibleDescription = "XULYL00026";
+            this.lineMaBpHt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.lineMaBpHt.Caption = "Mã bộ phận ht";
+            this.lineMaBpHt.CodeForm = null;
             this.lineMaBpHt.FieldName = "MA_BPHT";
             this.lineMaBpHt.Location = new System.Drawing.Point(6, 19);
             this.lineMaBpHt.Name = "lineMaBpHt";
@@ -144,6 +146,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "ZACOSXLT_TINHGIA_Filter";
             this.Size = new System.Drawing.Size(298, 380);
+            this.Load += new System.EventHandler(this.ZACOSXLT_TINHGIA_Filter_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

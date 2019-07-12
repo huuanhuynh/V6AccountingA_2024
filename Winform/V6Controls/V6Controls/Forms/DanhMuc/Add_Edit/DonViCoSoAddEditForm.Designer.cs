@@ -68,6 +68,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtTenDvcs = new V6Controls.V6ColorTextBox();
             this.lblTenDVCS = new System.Windows.Forms.Label();
+            this.txtSTT_ORDER = new V6Controls.V6NumberTextBox();
+            this.lblSTT = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,6 +78,8 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.txtSTT_ORDER);
+            this.groupBox1.Controls.Add(this.lblSTT);
             this.groupBox1.Controls.Add(this.TxtMa_dvcs);
             this.groupBox1.Controls.Add(this.TxtNH_DVCS1);
             this.groupBox1.Controls.Add(this.label3);
@@ -119,7 +123,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.groupBox1.Size = new System.Drawing.Size(780, 471);
+            this.groupBox1.Size = new System.Drawing.Size(780, 512);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -152,17 +156,17 @@
             this.TxtNH_DVCS1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtNH_DVCS1.HoverColor = System.Drawing.Color.Yellow;
             this.TxtNH_DVCS1.LeaveColor = System.Drawing.Color.White;
-            this.TxtNH_DVCS1.Location = new System.Drawing.Point(457, 18);
+            this.TxtNH_DVCS1.Location = new System.Drawing.Point(579, 18);
             this.TxtNH_DVCS1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.TxtNH_DVCS1.Name = "TxtNH_DVCS1";
-            this.TxtNH_DVCS1.Size = new System.Drawing.Size(274, 23);
+            this.TxtNH_DVCS1.Size = new System.Drawing.Size(151, 23);
             this.TxtNH_DVCS1.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AccessibleDescription = "ADDEDITL00180";
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(395, 22);
+            this.label3.Location = new System.Drawing.Point(515, 22);
             this.label3.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 17);
@@ -189,9 +193,9 @@
             this.label4.Location = new System.Drawing.Point(13, 427);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(78, 17);
+            this.label4.Size = new System.Drawing.Size(73, 17);
             this.label4.TabIndex = 27;
-            this.label4.Text = "Trạng Thái";
+            this.label4.Text = "Trạng thái";
             // 
             // v6ColorTextBox8
             // 
@@ -665,6 +669,40 @@
             this.lblTenDVCS.TabIndex = 4;
             this.lblTenDVCS.Text = "Tên DVCS";
             // 
+            // txtSTT_ORDER
+            // 
+            this.txtSTT_ORDER.AccessibleName = "STT_ORDER";
+            this.txtSTT_ORDER.BackColor = System.Drawing.Color.White;
+            this.txtSTT_ORDER.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtSTT_ORDER.DecimalPlaces = 0;
+            this.txtSTT_ORDER.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtSTT_ORDER.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtSTT_ORDER.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtSTT_ORDER.HoverColor = System.Drawing.Color.Yellow;
+            this.txtSTT_ORDER.LeaveColor = System.Drawing.Color.White;
+            this.txtSTT_ORDER.Location = new System.Drawing.Point(420, 18);
+            this.txtSTT_ORDER.Name = "txtSTT_ORDER";
+            this.txtSTT_ORDER.Size = new System.Drawing.Size(81, 23);
+            this.txtSTT_ORDER.TabIndex = 2;
+            this.txtSTT_ORDER.Text = "0";
+            this.txtSTT_ORDER.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSTT_ORDER.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // lblSTT
+            // 
+            this.lblSTT.AccessibleDescription = "ADDEDITL00246";
+            this.lblSTT.AutoSize = true;
+            this.lblSTT.Location = new System.Drawing.Point(351, 21);
+            this.lblSTT.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblSTT.Name = "lblSTT";
+            this.lblSTT.Size = new System.Drawing.Size(65, 17);
+            this.lblSTT.TabIndex = 30;
+            this.lblSTT.Text = "Số thứ tự";
+            // 
             // DonViCoSoAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -673,7 +711,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DonViCoSoAddEditForm";
-            this.Size = new System.Drawing.Size(786, 479);
+            this.Size = new System.Drawing.Size(786, 520);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -722,5 +760,7 @@
         private System.Windows.Forms.Label label19;
         private V6ColorTextBox txtDIEN_THOAI;
         private System.Windows.Forms.Label label13;
+        private V6NumberTextBox txtSTT_ORDER;
+        private System.Windows.Forms.Label lblSTT;
     }
 }

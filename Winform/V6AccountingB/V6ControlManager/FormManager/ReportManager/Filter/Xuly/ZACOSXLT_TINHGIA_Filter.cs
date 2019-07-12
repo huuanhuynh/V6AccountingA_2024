@@ -7,7 +7,7 @@ using V6Controls;
 using V6Init;
 using V6Tools.V6Convert;
 
-namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
+namespace V6ControlManager.FormManager.ReportManager.Filter
 {
     public partial class ZACOSXLT_TINHGIA_Filter: FilterBase
     {
@@ -31,6 +31,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
             {
                 this.WriteExLog(GetType() + ".MyInit", ex);
             }
+        }
+
+        private void ZACOSXLT_TINHGIA_Filter_Load(object sender, EventArgs e)
+        {
+            dateNgay_ct1.Focus();
         }
 
         /// <summary>
@@ -91,5 +96,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Xuly
             }
             UpdateValues();
         }
+
+        
     }
 }

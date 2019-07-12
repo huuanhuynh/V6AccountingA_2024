@@ -2012,7 +2012,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <returns>Nếu hợp lệ trả về rỗng hoặc null, Nếu ko trả về message.</returns>
         public string ValidateDetailData(HD_Detail detail1, V6InvoiceBase Invoice, IDictionary<string, object> data, out string firstField)
         {
-            string error = "";
+            string error = null;
             firstField = null;
             try
             {
@@ -2090,6 +2090,82 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 //error += ex.Message;//Lỗi chương trình không liên quan lỗi nhập liệu
                 this.WriteExLog(GetType() + ".ValidateData_Detail " + _sttRec, ex);
+            }
+            return error;
+        }
+
+        /// <summary>
+        /// <para>Kiểm tra dữ liệu chi tiết hợp lệ khi validate master.</para>
+        /// <para>Nếu hợp lệ trả về rỗng hoặc null, Nếu ko trả về message.</para>
+        /// </summary>
+        /// <returns>Nếu hợp lệ trả về rỗng hoặc null, Nếu ko trả về message.</returns>
+        public string ValidateDetailData_InMaster()
+        {
+            string error = null;
+            try
+            {
+                var config = ConfigManager.GetV6ValidConfig(_invoice.Mact, 2);
+
+                if (config != null && config.HaveInfo)
+                {
+                    //Trường dữ liệu cần nhập đúng
+                    var a_fields3 = ObjectAndString.SplitStringBy(config.A_field3, ';');
+                    foreach (string afield3 in a_fields3)
+                    {
+                        // afield3 = Table:*field-data,field2...
+                        int index = afield3.IndexOf(':');
+                        string table_filter = afield3.Substring(0, index);
+                        var field_data_list = ObjectAndString.SplitStringBy(afield3.Substring(index + 1), ',');
+                        string table = table_filter;
+                        string init_filter = null;
+                        if (table_filter.Contains("|"))
+                        {
+                            index = table_filter.IndexOf('|');
+                            table = table_filter.Substring(0, index);
+                            init_filter = table_filter.Substring(index+1);
+                        }
+                        
+                        foreach (DataRow row in AD.Rows)
+                        {
+                            IDictionary<string, object> keys = new Dictionary<string, object>();
+                            string description = null;
+                            foreach (string field_data in field_data_list)
+                            {
+                                index = field_data.IndexOf('-');
+                                string star_field = field_data.Substring(0, index);
+                                bool star = false;
+                                if (star_field.StartsWith("*"))
+                                {
+                                    star = true;
+                                    star_field = star_field.Substring(1);
+                                }
+                                string data = field_data.Substring(index + 1);
+                                // Check field_data valid in table
+                                object o = row[data];
+                                if (!star && o.ToString().Trim() == "") goto next_row; // bỏ qua không kiểm tra
+                                keys.Add(star_field, o);
+
+                                description += string.Format("\r\n{0}:{1}={2}", table, star_field, o);
+                            }
+
+                            bool exist = V6BusinessHelper.CheckDataExist(table, keys, init_filter);
+                            if (!exist)
+                            {
+                                error += (error != null && error.Length > 1 ? "\r\n" : "") + V6Text.NotExist + description;
+                            }
+                        next_row:
+                            ;
+                        }
+                    }
+                }
+                else
+                {
+                    SetStatusText(V6Text.Text("NoInfo") + " V6Valid!");
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ValidateDetailData_InMaster " + _sttRec, ex);
             }
             return error;
         }

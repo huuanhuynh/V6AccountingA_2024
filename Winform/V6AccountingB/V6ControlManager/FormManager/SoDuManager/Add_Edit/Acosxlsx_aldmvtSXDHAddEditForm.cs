@@ -324,39 +324,18 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         public override void ValidateData()
         {
             var errors = "";
-            if (txtMaSp.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblMaSP.Text + "!\r\n";
-            if (txtMaBpht.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblMaBPHT.Text + "!\r\n";
-            if (Mode == V6Mode.Edit)
+
+            if ((txtMaSp.Text.Trim() == "") && (txtMaBpht.Text.Trim() == ""))
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_SP",
-                 txtMaSp.Text.Trim(), DataOld["MA_SP"].ToString());
-                if (!b)
-                    throw new Exception(V6Text.Exist + V6Text.EditDenied
-                                                    + lblMaSP.Text + " = " + txtMaSp.Text.Trim());
+                errors += V6Text.Text("CHUANHAP") + "!\r\n";
             }
-            else if (Mode == V6Mode.Add)
+
+
+            AldmConfig config = ConfigManager.GetAldmConfig(TableName.ToString());
+            if (config != null && config.HaveInfo && !string.IsNullOrEmpty(config.KEY))
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_SP",
-                 txtMaSp.Text.Trim(), txtMaSp.Text.Trim());
-                if (!b)
-                    throw new Exception(V6Text.Exist + V6Text.AddDenied
-                                                    + lblMaSP.Text + " = " + txtMaSp.Text.Trim());
-            }
-            if (Mode == V6Mode.Edit)
-            {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_BPHT",
-                 txtMaBpht.Text.Trim(), DataOld["MA_BPHT"].ToString());
-                if (!b)
-                    throw new Exception(V6Text.Exist + V6Text.EditDenied
-                                                    + lblMaBPHT.Text + " = " + txtMaBpht.Text.Trim());
-            }
-            else if (Mode == V6Mode.Add)
-            {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_BPHT",
-                 txtMaBpht.Text.Trim(), txtMaBpht.Text.Trim());
-                if (!b)
-                    throw new Exception(V6Text.Exist + V6Text.AddDenied
-                                                    + lblMaBPHT.Text + " = " + txtMaBpht.Text.Trim());
+                var key_list = ObjectAndString.SplitString(config.KEY);
+                errors += CheckValid(TableName.ToString(), key_list);
             }
 
             if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
@@ -364,11 +343,12 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 errors += V6Text.DetailNotComplete;
             }
 
+            errors += ValidateMasterData(_maCt);
+
             if (errors.Length > 0) throw new Exception(errors);
 
             V6ControlFormHelper.UpdateDKlistAll(DataDic, new[] { "MA_SP", "MA_BPHT", "MA_CT" }, AD);
             V6ControlFormHelper.UpdateDKlist(AD, "NGAY_HL1", dateNgayHL.Value);
-            //V6ControlFormHelper.UpdateDKlist(AD, "NGAY_HL2", dateNgayHL2.Value);
         }
 
         #region ==== Detail control events ====

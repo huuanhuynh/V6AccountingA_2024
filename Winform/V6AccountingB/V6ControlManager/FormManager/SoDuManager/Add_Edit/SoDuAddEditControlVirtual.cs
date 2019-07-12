@@ -1075,7 +1075,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             var keys_new = new SortedDictionary<string, object>();
             foreach (string KEY in KEY_LIST)
             {
-                keys_new.Add(KEY, DataDic[KEY]);
+                keys_new.Add(KEY, DataDic[KEY].ToString().Trim());
             }
 
             string where_new = SqlGenerator.GenWhere(V6BusinessHelper.GetTableStruct(tableName), keys_new);
@@ -1088,7 +1088,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 SortedDictionary<string, object> keys_old = new SortedDictionary<string, object>();
                 foreach (string KEY in KEY_LIST)
                 {
-                    keys_old.Add(KEY, DataOld[KEY]);
+                    keys_old.Add(KEY, DataOld[KEY].ToString().Trim());
                 }
                 string where_old = SqlGenerator.GenWhere(V6BusinessHelper.GetTableStruct(tableName), keys_old);
                 //bool exist_old = V6BusinessHelper.CheckDataExistStruct(TableName, keys_old);

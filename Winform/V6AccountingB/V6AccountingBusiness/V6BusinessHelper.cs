@@ -541,14 +541,22 @@ namespace V6AccountingBusiness
             }
         }
 
-        public static bool CheckDataExist(string tableName, IDictionary<string, object> data)
+        /// <summary>
+        /// Kiểm tra dữ liệu tồn tại trong bảng. Data cần đúng trường, đúng kiểu.
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="data"></param>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        public static bool CheckDataExist(string tableName, IDictionary<string, object> data, string filter = null)
         {
             try
             {
                 var where = SqlGenerator.GenSqlWhere(data);
                 var sql = "select COUNT(*) count0 from [" + tableName + "] where " + where;
+                if (!string.IsNullOrEmpty(filter)) sql += " and " + filter;
                 var result = (int)SqlConnect.ExecuteScalar(CommandType.Text, sql);
-                return result == 1;
+                return result >= 1;
             }
             catch (Exception)
             {
@@ -578,7 +586,7 @@ namespace V6AccountingBusiness
                 }
                 var sql = "select COUNT(*) count0 from [" + tableName + "] where " + where;
                 var result = (int)SqlConnect.ExecuteScalar(CommandType.Text, sql);
-                return result == 1;
+                return result >= 1;
             }
             catch (Exception)
             {

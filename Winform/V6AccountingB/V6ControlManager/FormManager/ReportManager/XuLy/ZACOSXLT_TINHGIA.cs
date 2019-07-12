@@ -76,8 +76,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                         dataGridView1.AutoGenerateColumns = true;
                         dataGridView2.AutoGenerateColumns = true;
-                        FormatGridViewF9();
-                        //FormatGridViewBase();
+                        //FormatGridViewF9();
+                        FormatGridViewBase();
                         FormatGridViewExtern();
                         dataGridView1.Focus();
                     }
