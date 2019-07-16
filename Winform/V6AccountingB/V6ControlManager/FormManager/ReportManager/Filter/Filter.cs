@@ -1017,6 +1017,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 case "XLSPOA":
                     result = new XLSPOA_Filter();
                     break;
+                case "XLSPOB":
+                    result = new XLSPOB_Filter();
+                    break;
                 case "XLSAP1":
                     result = new XLSAP1_Filter();
                     break;
@@ -1047,6 +1050,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     break;
                 case "XLSGL1":
                     result = new XLSGL1_Filter();
+                    break;
+                case "XLSGL12":
+                    result = new XLSGL1_2_Filter();
                     break;
                     //NHAN SU
                 case "XLSPRCONG2":

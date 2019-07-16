@@ -1978,11 +1978,23 @@
     <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSAP1_Filter.Designer.cs">
       <DependentUpon>XLSAP1_Filter.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSGL1_2_Filter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSGL1_2_Filter.Designer.cs">
+      <DependentUpon>XLSGL1_2_Filter.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSGL1_Filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSGL1_Filter.Designer.cs">
       <DependentUpon>XLSGL1_Filter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSPOB_Filter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSPOB_Filter.Designer.cs">
+      <DependentUpon>XLSPOB_Filter.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSSOH_Filter.cs">
       <SubType>UserControl</SubType>
@@ -4653,7 +4665,13 @@
     <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSAP1_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSGL1_2_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSGL1_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSPOB_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSSOH_Control.cs">
@@ -6608,8 +6626,14 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSAP1_Filter.resx">
       <DependentUpon>XLSAP1_Filter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSGL1_2_Filter.resx">
+      <DependentUpon>XLSGL1_2_Filter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSGL1_Filter.resx">
       <DependentUpon>XLSGL1_Filter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSPOB_Filter.resx">
+      <DependentUpon>XLSPOB_Filter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSSOH_Filter.resx">
       <DependentUpon>XLSSOH_Filter.cs</DependentUpon>
@@ -7955,8 +7979,14 @@
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSAP1_Control.resx">
       <DependentUpon>XLSAP1_Control.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSGL1_2_Control.resx">
+      <DependentUpon>XLSGL1_2_Control.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSGL1_Control.resx">
       <DependentUpon>XLSGL1_Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSPOB_Control.resx">
+      <DependentUpon>XLSPOB_Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSSOH_Control.resx">
       <DependentUpon>XLSSOH_Control.cs</DependentUpon>

@@ -377,6 +377,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                         All_Objects["AM"] = AM_DATA;
                         All_Objects["AD"] = AD1_List;
+                        All_Objects["AD2"] = AD2_List;
                         InvokeFormEvent("BEFOREINSERT");
                         if (Invoice.InsertInvoice(AM_DATA, AD1_List, AD2_List, new List<IDictionary<string, object>>()))
                         {
@@ -604,9 +605,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //fIX
                 if (!AM.ContainsKey("DIEN_GIAI")) AM["DIEN_GIAI"] = "";
                 if (!AM.ContainsKey("NGAY_LCT")) AM["NGAY_LCT"] = AM["NGAY_CT"];
-                if (!AM.ContainsKey("T_TIEN0")) AM["T_TIEN0"] = "";
-                if (!AM.ContainsKey("T_THUE")) AM["DIEN_GIAI"] = "";
-                if (!AM.ContainsKey("T_THUE_NT")) AM["DIEN_GIAI"] = "";
+                if (!AM.ContainsKey("T_TIEN0")) AM["T_TIEN0"] = 0;
+                if (!AM.ContainsKey("T_THUE")) AM["T_THUE"] = 0;
+                if (!AM.ContainsKey("T_THUE_NT")) AM["T_THUE_NT"] = 0;
 
                 return AM;
             }

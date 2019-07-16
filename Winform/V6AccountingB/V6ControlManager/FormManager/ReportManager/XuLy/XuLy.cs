@@ -52,6 +52,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return new AAPPR_SOA_IN3(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "XLSPOA":
                     return new XLSPOA_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                case "XLSPOB":
+                    return new XLSPOB_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "XLSAP1":
                     return new XLSAP1_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "XLSIND":
@@ -74,6 +76,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return new XLSCA1_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "XLSGL1":
                     return new XLSGL1_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                case "XLSGL12":
+                    return new XLSGL1_2_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                     //NHAN SU
                 case "XLSPRCONG2":
                     return new XLSPRCONG2_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);

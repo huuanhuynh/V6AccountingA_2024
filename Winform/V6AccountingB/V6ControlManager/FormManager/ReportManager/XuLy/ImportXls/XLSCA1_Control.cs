@@ -353,6 +353,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                         All_Objects["AM"] = AM_DATA;
                         All_Objects["AD"] = AD1_List;
+                        All_Objects["AD2"] = AD2_List;
                         InvokeFormEvent("BEFOREINSERT");
                         if (Invoice.InsertInvoice(AM_DATA, AD1_List, AD2_List, new List<IDictionary<string, object>>()))
                         {

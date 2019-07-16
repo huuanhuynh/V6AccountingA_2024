@@ -20,54 +20,71 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         public AAPPR_XULY_ALL_Filter()
         {
             InitializeComponent();
-            F3 = true;
-            F4 = true;
-            F5 = false;
-            F9 = true;
-            
-            dateNgay_ct1.SetValue(V6Setting.M_SV_DATE);
-            dateNgay_ct2.SetValue(V6Setting.M_SV_DATE);
+            MyInit();
+        }
 
-            //TxtXtag.Text = "2";
-            ctDenSo.Enabled = false;
-            //chkHoaDonDaIn.Checked = true;
-
-            txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
-
-            if (V6Login.MadvcsCount <= 1)
+        private void MyInit()
+        {
+            try
             {
-                txtMaDvcs.Enabled = false;
+                F3 = true;
+                F4 = true;
+                F5 = false;
+                F9 = true;
+
+                dateNgay_ct1.SetValue(V6Setting.M_SV_DATE);
+                dateNgay_ct2.SetValue(V6Setting.M_SV_DATE);
+
+                //TxtXtag.Text = "2";
+                ctDenSo.Enabled = false;
+                //chkHoaDonDaIn.Checked = true;
+
+                txtMaDvcs.VvarTextBox.Text = V6Login.Madvcs;
+
+                if (V6Login.MadvcsCount <= 1)
+                {
+                    txtMaDvcs.Enabled = false;
+                }
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@Ma_ct", ""),
+                    new SqlParameter("@User_id", V6Login.UserId),
+                    new SqlParameter("@Advance", "M_MA_VV='1'"),
+                };
+                var data = V6BusinessHelper.ExecuteProcedure("VPA_GET_ALCTCT_DEFAULT", plist).Tables[0];
+                if (data.Rows.Count > 0)
+                {
+                    txtMaCtProc.Text = data.Rows[0]["MA_CT"].ToString().Trim();
+                }
+                else
+                {
+                    txtMaCtProc.Text = "";
+                }
+
+                txtMaCtProc.SetInitFilter("M_MA_VV='1'");
+
+                LoadComboboxSource(txtMaCtProc.Text);
+
+                Txtnh_kh1.VvarTextBox.SetInitFilter("loai_nh=1");
+                Txtnh_kh2.VvarTextBox.SetInitFilter("loai_nh=2");
+                Txtnh_kh3.VvarTextBox.SetInitFilter("loai_nh=3");
+                Txtnh_kh4.VvarTextBox.SetInitFilter("loai_nh=4");
+                Txtnh_kh5.VvarTextBox.SetInitFilter("loai_nh=5");
+                Txtnh_kh6.VvarTextBox.SetInitFilter("loai_nh=6");
+                lineNH_KH7.VvarTextBox.SetInitFilter("loai_nh=7");
+                lineNH_KH8.VvarTextBox.SetInitFilter("loai_nh=8");
+                lineNH_KH9.VvarTextBox.SetInitFilter("loai_nh=9");
+                Ready();
             }
-            SqlParameter[] plist =
+            catch (Exception ex)
             {
-                new SqlParameter("@Ma_ct", ""),
-                new SqlParameter("@User_id", V6Login.UserId),
-                new SqlParameter("@Advance", ""),
-            };
-            var data = V6BusinessHelper.ExecuteProcedure("VPA_GET_ALCTCT_DEFAULT", plist).Tables[0];
-            if (data.Rows.Count > 0)
-            {
-                txtMaCtProc.Text = data.Rows[0]["MA_CT"].ToString().Trim();
+                this.WriteExLog(GetType() + ".MyInit", ex);
             }
-            else
-            {
-                txtMaCtProc.Text = "";
-            }
+        }
 
-            txtMaCtProc.SetInitFilter("M_MA_VV='1'");
-            
-            LoadComboboxSource(txtMaCtProc.Text);
-            
-            Txtnh_kh1.VvarTextBox.SetInitFilter("loai_nh=1");
-            Txtnh_kh2.VvarTextBox.SetInitFilter("loai_nh=2");
-            Txtnh_kh3.VvarTextBox.SetInitFilter("loai_nh=3");
-            Txtnh_kh4.VvarTextBox.SetInitFilter("loai_nh=4");
-            Txtnh_kh5.VvarTextBox.SetInitFilter("loai_nh=5");
-            Txtnh_kh6.VvarTextBox.SetInitFilter("loai_nh=6");
-            lineNH_KH7.VvarTextBox.SetInitFilter("loai_nh=7");
-            lineNH_KH8.VvarTextBox.SetInitFilter("loai_nh=8");
-            lineNH_KH9.VvarTextBox.SetInitFilter("loai_nh=9");
-            Ready();
+        private void AAPPR_XULY_ALL_Filter_Load(object sender, EventArgs e)
+        {
+            txtMa_ct_V6LostFocus(null);
         }
 
         private void LoadComboboxSource(string maCt)
@@ -358,10 +375,14 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         private void txtMa_ct_V6LostFocus(object sender)
         {
-            if (IsReady)
+            try
             {
                 LoadComboboxSource(txtMaCtProc.Text);
                 lineMa_xuly.VvarTextBox.SetInitFilter(string.Format("Ma_ct='{0}'", txtMaCtProc.Text.Trim()));
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".txtMa_ct_V6LostFocus", ex);
             }
         }
 
@@ -382,5 +403,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 this.WriteExLog(GetType() + ".chkView_all", ex);
             }
         }
+        
     }
 }
