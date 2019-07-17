@@ -6,6 +6,7 @@ using System.Linq;
 using V6Init;
 using V6SqlConnect;
 using V6Structs;
+using V6Tools;
 
 namespace V6AccountingBusiness
 {
@@ -95,6 +96,33 @@ namespace V6AccountingBusiness
         #endregion select
 
         #region ==== ADD-INSERT ====
+
+        public int Insert(DataTable data, string tableName)
+        {
+            int count = 0;
+            try
+            {
+                foreach (DataRow row in data.Rows)
+                {
+                    try
+                    {
+                        Insert(tableName, row.ToDataDictionary());
+                        count++;
+                    }
+                    catch (Exception ex1)
+                    {
+                        
+                    }
+                }
+            }
+            catch (Exception ex0)
+            {
+                
+            }
+            
+            return count;
+        }
+
         public bool Insert(V6TableName tableName, IDictionary<string, object> data)
         {
             return Insert(tableName.ToString(), data);

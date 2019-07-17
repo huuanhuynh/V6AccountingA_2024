@@ -1,6 +1,6 @@
 ﻿namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
-    partial class V6COPY_RA_ALL
+    partial class V6COPY_VAO
     {
         /// <summary> 
         /// Required designer variable.
@@ -72,7 +72,6 @@
             this.chkSoDuVaLuyKe.TabStop = false;
             this.chkSoDuVaLuyKe.Text = "Số dư và lũy kế";
             this.chkSoDuVaLuyKe.UseVisualStyleBackColor = true;
-            this.chkSoDuVaLuyKe.Visible = false;
             // 
             // chkDuLieu
             // 
@@ -85,7 +84,6 @@
             this.chkDuLieu.TabStop = false;
             this.chkDuLieu.Text = "Dữ liệu";
             this.chkDuLieu.UseVisualStyleBackColor = true;
-            this.chkDuLieu.Visible = false;
             // 
             // chkDanhMuc
             // 
@@ -99,7 +97,6 @@
             this.chkDanhMuc.TabStop = false;
             this.chkDanhMuc.Text = "Danh mục";
             this.chkDanhMuc.UseVisualStyleBackColor = true;
-            this.chkDanhMuc.Visible = false;
             // 
             // txtFileName
             // 
@@ -131,6 +128,7 @@
             this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = "Đến ngày";
+            this.label3.Visible = false;
             // 
             // dateNgay_ct2
             // 
@@ -144,6 +142,7 @@
             this.dateNgay_ct2.Name = "dateNgay_ct2";
             this.dateNgay_ct2.Size = new System.Drawing.Size(101, 20);
             this.dateNgay_ct2.TabIndex = 3;
+            this.dateNgay_ct2.Visible = false;
             // 
             // label2
             // 
@@ -154,6 +153,7 @@
             this.label2.Size = new System.Drawing.Size(46, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "Từ ngày";
+            this.label2.Visible = false;
             // 
             // dateNgay_ct1
             // 
@@ -167,6 +167,7 @@
             this.dateNgay_ct1.Name = "dateNgay_ct1";
             this.dateNgay_ct1.Size = new System.Drawing.Size(101, 20);
             this.dateNgay_ct1.TabIndex = 1;
+            this.dateNgay_ct1.Visible = false;
             // 
             // btnSaveAs
             // 
@@ -188,7 +189,6 @@
             this.btnChonDanhSachDonVi.TabIndex = 4;
             this.btnChonDanhSachDonVi.Text = "Chọn danh sách đơn vị";
             this.btnChonDanhSachDonVi.UseVisualStyleBackColor = true;
-            this.btnChonDanhSachDonVi.Visible = false;
             this.btnChonDanhSachDonVi.Click += new System.EventHandler(this.btnChonDanhSachDonVi_Click);
             // 
             // txtDanhSachDonVi
@@ -213,7 +213,6 @@
             this.txtDanhSachDonVi.Size = new System.Drawing.Size(450, 20);
             this.txtDanhSachDonVi.TabIndex = 5;
             this.txtDanhSachDonVi.TabStop = false;
-            this.txtDanhSachDonVi.Visible = false;
             this.txtDanhSachDonVi.VVar = "ma_dvcs";
             // 
             // panel2
@@ -228,6 +227,7 @@
             // radXml
             // 
             this.radXml.AutoSize = true;
+            this.radXml.Checked = true;
             this.radXml.Location = new System.Drawing.Point(80, 8);
             this.radXml.Name = "radXml";
             this.radXml.Size = new System.Drawing.Size(42, 17);
@@ -239,20 +239,18 @@
             // radExcel
             // 
             this.radExcel.AutoSize = true;
-            this.radExcel.Checked = true;
             this.radExcel.Location = new System.Drawing.Point(3, 8);
             this.radExcel.Name = "radExcel";
             this.radExcel.Size = new System.Drawing.Size(51, 17);
             this.radExcel.TabIndex = 0;
-            this.radExcel.TabStop = true;
             this.radExcel.Text = "Excel";
             this.radExcel.UseVisualStyleBackColor = true;
             // 
-            // V6COPY_RA_ALL
+            // V6COPY_VAO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "V6COPY_RA_ALL";
+            this.Name = "V6COPY_VAO";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

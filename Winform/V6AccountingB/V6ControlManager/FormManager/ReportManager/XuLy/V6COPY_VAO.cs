@@ -11,18 +11,19 @@ using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6Tools;
+using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
-    public partial class V6COPY_RA : XuLyBase0
+    public partial class V6COPY_VAO : XuLyBase0
     {
-        public V6COPY_RA()
+        public V6COPY_VAO()
         {
             InitializeComponent();
         }
 
-        public V6COPY_RA(string itemId, string program, string reportProcedure, string reportFile, string text)
+        public V6COPY_VAO(string itemId, string program, string reportProcedure, string reportFile, string text)
             : base(itemId, program, reportProcedure, reportFile, text, true)
         {
             InitializeComponent();
@@ -71,13 +72,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".V6COPY_RA Init: " + ex.Message);
+                this.ShowErrorMessage(GetType() + ".V6COPY_VAO Init: " + ex.Message);
             }
         }
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("Sao chép số liệu ra.");
+            V6ControlFormHelper.SetStatusText2("Sao chép số liệu vào.");
         }
 
         protected override void Nhan()
@@ -128,7 +129,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 try
                 {
                     DoAfterExecuteSuccess();
-                    V6ControlFormHelper.ShowMainMessage("V6CopyRa Thực hiện xong!\r\n" + _message);
+                    V6ControlFormHelper.ShowMainMessage("V6CopyVao Thực hiện xong!\r\n" + _message);
                     _success = false;
                 }
                 catch (Exception ex)
@@ -169,13 +170,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     //Làm sạch thư mục tạm.
                     Directory.Delete(_tempDir, true);
                 }
-                if (!Directory.Exists(_tempDir)) Directory.CreateDirectory(_tempDir);
+
+                //if (!Directory.Exists(_tempDir)) Directory.CreateDirectory(_tempDir);
+
+                // Giải nén file
+                //V67z.Unzip(_saveZipFile);
+                V67z.Run7z("x " + _saveZipFile + " -o" + _dir + " -r");//e archive.zip -oc:\soft *.cpp -r
+                //V6FileIO.IsFileLocked()
+                if (chkDanhMuc.Checked) ImportDanhMuc();
+                //if (chkDuLieu.Checked) ExportDuLieu();
+                //if (chkSoDuVaLuyKe.Checked) ExportSoDuVaLuyKe();
                 
-                if (chkDanhMuc.Checked) ExportDanhMuc();
-                if (chkDuLieu.Checked) ExportDuLieu();
-                if (chkSoDuVaLuyKe.Checked) ExportSoDuVaLuyKe();
-                
-                RunV67z();
+                //RunV67z();
                 //RunSevenZipFolder();
                 
                 _executing = false;
@@ -189,8 +195,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-
-        private void ExportDataSet(DataSet ds, string key)
+        /// <summary>
+        /// Nhập dữ liệu
+        /// </summary>
+        /// <param name="config">Cấu hình lấy từ hàm V6CopyVao</param>
+        /// <param name="key">Thư mục</param>
+        private void ImportData(DataSet config, string key)
         {
             var tempDirCurrent = Path.Combine(_tempDir, key);
             if (!Directory.Exists(tempDirCurrent))
@@ -198,9 +208,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 Directory.CreateDirectory(tempDirCurrent);
             }
             
-            if (ds.Tables.Count > 1)
+            if (config.Tables.Count > 1)
             {
-                var tblList = ds.Tables[0];
+                var tblList = config.Tables[0];
                 if (radExcel.Checked)
                 {
                     var saveFile = Path.Combine(tempDirCurrent, key + ".xls");
@@ -213,8 +223,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var stt = V6Tools.V6Convert.ObjectAndString.ObjectToInt(row["STT"]);
                         //var ma_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["MA_FILE"]).Trim();
                         var xls_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["XLS_FILE"]).Trim();
-                        var data1 = ds.Tables[stt];
+                        var data1 = config.Tables[stt];
                         saveFile = Path.Combine(tempDirCurrent, xls_file + ".xls");
+
+                        
+
                         V6Tools.V6Export.ExportData.ToExcel(data1, saveFile, "");
                         files.Add(saveFile);
                     }
@@ -229,22 +242,29 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         //Xuất xml từng bảng dữ liệu
                         var stt = V6Tools.V6Convert.ObjectAndString.ObjectToInt(row["STT"]);
-                        //var ma_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["MA_FILE"]).Trim();
+                        var ma_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["MA_FILE"]).Trim();
                         var xls_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["XLS_FILE"]).Trim();
-                        var data1 = ds.Tables[stt];
+                        var data1 = config.Tables[stt];
                         saveFile = Path.Combine(tempDirCurrent, xls_file + ".xml");
+
+                        var data = Data_Table.FromXml(saveFile);
+                        // insert data to tableName
+                        V6Categories ca = new V6Categories();
+                        ca.Insert(data, tableName:ma_file);
+
                         V6Tools.V6Export.ExportData.ToXmlFile(data1, saveFile);
                         files.Add(saveFile);
                     }
                 }
             }
         }
-        private void ExportDanhMuc()
+
+        private void ImportDanhMuc()
         {
             _message += "\r\nDM";
             var ds = RunProcV6CopyRa("DM");
             _message += " ds.Count: " + ds.Tables.Count;
-            ExportDataSet(ds, "DM");
+            ImportData(ds, "DM");
             _message += " CompleteExport ";
         }
 
@@ -257,7 +277,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 _message += "\r\n" + type;
                 var ds = RunProcV6CopyRa(type);
                 _message += " ds.Count: " + ds.Tables.Count;
-                ExportDataSet(ds, type);
+                ImportData(ds, type);
                 _message += " CompleteExport ";
             }
             //var ds = RunProcV6CopyRa("VC");
@@ -278,7 +298,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 _message += "\r\n" + type;
                 var ds = RunProcV6CopyRa(type);
                 _message += " ds.Count: " + ds.Tables.Count;
-                ExportDataSet(ds, type);
+                ImportData(ds, type);
                 _message += " CompleteExport ";
             }
             //var ds = RunProcV6CopyRa("SD");
@@ -297,7 +317,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 new SqlParameter("@Ma_dvcs", txtDanhSachDonVi.Text),
                 new SqlParameter("@Ws_id", V6Options.GetValue("M_WS_ID")),
             };
-            var ds = V6BusinessHelper.ExecuteProcedure("V6CopyRa", plist);
+            var ds = V6BusinessHelper.ExecuteProcedure("V6CopyVao", plist);
             return ds;
         }
 

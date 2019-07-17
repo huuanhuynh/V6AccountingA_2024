@@ -4746,6 +4746,12 @@
     <Compile Include="FormManager\ReportManager\XuLy\NhanSu\XLSPRCONG2_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\V6COPY_VAO.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\V6COPY_VAO.Designer.cs">
+      <DependentUpon>V6COPY_VAO.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\V6EDITALAB.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -8041,6 +8047,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AINVITRI03_F3F4.resx">
       <DependentUpon>AINVITRI03_F3F4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\V6COPY_VAO.resx">
+      <DependentUpon>V6COPY_VAO.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\V6EDITALAB.resx">
       <DependentUpon>V6EDITALAB.cs</DependentUpon>

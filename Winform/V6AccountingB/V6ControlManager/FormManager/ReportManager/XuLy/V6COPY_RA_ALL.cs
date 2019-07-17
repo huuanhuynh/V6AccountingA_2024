@@ -199,20 +199,41 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             if (ds.Tables.Count > 1)
             {
                 var tblList = ds.Tables[0];
-                var saveFile = Path.Combine(tempDirCurrent, key + ".xls");
-                V6Tools.V6Export.ExportData.ToExcel(tblList, saveFile, "");
-                files.Add(saveFile);
-
-                foreach (DataRow row in tblList.Rows)
+                if (radExcel.Checked)
                 {
-                    //Xuất excel từng bảng dữ liệu
-                    var stt = V6Tools.V6Convert.ObjectAndString.ObjectToInt(row["STT"]);
-                    //var ma_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["MA_FILE"]);
-                    var xls_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["XLS_FILE"]);
-                    var data1 = ds.Tables[stt];
-                    saveFile = Path.Combine(tempDirCurrent, xls_file + ".xls");
-                    V6Tools.V6Export.ExportData.ToExcel(data1, saveFile, "");
+                    var saveFile = Path.Combine(tempDirCurrent, key + ".xls");
+                    V6Tools.V6Export.ExportData.ToExcel(tblList, saveFile, "");
                     files.Add(saveFile);
+
+                    foreach (DataRow row in tblList.Rows)
+                    {
+                        //Xuất excel từng bảng dữ liệu
+                        var stt = V6Tools.V6Convert.ObjectAndString.ObjectToInt(row["STT"]);
+                        //var ma_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["MA_FILE"]).Trim();
+                        var xls_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["XLS_FILE"]).Trim();
+                        var data1 = ds.Tables[stt];
+                        saveFile = Path.Combine(tempDirCurrent, xls_file + ".xls");
+                        V6Tools.V6Export.ExportData.ToExcel(data1, saveFile, "");
+                        files.Add(saveFile);
+                    }
+                }
+                else
+                {
+                    var saveFile = Path.Combine(tempDirCurrent, key + ".xml");
+                    V6Tools.V6Export.ExportData.ToXmlFile(tblList, saveFile);
+                    files.Add(saveFile);
+
+                    foreach (DataRow row in tblList.Rows)
+                    {
+                        //Xuất xml từng bảng dữ liệu
+                        var stt = V6Tools.V6Convert.ObjectAndString.ObjectToInt(row["STT"]);
+                        //var ma_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["MA_FILE"]).Trim();
+                        var xls_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["XLS_FILE"]).Trim();
+                        var data1 = ds.Tables[stt];
+                        saveFile = Path.Combine(tempDirCurrent, xls_file + ".xml");
+                        V6Tools.V6Export.ExportData.ToXmlFile(data1, saveFile);
+                        files.Add(saveFile);
+                    }
                 }
             }
         }

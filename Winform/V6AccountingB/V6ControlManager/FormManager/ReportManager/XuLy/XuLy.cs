@@ -262,6 +262,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return new V6COPY_RA(itemId, program, procedure, reportFile, text);
                 case "V6COPYRAALL":
                     return new V6COPY_RA_ALL(itemId, program, procedure, reportFile, text);
+                case "V6COPYVAO":
+                    return new V6COPY_VAO(itemId, program, procedure, reportFile, text);
                 case "V6CHECK_U1":
                     return new V6CHECK_U1(itemId, program, procedure, reportFile, text);
                 case "V6HELP_QA":
