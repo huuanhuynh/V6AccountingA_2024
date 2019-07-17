@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using V6Init;
@@ -74,7 +75,30 @@ namespace V6Controls
         }
         #endregion
 
-        
+        // hide tab header.
+        //protected override void WndProc(ref Message m)
+        //{
+        //    if (m.Msg == 0x1328 && !this.DesignMode)
+        //        m.Result = new IntPtr(1);
+        //    else
+        //        base.WndProc(ref m);
+        //}
+
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == 0x0005) // WM_SIZE
+            {
+                int Width = unchecked((short)m.LParam);
+                int Height = unchecked((short)((uint)m.LParam >> 16));
+
+                // Remove the annoying white pixels on the outside of the tab control
+                // by adjusting the control's clipping region to exclude the 2 pixels
+                // on the right and one pixel on the bottom.
+                Region = new Region(new Rectangle(2, 0, Width - 4, Height - 2));
+            }
+
+            base.WndProc(ref m);
+        }
 
         /// <summary>
         /// Vẽ mấy thứ trên thẻ Tab
@@ -189,18 +213,18 @@ namespace V6Controls
                     // draw border
                     //int nDelta = SystemInformation.Border3DSize.Width;
 
-                    //Rectangle TabArea = this.DisplayRectangle;
-                    ////Pen border = new Pen(Color.LightSkyBlue);
-                    ////tabArea.Inflate(nDelta, nDelta);
-                    ////e.Graphics.DrawRectangle(border, tabArea);
-                    ////border.Dispose();
-                    ////----------------------------
-                    //// draw background to cover flat border areas
+                    //Rectangle tabArea = this.DisplayRectangle;
+                    //Pen border = new Pen(BackColor);// Color.LightSkyBlue);
+                    //tabArea.Inflate(nDelta, nDelta);
+                    //e.Graphics.DrawRectangle(border, tabArea);
+                    //border.Dispose();
+                    //----------------------------
+                    // draw background to cover flat border areas
                     //if (this.SelectedTab != null)
                     //{
                     //    TabPage tabPage = this.SelectedTab;
-                    //    Color color = tabPage.BackColor;
-                    //    Pen border = new Pen(colorBackActive4);
+                    //    Color color = Color.Red;// tabPage.BackColor;
+                    //    Pen border = new Pen(color);// colorBackActive4);
 
                     //    TabArea.Offset(1, 1);
                     //    TabArea.Width -= 2;
