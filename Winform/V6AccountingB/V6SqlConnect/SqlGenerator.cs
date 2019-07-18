@@ -136,7 +136,7 @@ namespace V6SqlConnect
         }
 
         /// <summary>
-        /// Chưa xài chưa sửa.
+        /// Thêm dữ liệu vào bảng.
         /// </summary>
         /// <param name="UserId"></param>
         /// <param name="tableName"></param>

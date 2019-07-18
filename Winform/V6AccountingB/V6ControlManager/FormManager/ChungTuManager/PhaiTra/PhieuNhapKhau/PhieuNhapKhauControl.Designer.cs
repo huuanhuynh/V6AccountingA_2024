@@ -2318,6 +2318,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             | System.Windows.Forms.AnchorStyles.Right)));
             this.group4.Controls.Add(this.txtTongSoLuong);
             this.group4.Controls.Add(this.cboChuyenData);
+            this.group4.Controls.Add(this.chkTempSuaCT);
             this.group4.Controls.Add(this.v6Label25);
             this.group4.Controls.Add(this.btnChucNang);
             this.group4.Controls.Add(this.v6Label45);
@@ -2499,7 +2500,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.chkthue_nk_cp.AccessibleDescription = "APOCTPOBH00058";
             this.chkthue_nk_cp.AccessibleName = "thue_nk_cp";
             this.chkthue_nk_cp.AutoSize = true;
-            this.chkthue_nk_cp.Location = new System.Drawing.Point(7, 32);
+            this.chkthue_nk_cp.Location = new System.Drawing.Point(7, 41);
             this.chkthue_nk_cp.Name = "chkthue_nk_cp";
             this.chkthue_nk_cp.Size = new System.Drawing.Size(101, 17);
             this.chkthue_nk_cp.TabIndex = 4;
@@ -2570,7 +2571,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.chkSuaTien.AccessibleDescription = "APOCTPOBH00059";
             this.chkSuaTien.AccessibleName = "sua_tien";
             this.chkSuaTien.AutoSize = true;
-            this.chkSuaTien.Location = new System.Drawing.Point(7, 50);
+            this.chkSuaTien.Location = new System.Drawing.Point(7, 57);
             this.chkSuaTien.Name = "chkSuaTien";
             this.chkSuaTien.Size = new System.Drawing.Size(65, 17);
             this.chkSuaTien.TabIndex = 8;
@@ -2811,7 +2812,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             // 
             this.lblTongSoDong.AccessibleDescription = ".";
             this.lblTongSoDong.AutoSize = true;
-            this.lblTongSoDong.Location = new System.Drawing.Point(6, 16);
+            this.lblTongSoDong.Location = new System.Drawing.Point(6, 11);
             this.lblTongSoDong.Name = "lblTongSoDong";
             this.lblTongSoDong.Size = new System.Drawing.Size(40, 13);
             this.lblTongSoDong.TabIndex = 0;
@@ -2957,7 +2958,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.chkSuaPtck.AccessibleDescription = "APOCTPOBH00057";
             this.chkSuaPtck.AccessibleName = "sua_ptck";
             this.chkSuaPtck.AutoSize = true;
-            this.chkSuaPtck.Location = new System.Drawing.Point(7, 67);
+            this.chkSuaPtck.Location = new System.Drawing.Point(7, 73);
             this.chkSuaPtck.Name = "chkSuaPtck";
             this.chkSuaPtck.Size = new System.Drawing.Size(77, 17);
             this.chkSuaPtck.TabIndex = 12;
@@ -4140,7 +4141,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.chkTempSuaCT.AccessibleName = "TEMP_SUACT";
             this.chkTempSuaCT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chkTempSuaCT.AutoSize = true;
-            this.chkTempSuaCT.Location = new System.Drawing.Point(8, 526);
+            this.chkTempSuaCT.Location = new System.Drawing.Point(7, 25);
             this.chkTempSuaCT.Name = "chkTempSuaCT";
             this.chkTempSuaCT.Size = new System.Drawing.Size(79, 17);
             this.chkTempSuaCT.TabIndex = 32;
@@ -4153,7 +4154,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.chkTempSuaCT);
             this.Controls.Add(this.TxtMa_gd);
             this.Controls.Add(this.lblNameT);
             this.Controls.Add(this.btnViewInfoData);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -10,6 +11,7 @@ using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6Tools;
+using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
@@ -33,44 +35,49 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 dateNgay_ct1.SetValue(dateNgay_ct1.Date.AddMonths(-1));
-
-                bool haveD = false, haveC = false;
-                var drives = DriveInfo.GetDrives();
-                var dir = "C:\\V6Copy";
-                foreach (DriveInfo drive_info in drives)
-                {
-                    if (drive_info.DriveType == DriveType.Fixed && drive_info.Name.StartsWith("C"))
-                    {
-                        haveC = true;
-                    }
-                    else if (drive_info.DriveType == DriveType.Fixed && drive_info.Name.StartsWith("D"))
-                    {
-                        haveD = true;
-                        break;
-                    }
-                }
-                if (haveD)
-                {
-                    dir = "D:\\V6Copy";
-                    
-                }
-                else if(haveC)
-                {
-                    dir = "C:\\V6Copy";
-                }
-                if (haveD || haveC)
-                {
-                    if (!Directory.Exists(dir))
-                    {
-                        Directory.CreateDirectory(dir);
-                    }
-                    txtFileName.Text = Path.Combine(dir, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".7z");
-                }
-
+                GetTxtFileName();
             }
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".V6COPY_RA Init: " + ex.Message);
+            }
+        }
+
+        private void GetTxtFileName()
+        {
+            bool haveD = false, haveC = false;
+            var drives = DriveInfo.GetDrives();
+                
+            var dir = "C:\\V6Copy";
+            foreach (DriveInfo drive_info in drives)
+            {
+                if (drive_info.DriveType == DriveType.Fixed && drive_info.Name.StartsWith("C"))
+                {
+                    haveC = true;
+                }
+                else if (drive_info.DriveType == DriveType.Fixed && drive_info.Name.StartsWith("D"))
+                {
+                    haveD = true;
+                    break;
+                }
+            }
+            if (haveD)
+            {
+                dir = "D:\\V6Copy";
+
+            }
+            else if (haveC)
+            {
+                dir = "C:\\V6Copy";
+            }
+
+            if (haveD || haveC)
+            {
+                if (!Directory.Exists(dir))
+                {
+                    Directory.CreateDirectory(dir);
+                }
+                txtFileName.Text = Path.Combine(dir, DateTime.Now.ToString("yyyyMMdd_HHmmss") + (radExcel.Checked ? "_excel" : "_xml") + ".7z");
             }
         }
 
@@ -162,6 +169,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //if (chkDanhMuc.Checked) ExportDanhMuc();
                 //if (chkDuLieu.Checked) ExportDuLieu();
                 //if (chkSoDuVaLuyKe.Checked) ExportSoDuVaLuyKe();
+                CreateGeneralInfoFile();
+
                 RunV67z();
                 _executing = false;
                 _success = true;
@@ -174,17 +183,47 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
+        private void CreateGeneralInfoFile()
+        {
+            try
+            {
+                string m_ws_id = V6Options.GetValue("M_WS_ID");
+                DataTable generalInfoData = new DataTable("GeneralInfo");
+                IDictionary<string, object> dictionary = new Dictionary<string, object>();
+                dictionary["TYPE"] = "DM,SD,LK,CT,VC,BC,HB,V6";
+                dictionary["MA_DVCS"] = txtDanhSachDonVi.Text;
+                dictionary["NGAY_CT1"] = dateNgay_ct1.Date;
+                dictionary["NGAY_CT2"] = dateNgay_ct2.Date;
+                dictionary["WS_ID"] = m_ws_id;
+                dictionary["CHECKING"] = "DM,DL,SD";
+                generalInfoData.AddRow(dictionary, true);
+                var generalFile = Path.Combine(_tempDir, "GeneralInfo.xml");
+                Data_Table.ToXmlFile(generalInfoData, generalFile);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1}", GetType(), MethodBase.GetCurrentMethod().Name), ex);
+            }
+        }
+
         private void ExportAll()
         {
-            _message += "DM,SD,LK,CT,VC,BC,HB,V6:";
-            var types = "DM,SD,LK,CT,VC,BC,HB,V6".Split(',');
-            foreach (string type in types)
+            try
             {
-                _message += "\r\n" + type;
-                var ds = RunProcV6CopyAll(type);
-                _message += " ds.Count: " + ds.Tables.Count;
-                ExportDataSet(ds, type);
-                _message += " CompleteExport ";
+                _message += "DM,SD,LK,CT,VC,BC,HB,V6:";
+                var types = "DM,SD,LK,CT,VC,BC,HB,V6".Split(',');
+                foreach (string type in types)
+                {
+                    _message += "\r\n" + type;
+                    var ds = RunProcV6CopyAll(type);
+                    _message += " ds.Count: " + ds.Tables.Count;
+                    ExportDataSet(ds, type);
+                    _message += " CompleteExport ";
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _message), ex);
             }
         }
 
@@ -240,13 +279,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private DataSet RunProcV6CopyAll(string type)
         {
+            string m_ws_id = V6Options.GetValue("M_WS_ID");
+
             SqlParameter[] plist = new[]
             {
                 new SqlParameter("@Type", type),
                 new SqlParameter("@Ngay_ct1", dateNgay_ct1.Date),
                 new SqlParameter("@Ngay_ct2", dateNgay_ct2.Date),
                 new SqlParameter("@Ma_dvcs", txtDanhSachDonVi.Text),
-                new SqlParameter("@Ws_id", V6Options.GetValue("M_WS_ID")),
+                new SqlParameter("@Ws_id", m_ws_id),
             };
             var ds = V6BusinessHelper.ExecuteProcedure("V6CopyRaAll", plist);
             return ds;
@@ -256,23 +297,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void RunV67z()
         {
             if (File.Exists(_saveZipFile)) File.Delete(_saveZipFile);
-            //V67z.ZipFiles(ExportDataSet(ds1, "VC");, true, files.ToArray());
-            V67z.Run7z("a " + _saveZipFile + " " + _tempDir + " -aoa ");
-            FileInfo fi = new FileInfo(_saveZipFile);
-            var s = 0;
-            while (V6FileIO.IsFileLocked(fi))
-            {
-                s++;
-                if (s == 3600) return;
-                Thread.Sleep(1000);
-            }
-            //Xóa file tạm
+            V67z.Run7z_Zip(_tempDir, _saveZipFile);
             Directory.Delete(_tempDir, true);
         }
 
         private void ChonFile()
         {
             var save = new SaveFileDialog {Filter = "7zip|*.7z|Rar|*.rar"};
+            save.FileName = txtFileName.Text;
             if (save.ShowDialog(this) == DialogResult.OK)
             {
                 txtFileName.Text = save.FileName;
@@ -292,6 +324,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void btnChonDanhSachDonVi_Click(object sender, EventArgs e)
         {
             ChonDanhSachDonVi();
+        }
+
+        private void radExcel_CheckedChanged(object sender, EventArgs e)
+        {
+            GetTxtFileName();
         }
         
     }

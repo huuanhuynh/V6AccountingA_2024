@@ -242,6 +242,7 @@
             this.radExcel.TabStop = true;
             this.radExcel.Text = "Excel";
             this.radExcel.UseVisualStyleBackColor = true;
+            this.radExcel.CheckedChanged += new System.EventHandler(this.radExcel_CheckedChanged);
             // 
             // V6COPY_RA
             // 

@@ -1599,20 +1599,18 @@ namespace V6Tools.V6Export
             }
         }
 
-        public static bool ToXmlFile(DataTable data, string fileName)
+        public static void ToXmlFile(DataTable data, string fileName)
         {
-            
             FileStream fs = new FileStream(fileName, FileMode.Create);
             try
             {
                 data.WriteXml(fs);
                 fs.Close();
-                return true;
             }
             catch (Exception ex)
             {
                 fs.Close();
-                throw new ExportException("DataTableToXmlFile " + ex.Message);
+                throw new ExportException("ExportDataToXmlFile " + ex.Message);
             }
         }
 

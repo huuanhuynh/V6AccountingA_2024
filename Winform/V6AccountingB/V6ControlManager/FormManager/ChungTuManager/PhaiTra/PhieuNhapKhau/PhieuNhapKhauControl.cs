@@ -3427,6 +3427,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             panelVND.Visible = false;
             txtT_cp_ao.Visible = false;
             txtT_cp.Visible = false;
+            txtT_nk_ao.Visible = false;
         }
 
         private void GetTyGiaDefault()
@@ -3556,6 +3557,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     }
                     txtT_cp_ao.Visible = true;
                     txtT_cp.Visible = true;
+                    txtT_nk_ao.Visible = true;
 
                     var c = V6ControlFormHelper.GetControlByAccessibleName(detail1, "GIA01");
                     if (c != null) c.Visible = true;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using SevenZip;
@@ -162,27 +163,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 _message = "";
-                _saveZipFile = txtFileName.Text;
-                _dir = Path.GetDirectoryName(_saveZipFile);
-                _tempDir = _dir + "\\Temp";
-                if (Directory.Exists(_tempDir))
-                {
-                    //Làm sạch thư mục tạm.
-                    Directory.Delete(_tempDir, true);
-                }
-
+                //_saveZipFile = txtFileName.Text;
+                //_dir = Path.GetDirectoryName(_saveZipFile);
+                //_tempDir = _dir + "\\Temp";
+                
                 //if (!Directory.Exists(_tempDir)) Directory.CreateDirectory(_tempDir);
 
-                // Giải nén file
-                //V67z.Unzip(_saveZipFile);
-                V67z.Run7z("x " + _saveZipFile + " -o" + _dir + " -r");//e archive.zip -oc:\soft *.cpp -r
-                //V6FileIO.IsFileLocked()
                 if (chkDanhMuc.Checked) ImportDanhMuc();
-                //if (chkDuLieu.Checked) ExportDuLieu();
-                //if (chkSoDuVaLuyKe.Checked) ExportSoDuVaLuyKe();
-                
-                //RunV67z();
-                //RunSevenZipFolder();
+                if (chkDuLieu.Checked) ExportDuLieu();
+                if (chkSoDuVaLuyKe.Checked) ExportSoDuVaLuyKe();
                 
                 _executing = false;
                 _success = true;
@@ -244,19 +233,50 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var stt = V6Tools.V6Convert.ObjectAndString.ObjectToInt(row["STT"]);
                         var ma_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["MA_FILE"]).Trim();
                         var xls_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["XLS_FILE"]).Trim();
+                        var dele_type = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["dele_type"]).Trim();
+                        var fields = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["fields"]).Trim();
+                        //dele_type "0" nếu tồn tại không insert, (khóa fields)
+                        //          "1" xóa rồi insert  (mặc định)
+                        //          "2" update nếu tồn tại, insert nếu chưa có.
                         var data1 = config.Tables[stt];
                         saveFile = Path.Combine(tempDirCurrent, xls_file + ".xml");
 
                         var data = Data_Table.FromXml(saveFile);
                         // insert data to tableName
-                        V6Categories ca = new V6Categories();
-                        ca.Insert(data, tableName:ma_file);
-
+                        InsertTable(data, ma_file);
+                        
                         V6Tools.V6Export.ExportData.ToXmlFile(data1, saveFile);
                         files.Add(saveFile);
                     }
                 }
             }
+        }
+
+        private int InsertTable(DataTable data, string tableName)
+        {
+            int count = 0;
+            try
+            {
+                V6Categories ca = new V6Categories();
+                foreach (DataRow row in data.Rows)
+                {
+                    try
+                    {
+                        ca.Insert(tableName, row.ToDataDictionary());
+                        count++;
+                    }
+                    catch (Exception ex1)
+                    {
+
+                    }
+                }
+            }
+            catch (Exception ex0)
+            {
+
+            }
+
+            return count;
         }
 
         private void ImportDanhMuc()
@@ -301,10 +321,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 ImportData(ds, type);
                 _message += " CompleteExport ";
             }
-            //var ds = RunProcV6CopyRa("SD");
-            //ExportDataSet(ds, "SD");
-            //ds = RunProcV6CopyRa("LK");
-            //ExportDataSet(ds, "LK");
         }
 
         private DataSet RunProcV6CopyRa(string type)
@@ -360,11 +376,43 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private void ChonFile()
         {
-            SaveFileDialog save = new SaveFileDialog();
-            save.Filter = "7zip|*.7z|Rar|*.rar";
-            if (save.ShowDialog(this) == DialogResult.OK)
+            //OpenFileDialog save = new OpenFileDialog();
+            //save.Filter = "7zip|*.7z|Rar|*.rar";
+            string file = V6ControlFormHelper.ChooseOpenFile(this, "7zip|*.7z|Rar|*.rar");
+            if (!string.IsNullOrEmpty(file))
             {
-                txtFileName.Text = save.FileName;
+                txtFileName.Text = file;
+                //Load file info
+                LoadFileInfo(file);
+            }
+        }
+
+        private void LoadFileInfo(string file)
+        {
+            try
+            {
+                V67z.Run7z_Unzip(file);
+                _saveZipFile = file;
+                _dir = Path.GetDirectoryName(file);
+                _tempDir = _dir + "\\Temp";
+                var generalFile = Path.Combine(_tempDir, "GeneralInfo.xml");
+                DataTable generalData = Data_Table.FromXmlFile(generalFile);
+                if (generalData != null && generalData.Rows.Count > 0)
+                {
+                    var row = generalData.Rows[0];
+                    dateNgay_ct1.Value = ObjectAndString.ObjectToFullDateTime(row["NGAY_CT1"]);
+                    dateNgay_ct2.Value = ObjectAndString.ObjectToFullDateTime(row["NGAY_CT2"]);
+                    txtDanhSachDonVi.Text = row["MA_DVCS"].ToString().Trim();
+                    string checking = row["CHECKING"].ToString().Trim();
+                    chkDanhMuc.Checked = checking.Contains("DM");
+                    chkDuLieu.Checked = checking.Contains("DL");
+                    chkSoDuVaLuyKe.Checked = checking.Contains("SD");
+                }
+                DoNothing();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, file), ex);
             }
         }
 

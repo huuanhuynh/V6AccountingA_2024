@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Text;
+using V6Tools.V6Export;
 
 namespace V6Tools.V6Convert
 {
@@ -86,6 +87,17 @@ namespace V6Tools.V6Convert
             return null;
         }
         
+        public static DataTable FromXmlFile(string file)
+        {
+            FileStream fs = new FileStream(file, FileMode.Open);
+            DataSet ds = new DataSet();
+            ds.ReadXml(fs);
+            fs.Close();
+
+            if (ds.Tables.Count > 0) return ds.Tables[0];
+            return null;
+        }
+        
         /// <summary>
         /// Đọc text dạng xml thành DataSet. Nếu lỗi trả về ds rỗng.
         /// </summary>
@@ -112,6 +124,11 @@ namespace V6Tools.V6Convert
             DataSet ds = new DataSet("DataSet");
             ds.Tables.Add(data.Copy());
             return DataSetToXml(ds);
+        }
+
+        public static void ToXmlFile(DataTable data, string fileName)
+        {
+            ExportData.ToXmlFile(data, fileName);
         }
 
         public static string DataSetToXml(DataSet ds)

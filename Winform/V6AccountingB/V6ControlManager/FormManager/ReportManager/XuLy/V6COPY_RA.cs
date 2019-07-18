@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using SevenZip;
@@ -11,6 +12,7 @@ using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6Tools;
+using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
@@ -34,44 +36,49 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 dateNgay_ct1.SetValue(dateNgay_ct1.Date.AddMonths(-1));
-
-                bool haveD = false, haveC = false;
-                var drives = DriveInfo.GetDrives();
-                var dir = "C:\\V6Copy";
-                foreach (DriveInfo drive_info in drives)
-                {
-                    if (drive_info.DriveType == DriveType.Fixed && drive_info.Name.StartsWith("C"))
-                    {
-                        haveC = true;
-                    }
-                    else if (drive_info.DriveType == DriveType.Fixed && drive_info.Name.StartsWith("D"))
-                    {
-                        haveD = true;
-                        break;
-                    }
-                }
-                if (haveD)
-                {
-                    dir = "D:\\V6Copy";
-                    
-                }
-                else if(haveC)
-                {
-                    dir = "C:\\V6Copy";
-                }
-                if (haveD || haveC)
-                {
-                    if (!Directory.Exists(dir))
-                    {
-                        Directory.CreateDirectory(dir);
-                    }
-                    txtFileName.Text = Path.Combine(dir, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".7z");
-                }
-
+                GetTxtFileName();
             }
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".V6COPY_RA Init: " + ex.Message);
+            }
+        }
+
+        private void GetTxtFileName()
+        {
+            bool haveD = false, haveC = false;
+            var drives = DriveInfo.GetDrives();
+
+            var dir = "C:\\V6Copy";
+            foreach (DriveInfo drive_info in drives)
+            {
+                if (drive_info.DriveType == DriveType.Fixed && drive_info.Name.StartsWith("C"))
+                {
+                    haveC = true;
+                }
+                else if (drive_info.DriveType == DriveType.Fixed && drive_info.Name.StartsWith("D"))
+                {
+                    haveD = true;
+                    break;
+                }
+            }
+            if (haveD)
+            {
+                dir = "D:\\V6Copy";
+
+            }
+            else if (haveC)
+            {
+                dir = "C:\\V6Copy";
+            }
+
+            if (haveD || haveC)
+            {
+                if (!Directory.Exists(dir))
+                {
+                    Directory.CreateDirectory(dir);
+                }
+                txtFileName.Text = Path.Combine(dir, DateTime.Now.ToString("yyyyMMdd_HHmmss") + (radExcel.Checked ? "_excel" : "_xml") + ".7z");
             }
         }
 
@@ -174,9 +181,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (chkDanhMuc.Checked) ExportDanhMuc();
                 if (chkDuLieu.Checked) ExportDuLieu();
                 if (chkSoDuVaLuyKe.Checked) ExportSoDuVaLuyKe();
-                
+                CreateGeneralInfoFile();
+
                 RunV67z();
-                //RunSevenZipFolder();
                 
                 _executing = false;
                 _success = true;
@@ -189,6 +196,54 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
+        private void CreateGeneralInfoFile()
+        {
+            try
+            {
+                string m_ws_id = V6Options.GetValue("M_WS_ID");
+                DataTable generalInfoData = new DataTable("GeneralInfo");
+                IDictionary<string, object> dictionary = new Dictionary<string, object>();
+                string types = "", checking = "";
+                if (chkDanhMuc.Checked)
+                {
+                    types += "DM";
+                    checking += "DM";
+                }
+                if (chkDuLieu.Checked)
+                {
+                    if (types.Length > 0)
+                    {
+                        types += ";";
+                        checking += ";";
+                    }
+                    types += "VC,BC,HB,CT";
+                    checking += "DL";
+                }
+                if (chkSoDuVaLuyKe.Checked)
+                {
+                    if (types.Length > 0)
+                    {
+                        types += ";";
+                        checking += ";";
+                    }
+                    types += "SD,LK";
+                    checking += "SD";
+                }
+                dictionary["TYPE"] = types;
+                dictionary["MA_DVCS"] = txtDanhSachDonVi.Text;
+                dictionary["NGAY_CT1"] = dateNgay_ct1.Date;
+                dictionary["NGAY_CT2"] = dateNgay_ct2.Date;
+                dictionary["WS_ID"] = m_ws_id;
+                dictionary["CHECKING"] = checking;
+                generalInfoData.AddRow(dictionary, true);
+                var generalFile = Path.Combine(_tempDir, "GeneralInfo.xml");
+                Data_Table.ToXmlFile(generalInfoData, generalFile);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1}", GetType(), MethodBase.GetCurrentMethod().Name), ex);
+            }
+        }
 
         private void ExportDataSet(DataSet ds, string key)
         {
@@ -305,17 +360,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void RunV67z()
         {
             if (File.Exists(_saveZipFile)) File.Delete(_saveZipFile);
-            //V67z.ZipFiles(ExportDataSet(ds1, "VC");, true, files.ToArray());
-            V67z.Run7z("a " + _saveZipFile + " " + _tempDir + " -aoa ");
-            FileInfo fi = new FileInfo(_saveZipFile);
-            var s = 0;
-            while (V6FileIO.IsFileLocked(fi))
-            {
-                s++;
-                if (s == 3600) return;
-                Thread.Sleep(1000);
-            }
-            //Xóa file tạm
+            V67z.Run7z_Zip(_tempDir, _saveZipFile);
             Directory.Delete(_tempDir, true);
         }
 
@@ -361,6 +406,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void btnChonDanhSachDonVi_Click(object sender, EventArgs e)
         {
             ChonDanhSachDonVi();
+        }
+
+        private void radExcel_CheckedChanged(object sender, EventArgs e)
+        {
+            GetTxtFileName();
         }
         
     }

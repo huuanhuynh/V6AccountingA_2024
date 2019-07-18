@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
+using System.Threading;
 
 namespace V6Tools
 {
@@ -377,12 +378,60 @@ namespace V6Tools
         /// extracts all *.cpp files from archive archive.zip to c:\soft folder.
         /// </summary>
         /// <param name="Command">VD: "a C:\tozfile.7z C:\fileorfoldertozip"</param>
-        public static void Run7z(string Command)
+        public static Process Run7z(string Command)
         {
             //System.Diagnostics.Process.Start(command);            
-            _R7z(Command);
+            Process p = _R7z(Command);
+            return p;
         }
-        private static void _R7z(string Command)
+
+        /// <summary>
+        /// Nén file hoặc thư mục vào file nén
+        /// </summary>
+        /// <param name="dir_or_file"></param>
+        /// <param name="saveZipFile"></param>
+        /// <param name="wait">Chờ cho đến khi nén xong.</param>
+        public static void Run7z_Zip(string dir_or_file, string saveZipFile, bool wait = true)
+        {
+            if (File.Exists(saveZipFile)) File.Delete(saveZipFile);
+            //V67z.ZipFiles(ExportDataSet(ds1, "VC");, true, files.ToArray());
+            Process p = V67z.Run7z("a " + saveZipFile + " " + dir_or_file + " -aoa ");
+            FileInfo fi = new FileInfo(saveZipFile);
+            var s = 0;
+            if (wait)
+            {
+                p.WaitForExit();
+            }
+            if (wait)
+            while (V6FileIO.IsFileLocked(fi))
+            {
+                s++;
+                if (s == 3600) return;
+                Thread.Sleep(1000);
+            }
+        }
+
+        /// <summary>
+        /// Giải nén file giữ nguyên cấu trúc thư mục vào nơi chỉ định.
+        /// </summary>
+        /// <param name="zipFile">File cần giải nén định dạng 7z.</param>
+        /// <param name="dir">Nơi chỉ định.</param>
+        /// <param name="wait">Chờ cho đến khi giải nén xong.</param>
+        public static void Run7z_Unzip(string zipFile, string dir = null, bool wait = true)
+        {
+            string folder = dir;
+            if (string.IsNullOrEmpty(dir))
+            {
+                folder = Path.GetDirectoryName(zipFile);
+            }
+            Process p = Run7z("x " + zipFile + " -aoa -o" + folder + " -r");//e archive.zip -oc:\soft *.cpp -r
+            if (wait)
+            {
+                p.WaitForExit();
+            }
+        }
+
+        private static Process _R7z(string Command)
         {
             WriteAllResources();
             var p = new Process
@@ -390,10 +439,14 @@ namespace V6Tools
                 StartInfo =
                 {
                     FileName = _DllPath + "\\7za",
-                    Arguments = Command
+                    Arguments = Command,
+                    //CreateNoWindow = true,
+                    //UseShellExecute = false
                 }
             };
+            //p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             p.Start();
+            return p;
         }
         #endregion end 7za Command line
 
@@ -610,7 +663,7 @@ namespace V6Tools
             /// Khởi tạo đối tượng nén file.
             /// </summary>
             /// <param name="zipfile"></param>
-            /// <param name="files"></param>
+            /// <param name="path"></param>
             public Extractor(string zipfile, string path)
             {
                 _zipfile = zipfile;
