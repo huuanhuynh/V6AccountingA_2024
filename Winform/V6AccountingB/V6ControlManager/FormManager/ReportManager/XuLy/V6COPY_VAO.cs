@@ -8,6 +8,7 @@ using System.Threading;
 using System.Windows.Forms;
 using SevenZip;
 using V6AccountingBusiness;
+using V6AccountingBusiness.Invoices;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
@@ -103,8 +104,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     this.ShowInfoMessage("Chưa chọn loại dữ liệu lưu trữ nào!");
                     return;
                 }
-                files = new List<string>();
-                Control.CheckForIllegalCrossThreadCalls = false;
+                //files = new List<string>();
+                CheckForIllegalCrossThreadCalls = false;
                 Thread tRunAll = new Thread(RunAll);
                 tRunAll.IsBackground = true;
                 tRunAll.Start();
@@ -184,12 +185,58 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
+
+        private void ImportDanhMuc()
+        {
+            _message += "\r\nDM";
+            var ds = RunProcV6CopyRa("DM");
+            _message += " ds.Count: " + ds.Tables.Count;
+            ImportDataDanhMuc(ds, "DM");
+            _message += " Complete Import Danh mục ";
+        }
+
+        private void ExportDuLieu()
+        {
+            _message += "\r\nDữ liệu: VC,BC,HB,CT:";
+            var types = "VC,BC,HB,CT".Split(',');
+            foreach (string type in types)
+            {
+                _message += "\r\n" + type;
+                var ds = RunProcV6CopyRa(type);
+                _message += " ds.Count: " + ds.Tables.Count;
+                ImportDataDuLieu(ds, type);
+                _message += " CompleteExport ";
+            }
+            //var ds = RunProcV6CopyRa("VC");
+            //ExportDataSet(ds, "VC");
+            //ds = RunProcV6CopyRa("BC");
+            //ExportDataSet(ds, "BC");
+            //ds = RunProcV6CopyRa("HB");
+            //ExportDataSet(ds, "HB");
+            //ds = RunProcV6CopyRa("CT");
+            //ExportDataSet(ds, "CT");
+        }
+
+        private void ExportSoDuVaLuyKe()
+        {
+            _message += "\r\nLũy kế: SD,LK:";
+            var types = "SD,LK".Split(',');
+            foreach (string type in types)
+            {
+                _message += "\r\n" + type;
+                var ds = RunProcV6CopyRa(type);
+                _message += " ds.Count: " + ds.Tables.Count;
+                //ImportDataSoDuLuyKe(ds, type);
+                _message += " CompleteExport ";
+            }
+        }
+
         /// <summary>
         /// Nhập dữ liệu
         /// </summary>
         /// <param name="config">Cấu hình lấy từ hàm V6CopyVao</param>
         /// <param name="key">Thư mục</param>
-        private void ImportData(DataSet config, string key)
+        private void ImportDataDanhMuc(DataSet config, string key)
         {
             var tempDirCurrent = Path.Combine(_tempDir, key);
             if (!Directory.Exists(tempDirCurrent))
@@ -200,54 +247,193 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             if (config.Tables.Count > 1)
             {
                 var tblList = config.Tables[0];
+
                 if (radExcel.Checked)
                 {
-                    var saveFile = Path.Combine(tempDirCurrent, key + ".xls");
-                    V6Tools.V6Export.ExportData.ToExcel(tblList, saveFile, "");
-                    files.Add(saveFile);
-
-                    foreach (DataRow row in tblList.Rows)
-                    {
-                        //Xuất excel từng bảng dữ liệu
-                        var stt = V6Tools.V6Convert.ObjectAndString.ObjectToInt(row["STT"]);
-                        //var ma_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["MA_FILE"]).Trim();
-                        var xls_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["XLS_FILE"]).Trim();
-                        var data1 = config.Tables[stt];
-                        saveFile = Path.Combine(tempDirCurrent, xls_file + ".xls");
-
-                        
-
-                        V6Tools.V6Export.ExportData.ToExcel(data1, saveFile, "");
-                        files.Add(saveFile);
-                    }
+                    ShowMainMessage(V6Text.NotSupported);
                 }
                 else
                 {
                     var saveFile = Path.Combine(tempDirCurrent, key + ".xml");
-                    V6Tools.V6Export.ExportData.ToXmlFile(tblList, saveFile);
-                    files.Add(saveFile);
-
-                    foreach (DataRow row in tblList.Rows)
+                    if (File.Exists(saveFile))
                     {
-                        //Xuất xml từng bảng dữ liệu
-                        var stt = V6Tools.V6Convert.ObjectAndString.ObjectToInt(row["STT"]);
-                        var ma_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["MA_FILE"]).Trim();
-                        var xls_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["XLS_FILE"]).Trim();
-                        var dele_type = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["dele_type"]).Trim();
-                        var fields = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["fields"]).Trim();
-                        //dele_type "0" nếu tồn tại không insert, (khóa fields)
-                        //          "1" xóa rồi insert  (mặc định)
-                        //          "2" update nếu tồn tại, insert nếu chưa có.
-                        var data1 = config.Tables[stt];
-                        saveFile = Path.Combine(tempDirCurrent, xls_file + ".xml");
+                        var saveList = Data_Table.FromXml(saveFile);
+                        var saveListDic = saveList.ToDataDictionary("MA_FILE", "XLS_FILE");
+                        // so sánh với tblList, nếu cùng có mới thực hiện
+                        foreach (DataRow row0 in tblList.Rows)
+                        {
+                            // Xuất xml từng bảng dữ liệu
+                            var stt = ObjectAndString.ObjectToInt(row0["STT"]);
+                            var MA_FILE = ObjectAndString.ObjectToString(row0["MA_FILE"]).Trim().ToUpper();
+                            var table_name = MA_FILE;
+                            var xls_file = ObjectAndString.ObjectToString(row0["XLS_FILE"]).Trim();
+                            var dele_type = ObjectAndString.ObjectToString(row0["dele_type"]).Trim();
+                            var fields = ObjectAndString.ObjectToString(row0["fields"]).Trim();
+                            //var data1 = config.Tables[stt];
+                            var data1File = Path.Combine(tempDirCurrent, xls_file + ".xml");
 
-                        var data = Data_Table.FromXml(saveFile);
-                        // insert data to tableName
-                        InsertTable(data, ma_file);
-                        
-                        V6Tools.V6Export.ExportData.ToXmlFile(data1, saveFile);
-                        files.Add(saveFile);
-                    }
+                            // kiểm tra trong saveList
+                            if (!saveListDic.ContainsKey(MA_FILE)) continue;
+                            if (!File.Exists(data1File)) continue;
+                            
+                            
+
+                            var data1 = Data_Table.FromXml(data1File);
+                            // insert data to tableName
+                            //dele_type "0" nếu tồn tại không insert, (khóa fields)
+                            //          "1" xóa rồi insert  (mặc định)
+                            //          "2" update nếu tồn tại, insert nếu chưa có.
+                            V6Categories ca = new V6Categories();
+                            foreach (DataRow row1 in data1.Rows)
+                            {
+                                bool exists = false;
+                                string filter = null;
+                                // check tồn tại
+                                IDictionary<string, object> check_data = new SortedDictionary<string, object>();
+                                var field_list = ObjectAndString.SplitString(fields);
+                                foreach (string field in field_list)
+                                {
+                                    check_data[field] = row1[field];
+                                }
+                                exists = V6BusinessHelper.CheckDataExist(table_name, check_data, filter);
+
+                                if (dele_type == "2")   //update nếu tồn tại, insert nếu chưa có.
+                                {
+                                    if (exists)
+                                    {
+                                        ca.Update(table_name, row1.ToDataDictionary(), check_data);
+                                    }
+                                    else
+                                    {
+                                        ca.Insert(table_name, row1.ToDataDictionary());
+                                    }
+                                }
+                                else if (dele_type == "0") //"0" nếu tồn tại không insert, (khóa fields)
+                                {
+                                    if (!exists)
+                                    {
+                                        ca.Insert(table_name, row1.ToDataDictionary());
+                                    }
+                                }
+                                else // dele_type == 1 // xóa nếu tồn tại rồi insert
+                                {
+                                    if (exists)
+                                    {
+                                        ca.Delete(table_name, check_data);
+                                    }
+                                    ca.Insert(table_name, row1.ToDataDictionary());
+                                }
+                            }
+
+                            //InsertTable(data, ma_file);
+
+                        }
+                    }//end if exists save file
+                }
+            }
+        }
+
+        /// <summary>
+        /// Nhập dữ liệu
+        /// </summary>
+        /// <param name="config">Cấu hình lấy từ hàm V6CopyVao</param>
+        /// <param name="key">Thư mục</param>
+        private void ImportDataDuLieu(DataSet config, string key)
+        {
+            var tempDirCurrent = Path.Combine(_tempDir, key);
+            if (!Directory.Exists(tempDirCurrent))
+            {
+                Directory.CreateDirectory(tempDirCurrent);
+            }
+
+            if (config.Tables.Count > 1)
+            {
+                var tblList = config.Tables[0];
+
+                if (radExcel.Checked)
+                {
+                    ShowMainMessage(V6Text.NotSupported);
+                }
+                else
+                {
+                    var saveFile = Path.Combine(tempDirCurrent, key + ".xml");
+                    if (File.Exists(saveFile))
+                    {
+                        var saveList = Data_Table.FromXml(saveFile);
+                        var saveListDic = saveList.ToDataDictionary("MA_FILE", "XLS_FILE");
+                        // so sánh với tblList, nếu cùng có mới thực hiện
+                        foreach (DataRow row0 in tblList.Rows)
+                        {
+                            // Xuất xml từng bảng dữ liệu
+                            var stt = ObjectAndString.ObjectToInt(row0["STT"]);
+                            var MA_FILE = ObjectAndString.ObjectToString(row0["MA_FILE"]).Trim().ToUpper();
+                            var table_name = MA_FILE;
+                            var xls_file = ObjectAndString.ObjectToString(row0["XLS_FILE"]).Trim();
+                            var dele_type = ObjectAndString.ObjectToString(row0["dele_type"]).Trim();
+                            var fields = ObjectAndString.ObjectToString(row0["fields"]).Trim();
+                            //var data1 = config.Tables[stt];
+                            var data1File = Path.Combine(tempDirCurrent, xls_file + ".xml");
+
+                            // kiểm tra trong saveList
+                            if (!saveListDic.ContainsKey(MA_FILE)) continue;
+                            if (!File.Exists(data1File)) continue;
+
+
+
+                            var data1 = Data_Table.FromXml(data1File);
+                            // insert data to tableName
+                            //dele_type "0" nếu tồn tại không insert, (khóa fields)
+                            //          "1" xóa rồi insert  (mặc định)
+                            //          "2" update nếu tồn tại, insert nếu chưa có.
+                            V6InvoiceBase ca = new V6Invoice81();
+                            foreach (DataRow row1 in data1.Rows)
+                            {
+                                bool exists = false;
+                                string filter = null;
+                                // check tồn tại
+                                string stt_rec = null;
+                                IDictionary<string, object> check_data = new SortedDictionary<string, object>();
+                                IDictionary<string, object> am = new SortedDictionary<string, object>();
+                                List<IDictionary<string, object>> adList = new List<IDictionary<string, object>>();
+                                List<IDictionary<string, object>> ad3List = new List<IDictionary<string, object>>();
+                                var field_list = ObjectAndString.SplitString(fields);
+                                foreach (string field in field_list)
+                                {
+                                    check_data[field] = row1[field];
+                                }
+                                exists = V6BusinessHelper.CheckDataExist(table_name, check_data, filter);
+
+                                if (dele_type == "2")   //update nếu tồn tại, insert nếu chưa có.
+                                {
+                                    if (exists)
+                                    {
+                                        ca.UpdateInvoice(am, adList, ad3List, check_data);
+                                    }
+                                    else
+                                    {
+                                        ca.InsertInvoice(am, adList, ad3List);
+                                    }
+                                }
+                                else if (dele_type == "0") //"0" nếu tồn tại không insert, (khóa fields)
+                                {
+                                    if (!exists)
+                                    {
+                                        ca.InsertInvoice(am, adList, ad3List);
+                                    }
+                                }
+                                else // dele_type == 1 // xóa nếu tồn tại rồi insert
+                                {
+                                    if (exists)
+                                    {
+                                        ca.DeleteInvoice(stt_rec);
+                                    }
+                                    ca.InsertInvoice(am, adList, ad3List);
+                                }
+                            }
+
+
+                        }
+                    }//end if exists save file
                 }
             }
         }
@@ -278,51 +464,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
             return count;
         }
-
-        private void ImportDanhMuc()
-        {
-            _message += "\r\nDM";
-            var ds = RunProcV6CopyRa("DM");
-            _message += " ds.Count: " + ds.Tables.Count;
-            ImportData(ds, "DM");
-            _message += " CompleteExport ";
-        }
-
-        private void ExportDuLieu()
-        {
-            _message += "\r\nDữ liệu: VC,BC,HB,CT:";
-            var types = "VC,BC,HB,CT".Split(',');
-            foreach (string type in types)
-            {
-                _message += "\r\n" + type;
-                var ds = RunProcV6CopyRa(type);
-                _message += " ds.Count: " + ds.Tables.Count;
-                ImportData(ds, type);
-                _message += " CompleteExport ";
-            }
-            //var ds = RunProcV6CopyRa("VC");
-            //ExportDataSet(ds, "VC");
-            //ds = RunProcV6CopyRa("BC");
-            //ExportDataSet(ds, "BC");
-            //ds = RunProcV6CopyRa("HB");
-            //ExportDataSet(ds, "HB");
-            //ds = RunProcV6CopyRa("CT");
-            //ExportDataSet(ds, "CT");
-        }
-        private void ExportSoDuVaLuyKe()
-        {
-            _message += "\r\nLũy kế: SD,LK:";
-            var types = "SD,LK".Split(',');
-            foreach (string type in types)
-            {
-                _message += "\r\n" + type;
-                var ds = RunProcV6CopyRa(type);
-                _message += " ds.Count: " + ds.Tables.Count;
-                ImportData(ds, type);
-                _message += " CompleteExport ";
-            }
-        }
-
+        
         private DataSet RunProcV6CopyRa(string type)
         {
             SqlParameter[] plist = new[]
@@ -337,52 +479,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             return ds;
         }
 
-        private List<string> files; 
-        private void RunV67z()
-        {
-            if (File.Exists(_saveZipFile)) File.Delete(_saveZipFile);
-            //V67z.ZipFiles(ExportDataSet(ds1, "VC");, true, files.ToArray());
-            V67z.Run7z("a " + _saveZipFile + " " + _tempDir + " -aoa ");
-            FileInfo fi = new FileInfo(_saveZipFile);
-            var s = 0;
-            while (V6FileIO.IsFileLocked(fi))
-            {
-                s++;
-                if (s == 3600) return;
-                Thread.Sleep(1000);
-            }
-            //Xóa file tạm
-            Directory.Delete(_tempDir, true);
-        }
-
-        private void RunSevenZipFolder()
-        {
-            if (File.Exists(_saveZipFile)) File.Delete(_saveZipFile);
-
-            Class1.CompressFileLZMA(_tempDir, _saveZipFile);
-            //Class1.CompressFolderLZMA(_tempDir, _saveZipFile);
-            
-            FileInfo fi = new FileInfo(_saveZipFile);
-            var s = 0;
-            while (V6FileIO.IsFileLocked(fi))
-            {
-                s++;
-                if (s == 3600) return;
-                Thread.Sleep(1000);
-            }
-            //Xóa file tạm
-            Directory.Delete(_tempDir, true);
-        }
-
+        private List<string> files0;
+        
         private void ChonFile()
         {
-            //OpenFileDialog save = new OpenFileDialog();
-            //save.Filter = "7zip|*.7z|Rar|*.rar";
             string file = V6ControlFormHelper.ChooseOpenFile(this, "7zip|*.7z|Rar|*.rar");
             if (!string.IsNullOrEmpty(file))
             {
                 txtFileName.Text = file;
-                //Load file info
                 LoadFileInfo(file);
             }
         }

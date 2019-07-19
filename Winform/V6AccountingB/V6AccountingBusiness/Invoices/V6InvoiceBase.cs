@@ -1242,7 +1242,7 @@ namespace V6AccountingBusiness.Invoices
         /// <returns></returns>
         public virtual bool InsertInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> ad1List)
         {
-            throw new NotImplementedException("No override method.");
+            throw new NotImplementedException("InsertInvoice No override method.");
         }
         /// <summary>
         /// Thêm chứng từ.
@@ -1253,7 +1253,17 @@ namespace V6AccountingBusiness.Invoices
         /// <returns></returns>
         public virtual bool InsertInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> ad1List, List<IDictionary<string, object>> ad2List)
         {
-            throw new NotImplementedException("No override method.");
+            throw new NotImplementedException("InsertInvoice No override method.");
+        }
+
+        public virtual bool UpdateInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> adList, List<IDictionary<string, object>> adList3, IDictionary<string, object> keys)
+        {
+            throw new NotImplementedException("UpdateInvoice No override method.");
+        }
+
+        public virtual bool DeleteInvoice(string sttrec)
+        {
+            throw new NotImplementedException("DeleteInvoice No override method.");
         }
 
         protected void WriteLogTransactionComplete(object stt_rec)

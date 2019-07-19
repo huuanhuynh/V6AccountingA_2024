@@ -190,7 +190,7 @@ namespace V6AccountingBusiness.Invoices
         }
 
 
-        public bool UpdateInvoice(
+        public override bool UpdateInvoice(
             IDictionary<string, object> amData,
             List<IDictionary<string, object>> adList,
             List<IDictionary<string, object>> adList3,
@@ -482,7 +482,7 @@ namespace V6AccountingBusiness.Invoices
             return tbl;
         }
         
-        public bool DeleteInvoice(string sttrec)
+        public override bool DeleteInvoice(string sttrec)
         {
             SqlParameter[] plist =
             {
