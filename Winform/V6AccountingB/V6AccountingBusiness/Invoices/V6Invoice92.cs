@@ -52,7 +52,7 @@ namespace V6AccountingBusiness.Invoices
                     "VPA_GET_AUTO_COLUMN_GT", pList).Tables[0];
         }
 
-        public bool InsertInvoice(IDictionary<string, object> amData,
+        public override bool InsertInvoice(IDictionary<string, object> amData,
             List<IDictionary<string, object>> adList, List<IDictionary<string, object>> adList2)
         {
             var stt_rec = amData["STT_REC"];

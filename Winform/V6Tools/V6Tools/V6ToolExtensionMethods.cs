@@ -401,13 +401,19 @@ namespace V6Tools
         /// Chuyển DataTable về ListDic
         /// </summary>
         /// <param name="data"></param>
-        /// <param name="sttRec"></param>
+        /// <param name="sttRec">Gán thêm vào dữ liệu. (không phải filter)</param>
         /// <returns></returns>
         public static List<IDictionary<string, object>> ToListDataDictionary(this DataTable data, string sttRec)
         {
             return (from DataRow row in data.Rows select row.ToDataDictionary(sttRec)).ToList();
         }
 
+        /// <summary>
+        /// Chuyển DataTable thành danh sách Dic
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="sttRec">Gán thêm vào dữ liệu. (không phải filter)</param>
+        /// <returns></returns>
         public static List<IDictionary<string, object>> ToListDataDictionary(this List<DataRow> data, string sttRec)
         {
             return (from DataRow row in data select row.ToDataDictionary(sttRec)).ToList();
@@ -423,6 +429,7 @@ namespace V6Tools
             }
             return DataDic;
         }
+
         public static IDictionary<string, object> DataGridViewRowToDataDictionary(DataGridViewRow row)
         {
             if (row == null) return null;
@@ -442,6 +449,12 @@ namespace V6Tools
             return DataGridViewRowToDataDictionary(row);
         }
 
+        /// <summary>
+        /// Chuyển DataTable thành danh sách Dic
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="sttRec">Gán thêm vào dữ liệu. (không phải filter)</param>
+        /// <returns></returns>
         public static IDictionary<string, object> DataRowToDataDictionary(DataRow row, string sttRec)
         {
             var DataDic = new SortedDictionary<string, object>();
@@ -453,6 +466,12 @@ namespace V6Tools
             DataDic["STT_REC"] = sttRec;
             return DataDic;
         }
+        /// <summary>
+        /// Chuyển DataTable thành danh sách Dic
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="sttRec">Gán thêm vào dữ liệu. (không phải filter)</param>
+        /// <returns></returns>
         public static IDictionary<string, object> ToDataDictionary(this DataRow row, string sttRec)
         {
             return DataRowToDataDictionary(row, sttRec);

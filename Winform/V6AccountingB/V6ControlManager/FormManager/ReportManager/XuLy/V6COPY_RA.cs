@@ -19,6 +19,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
     public partial class V6COPY_RA : XuLyBase0
     {
+        private readonly string m_ws_id = V6Options.GetValue("M_WS_ID");
+
         public V6COPY_RA()
         {
             InitializeComponent();
@@ -109,7 +111,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return;
                 }
                 files = new List<string>();
-                Control.CheckForIllegalCrossThreadCalls = false;
+                CheckForIllegalCrossThreadCalls = false;
                 Thread tRunAll = new Thread(RunAll);
                 tRunAll.IsBackground = true;
                 tRunAll.Start();
@@ -196,13 +198,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
+        private IDictionary<string, object> generalDictionary = null;
         private void CreateGeneralInfoFile()
         {
             try
             {
-                string m_ws_id = V6Options.GetValue("M_WS_ID");
                 DataTable generalInfoData = new DataTable("GeneralInfo");
-                IDictionary<string, object> dictionary = new Dictionary<string, object>();
+                generalDictionary = new Dictionary<string, object>();
                 string types = "", checking = "";
                 if (chkDanhMuc.Checked)
                 {
@@ -229,13 +231,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     types += "SD,LK";
                     checking += "SD";
                 }
-                dictionary["TYPE"] = types;
-                dictionary["MA_DVCS"] = txtDanhSachDonVi.Text;
-                dictionary["NGAY_CT1"] = dateNgay_ct1.Date;
-                dictionary["NGAY_CT2"] = dateNgay_ct2.Date;
-                dictionary["WS_ID"] = m_ws_id;
-                dictionary["CHECKING"] = checking;
-                generalInfoData.AddRow(dictionary, true);
+                generalDictionary["TYPE"] = types;
+                generalDictionary["MA_DVCS"] = txtDanhSachDonVi.Text;
+                generalDictionary["NGAY_CT1"] = dateNgay_ct1.Date;
+                generalDictionary["NGAY_CT2"] = dateNgay_ct2.Date;
+                generalDictionary["WS_ID"] = m_ws_id;
+                generalDictionary["CHECKING"] = checking;
+                generalInfoData.AddRow(generalDictionary, true);
                 var generalFile = Path.Combine(_tempDir, "GeneralInfo.xml");
                 Data_Table.ToXmlFile(generalInfoData, generalFile);
             }
@@ -256,18 +258,30 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             if (ds.Tables.Count > 1)
             {
                 var tblList = ds.Tables[0];
+                // replace key in tblList
+                var tblList_copy = tblList.Copy();
+                foreach (DataRow row in tblList_copy.Rows)
+                {
+                    row["KEY"] = row["KEY"].ToString()
+                        .Replace("@dFrom", "'" + ObjectAndString.ObjectToString(dateNgay_ct1.Date, "yyyyMMdd") + "'")
+                        .Replace("@dTo", "'" + ObjectAndString.ObjectToString(dateNgay_ct2.Date, "yyyyMMdd") + "'")
+                        .Replace("@Ma_dvcsList", "'" + txtDanhSachDonVi.Text + "'")
+                        .Replace("@WsId", "'" + m_ws_id + "'")
+                        ;
+                }
+
                 if (radExcel.Checked)
                 {
                     var saveFile = Path.Combine(tempDirCurrent, key + ".xls");
-                    V6Tools.V6Export.ExportData.ToExcel(tblList, saveFile, "");
+                    V6Tools.V6Export.ExportData.ToExcel(tblList_copy, saveFile, "");
                     files.Add(saveFile);
 
                     foreach (DataRow row in tblList.Rows)
                     {
                         //Xuất excel từng bảng dữ liệu
-                        var stt = V6Tools.V6Convert.ObjectAndString.ObjectToInt(row["STT"]);
+                        var stt = ObjectAndString.ObjectToInt(row["STT"]);
                         //var ma_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["MA_FILE"]).Trim();
-                        var xls_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["XLS_FILE"]).Trim();
+                        var xls_file = ObjectAndString.ObjectToString(row["XLS_FILE"]).Trim();
                         var data1 = ds.Tables[stt];
                         saveFile = Path.Combine(tempDirCurrent, xls_file + ".xls");
                         V6Tools.V6Export.ExportData.ToExcel(data1, saveFile, "");
@@ -277,15 +291,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 else
                 {
                     var saveFile = Path.Combine(tempDirCurrent, key + ".xml");
-                    V6Tools.V6Export.ExportData.ToXmlFile(tblList, saveFile);
+                    V6Tools.V6Export.ExportData.ToXmlFile(tblList_copy, saveFile);
                     files.Add(saveFile);
 
                     foreach (DataRow row in tblList.Rows)
                     {
                         //Xuất xml từng bảng dữ liệu
-                        var stt = V6Tools.V6Convert.ObjectAndString.ObjectToInt(row["STT"]);
+                        var stt = ObjectAndString.ObjectToInt(row["STT"]);
                         //var ma_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["MA_FILE"]).Trim();
-                        var xls_file = V6Tools.V6Convert.ObjectAndString.ObjectToString(row["XLS_FILE"]).Trim();
+                        var xls_file = ObjectAndString.ObjectToString(row["XLS_FILE"]).Trim();
                         var data1 = ds.Tables[stt];
                         saveFile = Path.Combine(tempDirCurrent, xls_file + ".xml");
                         V6Tools.V6Export.ExportData.ToXmlFile(data1, saveFile);

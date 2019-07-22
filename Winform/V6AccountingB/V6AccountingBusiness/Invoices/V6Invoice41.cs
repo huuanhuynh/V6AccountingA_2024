@@ -64,7 +64,7 @@ namespace V6AccountingBusiness.Invoices
                 "VPA_GET_AUTO_COLULMN_MA_GD", pList).Tables[0];
         }
 
-        public bool InsertInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> adList, List<IDictionary<string, object>> adList3)
+        public override bool InsertInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> adList, List<IDictionary<string, object>> adList3)
         {
             object stt_rec = amData["STT_REC"];
             bool insert_success = false;

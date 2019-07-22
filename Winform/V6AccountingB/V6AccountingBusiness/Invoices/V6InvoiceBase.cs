@@ -1256,6 +1256,18 @@ namespace V6AccountingBusiness.Invoices
             throw new NotImplementedException("InsertInvoice No override method.");
         }
 
+        public virtual bool InsertInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> adList, List<IDictionary<string, object>> adList3, bool post)
+        {
+            throw new NotImplementedException("InsertInvoice No override method.");
+        }
+
+        public virtual bool InsertInvoice(IDictionary<string, object> amData,
+            List<IDictionary<string, object>> adList,
+            List<IDictionary<string, object>> adList2,
+            List<IDictionary<string, object>> adList3)
+        {
+            throw new NotImplementedException("InsertInvoice No override method.");
+        }
         public virtual bool UpdateInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> adList, List<IDictionary<string, object>> adList3, IDictionary<string, object> keys)
         {
             throw new NotImplementedException("UpdateInvoice No override method.");
@@ -1274,5 +1286,64 @@ namespace V6AccountingBusiness.Invoices
             }
         }
 
+        public static V6InvoiceBase GetInvoice(string ma_ct)
+        {
+            switch (ma_ct)
+            {
+                case "GL1":
+                    return new V6Invoice11();
+                case "AR1":
+                    return new V6Invoice21();
+                case "AP1":
+                    return new V6Invoice31();
+                case "AP2":
+                    return new V6Invoice32();
+                case "TA1":
+                    return new V6Invoice41();
+                case "BC1":
+                    return new V6Invoice46();
+                case "CA1":
+                    return new V6Invoice51();
+                case "BN1":
+                    return new V6Invoice56();
+                case "POA":
+                    return new V6Invoice71();
+                case "POB":
+                    return new V6Invoice72();
+                case "POC":
+                    return new V6Invoice73();
+                case "IND":
+                    return new V6Invoice74();
+                case "SOF":
+                    return new V6Invoice76();
+                case "SOA":
+                    return new V6Invoice81();
+                case "SOB":
+                    return new V6Invoice82();
+                case "SOC":
+                    return new V6Invoice83();
+                case "IXA":
+                    return new V6Invoice84();
+                case "IXB":
+                    return new V6Invoice85();
+                case "IXC":
+                    return new V6Invoice86();
+
+                case "SOH":
+                    return new V6Invoice91();
+                case "POH":
+                    return new V6Invoice92();
+                case "SOR":
+                    return new V6Invoice93();
+
+                case "INY":
+                    return new V6Invoice94INY();
+                case "IXY":
+                    return new V6Invoice95IXY();
+
+                default:
+                    return null;
+            }
+        }
     }
 }

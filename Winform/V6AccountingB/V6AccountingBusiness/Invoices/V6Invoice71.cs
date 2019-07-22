@@ -58,7 +58,7 @@ namespace V6AccountingBusiness.Invoices
             return InsertInvoice(amData, ad1List, new List<IDictionary<string, object>>(), new List<IDictionary<string, object>>());
         }
 
-        public bool InsertInvoice(IDictionary<string, object> amData,
+        public override bool InsertInvoice(IDictionary<string, object> amData,
             List<IDictionary<string, object>> adList,
             List<IDictionary<string, object>> adList2,
             List<IDictionary<string, object>> adList3)

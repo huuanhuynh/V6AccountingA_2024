@@ -218,6 +218,29 @@ namespace V6AccountingBusiness
         #endregion delete
 
         #region ==== CHECK ====
+
+        /// <summary>
+        /// Kiểm tra dữ liệu tồn tại trong bảng. Data cần đúng trường, đúng kiểu.
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="data"></param>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        public bool IsExistData(string tableName, IDictionary<string, object> data, string filter = null)
+        {
+            try
+            {
+                var where = SqlGenerator.GenSqlWhere(data);
+                var sql = "select COUNT(*) count0 from [" + tableName + "] where " + where;
+                if (!string.IsNullOrEmpty(filter)) sql += " and " + filter;
+                var result = (int)SqlConnect.ExecuteScalar(CommandType.Text, sql);
+                return result >= 1;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
         
         /// <summary>
         /// Đã tồn tại mã trong bảng => true

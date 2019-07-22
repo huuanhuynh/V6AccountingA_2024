@@ -239,6 +239,7 @@
             // radExcel
             // 
             this.radExcel.AutoSize = true;
+            this.radExcel.Enabled = false;
             this.radExcel.Location = new System.Drawing.Point(3, 8);
             this.radExcel.Name = "radExcel";
             this.radExcel.Size = new System.Drawing.Size(51, 17);
