@@ -13,12 +13,16 @@ using V6Controls.Forms;
 using V6Init;
 using V6Tools;
 using V6Tools.V6Convert;
+using V6Tools.V6Export;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
     public partial class V6COPY_RA : XuLyBase0
     {
+        private DateTime dateNgay_ct1_Date;
+        private DateTime dateNgay_ct2_Date;
+        private string txtDanhSachDonVi_Text = null;
         private readonly string m_ws_id = V6Options.GetValue("M_WS_ID");
 
         public V6COPY_RA()
@@ -110,6 +114,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     this.ShowInfoMessage("Chưa chọn loại dữ liệu lưu trữ nào!");
                     return;
                 }
+
+                dateNgay_ct1_Date = dateNgay_ct1.Date;
+                dateNgay_ct2_Date = dateNgay_ct2.Date;
+                txtDanhSachDonVi_Text = txtDanhSachDonVi.Text;
+
                 files = new List<string>();
                 CheckForIllegalCrossThreadCalls = false;
                 Thread tRunAll = new Thread(RunAll);
@@ -232,9 +241,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     checking += "SD";
                 }
                 generalDictionary["TYPE"] = types;
-                generalDictionary["MA_DVCS"] = txtDanhSachDonVi.Text;
-                generalDictionary["NGAY_CT1"] = dateNgay_ct1.Date;
-                generalDictionary["NGAY_CT2"] = dateNgay_ct2.Date;
+                generalDictionary["MA_DVCS"] = txtDanhSachDonVi_Text;
+                generalDictionary["NGAY_CT1"] = dateNgay_ct1_Date;
+                generalDictionary["NGAY_CT2"] = dateNgay_ct2_Date;
                 generalDictionary["WS_ID"] = m_ws_id;
                 generalDictionary["CHECKING"] = checking;
                 generalInfoData.AddRow(generalDictionary, true);
@@ -263,9 +272,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 foreach (DataRow row in tblList_copy.Rows)
                 {
                     row["KEY"] = row["KEY"].ToString()
-                        .Replace("@dFrom", "'" + ObjectAndString.ObjectToString(dateNgay_ct1.Date, "yyyyMMdd") + "'")
-                        .Replace("@dTo", "'" + ObjectAndString.ObjectToString(dateNgay_ct2.Date, "yyyyMMdd") + "'")
-                        .Replace("@Ma_dvcsList", "'" + txtDanhSachDonVi.Text + "'")
+                        .Replace("@dFrom", "'" + ObjectAndString.ObjectToString(dateNgay_ct1_Date, "yyyyMMdd") + "'")
+                        .Replace("@dTo", "'" + ObjectAndString.ObjectToString(dateNgay_ct2_Date, "yyyyMMdd") + "'")
+                        .Replace("@Ma_dvcsList", "'" + txtDanhSachDonVi_Text + "'")
                         .Replace("@WsId", "'" + m_ws_id + "'")
                         ;
                 }
@@ -273,7 +282,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (radExcel.Checked)
                 {
                     var saveFile = Path.Combine(tempDirCurrent, key + ".xls");
-                    V6Tools.V6Export.ExportData.ToExcel(tblList_copy, saveFile, "");
+                    ExportData.ToExcel(tblList_copy, saveFile, "");
                     files.Add(saveFile);
 
                     foreach (DataRow row in tblList.Rows)
@@ -284,14 +293,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var xls_file = ObjectAndString.ObjectToString(row["XLS_FILE"]).Trim();
                         var data1 = ds.Tables[stt];
                         saveFile = Path.Combine(tempDirCurrent, xls_file + ".xls");
-                        V6Tools.V6Export.ExportData.ToExcel(data1, saveFile, "");
+                        ExportData.ToExcel(data1, saveFile, "");
                         files.Add(saveFile);
                     }
                 }
                 else
                 {
                     var saveFile = Path.Combine(tempDirCurrent, key + ".xml");
-                    V6Tools.V6Export.ExportData.ToXmlFile(tblList_copy, saveFile);
+                    ExportData.ToXmlFile(tblList_copy, saveFile);
                     files.Add(saveFile);
 
                     foreach (DataRow row in tblList.Rows)
@@ -302,12 +311,99 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var xls_file = ObjectAndString.ObjectToString(row["XLS_FILE"]).Trim();
                         var data1 = ds.Tables[stt];
                         saveFile = Path.Combine(tempDirCurrent, xls_file + ".xml");
-                        V6Tools.V6Export.ExportData.ToXmlFile(data1, saveFile);
+                        ExportData.ToXmlFile(data1, saveFile);
                         files.Add(saveFile);
                     }
                 }
             }
         }
+
+        /// <summary>
+        /// Xuất file dữ liệu chứng từ.
+        /// </summary>
+        /// <param name="ds"></param>
+        /// <param name="key"></param>
+        private void ExportDataSetDuLieu(DataSet ds, string key)
+        {
+            var tempDirCurrent = Path.Combine(_tempDir, key);
+            if (!Directory.Exists(tempDirCurrent))
+            {
+                Directory.CreateDirectory(tempDirCurrent);
+            }
+
+            if (ds.Tables.Count > 1)
+            {
+                var tblList = ds.Tables[0];
+                // replace key in tblList
+                var tblList_copy = tblList.Copy();
+                foreach (DataRow row in tblList_copy.Rows)
+                {
+                    row["KEY"] = row["KEY"].ToString()
+                        .Replace("@dFrom", "'" + ObjectAndString.ObjectToString(dateNgay_ct1_Date, "yyyyMMdd") + "'")
+                        .Replace("@dTo", "'" + ObjectAndString.ObjectToString(dateNgay_ct2_Date, "yyyyMMdd") + "'")
+                        .Replace("@Ma_dvcsList", "'" + txtDanhSachDonVi_Text + "'")
+                        .Replace("@WsId", "'" + m_ws_id + "'")
+                        ;
+                }
+
+                int data1_count = 0;
+                if (radExcel.Checked)
+                {
+                    var saveFile = Path.Combine(tempDirCurrent, key + ".xls");
+                    Data_Table.ToExcelFile(tblList_copy, saveFile);
+                    files.Add(saveFile);
+
+                    foreach (DataRow row in tblList.Rows)
+                    {
+                        //Xuất excel từng bảng dữ liệu
+                        var stt = ObjectAndString.ObjectToInt(row["STT"]);
+                        var ma_file = ObjectAndString.ObjectToString(row["MA_FILE"]).Trim();
+                        var ma_file_ct = ObjectAndString.ObjectToString(row["MA_FILE_CT"]).Trim();
+                        var ma_file_ct_list = ObjectAndString.SplitString(ma_file_ct);
+                        //var xls_file = ObjectAndString.ObjectToString(row["XLS_FILE"]).Trim();
+                        var data1 = ds.Tables[++data1_count];
+                        saveFile = Path.Combine(tempDirCurrent, ma_file + ".xls");
+                        Data_Table.ToExcelFile(data1, saveFile);
+                        files.Add(saveFile);
+                        foreach (string file_ct in ma_file_ct_list)
+                        {
+                            data1 = ds.Tables[++data1_count];
+                            saveFile = Path.Combine(tempDirCurrent, file_ct + ".xls");
+                            Data_Table.ToExcelFile(data1, saveFile);
+                            files.Add(saveFile);
+                        }
+                    }
+                }
+                else
+                {
+                    var saveFile = Path.Combine(tempDirCurrent, key + ".xml");
+                    Data_Table.ToXmlFile(tblList_copy, saveFile);
+                    files.Add(saveFile);
+
+                    foreach (DataRow row in tblList.Rows)
+                    {
+                        //Xuất xml từng bảng dữ liệu
+                        //var stt = ObjectAndString.ObjectToInt(row["STT"]);
+                        var ma_file = ObjectAndString.ObjectToString(row["MA_FILE"]).Trim();
+                        var ma_file_ct = ObjectAndString.ObjectToString(row["MA_FILE_CT"]).Trim();
+                        var ma_file_ct_list = ObjectAndString.SplitString(ma_file_ct);
+                        //var xls_file = ObjectAndString.ObjectToString(row["XLS_FILE"]).Trim();
+                        var data1 = ds.Tables[++data1_count];
+                        saveFile = Path.Combine(tempDirCurrent, ma_file + ".xml");
+                        Data_Table.ToXmlFile(data1, saveFile);
+                        files.Add(saveFile);
+                        foreach (string file_ct in ma_file_ct_list)
+                        {
+                            data1 = ds.Tables[++data1_count];
+                            saveFile = Path.Combine(tempDirCurrent, file_ct + ".xml");
+                            Data_Table.ToXmlFile(data1, saveFile);
+                            files.Add(saveFile);
+                        }
+                    }
+                }
+            }
+        }
+
         private void ExportDanhMuc()
         {
             _message += "\r\nDM";
@@ -326,7 +422,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 _message += "\r\n" + type;
                 var ds = RunProcV6CopyRa(type);
                 _message += " ds.Count: " + ds.Tables.Count;
-                ExportDataSet(ds, type);
+                ExportDataSetDuLieu(ds, type);
                 _message += " CompleteExport ";
             }
             //var ds = RunProcV6CopyRa("VC");
@@ -361,10 +457,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             SqlParameter[] plist = new[]
             {
                 new SqlParameter("@Type", type),
-                new SqlParameter("@Ngay_ct1", dateNgay_ct1.Date),
-                new SqlParameter("@Ngay_ct2", dateNgay_ct2.Date),
-                new SqlParameter("@Ma_dvcs", txtDanhSachDonVi.Text),
-                new SqlParameter("@Ws_id", V6Options.GetValue("M_WS_ID")),
+                new SqlParameter("@Ngay_ct1", dateNgay_ct1_Date),
+                new SqlParameter("@Ngay_ct2", dateNgay_ct2_Date),
+                new SqlParameter("@Ma_dvcs", txtDanhSachDonVi_Text),
+                new SqlParameter("@Ws_id", m_ws_id),
             };
             var ds = V6BusinessHelper.ExecuteProcedure("V6CopyRa", plist);
             return ds;

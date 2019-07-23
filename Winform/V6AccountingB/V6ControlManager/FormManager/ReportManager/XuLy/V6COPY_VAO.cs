@@ -20,6 +20,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
     public partial class V6COPY_VAO : XuLyBase0
     {
+        private DateTime dateNgay_ct1_Date;
+        private DateTime dateNgay_ct2_Date;
+        private string txtDanhSachDonVi_Text = null;
+        private readonly string m_ws_id = V6Options.GetValue("M_WS_ID");
+
         public V6COPY_VAO()
         {
             InitializeComponent();
@@ -104,6 +109,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     this.ShowInfoMessage("Chưa chọn loại dữ liệu lưu trữ nào!");
                     return;
                 }
+
+                dateNgay_ct1_Date = dateNgay_ct1.Date;
+                dateNgay_ct2_Date = dateNgay_ct2.Date;
+                txtDanhSachDonVi_Text = txtDanhSachDonVi.Text;
+
                 //files = new List<string>();
                 CheckForIllegalCrossThreadCalls = false;
                 Thread tRunAll = new Thread(RunAll);
@@ -143,6 +153,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             else if (_executing)
             {
+                SetStatusText(_message);
                 btnNhan.Image = waitingImages.Images[ii];
                 ii++;
                 if (ii >= waitingImages.Images.Count) ii = 0;
@@ -205,7 +216,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var ds = RunProcV6CopyRa(type);
                 _message += " ds.Count: " + ds.Tables.Count;
                 ImportDataDuLieu(ds, type);
-                _message += " CompleteExport ";
+                _message += " Complete import dulieu ";
             }
             //var ds = RunProcV6CopyRa("VC");
             //ExportDataSet(ds, "VC");
@@ -227,7 +238,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var ds = RunProcV6CopyRa(type);
                 _message += " ds.Count: " + ds.Tables.Count;
                 ImportDataSoDuLuyKe(ds, type);
-                _message += " CompleteExport ";
+                _message += " Complete import soduluyke ";
             }
         }
 
@@ -239,98 +250,117 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// <param name="key">Thư mục</param>
         private void ImportDataDanhMuc(DataSet config, string key)
         {
-            var tempDirCurrent = Path.Combine(_tempDir, key);
-            if (!Directory.Exists(tempDirCurrent))
+            string propress_mess = null;
+            List<string> list_ma_file = new List<string>();
+            try
             {
-                Directory.CreateDirectory(tempDirCurrent);
-            }
-            
-            if (config.Tables.Count > 1)
-            {
-                var tblList = config.Tables[0];
-
-                if (radExcel.Checked)
+                var tempDirCurrent = Path.Combine(_tempDir, key);
+                if (!Directory.Exists(tempDirCurrent))
                 {
-                    ShowMainMessage(V6Text.NotSupported);
+                    Directory.CreateDirectory(tempDirCurrent);
                 }
-                else
+
+                if (config.Tables.Count > 0)
                 {
-                    var saveFile = Path.Combine(tempDirCurrent, key + ".xml");
-                    if (File.Exists(saveFile))
+                    var tblList = config.Tables[0];
+
+                    if (radExcel.Checked)
                     {
-                        var saveList = Data_Table.FromXml(saveFile);
-                        var saveListDic = saveList.ToDataDictionary("MA_FILE", "XLS_FILE");
-                        // so sánh với tblList, nếu cùng có mới thực hiện
-                        foreach (DataRow row0 in tblList.Rows)
+                        ShowMainMessage(V6Text.NotSupported);
+                    }
+                    else
+                    {
+                        var saveFile = Path.Combine(tempDirCurrent, key + ".xml");
+                        if (File.Exists(saveFile))
                         {
-                            // Đọc xml từng bảng dữ liệu
-                            var stt = ObjectAndString.ObjectToInt(row0["STT"]);
-                            var MA_FILE = ObjectAndString.ObjectToString(row0["MA_FILE"]).Trim().ToUpper();
-                            var table_name = MA_FILE;
-                            var xls_file = ObjectAndString.ObjectToString(row0["XLS_FILE"]).Trim();
-                            var dele_type = ObjectAndString.ObjectToString(row0["dele_type"]).Trim();
-                            var fields = ObjectAndString.ObjectToString(row0["fields"]).Trim();
-                            //var data1 = config.Tables[stt];
-                            var data1File = Path.Combine(tempDirCurrent, xls_file + ".xml");
-
-                            // kiểm tra trong saveList
-                            if (!saveListDic.ContainsKey(MA_FILE)) continue;
-                            if (!File.Exists(data1File)) continue;
-                            
-                            
-
-                            var data1 = Data_Table.FromXml(data1File);
-                            // insert data to tableName
-                            //dele_type "0" nếu tồn tại không insert, (khóa fields)
-                            //          "1" xóa rồi insert  (mặc định)
-                            //          "2" update nếu tồn tại, insert nếu chưa có.
-                            
-                            foreach (DataRow row1 in data1.Rows)
+                            var saveList = Data_Table.FromXmlFile(saveFile);
+                            var saveListDic = saveList.ToDataDictionary("MA_FILE", "XLS_FILE");
+                            // so sánh với tblList, nếu cùng có mới thực hiện
+                            foreach (DataRow row0 in tblList.Rows)
                             {
-                                bool exists = false;
-                                string filter = null;
-                                // check tồn tại
-                                IDictionary<string, object> check_data = new SortedDictionary<string, object>();
-                                var field_list = ObjectAndString.SplitString(fields);
-                                foreach (string field in field_list)
+                                // Đọc xml từng bảng dữ liệu
+                                var stt = ObjectAndString.ObjectToInt(row0["STT"]);
+                                var MA_FILE = ObjectAndString.ObjectToString(row0["MA_FILE"]).Trim().ToUpper();
+                                _message = MA_FILE;
+                                list_ma_file.Add(MA_FILE);
+                                if (";ALBP;ALBPCC;ALBPHT;ALBPTS;ALCLTG;ALDVCS;ALGIA;ALGIA2;ALKC;ALKH;ALKHO;ALKU;ALLO;ALNHCC;ALNHKH;ALNHPHI;ALNHTHUE;ALNHTK;ALNHTS;ALNHVT;ALNHVV;ALNV;ALPB;ALPB1;ALPHI;ALQDDVT;ALSONB;ALTD;ALTD2;ALTD3;ALTGCC;ALTGNT;ALTGTS;ALTHUE;ALTK;ALTK0;"
+                                    .Contains(";"+MA_FILE+";"))// == "ALNHKH")
                                 {
-                                    check_data[field] = row1[field];
+                                    DoNothing();
+                                    //continue; // bật bỏ qua để debug nhanh.
                                 }
-                                exists = V6BusinessHelper.CheckDataExist(table_name, check_data, filter);
+                                
+                                var table_name = MA_FILE;
+                                var xls_file = ObjectAndString.ObjectToString(row0["XLS_FILE"]).Trim();
+                                var dele_type = ObjectAndString.ObjectToString(row0["dele_type"]).Trim();
+                                var fields = ObjectAndString.ObjectToString(row0["fields"]).Trim();
+                                //var data1 = config.Tables[stt];
+                                var data1File = Path.Combine(tempDirCurrent, xls_file + ".xml");
 
-                                if (dele_type == "2")   //update nếu tồn tại, insert nếu chưa có.
+                                // kiểm tra trong saveList
+                                if (!saveListDic.ContainsKey(MA_FILE)) continue;
+                                if (!File.Exists(data1File)) continue;
+
+
+
+                                var data1 = Data_Table.FromXmlFile(data1File);
+                                if (data1 == null) continue;
+                                // insert data to tableName
+                                //dele_type "0" nếu tồn tại không insert, (khóa fields)
+                                //          "1" xóa rồi insert  (mặc định)
+                                //          "2" update nếu tồn tại, insert nếu chưa có.
+
+                                foreach (DataRow row1 in data1.Rows)
                                 {
-                                    if (exists)
+                                    bool exists = false;
+                                    string filter = null;
+                                    // check tồn tại
+                                    IDictionary<string, object> check_data = new SortedDictionary<string, object>();
+                                    var field_list = ObjectAndString.SplitString(fields);
+                                    foreach (string field in field_list)
                                     {
-                                        ca.Update(table_name, row1.ToDataDictionary(), check_data);
+                                        check_data[field] = row1[field];
                                     }
-                                    else
+                                    exists = V6BusinessHelper.CheckDataExist(table_name, check_data, filter);
+
+                                    if (dele_type == "2") //update nếu tồn tại, insert nếu chưa có.
                                     {
+                                        if (exists)
+                                        {
+                                            ca.Update(table_name, row1.ToDataDictionary(), check_data);
+                                        }
+                                        else
+                                        {
+                                            ca.Insert(table_name, row1.ToDataDictionary());
+                                        }
+                                    }
+                                    else if (dele_type == "0") //"0" nếu tồn tại không insert, (khóa fields)
+                                    {
+                                        if (!exists)
+                                        {
+                                            ca.Insert(table_name, row1.ToDataDictionary());
+                                        }
+                                    }
+                                    else // dele_type == 1 // xóa nếu tồn tại rồi insert
+                                    {
+                                        if (exists)
+                                        {
+                                            ca.Delete(table_name, check_data);
+                                        }
                                         ca.Insert(table_name, row1.ToDataDictionary());
                                     }
                                 }
-                                else if (dele_type == "0") //"0" nếu tồn tại không insert, (khóa fields)
-                                {
-                                    if (!exists)
-                                    {
-                                        ca.Insert(table_name, row1.ToDataDictionary());
-                                    }
-                                }
-                                else // dele_type == 1 // xóa nếu tồn tại rồi insert
-                                {
-                                    if (exists)
-                                    {
-                                        ca.Delete(table_name, check_data);
-                                    }
-                                    ca.Insert(table_name, row1.ToDataDictionary());
-                                }
+
+
                             }
-
-                            //InsertTable(data, ma_file);
-
-                        }
-                    }//end if exists save file
+                        } //end if exists save file
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                propress_mess = string.Format("MA_FILE:{0}", ObjectAndString.ObjectToString(list_ma_file));
+                this.ShowErrorException(GetType() + ".ImportDataDanhMuc\r\n" + propress_mess, ex);
             }
         }
 
@@ -341,295 +371,158 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// <param name="key">Thư mục</param>
         private void ImportDataDuLieu(DataSet config, string key)
         {
-            var tempDirCurrent = Path.Combine(_tempDir, key);
-            if (!Directory.Exists(tempDirCurrent))
+            string propress_mess = null;
+            List<string> list_ma_file = new List<string>();
+            try
             {
-                Directory.CreateDirectory(tempDirCurrent);
-            }
-
-            if (config.Tables.Count > 1)
-            {
-                var tblList = config.Tables[0];
-
-                if (radExcel.Checked)
+                var tempDirCurrent = Path.Combine(_tempDir, key);
+                if (!Directory.Exists(tempDirCurrent))
                 {
-                    ShowMainMessage(V6Text.NotSupported);
+                    Directory.CreateDirectory(tempDirCurrent);
                 }
-                else
+
+                if (config.Tables.Count > 0)
                 {
-                    var saveFile = Path.Combine(tempDirCurrent, key + ".xml");
-                    if (File.Exists(saveFile))
+                    var tblList = config.Tables[0];
+
+                    if (radExcel.Checked)
                     {
-                        var saveList = Data_Table.FromXml(saveFile);
-                        var saveListDic = saveList.ToDataDictionary("MA_FILE", "XML_FILE");
-                        // so sánh với tblList, nếu cùng có mới thực hiện
-                        foreach (DataRow row0 in tblList.Rows)
-                        {
-                            // Đọc xml từng bảng dữ liệu
-                            var stt = ObjectAndString.ObjectToInt(row0["STT"]);
-                            var MA_CT = row0["MA_CT"].ToString().Trim();
-                            var MA_FILE = ObjectAndString.ObjectToString(row0["MA_FILE"]).Trim().ToUpper();
-                            var MA_FILE_CT = ObjectAndString.ObjectToString(row0["MA_FILE_CT"]).Trim().ToUpper(); // AD81,AD81GT - tên các bảng chi tiết, thuế...
-                            var table_name_AM = MA_FILE;
-                            var table_ad_list = ObjectAndString.SplitString(MA_FILE_CT);
-                            var ref_code = ObjectAndString.ObjectToString(row0["REF_CODE"]).Trim();         // STT_REC
-                            var xml_file = ObjectAndString.ObjectToString(row0["XML_FILE"]).Trim();
-                            var dele_type = ObjectAndString.ObjectToString(row0["dele_type"]).Trim();
-                            //var fields = ObjectAndString.ObjectToString(row0["fields"]).Trim();
-                            //var data1 = config.Tables[stt];
-                            var data1File = Path.Combine(tempDirCurrent, xml_file + ".xml");
-                            
-                            // kiểm tra trong saveList
-                            if (!saveListDic.ContainsKey(MA_FILE)) continue;
-                            if (!File.Exists(data1File)) continue;
-                            if (!V6BusinessHelper.IsExistDatabaseTable(table_name_AM))
-                            {
-                                _message = V6Text.NotExist + table_name_AM;
-                            }
-
-
-                            var data1 = Data_Table.FromXml(data1File);
-                            string table_name_AD1 = null, table_name_AD2 = null, table_name_AD3 = null;
-                            DataTable data_AD1 = null, data_AD2 = null, data_AD3 = null;
-                            table_name_AD1 = table_ad_list[0].Trim();
-                            var data_AD1File = Path.Combine(tempDirCurrent, table_name_AD1 + ".xml");
-                            data_AD1 = Data_Table.FromXml(data_AD1File);
-                            if (table_ad_list.Length > 1)
-                            {
-                                table_name_AD2 = table_ad_list[1].Trim();
-                                var data_AD2File = Path.Combine(tempDirCurrent, table_name_AD2 + ".xml");
-                                data_AD2 = Data_Table.FromXml(data_AD2File);
-                            }
-                            if (table_ad_list.Length > 2)
-                            {
-                                table_name_AD3 = table_ad_list[2].Trim();
-                                var data_AD3File = Path.Combine(tempDirCurrent, table_name_AD3 + ".xml");
-                                data_AD3 = Data_Table.FromXml(data_AD3File);
-                            }
-
-                            // insert data to tableName
-                            //dele_type "0" nếu tồn tại không insert, (khóa fields)
-                            //          "1" xóa rồi insert  (mặc định)
-                            //          "2" update nếu tồn tại, insert nếu chưa có.
-                            //V6InvoiceBase ca = new V6Invoice81();
-                            //ca = V6InvoiceBase.GetInvoice(MA_CT);
-                            foreach (DataRow row1 in data1.Rows)
-                            {
-                                bool exists = false;
-                                string filter = null;
-                                // check tồn tại
-                                string stt_rec = row1[ref_code].ToString().Trim();
-                                IDictionary<string, object> check_data = new SortedDictionary<string, object>();
-                                check_data[ref_code] = stt_rec;
-                                IDictionary<string, object> am = new SortedDictionary<string, object>();
-                                List<IDictionary<string, object>> ad1List = new List<IDictionary<string, object>>();
-                                List<IDictionary<string, object>> ad2List = new List<IDictionary<string, object>>();
-                                List<IDictionary<string, object>> ad3List = new List<IDictionary<string, object>>();
-                                
-                                var data_AD1_view = new DataView(data_AD1);
-                                data_AD1_view.RowFilter = "STT_REC='"+stt_rec+"'";
-                                ad1List = data_AD1_view.ToTable().ToListDataDictionary();
-                                if (data_AD2 != null)
-                                {
-                                    var data_AD2_view = new DataView(data_AD2);
-                                    data_AD2_view.RowFilter = "STT_REC='" + stt_rec + "'";
-                                    ad2List = data_AD2_view.ToTable().ToListDataDictionary();    
-                                }
-                                if (data_AD3 != null)
-                                {
-                                    var data_AD3_view = new DataView(data_AD3);
-                                    data_AD3_view.RowFilter = "STT_REC='" + stt_rec + "'";
-                                    ad3List = data_AD3_view.ToTable().ToListDataDictionary();
-                                }
-                                
-                                exists = ca.IsExistData(table_name_AM, check_data, filter);
-
-                                if (dele_type == "0") //"0" nếu tồn tại không insert
-                                {
-                                    if (!exists)
-                                    {
-                                        ca.Insert(table_name_AM, am);
-                                        foreach (IDictionary<string, object> dictionary in ad1List)
-                                        {
-                                            ca.Insert(table_name_AD1, dictionary);
-                                        }
-                                        if (table_name_AD2 != null)
-                                            foreach (IDictionary<string, object> dictionary in ad2List)
-                                            {
-                                                ca.Insert(table_name_AD2, dictionary);
-                                            }
-                                        if (table_name_AD3 != null)
-                                            foreach (IDictionary<string, object> dictionary in ad3List)
-                                            {
-                                                ca.Insert(table_name_AD3, dictionary);
-                                            }
-                                    }
-                                }
-                                else // dele_type == 1 // xóa nếu tồn tại rồi insert
-                                {
-                                    if (exists)
-                                    {
-                                        //Xóa AD1
-                                        ca.Delete(table_name_AD1, check_data);
-                                        //Xóa AD2
-                                        if (table_ad_list.Length > 1) ca.Delete(table_name_AD2, check_data);
-                                        //Xóa AD3
-                                        if (table_ad_list.Length > 2) ca.Delete(table_name_AD3, check_data);
-                                        //Xóa AM
-                                        ca.Delete(table_name_AM, check_data);
-
-                                    }
-                                    ca.Insert(table_name_AM, am);
-                                    foreach (IDictionary<string, object> dictionary in ad1List)
-                                    {
-                                        ca.Insert(table_name_AD1, dictionary);
-                                    }
-                                    if (table_name_AD2 != null)
-                                        foreach (IDictionary<string, object> dictionary in ad2List)
-                                        {
-                                            ca.Insert(table_name_AD2, dictionary);
-                                        }
-                                    if (table_name_AD3 != null)
-                                        foreach (IDictionary<string, object> dictionary in ad3List)
-                                        {
-                                            ca.Insert(table_name_AD3, dictionary);
-                                        }
-                                }
-                            }
-
-                        }//end list
-                    }//end if exists save file
-                }
-            }
-        }
-
-        private void ImportDataSoDuLuyKe(DataSet config, string key)
-        {
-            var tempDirCurrent = Path.Combine(_tempDir, key);
-            if (!Directory.Exists(tempDirCurrent))
-            {
-                Directory.CreateDirectory(tempDirCurrent);
-            }
-
-            if (config.Tables.Count > 1)
-            {
-                var tblList = config.Tables[0];
-
-                if (radExcel.Checked)
-                {
-                    ShowMainMessage(V6Text.NotSupported);
-                }
-                else
-                {
-                    var saveFile = Path.Combine(tempDirCurrent, key + ".xml");
-                    if (File.Exists(saveFile))
+                        ShowMainMessage(V6Text.NotSupported);
+                    }
+                    else
                     {
-                        var saveList = Data_Table.FromXml(saveFile);
-                        var saveListDic = saveList.ToDataDictionary("MA_FILE", "XML_FILE");
-                        // so sánh với tblList, nếu cùng có mới thực hiện
-                        foreach (DataRow row0 in tblList.Rows)
+                        var saveFile = Path.Combine(tempDirCurrent, key + ".xml");
+                        if (File.Exists(saveFile))
                         {
-                            // Đọc xml từng bảng dữ liệu
-                            var stt = ObjectAndString.ObjectToInt(row0["STT"]);
-                            var MA_CT = row0["MA_CT"].ToString().Trim();
-                            var MA_FILE = ObjectAndString.ObjectToString(row0["MA_FILE"]).Trim().ToUpper();
-                            var MA_FILE_CT = ObjectAndString.ObjectToString(row0["MA_FILE_CT"]).Trim().ToUpper(); // AD81,AD81GT - tên các bảng chi tiết, thuế...
-                            var table_name_AM = MA_FILE;
-                            var table_ad_list = ObjectAndString.SplitString(MA_FILE_CT);
-                            var ref_code = ObjectAndString.ObjectToString(row0["REF_CODE"]).Trim();         // STT_REC
-                            var xml_file = ObjectAndString.ObjectToString(row0["XML_FILE"]).Trim();
-                            var dele_type = ObjectAndString.ObjectToString(row0["dele_type"]).Trim();
-                            //var fields = ObjectAndString.ObjectToString(row0["fields"]).Trim();
-                            //var data1 = config.Tables[stt];
-                            var data1File = Path.Combine(tempDirCurrent, xml_file + ".xml");
-
-                            // kiểm tra trong saveList
-                            if (!saveListDic.ContainsKey(MA_FILE)) continue;
-                            if (!File.Exists(data1File)) continue;
-                            if (!V6BusinessHelper.IsExistDatabaseTable(table_name_AM))
+                            var saveList = Data_Table.FromXmlFile(saveFile);
+                            var saveListDic = saveList.ToDataDictionary("MA_FILE", "XML_FILE");
+                            // so sánh với tblList, nếu cùng có mới thực hiện
+                            foreach (DataRow row0 in tblList.Rows)
                             {
-                                _message = V6Text.NotExist + table_name_AM;
-                            }
+                                // Đọc xml từng bảng dữ liệu
+                                var stt = ObjectAndString.ObjectToInt(row0["STT"]);
+                                var MA_CT = row0["MA_CT"].ToString().Trim();
+                                var MA_FILE = ObjectAndString.ObjectToString(row0["MA_FILE"]).Trim().ToUpper();
+                                _message = MA_FILE;
+                                list_ma_file.Add(MA_FILE);
+                                var MA_FILE_CT = ObjectAndString.ObjectToString(row0["MA_FILE_CT"]).Trim().ToUpper();
+                                    // AD81,AD81GT - tên các bảng chi tiết, thuế...
+                                var table_name_AM = MA_FILE;
+                                var table_ad_list = ObjectAndString.SplitString(MA_FILE_CT);
+                                var ref_code = ObjectAndString.ObjectToString(row0["REF_CODE"]).Trim(); // STT_REC
+                                var xml_file = ObjectAndString.ObjectToString(row0["XML_FILE"]).Trim();
+                                var dele_type = ObjectAndString.ObjectToString(row0["dele_type"]).Trim();
+                                //var fields = ObjectAndString.ObjectToString(row0["fields"]).Trim();
+                                //var data1 = config.Tables[stt];
+                                var data1File = Path.Combine(tempDirCurrent, xml_file + ".xml");
 
-
-                            var data1 = Data_Table.FromXml(data1File);
-                            string table_name_AD1 = null, table_name_AD2 = null, table_name_AD3 = null;
-                            DataTable data_AD1 = null, data_AD2 = null, data_AD3 = null;
-                            if (table_ad_list.Length > 0)
-                            {
-                                table_name_AD1 = table_ad_list[0].Trim();
-                                if (!V6BusinessHelper.IsExistDatabaseTable(table_name_AD1))
+                                // kiểm tra trong saveList
+                                if (!saveListDic.ContainsKey(MA_FILE)) continue;
+                                if (!File.Exists(data1File)) continue;
+                                if (!V6BusinessHelper.IsExistDatabaseTable(table_name_AM))
                                 {
-                                    _message = V6Text.NotExist + table_name_AD1;
+                                    _message = V6Text.NotExist + table_name_AM;
                                 }
-                                var data_AD1File = Path.Combine(tempDirCurrent, table_name_AD1 + ".xml");
-                                data_AD1 = Data_Table.FromXml(data_AD1File);
-                            }
-                            if (table_ad_list.Length > 1)
-                            {
-                                table_name_AD2 = table_ad_list[1].Trim();
-                                if (!V6BusinessHelper.IsExistDatabaseTable(table_name_AD2))
-                                {
-                                    _message = V6Text.NotExist + table_name_AD2;
-                                }
-                                var data_AD2File = Path.Combine(tempDirCurrent, table_name_AD2 + ".xml");
-                                data_AD2 = Data_Table.FromXml(data_AD2File);
-                            }
-                            if (table_ad_list.Length > 2)
-                            {
-                                table_name_AD3 = table_ad_list[2].Trim();
-                                if (!V6BusinessHelper.IsExistDatabaseTable(table_name_AD3))
-                                {
-                                    _message = V6Text.NotExist + table_name_AD3;
-                                }
-                                var data_AD3File = Path.Combine(tempDirCurrent, table_name_AD3 + ".xml");
-                                data_AD3 = Data_Table.FromXml(data_AD3File);
-                            }
 
-                            // insert data to tableName
-                            //dele_type "0" nếu tồn tại không insert, (khóa fields)
-                            //          "1" xóa rồi insert  (mặc định)
-                            //          "2" update nếu tồn tại, insert nếu chưa có.
-                            //V6InvoiceBase ca = new V6Invoice81();
-                            //ca = V6InvoiceBase.GetInvoice(MA_CT);
-                            foreach (DataRow row1 in data1.Rows)
-                            {
-                                bool exists = false;
-                                string filter = null;
-                                // check tồn tại
-                                string stt_rec = row1[ref_code].ToString().Trim();
-                                IDictionary<string, object> check_data = new SortedDictionary<string, object>();
-                                check_data[ref_code] = stt_rec;
-                                IDictionary<string, object> am = new SortedDictionary<string, object>();
-                                List<IDictionary<string, object>> ad1List = new List<IDictionary<string, object>>();
-                                List<IDictionary<string, object>> ad2List = new List<IDictionary<string, object>>();
-                                List<IDictionary<string, object>> ad3List = new List<IDictionary<string, object>>();
 
-                                if (data_AD2 != null)
+                                var data1 = Data_Table.FromXmlFile(data1File);
+                                if (data1 == null) continue;
+
+                                string table_name_AD1 = null, table_name_AD2 = null, table_name_AD3 = null;
+                                DataTable data_AD1 = null, data_AD2 = null, data_AD3 = null;
+                                if (table_ad_list.Length > 0)
                                 {
+                                    table_name_AD1 = table_ad_list[0].Trim();
+                                    var data_AD1File = Path.Combine(tempDirCurrent, table_name_AD1 + ".xml");
+                                    data_AD1 = Data_Table.FromXmlFile(data_AD1File);
+                                }                                
+                                if (table_ad_list.Length > 1)
+                                {
+                                    table_name_AD2 = table_ad_list[1].Trim();
+                                    var data_AD2File = Path.Combine(tempDirCurrent, table_name_AD2 + ".xml");
+                                    data_AD2 = Data_Table.FromXmlFile(data_AD2File);
+                                }
+                                if (table_ad_list.Length > 2)
+                                {
+                                    table_name_AD3 = table_ad_list[2].Trim();
+                                    var data_AD3File = Path.Combine(tempDirCurrent, table_name_AD3 + ".xml");
+                                    data_AD3 = Data_Table.FromXmlFile(data_AD3File);
+                                }
+
+                                // insert data to tableName
+                                //dele_type "0" nếu tồn tại không insert, (khóa fields)
+                                //          "1" xóa rồi insert  (mặc định)
+                                //          "2" update nếu tồn tại, insert nếu chưa có.
+                                //V6InvoiceBase ca = new V6Invoice81();
+                                //ca = V6InvoiceBase.GetInvoice(MA_CT);
+                                foreach (DataRow row1 in data1.Rows)
+                                {
+                                    bool exists = false;
+                                    string filter = null;
+                                    // check tồn tại
+                                    string stt_rec = row1[ref_code].ToString().Trim();
+                                    _message = MA_FILE + " " + stt_rec;
+                                    IDictionary<string, object> check_data = new SortedDictionary<string, object>();
+                                    check_data[ref_code] = stt_rec;
+                                    IDictionary<string, object> am = row1.ToDataDictionary();
+                                    List<IDictionary<string, object>> ad1List = new List<IDictionary<string, object>>();
+                                    List<IDictionary<string, object>> ad2List = new List<IDictionary<string, object>>();
+                                    List<IDictionary<string, object>> ad3List = new List<IDictionary<string, object>>();
+
                                     var data_AD1_view = new DataView(data_AD1);
                                     data_AD1_view.RowFilter = "STT_REC='" + stt_rec + "'";
                                     ad1List = data_AD1_view.ToTable().ToListDataDictionary();
-                                }
-                                if (data_AD2 != null)
-                                {
-                                    var data_AD2_view = new DataView(data_AD2);
-                                    data_AD2_view.RowFilter = "STT_REC='" + stt_rec + "'";
-                                    ad2List = data_AD2_view.ToTable().ToListDataDictionary();
-                                }
-                                if (data_AD3 != null)
-                                {
-                                    var data_AD3_view = new DataView(data_AD3);
-                                    data_AD3_view.RowFilter = "STT_REC='" + stt_rec + "'";
-                                    ad3List = data_AD3_view.ToTable().ToListDataDictionary();
-                                }
-
-                                exists = ca.IsExistData(table_name_AM, check_data, filter);
-
-                                if (dele_type == "0") //"0" nếu tồn tại không insert
-                                {
-                                    if (!exists)
+                                    if (data_AD2 != null)
                                     {
+                                        var data_AD2_view = new DataView(data_AD2);
+                                        data_AD2_view.RowFilter = "STT_REC='" + stt_rec + "'";
+                                        ad2List = data_AD2_view.ToTable().ToListDataDictionary();
+                                    }
+                                    if (data_AD3 != null)
+                                    {
+                                        var data_AD3_view = new DataView(data_AD3);
+                                        data_AD3_view.RowFilter = "STT_REC='" + stt_rec + "'";
+                                        ad3List = data_AD3_view.ToTable().ToListDataDictionary();
+                                    }
+
+                                    exists = ca.IsExistData(table_name_AM, check_data, filter);
+
+                                    if (dele_type == "0") //"0" nếu tồn tại không insert
+                                    {
+                                        if (!exists)
+                                        {
+                                            ca.Insert(table_name_AM, am);
+                                            if (table_name_AD1 != null)
+                                                foreach (IDictionary<string, object> dictionary in ad1List)
+                                                {
+                                                    ca.Insert(table_name_AD1, dictionary);
+                                                }
+                                            if (table_name_AD2 != null)
+                                                foreach (IDictionary<string, object> dictionary in ad2List)
+                                                {
+                                                    ca.Insert(table_name_AD2, dictionary);
+                                                }
+                                            if (table_name_AD3 != null)
+                                                foreach (IDictionary<string, object> dictionary in ad3List)
+                                                {
+                                                    ca.Insert(table_name_AD3, dictionary);
+                                                }
+                                        }
+                                    }
+                                    else // dele_type == 1 // xóa nếu tồn tại rồi insert
+                                    {
+                                        if (exists)
+                                        {
+                                            //Xóa AD1
+                                            if (table_name_AD1 != null) ca.Delete(table_name_AD1, check_data);
+                                            //Xóa AD2
+                                            if (table_name_AD2 != null) ca.Delete(table_name_AD2, check_data);
+                                            //Xóa AD3
+                                            if (table_name_AD3 != null) ca.Delete(table_name_AD3, check_data);
+                                            //Xóa AM
+                                            ca.Delete(table_name_AM, check_data);
+
+                                        }
                                         ca.Insert(table_name_AM, am);
                                         if (table_name_AD1 != null)
                                             foreach (IDictionary<string, object> dictionary in ad1List)
@@ -648,42 +541,214 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                             }
                                     }
                                 }
-                                else // dele_type == 1 // xóa nếu tồn tại rồi insert
-                                {
-                                    if (exists)
-                                    {
-                                        //Xóa AD1
-                                        if (table_ad_list.Length > 0) ca.Delete(table_name_AD1, check_data);
-                                        //Xóa AD2
-                                        if (table_ad_list.Length > 1) ca.Delete(table_name_AD2, check_data);
-                                        //Xóa AD3
-                                        if (table_ad_list.Length > 2) ca.Delete(table_name_AD3, check_data);
-                                        //Xóa AM
-                                        ca.Delete(table_name_AM, check_data);
 
-                                    }
-                                    ca.Insert(table_name_AM, am);
-                                    if (table_name_AD1 != null)
-                                        foreach (IDictionary<string, object> dictionary in ad1List)
-                                        {
-                                            ca.Insert(table_name_AD1, dictionary);
-                                        }
-                                    if (table_name_AD2 != null)
-                                        foreach (IDictionary<string, object> dictionary in ad2List)
-                                        {
-                                            ca.Insert(table_name_AD2, dictionary);
-                                        }
-                                    if (table_name_AD3 != null)
-                                        foreach (IDictionary<string, object> dictionary in ad3List)
-                                        {
-                                            ca.Insert(table_name_AD3, dictionary);
-                                        }
-                                }
-                            }
-
-                        }//end list
-                    }//end if exists save file
+                            } //end list
+                        } //end if exists save file
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                propress_mess = string.Format("MA_FILE:{0}", ObjectAndString.ObjectToString(list_ma_file));
+                this.ShowErrorException(GetType() + ".ImportDataDuLieu\r\n" + propress_mess, ex);
+            }
+        }
+
+        private void ImportDataSoDuLuyKe(DataSet config, string key)
+        {
+            string propress_mess = null;
+            List<string> list_ma_file = new List<string>();
+            try
+            {
+                var tempDirCurrent = Path.Combine(_tempDir, key);
+                if (!Directory.Exists(tempDirCurrent))
+                {
+                    Directory.CreateDirectory(tempDirCurrent);
+                }
+
+                if (config.Tables.Count > 0)
+                {
+                    var tblList = config.Tables[0];
+
+                    if (radExcel.Checked)
+                    {
+                        ShowMainMessage(V6Text.NotSupported);
+                    }
+                    else
+                    {
+                        var saveFile = Path.Combine(tempDirCurrent, key + ".xml");
+                        if (File.Exists(saveFile))
+                        {
+                            var saveList = Data_Table.FromXmlFile(saveFile);
+                            var saveListDic = saveList.ToDataDictionary("MA_FILE", "XML_FILE");
+                            // so sánh với tblList, nếu cùng có mới thực hiện
+                            foreach (DataRow row0 in tblList.Rows)
+                            {
+                                // Đọc xml từng bảng dữ liệu
+                                var stt = ObjectAndString.ObjectToInt(row0["STT"]);
+                                var MA_CT = row0["MA_CT"].ToString().Trim();
+                                var MA_FILE = ObjectAndString.ObjectToString(row0["MA_FILE"]).Trim().ToUpper();
+                                list_ma_file.Add(MA_FILE);
+                                var MA_FILE_CT = ObjectAndString.ObjectToString(row0["MA_FILE_CT"]).Trim().ToUpper();
+                                    // AD81,AD81GT - tên các bảng chi tiết, thuế...
+                                var table_name_AM = MA_FILE;
+                                var table_ad_list = ObjectAndString.SplitString(MA_FILE_CT);
+                                var ref_code = ObjectAndString.ObjectToString(row0["REF_CODE"]).Trim(); // STT_REC
+                                var xml_file = ObjectAndString.ObjectToString(row0["XML_FILE"]).Trim();
+                                var dele_type = ObjectAndString.ObjectToString(row0["dele_type"]).Trim();
+                                //var fields = ObjectAndString.ObjectToString(row0["fields"]).Trim();
+                                //var data1 = config.Tables[stt];
+                                var data1File = Path.Combine(tempDirCurrent, xml_file + ".xml");
+
+                                // kiểm tra trong saveList
+                                if (!saveListDic.ContainsKey(MA_FILE)) continue;
+                                if (!File.Exists(data1File)) continue;
+                                if (!V6BusinessHelper.IsExistDatabaseTable(table_name_AM))
+                                {
+                                    _message = V6Text.NotExist + table_name_AM;
+                                }
+
+
+                                var data1 = Data_Table.FromXmlFile(data1File);
+                                if (data1 == null) continue;
+
+                                string table_name_AD1 = null, table_name_AD2 = null, table_name_AD3 = null;
+                                DataTable data_AD1 = null, data_AD2 = null, data_AD3 = null;
+                                if (table_ad_list.Length > 0)
+                                {
+                                    table_name_AD1 = table_ad_list[0].Trim();
+                                    if (!V6BusinessHelper.IsExistDatabaseTable(table_name_AD1))
+                                    {
+                                        _message = V6Text.NotExist + table_name_AD1;
+                                    }
+                                    var data_AD1File = Path.Combine(tempDirCurrent, table_name_AD1 + ".xml");
+                                    data_AD1 = Data_Table.FromXmlFile(data_AD1File);
+                                }
+                                if (table_ad_list.Length > 1)
+                                {
+                                    table_name_AD2 = table_ad_list[1].Trim();
+                                    if (!V6BusinessHelper.IsExistDatabaseTable(table_name_AD2))
+                                    {
+                                        _message = V6Text.NotExist + table_name_AD2;
+                                    }
+                                    var data_AD2File = Path.Combine(tempDirCurrent, table_name_AD2 + ".xml");
+                                    data_AD2 = Data_Table.FromXmlFile(data_AD2File);
+                                }
+                                if (table_ad_list.Length > 2)
+                                {
+                                    table_name_AD3 = table_ad_list[2].Trim();
+                                    if (!V6BusinessHelper.IsExistDatabaseTable(table_name_AD3))
+                                    {
+                                        _message = V6Text.NotExist + table_name_AD3;
+                                    }
+                                    var data_AD3File = Path.Combine(tempDirCurrent, table_name_AD3 + ".xml");
+                                    data_AD3 = Data_Table.FromXmlFile(data_AD3File);
+                                }
+
+                                // insert data to tableName
+                                //dele_type "0" nếu tồn tại không insert, (khóa fields)
+                                //          "1" xóa rồi insert  (mặc định)
+                                //          "2" update nếu tồn tại, insert nếu chưa có.
+                                //V6InvoiceBase ca = new V6Invoice81();
+                                //ca = V6InvoiceBase.GetInvoice(MA_CT);
+                                foreach (DataRow row1 in data1.Rows)
+                                {
+                                    bool exists = false;
+                                    string filter = null;
+                                    // check tồn tại
+                                    string stt_rec = row1[ref_code].ToString().Trim();
+                                    IDictionary<string, object> check_data = new SortedDictionary<string, object>();
+                                    check_data[ref_code] = stt_rec;
+                                    IDictionary<string, object> am = new SortedDictionary<string, object>();
+                                    List<IDictionary<string, object>> ad1List = new List<IDictionary<string, object>>();
+                                    List<IDictionary<string, object>> ad2List = new List<IDictionary<string, object>>();
+                                    List<IDictionary<string, object>> ad3List = new List<IDictionary<string, object>>();
+
+                                    if (data_AD2 != null)
+                                    {
+                                        var data_AD1_view = new DataView(data_AD1);
+                                        data_AD1_view.RowFilter = "STT_REC='" + stt_rec + "'";
+                                        ad1List = data_AD1_view.ToTable().ToListDataDictionary();
+                                    }
+                                    if (data_AD2 != null)
+                                    {
+                                        var data_AD2_view = new DataView(data_AD2);
+                                        data_AD2_view.RowFilter = "STT_REC='" + stt_rec + "'";
+                                        ad2List = data_AD2_view.ToTable().ToListDataDictionary();
+                                    }
+                                    if (data_AD3 != null)
+                                    {
+                                        var data_AD3_view = new DataView(data_AD3);
+                                        data_AD3_view.RowFilter = "STT_REC='" + stt_rec + "'";
+                                        ad3List = data_AD3_view.ToTable().ToListDataDictionary();
+                                    }
+
+                                    exists = ca.IsExistData(table_name_AM, check_data, filter);
+
+                                    if (dele_type == "0") //"0" nếu tồn tại không insert
+                                    {
+                                        if (!exists)
+                                        {
+                                            ca.Insert(table_name_AM, am);
+                                            if (table_name_AD1 != null)
+                                                foreach (IDictionary<string, object> dictionary in ad1List)
+                                                {
+                                                    ca.Insert(table_name_AD1, dictionary);
+                                                }
+                                            if (table_name_AD2 != null)
+                                                foreach (IDictionary<string, object> dictionary in ad2List)
+                                                {
+                                                    ca.Insert(table_name_AD2, dictionary);
+                                                }
+                                            if (table_name_AD3 != null)
+                                                foreach (IDictionary<string, object> dictionary in ad3List)
+                                                {
+                                                    ca.Insert(table_name_AD3, dictionary);
+                                                }
+                                        }
+                                    }
+                                    else // dele_type == 1 // xóa nếu tồn tại rồi insert
+                                    {
+                                        if (exists)
+                                        {
+                                            //Xóa AD1
+                                            if (table_ad_list.Length > 0) ca.Delete(table_name_AD1, check_data);
+                                            //Xóa AD2
+                                            if (table_ad_list.Length > 1) ca.Delete(table_name_AD2, check_data);
+                                            //Xóa AD3
+                                            if (table_ad_list.Length > 2) ca.Delete(table_name_AD3, check_data);
+                                            //Xóa AM
+                                            ca.Delete(table_name_AM, check_data);
+
+                                        }
+                                        ca.Insert(table_name_AM, am);
+                                        if (table_name_AD1 != null)
+                                            foreach (IDictionary<string, object> dictionary in ad1List)
+                                            {
+                                                ca.Insert(table_name_AD1, dictionary);
+                                            }
+                                        if (table_name_AD2 != null)
+                                            foreach (IDictionary<string, object> dictionary in ad2List)
+                                            {
+                                                ca.Insert(table_name_AD2, dictionary);
+                                            }
+                                        if (table_name_AD3 != null)
+                                            foreach (IDictionary<string, object> dictionary in ad3List)
+                                            {
+                                                ca.Insert(table_name_AD3, dictionary);
+                                            }
+                                    }
+                                }
+
+                            } //end list
+                        } //end if exists save file
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                propress_mess = string.Format("MA_FILE:{0}", ObjectAndString.ObjectToString(list_ma_file));
+                this.ShowErrorException(GetType() + ".ImportDataSoDuLuyKe\r\n" + propress_mess, ex);
             }
         }
 
@@ -719,9 +784,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             SqlParameter[] plist = new[]
             {
                 new SqlParameter("@Type", type),
-                new SqlParameter("@Ngay_ct1", dateNgay_ct1.Date),
-                new SqlParameter("@Ngay_ct2", dateNgay_ct2.Date),
-                new SqlParameter("@Ma_dvcs", txtDanhSachDonVi.Text),
+                new SqlParameter("@Ngay_ct1", dateNgay_ct1_Date),
+                new SqlParameter("@Ngay_ct2", dateNgay_ct2_Date),
+                new SqlParameter("@Ma_dvcs", txtDanhSachDonVi_Text),
                 new SqlParameter("@Ws_id", V6Options.GetValue("M_WS_ID")),
             };
             var ds = V6BusinessHelper.ExecuteProcedure("V6CopyVao", plist);

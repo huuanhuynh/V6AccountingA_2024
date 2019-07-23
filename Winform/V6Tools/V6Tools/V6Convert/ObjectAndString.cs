@@ -312,6 +312,17 @@ namespace V6Tools.V6Convert
             //}
             //if (result != "") return result;
 
+            if (o is List<string>)
+            {
+                var lo = (List<string>) o;
+                foreach (string s in lo)
+                {
+                    result += ";" + s;
+                }
+                if (result.Length > 1) result = result.Substring(1);
+                return result;
+            }
+
             switch (t.ToString())
             {
                 case "System.DateTime":

@@ -80,7 +80,7 @@ namespace V6Tools.V6Convert
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
-        public static DataTable FromXml(string text)
+        public static DataTable FromXmlString(string text)
         {
             var ds = DataSetFromXml(text);
             if (ds.Tables.Count > 0) return ds.Tables[0];
@@ -115,6 +115,11 @@ namespace V6Tools.V6Convert
                 Logger.WriteExLog("DataSetFromXml", ex, "");
             }
             return ds;
+        }
+
+        public static void ToExcelFile(DataTable data, string fileName)
+        {
+            ExportData.ToExcel(data, fileName, "");
         }
 
         public static string ToXml(DataTable data)

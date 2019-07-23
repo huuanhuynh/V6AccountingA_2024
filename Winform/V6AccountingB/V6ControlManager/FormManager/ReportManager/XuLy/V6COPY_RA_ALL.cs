@@ -18,6 +18,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
     public partial class V6COPY_RA_ALL : XuLyBase0
     {
+        private DateTime dateNgay_ct1_Date;
+        private DateTime dateNgay_ct2_Date;
+        private string txtDanhSachDonVi_Text = null;
+        private readonly string m_ws_id = V6Options.GetValue("M_WS_ID");
+
         public V6COPY_RA_ALL()
         {
             InitializeComponent();
@@ -95,6 +100,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     V6ControlFormHelper.ShowMainMessage(V6Text.Executing);
                     return;
                 }
+
+                dateNgay_ct1_Date = dateNgay_ct1.Date;
+                dateNgay_ct2_Date = dateNgay_ct2.Date;
+                txtDanhSachDonVi_Text = txtDanhSachDonVi.Text;
 
                 files = new List<string>();
                 CheckForIllegalCrossThreadCalls = false;
@@ -191,9 +200,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 DataTable generalInfoData = new DataTable("GeneralInfo");
                 IDictionary<string, object> dictionary = new Dictionary<string, object>();
                 dictionary["TYPE"] = "DM,SD,LK,CT,VC,BC,HB,V6";
-                dictionary["MA_DVCS"] = txtDanhSachDonVi.Text;
-                dictionary["NGAY_CT1"] = dateNgay_ct1.Date;
-                dictionary["NGAY_CT2"] = dateNgay_ct2.Date;
+                dictionary["MA_DVCS"] = txtDanhSachDonVi_Text;
+                dictionary["NGAY_CT1"] = dateNgay_ct1_Date;
+                dictionary["NGAY_CT2"] = dateNgay_ct2_Date;
                 dictionary["WS_ID"] = m_ws_id;
                 dictionary["CHECKING"] = "DM,DL,SD";
                 generalInfoData.AddRow(dictionary, true);
@@ -284,9 +293,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             SqlParameter[] plist = new[]
             {
                 new SqlParameter("@Type", type),
-                new SqlParameter("@Ngay_ct1", dateNgay_ct1.Date),
-                new SqlParameter("@Ngay_ct2", dateNgay_ct2.Date),
-                new SqlParameter("@Ma_dvcs", txtDanhSachDonVi.Text),
+                new SqlParameter("@Ngay_ct1", dateNgay_ct1_Date),
+                new SqlParameter("@Ngay_ct2", dateNgay_ct2_Date),
+                new SqlParameter("@Ma_dvcs", txtDanhSachDonVi_Text),
                 new SqlParameter("@Ws_id", m_ws_id),
             };
             var ds = V6BusinessHelper.ExecuteProcedure("V6CopyRaAll", plist);
