@@ -146,7 +146,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 try
                 {
                     DoAfterExecuteSuccess();
-                    V6ControlFormHelper.ShowMainMessage("V6CopyRa Thực hiện xong!\r\n" + _message);
+                    SetStatusText("V6CopyRa Thực hiện xong!\r\n" + _message);
+                    V6ControlFormHelper.ShowMainMessage(V6Text.Finish + " V6CopyRa\r\n" + _message);
                     _success = false;
                 }
                 catch (Exception ex)
@@ -158,8 +159,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             else if (_executing)
             {
-                btnNhan.Image = waitingImages.Images[ii];
-                ii++;
+                SetStatusText(_message);
+                btnNhan.Image = waitingImages.Images[ii++];
                 if (ii >= waitingImages.Images.Count) ii = 0;
             }
             else

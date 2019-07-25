@@ -73,7 +73,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         Directory.CreateDirectory(dir);
                     }
-                    txtFileName.Text = Path.Combine(dir, DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".7z");
                 }
 
             }
@@ -98,6 +97,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return;
                 }
 
+                
+                if (txtFileName.Text.Trim() == "")
+                {
+                    this.ShowInfoMessage("Chưa chọn gói dữ liệu nào!");
+                    btnSaveAs.PerformClick();
+                    return;
+                }
                 if (txtDanhSachDonVi.Text.Trim() == "")
                 {
                     this.ShowInfoMessage("Chưa chọn đơn vị nào!");
@@ -141,7 +147,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 try
                 {
                     DoAfterExecuteSuccess();
-                    V6ControlFormHelper.ShowMainMessage("V6CopyVao Thực hiện xong!\r\n" + _message);
+                    V6ControlFormHelper.ShowMainMessage(V6Text.Finish + " V6CopyVao\r\n" + _message);
                     _success = false;
                 }
                 catch (Exception ex)
@@ -175,12 +181,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 _message = "";
-                //_saveZipFile = txtFileName.Text;
-                //_dir = Path.GetDirectoryName(_saveZipFile);
-                //_tempDir = _dir + "\\Temp";
                 
-                //if (!Directory.Exists(_tempDir)) Directory.CreateDirectory(_tempDir);
-
                 if (chkDanhMuc.Checked) ImportDanhMuc();
                 if (chkDuLieu.Checked) ImportDuLieu();
                 if (chkSoDuVaLuyKe.Checked) ImportSoDuVaLuyKe();
@@ -242,6 +243,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
+        /// <summary>
+        /// Danh mục
+        /// </summary>
         V6Categories ca = new V6Categories();
         /// <summary>
         /// Nhập dữ liệu
@@ -283,11 +287,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 var MA_FILE = ObjectAndString.ObjectToString(row0["MA_FILE"]).Trim().ToUpper();
                                 _message = MA_FILE;
                                 list_ma_file.Add(MA_FILE);
-                                if (";ALBP;ALBPCC;ALBPHT;ALBPTS;ALCLTG;ALDVCS;ALGIA;ALGIA2;ALKC;ALKH;ALKHO;ALKU;ALLO;ALNHCC;ALNHKH;ALNHPHI;ALNHTHUE;ALNHTK;ALNHTS;ALNHVT;ALNHVV;ALNV;ALPB;ALPB1;ALPHI;ALQDDVT;ALSONB;ALTD;ALTD2;ALTD3;ALTGCC;ALTGNT;ALTGTS;ALTHUE;ALTK;ALTK0;"
-                                    .Contains(";"+MA_FILE+";"))// == "ALNHKH")
+                                if (MA_FILE == "ALVT")
                                 {
-                                    DoNothing();
-                                    //continue; // bật bỏ qua để debug nhanh.
+                                    //DoNothing();
+                                }
+                                else
+                                {
+                                    //;ALBP;ALBPCC;ALBPHT;ALBPTS;ALCLTG;ALDVCS;ALGIA;ALGIA2;ALKC;ALKH;ALKHO;ALKU;ALLO;ALNHCC;ALNHKH;ALNHPHI;ALNHTHUE;ALNHTK;ALNHTS;ALNHVT;ALNHVV;ALNV;ALPB;ALPB1;ALPHI;ALQDDVT;ALSONB;ALTD;ALTD2;ALTD3;ALTGCC;ALTGNT;ALTGTS;ALTHUE;ALTK;ALTK0;"
+                                    //continue; // bỏ qua hết, chỉ chạy phần if.
                                 }
                                 
                                 var table_name = MA_FILE;
@@ -319,26 +326,27 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     var field_list = ObjectAndString.SplitString(fields);
                                     foreach (string field in field_list)
                                     {
-                                        check_data[field] = row1[field];
+                                        check_data[field.ToUpper()] = row1[field];
                                     }
+                                    _message = MA_FILE + " " + check_data["MA_VT"];
                                     exists = V6BusinessHelper.CheckDataExist(table_name, check_data, filter);
 
                                     if (dele_type == "2") //update nếu tồn tại, insert nếu chưa có.
                                     {
                                         if (exists)
                                         {
-                                            ca.Update(table_name, row1.ToDataDictionary(), check_data);
+                                            ca.UpdateSimple(table_name, row1.ToDataDictionary(), check_data);
                                         }
                                         else
                                         {
-                                            ca.Insert(table_name, row1.ToDataDictionary());
+                                            ca.InsertSimple(table_name, row1.ToDataDictionary());
                                         }
                                     }
                                     else if (dele_type == "0") //"0" nếu tồn tại không insert, (khóa fields)
                                     {
                                         if (!exists)
                                         {
-                                            ca.Insert(table_name, row1.ToDataDictionary());
+                                            ca.InsertSimple(table_name, row1.ToDataDictionary());
                                         }
                                     }
                                     else // dele_type == 1 // xóa nếu tồn tại rồi insert
@@ -347,7 +355,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                         {
                                             ca.Delete(table_name, check_data);
                                         }
-                                        ca.Insert(table_name, row1.ToDataDictionary());
+                                        ca.InsertSimple(table_name, row1.ToDataDictionary());
                                     }
                                 }
 
@@ -405,6 +413,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 var MA_FILE = ObjectAndString.ObjectToString(row0["MA_FILE"]).Trim().ToUpper();
                                 _message = MA_FILE;
                                 list_ma_file.Add(MA_FILE);
+#if DEBUG
+                                if (MA_FILE == "AM81")
+                                {
+                                    DoNothing();
+                                }
+                                else
+                                {
+                                    continue; // bỏ qua hết, chỉ chạy phần if.
+                                }
+#endif
                                 var MA_FILE_CT = ObjectAndString.ObjectToString(row0["MA_FILE_CT"]).Trim().ToUpper();
                                     // AD81,AD81GT - tên các bảng chi tiết, thuế...
                                 var table_name_AM = MA_FILE;
@@ -491,21 +509,21 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     {
                                         if (!exists)
                                         {
-                                            ca.Insert(table_name_AM, am);
+                                            ca.InsertSimple(table_name_AM, am);
                                             if (table_name_AD1 != null)
                                                 foreach (IDictionary<string, object> dictionary in ad1List)
                                                 {
-                                                    ca.Insert(table_name_AD1, dictionary);
+                                                    ca.InsertSimple(table_name_AD1, dictionary);
                                                 }
                                             if (table_name_AD2 != null)
                                                 foreach (IDictionary<string, object> dictionary in ad2List)
                                                 {
-                                                    ca.Insert(table_name_AD2, dictionary);
+                                                    ca.InsertSimple(table_name_AD2, dictionary);
                                                 }
                                             if (table_name_AD3 != null)
                                                 foreach (IDictionary<string, object> dictionary in ad3List)
                                                 {
-                                                    ca.Insert(table_name_AD3, dictionary);
+                                                    ca.InsertSimple(table_name_AD3, dictionary);
                                                 }
                                         }
                                     }
@@ -523,21 +541,21 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                             ca.Delete(table_name_AM, check_data);
 
                                         }
-                                        ca.Insert(table_name_AM, am);
+                                        ca.InsertSimple(table_name_AM, am);
                                         if (table_name_AD1 != null)
                                             foreach (IDictionary<string, object> dictionary in ad1List)
                                             {
-                                                ca.Insert(table_name_AD1, dictionary);
+                                                ca.InsertSimple(table_name_AD1, dictionary);
                                             }
                                         if (table_name_AD2 != null)
                                             foreach (IDictionary<string, object> dictionary in ad2List)
                                             {
-                                                ca.Insert(table_name_AD2, dictionary);
+                                                ca.InsertSimple(table_name_AD2, dictionary);
                                             }
                                         if (table_name_AD3 != null)
                                             foreach (IDictionary<string, object> dictionary in ad3List)
                                             {
-                                                ca.Insert(table_name_AD3, dictionary);
+                                                ca.InsertSimple(table_name_AD3, dictionary);
                                             }
                                     }
                                 }
@@ -689,21 +707,21 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     {
                                         if (!exists)
                                         {
-                                            ca.Insert(table_name_AM, am);
+                                            ca.InsertSimple(table_name_AM, am);
                                             if (table_name_AD1 != null)
                                                 foreach (IDictionary<string, object> dictionary in ad1List)
                                                 {
-                                                    ca.Insert(table_name_AD1, dictionary);
+                                                    ca.InsertSimple(table_name_AD1, dictionary);
                                                 }
                                             if (table_name_AD2 != null)
                                                 foreach (IDictionary<string, object> dictionary in ad2List)
                                                 {
-                                                    ca.Insert(table_name_AD2, dictionary);
+                                                    ca.InsertSimple(table_name_AD2, dictionary);
                                                 }
                                             if (table_name_AD3 != null)
                                                 foreach (IDictionary<string, object> dictionary in ad3List)
                                                 {
-                                                    ca.Insert(table_name_AD3, dictionary);
+                                                    ca.InsertSimple(table_name_AD3, dictionary);
                                                 }
                                         }
                                     }
@@ -721,21 +739,21 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                             ca.Delete(table_name_AM, check_data);
 
                                         }
-                                        ca.Insert(table_name_AM, am);
+                                        ca.InsertSimple(table_name_AM, am);
                                         if (table_name_AD1 != null)
                                             foreach (IDictionary<string, object> dictionary in ad1List)
                                             {
-                                                ca.Insert(table_name_AD1, dictionary);
+                                                ca.InsertSimple(table_name_AD1, dictionary);
                                             }
                                         if (table_name_AD2 != null)
                                             foreach (IDictionary<string, object> dictionary in ad2List)
                                             {
-                                                ca.Insert(table_name_AD2, dictionary);
+                                                ca.InsertSimple(table_name_AD2, dictionary);
                                             }
                                         if (table_name_AD3 != null)
                                             foreach (IDictionary<string, object> dictionary in ad3List)
                                             {
-                                                ca.Insert(table_name_AD3, dictionary);
+                                                ca.InsertSimple(table_name_AD3, dictionary);
                                             }
                                     }
                                 }
@@ -750,33 +768,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 propress_mess = string.Format("MA_FILE:{0}", ObjectAndString.ObjectToString(list_ma_file));
                 this.ShowErrorException(GetType() + ".ImportDataSoDuLuyKe\r\n" + propress_mess, ex);
             }
-        }
-
-        private int InsertTable(DataTable data, string tableName)
-        {
-            int count = 0;
-            try
-            {
-                V6Categories ca = new V6Categories();
-                foreach (DataRow row in data.Rows)
-                {
-                    try
-                    {
-                        ca.Insert(tableName, row.ToDataDictionary());
-                        count++;
-                    }
-                    catch (Exception ex1)
-                    {
-
-                    }
-                }
-            }
-            catch (Exception ex0)
-            {
-
-            }
-
-            return count;
         }
         
         private DataSet RunProcV6CopyRa(string type)
@@ -800,7 +791,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             string file = V6ControlFormHelper.ChooseOpenFile(this, "7zip|*.7z|Rar|*.rar");
             if (!string.IsNullOrEmpty(file))
             {
-                txtFileName.Text = file;
+                //txtFileName.Text = file;
                 LoadFileInfo(file);
             }
         }
@@ -827,6 +818,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     chkSoDuVaLuyKe.Checked = checking.Contains("SD");
                 }
                 DoNothing();
+                txtFileName.Text = file;
             }
             catch (Exception ex)
             {

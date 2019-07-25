@@ -205,6 +205,45 @@ namespace V6SqlConnect
         }
 
         /// <summary>
+        /// Tạo câu query thêm dữ liệu vào bảng không có các trường tự động.
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <param name="tableName"></param>
+        /// <param name="structTable"></param>
+        /// <param name="dataDictionary"></param>
+        /// <returns></returns>
+        public static string GenInsertSqlSimple(int UserId, string tableName, V6TableStruct structTable, IDictionary<string, object> dataDictionary)
+        {
+            string fields = "";
+            string values = "";
+            foreach (V6ColumnStruct column in structTable.Values)
+            {
+                var FIELD = column.ColumnName.ToUpper();
+                if (FIELD != "UID")
+                {
+                    fields += ",\n[" + FIELD + "]";
+
+                    values += ",\n" + GenSqlStringValue(
+                        dataDictionary.ContainsKey(FIELD)
+                            ? dataDictionary[FIELD]
+                            : "", column.sql_data_type_string, column.ColumnDefault,
+                        column.AllowNull,
+                        column.MaxLength);
+                }
+            }
+            if (fields.Length > 0)
+            {
+                fields = fields.TrimStart(',');
+            }
+            if (values.Length > 0)
+            {
+                values = values.TrimStart(',');
+            }
+            string sql = "Insert into [" + tableName + "] (" + fields + ")\n Values \n(" + values + ")";
+            return sql;
+        }
+
+        /// <summary>
         /// Đặc biệt dùng cho chứng từ!!!
         /// </summary>
         /// <param name="UserId"></param>
@@ -345,8 +384,7 @@ namespace V6SqlConnect
         /// <param name="dataDictionary"></param>
         /// <param name="keys"></param>
         /// <returns></returns>
-        public static string GenUpdateSql(int UserId, string tableName, V6TableStruct structTable,
-            IDictionary<string, object> dataDictionary, IDictionary<string, object> keys)
+        public static string GenUpdateSql(int UserId, string tableName, IDictionary<string, object> dataDictionary, IDictionary<string, object> keys, V6TableStruct structTable)
         {
             var serverDateTime = SqlConnect.GetServerDateTime();
             var dateString = serverDateTime.ToString("yyyyMMdd");
@@ -461,12 +499,13 @@ namespace V6SqlConnect
         /// <summary>
         /// Tạo câu sql update không có các thông tin tự động DATE TIME và USER_ID
         /// </summary>
+        /// <param name="UserId"></param>
         /// <param name="tableName"></param>
         /// <param name="dataDictionary"></param>
         /// <param name="keys"></param>
         /// <param name="structTable">Nếu có struct thì tạo theo struct, nếu không có thì tạo theo data</param>
         /// <returns></returns>
-        public static string GenUpdateSqlSimple(string tableName, IDictionary<string, object> dataDictionary,
+        public static string GenUpdateSqlSimple(int UserId, string tableName, IDictionary<string, object> dataDictionary,
             IDictionary<string, object> keys, V6TableStruct structTable = null)
         {
             var sql = "Update [" + tableName + "] Set"; // field = value[, field2 = value2[...]]
@@ -1038,7 +1077,14 @@ namespace V6SqlConnect
                                 DateTime d;
                                 try
                                 {
-                                    d = DateTime.ParseExact(value, "d/M/yyyy", null);
+                                    //d = DateTime.ParseExact(value, "d/M/yyyy", null);
+                                    if (!DateTime.TryParseExact(value, "d/M/yyyy", null, DateTimeStyles.None, out d))
+                                    {
+                                        if (!DateTime.TryParse(value, out d))
+                                        {
+                                            d = SqlConnect.GetServerDateTime();
+                                        }
+                                    }
                                 }
                                 catch
                                 {
@@ -1210,7 +1256,14 @@ namespace V6SqlConnect
                                 DateTime d;
                                 try
                                 {
-                                    d = DateTime.ParseExact(value, "d/M/yyyy", null);
+                                    //d = DateTime.ParseExact(value, "d/M/yyyy", null);
+                                    if (!DateTime.TryParseExact(value, "d/M/yyyy", null, DateTimeStyles.None, out d))
+                                    {
+                                        if (!DateTime.TryParse(value, out d))
+                                        {
+                                            d = SqlConnect.GetServerDateTime();
+                                        }
+                                    }
                                 }
                                 catch
                                 {

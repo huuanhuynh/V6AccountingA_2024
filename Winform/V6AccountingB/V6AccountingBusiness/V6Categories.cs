@@ -136,6 +136,14 @@ namespace V6AccountingBusiness
             return result > 0;
         }
 
+        public bool InsertSimple(string tableName, IDictionary<string, object> data)
+        {
+            var structTable = V6SqlconnectHelper.GetTableStruct(tableName);
+            var sql = SqlGenerator.GenInsertSqlSimple(V6Login.UserId, tableName, structTable, data);
+            int result = SqlConnect.ExecuteNonQuery(CommandType.Text, sql);
+            return result > 0;
+        }
+
         #endregion add
 
         #region ==== EDIT-UPDATE ====
@@ -162,8 +170,18 @@ namespace V6AccountingBusiness
         /// <returns></returns>
         public int Update(string tableName, IDictionary<string, object> data, IDictionary<string, object> keys, SqlTransaction transaction = null)
         {
+            var tableStruct = V6SqlconnectHelper.GetTableStruct(tableName);
+            var sql = SqlGenerator.GenUpdateSql(V6Login.UserId, tableName, data, keys, tableStruct);
+            var result = transaction == null
+                ? SqlConnect.ExecuteNonQuery(CommandType.Text, sql)
+                : SqlConnect.ExecuteNonQuery(transaction, CommandType.Text, sql);
+            return result;
+        }
+
+        public int UpdateSimple(string tableName, IDictionary<string, object> data, IDictionary<string, object> keys, SqlTransaction transaction = null)
+        {
             var structTable = V6SqlconnectHelper.GetTableStruct(tableName);
-            var sql = SqlGenerator.GenUpdateSql(V6Login.UserId, tableName, structTable, data, keys);
+            var sql = SqlGenerator.GenUpdateSqlSimple(V6Login.UserId, tableName, data, keys, structTable);
             var result = transaction == null
                 ? SqlConnect.ExecuteNonQuery(CommandType.Text, sql)
                 : SqlConnect.ExecuteNonQuery(transaction, CommandType.Text, sql);

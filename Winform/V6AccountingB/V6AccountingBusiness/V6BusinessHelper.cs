@@ -594,6 +594,19 @@ namespace V6AccountingBusiness
             }
         }
 
+        public static int CheckDataLocked(string type, DateTime date, int month, int year)
+        {
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@Type", type),
+                new SqlParameter("@Date", date.Date),
+                new SqlParameter("@Month", month),
+                new SqlParameter("@Year", year),
+            };
+            var result = SqlConnect.ExecuteScalar(CommandType.Text, "Select dbo.VFA_CheckDataLocked (@Type, @Date, @Month, @Year)", plist);
+            return ObjectAndString.ObjectToInt(result);
+        }
+
         /// <summary>
         /// Kiểm tra MST đúng định dạng.
         /// </summary>
@@ -952,6 +965,14 @@ namespace V6AccountingBusiness
             return result > 0;
         }
 
+        public static bool InsertSimple(string tableName, IDictionary<string, object> dataDictionary)
+        {
+            V6TableStruct tableStruct = GetTableStruct(tableName);
+            string sql = SqlGenerator.GenInsertSqlSimple(V6Login.UserId, tableName, tableStruct, dataDictionary);
+            int result = SqlConnect.ExecuteNonQuery(CommandType.Text, sql);
+            return result > 0;
+        }
+
         public static int Update(V6TableName tableName, SortedDictionary<string, object> dataDictionary,
             SortedDictionary<string, object> keys)
         {
@@ -961,7 +982,7 @@ namespace V6AccountingBusiness
             IDictionary<string, object> keys)
         {
             V6TableStruct tableStruct = GetTableStruct(tableName);
-            var sql = SqlGenerator.GenUpdateSql(V6Login.UserId, tableName, tableStruct, dataDictionary, keys);
+            var sql = SqlGenerator.GenUpdateSql(V6Login.UserId, tableName, dataDictionary, keys, tableStruct);
             var result = SqlConnect.ExecuteNonQuery(CommandType.Text, sql);
             return result;
         }
@@ -970,7 +991,7 @@ namespace V6AccountingBusiness
             SortedDictionary<string, object> keys)
         {
             V6TableStruct tableStruct = GetTableStruct(tableName);
-            var sql = SqlGenerator.GenUpdateSql(V6Login.UserId, tableName, tableStruct, dataDictionary, keys);
+            var sql = SqlGenerator.GenUpdateSql(V6Login.UserId, tableName, dataDictionary, keys, tableStruct);
             var result = SqlConnect.ExecuteNonQuery(tran, CommandType.Text, sql);
             return result;
         }
@@ -996,7 +1017,7 @@ namespace V6AccountingBusiness
             string sql = "";
             try
             {
-                sql = SqlGenerator.GenUpdateSqlSimple(tableName, dataDictionary, keys, tableStruct);
+                sql = SqlGenerator.GenUpdateSqlSimple(V6Login.UserId, tableName, dataDictionary, keys, tableStruct);
             }
             catch (Exception ex)
             {
