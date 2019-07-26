@@ -59,7 +59,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected override void timerViewReport_Tick(object sender, EventArgs e)
         {
-            if (_dataLoaded)
+            if (_dataloaded)
             {
                 timerViewReport.Stop();
                 btnNhan.Image = btnNhanImage;
@@ -86,17 +86,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         //Thong bao tinh toan xong
                         V6ControlFormHelper.ShowMessage(V6Text.Finish);
                     }
-                    _dataLoaded = false;
+                    _dataloaded = false;
                 }
                 catch (Exception ex)
                 {
                     timerViewReport.Stop();
 
-                    _dataLoaded = false;
+                    _dataloaded = false;
                     this.ShowErrorMessage(GetType() + ".TimerView" + ex.Message, ex.Source);
                 }
             }
-            else if (_dataLoading)
+            else if (_dataloading)
             {
                 btnNhan.Image = waitingImages.Images[ii++];
                 if (ii >= waitingImages.Images.Count) ii = 0;
@@ -116,8 +116,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                _dataLoading = true;
-                _dataLoaded = false;
+                _dataloading = true;
+                _dataloaded = false;
 
                 // Chay nhieu proc
                 string c_proc;
@@ -146,7 +146,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     _tbl2 = null;
                 }
 
-                _dataLoaded = true;
+                _dataloaded = true;
             }
             catch (Exception ex)
             {
@@ -154,9 +154,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 _tbl = null;
                 _tbl2 = null;
                 _ds = null;
-                _dataLoaded = false;
+                _dataloaded = false;
             }
-            _dataLoading = false;
+            _dataloading = false;
         }
 
         #region ==== F3 ====

@@ -56,7 +56,6 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu
         private IDictionary<string, object> _currentRowData;
         private string _tableName = "Corplan2";
         private int _index;
-        private bool _dataloaded;
         private bool _genfinish;
         
         private void LoadData()

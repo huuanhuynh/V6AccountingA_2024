@@ -25,8 +25,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             InitializeComponent();
         }
 
-        public AINVITRI03_REPORT(string itemId, string program, string reportProcedure, string reportFile, string text)
-            : base(itemId, program, reportProcedure, reportFile, text, true)
+        public AINVITRI03_REPORT(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
+            : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
             InitializeComponent();
             MyInit();

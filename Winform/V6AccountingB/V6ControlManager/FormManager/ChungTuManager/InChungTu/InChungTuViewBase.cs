@@ -1333,9 +1333,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         }
 
         #region ==== LoadData MakeReport ====
-        bool _dataLoaded;
-        bool _dataLoading;
-
         
         void LoadData()
         {
@@ -1346,12 +1343,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 if (beforeLoadData != null && !(bool)beforeLoadData)
                 {
                     _message = V6Text.CheckInfor;
-                    Data_Loading = false;
+                    _dataloading = false;
                     return;
                 }
 
-                _dataLoading = true;
-                _dataLoaded = false;
+                _dataloading = true;
+                _dataloaded = false;
                 var proc = "";
                 if (FilterControl is FilterDanhMuc)
                 {
@@ -1380,7 +1377,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     _tbl2_AM = null;
                 }
                 
-                _dataLoaded = true;
+                _dataloaded = true;
             }
             catch (Exception ex)
             {
@@ -1388,9 +1385,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 _tbl_AD = null;
                 _tbl2_AM = null;
                 _ds = null;
-                _dataLoaded = false;
+                _dataloaded = false;
             }
-            _dataLoading = false;
+            _dataloading = false;
         }
 
         //private bool _forcePrint;
@@ -1467,7 +1464,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
         private void timerViewReport_Tick(object sender, EventArgs e)
         {
-            if (_dataLoaded)
+            if (_dataloaded)
             {
                 timerViewReport.Stop();
                 btnNhan.Image = btnNhanImage;
@@ -1497,11 +1494,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 }
                 catch (Exception ex)
                 {
-                    _dataLoaded = false;
+                    _dataloaded = false;
                     this.ShowErrorMessage(GetType() + ".MakeReport " + ex.Message);
                 }
             }
-            else if (_dataLoading)
+            else if (_dataloading)
             {
                 btnNhan.Image = waitingImages.Images[ii];
                 ii++;

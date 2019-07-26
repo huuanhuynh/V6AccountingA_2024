@@ -455,7 +455,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         public void btnNhan_Click(object sender, EventArgs e)
         {
-            if (_dataLoading)
+            if (_dataloading)
             {
                 return;
             }
@@ -506,8 +506,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         #region ==== LoadData MakeReport ====
 
-        protected bool _dataLoaded;
-        protected bool _dataLoading;
         void LoadData()
         {
             All_Objects["_plist"] = _pList;
@@ -515,11 +513,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             if (beforeLoadData != null && !(bool)beforeLoadData)
             {
                 _message = V6Text.CheckInfor;
-                Data_Loading = false;
+                SetStatusText(_message);
+                _dataloading = false;
                 return;
             }
             LoadData0();
-            _dataLoading = false;
+            _dataloading = false;
         }
 
         protected virtual void LoadData0()
@@ -548,7 +547,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     _tbl2 = null;
                 }
 
-                _dataLoaded = true;
+                _dataloaded = true;
             }
             catch (Exception ex)
             {
@@ -557,7 +556,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 _tbl = null;
                 _tbl2 = null;
                 _ds = null;
-                _dataLoaded = false;
+                _dataloaded = false;
             }
         }
 
@@ -565,18 +564,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                _dataLoading = true;
+                _dataloading = true;
                 V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure, _pList.ToArray());
                 
-                _dataLoaded = true;
-                _dataLoading = false;
+                _dataloaded = true;
+                _dataloading = false;
             }
             catch (Exception ex)
             {
                 _message = ex.Message;
                 this.WriteExLog(GetType() + ".TinhToan!", ex);
-                _dataLoading = false;
-                _dataLoaded = false;
+                _dataloading = false;
+                _dataloaded = false;
             }
         }
         /// <summary>
@@ -592,8 +591,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (Load_Data)
                 {
                     CheckForIllegalCrossThreadCalls = false;
-                    _dataLoading = true;
-                    _dataLoaded = false;
+                    _dataloading = true;
+                    _dataloaded = false;
                     var tLoadData = new Thread(LoadData);
                     tLoadData.Start();
                     timerViewReport.Start();
@@ -611,14 +610,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected bool Load_Data = true;
         protected virtual void timerViewReport_Tick(object sender, EventArgs e)
         {
-            if (_dataLoading)
+            if (_dataloading)
             {
                 btnNhan.Image = waitingImages.Images[ii++];
                 if (ii >= waitingImages.Images.Count) ii = 0;
             }
             else
             {
-                if (_dataLoaded)
+                if (_dataloaded)
                 {
                     timerViewReport.Stop();
                     btnNhan.Image = btnNhanImage;
@@ -646,13 +645,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             V6ControlFormHelper.ShowMessage(V6Text.Finish);
                         }
                         LoadDataFinish();
-                        _dataLoaded = false;
+                        _dataloaded = false;
                     }
                     catch (Exception ex)
                     {
                         timerViewReport.Stop();
 
-                        _dataLoaded = false;
+                        _dataloaded = false;
                         this.ShowErrorException(GetType() + ".TimerView", ex);
                     }
                 }
@@ -893,7 +892,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             else if (keyData == Keys.F9 && FilterControl.F9)
             {
+                object beforeF9 = InvokeFormEvent(FormDynamicEvent.BEFOREF9);
+                if (beforeF9 != null && !(bool)beforeF9)
+                {
+                    _message = V6Text.CheckInfor;
+                    SetStatusText(_message);
+                    return false;
+                }
                 XuLyF9();
+                InvokeFormEvent(FormDynamicEvent.AFTERF9);
             }
             else if (keyData == Keys.F10 && FilterControl.F10)
             {
@@ -1248,17 +1255,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         //cap nhap thong tin
                         LoadComboboxSource();
-                        //Chọn cái mới.
-                        //var reportFileNew = data["REPORT"].ToString().Trim();
-                        //var dataV = MauInView.ToTable();
-                        //for (int i = 0; i < dataV.Rows.Count; i++)
-                        //{
-                        //    if (dataV.Rows[i]["Report"].ToString().Trim().ToUpper() == reportFileNew.ToUpper())
-                        //    {
-                        //        cboMauIn.SelectedIndex = i;
-                        //        break;
-                        //    }
-                        //}
                     };
                     f.ShowDialog(this);
                     SetStatus2Text();
@@ -1308,17 +1304,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     //cap nhap thong tin
                     LoadComboboxSource();
-                    //Chọn cái mới.
-                    //var reportFileNew = data["REPORT"].ToString().Trim();
-                    //var dataV = MauInView.ToTable();
-                    //for (int i = 0; i < dataV.Rows.Count; i++)
-                    //{
-                    //    if (dataV.Rows[i]["Report"].ToString().Trim().ToUpper() == reportFileNew.ToUpper())
-                    //    {
-                    //        cboMauIn.SelectedIndex = i;
-                    //        break;
-                    //    }
-                    //}
                 };
                 f.ShowDialog(this);
                 SetStatus2Text();

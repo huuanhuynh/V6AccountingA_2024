@@ -11,8 +11,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
     public class V6BACKUP1 : XuLyBase0
     {
-        public V6BACKUP1(string itemId, string program, string reportProcedure, string reportFile, string text)
-            : base(itemId, program, reportProcedure, reportFile, text, true)
+        public V6BACKUP1(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
+            : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
             GetName();
         }

@@ -5,8 +5,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
     public class ATOTINHPB : XuLyBase0
     {
-        public ATOTINHPB(string itemId, string program, string reportProcedure, string reportFile, string text)
-            : base(itemId, program, reportProcedure, reportFile, text, true)
+        public ATOTINHPB(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
+            : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
             
         }

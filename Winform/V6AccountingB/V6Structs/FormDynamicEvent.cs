@@ -23,6 +23,7 @@
         public const string AFTERADDFILTERCONTROL = "AFTERADDFILTERCONTROL";
         public const string AFTERADDSUCCESS = "AFTERADDSUCCESS";
         public const string AFTEREDITSUCCESS = "AFTEREDITSUCCESS";
+        public const string AFTERF9 = "AFTERF9";
         public const string AFTERSAVESUCCESS = "AFTERSAVESUCCESS";
         public const string AFTERDELETESUCCESS = "AFTERDELETESUCCESS";
         public const string AFTERLOADDATA = "AFTERLOADDATA";
@@ -35,6 +36,7 @@
 
         public const string BEFOREADD = "BEFOREADD";
         public const string BEFOREEDIT = "BEFOREEDIT";
+        public static string BEFOREF9 = "BEFOREF9";
         /// <summary>
         /// BEFOREINSERTORUPDATE
         /// </summary>
@@ -66,5 +68,6 @@
         public static string TAOPACKING = "TAOPACKING";
         public static string TAOGRNO = "TAOGRNO";
         public static string TAORRNO = "TAORRNO";
+        
     }
 }

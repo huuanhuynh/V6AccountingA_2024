@@ -13,9 +13,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     public class AINGIA_TB : XuLyBase0
     {
         private System.Windows.Forms.Label lblStatus;
-    
-        public AINGIA_TB(string itemId, string program, string reportProcedure, string reportFile, string text)
-            : base(itemId, program, reportProcedure, reportFile, text, true)
+
+        public AINGIA_TB(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
+            : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
             InitializeComponent();
             MyInit();

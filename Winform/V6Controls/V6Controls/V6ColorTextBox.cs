@@ -153,7 +153,7 @@ namespace V6Controls
 
         [Category("V6")]
         [DefaultValue(null)]
-        [Description("Những ký tự được phép sử dụng khi gõ.")]
+        [Description("Những ký tự được phép sử dụng khi gõ. Đối với kiểu số các số cách nhau bởi ;")]
         public virtual string LimitCharacters
         {
             get { return _lmChars; }

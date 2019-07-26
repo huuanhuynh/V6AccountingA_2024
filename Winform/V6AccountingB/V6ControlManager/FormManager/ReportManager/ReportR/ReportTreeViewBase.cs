@@ -825,7 +825,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         
         public void btnNhan_Click(object sender, EventArgs e)
         {
-            if (Data_Loading)
+            if (_dataloading)
             {
                 return;
             }
@@ -957,11 +957,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 if (beforeLoadData != null && !(bool)beforeLoadData)
                 {
                     _message = V6Text.CheckInfor;
-                    Data_Loading = false;
+                    _dataloading = false;
                     return;
                 }
 
-                Data_Loading = true;
+                _dataloading = true;
                 var proc = "";
                 if (!string.IsNullOrEmpty(FilterControl.ProcedureName))
                 {
@@ -1001,8 +1001,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     _tbl3 = null;
                 }
                 
-                _load_data_success = true;
-                Data_Loading = false;
+                _dataloaded = true;
+                _dataloading = false;
             }
             catch (Exception ex)
             {
@@ -1010,8 +1010,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 _tbl1 = null;
                 _tbl2 = null;
                 _ds = null;
-                Data_Loading = false;
-                _load_data_success = false;
+                _dataloading = false;
+                _dataloaded = false;
             }
         }
         /// <summary>
@@ -1024,8 +1024,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (GenerateProcedureParameters()) //Add các key khác
             {
-                _load_data_success = false;
-                Data_Loading = true;
+                _dataloaded = false;
+                _dataloading = true;
                 var tLoadData = new Thread(LoadData);
                 CheckForIllegalCrossThreadCalls = false;
                 tLoadData.Start();
@@ -1034,7 +1034,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         }
         private void timerViewReport_Tick(object sender, EventArgs e)
         {
-            if (_load_data_success)
+            if (_dataloaded)
             {
                 timerViewReport.Stop();
                 btnNhan.Image = btnNhanImage;
@@ -1064,16 +1064,16 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     }
                     //gridViewSummary1.NoSumColumns = Report_GRDT_V1;
 
-                    _load_data_success = false;
+                    _dataloaded = false;
                 }
                 catch (Exception ex)
                 {
                     timerViewReport.Stop();
-                    _load_data_success = false;
+                    _dataloaded = false;
                     V6Message.Show(ex.Message);
                 }
             }
-            else if (Data_Loading)
+            else if (_dataloading)
             {
                 btnNhan.Image = waitingImages.Images[ii++];
                 if (ii >= waitingImages.Images.Count) ii = 0;

@@ -422,7 +422,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         public void btnNhan_Click(object sender, EventArgs e)
         {
-            if (_dataLoading)
+            if (_dataloading)
             {
                 return;
             }
@@ -473,8 +473,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         #region ==== LoadData MakeReport ====
 
-        protected bool _dataLoaded;
-        protected bool _dataLoading;
         void LoadData()
         {
             All_Objects["_plist"] = _pList;
@@ -484,12 +482,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (beforeLoadData != null && !(bool)beforeLoadData)
                 {
                     _message = V6Text.CheckInfor;
-                    Data_Loading = false;
+                    _dataloading = false;
                     return;
                 }
 
-                _dataLoading = true;
-                _dataLoaded = false;
+                _dataloading = true;
+                _dataloaded = false;
                 _ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure, _pList.ToArray());
                 if (_ds.Tables.Count > 0)
                 {
@@ -512,7 +510,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     _tbl2 = null;
                 }
                 
-                _dataLoaded = true;
+                _dataloaded = true;
             }
             catch (Exception ex)
             {
@@ -520,26 +518,26 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 _tbl = null;
                 _tbl2 = null;
                 _ds = null;
-                _dataLoaded = false;
+                _dataloaded = false;
             }
-            _dataLoading = false;
+            _dataloading = false;
         }
 
         void TinhToan()
         {
             try
             {
-                _dataLoading = true;
+                _dataloading = true;
                 V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure, _pList.ToArray());
                 
-                _dataLoaded = true;
-                _dataLoading = false;
+                _dataloaded = true;
+                _dataloading = false;
             }
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".TinhToan!\n" + ex.Message);
-                _dataLoading = false;
-                _dataLoaded = false;
+                _dataloading = false;
+                _dataloaded = false;
             }
         }
         /// <summary>
@@ -571,7 +569,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected bool Load_Data = true;
         protected virtual void timerViewReport_Tick(object sender, EventArgs e)
         {
-            if (_dataLoaded)
+            if (_dataloaded)
             {
                 timerViewReport.Stop();
                 btnNhan.Image = btnNhanImage;
@@ -596,17 +594,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         //Thong bao tinh toan xong
                         V6ControlFormHelper.ShowMessage(V6Text.Finish);
                     }
-                    _dataLoaded = false;
+                    _dataloaded = false;
                 }
                 catch (Exception ex)
                 {
                     timerViewReport.Stop();
 
-                    _dataLoaded = false;
+                    _dataloaded = false;
                     this.ShowErrorException(GetType() + ".TimerView", ex);
                 }
             }
-            else if (_dataLoading)
+            else if (_dataloading)
             {
                 btnNhan.Image = waitingImages.Images[ii++];
                 if (ii >= waitingImages.Images.Count) ii = 0;

@@ -232,7 +232,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 All_Objects["data"] = _tbl;
                 InvokeFormEvent(FormDynamicEvent.DYNAMICFIXEXCEL);
 
-                _dataLoaded = true;
+                _dataloaded = true;
             }
             catch (Exception ex)
             {

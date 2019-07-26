@@ -35,7 +35,7 @@ namespace V6Controls.Forms
         /// Thông báo hoặc hiển thị trạng thái đang chạy.
         /// </summary>
         protected string _message = "";
-        public bool Data_Loading, _load_data_success;
+        public bool _dataloading, _dataloaded;
         
 
         public V6FormControl()

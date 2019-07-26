@@ -463,7 +463,7 @@ namespace V6ControlManager.FormManager.MenuManager
                                     check = CheckPasswordV6(owner);
                                 }
                                 if (!check) return null;
-                                c = XuLy.GetXuLyControlX(item_id, programX, programX, repFile, mButton.Text);
+                                c = XuLy.GetXuLyControlX(item_id, programX, programX, repFile, mButton.ReportTitle, mButton.ReportTitle2);
                             }
                             break;
                         case "Z":

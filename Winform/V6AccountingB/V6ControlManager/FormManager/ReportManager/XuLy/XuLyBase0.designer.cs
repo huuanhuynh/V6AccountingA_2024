@@ -37,6 +37,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
+            this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
+            this.btnSuaTTMauBC = new V6Controls.Controls.V6FormButton();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
             this.SuspendLayout();
@@ -47,7 +49,7 @@
             this.exportToExcel,
             this.printGrid});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(154, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(154, 48);
             // 
             // exportToExcel
             // 
@@ -122,10 +124,36 @@
             this.btnNhan.UseVisualStyleBackColor = true;
             this.btnNhan.Click += new System.EventHandler(this.btnNhan_Click);
             // 
+            // btnThemMauBC
+            // 
+            this.btnThemMauBC.AccessibleDescription = "REPORTB00002";
+            this.btnThemMauBC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnThemMauBC.Location = new System.Drawing.Point(526, 377);
+            this.btnThemMauBC.Name = "btnThemMauBC";
+            this.btnThemMauBC.Size = new System.Drawing.Size(43, 23);
+            this.btnThemMauBC.TabIndex = 9;
+            this.btnThemMauBC.Text = "Thêm";
+            this.btnThemMauBC.UseVisualStyleBackColor = true;
+            this.btnThemMauBC.Click += new System.EventHandler(this.btnThemMauBC_Click);
+            // 
+            // btnSuaTTMauBC
+            // 
+            this.btnSuaTTMauBC.AccessibleDescription = "REPORTB00001";
+            this.btnSuaTTMauBC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSuaTTMauBC.Location = new System.Drawing.Point(479, 377);
+            this.btnSuaTTMauBC.Name = "btnSuaTTMauBC";
+            this.btnSuaTTMauBC.Size = new System.Drawing.Size(43, 23);
+            this.btnSuaTTMauBC.TabIndex = 8;
+            this.btnSuaTTMauBC.Text = "Sửa tt";
+            this.btnSuaTTMauBC.UseVisualStyleBackColor = true;
+            this.btnSuaTTMauBC.Click += new System.EventHandler(this.btnSuaTTMauBC_Click);
+            // 
             // XuLyBase0
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnThemMauBC);
+            this.Controls.Add(this.btnSuaTTMauBC);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
             this.Controls.Add(this.grbDieuKienLoc);
@@ -150,6 +178,8 @@
         public System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.Button btnNhan;
         public System.Windows.Forms.Button btnHuy;
+        private V6Controls.Controls.V6FormButton btnThemMauBC;
+        private V6Controls.Controls.V6FormButton btnSuaTTMauBC;
 
 
 

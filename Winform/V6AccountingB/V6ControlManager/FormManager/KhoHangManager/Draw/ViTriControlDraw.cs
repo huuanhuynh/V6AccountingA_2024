@@ -132,7 +132,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
                     plistData.AddRange(_rowDataVitriVattu.ToDataDictionary());
 
                     AINVITRI03_REPORT c = new AINVITRI03_REPORT(KhoParams.ItemId, KhoParams.Program, "AINVITRI03B",
-                        KhoParams.ReportFile, MA_VITRI);
+                        KhoParams.ReportFile, MA_VITRI, MA_VITRI);
                     c.SetData(plistData);
                     c.Size = new Size(800, 600);
                     c.btnNhan_Click(null, null);

@@ -741,7 +741,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         
         public void btnNhan_Click(object sender, EventArgs e)
         {
-            if (Data_Loading)
+            if (_dataloading)
             {
                 //V6ControlFormHelper.ShowInfoMessage("DataLoading...");
                 return;
@@ -863,12 +863,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 if (beforeLoadData != null && !(bool)beforeLoadData)
                 {
                     _message = V6Text.CheckInfor;
-                    Data_Loading = false;
+                    _dataloading = false;
                     return;
                 }
 
-                Data_Loading = true;
-                _load_data_success = false;
+                _dataloading = true;
+                _dataloaded = false;
                 string proc;
                 if (FilterControl is FilterDanhMuc)
                 {
@@ -906,8 +906,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                     _tbl3 = null;
                 }
                 
-                _load_data_success = true;
-                Data_Loading = false;
+                _dataloaded = true;
+                _dataloading = false;
             }
             catch (Exception ex)
             {
@@ -917,8 +917,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 _tbl3 = null;
                 _ds = null;
                 
-                Data_Loading = false;
-                _load_data_success = false;
+                _dataloading = false;
+                _dataloaded = false;
             }
         }
         /// <summary>
@@ -931,8 +931,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (GenerateProcedureParameters()) //Add các key khác
             {
-                _load_data_success = false;
-                Data_Loading = true;
+                _dataloaded = false;
+                _dataloading = true;
                 var tLoadData = new Thread(LoadData);
                 CheckForIllegalCrossThreadCalls = false;
                 tLoadData.Start();
@@ -941,7 +941,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         }
         private void timerViewReport_Tick(object sender, EventArgs e)
         {
-            if (_load_data_success)
+            if (_dataloaded)
             {
                 timerViewReport.Stop();
                 btnNhan.Image = btnNhanImage;
@@ -980,11 +980,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 catch (Exception ex)
                 {
                     timerViewReport.Stop();
-                    _load_data_success = false;
+                    _dataloaded = false;
                     this.ShowErrorException(GetType() + ".TimerView: ", ex);
                 }
             }
-            else if (Data_Loading)
+            else if (_dataloading)
             {
                 btnNhan.Image = waitingImages.Images[ii];
                 ii++;

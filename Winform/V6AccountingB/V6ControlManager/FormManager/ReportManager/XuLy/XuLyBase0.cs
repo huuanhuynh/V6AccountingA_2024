@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -9,6 +10,7 @@ using V6ControlManager.FormManager.ReportManager.Filter;
 using V6ControlManager.FormManager.ReportManager.Filter.Sms;
 using V6Controls;
 using V6Controls.Forms;
+using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
 using V6SqlConnect;
 using V6Structs;
@@ -21,13 +23,93 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         #region Biến toàn cục
         
         protected string _reportProcedure, _reportFile;
-        protected string _program, _text;
+        protected string _program, _reportCaption, _reportCaption2;
         //protected string _reportFileF5, _reportTitleF5, _reportTitle2F5;
 
         protected DataSet _ds;
         protected DataTable _tbl, _tbl2;
+        private DataTable MauInData;
+        private DataRow MauInSelectedRow
+        {
+            get
+            {
+                return MauInData == null || MauInData.Rows.Count == 0 ? null : MauInData.Rows[0];
+            }
+        }
         protected DataTable _tblGridView2;
         //private V6TableStruct _tStruct;
+
+        /// <summary>
+        /// Danh sách event_method của Form_program.
+        /// </summary>
+        private Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
+        private Type Form_program;
+        protected Dictionary<string, object> All_Objects = new Dictionary<string, object>();
+
+        /// <summary>
+        /// Gọi hàm động trong Event_Methods theo tên Event trên form.
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <returns></returns>
+        protected object InvokeFormEvent(string eventName)
+        {
+            try // Dynamic invoke
+            {
+                if (Event_Methods.ContainsKey(eventName))
+                {
+                    V6ControlFormHelper.SetStatusText("InvokeFormEvent:" + eventName);
+                    var method_name = Event_Methods[eventName];
+                    return V6ControlsHelper.InvokeMethodDynamic(Form_program, method_name, All_Objects);
+                }
+                else
+                {
+                    V6ControlFormHelper.SetStatusText("InvokeFormEvent:" + eventName + "(No code)");
+                }
+            }
+            catch (Exception ex1)
+            {
+                this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
+            }
+            return null;
+        }
+
+        private void CreateFormProgram()
+        {
+            try
+            {
+                IDictionary<string, object> keys = new Dictionary<string, object>();
+                keys.Add("MA_FILE", _program);
+                var AlreportData = V6BusinessHelper.Select(V6TableName.Albc, keys, "*").Data;
+                if (AlreportData.Rows.Count == 0) return;
+
+                var dataRow = AlreportData.Rows[0];
+                var xml = dataRow["MMETHOD"].ToString().Trim();
+                if (xml == "") return;
+                DataSet ds = new DataSet();
+                ds.ReadXml(new StringReader(xml));
+                if (ds.Tables.Count <= 0) return;
+
+                var data = ds.Tables[0];
+
+                string using_text = "";
+                string method_text = "";
+                foreach (DataRow event_row in data.Rows)
+                {
+                    var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
+                    var method_name = event_row["method"].ToString().Trim();
+                    Event_Methods[EVENT_NAME] = method_name;
+
+                    using_text += data.Columns.Contains("using") ? event_row["using"] : "";
+                    method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
+                }
+                Form_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "M" + _program, using_text, method_text);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CreateProgram0", ex);
+            }
+        }
+
         /// <summary>
         /// Dùng cho procedure chính (program?)
         /// </summary>
@@ -43,13 +125,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             //MyInit();
         }
 
-        public XuLyBase0(string itemId, string program, string reportProcedure, string reportFile, string text, bool viewDetail = false)
+        public XuLyBase0(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2, bool viewDetail = false)
         {
             m_itemId = itemId;
             _program = program;
             _reportProcedure = reportProcedure;
             _reportFile = reportFile;
-            _text = text;
+            _reportCaption = reportCaption;
+            _reportCaption2 = reportCaption2;
             ViewDetail = viewDetail;
             
             InitializeComponent();
@@ -58,10 +141,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private void BaseInit()
         {
-            Text = _text;
-            
+            Text = _reportCaption;
+            All_Objects["thisForm"] = this;
+            CreateFormProgram();
             AddFilterControl(_program);
             FixFilterControlSize();
+            LoadComboboxSource();
+            InvokeFormEvent(FormDynamicEvent.INIT);
         }
 
         private void Form_Load(object sender, EventArgs e)
@@ -98,6 +184,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
 
             }
+        }
+
+        private void LoadComboboxSource()
+        {
+            MauInData = Albc.GetMauInData(_reportFile, "", "", "");
         }
 
         void panel1_SizeChanged(object sender, EventArgs e)
@@ -175,6 +266,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected virtual void Nhan()
         {
             _message = string.Empty;
+            All_Objects["_plist"] = _pList;
+            object beforeLoadData = InvokeFormEvent(FormDynamicEvent.BEFORELOADDATA);
+            if (beforeLoadData != null && !(bool)beforeLoadData)
+            {
+                _message = V6Text.CheckInfor;
+                SetStatusText(_message);
+                _dataloading = false;
+                return;
+            }
             ExecuteProcedure();
         }
 
@@ -208,6 +308,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 try
                 {
                     FilterControl.LoadDataFinish(_ds);
+                    All_Objects["_ds"] = _ds;
+                    All_Objects["_tbl"] = _tbl;
+                    All_Objects["_tbl2"] = _tbl2;
+                    InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
                     //Chỉ kích hoạt hàm FormatGridView
                     FilterControl.FormatGridView(null);
                     DoAfterExecuteSuccess();
@@ -282,7 +386,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     try
                     {   
-                        V6Tools.V6Export.ExportData.ToExcel(_tbl, save.FileName, _text, true);
+                        V6Tools.V6Export.ExportData.ToExcel(_tbl, save.FileName, _reportCaption, true);
                     }
                     catch (Exception ex)
                     {
@@ -403,6 +507,102 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void panel1_Leave(object sender, EventArgs e)
         {
             btnNhan.Focus();
+        }
+
+        private void btnSuaTTMauBC_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MauInData == null || MauInData.Rows.Count == 0) return;
+                var row0 = MauInData.Rows[0];
+                var keys = new SortedDictionary<string, object>
+                    {
+                        {"MA_FILE", row0["MA_FILE"].ToString().Trim()},
+                        {"MAU", row0["MAU"].ToString().Trim()},
+                        {"LAN", row0["LAN"].ToString().Trim()},
+                        {"REPORT", row0["REPORT"].ToString().Trim()}
+                    };
+                var f = new FormAddEdit(V6TableName.Albc, V6Mode.Edit, keys, null);
+                f.AfterInitControl += f_AfterInitControl;
+                f.InitFormControl();
+                f.UpdateSuccessEvent += (data) =>
+                {
+                    //cap nhap thong tin
+                    LoadComboboxSource();
+                };
+                f.ShowDialog(this);
+                SetStatus2Text();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".btnSuaTTMauBC_Click", ex);
+            }
+            SetStatus2Text();
+        }
+
+        public void f_AfterInitControl(object sender, EventArgs e)
+        {
+            LoadAdvanceControls((Control)sender, "Albc");
+        }
+
+        protected void LoadAdvanceControls(Control form, string ma_ct)
+        {
+            try
+            {
+                FormManagerHelper.CreateAdvanceFormControls(form, ma_ct, All_Objects);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadAdvanceControls " + _sttRec, ex);
+            }
+        }
+
+        private void btnThemMauBC_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MauInData != null && MauInData.Rows.Count > 0) return;
+
+                ConfirmPasswordV6 f_v6 = new ConfirmPasswordV6();
+                if (f_v6.ShowDialog(this) == DialogResult.OK)
+                {
+                    SortedDictionary<string, object> data0 = null;
+                    //var viewt = new DataView(MauInData);
+                    //viewt.RowFilter = "mau='" + MAU + "'" + " and lan='" + LAN + "'";
+                    var keys = new SortedDictionary<string, object>
+                    {
+                        {"MA_FILE", _reportFile},
+                        {"MAU", "VN"},
+                        {"LAN", "V"},
+                        {"REPORT", _reportFile}
+                    };
+                    if (MauInData == null || MauInData.Rows.Count == 0)
+                    {
+                        data0 = new SortedDictionary<string, object>();
+                        data0.AddRange(keys);
+                        data0["CAPTION"] = _reportCaption;
+                        data0["CAPTION2"] = _reportCaption;
+                        data0["TITLE"] = _reportCaption;
+                        data0["FirstAdd"] = "1";
+                    }
+
+                    var f = new FormAddEdit(V6TableName.Albc, V6Mode.Add, keys, data0);
+                    f.AfterInitControl += f_AfterInitControl;
+                    f.InitFormControl();
+                    f.InsertSuccessEvent += (data) =>
+                    {
+                        //cap nhap thong tin
+                        LoadComboboxSource();
+                    };
+                    f.ShowDialog(this);
+                    SetStatus2Text();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".ThemMauBC_Click: ", ex);
+            }
+            SetStatus2Text();
         }
 
     }

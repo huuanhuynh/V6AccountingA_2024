@@ -18,7 +18,7 @@ namespace V6Controls.Forms
         public string ItemID { get { return m_itemId; } }
         protected string m_itemId = null;
         protected string _message = "";
-        public bool Data_Loading, _load_data_success;
+        public bool _dataloading, _dataloaded;
         public string _sttRec { get; set; }
         /// <summary>
         /// Phân biệt loại initfilter. 1 cập nhập số liệu, 2 danh mục, 3 số dư, 4 báo cáo

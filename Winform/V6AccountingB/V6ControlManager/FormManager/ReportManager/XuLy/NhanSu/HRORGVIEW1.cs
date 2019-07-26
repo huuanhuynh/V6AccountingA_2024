@@ -7,13 +7,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
     public class HRORGVIEW1 : XuLyBase0
     {
 
-        public HRORGVIEW1(string itemId, string program, string reportProcedure, string reportFile, string text)
-            : base(itemId, program, reportProcedure, reportFile, text, true)
+        public HRORGVIEW1(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
+            : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
             FilterControl.Visible = false;
 
             string tableName = program, initFilter = "", sort = "";
-            Control tochucViewContainer = new ToChucView(itemId, text, tableName, initFilter, sort);
+            Control tochucViewContainer = new ToChucView(itemId, reportCaption, tableName, initFilter, sort);
             tochucViewContainer.Dock = DockStyle.Fill;
             panel1.Controls.Add(tochucViewContainer);
             tochucViewContainer.Disposed += tochucViewContainer_Disposed;

@@ -46,7 +46,6 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
 
         private string _groupTableNameName, _dataTableName;
         private string _field = "", _field0 = "", _idField, _idField0;
-        private bool _dataLoaded = false;
         private DataTable _dataGroup = null, _data = null;
         private DataView _viewGroup, _viewData;
 
@@ -75,7 +74,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
 
             //CheckChuaPhanNhom();
 
-            _dataLoaded = true;
+            _dataloaded = true;
         }
 
         private void CheckChuaPhanNhom()
@@ -131,7 +130,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
         {
             try
             {
-                if (_dataLoaded)
+                if (_dataloaded)
                 {
                     timer1.Stop();
                     progressBar1.Value = 100;

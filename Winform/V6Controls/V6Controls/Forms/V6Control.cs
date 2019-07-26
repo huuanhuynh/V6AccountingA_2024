@@ -67,7 +67,8 @@ namespace V6Controls.Forms
         /// <returns></returns>
         public Control GetControlByName(string name)
         {
-            return V6ControlFormHelper.GetControlByName(this, name);
+            Control c = V6ControlFormHelper.GetControlByName(this, name);
+            return c;
         }
         
         /// <summary>

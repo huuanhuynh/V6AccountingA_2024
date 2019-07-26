@@ -74,9 +74,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.ResumeLayout(false);
 
         }
-    
-        public V6IMPORT2XLS_Container(string itemId, string program, string reportProcedure, string reportFile, string text)
-            : base(itemId, program, reportProcedure, reportFile, text, true)
+
+        public V6IMPORT2XLS_Container(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
+            : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
             InitializeComponent();
             MyInit();

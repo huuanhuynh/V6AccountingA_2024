@@ -10,8 +10,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
     public class ACAKU2N : XuLyBase0
     {
-        public ACAKU2N(string itemId, string program, string reportProcedure, string reportFile, string text)
-            : base(itemId, program, reportProcedure, reportFile, text, true)
+        public ACAKU2N(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
+            : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
             
         }

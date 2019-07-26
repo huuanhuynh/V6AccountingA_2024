@@ -670,7 +670,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         
         private void btnNhan_Click(object sender, EventArgs e)
         {
-            if (_dataLoading)
+            if (_dataloading)
             {
                 return;
             }
@@ -946,15 +946,14 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         }
 
         #region ==== LoadData MakeReport ====
-        bool _dataLoaded;
-        bool _dataLoading;
+        
         private string error_message = "";
         void LoadData()
         {
             try
             {
-                _dataLoading = true;
-                _dataLoaded = false;
+                _dataloading = true;
+                _dataloaded = false;
                 error_message = "";
                 _ds = V6BusinessHelper.ExecuteProcedure("VPA_R_AL_ALL", pList.ToArray());
                 if (_ds.Tables.Count > 0)
@@ -971,8 +970,8 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 {
                     _tbl2 = null;
                 }
-                _dataLoaded = true;
-                _dataLoading = false;
+                _dataloaded = true;
+                _dataloading = false;
             }
             catch (Exception ex)
             {
@@ -980,8 +979,8 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 _tbl = null;
                 _tbl2 = null;
                 _ds = null;
-                _dataLoading = false;
-                _dataLoaded = false;
+                _dataloading = false;
+                _dataloaded = false;
             }
         }
         private void MakeReport2()
@@ -994,7 +993,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         }
         private void timerViewReport_Tick(object sender, EventArgs e)
         {
-            if (_dataLoaded)
+            if (_dataloaded)
             {
                 timerViewReport.Stop();
                 btnNhan.Image = btnNhanImage;
@@ -1011,12 +1010,12 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 }
                 catch (Exception ex)
                 {
-                    _dataLoaded = false;
+                    _dataloaded = false;
                     timerViewReport.Stop();
                     this.ShowErrorMessage(GetType() + ".TimerView: " + ex.Message);
                 }
             }
-            else if (_dataLoading)
+            else if (_dataloading)
             {
                 btnNhan.Image = waitingImages.Images[ii++];
                 if (ii >= waitingImages.Images.Count) ii = 0;

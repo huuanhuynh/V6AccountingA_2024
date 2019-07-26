@@ -27,11 +27,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             InitializeComponent();
         }
 
-        public AINVTBAR2_Control(string itemId, string program, string reportProcedure, string reportFile, string text)
-            : base(itemId, program, reportProcedure, reportFile, text, true)
+        public AINVTBAR2_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
+            : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
             InitializeComponent();
-            _reportCaption = text;
             MyInit();
         }
 
@@ -645,7 +644,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
        
         #region ==== Mẫu báo cáo ====
-        protected string _reportCaption, _reportCaption2;
         //protected string _reportFileF5, _reportTitleF5, _reportTitle2F5;
         private DataTable MauInData;
 

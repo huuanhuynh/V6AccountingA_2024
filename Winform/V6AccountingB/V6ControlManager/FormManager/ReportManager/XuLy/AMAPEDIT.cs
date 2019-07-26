@@ -9,8 +9,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     {
         private FormMapEdit khoHangContainer;
 
-        public AMAPEDIT(string itemId, string program, string reportProcedure, string reportFile, string text)
-            : base(itemId, program, reportProcedure, reportFile, text, true)
+        public AMAPEDIT(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
+            : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
             FilterControl.Visible = false;
             var cellWidth = 50;

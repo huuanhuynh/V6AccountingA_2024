@@ -224,95 +224,95 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             return new XuLyBase(itemId, program, procedure, reportFile, reportCaption, reportCaption2, false);
         }
 
-        public static XuLyBase0 GetXuLyControlX(string itemId, string program, string procedure, string reportFile, string text)
+        public static XuLyBase0 GetXuLyControlX(string itemId, string program, string procedure, string reportFile, string reportCaption, string reportCaption2)
         {
             // Các control là kế thừa của XuLyBase0. Có thể không dùng filter.
             switch (program)
             {
                 case "AINGIA_TB":
-                    return new AINGIA_TB(itemId, program, procedure, reportFile, text);
+                    return new AINGIA_TB(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "HPAYROLLCALC":
-                    return new HPAYROLLCALC(itemId, program, procedure, reportFile, text);
+                    return new HPAYROLLCALC(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AINABVT2N":
-                    return new AINABVT2N(itemId, program, procedure, reportFile, text);
+                    return new AINABVT2N(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AINABLO2N":
-                    return new AINABLO2N(itemId, program, procedure, reportFile, text);
+                    return new AINABLO2N(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AINABVITRI2N":
-                    return new AINABVITRI2N(itemId, program, procedure, reportFile, text);
+                    return new AINABVITRI2N(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "ACAKU2N":
-                    return new ACAKU2N(itemId, program, procedure, reportFile, text);
+                    return new ACAKU2N(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AARBPKH2N":
-                    return new AARBPKH2N(itemId, program, procedure, reportFile, text);
+                    return new AARBPKH2N(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "ACOVVKH2N":
-                    return new ACOVVKH2N(itemId, program, procedure, reportFile, text);
+                    return new ACOVVKH2N(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "ACOABVV2N":
-                    return new ACOABVV2N(itemId, program, procedure, reportFile, text);
+                    return new ACOABVV2N(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AARHDKH2N":
-                    return new AARHDKH2N(itemId, program, procedure, reportFile, text);
+                    return new AARHDKH2N(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AGLABTK2N":
-                    return new AGLABTK2N(itemId, program, procedure, reportFile, text);
+                    return new AGLABTK2N(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AGLAUTOSO_CT":
-                    return new XAGLAUTOSO_CT_Base(itemId, program, procedure, reportFile, text);
+                    return new XAGLAUTOSO_CT_Base(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "ACACNTG":
-                    return new ACACNTG(itemId, program, procedure, reportFile, text);
+                    return new ACACNTG(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "V6BACKUP1":
-                    return new V6BACKUP1(itemId, program, procedure, reportFile, text);
+                    return new V6BACKUP1(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
 
                 case "V6COPYRA":
-                    return new V6COPY_RA(itemId, program, procedure, reportFile, text);
+                    return new V6COPY_RA(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "V6COPYRAALL":
-                    return new V6COPY_RA_ALL(itemId, program, procedure, reportFile, text);
+                    return new V6COPY_RA_ALL(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "V6COPYVAO":
-                    return new V6COPY_VAO(itemId, program, procedure, reportFile, text);
+                    return new V6COPY_VAO(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "V6CHECK_U1":
-                    return new V6CHECK_U1(itemId, program, procedure, reportFile, text);
+                    return new V6CHECK_U1(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "V6HELP_QA":
-                    return new V6HELP_QA(itemId, program, procedure, reportFile, text);
+                    return new V6HELP_QA(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AINGIA_TBDD":
-                    return new AINGIA_TBDD(itemId, program, procedure, reportFile, text);
+                    return new AINGIA_TBDD(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AINGIA_NTXT":
-                    return new AINGIA_NTXT(itemId, program, procedure, reportFile, text);
+                    return new AINGIA_NTXT(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
 
                 case "AINVTBAR1":
-                    return new AINVTBAR1_Control(itemId, program, procedure, reportFile, text);
+                    return new AINVTBAR1_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AINVTBAR2":
-                    return new AINVTBAR2_Control(itemId, program, procedure, reportFile, text);
+                    return new AINVTBAR2_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AINVTBAR3":
-                    return new AINVTBAR3_Control(itemId, program, procedure, reportFile, text);
+                    return new AINVTBAR3_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AINVTBAR5":
-                    return new AINVTBAR5_Control(itemId, program, procedure, reportFile, text);
+                    return new AINVTBAR5_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
 
                 case "AINVITRI01":
-                    return new AINVITRI01(itemId, program, procedure, reportFile, text);
+                    return new AINVITRI01(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AINVITRI01Draw":
-                    return new AINVITRI01(itemId, program, procedure, reportFile, text);
+                    return new AINVITRI01(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AINVITRI02":
-                    return new AINVITRI02(itemId, program, procedure, reportFile, text);
+                    return new AINVITRI02(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AINVITRI03":
-                    return new AINVITRI03(itemId, program, procedure, reportFile, text);
+                    return new AINVITRI03(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AINVITRI04":
-                    return new AINVITRI04(itemId, program, procedure, reportFile, text);
+                    return new AINVITRI04(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AINVITRI05": //Áp chi tiết vị trí.
-                    return new AINVITRI05(itemId, program, procedure, reportFile, text);
+                    return new AINVITRI05(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                     
                 case "HPRCONGCT":
-                    return new HPRCONGCT_XL0(itemId, program, procedure, reportFile, text);
+                    return new HPRCONGCT_XL0(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
 
                 case "AMAPEDIT":
-                    return new AMAPEDIT(itemId, program, procedure, reportFile, text);
+                    return new AMAPEDIT(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AMAP01":
-                    return new AMAPREPORT(itemId, program, procedure, reportFile, text);
+                    return new AMAPREPORT(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
 
                 case "HRORGVIEW1":
-                    return new HRORGVIEW1(itemId, program, procedure, reportFile, text);
+                    return new HRORGVIEW1(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "V6EDITALAB":
-                    return new V6EDITALAB(itemId, program, procedure, reportFile, text);
+                    return new V6EDITALAB(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
 
                 case "V6IM2XLS":
                     //return new V6IMPORT2XLS(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
-                    return new V6IMPORT2XLS_Container(itemId, program, procedure, reportFile, text);
+                    return new V6IMPORT2XLS_Container(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
             }
-            return new XuLyBase0(itemId, program, procedure, reportFile, text);
+            return new XuLyBase0(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
         }
     }
 }
