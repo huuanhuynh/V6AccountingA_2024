@@ -464,6 +464,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 FormManagerHelper.HideMainMenu();
                 btnNhanImage = btnNhan.Image;
+                object beforeLoadData = InvokeFormEvent(FormDynamicEvent.BEFORELOADDATA);
+                if (beforeLoadData != null && !(bool)beforeLoadData)
+                {
+                    _message = V6Text.CheckInfor;
+                    SetStatusText(_message);
+                    _dataloading = false;
+                    return;
+                }
                 MakeReport2();
             }
             catch (Exception ex)
@@ -509,14 +517,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         void LoadData()
         {
             All_Objects["_plist"] = _pList;
-            object beforeLoadData = InvokeFormEvent(FormDynamicEvent.BEFORELOADDATA);
-            if (beforeLoadData != null && !(bool)beforeLoadData)
-            {
-                _message = V6Text.CheckInfor;
-                SetStatusText(_message);
-                _dataloading = false;
-                return;
-            }
             LoadData0();
             _dataloading = false;
         }
@@ -897,10 +897,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     _message = V6Text.CheckInfor;
                     SetStatusText(_message);
-                    return false;
+                    return true;
                 }
                 XuLyF9();
-                InvokeFormEvent(FormDynamicEvent.AFTERF9);
             }
             else if (keyData == Keys.F10 && FilterControl.F10)
             {

@@ -9,6 +9,7 @@ using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
@@ -552,7 +553,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             {
                 ((Timer)sender).Stop();
                 RemoveDataRows(_data);
-                InvokeFormEvent("AFTERF9");
+                InvokeFormEvent(FormDynamicEvent.AFTERF9);
                 SetStatusText("F9 finish " + (f9Error.Length > 0 ? "Error: " : "") + f9Error);
                 ShowMainMessage("F9 " + V6Text.Finish + " " + f9ErrorAll);
                 this.ShowInfoMessage("F9 " + V6Text.Finish

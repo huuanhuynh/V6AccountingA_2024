@@ -550,7 +550,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 ((Timer)sender).Stop();
                 UnlockButtons();
-                InvokeFormEvent("AFTERF9");
+                InvokeFormEvent(FormDynamicEvent.AFTERF9);
                 //Remove
                 while (remove_list_d.Count > 0)
                 {
