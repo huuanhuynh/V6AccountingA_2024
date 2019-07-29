@@ -456,7 +456,7 @@ namespace V6AccountingB
         private void statusStrip1_Resize(object sender, EventArgs e)
         {
             lblStatus.Width = statusStrip1.Width/2;
-            lblStatus2.Width = statusStrip1.Width - lblStatus.Width - 20;
+            lblStatus2.Width = statusStrip1.Width - lblStatus.Width - 15;
         }
 
         private int timeCount2 = -1;

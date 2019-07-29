@@ -32,9 +32,9 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnFilter = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtYear = new V6Controls.V6NumberTextBox();
+            this.txtYear = new V6Controls.NumberYear();
             this.label2 = new System.Windows.Forms.Label();
-            this.TxtThang = new V6Controls.V6NumberTextBox();
+            this.TxtThang = new V6Controls.NumberMonth();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -182,9 +182,9 @@
 
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.Button btnCancel;
-        private V6Controls.V6NumberTextBox txtYear;
+        private V6Controls.NumberYear txtYear;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private V6Controls.V6NumberTextBox TxtThang;
+        private V6Controls.NumberMonth TxtThang;
     }
 }

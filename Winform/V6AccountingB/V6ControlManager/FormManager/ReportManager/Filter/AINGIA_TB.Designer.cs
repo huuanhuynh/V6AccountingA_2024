@@ -43,9 +43,9 @@
             this.filterLineVvarTextBox8 = new V6ReportControls.FilterLineVvarTextBox();
             this.radOr = new System.Windows.Forms.RadioButton();
             this.radAnd = new System.Windows.Forms.RadioButton();
-            this.txtThang1 = new V6Controls.V6NumberTextBox();
-            this.txtThang2 = new V6Controls.V6NumberTextBox();
-            this.txtNam = new V6Controls.V6NumberTextBox();
+            this.txtThang1 = new V6Controls.NumberMonth();
+            this.txtThang2 = new V6Controls.NumberMonth();
+            this.txtNam = new V6Controls.NumberYear();
             this.txtDk_cl = new V6Controls.V6NumberTextBox();
             this.txtTinh_giatb = new V6Controls.V6NumberTextBox();
             this.v6Label8 = new V6Controls.V6Label();
@@ -509,9 +509,9 @@
         private System.Windows.Forms.Label label2;
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox8;
         private V6Controls.V6Label v6Label9;
-        private V6Controls.V6NumberTextBox txtThang1;
-        private V6Controls.V6NumberTextBox txtThang2;
-        private V6Controls.V6NumberTextBox txtNam;
+        private V6Controls.NumberMonth txtThang1;
+        private V6Controls.NumberMonth txtThang2;
+        private V6Controls.NumberYear txtNam;
         private V6ReportControls.FilterLineVvarTextBox TxtMakho;
         private V6ReportControls.FilterLineVvarTextBox TxtMa_vt;
         private V6Controls.V6NumberTextBox txtDk_cl;

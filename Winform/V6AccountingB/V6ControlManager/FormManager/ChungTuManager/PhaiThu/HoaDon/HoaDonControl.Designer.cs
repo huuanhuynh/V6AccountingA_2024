@@ -277,7 +277,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.thayThe2Menu,
             this.chonDeNghiXuatToolStripMenuItem});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(220, 246);
+            this.menuChucNang.Size = new System.Drawing.Size(220, 268);
             this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
             this.menuChucNang.MouseMove += new System.Windows.Forms.MouseEventHandler(this.menuChucNang_MouseMove);
             // 
@@ -326,6 +326,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.xemCongNoMenu.AccessibleDescription = "INVOICEM00005";
             this.xemCongNoMenu.Name = "xemCongNoMenu";
             this.xemCongNoMenu.Size = new System.Drawing.Size(219, 22);
+            this.xemCongNoMenu.Tag = "cancel";
             this.xemCongNoMenu.Text = "Xem công nợ";
             this.xemCongNoMenu.Click += new System.EventHandler(this.xemCongNoMenu_Click);
             // 
@@ -342,6 +343,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.inKhacMenu.AccessibleDescription = "INVOICEM00007";
             this.inKhacMenu.Name = "inKhacMenu";
             this.inKhacMenu.Size = new System.Drawing.Size(219, 22);
+            this.inKhacMenu.Tag = "cancelall";
             this.inKhacMenu.Text = "In khác";
             this.inKhacMenu.Click += new System.EventHandler(this.inKhacMenu_Click);
             // 

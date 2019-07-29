@@ -43,9 +43,9 @@
             this.filterLineVvarTextBox8 = new V6ReportControls.FilterLineVvarTextBox();
             this.radOr = new System.Windows.Forms.RadioButton();
             this.radAnd = new System.Windows.Forms.RadioButton();
-            this.txtThang1 = new V6Controls.V6NumberTextBox();
-            this.txtThang2 = new V6Controls.V6NumberTextBox();
-            this.txtNam = new V6Controls.V6NumberTextBox();
+            this.txtThang1 = new V6Controls.NumberMonth();
+            this.txtThang2 = new V6Controls.NumberMonth();
+            this.txtNam = new V6Controls.NumberYear();
             this.v6Label2 = new V6Controls.V6Label();
             this.txtTinh_giatb = new V6Controls.V6NumberTextBox();
             this.v6Label4 = new V6Controls.V6Label();
@@ -111,7 +111,9 @@
             // 
             this.Txtnh_vt6.AccessibleDescription = "FILTERL00036";
             this.Txtnh_vt6.AccessibleName2 = "NH_VT6";
+            this.Txtnh_vt6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt6.Caption = "Nhóm vật tư 6";
+            this.Txtnh_vt6.CodeForm = null;
             this.Txtnh_vt6.FieldName = "NH_VT6";
             this.Txtnh_vt6.Location = new System.Drawing.Point(9, 198);
             this.Txtnh_vt6.Name = "Txtnh_vt6";
@@ -123,7 +125,9 @@
             // 
             this.Txtnh_vt4.AccessibleDescription = "FILTERL00034";
             this.Txtnh_vt4.AccessibleName2 = "NH_VT4";
+            this.Txtnh_vt4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt4.Caption = "Nhóm vật tư 4";
+            this.Txtnh_vt4.CodeForm = null;
             this.Txtnh_vt4.FieldName = "NH_VT4";
             this.Txtnh_vt4.Location = new System.Drawing.Point(9, 154);
             this.Txtnh_vt4.Name = "Txtnh_vt4";
@@ -135,7 +139,9 @@
             // 
             this.Txtnh_vt5.AccessibleDescription = "FILTERL00035";
             this.Txtnh_vt5.AccessibleName2 = "NH_VT5";
+            this.Txtnh_vt5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt5.Caption = "Nhóm vật tư 5";
+            this.Txtnh_vt5.CodeForm = null;
             this.Txtnh_vt5.FieldName = "NH_VT5";
             this.Txtnh_vt5.Location = new System.Drawing.Point(9, 176);
             this.Txtnh_vt5.Name = "Txtnh_vt5";
@@ -147,7 +153,9 @@
             // 
             this.Txtnh_vt3.AccessibleDescription = "FILTERL00033";
             this.Txtnh_vt3.AccessibleName2 = "NH_VT3";
+            this.Txtnh_vt3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt3.Caption = "Nhóm vật tư 3";
+            this.Txtnh_vt3.CodeForm = null;
             this.Txtnh_vt3.FieldName = "NH_VT3";
             this.Txtnh_vt3.Location = new System.Drawing.Point(9, 132);
             this.Txtnh_vt3.Name = "Txtnh_vt3";
@@ -159,7 +167,9 @@
             // 
             this.Txtnh_vt1.AccessibleDescription = "FILTERL00031";
             this.Txtnh_vt1.AccessibleName2 = "NH_VT1";
+            this.Txtnh_vt1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt1.Caption = "Nhóm vật tư 1";
+            this.Txtnh_vt1.CodeForm = null;
             this.Txtnh_vt1.FieldName = "NH_VT1";
             this.Txtnh_vt1.Location = new System.Drawing.Point(9, 88);
             this.Txtnh_vt1.Name = "Txtnh_vt1";
@@ -171,7 +181,9 @@
             // 
             this.Txtnh_vt2.AccessibleDescription = "FILTERL00032";
             this.Txtnh_vt2.AccessibleName2 = "NH_VT2";
+            this.Txtnh_vt2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt2.Caption = "Nhóm vật tư 2";
+            this.Txtnh_vt2.CodeForm = null;
             this.Txtnh_vt2.FieldName = "NH_VT2";
             this.Txtnh_vt2.Location = new System.Drawing.Point(9, 110);
             this.Txtnh_vt2.Name = "Txtnh_vt2";
@@ -183,7 +195,9 @@
             // 
             this.TxtMakho.AccessibleDescription = "FILTERL00006";
             this.TxtMakho.AccessibleName2 = "MA_KHO";
+            this.TxtMakho.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.TxtMakho.Caption = "Mã kho";
+            this.TxtMakho.CodeForm = null;
             this.TxtMakho.FieldName = "MA_KHO";
             this.TxtMakho.Location = new System.Drawing.Point(9, 44);
             this.TxtMakho.Name = "TxtMakho";
@@ -195,7 +209,9 @@
             // 
             this.TxtMa_vt.AccessibleDescription = "FILTERL00020";
             this.TxtMa_vt.AccessibleName2 = "MA_VT";
+            this.TxtMa_vt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.TxtMa_vt.Caption = "Mã vật tư";
+            this.TxtMa_vt.CodeForm = null;
             this.TxtMa_vt.FieldName = "MA_VT";
             this.TxtMa_vt.Location = new System.Drawing.Point(9, 66);
             this.TxtMa_vt.Name = "TxtMa_vt";
@@ -207,7 +223,9 @@
             // 
             this.filterLineVvarTextBox8.AccessibleDescription = "FILTERL00165";
             this.filterLineVvarTextBox8.AccessibleName2 = "MA_NX";
+            this.filterLineVvarTextBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.filterLineVvarTextBox8.Caption = "Tài khoản vật tư";
+            this.filterLineVvarTextBox8.CodeForm = null;
             this.filterLineVvarTextBox8.FieldName = "MA_NX";
             this.filterLineVvarTextBox8.Location = new System.Drawing.Point(9, 220);
             this.filterLineVvarTextBox8.Name = "filterLineVvarTextBox8";
@@ -335,7 +353,7 @@
             this.txtTinh_giatb.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTinh_giatb.HoverColor = System.Drawing.Color.Yellow;
             this.txtTinh_giatb.LeaveColor = System.Drawing.Color.White;
-            this.txtTinh_giatb.LimitCharacters = "012";
+            this.txtTinh_giatb.LimitCharacters = "0;1";
             this.txtTinh_giatb.Location = new System.Drawing.Point(120, 89);
             this.txtTinh_giatb.MaxLength = 1;
             this.txtTinh_giatb.MaxNumLength = 1;
@@ -403,9 +421,9 @@
         private System.Windows.Forms.Label label2;
         private V6ReportControls.FilterLineVvarTextBox filterLineVvarTextBox8;
         private V6Controls.V6Label v6Label9;
-        private V6Controls.V6NumberTextBox txtThang1;
-        private V6Controls.V6NumberTextBox txtThang2;
-        private V6Controls.V6NumberTextBox txtNam;
+        private V6Controls.NumberMonth txtThang1;
+        private V6Controls.NumberMonth txtThang2;
+        private V6Controls.NumberYear txtNam;
         private V6ReportControls.FilterLineVvarTextBox TxtMakho;
         private V6ReportControls.FilterLineVvarTextBox TxtMa_vt;
         private V6Controls.V6Label v6Label2;

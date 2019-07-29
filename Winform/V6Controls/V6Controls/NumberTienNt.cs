@@ -1,4 +1,6 @@
-﻿using V6Init;
+﻿using System;
+using System.Windows.Forms;
+using V6Init;
 
 namespace V6Controls
 {
@@ -47,6 +49,85 @@ namespace V6Controls
         public NumberGiaNt()
         {
             DecimalPlaces = V6Options.M_IP_GIA_NT;
+        }
+    }
+    
+    /// <summary>
+    /// Control số cho việc nhập tháng (1-12);
+    /// </summary>
+    public class NumberMonth : V6NumberTextBox
+    {
+        public NumberMonth()
+        {
+            DecimalPlaces = 0;
+            TextChanged += NumberMonth_TextChanged;
+            V6LostFocus += NumberMonth_V6LostFocus;
+        }
+
+        void NumberMonth_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Value < 1) Value = 0;
+                if (Value > 12) Value = 12;
+            }
+            catch (Exception)
+            {
+                //
+            }
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Up)
+            {
+                if (Value < 12) Value++;
+                return true;
+            }
+            
+            if (keyData == Keys.Down)
+            {
+                if (Value > 1) Value--;
+                return true;
+            }
+            
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        void NumberMonth_V6LostFocus(object sender)
+        {
+            if (Value < 1) Value = 1;
+            else if (Value > 12) Value = 12;
+        }
+    }
+    
+    /// <summary>
+    /// Control số cho việc nhập năm (4 số);
+    /// </summary>
+    public class NumberYear : V6NumberTextBox
+    {
+        public NumberYear()
+        {
+            DecimalPlaces = 0;
+            Leave += NumberYear_Leave;
+            V6LostFocus += NumberYear_V6LostFocus;
+        }
+
+        void NumberYear_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Value <= 0) Value = V6Setting.M_SV_DATE.Year;
+            }
+            catch (Exception)
+            {
+                //
+            }
+        }
+
+        void NumberYear_V6LostFocus(object sender)
+        {
+            
         }
     }
 }

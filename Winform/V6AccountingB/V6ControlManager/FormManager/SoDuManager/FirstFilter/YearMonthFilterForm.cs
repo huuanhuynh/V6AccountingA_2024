@@ -112,45 +112,43 @@ namespace V6ControlManager.FormManager.SoDuManager.FirstFilter
 
         private void TxtThang_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                var txt = (V6NumberTextBox)sender;
-                if (txt.Value < 1) txt.Value = 0;
-                if (txt.Value > 12) txt.Value = 12;
-            }
-            catch (Exception)
-            {
+            //try
+            //{
+            //    //var txt = (V6NumberTextBox)sender;
+            //    //if (txt.Value < 1) txt.Value = 0;
+            //    //if (txt.Value > 12) txt.Value = 12;
+            //}
+            //catch (Exception)
+            //{
 
-            }
+            //}
         }
 
         private void TxtThang_Leave(object sender, EventArgs e)
         {
-            try
-            {
-                var txt = (V6NumberTextBox)sender;
-                if (txt.Value < 1) txt.Value = 1;
-                if (txt.Value > 12) txt.Value = 12;
-            }
-            catch (Exception)
-            {
+            //try
+            //{
+            //    //var txt = (V6NumberTextBox)sender;
+            //    //if (txt.Value < 1) txt.Value = 1;
+            //    //if (txt.Value > 12) txt.Value = 12;
+            //}
+            //catch (Exception)
+            //{
 
-            }
+            //}
         }
 
         private void txtYear_Leave(object sender, EventArgs e)
         {
-           
-                try
-                {
-                    var txt = (V6NumberTextBox)sender;
-                    if (txt.Value <= 0) txt.Value = V6Setting.M_SV_DATE.Year;
-                }
-                catch (Exception)
-                {
+            //try
+            //{
+            //    var txt = (V6NumberTextBox)sender;
+            //    if (txt.Value <= 0) txt.Value = V6Setting.M_SV_DATE.Year;
+            //}
+            //catch (Exception)
+            //{
 
-                }
-        
+            //}
         }
     }
 }
