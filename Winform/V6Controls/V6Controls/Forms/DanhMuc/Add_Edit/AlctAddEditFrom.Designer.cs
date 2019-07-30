@@ -903,6 +903,7 @@
             this.txtResetCopy.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtResetCopy.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtResetCopy.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtResetCopy.GrayText = "AM:field1,field2...;AD:field1,...";
             this.txtResetCopy.HoverColor = System.Drawing.Color.Yellow;
             this.txtResetCopy.LeaveColor = System.Drawing.Color.White;
             this.txtResetCopy.Location = new System.Drawing.Point(196, 234);
@@ -910,6 +911,7 @@
             this.txtResetCopy.Name = "txtResetCopy";
             this.txtResetCopy.Size = new System.Drawing.Size(538, 23);
             this.txtResetCopy.TabIndex = 19;
+            this.toolTipV6FormControl.SetToolTip(this.txtResetCopy, "Các trường dữ liệu reset về rỗng khi copy.");
             this.txtResetCopy.Visible = false;
             // 
             // cboKieuPost
@@ -1039,6 +1041,7 @@
             this.txtADSELECTMORE.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtADSELECTMORE.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtADSELECTMORE.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtADSELECTMORE.GrayText = "ADSELECTMORE;ADJOINMORE";
             this.txtADSELECTMORE.HoverColor = System.Drawing.Color.Yellow;
             this.txtADSELECTMORE.LeaveColor = System.Drawing.Color.White;
             this.txtADSELECTMORE.Location = new System.Drawing.Point(196, 259);

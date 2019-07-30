@@ -262,84 +262,102 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (row != null)
                 {
+                    var ngay_ct = ObjectAndString.ObjectToFullDateTime(row.Cells["ngay_ct"].Value);
                     var sttRec = row.Cells["Stt_rec"].Value.ToString().Trim();
                     var ma_ct = row.Cells["Ma_ct"].Value.ToString().Trim();
                     DataTable data = null;
-                    switch (ma_ct)
+
+                    SqlParameter[] plist =
                     {
-                        case "SOA":
-                            data = invoice.LoadAD(sttRec);
-                            break;
-                        case "SOB":
-                            data = new V6Invoice82().LoadAD(sttRec);
-                            break;
-                        case "SOC":
-                            data = new V6Invoice83().LoadAD(sttRec);
-                            break;
-                        case "SOR":
-                            data = new V6Invoice93().LoadAD(sttRec);
-                            break;
-                        case "SOF":
-                            data = new V6Invoice76().LoadAD(sttRec);
-                            break;
-                        case "CA1":
-                            data = new V6Invoice51("CA1").LoadAD(sttRec);
-                            break;
-                        case "POA":
-                            data = new V6Invoice71().LoadAD(sttRec);
-                            break;
-                        case "POB":
-                            data = new V6Invoice72().LoadAD(sttRec);
-                            break;
-                        case "POC":
-                            data = new V6Invoice73().LoadAD(sttRec);
-                            break;
-                        case "IND":
-                            data = new V6Invoice74().LoadAD(sttRec);
-                            break;
-                        case "IXA":
-                            data = new V6Invoice84().LoadAD(sttRec);
-                            break;
-                        case "IXB":
-                            data = new V6Invoice85().LoadAD(sttRec);
-                            break;
-                        case "IXC":
-                            data = new V6Invoice86().LoadAD(sttRec);
-                            break;
-                        case "AR1":
-                            data = new V6Invoice21().LoadAD(sttRec);
-                            break;
-                        case "GL1":
-                            data = new V6Invoice11("GL1").LoadAD(sttRec);
-                            break;
-                        case "AR9":
-                            data = new V6Invoice11("AR9").LoadAD(sttRec);
-                            break;
-                        case "AP9":
-                            data = new V6Invoice11("AP9").LoadAD(sttRec);
-                            break;
-                        case "AP1":
-                            data = new V6Invoice31().LoadAD(sttRec);
-                            break;
-                        case "AP2":
-                            data = new V6Invoice32().LoadAD(sttRec);
-                            break;
-                        case "BN1":
-                            data = new V6Invoice51("BN1").LoadAD(sttRec);
-                            break;
-                        case "TA1":
-                            data = new V6Invoice41("TA1").LoadAD(sttRec);
-                            break;
-                        case "BC1":
-                            data = new V6Invoice41("BC1").LoadAD(sttRec);
-                            break;
-                        case "SOH":
-                            data = new V6Invoice91().LoadAD(sttRec);
-                            break;
-                        case "POH":
-                            data = new V6Invoice92().LoadAD(sttRec);
-                            break;
-                    }
+                        new SqlParameter("@ngay_ct", ngay_ct.ToString("yyyyMMdd")),
+                        new SqlParameter("@ma_ct", ma_ct),
+                        new SqlParameter("@stt_rec", sttRec),
+                        new SqlParameter("@user_id", V6Login.UserId),
+                        new SqlParameter("@advance", ""),
+                    };
+                    data = V6BusinessHelper.ExecuteProcedure("AAPPR_XULY_ALL_AD", plist).Tables[0];
+
+                    //switch (ma_ct)
+                    //{
+                    //    case "SOA":
+                    //        data = invoice.LoadAD(sttRec);
+                    //        break;
+                    //    case "SOB":
+                    //        data = new V6Invoice82().LoadAD(sttRec);
+                    //        break;
+                    //    case "SOC":
+                    //        data = new V6Invoice83().LoadAD(sttRec);
+                    //        break;
+                    //    case "SOR":
+                    //        data = new V6Invoice93().LoadAD(sttRec);
+                    //        break;
+                    //    case "SOF":
+                    //        data = new V6Invoice76().LoadAD(sttRec);
+                    //        break;
+                    //    case "CA1":
+                    //        data = new V6Invoice51("CA1").LoadAD(sttRec);
+                    //        break;
+                    //    case "POA":
+                    //        data = new V6Invoice71().LoadAD(sttRec);
+                    //        break;
+                    //    case "POB":
+                    //        data = new V6Invoice72().LoadAD(sttRec);
+                    //        break;
+                    //    case "POC":
+                    //        data = new V6Invoice73().LoadAD(sttRec);
+                    //        break;
+                    //    case "IND":
+                    //        data = new V6Invoice74().LoadAD(sttRec);
+                    //        break;
+                    //    case "IXA":
+                    //        data = new V6Invoice84().LoadAD(sttRec);
+                    //        break;
+                    //    case "IXB":
+                    //        data = new V6Invoice85().LoadAD(sttRec);
+                    //        break;
+                    //    case "IXC":
+                    //        data = new V6Invoice86().LoadAD(sttRec);
+                    //        break;
+                    //    case "AR1":
+                    //        data = new V6Invoice21().LoadAD(sttRec);
+                    //        break;
+                    //    case "GL1":
+                    //        data = new V6Invoice11("GL1").LoadAD(sttRec);
+                    //        break;
+                    //    case "AR9":
+                    //        data = new V6Invoice11("AR9").LoadAD(sttRec);
+                    //        break;
+                    //    case "AP9":
+                    //        data = new V6Invoice11("AP9").LoadAD(sttRec);
+                    //        break;
+                    //    case "AP1":
+                    //        data = new V6Invoice31().LoadAD(sttRec);
+                    //        break;
+                    //    case "AP2":
+                    //        data = new V6Invoice32().LoadAD(sttRec);
+                    //        break;
+                    //    case "BN1":
+                    //        data = new V6Invoice51("BN1").LoadAD(sttRec);
+                    //        break;
+                    //    case "TA1":
+                    //        data = new V6Invoice41("TA1").LoadAD(sttRec);
+                    //        break;
+                    //    case "BC1":
+                    //        data = new V6Invoice41("BC1").LoadAD(sttRec);
+                    //        break;
+                    //    case "SOH":
+                    //        data = new V6Invoice91().LoadAD(sttRec);
+                    //        break;
+                    //    case "POH":
+                    //        data = new V6Invoice92().LoadAD(sttRec);
+                    //        break;
+                    //    case "INY":
+                    //        data = new V6Invoice94INY().LoadAD(sttRec);
+                    //        break;
+                    //    case "IXY":
+                    //        data = new V6Invoice95IXY().LoadAD(sttRec);
+                    //        break;
+                    //}
                     dataGridView2.AutoGenerateColumns = true;
                     dataGridView2.DataSource = data;
                 }

@@ -273,7 +273,7 @@ namespace V6AccountingBusiness.Invoices
             string where3AD, string where4NhVt)
         {
             string template =
-                "Select a.*, b.Ma_so_thue, b.Ten_kh AS Ten_kh,f.Ten_nvien AS Ten_nvien"
+                "Select a.*, b.Ma_so_thue, b.Ten_kh AS Ten_kh,f.Ten_nvien AS Ten_nvien "
                 + AMSELECTMORE
                 + "\nFROM "+AM_TableName+" a LEFT JOIN ALkh AS b ON a.Ma_kh = b.Ma_kh LEFT JOIN alnvien  AS f ON a.Ma_nvien = f.Ma_nvien "
                 + AMJOINMORE
@@ -308,8 +308,9 @@ namespace V6AccountingBusiness.Invoices
 
         public override DataTable LoadAD(string sttRec)
         {
-            string sql = "SELECT c.*,d.Ten_tk AS Ten_tk_i,k.Ten_kh AS Ten_kh_i" + ADSELECTMORE + " FROM " + AD_TableName
+            string sql = "SELECT c.*,d.Ten_tk AS Ten_tk_i,k.Ten_kh AS Ten_kh_i " + ADSELECTMORE + " FROM " + AD_TableName
                 + " c LEFT JOIN Altk d ON c.tk_i= d.tk LEFT JOIN Alkh k ON c.ma_kh_i= k.ma_kh ";
+            sql += ADJOINMORE;
             sql += string.IsNullOrEmpty(sttRec) ? " Where 1=0" : " Where c.stt_rec=@rec";
             sql += " Order by c.stt_rec0";
             SqlParameter[] listParameters = { new SqlParameter("@rec", sttRec) };
@@ -328,7 +329,7 @@ namespace V6AccountingBusiness.Invoices
             return tbl;
         }
 
-        public bool DeleteInvoice(string sttrec)
+        public override bool DeleteInvoice(string sttrec)
         {
             try
             {

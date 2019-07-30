@@ -2112,7 +2112,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     var a_fields3 = ObjectAndString.SplitStringBy(config.A_field3, ';');
                     foreach (string afield3 in a_fields3)
                     {
-                        // afield3 = Table:*field-data,field2...
+                        // afield3 = Table|filter:*field-data?alvt.lo_yn=1,field2... // data?alvt.lo_yn=1
                         int index = afield3.IndexOf(':');
                         string table_filter = afield3.Substring(0, index);
                         var field_data_list = ObjectAndString.SplitStringBy(afield3.Substring(index + 1), ',');
@@ -2129,22 +2129,35 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         {
                             IDictionary<string, object> keys = new Dictionary<string, object>();
                             string description = null;
-                            foreach (string field_data in field_data_list)
+                            foreach (string field_data_where in field_data_list)
                             {
-                                index = field_data.IndexOf('-');
-                                string star_field = field_data.Substring(0, index);
-                                bool star = false;
+                                index = field_data_where.IndexOf('-');
+                                string star_field = field_data_where.Substring(0, index);
+                                bool star = false; // bắt buộc có dữ liệu
                                 if (star_field.StartsWith("*"))
                                 {
                                     star = true;
                                     star_field = star_field.Substring(1);
                                 }
-                                string data = field_data.Substring(index + 1);
+                                string data_where = field_data_where.Substring(index + 1);
+                                string data = data_where;
+                                index = data_where.IndexOf('?');
+                                if (index > 0)
+                                {
+                                    data = data_where.Substring(0, index);
+                                    var where = data_where.Substring(index + 1);
+
+                                    //check where table.whereclause
+                                    var checkwhere = where.Split('.');
+                                    string where_clause = "" + data + "='" + row[data] + "' and " + checkwhere[1];
+                                    int count = V6BusinessHelper.SelectCount(checkwhere[0], "*", where_clause);
+                                    if (count == 0) goto next_row;
+                                }
                                 // Check field_data valid in table
                                 object o = row[data];
                                 if (!star && o.ToString().Trim() == "") goto next_row; // bỏ qua không kiểm tra
+                                
                                 keys.Add(star_field, o);
-
                                 description += string.Format("\r\n{0}:{1}={2}", table, star_field, o);
                             }
 

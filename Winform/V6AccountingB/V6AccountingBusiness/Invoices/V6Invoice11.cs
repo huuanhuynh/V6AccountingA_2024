@@ -250,7 +250,7 @@ namespace V6AccountingBusiness.Invoices
         public DataTable SearchAM(string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)
         {
             string template =
-                "Select a.*,f.Ten_nvien AS Ten_nvien"
+                "Select a.*,f.Ten_nvien AS Ten_nvien "
                 + AMSELECTMORE
                 + "\nFROM "+AM_TableName+" a  LEFT JOIN alnvien f ON a.Ma_nvien=f.Ma_nvien "
                 + AMJOINMORE
@@ -287,9 +287,10 @@ namespace V6AccountingBusiness.Invoices
         public override DataTable LoadAD(string sttRec)
         {
             //c=AD, d=Alvt, e=ABVT13
-            string sql = "SELECT c.*,d.Ten_tk AS Ten_tk, k.Ten_kh as Ten_kh_i" + ADSELECTMORE + " FROM " + AD_TableName
+            string sql = "SELECT c.*,d.Ten_tk AS Ten_tk, k.Ten_kh as Ten_kh_i " + ADSELECTMORE + " FROM " + AD_TableName
                 + " c LEFT JOIN Altk d ON c.Tk_i= d.Tk "
                 + " LEFT JOIN Alkh k ON c.MA_KH_I= k.MA_KH ";
+            sql += ADJOINMORE;
             sql += string.IsNullOrEmpty(sttRec) ? " Where 1=0" : " Where c.stt_rec=@rec";
             sql += " Order by c.stt_rec0";
             var listParameters = new SqlParameter("@rec", sttRec);
@@ -308,7 +309,7 @@ namespace V6AccountingBusiness.Invoices
             return tbl;
         }
         
-        public bool DeleteInvoice(string sttrec)
+        public override bool DeleteInvoice(string sttrec)
         {
             try
             {

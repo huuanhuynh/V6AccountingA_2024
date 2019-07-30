@@ -142,7 +142,19 @@ namespace V6AccountingBusiness.Invoices
         {
             get
             {
-                return Alct["M_GC_TD1"].ToString().Trim();
+                string m_gc_td1 = AlctConfig.M_GC_TD1;
+                string[] ss = m_gc_td1.Split(';');
+                return ss[0];
+            }
+        }
+
+        public string ADJOINMORE
+        {
+            get
+            {
+                string m_gc_td1 = AlctConfig.M_GC_TD1;
+                var ss = m_gc_td1.Split(';');
+                return ss.Length > 1 ? ss[1] : null;
             }
         }
 
@@ -301,6 +313,7 @@ namespace V6AccountingBusiness.Invoices
             //c=AD81, d=Alvt, e=ABVT13
             string sql = "SELECT c.*,d.Ten_vt AS Ten_vt, c.So_luong1*0 as Ton13, c.So_luong1*0 as Ton13Qd" + ADSELECTMORE + " FROM [" + AD_TableName
                 + "] c LEFT JOIN Alvt d ON c.Ma_vt= d.Ma_vt ";
+            sql += ADJOINMORE;
             sql += string.IsNullOrEmpty(sttRec) ? " Where 1=0" : " Where c.stt_rec=@rec";
             sql += " Order by c.stt_rec0";
             var listParameters = new SqlParameter("@rec", sttRec);

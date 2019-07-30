@@ -244,7 +244,7 @@ namespace V6AccountingBusiness.Invoices
         public DataTable SearchAM(string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)
         {
             string template =
-                "Select a.*, b.Ma_so_thue, b.Ten_kh AS Ten_kh,f.Ten_nvien AS Ten_nvien,g.Ten_httt AS Ten_httt"
+                "Select a.*, b.Ma_so_thue, b.Ten_kh AS Ten_kh,f.Ten_nvien AS Ten_nvien,g.Ten_httt AS Ten_httt "
                 + AMSELECTMORE
                 + "\nFROM "+AM_TableName+" a LEFT JOIN Alkh b ON a.Ma_kh=b.Ma_kh LEFT JOIN alnvien f ON a.Ma_nvien=f.Ma_nvien "
                 + AMJOINMORE
@@ -280,8 +280,9 @@ namespace V6AccountingBusiness.Invoices
         public override DataTable LoadAD(string sttRec)
         {
             //c=AD, d=Alvt, e=ABVT13
-            string sql = "SELECT c.*,d.Ten_vt AS Ten_vt, c.So_luong1*0 as Ton13, c.So_luong1*0 as Ton13Qd" + ADSELECTMORE + " FROM " + AD_TableName
+            string sql = "SELECT c.*,d.Ten_vt AS Ten_vt, c.So_luong1*0 as Ton13, c.So_luong1*0 as Ton13Qd " + ADSELECTMORE + " FROM " + AD_TableName
                 + " c LEFT JOIN Alvt d ON c.Ma_vt= d.Ma_vt ";
+            sql += ADJOINMORE;
             sql += string.IsNullOrEmpty(sttRec) ? " Where 1=0" : " Where c.stt_rec=@rec";
             sql += " Order by c.stt_rec0";
             var listParameters = new SqlParameter("@rec", sttRec);
@@ -299,7 +300,7 @@ namespace V6AccountingBusiness.Invoices
             return tbl;
         }
 
-        public bool DeleteInvoice(string sttrec)
+        public override bool DeleteInvoice(string sttrec)
         {
             try
             {
