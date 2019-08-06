@@ -2947,7 +2947,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             // 
             // chuaDatTen2Menu
             // 
-            this.chuaDatTen2Menu.AccessibleDescription = "INVOICEM00019";
+            this.chuaDatTen2Menu.AccessibleDescription = "INVOICEM00020";
             this.chuaDatTen2Menu.Name = "chuaDatTen2Menu";
             this.chuaDatTen2Menu.Size = new System.Drawing.Size(161, 22);
             this.chuaDatTen2Menu.Text = "...";

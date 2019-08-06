@@ -203,12 +203,12 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         public V6Controls.V6VvarTextBox txtMaKho;
-        private V6Controls.V6DateTimePicker dateCuoiNgay;
         private V6Controls.Controls.V6FormButton btnSuaTTMauBC;
         private V6Controls.Controls.V6FormButton btnThemMauBC;
-        private V6Controls.V6VvarTextBox txtMavt;
         private System.Windows.Forms.Label lblTenHang;
         private System.Windows.Forms.Timer timer1;
         private V6Controls.V6NumberTextBox txtTime;
+        public V6Controls.V6DateTimePicker dateCuoiNgay;
+        public V6Controls.V6VvarTextBox txtMavt;
     }
 }

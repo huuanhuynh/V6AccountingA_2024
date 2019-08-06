@@ -94,6 +94,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             SetGridViewEvent();
 
             cboKieuPost.SelectedIndex = 0;
+            if (!V6Setting.IsVietnamese)
+            {
+                cboLoai_pb.Items.AddRange(new object[] {
+                "0 - Định mức chuẩn",
+                "1 - ĐMSP liên tục",
+                "2 - ĐMSP đơn hàng"});
+            }
+            cboLoai_pb.SelectedIndex = 0;
 
             All_Objects["thisForm"] = this;
             CreateFormProgram(Invoice);
@@ -4057,11 +4065,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         {
             _sttRec = "";
             CurrentIndex = -1;
+            cboLoai_pb.SelectedIndex = -1;
         }
 
         private void SetFormDefaultValues()
         {
             //cboKieuPost.SelectedValue = "1";
+            txtLoai_pb.Text = "0";
             switch (Mode)
             {
                 case V6Mode.Init:
@@ -5386,10 +5396,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 {
                     detail1.MODE = V6Mode.View;
 
-                    DataTable aldmvt = Invoice.GetDinhMucVatTu(_sttRec, txtMaKh.Text, txtMadvcs.Text);
+                    DataTable aldmvt = Invoice.GetDinhMucVatTu(_sttRec, txtMaKh.Text, txtMadvcs.Text, txtLoai_pb.Text);
 
                     //var initFilter = GetSoCt0InitFilter();
-                    var f = new FilterView(aldmvt, "MA_SP", "ALDMVT", txtMaSanPhamPH, "");
+                    string maDM = "ALDMVT";
+                    switch (txtLoai_pb.Text)
+                    {
+                        case "0":
+                            maDM = "ALDMVT";
+                            break;
+                        case "1":
+                            maDM = "ACOSXLT_ALDMVT";
+                            break;
+                        case "2":
+                            maDM = "ACOSXLSX_ALDMVT";
+                            break;
+                    }
+                    var f = new FilterView(aldmvt, "MA_SP", maDM, txtMaSanPhamPH, "");
                     f.MultiSeletion = false;
                     //f.ChoseEvent += f_ChoseEvent;
                     
@@ -5425,6 +5448,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 new SqlParameter("@ma_sp", masp),
                 new SqlParameter("@Ngay_hl", ObjectAndString.ObjectToString(ngayhl, "yyyyMMdd")),
                 new SqlParameter("@Ngay_ct", dateNgayCT.Date.Date),
+                new SqlParameter("@loai_pb", txtLoai_pb.Text),
                 new SqlParameter("@User_id", V6Login.UserId),
                 new SqlParameter("@OutputInsert", ""),
             };
@@ -5484,6 +5508,60 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 dataGridView1.ReadOnly = true;
             }
         }
+
+        private void cboLoaiDinhMuc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Lấy giá trị
+            var loai_pb = "";
+            if (cboLoai_pb.SelectedIndex == 0)
+                loai_pb = "0";
+            else if (cboLoai_pb.SelectedIndex == 1)
+                loai_pb = "1";
+            else if (cboLoai_pb.SelectedIndex == 2)
+                loai_pb = "2";
+
+            //SetGridViewChiPhiEditAble(loai_pb, chkSuaTien.Checked, dataGridView3ChiPhi);
+
+            txtLoai_pb.Text = loai_pb;
+        }
+
+        private bool pb_changed;
+        private void txtLoai_pb_TextChanged(object sender, EventArgs e)
+        {
+            //Chống lặp
+            if (pb_changed)
+            {
+                pb_changed = false;
+                return;
+            }
+            //Lấy giá trị
+            var loai_bp = txtLoai_pb.Text.Trim();
+            if ("012".Contains(loai_bp))
+            {
+                pb_changed = true;
+            }
+
+            //Đổi cbo
+            if (txtLoai_pb.Text == "1")
+                cboLoai_pb.SelectedIndex = 1;
+            else if (txtLoai_pb.Text == "2")
+                cboLoai_pb.SelectedIndex = 2;
+            else if (txtLoai_pb.Text == "0")
+                cboLoai_pb.SelectedIndex = 0;
+            else cboLoai_pb.SelectedIndex = -1;
+        }
+
+        private void detail1_AddHandle()
+        {
+
+        }
+
+        private void detail1_EditHandle()
+        {
+
+        }
+
+        
 
         
 

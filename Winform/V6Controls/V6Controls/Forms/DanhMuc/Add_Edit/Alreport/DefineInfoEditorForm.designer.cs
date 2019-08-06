@@ -821,7 +821,9 @@
             "MauBC",
             "MAUALL",
             "DSNS",
-            "FileButton"});
+            "FileButton",
+            "NumberMonth",
+            "NumberYear"});
             this.cboControlType.Location = new System.Drawing.Point(640, 8);
             this.cboControlType.Name = "cboControlType";
             this.cboControlType.Size = new System.Drawing.Size(121, 24);

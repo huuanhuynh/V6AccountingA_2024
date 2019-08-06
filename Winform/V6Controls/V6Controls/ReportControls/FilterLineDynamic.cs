@@ -383,6 +383,58 @@ namespace V6ReportControls
             _numberTextBox.V6LostFocus += FilterLineDynamic_V6LostFocus;
             _numberTextBox.KeyDown += FilterLineDynamic_KeyDown;
         }
+        
+        public void AddNumberYear()
+        {
+            _numberTextBox = new NumberYear();
+            _numberTextBox.Location = new Point(comboBox1.Right + 5, 1);
+            _numberTextBox.Size = new Size(Width - comboBox1.Right - 5, 20);
+            _numberTextBox.Anchor = AnchorStyles.Top|AnchorStyles.Left|AnchorStyles.Right;
+            _numberTextBox.DecimalPlaces = 0;
+            _numberTextBox.ThousandSymbol = V6Options.M_NUM_SEPARATOR[0];
+
+            Controls.Add(_numberTextBox);
+            Operators.Clear();
+            Operators.Add("="); Operators.Add("<>"); Operators.Add(">"); Operators.Add("<");
+            Operators.Add("is null"); Operators.Add("is not null");
+            Operator = "=";
+            _numberTextBox.Click += FilterLineDynamic_Click;
+            _numberTextBox.TextChanged += FilterLineDynamic_TextChanged;
+            _numberTextBox.StringValueChange += (o, e) =>
+            {
+                OnValueChanged(this, _numberTextBox);
+            };
+            _numberTextBox.GotFocus += FilterLineDynamic_GotFocus;
+            _numberTextBox.LostFocus += FilterLineDynamic_LostFocus;
+            _numberTextBox.V6LostFocus += FilterLineDynamic_V6LostFocus;
+            _numberTextBox.KeyDown += FilterLineDynamic_KeyDown;
+        }
+        
+        public void AddNumberMonth()
+        {
+            _numberTextBox = new NumberYear();
+            _numberTextBox.Location = new Point(comboBox1.Right + 5, 1);
+            _numberTextBox.Size = new Size(Width - comboBox1.Right - 5, 20);
+            _numberTextBox.Anchor = AnchorStyles.Top|AnchorStyles.Left|AnchorStyles.Right;
+            _numberTextBox.DecimalPlaces = 0;
+            _numberTextBox.ThousandSymbol = V6Options.M_NUM_SEPARATOR[0];
+
+            Controls.Add(_numberTextBox);
+            Operators.Clear();
+            Operators.Add("="); Operators.Add("<>"); Operators.Add(">"); Operators.Add("<");
+            Operators.Add("is null"); Operators.Add("is not null");
+            Operator = "=";
+            _numberTextBox.Click += FilterLineDynamic_Click;
+            _numberTextBox.TextChanged += FilterLineDynamic_TextChanged;
+            _numberTextBox.StringValueChange += (o, e) =>
+            {
+                OnValueChanged(this, _numberTextBox);
+            };
+            _numberTextBox.GotFocus += FilterLineDynamic_GotFocus;
+            _numberTextBox.LostFocus += FilterLineDynamic_LostFocus;
+            _numberTextBox.V6LostFocus += FilterLineDynamic_V6LostFocus;
+            _numberTextBox.KeyDown += FilterLineDynamic_KeyDown;
+        }
 
         public void AddDateTimePick()
         {

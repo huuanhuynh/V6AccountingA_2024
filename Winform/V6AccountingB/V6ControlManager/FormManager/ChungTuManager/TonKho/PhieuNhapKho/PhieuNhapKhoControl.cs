@@ -10,6 +10,7 @@ using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.ChonPhieuXuat;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.Loc;
+using V6ControlManager.FormManager.ReportManager.XuLy;
 using V6Controls;
 using V6Controls.Controls.GridView;
 using V6Controls.Forms;
@@ -4094,6 +4095,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             }
         }
 
-        
+        private void XemVitriMenu_Click(object sender, EventArgs e)
+        {
+            XemVitri(_maKhoI.Text, dateNgayCT.Value, _maVt.Text);
+        }
+
+        private void XemVitri(string makho, DateTime ngayCt, string mavt)
+        {
+            try
+            {
+                AINVITRI02 control = new AINVITRI02(ItemID, "AINVITRI02", "AINVITRI02", "AINVITRI02", "AINVITRI02", "AINVITRI02");
+                control.khoHangContainer.txtMaKho.Text = makho;
+                control.khoHangContainer.dateCuoiNgay.Value = ngayCt;
+                control.khoHangContainer.txtMavt.Text = mavt;
+                
+                control.btnNhan.PerformClick();
+                control.ShowToForm(this, "title", false, true, false);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
     }
 }

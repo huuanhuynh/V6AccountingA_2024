@@ -44,7 +44,14 @@ namespace V6ThuePostManager
         static DataTable ad_table;
         static DataTable am_table;
         private static string Fkey_hd_tt = null;
+        /// <summary>
+        /// Bảng dữ liệu xuất Excel
+        /// </summary>
         static DataTable ad2_table;
+        /// <summary>
+        /// Bảng dữ liệu thuế
+        /// </summary>
+        static DataTable ad3_table;
 
         /// <summary>
         /// Tài khoản ws
@@ -131,7 +138,15 @@ namespace V6ThuePostManager
                 Fkey_hd_tt = paras.Fkey_hd_tt;
                 DataRow row0 = am_table.Rows[0];
                 ad2_table = paras.DataSet.Tables[3];
-                
+                if (paras.DataSet.Tables.Count > 4)
+                {
+                    ad3_table = paras.DataSet.Tables[4];
+                }
+                else
+                {
+                    ad3_table = null;
+                }
+
                 ReadConfigInfo(map_table);
 
                 switch (paras.Branch)
@@ -2304,13 +2319,26 @@ namespace V6ThuePostManager
                 {
                     postObject.summarizeInfo[item.Key] = GetValue(row0, item.Value);
                 }
-                //private static Dictionary<string, XmlLine> taxBreakdownsConfig = null; 
-                Dictionary<string, object> taxBreakdown = new Dictionary<string, object>();
-                foreach (KeyValuePair<string, ConfigLine> item in taxBreakdownsConfig)
+                //private static Dictionary<string, XmlLine> taxBreakdownsConfig = null;
+                //Dictionary<string, object> taxBreakdown = new Dictionary<string, object>();
+                //foreach (KeyValuePair<string, ConfigLine> item in taxBreakdownsConfig)
+                //{
+                //    taxBreakdown[item.Key] = GetValue(row0, item.Value);
+                //}
+                //postObject.taxBreakdowns.Add(taxBreakdown);//One only!
+                if (taxBreakdownsConfig != null && ad3_table != null && ad3_table.Rows.Count > 0)
                 {
-                    taxBreakdown[item.Key] = GetValue(row0, item.Value);
+                    foreach (DataRow ad3_row in ad3_table.Rows)
+                    {
+                        Dictionary<string, object> taxBreakdown = new Dictionary<string, object>();
+                        foreach (KeyValuePair<string, ConfigLine> item in taxBreakdownsConfig)
+                        {
+                            taxBreakdown[item.Key] = GetValue(ad3_row, item.Value);
+                        }
+                        postObject.taxBreakdowns.Add(taxBreakdown);
+                    }
                 }
-                postObject.taxBreakdowns.Add(taxBreakdown);//One only!
+                
 
                 result = postObject.ToJson();
             }

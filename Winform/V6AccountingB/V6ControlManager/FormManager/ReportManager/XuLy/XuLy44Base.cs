@@ -822,6 +822,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             //    if(dataGridView1.Focused || dataGridView2.Focused) XuLyXemChiTietF5();
             //    else return base.DoHotKey0(keyData);
             //}
+            else if (keyData == Keys.F6 && FilterControl.F6)
+            {
+                XuLyF6();
+            }
             else if (keyData == Keys.F7 && FilterControl.F7)
             {
                 XuLyF7();
@@ -1048,6 +1052,25 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             SetStatus2Text();
         }
 
+        protected virtual void XuLyF6()
+        {
+            try
+            {
+                if (Event_Methods.ContainsKey(FormDynamicEvent.F6))
+                {
+                    InvokeFormEvent(FormDynamicEvent.F6);
+                }
+                else
+                {
+                    //Code base
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".XuLyF6", ex);
+            }
+        }
+        
         protected virtual void XuLyF7()
         {
             try

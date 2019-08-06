@@ -195,6 +195,21 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                 F2 = defineInfo.F2,
                             };
                         }
+                        else if (defineInfo.ControlType.ToUpper() == "NUMBERYEAR")
+                        {
+                            input = new NumberYear();
+                        }
+                        else if (defineInfo.ControlType.ToUpper() == "NUMBERMONTH")
+                        {
+                            input = new NumberMonth();
+                        }
+                        else if (defineInfo.ControlType.ToUpper() == "NUMBER" || defineInfo.ControlType.ToUpper() == "V6NUMBERTEXTBOX")
+                        {
+                            input = new V6NumberTextBox();
+                            var nT = (V6NumberTextBox)input;
+                            //nT.DecimalPlaces = defineInfo.Decimals;
+                            NumberTextBox_Decimals[nT] = defineInfo.Decimals;
+                        }
                         else if (defineInfo.ControlType.ToUpper() == "LABEL")
                         {
                             input = new V6LabelTextBox()

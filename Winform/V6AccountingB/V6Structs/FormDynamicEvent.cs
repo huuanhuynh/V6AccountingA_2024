@@ -53,6 +53,8 @@
 
         public const string F3 = "F3";
         public const string F4 = "F4";
+        public const string F5 = "F5";
+        public const string F6 = "F6";
         public const string F7 = "F7";
         public const string F8 = "F8";
         public const string F9 = "F9";

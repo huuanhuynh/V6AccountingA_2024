@@ -406,21 +406,22 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
+        private string mact_format = null;
         protected override void FormatGridView2()
         {
             try
             {
                 if (dataGridView1.CurrentRow == null) return;
-
                 string mact = dataGridView1.CurrentRow.Cells["Ma_ct"].Value.ToString().Trim();
-                var alct = V6BusinessHelper.GetAlct(mact);
-                if (alct.Rows.Count > 0)
+                if (mact != mact_format)
                 {
-                    var row = alct.Rows[0];
-                    var showFields = row["GRDS_AD"].ToString().Trim();
-                    var formatStrings = row["GRDF_AD"].ToString().Trim();
-                    var headerString = row[V6Setting.IsVietnamese ? "GRDHV_AD" : "GRDHE_AD"].ToString().Trim();
-                    V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, showFields, formatStrings, headerString);
+                    mact_format = mact;
+                    //var alctconfig = ConfigManager.GetAlctConfig(mact);
+                    var aldmConfig = ConfigManager.GetAldmConfig("AAPPR_AD_" + mact);
+                    if (!aldmConfig.HaveInfo) return;
+
+                    var headerString = V6Setting.IsVietnamese ? aldmConfig.GRDHV_V1 : aldmConfig.GRDHE_V1;
+                    V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, aldmConfig.GRDS_V1, aldmConfig.GRDF_V1, headerString);
                 }
             }
             catch (Exception ex)

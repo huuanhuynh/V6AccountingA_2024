@@ -1491,6 +1491,18 @@ namespace V6Controls.Forms
                 vP.F2 = lineInfo.F2;
                 vP.FilterStart = lineInfo.FilterStart;
             }
+            else if (CONTROL_TYPE == "NUMBERYEAR")
+            {
+                lineControl.AddNumberYear();
+            }
+            else if (CONTROL_TYPE == "NUMBERMONTH")
+            {
+                lineControl.AddNumberMonth();
+            }
+            else if (CONTROL_TYPE == "NUMBER" || CONTROL_TYPE == "V6NUMBERTEXTBOX")
+            {
+                lineControl.AddNumberTextBox();
+            }
             else if (CONTROL_TYPE == "BUTTON")
             {
                 bT = lineControl.AddButton(lineInfo.TextLang(V6Setting.IsVietnamese));

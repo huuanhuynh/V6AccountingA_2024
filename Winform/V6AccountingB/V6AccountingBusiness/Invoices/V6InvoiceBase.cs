@@ -397,13 +397,14 @@ namespace V6AccountingBusiness.Invoices
                 "Ma_ct=@mact", "", "Kieu_post", new SqlParameter("@mact", Mact)).Data;
         }
 
-        public DataTable GetDinhMucVatTu(string sttRec, string makh, string madvcs)
+        public DataTable GetDinhMucVatTu(string sttRec, string makh, string madvcs, string loai_pb)
         {
             SqlParameter[] plist =
             {
                 new SqlParameter("@stt_rec", sttRec), 
                 new SqlParameter("@ma_kh", makh), 
-                new SqlParameter("@ma_dvcs", madvcs)
+                new SqlParameter("@ma_dvcs", madvcs),
+                new SqlParameter("@loai_pb", loai_pb),
             };
             var result = V6BusinessHelper.ExecuteProcedure("AINCTIXA_INIT_ALDMVT", plist).Tables[0];
             return result;

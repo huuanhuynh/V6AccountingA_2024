@@ -161,7 +161,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.menuDetail1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.XemPhieuNhapMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.taoMaLoMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.chuaDatTen3Menu = new System.Windows.Forms.ToolStripMenuItem();
+            this.xemVitriMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -2040,9 +2040,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.menuDetail1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.XemPhieuNhapMenu,
             this.taoMaLoMenu,
-            this.chuaDatTen3Menu});
+            this.xemVitriMenu});
             this.menuDetail1.Name = "menuChucNang";
-            this.menuDetail1.Size = new System.Drawing.Size(162, 70);
+            this.menuDetail1.Size = new System.Drawing.Size(162, 92);
             // 
             // XemPhieuNhapMenu
             // 
@@ -2060,12 +2060,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.taoMaLoMenu.Text = "Tạo mã lô";
             this.taoMaLoMenu.Click += new System.EventHandler(this.taoMaLoMenu_Click);
             // 
-            // chuaDatTen3Menu
+            // xemVitriMenu
             // 
-            this.chuaDatTen3Menu.AccessibleDescription = "INVOICEM00020";
-            this.chuaDatTen3Menu.Name = "chuaDatTen3Menu";
-            this.chuaDatTen3Menu.Size = new System.Drawing.Size(161, 22);
-            this.chuaDatTen3Menu.Text = "...";
+            this.xemVitriMenu.AccessibleDescription = "INVOICEM00026";
+            this.xemVitriMenu.Name = "xemVitriMenu";
+            this.xemVitriMenu.Size = new System.Drawing.Size(161, 22);
+            this.xemVitriMenu.Text = "Xem vị trí";
+            this.xemVitriMenu.Click += new System.EventHandler(this.XemVitriMenu_Click);
             // 
             // PhieuNhapKhoControl
             // 
@@ -2247,7 +2248,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         private System.Windows.Forms.ContextMenuStrip menuDetail1;
         private System.Windows.Forms.ToolStripMenuItem XemPhieuNhapMenu;
         private System.Windows.Forms.ToolStripMenuItem taoMaLoMenu;
-        private System.Windows.Forms.ToolStripMenuItem chuaDatTen3Menu;
+        private System.Windows.Forms.ToolStripMenuItem xemVitriMenu;
         private V6Controls.V6ComboBox cboChuyenData;
         private V6Label v6Label28;
         private System.Windows.Forms.ToolStripMenuItem xuLyKhacMenu;
