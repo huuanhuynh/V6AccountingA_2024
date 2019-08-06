@@ -6182,30 +6182,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     return false;
                 }
 
-                //Tuanmh 16/02/2016 Check Voucher Is exist 
-                {
-                    DataTable DataCheckVC = Invoice.GetCheck_VC_Save(cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
-                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec);
-                    if (DataCheckVC != null && DataCheckVC.Rows.Count > 0)
-                    {
-                        var chkso_ct = DataCheckVC.Rows[0]["chkso_ct"].ToString();
-                        switch (chkso_ct)
-                        {
-                            case "0":
-                                // Save: OK
-                                break;
-                            case "1":
-                                // Save: OK But Notice
-                                this.ShowWarningMessage(V6Text.Voucher_exist);
-                                break;
-                            case "2":
-                                // Save: Not Save
-                                this.ShowWarningMessage(V6Text.Voucher_exist_not_save);
-                                return false;
-                                
-                        }
-                    }
-                }
+                
                 //Tuanmh 24/07/2016 Check Debit Amount
                 {
                     var mode_vc = "V";
@@ -6257,15 +6234,36 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                                 // Save but mess
                                 if (message != "") this.ShowWarningMessage(message);
                                 break;
-                            
-                                
                         }
                     }
                 }
 
                 //var check_ton = ValidateData_Master_CheckTon(Invoice, dateNgayCT.Date, null);
                 //if (!check_ton) return false;
-                
+
+                // Tuanmh 16/02/2016 Check Voucher Is exist 
+                {
+                    DataTable DataCheckVC = Invoice.GetCheck_VC_Save(cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
+                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec);
+                    if (DataCheckVC != null && DataCheckVC.Rows.Count > 0)
+                    {
+                        var chkso_ct = DataCheckVC.Rows[0]["chkso_ct"].ToString();
+                        switch (chkso_ct)
+                        {
+                            case "0":
+                                // Save: OK
+                                break;
+                            case "1":
+                                // Save: OK But Notice
+                                this.ShowWarningMessage(V6Text.Voucher_exist);
+                                break;
+                            case "2":
+                                // Save: Not Save
+                                this.ShowWarningMessage(V6Text.Voucher_exist_not_save);
+                                return false;
+                        }
+                    }
+                }
 
                 //OK
                 return true;
