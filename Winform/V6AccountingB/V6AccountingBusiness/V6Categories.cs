@@ -181,7 +181,7 @@ namespace V6AccountingBusiness
         public int UpdateSimple(string tableName, IDictionary<string, object> data, IDictionary<string, object> keys, SqlTransaction transaction = null)
         {
             var structTable = V6SqlconnectHelper.GetTableStruct(tableName);
-            var sql = SqlGenerator.GenUpdateSqlSimple(V6Login.UserId, tableName, data, keys, structTable);
+            var sql = SqlGenerator.GenUpdateSqlSimple(V6Login.UserId, tableName, structTable, data, keys);
             var result = transaction == null
                 ? SqlConnect.ExecuteNonQuery(CommandType.Text, sql)
                 : SqlConnect.ExecuteNonQuery(transaction, CommandType.Text, sql);

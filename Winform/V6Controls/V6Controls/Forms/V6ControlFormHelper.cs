@@ -1532,6 +1532,10 @@ namespace V6Controls.Forms
             {
                 lineControl.AddDateTimeColor();
             }
+            else if (CONTROL_TYPE == "CHECKBOX")
+            {
+                lineControl.AddCheckBox();
+            }
             else if (ObjectAndString.IsDateTimeType(lineInfo.DataType))
             {
                 lineControl.AddDateTimePick();
@@ -3241,7 +3245,7 @@ namespace V6Controls.Forms
 
         public static void ShowWarningMessage(string message, IWin32Window owner = null)
         {
-            V6Message.Show(message, V6Setting.Language == "V" ? "Cảnh báo!" : "Warning!", 0, MessageBoxButtons.OK, MessageBoxIcon.Warning, owner);
+            V6Message.ShowWarning(message, owner);
         }
 
         public static void NoRightWarning(IWin32Window owner = null)

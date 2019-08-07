@@ -501,12 +501,12 @@ namespace V6SqlConnect
         /// </summary>
         /// <param name="UserId"></param>
         /// <param name="tableName"></param>
+        /// <param name="structTable">Nếu có struct thì tạo theo struct, nếu không có thì tạo theo data</param>
         /// <param name="dataDictionary"></param>
         /// <param name="keys"></param>
-        /// <param name="structTable">Nếu có struct thì tạo theo struct, nếu không có thì tạo theo data</param>
         /// <returns></returns>
-        public static string GenUpdateSqlSimple(int UserId, string tableName, IDictionary<string, object> dataDictionary,
-            IDictionary<string, object> keys, V6TableStruct structTable = null)
+        public static string GenUpdateSqlSimple(int UserId, string tableName, V6TableStruct structTable, IDictionary<string, object> dataDictionary,
+            IDictionary<string, object> keys)
         {
             var sql = "Update [" + tableName + "] Set"; // field = value[, field2 = value2[...]]
             string where;

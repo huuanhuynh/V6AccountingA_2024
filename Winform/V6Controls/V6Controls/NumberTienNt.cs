@@ -60,6 +60,14 @@ namespace V6Controls
         public NumberMonth()
         {
             DecimalPlaces = 0;
+            try
+            {
+                Value = V6Setting.M_SV_DATE.Month;
+            }
+            catch (Exception)
+            {
+                //
+            }
             TextChanged += NumberMonth_TextChanged;
             V6LostFocus += NumberMonth_V6LostFocus;
         }
@@ -109,6 +117,14 @@ namespace V6Controls
         public NumberYear()
         {
             DecimalPlaces = 0;
+            try
+            {
+                Value = V6Setting.M_SV_DATE.Year;
+            }
+            catch (Exception)
+            {
+                //
+            }
             Leave += NumberYear_Leave;
             V6LostFocus += NumberYear_V6LostFocus;
         }

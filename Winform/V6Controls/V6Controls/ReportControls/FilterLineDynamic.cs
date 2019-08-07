@@ -412,7 +412,7 @@ namespace V6ReportControls
         
         public void AddNumberMonth()
         {
-            _numberTextBox = new NumberYear();
+            _numberTextBox = new NumberMonth();
             _numberTextBox.Location = new Point(comboBox1.Right + 5, 1);
             _numberTextBox.Size = new Size(Width - comboBox1.Right - 5, 20);
             _numberTextBox.Anchor = AnchorStyles.Top|AnchorStyles.Left|AnchorStyles.Right;

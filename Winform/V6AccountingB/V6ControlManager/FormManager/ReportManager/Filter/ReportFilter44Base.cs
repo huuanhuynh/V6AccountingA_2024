@@ -81,19 +81,17 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             try
             {
-                SqlParameter[] plist = { new SqlParameter("@ma_bc", _program), };
-                var data = V6BusinessHelper.Select("ALREPORT", "*", "ma_bc=@ma_bc", "", "", plist).Data;
-                if (data.Rows.Count == 1)
+                var config = ConfigManager.GetAlreportConfig(_program);
+                if (config.HaveInfo)
                 {
-                    var row = data.Rows[0];
-                    ComboboxData = row["Combo_data"].ToString().Trim();
-                    ExtraParameterInfo = row["Extra_para"].ToString().Trim();
-                    F3 = ObjectAndString.ObjectToBool(row["F3"]);
-                    F5 = ObjectAndString.ObjectToBool(row["F5"]);
-                    F7 = ObjectAndString.ObjectToBool(row["F7"]);
-                    ViewSum = ObjectAndString.ObjectToBool(row["ViewSum"]);
-                    Alreport_advance = row["Advance"].ToString().Trim();
-                    _status2Text = row[V6Setting.IsVietnamese ? "vbrowse1" : "ebrowse1"].ToString().Trim();
+                    ComboboxData = config.Combo_data;
+                    ExtraParameterInfo = config.Extra_para;
+                    F3 = config.F3;
+                    F5 = config.F5;
+                    F7 = config.F7;
+                    ViewSum = config.VIEWSUM;
+                    Alreport_advance = config.ADVANCE;
+                    _status2Text = V6Setting.IsVietnamese ? config.vbrowse1 : config.ebrowse1;
                 }
             }
             catch (Exception ex)

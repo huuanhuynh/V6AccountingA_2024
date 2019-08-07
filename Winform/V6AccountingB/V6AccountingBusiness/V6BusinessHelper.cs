@@ -1017,7 +1017,7 @@ namespace V6AccountingBusiness
             string sql = "";
             try
             {
-                sql = SqlGenerator.GenUpdateSqlSimple(V6Login.UserId, tableName, dataDictionary, keys, tableStruct);
+                sql = SqlGenerator.GenUpdateSqlSimple(V6Login.UserId, tableName, tableStruct, dataDictionary, keys);
             }
             catch (Exception ex)
             {

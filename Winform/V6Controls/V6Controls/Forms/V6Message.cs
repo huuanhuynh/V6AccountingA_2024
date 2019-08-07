@@ -1,10 +1,23 @@
 ﻿using System.Windows.Forms;
+using V6Init;
 
 namespace V6Controls.Forms
 {
     public static class V6Message
     {
-        public static DialogResult Show(string text, int showTime = 0, IWin32Window owner = null)
+        public static DialogResult Show(string text)
+        {
+            return Show(text, 0);
+        }
+        public static DialogResult Show(string text, int showTime)
+        {
+            return Show(text, showTime, null);
+        }
+        public static DialogResult Show(string text, IWin32Window owner)
+        {
+            return Show(text, 0, owner);
+        }
+        public static DialogResult Show(string text, int showTime, IWin32Window owner)
         {
             var mbox = new V6MessageForm(text, null, showTime);
             return mbox.ShowDialog(owner);
@@ -55,6 +68,15 @@ namespace V6Controls.Forms
         {
             var mbox = new V6MessageForm(text, caption, showTime, buttons, icon, defaultButton);
             return mbox.ShowDialog(owner);
+        }
+
+        public static DialogResult ShowWarning(string text)
+        {
+            return ShowWarning(text, null);
+        }
+        public static DialogResult ShowWarning(string text, IWin32Window owner)
+        {
+            return Show(text, V6Setting.Language == "V" ? "Cảnh báo!" : "Warning!", 0, MessageBoxButtons.OK, MessageBoxIcon.Warning, owner);
         }
     }
 }

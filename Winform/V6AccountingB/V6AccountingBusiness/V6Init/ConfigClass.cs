@@ -330,6 +330,53 @@ namespace V6Init
         public string FormCode { get { return GetString("FORMCODE"); } }
     }
 
+    public class AlreportConfig : Config
+    {
+        public AlreportConfig(IDictionary<string, object> data)
+            : base(data)
+        {
+        }
+
+        /// <summary>
+        /// Tạo object rỗng.
+        /// </summary>
+        public AlreportConfig()
+        {
+            NoInfo = true;
+            Error = true;
+        }
+
+        public string ten { get { return GetString("ten"); } }
+        public string ten2 { get { return GetString("ten2"); } }
+        public string loai_bc { get { return GetString("loai_bc"); } }
+        public string mo_ta { get { return GetString("mo_ta"); } }
+        public string vitri { get { return GetString("vitri"); } }
+        public string proc { get { return GetString("proc"); } }
+        public string vbrowse1 { get { return GetString("vbrowse1"); } }
+        public string ebrowse1 { get { return GetString("ebrowse1"); } }
+        public string l_tk_no { get { return GetString("l_tk_no"); } }
+        public string l_tk_co { get { return GetString("l_tk_co"); } }
+        public string donvitinh { get { return GetString("donvitinh"); } }
+        public string user_id { get { return GetString("user_id"); } }
+        /// <summary>
+        /// Các Defineinfo Name Value cách nhau bằng dấu ~ (Name:Số lượng;Value:Ten_vt,So_luong1,So_luong2~...)
+        /// </summary>
+        public string Combo_data { get { return GetString("Combo_data"); } }
+        public string type { get { return GetString("type"); } }
+        public bool F3 { get { return GetString("F3") == "1"; } }
+        public bool F5 { get { return GetString("F5") == "1"; } }
+        public bool F7 { get { return GetString("F7") == "1"; } }
+        public string UID { get { return GetString("UID"); } }
+        /// <summary>
+        /// ~Name:NGAY;Ptype:TABLE2;Field:R_DMY 
+        /// </summary>
+        public string Extra_para { get { return GetString("Extra_para"); } }
+        public string ADVANCE { get { return GetString("ADVANCE"); } }
+        public string MMETHOD { get { return GetString("MMETHOD"); } }
+        public bool VIEWSUM { get { return GetString("VIEWSUM") == "1"; } }
+
+    }
+
     public class V6lookupConfig : Config
     {
         public V6lookupConfig(IDictionary<string, object> data)
@@ -519,6 +566,36 @@ namespace V6Init
                     var tbl = executeResult.Data;
                     var row = tbl.Rows[0];
                     lstConfig = new AldmConfig(row.ToDataDictionary());
+                }
+                else
+                {
+                    lstConfig.NoInfo = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                lstConfig.Error = true;
+                Logger.WriteToLog(String.Format("{0}.{1} {2}",
+                    MethodBase.GetCurrentMethod().DeclaringType,
+                    MethodBase.GetCurrentMethod().Name, ex.Message));
+            }
+            return lstConfig;
+        }
+
+
+        public static AlreportConfig GetAlreportConfig(string ma_bc)
+        {
+            AlreportConfig lstConfig = new AlreportConfig();
+            try
+            {
+                SqlParameter[] plist = { new SqlParameter("@p", ma_bc) };
+                var executeResult = V6BusinessHelper.Select("ALREPORT", "*", "Ma_bc=@p", "", "", plist);
+
+                if (executeResult.Data != null && executeResult.Data.Rows.Count > 0)
+                {
+                    var tbl = executeResult.Data;
+                    var row = tbl.Rows[0];
+                    lstConfig = new AlreportConfig(row.ToDataDictionary());
                 }
                 else
                 {
