@@ -140,7 +140,8 @@ namespace V6AccountingBusiness.Invoices
                 {
                     //if (V6Setting.WriteExtraLog)
                     {
-                        Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " POST1 " + stt_rec, ex1, "");
+                        Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " POST1 " + stt_rec,
+                            ex1, "");
                     }
 
                     V6Message = ex1.Message;
@@ -163,7 +164,8 @@ namespace V6AccountingBusiness.Invoices
                                 new SqlParameter("@Save_voucher", "1")
                             };
 
-                            var result = SqlConnect.ExecuteNonQuery(CommandType.StoredProcedure, "VPA_SOA_POST_MAIN", pList);
+                            var result = SqlConnect.ExecuteNonQuery(CommandType.StoredProcedure, "VPA_SOA_POST_MAIN",
+                                pList);
                             V6Message = string.Format("Success, ({0} affected).", result);
                             return true;
                         }
@@ -171,19 +173,29 @@ namespace V6AccountingBusiness.Invoices
                         {
                             //if (V6Setting.WriteExtraLog)
                             {
-                                Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " POST2 " + stt_rec, ex2, "");
+                                Logger.WriteExLog(
+                                    GetType() + " " + MethodBase.GetCurrentMethod().Name + " POST2 " + stt_rec, ex2, "");
                             }
                             V6Message = ex2.Message;
                             V6Message = V6Text.Text("POST2LOI") + V6Message;
                             return false;
-                        }//end catch2
+                        } //end catch2
                     }
                     else
                     {
                         V6Message = V6Text.Text("POSTLOI") + V6Message;
                         return false;
                     }
-                }// end catch1
+                } // end catch1
+            }
+            else // insert không đủ dòng.
+            {
+                TRANSACTION.Commit();
+                if (!insert_success) V6Message = V6Text.Text("AAMUNSUCCESS");
+                if (j != adList.Count) V6Message += V6Text.Text("ADNOTCOMPLETE");
+                //if (j2 != adList2.Count) V6Message += V6Text.Text("AD2NOTCOMPLETE");
+                if (j3 != adList3.Count) V6Message += V6Text.Text("AD3NOTCOMPLETE");
+                Logger.WriteToLog(string.Format("{0} Invoice81.InsertInvoice else.{1} {2}", V6Login.ClientName, stt_rec, V6Message));
             }
 
             return false;
@@ -270,12 +282,14 @@ namespace V6AccountingBusiness.Invoices
             #endregion Insert
 
             #region === POST ===
+
             if (insert_success && j == adList.Count && j3 == adList3.Count)
             {
                 TRANSACTION.Commit();
                 if (V6Setting.WriteExtraLog)
                 {
-                    Logger.WriteToLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " TRANSACTION COMMITTED " + stt_rec);
+                    Logger.WriteToLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " TRANSACTION COMMITTED " +
+                                      stt_rec);
                 }
 
                 try
@@ -286,6 +300,7 @@ namespace V6AccountingBusiness.Invoices
                     try
                     {
                         #region === POST1 ===
+
                         pList = new[]
                         {
                             new SqlParameter("@Stt_rec", stt_rec),
@@ -301,24 +316,28 @@ namespace V6AccountingBusiness.Invoices
                         };
                         var result = SqlConnect.ExecuteNonQuery(CommandType.StoredProcedure, "VPA_SOA_POST_MAIN", pList);
                         V6Message = string.Format("Success, ({0} affected).", result);
+
                         #endregion POST
+
                         return true;
                     }
                     catch (Exception exPost1)
                     {
                         //if (V6Setting.WriteExtraLog)
                         {
-                            Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " POST1 " + stt_rec, exPost1, "");
+                            Logger.WriteExLog(
+                                GetType() + " " + MethodBase.GetCurrentMethod().Name + " POST1 " + stt_rec, exPost1, "");
                         }
 
                         V6Message = exPost1.Message;
                         if (V6Message.Contains("Rerun the transaction."))
                         {
                             Thread.Sleep(3000);
-                            
+
                             try
                             {
                                 #region === POST2 ===
+
                                 pList = new[]
                                 {
                                     new SqlParameter("@Stt_rec", stt_rec),
@@ -335,14 +354,18 @@ namespace V6AccountingBusiness.Invoices
                                 var result = SqlConnect.ExecuteNonQuery(CommandType.StoredProcedure, "VPA_SOA_POST_MAIN",
                                     pList);
                                 V6Message = string.Format("Success, ({0} affected).", result);
+
                                 #endregion RePOST
+
                                 return true;
                             }
                             catch (Exception exPost2)
                             {
                                 //if (V6Setting.WriteExtraLog)
                                 {
-                                    Logger.WriteExLog(GetType() + " " + MethodBase.GetCurrentMethod().Name + " POST2 " + stt_rec, exPost1, "");
+                                    Logger.WriteExLog(
+                                        GetType() + " " + MethodBase.GetCurrentMethod().Name + " POST2 " + stt_rec,
+                                        exPost1, "");
                                 }
 
                                 V6Message = exPost2.Message;
@@ -362,6 +385,16 @@ namespace V6AccountingBusiness.Invoices
                 }
             }
             #endregion POST
+            else // sửa không đủ dòng
+            {
+                TRANSACTION.Rollback();
+                if (!insert_success) V6Message = V6Text.Text("AAMUNSUCCESS");
+                if (j != adList.Count) V6Message += V6Text.Text("ADNOTCOMPLETE");
+                //if (j2 != adList2.Count) V6Message += V6Text.Text("AD2NOTCOMPLETE");
+                if (j3 != adList3.Count) V6Message += V6Text.Text("AD3NOTCOMPLETE");
+                Logger.WriteToLog(string.Format("{0} Invoice81.UpdateInvoice else.{1} {2}", V6Login.ClientName, stt_rec, V6Message));
+            }
+            
             return false;
         }
 

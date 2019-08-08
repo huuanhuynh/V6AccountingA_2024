@@ -1282,9 +1282,23 @@ namespace V6AccountingBusiness.Invoices
         {
             throw new NotImplementedException("InsertInvoice No override method.");
         }
+
+        public virtual bool UpdateInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> adList, IDictionary<string, object> keys)
+        {
+            throw new NotImplementedException("UpdateInvoice1detail No override method.");
+        }
         public virtual bool UpdateInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> adList, List<IDictionary<string, object>> adList3, IDictionary<string, object> keys)
         {
-            throw new NotImplementedException("UpdateInvoice No override method.");
+            throw new NotImplementedException("UpdateInvoice13details No override method.");
+        }
+
+        public virtual bool UpdateInvoice(IDictionary<string, object> amData,
+            List<IDictionary<string, object>> adList,
+            List<IDictionary<string, object>> adList2,
+            List<IDictionary<string, object>> adList3,
+            IDictionary<string, object> keys)
+        {
+            throw new NotImplementedException("UpdateInvoice123details No override method.");
         }
 
         public virtual bool DeleteInvoice(string sttrec)

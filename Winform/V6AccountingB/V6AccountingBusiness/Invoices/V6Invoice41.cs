@@ -148,19 +148,19 @@ namespace V6AccountingBusiness.Invoices
                     return false;
                 }
             }
-            else
+            else // insert không đủ dòng.
             {
+                TRANSACTION.Commit();
                 if (!insert_success) V6Message = V6Text.Text("AAMUNSUCCESS");
                 if (j != adList.Count) V6Message += V6Text.Text("ADNOTCOMPLETE");
+                //if (j2 != adList2.Count) V6Message += V6Text.Text("AD2NOTCOMPLETE");
                 if (j3 != adList3.Count) V6Message += V6Text.Text("AD3NOTCOMPLETE");
-                V6Message += " Bắt đầu RollBack.";
-                TRANSACTION.Rollback();
-                V6Message += " RollBack xong.";
-                return false;
+                Logger.WriteToLog(string.Format("{0} Invoice81.InsertInvoice else.{1} {2}", V6Login.ClientName, stt_rec, V6Message));
             }
+            return false;
         }
 
-        public bool UpdateInvoice(IDictionary<string, object> amData,
+        public override bool UpdateInvoice(IDictionary<string, object> amData,
             List<IDictionary<string, object>> adList, List<IDictionary<string, object>> adList3,
             IDictionary<string, object> keys)
         {
