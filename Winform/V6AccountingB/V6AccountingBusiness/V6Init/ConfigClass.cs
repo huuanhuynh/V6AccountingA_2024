@@ -366,6 +366,17 @@ namespace V6Init
         public bool F3 { get { return GetString("F3") == "1"; } }
         public bool F5 { get { return GetString("F5") == "1"; } }
         public bool F7 { get { return GetString("F7") == "1"; } }
+        public string F_KEYS { get { return GetString("F_KEYS"); } }
+        /// <summary>
+        /// Kiểm tra chuỗi F có nằm trong F_KEYS hay không (giữa các chấm phẩy ;).
+        /// </summary>
+        /// <param name="F"></param>
+        /// <returns></returns>
+        public bool F_KEYS_CHECK(string F)
+        {
+            string s = ";" + F_KEYS + ";";
+            return s.Contains(";" + F + ";");
+        }
         public string UID { get { return GetString("UID"); } }
         /// <summary>
         /// ~Name:NGAY;Ptype:TABLE2;Field:R_DMY 

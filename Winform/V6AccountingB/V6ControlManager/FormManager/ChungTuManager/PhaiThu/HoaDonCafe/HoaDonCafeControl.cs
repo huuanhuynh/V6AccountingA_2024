@@ -6992,5 +6992,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 dataGridView1.ReadOnly = true;
             }
         }
+
+        private void txtMa_vitriPH_TextChanged(object sender, EventArgs e)
+        {
+            DoNothing();
+        }
     }
 }

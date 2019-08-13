@@ -546,9 +546,19 @@ namespace V6AccountingBusiness
         /// </summary>
         /// <param name="tableName"></param>
         /// <param name="data"></param>
+        /// <returns></returns>
+        public static bool CheckDataExist(string tableName, IDictionary<string, object> data)
+        {
+            return CheckDataExist(tableName, data, null);
+        }
+        /// <summary>
+        /// Kiểm tra dữ liệu tồn tại trong bảng. Data cần đúng trường, đúng kiểu.
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="data"></param>
         /// <param name="filter"></param>
         /// <returns></returns>
-        public static bool CheckDataExist(string tableName, IDictionary<string, object> data, string filter = null)
+        public static bool CheckDataExist(string tableName, IDictionary<string, object> data, string filter)
         {
             try
             {
@@ -1010,8 +1020,7 @@ namespace V6AccountingBusiness
         /// <param name="dataDictionary">Lưu ý key UPPER</param>
         /// <param name="keys">Lưu ý key UPPER</param>
         /// <returns>-2:No columns</returns>
-        public static int UpdateSimple(string tableName, IDictionary<string, object> dataDictionary,
-            IDictionary<string, object> keys)
+        public static int UpdateSimple(string tableName, IDictionary<string, object> dataDictionary, IDictionary<string, object> keys)
         {
             V6TableStruct tableStruct = GetTableStruct(tableName);
             string sql = "";
@@ -1028,8 +1037,7 @@ namespace V6AccountingBusiness
             return result;
         }
 
-        public static int UpdateTable(string tableName, SortedDictionary<string, object> dataDictionary,
-            SortedDictionary<string, object> keys)
+        public static int UpdateTable(string tableName, SortedDictionary<string, object> dataDictionary, SortedDictionary<string, object> keys)
         {
             V6TableStruct tableStruct = GetTableStruct(tableName);
             SqlParameter[] plist2;
@@ -1194,7 +1202,7 @@ namespace V6AccountingBusiness
             return sResult;
         }
 
-        public static string GetNewSoCt_date(string maCt, DateTime date, string type, string maDvcs, string makho, int userId, out string ma_sonb)
+        public static string GetNewSoCt_date(string maCt, DateTime date, string type, string maDvcs, string makho, string sttrec, int userId, out string ma_sonb)
         {
             ma_sonb = "";
             SqlParameter[] prlist =
@@ -1204,6 +1212,7 @@ namespace V6AccountingBusiness
                 new SqlParameter("@Type", type),
                 new SqlParameter("@ma_dvcs", maDvcs),
                 new SqlParameter("@ma_kho", makho),
+                new SqlParameter("@Stt_rec", sttrec),
                 new SqlParameter("@User_id", userId)
             };
             var result = SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_GetNewSoct_Date", prlist);

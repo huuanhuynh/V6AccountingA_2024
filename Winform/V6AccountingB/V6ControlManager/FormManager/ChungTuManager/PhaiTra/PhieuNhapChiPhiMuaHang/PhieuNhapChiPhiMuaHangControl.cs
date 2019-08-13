@@ -4301,8 +4301,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
                 if (!e.multiSelect)
                 {
-                    txtSO_PN.Text = e.amData["SO_CT"].ToString().Trim();
-                    dateNgayPN.Value = ObjectAndString.ObjectToDate(e.amData["NGAY_CT"]);
+                    txtSO_PN.Text = e.extraData["SO_CT"].ToString().Trim();
+                    dateNgayPN.Value = ObjectAndString.ObjectToDate(e.extraData["NGAY_CT"]);
                 }
 
                 int addCount = 0, failCount = 0;

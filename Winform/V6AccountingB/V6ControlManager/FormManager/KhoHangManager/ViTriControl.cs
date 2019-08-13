@@ -37,6 +37,13 @@ namespace V6ControlManager.FormManager.KhoHangManager
         public string MA_VITRI { get { return Name; } set { Name = value; } }
         public string MA_VT = null;   //K5
 
+        public event HandleData V6Click;
+        protected virtual void OnV6Click(IDictionary<string, object> data)
+        {
+            var handler = V6Click;
+            if (handler != null) handler(data);
+        }
+
         public KhoParams KhoParams { get; set; }
 
 
@@ -174,6 +181,9 @@ namespace V6ControlManager.FormManager.KhoHangManager
             {
                 this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
             }
+            var data = new Dictionary<string, object>();
+            data.Add("MA_VITRI", MA_VITRI);
+            OnV6Click(data);
         }
 
         public void ClearDataVitriVaTu()
@@ -244,6 +254,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
             label2.Height = Height - label1.Height - label3.Height;
             label2.Top = label1.Bottom;
         }
+
 
         
     }

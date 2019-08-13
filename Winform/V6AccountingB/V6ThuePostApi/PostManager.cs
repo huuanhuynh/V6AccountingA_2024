@@ -2382,6 +2382,7 @@ namespace V6ThuePostManager
         private static object GetValue(DataRow row, ConfigLine config)
         {
             object fieldValue = config.Value;
+            DataTable table = row.Table;
             //if (string.IsNullOrEmpty(config.Type))
             //{
             //    return fieldValue;
@@ -2404,15 +2405,75 @@ namespace V6ThuePostManager
                 return UtilityHelper.DeCrypt(fieldValue.ToString());
             }
 
-            if (configTYPE == "FIELD"
-                && !string.IsNullOrEmpty(config.FieldV6)
-                && row.Table.Columns.Contains(config.FieldV6))
+            if (configTYPE == "FIELD"&& !string.IsNullOrEmpty(config.FieldV6))
             {
-                fieldValue = row[config.FieldV6];
-                if (row.Table.Columns[config.FieldV6].DataType == typeof(string))
+                // FieldV6 sẽ có dạng thông thường là (Field) hoặc dạng ghép là (Field1 + Field2) hoặc (Field1 + "abc" + field2)
+                if (table.Columns.Contains(config.FieldV6))
                 {
-                    //Trim
-                    fieldValue = fieldValue.ToString().Trim();
+                    fieldValue = row[config.FieldV6];
+                    if (table.Columns[config.FieldV6].DataType == typeof(string))
+                    {
+                        //Trim
+                        fieldValue = fieldValue.ToString().Trim();
+                    }
+                }
+                else
+                {
+                    var fields = ObjectAndString.SplitStringBy(config.FieldV6, '+');
+                    fieldValue = null;
+                    string fieldValueString = null;
+                    decimal fieldValueNumber = 0m;
+                    bool still_number = true;
+                    foreach (string s in fields)
+                    {
+                        string field = s.Trim();
+                        if (table.Columns.Contains(field))
+                        {
+                            fieldValueString += ObjectAndString.ObjectToString(row[field]).Trim();
+                            if (still_number && ObjectAndString.IsNumberType(table.Columns[field].DataType))
+                            {
+                                fieldValueNumber += ObjectAndString.ObjectToDecimal(row[field]);
+                            }
+                            else
+                            {
+                                still_number = false;
+                            }
+                        }
+                        else
+                        {
+                            if (still_number)
+                            {
+                                if (field.StartsWith("\"") && field.EndsWith("\""))
+                                {
+                                    fieldValueString += field.Substring(1, field.Length - 2);
+                                }
+                                else
+                                {
+                                    fieldValueString += field;
+                                }
+                                decimal tempNumber;
+                                if (Decimal.TryParse(field, out tempNumber))
+                                {
+                                    fieldValueNumber += tempNumber;
+                                }
+                                else
+                                {
+                                    still_number = false;
+                                }
+                            }
+                            else
+                            {
+                                if (field.StartsWith("\"") && field.EndsWith("\""))
+                                {
+                                    field = field.Substring(1, field.Length - 2);
+                                }
+                                fieldValueString += field;
+                            }
+                        }
+                    }
+                    // Chốt.
+                    if (still_number) fieldValue = fieldValueNumber;
+                    else fieldValue = fieldValueString;
                 }
             }
 
@@ -2493,55 +2554,26 @@ namespace V6ThuePostManager
                         {
                             switch (line_field)
                             {
-                                    //Viettel
                                 case "username":
-                                    _username = line.Value;
+                                    _username = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "codetax":
-                                    _codetax = line.Value;
+                                    _codetax = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
                                 case "password":
                                     _password = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "baselink":
-                                    if (line.Type == "ENCRYPT")
-                                    {
-                                        baseUrl = UtilityHelper.DeCrypt(line.Value);
-                                    }
-                                    else
-                                    {
-                                        baseUrl = line.Value;
-                                    }
+                                    baseUrl = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
                                 case "createlink":
-                                    if (line.Type == "ENCRYPT")
-                                    {
-                                        _createInvoiceUrl = UtilityHelper.DeCrypt(line.Value);
-                                    }
-                                    else
-                                    {
-                                        _createInvoiceUrl = line.Value;
-                                    }
+                                    _createInvoiceUrl = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
                                 case "modifylink":
-                                    if (line.Type == "ENCRYPT")
-                                    {
-                                        _modifylink = UtilityHelper.DeCrypt(line.Value);
-                                    }
-                                    else
-                                    {
-                                        _modifylink = line.Value;
-                                    }
+                                    _modifylink = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
                                 case "downloadlinkpdf":
-                                    if (line.Type == "ENCRYPT")
-                                    {
-                                        _downloadlinkpdf = UtilityHelper.DeCrypt(line.Value);
-                                    }
-                                    else
-                                    {
-                                        _downloadlinkpdf = line.Value;
-                                    }
+                                    _downloadlinkpdf = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
                                     //Vnpt, có dùng cả username, password
                                 case "link_publish":
@@ -2557,7 +2589,7 @@ namespace V6ThuePostManager
                                     _link_Attachment = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "account":
-                                    _account = line.Value;
+                                    _account = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
                                 case "accountpassword":
                                     _accountpassword = UtilityHelper.DeCrypt(line.Value);
@@ -2566,16 +2598,16 @@ namespace V6ThuePostManager
                                     _SERIAL_CERT = UtilityHelper.DeCrypt(line.Value).ToUpper();
                                     break;
                                 case "token_password_title":
-                                    _token_password_title = line.Value;
+                                    _token_password_title = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
                                 case "token_password":
                                     _token_password = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "partten":
-                                    partten_field = line.Value;
+                                    partten_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
                                 case "seri":
-                                    seri_field = line.Value;
+                                    seri_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
                                     //Bkav
                                 case "bkavpartnerguid":

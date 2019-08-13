@@ -4106,6 +4106,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 control.khoHangContainer.txtMaKho.Text = makho;
                 control.khoHangContainer.dateCuoiNgay.Value = ngayCt;
                 control.khoHangContainer.txtMavt.Text = mavt;
+                control.khoHangContainer.V6Click+= delegate(IDictionary<string, object> data)
+                {
+                    if (data != null && data.ContainsKey("MA_VITRI"))
+                    {
+                        _maViTri.Text = data["MA_VITRI"].ToString();
+                    }
+                };
                 
                 control.btnNhan.PerformClick();
                 control.ShowToForm(this, "title", false, true, false);

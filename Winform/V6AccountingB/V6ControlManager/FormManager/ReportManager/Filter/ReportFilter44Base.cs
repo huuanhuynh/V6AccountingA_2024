@@ -86,9 +86,15 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 {
                     ComboboxData = config.Combo_data;
                     ExtraParameterInfo = config.Extra_para;
-                    F3 = config.F3;
-                    F5 = config.F5;
-                    F7 = config.F7;
+                    F3 = config.F_KEYS_CHECK("F3");
+                    F4 = config.F_KEYS_CHECK("F4");
+                    F5 = config.F_KEYS_CHECK("F5");
+                    F6 = config.F_KEYS_CHECK("F6");
+                    F7 = config.F_KEYS_CHECK("F7");
+                    F8 = config.F_KEYS_CHECK("F8");
+                    F9 = config.F_KEYS_CHECK("F9");
+                    F10 = config.F_KEYS_CHECK("F10");
+                    
                     ViewSum = config.VIEWSUM;
                     Alreport_advance = config.ADVANCE;
                     _status2Text = V6Setting.IsVietnamese ? config.vbrowse1 : config.ebrowse1;

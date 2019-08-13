@@ -121,15 +121,22 @@ namespace V6Controls
                     + "using System.Collections.Generic;"
                     + "using System.Data;"
                     + "using System.Drawing;"
+                    //+ "using System.Linq;"
                     + "using System.Windows.Forms;"
                     + "using System.Data.SqlClient;"
                     + "using System.IO;"
                     + "using V6Init;"
                     + "using V6SqlConnect;"
                     + "using V6AccountingBusiness;"
+                    + "using V6AccountingBusiness.Invoices;"
                     + "using V6Controls;"
+                    + "using V6Controls.Controls;"
                     + "using V6Controls.Forms;"
                     + "using V6ReportControls;"
+                    + "using V6ControlManager.FormManager.ChungTuManager;"
+                    + "using V6ControlManager.FormManager.ReportManager.Filter;"
+                    + "using V6ControlManager.FormManager.ReportManager.ReportR;"
+                    + "using V6ControlManager.FormManager.ReportManager.XuLy;"
                     ;
                 using_text = using_text0 + using_text;
 

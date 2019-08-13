@@ -168,7 +168,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                         {
                             Loai_ct = _loai_ct_chon,
                             multiSelect = _multiSelect,
-                            amData = amData
+                            extraData = amData
                         };
                         OnAcceptSelectEvent(listData, e);
                         Close();

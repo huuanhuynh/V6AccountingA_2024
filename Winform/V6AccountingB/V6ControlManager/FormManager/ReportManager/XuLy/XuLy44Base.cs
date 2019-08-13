@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -308,38 +309,55 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private void MyInit()
         {
-            Text = _reportCaption;
-            All_Objects["thisForm"] = this;
-            CreateFormProgram();
-            CreateFormControls();   //AddFilterControl(_program);
-            InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);
-            if (ViewDetail)
-                ShowDetailGridView();
-            //else
-            //    FixGridView1();
-
-            LoadComboboxSource();
-            
-            if (!V6Login.IsAdmin)
+            try
             {
-                var menuRow = V6Menu.GetRow(ItemID);
-                if (menuRow != null)
+                Text = _reportCaption;
+                All_Objects["thisForm"] = this;
+                CreateFormProgram();
+                CreateFormControls();   //AddFilterControl(_program);
+                AddAllControlsToAll_Objects();
+                InvokeFormEvent(FormDynamicEvent.AFTERADDFILTERCONTROL);
+                if (ViewDetail)
+                    ShowDetailGridView();
+                //else
+                //    FixGridView1();
+
+                LoadComboboxSource();
+
+                if (!V6Login.IsAdmin)
                 {
-                    var key3 = menuRow["Key3"].ToString().Trim().ToUpper();
-                    var user_acc = V6Login.UserInfo["USER_ACC"].ToString().Trim();
-                    if (user_acc != "1")
+                    var menuRow = V6Menu.GetRow(ItemID);
+                    if (menuRow != null)
                     {
-                        //if (!key3.Contains("1")) exportToExcelTemplate.Visible = false;
-                        //if (!key3.Contains("2")) exportToExcelView.Visible = false;
-                        if (!key3.Contains("3")) exportToExcel.Visible = false;
-                        // if (!key3.Contains("4")) exportToXmlToolStripMenuItem.Visible = false;
-                        if (!key3.Contains("5")) printGrid.Visible = false;
-                        //if (!key3.Contains("6")) viewDataToolStripMenuItem.Visible = false;
-                        //if (!key3.Contains("7")) exportToPdfToolStripMenuItem.Visible = false;
+                        var key3 = menuRow["Key3"].ToString().Trim().ToUpper();
+                        var user_acc = V6Login.UserInfo["USER_ACC"].ToString().Trim();
+                        if (user_acc != "1")
+                        {
+                            //if (!key3.Contains("1")) exportToExcelTemplate.Visible = false;
+                            //if (!key3.Contains("2")) exportToExcelView.Visible = false;
+                            if (!key3.Contains("3")) exportToExcel.Visible = false;
+                            // if (!key3.Contains("4")) exportToXmlToolStripMenuItem.Visible = false;
+                            if (!key3.Contains("5")) printGrid.Visible = false;
+                            //if (!key3.Contains("6")) viewDataToolStripMenuItem.Visible = false;
+                            //if (!key3.Contains("7")) exportToPdfToolStripMenuItem.Visible = false;
+                        }
                     }
                 }
+                InvokeFormEvent(FormDynamicEvent.INIT);
             }
-            InvokeFormEvent(FormDynamicEvent.INIT);
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _message), ex);
+            }
+        }
+
+        private void AddAllControlsToAll_Objects()
+        {
+            var all = V6ControlFormHelper.GetAllControls(this);
+            foreach (Control c in all)
+            {
+                All_Objects[c.Name] = c;
+            }
         }
 
         private void LoadComboboxSource()
@@ -830,13 +848,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 XuLyF7();
             }
-            else if (keyData == Keys.F8)// && FilterControl.F8)
+            else if (keyData == Keys.F8 && FilterControl.F8)
             {
                 XuLyF8();
             }
             else if (keyData == Keys.F9 && FilterControl.F9)
             {
-                XuLyF9();
+                F9Thread();
+                //XuLyF9();
             }
             else if (keyData == Keys.F10 && FilterControl.F10)
             {
@@ -1166,21 +1185,29 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             f9ErrorAll = "";
             InvokeFormEvent(FormDynamicEvent.F9);
             f9Running = false;
+            V6ControlFormHelper.ShowMainMessage("F9 " + V6Text.Finish);
         }
 
         void tF9_Tick(object sender, EventArgs e)
         {
             if (f9Running)
             {
-                btnNhan.Image = waitingImages.Images[ii];
-                ii++;
-                if (ii >= waitingImages.Images.Count) ii = 0;
+                try
+                {
+                    btnNhan.Image = waitingImages.Images[ii];
+                    ii++;
+                    if (ii >= waitingImages.Images.Count) ii = 0;
 
-                var cError = f9Error;
-                f9Error = f9Error.Substring(cError.Length);
-                V6ControlFormHelper.SetStatusText("F9 running "
-                    + (cError.Length > 0 ? "Error: " : "")
-                    + cError);
+                    var cError = f9Error;
+                    f9Error = f9Error.Substring(cError.Length);
+                    V6ControlFormHelper.SetStatusText("F9 running "
+                        + (cError.Length > 0 ? "Error: " : "")
+                        + cError);
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
             else
             {

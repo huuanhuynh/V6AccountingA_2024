@@ -22,6 +22,13 @@ namespace V6ControlManager.FormManager.KhoHangManager
         public string ID { get; set; }
         private Dictionary<string, ViTriControl> _listVitri;
 
+        public event HandleData V6Click;
+        protected virtual void OnV6Click(IDictionary<string, object> data)
+        {
+            var handler = V6Click;
+            if (handler != null) handler(data);
+        }
+
         public KeHangControl()
         {
             InitializeComponent();
@@ -68,6 +75,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
                 vitri.Left = vitri.Width*index - vitri.Width;
                 vitri.Text = vitri.Name;
                 vitri.Click += vitri_Click;
+                vitri.V6Click += vitri_V6Click;
                 _listVitri.Add(vitri.Name, vitri);
                 vitri.Location = new Point(_p.X, _p.Y);
                 _p = new Point(_p.X + vitri.Width, _p.Y);
@@ -77,6 +85,11 @@ namespace V6ControlManager.FormManager.KhoHangManager
             {
                 this.WriteExLog(GetType() + ".AddViTri", ex);
             }
+        }
+
+        void vitri_V6Click(IDictionary<string, object> data)
+        {
+            OnV6Click(data);
         }
 
         void vitri_Click(object sender, EventArgs e)

@@ -78,6 +78,8 @@
             this.label46 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtF_KEYS = new V6Controls.V6ColorTextBox();
             this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -386,7 +388,9 @@
             this.tabPage1.Controls.Add(this.v6ColorTextBox21);
             this.tabPage1.Controls.Add(this.label53);
             this.tabPage1.Controls.Add(this.label52);
+            this.tabPage1.Controls.Add(this.txtF_KEYS);
             this.tabPage1.Controls.Add(this.v6ColorTextBox4);
+            this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.v6ColorTextBox16);
             this.tabPage1.Controls.Add(this.label9);
             this.tabPage1.Controls.Add(this.v6ColorTextBox15);
@@ -455,7 +459,7 @@
             this.btnCopyFilter.Location = new System.Drawing.Point(566, 299);
             this.btnCopyFilter.Name = "btnCopyFilter";
             this.btnCopyFilter.Size = new System.Drawing.Size(202, 29);
-            this.btnCopyFilter.TabIndex = 25;
+            this.btnCopyFilter.TabIndex = 28;
             this.btnCopyFilter.Text = "Copy FILTER";
             this.btnCopyFilter.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCopyFilter.UseVisualStyleBackColor = true;
@@ -470,7 +474,7 @@
             this.btnBoSung.Location = new System.Drawing.Point(566, 267);
             this.btnBoSung.Name = "btnBoSung";
             this.btnBoSung.Size = new System.Drawing.Size(202, 29);
-            this.btnBoSung.TabIndex = 24;
+            this.btnBoSung.TabIndex = 27;
             this.btnBoSung.Text = "Chi tiết FILTER";
             this.btnBoSung.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBoSung.UseVisualStyleBackColor = true;
@@ -487,7 +491,7 @@
             this.txtDONVITINH.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtDONVITINH.HoverColor = System.Drawing.Color.Yellow;
             this.txtDONVITINH.LeaveColor = System.Drawing.Color.White;
-            this.txtDONVITINH.Location = new System.Drawing.Point(119, 248);
+            this.txtDONVITINH.Location = new System.Drawing.Point(119, 243);
             this.txtDONVITINH.Margin = new System.Windows.Forms.Padding(4);
             this.txtDONVITINH.Name = "txtDONVITINH";
             this.txtDONVITINH.Size = new System.Drawing.Size(133, 23);
@@ -504,7 +508,7 @@
             // 
             this.label15.AccessibleDescription = "ADDEDITL00240";
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(11, 251);
+            this.label15.Location = new System.Drawing.Point(11, 246);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(83, 17);
@@ -516,11 +520,11 @@
             this.chkViewSum.AccessibleDescription = "ADDEDITC00008";
             this.chkViewSum.AccessibleName = "ViewSum";
             this.chkViewSum.AutoSize = true;
-            this.chkViewSum.Location = new System.Drawing.Point(492, 250);
+            this.chkViewSum.Location = new System.Drawing.Point(492, 245);
             this.chkViewSum.Margin = new System.Windows.Forms.Padding(4);
             this.chkViewSum.Name = "chkViewSum";
             this.chkViewSum.Size = new System.Drawing.Size(86, 21);
-            this.chkViewSum.TabIndex = 23;
+            this.chkViewSum.TabIndex = 26;
             this.chkViewSum.Text = "View sum";
             this.chkViewSum.UseVisualStyleBackColor = true;
             // 
@@ -529,11 +533,11 @@
             this.ChkF7.AccessibleDescription = "ADDEDITC00007";
             this.ChkF7.AccessibleName = "F7";
             this.ChkF7.AutoSize = true;
-            this.ChkF7.Location = new System.Drawing.Point(422, 250);
+            this.ChkF7.Location = new System.Drawing.Point(422, 245);
             this.ChkF7.Margin = new System.Windows.Forms.Padding(4);
             this.ChkF7.Name = "ChkF7";
             this.ChkF7.Size = new System.Drawing.Size(47, 21);
-            this.ChkF7.TabIndex = 23;
+            this.ChkF7.TabIndex = 25;
             this.ChkF7.Text = "F7 ";
             this.ChkF7.UseVisualStyleBackColor = true;
             // 
@@ -542,11 +546,11 @@
             this.ChkF5.AccessibleDescription = "ADDEDITC00006";
             this.ChkF5.AccessibleName = "F5";
             this.ChkF5.AutoSize = true;
-            this.ChkF5.Location = new System.Drawing.Point(352, 250);
+            this.ChkF5.Location = new System.Drawing.Point(352, 245);
             this.ChkF5.Margin = new System.Windows.Forms.Padding(4);
             this.ChkF5.Name = "ChkF5";
             this.ChkF5.Size = new System.Drawing.Size(47, 21);
-            this.ChkF5.TabIndex = 22;
+            this.ChkF5.TabIndex = 24;
             this.ChkF5.Text = "F5 ";
             this.ChkF5.UseVisualStyleBackColor = true;
             // 
@@ -555,11 +559,11 @@
             this.ChkF3.AccessibleDescription = "ADDEDITC00005";
             this.ChkF3.AccessibleName = "F3";
             this.ChkF3.AutoSize = true;
-            this.ChkF3.Location = new System.Drawing.Point(282, 250);
+            this.ChkF3.Location = new System.Drawing.Point(282, 245);
             this.ChkF3.Margin = new System.Windows.Forms.Padding(4);
             this.ChkF3.Name = "ChkF3";
             this.ChkF3.Size = new System.Drawing.Size(47, 21);
-            this.ChkF3.TabIndex = 21;
+            this.ChkF3.TabIndex = 23;
             this.ChkF3.Text = "F3 ";
             this.ChkF3.UseVisualStyleBackColor = true;
             // 
@@ -720,7 +724,7 @@
             this.v6ColorTextBox4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox4.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox4.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox4.Location = new System.Drawing.Point(119, 275);
+            this.v6ColorTextBox4.Location = new System.Drawing.Point(119, 270);
             this.v6ColorTextBox4.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox4.Name = "v6ColorTextBox4";
             this.v6ColorTextBox4.Size = new System.Drawing.Size(440, 23);
@@ -750,7 +754,7 @@
             // 
             this.label9.AccessibleDescription = "ADDEDITL00241";
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(11, 278);
+            this.label9.Location = new System.Drawing.Point(11, 273);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(73, 17);
@@ -827,6 +831,36 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Thông tin ngầm định";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(11, 300);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 17);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "F_KEYS";
+            // 
+            // txtF_KEYS
+            // 
+            this.txtF_KEYS.AccessibleName = "F_KEYS";
+            this.txtF_KEYS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtF_KEYS.BackColor = System.Drawing.Color.White;
+            this.txtF_KEYS.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtF_KEYS.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtF_KEYS.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtF_KEYS.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtF_KEYS.GrayText = "F3;F5...";
+            this.txtF_KEYS.HoverColor = System.Drawing.Color.Yellow;
+            this.txtF_KEYS.LeaveColor = System.Drawing.Color.White;
+            this.txtF_KEYS.Location = new System.Drawing.Point(119, 297);
+            this.txtF_KEYS.Margin = new System.Windows.Forms.Padding(4);
+            this.txtF_KEYS.Name = "txtF_KEYS";
+            this.txtF_KEYS.Size = new System.Drawing.Size(440, 23);
+            this.txtF_KEYS.TabIndex = 22;
+            this.toolTipV6FormControl.SetToolTip(this.txtF_KEYS, "Các phím chức năng được phép");
+            // 
             // ALREPORT_AddEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -900,5 +934,7 @@
         private V6ColorTextBox txtVBROWSE1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label13;
+        private V6ColorTextBox txtF_KEYS;
+        private System.Windows.Forms.Label label1;
     }
 }

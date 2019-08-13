@@ -3458,6 +3458,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.txtMa_vitriPH.Size = new System.Drawing.Size(30, 20);
             this.txtMa_vitriPH.TabIndex = 24;
             this.txtMa_vitriPH.Visible = false;
+            this.txtMa_vitriPH.TextChanged += new System.EventHandler(this.txtMa_vitriPH_TextChanged);
             // 
             // txtMa_khoPH
             // 

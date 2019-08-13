@@ -18,6 +18,14 @@ namespace V6ControlManager.FormManager.KhoHangManager
         private DataTable _data;
         private SortedList<string, DayHangControl> _listDay;
         public KhoParams KhoParams { get; set; }
+
+        public event HandleData V6Click;
+        protected virtual void OnV6Click(IDictionary<string, object> data)
+        {
+            var handler = V6Click;
+            if (handler != null) handler(data);
+        }
+
         public KhoHangControl()
         {
             InitializeComponent();
@@ -142,6 +150,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
             try
             {
                 DayHangControl day = new DayHangControl(KhoParams, row);
+                day.V6Click += day_V6Click;
                 _listDay.Add(day.ID, day);
                 day.Location = new Point(_p.X, _p.Y);
                 _p = new Point(_p.X, _p.Y + day.Height);
@@ -153,6 +162,11 @@ namespace V6ControlManager.FormManager.KhoHangManager
             {
                 this.WriteExLog(GetType() + ".AddDayHang", ex);
             }
+        }
+
+        void day_V6Click(IDictionary<string, object> data)
+        {
+            OnV6Click(data);
         }
 
         private void Resort()

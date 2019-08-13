@@ -37,7 +37,7 @@ namespace V6Controls
     {
         public string Loai_ct { get; set; }
         public bool multiSelect { get;set; }
-        public IDictionary<string, object> amData { get; set; }
+        public IDictionary<string, object> extraData { get; set; }
     }
 
 }

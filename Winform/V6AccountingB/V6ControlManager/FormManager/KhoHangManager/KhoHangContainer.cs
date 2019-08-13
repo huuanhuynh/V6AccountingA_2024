@@ -18,6 +18,13 @@ namespace V6ControlManager.FormManager.KhoHangManager
     public partial class KhoHangContainer : V6FormControl
     {
 
+        public event HandleData V6Click;
+        protected virtual void OnV6Click(IDictionary<string, object> data)
+        {
+            var handler = V6Click;
+            if (handler != null) handler(data);
+        }
+
         public KhoHangContainer()
         {
             InitializeComponent();
@@ -224,6 +231,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
                     GC.SuppressFinalize(_khoHang);
                 }
                 _khoHang = new KhoHangControl(KhoParams);
+                _khoHang.V6Click += _khoHang_V6Click;
                 _khoHang.AddControlsFinish += delegate
                 {
                     SetDataViTriVatTu();
@@ -237,6 +245,11 @@ namespace V6ControlManager.FormManager.KhoHangManager
             {
                 this.WriteExLog(GetType() + ".SetData", ex);
             }
+        }
+
+        void _khoHang_V6Click(IDictionary<string, object> data)
+        {
+            OnV6Click(data);
         }
 
         private void ClearDataVitriVaTu()

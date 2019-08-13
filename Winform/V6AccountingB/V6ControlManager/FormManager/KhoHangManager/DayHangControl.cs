@@ -26,6 +26,13 @@ namespace V6ControlManager.FormManager.KhoHangManager
         public string MA_KHO = null;
         public string TYPE = null;
 
+        public event HandleData V6Click;
+        protected virtual void OnV6Click(IDictionary<string, object> data)
+        {
+            var handler = V6Click;
+            if (handler != null) handler(data);
+        }
+
         public DayHangControl()
         {
             InitializeComponent();
@@ -74,6 +81,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
             try
             {
                 KeHangControl keHang = new KeHangControl(KhoParams, row);
+                keHang.V6Click += keHang_V6Click;
                 _listKeHang.Add(keHang.ID, keHang);
                 keHang.Location = new Point(_p.X, _p.Y);
                 _p = new Point(_p.X, _p.Y + keHang.Height);
@@ -84,6 +92,11 @@ namespace V6ControlManager.FormManager.KhoHangManager
             {
                 this.WriteExLog(GetType() + ".AddKeHang", ex);
             }
+        }
+
+        void keHang_V6Click(IDictionary<string, object> data)
+        {
+            OnV6Click(data);
         }
 
         private void Resort(int oneHeight)
@@ -185,7 +198,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
                         KhoParams.ReportFile,
                         "reportCaption", "caption2", "", "", "");
                     c.FilterControl.SetData(plistData);
-                    c.btnNhan_Click(null, null);
+                    //c.btnNhan_Click(null, null);
                     c.ShowToForm(this, "DayHang");
 
                     var cSelectedRow = c.SelectedRowData;
