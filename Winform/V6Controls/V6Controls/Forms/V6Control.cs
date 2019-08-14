@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using V6Init;
 using V6Structs;
 using V6Tools;
+using V6Tools.V6Convert;
 
 namespace V6Controls.Forms
 {
@@ -289,6 +290,25 @@ namespace V6Controls.Forms
             {
                 p.ShowTopLeftMessage(message);
             }
+        }
+
+        public string ViewFormVar()
+        {
+            string result = null;
+            try
+            {
+                StringInput inputForm = new StringInput();
+                if (inputForm.ShowDialog(this) == DialogResult.OK)
+                {
+                    ShowMainMessage(inputForm.InputString);
+                    this.ShowInfoMessage(ObjectAndString.ObjectToString(V6ControlFormHelper.GetObjectProperty(this, inputForm.InputString)));
+                }
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+            }
+            return result;
         }
     }
 }

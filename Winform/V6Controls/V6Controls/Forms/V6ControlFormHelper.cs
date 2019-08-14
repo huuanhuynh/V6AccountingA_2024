@@ -1361,6 +1361,43 @@ namespace V6Controls.Forms
         }
 
         /// <summary>
+        /// Lấy giá trị property hoặc field của object.
+        /// </summary>
+        /// <param name="o">Đối tượng chứa giá trị.</param>
+        /// <param name="propertyName">Tên giá trị.</param>
+        /// <returns></returns>
+        public static object GetObjectProperty(object o, string propertyName)
+        {
+            object result = null;
+            // "\n<!-- PROPERTIES -->";
+            // Đối với properties sẽ có tag_name bao bọc.
+            foreach (PropertyInfo property in o.GetType().GetProperties())
+            {
+                if ((string.Compare(property.Name, propertyName, StringComparison.InvariantCultureIgnoreCase) == 0) && property.CanRead)
+                {
+                    result = property.GetValue(o, null);
+                    return result;
+                }
+            }
+
+            // result += "\n\n<!-- FIELDS -->";
+            // Còn field sẽ không có tag_name bao bọc.
+            foreach (FieldInfo field in o.GetType().GetFields())
+            {
+                if (string.Compare(field.Name, propertyName, StringComparison.InvariantCultureIgnoreCase) == 0)
+                {
+                    if (!(o is DBNull)) result = field.GetValue(o);
+                    return result;
+                }
+            }
+
+            //result = GetControlByName(o as Control, propertyName);
+            //if (result != null) return result;
+
+            throw new Exception("Property not found!");
+        }
+
+        /// <summary>
         /// Tạo filterLine control từ chuỗi thông tin.
         /// Name = "line" + lineInfo.Field.ToUpper()
         /// </summary>

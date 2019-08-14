@@ -407,7 +407,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnDoiMa);
             this.Controls.Add(this.btnFull);
             this.Controls.Add(this.cboFilter);
             this.Controls.Add(this.comboBox1);
@@ -430,6 +429,7 @@
             this.Controls.Add(this.btnCopy);
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.btnDoiMa);
             this.FilterType = "2";
             this.Name = "DanhMucView";
             this.Size = new System.Drawing.Size(794, 373);

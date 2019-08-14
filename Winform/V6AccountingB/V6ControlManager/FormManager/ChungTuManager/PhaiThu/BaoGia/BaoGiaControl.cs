@@ -4921,7 +4921,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
         private void btnViewInfoData_Click(object sender, EventArgs e)
         {
-            ShowViewInfoData(Invoice);
+            bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            if (shift_is_down)
+            {
+                ViewFormVar();
+            }
+            else
+            {
+                ShowViewInfoData(Invoice);
+            }
         }
 
         private void txtMa_sonb_V6LostFocus(object sender)

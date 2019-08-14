@@ -256,7 +256,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lblTotalPage);
             this.Controls.Add(this.treeListViewAuto1);
-            this.Controls.Add(this.btnDoiMa);
             this.Controls.Add(this.btnFull);
             this.Controls.Add(this.btnXoa);
             this.Controls.Add(this.btnSua);
@@ -267,6 +266,7 @@
             this.Controls.Add(this.btnFind);
             this.Controls.Add(this.btnCopy);
             this.Controls.Add(this.btnThem);
+            this.Controls.Add(this.btnDoiMa);
             this.Name = "NhanSuView";
             this.Size = new System.Drawing.Size(749, 600);
             this.Load += new System.EventHandler(this.NhanSuView_Load);

@@ -405,7 +405,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnDoiMa);
             this.Controls.Add(this.btnFull);
             this.Controls.Add(this.btnXoa);
             this.Controls.Add(this.btnSua);
@@ -426,6 +425,7 @@
             this.Controls.Add(this.btnFirst);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.btnDoiMa);
             this.Name = "SoDuView2";
             this.Size = new System.Drawing.Size(691, 597);
             this.Load += new System.EventHandler(this.SoDuView2_Load);

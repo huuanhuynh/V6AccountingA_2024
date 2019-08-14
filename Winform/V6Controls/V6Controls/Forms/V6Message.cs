@@ -5,10 +5,22 @@ namespace V6Controls.Forms
 {
     public static class V6Message
     {
+        /// <summary>
+        /// Hiển thị một thông báo đơn giản.
+        /// </summary>
+        /// <param name="text">Nội dung thông báo.</param>
+        /// <returns></returns>
         public static DialogResult Show(string text)
         {
             return Show(text, 0);
         }
+
+        /// <summary>
+        /// Hiển thị một thông báo đơn giản.
+        /// </summary>
+        /// <param name="text">Nội dung thông báo.</param>
+        /// <param name="showTime">Thời gian hiển thị tính bằng phần trăm giây.</param>
+        /// <returns></returns>
         public static DialogResult Show(string text, int showTime)
         {
             return Show(text, showTime, null);
@@ -17,18 +29,43 @@ namespace V6Controls.Forms
         {
             return Show(text, 0, owner);
         }
+
+        /// <summary>
+        /// Hiển thị một thông báo đơn giản.
+        /// </summary>
+        /// <param name="text">Nội dung thông báo.</param>
+        /// <param name="showTime">Thời gian hiển thị tính bằng phần trăm giây.</param>
+        /// <param name="owner"></param>
+        /// <returns></returns>
         public static DialogResult Show(string text, int showTime, IWin32Window owner)
         {
             var mbox = new V6MessageForm(text, null, showTime);
             return mbox.ShowDialog(owner);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text">Nội dung thông báo.</param>
+        /// <param name="caption">Tiêu đề thông báo.</param>
+        /// <param name="showTime">Thời gian hiển thị tính bằng phần trăm giây.</param>
+        /// <param name="owner"></param>
+        /// <returns></returns>
         public static DialogResult Show(string text, string caption, int showTime = 0, IWin32Window owner = null)
         {
             var mbox = new V6MessageForm(text, caption, showTime);
             return mbox.ShowDialog(owner);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text">Nội dung thông báo.</param>
+        /// <param name="caption">Tiêu đề thông báo.</param>
+        /// <param name="showTime">Thời gian hiển thị tính bằng phần trăm giây.</param>
+        /// <param name="buttons"></param>
+        /// <param name="owner"></param>
+        /// <returns></returns>
         public static DialogResult Show(string text, string caption, int showTime, MessageBoxButtons buttons, IWin32Window owner = null)
         {
             var mbox = new V6MessageForm(text, caption, showTime, buttons);

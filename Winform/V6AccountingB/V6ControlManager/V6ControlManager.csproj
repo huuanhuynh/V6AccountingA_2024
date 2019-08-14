@@ -6590,6 +6590,7 @@
     <EmbeddedResource Include="FormManager\NhanSu\View\TwoGridControl.resx">
       <DependentUpon>TwoGridControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Add_Edit\Report1.rdlc" />
     <EmbeddedResource Include="FormManager\ReportManager\DanhMuc\DanhMucReportForm.resx">
       <DependentUpon>DanhMucReportForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -8560,7 +8561,6 @@
   <ItemGroup>
     <Folder Include="FormManager\KhoHangManager\Draw\NewFolder1\" />
     <Folder Include="FormManager\Other\" />
-    <Folder Include="FormManager\ReportManager\Add_Edit\" />
     <Folder Include="FormManager\ReportManager\Filter\Report\" />
   </ItemGroup>
   <ItemGroup>

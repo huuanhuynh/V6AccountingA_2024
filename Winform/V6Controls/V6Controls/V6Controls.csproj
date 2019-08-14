@@ -114,6 +114,12 @@
     <Compile Include="Controls\V6DateTimeFullPickerNull.Designer.cs">
       <DependentUpon>V6DateTimeFullPickerNull.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\StringInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StringInput.Designer.cs">
+      <DependentUpon>StringInput.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\KhachHangAddEditFrom_A1.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1542,6 +1548,9 @@
     <EmbeddedResource Include="Controls\Label\FormChangeControlLanguageText.resx">
       <DependentUpon>FormChangeControlLanguageText.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StringInput.resx">
+      <DependentUpon>StringInput.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ChangePassword.resx">
       <DependentUpon>ChangePassword.cs</DependentUpon>
     </EmbeddedResource>
@@ -2477,6 +2486,9 @@
     <None Include="Resources\rar16.png" />
     <None Include="Resources\jpg16.png" />
     <None Include="Resources\png16.png" />
+    <None Include="Resources\typing48.png" />
+    <None Include="Resources\typing32.png" />
+    <None Include="Resources\typing75.png" />
     <Content Include="x86\pdfium.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

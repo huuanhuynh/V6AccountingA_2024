@@ -175,7 +175,7 @@ namespace V6Controls.Forms
                     return base.ProcessCmdKey(ref msg, keyData);
                 }
 
-                if(DoHotKey0(keyData)) return true;
+                //if(DoHotKey0(keyData)) return true;
             }
             catch
             {

@@ -396,6 +396,50 @@ namespace V6ControlManager.FormManager.ChungTuManager
             return true;
         }
 
+        public override bool DoHotKey0(Keys keyData)
+        {
+            //SupperAccess(keyData);
+
+            if (false)
+            {
+                ShowMainMessage("false");
+            }
+            else
+            {
+                return base.DoHotKey0(keyData);
+            }
+            return true;
+        }
+        private string _supper_access = "";
+        private void SupperAccess(Keys keyData)
+        {
+            switch (_supper_access.Length)
+            {
+                case 0:
+                    if (keyData == Keys.V) { _supper_access += "v"; return; } break;
+                case 1:
+                    if (keyData == Keys.D6 || keyData == Keys.NumPad6) { _supper_access += "6"; return; } break;
+                case 2:
+                    if (keyData == Keys.S) { _supper_access += "s"; return; } break;
+                case 3:
+                    if (keyData == Keys.O) { _supper_access += "o"; return; } break;
+                case 4:
+                    if (keyData == Keys.F) { _supper_access += "f"; return; } break;
+                case 5:
+                    if (keyData == Keys.T)
+                    {
+                        _supper_access += "t";
+                        ShowMainMessage(_supper_access);
+                        //SupperAccess
+                        if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
+                        {
+                            ViewFormVar();
+                        }
+                    } break;
+            }
+            _supper_access = "";
+        }
+
         public virtual void ViewInvoice(string sttrec, V6Mode mode)
         {
             throw new NotImplementedException();

@@ -79,7 +79,19 @@ namespace V6ControlManager.FormManager.SoDuManager
 
 
         private SoDuFilterForm _filterForm;
-        private string InitFilter = "";
+        private string _initFilter;
+        public string InitFilter
+        {
+            get
+            {
+                if (_initFilter == null)
+                {
+                    _initFilter = V6Login.GetInitFilter(_alctConfig.TableNameAM, V6ControlFormHelper.FindFilterType(this));
+                }
+                return ("" + _initFilter).Replace("{MA_DVCS}", "'" + V6Login.Madvcs + "'");
+            }
+            set { _initFilter = value; }
+        }
         private string _search;
 
         //private string FILTER_FIELD
@@ -159,8 +171,7 @@ namespace V6ControlManager.FormManager.SoDuManager
 
                 GetADnameList();
                 _hideColumnDic = _categories.GetHideColumns(_alctConfig.TableNameAM);
-                InitFilter = V6Login.GetInitFilter(_alctConfig.TableNameAM, V6ControlFormHelper.FindFilterType(this));
-
+                
                 All_Objects["thisForm"] = this;
                 CreateFormProgram();
                 V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
