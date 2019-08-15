@@ -184,7 +184,7 @@ namespace V6Controls.Forms
         /// Khi viết override nếu không làm gì thì gọi lại DoHotKey0
         /// </summary>
         /// <param name="keyData"></param>
-        public virtual void DoHotKey (Keys keyData)
+        public virtual void DoHotKey(Keys keyData)
         {
             try
             {

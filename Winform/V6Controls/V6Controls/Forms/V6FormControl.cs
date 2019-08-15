@@ -192,7 +192,7 @@ namespace V6Controls.Forms
         /// Nếu không có hotkey định nghĩa thì gọi lại base.
         /// </summary>
         /// <param name="keyData"></param>
-        public override void DoHotKey (Keys keyData)
+        public override void DoHotKey(Keys keyData)
         {
             try
             {
@@ -203,11 +203,6 @@ namespace V6Controls.Forms
             {
                 // ignored
             }
-        }
-
-        public override bool DoHotKey0(Keys keyData)
-        {
-            return V6ControlFormHelper.DoKeyCommand(this, keyData);
         }
 
         protected int f3count;

@@ -131,7 +131,7 @@ namespace V6Controls.Forms
         }
 
         protected bool do_hot_key;
-        public virtual void DoHotKey (Keys keyData)
+        public virtual void DoHotKey(Keys keyData)
         {
             try
             {

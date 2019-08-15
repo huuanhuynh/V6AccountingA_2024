@@ -1334,7 +1334,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// Cần override
         /// </summary>
         /// <param name="data"></param>
-        public virtual void SetData(IDictionary<string, object> data)
+        public override void SetData(IDictionary<string, object> data)
         {
             V6ControlFormHelper.SetSomeDataDictionary(this, data);
         }

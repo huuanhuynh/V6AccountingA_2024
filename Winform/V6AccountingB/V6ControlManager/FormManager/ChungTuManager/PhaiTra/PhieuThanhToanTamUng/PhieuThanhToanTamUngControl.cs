@@ -9,6 +9,8 @@ using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamUng.Loc;
+using V6ControlManager.FormManager.ReportManager.Filter;
+using V6ControlManager.FormManager.ReportManager.XuLy;
 using V6Controls;
 using V6Controls.Forms;
 using V6Controls.Structs;
@@ -926,6 +928,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                 }
 
                 //Cac truong hop khac
+                if (IsViewingAnInvoice && Mode == V6Mode.View) btnChonPC.Enabled = true;
+                else btnChonPC.Enabled = false;
                 if (!readOnly)
                 {
                     
@@ -3693,6 +3697,33 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             else
             {
                 lblKieuPostColor.Visible = false;
+            }
+        }
+
+        private void btnChonPC_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                APDMO_APF9
+                //Hiện form phân bổ.
+                ARCMO_ARF9Control a = new ARCMO_ARF9Control("C0301008", "ARCMO_ARF9", "ARCMO_ARF9", "ARCMO_ARF9", "", "");
+                ARCMO_ARF9 filter = a.FilterControl as ARCMO_ARF9;
+                var data = AM_current.ToDataDictionary();
+                data["TK_I"] = data["MA_NX"];
+                if (filter != null)
+                {
+                    filter.SetData(data);
+                    filter._pb_type = 1;
+                }
+                a.btnNhan.PerformClick();
+                // Gửi tham số filter từ chứng từ
+                //Ngay_ct12 MA_KH MA_DVCS TK
+                
+                a.ShowToForm(this, "ARCMO_ARF9", true, true);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
     }

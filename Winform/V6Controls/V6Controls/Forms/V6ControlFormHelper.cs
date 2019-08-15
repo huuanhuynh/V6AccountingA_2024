@@ -1124,14 +1124,19 @@ namespace V6Controls.Forms
                 {
                     return control;
                 }
-                return control.Controls.Count > 0 ?
-                    (from Control c in control.Controls select GetControlByName(c, name)).FirstOrDefault(o => o != null)
-                    : null;
+
+                for (int i = control.Controls.Count - 1; i >= 0; i--)
+                {
+                    var c = control.Controls[i];
+                    var o = GetControlByName(c, name);
+                    if (o != null) return o;
+                }
             }
             catch (Exception ex)
             {
                 throw new Exception("GetFormControl error!\n" + ex.Message);
             }
+            return null;
         }
         /// <summary>
         /// Tìm một control trên form (hoặc control) thông qua accesibleName không phân biệt HOA thường.
@@ -1145,20 +1150,24 @@ namespace V6Controls.Forms
             try
             {
                 if (control == null) return null;
-
                 if (!string.IsNullOrEmpty(control.AccessibleName)
                     && string.Equals(control.AccessibleName, accessibleName, StringComparison.CurrentCultureIgnoreCase))
                 {
                     return control;
                 }
-                return control.Controls.Count > 0 ?
-                    (from Control c in control.Controls select GetControlByAccessibleName(c, accessibleName)).FirstOrDefault(o => o != null)
-                    : null;
+                
+                for (int i = control.Controls.Count - 1; i >= 0; i--)
+                {
+                    var c = control.Controls[i];
+                    var o = GetControlByAccessibleName(c, accessibleName);
+                    if (o != null) return o;
+                }
             }
             catch (Exception ex)
             {
                 throw new Exception("GetFormControl error!\n" + ex.Message);
             }
+            return null;
         }
 
         public static Control GetControlAtPoint(Control container, Point pos)

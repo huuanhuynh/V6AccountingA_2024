@@ -28,7 +28,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         }
 
         private string _stt_rec;
-        
+        /// <summary>
+        /// 0 mặc định, 1 stt_rec
+        /// </summary>
+        public int _pb_type = 0;
         /// <summary>
         /// Lay cac tham so cho procedure
         /// </summary>
@@ -42,7 +45,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             result.Add(new SqlParameter("@Ma_kh", maKhachHang.StringValueCheck));
             result.Add(new SqlParameter("@Tk", taiKhoan.StringValueCheck));
             result.Add(new SqlParameter("@Ma_dvcs", txtMaDvcs.StringValueCheck));
-            result.Add(new SqlParameter("@Stt_rec", ""));
+            result.Add(new SqlParameter("@Stt_rec", _pb_type == 0 ? "" : _stt_rec));
             
             return result;
         }
