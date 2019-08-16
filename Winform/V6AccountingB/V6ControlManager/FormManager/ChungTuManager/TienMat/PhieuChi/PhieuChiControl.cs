@@ -11,6 +11,8 @@ using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.Filter;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc;
+using V6ControlManager.FormManager.ReportManager.Filter;
+using V6ControlManager.FormManager.ReportManager.XuLy;
 using V6Controls;
 using V6Controls.Forms;
 using V6Controls.Structs;
@@ -25,12 +27,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
     public partial class PhieuChiControl : V6InvoiceControl
     {
         #region ==== Properties and Fields
+
         public V6Invoice51 Invoice;
         private string _MA_GD = "";
-        
+
         #endregion properties and fields
 
         #region ==== Contructor và Khởi tạo ====
+
         public PhieuChiControl()
         {
             InitializeComponent();
@@ -81,7 +85,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             txtMa_sonb.Upper();
             if (V6Login.MadvcsCount == 1)
             {
-                txtMa_sonb.SetInitFilter("MA_DVCS='" + V6Login.Madvcs + "' AND dbo.VFV_InList0('" + Invoice.Mact + "',MA_CTNB,'" + ",')=1");
+                txtMa_sonb.SetInitFilter("MA_DVCS='" + V6Login.Madvcs + "' AND dbo.VFV_InList0('" + Invoice.Mact +
+                                         "',MA_CTNB,'" + ",')=1");
             }
             else
             {
@@ -90,7 +95,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
 
             //V6ControlFormHelper.CreateGridViewStruct(dataGridView1, ad81Struct);
-            
+
             var dataGridViewColumn = dataGridView1.Columns["UID"];
             if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (Guid);
             //,,,
@@ -103,24 +108,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             dataGridViewColumn = dataGridView1.Columns["STT_REC0"];
             if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (string);
 
-            
+
             dataGridViewColumn = dataGridView3.Columns["UID"];
-            if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof(Guid);
+            if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (Guid);
             //,,,
             dataGridViewColumn = dataGridView3.Columns["TK_I"];
-            if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof(string);
+            if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (string);
             dataGridViewColumn = dataGridView3.Columns["TEN_TK"];
-            if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof(string);
+            if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (string);
             dataGridViewColumn = dataGridView3.Columns["STT_REC"];
-            if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof(string);
+            if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (string);
             dataGridViewColumn = dataGridView3.Columns["STT_REC0"];
-            if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof(string);
-            
+            if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (string);
+
             cboKieuPost.SelectedIndex = 0;
 
             All_Objects["thisForm"] = this;
             CreateFormProgram(Invoice);
-            
+
             LoadDetailControls("2");
             LoadDetail2Controls();
             LoadDetail3Controls();
@@ -132,30 +137,53 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             _MA_GD = (Invoice.Alct["M_MA_GD"] ?? "2").ToString().Trim();
             txtLoaiPhieu.SetInitFilter(string.Format("Ma_ct = '{0}'", Invoice.Mact));
             txtLoaiPhieu.ChangeText(_MA_GD);
-            
+
             LoadAll();
             InvokeFormEvent(FormDynamicEvent.INIT);
             V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
         }
-        
+
         #endregion contructor
 
         #region ==== Khởi tạo Detail Form ====
+
         //T_TT_NT0,T_TT_QD, PHAI_TT_NT, MA_NT_I
-        private V6ColorTextBox _soCt0, _maNtI, _sttRecTt, _ten_kh_t, _ten_vt_t, _dia_chi_t, _mst_t,_dien_giaii;
+        private V6ColorTextBox _soCt0, _maNtI, _sttRecTt, _ten_kh_t, _ten_vt_t, _dia_chi_t, _mst_t, _dien_giaii;
         private V6VvarTextBox _tkI, _ma_kh_t, _ma_thue_i, _tk_thue_i;
-        private V6NumberTextBox _t_tt_nt0, _t_tt_qd, _phaiTtNt, _psno, _psnoNt, _tien, _tienNt, _tientt, _ttqd, _mau_bc,_ty_gia_ht2,
-            _thue_suat, _thue_nt, _thue, _tt, _tt_nt;
+
+        private V6NumberTextBox _t_tt_nt0,
+            _t_tt_qd,
+            _phaiTtNt,
+            _psno,
+            _psnoNt,
+            _tien,
+            _tienNt,
+            _tientt,
+            _ttqd,
+            _mau_bc,
+            _ty_gia_ht2,
+            _thue_suat,
+            _thue_nt,
+            _thue,
+            _tt,
+            _tt_nt;
+
         private V6DateTimeColor _ngayCt0;
 
-        private V6ColorTextBox _so_ct022, _so_seri022, _ten_kh22,
-            _dia_chi22, _ma_so_thue22, _so_seri0;
+        private V6ColorTextBox _so_ct022,
+            _so_seri022,
+            _ten_kh22,
+            _dia_chi22,
+            _ma_so_thue22,
+            _so_seri0;
+
         private V6VvarTextBox _ma_kh22, _tk_du22, _tk_thue_no22;
         private V6DateTimeColor _ngay_ct022;
         private V6NumberTextBox _t_tien22, _t_tien_nt22, _thue_suat22, _t_thue22, _t_thue_nt22, _gia_Nt022, _mau_bc22;
 
-        
+
         DataTable alct1_01, alct1_02, alct1_03;
+
         private void LoadDetailControls(string maGd)
         {
             try
@@ -177,19 +205,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 {
                     detail1.ShowLblName = false;
                 }
-                else if (_MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9")
+                else if (_MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" ||
+                         _MA_GD == "8" || _MA_GD == "9")
                 {
                     //detail1.ShowLblName = true;
                     detail1.lblName.AccessibleName = "TEN_TK_I";
                 }
-                else if(_MA_GD == "3")
+                else if (_MA_GD == "3")
                 {
                     //detail1.ShowLblName = true;
                     detail1.lblName.AccessibleName = "TEN_TK_I";
                 }
                 //Lấy các control động
                 var dynamicControlList = GetDynamicControlsAlct();
-                dynamicControlList.Add(9999, new AlctControls{DetailControl = _sttRecTt});
+                dynamicControlList.Add(9999, new AlctControls {DetailControl = _sttRecTt});
                 //dynamicControlList.Add(9998, _soSeri0);
 
                 //Thêm các control động vào danh sách
@@ -197,7 +226,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 {
                     var control = item.Value.DetailControl;
                     ApplyControlEnterStatus(control);
-                    
+
                     var NAME = control.AccessibleName.ToUpper();
                     All_Objects[NAME] = control;
                     V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
@@ -211,7 +240,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                                 _ma_kh_t.CheckOnLeave = true;
                                 _ma_kh_t.GotFocus += delegate
                                 {
-                                    if (_ngayCt0.Value != null && _ma_kh_t.Text.Trim() == "" && _ten_kh_t.Text.Trim() == "")
+                                    if (_ngayCt0.Value != null && _ma_kh_t.Text.Trim() == "" &&
+                                        _ten_kh_t.Text.Trim() == "")
                                     {
                                         if (txtMaSoThue.Text != "")
                                         {
@@ -283,7 +313,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                                 {
 
                                     //10/08/2017 Tinh thue 1 chi tiet dang dung
-                                    _thue.Value = V6BusinessHelper.Vround(_thue_nt.Value * txtTyGia.Value, M_ROUND);
+                                    _thue.Value = V6BusinessHelper.Vround(_thue_nt.Value*txtTyGia.Value, M_ROUND);
                                     if (_maNt == _mMaNt0)
                                     {
                                         _thue.Value = _thue_nt.Value;
@@ -307,7 +337,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                             break;
 
                         case "SO_CT0":
-                            _soCt0 = (V6ColorTextBox)control;
+                            _soCt0 = (V6ColorTextBox) control;
                             if (_MA_GD == "1")
                             {
                                 _soCt0.GotFocus += _soCt0_GotFocus;
@@ -317,7 +347,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                             }
                             break;
                         case "TK_I":
-                            _tkI = (V6VvarTextBox)control;
+                            _tkI = (V6VvarTextBox) control;
                             _tkI.Upper();
                             _tkI.V6LostFocus += delegate
                             {
@@ -339,11 +369,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
                             break;
                         case "T_TT_NT0":
-                            _t_tt_nt0 = (V6NumberTextBox)control;
+                            _t_tt_nt0 = (V6NumberTextBox) control;
                             _t_tt_nt0.Enabled = false;
                             break;
                         case "T_TT_QD":
-                            _t_tt_qd = (V6NumberTextBox)control;
+                            _t_tt_qd = (V6NumberTextBox) control;
                             _t_tt_qd.Enabled = false;
                             break;
                         case "TT":
@@ -361,48 +391,48 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                             }
                             break;
                         case "PHAI_TT_NT":
-                            _phaiTtNt = (V6NumberTextBox)control;
+                            _phaiTtNt = (V6NumberTextBox) control;
                             _phaiTtNt.Enabled = false;
                             break;
                         case "MA_NT_I":
-                            _maNtI = (V6ColorTextBox)control;
+                            _maNtI = (V6ColorTextBox) control;
                             _maNtI.Enabled = false;
                             break;
                         case "NGAY_CT0":
-                            _ngayCt0 = (V6DateTimeColor)control;
+                            _ngayCt0 = (V6DateTimeColor) control;
                             if (_MA_GD == "1")
                             {
                                 _ngayCt0.Enabled = false;
                             }
                             break;
                         case "PS_NO":
-                            _psno = (V6NumberTextBox)control;
+                            _psno = (V6NumberTextBox) control;
                             _check_f_ps_no = true;
                             break;
                         case "PS_NO_NT":
-                            _psnoNt = (V6NumberTextBox)control;
+                            _psnoNt = (V6NumberTextBox) control;
                             _psnoNt.V6LostFocus += _psnoNt_V6LostFocus;
                             _check_f_ps_no_nt = true;
                             break;
                         case "TIEN":
-                            _tien = (V6NumberTextBox)control;
+                            _tien = (V6NumberTextBox) control;
                             _check_f_tien = true;
                             break;
                         case "TIEN_NT":
-                            _tienNt = (V6NumberTextBox)control;
+                            _tienNt = (V6NumberTextBox) control;
                             _tienNt.V6LostFocus += _tienNt_V6LostFocus;
                             _check_f_tien_nt = true;
                             break;
                         case "TIEN_TT":
-                            _tientt = (V6NumberTextBox)control;
+                            _tientt = (V6NumberTextBox) control;
                             _check_f_tien_tt = true;
                             break;
                         case "TT_QD":
-                            _ttqd = (V6NumberTextBox)control;
+                            _ttqd = (V6NumberTextBox) control;
                             _ttqd.V6LostFocus += _ttqd_V6LostFocus;
                             break;
                         case "DIEN_GIAII":
-                            _dien_giaii = (V6ColorTextBox)control;
+                            _dien_giaii = (V6ColorTextBox) control;
                             _dien_giaii.GotFocus += _dien_giaii_GotFocus;
                             break;
 
@@ -419,12 +449,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                             break;
 
                         case "TY_GIA_HT2":
-                            _ty_gia_ht2 = (V6NumberTextBox)control;
+                            _ty_gia_ht2 = (V6NumberTextBox) control;
                             _ty_gia_ht2.Enabled = false;
-                           // _ty_gia_ht2.Visible = false;
+                            // _ty_gia_ht2.Visible = false;
                             break;
                         case "SO_SERI0":
-                            _so_seri0 = (V6ColorTextBox)control;
+                            _so_seri0 = (V6ColorTextBox) control;
                             _so_seri0.Upper();
                             break;
 
@@ -458,7 +488,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     _tientt = V6ControlFormHelper.CreateNumberTien("TIEN_TT", "tientt", M_ROUND, null, 10, false);
                     dynamicControlList.Add(9993, new AlctControls {DetailControl = _tientt});
                 }
-                
+
                 detail1.RemoveControls();
 
                 foreach (AlctControls item in dynamicControlList.Values)
@@ -472,7 +502,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -482,13 +513,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             {
                 detail2.lblName.AccessibleName = "";
                 //Lấy các control động
-                var dynamicControlList = V6ControlFormHelper.GetDynamicControlsAlct(Invoice.Alct2, out _orderList2, out _alct2Dic);
+                var dynamicControlList = V6ControlFormHelper.GetDynamicControlsAlct(Invoice.Alct2, out _orderList2,
+                    out _alct2Dic);
                 //Thêm các control động vào danh sách
                 foreach (KeyValuePair<int, Control> item in dynamicControlList)
                 {
                     var control = item.Value;
                     ApplyControlEnterStatus(control);
-                    
+
                     var NAME = control.AccessibleName.ToUpper();
 
                     switch (NAME)
@@ -550,17 +582,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                             break;
                         case "TK_THUE_NO":
 
-                            _tk_thue_no22 = (V6VvarTextBox)control;
+                            _tk_thue_no22 = (V6VvarTextBox) control;
                             _tk_thue_no22.Upper();
                             _tk_thue_no22.SetInitFilter("Loai_tk=1");
                             _tk_thue_no22.FilterStart = true;
                             break;
                         case "TK_DU":
 
-                            _tk_du22 = (V6VvarTextBox)control;
+                            _tk_du22 = (V6VvarTextBox) control;
                             _tk_du22.Upper();
                             _tk_du22.SetInitFilter("Loai_tk=1");
-                            _tk_du22.FilterStart=true;
+                            _tk_du22.FilterStart = true;
                             break;
                         case "NGAY_CT0":
                             _ngay_ct022 = control as V6DateTimeColor;
@@ -611,7 +643,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                                 {
                                     _t_thue22.InvisibleTag();
                                 }
-                                if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
+                                if (!V6Login.IsAdmin &&
+                                    (Invoice.GRD_READONLY.Contains(NAME) ||
+                                     Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                                 {
                                     _t_thue22.ReadOnlyTag();
                                 }
@@ -625,7 +659,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                                 {
                                     _t_thue_nt22.InvisibleTag();
                                 }
-                                if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
+                                if (!V6Login.IsAdmin &&
+                                    (Invoice.GRD_READONLY.Contains(NAME) ||
+                                     Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                                 {
                                     _t_thue_nt22.ReadOnlyTag();
                                 }
@@ -651,20 +687,30 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
         private V6ColorTextBox _operTT_33, _nh_dk_33;
         private V6VvarTextBox _tk_i_33, _ma_kh_i_33;
-        private V6NumberTextBox _PsNoNt_33, _PsCoNt_33, _PsNo_33, _PsCo_33, _mau_bc_33,
-            _gia_nt_33, _tien_nt_33, _gia_33, _tien_33;
+
+        private V6NumberTextBox _PsNoNt_33,
+            _PsCoNt_33,
+            _PsNo_33,
+            _PsCo_33,
+            _mau_bc_33,
+            _gia_nt_33,
+            _tien_nt_33,
+            _gia_33,
+            _tien_33;
 
         private void LoadDetail3Controls()
         {
             detail3.lblName.AccessibleName = "TEN_TK";
             //Lấy các control động
-            var dynamicControlList = V6ControlFormHelper.GetDynamicControlsAlct(Invoice.Alct3, out _orderList3, out _alct3Dic);
+            var dynamicControlList = V6ControlFormHelper.GetDynamicControlsAlct(Invoice.Alct3, out _orderList3,
+                out _alct3Dic);
             //Thêm các control động vào danh sách
             foreach (KeyValuePair<int, Control> item in dynamicControlList)
             {
@@ -715,9 +761,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 var NAME = control.AccessibleName.ToUpper();
 
                 #region ==== Hứng control ====
+
                 if (NAME == "TK_I")
                 {
-                    _tk_i_33 = (V6VvarTextBox)control;
+                    _tk_i_33 = (V6VvarTextBox) control;
                     _tk_i_33.Upper();
                     _tk_i_33.FilterStart = true;
                     _tk_i_33.SetInitFilter("Loai_tk = 1");
@@ -752,7 +799,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 }
                 else if (NAME == "PS_NO")
                 {
-                    _PsNo_33 = (V6NumberTextBox)control;
+                    _PsNo_33 = (V6NumberTextBox) control;
                 }
                 else if (NAME == "PS_NO_NT")
                 {
@@ -761,7 +808,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     {
                         _PsNoNt_33.V6LostFocus += delegate
                         {
-                            _PsNo_33.Value = V6BusinessHelper.Vround((_PsNoNt_33.Value * txtTyGia.Value), M_ROUND);
+                            _PsNo_33.Value = V6BusinessHelper.Vround((_PsNoNt_33.Value*txtTyGia.Value), M_ROUND);
                             if (_PsNoNt_33.Value != 0)
                             {
                                 _PsCoNt_33.Value = 0;
@@ -772,7 +819,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 }
                 else if (NAME == "PS_CO")
                 {
-                    _PsCo_33 = (V6NumberTextBox)control;
+                    _PsCo_33 = (V6NumberTextBox) control;
                 }
                 else if (NAME == "PS_CO_NT")
                 {
@@ -782,7 +829,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
                         _PsCoNt_33.V6LostFocus += delegate
                         {
-                            _PsCo_33.Value = V6BusinessHelper.Vround((_PsCoNt_33.Value * txtTyGia.Value), M_ROUND);
+                            _PsCo_33.Value = V6BusinessHelper.Vround((_PsCoNt_33.Value*txtTyGia.Value), M_ROUND);
                             if (_PsCoNt_33.Value != 0)
                             {
                                 _PsNoNt_33.Value = 0;
@@ -819,6 +866,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 {
                     _nh_dk_33 = control as V6ColorTextBox;
                 }
+
                 #endregion hứng control
 
             }
@@ -837,6 +885,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             XuLyDetail3ClickAdd(sender);
         }
+
         private void XuLyDetail3ClickAdd(object sender)
         {
             try
@@ -846,9 +895,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
+
         /// <summary>
         /// Tính toán và gán giá trị còn lại cho ps_no hoặc ps có theo nhóm dk
         /// </summary>
@@ -871,7 +922,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     }
                     else
                     {
-                        var group = new decimal[] { 0, 0 };
+                        var group = new decimal[] {0, 0};
                         group[0] += ps_no;
                         group[1] += ps_co;
                         groupDic[nhomDK] = group;
@@ -892,7 +943,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                         else
                         {
                             _PsNoNt_33.Value = group[1] - group[0];
-                            _PsNo_33.Value = V6BusinessHelper.Vround(_PsNoNt_33.Value * txtTyGia.Value, M_ROUND);
+                            _PsNo_33.Value = V6BusinessHelper.Vround(_PsNoNt_33.Value*txtTyGia.Value, M_ROUND);
                         }
                         break;
                     }
@@ -900,7 +951,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -923,6 +975,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             throw new Exception(V6Text.ValidateFail);
         }
+
         private bool XuLySuaDetail3(IDictionary<string, object> data)
         {
             if (NotAddEdit)
@@ -946,7 +999,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
                         //Kiem tra du lieu truoc khi them sua
                         var error = "";
-                        if (!data.ContainsKey("TK_I") || data["TK_I"].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00379") + " " + V6Text.Empty;
+                        if (!data.ContainsKey("TK_I") || data["TK_I"].ToString().Trim() == "")
+                            error += "\n" + CorpLan.GetText("ADDEDITL00379") + " " + V6Text.Empty;
                         //if (!data.ContainsKey("MA_KHO_I") || data["MA_KHO_I"].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00166") + " " + V6Text.Empty;
                         if (error == "")
                         {
@@ -977,7 +1031,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
             TinhTongThanhToan("xy ly sua detail3");
             return true;
@@ -1022,7 +1077,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     }
                     AD3.Rows.Add(newRow);
                     dataGridView3.DataSource = AD3;
-                    
+
                     if (AD3.Rows.Count > 0)
                     {
                         var cIndex = AD3.Rows.Count - 1;
@@ -1037,7 +1092,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
                 return false;
             }
             TinhTongThanhToan("xu ly them detail3");
@@ -1060,7 +1116,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             return true;
         }
-        
+
         private void Detail3_ClickEdit(object sender)
         {
             try
@@ -1069,7 +1125,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 {
                     _sttRec03 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView3, detail3, out _gv3EditingRow);
                     detail3.ChangeToEditMode();
-                    
+
                     if (!string.IsNullOrEmpty(_sttRec03))
                     {
                         _tk_i_33.Focus();
@@ -1080,7 +1136,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -1088,6 +1145,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             XuLyDeleteDetail3();
         }
+
         private void XuLyDeleteDetail3()
         {
             if (NotAddEdit)
@@ -1105,7 +1163,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                         var currentRow = AD3.Rows[cIndex];
                         var details = V6Text.FieldCaption("TK") + ": " + currentRow["TK_I"];
                         if (this.ShowConfirmMessage(V6Text.DeleteConfirm +
-                                                                   details)
+                                                    details)
                             == DialogResult.Yes)
                         {
                             AD3.Rows.Remove(currentRow);
@@ -1122,7 +1180,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -1133,9 +1192,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
         private void detail3_LabelNameTextChanged(object sender, EventArgs e)
         {
-            lblNameT.Text = ((Label)sender).Text;
+            lblNameT.Text = ((Label) sender).Text;
         }
-        
+
         void _mau_bc22_GotFocus(object sender, EventArgs e)
         {
             if (_mau_bc22.Value == 0)
@@ -1152,7 +1211,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -1164,53 +1224,55 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 TinhTienThue();
 
                 if (_psnoNt != null)
-                _psnoNt.Value = _tienNt.Value;
-                
+                    _psnoNt.Value = _tienNt.Value;
+
                 if (cboMaNt.SelectedValue.ToString() == _mMaNt0)
                 {
                     _tien.Value = _tienNt.Value;
-                    if(_psno!=null && _psnoNt!=null)
+                    if (_psno != null && _psnoNt != null)
                         _psno.Value = _psnoNt.Value;
                 }
                 // Tuanmh 09/02/2016
                 if (_tien != null)
-                     _tientt.Value = _tien.Value;
+                    _tientt.Value = _tien.Value;
 
                 if (_ttqd != null && _tienNt != null && _maNtI.Text == _maNt)
                 {
                     _ttqd.Value = _tienNt.Value;
                 }
-            }   
+            }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
+
         void _psnoNt_V6LostFocus(object sender)
         {
             try
             {
-                
-                _psno.Value = V6BusinessHelper.Vround(_psnoNt.Value * txtTyGia.Value, M_ROUND);
+
+                _psno.Value = V6BusinessHelper.Vround(_psnoNt.Value*txtTyGia.Value, M_ROUND);
                 _tien.Value = _psno.Value;
                 if (_tienNt != null)
 
-                _tienNt.Value = _psnoNt.Value;
+                    _tienNt.Value = _psnoNt.Value;
 
                 if (cboMaNt.SelectedValue.ToString() == _mMaNt0)
                 {
-                    if (_tien != null && _tienNt!=null)
-                    _tien.Value = _tienNt.Value;
+                    if (_tien != null && _tienNt != null)
+                        _tien.Value = _tienNt.Value;
 
                     _psno.Value = _psnoNt.Value;
                 }
                 // Tuanmh 09/02/2016
                 if (_tien != null)
-                     _tientt.Value = _tien.Value;
+                    _tientt.Value = _tien.Value;
 
                 //10/08/2017 Tinh thue 1 chi tiet dang dung
-                _thue_nt.Value = V6BusinessHelper.Vround(_thue_suat.Value * _tienNt.Value / 100, M_ROUND);
-                _thue.Value = V6BusinessHelper.Vround(_thue_nt.Value * txtTyGia.Value, M_ROUND);
+                _thue_nt.Value = V6BusinessHelper.Vround(_thue_suat.Value*_tienNt.Value/100, M_ROUND);
+                _thue.Value = V6BusinessHelper.Vround(_thue_nt.Value*txtTyGia.Value, M_ROUND);
                 if (_maNt == _mMaNt0)
                 {
                     _thue.Value = _thue_nt.Value;
@@ -1221,10 +1283,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        
+
         void _soCt0_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1254,7 +1317,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -1262,6 +1326,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             Invoice.GetSoct0(_sttRec, txtMaKh.Text, txtMadvcs.Text);
         }
+
         void _dien_giaii_GotFocus(object sender, EventArgs e)
         {
             if (_dien_giaii.Text == "")
@@ -1289,16 +1354,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     alct1_01 = Invoice.GetAlct1(_MA_GD);
                 }
 
-                    alct1 = alct1_01;
+                alct1 = alct1_01;
             }
-            else if (_MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9")
+            else if (_MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" ||
+                     _MA_GD == "9")
             {
                 if (alct1_02 == null)
                 {
                     alct1_02 = Invoice.GetAlct1(_MA_GD);
                 }
 
-                    alct1 = alct1_02;
+                alct1 = alct1_02;
             }
             else if (_MA_GD == "3")
             {
@@ -1307,35 +1373,38 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     alct1_03 = Invoice.GetAlct1(_MA_GD);
                 }
 
-                    alct1 = alct1_03;
+                alct1 = alct1_03;
             }
             else
             {
-                throw  new Exception("Chọn lại ma_gd");
+                throw new Exception("Chọn lại ma_gd");
             }
 
-            var dynamicControlList = V6ControlFormHelper.GetDynamicControlStructsAlct(alct1, out _orderList, out _alct1Dic);
+            var dynamicControlList = V6ControlFormHelper.GetDynamicControlStructsAlct(alct1, out _orderList,
+                out _alct1Dic);
             if (_MA_GD != "1")
                 _orderList.Insert(1, "TEN_TK_I");
             return dynamicControlList;
         }
-        
+
         #endregion detail form
 
         #region ==== Override Methods ====
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2(V6Setting.IsVietnamese ? "F4-Nhận/thêm chi tiết, F7-Lưu và in, F8-Xóa chi tiết" : "F4-Add detail, F7-Save and print, F8-Delete detail");
+            V6ControlFormHelper.SetStatusText2(V6Setting.IsVietnamese
+                ? "F4-Nhận/thêm chi tiết, F7-Lưu và in, F8-Xóa chi tiết"
+                : "F4-Add detail, F7-Save and print, F8-Delete detail");
         }
 
         public override bool DoHotKey0(Keys keyData)
         {
-            if (keyData == (Keys.LButton | Keys.Space))//pageUp
+            if (keyData == (Keys.LButton | Keys.Space)) //pageUp
             {
                 if (btnPrevious.Enabled) btnPrevious.PerformClick();
             }
-            else if (keyData == (Keys.RButton | Keys.Space))//PageDown
+            else if (keyData == (Keys.RButton | Keys.Space)) //PageDown
             {
                 if (btnNext.Enabled) btnNext.PerformClick();
             }
@@ -1487,23 +1556,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         #region ==== Detail Events + Methods ====
 
         #region Events
-      
+
 
         void SoCt0_V6LostFocus(object sender)
         {
             CheckAlct0();
             SetDefaultDataDetail(Invoice, detail1.panelControls);
         }
+
         void SoCt0_V6LostFocusNoChange(object sender)
         {
             if (_soCt0.Text.Trim() == "") CheckAlct0();
         }
-        
+
 
         #endregion events
 
         #region Methods
-        
+
         private void CheckAlct0()
         {
             try
@@ -1550,7 +1620,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                             ShowParentMessage("Alct0_ARS30 " + V6Text.NoData);
                         }
                     }
-                    else if(detail1.MODE == V6Mode.Add)
+                    else if (detail1.MODE == V6Mode.Add)
                     {
                         //Check so ct da chon
                         check = false;
@@ -1562,7 +1632,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                                 break;
                             }
                         }
-                        if(check) this.ShowWarningMessage("Số hóa đơn đã chọn! " + inputUpper);
+                        if (check) this.ShowWarningMessage("Số hóa đơn đã chọn! " + inputUpper);
                     }
                 }
                 else
@@ -1572,11 +1642,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
-        private void XuLyKhiNhanSoCt(IDictionary<string,object> row)
+        private void XuLyKhiNhanSoCt(IDictionary<string, object> row)
         {
             try
             {
@@ -1591,7 +1662,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 _sttRecTt.Text = row["STT_REC"].ToString().Trim();
 
                 _ngayCt0.Value = ObjectAndString.ObjectToDate(row["NGAY_CT0"]);
-                
+
                 _tienNt.Value = _phaiTtNt.Value;
                 _tien.Value = _phaiTtNt.Value;
                 _ttqd.Value = _phaiTtNt.Value;
@@ -1602,8 +1673,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
                 if (_maNtI.Text != _mMaNt0)
                 {
-                    _tientt.Value = V6BusinessHelper.Vround(_phaiTtNt.Value * _ty_gia_ht2.Value, M_ROUND);
-                    _tien.Value = V6BusinessHelper.Vround(_phaiTtNt.Value * txtTyGia.Value, M_ROUND);
+                    _tientt.Value = V6BusinessHelper.Vround(_phaiTtNt.Value*_ty_gia_ht2.Value, M_ROUND);
+                    _tien.Value = V6BusinessHelper.Vround(_phaiTtNt.Value*txtTyGia.Value, M_ROUND);
                     _psno.Value = _tien.Value;
                 }
 
@@ -1624,17 +1695,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        
+
 
         #endregion methods
-        
+
 
         #endregion detail events
 
-        
+
         #region ==== Show Hide Enable Disable controls ====
 
         public override void EnableVisibleControls()
@@ -1668,10 +1740,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     //txtTongCkNt.ReadOnly = !chkSuaTienCk.Checked;
                     dateNgayLCT.Enabled = Invoice.M_NGAY_CT;
                 }
+                if (IsViewingAnInvoice && Mode == V6Mode.View) btnChonHD.Enabled = true;
+                else btnChonHD.Enabled = false;
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
 
             SetControlReadOnlyHide(this, Invoice, Mode);
@@ -1758,7 +1833,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     if (IsViewingAnInvoice)
                     {
                         btnCopy.Enabled = true;
-                        btnIn.Enabled = true;                        
+                        btnIn.Enabled = true;
                         btnSua.Enabled = true;
                         btnXoa.Enabled = true;
                     }
@@ -1780,6 +1855,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     break;
             }
         }
+
         #endregion enable...
 
 
@@ -1837,15 +1913,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                             newRow["STT_REC0"] = _sttRec02;
                             AD2.Rows.Add(newRow);
                             dataGridView2.DataSource = AD2;
-                            
+
                         }
                     }
-                    
+
                 }
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
                 return false;
             }
             return true;
@@ -1859,7 +1936,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             var tPsCoNt = V6BusinessHelper.TinhTongOper(AD3, "PS_CO_NT", "OPER_TT");
             txtTongTangGiamNt.Value = tPsNoNt;
             txtTongTienNt.Value = V6BusinessHelper.Vround(tTienNt, M_ROUND_NT);
-            
+
             var tTien = V6BusinessHelper.TinhTong(AD, "PS_NO");
             var tPsNo = V6BusinessHelper.TinhTongOper(AD3, "PS_NO", "OPER_TT");
             var tPsCo = V6BusinessHelper.TinhTongOper(AD3, "PS_CO", "OPER_TT");
@@ -1867,9 +1944,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             txtTongTien.Value = V6BusinessHelper.Vround(tTien, M_ROUND);
 
             //TongThue
-            var tThueNt = chkSuaThue.Checked ? V6BusinessHelper.TinhTong(AD2, "T_THUE_NT") : V6BusinessHelper.TinhTong(AD, "THUE_NT");
+            var tThueNt = chkSuaThue.Checked
+                ? V6BusinessHelper.TinhTong(AD2, "T_THUE_NT")
+                : V6BusinessHelper.TinhTong(AD, "THUE_NT");
             txtTongThueNt.Value = V6BusinessHelper.Vround(tThueNt, M_ROUND_NT);
-            var tThue = chkSuaThue.Checked ? V6BusinessHelper.TinhTong(AD2, "T_THUE") : V6BusinessHelper.TinhTong(AD, "THUE");
+            var tThue = chkSuaThue.Checked
+                ? V6BusinessHelper.TinhTong(AD2, "T_THUE")
+                : V6BusinessHelper.TinhTong(AD, "THUE");
             txtTongThue.Value = V6BusinessHelper.Vround(tThue, M_ROUND);
 
             //TongThanhToan
@@ -1885,23 +1966,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             {
                 ChungTu.ViewMoney(lblDocSoTien, txtTongThanhToanNt.Value, _maNt);
                 if (NotAddEdit) return;
-            
+
                 HienThiTongSoDong(lblTongSoDong);
                 //XuLyThayDoiTyGia();
                 TinhTongValues();
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _sttRec, "TTTT(" + debug + ")"), ex);
+                this.ShowErrorException(
+                    string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(),
+                        MethodBase.GetCurrentMethod().Name, _sttRec, "TTTT(" + debug + ")"), ex);
             }
         }
 
         #endregion tính toán
 
         #region ==== AM Methods ====
+
         private void LoadAll()
         {
-            AM = Invoice.SearchAM("1=0", "1=0", "", "", "");//Làm AM khác null
+            AM = Invoice.SearchAM("1=0", "1=0", "", "", ""); //Làm AM khác null
             EnableControls();
             GetSoPhieuInit();
             LoadAlnt(cboMaNt);
@@ -1911,7 +1995,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             V6ControlFormHelper.LoadAndSetFormInfoDefine(Invoice.Mact, tabKhac, this);
             Ready();
         }
-        
+
         private void GetM_ma_nt0()
         {
             _mMaNt0 = V6Options.M_MA_NT0;
@@ -1931,6 +2015,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 cboMaNt.SelectedValue = _mMaNt0;
             }
         }
+
         private void GetTyGia()
         {
             txtTyGia.Value = Invoice.GetTyGia(_maNt, dateNgayCT.Date);
@@ -1961,7 +2046,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -1970,15 +2056,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             try
             {
                 var alThue = V6BusinessHelper.Select("ALTHUE30", "*",
-                                  "MA_THUE = '" + _ma_thue_i.Text.Trim() + "'");
+                    "MA_THUE = '" + _ma_thue_i.Text.Trim() + "'");
                 if (alThue.TotalRows > 0)
                 {
                     _tk_thue_i.Text = alThue.Data.Rows[0]["TK_THUE_NO"].ToString().Trim();
                     _thue_suat.Value = ObjectAndString.ObjectToDecimal(alThue.Data.Rows[0]["THUE_SUAT"]);
                 }
                 //Tinh thue 1 chi tiet dang dung
-                _thue_nt.Value = V6BusinessHelper.Vround(_thue_suat.Value * _tienNt.Value / 100, M_ROUND);
-                _thue.Value = V6BusinessHelper.Vround(_thue_nt.Value * txtTyGia.Value, M_ROUND);
+                _thue_nt.Value = V6BusinessHelper.Vround(_thue_suat.Value*_tienNt.Value/100, M_ROUND);
+                _thue.Value = V6BusinessHelper.Vround(_thue_nt.Value*txtTyGia.Value, M_ROUND);
                 if (_maNt == _mMaNt0)
                 {
                     _thue.Value = _thue_nt.Value;
@@ -2003,7 +2089,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 if (_MA_GD == "1")
                 {
                     LoadDetailControls("1");
-                    
+
                     //alct = alct1_01;
 
                     var gridViewColumn = dataGridView1.Columns["TEN_TK_I"];
@@ -2013,7 +2099,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     }
                 }
                 //Loại 2
-                if (_MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9")
+                if (_MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" ||
+                    _MA_GD == "9")
                 {
                     LoadDetailControls("2");
                     //alct = alct1_02;
@@ -2052,7 +2139,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 }
 
                 FormatGridView();
-                
+
                 foreach (DataGridViewColumn column in dataGridView1.Columns)
                 {
                     var field = column.DataPropertyName.ToUpper();
@@ -2086,7 +2173,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
             finally
             {
@@ -2110,7 +2198,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     _tkI.Enabled = true;
                     KhoaThongTinKH();
                 }
-                else if (_MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9")
+                else if (_MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" ||
+                         _MA_GD == "8" || _MA_GD == "9")
                 {
                     //Enable 
                     _tkI.Enabled = true;
@@ -2206,10 +2295,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     txtTyGia.Enabled = true;
                     chkSuaTggs.Visible = true;
                     Txtty_gia_ht.Visible = true;
-                    
+
                     //_psno.VisibleTag();
-                    detail1.ShowIDs(new[]{"ps_no","tt", "thue"});
-                    
+                    detail1.ShowIDs(new[] {"ps_no", "tt", "thue"});
+
                     var c = V6ControlFormHelper.GetControlByAccessibleName(detail1, "PS_NO");
                     if (c != null) c.Visible = true;
 
@@ -2222,7 +2311,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     panelVND.Visible = true;
 
                     //Detail3
-                    detail3.ShowIDs(new[] { "PS_NO", "PS_CO" });
+                    detail3.ShowIDs(new[] {"PS_NO", "PS_CO"});
 
                     dataGridViewColumn = dataGridView3.Columns["PS_NO"];
                     if (dataGridViewColumn != null) dataGridViewColumn.Visible = true;
@@ -2247,9 +2336,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     chkSuaTggs.Visible = false;
                     Txtty_gia_ht.Visible = false;
                     Txtty_gia_ht.Value = 1;
-                    
-                    detail1.HideIDs(new []{"ps_no", "tt", "thue"});
-                    
+
+                    detail1.HideIDs(new[] {"ps_no", "tt", "thue"});
+
                     //SetColsVisible
                     var dataGridViewColumn = dataGridView1.Columns["PS_NO"];
                     if (dataGridViewColumn != null) dataGridViewColumn.Visible = false;
@@ -2257,7 +2346,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     if (gridViewColumn != null) gridViewColumn.Visible = false;
 
                     //Detail3
-                    detail3.HideIDs(new[] { "PS_NO", "PS_CO" });
+                    detail3.HideIDs(new[] {"PS_NO", "PS_CO"});
 
                     dataGridViewColumn = dataGridView3.Columns["PS_NO"];
                     if (dataGridViewColumn != null) dataGridViewColumn.Visible = false;
@@ -2268,7 +2357,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     if (_PsNoNt_33 != null) _PsNo_33.InvisibleTag();
                     if (_PsCo_33 != null) _PsCo_33.InvisibleTag();
                 }
-                
+
                 FormatNumberControl();
                 FormatNumberGridView();
                 //detail1.FixControlsLocation();
@@ -2349,7 +2438,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 {
                     column.DefaultCellStyle.Format = "N" + decimalPlaces;
                 }
-               //}
+                //}
 
                 column = dataGridView3.Columns["Ps_co_nt"];
                 if (column != null)
@@ -2491,8 +2580,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, Invoice.GRDS_AD, Invoice.GRDF_AD,
                 V6Setting.IsVietnamese ? Invoice.GRDHV_AD : Invoice.GRDHE_AD);
-            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, Invoice.Config2.GRDS_V1, Invoice.Config2.GRDF_V1, V6Setting.IsVietnamese ? Invoice.Config2.GRDHV_V1 : Invoice.Config2.GRDHE_V1);
-            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView3, Invoice.Config3.GRDS_V1, Invoice.Config3.GRDF_V1, V6Setting.IsVietnamese ? Invoice.Config3.GRDHV_V1 : Invoice.Config3.GRDHE_V1);
+            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, Invoice.Config2.GRDS_V1, Invoice.Config2.GRDF_V1,
+                V6Setting.IsVietnamese ? Invoice.Config2.GRDHV_V1 : Invoice.Config2.GRDHE_V1);
+            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView3, Invoice.Config3.GRDS_V1, Invoice.Config3.GRDF_V1,
+                V6Setting.IsVietnamese ? Invoice.Config3.GRDHV_V1 : Invoice.Config3.GRDHE_V1);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView1, Invoice.Mact);
             //V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView1, _orderList, i);
             V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView2, _orderList2);
@@ -2530,7 +2621,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
         }
 
-        
+
         public override void ShowParentMessage(string message)
         {
             try
@@ -2540,7 +2631,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 {
                     if (parent is ChungTuChungContainer)
                     {
-                        ((ChungTuChungContainer)parent)
+                        ((ChungTuChungContainer) parent)
                             .ShowMessage(message);
                         return;
                     }
@@ -2555,7 +2646,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 // ignored
             }
         }
-        
+
         public void ViewInvoice(int index)
         {
             if (AM != null && AM.Rows.Count > 0)
@@ -2575,6 +2666,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 }
             }
         }
+
         /// <summary>
         /// Hiển thị phiếu theo sttrec
         /// </summary>
@@ -2623,6 +2715,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                             var rowrec = row["Stt_rec"].ToString().Trim();
                             if (rowrec == sttrec)
                             {
+                                for (int i = 0; i < AM.Columns.Count; i++)
+                                {
+                                    row[i] = loadRow[i];
+                                }
                                 ViewInvoice(index);
                                 return;
                             }
@@ -2656,7 +2752,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             {
                 Mode = V6Mode.View;
                 V6ControlFormHelper.SetFormDataRow(this, AM.Rows[CurrentIndex]);
-                
+
                 //txtMadvcs.ExistRowInTable();
                 if (V6Setting.Language.Trim() == "V")
                 {
@@ -2711,14 +2807,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         }
 
         #region ==== Add Thread ====
+
         private IDictionary<string, object> addDataAM;
         private List<IDictionary<string, object>> addDataADList, addDataAD2, addDataAD3;
         private string addErrorMessage = "";
+
         private void DoAdd()
         {
             try
             {
-                CheckForIllegalCrossThreadCalls = false;//!!!
+                CheckForIllegalCrossThreadCalls = false; //!!!
 
                 if (Invoice.InsertInvoice(addDataAM, addDataADList, addDataAD2, addDataAD3))
                 {
@@ -2737,13 +2835,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 flagAddSuccess = false;
                 addErrorMessage = ex.Message;
                 Invoice.PostErrorLog(_sttRec, "M " + _sttRec, ex);
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
 
             if (_print_flag == V6PrintMode.AutoClickPrint)
                 Thread.Sleep(2000);
             flagAddFinish = true;
         }
+
         private void DoAddThread()
         {
             try
@@ -2758,21 +2858,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 {
                     IsBackground = true
                 }
-                .Start();
+                    .Start();
                 flagAddFinish = false;
                 checkAdd.Start();
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
+
         private bool flagAddFinish, flagAddSuccess;
+
         void checkAdd_Tick(object sender, EventArgs e)
         {
             if (flagAddFinish)
             {
-                ((Timer)sender).Stop();
+                ((Timer) sender).Stop();
 
                 if (flagAddSuccess)
                 {
@@ -2802,7 +2905,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     Mode = V6Mode.Add;
                 }
 
-                ((Timer)sender).Dispose();
+                ((Timer) sender).Dispose();
                 if (_print_flag != V6PrintMode.DoNoThing)
                 {
                     var temp = _print_flag;
@@ -2823,20 +2926,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        
-#endregion add
-        
+
+        #endregion add
+
         #region ==== Edit Thread ====
+
         private bool flagEditFinish, flagEditSuccess;
         private List<IDictionary<string, object>> editDataAD, editDataAD2, editDataAD3;
         private string editErrorMessage = "";
 
         private void DoEditThread()
         {
-            V6ControlFormHelper.AddLastAction("\nDoEditThread(), ReadyForEdit() Begin: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+            V6ControlFormHelper.AddLastAction("\nDoEditThread(), ReadyForEdit() Begin: " +
+                                              DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
             ReadyForEdit();
             V6ControlFormHelper.AddLastAction("\nReadyForEdit() End: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
             Timer checkEdit = new Timer();
@@ -2850,10 +2956,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             {
                 IsBackground = true
             }
-            .Start();
+                .Start();
 
             checkEdit.Start();
         }
+
         private void ReadyForEdit()
         {
             try
@@ -2886,7 +2993,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -2896,8 +3004,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             {
                 ((Timer) sender).Stop();
                 //Ghi log add edit time.
-                if(V6Setting.WriteExtraLog) this.WriteToLog(string.Format("AddEditTime({0})", _sttRec), "Xem LastAction! ");
-                
+                if (V6Setting.WriteExtraLog)
+                    this.WriteToLog(string.Format("AddEditTime({0})", _sttRec), "Xem LastAction! ");
+
                 if (flagEditSuccess)
                 {
                     V6ControlFormHelper.ShowMainMessage(V6Text.EditSuccess);
@@ -2940,11 +3049,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             try
             {
                 CheckForIllegalCrossThreadCalls = false;
-                var keys = new SortedDictionary<string, object> { { "STT_REC", _sttRec } };
-                V6ControlFormHelper.AddLastAction("\nInvoice.UpdateInvoice() Begin: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+                var keys = new SortedDictionary<string, object> {{"STT_REC", _sttRec}};
+                V6ControlFormHelper.AddLastAction("\nInvoice.UpdateInvoice() Begin: " +
+                                                  DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
                 if (Invoice.UpdateInvoice(addDataAM, editDataAD, editDataAD2, editDataAD3, keys))
                 {
-                    V6ControlFormHelper.AddLastAction("\nInvoice.UpdateInvoice() End Succes: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+                    V6ControlFormHelper.AddLastAction("\nInvoice.UpdateInvoice() End Succes: " +
+                                                      DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
                     flagEditSuccess = true;
                     ADTables.Remove(_sttRec);
                     AD2Tables.Remove(_sttRec);
@@ -2952,7 +3063,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 }
                 else
                 {
-                    V6ControlFormHelper.AddLastAction("\nInvoice.UpdateInvoice() End Fail: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+                    V6ControlFormHelper.AddLastAction("\nInvoice.UpdateInvoice() End Fail: " +
+                                                      DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
                     flagEditSuccess = false;
                     editErrorMessage = V6Text.Text("SUA0");
                     Invoice.PostErrorLog(_sttRec, "S");
@@ -2970,9 +3082,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             flagEditFinish = true;
             V6ControlFormHelper.AddLastAction("\nDoEdit() End: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
         }
+
         #endregion edit
 
         #region ==== Delete Thread ====
+
         private bool flagDeleteFinish, flagDeleteSuccess;
         private string deleteErrorMessage = "";
 
@@ -3010,7 +3124,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             catch (Exception ex)
             {
                 Invoice.PostErrorLog(_sttRec, "X " + _sttRec, ex);
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -3018,7 +3133,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             if (flagDeleteFinish)
             {
-                ((Timer)sender).Stop();
+                ((Timer) sender).Stop();
 
                 if (flagDeleteSuccess)
                 {
@@ -3052,7 +3167,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     ShowParentMessage(V6Text.DeleteFail + ": " + deleteErrorMessage);
                 }
 
-                ((Timer)sender).Dispose();
+                ((Timer) sender).Dispose();
                 if (_print_flag != V6PrintMode.DoNoThing)
                 {
                     var temp = _print_flag;
@@ -3094,6 +3209,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             flagDeleteFinish = true;
         }
+
         #endregion delete
 
         private void Luu()
@@ -3111,9 +3227,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     V6ControlFormHelper.RemoveRunningList(_sttRec);
                     TinhToanTruocKhiLuu();
                     addDataAM = PreparingDataAM(Invoice);
-                    V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD);
-                    V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD2);
-                    V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD3);
+                    V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] {"SO_CT", "NGAY_CT", "MA_CT"}, AD);
+                    V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] {"SO_CT", "NGAY_CT", "MA_CT"}, AD2);
+                    V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] {"SO_CT", "NGAY_CT", "MA_CT"}, AD3);
 
                     if (Mode == V6Mode.Add)
                     {
@@ -3133,7 +3249,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -3182,7 +3299,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -3201,8 +3319,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     {
                         //Tuanmh 24/07/2016 Check Debit Amount
                         bool check_edit =
-                            CheckEditAll(Invoice, cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
-                                txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
+                            CheckEditAll(Invoice, cboKieuPost.SelectedValue.ToString().Trim(),
+                                cboKieuPost.SelectedValue.ToString().Trim(),
+                                txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMadvcs.Text.Trim(),
+                                txtMaKh.Text.Trim(),
                                 txtTk.Text, dateNgayCT.Date, txtTongThanhToan.Value, "E");
 
                         if (check_edit == true)
@@ -3226,7 +3346,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -3239,12 +3360,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 {
                     var row = AM.Rows[CurrentIndex];
                     // Tuanmh 16/02/2016 Check level
-                    if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), (row["Xtag"] ?? "").ToString().Trim()))
+                    if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]),
+                        (row["Xtag"] ?? "").ToString().Trim()))
                     {
                         //Tuanmh 24/07/2016 Check Debit Amount
                         bool check_edit =
-                            CheckEditAll(Invoice, cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
-                                txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
+                            CheckEditAll(Invoice, cboKieuPost.SelectedValue.ToString().Trim(),
+                                cboKieuPost.SelectedValue.ToString().Trim(),
+                                txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMadvcs.Text.Trim(),
+                                txtMaKh.Text.Trim(),
                                 txtTk.Text, dateNgayCT.Date, txtTongThanhToan.Value, "D");
 
                         if (check_edit)
@@ -3264,7 +3388,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -3342,7 +3467,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                         "", "", "", _sttRec);
                     c.TTT = txtTongThanhToan.Value;
                     c.TTT_NT = txtTongThanhToanNt.Value;
-                    c.MA_NT =  _maNt;
+                    c.MA_NT = _maNt;
                     c.Dock = DockStyle.Fill;
                     c.PrintSuccess += (sender, stt_rec, hoadon_nd51) =>
                     {
@@ -3358,11 +3483,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
         private TimPhieuChiForm _timForm;
+
         private void Xem()
         {
             try
@@ -3420,9 +3547,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             Parent.Dispose();
         }
 
-        public decimal TongThanhToan { get { return txtTongThanhToan.Value; } }
-        public decimal TongThanhToanNT { get { return txtTongThanhToanNt.Value; } }
-        
+        public decimal TongThanhToan
+        {
+            get { return txtTongThanhToan.Value; }
+        }
+
+        public decimal TongThanhToanNT
+        {
+            get { return txtTongThanhToanNt.Value; }
+        }
+
         /// <summary>
         /// Lưu và in (click nút in, chọn máy in, không in ngay), có hiển thị form in trước 3 giây.
         /// </summary>
@@ -3442,7 +3576,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 if (ValidateData_Master())
                 {
                     Luu();
-                    Mode = V6Mode.View;// Status = "3";
+                    Mode = V6Mode.View; // Status = "3";
                 }
                 else
                 {
@@ -3456,6 +3590,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         }
 
         #region ==== Navigation function ====
+
         private void First()
         {
             ViewInvoice(0);
@@ -3473,8 +3608,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
         private void Last()
         {
-            ViewInvoice(AM.Rows.Count-1);
+            ViewInvoice(AM.Rows.Count - 1);
         }
+
         #endregion navi f
 
         /// <summary>
@@ -3560,13 +3696,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                             Mode = V6Mode.View;
                             ResetForm();
                         }
-                        
+
                     }
                 }
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -3575,11 +3712,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             var p = GetParentTabPage();
             if (p != null)
             {
-                txtSoPhieu.Text = ((TabControl)(p.Parent)).TabPages.Count.ToString();
+                txtSoPhieu.Text = ((TabControl) (p.Parent)).TabPages.Count.ToString();
             }
             else
             {
-                txtSoPhieu.Text = "01";    
+                txtSoPhieu.Text = "01";
             }
         }
 
@@ -3599,7 +3736,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
         }
 
-        
+
 
         #endregion AM Methods
 
@@ -3622,15 +3759,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
+
         /// <summary>
         /// Khi bấm nhận thêm detail, them kt co soct0 ngayct0 them ad2?
         /// </summary>
         /// <param name="dic"></param>
         /// <returns></returns>
-        private bool XuLyThemDetail(IDictionary<string,object> dic)
+        private bool XuLyThemDetail(IDictionary<string, object> dic)
         {
             if (NotAddEdit)
             {
@@ -3659,15 +3798,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                         error += V6Text.NoInput + " [" + label + "]\n";
                     }
                 }
-                else if (_MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9")
+                else if (_MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" ||
+                         _MA_GD == "8" || _MA_GD == "9")
                 {
-                    if (!dic.ContainsKey("TK_I") || dic["TK_I"].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00379") + " " + V6Text.Empty;
+                    if (!dic.ContainsKey("TK_I") || dic["TK_I"].ToString().Trim() == "")
+                        error += "\n" + CorpLan.GetText("ADDEDITL00379") + " " + V6Text.Empty;
                 }
                 else if (_MA_GD == "3")
                 {
-                    if (!dic.ContainsKey("TK_I") || dic["TK_I"].ToString().Trim() == "") error += "\n" + CorpLan.GetText("ADDEDITL00379") + " " + V6Text.Empty;
+                    if (!dic.ContainsKey("TK_I") || dic["TK_I"].ToString().Trim() == "")
+                        error += "\n" + CorpLan.GetText("ADDEDITL00379") + " " + V6Text.Empty;
                 }
-                
+
                 if (error == "")
                 {
                     //Tạo dòng dữ liệu mới.
@@ -3676,18 +3818,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     {
                         var key = column.ColumnName.ToUpper();
                         object value = ObjectAndString.ObjectTo(column.DataType,
-                            dic.ContainsKey(key) ? dic[key] : "")??DBNull.Value;
+                            dic.ContainsKey(key) ? dic[key] : "") ?? DBNull.Value;
                         newRow[key] = value;
                     }
 
                     AD.Rows.Add(newRow);
                     dataGridView1.DataSource = AD;
-                    
+
                     if (AD.Rows.Count > 0)
                     {
                         var cIndex = AD.Rows.Count - 1;
                         dataGridView1.Rows[cIndex].Selected = true;
-                        V6ControlFormHelper.SetGridviewCurrentCellToLastRow(dataGridView1, _MA_GD == "1" ? "SO_CT0" : "TK_I");
+                        V6ControlFormHelper.SetGridviewCurrentCellToLastRow(dataGridView1,
+                            _MA_GD == "1" ? "SO_CT0" : "TK_I");
                     }
                 }
                 else
@@ -3698,7 +3841,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
             TinhTongThanhToan(GetType() + "." + MethodBase.GetCurrentMethod().Name);
             return true;
@@ -3720,7 +3864,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 }
 
                 var cIndex = _gv1EditingRow.Index;
-                
+
                 if (cIndex >= 0 && cIndex < AD.Rows.Count)
                 {
                     //Thêm thông tin...
@@ -3729,7 +3873,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
                     //Kiem tra du lieu truoc khi them sua
                     var error = "";
-                    if(_MA_GD == "1")
+                    if (_MA_GD == "1")
                         if (!data.ContainsKey("SO_CT0") || data["SO_CT0"].ToString().Trim() == "")
                         {
                             var label = "SO_CT0";
@@ -3737,7 +3881,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                             if (lbl != null) label = lbl.Text;
                             error += V6Text.NoInput + " [" + label + "]\n";
                         }
-                    if (_MA_GD == "2" || _MA_GD == "3" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9")
+                    if (_MA_GD == "2" || _MA_GD == "3" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" ||
+                        _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9")
                         if (!data.ContainsKey("TK_I") || data["TK_I"].ToString().Trim() == "")
                         {
                             var label = "TK_I";
@@ -3745,7 +3890,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                             if (lbl != null) label = lbl.Text;
                             error += V6Text.NoInput + " [" + label + "]\n";
                         }
-                    
+
                     if (error == "")
                     {
                         //Sửa dòng dữ liệu.
@@ -3770,7 +3915,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
                 return false;
             }
             TinhTongThanhToan("xy ly sua detail");
@@ -3790,7 +3936,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 {
                     var cIndex = dataGridView1.CurrentRow.Index;
                     var currentRow = AD.Rows[cIndex];
-                    
+
                     if (this.ShowConfirmMessage(V6Text.DeleteConfirm)
                         == DialogResult.Yes)
                     {
@@ -3807,13 +3953,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        
+
         #endregion details
 
         #region ==== AM Events ====
+
         private void Form_Load(object sender, EventArgs e)
         {
             LoadTag(1, Invoice.Mact, Invoice.Mact, m_itemId, "");
@@ -3822,6 +3970,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         }
 
         #region ==== Command Buttons ====
+
         private void btnLuu_Click(object sender, EventArgs e)
         {
             DisableAllFunctionButtons(btnLuu, btnMoi, btnCopy, btnIn, btnSua, btnHuy, btnXoa, btnXem, btnTim, btnQuayRa);
@@ -3844,6 +3993,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             Copy();
         }
+
         private void btnIn_Click(object sender, EventArgs e)
         {
             V6PrintMode printMode = V6PrintMode.DoNoThing;
@@ -3851,6 +4001,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             if (Invoice.PrintMode == "2") printMode = V6PrintMode.AutoClickPrint;
             BasePrint(Invoice, _sttRec, printMode, TongThanhToan, TongThanhToanNT, false);
         }
+
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (ValidateNgayCt(Invoice.Mact, dateNgayCT))
@@ -3858,20 +4009,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 Sua();
             }
         }
+
         private void btnXem_Click(object sender, EventArgs e)
         {
             Xem();
         }
+
         private void btnTim_Click(object sender, EventArgs e)
         {
             Tim();
         }
+
         private void btnQuayRa_Click(object sender, EventArgs e)
         {
             QuayRa();
         }
+
         #endregion command buttons
-        
+
         private bool ValidateData_Master()
         {
             try
@@ -3888,7 +4043,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     txtMadvcs.Focus();
                     return false;
                 }
-                if ((_MA_GD == "1" || _MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9")
+                if ((_MA_GD == "1" || _MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" ||
+                     _MA_GD == "8" || _MA_GD == "9")
                     && txtMaKh.Text.Trim() == "")
                 {
                     this.ShowWarningMessage(V6Text.NoInput + lblMaKH.Text);
@@ -3950,7 +4106,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     }
                     else
                     {
-                        var group = new decimal[] { 0, 0 };
+                        var group = new decimal[] {0, 0};
                         group[0] += ps_no;
                         group[1] += ps_co;
                         groupDic[nhomDK] = group;
@@ -3970,8 +4126,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     this.ShowWarningMessage(checkChiTietError);
                     return false;
                 }
-                
-                
+
+
                 //Tuanmh 24/07/2016 Check Debit Amount
                 {
                     var mode_vc = "V";
@@ -3985,9 +4141,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
                     }
 
-                    DataTable DataCheck_Save_All = Invoice.GetCheck_Save_All(cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
-                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec, txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
-                        txtTk.Text.Trim(), dateNgayCT.Date, txtMa_ct.Text, txtTongThanhToan.Value, mode_vc, V6Login.UserId);
+                    DataTable DataCheck_Save_All = Invoice.GetCheck_Save_All(
+                        cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
+                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec, txtMadvcs.Text.Trim(),
+                        txtMaKh.Text.Trim(),
+                        txtTk.Text.Trim(), dateNgayCT.Date, txtMa_ct.Text, txtTongThanhToan.Value, mode_vc,
+                        V6Login.UserId);
 
 
 
@@ -4029,7 +4188,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
                 // Tuanmh 16/02/2016 Check Voucher Is exist 
                 {
-                    DataTable DataCheckVC = Invoice.GetCheck_VC_Save(cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
+                    DataTable DataCheckVC = Invoice.GetCheck_VC_Save(cboKieuPost.SelectedValue.ToString().Trim(),
+                        cboKieuPost.SelectedValue.ToString().Trim(),
                         txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec);
                     if (DataCheckVC != null && DataCheckVC.Rows.Count > 0)
                     {
@@ -4065,23 +4225,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         private bool ValidateData_Detail(IDictionary<string, object> data)
         {
             try
-             {
-                 if (_tkI.Int_Data("Loai_tk") == 0)
-                 {
-                     this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
-                     return false;
-                 }
+            {
+                if (_tkI.Int_Data("Loai_tk") == 0)
+                {
+                    this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
+                    return false;
+                }
 
-                 string firstErrorField;
-                 string errors = ValidateDetailData(detail1, Invoice, data, out firstErrorField);
-                 if (!string.IsNullOrEmpty(errors))
-                 {
-                     this.ShowWarningMessage(errors);
-                     var c = detail1.GetControlByAccessibleName(firstErrorField);
-                     if (c != null) c.Focus();
-                     return false;
-                 }
-             }
+                string firstErrorField;
+                string errors = ValidateDetailData(detail1, Invoice, data, out firstErrorField);
+                if (!string.IsNullOrEmpty(errors))
+                {
+                    this.ShowWarningMessage(errors);
+                    var c = detail1.GetControlByAccessibleName(firstErrorField);
+                    if (c != null) c.Focus();
+                    return false;
+                }
+            }
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".ValidateData_Detail " + _sttRec, ex);
@@ -4089,7 +4249,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             return true;
         }
 
-        private bool ValidateData_Detail2(IDictionary<string, object>  data)
+        private bool ValidateData_Detail2(IDictionary<string, object> data)
         {
             try
             {
@@ -4105,7 +4265,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
             return true;
         }
@@ -4115,7 +4276,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             try
             {
                 if (_maNt == _mMaNt0) return;
-                V6ControlFormHelper.AddLastAction("\nTinhToanTruocKhiLuu() Begin: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+                V6ControlFormHelper.AddLastAction("\nTinhToanTruocKhiLuu() Begin: " +
+                                                  DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
                 int loai_cl = 0;
                 SqlParameter[] plist =
                 {
@@ -4141,12 +4303,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                             if (txtTyGia.Value > ty_gia)
                             {
                                 ad_row["TY_GIA_HT2"] = ty_gia;
-                                ad_row["TIEN_TT"] =V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(ad_row["TIEN_NT"])*ty_gia,M_ROUND);
+                                ad_row["TIEN_TT"] =
+                                    V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(ad_row["TIEN_NT"])*ty_gia,
+                                        M_ROUND);
                             }
                             else
                             {
                                 ad_row["TY_GIA_HT2"] = txtTyGia.Value;
-                                ad_row["TIEN_TT"] = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(ad_row["TIEN_NT"]) * ty_gia, M_ROUND);
+                                ad_row["TIEN_TT"] =
+                                    V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(ad_row["TIEN_NT"])*ty_gia,
+                                        M_ROUND);
                             }
                         }
                         dataGridView1.DataSource = AD;
@@ -4158,11 +4324,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             {
                 this.WriteExLog(GetType() + ".TinhToanTruocKhiLuu " + _sttRec, ex);
             }
-            V6ControlFormHelper.AddLastAction("\nTinhToanTruocKhiLuu() End: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+            V6ControlFormHelper.AddLastAction("\nTinhToanTruocKhiLuu() End: " +
+                                              DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
         }
 
 
         #region ==== Navigation button ====
+
         private void btnFirst_Click(object sender, EventArgs e)
         {
             First();
@@ -4182,13 +4350,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             Last();
         }
+
         #endregion navi
 
         private void hoaDonDetail1_AddClick(object sender)
         {
             XuLyDetailClickAdd();
         }
-        private void hoaDonDetail1_AddHandle(IDictionary<string,object> data)
+
+        private void hoaDonDetail1_AddHandle(IDictionary<string, object> data)
         {
             if (ValidateData_Detail(data))
             {
@@ -4208,10 +4378,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             throw new Exception(V6Text.ValidateFail);
         }
+
         private void hoaDonDetail1_DeleteClick(object sender)
         {
             XuLyXoaDetail();
         }
+
         private void phieuThuDetail1_ClickCancelEdit(object sender)
         {
             dataGridView1.UnLock();
@@ -4235,6 +4407,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 detail1.SetData(dataGridView1.CurrentRow.ToDataDictionary());
             }
         }
+
         private void dataGridView3_SelectionChanged(object sender, EventArgs e)
         {
             if (detail3.IsViewOrLock)
@@ -4261,7 +4434,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
             txtTyGia_V6LostFocus(sender);
         }
-        
+
         private void txtTyGia_V6LostFocus(object sender)
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
@@ -4272,12 +4445,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     row["TIEN_TT"] = row["PS_NO"];
                 }
 
-                TinhTongThanhToan("TyGia_V6LostFocus " + ((Control)sender).AccessibleName);
+                TinhTongThanhToan("TyGia_V6LostFocus " + ((Control) sender).AccessibleName);
             }
         }
 
         #endregion am events
-        
+
         private void dataGridView1_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
         {
             e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -4289,7 +4462,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 var row = _alct1Dic[fieldName];
                 var fstatus2 = Convert.ToBoolean(row["fstatus2"]);
                 var fcaption = row[V6Setting.IsVietnamese ? "caption" : "caption2"].ToString().Trim();
-                if(fieldName == "PS_NO_NT") fcaption += " "+ cboMaNt.SelectedValue;
+                if (fieldName == "PS_NO_NT") fcaption += " " + cboMaNt.SelectedValue;
                 if (fieldName == "TIEN_NT") fcaption += " " + cboMaNt.SelectedValue;
 
                 if (fieldName == "PS_NO") fcaption += " " + _mMaNt0;
@@ -4299,7 +4472,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
                 e.Column.HeaderText = fcaption;
             }
-            else if(!(new List<string> {"TEN_TK_I","TK_I"}).Contains(fieldName))
+            else if (!(new List<string> {"TEN_TK_I", "TK_I"}).Contains(fieldName))
             {
                 e.Column.Visible = false;
             }
@@ -4324,7 +4497,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
                 e.Column.HeaderText = fcaption;
             }
-            else if (!(new List<string> { "TEN_TK", "TK_I" }).Contains(fieldName))
+            else if (!(new List<string> {"TEN_TK", "TK_I"}).Contains(fieldName))
             {
                 e.Column.Visible = false;
             }
@@ -4366,7 +4539,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             XuLyThayDoiLoaiPhieuThu();
         }
-        
+
         private void v6Label3_Click(object sender, EventArgs e)
         {
 
@@ -4419,10 +4592,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        
+
         private void btnChonNhieuHD_Click(object sender, EventArgs e)
         {
             try
@@ -4470,26 +4644,29 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                         dic["NGAY_CT0"] = ngay_ct0;
                         dic["SO_SERI0"] = data.Cells["SO_SERI"].Value;
 
-                        
+
                         var ty_gia_ht2_Value = ObjectAndString.ObjectToDecimal(data.Cells["ty_gia"]);
                         dic["TY_GIA_HT2"] = ty_gia_ht2_Value;
 
                         if (dic["MA_NT_I"].ToString().Trim() != _mMaNt0)
                         {
                             var tientt_Value = V6BusinessHelper.Vround(
-                                ObjectAndString.ObjectToDecimal(dic["PHAI_TT_NT"]) * ty_gia_ht2_Value, M_ROUND);
+                                ObjectAndString.ObjectToDecimal(dic["PHAI_TT_NT"])*ty_gia_ht2_Value, M_ROUND);
                             dic["TIEN_TT"] = tientt_Value;
                             dic["TIEN"] = tientt_Value;
                             dic["PS_NO"] = tientt_Value;
                         }
                         //{Tuanmh 21/08/2016
-                        if (Txtdien_giai.Text != "") 
+                        if (Txtdien_giai.Text != "")
                         {
-                            dic["DIEN_GIAII"] = Txtdien_giai.Text.Trim() + " số " + data.Cells["SO_CT0"].Value.ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString(ngay_ct0);
+                            dic["DIEN_GIAII"] = Txtdien_giai.Text.Trim() + " số " +
+                                                data.Cells["SO_CT0"].Value.ToString().Trim() + ", ngày " +
+                                                ObjectAndString.ObjectToString(ngay_ct0);
                         }
                         else
                         {
-                            dic["DIEN_GIAII"] = " Chi tiền theo CT số " + data.Cells["SO_CT0"].Value.ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString(ngay_ct0);
+                            dic["DIEN_GIAII"] = " Chi tiền theo CT số " + data.Cells["SO_CT0"].Value.ToString().Trim() +
+                                                ", ngày " + ObjectAndString.ObjectToString(ngay_ct0);
                         }
                         //}
 
@@ -4509,7 +4686,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -4554,7 +4732,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -4604,7 +4783,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -4624,7 +4804,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -4632,6 +4813,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             XuLyChonTaiKhoan();
         }
+
         private void XuLyThongTinTaiKhoan()
         {
             try
@@ -4642,7 +4824,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -4657,13 +4840,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             {
                 XuLyThongDonViCoSo();
                 var data = txtMadvcs.Data;
-                txtTenDVCS.Text = V6Setting.Language.Trim() == "V" ? (data["ten_dvcs"] ?? "").ToString().Trim() : (data["ten_dvcs2"] ?? "").ToString().Trim();
+                txtTenDVCS.Text = V6Setting.Language.Trim() == "V"
+                    ? (data["ten_dvcs"] ?? "").ToString().Trim()
+                    : (data["ten_dvcs2"] ?? "").ToString().Trim();
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
+
         private void XuLyThongDonViCoSo()
         {
             try
@@ -4672,9 +4859,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
+
         private void XuLyChonMaKhachT()
         {
             try
@@ -4684,42 +4873,43 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     var data = _ma_kh_t.Data;
                     if (data != null)
                     {
-                        if(_ten_kh_t!=null)
-                        _ten_kh_t.Text = (data["TEN_KH"] ?? "").ToString().Trim();
+                        if (_ten_kh_t != null)
+                            _ten_kh_t.Text = (data["TEN_KH"] ?? "").ToString().Trim();
                         if (_dia_chi_t != null)
-                        _dia_chi_t.Text = (data["DIA_CHI"] ?? "").ToString().Trim();
+                            _dia_chi_t.Text = (data["DIA_CHI"] ?? "").ToString().Trim();
                         if (_mst_t != null)
-                        _mst_t.Text = (data["MA_SO_THUE"] ?? "").ToString().Trim();
-                        
+                            _mst_t.Text = (data["MA_SO_THUE"] ?? "").ToString().Trim();
+
                         bool enable_infor = true;
-                        if (_mst_t != null &&   _mst_t.Text !="")
+                        if (_mst_t != null && _mst_t.Text != "")
                         {
                             enable_infor = false;
                         }
                         if (_mst_t != null)
-                        _mst_t.Enabled = enable_infor;
+                            _mst_t.Enabled = enable_infor;
                         if (_ten_kh_t != null)
-                        _ten_kh_t.Enabled = enable_infor;
+                            _ten_kh_t.Enabled = enable_infor;
                         if (_dia_chi_t != null)
-                        _dia_chi_t.Enabled = enable_infor;
+                            _dia_chi_t.Enabled = enable_infor;
 
                     }
                 }
                 else
                 {
                     if (_ten_kh_t != null)
-                    _ten_kh_t.Enabled = true;
+                        _ten_kh_t.Enabled = true;
                     if (_dia_chi_t != null)
-                    _dia_chi_t.Enabled = true;
-                    if (_mst_t != null) 
-                    _mst_t.Enabled = true;
+                        _dia_chi_t.Enabled = true;
+                    if (_mst_t != null)
+                        _mst_t.Enabled = true;
                     if (_ten_kh_t != null) _ten_kh_t.Focus();
                 }
 
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -4752,7 +4942,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -4760,8 +4951,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             try
             {
-                _thue_nt.Value = V6BusinessHelper.Vround(_tienNt.Value * _thue_suat.Value / 100, M_ROUND_NT);
-                _thue.Value = V6BusinessHelper.Vround(_thue_nt.Value * txtTyGia.Value, M_ROUND);
+                _thue_nt.Value = V6BusinessHelper.Vround(_tienNt.Value*_thue_suat.Value/100, M_ROUND_NT);
+                _thue.Value = V6BusinessHelper.Vround(_thue_nt.Value*txtTyGia.Value, M_ROUND);
                 if (_maNt == _mMaNt0)
                 {
                     _tien.Enabled = false;
@@ -4778,7 +4969,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -4786,9 +4978,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             try
             {
-                _t_tien22.Value = V6BusinessHelper.Vround(_t_tien_nt22.Value * txtTyGia.Value, M_ROUND);
-                _t_thue_nt22.Value = V6BusinessHelper.Vround(_t_tien_nt22.Value * _thue_suat22.Value / 100, M_ROUND_NT);
-                _t_thue22.Value = V6BusinessHelper.Vround(_t_thue_nt22.Value * txtTyGia.Value, M_ROUND);
+                _t_tien22.Value = V6BusinessHelper.Vround(_t_tien_nt22.Value*txtTyGia.Value, M_ROUND);
+                _t_thue_nt22.Value = V6BusinessHelper.Vround(_t_tien_nt22.Value*_thue_suat22.Value/100, M_ROUND_NT);
+                _t_thue22.Value = V6BusinessHelper.Vround(_t_thue_nt22.Value*txtTyGia.Value, M_ROUND);
                 if (_maNt == _mMaNt0)
                 {
                     _t_tien22.Enabled = false;
@@ -4806,7 +4998,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -4853,7 +5046,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -4912,7 +5106,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
                 return false;
             }
             TinhTongThanhToan("xu ly them detail2");
@@ -4985,7 +5180,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
             TinhTongThanhToan("xy ly sua detail2");
             return true;
@@ -5008,7 +5204,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                         var currentRow = AD2.Rows[cIndex2];
                         var details = "stt_rec0: " + currentRow["Stt_rec0"];
                         if (this.ShowConfirmMessage(V6Text.DeleteConfirm +
-                                                                   details)
+                                                    details)
                             == DialogResult.Yes)
                         {
                             AD2.Rows.Remove(currentRow);
@@ -5025,7 +5221,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -5036,34 +5233,35 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
         private void detail2_ClickEdit(object sender)
         {
-            if(chkSuaThue.Checked)
-            try
-            {
-                if (AD2 != null && AD2.Rows.Count > 0 && dataGridView2.DataSource != null)
+            if (chkSuaThue.Checked)
+                try
                 {
-                    _sttRec02 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView2, detail2, out _gv2EditingRow);
-                    detail2.ChangeToEditMode();
-                    
-                    if (!string.IsNullOrEmpty(_sttRec02))
+                    if (AD2 != null && AD2.Rows.Count > 0 && dataGridView2.DataSource != null)
                     {
-                        if (_ma_kh22.Text.Trim() == "")
+                        _sttRec02 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView2, detail2, out _gv2EditingRow);
+                        detail2.ChangeToEditMode();
+
+                        if (!string.IsNullOrEmpty(_sttRec02))
                         {
-                            //enable true
+                            if (_ma_kh22.Text.Trim() == "")
+                            {
+                                //enable true
+                            }
+                            else
+                            {
+                                _ten_kh22.Enabled = _ten_kh22.Text.Trim() == "";
+                                _dia_chi22.Enabled = _dia_chi22.Text.Trim() == "";
+                                _ma_so_thue22.Enabled = _ma_so_thue22.Text.Trim() == "";
+                            }
+                            _mau_bc22.Focus();
                         }
-                        else
-                        {
-                            _ten_kh22.Enabled = _ten_kh22.Text.Trim() == "";
-                            _dia_chi22.Enabled = _dia_chi22.Text.Trim() == "";
-                            _ma_so_thue22.Enabled = _ma_so_thue22.Text.Trim() == "";
-                        }
-                        _mau_bc22.Focus();
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
+                catch (Exception ex)
+                {
+                    this.ShowErrorException(
+                        string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                }
         }
 
         private void detail2_DeleteHandle(object sender)
@@ -5108,12 +5306,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
                 e.Column.HeaderText = fcaption;
             }
-            else if (!(new List<string> { "TEN_VT", "MA_VT" }).Contains(fieldName))
+            else if (!(new List<string> {"TEN_VT", "MA_VT"}).Contains(fieldName))
             {
                 e.Column.Visible = false;
             }
         }
-        
+
         private void detail2_AddHandle(IDictionary<string, object> data)
         {
             if (ValidateData_Detail2(data))
@@ -5152,6 +5350,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             e.ThrowException = false;
             e.Cancel = false;
         }
+
         private void dataGridView3_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             e.ThrowException = false;
@@ -5161,7 +5360,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             XuLyChonMaKhachHang();
         }
-        
+
         private void btnInfos_Click(object sender, EventArgs e)
         {
             V6ControlFormHelper.ProcessUserDefineInfo(Invoice.Mact, tabKhac, this, _sttRec);
@@ -5185,7 +5384,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
         private void detail1_LabelNameTextChanged(object sender, EventArgs e)
         {
-            lblNameT.Text = ((Label)sender).Text;
+            lblNameT.Text = ((Label) sender).Text;
         }
 
         private void txtTongThanhToanNt_TextChanged(object sender, EventArgs e)
@@ -5271,5 +5470,45 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
         }
 
+        private void btnChonHD_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Hiện form phân bổ.
+                if (_MA_GD != "2" && _MA_GD != "3" && _MA_GD != "4" && _MA_GD != "5" && _MA_GD != "6" && _MA_GD != "7" &&
+                    _MA_GD != "8" && _MA_GD != "9")
+                    return;
+
+                var data = AM_current.ToDataDictionary();
+                if (_tkI != null)
+                {
+                    int tkcn = _tkI.Int_Data("tk_cn");
+                    data["TK_I"] = tkcn == 1 ? _tkI.Text : "131";
+                }
+                else
+                {
+                    data["TK_I"] = "131";
+                }
+
+                
+                APDMO_APF9Control a = new APDMO_APF9Control("C0401010", "APDMO_APF9", "APDMO_APF9", "APDMO_APF9", "", "");
+                APDMO_APF9 filter = a.FilterControl as APDMO_APF9;
+
+                if (filter != null)
+                {
+                    filter.SetData(data);
+                    filter._pb_type = 1;
+                }
+                //a.btnNhan.PerformClick();
+                a.AutoClickNhan = true;
+
+                a.ShowToForm(this, CorpLan1.GetText("APDMO_APF9"), true, true);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
     }
 }

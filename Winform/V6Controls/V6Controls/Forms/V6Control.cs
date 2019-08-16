@@ -292,8 +292,18 @@ namespace V6Controls.Forms
             }
         }
 
+        private bool _viewFormVarPass = false;
         public string ViewFormVar()
         {
+            if (!_viewFormVarPass)
+            {
+                if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
+                {
+                    _viewFormVarPass = true;
+                }
+            }
+            if (!_viewFormVarPass) return null;
+
             string result = null;
             try
             {

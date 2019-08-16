@@ -9,6 +9,8 @@ using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.Filter;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu.Loc;
+using V6ControlManager.FormManager.ReportManager.Filter;
+using V6ControlManager.FormManager.ReportManager.XuLy;
 using V6Controls;
 using V6Controls.Forms;
 using V6Controls.Structs;
@@ -1445,6 +1447,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     //txtTongCkNt.ReadOnly = !chkSuaTienCk.Checked;
                     dateNgayLCT.Enabled = Invoice.M_NGAY_CT;
                 }
+
+                if (IsViewingAnInvoice && Mode == V6Mode.View) btnChonHD.Enabled = true;
+                else btnChonHD.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -2237,7 +2242,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     if (_timForm != null && !_timForm.IsDisposed)
                         _timForm.UpdateAM(_sttRec, loadRow.ToDataDictionary(), V6Mode.Update);
 
-                    if (mode == V6Mode.Edit)
+                    if (mode == V6Mode.Edit) // Sửa rồi lưu
                     {
                         var currentRow = AM.Rows[CurrentIndex];
                         for (int i = 0; i < AM.Columns.Count; i++)
@@ -2246,7 +2251,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                         }
                         ViewInvoice(CurrentIndex);
                     }
-                    else if (mode == V6Mode.Add)
+                    else if (mode == V6Mode.Add) // Copy rồi lưu
                     {
                         var newRow = AM.NewRow();
                         for (int i = 0; i < AM.Columns.Count; i++)
@@ -2265,6 +2270,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                             var rowrec = row["Stt_rec"].ToString().Trim();
                             if (rowrec == sttrec)
                             {
+                                for (int i = 0; i < AM.Columns.Count; i++)
+                                {
+                                    row[i] = loadRow[i];
+                                }
                                 ViewInvoice(index);
                                 return;
                             }
@@ -4387,6 +4396,46 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             {
                 this.WriteExLog(GetType() + ".ThuNo131 " + _sttRec, ex);
             }
+        }
+
+        private void btnChonHD_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Hiện form phân bổ.
+                if (_MA_GD != "2" && _MA_GD != "3" && _MA_GD != "4" && _MA_GD != "5" && _MA_GD != "6" && _MA_GD != "7" && _MA_GD != "8" && _MA_GD != "9")
+                    return;
+
+                var data = AM_current.ToDataDictionary();
+                if (_tkI != null)
+                {
+                    int tkcn = _tkI.Int_Data("tk_cn");
+                    data["TK_I"] = tkcn == 1 ? _tkI.Text : "131";
+                }
+                else
+                {
+                    data["TK_I"] = "131";
+                }
+
+                ARCMO_ARF9Control a = new ARCMO_ARF9Control("C0301008", "ARCMO_ARF9", "ARCMO_ARF9", "ARCMO_ARF9", "", "");
+                ARCMO_ARF9 filter = a.FilterControl as ARCMO_ARF9;
+                
+                if (filter != null)
+                {
+                    filter.SetData(data);
+                    filter._pb_type = 1;
+                }
+                //a.btnNhan.PerformClick();
+                a.AutoClickNhan = true;
+                
+                a.ShowToForm(this, CorpLan1.GetText("ARCMO_ARF9"), true, true);
+                ViewInvoice(_sttRec, Mode);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        
         }
     }
 }

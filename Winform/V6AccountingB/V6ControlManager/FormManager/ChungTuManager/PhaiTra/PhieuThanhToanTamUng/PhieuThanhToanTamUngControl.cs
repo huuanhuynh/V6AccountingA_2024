@@ -1591,6 +1591,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                             var rowrec = row["Stt_rec"].ToString().Trim();
                             if (rowrec == sttrec)
                             {
+                                for (int i = 0; i < AM.Columns.Count; i++)
+                                {
+                                    row[i] = loadRow[i];
+                                }
                                 ViewInvoice(index);
                                 return;
                             }
@@ -3704,7 +3708,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
         {
             try
             {
-                APDMO_APF9
                 //Hiện form phân bổ.
                 ARCMO_ARF9Control a = new ARCMO_ARF9Control("C0301008", "ARCMO_ARF9", "ARCMO_ARF9", "ARCMO_ARF9", "", "");
                 ARCMO_ARF9 filter = a.FilterControl as ARCMO_ARF9;
@@ -3715,11 +3718,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                     filter.SetData(data);
                     filter._pb_type = 1;
                 }
-                a.btnNhan.PerformClick();
-                // Gửi tham số filter từ chứng từ
-                //Ngay_ct12 MA_KH MA_DVCS TK
+                //a.btnNhan.PerformClick();
+                a.AutoClickNhan = true;
                 
-                a.ShowToForm(this, "ARCMO_ARF9", true, true);
+                a.ShowToForm(this, CorpLan1.GetText("ARCMO_ARF9"), true, true);
             }
             catch (Exception ex)
             {

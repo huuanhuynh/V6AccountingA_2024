@@ -2885,6 +2885,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                             var rowrec = row["Stt_rec"].ToString().Trim();
                             if (rowrec == sttrec)
                             {
+                                for (int i = 0; i < AM.Columns.Count; i++)
+                                {
+                                    row[i] = loadRow[i];
+                                }
                                 ViewInvoice(index);
                                 return;
                             }

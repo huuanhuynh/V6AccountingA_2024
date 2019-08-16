@@ -772,5 +772,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             if (_tbl2 == null) return;
             SortDataGridView2();
         }
+        
     }
 }

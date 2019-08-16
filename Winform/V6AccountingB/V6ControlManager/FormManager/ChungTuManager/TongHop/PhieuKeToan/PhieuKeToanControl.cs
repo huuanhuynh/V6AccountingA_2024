@@ -1204,6 +1204,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                 {
                     column.DefaultCellStyle.Format = "N" + decimalPlaces;
                 }
+                //Tuanmh 15/08/2019
+                var column2 = dataGridView1.Columns["Ps_no_nt"];
+                if (column2 != null)
+                {
+                    column2.DefaultCellStyle.Format = "N" + decimalPlaces;
+                }
             }
             catch (Exception ex)
             {
@@ -1326,6 +1332,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                             var rowrec = row["Stt_rec"].ToString().Trim();
                             if (rowrec == sttrec)
                             {
+                                for (int i = 0; i < AM.Columns.Count; i++)
+                                {
+                                    row[i] = loadRow[i];
+                                }
                                 ViewInvoice(index);
                                 return;
                             }

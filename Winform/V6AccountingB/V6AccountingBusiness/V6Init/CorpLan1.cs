@@ -7,6 +7,9 @@ using V6Tools;
 
 namespace V6Init
 {
+    /// <summary>
+    /// Thông báo
+    /// </summary>
     public class CorpLan1
     {
         private static SortedDictionary<string, string> dataDictionary = new SortedDictionary<string, string>();

@@ -28,8 +28,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         #region Biến toàn cục
         protected DataGridViewPrinter _myDataGridViewPrinter;
         protected List<DataGridViewRow> remove_list_g = new List<DataGridViewRow>();
-        protected List<DataRow> remove_list_d = new List<DataRow>(); 
+        protected List<DataRow> remove_list_d = new List<DataRow>();
 
+        public bool AutoClickNhan { get; set; }
         public string _reportProcedure, _reportFile;
         protected string _program, _reportCaption, _reportCaption2;
         protected string _reportFileF5, _reportTitleF5, _reportTitle2F5;
@@ -38,6 +39,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected DataTable _tbl, _tbl2;
         private DataTable MauInData;
         //private V6TableStruct _tStruct;
+        public Thread _thread = null;
 
         /// <summary>
         /// Danh sách event_method của Form_program.
@@ -420,6 +422,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             LoadTag(4, "", _program, m_itemId, "");
             InvokeFormEvent(FormDynamicEvent.INIT2);
             GetSumCondition();
+            if (AutoClickNhan)
+            {
+                btnNhan.PerformClick();
+            }
         }
 
         private void GetSumCondition()
@@ -594,6 +600,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     _dataloading = true;
                     _dataloaded = false;
                     var tLoadData = new Thread(LoadData);
+                    _thread = tLoadData;
                     tLoadData.Start();
                     timerViewReport.Start();
                 }
@@ -601,6 +608,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     // Tinh toan
                     var tLoadData = new Thread(TinhToan);
+                    _thread = tLoadData;
                     tLoadData.Start();
                     timerViewReport.Start();
                 }
@@ -761,9 +769,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         private void btnHuy_Click(object sender, EventArgs e)
         {
+            if (_thread != null && _thread.IsAlive)
+            {
+                _thread.Abort();
+                
+            }
             Dispose();
         }
-        
+
         #endregion Linh tinh
 
         private void exportToExcel_Click(object sender, EventArgs e)

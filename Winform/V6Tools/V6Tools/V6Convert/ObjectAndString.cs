@@ -715,29 +715,39 @@ namespace V6Tools.V6Convert
         /// <returns></returns>
         public static string ClassToXml(Object o, string objectName = null)
         {
-            if (objectName == null) objectName = o.GetType().Name;
-            string result = "";
-            // "\n<!-- PROPERTIES -->";
-            // Đối với properties sẽ có tag_name bao bọc.
-            foreach (PropertyInfo property in o.GetType().GetProperties())
+            try
             {
-                if (property.CanRead && property.CanWrite)
+                if (objectName == null) objectName = o.GetType().Name;
+                string result = "";
+                // "\n<!-- PROPERTIES -->";
+                // Đối với properties sẽ có tag_name bao bọc.
+                foreach (PropertyInfo property in o.GetType().GetProperties())
                 {
-                    object value = property.GetValue(o, null);
-                    result += string.Format("\n<{0}>{1}</{0}>", property.Name, ObjectToXml(value, 1));
+                    if (property.CanRead && property.CanWrite)
+                    {
+                        object value = property.GetValue(o, null);
+                        if (value != null)
+                            result += string.Format("\n<{0}>{1}</{0}>", property.Name, ObjectToXml(value, 1));
+                    }
                 }
-            }
 
-            // result += "\n\n<!-- FIELDS -->";
-            // Còn field sẽ không có tag_name bao bọc.
-            foreach (FieldInfo field in o.GetType().GetFields())
+                // result += "\n\n<!-- FIELDS -->";
+                // Còn field sẽ không có tag_name bao bọc.
+                foreach (FieldInfo field in o.GetType().GetFields())
+                {
+                    object value = null;
+                    if (!(o is DBNull)) value = field.GetValue(o);
+
+                    if (value != null)
+                        result += "\n" + ObjectToXml(value);
+                }
+
+                return objectName == "" ? result : string.Format("<{0}>\n{1}\n\n</{0}>\n", objectName, result);
+            }
+            catch (Exception ex)
             {
-                object value = null;
-                if (!(o is DBNull)) value = field.GetValue(o);
-                result += "\n" + ObjectToXml(value);
+                return string.Format("<{0}:ex>\n{1}\n</{0}:ex>\n", objectName, ex.Message);
             }
-
-            return objectName == "" ? result : string.Format("<{0}>\n{1}\n\n</{0}>\n", objectName, result);
         }
 
         /// <summary>
@@ -752,7 +762,11 @@ namespace V6Tools.V6Convert
 
             string result = "";
 
-            if (value is IDictionary<string, object>)
+            if (value is DataTable)
+            {
+                result = DataTableToXml((DataTable) value);
+            }
+            else if (value is IDictionary<string, object>)
             {
                 result = DictionaryToXml((IDictionary<string, object>)value, tab);
             }
@@ -841,6 +855,13 @@ namespace V6Tools.V6Convert
             }
             //if (result.Length > 1) result = result.Substring(1);// bỏ \n
 
+            return result;
+        }
+
+        public static string DataTableToXml(DataTable data)
+        {
+            string result = "";
+            result += string.Format("[DataTable] have {0} row[s].", data.Rows.Count);
             return result;
         }
 
