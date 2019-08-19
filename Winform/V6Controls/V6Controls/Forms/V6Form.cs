@@ -130,6 +130,25 @@ namespace V6Controls.Forms
             }
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            try
+            {
+                //Nếu đã thực hiện lệnh bên trên gửi xuống thì không chạy DoHotKey0
+                if (do_hot_key)
+                {
+                    do_hot_key = false;
+                    return base.ProcessCmdKey(ref msg, keyData);
+                }
+                if (DoHotKey0(keyData)) return true;
+            }
+            catch
+            {
+                return false;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
         protected bool do_hot_key;
         public virtual void DoHotKey(Keys keyData)
         {
@@ -142,26 +161,6 @@ namespace V6Controls.Forms
             {
                 // ignored
             }
-        }
-
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            try
-            {
-                //Nếu đã thực hiện lệnh bên trên gửi xuống thì không chạy DoHotKey0
-                if (do_hot_key)
-                {
-                    do_hot_key = false;
-                    return base.ProcessCmdKey(ref msg, keyData);
-                }
-                if(DoHotKey0(keyData)) return true;
-            }
-            catch
-            {
-                return false;
-            }
-
-            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         /// <summary>

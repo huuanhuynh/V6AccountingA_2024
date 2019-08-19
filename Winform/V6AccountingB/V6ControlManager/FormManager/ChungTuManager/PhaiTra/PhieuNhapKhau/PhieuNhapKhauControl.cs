@@ -2624,7 +2624,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             btnTim.Enabled = false;
             btnQuayRa.Enabled = true;
 
-            btnViewInfoData.Enabled = false;
+            btnViewInfoData.Enabled = true;
             switch (Mode)
             {
                 case V6Mode.Add:
@@ -6468,7 +6468,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             {
                 ViewFormVar();
             }
-            else
+            else if (Mode == V6Mode.View)
             {
                 ShowViewInfoData(Invoice);
             }

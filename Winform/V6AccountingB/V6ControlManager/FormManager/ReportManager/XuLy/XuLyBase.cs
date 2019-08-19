@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -40,7 +40,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private DataTable MauInData;
         //private V6TableStruct _tStruct;
         public Thread _thread = null;
-
+        
         /// <summary>
         /// Danh sách event_method của Form_program.
         /// </summary>
@@ -532,6 +532,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 _ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure, _pList.ToArray());
+                
                 if (_ds.Tables.Count > 0)
                 {
                     _tbl = _ds.Tables[0];
@@ -772,7 +773,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             if (_thread != null && _thread.IsAlive)
             {
                 _thread.Abort();
-                
             }
             Dispose();
         }

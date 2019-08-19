@@ -188,6 +188,7 @@ namespace V6Controls.Forms
         {
             try
             {
+                do_hot_key = true;
                 DoHotKey0(keyData);
             }
             catch (Exception ex)
@@ -200,6 +201,7 @@ namespace V6Controls.Forms
         /// Đếm Ctrol + Alt + I
         /// </summary>
         private int _ctrl_alt_i;
+        protected bool do_hot_key;
 
         public virtual bool DoHotKey0(Keys keyData)
         {
@@ -310,13 +312,16 @@ namespace V6Controls.Forms
                 StringInput inputForm = new StringInput();
                 if (inputForm.ShowDialog(this) == DialogResult.OK)
                 {
-                    ShowMainMessage(inputForm.InputString);
-                    this.ShowInfoMessage(ObjectAndString.ObjectToString(V6ControlFormHelper.GetObjectProperty(this, inputForm.InputString)));
+                    var o = V6ControlFormHelper.GetObjectProperty(this, inputForm.InputString);
+                    var s = ObjectAndString.ObjectToString(o);
+                    //this.ShowInfoMessage();
+                    V6Message.Show(s, inputForm.InputString, 0, MessageBoxButtons.OK, MessageBoxIcon.Information, this);
                 }
             }
             catch (Exception ex)
             {
                 result = ex.Message;
+                ShowMainMessage(result);
             }
             return result;
         }

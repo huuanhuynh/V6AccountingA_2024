@@ -1509,7 +1509,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             btnTim.Enabled = false;
             btnQuayRa.Enabled = true;
 
-            btnViewInfoData.Enabled = false;
+            btnViewInfoData.Enabled = true;
             switch (Mode)
             {
                 case V6Mode.Add:
@@ -3976,7 +3976,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             {
                 ViewFormVar();
             }
-            else
+            else if (Mode == V6Mode.View)
             {
                 ShowViewInfoData(Invoice);
             }

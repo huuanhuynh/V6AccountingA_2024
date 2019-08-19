@@ -172,11 +172,11 @@ namespace V6Controls.Forms
                 if (do_hot_key)
                 {
                     do_hot_key = false;
-                    return false;
+                    //return false;
                     return base.ProcessCmdKey(ref msg, keyData);
                 }
 
-                if(DoHotKey0(keyData)) return true;
+                //if(DoHotKey0(keyData)) return true;
             }
             catch
             {
@@ -186,7 +186,6 @@ namespace V6Controls.Forms
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        protected bool do_hot_key;
         /// <summary>
         /// Viết lệnh do_hot_key = true; trước.
         /// Các form kế thừa nếu có phím nóng quy định riêng cần override lại.

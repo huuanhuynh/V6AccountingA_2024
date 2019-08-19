@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
+using System.Windows.Forms;
 
 
 namespace V6Tools.V6Convert
@@ -719,6 +720,16 @@ namespace V6Tools.V6Convert
             {
                 if (objectName == null) objectName = o.GetType().Name;
                 string result = "";
+
+                if (o is Control)
+                {
+                    var c = (Control)o;
+                    result += string.Format("Text:{0}, Value:{1}", c.Text, GetObjectProperty(c, "Value"));
+
+                    return result;
+                }
+
+
                 // "\n<!-- PROPERTIES -->";
                 // Đối với properties sẽ có tag_name bao bọc.
                 foreach (PropertyInfo property in o.GetType().GetProperties())
@@ -733,21 +744,65 @@ namespace V6Tools.V6Convert
 
                 // result += "\n\n<!-- FIELDS -->";
                 // Còn field sẽ không có tag_name bao bọc.
+                int field_count = 0;
                 foreach (FieldInfo field in o.GetType().GetFields())
                 {
+                    field_count++;
                     object value = null;
                     if (!(o is DBNull)) value = field.GetValue(o);
-
                     if (value != null)
                         result += "\n" + ObjectToXml(value);
+
+                    if (field_count == 10) break;
                 }
 
-                return objectName == "" ? result : string.Format("<{0}>\n{1}\n\n</{0}>\n", objectName, result);
+                if (result == "") result = o.ToString();
+
+                return objectName == "" ? result : string.Format("<{0}>\n{1}\n</{0}>\n", objectName, result);
             }
             catch (Exception ex)
             {
                 return string.Format("<{0}:ex>\n{1}\n</{0}:ex>\n", objectName, ex.Message);
             }
+        }
+
+        public static object GetObjectProperty(object o, string propertyName)
+        {
+            object result = null;
+
+            var pi = o.GetType().GetProperty(propertyName);
+            if (pi != null && pi.CanRead)
+            {
+                result = pi.GetValue(o, null);
+                return result;
+            }
+            var fi = o.GetType().GetField(propertyName);
+            if (fi != null)
+            {
+                if (!(o is DBNull)) result = fi.GetValue(o);
+                return result;
+            }
+
+            foreach (PropertyInfo property in o.GetType().GetProperties())
+            {
+                if ((string.Compare(property.Name, propertyName, StringComparison.InvariantCultureIgnoreCase) == 0) && property.CanRead)
+                {
+                    result = property.GetValue(o, null);
+                    return result;
+                }
+            }
+
+            foreach (FieldInfo field in o.GetType().GetFields())
+            {
+                if (string.Compare(field.Name, propertyName, StringComparison.InvariantCultureIgnoreCase) == 0)
+                {
+                    if (!(o is DBNull)) result = field.GetValue(o);
+                    return result;
+                }
+            }
+            
+            //throw new Exception("Property not found!");
+            return result;
         }
 
         /// <summary>
@@ -758,8 +813,6 @@ namespace V6Tools.V6Convert
         /// <returns></returns>
         public static string ObjectToXml(object value, int tab = 0)
         {
-            //if (value == null) return "null";
-
             string result = "";
 
             if (value is DataTable)
@@ -770,9 +823,9 @@ namespace V6Tools.V6Convert
             {
                 result = DictionaryToXml((IDictionary<string, object>)value, tab);
             }
-            else if (value is string)
+            else if (value is string || value is DBNull || value == null)
             {
-                result = value.ToString();
+                result = "" + value;
                 //result = FixXmlValueChar(value.ToString());
             }
             else if (value is DateTime)

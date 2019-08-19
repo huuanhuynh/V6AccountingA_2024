@@ -2652,7 +2652,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             btnTim.Enabled = false;
             btnQuayRa.Enabled = true;
 
-            btnViewInfoData.Enabled = false;
+            btnViewInfoData.Enabled = true;
             switch (Mode)
             {
                 case V6Mode.Add:
@@ -4860,7 +4860,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             {
                 ViewFormVar();
             }
-            else
+            else if (Mode == V6Mode.View)
             {
                 ShowViewInfoData(Invoice);
             }

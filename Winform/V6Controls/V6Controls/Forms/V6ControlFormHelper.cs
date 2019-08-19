@@ -1378,8 +1378,20 @@ namespace V6Controls.Forms
         public static object GetObjectProperty(object o, string propertyName)
         {
             object result = null;
-            // "\n<!-- PROPERTIES -->";
-            // Đối với properties sẽ có tag_name bao bọc.
+            
+            var pi = o.GetType().GetProperty(propertyName);
+            if (pi != null && pi.CanRead)
+            {
+                result = pi.GetValue(o, null);
+                return result;
+            }
+            var fi = o.GetType().GetField(propertyName);
+            if (fi != null)
+            {
+                if (!(o is DBNull)) result = fi.GetValue(o);
+                return result;
+            }
+
             foreach (PropertyInfo property in o.GetType().GetProperties())
             {
                 if ((string.Compare(property.Name, propertyName, StringComparison.InvariantCultureIgnoreCase) == 0) && property.CanRead)
@@ -1389,8 +1401,6 @@ namespace V6Controls.Forms
                 }
             }
 
-            // result += "\n\n<!-- FIELDS -->";
-            // Còn field sẽ không có tag_name bao bọc.
             foreach (FieldInfo field in o.GetType().GetFields())
             {
                 if (string.Compare(field.Name, propertyName, StringComparison.InvariantCultureIgnoreCase) == 0)
@@ -1400,8 +1410,11 @@ namespace V6Controls.Forms
                 }
             }
 
-            //result = GetControlByName(o as Control, propertyName);
-            //if (result != null) return result;
+            if (o is Control)
+            {
+                result = GetControlByName((Control)o, propertyName);
+                if (result != null) return result;
+            }
 
             throw new Exception("Property not found!");
         }

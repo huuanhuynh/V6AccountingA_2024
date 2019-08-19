@@ -2009,7 +2009,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             btnTim.Enabled = false;
             btnQuayRa.Enabled = true;
 
-            btnViewInfoData.Enabled = false;
+            btnViewInfoData.Enabled = true;
             switch (Mode)
             {
                 case V6Mode.Add:

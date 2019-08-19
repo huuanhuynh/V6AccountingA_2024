@@ -3244,7 +3244,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             btnTim.Enabled = true;//
             btnQuayRa.Enabled = true;
 
-            btnViewInfoData.Enabled = false;
+            btnViewInfoData.Enabled = true;
             switch (Mode)
             {
                 case V6Mode.Add:
@@ -6272,7 +6272,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             {
                 ViewFormVar();
             }
-            else
+            else if (Mode == V6Mode.View)
             {
                 ShowViewInfoData(Invoice);
             }

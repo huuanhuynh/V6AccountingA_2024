@@ -1983,7 +1983,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             btnTim.Enabled = false;
             btnQuayRa.Enabled = true;
 
-            btnViewInfoData.Enabled = false;
+            btnViewInfoData.Enabled = true;
             switch (Mode)
             {
                 case V6Mode.Add:
