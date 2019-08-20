@@ -3980,7 +3980,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                         {
                             AD.Rows.Remove(currentRow);
                             dataGridView1.DataSource = AD;
-                            detail1.SetData(null);
+                            detail1.SetData(dataGridView1.CurrentRow.ToDataDictionary());
                             TinhTongThanhToan("xu ly xoa detail");
                         }
                     }

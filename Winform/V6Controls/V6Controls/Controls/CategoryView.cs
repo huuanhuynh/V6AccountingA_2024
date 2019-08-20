@@ -178,9 +178,12 @@ namespace V6Controls.Controls
         {
             btnCopy.Enabled = btnThem.Enabled;
         }
-        
+
+        private bool formated;
         private void SetFormatGridView()
         {
+            if (formated) return;
+
             if (CurrentTable == V6TableName.Altk0)
             {
                 //dataGridView1.Columns[0].DefaultCellStyle.Padding;
@@ -227,6 +230,7 @@ namespace V6Controls.Controls
                 dataGridView1.SetFrozen(frozen);
             }
 
+            formated = true;
         }
 
         private AldmConfig aldm_config;
@@ -858,6 +862,7 @@ namespace V6Controls.Controls
         {
             try
             {
+                SaveSelectedCellLocation(dataGridView1);
                 if (page < 1) page = 1;
                 CurrentTable = tableName;
                 string load_table = _tableName;
@@ -907,6 +912,7 @@ namespace V6Controls.Controls
         {
             dataGridView1.SetFrozen(0);
             dataGridView1.DataSource = SelectResult.Data;
+            LoadSelectedCellLocation(dataGridView1);
 
             if (!string.IsNullOrEmpty(SelectResult.SortField))
             {

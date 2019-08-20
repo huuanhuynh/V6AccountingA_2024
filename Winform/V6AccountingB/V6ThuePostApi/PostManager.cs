@@ -54,7 +54,7 @@ namespace V6ThuePostManager
         static DataTable ad3_table;
 
         /// <summary>
-        /// Tài khoản ws
+        /// Tài khoản ws vnpt
         /// </summary>
         public static string _username = "";
         public static string _password = "";
@@ -65,10 +65,10 @@ namespace V6ThuePostManager
         /// </summary>
         private static string _downloadlinkpdf = "";
 
-        public static string _link_Publish = "";
-        public static string _link_Portal = "";
-        public static string _link_Business = "";
-        public static string _link_Attachment = "";
+        public static string _link_Publish_vnpt = "";
+        public static string _link_Portal_vnpt = "";
+        public static string _link_Business_vnpt = "";
+        public static string _link_Attachment_vnpt = "";
 
         /// <summary>
         /// key trong data
@@ -85,7 +85,7 @@ namespace V6ThuePostManager
 
         private static string fkeyexcel0 = "V6";
         /// <summary>
-        /// Tài khoản đăng nhập
+        /// Tài khoản đăng nhập vnpt
         /// </summary>
         private static string _account = null;
         private static string _accountpassword = null;
@@ -211,13 +211,13 @@ namespace V6ThuePostManager
                         result = ViettelDownloadInvoicePDF(paras);
                         break;
                     case "2":
-                        result = VnptWS.DownloadInvPDFFkey(_link_Portal, paras.Fkey_hd, _username, _password, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.ResultDictionary);
+                        result = VnptWS.DownloadInvPDFFkey(_link_Portal_vnpt, paras.Fkey_hd, _username, _password, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.ResultDictionary);
                         break;
                     case "3":
                         result = BkavDownloadInvoicePDF(paras);
                         break;
                     case "4":
-                        result = VnptWS.DownloadInvPDFFkey(_link_Portal, paras.Fkey_hd, _username, _password, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.ResultDictionary);
+                        result = VnptWS.DownloadInvPDFFkey(_link_Portal_vnpt, paras.Fkey_hd, _username, _password, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.ResultDictionary);
                         break;
                     default:
                         paras.Result.ResultError = V6Text.NotSupported + paras.Branch;
@@ -470,16 +470,16 @@ namespace V6ThuePostManager
                         }
                         else
                         {
-                            result = VnptWS.ConfirmPaymentFkey(_link_Business, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
+                            result = VnptWS.ConfirmPaymentFkey(_link_Business_vnpt, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
                         }
                     }
                     else if (paras.Mode == "E_G2") // Gạch nợ theo lstInvToken(01GTKT2/001;AA/13E;10)
                     {
-                        result = VnptWS.ConfirmPayment(_link_Business, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
+                        result = VnptWS.ConfirmPayment(_link_Business_vnpt, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
                     }
                     else if (paras.Mode == "E_G3") // Hủy gạch nợ theo fkey
                     {
-                        result = VnptWS.UnconfirmPaymentFkey(_link_Business, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
+                        result = VnptWS.UnconfirmPaymentFkey(_link_Business_vnpt, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
                     }
                     else if (paras.Mode == "E_H1")
                     {
@@ -630,15 +630,15 @@ namespace V6ThuePostManager
                 {
                     if (paras.Mode == "G1") // Gạch nợ theo fkey
                     {
-                        result = VnptWS.ConfirmPaymentFkey(_link_Business, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
+                        result = VnptWS.ConfirmPaymentFkey(_link_Business_vnpt, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
                     }
                     else if (paras.Mode == "G2") // Gạch nợ theo lstInvToken(01GTKT2/001;AA/13E;10)
                     {
-                        result = VnptWS.ConfirmPayment(_link_Business, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
+                        result = VnptWS.ConfirmPayment(_link_Business_vnpt, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
                     }
                     else if (paras.Mode == "G3") // Hủy gạch nợ theo fkey
                     {
-                        result = VnptWS.UnconfirmPaymentFkey(_link_Business, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
+                        result = VnptWS.UnconfirmPaymentFkey(_link_Business_vnpt, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
                     }
                 }
                 else if (paras.Mode == "H")
@@ -1018,7 +1018,7 @@ namespace V6ThuePostManager
             string result = null;
             try
             {
-                var publishService = new PublishService(_link_Publish);
+                var publishService = new PublishService(_link_Publish_vnpt);
                 result = publishService.ImportAndPublishInv(_account, _accountpassword, xml, _username, _password, __partten, __serial, convert == "1" ? 1 : 0);
 
                 if (result.StartsWith("ERR:20"))
@@ -1073,7 +1073,7 @@ namespace V6ThuePostManager
             string result = null;
             try
             {
-                result = new PortalService(_link_Portal).downloadInvFkeyNoPay(fkey, _username, _password);
+                result = new PortalService(_link_Portal_vnpt).downloadInvFkeyNoPay(fkey, _username, _password);
 
                 if (result.StartsWith("ERR:7"))
                 {
@@ -1112,7 +1112,7 @@ namespace V6ThuePostManager
                 string ext = Path.GetExtension(file);
                 if (ext.Length > 0) ext = ext.Substring(1);
                 string attachmentName = Path.GetFileNameWithoutExtension(file);
-                result = new AttachmentService(_link_Attachment).uploadInvAttachmentFkey(fkey, _username, _password, attachment64, ext, attachmentName);
+                result = new AttachmentService(_link_Attachment_vnpt).uploadInvAttachmentFkey(fkey, _username, _password, attachment64, ext, attachmentName);
 
                 if (result.StartsWith("ERR:11"))
                 {
@@ -1172,7 +1172,7 @@ namespace V6ThuePostManager
             string result = null;
             try
             {
-                result = new BusinessService(_link_Business).adjustInv(_account, _accountpassword, xml, _username, _password, fkey_old, 0);
+                result = new BusinessService(_link_Business_vnpt).adjustInv(_account, _accountpassword, xml, _username, _password, fkey_old, 0);
 
                 if (result.StartsWith("ERR:9"))
                 {
@@ -1221,7 +1221,7 @@ namespace V6ThuePostManager
             string result = null;
             try
             {
-                result = new BusinessService(_link_Business).replaceInv(_account, _accountpassword, xml, _username, _password, fkey_old, 0);
+                result = new BusinessService(_link_Business_vnpt).replaceInv(_account, _accountpassword, xml, _username, _password, fkey_old, 0);
 
                 if (result.StartsWith("ERR:9"))
                 {
@@ -1275,7 +1275,7 @@ namespace V6ThuePostManager
             string result = null;
             try
             {
-                result = new BusinessService(_link_Business).confirmPaymentFkey(fkey_old, _username, _password);
+                result = new BusinessService(_link_Business_vnpt).confirmPaymentFkey(fkey_old, _username, _password);
 
                 if (result.StartsWith("ERR:13"))
                 {
@@ -1313,7 +1313,7 @@ namespace V6ThuePostManager
             string result = null;
             try
             {
-                result = new BusinessService(_link_Business).cancelInv(_account, _accountpassword, fkey_old, _username, _password);
+                result = new BusinessService(_link_Business_vnpt).cancelInv(_account, _accountpassword, fkey_old, _username, _password);
 
                 if (result.StartsWith("ERR:9"))
                 {
@@ -1756,15 +1756,15 @@ namespace V6ThuePostManager
                 {
                     if (paras.Mode == "G1") // Gạch nợ theo fkey
                     {
-                        VnptWS.ConfirmPaymentFkey(_link_Business, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
+                        VnptWS.ConfirmPaymentFkey(_link_Business_vnpt, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
                     }
                     else if (paras.Mode == "G2") // Gạch nợ theo lstInvToken(01GTKT2/001;AA/13E;10)
                     {
-                        VnptWS.ConfirmPayment(_link_Business, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
+                        VnptWS.ConfirmPayment(_link_Business_vnpt, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
                     }
                     else if (paras.Mode == "G3") // Hủy gạch nợ theo fkey
                     {
-                        VnptWS.UnconfirmPaymentFkey(_link_Business, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
+                        VnptWS.UnconfirmPaymentFkey(_link_Business_vnpt, paras.Fkey_hd, _username, _password, out paras.Result.ResultDictionary);
                     }
                 }
                 else if (paras.Mode == "H")
@@ -1906,7 +1906,7 @@ namespace V6ThuePostManager
             string result = null;
             try
             {
-                result = VNPTEInvoiceSignToken.PublishInvWithToken(_account, _accountpassword, xmlInvData, _username, _password, _SERIAL_CERT, __partten, __serial, _link_Publish);
+                result = VNPTEInvoiceSignToken.PublishInvWithToken(_account, _accountpassword, xmlInvData, _username, _password, _SERIAL_CERT, __partten, __serial, _link_Publish_vnpt);
                 result += GetResultDescription_Dll(result);
             }
             catch (Exception ex)
@@ -2372,9 +2372,9 @@ namespace V6ThuePostManager
         /// <returns>Trả về đường dẫn file pdf.</returns>
         public static string ViettelDownloadInvoicePDF(PostManagerParams postManagerParams)
         {
-            ViettelWS viettel_http = new ViettelWS(baseUrl, _username, _password);
+            ViettelWS viettel_ws = new ViettelWS(baseUrl, _username, _password);
             
-            return viettel_http.DownloadInvoicePDF(_codetax, _downloadlinkpdf, postManagerParams.InvoiceNo, postManagerParams.Parttern, V6Setting.V6SoftLocalAppData_Directory);
+            return viettel_ws.DownloadInvoicePDF(_codetax, _downloadlinkpdf, postManagerParams.InvoiceNo, postManagerParams.Parttern, V6Setting.V6SoftLocalAppData_Directory);
         }
         
         #endregion viettel
@@ -2499,6 +2499,8 @@ namespace V6ThuePostManager
                         break;
                     case "N2C":
                         return MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "V", "VND");
+                    case "N2CMANT":
+                        return MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "V", row["MA_NT"].ToString().Trim());
                     case "DECIMAL":
                     case "MONEY":
                         return ObjectAndString.ObjectToDecimal(fieldValue);
@@ -2577,16 +2579,16 @@ namespace V6ThuePostManager
                                     break;
                                     //Vnpt, có dùng cả username, password
                                 case "link_publish":
-                                        _link_Publish = UtilityHelper.DeCrypt(line.Value);
+                                        _link_Publish_vnpt = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "link_business":
-                                    _link_Business = UtilityHelper.DeCrypt(line.Value);
+                                    _link_Business_vnpt = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "link_portal":
-                                    _link_Portal = UtilityHelper.DeCrypt(line.Value);
+                                    _link_Portal_vnpt = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "link_attachment":
-                                    _link_Attachment = UtilityHelper.DeCrypt(line.Value);
+                                    _link_Attachment_vnpt = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "account":
                                     _account = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;

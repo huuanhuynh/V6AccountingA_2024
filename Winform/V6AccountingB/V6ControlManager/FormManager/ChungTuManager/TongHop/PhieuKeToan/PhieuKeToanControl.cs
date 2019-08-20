@@ -2601,7 +2601,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             return true;
         }
         
-        private void XuLyDeleteDetail()
+        private void XuLyXoaDetail()
         {
             if (NotAddEdit)
             {
@@ -2623,7 +2623,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                         {
                             AD.Rows.Remove(currentRow);
                             dataGridView1.DataSource = AD;
-                            detail1.SetData(null);
+                            detail1.SetData(dataGridView1.CurrentRow.ToDataDictionary());
                             TinhTongThanhToan("xu ly xoa detail");
                         }
                     }
@@ -2639,7 +2639,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             }
         }
 
-        private void XuLyDeleteDetail2()
+        private void XuLyXoaDetail2()
         {
             if (NotAddEdit)
             {
@@ -2661,8 +2661,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                         {
                             AD2.Rows.Remove(currentRow);
                             dataGridView2.DataSource = AD2;
-                            detail2.SetData(null);
-                            TinhTongThanhToan("xu ly xoa detail");
+                            detail2.SetData(dataGridView2.CurrentRow.ToDataDictionary());
+                            TinhTongThanhToan("xu ly xoa detail2");
                         }
                     }
                 }
@@ -2863,11 +2863,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
         }
         private void Detail1_DeleteHandle(object sender)
         {
-            XuLyDeleteDetail();
+            XuLyXoaDetail();
         }
         private void Detail2_DeleteHandle(object sender)
         {
-            XuLyDeleteDetail2();
+            XuLyXoaDetail2();
         }
         private void Detail1_ClickCancelEdit(object sender)
         {

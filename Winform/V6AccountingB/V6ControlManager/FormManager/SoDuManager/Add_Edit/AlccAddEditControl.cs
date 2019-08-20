@@ -1184,7 +1184,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         {
                             AD.Rows.Remove(currentRow);
                             dataGridView1.DataSource = AD;
-                            detail1.SetData(null);
+                            detail1.SetData(dataGridView1.CurrentRow.ToDataDictionary());
                         }
                     }
                 }
@@ -1218,7 +1218,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                             == DialogResult.Yes)
                         {
                             data3.Rows.Remove(currentRow);
-                            detail3.SetData(null);
+                            detail3.SetData(gView3.CurrentRow.ToDataDictionary());
                         }
                     }
                 }
@@ -1232,6 +1232,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 this.ShowErrorMessage(GetType() + ".Xóa chi tiết 3: " + ex.Message);
             }
         }
+
         private void XuLyXoaDetail4()
         {
             if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
@@ -1252,7 +1253,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                             == DialogResult.Yes)
                         {
                             data4.Rows.Remove(currentRow);
-                            detail4.SetData(null);
+                            detail4.SetData(gView4.CurrentRow.ToDataDictionary());
                         }
                     }
                 }

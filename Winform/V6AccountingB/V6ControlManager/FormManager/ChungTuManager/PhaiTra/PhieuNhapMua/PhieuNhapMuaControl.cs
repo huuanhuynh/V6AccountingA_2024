@@ -1406,9 +1406,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
         private void Detail3_DeleteHandle(object sender)
         {
-            XuLyDeleteDetail3();
+            XuLyXoaDetail3();
         }
-        private void XuLyDeleteDetail3()
+        private void XuLyXoaDetail3()
         {
             if (NotAddEdit)
             {
@@ -1430,7 +1430,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         {
                             AD3.Rows.Remove(currentRow);
                             dataGridView3.DataSource = AD3;
-                            detail3.SetData(null);
+                            detail3.SetData(dataGridView3.CurrentRow.ToDataDictionary());
                             TinhTongThanhToan("xu ly xoa detail3");
                         }
                     }
@@ -5327,7 +5327,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             return true;
         }
 
-        private void XuLyDeleteDetail()
+        private void XuLyXoaDetail()
         {
             if (NotAddEdit)
             {
@@ -5349,7 +5349,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         {
                             AD.Rows.Remove(currentRow);
                             dataGridView1.DataSource = AD;
-                            detail1.SetData(null);
+                            detail1.SetData(dataGridView1.CurrentRow.ToDataDictionary());
                             TinhTongThanhToan("xu ly xoa detail");
                         }
                     }
@@ -5364,7 +5364,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 this.ShowErrorException(GetType() + ".Xóa chi tiết " + _sttRec, ex);
             }
         }
-        private void XuLyDeleteDetail2()
+        private void XuLyXoaDetail2()
         {
             if (NotAddEdit)
             {
@@ -5386,8 +5386,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         {
                             AD2.Rows.Remove(currentRow);
                             dataGridView2.DataSource = AD2;
-                            detail2.SetData(null);
-                            TinhTongThanhToan("xu ly xoa detail");
+                            detail2.SetData(dataGridView2.CurrentRow.ToDataDictionary());
+                            TinhTongThanhToan("xu ly xoa detail2");
                         }
                     }
                 }
@@ -5596,11 +5596,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         }
         private void hoaDonDetail1_DeleteHandle(object sender)
         {
-            XuLyDeleteDetail();
+            XuLyXoaDetail();
         }
         private void hoaDonDetail2_DeleteHandle(object sender)
         {
-            XuLyDeleteDetail2();
+            XuLyXoaDetail2();
         }
         private void hoaDonDetail1_ClickCancelEdit(object sender)
         {

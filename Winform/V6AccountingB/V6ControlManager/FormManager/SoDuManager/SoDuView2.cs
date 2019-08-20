@@ -329,7 +329,6 @@ namespace V6ControlManager.FormManager.SoDuManager
         {
             try
             {
-                SaveSelectedCellLocation(dataGridView1);
                 if (CurrentTable != V6TableName.None)
                 {
                     var f = new SoDuFormAddEdit(CurrentTable);
@@ -350,7 +349,6 @@ namespace V6ControlManager.FormManager.SoDuManager
         {
             try
             {
-                SaveSelectedCellLocation(dataGridView1);
                 if (CurrentTable == V6TableName.None)
                 {
                     this.ShowWarningMessage("Hãy chọn danh mục!");
@@ -395,7 +393,6 @@ namespace V6ControlManager.FormManager.SoDuManager
         {
             try
             {
-                SaveSelectedCellLocation(dataGridView1);
                 if (CurrentTable == V6TableName.None)
                 {
                     this.ShowWarningMessage("Hãy chọn danh mục!");
@@ -465,13 +462,57 @@ namespace V6ControlManager.FormManager.SoDuManager
             dataGridView2.DataSource = ADTables[CurrentSttRec].Copy();
             dataGridView2.HideColumnsAldm(_alctConfig.TableNameAD);
         }
+
+        private void DoChangeCode()
+        {
+            try
+            {
+                if (CurrentTable == V6TableName.None)
+                {
+                    this.ShowWarningMessage("Hãy chọn danh mục!");
+                }
+                else
+                {
+                    DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
+
+                    if (row != null)
+                    {
+                        _data = row.ToDataDictionary();
+
+                        var f = ChangeCodeManager.GetChangeCodeControl(_alctConfig.TableNameAM, _data);
+                        if (f != null)
+                        {
+                            f.DoChangeCodeFinish += f_DoChangeCodeFinish;
+                            f.ShowDialog(this);
+                        }
+                    }
+                    else
+                    {
+                        this.ShowWarningMessage(V6Text.NoSelection);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(ex.Message, "DanhMucView DoChangeCode");
+            }
+        }
+        private void f_DoChangeCodeFinish(IDictionary<string, object> data)
+        {
+            if (ADTables.ContainsKey(CurrentSttRec))
+            {
+                ADTables.Remove(CurrentSttRec);
+            }
+            ReLoad();
+
+            LoadAD();
+        }
         
         private void DoDelete()//!!! chưa có rollback khi bị lỗi.
         {
             SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction("DeleteSoDuView2");
             try
             {
-                SaveSelectedCellLocation(dataGridView1);
                 DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
                 var selectedData = row.ToDataDictionary();
 
@@ -650,7 +691,9 @@ namespace V6ControlManager.FormManager.SoDuManager
 
         private void LoadTable(V6TableName tableName, int page, int size, string sortField, bool ascending)
         {
-            try { 
+            try
+            {
+                SaveSelectedCellLocation(dataGridView1);
                 if (page < 1) page = 1;
                 CurrentTable = tableName;
                 if (_aldmConfig != null && CurrentTable == V6TableName.Notable)
@@ -688,9 +731,9 @@ namespace V6ControlManager.FormManager.SoDuManager
 
         public void ViewResultToForm()
         {
-            
             dataGridView1.DataSource =  SelectResult.Data;
             dataGridView1.HideColumnsAldm(_alctConfig.TableNameAM);
+            LoadSelectedCellLocation(dataGridView1);
 
             if (!string.IsNullOrEmpty(SelectResult.SortField))
             {
@@ -700,27 +743,6 @@ namespace V6ControlManager.FormManager.SoDuManager
                         : SortOrder.Descending;
             }
             
-            //var st = V6BusinessHelper.GetTableStruct("V6struct1".ToString());
-            
-            if(SelectResult.FieldsHeaderDictionary != null && SelectResult.FieldsHeaderDictionary.Count>0)
-            for (int i = 0; i < dataGridView1.ColumnCount; i++)
-            {
-                var field = dataGridView1.Columns[i].DataPropertyName.ToUpper();
-                if(SelectResult.FieldsHeaderDictionary.ContainsKey(field))
-                {
-                    dataGridView1.Columns[i].HeaderText =
-                        SelectResult.FieldsHeaderDictionary[field];
-                }
-                //if (st.ContainsKey(field))
-                //{
-                //    var columnStruct = st[field];
-                //    if (columnStruct.DataType == typeof(string) && columnStruct.MaxLength>60)
-                //    {
-                //        dataGridView1.Columns[i].Width = 300;
-                //    }
-                //}
-            }
-
             txtCurrentPage.Text = SelectResult.Page.ToString(CultureInfo.InvariantCulture);
             txtCurrentPage.BackColor = Color.White;
             
@@ -758,28 +780,35 @@ namespace V6ControlManager.FormManager.SoDuManager
             SetFormatGridView();
         }
 
+        private bool formated;
         private void SetFormatGridView()
         {
-            V6InvoiceBase _invoice = new V6InvoiceBase(_maCt);
-            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, _invoice.AlctConfig.GRDS_AM, _invoice.AlctConfig.GRDF_AM,
-                        V6Setting.IsVietnamese ? _invoice.AlctConfig.GRDHV_AM : _invoice.AlctConfig.GRDHE_AM);
-            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, _invoice.AlctConfig.GRDS_AD, _invoice.AlctConfig.GRDF_AD,
-                        V6Setting.IsVietnamese ? _invoice.AlctConfig.GRDHV_AD : _invoice.AlctConfig.GRDHE_AD);
+            if (formated) return;
+            try
+            {
+                if (SelectResult.FieldsHeaderDictionary != null && SelectResult.FieldsHeaderDictionary.Count > 0)
+                    for (int i = 0; i < dataGridView1.ColumnCount; i++)
+                    {
+                        var field = dataGridView1.Columns[i].DataPropertyName.ToUpper();
+                        if (SelectResult.FieldsHeaderDictionary.ContainsKey(field))
+                        {
+                            dataGridView1.Columns[i].HeaderText =
+                                SelectResult.FieldsHeaderDictionary[field];
+                        }
+                    }
 
+                V6InvoiceBase _invoice = new V6InvoiceBase(_maCt);
+                V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, _invoice.AlctConfig.GRDS_AM, _invoice.AlctConfig.GRDF_AM,
+                            V6Setting.IsVietnamese ? _invoice.AlctConfig.GRDHV_AM : _invoice.AlctConfig.GRDHE_AM);
+                V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, _invoice.AlctConfig.GRDS_AD, _invoice.AlctConfig.GRDF_AD,
+                            V6Setting.IsVietnamese ? _invoice.AlctConfig.GRDHV_AD : _invoice.AlctConfig.GRDHE_AD);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".SetFormatGridView", ex);
+            }
+            formated = true;
         }
-        //private void SetFormatGridView()
-        //{
-        //    try
-        //    {
-        //        dataGridView1.HideColumnsAldm(_alctConfig.TableNameAM);
-        //        dataGridView2.HideColumnsAldm(_alctConfig.TableNameAD);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        this.ShowErrorException(GetType() + ".SetFormatGridView", ex);
-        //    }
-        //}
-
 
         public override void DoHotKey(Keys keyData)
         {
@@ -1261,53 +1290,6 @@ namespace V6ControlManager.FormManager.SoDuManager
             {
                 V6ControlFormHelper.NoRightWarning();
             }
-        }
-
-
-        private void DoChangeCode()
-        {
-            try
-            {
-                SaveSelectedCellLocation(dataGridView1);
-                if (CurrentTable == V6TableName.None)
-                {
-                    this.ShowWarningMessage("Hãy chọn danh mục!");
-                }
-                else
-                {
-                    DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
-
-                    if (row != null)
-                    {
-                        _data = row.ToDataDictionary();
-
-                        var f = ChangeCodeManager.GetChangeCodeControl(_alctConfig.TableNameAM, _data);
-                        if (f != null)
-                        {
-                            f.DoChangeCodeFinish += f_DoChangeCodeFinish;
-                            f.ShowDialog(this);
-                        }
-                    }
-                    else
-                    {
-                        this.ShowWarningMessage(V6Text.NoSelection);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(ex.Message, "DanhMucView DoChangeCode");
-            }
-        }
-        private void f_DoChangeCodeFinish(IDictionary<string, object> data)
-        {
-            if (ADTables.ContainsKey(CurrentSttRec))
-            {
-                ADTables.Remove(CurrentSttRec);
-            }
-            ReLoad();
-            
-            LoadAD();
         }
         
     }

@@ -549,7 +549,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         {
                             AD.Rows.Remove(currentRow);
                             dataGridView1.DataSource = AD;
-                            detail1.SetData(null);
+                            detail1.SetData(dataGridView1.CurrentRow.ToDataDictionary());
                         }
                     }
                 }

@@ -549,7 +549,8 @@ namespace V6ControlManager.FormManager.NhanSu
 
         private void LoadTable(V6TableName tableName, int page, int size, string where, string sortField, bool ascending)
         {
-            try { 
+            try {
+                //SaveSelectedCellLocation(dataGridView1);
                 //if (page < 1) page = 1;
                 CurrentTable = tableName;
 
@@ -606,13 +607,12 @@ namespace V6ControlManager.FormManager.NhanSu
             //nhanSuTreeView1.FieldsHeaderDictionary = SelectResult.FieldsHeaderDictionary;
             //nhanSuTreeView1.HideColumnDic = _hideColumnDic;
             //nhanSuTreeView1.DataSource = SelectResult.Data;
+            //LoadSelectedCellLocation(dataGridView1);
 
             string showFields = _config.GRDS_V1;
             string headerString = V6Setting.IsVietnamese ? _config.GRDHV_V1 : _config.GRDHE_V1;
             string formatStrings = _config.GRDF_V1;
             
-            //V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
-
             tochucTree1.SetData(SelectResult.Data, showFields, headerString, formatStrings);
             #endregion nhansutreeview
 

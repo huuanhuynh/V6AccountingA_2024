@@ -751,7 +751,7 @@ namespace V6Tools.V6Convert
                     object value = null;
                     if (!(o is DBNull)) value = field.GetValue(o);
                     if (value != null)
-                        result += "\n" + ObjectToXml(value);
+                        result += "\n" + value;
 
                     if (field_count == 10) break;
                 }

@@ -298,8 +298,8 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
         private void DanhMucView_Load(object sender, EventArgs e)
         {
-
             LoadTable(CurrentTable, SelectResult.SortField);
+            
             FormManagerHelper.HideMainMenu();
             dataGridView1.Focus();
             if (CurrentTable == V6TableName.Alkh)
@@ -376,19 +376,31 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             return null;
         }
-
-        
         
 
         private void btnThem_EnabledChanged(object sender, EventArgs e)
         {
             btnCopy.Enabled = btnThem.Enabled;
         }
-        
+
+        private bool formated;
         private void SetFormatGridView()
         {
+            if (formated) return;
             try
             {
+
+                if (SelectResult.FieldsHeaderDictionary != null && SelectResult.FieldsHeaderDictionary.Count > 0)
+                    for (int i = 0; i < dataGridView1.ColumnCount; i++)
+                    {
+                        var field = dataGridView1.Columns[i].DataPropertyName.ToUpper();
+                        if (SelectResult.FieldsHeaderDictionary.ContainsKey(field))
+                        {
+                            dataGridView1.Columns[i].HeaderText =
+                                SelectResult.FieldsHeaderDictionary[field];
+                        }
+                    }
+
                 if (CurrentTable == V6TableName.Altk0)
                 {
                     //dataGridView1.Columns[0].DefaultCellStyle.Padding;
@@ -457,6 +469,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             {
                 this.WriteExLog(GetType() + ".SetFormatGridView", ex);
             }
+            formated = true;
         }
 
         private AldmConfig _aldmConfig;
@@ -514,7 +527,6 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             try
             {
-                SaveSelectedCellLocation(dataGridView1);
                 if (CurrentTable == V6TableName.None)
                 {
                     this.ShowWarningMessage("Hãy chọn danh mục!");
@@ -605,7 +617,6 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             try
             {
-                SaveSelectedCellLocation(dataGridView1);
                 if (CurrentTable == V6TableName.None)
                 {
                     this.ShowWarningMessage("Hãy chọn danh mục!");
@@ -663,7 +674,6 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             try
             {
-                SaveSelectedCellLocation(dataGridView1);
                 if (CurrentTable == V6TableName.None)
                 {
                     this.ShowWarningMessage("Hãy chọn danh mục!");
@@ -759,7 +769,6 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             try
             {
-                SaveSelectedCellLocation(dataGridView1);
                 if (CurrentTable == V6TableName.None)
                 {
                     this.ShowWarningMessage("Hãy chọn danh mục!");
@@ -783,7 +792,6 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     {
                         this.ShowWarningMessage(V6Text.NoSelection);
                     }
-
                 }
             }
             catch (Exception ex)
@@ -801,7 +809,6 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             try
             {
-                SaveSelectedCellLocation(dataGridView1);
                 DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
                 var confirm = false;
                 var t = 0;
@@ -1336,7 +1343,9 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
         private void LoadTable(V6TableName tableName, int page, int size, string sortField, bool ascending)
         {
-            try { 
+            try
+            {
+                SaveSelectedCellLocation(dataGridView1);
                 if (page < 1) page = 1;
                 CurrentTable = tableName;
                 if (_aldmConfig != null && CurrentTable == V6TableName.Notable)
@@ -1375,6 +1384,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             dataGridView1.SetFrozen(0);
             dataGridView1.DataSource = SelectResult.Data;
+            LoadSelectedCellLocation(dataGridView1);
 
             if (!string.IsNullOrEmpty(SelectResult.SortField))
             {
@@ -1383,20 +1393,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         ? SortOrder.Ascending
                         : SortOrder.Descending;
             }
-
-            //var st = V6BusinessHelper.GetTableStruct("V6struct1".ToString());
             
-            if(SelectResult.FieldsHeaderDictionary != null && SelectResult.FieldsHeaderDictionary.Count>0)
-            for (int i = 0; i < dataGridView1.ColumnCount; i++)
-            {
-                var field = dataGridView1.Columns[i].DataPropertyName.ToUpper();
-                if(SelectResult.FieldsHeaderDictionary.ContainsKey(field))
-                {
-                    dataGridView1.Columns[i].HeaderText =
-                        SelectResult.FieldsHeaderDictionary[field];
-                }
-            }
-
             txtCurrentPage.Text = SelectResult.Page.ToString(CultureInfo.InvariantCulture);
             txtCurrentPage.BackColor = Color.White;
             lblTotalPage.Text = string.Format(
@@ -1487,7 +1484,6 @@ namespace V6ControlManager.FormManager.DanhMucManager
             try
             {
                 LoadTable(CurrentTable, SelectResult.Page, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
-                LoadSelectedCellLocation(dataGridView1);
             }
             catch (Exception ex)
             {

@@ -1143,10 +1143,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
         private void Detail3_DeleteHandle(object sender)
         {
-            XuLyDeleteDetail3();
+            XuLyXoaDetail3();
         }
 
-        private void XuLyDeleteDetail3()
+        private void XuLyXoaDetail3()
         {
             if (NotAddEdit)
             {
@@ -1168,7 +1168,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                         {
                             AD3.Rows.Remove(currentRow);
                             dataGridView3.DataSource = AD3;
-                            detail3.SetData(null);
+                            detail3.SetData(dataGridView3.CurrentRow.ToDataDictionary());
                             TinhTongThanhToan("xu ly xoa detail3");
                         }
                     }
@@ -3942,7 +3942,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     {
                         AD.Rows.Remove(currentRow);
                         dataGridView1.DataSource = AD;
-                        detail1.SetData(null);
+                        detail1.SetData(dataGridView1.CurrentRow.ToDataDictionary());
                         TinhTongThanhToan("xu ly xoa detail");
                     }
                 }
@@ -5187,7 +5187,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             return true;
         }
 
-        private void XuLyDeleteDetail2()
+        private void XuLyXoaDetail2()
         {
             if (NotAddEdit)
             {
@@ -5209,8 +5209,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                         {
                             AD2.Rows.Remove(currentRow);
                             dataGridView2.DataSource = AD2;
-                            detail2.SetData(null);
-                            TinhTongThanhToan("xu ly xoa detail");
+                            detail2.SetData(dataGridView2.CurrentRow.ToDataDictionary());
+                            TinhTongThanhToan("xu ly xoa detail2");
                         }
                     }
                 }
@@ -5266,7 +5266,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
         private void detail2_DeleteHandle(object sender)
         {
-            XuLyDeleteDetail2();
+            XuLyXoaDetail2();
         }
 
         private void detail2_EditHandle(IDictionary<string, object> data)

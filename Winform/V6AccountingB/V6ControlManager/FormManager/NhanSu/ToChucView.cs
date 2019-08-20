@@ -926,11 +926,8 @@ namespace V6ControlManager.FormManager.NhanSu
             string headerString = V6Setting.IsVietnamese ? config.GRDHV_V1 : config.GRDHE_V1;
             string formatStrings = config.GRDF_V1;
             
-            //V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
-
             toChucTreeListView1.SetData(SelectResult.Data, showFields, headerString, formatStrings);
-            //treeView1.data
-
+            
             lblTotalPage.Text = string.Format(V6Setting.IsVietnamese ? "Tổng cộng: {0} " : "Total {0} ",
                 SelectResult.TotalRows,
                 string.IsNullOrEmpty(_last_filter)

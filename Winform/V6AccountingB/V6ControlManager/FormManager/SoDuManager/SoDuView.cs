@@ -482,7 +482,9 @@ namespace V6ControlManager.FormManager.SoDuManager
 
         private void LoadTable(V6TableName tableName, int page, int size, string sortField, bool ascending)
         {
-            try { 
+            try
+            {
+                SaveSelectedCellLocation(dataGridView1);
                 if (page < 1) page = 1;
                 CurrentTable = tableName;
 
@@ -516,8 +518,9 @@ namespace V6ControlManager.FormManager.SoDuManager
 
         public void ViewResultToForm()
         {
-            
             dataGridView1.DataSource = SelectResult.Data;
+            //dataGridView1.HideColumnsAldm(_alctConfig.TableNameAM);
+            LoadSelectedCellLocation(dataGridView1);
 
             if (!string.IsNullOrEmpty(SelectResult.SortField))
             {
@@ -527,19 +530,6 @@ namespace V6ControlManager.FormManager.SoDuManager
                         : SortOrder.Descending;
             }
             
-            //var st = V6BusinessHelper.GetTableStruct("V6struct1".ToString());
-            
-            if(SelectResult.FieldsHeaderDictionary != null && SelectResult.FieldsHeaderDictionary.Count>0)
-            for (int i = 0; i < dataGridView1.ColumnCount; i++)
-            {
-                var field = dataGridView1.Columns[i].DataPropertyName.ToUpper();
-                if(SelectResult.FieldsHeaderDictionary.ContainsKey(field))
-                {
-                    dataGridView1.Columns[i].HeaderText =
-                        SelectResult.FieldsHeaderDictionary[field];
-                }
-            }
-
             txtCurrentPage.Text = SelectResult.Page.ToString(CultureInfo.InvariantCulture);
             txtCurrentPage.BackColor = Color.White;
             
@@ -577,36 +567,56 @@ namespace V6ControlManager.FormManager.SoDuManager
             SetFormatGridView();
         }
 
+        private bool formated;
         private void SetFormatGridView()
         {
-            if (CurrentTable == V6TableName.Altk0)
+            if (formated) return;
+            try
             {
-                //dataGridView1.Columns[0].DefaultCellStyle.Padding;
-                dataGridView1.CellFormatting += (s, e) =>
-                {
-                    if (e.ColumnIndex == 1)
+                if (SelectResult.FieldsHeaderDictionary != null && SelectResult.FieldsHeaderDictionary.Count > 0)
+                    for (int i = 0; i < dataGridView1.ColumnCount; i++)
                     {
-                        int b = ObjectAndString.ObjectToInt(dataGridView1.Rows[e.RowIndex].Cells["Bac_tk"].Value);
-                        int l = ObjectAndString.ObjectToInt(dataGridView1.Rows[e.RowIndex].Cells["Loai_tk"].Value);
-                        if (l == 0) dataGridView1.Rows[e.RowIndex].DefaultCellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
-
-                        if (b == 1) b = 0;
-                        var p = b * 8;
-                        e.CellStyle.Padding = new Padding(p, 0, 0, 0);
+                        var field = dataGridView1.Columns[i].DataPropertyName.ToUpper();
+                        if (SelectResult.FieldsHeaderDictionary.ContainsKey(field))
+                        {
+                            dataGridView1.Columns[i].HeaderText =
+                                SelectResult.FieldsHeaderDictionary[field];
+                        }
                     }
-                };
+
+                if (CurrentTable == V6TableName.Altk0)
+                {
+                    //dataGridView1.Columns[0].DefaultCellStyle.Padding;
+                    dataGridView1.CellFormatting += (s, e) =>
+                    {
+                        if (e.ColumnIndex == 1)
+                        {
+                            int b = ObjectAndString.ObjectToInt(dataGridView1.Rows[e.RowIndex].Cells["Bac_tk"].Value);
+                            int l = ObjectAndString.ObjectToInt(dataGridView1.Rows[e.RowIndex].Cells["Loai_tk"].Value);
+                            if (l == 0) dataGridView1.Rows[e.RowIndex].DefaultCellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+
+                            if (b == 1) b = 0;
+                            var p = b * 8;
+                            e.CellStyle.Padding = new Padding(p, 0, 0, 0);
+                        }
+                    };
+                }
+                else if (CurrentTable == V6TableName.Almaubcct)
+                {
+                    V6ControlFormHelper.FormatGridView(dataGridView1, "BOLD", "=", 1, true, false, Color.White);
+                }
+
+                // Đè format cũ
+                string showFields = _config.GRDS_V1;
+                string formatStrings = _config.GRDF_V1;
+                string headerString = V6Setting.IsVietnamese ? _config.GRDHV_V1 : _config.GRDHE_V1;
+                V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
             }
-            else if (CurrentTable == V6TableName.Almaubcct)
+            catch (Exception ex)
             {
-                V6ControlFormHelper.FormatGridView(dataGridView1, "BOLD", "=", 1, true, false, Color.White);
+                this.WriteExLog(GetType() + ".SetFormatGridView", ex);
             }
-
-            // Đè format cũ
-            string showFields = _config.GRDS_V1;
-            string formatStrings = _config.GRDF_V1;
-            string headerString = V6Setting.IsVietnamese ? _config.GRDHV_V1 : _config.GRDHE_V1;
-            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
-
+            formated = true;
         }
 
         public void First()
