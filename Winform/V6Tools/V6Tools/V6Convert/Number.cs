@@ -49,6 +49,27 @@ namespace V6Tools.V6Convert
         private static string NoMultiplicationAfter = "+-*/),^!";
 
         /// <summary>
+        /// Cố tính giá trị biểu thức, nếu có kết quả không lỗi trả về true, có lỗi trả về false.
+        /// </summary>
+        /// <param name="bieu_thuc"></param>
+        /// <param name="DATA"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool GiaTriBieuThucTry(string bieu_thuc, IDictionary<string, object> DATA, out decimal value)
+        {
+            try
+            {
+                value = GiaTriBieuThuc(bieu_thuc, DATA);
+                return true;
+            }
+            catch
+            {
+                value = 0;
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Tính giá trị biểu thức hỗ trợ +-*/ Round, Int, ^. 
         /// </summary>
         /// <param name="bieu_thuc"></param>

@@ -285,10 +285,10 @@ namespace V6Tools
                             #region ==== String ====
                             case 'C': // String
                                 //row[fieldIndex] = Encoding.ASCII.GetString(recReader.ReadBytes(field.fieldLen));
-                                //row[fieldIndex] = Encoding.Default.GetString(recReader.ReadBytes(field.fieldLen));//Yes
+                                row[fieldIndex] = Encoding.Default.GetString(recReader.ReadBytes(field.fieldLen));//Yes
                                 //row[fieldIndex] = Encoding.Unicode.GetString(recReader.ReadBytes(field.fieldLen));
                                 //row[fieldIndex] = Encoding.UTF32.GetString(recReader.ReadBytes(field.fieldLen));
-                                row[fieldIndex] = Encoding.UTF7.GetString(recReader.ReadBytes(field.fieldLen));//Yes
+                                //row[fieldIndex] = Encoding.UTF7.GetString(recReader.ReadBytes(field.fieldLen));//Yes Windows tiếng Việt
                                 //row[fieldIndex] = Encoding.UTF8.GetString(recReader.ReadBytes(field.fieldLen));
                                 break;
                             #endregion end String

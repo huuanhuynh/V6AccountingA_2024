@@ -472,16 +472,46 @@ namespace V6ControlManager.FormManager.MenuManager
                                 if (codeform.StartsWith("Z44")) // có hiện chi tiết
                                 {
                                     var programZ = codeform.Substring(3);
+                                    AldmConfig config = ConfigManager.GetAldmConfig(programZ);
+                                    if (config.HaveInfo && config.CHECK_ADMIN && V6Login.IsAdmin)
+                                    {
+                                        check = CheckPassword(owner);
+                                    }
+                                    else if (config.HaveInfo && config.CHECK_V6)
+                                    {
+                                        check = CheckPasswordV6(owner);
+                                    }
+                                    if (!check) return null;
                                     c = new XuLy44Base(item_id, programZ, programZ, repFile, mButton.ReportTitle, mButton.ReportTitle2, true, repFileF5, repTitleF5, repTitle2F5);
                                 }
                                 else if (codeform.StartsWith("Z45")) // Không hiện chi tiết
                                 {
                                     var programZ = codeform.Substring(3);
+                                    AldmConfig config = ConfigManager.GetAldmConfig(programZ);
+                                    if (config.HaveInfo && config.CHECK_ADMIN && V6Login.IsAdmin)
+                                    {
+                                        check = CheckPassword(owner);
+                                    }
+                                    else if (config.HaveInfo && config.CHECK_V6)
+                                    {
+                                        check = CheckPasswordV6(owner);
+                                    }
+                                    if (!check) return null;
                                     c = new XuLy44Base(item_id, programZ, programZ, repFile, mButton.ReportTitle, mButton.ReportTitle2, false, repFileF5, repTitleF5, repTitle2F5);
                                 }
                                 else
                                 {
                                     var programZ = codeform.Substring(1);
+                                    AldmConfig config = ConfigManager.GetAldmConfig(programZ);
+                                    if (config.HaveInfo && config.CHECK_ADMIN && V6Login.IsAdmin)
+                                    {
+                                        check = CheckPassword(owner);
+                                    }
+                                    else if (config.HaveInfo && config.CHECK_V6)
+                                    {
+                                        check = CheckPasswordV6(owner);
+                                    }
+                                    if (!check) return null;
                                     c = XuLy.GetXuLyControl(item_id, programZ, programZ, repFile, mButton.ReportTitle,
                                         mButton.ReportTitle2,
                                         repFileF5, repTitleF5, repTitle2F5);
@@ -491,7 +521,7 @@ namespace V6ControlManager.FormManager.MenuManager
                         case "B":
                             #region ==== //So du 2 //SoDuView2 ====
                             var maCt = codeform.Substring(1);
-
+                            
                             //Check Admin,V6
                             if (maCt == "S06")
                             {
@@ -505,6 +535,19 @@ namespace V6ControlManager.FormManager.MenuManager
                                     {
                                         check = CheckPassword(owner);
                                     }
+                                }
+                                if (!check) return null;
+                            }
+                            else
+                            {
+                                AldmConfig configB = ConfigManager.GetAldmConfig(maCt);
+                                if (configB.HaveInfo && configB.CHECK_ADMIN && V6Login.IsAdmin)
+                                {
+                                    check = CheckPassword(owner);
+                                }
+                                else if (configB.HaveInfo && configB.CHECK_V6)
+                                {
+                                    check = CheckPasswordV6(owner);
                                 }
                                 if (!check) return null;
                             }
@@ -545,7 +588,7 @@ namespace V6ControlManager.FormManager.MenuManager
                                         ((SoDuView2)c).AddInitFilter(where);
                                     }
                                 }
-                                    if (maCt == "S11" + "") // acosxlt_aldmvt
+                                if (maCt == "S11" + "") // acosxlt_aldmvt
                                 {
                                     var filterForm = new AldmvtSXDHFilterForm();
                                     if (filterForm.ShowDialog(owner) == DialogResult.OK)

@@ -191,8 +191,7 @@ namespace V6ControlManager.FormManager.MenuManager
                         }
 
                         //var TABLE_NAME = (codeform.Length > 1 ? codeform.Substring(1) : "").ToUpper();
-                        if (MenuManager.CheckAdminTables.ContainsKey(TABLE_NAME)
-                            || codeform.StartsWith("8"))
+                        if (code == "8" || MenuManager.CheckAdminTables.ContainsKey(TABLE_NAME))
                         {
                             if (mouse_left && ctrl_is_down)
                             {
@@ -462,7 +461,7 @@ namespace V6ControlManager.FormManager.MenuManager
                     }
                     if (_ctrl_alt_i >= 3)
                     {
-                        if (new ConfirmPasswordV6().ShowDialog(this) != DialogResult.OK) return;
+                        if (!MenuManager.CheckPasswordV6(this)) return;
 
                         if (menuControl1.SelectedButton != null &&
                         ControlsDictionary.ContainsKey(menuControl1.SelectedButton.ItemID))
