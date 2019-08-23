@@ -2489,6 +2489,9 @@
     <None Include="Resources\typing48.png" />
     <None Include="Resources\typing32.png" />
     <None Include="Resources\typing75.png" />
+    <Content Include="Setting\TuKhoa.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="x86\pdfium.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

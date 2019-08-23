@@ -19,7 +19,7 @@ namespace V6Controls.Controls.SyntaxHighlightingTextBox
 	/// </summary>
 	public class SyntaxHighlightingTextBox :	System.Windows.Forms.RichTextBox 
 	{
-		#region Members
+	    #region Members
 
 		//Members exposed via properties
 		private SeperaratorCollection mSeperators = new SeperaratorCollection();  
@@ -120,8 +120,8 @@ namespace V6Controls.Controls.SyntaxHighlightingTextBox
 		#endregion
 
 		#region Overriden methods
-
-	    public void CallOnTextChange()
+		
+		public void CallOnTextChange()
 	    {
 	        OnTextChanged(new EventArgs());
 	    }
@@ -191,9 +191,10 @@ namespace V6Controls.Controls.SyntaxHighlightingTextBox
 			SetDefaultSettings(sb, colors, fonts);
 
 			char[] sperators = mSeperators.GetAsCharArray();
-
-			//Replacing "\" to "\\" for RTF...
-			string[] lines = Text.Replace("\\","\\\\").Replace("{", "\\{").Replace("}", "\\}").Split('\n');
+            
+            //Fix unicode
+            string text2 = UnicodeEscapeCharacters(Text);
+            string[] lines = text2.Split('\n');
 			for (int lineCounter = 0 ; lineCounter < lines.Length; lineCounter++)
 			{
 				if (lineCounter != 0)
@@ -337,6 +338,31 @@ namespace V6Controls.Controls.SyntaxHighlightingTextBox
 			}
 
 		}
+
+        /// <summary>
+        /// <para>https://en.wikipedia.org/wiki/Rich_Text_Format#Character_encoding</para>
+        /// <para>    For a Unicode escape the control word \u is used, followed by a 16-bit signed decimal integer giving the Unicode UTF-16 code unit number.</para>
+        /// <para>For the benefit of programs without Unicode support, this must be followed by the nearest representation of this character in the specified code page.</para>
+        /// <para>For example, \u1576? would give the Arabic letter bāʼ ب, specifying that older programs which do not have Unicode support should render it as a question mark instead.</para>
+        /// </summary>
+        /// <param name="uString"></param>
+        /// <returns></returns>
+	    private string UnicodeEscapeCharacters(string uString)
+	    {
+	        string result = null;
+	        if (uString != null)
+	        {
+                // Replacing "\" to "\\" for RTF...
+	            uString = uString.Replace("\\", "\\\\").Replace("{", "\\{").Replace("}", "\\}");
+                // Change unicode char to \u1234__
+	            foreach (char c in uString)
+	            {
+	                if (c > 255) result += "\\u" + (int) c + "  ";
+	                else result += c;
+	            }
+	        }
+	        return result;
+	    }
 
 
 		protected override void OnVScroll(EventArgs e)
@@ -549,13 +575,15 @@ namespace V6Controls.Controls.SyntaxHighlightingTextBox
 		/// </summary>
 		private void CompleteWord()
 		{
-			int curTokenStartIndex = Text.LastIndexOfAny(mSeperators.GetAsCharArray(), Math.Min(SelectionStart, Text.Length - 1))+1;
-			int curTokenEndIndex= Text.IndexOfAny(mSeperators.GetAsCharArray(), SelectionStart);
-			if (curTokenEndIndex == -1) 
-			{
-				curTokenEndIndex = Text.Length;
-			}
-			string curTokenString = Text.Substring(curTokenStartIndex, Math.Max(curTokenEndIndex - curTokenStartIndex,0)).ToUpper();
+            int curTokenStartIndex = SelectionStart - 1;
+            while (curTokenStartIndex > 0)
+            {
+                if (mSeperators.Contains(Text[curTokenStartIndex - 1])) break;
+                curTokenStartIndex--;
+            }
+            if (curTokenStartIndex < 0) curTokenStartIndex = 0;
+            int curTokenEndIndex = SelectionStart;
+            string curTokenString = Text.Substring(curTokenStartIndex, curTokenEndIndex - curTokenStartIndex).ToUpper();
 			
 			string token = null;
 			foreach (HighlightDescriptor hd in mHighlightDescriptors)
@@ -582,8 +610,8 @@ namespace V6Controls.Controls.SyntaxHighlightingTextBox
 				SelectionStart = curTokenStartIndex;
 				SelectionLength = curTokenEndIndex - curTokenStartIndex;
 				SelectedText = token;
-				SelectionStart = SelectionStart + SelectionLength;
-				SelectionLength = 0;
+				//SelectionStart = SelectionStart + SelectionLength;
+				//SelectionLength = 0;
 			}
 		}
 
@@ -593,23 +621,29 @@ namespace V6Controls.Controls.SyntaxHighlightingTextBox
 		/// <returns>If the operation was succesful</returns>
 		private bool AcceptAutoCompleteItem()
 		{
-			
 			if (mAutoCompleteForm.SelectedItem == null)
 			{
 				return false;
 			}
-			
-			int curTokenStartIndex = Text.LastIndexOfAny(mSeperators.GetAsCharArray(), Math.Min(SelectionStart, Text.Length - 1)) + 1;
-			int curTokenEndIndex= Text.IndexOfAny(mSeperators.GetAsCharArray(), SelectionStart);
+
+            int curTokenStartIndex = SelectionStart - 1;
+            while (curTokenStartIndex > 0)
+            {
+                if (mSeperators.Contains(Text[curTokenStartIndex - 1])) break;
+                curTokenStartIndex--;
+            }
+            if (curTokenStartIndex < 0) curTokenStartIndex = 0;
+            int curTokenEndIndex = SelectionStart;
+            
 			if (curTokenEndIndex == -1) 
 			{
 				curTokenEndIndex = Text.Length;
 			}
-			SelectionStart = Math.Max(curTokenStartIndex, 0);
-			SelectionLength = Math.Max(0,curTokenEndIndex - curTokenStartIndex);
+			SelectionStart = curTokenStartIndex;
+			SelectionLength = curTokenEndIndex - curTokenStartIndex;
 			SelectedText = mAutoCompleteForm.SelectedItem;
-			SelectionStart = SelectionStart + SelectionLength;
-			SelectionLength = 0;
+			//SelectionStart = SelectionStart + SelectionLength;
+			//SelectionLength = 0;
 			
 			HideAutoCompleteForm();
 			return true;
@@ -622,13 +656,15 @@ namespace V6Controls.Controls.SyntaxHighlightingTextBox
 		/// </summary>
 		private void SetBestSelectedAutoCompleteItem()
 		{
-			int curTokenStartIndex = Text.LastIndexOfAny(mSeperators.GetAsCharArray(), Math.Min(SelectionStart, Text.Length - 1))+1;
-			int curTokenEndIndex= Text.IndexOfAny(mSeperators.GetAsCharArray(), SelectionStart);
-			if (curTokenEndIndex == -1) 
-			{
-				curTokenEndIndex = Text.Length;
-			}
-			string curTokenString = Text.Substring(curTokenStartIndex, Math.Max(curTokenEndIndex - curTokenStartIndex,0)).ToUpper();
+			int curTokenStartIndex = SelectionStart - 1;
+            while (curTokenStartIndex > 0)
+		    {
+		        if (mSeperators.Contains(Text[curTokenStartIndex - 1])) break;
+		        curTokenStartIndex--;
+		    }
+		    if (curTokenStartIndex < 0) curTokenStartIndex = 0;
+            int curTokenEndIndex= SelectionStart;
+			string curTokenString = Text.Substring(curTokenStartIndex, curTokenEndIndex - curTokenStartIndex).ToUpper();
 			
 			if ((mAutoCompleteForm.SelectedItem != null) && 
 				mAutoCompleteForm.SelectedItem.ToUpper().StartsWith(curTokenString))
@@ -680,13 +716,15 @@ namespace V6Controls.Controls.SyntaxHighlightingTextBox
 			string filterString = "";
 			if (mFilterAutoComplete)
 			{
-			
-				int filterTokenStartIndex = Text.LastIndexOfAny(mSeperators.GetAsCharArray(), Math.Min(SelectionStart, Text.Length - 1))+1;
-				int filterTokenEndIndex= Text.IndexOfAny(mSeperators.GetAsCharArray(), SelectionStart);
-				if (filterTokenEndIndex == -1) 
-				{
-					filterTokenEndIndex = Text.Length;
-				}
+                int filterTokenStartIndex = SelectionStart - 1;
+                while (filterTokenStartIndex > 0)
+                {
+                    if (mSeperators.Contains(Text[filterTokenStartIndex - 1])) break;
+                    filterTokenStartIndex--;
+                }
+                if (filterTokenStartIndex < 0) filterTokenStartIndex = 0;
+                int filterTokenEndIndex = SelectionStart;
+				
                 try
                 {
                     filterString = Text.Substring(filterTokenStartIndex, filterTokenEndIndex - filterTokenStartIndex).ToUpper();
@@ -972,6 +1010,31 @@ namespace V6Controls.Controls.SyntaxHighlightingTextBox
         private const Int32 WM_USER        = 0x400;
         private const Int32 EM_FORMATRANGE = WM_USER+57;
 
+        [DllImport("kernel32.dll", EntryPoint = "LoadLibraryW",
+        CharSet = CharSet.Unicode, SetLastError = true)]
+        private static extern IntPtr LoadLibraryW(string s_File);
+        public static IntPtr LoadLibrary(string s_File)
+        {
+            var module = LoadLibraryW(s_File);
+            if (module != IntPtr.Zero)
+                return module;
+            var error = Marshal.GetLastWin32Error();
+            throw new Win32Exception(error);
+        }
+        protected override CreateParams CreateParams
+        {
+            get
+            {	// Update RichTextBox
+                var cp = base.CreateParams;
+                try
+                {
+                    LoadLibrary("MsftEdit.dll"); // Available since XP SP1
+                    cp.ClassName = "RichEdit50W";
+                }
+                catch { /* Windows XP without any Service Pack.*/ }
+                return cp;
+            }
+        }
         #endregion
         #region ===Hàm===
         /// <summary>

@@ -1,0 +1,142 @@
+﻿<?xml version="1.0"?>
+<Root>
+
+  <TuKhoa TenTuKhoa='FilterLineBase' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='FilterLineDateTimeTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='FilterLineDateTimeNullable' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='FilterLineDynamic' 		      MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='FilterLineNumberTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='FilterLineVvarTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='ObjectAndString' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6BusinessHelper' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6Categories' 			MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='V6ColorDataGridView' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='V6ColorTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6Controls' 			  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6ControlFormHelper' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6ControlsHelper' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='V6FileIO' 					  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='V6Init' 					  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='V6InvoiceControl' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='V6NumberTextBox' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6Options' 				MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='V6ReportControls' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6Setting' 				MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6TableName' 		  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6TableStruct' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6VvarTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6Mode' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6Message' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	
+  <TuKhoa TenTuKhoa='CopyToVPN'   MauSac = 'Chocolate' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='ExecuteFunctionScalar(funcName, plist);' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='ExecuteProcedure' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='ExecuteProcedureNoneQuery' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='ExecuteProcedureScalar' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='ExistRowInTable' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='GetControlByAccessibleName' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='GetControlByName' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='ObjectToDecimal' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='SetValue' 		        MauSac = 'Chocolate' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='Show' 		        MauSac = 'Chocolate' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='ShowMainMessage' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
+	
+	<TuKhoa TenTuKhoa='Button' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='DataGridView' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='DataRow' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='DateTime' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='Exception' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='MessageBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='Dictionary' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='IDictionary' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='SortedDictionary' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	   
+	<TuKhoa TenTuKhoa='SqlParameter[] plist = {new SqlParameter("@name", value),}' 		MauSac = 'Blue' 	AutoComplete = '1' />
+  
+	<TuKhoa TenTuKhoa='string' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='int' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='byte' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='decimal' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='abstract' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='as' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='base' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='bool' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='break' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='case' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='catch' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='char' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='continue' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='default' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='delegate' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='do' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='double' 	MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='if' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='else' 	MauSac = 'Blue' 	AutoComplete = '1' />
+		
+	<TuKhoa TenTuKhoa='false' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='finally' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='float' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='for' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='foreach' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='goto' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='is' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='lock' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='long' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='new' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='null' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='object' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='override' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='params' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='private' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='protected' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='public' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='readonly' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='ref' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='return' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='sizeof' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='static' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='struct' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='switch' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='this' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='throw' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='true' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='try' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='typeof' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='virtual' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='void' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	
+	<TuKhoa TenTuKhoa='while' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='uint' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='ulong' 		MauSac = 'Blue' 	AutoComplete = '1' />
+			
+	<TuKhoa TenTuKhoa='AliceBlue' 	MauSac = 'AliceBlue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='AntiqueWhite' 	MauSac = 'AntiqueWhite' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='Aqua' 		MauSac = 'Aqua' 		AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='Aquamarine' 	MauSac = 'Aquamarine' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='BlueViolet' 	MauSac = 'BlueViolet' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='DarkGray' 	MauSac = 'DarkGray' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='DarkGreen' 	MauSac = 'DarkGreen' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='DarkMagenta' MauSac = 'DarkMagenta' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='DarkOrange' 	MauSac = 'DarkOrange' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='Gold' 		MauSac = 'Gold' 		AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='HotPink' 	MauSac = 'HotPink' 		AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='IndianRed' 	MauSac = 'IndianRed' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='Khaki' 		MauSac = 'Khaki' 		AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='LightBlue' 	MauSac = 'LightBlue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='Lime' 		MauSac = 'Lime' 		AutoComplete = '1' />	
+	<TuKhoa TenTuKhoa='Pink' 		MauSac = 'Pink' 		AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='Red' 		MauSac = 'Red' 			AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='Snow' 		MauSac = 'Snow' 		AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='Tan' 		MauSac = 'Tan' 			AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='Teal' 		MauSac = 'Teal' 		AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='Tomato' 		MauSac = 'Tomato' 		AutoComplete = '1' />	
+	<TuKhoa TenTuKhoa='White' 		MauSac = 'White' 		AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='YellowGreen' MauSac = 'YellowGreen' 	AutoComplete = '1' />
+	
+	<TuKhoaDoi TuKhoaBatDau='&lt;'		TuKhoaKetThuc='&gt;' 		MauSac = 'Red' 	AutoComplete = '0' />
+	<TuKhoaDoi TuKhoaBatDau='&apos;'		TuKhoaKetThuc='&apos;' 		MauSac = 'Red' 	AutoComplete = '0' />
+	<TuKhoaDoi TuKhoaBatDau='(&quot;'	TuKhoaKetThuc='&quot;)' 			MauSac = 'Tomato' 	AutoComplete = '0' />
+	<TuKhoaDoi TuKhoaBatDau='/*'	TuKhoaKetThuc='*/' 			MauSac = 'Green' 	AutoComplete = '0' />
+	<TuKhoaBatDau TuKhoaBatDau='--' 	MauSac = 'Green' 	AutoComplete = '0' />
+	<TuKhoaBatDau TuKhoaBatDau='//' 	MauSac = 'Green' 	AutoComplete = '0' />
+</Root>

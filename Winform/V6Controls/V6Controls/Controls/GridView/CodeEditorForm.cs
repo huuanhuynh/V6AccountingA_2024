@@ -53,6 +53,10 @@ namespace V6Controls.Controls.GridView
             txtColorTextBox.Seperators.Add('*');
             txtColorTextBox.Seperators.Add('/');
 
+            txtColorTextBox.Seperators.Add('{');
+            txtColorTextBox.Seperators.Add('}');
+            txtColorTextBox.Seperators.Add('[');
+            txtColorTextBox.Seperators.Add(']');
             txtColorTextBox.Seperators.Add('(');
             txtColorTextBox.Seperators.Add(')');
             txtColorTextBox.Seperators.Add('<');
