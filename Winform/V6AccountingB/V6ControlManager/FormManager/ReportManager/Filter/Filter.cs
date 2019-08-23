@@ -1575,6 +1575,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 case "ASENDSMS":
                     result = new Sms.XASENDSMS();
                     break;
+                case "ASENDSMSALL":
+                    result = new Sms.XASENDSMSALL();
+                    break;
             }
 
             if (result == null) result = new FilterBase() { Visible = false };

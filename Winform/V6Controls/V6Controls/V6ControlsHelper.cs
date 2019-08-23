@@ -137,6 +137,8 @@ namespace V6Controls
                     + "using V6ControlManager.FormManager.ReportManager.Filter;"
                     + "using V6ControlManager.FormManager.ReportManager.ReportR;"
                     + "using V6ControlManager.FormManager.ReportManager.XuLy;"
+                    + "using V6Tools;"
+                    + "using V6Tools.V6Convert;"
                     ;
                 using_text = using_text0 + using_text;
 

@@ -12,12 +12,13 @@ using V6Controls.Forms;
 using V6Init;
 using V6Structs;
 using V6Tools;
+using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
 {
-    public partial class XASENDSMS : FilterBase
+    public partial class XASENDSMSALL : FilterBase
     {
-        public XASENDSMS()
+        public XASENDSMSALL()
         {
             InitializeComponent();
             
@@ -31,9 +32,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
         {
             try
             {
-                Anchor = (AnchorStyles)0xF;
+                Anchor = (AnchorStyles) 0xF;
                 ExecuteMode = ExecuteMode.ExecuteProcedure;
-                lineMact.SetValue("BC1,TA1");
+                lineMact.SetValue("POH");
                 ViewConnecting();
             }
             catch (Exception ex)
@@ -50,7 +51,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
             result.Add(new SqlParameter("@LSTMA_CT", lineMact.StringValue));
             var key0 = GetFilterStringByFields(new List<string>()
             {
-                "MA_DVCS","MA_BP", "MA_KH", "TK"
+                "MA_DVCS","MA_BP", "MA_KH"
             }, true);
             result.Add(new SqlParameter("@advance", key0));
 
@@ -75,7 +76,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
             dataGridView1 = this.dataGridView1;
             try
             {
-                AldmConfig aldm = ConfigManager.GetAldmConfig("ASENDSMS");
+                AldmConfig aldm = ConfigManager.GetAldmConfig("ASENDSMSALL");
                 V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, aldm.GRDS_V1, aldm.GRDF_V1,
                     V6Setting.IsVietnamese ? aldm.GRDHV_V1 : aldm.GRDHE_V1);
             }
@@ -345,7 +346,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
                             new SqlParameter("@Lma_ct", Lma_ct),
                             new SqlParameter("@UserID", V6Login.UserId),
                         };
-                        V6BusinessHelper.ExecuteProcedureNoneQuery("AAPPR_XULY_TA1_BC1_SMS", plist);
+                        V6BusinessHelper.ExecuteProcedureNoneQuery("AAPPR_XULY_ALL_SMS", plist);
                     }
 
                     foreach (DataGridViewRow row in listRow)
@@ -482,5 +483,116 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
             //e.Cancel = true;
             e.ThrowException = false;
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_DataSourceChanged(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedCells.Count > 0)
+            {
+                var index = dataGridView1.SelectedCells[0].RowIndex;
+                _oldIndex = index;
+
+                UpdateGridView2(dataGridView1.Rows[index]);
+
+            }
+            else
+            {
+                dataGridView2.DataSource = null;
+            }
+        }
+
+        protected int _oldIndex = -1;
+        public string _sttRec = null;
+        private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var row = dataGridView1.CurrentRow;
+                if (row != null && _oldIndex != row.Index)
+                {
+                    _oldIndex = row.Index;
+                    if (dataGridView1.Columns.Contains("STT_REC"))
+                    {
+                        _sttRec = row.Cells["STT_REC"].Value.ToString();
+                    }
+                    UpdateGridView2(row);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".Gridview1Select", ex);
+            }
+        }
+
+        public void UpdateGridView2(DataGridViewRow row)
+        {
+            ViewDetails(row);
+            FormatGridView2();
+        }
+
+        private string mact_format = null;
+        protected void FormatGridView2()
+        {
+            try
+            {
+                if (dataGridView1.CurrentRow == null) return;
+                string mact = dataGridView1.CurrentRow.Cells["Ma_ct"].Value.ToString().Trim();
+                if (mact != mact_format)
+                {
+                    mact_format = mact;
+                    //var alctconfig = ConfigManager.GetAlctConfig(mact);
+                    var aldmConfig = ConfigManager.GetAldmConfig("AAPPR_ALL_AD_" + mact);
+                    if (!aldmConfig.HaveInfo) return;
+
+                    var headerString = V6Setting.IsVietnamese ? aldmConfig.GRDHV_V1 : aldmConfig.GRDHE_V1;
+                    V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, aldmConfig.GRDS_V1, aldmConfig.GRDF_V1, headerString);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".FormatGridView2", ex);
+            }
+        }
+
+        protected void ViewDetails(DataGridViewRow row)
+        {
+            try
+            {
+                if (row != null)
+                {
+                    var ngay_ct = ObjectAndString.ObjectToFullDateTime(row.Cells["ngay_ct"].Value);
+                    var sttRec = row.Cells["Stt_rec"].Value.ToString().Trim();
+                    var ma_ct = row.Cells["Ma_ct"].Value.ToString().Trim();
+                    DataTable data = null;
+
+                    SqlParameter[] plist =
+                    {
+                        new SqlParameter("@ngay_ct", ngay_ct.ToString("yyyyMMdd")),
+                        new SqlParameter("@ma_ct", ma_ct),
+                        new SqlParameter("@stt_rec", sttRec),
+                        new SqlParameter("@user_id", V6Login.UserId),
+                        new SqlParameter("@advance", ""),
+                    };
+                    data = V6BusinessHelper.ExecuteProcedure("AAPPR_XULY_ALL_SMS_AD", plist).Tables[0];
+
+                    dataGridView2.AutoGenerateColumns = true;
+                    dataGridView2.DataSource = data;
+                }
+                else
+                {
+                    dataGridView2.DataSource = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".XASENDSMSALL ViewDetails: " + ex.Message);
+            }
+        }
+
+
     }
 }

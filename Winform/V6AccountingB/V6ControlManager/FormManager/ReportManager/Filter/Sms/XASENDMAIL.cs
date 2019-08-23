@@ -36,6 +36,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
 
         void MyInit()
         {
+            Anchor = (AnchorStyles)0xF;
             ViewConnecting();
             //string[] portNames = SerialPort.GetPortNames();
             //foreach (var item in portNames)

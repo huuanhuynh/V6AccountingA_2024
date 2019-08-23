@@ -2002,6 +2002,12 @@
     <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSSOH_Filter.Designer.cs">
       <DependentUpon>XLSSOH_Filter.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Sms\XASENDSMSALL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Sms\XASENDSMSALL.Designer.cs">
+      <DependentUpon>XASENDSMSALL.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\Xuly\HoaDonDienTu\AAPPR_AR12_filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -6644,6 +6650,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSSOH_Filter.resx">
       <DependentUpon>XLSSOH_Filter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Sms\XASENDSMSALL.resx">
+      <DependentUpon>XASENDSMSALL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\HoaDonDienTu\AAPPR_AR12_filter.resx">
       <DependentUpon>AAPPR_AR12_filter.cs</DependentUpon>
