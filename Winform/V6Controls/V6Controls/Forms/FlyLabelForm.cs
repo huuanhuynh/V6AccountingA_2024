@@ -42,6 +42,16 @@ namespace V6Controls.Forms
             MoveToTargetControl();
         }
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                var cp = base.CreateParams;
+                cp.ExStyle |= 0x80;  // Turn on WS_EX_TOOLWINDOW // Ẩn khỏi Task Manager
+                return cp;
+            }
+        }
+
         private void MoveToTargetControl()
         {
             if (TargetControl == null) return;

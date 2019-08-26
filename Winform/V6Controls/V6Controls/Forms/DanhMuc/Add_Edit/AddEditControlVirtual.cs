@@ -447,13 +447,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 string checkV6Valid = CheckV6Valid(DataDic, TableName.ToString());
                 if (!string.IsNullOrEmpty(checkV6Valid))
                 {
-                    this.ShowInfoMessage(checkV6Valid);
+                    this.ShowInfoMessage(checkV6Valid, 500);
                     return false;
                 }
             }
             catch (Exception ex)
             {
-                this.ShowInfoMessage(ex.Message);
+                this.ShowInfoMessage(ex.Message, 500);
                 this.WriteExLog(GetType() + ".DoInsertOrUpdate ValidateData", ex);
                 return false;
             }
@@ -615,7 +615,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             catch (Exception ex)
             {
-                this.ShowInfoMessage(ex.Message);
+                this.ShowInfoMessage(ex.Message, 500);
                 this.WriteExLog(GetType() + ".InsertNew", ex);
                 return false;
             }
@@ -655,7 +655,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             catch (Exception ex)
             {
-                this.ShowInfoMessage(ex.Message);
+                this.ShowInfoMessage(ex.Message, 500);
                 this.WriteExLog(GetType() + ".UpdateData", ex);
                 return 0;
             }

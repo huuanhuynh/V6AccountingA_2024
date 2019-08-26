@@ -32,6 +32,16 @@ namespace V6Controls.Forms
             lblMessage.Text = text;
         }
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                var cp = base.CreateParams;
+                cp.ExStyle |= 0x80;  // Turn on WS_EX_TOOLWINDOW // Ẩn khỏi Task Manager
+                return cp;
+            }
+        }
+
         private void MakeItCenter()
         {
             Left = Screen.PrimaryScreen.WorkingArea.Width/2 - Width/2;

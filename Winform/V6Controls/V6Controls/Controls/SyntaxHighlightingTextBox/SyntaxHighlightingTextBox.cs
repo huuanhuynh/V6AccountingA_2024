@@ -349,7 +349,7 @@ namespace V6Controls.Controls.SyntaxHighlightingTextBox
         /// <returns></returns>
 	    private string UnicodeEscapeCharacters(string uString)
 	    {
-	        string result = null;
+	        string result = "";
 	        if (uString != null)
 	        {
                 // Replacing "\" to "\\" for RTF...

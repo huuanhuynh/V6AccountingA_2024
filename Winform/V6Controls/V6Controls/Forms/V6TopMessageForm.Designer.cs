@@ -82,7 +82,7 @@
             this.Name = "V6TopMessageForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Thông báo";
+            this.Text = "V6TopMessage";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.Black;
             this.Load += new System.EventHandler(this.V6TopMessageForm_Load);

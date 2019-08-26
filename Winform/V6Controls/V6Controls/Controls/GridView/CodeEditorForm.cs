@@ -637,6 +637,7 @@ namespace V6Controls.Controls.GridView
 
         private void txtColorTextBox_Enter(object sender, EventArgs e)
         {
+            if(txtColorTextBox.Text != "")
             txtColorTextBox.CallOnTextChange();
         }
 

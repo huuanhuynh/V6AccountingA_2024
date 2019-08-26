@@ -808,9 +808,16 @@ namespace V6Controls
             V6Message.Show(message, V6Setting.Language == "V" ? "Cảnh báo!" : "Warning!", showTime, MessageBoxButtons.OK, MessageBoxIcon.Warning, owner);
         }
 
-        public static DialogResult ShowInfoMessage(this IWin32Window owner, string message)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="owner"></param>
+        /// <param name="message"></param>
+        /// <param name="showTime">Thời gian hiển thị tính bằng %giây</param>
+        /// <returns></returns>
+        public static DialogResult ShowInfoMessage(this IWin32Window owner, string message, int showTime = 0)
         {
-            return V6ControlFormHelper.ShowInfoMessage(message, owner);
+            return V6ControlFormHelper.ShowInfoMessage(message, showTime, owner);
         }
 
         #endregion showmessage
