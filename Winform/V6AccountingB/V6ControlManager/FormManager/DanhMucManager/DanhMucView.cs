@@ -534,7 +534,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 else
                 {
                     DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
-
+                    FormAddEdit f = null;
                     if (row != null)
                     {
                         var keys = new SortedDictionary<string, object>();
@@ -553,17 +553,17 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         _data = row.ToDataDictionary();
                         if (CurrentTable == V6TableName.Notable)
                         {
-                            var f = new FormAddEdit(_tableName, V6Mode.Add, keys, _data);
+                            f = new FormAddEdit(_tableName, V6Mode.Add, keys, _data);
                             f.AfterInitControl += f_AfterInitControl;
-                            f.InsertSuccessEvent += f_InsertSuccess;
+                            //f.InsertSuccessEvent += f_InsertSuccess;
                             f.InitFormControl();
                             f.ShowDialog(this);
                         }
                         else
                         {
-                            var f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);
+                            f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);
                             f.AfterInitControl += f_AfterInitControl;
-                            f.InsertSuccessEvent += f_InsertSuccess;
+                            //f.InsertSuccessEvent += f_InsertSuccess;
                             f.InitFormControl();
                             f.ShowDialog(this);
                         }
@@ -572,21 +572,26 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     {
                         if (CurrentTable == V6TableName.Notable)
                         {
-                            var f = new FormAddEdit(_tableName);
+                            f = new FormAddEdit(_tableName);
                             f.AfterInitControl += f_AfterInitControl;
-                            f.InsertSuccessEvent += f_InsertSuccess;
+                            //f.InsertSuccessEvent += f_InsertSuccess;
                             f.InitFormControl();
                             f.ShowDialog(this);
                         }
                         else
                         {
                             //this.ShowWarningMessage(V6Text.NoSelection);
-                            var f = new FormAddEdit(CurrentTable);
+                            f = new FormAddEdit(CurrentTable);
                             f.AfterInitControl += f_AfterInitControl;
-                            f.InsertSuccessEvent += f_InsertSuccess;
+                            //f.InsertSuccessEvent += f_InsertSuccess;
                             f.InitFormControl();
                             f.ShowDialog(this);
                         }
+                    }
+
+                    if (f.InsertSuccess)
+                    {
+                        f_InsertSuccess(f.Data);
                     }
                 }
             }
@@ -594,6 +599,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             {
                 this.ShowErrorException(GetType() + ".DoAdd " + _tableName, ex);
             }
+            SetStatus2Text();
         }
 
         void f_AfterInitControl(object sender, EventArgs e)
@@ -703,23 +709,28 @@ namespace V6ControlManager.FormManager.DanhMucManager
                             }
 
                         _data = row.ToDataDictionary();
+                        FormAddEdit f;
                         if (CurrentTable == V6TableName.Notable)
                         {
-                            var f = new FormAddEdit(_tableName, V6Mode.Edit, keys, _data);
+                            f = new FormAddEdit(_tableName, V6Mode.Edit, keys, _data);
                             f.AfterInitControl += f_AfterInitControl;
-                            f.UpdateSuccessEvent += f_UpdateSuccess;
+                            //f.UpdateSuccessEvent += f_UpdateSuccess;
                             f.CallReloadEvent += FCallReloadEvent;
                             f.InitFormControl();
                             f.ShowDialog(this);
                         }
                         else
                         {
-                            var f = new FormAddEdit(CurrentTable, V6Mode.Edit, keys, _data);
+                            f = new FormAddEdit(CurrentTable, V6Mode.Edit, keys, _data);
                             f.AfterInitControl += f_AfterInitControl;
-                            f.UpdateSuccessEvent += f_UpdateSuccess;
+                            //f.UpdateSuccessEvent += f_UpdateSuccess;
                             f.CallReloadEvent += FCallReloadEvent;
                             f.InitFormControl();
                             f.ShowDialog(this);
+                        }
+                        if (f.UpdateSuccess)
+                        {
+                            f_UpdateSuccess(f.Data);
                         }
                     }
                     else
@@ -732,6 +743,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             {
                 this.ShowErrorException(GetType() + ".DoEdit", ex);
             }
+            SetStatus2Text();
         }
 
         private void FCallReloadEvent(object sender, EventArgs eventArgs)

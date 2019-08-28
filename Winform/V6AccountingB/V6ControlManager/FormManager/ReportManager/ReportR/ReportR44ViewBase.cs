@@ -1750,8 +1750,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Edit, AlbcKeys, null);
                 f2.AfterInitControl += f_AfterInitControl;
                 f2.InitFormControl();
-                f2.UpdateSuccessEvent += (data) =>
+                f2.ShowDialog(this);
+                SetStatus2Text();
+                if (f2.UpdateSuccess)
                 {
+                    var data = f2.FormControl.DataDic;
                     //cap nhap thong tin
                     LoadComboboxSource();
                     //Chọn cái mới.
@@ -1766,13 +1769,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                         }
                     }
                 };
-                f2.ShowDialog(this);
-                SetStatus2Text();
             }
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".btnSuaTTMauBC_Click: " + ex.Message);
             }
+            SetStatus2Text();
         }
 
         void f_AfterInitControl(object sender, EventArgs e)
@@ -1811,8 +1813,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Add, AlbcKeys, data0);
                 f2.AfterInitControl += f_AfterInitControl;
                 f2.InitFormControl();
-                f2.InsertSuccessEvent += (data) =>
+                f2.ShowDialog(this);
+                SetStatus2Text();
+                if (f2.InsertSuccess)
                 {
+                    var data = f2.FormControl.DataDic;
                     //cap nhap thong tin
                     LoadComboboxSource();
                     //Chọn cái mới.
@@ -1827,13 +1832,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                         }
                     }
                 };
-                f2.ShowDialog(this);
-                SetStatus2Text();
             }
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".ThemMauBC_Click: " + ex.Message);
             }
+            SetStatus2Text();
         }
 
         private void btnSuaMau_Click(object sender, EventArgs e)

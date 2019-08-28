@@ -135,7 +135,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
 
                 AddFilterControl(_program);
-                FilterControl.SetStatus2Text();
+                SetStatus2Text();
                 gridViewSummary1.Visible = FilterControl.ViewSum;
                 
                 var lineList = FilterControl.GetFilterLineList();
@@ -1541,7 +1541,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                                 f.Controls.Add(hoaDonForm);
                                 f.ShowDialog(this);
                             
-                                FilterControl.SetStatus2Text();
+                                SetStatus2Text();
                             }
                         }
                     }
@@ -1592,7 +1592,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 view.AutoClickNhan = true;
                 view.ShowToForm(this, "Chi tiết", true);
                 
-                FilterControl.SetStatus2Text();
+                SetStatus2Text();
             }
             catch (Exception ex)
             {
@@ -1611,7 +1611,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 this.ShowErrorMessage(GetType() + ".XuLyVeDoThiF7: " + ex.Message);
             }
-            FilterControl.SetStatus2Text();
+            SetStatus2Text();
         }
 
         protected override void ClearMyVars()
@@ -1652,6 +1652,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             return true;
         }
 
+        public override void SetStatus2Text()
+        {
+            FilterControl.SetStatus2Text();
+        }
+
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.F5 && FilterControl.F5)
@@ -1666,7 +1671,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (Visible)
             {
-                FilterControl.SetStatus2Text();
+                SetStatus2Text();
             }
         }
 
@@ -1734,8 +1739,15 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Edit, AlbcKeys, null);
                 f2.AfterInitControl += f_AfterInitControl;
                 f2.InitFormControl();
-                f2.UpdateSuccessEvent += (data) =>
+                //f2.UpdateSuccessEvent += (data) =>
+                //{
+                    
+                //};
+                f2.ShowDialog(this);
+                SetStatus2Text();
+                if (f2.UpdateSuccess)
                 {
+                    var data = f2.FormControl.DataDic;
                     //cap nhap thong tin
                     LoadComboboxSource();
                     //Chọn cái mới.
@@ -1749,9 +1761,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                             break;
                         }
                     }
-                };
-                f2.ShowDialog(this);
-                FilterControl.SetStatus2Text();
+                }
             }
             catch (Exception ex)
             {
@@ -1795,8 +1805,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Add, AlbcKeys, data0);
                 f2.AfterInitControl += f_AfterInitControl;
                 f2.InitFormControl();
-                f2.InsertSuccessEvent += (data) =>
+                f2.ShowDialog(this);
+                SetStatus2Text();
+                if (f2.InsertSuccess)
                 {
+                    var data = f2.FormControl.DataDic;
                     //cap nhap thong tin
                     LoadComboboxSource();
                     //Chọn cái mới.
@@ -1811,8 +1824,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                         }
                     }
                 };
-                f2.ShowDialog(this);
-                FilterControl.SetStatus2Text();
             }
             catch (Exception ex)
             {

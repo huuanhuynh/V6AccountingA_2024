@@ -101,6 +101,19 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
+        /// <summary>
+        /// Cờ báo hiệu thêm thành công sau khi đóng form.
+        /// </summary>
+        public bool InsertSuccess { get; set; }
+        /// <summary>
+        /// Cờ báo hiệu sửa thành công sau khi đóng form.
+        /// </summary>
+        public bool UpdateSuccess { get; set; }
+        /// <summary>
+        /// Dữ liệu đã dùng để thêm hoặc sửa (insert/update).
+        /// </summary>
+        public IDictionary<string, object> Data { get { return FormControl.DataDic; } }
+
         public void SetParentData()
         {
             FormControl.SetParentData();
@@ -291,6 +304,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void DoUpdateSuccess(SortedDictionary<string, object> dataDic)
         {
+            UpdateSuccess = true;
             FormControl.All_Objects["dataDic"] = dataDic;
             FormControl.InvokeFormEvent("AFTERUPDATE");
             var handler = UpdateSuccessEvent;
@@ -299,6 +313,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void DoInsertSuccess(SortedDictionary<string, object> dataDic)
         {
+            InsertSuccess = true;
             FormControl.All_Objects["dataDic"] = dataDic;
             FormControl.InvokeFormEvent("AFTERINSERT");
             var handler = InsertSuccessEvent;

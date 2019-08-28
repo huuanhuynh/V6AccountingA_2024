@@ -2225,8 +2225,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Add, AlbcKeys, data0);
                 f2.AfterInitControl += f_AfterInitControl;
                 f2.InitFormControl();
-                f2.InsertSuccessEvent += (data) =>
+                f2.ShowDialog(this);
+                SetStatus2Text();
+                if (f2.InsertSuccess)
                 {
+                    var data = f2.FormControl.DataDic;
                     //cap nhap thong tin
                     LoadComboboxSource();
                     //Chọn cái mới.
@@ -2241,7 +2244,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         }
                     }
                 };
-                f2.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -2289,8 +2291,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Edit, AlbcKeys, null);
                 f2.AfterInitControl += f_AfterInitControl;
                 f2.InitFormControl();
-                f2.UpdateSuccessEvent += (data) =>
+                SetStatus2Text();
+                if (f2.UpdateSuccess)
                 {
+                    var data = f2.FormControl.DataDic;
                     //cap nhap thong tin
                     LoadComboboxSource();
                     //Chọn cái mới.
