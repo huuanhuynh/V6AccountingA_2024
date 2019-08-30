@@ -56,7 +56,7 @@ namespace V6ReportControls
             }
         }
 
-        public void AddFilterLineControl(V6TableStruct structTable, string fieldName, string vvar, string filter, string tableLable = null)
+        public void AddFilterLineControl(V6TableStruct structTable, string fieldName, string vvar, string filter, string tableLable = null, string oper = null)
         {
             try
             {
@@ -84,7 +84,14 @@ namespace V6ReportControls
                         lineControl.AddNumberTextBox();
                     }
                 }
-                lineControl.TableLabel = tableLable;
+                if (!string.IsNullOrEmpty(tableLable))
+                {
+                    lineControl.TableLabel = tableLable;
+                }
+                if (!string.IsNullOrEmpty(oper))
+                {
+                    lineControl.Operator = oper;
+                }
                 _maxIndex++;
                 lineControl.Location = new Point(marginLeft, marginTop + 25 * _maxIndex);
                 lineControl.Width = Width - marginLeft;
@@ -122,7 +129,7 @@ namespace V6ReportControls
         /// Thêm vào các ô nhập filterLine tự động
         /// </summary>
         /// <param name="structTable"></param>
-        /// <param name="adv">Field:vvar;Field2:vvar2:Field2 like '%':tableLable</param>
+        /// <param name="adv">Field:vvar;Field2:vvar2:Field2 like '%':tableLable:oper</param>
         public void AddMultiFilterLine(V6TableStruct structTable, string adv)
         {
             _maxIndex = -1;
@@ -132,11 +139,10 @@ namespace V6ReportControls
                 string err = "";
                 try
                 {
-                    var sss = s.Split(new[] {':'}, 4);
+                    var sss = s.Split(new[] {':'}, 5);
                     var key = sss[0];
-                    var vvar = "";
-                    string tableLabel = null;
-                    string filter = null;
+                    string vvar = "", filter = null, tableLabel = null, oper = null;
+                    
                     if (sss.Length >= 2)
                     {
                         vvar = sss[1].Trim();
@@ -149,7 +155,11 @@ namespace V6ReportControls
                     {
                         tableLabel = sss[3].Trim();
                     }
-                    AddFilterLineControl(structTable, key, vvar, filter, tableLabel);
+                    if (sss.Length >= 5)
+                    {
+                        oper = sss[4].Trim();
+                    }
+                    AddFilterLineControl(structTable, key, vvar, filter, tableLabel, oper);
                 }
                 catch (Exception ex)
                 {
