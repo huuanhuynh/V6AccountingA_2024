@@ -143,6 +143,7 @@ namespace V6Init
         public string M_PH_OLD { get { return GetString("M_PH_OLD"); } }
         public string M_BP_BH { get { return GetString("M_BP_BH"); } }
         public string M_MA_NVIEN { get { return GetString("M_MA_NVIEN"); } }
+        public bool XtraReport { get { return M_MA_NVIEN == "1"; } }
         public string M_MA_VV { get { return GetString("M_MA_VV"); } }
         public string M_MA_HD { get { return GetString("M_MA_HD"); } }
         public string M_MA_KU { get { return GetString("M_MA_KU"); } }

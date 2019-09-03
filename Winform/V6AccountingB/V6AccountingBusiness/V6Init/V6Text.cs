@@ -93,6 +93,16 @@
             }
         }
 
+        public static string PrintAuto
+        {
+            get
+            {
+                var a = Text("PRINTAUTO");
+                if (a != "") return a;
+                return V6Setting.Language == "V" ? "In tự động." : "Print automatically.";
+            }
+        }
+
         public static string PrintAP1
         {
             get

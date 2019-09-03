@@ -141,6 +141,7 @@ namespace V6Controls.Forms
                     return base.ProcessCmdKey(ref msg, keyData);
                 }
                 if (DoHotKey0(keyData)) return true;
+                
             }
             catch
             {
@@ -206,7 +207,28 @@ namespace V6Controls.Forms
             {
                 _ctrl_alt_i = 0;
             }
-            return V6ControlFormHelper.DoKeyCommand(this, keyData);
+
+            bool flag1 = false;
+            foreach (Control c in this.Controls)
+            {
+                if (c is V6FormControl)
+                {
+                    flag1 = true;
+                    ((V6FormControl)c).DoHotKey(keyData);
+                }
+            }
+
+            if (V6ControlFormHelper.DoKeyCommand(this, keyData)) return true;
+
+            if (!flag1)
+            {
+                if (keyData == Keys.Escape)
+                {
+                    Close();
+                }
+            }
+
+            return false;
         }
 
         public void SetControlValue(Control control, object value)

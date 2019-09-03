@@ -1442,6 +1442,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     if (PrintMode == V6PrintMode.AutoPrint)
                     {
                         Print(PrinterName, _rpDoc0, _rpDoc20, _rpDoc30, _rpDoc40);
+                        ShowMainMessage(V6Text.PrintAuto);
                         if (!IsDisposed) Dispose();
                     }
                     else if (PrintMode == V6PrintMode.AutoClickPrint)
@@ -1483,6 +1484,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     if (PrintMode == V6PrintMode.AutoPrint)
                     {
                         Print(PrinterName, _rpDoc0, _rpDoc20, _rpDoc30, _rpDoc40);
+                        ShowMainMessage(V6Text.PrintAuto);
                         if (!IsDisposed) Dispose();
                     }
                     else if (PrintMode == V6PrintMode.AutoClickPrint)

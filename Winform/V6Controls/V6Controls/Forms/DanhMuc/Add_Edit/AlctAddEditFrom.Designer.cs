@@ -115,7 +115,7 @@
             this.txtDropMax = new V6Controls.V6NumberTextBox();
             this.v6NumberTextBox1 = new V6Controls.V6NumberTextBox();
             this.v6NumberTextBox2 = new V6Controls.V6NumberTextBox();
-            this.checkBox13 = new V6Controls.V6CheckBox();
+            this.chkXtraReport = new V6Controls.V6CheckBox();
             this.checkBox10 = new V6Controls.V6CheckBox();
             this.checkBox12 = new V6Controls.V6CheckBox();
             this.v6ColorTextBox10 = new V6Controls.V6ColorTextBox();
@@ -1269,7 +1269,7 @@
             this.tabPage3.Controls.Add(this.txtDropMax);
             this.tabPage3.Controls.Add(this.v6NumberTextBox1);
             this.tabPage3.Controls.Add(this.v6NumberTextBox2);
-            this.tabPage3.Controls.Add(this.checkBox13);
+            this.tabPage3.Controls.Add(this.chkXtraReport);
             this.tabPage3.Controls.Add(this.checkBox10);
             this.tabPage3.Controls.Add(this.checkBox12);
             this.tabPage3.Controls.Add(this.v6ColorTextBox10);
@@ -1619,16 +1619,16 @@
             0,
             0});
             // 
-            // checkBox13
+            // chkXtraReport
             // 
-            this.checkBox13.AccessibleName = "m_ma_nvien";
-            this.checkBox13.AutoSize = true;
-            this.checkBox13.Location = new System.Drawing.Point(261, 123);
-            this.checkBox13.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBox13.Name = "checkBox13";
-            this.checkBox13.Size = new System.Drawing.Size(15, 14);
-            this.checkBox13.TabIndex = 11;
-            this.checkBox13.UseVisualStyleBackColor = true;
+            this.chkXtraReport.AccessibleName = "m_ma_nvien";
+            this.chkXtraReport.AutoSize = true;
+            this.chkXtraReport.Location = new System.Drawing.Point(261, 123);
+            this.chkXtraReport.Margin = new System.Windows.Forms.Padding(4);
+            this.chkXtraReport.Name = "chkXtraReport";
+            this.chkXtraReport.Size = new System.Drawing.Size(15, 14);
+            this.chkXtraReport.TabIndex = 11;
+            this.chkXtraReport.UseVisualStyleBackColor = true;
             // 
             // checkBox10
             // 
@@ -1857,9 +1857,9 @@
             this.label23.Location = new System.Drawing.Point(8, 123);
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(79, 17);
+            this.label23.Size = new System.Drawing.Size(77, 17);
             this.label23.TabIndex = 10;
-            this.label23.Text = "Tùy chọn 3";
+            this.label23.Text = "XtraReport";
             // 
             // label27
             // 
@@ -2548,7 +2548,7 @@
         private V6VvarTextBox txtTrangThaiNgamDinh;
         private V6ColorTextBox v6ColorTextBox5;
         private V6NumberTextBox v6NumberTextBox2;
-        private V6Controls.V6CheckBox checkBox13;
+        private V6Controls.V6CheckBox chkXtraReport;
         private V6Controls.V6CheckBox checkBox10;
         private V6Controls.V6CheckBox checkBox12;
         private V6Controls.V6CheckBox checkBox9;

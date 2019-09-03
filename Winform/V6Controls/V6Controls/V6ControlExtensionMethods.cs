@@ -447,13 +447,13 @@ namespace V6Controls
                     if (!f.IsDisposed) f.Dispose();
                 };
                 f.KeyPreview = true;
-                f.KeyDown += (s, e) =>
-                {
-                    if (e.KeyCode == Keys.Escape)
-                    {
-                        f.Close();
-                    }
-                };
+                //f.KeyDown += (s, e) =>
+                //{
+                //    if (e.KeyCode == Keys.Escape)
+                //    {
+                //        f.Close();
+                //    }
+                //};
 
                 if (dialog)
                 {

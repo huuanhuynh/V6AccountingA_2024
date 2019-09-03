@@ -1530,16 +1530,17 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                             var fText = (alctRow[V6Setting.IsVietnamese ? "ten_ct" : "ten_ct2"] ?? "").ToString().Trim();
                             if (amName != "" && adName != "")
                             {
-                                var f = new V6Form
-                                {
-                                    WindowState = FormWindowState.Maximized,
-                                    Text = fText
-                                };
+                                //var f = new V6Form
+                                //{
+                                //    WindowState = FormWindowState.Maximized,
+                                //    Text = fText
+                                //};
                                 
                                 var hoaDonForm = ChungTuF3.GetChungTuControl(selectedMaCt, Name, selectedSttRec);
-                                hoaDonForm.Dock = DockStyle.Fill;
-                                f.Controls.Add(hoaDonForm);
-                                f.ShowDialog(this);
+                                hoaDonForm.ShowToForm(this, fText, true);
+                                //hoaDonForm.Dock = DockStyle.Fill;
+                                //f.Controls.Add(hoaDonForm);
+                                //f.ShowDialog(this);
                             
                                 SetStatus2Text();
                             }
