@@ -102,6 +102,8 @@ namespace V6ControlManager.FormManager.MenuManager
                 Key2 = v6MenuDataRow["Key2"].ToString().Trim(),
                 Key3 = v6MenuDataRow["Key3"].ToString().Trim(),
                 Key4 = v6MenuDataRow["Key4"].ToString().Trim(),
+
+                Xtra = v6MenuDataRow["page"].ToString().Trim(),
             };
 
             var file0 = Path.Combine("Pictures\\", v6MenuDataRow["PICTURE"].ToString().Trim());

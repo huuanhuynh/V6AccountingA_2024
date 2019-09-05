@@ -8628,6 +8628,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FormManager\ChungTuManager\PhaiThu\HoaDonDichVuCoSL\GhiChu.txt" />
+    <None Include="Resources\Anydesk32.png" />
     <Content Include="Resources\Box16.png" />
     <None Include="Resources\Excel32.ico" />
     <None Include="Resources\Excel16.png" />

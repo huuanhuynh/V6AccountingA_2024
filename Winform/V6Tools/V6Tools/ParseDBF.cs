@@ -620,7 +620,7 @@ namespace V6Tools
                             try
                             {
                                 str = String.Format("{0:F" + fd.count + "}", (decimal)row[j]);
-                                str.Replace(',', '.');
+                                str = str.Replace(',', '.');
                                 //fix length right justify, if left use {0,-len}
                                 str = String.Format("{0," + fd.fieldLen + "}", str);
                             }

@@ -391,7 +391,14 @@ namespace V6Tools.V6Convert
                 string BIEU_THUC = bieu_thuc.Trim().ToUpper();
                 if (DATA != null && DATA.ContainsKey(BIEU_THUC))
                 {
-                    return ObjectAndString.ObjectToDecimal(DATA[BIEU_THUC]);
+                    if (ObjectAndString.IsNumberType(DATA[BIEU_THUC].GetType()))
+                    {
+                        return ObjectAndString.ObjectToDecimal(DATA[BIEU_THUC]);
+                    }
+                    else
+                    {
+                        throw new NotFiniteNumberException("NAN!");
+                    }
                 }
                 int pointindex = BIEU_THUC.IndexOf('.');
                 while (pointindex>=0 && BIEU_THUC.Length>pointindex && (BIEU_THUC.EndsWith("0")||BIEU_THUC.EndsWith(".")))
@@ -402,7 +409,16 @@ namespace V6Tools.V6Convert
                 {
                     throw new NotFiniteNumberException("Số quá dài!");
                 }
-                return ObjectAndString.ObjectToDecimal(BIEU_THUC);
+                decimal temp;
+                if (decimal.TryParse(ObjectAndString.StringToSystemDecimalSymbolStringNumber(BIEU_THUC), out temp))
+                {
+                    return temp;
+                    ObjectAndString.ObjectToDecimal(BIEU_THUC);
+                }
+                else
+                {
+                    throw new NotFiniteNumberException("NAN!");
+                }
             }
         }
 

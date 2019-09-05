@@ -53,6 +53,7 @@
             this.grbTools = new System.Windows.Forms.GroupBox();
             this.grbFunctions = new System.Windows.Forms.GroupBox();
             this.btnQuayRa = new System.Windows.Forms.Button();
+            this.btnAnyDesk = new System.Windows.Forms.Button();
             this.btnTeamViewer = new System.Windows.Forms.Button();
             this.btnHDSD2 = new System.Windows.Forms.Button();
             this.btnHDSDDT = new System.Windows.Forms.Button();
@@ -188,10 +189,10 @@
             // 
             // btnAmLich
             // 
-            this.btnAmLich.Location = new System.Drawing.Point(8, 77);
+            this.btnAmLich.Location = new System.Drawing.Point(8, 135);
             this.btnAmLich.Name = "btnAmLich";
             this.btnAmLich.Size = new System.Drawing.Size(118, 23);
-            this.btnAmLich.TabIndex = 1;
+            this.btnAmLich.TabIndex = 2;
             this.btnAmLich.Text = "Âm lịch";
             this.btnAmLich.UseVisualStyleBackColor = true;
             this.btnAmLich.Click += new System.EventHandler(this.btnAmLich_Click);
@@ -249,6 +250,7 @@
             this.chkAllowAdd.Size = new System.Drawing.Size(70, 17);
             this.chkAllowAdd.TabIndex = 3;
             this.chkAllowAdd.Text = "AllowAdd";
+            this.toolTipV6FormControl.SetToolTip(this.chkAllowAdd, "Cho phép thêm dòng trong chức năng sửa dữ liệu.");
             this.chkAllowAdd.UseVisualStyleBackColor = true;
             this.chkAllowAdd.Visible = false;
             this.chkAllowAdd.CheckedChanged += new System.EventHandler(this.chkAllowAdd_CheckedChanged);
@@ -322,6 +324,7 @@
             this.grbFunctions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.grbFunctions.Controls.Add(this.btnQuayRa);
+            this.grbFunctions.Controls.Add(this.btnAnyDesk);
             this.grbFunctions.Controls.Add(this.btnTeamViewer);
             this.grbFunctions.Controls.Add(this.btnHDSD2);
             this.grbFunctions.Controls.Add(this.btnHDSDDT);
@@ -342,12 +345,24 @@
             this.btnQuayRa.Location = new System.Drawing.Point(8, 515);
             this.btnQuayRa.Name = "btnQuayRa";
             this.btnQuayRa.Size = new System.Drawing.Size(118, 41);
-            this.btnQuayRa.TabIndex = 17;
+            this.btnQuayRa.TabIndex = 6;
             this.btnQuayRa.Tag = "Escape";
             this.btnQuayRa.Text = "&Quay ra";
             this.btnQuayRa.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnQuayRa.UseVisualStyleBackColor = true;
             this.btnQuayRa.Click += new System.EventHandler(this.btnQuayRa_Click);
+            // 
+            // btnAnyDesk
+            // 
+            this.btnAnyDesk.Image = global::V6ControlManager.Properties.Resources.Anydesk32;
+            this.btnAnyDesk.Location = new System.Drawing.Point(8, 77);
+            this.btnAnyDesk.Name = "btnAnyDesk";
+            this.btnAnyDesk.Size = new System.Drawing.Size(118, 52);
+            this.btnAnyDesk.TabIndex = 1;
+            this.btnAnyDesk.Text = "AnyDesk";
+            this.btnAnyDesk.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAnyDesk.UseVisualStyleBackColor = true;
+            this.btnAnyDesk.Click += new System.EventHandler(this.btnAnyDesk_Click);
             // 
             // btnTeamViewer
             // 
@@ -364,10 +379,10 @@
             // btnHDSD2
             // 
             this.btnHDSD2.Image = global::V6ControlManager.Properties.Resources.pp32;
-            this.btnHDSD2.Location = new System.Drawing.Point(8, 164);
+            this.btnHDSD2.Location = new System.Drawing.Point(8, 222);
             this.btnHDSD2.Name = "btnHDSD2";
             this.btnHDSD2.Size = new System.Drawing.Size(118, 52);
-            this.btnHDSD2.TabIndex = 3;
+            this.btnHDSD2.TabIndex = 4;
             this.btnHDSD2.Text = "HDSD (Auto)";
             this.btnHDSD2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnHDSD2.UseVisualStyleBackColor = true;
@@ -376,10 +391,10 @@
             // btnHDSDDT
             // 
             this.btnHDSDDT.Image = global::V6ControlManager.Properties.Resources.pp32;
-            this.btnHDSDDT.Location = new System.Drawing.Point(8, 106);
+            this.btnHDSDDT.Location = new System.Drawing.Point(8, 164);
             this.btnHDSDDT.Name = "btnHDSDDT";
             this.btnHDSDDT.Size = new System.Drawing.Size(118, 52);
-            this.btnHDSDDT.TabIndex = 2;
+            this.btnHDSDDT.TabIndex = 3;
             this.btnHDSDDT.Text = "HDSD_Đào tạo";
             this.btnHDSDDT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnHDSDDT.UseVisualStyleBackColor = true;
@@ -387,10 +402,10 @@
             // 
             // btnChuyenMa
             // 
-            this.btnChuyenMa.Location = new System.Drawing.Point(8, 222);
+            this.btnChuyenMa.Location = new System.Drawing.Point(8, 280);
             this.btnChuyenMa.Name = "btnChuyenMa";
             this.btnChuyenMa.Size = new System.Drawing.Size(118, 23);
-            this.btnChuyenMa.TabIndex = 4;
+            this.btnChuyenMa.TabIndex = 5;
             this.btnChuyenMa.Text = "Chuyển mã";
             this.btnChuyenMa.UseVisualStyleBackColor = true;
             this.btnChuyenMa.Click += new System.EventHandler(this.btnChuyenMa_Click);
@@ -444,5 +459,6 @@
         private System.Windows.Forms.CheckBox chkWriteExtraLog;
         private System.Windows.Forms.Button btnQuayRa;
         private System.Windows.Forms.CheckBox chkAllowAdd;
+        private System.Windows.Forms.Button btnAnyDesk;
     }
 }

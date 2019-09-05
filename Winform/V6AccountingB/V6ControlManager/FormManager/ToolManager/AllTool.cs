@@ -201,6 +201,27 @@ namespace V6ControlManager.FormManager.ToolManager
             }
         }
 
+        private void btnAnyDesk_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string file = "AnyDesk.exe";
+                file = Path.GetFullPath(file);
+                if (File.Exists(file))
+                {
+                    Process.Start(file);
+                }
+                else
+                {
+                    ShowMainMessage(V6Text.NotExist + " " + file);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
+        }
+
         private void btnHDSDDT_Click(object sender, EventArgs e)
         {
             try

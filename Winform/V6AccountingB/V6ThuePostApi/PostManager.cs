@@ -2383,10 +2383,6 @@ namespace V6ThuePostManager
         {
             object fieldValue = config.Value;
             DataTable table = row.Table;
-            //if (string.IsNullOrEmpty(config.Type))
-            //{
-            //    return fieldValue;
-            //}
 
             string configTYPE = null, configDATATYPE = null;
             if (!string.IsNullOrEmpty(config.Type))
@@ -2405,7 +2401,7 @@ namespace V6ThuePostManager
                 return UtilityHelper.DeCrypt(fieldValue.ToString());
             }
 
-            if (configTYPE == "FIELD"&& !string.IsNullOrEmpty(config.FieldV6))
+            if (configTYPE == "FIELD" && !string.IsNullOrEmpty(config.FieldV6))
             {
                 // FieldV6 sẽ có dạng thông thường là (Field) hoặc dạng ghép là (Field1 + Field2) hoặc (Field1 + "abc" + field2)
                 if (table.Columns.Contains(config.FieldV6))
@@ -2419,47 +2415,23 @@ namespace V6ThuePostManager
                 }
                 else
                 {
-                    var fields = ObjectAndString.SplitStringBy(config.FieldV6, '+');
-                    fieldValue = null;
-                    string fieldValueString = null;
-                    decimal fieldValueNumber = 0m;
-                    bool still_number = true;
-                    foreach (string s in fields)
+                    decimal giatribt;
+                    if (Number.GiaTriBieuThucTry(config.FieldV6, row.ToDataDictionary(), out giatribt))
                     {
-                        string field = s.Trim();
-                        if (table.Columns.Contains(field))
+                        fieldValue = giatribt;
+                    }
+                    else
+                    {
+                        var fields = ObjectAndString.SplitStringBy(config.FieldV6, '+');
+
+                        string fieldValueString = null;
+
+                        foreach (string s in fields)
                         {
-                            fieldValueString += ObjectAndString.ObjectToString(row[field]).Trim();
-                            if (still_number && ObjectAndString.IsNumberType(table.Columns[field].DataType))
+                            string field = s.Trim();
+                            if (table.Columns.Contains(field))
                             {
-                                fieldValueNumber += ObjectAndString.ObjectToDecimal(row[field]);
-                            }
-                            else
-                            {
-                                still_number = false;
-                            }
-                        }
-                        else
-                        {
-                            if (still_number)
-                            {
-                                if (field.StartsWith("\"") && field.EndsWith("\""))
-                                {
-                                    fieldValueString += field.Substring(1, field.Length - 2);
-                                }
-                                else
-                                {
-                                    fieldValueString += field;
-                                }
-                                decimal tempNumber;
-                                if (Decimal.TryParse(field, out tempNumber))
-                                {
-                                    fieldValueNumber += tempNumber;
-                                }
-                                else
-                                {
-                                    still_number = false;
-                                }
+                                fieldValueString += ObjectAndString.ObjectToString(row[field]).Trim();
                             }
                             else
                             {
@@ -2470,10 +2442,9 @@ namespace V6ThuePostManager
                                 fieldValueString += field;
                             }
                         }
-                    }
-                    // Chốt.
-                    if (still_number) fieldValue = fieldValueNumber;
-                    else fieldValue = fieldValueString;
+                        // Chốt.
+                        fieldValue = fieldValueString;
+                    }// end else giatribieuthuc
                 }
             }
 
@@ -2510,7 +2481,7 @@ namespace V6ThuePostManager
                     case "LONG":
                         return ObjectAndString.ObjectToInt64(fieldValue);
                     //case "UPPER": // Chỉ dùng ở exe gọi bằng Foxpro.
-                    //    return fieldValue.ToString().ToUpper();
+                    //    return (fieldValue + "").ToUpper();
                     default:
                         return fieldValue;
                 }
