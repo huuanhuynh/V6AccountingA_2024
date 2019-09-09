@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DefaultValueInfo.cs" />
+    <Compile Include="V6Tag.cs" />
     <Compile Include="DefineInfo.cs" />
     <Compile Include="F.cs" />
     <Compile Include="ExecuteMode.cs" />

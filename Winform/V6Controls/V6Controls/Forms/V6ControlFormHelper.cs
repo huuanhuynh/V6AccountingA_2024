@@ -3215,10 +3215,26 @@ namespace V6Controls.Forms
             return V6Message.Show(message, showTime, owner);
         }
 
+        /// <summary>
+        /// Hiển thị câu thông báo lỗi, đồng thời ghi log.
+        /// </summary>
+        /// <param name="message">Câu thông báo lỗi.</param>
+        /// <param name="owner">Control hiện tại (this).</param>
+        /// <param name="showTime">Thời gian tự ẩn thông báo.</param>
+        /// <returns>Trả về theo nút bấm của người dùng.</returns>
         public static DialogResult ShowErrorMessage(string message, IWin32Window owner = null, int showTime = 0)
         {
             return ShowErrorMessage(message, null, owner, showTime);
         }
+
+        /// <summary>
+        /// Hiển thị câu thông báo lỗi, đồng thời ghi log.
+        /// </summary>
+        /// <param name="message">Câu thông báo lỗi.</param>
+        /// <param name="caption">Tiêu đề thông báo.</param>
+        /// <param name="owner">Control hiện tại (this).</param>
+        /// <param name="showTime">Thời gian tự ẩn thông báo.</param>
+        /// <returns>Trả về theo nút bấm của người dùng.</returns>
         public static DialogResult ShowErrorMessage(string message, string caption, IWin32Window owner = null, int showTime = 0)
         {
             try
@@ -3244,10 +3260,28 @@ namespace V6Controls.Forms
             return V6Message.Show(message1, caption, showTime, MessageBoxButtons.OK, MessageBoxIcon.Error, owner);
         }
 
+        /// <summary>
+        /// Hiển thị thông báo lỗi quăng ra, đồng thời ghi log.
+        /// </summary>
+        /// <param name="address">Vị trí bị lỗi.</param>
+        /// <param name="ex">Lỗi quăng ra.</param>
+        /// <param name="owner">Control hiện tại (this).</param>
+        /// <param name="showTime">Thời gian tự ẩn thông báo.</param>
+        /// <returns></returns>
         public static DialogResult ShowErrorException(string address, Exception ex, IWin32Window owner = null, int showTime = 0)
         {
             return ShowErrorException(address, ex, null, owner, showTime);
         }
+
+        /// <summary>
+        /// Hiển thị thông báo lỗi quăng ra, đồng thời ghi log.
+        /// </summary>
+        /// <param name="address">Vị trí bị lỗi.</param>
+        /// <param name="ex">Lỗi quăng ra.</param>
+        /// <param name="caption">Tiêu đề thông báo.</param>
+        /// <param name="owner">Control hiện tại (this).</param>
+        /// <param name="showTime">Thời gian tự ẩn thông báo.</param>
+        /// <returns></returns>
         public static DialogResult ShowErrorException(string address, Exception ex, string caption, IWin32Window owner = null, int showTime = 0)
         {
             try

@@ -6,22 +6,25 @@ using System.Text;
 
 namespace V6Structs
 {
-    public class DefineInfo
+    /// <summary>
+    /// Thông tin định nghĩa trong Tag
+    /// </summary>
+    public class V6Tag
     {
         /// <summary>
-        /// Lấy thông tin định nghĩa :;
+        /// Lấy thông tin định nghĩa từ :; tagString.
         /// </summary>
-        /// <param name="define">field:ngay_ct1;textv:Từ ngày;textE:From;where_field:ngay_ct;type:D;sqltype:smalldatetime;loai_key:10;oper:and;sqltype:smalldatetime;limitchar:ABCabc123;defaultValue:m_ngay_ct1</param>
-        public DefineInfo(string define)
+        /// <param name="tag">readonly;invisible;...</param>
+        public V6Tag(object tag)
         {
-            GetDefineInfo(define);
+            GetV6Tag(tag+"");
         }
 
-        private void GetDefineInfo(string define)
+        private void GetV6Tag(string tagString)
         {
             try
             {
-                var sss = define.Split(';');
+                var sss = tagString.Split(';');
                 foreach (string ss in sss)
                 {
                     if (ss.Contains(":"))
@@ -47,9 +50,9 @@ namespace V6Structs
                 case "DECIMALS":
                     int.TryParse(value, out Decimals);
                     break;
-                case "SQLTYPE":
-                    sqltype = value.ToLower();
-                    break;
+                //case "SQLTYPE":
+                //    sqltype = value.ToLower();
+                //    break;
                 case "TYPE":
                     if (!string.IsNullOrEmpty(value)) Type = value;
                     break;
@@ -117,38 +120,17 @@ namespace V6Structs
             }
         }
 
-        
-
         /// <summary>
         /// BUTTON LOOKUPTEXTBOX LABEL CHECKBOX
         /// </summary>
         public string ControlType { get; set; }
 
-        /// <summary>
-        /// Trường để lấy data trong vvar_data dùng cho RptExtraParameters khi Ptype = FILTER_BROTHER.
-        /// </summary>
-        public string Fname { get; set; }
-        /// <summary>
-        /// TABLE2, PARENT, FILTER, FILTER_BROTHER, Dùng trong định nghĩa ds ExtraParameterInfo.
-        /// </summary>
-        public string Ptype { get; set; }
-        /// <summary>
-        /// Giá trị, tùy ý sử dụng.
-        /// </summary>
         public string Value { get; set; }
-        public string VName { get; set; }
-        public string VName2 { get; set; }
-
-        public string MA_DM { get; set; }
+        
         public string Name { get; set; }
 
         public string InitFilter { get; set; }
 
-        public bool F2 { get; set; }
-
-        /// <summary>
-        /// Bỏ qua giá trị rỗng trong GetRptParametersD, Dữ liệu mới phải khác rỗng trong SetControlValue config.
-        /// </summary>
         public bool NotEmpty { get; set; }
         /// <summary>
         /// Trường dữ liệu
@@ -167,159 +149,33 @@ namespace V6Structs
         /// </summary>
         public string AccessibleName2 { get; set; }
         public string Oper = "";
-        /// <summary>
-        /// A1:FilterAdvance
-        /// </summary>
-        public string Loai_key = "10";
+        
         public string Type = "T";
-        public string Vvar { get; set; }
-
-        public string TextLang(bool isVN)
-        {
-            return isVN ? TextV : TextE;
-        }
-        public string TextV;
-        public string TextE;
-        /// <summary>
-        /// Tên parameter sql
-        /// </summary>
-        public string Key1;
-        public string Key2;
-        public string Key3;
-        public string Key4;
-        public bool Visible;
-        public string ShowName = "";
+        
         public bool Enabled = true;
 
-        /// <summary>
-        /// lowercase
-        /// </summary>
-        public string sqltype { get; set; }
-        /// <summary>
-        /// Kiểu dữ liệu sql lấy từ sql_type.
-        /// </summary>
-        public SqlDbType SqlDbType
-        {
-            get
-            {
-                return F.ToSqlDbType(sqltype);
-            }
-        }
-        /// <summary>
-        /// Kiểu dữ liệu lấy từ sql_type.
-        /// </summary>
-        public Type DataType
-        {
-            get
-            {
-                return F.TypeFromData_Type(sqltype);
-            }
-        }
         /// <summary>
         /// Số chữ số lẽ sau dấu thập phân.
         /// </summary>
         public int Decimals = 0;
+        public string DecimalSymbol = ",";
+        public string ThousandSymbol = " ";
         public int MaxLength = 0;
-        public string DefaultValue { get; set; }
-        /// <summary>
-        /// Key là LimitChars hoặc LimitChar không phân biệt hoa thường.
-        /// </summary>
-        public string LimitChars { get; set; }
-        public string LimitChars0 { get; set; }
-        public bool UseChangeText { get; set; }
-        public bool UseLimitChars0 { get; set; }
-        /// <summary>
-        /// Trường lọc số liệu khi F5 (trường trong parent data).
-        /// </summary>
-        public string Fparent { get; set; }
-
-        public string Width { get; set; }
-        /// <summary>
-        /// Brother Field
-        /// </summary>
-        public string BField { get; set; }
-        public string BField2 { get; set; }
-        /// <summary>
-        /// Neightbor Field
-        /// </summary>
-        public string NField { get; set; }
-        /// <summary>
-        /// Tên event
-        /// </summary>
-        public string Event { get; set; }
-
+        
         public string DescriptionE { get; set; }
         public string DescriptionV { get; set; }
-        /// <summary>
-        /// Bật tắt tính năng lọc chỉ bắt đầu. Mặc định false sẽ lọc like '%abc%'.
-        /// </summary>
-        public bool FilterStart { get; set; }
-
+        
         /// <summary>
         /// Tên bảng chính.
         /// </summary>
         public string TableName { get; set; }
-        /// <summary>
-        /// Trường mã chính.
-        /// </summary>
-        public string FieldMa { get; set; }
-        /// <summary>
-        /// Trường dữ liệu bảng chính.
-        /// </summary>
-        public string FieldValue { get; set; }
-        /// <summary>
-        /// Trường hiển thị bảng chính.
-        /// </summary>
-        public string FieldDisplay { get; set; }
-        /// <summary>
-        /// Trường sắp xếp bảng chính.
-        /// </summary>
-        public string FieldOrder { get; set; }
-        /// <summary>
-        /// Tên bảng chi tiết.
-        /// </summary>
-        public string TableNameCt { get; set; }
-        /// <summary>
-        /// Trường dữ liệu bảng chi tiết.
-        /// </summary>
-        public string FieldValueCt { get; set; }
-        /// <summary>
-        /// Trường hiển thị bảng chi tiết.
-        /// </summary>
-        public string FieldDisplayCt { get; set; }
-        /// <summary>
-        /// Trường sắp xếp bảng chi tiết.
-        /// </summary>
-        public string FieldOrderCt { get; set; }
-
-        /// <summary>
-        /// Bật tắt TemplateSetting. false sẽ bỏ qua hết các xử lý của trường hợp đó.
-        /// </summary>
-        public bool Status = false;
-        /// <summary>
-        /// Luôn ghi đè.
-        /// </summary>
-        public bool Override = true;
-        /// <summary>
-        /// Nếu đã có không ghi đè.
-        /// </summary>
-        public bool NoOverride = false;
-
+        
         public string DescriptionLang(bool isVN)
         {
             return isVN ? DescriptionV : DescriptionE;
         }
 
         public bool ToUpper;
-        // LookupButton info
-        public string R_DataType;
-        public string R_Ma_ct;
-
-        public string M_DataType;
-        public string M_Value;
-        public string M_Vvar;
-        public string M_Stt_Rec;
-        public string M_Ma_ct;
-        public string M_Type;
+        
     }
 }
