@@ -124,6 +124,7 @@ namespace V6Structs
         /// BUTTON LOOKUPTEXTBOX LABEL CHECKBOX
         /// </summary>
         public string ControlType { get; set; }
+        public string Format { get; set; }
 
         public string Value { get; set; }
         

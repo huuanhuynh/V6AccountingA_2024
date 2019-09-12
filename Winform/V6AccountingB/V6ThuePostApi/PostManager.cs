@@ -604,7 +604,7 @@ namespace V6ThuePostManager
                     result += paras.Result.InvoiceNo;
                     //result += invXml;
                 }
-                else if (paras.Mode == "S" || paras.Mode == "D")
+                else if (paras.Mode == "S")// || paras.Mode == "D")
                 {
                     var xml = ReadDataXmlS();
                     result = adjustInv(xml, paras.Fkey_hd);
@@ -647,7 +647,10 @@ namespace V6ThuePostManager
                 }
                 else if (paras.Mode == "D")
                 {
-                    //== S
+                    // Danh muc??
+                    //string type = "1";
+                    //if (mode.Length > 1) type = mode[1].ToString();
+                    //result = DoUpdateCus(arg2, type);
                 }
                 else if (paras.Mode.StartsWith("U"))//U1,U2
                 {

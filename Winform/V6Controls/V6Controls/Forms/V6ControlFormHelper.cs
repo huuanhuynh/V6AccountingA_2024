@@ -2509,6 +2509,67 @@ namespace V6Controls.Forms
         }
 
         /// <summary>
+        /// Gán giá trị mặc định và tag
+        /// </summary>
+        /// <param name="container"></param>
+        /// <param name="valueInfo"></param>
+        public static void SetFormDefaultValueInfo(Control container, DefaultValueInfo valueInfo)
+        {
+            // Try get control in container
+            Control c = null;
+            if (!string.IsNullOrEmpty(valueInfo.CName))
+            {
+                c = GetControlByName(container, valueInfo.CName);
+            }
+            else if (!string.IsNullOrEmpty(valueInfo.AName))
+            {
+                c = GetControlByAccessibleName(container, valueInfo.AName);
+            }
+            if (c == null) return;
+
+            // Gán default value
+            switch (valueInfo.Type1)
+            {
+                case "0": // Luôn gán
+                    SetControlValue(c, valueInfo.Value);
+                    break;
+                case "1": // Value != "" mới gán
+                    if (!string.IsNullOrEmpty(valueInfo.Value))
+                    {
+                        SetControlValue(c, valueInfo.Value);
+                    }
+                    break;
+                case "2":
+                    var control_value = GetControlValue(c);
+                    if (control_value == null)
+                    {
+                        SetControlValue(c, valueInfo.Value);
+                    }
+                    else if (control_value.ToString().Trim() == "")
+                    {
+                        SetControlValue(c, valueInfo.Value);
+                    }
+                    else if (ObjectAndString.IsNumberType(control_value.GetType()))
+                    {
+                        var num = ObjectAndString.ObjectToDecimal(control_value);
+                        if (num == 0)
+                        {
+                            SetControlValue(c, valueInfo.Value);
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            // Gán tag
+            if (!string.IsNullOrEmpty(valueInfo.TagString))
+            {
+                AddTagString(c, valueInfo.TagString);
+            }
+        }
+
+        /// <summary>
         /// Dùng cho các trường tự định nghĩa, gán thông tin trường định nghĩa lên form
         /// </summary>
         /// <param name="control">Control (panel, container) chứa các control định nghĩa</param>

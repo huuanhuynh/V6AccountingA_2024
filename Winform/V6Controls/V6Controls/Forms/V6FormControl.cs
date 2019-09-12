@@ -300,6 +300,9 @@ namespace V6Controls.Forms
                     log_key = item.Key;
                     try
                     {
+                        V6ControlFormHelper.SetFormDefaultValueInfo(this, item.Value);
+                        continue;
+
                         var valueInfo = item.Value;
                         switch (valueInfo.Type1)
                         {
@@ -455,12 +458,18 @@ namespace V6Controls.Forms
                 var value = cell.ToString().Trim();
                 var ANAME = row["NameVal"].ToString().Trim().ToUpper();
                 var CNAME = row["NameTag"].ToString().Trim().ToUpper();
+                var tagString = row["Tag"].ToString().Trim();
+                var isHide = "1" == row["Hide"].ToString().Trim().ToUpper();
+                var isReadOnly = "1" == row["Readonly"].ToString().Trim().ToUpper();
                 DefaultValueInfo valueInfo = new DefaultValueInfo()
                 {
                     AName = ANAME,
                     CName = CNAME,
                     Value = value,
+                    TagString = tagString,
                     Type1 = kieu,
+                    IsHide = isHide,
+                    IsReadOnly = isReadOnly,
                 };
                 result[string.IsNullOrEmpty(ANAME)?CNAME:ANAME] = valueInfo;
             }
