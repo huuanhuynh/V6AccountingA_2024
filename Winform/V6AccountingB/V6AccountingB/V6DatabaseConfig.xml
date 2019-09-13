@@ -260,6 +260,44 @@
     <Type>0</Type>
     <Key>vqdBFVxpX2MIwkzH7ns7GNYbcZaB06zfbH/awrIjjfHRbf4mlVFNFQ==</Key>
   </DatabaseList>
+  <DatabaseList>
+    <Stt>15</Stt>
+    <Server>V6DEMO\SQL2016</Server>
+    <Server2>V6DEMO\SQL2016</Server2>
+    <Database>GKP19_NB</Database>
+    <Database2>GKP19_NB</Database2>
+    <UserId>sa</UserId>
+    <UserId2>sa</UserId2>
+    <Epassword>Ai0I9gx1t2OUAygIZXqi4g==</Epassword>
+    <Epassword2>Ai0I9gx1t2OUAygIZXqi4g==</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <TimeOut>120</TimeOut>
+    <Note>Dữ liệu GKP NB 19</Note>
+    <UseIsolation>1</UseIsolation>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>8AtIu/XY36dZs67AnhS0RPDYXIn4NkF+6dgnReN4POY=</Key>
+  </DatabaseList>
+  <DatabaseList>
+    <Stt>16</Stt>
+    <Server>V6DEMO\SQL2016</Server>
+    <Server2>V6DEMO\SQL2016</Server2>
+    <Database>GKP19_THUE</Database>
+    <Database2>GKP19_THUE</Database2>
+    <UserId>sa</UserId>
+    <UserId2>sa</UserId2>
+    <Epassword>Ai0I9gx1t2OUAygIZXqi4g==</Epassword>
+    <Epassword2>Ai0I9gx1t2OUAygIZXqi4g==</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <TimeOut>120</TimeOut>
+    <Note>Dữ liệu GKP THUE 19</Note>
+    <UseIsolation>1</UseIsolation>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>um2lmFHNA5FZs67AnhS0RIjZis1Ld6YolA0fckaU10I=</Key>
+  </DatabaseList>
   <ServerConfig>
     <ServerName>HUUANV6</ServerName>
     <ServerIP>192.168.1.141</ServerIP>

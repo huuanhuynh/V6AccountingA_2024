@@ -147,6 +147,7 @@ namespace V6AccountingB
                 V6Text.LoadText("");
                 V6ControlsHelper.DeleteAllFileInV6SoftLocalAppData();
                 V6ControlsHelper.DeleteAllRptTempFiles();
+                FormManagerHelper.Init();
                 _complete = 5;
 
                 var total = menuMain.Buttons.Count;
