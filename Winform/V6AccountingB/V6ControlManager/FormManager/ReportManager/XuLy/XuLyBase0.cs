@@ -234,9 +234,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         #region ==== Execute ====
 
-        protected bool _success;
-        protected bool _executing;
-        
         protected virtual void TinhToan()
         {
             try
@@ -252,13 +249,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     SqlHelper.ExecuteNonQuery(DatabaseConfig.ConnectionString, CommandType.StoredProcedure,
                         _reportProcedure, 600, _pList.ToArray());
                 }
-                _success = true;
+                _executesuccess = true;
             }
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".TinhToan", ex);
                 _message = ex.Message;
-                _executing = false;
+                _executesuccess = false;
             }
             _executing = false;
         }
@@ -272,7 +269,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 _message = V6Text.CheckInfor;
                 SetStatusText(_message);
-                _dataloading = false;
+                _executing = false;
                 return;
             }
             ExecuteProcedure();
@@ -300,7 +297,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         private void timerViewReport_Tick(object sender, EventArgs e)
         {
-            if (_success)
+            if (_executesuccess)
             {
                 timerViewReport.Stop();
                 btnNhan.Image = btnNhanImage;
@@ -321,12 +318,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         ShowMainMessage(_message);
                     }
-                    _success = false;
+                    _executesuccess = false;
                 }
                 catch (Exception ex)
                 {
                     timerViewReport.Stop();
-                    _success = false;
+                    _executesuccess = false;
                     _message = ex.Message;
                     V6ControlFormHelper.SetStatusText(_message);
                     this.ShowErrorMessage(GetType() + ".TimerView" + ex.Message, ex.Source);
@@ -352,11 +349,19 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         
 
-         #region Linh tinh        
+        #region Linh tinh        
 
-        
+        public bool IsRunning
+        {
+            get { return _executing; }
+        }
         private void btnHuy_Click(object sender, EventArgs e)
         {
+            if (IsRunning)
+            {
+                ShowMainMessage(V6Text.ProcessNotComplete);
+                return;
+            }
             Huy();
         }
 

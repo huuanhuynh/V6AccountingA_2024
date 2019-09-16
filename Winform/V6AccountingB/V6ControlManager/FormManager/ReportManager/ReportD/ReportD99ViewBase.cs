@@ -751,7 +751,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
 
         public void btnNhan_Click(object sender, EventArgs e)
         {
-            if (_dataloading)
+            if (_executing)
             {
                 return;
             }
@@ -908,12 +908,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 if (beforeLoadData != null && !(bool)beforeLoadData)
                 {
                     _message = V6Text.CheckInfor;
-                    _dataloading = false;
+                    _executing = false;
                     return;
                 }
 
-                _dataloading = true;
-                _dataloaded = false;
+                _executing = true;
+                _executesuccess = false;
                 _ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure, _pList.ToArray());
                 if (_ds.Tables.Count > 0)
                 {
@@ -931,7 +931,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                     _tbl2 = null;
                 }
                 
-                _dataloaded = true;
+                _executesuccess = true;
             }
             catch (Exception ex)
             {
@@ -939,9 +939,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 _tbl = null;
                 _tbl2 = null;
                 _ds = null;
-                _dataloaded = false;
+                _executesuccess = false;
             }
-            _dataloading = false;
+            _executing = false;
         }
 
         private int sobangtach;
@@ -1027,7 +1027,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         {
             if (GenerateProcedureParameters()) //Add các key khác
             {
-                _dataloading = true;
+                _executing = true;
                 var tLoadData = new Thread(LoadData);
                 tLoadData.Start();
                 timerViewReport.Start();
@@ -1035,13 +1035,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         }
         private void timerViewReport_Tick(object sender, EventArgs e)
         {
-            if (_dataloading)
+            if (_executing)
             {
                 btnNhan.Image = waitingImages.Images[ii];
                 ii++;
                 if (ii >= waitingImages.Images.Count) ii = 0;
             }
-            else if (_dataloaded)
+            else if (_executesuccess)
             {
                 timerViewReport.Stop();
                 btnNhan.Image = btnNhanImage;
@@ -1076,7 +1076,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 }
                 catch (Exception ex)
                 {
-                    _dataloaded = false;
+                    _executesuccess = false;
                     timerViewReport.Stop();
                     this.ShowErrorMessage(GetType() + ".TimerView: " + ex.Message);
                 }
@@ -1137,11 +1137,19 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         
         
 
-         #region Linh tinh        
+        #region Linh tinh        
 
-        
+        public bool IsRunning
+        {
+            get { return _executing || _radioRunning; }
+        }
         private void btnHuy_Click(object sender, EventArgs e)
         {
+            if (IsRunning)
+            {
+                ShowMainMessage(V6Text.ProcessNotComplete);
+                return;
+            }
             Dispose();
         }
         

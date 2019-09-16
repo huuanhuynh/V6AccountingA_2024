@@ -329,7 +329,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                 }
 
-                _success = true;
+                _executesuccess = true;
                 _executing = false;
             }
             catch (Exception ex)
@@ -337,7 +337,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 this.WriteExLog(GetType() + ".TinhToan", ex);
                 _message = ex.Message;
                 _executing = false;
-                _success = false;
+                _executesuccess = false;
             }
         }
 

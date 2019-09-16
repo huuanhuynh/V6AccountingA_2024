@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -1647,7 +1647,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
         }
 
         #region ==== Add Thread ====
-        private bool flagAddFinish, flagAddSuccess;
         private IDictionary<string, object> addDataAM;
         private List<IDictionary<string, object>> addDataAD, addDataAD2;
         private string addErrorMessage = "";
@@ -1661,8 +1660,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             Timer checkAdd = new Timer();
             checkAdd.Interval = 500;
             checkAdd.Tick += checkAdd_Tick;
-            flagAddFinish = false;
-            flagAddSuccess = false;
+            _AED_Running = true;
+            _AED_Success = false;
             InvokeFormEvent(FormDynamicEvent.BEFOREADD);
             InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
             new Thread(DoAdd)
@@ -1676,11 +1675,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
         
         void checkAdd_Tick(object sender, EventArgs e)
         {
-            if (flagAddFinish)
+            if (!_AED_Running)
             {
                 ((Timer)sender).Stop();
 
-                if (flagAddSuccess)
+                if (_AED_Success)
                 {
                     V6ControlFormHelper.ShowMainMessage(V6Text.AddSuccess);
                     ShowParentMessage(V6Text.AddSuccess);
@@ -1740,18 +1739,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                 
                 if (Invoice.InsertInvoice(addDataAM, addDataAD, addDataAD2))
                 {
-                    flagAddSuccess = true;
+                    _AED_Success = true;
                 }
                 else
                 {
-                    flagAddSuccess = false;
+                    _AED_Success = false;
                     addErrorMessage = V6Text.Text("ADD0");
                     Invoice.PostErrorLog(_sttRec, "M");
                 }
             }
             catch (Exception ex)
             {
-                flagAddSuccess = false;
+                _AED_Success = false;
                 addErrorMessage = ex.Message;
                 Invoice.PostErrorLog(_sttRec, "M " + _sttRec, ex);
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
@@ -1759,12 +1758,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
 
             if (_print_flag == V6PrintMode.AutoClickPrint)
                 Thread.Sleep(2000);
-            flagAddFinish = true;
+            _AED_Running = false;
         }
 #endregion add
 
         #region ==== Edit Thread ====
-        private bool flagEditFinish, flagEditSuccess;
         private List<IDictionary<string, object>> editDataAD, editDataAD2;
         private string editErrorMessage = "";
 
@@ -1774,8 +1772,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             Timer checkEdit = new Timer();
             checkEdit.Interval = 500;
             checkEdit.Tick += checkEdit_Tick;
-            flagEditFinish = false;
-            flagEditSuccess = false;
+            _AED_Running = true;
+            _AED_Success = false;
             InvokeFormEvent(FormDynamicEvent.BEFOREEDIT);
             InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
             new Thread(DoEdit)
@@ -1816,11 +1814,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
         }
         void checkEdit_Tick(object sender, EventArgs e)
         {
-            if (flagEditFinish)
+            if (!_AED_Running)
             {
                 ((Timer)sender).Stop();
 
-                if (flagEditSuccess)
+                if (_AED_Success)
                 {
                     V6ControlFormHelper.ShowMainMessage(V6Text.EditSuccess);
                     ShowParentMessage(V6Text.EditSuccess);
@@ -1867,32 +1865,31 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                 var keys = new SortedDictionary<string, object> { { "STT_REC", _sttRec } };
                 if (Invoice.UpdateInvoice(addDataAM, editDataAD, editDataAD2, keys))
                 {
-                    flagEditSuccess = true;
+                    _AED_Success = true;
                     ADTables.Remove(_sttRec);
                     AD2Tables.Remove(_sttRec);
                 }
                 else
                 {
-                    flagEditSuccess = false;
+                    _AED_Success = false;
                     editErrorMessage = V6Text.Text("SUA0");
                     Invoice.PostErrorLog(_sttRec, "S");
                 }
             }
             catch (Exception ex)
             {
-                flagEditSuccess = false;
+                _AED_Success = false;
                 editErrorMessage = ex.Message;
                 Invoice.PostErrorLog(_sttRec, "S " + _sttRec, ex);
             }
 
             if (_print_flag == V6PrintMode.AutoClickPrint)
                 Thread.Sleep(2000);
-            flagEditFinish = true;
+            _AED_Running = false;
         }
 #endregion edit
 
         #region ==== Delete Thread ====
-        private bool flagDeleteFinish, flagDeleteSuccess;
         private string deleteErrorMessage = "";
 
         private void DoDeleteThread()
@@ -1909,8 +1906,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                         Timer checkDelete = new Timer();
                         checkDelete.Interval = 500;
                         checkDelete.Tick += checkDelete_Tick;
-                        flagDeleteFinish = false;
-                        flagDeleteSuccess = false;
+                        _AED_Running = true;
+                        _AED_Success = false;
                         InvokeFormEvent(FormDynamicEvent.BEFOREDELETE);
                         new Thread(DoDelete)
                         {
@@ -1934,11 +1931,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
         }
         void checkDelete_Tick(object sender, EventArgs e)
         {
-            if (flagDeleteFinish)
+            if (!_AED_Running)
             {
                 ((Timer)sender).Stop();
 
-                if (flagDeleteSuccess)
+                if (_AED_Success)
                 {
                     if (_timForm != null && !_timForm.IsDisposed)
                         _timForm.UpdateAM(_sttRec, null, V6Mode.Delete);
@@ -1984,14 +1981,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                 _sttRec = row["Stt_rec"].ToString().Trim();
                 if (Invoice.DeleteInvoice(_sttRec))
                 {
-                    flagDeleteSuccess = true;
+                    _AED_Success = true;
                     AM.Rows.Remove(row);
                     ADTables.Remove(_sttRec);
                     AD2Tables.Remove(_sttRec);
                 }
                 else
                 {
-                    flagDeleteSuccess = false;
+                    _AED_Success = false;
                     deleteErrorMessage = V6Text.Text("XOA0");
                     Invoice.PostErrorLog(_sttRec, "X", "Invoice.DeleteInvoice return false.");
                 }
@@ -1999,11 +1996,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             }
             catch (Exception ex)
             {
-                flagDeleteSuccess = false;
+                _AED_Success = false;
                 deleteErrorMessage = ex.Message;
                 Invoice.PostErrorLog(_sttRec, "X " + _sttRec, ex);
             }
-            flagDeleteFinish = true;
+            _AED_Running = false;
         }
         #endregion delete
 
@@ -2394,7 +2391,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             }
         }
 
-        private void Huy()
+        public override void Huy()
         {
             try
             {
@@ -3081,7 +3078,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
-            Huy();
+            HuyBase();
         }
 
         private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)

@@ -87,7 +87,9 @@ namespace V6Tools.V6Convert
                 throw new Exception("DecimalSeparator empty.");
             }
 
-            var numberString = number.ToString("N" + decimals, CultureInfo.InvariantCulture);//= 19,950,000.00
+            string N0 = "N";
+            if (decimals >= 0) N0 += decimals;
+            var numberString = number.ToString(N0, CultureInfo.InvariantCulture);//= 19,950,000.00
             numberString = numberString.Replace(".", "#");
             numberString = numberString.Replace(",", thousandSeparator);
             numberString = numberString.Replace("#", decimalSeparator);

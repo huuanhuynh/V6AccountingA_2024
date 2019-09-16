@@ -398,6 +398,7 @@
         public static string NotAnAdmin { get { return V6Setting.Language == "V" ? "Không phải admin." : "Not an admin."; } }
         public static string OverFlow { get { return V6Setting.Language == "V" ? "Tràn dữ liệu!" : "OverFlow!"; } }
         public static string PreviewingMode { get { return V6Setting.IsVietnamese ? "Đang ở trạng thái xem!" : "Previewing mode!"; } }
+        public static string ProcessNotComplete { get { return V6Setting.Language == "V" ? "Tiến trình chưa hoàn thành!" : "The process is not complete!"; } }
         public static string ReadOnly { get { return V6Setting.IsVietnamese ? "Chỉ đọc!" : "Readonly!"; } }
         public static string Ready { get { return V6Setting.Language == "V" ? "Sẵn sàng." : "Ready."; } }
         public static string ReloadConfirm { get { return V6Setting.Language == "V" ? "Có chắc bạn muốn tải lại?" : "Are you sure you want to reload?"; } }
@@ -427,7 +428,6 @@
         public static string ZoomIn { get { return V6Setting.Language == "V" ? "Phóng" : "ZoomIn"; } }
         public static string ZoomOut { get { return V6Setting.Language == "V" ? "Thu" : "ZoomOut"; } }
         
-
         #region ==== Fuctions ====
 
         

@@ -69,7 +69,7 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu
             {
                 this.ShowErrorMessage(GetType() + ".GenControls: " + ex.Message, ex.Source);
             }
-            _dataloaded = true;
+            _executesuccess = true;
         }
 
         private void GenOneLine(DataRow row, int index)
@@ -403,7 +403,7 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu
                 panel1.Enabled = true;
                 V6ControlFormHelper.SetStatusText("Ready.");
             }
-            else if (_dataloaded)
+            else if (_executesuccess)
             {
                 timer1.Interval = 10;
                 if (_data == null)

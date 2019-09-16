@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using V6Controls;
 using V6Controls.Forms;
+using V6Init;
 using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.ReportR
@@ -81,6 +82,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (keyData == Keys.Escape)
             {
+                if (c1.IsRunning || c2.IsRunning)
+                {
+                    ShowMainMessage(V6Text.ProcessNotComplete);
+                    return;
+                }
                 Dispose();
             }
             else

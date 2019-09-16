@@ -133,13 +133,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 
                 TinhGia_TB6();
                 SetStatusText(V6Text.Finish);
-                _success = true;
+                _executesuccess = true;
                 _executing = false;
             }
             catch (Exception ex)
             {
                 _executing = false;
-                _success = false;
+                _executesuccess = false;
                 Logger.WriteToLog(GetType() + ".TinhGia_TB " + ex.Message);
                 SetStatusText(string.Format("{0}: {1}", V6Text.Text("TinhLoi"), ex.Message));
             }
@@ -202,13 +202,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 TinhGia_TB6();
                 SetStatusText(V6Text.Finish);
-                _success = true;
+                _executesuccess = true;
                 _executing = false;
             }
             catch (Exception ex)
             {
                 _executing = false;
-                _success = false;
+                _executesuccess = false;
                 Logger.WriteToLog(GetType() + ".TinhGia_TB " + ex.Message);
                 SetStatusText(string.Format("{0}: {1}", V6Text.Text("TinhLoi"), ex.Message));
             }

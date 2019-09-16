@@ -440,7 +440,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         public void btnNhan_Click(object sender, EventArgs e)
         {
-            if (_dataloading)
+            if (_executing)
             {
                 return;
             }
@@ -500,12 +500,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (beforeLoadData != null && !(bool)beforeLoadData)
                 {
                     _message = V6Text.CheckInfor;
-                    _dataloading = false;
+                    _executing = false;
                     return;
                 }
 
-                _dataloading = true;
-                _dataloaded = false;
+                _executing = true;
+                _executesuccess = false;
                 _ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure, _pList.ToArray());
                 if (_ds.Tables.Count > 0)
                 {
@@ -528,7 +528,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     _tbl2 = null;
                 }
                 
-                _dataloaded = true;
+                _executesuccess = true;
             }
             catch (Exception ex)
             {
@@ -536,26 +536,26 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 _tbl = null;
                 _tbl2 = null;
                 _ds = null;
-                _dataloaded = false;
+                _executesuccess = false;
             }
-            _dataloading = false;
+            _executing = false;
         }
 
         void TinhToan()
         {
             try
             {
-                _dataloading = true;
+                _executing = true;
                 V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure, _pList.ToArray());
                 
-                _dataloaded = true;
-                _dataloading = false;
+                _executesuccess = true;
+                _executing = false;
             }
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".TinhToan!\n" + ex.Message);
-                _dataloading = false;
-                _dataloaded = false;
+                _executing = false;
+                _executesuccess = false;
             }
         }
         /// <summary>
@@ -568,6 +568,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             if (GenerateProcedureParameters()) //Add các key khác
             {
+                CheckForIllegalCrossThreadCalls = false;
+                _executing = true;
+                _executesuccess = false;
                 if (Load_Data)
                 {
                     var tLoadData = new Thread(LoadData);
@@ -587,7 +590,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected bool Load_Data = true;
         protected virtual void timerViewReport_Tick(object sender, EventArgs e)
         {
-            if (_dataloaded)
+            if (_executesuccess)
             {
                 timerViewReport.Stop();
                 btnNhan.Image = btnNhanImage;
@@ -612,17 +615,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         //Thong bao tinh toan xong
                         V6ControlFormHelper.ShowMessage(V6Text.Finish);
                     }
-                    _dataloaded = false;
+                    _executesuccess = false;
                 }
                 catch (Exception ex)
                 {
                     timerViewReport.Stop();
 
-                    _dataloaded = false;
+                    _executesuccess = false;
                     this.ShowErrorException(GetType() + ".TimerView", ex);
                 }
             }
-            else if (_dataloading)
+            else if (_executing)
             {
                 btnNhan.Image = waitingImages.Images[ii++];
                 if (ii >= waitingImages.Images.Count) ii = 0;
@@ -718,11 +721,19 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         
 
-         #region Linh tinh        
+        #region Linh tinh        
 
-        
+        public bool IsRunning
+        {
+            get { return _executing || f9Running; }
+        }
         private void btnHuy_Click(object sender, EventArgs e)
         {
+            if (IsRunning)
+            {
+                ShowMainMessage(V6Text.ProcessNotComplete);
+                return;
+            }
             Dispose();
         }
         
@@ -1167,6 +1178,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 tF9.Tick += tF9_Tick;
                 CheckForIllegalCrossThreadCalls = false;
                 remove_list_g = new List<DataGridViewRow>();
+                f9Running = true;
                 Thread t = new Thread(F9Thread);
                 t.SetApartmentState(ApartmentState.STA);
                 t.IsBackground = true;
@@ -1181,7 +1193,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private void F9Thread()
         {
-            f9Running = true;
             f9ErrorAll = "";
             InvokeFormEvent(FormDynamicEvent.F9);
             f9Running = false;

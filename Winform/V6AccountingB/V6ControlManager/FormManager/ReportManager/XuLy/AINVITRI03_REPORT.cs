@@ -70,7 +70,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 Timer timerRunAll = new Timer();
                 timerRunAll.Interval = 100;
                 timerRunAll.Tick += timerRunAll_Tick;
-                _success = false;
+                _executesuccess = false;
                 _executing = true;
                 timerRunAll.Start();
             }
@@ -109,12 +109,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 _ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure, plist);
 
                 _executing = false;
-                _success = true;
+                _executesuccess = true;
             }
             catch (Exception ex)
             {
                 _error = _message + " " + ex.Message;
-                _success = false;
+                _executesuccess = false;
                 _executing = false;
             }
         }
@@ -185,7 +185,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private void timerRunAll_Tick(object sender, EventArgs e)
         {
-            if (_success)
+            if (_executesuccess)
             {
                 ((Timer)sender).Stop();
                 btnNhan.Image = btnNhanImage;
@@ -196,12 +196,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     DoAfterExecuteSuccess();
                     V6ControlFormHelper.ShowMainMessage(V6Text.Text("TAIDULIEUXONG") + "!\r\n" + _message);
 
-                    _success = false;
+                    _executesuccess = false;
                 }
                 catch (Exception ex)
                 {
                     ((Timer)sender).Stop();
-                    _success = false;
+                    _executesuccess = false;
                     this.ShowErrorMessage(GetType() + ".TimerView" + ex.Message, ex.Source);
                 }
             }

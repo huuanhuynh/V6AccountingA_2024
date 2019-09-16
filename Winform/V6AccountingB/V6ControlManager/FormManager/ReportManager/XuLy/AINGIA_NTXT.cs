@@ -148,13 +148,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 _message = V6Text.Finish;
                 SetStatusText(_message);
-                _success = true;
+                _executesuccess = true;
                 _executing = false;
             }
             catch (Exception ex)
             {
                 _executing = false;
-                _success = false;
+                _executesuccess = false;
                 _message = ex.Message;
                 SetStatusText(_message);
                 Logger.WriteToLog(GetType() + ".TinhGia_NTXT " + ex.Message);

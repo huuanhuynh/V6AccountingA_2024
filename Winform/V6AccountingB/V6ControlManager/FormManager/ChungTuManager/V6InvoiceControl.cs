@@ -288,6 +288,35 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
         private V6Mode _mode = V6Mode.Init;
 
+        //private bool _AED_Finish;
+        /// <summary>
+        /// Add-Edit-Delete is running.
+        /// </summary>
+        public bool _AED_Running;
+        /// <summary>
+        /// Add-Edit-Delete successfull.
+        /// </summary>
+        public bool _AED_Success;
+        public bool IsRunning
+        {
+            get { return _AED_Running || _executing; }
+        }
+        
+        public void HuyBase()
+        {
+            if (IsRunning)
+            {
+                ShowMainMessage(V6Text.ProcessNotComplete);
+                return;
+            }
+            Huy();
+        }
+
+        public virtual void Huy()
+        {
+            ShowMainMessage("Cần override hàm Huy().");
+        }
+
         /// <summary>
         /// Goi cac ham enable khac (functionButton, navi, form)
         /// </summary>

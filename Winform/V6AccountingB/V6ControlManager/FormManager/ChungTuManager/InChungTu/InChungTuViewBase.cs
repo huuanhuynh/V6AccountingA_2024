@@ -1343,12 +1343,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 if (beforeLoadData != null && !(bool)beforeLoadData)
                 {
                     _message = V6Text.CheckInfor;
-                    _dataloading = false;
+                    _executing = false;
                     return;
                 }
 
-                _dataloading = true;
-                _dataloaded = false;
+                _executing = true;
+                _executesuccess = false;
                 var proc = "";
                 if (FilterControl is FilterDanhMuc)
                 {
@@ -1377,7 +1377,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     _tbl2_AM = null;
                 }
                 
-                _dataloaded = true;
+                _executesuccess = true;
             }
             catch (Exception ex)
             {
@@ -1385,9 +1385,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 _tbl_AD = null;
                 _tbl2_AM = null;
                 _ds = null;
-                _dataloaded = false;
+                _executesuccess = false;
             }
-            _dataloading = false;
+            _executing = false;
         }
 
         //private bool _forcePrint;
@@ -1465,7 +1465,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
         private void timerViewReport_Tick(object sender, EventArgs e)
         {
-            if (_dataloaded)
+            if (_executesuccess)
             {
                 timerViewReport.Stop();
                 btnNhan.Image = btnNhanImage;
@@ -1496,11 +1496,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 }
                 catch (Exception ex)
                 {
-                    _dataloaded = false;
+                    _executesuccess = false;
                     this.ShowErrorMessage(GetType() + ".MakeReport " + ex.Message);
                 }
             }
-            else if (_dataloading)
+            else if (_executing)
             {
                 btnNhan.Image = waitingImages.Images[ii];
                 ii++;

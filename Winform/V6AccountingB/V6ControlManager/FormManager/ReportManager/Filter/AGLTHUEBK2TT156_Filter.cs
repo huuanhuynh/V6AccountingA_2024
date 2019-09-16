@@ -161,7 +161,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
 
             var reportRviewBase = (ReportRViewBase) this.Parent.Parent.Parent;
-            if (reportRviewBase._dataloading)
+            if (reportRviewBase._executing)
             {
                 this.ShowMessage(V6Text.DataLoading);
             }
@@ -187,7 +187,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
 
             var reportRviewBase = (ReportRViewBase) this.Parent.Parent.Parent;
-            if (reportRviewBase._dataloading)
+            if (reportRviewBase._executing)
             {
                 this.ShowMessage(V6Text.DataLoading);
             }
