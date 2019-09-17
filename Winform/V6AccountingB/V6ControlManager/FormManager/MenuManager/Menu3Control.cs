@@ -544,8 +544,16 @@ namespace V6ControlManager.FormManager.MenuManager
                     if (menuControl1.SelectedButton != null &&
                         ControlsDictionary.ContainsKey(menuControl1.SelectedButton.ItemID))
                     {
-                        _dohotkey += "menu3.Dohotkey. ";
+                        if (keyData == Keys.Escape)
+                        {
+                            _dohotkey += "menu3.Esc. ";
+                        }
                         ControlsDictionary[menuControl1.SelectedButton.ItemID].DoHotKey(keyData);
+                        //if (ControlsDictionary.ContainsKey(menuControl1.SelectedButton.ItemID) &&
+                        //    !ControlsDictionary[menuControl1.SelectedButton.ItemID].IsDisposed)
+                        //{
+                        //    _dohotkey += ControlsDictionary[menuControl1.SelectedButton.ItemID]._d;
+                        //}
                     }
                     else
                     {

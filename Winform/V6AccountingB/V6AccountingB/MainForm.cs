@@ -292,7 +292,9 @@ namespace V6AccountingB
             {
                 Logger.WriteToLog(GetType() + ".ProcessCmdKey Main: " + ex.Message, ex.StackTrace);
             }
-            return base.ProcessCmdKey(ref msg, keyData);
+            if (string.IsNullOrEmpty(_dohotkey))
+                return base.ProcessCmdKey(ref msg, keyData);
+            else return true;
             //return a;// base.ProcessCmdKey(ref msg, keyData);
         }
 
@@ -301,6 +303,7 @@ namespace V6AccountingB
         /// Bật tính năng menu
         /// </summary>
         private bool _control_m;
+        public string _dohotkey;
         /// <summary>
         /// Định nghĩa phím nóng cho chính mình. Nếu không có sẽ gọi vào bên trong currentControl.
         /// </summary>
@@ -309,6 +312,7 @@ namespace V6AccountingB
         {
             try
             {
+                _dohotkey = "";
                 if (_locked) return;
 
                 if (_control_m)
@@ -354,7 +358,7 @@ namespace V6AccountingB
 
                 if (keyData == (Keys.Control | Keys.Up))
                 {
-                    //do_hot_key = true;
+                    _dohotkey += "Control+Up. ";
                     V6ControlFormHelper.ShowMainMenu();
 
                     var button = menuMain.SelectedButton;
@@ -369,7 +373,7 @@ namespace V6AccountingB
                 }
                 else if (keyData == (Keys.Control | Keys.Down))
                 {
-                    //do_hot_key = true;
+                    _dohotkey += "Control+Down. ";
                     V6ControlFormHelper.ShowMainMenu();
 
                     var button = menuMain.SelectedButton;
@@ -383,7 +387,7 @@ namespace V6AccountingB
                 }
                 else if (keyData == (Keys.Control | Keys.M))
                 {
-                    //do_hot_key = true;
+                    _dohotkey += "Control+M. ";
                     V6ControlFormHelper.ShowMainMenu();
                     _control_m = true;
                 }
@@ -393,10 +397,12 @@ namespace V6AccountingB
                     {
                         var menu2 = (Menu2Control)currentControl;
                         menu2.DoHotKey(keyData);
+                        _dohotkey += menu2._dohotkey;
                         if (string.IsNullOrEmpty(menu2._dohotkey))
                         {
                             if (keyData == Keys.Escape)
                             {
+                                _dohotkey += "MainForm.Esc. ";
                                 Close();
                             }
                         }

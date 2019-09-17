@@ -819,6 +819,7 @@
             this.v6ColorTextBox13.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox13.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox13.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox13.GrayText = "Field:vvar;Field2:vvar2:Field2 like \'%\':tableLable:oper";
             this.v6ColorTextBox13.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox13.LeaveColor = System.Drawing.Color.White;
             this.v6ColorTextBox13.Location = new System.Drawing.Point(111, 83);
@@ -826,6 +827,7 @@
             this.v6ColorTextBox13.Name = "v6ColorTextBox13";
             this.v6ColorTextBox13.Size = new System.Drawing.Size(474, 23);
             this.v6ColorTextBox13.TabIndex = 3;
+            this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox13, "Field:vvar;Field2:vvar2:Field2 like \'%\':tableLable:oper");
             // 
             // label11
             // 
@@ -917,6 +919,7 @@
             this.v6ColorTextBox12.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox12.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox12.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox12.GrayText = "Field:vvar;Field2:vvar2:Field2 like \'%\':tableLable:oper";
             this.v6ColorTextBox12.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox12.LeaveColor = System.Drawing.Color.White;
             this.v6ColorTextBox12.Location = new System.Drawing.Point(111, 58);
@@ -924,6 +927,7 @@
             this.v6ColorTextBox12.Name = "v6ColorTextBox12";
             this.v6ColorTextBox12.Size = new System.Drawing.Size(474, 23);
             this.v6ColorTextBox12.TabIndex = 2;
+            this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox12, "Field:vvar;Field2:vvar2:Field2 like \'%\':tableLable:oper");
             // 
             // label14
             // 

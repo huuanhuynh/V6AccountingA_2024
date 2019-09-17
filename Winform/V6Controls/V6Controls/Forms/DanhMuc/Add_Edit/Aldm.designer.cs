@@ -62,6 +62,8 @@
             this.label14 = new System.Windows.Forms.Label();
             this.v6ColorTextBox11 = new V6Controls.V6ColorTextBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.txtFormCode = new V6Controls.V6ColorTextBox();
+            this.lblFormCode = new System.Windows.Forms.Label();
             this.v6ColorTextBox10 = new V6Controls.V6ColorTextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.v6CheckBox2 = new V6Controls.V6CheckBox();
@@ -139,8 +141,6 @@
             this.lblMaDM = new System.Windows.Forms.Label();
             this.TxtForder = new V6Controls.V6NumberTextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.lblFormCode = new System.Windows.Forms.Label();
-            this.txtFormCode = new V6Controls.V6ColorTextBox();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -507,6 +507,7 @@
             this.txtFsearch.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtFsearch.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtFsearch.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtFsearch.GrayText = "Field:vvar;Field2:vvar2:Field2 like \'%\':tableLable:oper";
             this.txtFsearch.HoverColor = System.Drawing.Color.Yellow;
             this.txtFsearch.LeaveColor = System.Drawing.Color.White;
             this.txtFsearch.Location = new System.Drawing.Point(528, 86);
@@ -514,6 +515,7 @@
             this.txtFsearch.Name = "txtFsearch";
             this.txtFsearch.Size = new System.Drawing.Size(215, 23);
             this.txtFsearch.TabIndex = 15;
+            this.toolTipV6FormControl.SetToolTip(this.txtFsearch, "Field:vvar;Field2:vvar2:Field2 like \'%\':tableLable:oper");
             // 
             // label4
             // 
@@ -704,6 +706,35 @@
             this.label13.Size = new System.Drawing.Size(45, 17);
             this.label13.TabIndex = 2;
             this.label13.Text = "Order";
+            // 
+            // txtFormCode
+            // 
+            this.txtFormCode.AccessibleName = "FORMCODE";
+            this.txtFormCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFormCode.BackColor = System.Drawing.SystemColors.Window;
+            this.txtFormCode.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtFormCode.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtFormCode.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtFormCode.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtFormCode.HoverColor = System.Drawing.Color.Yellow;
+            this.txtFormCode.LeaveColor = System.Drawing.Color.White;
+            this.txtFormCode.Location = new System.Drawing.Point(119, 321);
+            this.txtFormCode.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFormCode.Name = "txtFormCode";
+            this.txtFormCode.Size = new System.Drawing.Size(215, 23);
+            this.txtFormCode.TabIndex = 11;
+            // 
+            // lblFormCode
+            // 
+            this.lblFormCode.AccessibleDescription = ".";
+            this.lblFormCode.AutoSize = true;
+            this.lblFormCode.Location = new System.Drawing.Point(6, 324);
+            this.lblFormCode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFormCode.Name = "lblFormCode";
+            this.lblFormCode.Size = new System.Drawing.Size(73, 17);
+            this.lblFormCode.TabIndex = 0;
+            this.lblFormCode.Text = "FormCode";
             // 
             // v6ColorTextBox10
             // 
@@ -1864,35 +1895,6 @@
             this.label6.Size = new System.Drawing.Size(59, 17);
             this.label6.TabIndex = 6;
             this.label6.Text = "Sắp xếp";
-            // 
-            // lblFormCode
-            // 
-            this.lblFormCode.AccessibleDescription = ".";
-            this.lblFormCode.AutoSize = true;
-            this.lblFormCode.Location = new System.Drawing.Point(6, 324);
-            this.lblFormCode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblFormCode.Name = "lblFormCode";
-            this.lblFormCode.Size = new System.Drawing.Size(73, 17);
-            this.lblFormCode.TabIndex = 0;
-            this.lblFormCode.Text = "FormCode";
-            // 
-            // txtFormCode
-            // 
-            this.txtFormCode.AccessibleName = "FORMCODE";
-            this.txtFormCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFormCode.BackColor = System.Drawing.SystemColors.Window;
-            this.txtFormCode.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtFormCode.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtFormCode.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtFormCode.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtFormCode.HoverColor = System.Drawing.Color.Yellow;
-            this.txtFormCode.LeaveColor = System.Drawing.Color.White;
-            this.txtFormCode.Location = new System.Drawing.Point(119, 321);
-            this.txtFormCode.Margin = new System.Windows.Forms.Padding(4);
-            this.txtFormCode.Name = "txtFormCode";
-            this.txtFormCode.Size = new System.Drawing.Size(215, 23);
-            this.txtFormCode.TabIndex = 11;
             // 
             // Aldm
             // 

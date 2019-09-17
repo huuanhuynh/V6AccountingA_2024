@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0"?>
 <Root>
 
+  <TuKhoa TenTuKhoa='DateTimePicker' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='FilterLineBase' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='FilterLineDateTimeTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='FilterLineDateTimeNullable' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
@@ -15,6 +16,8 @@
 	<TuKhoa TenTuKhoa='V6Controls' 			  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6ControlFormHelper' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6ControlsHelper' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='V6DateTimeColor'	  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='V6DateTimePicker'	  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='V6FileIO' 					  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='V6Init' 					  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='V6InvoiceControl' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using V6Controls;
 using V6Controls.Forms;
@@ -26,14 +27,14 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
         }
         private readonly V6TableStruct _structTable;
-        private readonly string[] _fields;
+        private string[] _fields;
 
         public FilterForm()
         {
             InitializeComponent();
         }
 
-        public FilterForm(V6TableStruct structTable, string[] fields )
+        public FilterForm(V6TableStruct structTable, string[] fields)
         {
             InitializeComponent();
             _structTable = structTable;
@@ -50,6 +51,23 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             try
             {
+                // Add auto fields
+                if (_fields == null || _fields.Length == 0)
+                {
+                    Text += " (Auto fields)";
+                    List<string> list = new List<string>();
+                    foreach (KeyValuePair<string, V6ColumnStruct> column_item in _structTable)
+                    {
+                        string KEY = column_item.Key;
+                        V6ColumnStruct column = column_item.Value;
+                        if ((KEY.StartsWith("MA") || KEY.StartsWith("TEN")) && column.DataType == typeof (string))
+                        {
+                            list.Add(KEY);
+                            if (list.Count >= 4) break;
+                        }
+                    }
+                    _fields = list.ToArray();
+                }
                 panel1.AddMultiFilterLine(_structTable, string.Join(",", _fields));
             }
             catch (Exception ex)
