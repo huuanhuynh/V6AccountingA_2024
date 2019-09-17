@@ -133,7 +133,7 @@ namespace V6ControlManager.FormManager.MenuManager
 
         }
 
-        protected SortedDictionary<string, V6Control> ControlsDictionary = new SortedDictionary<string, V6Control>();
+        public SortedDictionary<string, V6Control> ControlsDictionary = new SortedDictionary<string, V6Control>();
 
         private MenuButton _currentMenuButton = null;
         private void menuControl_Click(object sender, MenuControl.ButtonClickEventArgs e)
@@ -374,12 +374,14 @@ namespace V6ControlManager.FormManager.MenuManager
         /// Đếm Ctrol + Alt + I
         /// </summary>
         private int _ctrl_alt_i;
+        public string _dohotkey = "";
         /// <summary>
         /// Điểu khiển phím tắt
         /// </summary>
         /// <param name="keyData"></param>
         public override void DoHotKey (Keys keyData)
         {
+            _dohotkey = "";
             try
             {
                 if (_alt_m)
@@ -542,6 +544,7 @@ namespace V6ControlManager.FormManager.MenuManager
                     if (menuControl1.SelectedButton != null &&
                         ControlsDictionary.ContainsKey(menuControl1.SelectedButton.ItemID))
                     {
+                        _dohotkey += "menu3.Dohotkey. ";
                         ControlsDictionary[menuControl1.SelectedButton.ItemID].DoHotKey(keyData);
                     }
                     else

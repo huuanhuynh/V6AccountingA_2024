@@ -177,7 +177,7 @@ namespace V6Controls.Forms
         {
             try
             {
-                do_hot_key = true;
+                //do_hot_key = true;
                 DoHotKey0(keyData);
             }
             catch
@@ -191,9 +191,9 @@ namespace V6Controls.Forms
             try
             {
                 //Nếu đã thực hiện lệnh bên trên gửi xuống thì không chạy DoHotKey0
-                if (do_hot_key)
+                //if (do_hot_key)
                 {
-                    do_hot_key = false;
+                    //do_hot_key = false;
                     return base.ProcessCmdKey(ref msg, keyData);
                 }
                 if (DoHotKey0(keyData)) return true;

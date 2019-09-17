@@ -283,7 +283,7 @@ namespace V6AccountingB
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             //??Gửi tín hiệu bàn phím. Nếu bỏ dòng này không gõ text được??
-            var a = base.ProcessCmdKey(ref msg, keyData);
+            
             try
             {
                 DoHotKey(keyData);
@@ -292,7 +292,8 @@ namespace V6AccountingB
             {
                 Logger.WriteToLog(GetType() + ".ProcessCmdKey Main: " + ex.Message, ex.StackTrace);
             }
-            return a;// base.ProcessCmdKey(ref msg, keyData);
+            return base.ProcessCmdKey(ref msg, keyData);
+            //return a;// base.ProcessCmdKey(ref msg, keyData);
         }
 
         //Remove mainform_keydown
@@ -308,7 +309,6 @@ namespace V6AccountingB
         {
             try
             {
-                do_hot_key = true;
                 if (_locked) return;
 
                 if (_control_m)
@@ -354,6 +354,7 @@ namespace V6AccountingB
 
                 if (keyData == (Keys.Control | Keys.Up))
                 {
+                    //do_hot_key = true;
                     V6ControlFormHelper.ShowMainMenu();
 
                     var button = menuMain.SelectedButton;
@@ -368,6 +369,7 @@ namespace V6AccountingB
                 }
                 else if (keyData == (Keys.Control | Keys.Down))
                 {
+                    //do_hot_key = true;
                     V6ControlFormHelper.ShowMainMenu();
 
                     var button = menuMain.SelectedButton;
@@ -381,14 +383,23 @@ namespace V6AccountingB
                 }
                 else if (keyData == (Keys.Control | Keys.M))
                 {
+                    //do_hot_key = true;
                     V6ControlFormHelper.ShowMainMenu();
                     _control_m = true;
                 }
                 else// if ((keyData & Keys.Control) != 0 || (keyData & Keys.Alt) != 0)
                 {
-                    if (currentControl != null && currentControl is V6Control)
+                    if (currentControl != null && currentControl is Menu2Control)
                     {
-                        ((V6Control)currentControl).DoHotKey(keyData);
+                        var menu2 = (Menu2Control)currentControl;
+                        menu2.DoHotKey(keyData);
+                        if (string.IsNullOrEmpty(menu2._dohotkey))
+                        {
+                            if (keyData == Keys.Escape)
+                            {
+                                Close();
+                            }
+                        }
                     }
                 }
             }

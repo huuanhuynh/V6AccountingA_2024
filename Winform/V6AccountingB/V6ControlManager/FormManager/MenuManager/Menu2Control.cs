@@ -65,12 +65,15 @@ namespace V6ControlManager.FormManager.MenuManager
 
         public Menu3Control CurrentMenu3Control { get; set; }
 
+        public string _dohotkey = null;
         public override void DoHotKey (Keys keyData)
         {
+            _dohotkey = "";
             try
             {
                 if (keyData == (Keys.Control | Keys.Left))
                 {
+                    _dohotkey += "Control+Left. ";
                     currentTabIndex--;
                     if (tabControl.TabPages.Count > 0 && currentTabIndex < 0)
                         currentTabIndex = tabControl.TabPages.Count - 1;
@@ -78,6 +81,7 @@ namespace V6ControlManager.FormManager.MenuManager
                 }
                 else if (keyData == (Keys.Control | Keys.Right))
                 {
+                    _dohotkey += "Control+Right. ";
                     currentTabIndex++;
                     if (tabControl.TabPages.Count > 0 && currentTabIndex >= tabControl.TabPages.Count)
                         currentTabIndex = 0;
@@ -88,11 +92,15 @@ namespace V6ControlManager.FormManager.MenuManager
                     //goi vao menu 3
                     if (tabControl.SelectedTab.Controls.Count > 0)
                     {
-                        var menu3 = tabControl.SelectedTab.Controls[0];
-                        var control = menu3 as Menu3Control;
-                        if (control != null)
+                        var menu30 = tabControl.SelectedTab.Controls[0];
+                        var menu3 = menu30 as Menu3Control;
+                        if (menu3 != null)
                         {
-                            control.DoHotKey(keyData);
+                            menu3.DoHotKey(keyData);
+                            if (menu3.menuControl1.SelectedButton != null)
+                            {
+                                _dohotkey += menu3._dohotkey;
+                            }
                         }
                     }
                 }

@@ -137,7 +137,7 @@ namespace V6ControlManager.FormManager.MenuManager
         private System.Windows.Forms.Panel panelMenuShow;
         private V6VeticalLabel lblShowHide;
         private System.Windows.Forms.Panel panelView;
-        private MenuControl menuControl1;
+        public MenuControl menuControl1;
         private System.Windows.Forms.ToolTip toolTip1;
 
         //private System.Windows.Forms.Panel panelAllView;
