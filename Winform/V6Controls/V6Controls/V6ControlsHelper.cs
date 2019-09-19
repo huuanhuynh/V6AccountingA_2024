@@ -16,6 +16,9 @@ namespace V6Controls
 {
     public class V6ControlsHelper
     {
+        /// <summary>
+        /// (True) Tắt lookup để đóng form. (False) Bật lookup lại nếu đã tắt khi vào form.
+        /// </summary>
         public static bool DisableLookup { get; set; }
 
         

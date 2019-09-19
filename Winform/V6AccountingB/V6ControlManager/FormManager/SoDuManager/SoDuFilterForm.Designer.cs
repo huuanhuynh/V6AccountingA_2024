@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SoDuFilterForm));
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnFilter = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1 = new V6ReportControls.PanelFilter();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -100,7 +100,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private V6ReportControls.PanelFilter panel1;
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.Button btnCancel;
     }

@@ -35,6 +35,13 @@ namespace V6ReportControls
             MyInit();
         }
 
+        public FilterLineDynamic(string fieldName)
+        {
+            FieldName = fieldName.ToUpper();
+            InitializeComponent();
+            MyInit();
+        }
+
         private void MyInit()
         {
             
@@ -230,6 +237,7 @@ namespace V6ReportControls
         public V6ColorTextBox AddTextBox()
         {
             _textBox = new V6ColorTextBox();
+            _textBox.Name = "txt" + FieldName;
             _textBox.Location = new Point(comboBox1.Right + 5, 1);
             _textBox.Size = new Size(Width - comboBox1.Right - 5, 20);
             _textBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -254,6 +262,7 @@ namespace V6ReportControls
         {
             _vtextBox = new V6VvarTextBox
             {
+                Name = "txtVvar" + FieldName,
                 VVar = vVar,
                 Location = new Point(comboBox1.Right + 5, 1),
                 Size = new Size(Width - comboBox1.Right - 5, 20),
@@ -285,6 +294,7 @@ namespace V6ReportControls
         {
             _lookupTextBox = new V6LookupTextBox
             {
+                Name = "txtLookup" + FieldName,
                 //VVar = vVar,
                 Ma_dm = ma_dm,
                 ValueField = value_field,
@@ -324,6 +334,7 @@ namespace V6ReportControls
         {
             _lookupProc = new V6LookupProc
             {
+                Name = "txtLookupProc" + FieldName,
                 //VVar = vVar,
                 Ma_dm = ma_dm,
                 ValueField = value_field,
@@ -361,6 +372,7 @@ namespace V6ReportControls
         public void AddNumberTextBox()
         {
             _numberTextBox = new V6NumberTextBox();
+            _numberTextBox.Name = "num" + FieldName;
             _numberTextBox.Location = new Point(comboBox1.Right + 5, 1);
             _numberTextBox.Size = new Size(Width - comboBox1.Right - 5, 20);
             _numberTextBox.Anchor = AnchorStyles.Top|AnchorStyles.Left|AnchorStyles.Right;
@@ -387,6 +399,7 @@ namespace V6ReportControls
         public void AddNumberYear()
         {
             _numberTextBox = new NumberYear();
+            _numberTextBox.Name = "num" + FieldName;
             _numberTextBox.Location = new Point(comboBox1.Right + 5, 1);
             _numberTextBox.Size = new Size(Width - comboBox1.Right - 5, 20);
             _numberTextBox.Anchor = AnchorStyles.Top|AnchorStyles.Left|AnchorStyles.Right;
@@ -413,6 +426,7 @@ namespace V6ReportControls
         public void AddNumberMonth()
         {
             _numberTextBox = new NumberMonth();
+            _numberTextBox.Name = "num" + FieldName;
             _numberTextBox.Location = new Point(comboBox1.Right + 5, 1);
             _numberTextBox.Size = new Size(Width - comboBox1.Right - 5, 20);
             _numberTextBox.Anchor = AnchorStyles.Top|AnchorStyles.Left|AnchorStyles.Right;
@@ -439,6 +453,7 @@ namespace V6ReportControls
         public void AddDateTimePick()
         {
             _dateTimePick = new V6DateTimePicker();
+            _dateTimePick.Name = "date" + FieldName;
             _dateTimePick.Format = DateTimePickerFormat.Custom;
             _dateTimePick.CustomFormat = @"dd/MM/yyyy";
             _dateTimePick.Location = new Point(comboBox1.Right + 5, 1);
@@ -464,6 +479,7 @@ namespace V6ReportControls
         public void AddDateTimeColor()
         {
             _dateTimeColor = new V6DateTimeColor();
+            _dateTimeColor.Name = "date" + FieldName;
             //_dateTimeColor.Format = DateTimePickerFormat.Custom;
             //_dateTimeColor.CustomFormat = @"dd/MM/yyyy";
             _dateTimeColor.Location = new Point(comboBox1.Right + 5, 1);
@@ -489,6 +505,7 @@ namespace V6ReportControls
         public void AddCheckBox()
         {
             _checkBox = new V6CheckBox();
+            _checkBox.Name = "chk" + FieldName;
             _checkBox.Text = "";
             _checkBox.Location = new Point(comboBox1.Right + 5, 1);
             _checkBox.Size = new Size(Width - comboBox1.Right - 5, 20);
@@ -512,6 +529,7 @@ namespace V6ReportControls
         public V6FormButton AddButton(string text)
         {
             _button = new V6FormButton();
+            _button.Name = "btn" + FieldName;
             _button.UseVisualStyleBackColor = true;
             _button.AutoSize = true;
             _button.Text = text;

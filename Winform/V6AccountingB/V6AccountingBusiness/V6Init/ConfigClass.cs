@@ -328,6 +328,9 @@ namespace V6Init
         public bool INCREASE_YN { get { return GetString("INCREASE_YN") == "1"; } }
         public string VName { get { return GetString("VNAME"); } }
         public string VName2 { get { return GetString("VNAME2"); } }
+        /// <summary>
+        /// Code form tùy chỉnh cho từng khách hàng của V6 (Dùng form khác cho cùng 1 danh mục).
+        /// </summary>
         public string FormCode { get { return GetString("FORMCODE"); } }
     }
 
@@ -402,7 +405,7 @@ namespace V6Init
         }
 
         /// <summary>
-        /// Lấy các trường lọc danh mục view
+        /// Lấy các trường lọc danh mục view field:vvar:filter:table:like
         /// </summary>
         /// <returns>Mảng các trường vFields hoặc eFields</returns>
         public string[] GetDefaultLookupFields
@@ -538,7 +541,7 @@ namespace V6Init
 
         public static AldmConfig GetAldmConfig(string ma_dm)
         {
-            AldmConfig lstConfig = new AldmConfig();
+            AldmConfig lstConfig = null;
             try
             {
                 SqlParameter[] plist = { new SqlParameter("@p", ma_dm) };
@@ -552,6 +555,7 @@ namespace V6Init
                 }
                 else
                 {
+                    lstConfig = new AldmConfig();
                     lstConfig.NoInfo = true;
                 }
             }

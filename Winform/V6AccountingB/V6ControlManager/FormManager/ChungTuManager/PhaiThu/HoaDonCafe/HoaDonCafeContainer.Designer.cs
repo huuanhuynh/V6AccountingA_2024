@@ -130,7 +130,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.Button tsNew;
         private System.Windows.Forms.Button tsFull;
-        private System.Windows.Forms.Button tsClose;
+        public System.Windows.Forms.Button tsClose;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label tsMessage;
     }

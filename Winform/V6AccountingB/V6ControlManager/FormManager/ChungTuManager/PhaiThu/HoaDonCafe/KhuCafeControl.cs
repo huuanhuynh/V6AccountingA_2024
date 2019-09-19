@@ -20,14 +20,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             //MyInit();
         }
 
-        public KhuCafeControl(string maCt, string ma_kho)
+        public KhuCafeControl(string maCt, string ma_kho, HoaDonCafeContainer hoadonContainer)
         {
+            HoaDonContainer = hoadonContainer;
             InitializeComponent();
             Ma_kho = ma_kho;
             MyInit(maCt);
         }
 
         public string Ma_kho;
+        public HoaDonCafeContainer HoaDonContainer { get; set; }
 
         private void MyInit(string maCt)
         {
@@ -217,7 +219,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             hoadonCafe.ChangeTable += hoadonCafe_ChangeTable;
             //hoadonCafe.ViewNext += hoadonCafe_ViewNext;
             hoadonCafe.ResetAllVar += hoadonCafe_ResetAllVar;
-
+            hoadonCafe.ChungTuContainer = this.HoaDonContainer;
             panelInvoice.Controls.Add(hoadonCafe);
             hoadonCafe.Focus();
         }

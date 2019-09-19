@@ -90,7 +90,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             {
                 // ignored
             }
-            return false;
+            return base.DoHotKey0(keyData);
         }
 
         private void FilterForm_Load(object sender, EventArgs e)

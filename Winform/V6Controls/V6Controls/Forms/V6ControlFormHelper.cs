@@ -1504,7 +1504,7 @@ namespace V6Controls.Forms
             }
             else
             {
-                lineControl = new FilterLineDynamic();
+                lineControl = new FilterLineDynamic(lineInfo.Field);
 
                 //Gán các thuộc tính chung.
                 lineControl.DefineInfo = lineInfo;

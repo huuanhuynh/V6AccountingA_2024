@@ -16,15 +16,17 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         
         #region ==== Init Control ====
         /// <summary>
-        /// 
+        /// Tạo control trong form.
         /// </summary>
-        /// <param name="tableName"></param>
-        /// <param name="name"></param>
-        /// <param name="formCode">Code form tùy chỉnh cho từng khác hàng của V6.</param>
+        /// <param name="tableName">Tên bảng có giới hạn.</param>
+        /// <param name="tableNameString">Tên bảng gốc.</param>
         /// <returns></returns>
-        public static AddEditControlVirtual Init_Control(V6TableName tableName, string name = null, string formCode = null)
+        public static AddEditControlVirtual Init_Control(V6TableName tableName, string tableNameString)
         {
+            AldmConfig aldm_config = ConfigManager.GetAldmConfig(tableNameString);
+            string formCode = aldm_config.FormCode;
             if (formCode != null) formCode = formCode.ToUpper();
+
             AddEditControlVirtual FormControl = null;
             //if (V6Check_Rights())
             switch (tableName)
@@ -427,13 +429,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 case V6TableName.Notable:
                 default:
                     
-                    AldmConfig aldm_config = ConfigManager.GetAldmConfig(name);
+                    
 
                     if (aldm_config.HaveInfo)
                     {
                         if (aldm_config.IS_ALDM)
                         {
-                            FormControl = new DynamicAddEditForm(name, aldm_config);
+                            FormControl = new DynamicAddEditForm(tableNameString, aldm_config);
                             break;
                         }
                     }
@@ -445,6 +447,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 throw new Exception("Chưa hỗ trợ thêm - sửa!\n" + tableName);
             }
+            FormControl._aldmConfig = aldm_config;
             FormControl.TableName = tableName;
             return FormControl;
         }

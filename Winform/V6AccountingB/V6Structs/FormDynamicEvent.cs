@@ -30,7 +30,11 @@
 
         public static string AFTERINSERT = "AFTERINSERT";
         public static string AFTERUPDATE = "AFTERUPDATE";
+        /// <summary>
+        /// After insert or update
+        /// </summary>
         public static string AFTERSAVE = "AFTERSAVE";
+        public static string AFTERSAVE2 = "AFTERSAVE2";
 
         public const string AFTERREPLACE = "AFTERREPLACE";
 

@@ -641,7 +641,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
 
         private void MadeLineControl(int index, string fieldName)
         {
-            var lineControl = new FilterLineDynamic
+            var lineControl = new FilterLineDynamic(fieldName)
             {
                 FieldName = fieldName.ToUpper(),
                 Caption = CorpLan2.GetFieldHeader(fieldName)

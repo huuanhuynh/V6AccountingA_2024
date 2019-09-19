@@ -31,7 +31,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tsNew = new System.Windows.Forms.Button();
             this.tsFull = new System.Windows.Forms.Button();
-            this.tsClose = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tsMessage = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
@@ -73,18 +73,18 @@
             this.tsFull.UseVisualStyleBackColor = true;
             this.tsFull.Click += new System.EventHandler(this.btnFullScreen_Click);
             // 
-            // tsClose
+            // btnClose
             // 
-            this.tsClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tsClose.FlatAppearance.BorderSize = 0;
-            this.tsClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.tsClose.Image = global::V6ControlManager.Properties.Resources.CloseXbox24;
-            this.tsClose.Location = new System.Drawing.Point(829, 0);
-            this.tsClose.Name = "tsClose";
-            this.tsClose.Size = new System.Drawing.Size(26, 26);
-            this.tsClose.TabIndex = 3;
-            this.tsClose.UseVisualStyleBackColor = true;
-            this.tsClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Image = global::V6ControlManager.Properties.Resources.CloseXbox24;
+            this.btnClose.Location = new System.Drawing.Point(829, 0);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(26, 26);
+            this.btnClose.TabIndex = 3;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // panel1
             // 
@@ -113,7 +113,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.Controls.Add(this.tsClose);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.tsFull);
             this.Controls.Add(this.tsNew);
             this.Controls.Add(this.tabControl1);
@@ -132,8 +132,8 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.Button tsNew;
         private System.Windows.Forms.Button tsFull;
-        private System.Windows.Forms.Button tsClose;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label tsMessage;
+        public System.Windows.Forms.Button btnClose;
     }
 }

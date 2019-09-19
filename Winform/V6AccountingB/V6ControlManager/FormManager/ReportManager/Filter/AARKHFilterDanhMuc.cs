@@ -71,7 +71,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         private void MadeControl(int index, string fieldName)
         {
-            var lineControl = new FilterLineDynamic
+            var lineControl = new FilterLineDynamic(fieldName)
             {
                 FieldName = fieldName.ToUpper(),
                 Caption = CorpLan2.GetFieldHeader(fieldName)

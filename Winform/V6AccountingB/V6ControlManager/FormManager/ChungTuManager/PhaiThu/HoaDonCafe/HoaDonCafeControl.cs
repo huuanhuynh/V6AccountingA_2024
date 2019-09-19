@@ -34,6 +34,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         #region ==== Properties and Fields
         public V6Invoice83 Invoice = new V6Invoice83();
         private string _maGd = "1";
+        public new HoaDonCafeContainer ChungTuContainer { get; set; }
 
         #endregion properties and fields
 
@@ -1586,14 +1587,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 }
                 else
                 {
-                    if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
-                    {
-                        btnHuy.PerformClick();
-                    }
-                    else
-                    {
-                        btnQuayRa.PerformClick();
-                    }
+                    ChungTuContainer.tsClose.PerformClick();
+                    //if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+                    //{
+                    //    btnHuy.PerformClick();
+                    //}
+                    //else
+                    //{
+                    //    btnQuayRa.PerformClick();
+                    //}
                 }
             }
             else if (keyData == Keys.F3)

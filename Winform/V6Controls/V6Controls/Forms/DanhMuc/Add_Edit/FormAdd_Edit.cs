@@ -132,9 +132,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                LoadAldmConfig();
+                //LoadAldmConfig();
 
-                FormControl = AddEditManager.Init_Control(_tableName, _tableNameString, _aldmConfig.FormCode);
+                FormControl = AddEditManager.Init_Control(_tableName, _tableNameString);
+                _aldmConfig = FormControl._aldmConfig;
+                if (_aldmConfig.HaveInfo)
+                {
+                    if (_aldmConfig.IS_ALDM)
+                    {
+                        Text = FormControl.Mode + " - " + (V6Setting.IsVietnamese ? _aldmConfig.TITLE : _aldmConfig.TITLE2);
+                    }
+                }
+
                 if (FormControl is NoRightAddEdit)
                 {
                     string keys_string = "";
@@ -172,13 +181,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             try
             {
                 _aldmConfig = ConfigManager.GetAldmConfig(_tableNameString);
-                if (_aldmConfig.HaveInfo)
-                {
-                    if (_aldmConfig.IS_ALDM)
-                    {
-                        Text = FormControl.Mode + " - " + (V6Setting.IsVietnamese ? _aldmConfig.TITLE : _aldmConfig.TITLE2);
-                    }
-                }
+                //if (_aldmConfig.HaveInfo)
+                //{
+                //    if (_aldmConfig.IS_ALDM)
+                //    {
+                //        Text = FormControl.Mode + " - " + (V6Setting.IsVietnamese ? _aldmConfig.TITLE : _aldmConfig.TITLE2);
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -297,7 +306,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private void DoInsertOrUpdateSuccess(SortedDictionary<string, object> dataDic)
         {
             FormControl.All_Objects["dataDic"] = dataDic;
-            FormControl.InvokeFormEvent("AFTERSAVE");
+            FormControl.InvokeFormEvent(FormDynamicEvent.AFTERSAVE2);
             FormControl.InvokeFormEvent("AFTERINSERTORUPDATE");
             //InvokeFormEvent();
         }

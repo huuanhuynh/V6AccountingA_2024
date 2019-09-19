@@ -750,7 +750,7 @@ namespace V6Controls.Controls
                     //PHAT 23/08/2017
                     if (CurrentTable != V6TableName.Notable)
                     {
-                        var aev = AddEditManager.Init_Control(CurrentTable, _tableName, aldm_config.FormCode);//ảo
+                        var aev = AddEditManager.Init_Control(CurrentTable, _tableName);//ảo
                         if (!string.IsNullOrEmpty(aev.KeyField1))
                         {
                             var oldKey1 = _data[aev.KeyField1].ToString().Trim();

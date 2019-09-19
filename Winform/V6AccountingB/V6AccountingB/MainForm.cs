@@ -403,7 +403,7 @@ namespace V6AccountingB
                             if (keyData == Keys.Escape)
                             {
                                 _dohotkey += "MainForm.Esc. ";
-                                Close();
+                                //Close(); // Không thoát chương trình khi bấm Esc
                             }
                         }
                     }

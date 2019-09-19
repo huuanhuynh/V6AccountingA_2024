@@ -61,7 +61,7 @@ namespace V6ReportControls
             try
             {
                 var NAME = fieldName.Trim().ToUpper();
-                FilterLineDynamic lineControl = new FilterLineDynamic();
+                FilterLineDynamic lineControl = new FilterLineDynamic(NAME);
                 lineControl.Name = "line" + NAME;
                 lineControl.FieldName = NAME;
                 lineControl.Caption = CorpLan2.GetFieldHeader(NAME);

@@ -59,7 +59,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 toolTipV6FormControl.SetToolTip(tsNew, V6Text.Add);
                 toolTipV6FormControl.SetToolTip(tsFull, V6Text.ZoomIn);
-                toolTipV6FormControl.SetToolTip(tsClose, V6Text.Close);
+                toolTipV6FormControl.SetToolTip(btnClose, V6Text.Close);
             }
             catch (Exception)
             {
@@ -131,6 +131,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 method_log += "var tab;";
                 var tab = new TabPage(V6Text.Invoice);
                 ChungTu.ParentTabPage = tab;
+                ChungTu.ChungTuContainer = this;
                 tab.Controls.Add(panel);
                 
                 ChungTu.Disposed += delegate 
@@ -208,7 +209,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
                 if (keyData == Keys.Escape)
                 {
-                    tsClose.PerformClick();
+                    btnClose.PerformClick();
                     return true;
                 }
             }

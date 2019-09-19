@@ -129,7 +129,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             IDictionary<string, object> keys, IDictionary<string, object> data)
         {
             TableName = tableName;
-            _aldmConfig = ConfigManager.GetAldmConfig(TableName.ToString());
+            //_aldmConfig = ConfigManager.GetAldmConfig(TableName.ToString());
             Mode = mode;
             _keys = keys;
             DataOld = data;
@@ -440,6 +440,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 FixFormData();
                 DataDic = GetData();
                 All_Objects["data"] = DataDic;
+                All_Objects["dataDic"] = DataDic;
                 All_Objects["dataOld"] = DataOld;
                 ValidateData();
                 InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
@@ -626,7 +627,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// </summary>
         public virtual void AfterSave()
         {
-
+            try // Dynamic invoke
+            {
+                if (Event_Methods.ContainsKey(FormDynamicEvent.AFTERSAVE))
+                {
+                    var method_name = Event_Methods[FormDynamicEvent.AFTERSAVE];
+                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                }
+            }
+            catch (Exception ex1)
+            {
+                this.WriteExLog(GetType() + ".Dynamic invoke AFTERSAVE", ex1);
+            }
         }
 
         /// <summary>
@@ -725,7 +737,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         }
 
         protected bool update_stt13;
-        private AldmConfig _aldmConfig;
+        public AldmConfig _aldmConfig;
 
         protected virtual void AddStt13()
         {

@@ -155,6 +155,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
+        public ChungTuChungContainer ChungTuContainer { get; set; }
         public TabPage ParentTabPage { get; set; }
         
         public bool chon_accept_flag_add;
@@ -2002,6 +2003,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         private void V6InvoiceControl_Load(object sender, EventArgs e)
         {
+            V6ControlsHelper.DisableLookup = false;
             SetInitFilterAll();
             LoadLanguage() ;
         }

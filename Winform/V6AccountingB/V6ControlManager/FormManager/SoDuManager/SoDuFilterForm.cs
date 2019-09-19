@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using V6Controls;
@@ -25,14 +26,7 @@ namespace V6ControlManager.FormManager.SoDuManager
         {
             get
             {
-                string result = "";
-                foreach (FilterLineDynamic c in panel1.Controls)
-                {
-                    if(c.IsSelected)
-                        result += " And " + c.Query;
-                }
-                if (result.Length > 4) result = result.Substring(4);
-                return result;
+                return panel1.QueryString;
             }
         }
         private V6TableStruct _structTable;
@@ -62,19 +56,38 @@ namespace V6ControlManager.FormManager.SoDuManager
             string err = "";
             try
             {
-                int i = 0;
-                foreach (string field in _fields)
+                // Add auto fields
+                if (_fields == null || _fields.Length == 0)
                 {
-                    try
+                    Text += " (Auto fields)";
+                    List<string> list = new List<string>();
+                    foreach (KeyValuePair<string, V6ColumnStruct> column_item in _structTable)
                     {
-                        MadeControl(i, field.Trim());
-                        i++;
+                        string KEY = column_item.Key;
+                        V6ColumnStruct column = column_item.Value;
+                        if ((KEY.StartsWith("MA") || KEY.StartsWith("TEN")) && column.DataType == typeof(string))
+                        {
+                            list.Add(KEY);
+                            if (list.Count >= 4) break;
+                        }
                     }
-                    catch (Exception e1)
-                    {
-                        err += "\n" + i + " " + field + ": " + e1.Message;
-                    }
+                    _fields = list.ToArray();
                 }
+                panel1.AddMultiFilterLine(_structTable, string.Join(",", _fields));
+                //return;
+                //int i = 0;
+                //foreach (string field in _fields)
+                //{
+                //    try
+                //    {
+                //        MadeControl(i, field.Trim());
+                //        i++;
+                //    }
+                //    catch (Exception e1)
+                //    {
+                //        err += "\n" + i + " " + field + ": " + e1.Message;
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -86,31 +99,31 @@ namespace V6ControlManager.FormManager.SoDuManager
             }
         }
 
-        private void MadeControl(int index, string fieldName)
-        {
-            FilterLineDynamic lineControl = new FilterLineDynamic();
-            lineControl.FieldName = fieldName.ToUpper();
-            lineControl.Caption = CorpLan2.GetFieldHeader(fieldName);
-            if (_structTable.ContainsKey(fieldName.Trim().ToUpper()))
-            {
-                if (",nchar,nvarchar,ntext,char,varchar,text,xml,"
-                    .Contains(","+_structTable[fieldName.ToUpper()].sql_data_type_string+","))
-                {
-                    lineControl.AddTextBox();
-                }
-                else if(",date,smalldatetime,datetime,"
-                    .Contains(","+_structTable[fieldName.ToUpper()].sql_data_type_string+","))
-                {
-                    lineControl.AddDateTimePick();
-                }
-                else
-                {
-                    lineControl.AddNumberTextBox();
-                }
-            }
-            lineControl.Location = new Point(10, 10 + 30 * index);
-            panel1.Controls.Add(lineControl);
-        }
+        //private void MadeControl(int index, string fieldName)
+        //{
+        //    FilterLineDynamic lineControl = new FilterLineDynamic(fieldName);
+        //    lineControl.FieldName = fieldName.ToUpper();
+        //    lineControl.Caption = CorpLan2.GetFieldHeader(fieldName);
+        //    if (_structTable.ContainsKey(fieldName.Trim().ToUpper()))
+        //    {
+        //        if (",nchar,nvarchar,ntext,char,varchar,text,xml,"
+        //            .Contains(","+_structTable[fieldName.ToUpper()].sql_data_type_string+","))
+        //        {
+        //            lineControl.AddTextBox();
+        //        }
+        //        else if(",date,smalldatetime,datetime,"
+        //            .Contains(","+_structTable[fieldName.ToUpper()].sql_data_type_string+","))
+        //        {
+        //            lineControl.AddDateTimePick();
+        //        }
+        //        else
+        //        {
+        //            lineControl.AddNumberTextBox();
+        //        }
+        //    }
+        //    lineControl.Location = new Point(10, 10 + 30 * index);
+        //    panel1.Controls.Add(lineControl);
+        //}
 
         public override bool DoHotKey0(Keys keyData)
         {
@@ -126,7 +139,7 @@ namespace V6ControlManager.FormManager.SoDuManager
             {
                 // ignored
             }
-            return false;
+            return base.DoHotKey0(keyData);
         }
 
         private void FilterForm_Load(object sender, EventArgs e)
