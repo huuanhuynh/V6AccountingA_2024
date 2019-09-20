@@ -919,53 +919,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
 
                 F3(this);
-                return;
-
-                if (dataGridView1.CurrentRow != null)
-                {
-                    var currentRow = dataGridView1.CurrentRow;
-                    if (dataGridView1.Columns.Contains("Stt_rec") && dataGridView1.Columns.Contains("Ma_ct"))
-                    {
-                        var selectedMaCt = currentRow.Cells["Ma_ct"].Value.ToString().Trim();
-                        var selectedSttRec = currentRow.Cells["Stt_rec"].Value.ToString().Trim();
-                        if (selectedMaCt == "INF") // phiếu nhập điều chuyển
-                        {
-                            selectedMaCt = "IXB"; // phiếu xuất điều chuyển
-                            selectedSttRec = selectedSttRec.Left(10) + selectedMaCt;
-                        }
-
-                        if (!string.IsNullOrEmpty(selectedSttRec) && !string.IsNullOrEmpty(selectedMaCt))
-                        {
-                            var alctRow = V6BusinessHelper.Select("Alct", "ten_ct,ten_ct2,m_phdbf,m_ctdbf,m_gtdbf",
-                                "ma_CT = '" + selectedMaCt + "'").Data.Rows[0];
-                            var amName = (alctRow["m_phdbf"] ?? "").ToString().Trim();
-                            var adName = (alctRow["m_ctdbf"] ?? "").ToString().Trim();
-                            var fText =
-                                (alctRow[V6Setting.IsVietnamese ? "ten_ct" : "ten_ct2"] ?? "").ToString().Trim();
-
-                            if (amName != "" && adName != "")
-                            {
-                                var f = new V6Form
-                                {
-                                    WindowState = FormWindowState.Maximized,
-                                    Text = fText
-                                };
-
-                                var hoaDonForm = ChungTuF3.GetChungTuControl(selectedMaCt, Name, selectedSttRec);
-                                hoaDonForm.Dock = DockStyle.Fill;
-                                f.Controls.Add(hoaDonForm);
-
-
-                                f.ShowDialog(this);
-                                SetStatus2Text();
-                            }
-                        }
-                    }
-                    else
-                    {
-                        this.ShowWarningMessage(V6Text.EditDenied);
-                    }
-                }
             }
             catch (Exception ex)
             {
@@ -1058,6 +1011,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                 };
                 f.ShowDialog(thisForm);
+                SetStatus2Text();
             }
             catch (Exception ex)
             {

@@ -67,6 +67,9 @@ namespace V6Init
             Error = true;
         }
         
+        /// <summary>
+        /// m_phdbf
+        /// </summary>
         public string TableNameAM
         {
             get
@@ -74,6 +77,9 @@ namespace V6Init
                 return GetString("m_phdbf");
             }
         }
+        /// <summary>
+        /// m_ctdbf
+        /// </summary>
         public string TableNameAD
         {
             get
@@ -81,6 +87,9 @@ namespace V6Init
                 return GetString("m_ctdbf");
             }
         }
+        /// <summary>
+        /// m_list_ct
+        /// </summary>
         public string TableNameADlist
         {
             get

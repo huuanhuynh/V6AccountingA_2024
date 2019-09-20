@@ -234,24 +234,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         selectedSttRec = selectedSttRec.Left(10) + selectedMaCt;
                     }
 
-                    var alctRow = V6BusinessHelper.Select("Alct", "ten_ct,ten_ct2,m_phdbf,m_ctdbf",
-                                "ma_CT = '" + selectedMaCt + "'").Data.Rows[0];
-                    var amName = alctRow["m_phdbf"].ToString().Trim();
-                    var adName = alctRow["m_ctdbf"].ToString().Trim();
-                    var fText = (alctRow[V6Setting.IsVietnamese ? "ten_ct" : "ten_ct2"] ?? "").ToString().Trim();
-                    if (amName != "" && adName != "")
+                    AlctConfig alctConfig = ConfigManager.GetAlctConfig(selectedMaCt);
+                    if (alctConfig.TableNameAM != "" && alctConfig.TableNameAD != "")
                     {
-                        var f = new V6Form
-                        {
-                            WindowState = FormWindowState.Maximized,
-                            Text = fText
-                        };
-
                         var hoaDonForm = ChungTuF3.GetChungTuControl(selectedMaCt, Name, selectedSttRec);
-                        hoaDonForm.Dock = DockStyle.Fill;
-                        f.Controls.Add(hoaDonForm);
-
-                        f.ShowDialog(this);
+                        hoaDonForm.ShowToForm(this, V6Setting.IsVietnamese ? alctConfig.TEN_CT : alctConfig.TEN_CT2, true);
+                        SetStatus2Text();
                     }
                 }
             }

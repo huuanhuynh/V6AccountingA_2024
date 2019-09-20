@@ -74,20 +74,6 @@ namespace V6ControlManager.FormManager.SoDuManager
                     _fields = list.ToArray();
                 }
                 panel1.AddMultiFilterLine(_structTable, string.Join(",", _fields));
-                //return;
-                //int i = 0;
-                //foreach (string field in _fields)
-                //{
-                //    try
-                //    {
-                //        MadeControl(i, field.Trim());
-                //        i++;
-                //    }
-                //    catch (Exception e1)
-                //    {
-                //        err += "\n" + i + " " + field + ": " + e1.Message;
-                //    }
-                //}
             }
             catch (Exception ex)
             {
@@ -98,32 +84,6 @@ namespace V6ControlManager.FormManager.SoDuManager
                 this.ShowErrorMessage(GetType() + ".MadeControls error!" + err);
             }
         }
-
-        //private void MadeControl(int index, string fieldName)
-        //{
-        //    FilterLineDynamic lineControl = new FilterLineDynamic(fieldName);
-        //    lineControl.FieldName = fieldName.ToUpper();
-        //    lineControl.Caption = CorpLan2.GetFieldHeader(fieldName);
-        //    if (_structTable.ContainsKey(fieldName.Trim().ToUpper()))
-        //    {
-        //        if (",nchar,nvarchar,ntext,char,varchar,text,xml,"
-        //            .Contains(","+_structTable[fieldName.ToUpper()].sql_data_type_string+","))
-        //        {
-        //            lineControl.AddTextBox();
-        //        }
-        //        else if(",date,smalldatetime,datetime,"
-        //            .Contains(","+_structTable[fieldName.ToUpper()].sql_data_type_string+","))
-        //        {
-        //            lineControl.AddDateTimePick();
-        //        }
-        //        else
-        //        {
-        //            lineControl.AddNumberTextBox();
-        //        }
-        //    }
-        //    lineControl.Location = new Point(10, 10 + 30 * index);
-        //    panel1.Controls.Add(lineControl);
-        //}
 
         public override bool DoHotKey0(Keys keyData)
         {
