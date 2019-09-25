@@ -222,7 +222,7 @@ namespace V6Controls.Forms
                 {
                     _ctrl_alt_i = 0;
                 }
-                return V6ControlFormHelper.DoKeyCommand(this, keyData);
+                //return V6ControlFormHelper.DoKeyCommand(this, keyData);
             }
             catch (Exception ex)
             {

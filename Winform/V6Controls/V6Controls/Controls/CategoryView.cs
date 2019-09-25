@@ -244,7 +244,11 @@ namespace V6Controls.Controls
             {
                 if (keyData == (Keys.Control | Keys.F6))
                 {
-                    
+
+                }
+                else if (keyData == Keys.Escape)
+                {
+                    Dispose();
                 }
                 //else if (keyData == Keys.F9)
                 //{

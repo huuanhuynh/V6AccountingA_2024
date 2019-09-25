@@ -484,6 +484,10 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 {
                     
                 }
+                else if (keyData == Keys.Escape)
+                {
+                    Dispose();
+                }
                 else if (keyData == Keys.F9)
                 {
                     All_Objects["dataGridView1"] = dataGridView1;
