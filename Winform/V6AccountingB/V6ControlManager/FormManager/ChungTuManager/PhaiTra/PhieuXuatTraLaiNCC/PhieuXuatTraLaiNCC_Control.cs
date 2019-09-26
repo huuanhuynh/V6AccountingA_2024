@@ -4351,6 +4351,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                             case "2":
                                 // Save: Not Save
                                 this.ShowWarningMessage(V6Text.Voucher_exist_not_save);
+                                //Tuanmh 26/09/2019 Get new for exist
+                                GetSoPhieu();
+                                txtSoPhieu.Focus();
                                 return false;
                         }
                     }

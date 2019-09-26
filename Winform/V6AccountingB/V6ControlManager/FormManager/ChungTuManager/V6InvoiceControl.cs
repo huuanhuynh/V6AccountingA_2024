@@ -2400,7 +2400,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
             SortedDictionary<string, object> someData = new SortedDictionary<string, object>();
             foreach (DefaultValueInfo item in infos)
             {
-                if (!string.IsNullOrEmpty(item.AName)) continue;
                 if (item.Type1 == "0")
                 {
                     //Value null vẫn gán.
