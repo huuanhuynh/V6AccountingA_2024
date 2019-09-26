@@ -23,7 +23,6 @@ namespace V6Controls.Controls
     /// </summary>
     public partial class CategoryView : V6FormControl
     {
-        private bool _aldm;
         private bool _cancel;
         public CategoryView()
         {
@@ -46,6 +45,7 @@ namespace V6Controls.Controls
             m_itemId = itemId;
             Title = title;
             _tableName = tableName;
+            _tableName_View = tableName;
             _parentData = parentData;
 
             InitializeComponent();
@@ -57,34 +57,22 @@ namespace V6Controls.Controls
             SelectResult = new V6SelectResult();
             SelectResult.SortField = sort;
 
-            bool is_aldm = false, check_admin = false, check_v6 = false;
-            _tableName_View = tableName;
+            //bool is_aldm = false, check_admin = false, check_v6 = false;
+            
 
-            IDictionary<string, object> keys = new Dictionary<string, object>();
-            keys.Add("MA_DM", _tableName);
-            var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
-            string tableName_aldm = "";
-
-            if (aldm.Rows.Count == 1)
+            _aldmConfig = ConfigManager.GetAldmConfigByTableName(_tableName);
+            if (_aldmConfig.IS_ALDM)
             {
-                is_aldm = aldm.Rows[0]["IS_ALDM"].ToString() == "1";
-                check_admin = aldm.Rows[0]["CHECK_ADMIN"].ToString() == "1";
-                check_v6 = aldm.Rows[0]["CHECK_V6"].ToString() == "1";
-                if(aldm.Rows[0]["TABLE_VIEW"].ToString()!="")
-                    _tableName_View = aldm.Rows[0]["TABLE_VIEW"].ToString();
-            }
-            _aldm = is_aldm;
-            if (_aldm)
-            {
-                aldm_config = ConfigManager.GetAldmConfigByTableName(_tableName);
+                if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(_aldmConfig.ORDER))
+                    SelectResult.SortField = _aldmConfig.ORDER;
             }
             else
             {
-                v6lookup_config = V6Lookup.GetV6lookupConfigByTableName(_tableName);
-                if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(v6lookup_config.vOrder))
-                    SelectResult.SortField = v6lookup_config.vOrder;
+                _v6lookupConfig = V6Lookup.GetV6lookupConfigByTableName(_tableName);
+                if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(_v6lookupConfig.vOrder))
+                    SelectResult.SortField = _v6lookupConfig.vOrder;
             }
-
+            
             if (CurrentTable == V6TableName.V_alts || CurrentTable == V6TableName.V_alcc
                 || CurrentTable == V6TableName.V_alts01 || CurrentTable == V6TableName.V_alcc01)
             {
@@ -183,58 +171,63 @@ namespace V6Controls.Controls
         private void SetFormatGridView()
         {
             if (formated) return;
-
-            if (CurrentTable == V6TableName.Altk0)
+            try
             {
-                //dataGridView1.Columns[0].DefaultCellStyle.Padding;
-                dataGridView1.CellFormatting += (s, e) =>
+                if (CurrentTable == V6TableName.Altk0)
                 {
-                    if (e.ColumnIndex == 1)
+                    //dataGridView1.Columns[0].DefaultCellStyle.Padding;
+                    dataGridView1.CellFormatting += (s, e) =>
                     {
-                        int b = ObjectAndString.ObjectToInt(dataGridView1.Rows[e.RowIndex].Cells["Bac_tk"].Value);
-                        int l = ObjectAndString.ObjectToInt(dataGridView1.Rows[e.RowIndex].Cells["Loai_tk"].Value);
-                        if (l == 0) dataGridView1.Rows[e.RowIndex].DefaultCellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+                        if (e.ColumnIndex == 1)
+                        {
+                            int b = ObjectAndString.ObjectToInt(dataGridView1.Rows[e.RowIndex].Cells["Bac_tk"].Value);
+                            int l = ObjectAndString.ObjectToInt(dataGridView1.Rows[e.RowIndex].Cells["Loai_tk"].Value);
+                            if (l == 0) dataGridView1.Rows[e.RowIndex].DefaultCellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
 
-                        if (b == 1) b = 0;
-                        var p = b * 8;
-                        e.CellStyle.Padding = new Padding(p, 0, 0, 0);
-                    }
-                };
-            }
-            else if(CurrentTable == V6TableName.Almaubcct)
-            {
-                V6ControlFormHelper.FormatGridView(dataGridView1, "BOLD", "=", 1, true, false, Color.White);
-            }
+                            if (b == 1) b = 0;
+                            var p = b * 8;
+                            e.CellStyle.Padding = new Padding(p, 0, 0, 0);
+                        }
+                    };
+                }
+                else if(CurrentTable == V6TableName.Almaubcct)
+                {
+                    V6ControlFormHelper.FormatGridView(dataGridView1, "BOLD", "=", 1, true, false, Color.White);
+                }
             
-            // Đè format cũ
-            if (_aldm)
-            {
-                V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, aldm_config.GRDS_V1, aldm_config.GRDF_V1,
-                        V6Setting.IsVietnamese ? aldm_config.GRDHV_V1 : aldm_config.GRDHE_V1);
-                var conditionColor = ObjectAndString.StringToColor(aldm_config.COLORV);
-                V6ControlFormHelper.FormatGridView(dataGridView1, aldm_config.FIELDV, aldm_config.OPERV, aldm_config.VALUEV,
-                    aldm_config.BOLD_YN, aldm_config.COLOR_YN, conditionColor);
-                int frozen = ObjectAndString.ObjectToInt(aldm_config.FROZENV);
-                dataGridView1.SetFrozen(frozen);
+                // Đè format cũ
+                if (_aldmConfig.IS_ALDM)
+                {
+                    V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, _aldmConfig.GRDS_V1, _aldmConfig.GRDF_V1,
+                            V6Setting.IsVietnamese ? _aldmConfig.GRDHV_V1 : _aldmConfig.GRDHE_V1);
+                    var conditionColor = ObjectAndString.StringToColor(_aldmConfig.COLORV);
+                    V6ControlFormHelper.FormatGridView(dataGridView1, _aldmConfig.FIELDV, _aldmConfig.OPERV, _aldmConfig.VALUEV,
+                        _aldmConfig.BOLD_YN, _aldmConfig.COLOR_YN, conditionColor);
+                    int frozen = ObjectAndString.ObjectToInt(_aldmConfig.FROZENV);
+                    dataGridView1.SetFrozen(frozen);
+                }
+                else
+                {
+                    string showFields = _v6lookupConfig.GRDS_V1;
+                    string formatStrings = _v6lookupConfig.GRDF_V1;
+                    string headerString = V6Setting.IsVietnamese ? _v6lookupConfig.GRDHV_V1 : _v6lookupConfig.GRDHE_V1;
+                    V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
+                    var conditionColor = ObjectAndString.StringToColor(_v6lookupConfig.COLORV);
+                    V6ControlFormHelper.FormatGridView(dataGridView1, _v6lookupConfig.FIELDV, _v6lookupConfig.OPERV, _v6lookupConfig.VALUEV,
+                        _v6lookupConfig.BOLD_YN, _v6lookupConfig.COLOR_YN, conditionColor);
+                    int frozen = ObjectAndString.ObjectToInt(_v6lookupConfig.FROZENV);
+                    dataGridView1.SetFrozen(frozen);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                string showFields = v6lookup_config.GRDS_V1;
-                string formatStrings = v6lookup_config.GRDF_V1;
-                string headerString = V6Setting.IsVietnamese ? v6lookup_config.GRDHV_V1 : v6lookup_config.GRDHE_V1;
-                V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
-                var conditionColor = ObjectAndString.StringToColor(v6lookup_config.COLORV);
-                V6ControlFormHelper.FormatGridView(dataGridView1, v6lookup_config.FIELDV, v6lookup_config.OPERV, v6lookup_config.VALUEV,
-                    v6lookup_config.BOLD_YN, v6lookup_config.COLOR_YN, conditionColor);
-                int frozen = ObjectAndString.ObjectToInt(v6lookup_config.FROZENV);
-                dataGridView1.SetFrozen(frozen);
+                this.WriteExLog(GetType() + ".SetFormatGridView", ex);
             }
-
             formated = true;
         }
 
-        private AldmConfig aldm_config;
-        private V6lookupConfig v6lookup_config;
+        private AldmConfig _aldmConfig;
+        private V6lookupConfig _v6lookupConfig;
 
         #region ==== Do method ====
 
@@ -687,8 +680,8 @@ namespace V6Controls.Controls
                     else
                     {
 
-                        var id = _aldm ? aldm_config.TABLE_KEY : v6lookup_config.vValue;
-                        var listTable = _aldm ? aldm_config.F8_TABLE : v6lookup_config.ListTable;
+                        var id = _aldmConfig.IS_ALDM ? _aldmConfig.TABLE_KEY : _v6lookupConfig.vValue;
+                        var listTable = _aldmConfig.IS_ALDM ? _aldmConfig.F8_TABLE : _v6lookupConfig.ListTable;
                         var value = "";
                         
                         if (String.IsNullOrEmpty(listTable) == false)
@@ -877,9 +870,9 @@ namespace V6Controls.Controls
 
                     if (string.IsNullOrEmpty(sortField))
                     {
-                        if (aldm_config != null)
+                        if (_aldmConfig != null)
                         {
-                            sortField = aldm_config.ORDER;
+                            sortField = _aldmConfig.ORDER;
                         }
                       
                     }
@@ -1023,7 +1016,7 @@ namespace V6Controls.Controls
         }
 
         /// <summary>
-        /// Reload and setFormatGridView
+        /// Tải lại ngay trang đó.
         /// </summary>
         public void ReLoad()
         {
@@ -1277,8 +1270,8 @@ namespace V6Controls.Controls
             {
                 V6TableStruct structTable = V6BusinessHelper.GetTableStruct(_tableName);
                 //var keys = new SortedDictionary<string, object>();
-                string[] fields = _aldm ? ObjectAndString.SplitString(aldm_config.F_SEARCH) :
-                    ObjectAndString.SplitString(V6Setting.IsVietnamese ? v6lookup_config.vFields : v6lookup_config.eFields);
+                string[] fields = _aldmConfig.IS_ALDM ? ObjectAndString.SplitString(_aldmConfig.F_SEARCH) :
+                    ObjectAndString.SplitString(V6Setting.IsVietnamese ? _v6lookupConfig.vFields : _v6lookupConfig.eFields);
                 _filterForm = new FilterForm(structTable, fields);
                 _filterForm.FilterApplyEvent += FilterFilterApplyEvent;
                 _filterForm.Opacity = 0.9;

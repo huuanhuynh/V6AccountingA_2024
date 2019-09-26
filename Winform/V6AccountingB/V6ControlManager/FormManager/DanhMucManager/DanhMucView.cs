@@ -1493,7 +1493,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         }
 
         /// <summary>
-        /// Reload and setFormatGridView
+        /// Tải lại ngay trang đó.
         /// </summary>
         public void ReLoad()
         {

@@ -86,7 +86,7 @@ namespace V6ControlManager.FormManager.SoDuManager
 
             Title = title;
             _tableName = tableName;
-            _config = V6Lookup.GetV6lookupConfigByTableName(_tableName);
+            _v6lookupConfig = V6Lookup.GetV6lookupConfigByTableName(_tableName);
             CurrentTable = V6TableHelper.ToV6TableName(tableName);
             if (CurrentTable == V6TableName.Abtk)
             {
@@ -124,7 +124,7 @@ namespace V6ControlManager.FormManager.SoDuManager
         private readonly V6Categories _categories = new V6Categories();
         private SortedDictionary<string, string> _hideColumnDic; 
         private string _tableName;
-        private V6lookupConfig _config;
+        private V6lookupConfig _v6lookupConfig;
         [DefaultValue(V6TableName.None)]
         public V6TableName CurrentTable { get; set; }
         public V6SelectResult SelectResult { get; set; }
@@ -611,9 +611,9 @@ namespace V6ControlManager.FormManager.SoDuManager
                 }
 
                 // Đè format cũ
-                string showFields = _config.GRDS_V1;
-                string formatStrings = _config.GRDF_V1;
-                string headerString = V6Setting.IsVietnamese ? _config.GRDHV_V1 : _config.GRDHE_V1;
+                string showFields = _v6lookupConfig.GRDS_V1;
+                string formatStrings = _v6lookupConfig.GRDF_V1;
+                string headerString = V6Setting.IsVietnamese ? _v6lookupConfig.GRDHV_V1 : _v6lookupConfig.GRDHE_V1;
                 V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
             }
             catch (Exception ex)
@@ -913,7 +913,7 @@ namespace V6ControlManager.FormManager.SoDuManager
             {
                 V6TableStruct structTable = V6BusinessHelper.GetTableStruct(CurrentTable.ToString());
                 //var keys = new SortedDictionary<string, object>();
-                string[] fields = _config.GetDefaultLookupFields;
+                string[] fields = _v6lookupConfig.GetDefaultLookupFields;
                 _filterForm = new SoDuFilterForm(structTable, fields);
                 _filterForm.FilterOkClick += filter_FilterOkClick;
                 _filterForm.Opacity = 0.9;
