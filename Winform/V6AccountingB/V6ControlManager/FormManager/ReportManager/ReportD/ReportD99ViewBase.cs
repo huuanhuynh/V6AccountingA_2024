@@ -1673,10 +1673,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         {
             if (current_report_index > 0)
             {
-                if (ReloadData == "1")
-                    MakeReport();
-                else
-                    ViewReportIndex(current_report_index-1);
+                ViewReportIndex(current_report_index-1);
             }
         }
 
@@ -1684,10 +1681,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         {
             if (current_report_index < sobangtach)
             {
-                if (ReloadData == "1")
-                    MakeReport();
-                else
-                    ViewReportIndex(current_report_index + 1);
+                ViewReportIndex(current_report_index + 1);
             }
         }
 
@@ -1695,10 +1689,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         {
             if (current_report_index != sobangtach - 1)
             {
-                if (ReloadData == "1")
-                    MakeReport();
-                else
-                    ViewReportIndex(sobangtach - 1);
+                ViewReportIndex(sobangtach - 1);
             }
         }
 
@@ -1709,17 +1700,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 var num = Convert.ToInt32(txtNumber.Text)-1;
                 if (num != current_report_index && num >= 0 && num < sobangtach)
                 {
-                    if (ReloadData == "1")
-                        MakeReport();
-                    else
-                        ViewReportIndex(num);
+                    ViewReportIndex(num);
                 }
                 else
                 {
-                    if (ReloadData == "1")
-                        MakeReport();
-                    else
-                        ViewReportIndex(current_report_index);
+                    ViewReportIndex(current_report_index);
                 }
             }
         }
@@ -1734,17 +1719,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             var num = Convert.ToInt32(txtNumber.Text);
             if (num != current_report_index && num >= 0 && num < sobangtach)
             {
-                if (ReloadData == "1")
-                    MakeReport();
-                else
-                    ViewReportIndex(num - 1);
+                ViewReportIndex(num - 1);
             }
             else
             {
-                if (ReloadData == "1")
-                    MakeReport();
-                else
-                    ViewReportIndex(current_report_index);
+                ViewReportIndex(current_report_index);
             }
         }
 
