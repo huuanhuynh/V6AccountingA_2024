@@ -539,6 +539,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             var addDataAM = GetData();
             addDataAM["STT_REC"] = _sttRec;
             addDataAM["MA_CT"] = invoice.Mact;
+            All_Objects["AM_DATA"] = addDataAM;
             return addDataAM;
         }
 

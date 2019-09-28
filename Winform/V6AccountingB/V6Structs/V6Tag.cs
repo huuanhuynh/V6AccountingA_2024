@@ -170,7 +170,9 @@ namespace V6Structs
         /// Tên bảng chính.
         /// </summary>
         public string TableName { get; set; }
-        
+
+        public bool Cancel { get; set; }
+
         public string DescriptionLang(bool isVN)
         {
             return isVN ? DescriptionV : DescriptionE;

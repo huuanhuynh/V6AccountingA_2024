@@ -4948,13 +4948,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private void DoAddThread()
         {
             ReadyForAdd();
+            
             Timer checkAdd = new Timer();
             checkAdd.Interval = 500;
             checkAdd.Tick += checkAdd_Tick;
             _AED_Running = true;
             _AED_Success = false;
-            InvokeFormEvent(FormDynamicEvent.BEFOREADD);
-            InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
+            string inv = "";
+            inv += InvokeFormEvent(FormDynamicEvent.BEFOREADD);
+            inv += InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
+            V6Tag invTag = new V6Tag(inv);
+            if (invTag.Cancel)
+            {
+                this.ShowWarningMessage(V6Text.Cancel);
+                Mode = V6Mode.Add;
+                return;
+            }
+
             new Thread(DoAdd)
             {
                 IsBackground = true
@@ -4992,7 +5002,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     btnMoi.Focus();
                     
                     All_Objects["mode"] = V6Mode.Add;
-                    All_Objects["AM_DATA"] = addDataAM;
                     All_Objects["STT_REC"] = _sttRec;
                     All_Objects["MA_CT"] = Invoice.Mact;
                     All_Objects["MA_NT"] = MA_NT;
@@ -5070,13 +5079,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private void DoEditThread()
         {
             ReadyForEdit();
+            
             Timer checkEdit = new Timer();
             checkEdit.Interval = 500;
             checkEdit.Tick += checkEdit_Tick;
             _AED_Running = true;
             _AED_Success = false;
-            InvokeFormEvent(FormDynamicEvent.BEFOREEDIT);
-            InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
+            string inv = "";
+            inv += InvokeFormEvent(FormDynamicEvent.BEFOREEDIT);
+            inv += InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
+            V6Tag invTag = new V6Tag(inv);
+            if (invTag.Cancel)
+            {
+                this.ShowWarningMessage(V6Text.Cancel);
+                Mode = V6Mode.Edit;
+                detail1.MODE = V6Mode.View;
+                detail3.MODE = V6Mode.View;
+                GoToFirstFocus(txtMa_sonb);
+                return;
+            }
+
             new Thread(DoEdit)
             {
                 IsBackground = true
@@ -5085,6 +5107,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             
             checkEdit.Start();
         }
+
         private void ReadyForEdit()
         {
             try
@@ -5128,7 +5151,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     btnMoi.Focus();
 
                     All_Objects["mode"] = V6Mode.Edit;
-                    All_Objects["AM_DATA"] = addDataAM;
                     All_Objects["STT_REC"] = _sttRec;
                     All_Objects["MA_CT"] = Invoice.Mact;
                     All_Objects["MA_NT"] = MA_NT;
@@ -5244,7 +5266,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         _timForm.UpdateAM(_sttRec, null, V6Mode.Delete);
 
                     All_Objects["mode"] = V6Mode.Delete;
-                    All_Objects["AM_DATA"] = addDataAM;
                     All_Objects["STT_REC"] = _sttRec;
                     All_Objects["MA_CT"] = Invoice.Mact;
                     All_Objects["USER_ID"] = V6Login.UserId;
@@ -5527,6 +5548,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         }
                         else
                         {
+                            AM_old = IsViewingAnInvoice ? AM.Rows[CurrentIndex] : null;
                             GetSttRec(Invoice.Mact);
                             SetNewValues();
                             V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);

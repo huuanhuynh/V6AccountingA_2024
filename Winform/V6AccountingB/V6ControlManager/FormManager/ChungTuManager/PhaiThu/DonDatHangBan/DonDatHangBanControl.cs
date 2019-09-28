@@ -2992,7 +2992,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     ViewInvoice(_sttRec, V6Mode.Add);
                     btnMoi.Focus();
                     All_Objects["mode"] = V6Mode.Add;
-                    All_Objects["AM_DATA"] = addDataAM;
                     All_Objects["STT_REC"] = _sttRec;
                     All_Objects["MA_CT"] = Invoice.Mact;
                     All_Objects["MA_NT"] = MA_NT;
@@ -3126,7 +3125,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     ViewInvoice(_sttRec, V6Mode.Edit);
                     btnMoi.Focus();
                     All_Objects["mode"] = V6Mode.Edit;
-                    All_Objects["AM_DATA"] = addDataAM;
                     All_Objects["STT_REC"] = _sttRec;
                     All_Objects["MA_CT"] = Invoice.Mact;
                     All_Objects["MA_NT"] = MA_NT;
@@ -3242,7 +3240,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         _timForm.UpdateAM(_sttRec, null, V6Mode.Delete);
 
                     All_Objects["mode"] = V6Mode.Delete;
-                    All_Objects["AM_DATA"] = addDataAM;
                     All_Objects["STT_REC"] = _sttRec;
                     All_Objects["MA_CT"] = Invoice.Mact;
                     All_Objects["USER_ID"] = V6Login.UserId;
@@ -3501,6 +3498,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         }
                         else
                         {
+                            AM_old = IsViewingAnInvoice ? AM.Rows[CurrentIndex] : null;
                             GetSttRec(Invoice.Mact);
                             SetNewValues();
                             V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
