@@ -217,6 +217,15 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             if (errors.Length > 0) throw new Exception(errors);
         }
 
+        public override void AfterSave()
+        {
+            if (txtUser_name.Text == V6Login.UserName)
+            {
+                V6Login.UserInfo_HaveChanged = true;
+            }
+            base.AfterSave();
+        }
+
         private void btnPhanQuyen_Click(object sender, EventArgs e)
         {
             try

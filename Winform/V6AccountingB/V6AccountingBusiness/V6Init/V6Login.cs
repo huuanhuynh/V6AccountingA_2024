@@ -34,10 +34,19 @@ namespace V6Init
             }
         }
 
+        /// <summary>
+        /// Cờ lấy lại thông tin User.
+        /// </summary>
+        public static bool UserInfo_HaveChanged { get; set; }
         public static DataRow UserInfo
         {
             get
             {
+                if (UserInfo_HaveChanged)
+                {
+                    GetInfo(_uName);
+                    UserInfo_HaveChanged = false;
+                }
                 return _userInfo;
             }
             set

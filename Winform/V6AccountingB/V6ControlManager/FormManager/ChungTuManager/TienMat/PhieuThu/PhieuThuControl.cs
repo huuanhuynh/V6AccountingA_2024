@@ -2404,10 +2404,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 Timer checkAdd = new Timer();
                 checkAdd.Interval = 500;
                 checkAdd.Tick += checkAdd_Tick;
-                InvokeFormEvent(FormDynamicEvent.BEFOREADD);
-                InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
                 _AED_Running = true;
                 _AED_Success = false;
+                string inv = "";
+                inv += InvokeFormEvent(FormDynamicEvent.BEFOREADD);
+                inv += InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
+                V6Tag invTag = new V6Tag(inv);
+                if (invTag.Cancel)
+                {
+                    this.ShowWarningMessage(V6Text.CheckData);
+                    Mode = V6Mode.Add;
+                    return;
+                }
+
                 new Thread(DoAdd)
                 {
                     IsBackground = true
@@ -2494,8 +2503,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             checkEdit.Tick += checkEdit_Tick;
             _AED_Running = true;
             _AED_Success = false;
-            InvokeFormEvent(FormDynamicEvent.BEFOREEDIT);
-            InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
+            string inv = "";
+            inv += InvokeFormEvent(FormDynamicEvent.BEFOREEDIT);
+            inv += InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
+            V6Tag invTag = new V6Tag(inv);
+            if (invTag.Cancel)
+            {
+                this.ShowWarningMessage(V6Text.CheckData);
+                Mode = V6Mode.Edit;
+                detail1.MODE = V6Mode.View;
+                detail3.MODE = V6Mode.View;
+                GoToFirstFocus(txtMa_sonb);
+                return;
+            }
+
             new Thread(DoEdit)
             {
                 IsBackground = true

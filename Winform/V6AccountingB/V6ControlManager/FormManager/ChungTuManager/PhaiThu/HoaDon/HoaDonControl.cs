@@ -4960,7 +4960,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             V6Tag invTag = new V6Tag(inv);
             if (invTag.Cancel)
             {
-                this.ShowWarningMessage(V6Text.Cancel);
+                this.ShowWarningMessage(V6Text.CheckData);
                 Mode = V6Mode.Add;
                 return;
             }
@@ -5091,7 +5091,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             V6Tag invTag = new V6Tag(inv);
             if (invTag.Cancel)
             {
-                this.ShowWarningMessage(V6Text.Cancel);
+                this.ShowWarningMessage(V6Text.CheckData);
                 Mode = V6Mode.Edit;
                 detail1.MODE = V6Mode.View;
                 detail3.MODE = V6Mode.View;

@@ -4247,8 +4247,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             checkAdd.Tick += checkAdd_Tick;
             _AED_Running = true;
             _AED_Success = false;
-            InvokeFormEvent(FormDynamicEvent.BEFOREADD);
-            InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
+            string inv = "";
+            inv += InvokeFormEvent(FormDynamicEvent.BEFOREADD);
+            inv += InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
+            V6Tag invTag = new V6Tag(inv);
+            if (invTag.Cancel)
+            {
+                this.ShowWarningMessage(V6Text.CheckData);
+                Mode = V6Mode.Add;
+                return;
+            }
+
             new Thread(DoAdd)
             {
                 IsBackground = true
@@ -4362,8 +4371,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             checkEdit.Tick += checkEdit_Tick;
             _AED_Running = true;
             _AED_Success = false;
-            InvokeFormEvent(FormDynamicEvent.BEFOREEDIT);
-            InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
+            string inv = "";
+            inv += InvokeFormEvent(FormDynamicEvent.BEFOREEDIT);
+            inv += InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
+            V6Tag invTag = new V6Tag(inv);
+            if (invTag.Cancel)
+            {
+                this.ShowWarningMessage(V6Text.CheckData);
+                Mode = V6Mode.Edit;
+                detail1.MODE = V6Mode.View;
+                detail3.MODE = V6Mode.View;
+                GoToFirstFocus(txtMa_sonb);
+                return;
+            }
+
             new Thread(DoEdit)
             {
                 IsBackground = true
