@@ -2885,8 +2885,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             V6Tag invTag = new V6Tag(inv);
             if (invTag.Cancel)
             {
-                this.ShowWarningMessage(V6Text.CheckData);
+                this.ShowWarningMessage(invTag.DescriptionLang(V6Setting.IsVietnamese));
                 Mode = V6Mode.Add;
+                _AED_Running = false;
                 return;
             }
 
@@ -3005,11 +3006,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             V6Tag invTag = new V6Tag(inv);
             if (invTag.Cancel)
             {
-                this.ShowWarningMessage(V6Text.CheckData);
+                this.ShowWarningMessage(invTag.DescriptionLang(V6Setting.IsVietnamese));
                 Mode = V6Mode.Edit;
                 detail1.MODE = V6Mode.View;
                 detail2.MODE = V6Mode.View;
                 GoToFirstFocus(txtMa_sonb);
+                _AED_Running = false;
                 return;
             }
 

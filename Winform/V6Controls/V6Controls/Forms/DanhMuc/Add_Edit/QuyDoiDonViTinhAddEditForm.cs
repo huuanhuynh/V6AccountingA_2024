@@ -87,6 +87,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             GiaiThich();
         }
 
+        private void txtHE_SOM_TextChanged(object sender, EventArgs e)
+        {
+            if (txtHE_SOM.Value == 0) return;
+            GiaiThich();
+        }
+
         private void GiaiThich()
         {
             if (IsReady)
@@ -105,6 +111,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private void txtHE_SOM_V6LostFocus(object sender)
         {
             if (txtHE_SOM.Value == 0) txtHE_SOM.Value = 1;
+            GiaiThich();
         }
+        
     }
 }

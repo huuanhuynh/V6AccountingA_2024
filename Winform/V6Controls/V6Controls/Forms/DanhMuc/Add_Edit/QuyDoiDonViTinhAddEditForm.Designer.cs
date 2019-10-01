@@ -38,6 +38,7 @@
             this.lblGiaiThich = new System.Windows.Forms.Label();
             this.lblHeSo = new System.Windows.Forms.Label();
             this.txtHE_SOM = new V6Controls.V6NumberTextBox();
+            this.txtHE_SO = new V6Controls.V6NumberTextBox();
             this.txtHE_SOT = new V6Controls.V6NumberTextBox();
             this.TxtDvt = new V6Controls.V6VvarTextBox();
             this.lblDVTTonKho = new System.Windows.Forms.Label();
@@ -74,7 +75,6 @@
             this.v6ColorDateTimePick2 = new V6Controls.V6DateTimeColor();
             this.v6ColorDateTimePick1 = new V6Controls.V6DateTimeColor();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.txtHE_SO = new V6Controls.V6NumberTextBox();
             this.groupBox1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -254,7 +254,34 @@
             0,
             0});
             this.txtHE_SOM.V6LostFocus += new V6Controls.ControlEventHandle(this.txtHE_SOM_V6LostFocus);
-            this.txtHE_SOM.TextChanged += new System.EventHandler(this.txtHE_SOT_TextChanged);
+            this.txtHE_SOM.TextChanged += new System.EventHandler(this.txtHE_SOM_TextChanged);
+            // 
+            // txtHE_SO
+            // 
+            this.txtHE_SO.AccessibleName = "HE_SO";
+            this.txtHE_SO.BackColor = System.Drawing.Color.White;
+            this.txtHE_SO.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtHE_SO.DecimalPlaces = 0;
+            this.txtHE_SO.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtHE_SO.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtHE_SO.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtHE_SO.HoverColor = System.Drawing.Color.Yellow;
+            this.txtHE_SO.LeaveColor = System.Drawing.Color.White;
+            this.txtHE_SO.Location = new System.Drawing.Point(124, 117);
+            this.txtHE_SO.Margin = new System.Windows.Forms.Padding(4);
+            this.txtHE_SO.Name = "txtHE_SO";
+            this.txtHE_SO.Size = new System.Drawing.Size(46, 23);
+            this.txtHE_SO.TabIndex = 11;
+            this.txtHE_SO.Text = "0";
+            this.txtHE_SO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtHE_SO.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtHE_SO.Visible = false;
+            this.txtHE_SO.V6LostFocus += new V6Controls.ControlEventHandle(this.txtHE_SOT_V6LostFocus);
+            this.txtHE_SO.TextChanged += new System.EventHandler(this.txtHE_SOT_TextChanged);
             // 
             // txtHE_SOT
             // 
@@ -855,33 +882,6 @@
             this.tabPage3.Size = new System.Drawing.Size(799, 331);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Thông tin khác";
-            // 
-            // txtHE_SO
-            // 
-            this.txtHE_SO.AccessibleName = "HE_SO";
-            this.txtHE_SO.BackColor = System.Drawing.Color.White;
-            this.txtHE_SO.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtHE_SO.DecimalPlaces = 0;
-            this.txtHE_SO.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtHE_SO.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtHE_SO.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtHE_SO.HoverColor = System.Drawing.Color.Yellow;
-            this.txtHE_SO.LeaveColor = System.Drawing.Color.White;
-            this.txtHE_SO.Location = new System.Drawing.Point(124, 117);
-            this.txtHE_SO.Margin = new System.Windows.Forms.Padding(4);
-            this.txtHE_SO.Name = "txtHE_SO";
-            this.txtHE_SO.Size = new System.Drawing.Size(46, 23);
-            this.txtHE_SO.TabIndex = 11;
-            this.txtHE_SO.Text = "0";
-            this.txtHE_SO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtHE_SO.Value = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.txtHE_SO.Visible = false;
-            this.txtHE_SO.V6LostFocus += new V6Controls.ControlEventHandle(this.txtHE_SOT_V6LostFocus);
-            this.txtHE_SO.TextChanged += new System.EventHandler(this.txtHE_SOT_TextChanged);
             // 
             // QuyDoiDonViTinhAddEditForm
             // 
