@@ -91,43 +91,50 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void LoadReport()
         {
-            if (cboLoaiBieuDo.SelectedValue != null)
+            try
             {
-                var rptFile = cboLoaiBieuDo.SelectedValue.ToString().Trim();
-                string[] fields = cboLoaiReport.SelectedValue.ToString().Trim().Split(',');
-                var tbl = GetChartData(_tbl, fields);
-                var tbl2 = _tbl2.Copy();
-                _rpDoc = new ReportDocument();
-                _rpDoc.Load(rptFile);
-                DataSet ds = new DataSet();
-                ds.Tables.Add(tbl);
-                ds.Tables.Add(tbl2);
-                _rpDoc.SetDataSource(ds);
-
-                //parameters
-                if (_rptParameters != null)
+                if (cboLoaiBieuDo.SelectedValue != null)
                 {
-                    string errors = "";
-                    foreach (KeyValuePair<string, object> item in _rptParameters)
-                    {
-                        try
-                        {
-                            _rpDoc.SetParameterValue(item.Key, item.Value);
-                        }
-                        catch (Exception ex)
-                        {
-                            errors += item.Key + " " + ex.Message + "\n";
-                        }
-                    }
+                    var rptFile = cboLoaiBieuDo.SelectedValue.ToString().Trim();
+                    string[] fields = cboLoaiReport.SelectedValue.ToString().Trim().Split(',');
+                    var tbl = GetChartData(_tbl, fields);
+                    var tbl2 = _tbl2.Copy();
+                    _rpDoc = new ReportDocument();
+                    _rpDoc.Load(rptFile);
+                    DataSet ds = new DataSet();
+                    ds.Tables.Add(tbl);
+                    ds.Tables.Add(tbl2);
+                    _rpDoc.SetDataSource(ds);
 
-                    if (errors.Length > 0)
+                    //parameters
+                    if (_rptParameters != null)
                     {
-                        this.WriteToLog(GetType() + ".LoadReport Set_rptParameters", errors);
-                        this.ShowWarningMessage("Lỗi tham số:\n" + errors);
+                        string errors = "";
+                        foreach (KeyValuePair<string, object> item in _rptParameters)
+                        {
+                            try
+                            {
+                                _rpDoc.SetParameterValue(item.Key, item.Value);
+                            }
+                            catch (Exception ex)
+                            {
+                                errors += item.Key + " " + ex.Message + "\n";
+                            }
+                        }
+
+                        if (errors.Length > 0)
+                        {
+                            this.WriteToLog(GetType() + ".LoadReport Set_rptParameters", errors);
+                            this.ShowWarningMessage("Lỗi tham số:\n" + errors);
+                        }
                     }
+                    crystalReportViewer1.ReportSource = _rpDoc;
+                    crystalReportViewer1.Show();
                 }
-                crystalReportViewer1.ReportSource = _rpDoc;
-                crystalReportViewer1.Show();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".LoadReport", ex);
             }
         }
 
