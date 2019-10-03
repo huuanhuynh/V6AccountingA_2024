@@ -1966,6 +1966,12 @@
     <Compile Include="FormManager\ReportManager\Filter\AAPPR_BC1_IN1.Designer.cs">
       <DependentUpon>AAPPR_BC1_IN1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AKBKVTSL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\AKBKVTSL.designer.cs">
+      <DependentUpon>AKBKVTSL.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\ImportXls\XLSAR1_Filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -3532,11 +3538,11 @@
     <Compile Include="FormManager\ReportManager\Filter\AINCD1SLF5.designer.cs">
       <DependentUpon>AINCD1SLF5.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\AKBKVTSL.cs">
+    <Compile Include="FormManager\ReportManager\Filter\AKBKVTSL0.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\Filter\AKBKVTSL.designer.cs">
-      <DependentUpon>AKBKVTSL.cs</DependentUpon>
+    <Compile Include="FormManager\ReportManager\Filter\AKBKVTSL0.designer.cs">
+      <DependentUpon>AKBKVTSL0.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\Filter\AKBKVT.cs">
       <SubType>UserControl</SubType>
@@ -6627,6 +6633,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AAPPR_BC1_IN1.resx">
       <DependentUpon>AAPPR_BC1_IN1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AKBKVTSL.resx">
+      <DependentUpon>AKBKVTSL.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\ImportXls\XLSAR1_Filter.resx">
       <DependentUpon>XLSAR1_Filter.cs</DependentUpon>
     </EmbeddedResource>
@@ -7413,8 +7422,8 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AINCD1SLF5.resx">
       <DependentUpon>AINCD1SLF5.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\Filter\AKBKVTSL.resx">
-      <DependentUpon>AKBKVTSL.cs</DependentUpon>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\AKBKVTSL0.resx">
+      <DependentUpon>AKBKVTSL0.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\AKBKVT.resx">
       <DependentUpon>AKBKVT.cs</DependentUpon>

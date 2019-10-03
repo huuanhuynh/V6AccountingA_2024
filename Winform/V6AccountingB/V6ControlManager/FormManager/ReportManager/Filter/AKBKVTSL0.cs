@@ -4,15 +4,16 @@ using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class AKBKVTSL : FilterBase
+    public partial class AKBKVTSL0 : FilterBase
     {
-        public AKBKVTSL()
+        public AKBKVTSL0()
         {
             InitializeComponent();
 
             Txttype.Text = "*";
             
-            F3 = true;
+            F3 = false;
+            F5 = true;
 
             TxtMakho.VvarTextBox.Text = (V6Setting.M_Ma_kho ?? "").Trim();
             dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
@@ -23,22 +24,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 txtMaDvcs.Enabled = false;
             }
+
             Txtnh_vt1.VvarTextBox.SetInitFilter("loai_nh=1");
             Txtnh_vt2.VvarTextBox.SetInitFilter("loai_nh=2");
             Txtnh_vt3.VvarTextBox.SetInitFilter("loai_nh=3");
             Txtnh_vt4.VvarTextBox.SetInitFilter("loai_nh=4");
             Txtnh_vt5.VvarTextBox.SetInitFilter("loai_nh=5");
             Txtnh_vt6.VvarTextBox.SetInitFilter("loai_nh=6");
-
-            Txtnh_kh1.VvarTextBox.SetInitFilter("loai_nh=1");
-            Txtnh_kh2.VvarTextBox.SetInitFilter("loai_nh=2");
-            Txtnh_kh3.VvarTextBox.SetInitFilter("loai_nh=3");
-            Txtnh_kh4.VvarTextBox.SetInitFilter("loai_nh=4");
-            Txtnh_kh5.VvarTextBox.SetInitFilter("loai_nh=5");
-            Txtnh_kh6.VvarTextBox.SetInitFilter("loai_nh=6");
-            lineNH_KH7.VvarTextBox.SetInitFilter("loai_nh=7");
-            lineNH_KH8.VvarTextBox.SetInitFilter("loai_nh=8");
-            lineNH_KH9.VvarTextBox.SetInitFilter("loai_nh=9");
 
             SetHideFields("V");
         }
@@ -99,22 +91,16 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             var and = radAnd.Checked;
             
             var cKey = "";
-           
+            var cKey_SD = "";
 
             var key0 = GetFilterStringByFields(new List<string>()
             {
-                "MA_DVCS","MA_KHO","MA_VT","MA_BPHT","MA_BP", "MA_KH", "MA_VV","MA_SP","MA_PHI","MA_KU","MA_CT","MA_LO","MA_SONB"
+                "MA_DVCS","MA_KHO","MA_VT"
             }, and);
             var key1 = GetFilterStringByFields(new List<string>()
             {
                 "NH_VT1","NH_VT2","NH_VT3", "NH_VT4","NH_VT5","NH_VT6", "MA_QG", "MA_NSX", "TK_VT"
             }, and);
-
-            var key2 = GetFilterStringByFields(new List<string>()
-            {
-               "NH_KH1","NH_KH2","NH_KH3","NH_KH4","NH_KH5","NH_KH6","NH_KH7","NH_KH8","NH_KH9"
-            }, and);
-            
           
             if (!string.IsNullOrEmpty(key0))
             {
@@ -136,11 +122,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 cKey = cKey + string.Format(" and ma_vt in (select ma_vt from alvt where {0} )", key1);
             }
-            if (!string.IsNullOrEmpty(key2))
-            {
-                cKey = cKey + string.Format(" and ma_kh in (select ma_kh from alkh where {0} )", key2);
-            }
-          
+
+            cKey_SD += cKey;
 
 
             result.Add(new SqlParameter("@Condition", cKey));

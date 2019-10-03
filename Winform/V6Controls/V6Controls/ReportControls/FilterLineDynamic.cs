@@ -513,6 +513,7 @@ namespace V6ReportControls
             Controls.Add(_checkBox);
             
             comboBox1.Visible = false;
+            checkBox1.Checked = true;
             checkBox1.Visible = false;
 
             _checkBox.Click += FilterLineDynamic_Click;
