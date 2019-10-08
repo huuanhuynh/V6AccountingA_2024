@@ -24,7 +24,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         public override List<SqlParameter> GetFilterParameters()
         {
 
-            if (txtMaDvcs.Text.Trim() == "" || txtTK.Text.Trim() == "" || txtMaSoNB.Text.Trim() == "" || txtMaCt.Text.Trim() == "")
+            if (txtMaDVCS.Text.Trim() == "" || txtTK.Text.Trim() == "" || txtMaSoNB.Text.Trim() == "" || txtMaCt.Text.Trim() == "")
             {
                 throw new Exception(V6Text.CheckInfor);
             }
@@ -40,7 +40,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             //@Save_voucher CHAR(1),
             //@Deleto CHAR(1)
             result.Add(new SqlParameter("@tk_336_from", txtTK.Text.Trim()));
-            result.Add(new SqlParameter("@ma_dvcs_from", txtMaDvcs.Text.Trim()));
+            result.Add(new SqlParameter("@ma_dvcs_from", txtMaDVCS.Text.Trim()));
             result.Add(new SqlParameter("@ma_ct_from", txtMaCt.Text.Trim()));
             result.Add(new SqlParameter("@Ma_sonb_GL1", txtMaSoNB.Text));
             result.Add(new SqlParameter("@ngay_ct1", v6ColorDateTimePick1.YYYYMMDD));

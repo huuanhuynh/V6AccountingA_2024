@@ -41,7 +41,7 @@
             this.v6Label5 = new V6Controls.V6Label();
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label1 = new V6Controls.V6Label();
-            this.txtMadvcs = new V6Controls.V6VvarTextBox();
+            this.txtMaDVCS = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
             this.lblMaDVCS = new V6Controls.V6Label();
             this.txtMaKh = new V6Controls.V6VvarTextBox();
@@ -208,24 +208,24 @@
             // 
             // txtMadvcs
             // 
-            this.txtMadvcs.AccessibleName = "ma_dvcs";
-            this.txtMadvcs.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.txtMadvcs.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtMadvcs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMadvcs.BrotherFields = "ten_dvcs";
-            this.txtMadvcs.CheckNotEmpty = true;
-            this.txtMadvcs.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtMadvcs.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtMadvcs.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtMadvcs.HoverColor = System.Drawing.Color.Yellow;
-            this.txtMadvcs.LeaveColor = System.Drawing.Color.White;
-            this.txtMadvcs.Location = new System.Drawing.Point(89, 51);
-            this.txtMadvcs.Name = "txtMadvcs";
-            this.txtMadvcs.ReadOnly = true;
-            this.txtMadvcs.Size = new System.Drawing.Size(100, 20);
-            this.txtMadvcs.TabIndex = 25;
-            this.txtMadvcs.TabStop = false;
-            this.txtMadvcs.VVar = "ma_dvcs";
+            this.txtMaDVCS.AccessibleName = "MA_DVCS";
+            this.txtMaDVCS.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtMaDVCS.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaDVCS.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMaDVCS.BrotherFields = "ten_dvcs";
+            this.txtMaDVCS.CheckNotEmpty = true;
+            this.txtMaDVCS.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaDVCS.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaDVCS.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaDVCS.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaDVCS.LeaveColor = System.Drawing.Color.White;
+            this.txtMaDVCS.Location = new System.Drawing.Point(89, 51);
+            this.txtMaDVCS.Name = "txtMaDVCS";
+            this.txtMaDVCS.ReadOnly = true;
+            this.txtMaDVCS.Size = new System.Drawing.Size(100, 20);
+            this.txtMaDVCS.TabIndex = 25;
+            this.txtMaDVCS.TabStop = false;
+            this.txtMaDVCS.VVar = "ma_dvcs";
             // 
             // v6ColorTextBox3
             // 
@@ -476,7 +476,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.txtMadvcs);
+            this.Controls.Add(this.txtMaDVCS);
             this.Controls.Add(this.v6ColorTextBox3);
             this.Controls.Add(this.lblMaDVCS);
             this.Controls.Add(this.txtMaKh);
@@ -525,7 +525,7 @@
         private V6Controls.V6Label v6Label5;
         private V6Controls.V6Label v6Label3;
         private V6Controls.V6Label v6Label1;
-        private V6Controls.V6VvarTextBox txtMadvcs;
+        private V6Controls.V6VvarTextBox txtMaDVCS;
         private V6Controls.V6ColorTextBox v6ColorTextBox3;
         private V6Controls.V6Label lblMaDVCS;
         private V6Controls.V6VvarTextBox txtMaKh;

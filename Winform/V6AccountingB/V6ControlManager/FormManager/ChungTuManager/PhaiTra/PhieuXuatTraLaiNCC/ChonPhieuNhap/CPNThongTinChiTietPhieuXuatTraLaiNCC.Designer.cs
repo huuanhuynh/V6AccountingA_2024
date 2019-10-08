@@ -34,8 +34,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             this.panelFilter2 = new V6ReportControls.PanelFilter();
             this.v6ColorTextBox4 = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox5 = new V6Controls.V6VvarTextBox();
-            this.v6ColorTextBox6 = new V6Controls.V6VvarTextBox();
-            this.v6ColorTextBox3 = new V6Controls.V6VvarTextBox();
+            this.txtMaHD = new V6Controls.V6VvarTextBox();
+            this.txtMaSP = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox24 = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox25 = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox26 = new V6Controls.V6VvarTextBox();
@@ -73,8 +73,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             this.groupBox1.Controls.Add(this.panelFilter2);
             this.groupBox1.Controls.Add(this.v6ColorTextBox4);
             this.groupBox1.Controls.Add(this.v6ColorTextBox5);
-            this.groupBox1.Controls.Add(this.v6ColorTextBox6);
-            this.groupBox1.Controls.Add(this.v6ColorTextBox3);
+            this.groupBox1.Controls.Add(this.txtMaHD);
+            this.groupBox1.Controls.Add(this.txtMaSP);
             this.groupBox1.Controls.Add(this.v6ColorTextBox24);
             this.groupBox1.Controls.Add(this.v6ColorTextBox25);
             this.groupBox1.Controls.Add(this.v6ColorTextBox26);
@@ -121,7 +121,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             // 
             // v6ColorTextBox4
             // 
-            this.v6ColorTextBox4.AccessibleName = "ma_td3";
+            this.v6ColorTextBox4.AccessibleName = "MA_TD3";
             this.v6ColorTextBox4.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox4.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox4.EnterColor = System.Drawing.Color.PaleGreen;
@@ -136,7 +136,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             // 
             // v6ColorTextBox5
             // 
-            this.v6ColorTextBox5.AccessibleName = "ma_vitri";
+            this.v6ColorTextBox5.AccessibleName = "MA_VITRI";
             this.v6ColorTextBox5.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox5.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox5.EnterColor = System.Drawing.Color.PaleGreen;
@@ -148,40 +148,43 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             this.v6ColorTextBox5.Name = "v6ColorTextBox5";
             this.v6ColorTextBox5.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox5.TabIndex = 27;
+            this.v6ColorTextBox5.VVar = "MA_VITRI";
             // 
-            // v6ColorTextBox6
+            // txtMaHD
             // 
-            this.v6ColorTextBox6.AccessibleName = "ma_hd";
-            this.v6ColorTextBox6.BackColor = System.Drawing.SystemColors.Window;
-            this.v6ColorTextBox6.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox6.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox6.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox6.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox6.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox6.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox6.Location = new System.Drawing.Point(368, 97);
-            this.v6ColorTextBox6.Name = "v6ColorTextBox6";
-            this.v6ColorTextBox6.Size = new System.Drawing.Size(132, 20);
-            this.v6ColorTextBox6.TabIndex = 23;
+            this.txtMaHD.AccessibleName = "MA_HD";
+            this.txtMaHD.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaHD.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaHD.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaHD.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaHD.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaHD.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaHD.LeaveColor = System.Drawing.Color.White;
+            this.txtMaHD.Location = new System.Drawing.Point(368, 97);
+            this.txtMaHD.Name = "txtMaHD";
+            this.txtMaHD.Size = new System.Drawing.Size(132, 20);
+            this.txtMaHD.TabIndex = 23;
+            this.txtMaHD.VVar = "MA_HD";
             // 
-            // v6ColorTextBox3
+            // txtMaSP
             // 
-            this.v6ColorTextBox3.AccessibleName = "ma_sp";
-            this.v6ColorTextBox3.BackColor = System.Drawing.SystemColors.Window;
-            this.v6ColorTextBox3.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox3.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox3.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox3.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox3.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox3.Location = new System.Drawing.Point(368, 175);
-            this.v6ColorTextBox3.Name = "v6ColorTextBox3";
-            this.v6ColorTextBox3.Size = new System.Drawing.Size(132, 20);
-            this.v6ColorTextBox3.TabIndex = 29;
+            this.txtMaSP.AccessibleName = "MA_SP";
+            this.txtMaSP.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaSP.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaSP.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaSP.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaSP.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaSP.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaSP.LeaveColor = System.Drawing.Color.White;
+            this.txtMaSP.Location = new System.Drawing.Point(368, 175);
+            this.txtMaSP.Name = "txtMaSP";
+            this.txtMaSP.Size = new System.Drawing.Size(132, 20);
+            this.txtMaSP.TabIndex = 29;
+            this.txtMaSP.VVar = "MA_VT";
             // 
             // v6ColorTextBox24
             // 
-            this.v6ColorTextBox24.AccessibleName = "ma_ku";
+            this.v6ColorTextBox24.AccessibleName = "MA_KU";
             this.v6ColorTextBox24.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox24.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox24.EnterColor = System.Drawing.Color.PaleGreen;
@@ -193,6 +196,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             this.v6ColorTextBox24.Name = "v6ColorTextBox24";
             this.v6ColorTextBox24.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox24.TabIndex = 25;
+            this.v6ColorTextBox24.VVar = "MA_KU";
             // 
             // v6ColorTextBox25
             // 
@@ -208,10 +212,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             this.v6ColorTextBox25.Name = "v6ColorTextBox25";
             this.v6ColorTextBox25.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox25.TabIndex = 21;
+            this.v6ColorTextBox25.VVar = "MA_VV";
             // 
             // v6ColorTextBox26
             // 
-            this.v6ColorTextBox26.AccessibleName = "tk_gv";
+            this.v6ColorTextBox26.AccessibleName = "TK_GV";
             this.v6ColorTextBox26.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox26.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox26.EnterColor = System.Drawing.Color.PaleGreen;
@@ -223,10 +228,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             this.v6ColorTextBox26.Name = "v6ColorTextBox26";
             this.v6ColorTextBox26.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox26.TabIndex = 19;
+            this.v6ColorTextBox26.VVar = "TK";
             // 
             // v6ColorTextBox27
             // 
-            this.v6ColorTextBox27.AccessibleName = "ma_vt";
+            this.v6ColorTextBox27.AccessibleName = "MA_VT";
             this.v6ColorTextBox27.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox27.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox27.EnterColor = System.Drawing.Color.PaleGreen;
@@ -238,10 +244,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             this.v6ColorTextBox27.Name = "v6ColorTextBox27";
             this.v6ColorTextBox27.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox27.TabIndex = 17;
+            this.v6ColorTextBox27.VVar = "MA_VT";
             // 
             // v6ColorTextBox2
             // 
-            this.v6ColorTextBox2.AccessibleName = "ma_td2";
+            this.v6ColorTextBox2.AccessibleName = "MA_TD2";
             this.v6ColorTextBox2.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox2.EnterColor = System.Drawing.Color.PaleGreen;
@@ -256,7 +263,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             // 
             // v6ColorTextBox28
             // 
-            this.v6ColorTextBox28.AccessibleName = "ma_bpht";
+            this.v6ColorTextBox28.AccessibleName = "MA_BPHT";
             this.v6ColorTextBox28.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox28.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox28.EnterColor = System.Drawing.Color.PaleGreen;
@@ -268,10 +275,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             this.v6ColorTextBox28.Name = "v6ColorTextBox28";
             this.v6ColorTextBox28.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox28.TabIndex = 11;
+            this.v6ColorTextBox28.VVar = "MA_BPHT";
             // 
             // v6ColorTextBox29
             // 
-            this.v6ColorTextBox29.AccessibleName = "tk_vt";
+            this.v6ColorTextBox29.AccessibleName = "TK_VT";
             this.v6ColorTextBox29.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox29.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox29.EnterColor = System.Drawing.Color.PaleGreen;
@@ -283,10 +291,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             this.v6ColorTextBox29.Name = "v6ColorTextBox29";
             this.v6ColorTextBox29.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox29.TabIndex = 5;
+            this.v6ColorTextBox29.VVar = "TK";
             // 
             // v6ColorTextBox1
             // 
-            this.v6ColorTextBox1.AccessibleName = "ma_lo";
+            this.v6ColorTextBox1.AccessibleName = "MA_LO";
             this.v6ColorTextBox1.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
@@ -298,10 +307,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             this.v6ColorTextBox1.Name = "v6ColorTextBox1";
             this.v6ColorTextBox1.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox1.TabIndex = 13;
+            this.v6ColorTextBox1.VVar = "MA_LO";
             // 
             // v6ColorTextBox30
             // 
-            this.v6ColorTextBox30.AccessibleName = "ma_td1";
+            this.v6ColorTextBox30.AccessibleName = "MA_TD1";
             this.v6ColorTextBox30.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox30.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox30.EnterColor = System.Drawing.Color.PaleGreen;
@@ -316,7 +326,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             // 
             // v6ColorTextBox31
             // 
-            this.v6ColorTextBox31.AccessibleName = "tk_dt";
+            this.v6ColorTextBox31.AccessibleName = "TK_DT";
             this.v6ColorTextBox31.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox31.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox31.EnterColor = System.Drawing.Color.PaleGreen;
@@ -328,10 +338,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             this.v6ColorTextBox31.Name = "v6ColorTextBox31";
             this.v6ColorTextBox31.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox31.TabIndex = 3;
+            this.v6ColorTextBox31.VVar = "TK";
             // 
             // v6ColorTextBox32
             // 
-            this.v6ColorTextBox32.AccessibleName = "ma_phi";
+            this.v6ColorTextBox32.AccessibleName = "MA_PHI";
             this.v6ColorTextBox32.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox32.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox32.EnterColor = System.Drawing.Color.PaleGreen;
@@ -343,6 +354,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             this.v6ColorTextBox32.Name = "v6ColorTextBox32";
             this.v6ColorTextBox32.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox32.TabIndex = 7;
+            this.v6ColorTextBox32.VVar = "MA_PHI";
             // 
             // v6Label4
             // 
@@ -356,7 +368,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             // 
             // v6ColorTextBox33
             // 
-            this.v6ColorTextBox33.AccessibleName = "ma_kho_i";
+            this.v6ColorTextBox33.AccessibleName = "MA_KHO_I";
             this.v6ColorTextBox33.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox33.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox33.EnterColor = System.Drawing.Color.PaleGreen;
@@ -368,6 +380,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             this.v6ColorTextBox33.Name = "v6ColorTextBox33";
             this.v6ColorTextBox33.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox33.TabIndex = 1;
+            this.v6ColorTextBox33.VVar = "MA_KHO";
             // 
             // v6Label9
             // 
@@ -552,7 +565,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
         private V6Label v6Label2;
         private V6Label v6Label1;
         private V6VvarTextBox v6ColorTextBox5;
-        private V6VvarTextBox v6ColorTextBox6;
+        private V6VvarTextBox txtMaHD;
         private V6VvarTextBox v6ColorTextBox24;
         private V6VvarTextBox v6ColorTextBox25;
         private V6VvarTextBox v6ColorTextBox26;
@@ -564,7 +577,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
         private V6VvarTextBox v6ColorTextBox32;
         private V6VvarTextBox v6ColorTextBox33;
         private V6VvarTextBox v6ColorTextBox4;
-        private V6VvarTextBox v6ColorTextBox3;
+        private V6VvarTextBox txtMaSP;
         private V6VvarTextBox v6ColorTextBox2;
         private V6VvarTextBox v6ColorTextBox1;
         private V6ReportControls.PanelFilter panelFilter2;

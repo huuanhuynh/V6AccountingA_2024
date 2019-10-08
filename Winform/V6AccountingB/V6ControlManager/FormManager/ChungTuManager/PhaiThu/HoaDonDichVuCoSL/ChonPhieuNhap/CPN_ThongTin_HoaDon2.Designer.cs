@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtma_gd = new V6Controls.V6ColorTextBox();
+            this.txtma_gd = new V6Controls.V6VvarTextBox();
             this.v6Label16 = new V6Controls.V6Label();
             this.panelFilter1 = new V6ReportControls.PanelFilter();
             this.chkLike = new V6Controls.V6CheckBox();
@@ -105,6 +105,7 @@
             this.txtma_gd.Name = "txtma_gd";
             this.txtma_gd.Size = new System.Drawing.Size(132, 20);
             this.txtma_gd.TabIndex = 30;
+            this.txtma_gd.VVar = "MA_GD";
             // 
             // v6Label16
             // 
@@ -139,7 +140,7 @@
             // 
             // taiKhoanThue
             // 
-            this.taiKhoanThue.AccessibleName = "tk_thue";
+            this.taiKhoanThue.AccessibleName = "TK_THUE";
             this.taiKhoanThue.BackColor = System.Drawing.SystemColors.Window;
             this.taiKhoanThue.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.taiKhoanThue.EnterColor = System.Drawing.Color.PaleGreen;
@@ -151,6 +152,7 @@
             this.taiKhoanThue.Name = "taiKhoanThue";
             this.taiKhoanThue.Size = new System.Drawing.Size(132, 20);
             this.taiKhoanThue.TabIndex = 21;
+            this.taiKhoanThue.VVar = "TK";
             // 
             // soTienDen
             // 
@@ -215,6 +217,7 @@
             this.maNhanVien.Name = "maNhanVien";
             this.maNhanVien.Size = new System.Drawing.Size(132, 20);
             this.maNhanVien.TabIndex = 11;
+            this.maNhanVien.VVar = "MA_NVIEN";
             // 
             // maBoPhan
             // 
@@ -230,6 +233,7 @@
             this.maBoPhan.Name = "maBoPhan";
             this.maBoPhan.Size = new System.Drawing.Size(132, 20);
             this.maBoPhan.TabIndex = 5;
+            this.maBoPhan.VVar = "MA_BP";
             // 
             // soTienTu
             // 
@@ -283,6 +287,7 @@
             this.maThue.Name = "maThue";
             this.maThue.Size = new System.Drawing.Size(132, 20);
             this.maThue.TabIndex = 7;
+            this.maThue.VVar = "MA_THUE";
             // 
             // ctTuSo
             // 
@@ -437,7 +442,7 @@
         private V6Controls.V6CheckBox chkLike;
         private V6ReportControls.PanelFilter panelFilter1;
         public V6Controls.V6VvarTextBox maKhach;
-        private V6Controls.V6ColorTextBox txtma_gd;
+        private V6Controls.V6VvarTextBox txtma_gd;
         private V6Controls.V6Label v6Label16;
     }
 }

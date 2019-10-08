@@ -151,7 +151,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
             // 
             // txtMaDVCS
             // 
-            this.txtMaDVCS.AccessibleName = "ma_dvcs";
+            this.txtMaDVCS.AccessibleName = "MA_DVCS";
             this.txtMaDVCS.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaDVCS.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaDVCS.EnterColor = System.Drawing.Color.PaleGreen;
@@ -163,6 +163,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
             this.txtMaDVCS.Name = "txtMaDVCS";
             this.txtMaDVCS.Size = new System.Drawing.Size(132, 20);
             this.txtMaDVCS.TabIndex = 12;
+            this.txtMaDVCS.VVar = "MA_DVCS";
             // 
             // maBoPhan
             // 
@@ -177,6 +178,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
             this.maBoPhan.Name = "maBoPhan";
             this.maBoPhan.Size = new System.Drawing.Size(132, 20);
             this.maBoPhan.TabIndex = 32;
+            this.maBoPhan.VVar = "MA_BP";
             // 
             // ctDenSo
             // 
@@ -221,6 +223,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
             this.maNhanVienBH.Name = "maNhanVienBH";
             this.maNhanVienBH.Size = new System.Drawing.Size(132, 20);
             this.maNhanVienBH.TabIndex = 22;
+            this.maNhanVienBH.VVar = "MA_NVIEN";
             // 
             // soTienTu
             // 

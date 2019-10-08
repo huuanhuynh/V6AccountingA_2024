@@ -113,7 +113,7 @@
             // 
             // v6ColorTextBox4
             // 
-            this.v6ColorTextBox4.AccessibleName = "ma_td3";
+            this.v6ColorTextBox4.AccessibleName = "MA_TD3";
             this.v6ColorTextBox4.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox4.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox4.EnterColor = System.Drawing.Color.PaleGreen;
@@ -128,7 +128,7 @@
             // 
             // v6ColorTextBox5
             // 
-            this.v6ColorTextBox5.AccessibleName = "ma_td2";
+            this.v6ColorTextBox5.AccessibleName = "MA_TD2";
             this.v6ColorTextBox5.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox5.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox5.EnterColor = System.Drawing.Color.PaleGreen;
@@ -143,7 +143,7 @@
             // 
             // txtMaSanPham
             // 
-            this.txtMaSanPham.AccessibleName = "ma_sp";
+            this.txtMaSanPham.AccessibleName = "MA_SP";
             this.txtMaSanPham.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaSanPham.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaSanPham.CheckOnLeave = false;
@@ -160,7 +160,7 @@
             // 
             // v6ColorTextBox24
             // 
-            this.v6ColorTextBox24.AccessibleName = "ma_td1";
+            this.v6ColorTextBox24.AccessibleName = "MA_TD1";
             this.v6ColorTextBox24.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox24.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox24.EnterColor = System.Drawing.Color.PaleGreen;
@@ -175,7 +175,7 @@
             // 
             // v6ColorTextBox25
             // 
-            this.v6ColorTextBox25.AccessibleName = "ma_vitri";
+            this.v6ColorTextBox25.AccessibleName = "MA_VITRI";
             this.v6ColorTextBox25.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox25.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox25.CheckOnLeave = false;
@@ -192,7 +192,7 @@
             // 
             // v6ColorTextBox26
             // 
-            this.v6ColorTextBox26.AccessibleName = "ma_ku";
+            this.v6ColorTextBox26.AccessibleName = "MA_KU";
             this.v6ColorTextBox26.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox26.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox26.CheckOnLeave = false;
@@ -209,7 +209,7 @@
             // 
             // maHopDong
             // 
-            this.maHopDong.AccessibleName = "ma_hd";
+            this.maHopDong.AccessibleName = "MA_HD";
             this.maHopDong.BackColor = System.Drawing.SystemColors.Window;
             this.maHopDong.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.maHopDong.CheckOnLeave = false;
@@ -226,7 +226,7 @@
             // 
             // v6ColorTextBox28
             // 
-            this.v6ColorTextBox28.AccessibleName = "ma_bpht";
+            this.v6ColorTextBox28.AccessibleName = "MA_BPHT";
             this.v6ColorTextBox28.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox28.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox28.CheckOnLeave = false;
@@ -277,7 +277,7 @@
             // 
             // v6ColorTextBox30
             // 
-            this.v6ColorTextBox30.AccessibleName = "ma_phi";
+            this.v6ColorTextBox30.AccessibleName = "MA_PHI";
             this.v6ColorTextBox30.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox30.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox30.CheckOnLeave = false;
@@ -294,7 +294,7 @@
             // 
             // maVatTu
             // 
-            this.maVatTu.AccessibleName = "ma_vt";
+            this.maVatTu.AccessibleName = "MA_VT";
             this.maVatTu.BackColor = System.Drawing.SystemColors.Window;
             this.maVatTu.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.maVatTu.CheckOnLeave = false;
@@ -328,7 +328,7 @@
             // 
             // v6ColorTextBox33
             // 
-            this.v6ColorTextBox33.AccessibleName = "ma_kho_i";
+            this.v6ColorTextBox33.AccessibleName = "MA_KHO_I";
             this.v6ColorTextBox33.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox33.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox33.CheckOnLeave = false;

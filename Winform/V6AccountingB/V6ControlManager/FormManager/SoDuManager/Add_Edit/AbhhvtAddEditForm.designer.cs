@@ -467,7 +467,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // v6ColorTextBox19
             // 
-            this.v6ColorTextBox19.AccessibleName = "ma_td3";
+            this.v6ColorTextBox19.AccessibleName = "MA_TD3";
             this.v6ColorTextBox19.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.v6ColorTextBox19.BackColor = System.Drawing.SystemColors.Window;
@@ -485,7 +485,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // v6ColorTextBox20
             // 
-            this.v6ColorTextBox20.AccessibleName = "ma_td2";
+            this.v6ColorTextBox20.AccessibleName = "MA_TD2";
             this.v6ColorTextBox20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.v6ColorTextBox20.BackColor = System.Drawing.SystemColors.Window;
@@ -503,7 +503,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // v6ColorTextBox22
             // 
-            this.v6ColorTextBox22.AccessibleName = "ma_td1";
+            this.v6ColorTextBox22.AccessibleName = "MA_TD1";
             this.v6ColorTextBox22.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.v6ColorTextBox22.BackColor = System.Drawing.SystemColors.Window;

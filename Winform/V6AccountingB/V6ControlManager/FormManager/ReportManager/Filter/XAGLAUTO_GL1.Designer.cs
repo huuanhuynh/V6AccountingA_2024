@@ -40,7 +40,7 @@
             this.radOr = new System.Windows.Forms.RadioButton();
             this.radAnd = new System.Windows.Forms.RadioButton();
             this.lblMaDVCS = new System.Windows.Forms.Label();
-            this.txtMaDvcs = new V6Controls.V6VvarTextBox();
+            this.txtMaDVCS = new V6Controls.V6VvarTextBox();
             this.txtMaSoNB = new V6Controls.V6VvarTextBox();
             this.txtTK = new V6Controls.V6VvarTextBox();
             this.chkXoaDuLieuCu = new System.Windows.Forms.CheckBox();
@@ -197,21 +197,21 @@
             // 
             // txtMaDvcs
             // 
-            this.txtMaDvcs.AccessibleName = "MA_DVCS";
-            this.txtMaDvcs.BackColor = System.Drawing.SystemColors.Window;
-            this.txtMaDvcs.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtMaDvcs.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtMaDvcs.CheckNotEmpty = true;
-            this.txtMaDvcs.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtMaDvcs.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtMaDvcs.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtMaDvcs.HoverColor = System.Drawing.Color.Yellow;
-            this.txtMaDvcs.LeaveColor = System.Drawing.Color.White;
-            this.txtMaDvcs.Location = new System.Drawing.Point(171, 34);
-            this.txtMaDvcs.Name = "txtMaDvcs";
-            this.txtMaDvcs.Size = new System.Drawing.Size(135, 20);
-            this.txtMaDvcs.TabIndex = 3;
-            this.txtMaDvcs.VVar = "MA_DVCS";
+            this.txtMaDVCS.AccessibleName = "MA_DVCS";
+            this.txtMaDVCS.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaDVCS.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaDVCS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMaDVCS.CheckNotEmpty = true;
+            this.txtMaDVCS.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaDVCS.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaDVCS.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaDVCS.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaDVCS.LeaveColor = System.Drawing.Color.White;
+            this.txtMaDVCS.Location = new System.Drawing.Point(171, 34);
+            this.txtMaDVCS.Name = "txtMaDVCS";
+            this.txtMaDVCS.Size = new System.Drawing.Size(135, 20);
+            this.txtMaDVCS.TabIndex = 3;
+            this.txtMaDVCS.VVar = "MA_DVCS";
             // 
             // txtMaSoNB
             // 
@@ -273,7 +273,7 @@
             this.Controls.Add(this.v6ColorDateTimePick1);
             this.Controls.Add(this.txtTK);
             this.Controls.Add(this.txtMaSoNB);
-            this.Controls.Add(this.txtMaDvcs);
+            this.Controls.Add(this.txtMaDVCS);
             this.Controls.Add(this.txtMaCt);
             this.Controls.Add(this.lblMaDVCS);
             this.Controls.Add(this.lblMaCT);
@@ -303,7 +303,7 @@
         private System.Windows.Forms.RadioButton radOr;
         private System.Windows.Forms.RadioButton radAnd;
         private System.Windows.Forms.Label lblMaDVCS;
-        private V6Controls.V6VvarTextBox txtMaDvcs;
+        private V6Controls.V6VvarTextBox txtMaDVCS;
         private V6Controls.V6VvarTextBox txtMaSoNB;
         private V6Controls.V6VvarTextBox txtTK;
         private System.Windows.Forms.CheckBox chkXoaDuLieuCu;

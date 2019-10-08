@@ -37,7 +37,7 @@
             this.v6Label1 = new V6Controls.V6Label();
             this.v6ColorDateTimePick1 = new V6Controls.V6DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtMaDvcs = new V6Controls.V6VvarTextBox();
+            this.txtMaDVCS = new V6Controls.V6VvarTextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,7 +77,7 @@
             this.panel1.Controls.Add(this.v6Label1);
             this.panel1.Controls.Add(this.v6ColorDateTimePick1);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.txtMaDvcs);
+            this.panel1.Controls.Add(this.txtMaDVCS);
             this.panel1.Location = new System.Drawing.Point(1, 1);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(532, 120);
@@ -145,22 +145,22 @@
             // 
             // txtMaDvcs
             // 
-            this.txtMaDvcs.AccessibleName = "MA_DVCS";
-            this.txtMaDvcs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtMaDVCS.AccessibleName = "MA_DVCS";
+            this.txtMaDVCS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMaDvcs.BackColor = System.Drawing.Color.White;
-            this.txtMaDvcs.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtMaDvcs.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtMaDvcs.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtMaDvcs.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtMaDvcs.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtMaDvcs.HoverColor = System.Drawing.Color.Yellow;
-            this.txtMaDvcs.LeaveColor = System.Drawing.Color.White;
-            this.txtMaDvcs.Location = new System.Drawing.Point(111, 61);
-            this.txtMaDvcs.Name = "txtMaDvcs";
-            this.txtMaDvcs.Size = new System.Drawing.Size(202, 20);
-            this.txtMaDvcs.TabIndex = 5;
-            this.txtMaDvcs.VVar = "MA_DVCS";
+            this.txtMaDVCS.BackColor = System.Drawing.Color.White;
+            this.txtMaDVCS.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaDVCS.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMaDVCS.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaDVCS.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaDVCS.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaDVCS.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaDVCS.LeaveColor = System.Drawing.Color.White;
+            this.txtMaDVCS.Location = new System.Drawing.Point(111, 61);
+            this.txtMaDVCS.Name = "txtMaDVCS";
+            this.txtMaDVCS.Size = new System.Drawing.Size(202, 20);
+            this.txtMaDVCS.TabIndex = 5;
+            this.txtMaDVCS.VVar = "MA_DVCS";
             // 
             // AkhungckFilterForm
             // 
@@ -197,7 +197,7 @@
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Panel panel1;
-        private V6Controls.V6VvarTextBox txtMaDvcs;
+        private V6Controls.V6VvarTextBox txtMaDVCS;
         private System.Windows.Forms.Label label1;
         private V6Controls.V6Label v6Label2;
         private V6Controls.V6DateTimePicker v6ColorDateTimePick2;

@@ -35,7 +35,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             txtMaCt.Text = _maCt;
 
             //TxtTk.SetInitFilter("loai_tk=1 and tk_cn=1");
-            txtMaSp.SetInitFilter("loai_vt='55'");
+            txtMaSP.SetInitFilter("loai_vt='55'");
 
             _table2Struct = V6BusinessHelper.GetTableStruct(_table2Name);
 
@@ -324,7 +324,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
             var errors = "";
 
-            if ((txtMaSp.Text.Trim() == "") && (txtMaBpht.Text.Trim() == ""))
+            if ((txtMaSP.Text.Trim() == "") && (txtMaBpht.Text.Trim() == ""))
             {
                 errors += V6Text.Text("CHUANHAP") + "!\r\n";
             }

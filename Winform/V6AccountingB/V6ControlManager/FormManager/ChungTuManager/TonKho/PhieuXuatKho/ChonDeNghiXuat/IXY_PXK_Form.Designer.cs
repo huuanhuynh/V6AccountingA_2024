@@ -33,8 +33,8 @@
             this.panelFilter2 = new V6ReportControls.PanelFilter();
             this.v6ColorTextBox4 = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox5 = new V6Controls.V6VvarTextBox();
-            this.v6ColorTextBox6 = new V6Controls.V6VvarTextBox();
-            this.v6ColorTextBox3 = new V6Controls.V6VvarTextBox();
+            this.txtMaHD = new V6Controls.V6VvarTextBox();
+            this.txtMaSP = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox24 = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox25 = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox26 = new V6Controls.V6VvarTextBox();
@@ -106,7 +106,7 @@
             this.v6Label40 = new V6Controls.V6Label();
             this.lblStatusDescription = new V6Controls.V6Label();
             this.chkNSD = new V6Controls.V6CheckBox();
-            this.txtMaDVCS = new V6Controls.V6ColorTextBox();
+            this.txtMaDVCS = new V6Controls.V6VvarTextBox();
             this.txtNhomVT3 = new V6Controls.V6VvarTextBox();
             this.txtNhomVT2 = new V6Controls.V6VvarTextBox();
             this.txtTrangThai = new V6Controls.V6ColorTextBox();
@@ -149,8 +149,8 @@
             this.grbThongTinChiTiet.Controls.Add(this.panelFilter2);
             this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox4);
             this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox5);
-            this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox6);
-            this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox3);
+            this.grbThongTinChiTiet.Controls.Add(this.txtMaHD);
+            this.grbThongTinChiTiet.Controls.Add(this.txtMaSP);
             this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox24);
             this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox25);
             this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox26);
@@ -198,7 +198,7 @@
             // 
             // v6ColorTextBox4
             // 
-            this.v6ColorTextBox4.AccessibleName = "ma_td3";
+            this.v6ColorTextBox4.AccessibleName = "MA_TD3";
             this.v6ColorTextBox4.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox4.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox4.EnterColor = System.Drawing.Color.PaleGreen;
@@ -213,7 +213,7 @@
             // 
             // v6ColorTextBox5
             // 
-            this.v6ColorTextBox5.AccessibleName = "ma_vitri";
+            this.v6ColorTextBox5.AccessibleName = "MA_VITRI";
             this.v6ColorTextBox5.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox5.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox5.EnterColor = System.Drawing.Color.PaleGreen;
@@ -225,40 +225,43 @@
             this.v6ColorTextBox5.Name = "v6ColorTextBox5";
             this.v6ColorTextBox5.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox5.TabIndex = 27;
+            this.v6ColorTextBox5.VVar = "MA_VITRI";
             // 
-            // v6ColorTextBox6
+            // txtMaHD
             // 
-            this.v6ColorTextBox6.AccessibleName = "ma_hd";
-            this.v6ColorTextBox6.BackColor = System.Drawing.SystemColors.Window;
-            this.v6ColorTextBox6.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox6.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox6.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox6.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox6.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox6.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox6.Location = new System.Drawing.Point(368, 97);
-            this.v6ColorTextBox6.Name = "v6ColorTextBox6";
-            this.v6ColorTextBox6.Size = new System.Drawing.Size(132, 20);
-            this.v6ColorTextBox6.TabIndex = 23;
+            this.txtMaHD.AccessibleName = "MA_HD";
+            this.txtMaHD.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaHD.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaHD.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaHD.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaHD.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaHD.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaHD.LeaveColor = System.Drawing.Color.White;
+            this.txtMaHD.Location = new System.Drawing.Point(368, 97);
+            this.txtMaHD.Name = "txtMaHD";
+            this.txtMaHD.Size = new System.Drawing.Size(132, 20);
+            this.txtMaHD.TabIndex = 23;
+            this.txtMaHD.VVar = "MA_HD";
             // 
-            // v6ColorTextBox3
+            // txtMaSP
             // 
-            this.v6ColorTextBox3.AccessibleName = "ma_sp";
-            this.v6ColorTextBox3.BackColor = System.Drawing.SystemColors.Window;
-            this.v6ColorTextBox3.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox3.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox3.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox3.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox3.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox3.Location = new System.Drawing.Point(368, 175);
-            this.v6ColorTextBox3.Name = "v6ColorTextBox3";
-            this.v6ColorTextBox3.Size = new System.Drawing.Size(132, 20);
-            this.v6ColorTextBox3.TabIndex = 29;
+            this.txtMaSP.AccessibleName = "MA_SP";
+            this.txtMaSP.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaSP.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaSP.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaSP.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaSP.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaSP.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaSP.LeaveColor = System.Drawing.Color.White;
+            this.txtMaSP.Location = new System.Drawing.Point(368, 175);
+            this.txtMaSP.Name = "txtMaSP";
+            this.txtMaSP.Size = new System.Drawing.Size(132, 20);
+            this.txtMaSP.TabIndex = 29;
+            this.txtMaSP.VVar = "MA_VT";
             // 
             // v6ColorTextBox24
             // 
-            this.v6ColorTextBox24.AccessibleName = "ma_ku";
+            this.v6ColorTextBox24.AccessibleName = "MA_KU";
             this.v6ColorTextBox24.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox24.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox24.EnterColor = System.Drawing.Color.PaleGreen;
@@ -270,6 +273,7 @@
             this.v6ColorTextBox24.Name = "v6ColorTextBox24";
             this.v6ColorTextBox24.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox24.TabIndex = 25;
+            this.v6ColorTextBox24.VVar = "MA_KU";
             // 
             // v6ColorTextBox25
             // 
@@ -285,10 +289,11 @@
             this.v6ColorTextBox25.Name = "v6ColorTextBox25";
             this.v6ColorTextBox25.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox25.TabIndex = 21;
+            this.v6ColorTextBox25.VVar = "MA_VV";
             // 
             // v6ColorTextBox26
             // 
-            this.v6ColorTextBox26.AccessibleName = "tk_gv";
+            this.v6ColorTextBox26.AccessibleName = "TK_GV";
             this.v6ColorTextBox26.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox26.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox26.EnterColor = System.Drawing.Color.PaleGreen;
@@ -300,10 +305,11 @@
             this.v6ColorTextBox26.Name = "v6ColorTextBox26";
             this.v6ColorTextBox26.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox26.TabIndex = 19;
+            this.v6ColorTextBox26.VVar = "TK";
             // 
             // v6ColorTextBox27
             // 
-            this.v6ColorTextBox27.AccessibleName = "ma_vt";
+            this.v6ColorTextBox27.AccessibleName = "MA_VT";
             this.v6ColorTextBox27.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox27.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox27.EnterColor = System.Drawing.Color.PaleGreen;
@@ -315,10 +321,11 @@
             this.v6ColorTextBox27.Name = "v6ColorTextBox27";
             this.v6ColorTextBox27.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox27.TabIndex = 17;
+            this.v6ColorTextBox27.VVar = "MA_VT";
             // 
             // v6VvarTextBox1
             // 
-            this.v6VvarTextBox1.AccessibleName = "ma_td2";
+            this.v6VvarTextBox1.AccessibleName = "MA_TD2";
             this.v6VvarTextBox1.BackColor = System.Drawing.SystemColors.Window;
             this.v6VvarTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6VvarTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
@@ -333,7 +340,7 @@
             // 
             // v6ColorTextBox28
             // 
-            this.v6ColorTextBox28.AccessibleName = "ma_bpht";
+            this.v6ColorTextBox28.AccessibleName = "MA_BPHT";
             this.v6ColorTextBox28.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox28.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox28.EnterColor = System.Drawing.Color.PaleGreen;
@@ -345,10 +352,11 @@
             this.v6ColorTextBox28.Name = "v6ColorTextBox28";
             this.v6ColorTextBox28.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox28.TabIndex = 11;
+            this.v6ColorTextBox28.VVar = "MA_BPHT";
             // 
             // v6ColorTextBox29
             // 
-            this.v6ColorTextBox29.AccessibleName = "tk_vt";
+            this.v6ColorTextBox29.AccessibleName = "TK_VT";
             this.v6ColorTextBox29.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox29.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox29.EnterColor = System.Drawing.Color.PaleGreen;
@@ -360,6 +368,7 @@
             this.v6ColorTextBox29.Name = "v6ColorTextBox29";
             this.v6ColorTextBox29.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox29.TabIndex = 5;
+            this.v6ColorTextBox29.VVar = "TK";
             // 
             // v6VvarTextBox2
             // 
@@ -375,10 +384,11 @@
             this.v6VvarTextBox2.Name = "v6VvarTextBox2";
             this.v6VvarTextBox2.Size = new System.Drawing.Size(132, 20);
             this.v6VvarTextBox2.TabIndex = 13;
+            this.v6VvarTextBox2.VVar = "MA_LO";
             // 
             // v6ColorTextBox30
             // 
-            this.v6ColorTextBox30.AccessibleName = "ma_td1";
+            this.v6ColorTextBox30.AccessibleName = "MA_TD1";
             this.v6ColorTextBox30.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox30.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox30.EnterColor = System.Drawing.Color.PaleGreen;
@@ -393,7 +403,7 @@
             // 
             // v6ColorTextBox31
             // 
-            this.v6ColorTextBox31.AccessibleName = "tk_dt";
+            this.v6ColorTextBox31.AccessibleName = "TK_DT";
             this.v6ColorTextBox31.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox31.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox31.EnterColor = System.Drawing.Color.PaleGreen;
@@ -405,10 +415,11 @@
             this.v6ColorTextBox31.Name = "v6ColorTextBox31";
             this.v6ColorTextBox31.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox31.TabIndex = 3;
+            this.v6ColorTextBox31.VVar = "TK";
             // 
             // v6ColorTextBox32
             // 
-            this.v6ColorTextBox32.AccessibleName = "ma_phi";
+            this.v6ColorTextBox32.AccessibleName = "MA_PHI";
             this.v6ColorTextBox32.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox32.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox32.EnterColor = System.Drawing.Color.PaleGreen;
@@ -420,6 +431,7 @@
             this.v6ColorTextBox32.Name = "v6ColorTextBox32";
             this.v6ColorTextBox32.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox32.TabIndex = 7;
+            this.v6ColorTextBox32.VVar = "MA_PHI";
             // 
             // v6Label5
             // 
@@ -433,7 +445,7 @@
             // 
             // v6ColorTextBox33
             // 
-            this.v6ColorTextBox33.AccessibleName = "ma_kho_i";
+            this.v6ColorTextBox33.AccessibleName = "MA_KHO_I";
             this.v6ColorTextBox33.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox33.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.v6ColorTextBox33.EnterColor = System.Drawing.Color.PaleGreen;
@@ -445,6 +457,7 @@
             this.v6ColorTextBox33.Name = "v6ColorTextBox33";
             this.v6ColorTextBox33.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox33.TabIndex = 1;
+            this.v6ColorTextBox33.VVar = "MA_KHO";
             // 
             // v6Label9
             // 
@@ -657,7 +670,7 @@
             // 
             // taiKhoanThue
             // 
-            this.taiKhoanThue.AccessibleName = "tk_thue";
+            this.taiKhoanThue.AccessibleName = "TK_THUE";
             this.taiKhoanThue.BackColor = System.Drawing.SystemColors.Window;
             this.taiKhoanThue.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.taiKhoanThue.EnterColor = System.Drawing.Color.PaleGreen;
@@ -669,6 +682,7 @@
             this.taiKhoanThue.Name = "taiKhoanThue";
             this.taiKhoanThue.Size = new System.Drawing.Size(132, 20);
             this.taiKhoanThue.TabIndex = 21;
+            this.taiKhoanThue.VVar = "TK";
             // 
             // soTienDen
             // 
@@ -705,6 +719,7 @@
             this.taiKhoanNo.Name = "taiKhoanNo";
             this.taiKhoanNo.Size = new System.Drawing.Size(132, 20);
             this.taiKhoanNo.TabIndex = 17;
+            this.taiKhoanNo.VVar = "MA_NX";
             // 
             // ctDenSo
             // 
@@ -748,6 +763,7 @@
             this.maNhanVien.Name = "maNhanVien";
             this.maNhanVien.Size = new System.Drawing.Size(132, 20);
             this.maNhanVien.TabIndex = 11;
+            this.maNhanVien.VVar = "MA_NVIEN";
             // 
             // maBoPhan
             // 
@@ -763,6 +779,7 @@
             this.maBoPhan.Name = "maBoPhan";
             this.maBoPhan.Size = new System.Drawing.Size(132, 20);
             this.maBoPhan.TabIndex = 5;
+            this.maBoPhan.VVar = "MA_BP";
             // 
             // soTienTu
             // 
@@ -816,6 +833,7 @@
             this.maThue.Name = "maThue";
             this.maThue.Size = new System.Drawing.Size(132, 20);
             this.maThue.TabIndex = 7;
+            this.maThue.VVar = "MA_THUE";
             // 
             // ctTuSo
             // 
@@ -1095,7 +1113,7 @@
             // 
             // txtNhomVT6
             // 
-            this.txtNhomVT6.AccessibleName = "6";
+            this.txtNhomVT6.AccessibleName = "NH_VT6";
             this.txtNhomVT6.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomVT6.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomVT6.CheckOnLeave = false;
@@ -1108,11 +1126,11 @@
             this.txtNhomVT6.Name = "txtNhomVT6";
             this.txtNhomVT6.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT6.TabIndex = 18;
-            this.txtNhomVT6.VVar = "nh_vt";
+            this.txtNhomVT6.VVar = "NH_VT";
             // 
             // txtNhomVT5
             // 
-            this.txtNhomVT5.AccessibleName = "5";
+            this.txtNhomVT5.AccessibleName = "NH_VT5";
             this.txtNhomVT5.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomVT5.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomVT5.CheckOnLeave = false;
@@ -1125,11 +1143,11 @@
             this.txtNhomVT5.Name = "txtNhomVT5";
             this.txtNhomVT5.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT5.TabIndex = 16;
-            this.txtNhomVT5.VVar = "nh_vt";
+            this.txtNhomVT5.VVar = "NH_VT";
             // 
             // txtNhomVT4
             // 
-            this.txtNhomVT4.AccessibleName = "nh_vt4";
+            this.txtNhomVT4.AccessibleName = "NH_VT4";
             this.txtNhomVT4.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomVT4.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomVT4.CheckOnLeave = false;
@@ -1142,7 +1160,7 @@
             this.txtNhomVT4.Name = "txtNhomVT4";
             this.txtNhomVT4.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT4.TabIndex = 14;
-            this.txtNhomVT4.VVar = "nh_vt";
+            this.txtNhomVT4.VVar = "NH_VT";
             // 
             // v6Label16
             // 
@@ -1194,7 +1212,7 @@
             // 
             // txtMaDVCS
             // 
-            this.txtMaDVCS.AccessibleName = "ma_dvcs";
+            this.txtMaDVCS.AccessibleName = "MA_DVCS";
             this.txtMaDVCS.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaDVCS.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaDVCS.Enabled = false;
@@ -1207,10 +1225,11 @@
             this.txtMaDVCS.Name = "txtMaDVCS";
             this.txtMaDVCS.Size = new System.Drawing.Size(132, 20);
             this.txtMaDVCS.TabIndex = 1;
+            this.txtMaDVCS.VVar = "MA_DVCS";
             // 
             // txtNhomVT3
             // 
-            this.txtNhomVT3.AccessibleName = "nh_vt3";
+            this.txtNhomVT3.AccessibleName = "NH_VT3";
             this.txtNhomVT3.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomVT3.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomVT3.CheckOnLeave = false;
@@ -1223,11 +1242,11 @@
             this.txtNhomVT3.Name = "txtNhomVT3";
             this.txtNhomVT3.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT3.TabIndex = 12;
-            this.txtNhomVT3.VVar = "nh_vt";
+            this.txtNhomVT3.VVar = "NH_VT";
             // 
             // txtNhomVT2
             // 
-            this.txtNhomVT2.AccessibleName = "nh_vt2";
+            this.txtNhomVT2.AccessibleName = "NH_VT2";
             this.txtNhomVT2.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomVT2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomVT2.CheckOnLeave = false;
@@ -1240,7 +1259,7 @@
             this.txtNhomVT2.Name = "txtNhomVT2";
             this.txtNhomVT2.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT2.TabIndex = 10;
-            this.txtNhomVT2.VVar = "nh_vt";
+            this.txtNhomVT2.VVar = "NH_VT";
             // 
             // txtTrangThai
             // 
@@ -1259,7 +1278,7 @@
             // 
             // txtNhomVT1
             // 
-            this.txtNhomVT1.AccessibleName = "nh_vt1";
+            this.txtNhomVT1.AccessibleName = "NH_VT1";
             this.txtNhomVT1.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomVT1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomVT1.CheckOnLeave = false;
@@ -1272,7 +1291,7 @@
             this.txtNhomVT1.Name = "txtNhomVT1";
             this.txtNhomVT1.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT1.TabIndex = 8;
-            this.txtNhomVT1.VVar = "nh_vt";
+            this.txtNhomVT1.VVar = "NH_VT";
             // 
             // v6Label17
             // 
@@ -1455,8 +1474,8 @@
         private V6ReportControls.PanelFilter panelFilter2;
         private V6Controls.V6VvarTextBox v6ColorTextBox4;
         private V6Controls.V6VvarTextBox v6ColorTextBox5;
-        private V6Controls.V6VvarTextBox v6ColorTextBox6;
-        private V6Controls.V6VvarTextBox v6ColorTextBox3;
+        private V6Controls.V6VvarTextBox txtMaHD;
+        private V6Controls.V6VvarTextBox txtMaSP;
         private V6Controls.V6VvarTextBox v6ColorTextBox24;
         private V6Controls.V6VvarTextBox v6ColorTextBox25;
         private V6Controls.V6VvarTextBox v6ColorTextBox26;
@@ -1488,7 +1507,7 @@
         private System.Windows.Forms.GroupBox grbTuyChon;
         private V6Controls.V6Label lblStatusDescription;
         private V6Controls.V6CheckBox chkNSD;
-        public V6Controls.V6ColorTextBox txtMaDVCS;
+        public V6Controls.V6VvarTextBox txtMaDVCS;
         private V6Controls.V6VvarTextBox txtNhomVT3;
         private V6Controls.V6VvarTextBox txtNhomVT2;
         private V6Controls.V6ColorTextBox txtTrangThai;

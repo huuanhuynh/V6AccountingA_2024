@@ -40,7 +40,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
             this.v6Label1 = new V6Controls.V6Label();
             this.lblStatusDescription = new V6Controls.V6Label();
             this.chkNSD = new V6Controls.V6CheckBox();
-            this.txtMaDVCS = new V6Controls.V6ColorTextBox();
+            this.txtMaDVCS = new V6Controls.V6VvarTextBox();
             this.txtNhomVT3 = new V6Controls.V6VvarTextBox();
             this.txtNhomVT2 = new V6Controls.V6VvarTextBox();
             this.txtTrangThai = new V6Controls.V6ColorTextBox();
@@ -106,7 +106,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
             // 
             // txtNhomVT6
             // 
-            this.txtNhomVT6.AccessibleName = "6";
+            this.txtNhomVT6.AccessibleName = "NH_VT6";
             this.txtNhomVT6.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomVT6.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomVT6.CheckOnLeave = false;
@@ -119,11 +119,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
             this.txtNhomVT6.Name = "txtNhomVT6";
             this.txtNhomVT6.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT6.TabIndex = 18;
-            this.txtNhomVT6.VVar = "nh_vt";
+            this.txtNhomVT6.VVar = "NH_VT";
             // 
             // txtNhomVT5
             // 
-            this.txtNhomVT5.AccessibleName = "5";
+            this.txtNhomVT5.AccessibleName = "NH_VT5";
             this.txtNhomVT5.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomVT5.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomVT5.CheckOnLeave = false;
@@ -136,11 +136,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
             this.txtNhomVT5.Name = "txtNhomVT5";
             this.txtNhomVT5.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT5.TabIndex = 16;
-            this.txtNhomVT5.VVar = "nh_vt";
+            this.txtNhomVT5.VVar = "NH_VT";
             // 
             // txtNhomVT4
             // 
-            this.txtNhomVT4.AccessibleName = "nh_vt4";
+            this.txtNhomVT4.AccessibleName = "NH_VT4";
             this.txtNhomVT4.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomVT4.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomVT4.CheckOnLeave = false;
@@ -153,7 +153,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
             this.txtNhomVT4.Name = "txtNhomVT4";
             this.txtNhomVT4.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT4.TabIndex = 14;
-            this.txtNhomVT4.VVar = "nh_vt";
+            this.txtNhomVT4.VVar = "NH_VT";
             // 
             // v6Label3
             // 
@@ -206,7 +206,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
             // 
             // txtMaDVCS
             // 
-            this.txtMaDVCS.AccessibleName = "ma_dvcs";
+            this.txtMaDVCS.AccessibleName = "MA_DVCS";
             this.txtMaDVCS.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaDVCS.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaDVCS.Enabled = false;
@@ -219,10 +219,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
             this.txtMaDVCS.Name = "txtMaDVCS";
             this.txtMaDVCS.Size = new System.Drawing.Size(132, 20);
             this.txtMaDVCS.TabIndex = 1;
+            this.txtMaDVCS.VVar = "MA_DVCS";
             // 
             // txtNhomVT3
             // 
-            this.txtNhomVT3.AccessibleName = "nh_vt3";
+            this.txtNhomVT3.AccessibleName = "NH_VT3";
             this.txtNhomVT3.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomVT3.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomVT3.CheckOnLeave = false;
@@ -235,11 +236,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
             this.txtNhomVT3.Name = "txtNhomVT3";
             this.txtNhomVT3.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT3.TabIndex = 12;
-            this.txtNhomVT3.VVar = "nh_vt";
+            this.txtNhomVT3.VVar = "NH_VT";
             // 
             // txtNhomVT2
             // 
-            this.txtNhomVT2.AccessibleName = "nh_vt2";
+            this.txtNhomVT2.AccessibleName = "NH_VT2";
             this.txtNhomVT2.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomVT2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomVT2.CheckOnLeave = false;
@@ -252,7 +253,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
             this.txtNhomVT2.Name = "txtNhomVT2";
             this.txtNhomVT2.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT2.TabIndex = 10;
-            this.txtNhomVT2.VVar = "nh_vt";
+            this.txtNhomVT2.VVar = "NH_VT";
             // 
             // txtTrangThai
             // 
@@ -271,7 +272,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
             // 
             // txtNhomVT1
             // 
-            this.txtNhomVT1.AccessibleName = "nh_vt1";
+            this.txtNhomVT1.AccessibleName = "NH_VT1";
             this.txtNhomVT1.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomVT1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomVT1.CheckOnLeave = false;
@@ -284,7 +285,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
             this.txtNhomVT1.Name = "txtNhomVT1";
             this.txtNhomVT1.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT1.TabIndex = 8;
-            this.txtNhomVT1.VVar = "nh_vt";
+            this.txtNhomVT1.VVar = "NH_VT";
             // 
             // v6Label21
             // 
@@ -456,7 +457,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
         private System.Windows.Forms.GroupBox grbTuyChon;
         private V6Controls.V6Label lblStatusDescription;
         private V6Controls.V6CheckBox chkNSD;
-        public V6Controls.V6ColorTextBox txtMaDVCS;
+        public V6Controls.V6VvarTextBox txtMaDVCS;
         private V6Controls.V6VvarTextBox txtNhomVT3;
         private V6Controls.V6VvarTextBox txtNhomVT2;
         private V6Controls.V6ColorTextBox txtTrangThai;

@@ -169,7 +169,7 @@
             // 
             // txtNhomKH5
             // 
-            this.txtNhomKH5.AccessibleName = "5";
+            this.txtNhomKH5.AccessibleName = "NH_KH5";
             this.txtNhomKH5.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomKH5.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomKH5.CheckOnLeave = false;
@@ -186,7 +186,7 @@
             // 
             // txtNhomKH7
             // 
-            this.txtNhomKH7.AccessibleName = "7";
+            this.txtNhomKH7.AccessibleName = "NH_KH7";
             this.txtNhomKH7.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomKH7.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomKH7.CheckOnLeave = false;
@@ -203,7 +203,7 @@
             // 
             // txtNhomKH3
             // 
-            this.txtNhomKH3.AccessibleName = "3";
+            this.txtNhomKH3.AccessibleName = "NH_KH3";
             this.txtNhomKH3.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomKH3.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomKH3.CheckOnLeave = false;
@@ -220,7 +220,7 @@
             // 
             // txtNhomKH4
             // 
-            this.txtNhomKH4.AccessibleName = "4";
+            this.txtNhomKH4.AccessibleName = "NH_KH4";
             this.txtNhomKH4.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomKH4.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomKH4.CheckOnLeave = false;
@@ -323,7 +323,7 @@
             // 
             // taiKhoanThue
             // 
-            this.taiKhoanThue.AccessibleName = "tk_thue";
+            this.taiKhoanThue.AccessibleName = "TK_THUE";
             this.taiKhoanThue.BackColor = System.Drawing.SystemColors.Window;
             this.taiKhoanThue.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.taiKhoanThue.CheckOnLeave = false;
@@ -374,7 +374,7 @@
             this.taiKhoanNo.Name = "taiKhoanNo";
             this.taiKhoanNo.Size = new System.Drawing.Size(132, 20);
             this.taiKhoanNo.TabIndex = 8;
-            this.taiKhoanNo.VVar = "TK";
+            this.taiKhoanNo.VVar = "MA_NX";
             // 
             // ctDenSo
             // 
@@ -523,7 +523,7 @@
             // 
             this.v6Label24.AccessibleDescription = "SEARCHL00007";
             this.v6Label24.AutoSize = true;
-            this.v6Label24.Location = new System.Drawing.Point(284, 102);
+            this.v6Label24.Location = new System.Drawing.Point(282, 102);
             this.v6Label24.Name = "v6Label24";
             this.v6Label24.Size = new System.Drawing.Size(69, 13);
             this.v6Label24.TabIndex = 19;

@@ -896,7 +896,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
         void _soCt0_GotFocus(object sender, EventArgs e)
         {
-            Invoice.GetSoct0(_sttRec, txtMaKh.Text, txtMadvcs.Text);
+            Invoice.GetSoct0(_sttRec, txtMaKh.Text, txtMaDVCS.Text);
         }
         void _dien_giaii_GotFocus(object sender, EventArgs e)
         {
@@ -1344,7 +1344,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             try
             {
                 XuLyThongDonViCoSo();
-                var data = txtMadvcs.Data;
+                var data = txtMaDVCS.Data;
                 txtTenDVCS.Text = V6Setting.Language.Trim() == "V" ? (data["ten_dvcs"] ?? "").ToString().Trim() : (data["ten_dvcs2"] ?? "").ToString().Trim();
             }
             catch (Exception ex)
@@ -1668,8 +1668,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 {
                     if (V6Login.Madvcs != "")
                     {
-                        txtMadvcs.Text = V6Login.Madvcs;
-                        txtMadvcs.ExistRowInTable();
+                        txtMaDVCS.Text = V6Login.Madvcs;
+                        txtMaDVCS.ExistRowInTable();
                     }
                 }
 
@@ -2311,8 +2311,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 //txtMadvcs.ExistRowInTable();
                 if (V6Setting.Language.Trim() == "V")
                 {
-                    if (txtMadvcs.Data != null && txtMadvcs.Data.Table.Columns.Contains(txtTenDVCS.AccessibleName))
-                        txtTenDVCS.Text = txtMadvcs.Data[txtTenDVCS.AccessibleName].ToString().Trim();
+                    if (txtMaDVCS.Data != null && txtMaDVCS.Data.Table.Columns.Contains(txtTenDVCS.AccessibleName))
+                        txtTenDVCS.Text = txtMaDVCS.Data[txtTenDVCS.AccessibleName].ToString().Trim();
                     //txtMaKh.ExistRowInTable();
                     if (txtMaKh.Data != null && txtMaKh.Data.Table.Columns.Contains(txtTenKh.AccessibleName))
                         txtTenKh.Text = txtMaKh.Data[txtTenKh.AccessibleName].ToString().Trim();
@@ -2329,8 +2329,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 }
                 else
                 {
-                    if (txtMadvcs.Data != null && txtMadvcs.Data.Table.Columns.Contains("TEN_DVCS2"))
-                        txtTenDVCS.Text = txtMadvcs.Data["TEN_DVCS2"].ToString().Trim();
+                    if (txtMaDVCS.Data != null && txtMaDVCS.Data.Table.Columns.Contains("TEN_DVCS2"))
+                        txtTenDVCS.Text = txtMaDVCS.Data["TEN_DVCS2"].ToString().Trim();
                     //txtMaKh.ExistRowInTable();
                     if (txtMaKh.Data != null && txtMaKh.Data.Table.Columns.Contains("TEN_KH2"))
                         txtTenKh.Text = txtMaKh.Data["TEN_KH2"].ToString().Trim();
@@ -2346,7 +2346,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                         TxtTen_tk.Text = txtTk.Data["TEN_TK2"].ToString().Trim();
                 }
 
-                txtMadvcs.ExistRowInTable();
+                txtMaDVCS.ExistRowInTable();
                 txtMaKh.ExistRowInTable();
                 txtTk.ExistRowInTable();
                 ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
@@ -2857,7 +2857,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                             //Tuanmh 24/07/2016 Check Debit Amount
                             bool check_edit = 
                                 CheckEditAll(Invoice, cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
-                                    txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
+                                    txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMaDVCS.Text.Trim(), txtMaKh.Text.Trim(),
                                     txtTk.Text, dateNgayCT.Date, txtTongThanhToan.Value, "E");
 
                             if (check_edit == true)
@@ -2900,7 +2900,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                         //Tuanmh 24/07/2016 Check Debit Amount
                         bool check_edit =
                             CheckEditAll(Invoice, cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
-                                txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
+                                txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMaDVCS.Text.Trim(), txtMaKh.Text.Trim(),
                                 txtTk.Text, dateNgayCT.Date, txtTongThanhToan.Value, "D");
 
                         if (check_edit)
@@ -3547,10 +3547,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     return false;
                 }
 
-                if (V6Login.MadvcsTotal > 0 && txtMadvcs.Text.Trim() == "")
+                if (V6Login.MadvcsTotal > 0 && txtMaDVCS.Text.Trim() == "")
                 {
                     this.ShowWarningMessage(V6Text.NoInput + lblMaDVCS.Text);
-                    txtMadvcs.Focus();
+                    txtMaDVCS.Focus();
                     return false;
                 }
                 if ((_MA_GD == "1" || _MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9") 
@@ -3641,7 +3641,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     }
 
                     DataTable DataCheck_Save_All = Invoice.GetCheck_Save_All(cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
-                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec, txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
+                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec, txtMaDVCS.Text.Trim(), txtMaKh.Text.Trim(),
                         txtTk.Text.Trim(), dateNgayCT.Date, txtMa_ct.Text, txtTongThanhToan.Value, mode_vc, V6Login.UserId);
 
 
@@ -4012,7 +4012,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 {
                     detail1.MODE = V6Mode.View;
 
-                    Invoice.GetSoct0(_sttRec, txtMaKh.Text, txtMadvcs.Text);
+                    Invoice.GetSoct0(_sttRec, txtMaKh.Text, txtMaDVCS.Text);
 
                     var initFilter = GetSoCt0InitFilter();
                     var f = new FilterView(Invoice.Alct0, "So_ct", "ARS20", _soCt0, initFilter);
@@ -4080,7 +4080,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     
 
                     var initFilter = GetSoCt0InitFilter();
-                    var f = new FilterView_ARS20(Invoice, _soCt0, _sttRec, txtMadvcs.Text, initFilter);
+                    var f = new FilterView_ARS20(Invoice, _soCt0, _sttRec, txtMaDVCS.Text, initFilter);
                     f.MultiSeletion = true;
                     f.ChoseEvent += data =>
                     {
@@ -4263,7 +4263,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
 
                     var initFilter = GetSoCt0InitFilter();
-                    var f = new FilterView_ARSODU0(Invoice, new V6ColorTextBox(), _sttRec, txtMadvcs.Text, initFilter);
+                    var f = new FilterView_ARSODU0(Invoice, new V6ColorTextBox(), _sttRec, txtMaDVCS.Text, initFilter);
                     f.MultiSeletion = true;
                     f.ChoseEvent += data =>
                     {
@@ -4393,7 +4393,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     detail1.MODE = V6Mode.View;
                     
                     var initFilter = GetThuNo131InitFilter();
-                    var f = new FilterView_ARSODU0TK(Invoice, new V6ColorTextBox(), _sttRec, txtMadvcs.Text, initFilter);
+                    var f = new FilterView_ARSODU0TK(Invoice, new V6ColorTextBox(), _sttRec, txtMaDVCS.Text, initFilter);
                     f.MultiSeletion = true;
                     f.ChoseEvent += data =>
                     {

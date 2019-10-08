@@ -22,7 +22,7 @@ namespace V6ControlManager.FormManager.SoDuManager.FirstFilter
         {
             try
             {
-                txtMaSp.SetInitFilter("loai_vt='55'");
+                txtMaSP.SetInitFilter("loai_vt='55'");
             }
             catch (Exception ex)
             {
@@ -35,21 +35,21 @@ namespace V6ControlManager.FormManager.SoDuManager.FirstFilter
             try
             {
                 var where = "";
-                if (txtMaSp.Text != "")
+                if (txtMaSP.Text != "")
                 {
-                    where += string.Format(" and ma_sp like '{0}%'", txtMaSp.Text);
+                    where += string.Format(" and ma_sp like '{0}%'", txtMaSP.Text);
                 }
-                if (txtNhomVt1.Text != "")
+                if (txtNhomVT1.Text != "")
                 {
-                    where += string.Format(" and nh_vt1 like '{0}%'", txtNhomVt1.Text);
+                    where += string.Format(" and nh_vt1 like '{0}%'", txtNhomVT1.Text);
                 }
-                if (txtNhomVt2.Text != "")
+                if (txtNhomVT2.Text != "")
                 {
-                    where += string.Format(" and nh_vt2 like '{0}%'", txtNhomVt2.Text);
+                    where += string.Format(" and nh_vt2 like '{0}%'", txtNhomVT2.Text);
                 }
-                if (txtNhomVt3.Text != "")
+                if (txtNhomVT3.Text != "")
                 {
-                    where += string.Format(" and nh_vt3 like '{0}%'", txtNhomVt3.Text);
+                    where += string.Format(" and nh_vt3 like '{0}%'", txtNhomVT3.Text);
                 }
                 
                 if (where.Length > 4)

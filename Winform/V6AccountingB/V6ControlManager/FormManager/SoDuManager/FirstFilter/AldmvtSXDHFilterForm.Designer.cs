@@ -42,10 +42,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtNhomVt3 = new V6Controls.V6VvarTextBox();
-            this.txtNhomVt2 = new V6Controls.V6VvarTextBox();
-            this.txtNhomVt1 = new V6Controls.V6VvarTextBox();
-            this.txtMaSp = new V6Controls.V6VvarTextBox();
+            this.txtNhomVT3 = new V6Controls.V6VvarTextBox();
+            this.txtNhomVT2 = new V6Controls.V6VvarTextBox();
+            this.txtNhomVT1 = new V6Controls.V6VvarTextBox();
+            this.txtMaSP = new V6Controls.V6VvarTextBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -86,10 +86,10 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.txtNhomVt3);
-            this.panel1.Controls.Add(this.txtNhomVt2);
-            this.panel1.Controls.Add(this.txtNhomVt1);
-            this.panel1.Controls.Add(this.txtMaSp);
+            this.panel1.Controls.Add(this.txtNhomVT3);
+            this.panel1.Controls.Add(this.txtNhomVT2);
+            this.panel1.Controls.Add(this.txtNhomVT1);
+            this.panel1.Controls.Add(this.txtMaSP);
             this.panel1.Location = new System.Drawing.Point(1, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(532, 121);
@@ -228,79 +228,79 @@
             // 
             // txtNhomVt3
             // 
-            this.txtNhomVt3.AccessibleName = "NH_VT3";
-            this.txtNhomVt3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtNhomVT3.AccessibleName = "NH_VT3";
+            this.txtNhomVT3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNhomVt3.BackColor = System.Drawing.Color.White;
-            this.txtNhomVt3.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtNhomVt3.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNhomVt3.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtNhomVt3.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtNhomVt3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtNhomVt3.HoverColor = System.Drawing.Color.Yellow;
-            this.txtNhomVt3.LeaveColor = System.Drawing.Color.White;
-            this.txtNhomVt3.Location = new System.Drawing.Point(111, 87);
-            this.txtNhomVt3.Name = "txtNhomVt3";
-            this.txtNhomVt3.Size = new System.Drawing.Size(202, 20);
-            this.txtNhomVt3.TabIndex = 7;
-            this.txtNhomVt3.VVar = "NH_VT";
+            this.txtNhomVT3.BackColor = System.Drawing.Color.White;
+            this.txtNhomVT3.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtNhomVT3.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNhomVT3.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtNhomVT3.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNhomVT3.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtNhomVT3.HoverColor = System.Drawing.Color.Yellow;
+            this.txtNhomVT3.LeaveColor = System.Drawing.Color.White;
+            this.txtNhomVT3.Location = new System.Drawing.Point(111, 87);
+            this.txtNhomVT3.Name = "txtNhomVT3";
+            this.txtNhomVT3.Size = new System.Drawing.Size(202, 20);
+            this.txtNhomVT3.TabIndex = 7;
+            this.txtNhomVT3.VVar = "NH_VT";
             // 
             // txtNhomVt2
             // 
-            this.txtNhomVt2.AccessibleName = "NH_VT2";
-            this.txtNhomVt2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtNhomVT2.AccessibleName = "NH_VT2";
+            this.txtNhomVT2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNhomVt2.BackColor = System.Drawing.Color.White;
-            this.txtNhomVt2.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtNhomVt2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNhomVt2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtNhomVt2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtNhomVt2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtNhomVt2.HoverColor = System.Drawing.Color.Yellow;
-            this.txtNhomVt2.LeaveColor = System.Drawing.Color.White;
-            this.txtNhomVt2.Location = new System.Drawing.Point(111, 61);
-            this.txtNhomVt2.Name = "txtNhomVt2";
-            this.txtNhomVt2.Size = new System.Drawing.Size(202, 20);
-            this.txtNhomVt2.TabIndex = 5;
-            this.txtNhomVt2.VVar = "NH_VT";
+            this.txtNhomVT2.BackColor = System.Drawing.Color.White;
+            this.txtNhomVT2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtNhomVT2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNhomVT2.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtNhomVT2.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNhomVT2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtNhomVT2.HoverColor = System.Drawing.Color.Yellow;
+            this.txtNhomVT2.LeaveColor = System.Drawing.Color.White;
+            this.txtNhomVT2.Location = new System.Drawing.Point(111, 61);
+            this.txtNhomVT2.Name = "txtNhomVT2";
+            this.txtNhomVT2.Size = new System.Drawing.Size(202, 20);
+            this.txtNhomVT2.TabIndex = 5;
+            this.txtNhomVT2.VVar = "NH_VT";
             // 
             // txtNhomVt1
             // 
-            this.txtNhomVt1.AccessibleName = "NH_VT1";
-            this.txtNhomVt1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtNhomVT1.AccessibleName = "NH_VT1";
+            this.txtNhomVT1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNhomVt1.BackColor = System.Drawing.Color.White;
-            this.txtNhomVt1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtNhomVt1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNhomVt1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtNhomVt1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtNhomVt1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtNhomVt1.HoverColor = System.Drawing.Color.Yellow;
-            this.txtNhomVt1.LeaveColor = System.Drawing.Color.White;
-            this.txtNhomVt1.Location = new System.Drawing.Point(111, 35);
-            this.txtNhomVt1.Name = "txtNhomVt1";
-            this.txtNhomVt1.Size = new System.Drawing.Size(202, 20);
-            this.txtNhomVt1.TabIndex = 3;
-            this.txtNhomVt1.VVar = "NH_VT";
+            this.txtNhomVT1.BackColor = System.Drawing.Color.White;
+            this.txtNhomVT1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtNhomVT1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtNhomVT1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtNhomVT1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNhomVT1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtNhomVT1.HoverColor = System.Drawing.Color.Yellow;
+            this.txtNhomVT1.LeaveColor = System.Drawing.Color.White;
+            this.txtNhomVT1.Location = new System.Drawing.Point(111, 35);
+            this.txtNhomVT1.Name = "txtNhomVT1";
+            this.txtNhomVT1.Size = new System.Drawing.Size(202, 20);
+            this.txtNhomVT1.TabIndex = 3;
+            this.txtNhomVT1.VVar = "NH_VT";
             // 
             // txtMaSp
             // 
-            this.txtMaSp.AccessibleName = "MA_SP";
-            this.txtMaSp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtMaSP.AccessibleName = "MA_SP";
+            this.txtMaSP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMaSp.BackColor = System.Drawing.Color.White;
-            this.txtMaSp.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtMaSp.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtMaSp.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtMaSp.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtMaSp.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtMaSp.HoverColor = System.Drawing.Color.Yellow;
-            this.txtMaSp.LeaveColor = System.Drawing.Color.White;
-            this.txtMaSp.Location = new System.Drawing.Point(111, 9);
-            this.txtMaSp.Name = "txtMaSp";
-            this.txtMaSp.Size = new System.Drawing.Size(202, 20);
-            this.txtMaSp.TabIndex = 1;
-            this.txtMaSp.VVar = "MA_VT";
+            this.txtMaSP.BackColor = System.Drawing.Color.White;
+            this.txtMaSP.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaSP.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMaSP.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaSP.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaSP.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaSP.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaSP.LeaveColor = System.Drawing.Color.White;
+            this.txtMaSP.Location = new System.Drawing.Point(111, 9);
+            this.txtMaSP.Name = "txtMaSP";
+            this.txtMaSP.Size = new System.Drawing.Size(202, 20);
+            this.txtMaSP.TabIndex = 1;
+            this.txtMaSP.VVar = "MA_VT";
             // 
             // AldmvtSXDHFilterForm
             // 
@@ -339,14 +339,14 @@
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Panel panel1;
-        private V6Controls.V6VvarTextBox txtMaSp;
+        private V6Controls.V6VvarTextBox txtMaSP;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private V6Controls.V6VvarTextBox txtNhomVt3;
-        private V6Controls.V6VvarTextBox txtNhomVt2;
-        private V6Controls.V6VvarTextBox txtNhomVt1;
+        private V6Controls.V6VvarTextBox txtNhomVT3;
+        private V6Controls.V6VvarTextBox txtNhomVT2;
+        private V6Controls.V6VvarTextBox txtNhomVT1;
         private System.Windows.Forms.GroupBox groupBox1;
         private V6Controls.V6DateTimeColor dateTuNgay;
         private V6Controls.V6DateTimePicker dateDenNgay;

@@ -260,7 +260,7 @@
             // 
             // taiKhoanThue
             // 
-            this.taiKhoanThue.AccessibleName = "tk_thue";
+            this.taiKhoanThue.AccessibleName = "TK_THUE";
             this.taiKhoanThue.BackColor = System.Drawing.SystemColors.Window;
             this.taiKhoanThue.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.taiKhoanThue.CheckOnLeave = false;
@@ -328,7 +328,7 @@
             this.taiKhoanCo.Name = "taiKhoanCo";
             this.taiKhoanCo.Size = new System.Drawing.Size(132, 20);
             this.taiKhoanCo.TabIndex = 8;
-            this.taiKhoanCo.VVar = "TK";
+            this.taiKhoanCo.VVar = "MA_NX";
             // 
             // maBoPhan
             // 
@@ -487,6 +487,7 @@
             this.thueSuat.Name = "thueSuat";
             this.thueSuat.Size = new System.Drawing.Size(132, 20);
             this.thueSuat.TabIndex = 3;
+            this.thueSuat.VVar = "MA_THUE";
             // 
             // ctTuSo
             // 

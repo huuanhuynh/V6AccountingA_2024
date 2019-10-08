@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -3459,8 +3459,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 {
                     if (V6Login.Madvcs != "")
                     {
-                        txtMadvcs.Text = V6Login.Madvcs;
-                        txtMadvcs.ExistRowInTable();
+                        txtMaDVCS.Text = V6Login.Madvcs;
+                        txtMaDVCS.ExistRowInTable();
                     }
                 }
 
@@ -3485,7 +3485,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             try
             {
-                string filter = V6Login.GetFilterKhoByDVCS(txtMadvcs.Text.Trim());
+                string filter = V6Login.GetFilterKhoByDVCS(txtMaDVCS.Text.Trim());
                 _maKhoI.SetInitFilter(filter);
             }
             catch (Exception ex)
@@ -3978,7 +3978,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 Mode = V6Mode.View;
                 var row = AM.Rows[CurrentIndex];
                 V6ControlFormHelper.SetFormDataRow(this, row);
-                txtMadvcs.ExistRowInTable();
+                txtMaDVCS.ExistRowInTable();
                 txtMaKh.ExistRowInTable();
                 txtMa_kh_i_ao.Text = row["Ma_kh_i"].ToString().Trim();
                 txtT_cp_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Cp"]);
@@ -4509,7 +4509,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                                 //Tuanmh 24/07/2016 Check Debit Amount
                                 bool check_edit =
                                 CheckEditAll(Invoice, cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
-                                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
+                                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMaDVCS.Text.Trim(), txtMaKh.Text.Trim(),
                                         txtManx.Text.Trim(), dateNgayCT.Date, txtTongThanhToan.Value, "E");
 
                                 if (check_edit == true)
@@ -4554,7 +4554,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         //Tuanmh 24/07/2016 Check Debit Amount
                         bool check_edit =
                             CheckEditAll(Invoice, cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
-                                txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
+                                txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMaDVCS.Text.Trim(), txtMaKh.Text.Trim(),
                                 txtManx.Text.Trim(), dateNgayCT.Date, txtTongThanhToan.Value, "D");
 
                         if (check_edit)
@@ -6255,10 +6255,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     return false;
                 }
 
-                if (V6Login.MadvcsTotal > 0 && txtMadvcs.Text.Trim() == "")
+                if (V6Login.MadvcsTotal > 0 && txtMaDVCS.Text.Trim() == "")
                 {
                     this.ShowWarningMessage(V6Text.NoInput + lblMaDVCS.Text);
-                    txtMadvcs.Focus();
+                    txtMaDVCS.Focus();
                     return false;
                 }
                 if (txtMaKh.Text.Trim() == "")
@@ -6360,7 +6360,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     }
 
                     DataTable DataCheck_Save_All = Invoice.GetCheck_Save_All(cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
-                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec, txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
+                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec, txtMaDVCS.Text.Trim(), txtMaKh.Text.Trim(),
                         txtManx.Text.Trim(), dateNgayCT.Date, txtMa_ct.Text, txtTongThanhToan.Value, mode_vc, V6Login.UserId);
 
 
@@ -6566,11 +6566,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             {
                 chon_accept_flag_add = add;
                 var ma_kh = txtMaKh.Text.Trim();
-                var ma_dvcs = txtMadvcs.Text.Trim();
+                var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
                 if (ma_kh != "" && ma_dvcs != "")
                 {
-                    CDH_PNKForm chon = new CDH_PNKForm(dateNgayCT.Date, txtMadvcs.Text, txtMaKh.Text);
+                    CDH_PNKForm chon = new CDH_PNKForm(dateNgayCT.Date, txtMaDVCS.Text, txtMaKh.Text);
                     _chon_px = "DH";
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                     chon.ShowDialog(this);
@@ -6583,7 +6583,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         message += V6Text.NoInput + lblMaDVCS.Text;
                     this.ShowWarningMessage(message);
                     if (ma_kh == "") txtMaKh.Focus();
-                    else if (ma_dvcs == "") txtMadvcs.Focus();
+                    else if (ma_dvcs == "") txtMaDVCS.Focus();
                 }
             }
             catch (Exception ex)

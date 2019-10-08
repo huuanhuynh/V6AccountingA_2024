@@ -41,9 +41,9 @@ namespace V6ControlManager.FormManager.SoDuManager.FirstFilter
                     v6ColorDateTimePick1.YYYYMMDD,
                     v6ColorDateTimePick2.YYYYMMDD);
 
-                if (txtMaDvcs.Text != "")
+                if (txtMaDVCS.Text != "")
                 {
-                    where += string.Format(" and MA_DVCS like '{0}%'", txtMaDvcs.Text);
+                    where += string.Format(" and MA_DVCS like '{0}%'", txtMaDVCS.Text);
                 }
 
                 QueryString = where;

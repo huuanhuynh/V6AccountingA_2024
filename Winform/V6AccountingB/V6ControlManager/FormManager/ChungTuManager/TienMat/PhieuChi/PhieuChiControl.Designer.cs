@@ -131,7 +131,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.txtTenGiaoDich = new V6Controls.V6VvarTextBox();
             this.v6Label14 = new V6Controls.V6Label();
             this.btnChonNhieuHD = new V6Controls.Controls.V6FormButton();
-            this.txtMadvcs = new V6Controls.V6VvarTextBox();
+            this.txtMaDVCS = new V6Controls.V6VvarTextBox();
             this.txtTenDVCS = new V6Controls.V6VvarTextBox();
             this.lblMaDVCS = new V6Controls.V6Label();
             this.txtTyGia = new V6Controls.V6NumberTextBox();
@@ -1566,7 +1566,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.group3.Controls.Add(this.txtTenGiaoDich);
             this.group3.Controls.Add(this.v6Label14);
             this.group3.Controls.Add(this.btnChonNhieuHD);
-            this.group3.Controls.Add(this.txtMadvcs);
+            this.group3.Controls.Add(this.txtMaDVCS);
             this.group3.Controls.Add(this.txtTenDVCS);
             this.group3.Controls.Add(this.lblMaDVCS);
             this.group3.Controls.Add(this.txtTyGia);
@@ -1680,23 +1680,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             // 
             // txtMadvcs
             // 
-            this.txtMadvcs.AccessibleName = "ma_dvcs";
-            this.txtMadvcs.BackColor = System.Drawing.SystemColors.Window;
-            this.txtMadvcs.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtMadvcs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMadvcs.BrotherFields = "ten_dvcs";
-            this.txtMadvcs.CheckNotEmpty = true;
-            this.txtMadvcs.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtMadvcs.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtMadvcs.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtMadvcs.HoverColor = System.Drawing.Color.Yellow;
-            this.txtMadvcs.LeaveColor = System.Drawing.Color.White;
-            this.txtMadvcs.Location = new System.Drawing.Point(92, 9);
-            this.txtMadvcs.Name = "txtMadvcs";
-            this.txtMadvcs.Size = new System.Drawing.Size(100, 20);
-            this.txtMadvcs.TabIndex = 1;
-            this.txtMadvcs.VVar = "ma_dvcs";
-            this.txtMadvcs.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMadvcs_V6LostFocus);
+            this.txtMaDVCS.AccessibleName = "MA_DVCS";
+            this.txtMaDVCS.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaDVCS.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaDVCS.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMaDVCS.BrotherFields = "ten_dvcs";
+            this.txtMaDVCS.CheckNotEmpty = true;
+            this.txtMaDVCS.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaDVCS.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaDVCS.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaDVCS.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaDVCS.LeaveColor = System.Drawing.Color.White;
+            this.txtMaDVCS.Location = new System.Drawing.Point(92, 9);
+            this.txtMaDVCS.Name = "txtMaDVCS";
+            this.txtMaDVCS.Size = new System.Drawing.Size(100, 20);
+            this.txtMaDVCS.TabIndex = 1;
+            this.txtMaDVCS.VVar = "ma_dvcs";
+            this.txtMaDVCS.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMadvcs_V6LostFocus);
             // 
             // txtTenDVCS
             // 
@@ -2653,7 +2653,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         private NumberTien txtTongThanhToan;
         private V6VvarTextBox txtTenGiaoDich;
         private V6Label v6Label14;
-        private V6VvarTextBox txtMadvcs;
+        private V6VvarTextBox txtMaDVCS;
         private V6VvarTextBox txtTenDVCS;
         private V6Label lblMaDVCS;
         private System.Windows.Forms.DataGridViewTextBoxColumn TK_I;

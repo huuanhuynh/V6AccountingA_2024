@@ -3046,8 +3046,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 {
                     if (V6Login.Madvcs != "")
                     {
-                        txtMadvcs.Text = V6Login.Madvcs;
-                        txtMadvcs.ExistRowInTable();
+                        txtMaDVCS.Text = V6Login.Madvcs;
+                        txtMaDVCS.ExistRowInTable();
                     }
                 }
 
@@ -3081,7 +3081,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         {
             try
             {
-                string filter = V6Login.GetFilterKhoByDVCS(txtMadvcs.Text.Trim());
+                string filter = V6Login.GetFilterKhoByDVCS(txtMaDVCS.Text.Trim());
                 txtMaKhoX.SetInitFilter(filter);
             }
             catch (Exception ex)
@@ -3392,7 +3392,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 V6ControlFormHelper.SetFormDataRow(this, AM.Rows[CurrentIndex]);
 
                 XuLyThayDoiMaDVCS();
-                txtMadvcs.ExistRowInTable();
+                txtMaDVCS.ExistRowInTable();
                 txtMaKh.ExistRowInTable();
                 txtMaKH2.ExistRowInTable();
                 txtMaKhoX.ExistRowInTable();
@@ -3886,7 +3886,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                                 //Tuanmh 24/07/2016 Check Debit Amount
                                 bool check_edit =
                                 CheckEditAll(Invoice, cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
-                                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
+                                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMaDVCS.Text.Trim(), txtMaKh.Text.Trim(),
                                         "", dateNgayCT.Date, txtTongTien.Value, "E"); // !!!!! txtTongThanhToan
 
                                 if (check_edit == true)
@@ -3928,7 +3928,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                         //Tuanmh 24/07/2016 Check Debit Amount
                         bool check_edit =
                             CheckEditAll(Invoice, cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
-                                txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
+                                txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMaDVCS.Text.Trim(), txtMaKh.Text.Trim(),
                                 "", dateNgayCT.Date, txtTongTien.Value, "D"); // !!!!! txtTongThanhToan
 
                         if (check_edit)
@@ -4719,10 +4719,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     return false;
                 }
 
-                if (V6Login.MadvcsTotal > 0 && txtMadvcs.Text.Trim() == "")
+                if (V6Login.MadvcsTotal > 0 && txtMaDVCS.Text.Trim() == "")
                 {
                     this.ShowWarningMessage(V6Text.NoInput + lblMaDVCS.Text);
-                    txtMadvcs.Focus();
+                    txtMaDVCS.Focus();
                     return false;
                 }
 
@@ -4764,7 +4764,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     }
 
                     DataTable DataCheck_Save_All = Invoice.GetCheck_Save_All(cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
-                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec, txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
+                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec, txtMaDVCS.Text.Trim(), txtMaKh.Text.Trim(),
                         "", dateNgayCT.Date, txtMa_ct.Text, TongThanhToan, mode_vc, V6Login.UserId);
 
 

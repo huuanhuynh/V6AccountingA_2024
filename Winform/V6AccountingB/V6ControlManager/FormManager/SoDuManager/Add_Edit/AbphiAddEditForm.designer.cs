@@ -313,7 +313,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // Txtma_phi
             // 
-            this.Txtma_phi.AccessibleName = "ma_phi";
+            this.Txtma_phi.AccessibleName = "MA_PHI";
             this.Txtma_phi.BackColor = System.Drawing.Color.White;
             this.Txtma_phi.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.Txtma_phi.BrotherFields = "ten_phi";

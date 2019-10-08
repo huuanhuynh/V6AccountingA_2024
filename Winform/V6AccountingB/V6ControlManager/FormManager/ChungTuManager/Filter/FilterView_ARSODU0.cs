@@ -38,7 +38,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
 
             Invoice = invoice;
             _sttRec = sttRec;
-            txtMadvcs.Text = maDvcs;
+            txtMaDVCS.Text = maDvcs;
             InitStrFilter = initStrFilter;
             _senderTextBox = sender;
             Init();
@@ -97,7 +97,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             _filterString = GenFilterString();
             try
             {
-                var alct0 = Invoice.GetSoct0_All_Cust(_sttRec, txtMadvcs.Text.Trim(), _filterString);
+                var alct0 = Invoice.GetSoct0_All_Cust(_sttRec, txtMaDVCS.Text.Trim(), _filterString);
                 dataGridView1.DataSource = alct0;
                 FormatDataGridView();
 

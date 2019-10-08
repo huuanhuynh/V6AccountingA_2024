@@ -301,7 +301,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             var errors = "";
 
             if (txtMaKh.Text + txtLNH_KH1.Text + txtLNH_KH2.Text
-                + txtLNH_KH3.Text + txtLNH_KH4.Text + txtLNH_KH5.Text + txtLNH_KH6.Text + txtMaDvcs.Text == "")
+                + txtLNH_KH3.Text + txtLNH_KH4.Text + txtLNH_KH5.Text + txtLNH_KH6.Text + txtMaDVCS.Text == "")
             {
                 errors += V6Text.Text("CHUANHAPTTKM");
             }
@@ -506,7 +506,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         private void txtMaDvcs_MouseHover(object sender, EventArgs e)
         {
-            if (txtMaDvcs.Text == "")
+            if (txtMaDVCS.Text == "")
             {
                 lblTenDvcs.Text = "";
             }
@@ -620,7 +620,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private void SoDu2AddEditControl0_Load(object sender, EventArgs e)
         {
             SetDataToGrid(dataGridView1, AD, txtMaCt.Text);
-            txtMaDvcs.Focus();
+            txtMaDVCS.Focus();
         }
 
         private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)

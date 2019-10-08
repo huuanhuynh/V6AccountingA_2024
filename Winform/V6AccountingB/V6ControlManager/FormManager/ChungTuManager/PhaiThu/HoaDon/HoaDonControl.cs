@@ -4313,8 +4313,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 {
                     if (V6Login.Madvcs != "")
                     {
-                        txtMadvcs.Text = V6Login.Madvcs;
-                        txtMadvcs.ExistRowInTable();
+                        txtMaDVCS.Text = V6Login.Madvcs;
+                        txtMaDVCS.ExistRowInTable();
                     }
                 }
 
@@ -4368,7 +4368,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
-                string filter = V6Login.GetFilterKhoByDVCS(txtMadvcs.Text.Trim());
+                string filter = V6Login.GetFilterKhoByDVCS(txtMaDVCS.Text.Trim());
                 _maKhoI.SetInitFilter(filter);
             }
             catch (Exception ex)
@@ -4901,7 +4901,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 Mode = V6Mode.View;
                 V6ControlFormHelper.SetFormDataRow(this, AM.Rows[CurrentIndex]);
-                txtMadvcs.ExistRowInTable();
+                txtMaDVCS.ExistRowInTable();
                 txtMaKh.ExistRowInTable();
                 txtLoaiPhieu.ExistRowInTable(true);
                 ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
@@ -5461,7 +5461,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                                 //Tuanmh 24/07/2016 Check Debit Amount
                                 bool check_edit =
                                 CheckEditAll(Invoice, cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
-                                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
+                                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMaDVCS.Text.Trim(), txtMaKh.Text.Trim(),
                                         txtManx.Text.Trim(), dateNgayCT.Date, txtTongThanhToan.Value, "E");
 
                                 if (check_edit == true)
@@ -5511,7 +5511,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         //Tuanmh 24/07/2016 Check Debit Amount
                         bool check_edit =
                             CheckEditAll(Invoice, cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
-                                txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
+                                txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMaDVCS.Text.Trim(), txtMaKh.Text.Trim(),
                                 txtManx.Text.Trim(), dateNgayCT.Date, txtTongThanhToan.Value, "D");
 
                         if (check_edit)
@@ -6536,10 +6536,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     return false;
                 }
 
-                if (V6Login.MadvcsTotal > 0 && txtMadvcs.Text.Trim() == "")
+                if (V6Login.MadvcsTotal > 0 && txtMaDVCS.Text.Trim() == "")
                 {
                     this.ShowWarningMessage(V6Text.NoInput + lblMaDVCS.Text);
-                    txtMadvcs.Focus();
+                    txtMaDVCS.Focus();
                     return false;
                 }
 
@@ -6633,7 +6633,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     }
 
                     DataTable DataCheck_Save_All = Invoice.GetCheck_Save_All(cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
-                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec,txtMadvcs.Text.Trim(),txtMaKh.Text.Trim(),
+                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec,txtMaDVCS.Text.Trim(),txtMaKh.Text.Trim(),
                         txtManx.Text.Trim(), dateNgayCT.Date, txtMa_ct.Text, txtTongThanhToan.Value, mode_vc, V6Login.UserId);
 
                     
@@ -6861,11 +6861,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                 chon_accept_flag_add = add;
                 var ma_kh = txtMaKh.Text.Trim();
-                var ma_dvcs = txtMadvcs.Text.Trim();
+                var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
                 if (ma_kh != "" && ma_dvcs != "")
                 {
-                    CDH_HoaDonForm chon = new CDH_HoaDonForm(dateNgayCT.Date, txtMadvcs.Text, txtMaKh.Text);
+                    CDH_HoaDonForm chon = new CDH_HoaDonForm(dateNgayCT.Date, txtMaDVCS.Text, txtMaKh.Text);
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                     chon.ShowDialog(this);
                 }
@@ -6875,7 +6875,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     if (ma_dvcs == "") message += V6Text.NoInput + lblMaDVCS.Text;
                     this.ShowWarningMessage(message);
                     if (ma_kh == "") txtMaKh.Focus();
-                    else if (ma_dvcs == "") txtMadvcs.Focus();
+                    else if (ma_dvcs == "") txtMaDVCS.Focus();
                 }
             }
             catch (Exception ex)
@@ -6892,11 +6892,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                 chon_accept_flag_add = add;
                 var ma_kh = txtMaKh.Text.Trim();
-                var ma_dvcs = txtMadvcs.Text.Trim();
+                var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
                 if (ma_kh != "" && ma_dvcs != "")
                 {
-                    CBG_HoaDonForm chon = new CBG_HoaDonForm(txtMadvcs.Text, txtMaKh.Text);
+                    CBG_HoaDonForm chon = new CBG_HoaDonForm(txtMaDVCS.Text, txtMaKh.Text);
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                     chon.ShowDialog(this);
                 }
@@ -6906,7 +6906,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     if (ma_dvcs == "") message += V6Text.NoInput + lblMaDVCS.Text;
                     this.ShowWarningMessage(message);
                     if (ma_kh == "") txtMaKh.Focus();
-                    else if (ma_dvcs == "") txtMadvcs.Focus();
+                    else if (ma_dvcs == "") txtMaDVCS.Focus();
                 }
             }
             catch (Exception ex)
@@ -7199,7 +7199,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     new SqlParameter("@MA_KH", txtMaKh.Text),
                     new SqlParameter("@TK", txtManx.Text),
                     new SqlParameter("@Ngay_ct", dateNgayCT.Date.Date.ToString("yyyyMMdd")),
-                    new SqlParameter("@Advance", string.Format("Ma_dvcs='{0}'", txtMadvcs.Text.Replace("'", "''"))),
+                    new SqlParameter("@Advance", string.Format("Ma_dvcs='{0}'", txtMaDVCS.Text.Replace("'", "''"))),
                     new SqlParameter("@User_id",V6Login.UserId),
                     new SqlParameter("@Lan", V6Setting.Language),
 
@@ -7212,7 +7212,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     new SqlParameter("@MA_KH", txtMaKh.Text),
                     new SqlParameter("@TK", txtManx.Text),
                     new SqlParameter("@Ngay_ct", dateNgayCT.Date.Date.ToString("yyyyMMdd")),
-                    new SqlParameter("@Advance", string.Format("Ma_dvcs='{0}'", txtMadvcs.Text.Replace("'", "''"))),
+                    new SqlParameter("@Advance", string.Format("Ma_dvcs='{0}'", txtMaDVCS.Text.Replace("'", "''"))),
                     new SqlParameter("@Stt_rec", _sttRec),
                     new SqlParameter("@User_id",V6Login.UserId),
                     new SqlParameter("@Lan", V6Setting.Language),
@@ -7321,11 +7321,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 chon_accept_flag_add = add;
                 var ma_kh = txtMaKh.Text.Trim();
-                var ma_dvcs = txtMadvcs.Text.Trim();
+                var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
                 if (ma_kh != "" && ma_dvcs != "")
                 {
-                    CPX_HoaDonForm chon = new CPX_HoaDonForm(dateNgayCT.Date, txtMadvcs.Text, txtMaKh.Text);
+                    CPX_HoaDonForm chon = new CPX_HoaDonForm(dateNgayCT.Date, txtMaDVCS.Text, txtMaKh.Text);
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                     chon.ShowDialog(this);
                 }
@@ -7337,7 +7337,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         message += V6Text.NoInput + lblMaDVCS.Text;
                     this.ShowWarningMessage(message);
                     if (ma_kh == "") txtMaKh.Focus();
-                    else if (ma_dvcs == "") txtMadvcs.Focus();
+                    else if (ma_dvcs == "") txtMaDVCS.Focus();
                 }
             }
             catch (Exception ex)
@@ -7651,11 +7651,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             try
             {
                 var ma_kh = txtMaKh.Text.Trim();
-                var ma_dvcs = txtMadvcs.Text.Trim();
+                var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
                 if (ma_kh != "" && ma_dvcs != "")
                 {
-                    CPN_HoaDonForm chon = new CPN_HoaDonForm(dateNgayCT.Date.Date, txtMadvcs.Text, txtMaKh.Text);
+                    CPN_HoaDonForm chon = new CPN_HoaDonForm(dateNgayCT.Date.Date, txtMaDVCS.Text, txtMaKh.Text);
                     chon.AcceptSelectEvent += chonpn_AcceptSelectEvent;
                     chon.ShowDialog(this);
                 }
@@ -7774,11 +7774,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             try
             {
                 var ma_kh = txtMaKh.Text.Trim();
-                var ma_dvcs = txtMadvcs.Text.Trim();
+                var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
                 if (ma_kh != "" && ma_dvcs != "")
                 {
-                    IXY_HD_Form chon = new IXY_HD_Form(dateNgayCT.Date.Date, txtMadvcs.Text, txtMaKh.Text);
+                    IXY_HD_Form chon = new IXY_HD_Form(dateNgayCT.Date.Date, txtMaDVCS.Text, txtMaKh.Text);
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                     chon.ShowDialog(this);
                 }
@@ -7881,7 +7881,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     new SqlParameter("@cMa_ct", Invoice.Mact),
                     new SqlParameter("@dngay_ct", dateNgayCT.YYYYMMDD),
                     new SqlParameter("@cMa_kh", txtMaKh.Text),
-                    new SqlParameter("@cMa_dvcs", txtMadvcs.Text),
+                    new SqlParameter("@cMa_dvcs", txtMaDVCS.Text),
                     new SqlParameter("@cMa_nt", _maNt),
                     new SqlParameter("@nT_so_luong", txtTongSoLuong.Value),
                     new SqlParameter("@nTso_luong1", TinhTong(AD, "SO_LUONG1")),

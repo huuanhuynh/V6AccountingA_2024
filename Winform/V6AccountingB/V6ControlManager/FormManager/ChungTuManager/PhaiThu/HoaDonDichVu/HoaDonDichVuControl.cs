@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -1457,8 +1457,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                 {
                     if (V6Login.Madvcs != "")
                     {
-                        txtMadvcs.Text = V6Login.Madvcs;
-                        txtMadvcs.ExistRowInTable();
+                        txtMaDVCS.Text = V6Login.Madvcs;
+                        txtMaDVCS.ExistRowInTable();
                     }
                 }
 
@@ -1898,7 +1898,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             {
                 Mode = V6Mode.View;
                 V6ControlFormHelper.SetFormDataRow(this, AM.Rows[CurrentIndex]);
-                txtMadvcs.ExistRowInTable();
+                txtMaDVCS.ExistRowInTable();
                 txtMaKh.ExistRowInTable();
                 ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
 
@@ -2410,7 +2410,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                             //Tuanmh 24/07/2016 Check Debit Amount
                             bool check_edit = 
                                 CheckEditAll(Invoice, cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
-                                    txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
+                                    txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMaDVCS.Text.Trim(), txtMaKh.Text.Trim(),
                                     txtManx.Text.Trim(), dateNgayCT.Date, txtTongThanhToan.Value, "E");
 
                             if (check_edit == true)
@@ -2458,7 +2458,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                         //Tuanmh 24/07/2016 Check Debit Amount
                         bool check_edit =
                             CheckEditAll(Invoice, cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
-                                txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
+                                txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMaDVCS.Text.Trim(), txtMaKh.Text.Trim(),
                                 txtManx.Text.Trim(), dateNgayCT.Date, txtTongThanhToan.Value, "D");
 
                         if (check_edit)
@@ -3272,10 +3272,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                     return false;
                 }
 
-                if (V6Login.MadvcsTotal > 0 && txtMadvcs.Text.Trim() == "")
+                if (V6Login.MadvcsTotal > 0 && txtMaDVCS.Text.Trim() == "")
                 {
                     this.ShowWarningMessage(V6Text.NoInput + lblMaDVCS.Text);
-                    txtMadvcs.Focus();
+                    txtMaDVCS.Focus();
                     return false;
                 }
 
@@ -3365,7 +3365,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
 
                     }
                     DataTable DataCheck_Save_All = Invoice.GetCheck_Save_All(cboKieuPost.SelectedValue.ToString().Trim(), cboKieuPost.SelectedValue.ToString().Trim(),
-                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec, txtMadvcs.Text.Trim(), txtMaKh.Text.Trim(),
+                        txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), _sttRec, txtMaDVCS.Text.Trim(), txtMaKh.Text.Trim(),
                         txtManx.Text.Trim(), dateNgayCT.Date, txtMa_ct.Text, txtTongThanhToan.Value,mode_vc,V6Login.UserId);
 
 
@@ -3627,7 +3627,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                     new SqlParameter("@MA_KH", txtMaKh.Text),
                     new SqlParameter("@TK", txtManx.Text),
                     new SqlParameter("@Ngay_ct", dateNgayCT.Date.Date.ToString("yyyyMMdd")),
-                    new SqlParameter("@Advance", string.Format("Ma_dvcs='{0}'", txtMadvcs.Text.Replace("'", "''"))),
+                    new SqlParameter("@Advance", string.Format("Ma_dvcs='{0}'", txtMaDVCS.Text.Replace("'", "''"))),
                     new SqlParameter("@User_id",V6Login.UserId),
                     new SqlParameter("@Lan", V6Setting.Language),
 
@@ -3640,7 +3640,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                     new SqlParameter("@MA_KH", txtMaKh.Text),
                     new SqlParameter("@TK", txtManx.Text),
                     new SqlParameter("@Ngay_ct", dateNgayCT.Date.Date.ToString("yyyyMMdd")),
-                    new SqlParameter("@Advance", string.Format("Ma_dvcs='{0}'", txtMadvcs.Text.Replace("'", "''"))),
+                    new SqlParameter("@Advance", string.Format("Ma_dvcs='{0}'", txtMaDVCS.Text.Replace("'", "''"))),
                     new SqlParameter("@Stt_rec", _sttRec),
                     new SqlParameter("@User_id",V6Login.UserId),
                     new SqlParameter("@Lan", V6Setting.Language),

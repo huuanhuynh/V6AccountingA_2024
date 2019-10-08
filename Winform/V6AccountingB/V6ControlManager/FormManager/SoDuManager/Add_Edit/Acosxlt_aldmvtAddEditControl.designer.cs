@@ -42,7 +42,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtMaBpht = new V6Controls.V6VvarTextBox();
             this.lblMaSP = new System.Windows.Forms.Label();
             this.lblNgayHieuLuc = new System.Windows.Forms.Label();
-            this.txtMaSp = new V6Controls.V6VvarTextBox();
+            this.txtMaSP = new V6Controls.V6VvarTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.txtGC_TD3 = new V6Controls.V6VvarTextBox();
             this.txtGC_TD2 = new V6Controls.V6VvarTextBox();
@@ -132,7 +132,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabPage1.Controls.Add(this.txtMaBpht);
             this.tabPage1.Controls.Add(this.lblMaSP);
             this.tabPage1.Controls.Add(this.lblNgayHieuLuc);
-            this.tabPage1.Controls.Add(this.txtMaSp);
+            this.tabPage1.Controls.Add(this.txtMaSP);
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(5);
             this.tabPage1.Name = "tabPage1";
@@ -257,23 +257,23 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // txtMaSp
             // 
-            this.txtMaSp.AccessibleName = "MA_SP";
-            this.txtMaSp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtMaSP.AccessibleName = "MA_SP";
+            this.txtMaSP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMaSp.BackColor = System.Drawing.Color.White;
-            this.txtMaSp.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtMaSp.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtMaSp.CheckNotEmpty = true;
-            this.txtMaSp.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtMaSp.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtMaSp.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtMaSp.HoverColor = System.Drawing.Color.Yellow;
-            this.txtMaSp.LeaveColor = System.Drawing.Color.White;
-            this.txtMaSp.Location = new System.Drawing.Point(179, 34);
-            this.txtMaSp.Name = "txtMaSp";
-            this.txtMaSp.Size = new System.Drawing.Size(210, 23);
-            this.txtMaSp.TabIndex = 3;
-            this.txtMaSp.VVar = "MA_VT";
+            this.txtMaSP.BackColor = System.Drawing.Color.White;
+            this.txtMaSP.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaSP.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMaSP.CheckNotEmpty = true;
+            this.txtMaSP.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaSP.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaSP.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaSP.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaSP.LeaveColor = System.Drawing.Color.White;
+            this.txtMaSP.Location = new System.Drawing.Point(179, 34);
+            this.txtMaSP.Name = "txtMaSP";
+            this.txtMaSP.Size = new System.Drawing.Size(210, 23);
+            this.txtMaSP.TabIndex = 3;
+            this.txtMaSP.VVar = "MA_VT";
             // 
             // tabPage2
             // 
@@ -1255,7 +1255,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private V6VvarTextBox txtMaBpht;
         private System.Windows.Forms.Label lblMaBPHT;
         private System.Windows.Forms.TabPage tabPage1;
-        private V6VvarTextBox txtMaSp;
+        private V6VvarTextBox txtMaSP;
         private System.Windows.Forms.Label lblMaSP;
         private System.Windows.Forms.Label lblNgayHieuLuc;
         private System.Windows.Forms.TabControl tabControl1;

@@ -57,7 +57,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.maKhach = new V6Controls.V6VvarTextBox();
             this.soTienTu = new V6Controls.V6NumberTextBox();
             this.soHd = new V6Controls.V6VvarTextBox();
-            this.thueSuat = new V6Controls.V6VvarTextBox();
+            this.txtMaThue = new V6Controls.V6VvarTextBox();
             this.ctTuSo = new V6Controls.V6VvarTextBox();
             this.v6Label25 = new V6Controls.V6Label();
             this.v6Label24 = new V6Controls.V6Label();
@@ -105,7 +105,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.groupBox1.Controls.Add(this.maKhach);
             this.groupBox1.Controls.Add(this.soTienTu);
             this.groupBox1.Controls.Add(this.soHd);
-            this.groupBox1.Controls.Add(this.thueSuat);
+            this.groupBox1.Controls.Add(this.txtMaThue);
             this.groupBox1.Controls.Add(this.ctTuSo);
             this.groupBox1.Controls.Add(this.v6Label25);
             this.groupBox1.Controls.Add(this.v6Label24);
@@ -182,7 +182,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             // 
             // txtNhomKH5
             // 
-            this.txtNhomKH5.AccessibleName = "5";
+            this.txtNhomKH5.AccessibleName = "NH_KH5";
             this.txtNhomKH5.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomKH5.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomKH5.CheckOnLeave = false;
@@ -199,7 +199,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             // 
             // txtNhomKH7
             // 
-            this.txtNhomKH7.AccessibleName = "7";
+            this.txtNhomKH7.AccessibleName = "NH_KH7";
             this.txtNhomKH7.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomKH7.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomKH7.CheckOnLeave = false;
@@ -216,7 +216,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             // 
             // txtNhomKH3
             // 
-            this.txtNhomKH3.AccessibleName = "3";
+            this.txtNhomKH3.AccessibleName = "NH_KH3";
             this.txtNhomKH3.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomKH3.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomKH3.CheckOnLeave = false;
@@ -233,7 +233,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             // 
             // txtNhomKH4
             // 
-            this.txtNhomKH4.AccessibleName = "4";
+            this.txtNhomKH4.AccessibleName = "NH_KH4";
             this.txtNhomKH4.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomKH4.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomKH4.CheckOnLeave = false;
@@ -353,7 +353,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             // 
             // taiKhoanThue
             // 
-            this.taiKhoanThue.AccessibleName = "tk_thue";
+            this.taiKhoanThue.AccessibleName = "TK_THUE";
             this.taiKhoanThue.BackColor = System.Drawing.SystemColors.Window;
             this.taiKhoanThue.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.taiKhoanThue.CheckOnLeave = false;
@@ -392,7 +392,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             // 
             // txtMaDVCS
             // 
-            this.txtMaDVCS.AccessibleName = "ma_dvcs";
+            this.txtMaDVCS.AccessibleName = "MA_DVCS";
             this.txtMaDVCS.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaDVCS.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaDVCS.CheckOnLeave = false;
@@ -422,7 +422,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.taiKhoanCo.Name = "taiKhoanCo";
             this.taiKhoanCo.Size = new System.Drawing.Size(132, 20);
             this.taiKhoanCo.TabIndex = 8;
-            this.taiKhoanCo.VVar = "TK";
+            this.taiKhoanCo.VVar = "MA_NX";
             // 
             // maBoPhan
             // 
@@ -543,18 +543,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             // 
             // thueSuat
             // 
-            this.thueSuat.AccessibleName = "ma_thue";
-            this.thueSuat.BackColor = System.Drawing.SystemColors.Window;
-            this.thueSuat.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.thueSuat.EnterColor = System.Drawing.Color.PaleGreen;
-            this.thueSuat.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.thueSuat.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.thueSuat.HoverColor = System.Drawing.Color.Yellow;
-            this.thueSuat.LeaveColor = System.Drawing.Color.White;
-            this.thueSuat.Location = new System.Drawing.Point(87, 72);
-            this.thueSuat.Name = "thueSuat";
-            this.thueSuat.Size = new System.Drawing.Size(132, 20);
-            this.thueSuat.TabIndex = 14;
+            this.txtMaThue.AccessibleName = "ma_thue";
+            this.txtMaThue.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaThue.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaThue.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaThue.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaThue.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaThue.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaThue.LeaveColor = System.Drawing.Color.White;
+            this.txtMaThue.Location = new System.Drawing.Point(87, 72);
+            this.txtMaThue.Name = "txtMaThue";
+            this.txtMaThue.Size = new System.Drawing.Size(132, 20);
+            this.txtMaThue.TabIndex = 14;
+            this.txtMaThue.VVar = "MA_THUE";
             // 
             // ctTuSo
             // 
@@ -752,7 +753,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
         private V6Controls.V6VvarTextBox maKhach;
         private V6Controls.V6NumberTextBox soTienTu;
         private V6Controls.V6VvarTextBox soHd;
-        private V6Controls.V6VvarTextBox thueSuat;
+        private V6Controls.V6VvarTextBox txtMaThue;
         private V6Controls.V6VvarTextBox ctTuSo;
         private V6Controls.V6CheckBox chkLike;
         private V6VvarTextBox maBoPhan;

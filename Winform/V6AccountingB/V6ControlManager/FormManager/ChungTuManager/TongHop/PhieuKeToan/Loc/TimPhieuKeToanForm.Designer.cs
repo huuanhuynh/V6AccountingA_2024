@@ -107,7 +107,7 @@
             // 
             // txtNhomVT3
             // 
-            this.txtNhomVT3.AccessibleName = "nh_vt3";
+            this.txtNhomVT3.AccessibleName = "NH_VT3";
             this.txtNhomVT3.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.txtNhomVT3.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomVT3.CheckOnLeave = false;
@@ -121,11 +121,11 @@
             this.txtNhomVT3.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT3.TabIndex = 9;
             this.txtNhomVT3.Visible = false;
-            this.txtNhomVT3.VVar = "nh_vt";
+            this.txtNhomVT3.VVar = "NH_VT";
             // 
             // txtNhomVT2
             // 
-            this.txtNhomVT2.AccessibleName = "nh_vt2";
+            this.txtNhomVT2.AccessibleName = "NH_VT2";
             this.txtNhomVT2.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.txtNhomVT2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomVT2.CheckOnLeave = false;
@@ -139,7 +139,7 @@
             this.txtNhomVT2.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT2.TabIndex = 7;
             this.txtNhomVT2.Visible = false;
-            this.txtNhomVT2.VVar = "nh_vt";
+            this.txtNhomVT2.VVar = "NH_VT";
             // 
             // txtTrangThai
             // 
@@ -160,7 +160,7 @@
             // 
             // txtNhomVT1
             // 
-            this.txtNhomVT1.AccessibleName = "nh_vt1";
+            this.txtNhomVT1.AccessibleName = "NH_VT1";
             this.txtNhomVT1.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.txtNhomVT1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomVT1.CheckOnLeave = false;
@@ -174,7 +174,7 @@
             this.txtNhomVT1.Size = new System.Drawing.Size(132, 20);
             this.txtNhomVT1.TabIndex = 1;
             this.txtNhomVT1.Visible = false;
-            this.txtNhomVT1.VVar = "nh_vt";
+            this.txtNhomVT1.VVar = "NH_VT";
             // 
             // v6Label21
             // 

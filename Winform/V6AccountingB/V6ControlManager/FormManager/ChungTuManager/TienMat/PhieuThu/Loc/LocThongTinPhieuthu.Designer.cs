@@ -170,7 +170,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu.Loc
             // 
             // txtNhomKH5
             // 
-            this.txtNhomKH5.AccessibleName = "5";
+            this.txtNhomKH5.AccessibleName = "NH_KH5";
             this.txtNhomKH5.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomKH5.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomKH5.CheckOnLeave = false;
@@ -187,7 +187,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu.Loc
             // 
             // txtNhomKH7
             // 
-            this.txtNhomKH7.AccessibleName = "7";
+            this.txtNhomKH7.AccessibleName = "NH_KH7";
             this.txtNhomKH7.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomKH7.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomKH7.CheckOnLeave = false;
@@ -204,7 +204,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu.Loc
             // 
             // txtNhomKH3
             // 
-            this.txtNhomKH3.AccessibleName = "3";
+            this.txtNhomKH3.AccessibleName = "NH_KH3";
             this.txtNhomKH3.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomKH3.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomKH3.CheckOnLeave = false;
@@ -221,7 +221,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu.Loc
             // 
             // txtNhomKH4
             // 
-            this.txtNhomKH4.AccessibleName = "4";
+            this.txtNhomKH4.AccessibleName = "NH_KH4";
             this.txtNhomKH4.BackColor = System.Drawing.SystemColors.Window;
             this.txtNhomKH4.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtNhomKH4.CheckOnLeave = false;
@@ -337,6 +337,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu.Loc
             this.loaiPhieu.Name = "loaiPhieu";
             this.loaiPhieu.Size = new System.Drawing.Size(132, 20);
             this.loaiPhieu.TabIndex = 16;
+            this.loaiPhieu.VVar = "MA_GD";
             // 
             // soTienDen
             // 
@@ -441,7 +442,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu.Loc
             // 
             // txtMaDVCS
             // 
-            this.txtMaDVCS.AccessibleName = "ma_dvcs";
+            this.txtMaDVCS.AccessibleName = "MA_DVCS";
             this.txtMaDVCS.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaDVCS.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaDVCS.CheckOnLeave = false;

@@ -1245,7 +1245,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private void SoDu2AddEditControl0_Load(object sender, EventArgs e)
         {
             SetDataToGrid(dataGridView1, AD, txtMaCt.Text);
-            txtMaDvcs.Focus();
+            txtMaDVCS.Focus();
         }
 
         private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)

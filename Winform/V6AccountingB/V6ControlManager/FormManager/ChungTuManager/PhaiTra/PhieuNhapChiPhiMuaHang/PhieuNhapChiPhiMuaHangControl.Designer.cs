@@ -148,7 +148,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             this.group3 = new System.Windows.Forms.GroupBox();
             this.txtMaHttt = new V6Controls.V6VvarTextBox();
             this.v6Label21 = new V6Controls.V6Label();
-            this.txtMadvcs = new V6Controls.V6VvarTextBox();
+            this.txtMaDVCS = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox4 = new V6Controls.V6VvarTextBox();
             this.lblMaDVCS = new V6Controls.V6Label();
             this.v6NumberTextBox1 = new V6Controls.V6NumberTextBox();
@@ -1905,7 +1905,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             | System.Windows.Forms.AnchorStyles.Right)));
             this.group3.Controls.Add(this.txtMaHttt);
             this.group3.Controls.Add(this.v6Label21);
-            this.group3.Controls.Add(this.txtMadvcs);
+            this.group3.Controls.Add(this.txtMaDVCS);
             this.group3.Controls.Add(this.v6ColorTextBox4);
             this.group3.Controls.Add(this.lblMaDVCS);
             this.group3.Controls.Add(this.v6NumberTextBox1);
@@ -1968,24 +1968,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             // 
             // txtMadvcs
             // 
-            this.txtMadvcs.AccessibleName = "ma_dvcs";
-            this.txtMadvcs.BackColor = System.Drawing.SystemColors.Window;
-            this.txtMadvcs.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtMadvcs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMadvcs.BrotherFields = "ten_dvcs";
-            this.txtMadvcs.CheckNotEmpty = true;
-            this.txtMadvcs.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtMadvcs.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtMadvcs.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtMadvcs.HoverColor = System.Drawing.Color.Yellow;
-            this.txtMadvcs.LeaveColor = System.Drawing.Color.White;
-            this.txtMadvcs.Location = new System.Drawing.Point(92, 9);
-            this.txtMadvcs.Name = "txtMadvcs";
-            this.txtMadvcs.Size = new System.Drawing.Size(100, 20);
-            this.txtMadvcs.TabIndex = 0;
-            this.txtMadvcs.VVar = "ma_dvcs";
-            this.txtMadvcs.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMadvcs_V6LostFocus);
-            this.txtMadvcs.TextChanged += new System.EventHandler(this.txtMadvcs_TextChanged);
+            this.txtMaDVCS.AccessibleName = "MA_DVCS";
+            this.txtMaDVCS.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaDVCS.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaDVCS.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMaDVCS.BrotherFields = "ten_dvcs";
+            this.txtMaDVCS.CheckNotEmpty = true;
+            this.txtMaDVCS.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaDVCS.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaDVCS.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaDVCS.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaDVCS.LeaveColor = System.Drawing.Color.White;
+            this.txtMaDVCS.Location = new System.Drawing.Point(92, 9);
+            this.txtMaDVCS.Name = "txtMaDVCS";
+            this.txtMaDVCS.Size = new System.Drawing.Size(100, 20);
+            this.txtMaDVCS.TabIndex = 0;
+            this.txtMaDVCS.VVar = "ma_dvcs";
+            this.txtMaDVCS.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMadvcs_V6LostFocus);
+            this.txtMaDVCS.TextChanged += new System.EventHandler(this.txtMadvcs_TextChanged);
             // 
             // v6ColorTextBox4
             // 
@@ -3240,7 +3240,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         private V6VvarTextBox TxtLoai_pb;
         private V6VvarTextBox TxtTk_i;
         private V6VvarTextBox Txtma_kh_i;
-        private V6VvarTextBox txtMadvcs;
+        private V6VvarTextBox txtMaDVCS;
         private V6VvarTextBox v6ColorTextBox4;
         private V6Label lblMaDVCS;
         private V6VvarTextBox Txtma_nk;

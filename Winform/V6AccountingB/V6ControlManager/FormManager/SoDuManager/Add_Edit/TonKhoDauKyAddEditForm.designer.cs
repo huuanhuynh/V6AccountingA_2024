@@ -43,7 +43,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label1 = new System.Windows.Forms.Label();
             this.txtton00 = new V6Controls.NumberSoluong();
             this.label55 = new System.Windows.Forms.Label();
-            this.txtMaDvcs = new V6Controls.V6VvarTextBox();
+            this.txtMaDVCS = new V6Controls.V6VvarTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.TxtMa_kho = new V6Controls.V6VvarTextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -87,7 +87,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtton00);
             this.groupBox1.Controls.Add(this.label55);
-            this.groupBox1.Controls.Add(this.txtMaDvcs);
+            this.groupBox1.Controls.Add(this.txtMaDVCS);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.TxtMa_kho);
             this.groupBox1.Controls.Add(this.label3);
@@ -295,22 +295,22 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // txtMaDvcs
             // 
-            this.txtMaDvcs.AccessibleName = "Ma_dvcs";
-            this.txtMaDvcs.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.txtMaDvcs.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtMaDvcs.CheckNotEmpty = true;
-            this.txtMaDvcs.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtMaDvcs.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtMaDvcs.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtMaDvcs.HoverColor = System.Drawing.Color.Yellow;
-            this.txtMaDvcs.LeaveColor = System.Drawing.Color.White;
-            this.txtMaDvcs.Location = new System.Drawing.Point(427, 130);
-            this.txtMaDvcs.Name = "txtMaDvcs";
-            this.txtMaDvcs.ReadOnly = true;
-            this.txtMaDvcs.Size = new System.Drawing.Size(150, 23);
-            this.txtMaDvcs.TabIndex = 17;
-            this.txtMaDvcs.TabStop = false;
-            this.txtMaDvcs.VVar = "MA_DVCS";
+            this.txtMaDVCS.AccessibleName = "MA_DVCS";
+            this.txtMaDVCS.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtMaDVCS.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaDVCS.CheckNotEmpty = true;
+            this.txtMaDVCS.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaDVCS.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaDVCS.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaDVCS.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaDVCS.LeaveColor = System.Drawing.Color.White;
+            this.txtMaDVCS.Location = new System.Drawing.Point(427, 130);
+            this.txtMaDVCS.Name = "txtMaDVCS";
+            this.txtMaDVCS.ReadOnly = true;
+            this.txtMaDVCS.Size = new System.Drawing.Size(150, 23);
+            this.txtMaDVCS.TabIndex = 17;
+            this.txtMaDVCS.TabStop = false;
+            this.txtMaDVCS.VVar = "MA_DVCS";
             // 
             // label5
             // 
@@ -677,7 +677,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label8;
         private V6NumberTextBox TxtNam;
-        private V6VvarTextBox txtMaDvcs;
+        private V6VvarTextBox txtMaDVCS;
         private System.Windows.Forms.Label label5;
         private V6LabelTextBox txtten_vt;
         private V6LabelTextBox v6LabelTextBox1;
