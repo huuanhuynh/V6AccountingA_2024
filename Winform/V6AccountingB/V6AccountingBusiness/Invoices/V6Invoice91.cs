@@ -273,7 +273,7 @@ namespace V6AccountingBusiness.Invoices
             }
         }
 
-        public DataTable SearchDonHang(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, out string loai_ct_chon)
+        public DataTable SearchDonHang(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, string advance, out string loai_ct_chon)
         {
             if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
             if (where1AM.Length > 0) where1AM = "And " + where1AM;
@@ -296,6 +296,18 @@ namespace V6AccountingBusiness.Invoices
             else
             {
                 whereAD_Nhvt_Dvcs = "";
+            }
+
+            if (!string.IsNullOrEmpty(where3NhVt))
+            {
+                if (string.IsNullOrEmpty(advance))
+                {
+                    advance = "Ma_vt IN (Select ma_vt from Alvt where 1=1 " + where3NhVt + ")";
+                }
+                else
+                {
+                    advance += " And Ma_vt IN (Select ma_vt from Alvt where 1=1 " + where3NhVt + ")";
+                }
             }
 
             loai_ct_chon = "S";
@@ -303,20 +315,20 @@ namespace V6AccountingBusiness.Invoices
             {
                 new SqlParameter("@sType",  "S"),
 	            new SqlParameter("@dFrom",  ngayCt.ToString("yyyyMMdd")),
-	            new SqlParameter("@cTableAM", "AM91"), 
-	            new SqlParameter("@cTableAD", "AD91"), 
-	            new SqlParameter("@cKey1AM", where0Ngay), 
-	            new SqlParameter("@cKey2AM", where1AM), 
-	            new SqlParameter("@cKey1AD", whereAD_Nhvt_Dvcs), 
+	            new SqlParameter("@cTableAM", "AM91"),
+	            new SqlParameter("@cTableAD", "AD91"),
+	            new SqlParameter("@cKey1AM", where0Ngay),
+	            new SqlParameter("@cKey2AM", where1AM),
+	            new SqlParameter("@cKey1AD", whereAD_Nhvt_Dvcs),
 	            new SqlParameter("@cKey2AD", ""),
-	            new SqlParameter("@Advance", ""), 
+	            new SqlParameter("@Advance", advance),
 	            new SqlParameter("@Advance2", "")
             };
             var tbl = V6BusinessHelper.ExecuteProcedure("VPA_GET_STOCK_SOH", plist).Tables[0];
             return tbl;
         }
 
-        public DataTable SearchDonHang_IXY(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, out string loai_ct_chon)
+        public DataTable SearchDonHang_IXY(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, string advance, out string loai_ct_chon)
         {
             if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
             if (where1AM.Length > 0) where1AM = "And " + where1AM;
@@ -341,18 +353,30 @@ namespace V6AccountingBusiness.Invoices
                 whereAD_Nhvt_Dvcs = "";
             }
 
+            if (!string.IsNullOrEmpty(where3NhVt))
+            {
+                if (string.IsNullOrEmpty(advance))
+                {
+                    advance = "Ma_vt IN (Select ma_vt from Alvt where 1=1 " + where3NhVt + ")";
+                }
+                else
+                {
+                    advance += " And Ma_vt IN (Select ma_vt from Alvt where 1=1 " + where3NhVt + ")";
+                }
+            }
+
             loai_ct_chon = "X";
             SqlParameter[] plist =
             {
                 new SqlParameter("@sType",  "X"),
 	            new SqlParameter("@dFrom",  ngayCt.ToString("yyyyMMdd")),
-	            new SqlParameter("@cTableAM", "AM91"), 
-	            new SqlParameter("@cTableAD", "AD91"), 
-	            new SqlParameter("@cKey1AM", where0Ngay), 
-	            new SqlParameter("@cKey2AM", where1AM), 
-	            new SqlParameter("@cKey1AD", whereAD_Nhvt_Dvcs), 
+	            new SqlParameter("@cTableAM", "AM91"),
+	            new SqlParameter("@cTableAD", "AD91"),
+	            new SqlParameter("@cKey1AM", where0Ngay),
+	            new SqlParameter("@cKey2AM", where1AM),
+	            new SqlParameter("@cKey1AD", whereAD_Nhvt_Dvcs),
 	            new SqlParameter("@cKey2AD", ""),
-	            new SqlParameter("@Advance", ""), 
+	            new SqlParameter("@Advance", advance),
 	            new SqlParameter("@Advance2", "")
             };
             var tbl = V6BusinessHelper.ExecuteProcedure("VPA_GET_STOCK_SOH_IXY", plist).Tables[0];
@@ -431,7 +455,7 @@ namespace V6AccountingBusiness.Invoices
             }
             return null;
         }
-        public DataTable SearchDonHangBanAll(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, out string loai_ct_chon)
+        public DataTable SearchDonHangBanAll(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, string advance, out string loai_ct_chon)
         {
             if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
             if (where1AM.Length > 0) where1AM = "And " + where1AM;
@@ -456,28 +480,30 @@ namespace V6AccountingBusiness.Invoices
                 whereAD_Nhvt_Dvcs = "";
             }
 
-            //var sql = string.Format("Select ' ' Tag,  v.ten_vt,v.tk_tl , d.*, d.STT_REC AS STT_RECDH, d.STT_REC0 AS STT_REC0DH "
-            //    + "\nFROM AD91 d "//" LEFT JOIN Alkh b ON d.Ma_kh=b.Ma_kh "
-            //    + "\n LEFT JOIN Alvt v ON v.Ma_vt = d.Ma_vt "
-            //    + "\n  JOIN (SELECT Stt_rec FROM AM91 WHERE Ma_ct = 'SOH'" + "\n {0} {1}) AS m ON d.Stt_rec = m.Stt_rec"
-            //    + "\n {2}"
-            //    + "\n ORDER BY d.ngay_ct, d.so_ct, d.stt_rec",
-            //    where0Ngay, where1AM, whereAD_Nhvt_Dvcs);
-            //var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql).Tables[0];
-            //return tbl;
+            if (!string.IsNullOrEmpty(where3NhVt))
+            {
+                if (string.IsNullOrEmpty(advance))
+                {
+                    advance = "Ma_vt IN (Select ma_vt from Alvt where 1=1 " + where3NhVt + ")";
+                }
+                else
+                {
+                    advance += " And Ma_vt IN (Select ma_vt from Alvt where 1=1 " + where3NhVt + ")";
+                }
+            }
 
             loai_ct_chon = "S";
             SqlParameter[] plist =
             {
                 new SqlParameter("@sType",  "S"),
 	            new SqlParameter("@dFrom",  ngayCt.ToString("yyyyMMdd")),
-	            new SqlParameter("@cTableAM", "AM91"), 
-	            new SqlParameter("@cTableAD", "AD91"), 
-	            new SqlParameter("@cKey1AM", where0Ngay), 
-	            new SqlParameter("@cKey2AM", where1AM), 
-	            new SqlParameter("@cKey1AD", whereAD_Nhvt_Dvcs), 
+	            new SqlParameter("@cTableAM", "AM91"),
+	            new SqlParameter("@cTableAD", "AD91"),
+	            new SqlParameter("@cKey1AM", where0Ngay),
+	            new SqlParameter("@cKey2AM", where1AM),
+	            new SqlParameter("@cKey1AD", whereAD_Nhvt_Dvcs),
 	            new SqlParameter("@cKey2AD", ""),
-	            new SqlParameter("@Advance", ""), 
+	            new SqlParameter("@Advance", advance),
 	            new SqlParameter("@Advance2", "")
             };
             var tbl = V6BusinessHelper.ExecuteProcedure("VPA_GET_ALL_SOH", plist).Tables[0];

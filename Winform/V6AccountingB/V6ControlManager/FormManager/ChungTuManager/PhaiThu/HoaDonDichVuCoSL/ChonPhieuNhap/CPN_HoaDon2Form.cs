@@ -199,7 +199,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
             }
         }
 
-        private string _where0Time = "", _where1AM = "", _where2AD = "", _w3NhomVt = "", _w4Dvcs = "";
+        private string _where0Time = "", _where1AM = "", _where2AD = "", _w3NhomVt = "", _w4Dvcs = "", _advance = "";
 
         private void PrepareThread()
         {
@@ -215,13 +215,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
             _w3NhomVt = GetNhVtFilterSql_TuyChon("", "like");
             var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
             _w4Dvcs = GetDvcsFilterSql_TuyChon(struDvcs, "", "like");
+            _advance = locThongTinChiTiet1.GetFilterSql_Advance(Invoice, V6BusinessHelper.GetTableStruct("ARS90"), "", "like");
         }
 
         private void DoSearch()
         {
             try
             {
-                tAM = Invoice.SearchPhieuNhap_HoaDon(_ngayCt, _where0Time, _where1AM, _where2AD, _w3NhomVt, _w4Dvcs, out _loai_ct_chon);
+                tAM = Invoice.SearchPhieuNhap_HoaDon(_ngayCt, _where0Time, _where1AM, _where2AD, _w3NhomVt, _w4Dvcs, _advance, out _loai_ct_chon);
                 if (tAM != null && tAM.Rows.Count > 0)
                 {
                     flagSearchSuccess = true;

@@ -11,6 +11,7 @@ using V6Controls.Forms;
 using V6Init;
 using V6SqlConnect;
 using V6Structs;
+using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang
@@ -226,7 +227,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang
             }
         }
 
-        private string _where0Time = "", _where1AM = "", _where2AD = "", _w3NhomVt = "", _w4Dvcs = "";
+        private string _where0Time = "", _where1AM = "", _where2AD = "", _w3NhomVt = "", _w4Dvcs = "", _advance = "";
         private void PrepareThread()
         {
             var stru = Invoice.AMStruct;
@@ -241,13 +242,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang
             _w3NhomVt = GetNhVtFilterSql_TuyChon("", "like");
             var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
             _w4Dvcs = GetDvcsFilterSql_TuyChon(struDvcs, "", "like");
+            _advance = GetFilterSql_Advance(V6BusinessHelper.GetTableStruct("ARS90"), "", "like");
         }
 
         private void DoSearch()
         {
             try
             {
-                tAM = Invoice.SearchDonHang(_ngayCt, _where0Time, _where1AM, _where2AD, _w3NhomVt, _w4Dvcs, out _loai_ct_chon);
+                tAM = Invoice.SearchDonHang(_ngayCt, _where0Time, _where1AM, _where2AD, _w3NhomVt, _w4Dvcs, _advance, out _loai_ct_chon);
                 if (tAM != null && tAM.Rows.Count > 0)
                 {
                     flagSearchSuccess = true;
@@ -438,6 +440,56 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang
 
             //advance
             var rAdvance = panelFilter2.GetQueryString(tableStruct, tableLable, and);
+            if (rAdvance.Length > 0)
+            {
+                result += (result.Length > 0 ? and_or : "") + rAdvance;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// GetFilterSql_TTChiTiet + change fields name.
+        /// </summary>
+        /// <param name="tableStruct"></param>
+        /// <param name="tableLable"></param>
+        /// <param name="oper"></param>
+        /// <param name="and"></param>
+        /// <returns></returns>
+        public string GetFilterSql_Advance(V6TableStruct tableStruct, string tableLable,
+            string oper = "=", bool and = true)
+        {
+            var and_or = and ? " AND " : " OR ";
+            var tLable = string.IsNullOrEmpty(tableLable) ? "" : tableLable + ".";
+            var result = "";
+            SortedDictionary<string, object> keys = V6ControlFormHelper.GetFormDataDictionary(grbThongTinChiTiet);
+            var new_keys = new SortedDictionary<string, object>(keys);
+
+            IDictionary<string, object> dic = null;
+            if (Invoice.EXTRA_INFOR.ContainsKey("CDHMAP"))
+            {
+                var cdhMap = Invoice.EXTRA_INFOR["CDHMAP"];
+                dic = ObjectAndString.StringToDictionary(cdhMap, ',', ':');
+                foreach (KeyValuePair<string, object> item in dic)
+                {
+                    if (new_keys.ContainsKey(item.Key))
+                    {
+                        string newField = item.Value.ToString().ToUpper();
+                        new_keys[newField] = new_keys[item.Key];
+                        new_keys.Remove(item.Key);
+                    }
+                }
+            }
+
+            result = SqlGenerator.GenWhere2(tableStruct, keys, oper, and, tableLable);
+
+            if (result.Length > 0)
+            {
+                result = "(" + result + ")";
+            }
+
+            //advance
+            var rAdvance = panelFilter2.GetQueryString_Mapping(tableStruct, dic, tableLable, and);
             if (rAdvance.Length > 0)
             {
                 result += (result.Length > 0 ? and_or : "") + rAdvance;

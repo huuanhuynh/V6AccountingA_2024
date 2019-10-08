@@ -354,7 +354,7 @@ namespace V6AccountingBusiness.Invoices
             return null;
         }
 
-        public DataTable SearchDonHang(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, out string loai_ct_chon)
+        public DataTable SearchDonHang(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, string advance, out string loai_ct_chon)
         {
             if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
             if (where1AM.Length > 0) where1AM = "And " + where1AM;
@@ -377,6 +377,18 @@ namespace V6AccountingBusiness.Invoices
             else
             {
                 whereAD_Nhvt_Dvcs = "";
+            }
+
+            if (!string.IsNullOrEmpty(where3NhVt))
+            {
+                if (string.IsNullOrEmpty(advance))
+                {
+                    advance = "Ma_vt IN (Select ma_vt from Alvt where 1=1 " + where3NhVt + ")";
+                }
+                else
+                {
+                    advance += " And Ma_vt IN (Select ma_vt from Alvt where 1=1 " + where3NhVt + ")";
+                }
             }
 
             loai_ct_chon = "P";
@@ -386,11 +398,11 @@ namespace V6AccountingBusiness.Invoices
 	            new SqlParameter("@dFrom",  ngayCt.ToString("yyyyMMdd")),
 	            new SqlParameter("@cTableAM", "AM92"), 
 	            new SqlParameter("@cTableAD", "AD92"), 
-	            new SqlParameter("@cKey1AM", where0Ngay), 
-	            new SqlParameter("@cKey2AM", where1AM), 
-	            new SqlParameter("@cKey1AD", whereAD_Nhvt_Dvcs), 
+	            new SqlParameter("@cKey1AM", where0Ngay),
+	            new SqlParameter("@cKey2AM", where1AM),
+	            new SqlParameter("@cKey1AD", whereAD_Nhvt_Dvcs),
 	            new SqlParameter("@cKey2AD", ""),
-	            new SqlParameter("@Advance", ""), 
+	            new SqlParameter("@Advance", advance),
 	            new SqlParameter("@Advance2", "")
             };
             var tbl = V6BusinessHelper.ExecuteProcedure("VPA_GET_STOCK_POH", plist).Tables[0];
@@ -400,7 +412,7 @@ namespace V6AccountingBusiness.Invoices
             //return tbl;
         }
 
-        public DataTable SearchDonHangMua_INY(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, out string loai_ct_chon)
+        public DataTable SearchDonHangMua_INY(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, string advance, out string loai_ct_chon)
         {
             if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
             if (where1AM.Length > 0) where1AM = "And " + where1AM;
@@ -425,6 +437,18 @@ namespace V6AccountingBusiness.Invoices
                 whereAD_Nhvt_Dvcs = "";
             }
 
+            if (!string.IsNullOrEmpty(where3NhVt))
+            {
+                if (string.IsNullOrEmpty(advance))
+                {
+                    advance = "Ma_vt IN (Select ma_vt from Alvt where 1=1 " + where3NhVt + ")";
+                }
+                else
+                {
+                    advance += " And Ma_vt IN (Select ma_vt from Alvt where 1=1 " + where3NhVt + ")";
+                }
+            }
+
             loai_ct_chon = "Y";
             SqlParameter[] plist =
             {
@@ -432,11 +456,11 @@ namespace V6AccountingBusiness.Invoices
 	            new SqlParameter("@dFrom",  ngayCt.ToString("yyyyMMdd")),
 	            new SqlParameter("@cTableAM", "AM92"), 
 	            new SqlParameter("@cTableAD", "AD92"), 
-	            new SqlParameter("@cKey1AM", where0Ngay), 
-	            new SqlParameter("@cKey2AM", where1AM), 
-	            new SqlParameter("@cKey1AD", whereAD_Nhvt_Dvcs), 
+	            new SqlParameter("@cKey1AM", where0Ngay),
+	            new SqlParameter("@cKey2AM", where1AM),
+	            new SqlParameter("@cKey1AD", whereAD_Nhvt_Dvcs),
 	            new SqlParameter("@cKey2AD", ""),
-	            new SqlParameter("@Advance", ""), 
+	            new SqlParameter("@Advance", advance),
 	            new SqlParameter("@Advance2", "")
             };
             var tbl = V6BusinessHelper.ExecuteProcedure("VPA_GET_STOCK_POH_INY", plist).Tables[0];

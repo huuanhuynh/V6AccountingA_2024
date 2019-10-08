@@ -30,7 +30,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuNh
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grbThongTinChiTiet = new System.Windows.Forms.GroupBox();
             this.taiKhoanNo = new V6Controls.V6VvarTextBox();
             this.v6Label6 = new V6Controls.V6Label();
             this.panelFilter2 = new V6ReportControls.PanelFilter();
@@ -62,50 +62,50 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuNh
             this.v6Label35 = new V6Controls.V6Label();
             this.v6Label36 = new V6Controls.V6Label();
             this.v6Label37 = new V6Controls.V6Label();
-            this.groupBox1.SuspendLayout();
+            this.grbThongTinChiTiet.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // grbThongTinChiTiet
             // 
-            this.groupBox1.AccessibleDescription = "SEARCHG00002";
-            this.groupBox1.Controls.Add(this.taiKhoanNo);
-            this.groupBox1.Controls.Add(this.v6Label6);
-            this.groupBox1.Controls.Add(this.panelFilter2);
-            this.groupBox1.Controls.Add(this.v6ColorTextBox4);
-            this.groupBox1.Controls.Add(this.v6ColorTextBox5);
-            this.groupBox1.Controls.Add(this.v6ColorTextBox6);
-            this.groupBox1.Controls.Add(this.v6ColorTextBox3);
-            this.groupBox1.Controls.Add(this.v6ColorTextBox24);
-            this.groupBox1.Controls.Add(this.txtMa_vv_i);
-            this.groupBox1.Controls.Add(this.v6ColorTextBox27);
-            this.groupBox1.Controls.Add(this.v6ColorTextBox2);
-            this.groupBox1.Controls.Add(this.v6ColorTextBox28);
-            this.groupBox1.Controls.Add(this.v6ColorTextBox29);
-            this.groupBox1.Controls.Add(this.v6ColorTextBox1);
-            this.groupBox1.Controls.Add(this.v6ColorTextBox30);
-            this.groupBox1.Controls.Add(this.v6ColorTextBox32);
-            this.groupBox1.Controls.Add(this.v6Label4);
-            this.groupBox1.Controls.Add(this.v6ColorTextBox33);
-            this.groupBox1.Controls.Add(this.v6Label9);
-            this.groupBox1.Controls.Add(this.v6Label3);
-            this.groupBox1.Controls.Add(this.v6Label10);
-            this.groupBox1.Controls.Add(this.v6Label2);
-            this.groupBox1.Controls.Add(this.v6Label11);
-            this.groupBox1.Controls.Add(this.v6Label12);
-            this.groupBox1.Controls.Add(this.v6Label30);
-            this.groupBox1.Controls.Add(this.v6Label1);
-            this.groupBox1.Controls.Add(this.v6Label32);
-            this.groupBox1.Controls.Add(this.v6Label34);
-            this.groupBox1.Controls.Add(this.v6Label35);
-            this.groupBox1.Controls.Add(this.v6Label36);
-            this.groupBox1.Controls.Add(this.v6Label37);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(759, 234);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Lọc thông tin chi tiết";
+            this.grbThongTinChiTiet.AccessibleDescription = "SEARCHG00002";
+            this.grbThongTinChiTiet.Controls.Add(this.taiKhoanNo);
+            this.grbThongTinChiTiet.Controls.Add(this.v6Label6);
+            this.grbThongTinChiTiet.Controls.Add(this.panelFilter2);
+            this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox4);
+            this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox5);
+            this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox6);
+            this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox3);
+            this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox24);
+            this.grbThongTinChiTiet.Controls.Add(this.txtMa_vv_i);
+            this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox27);
+            this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox2);
+            this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox28);
+            this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox29);
+            this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox1);
+            this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox30);
+            this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox32);
+            this.grbThongTinChiTiet.Controls.Add(this.v6Label4);
+            this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox33);
+            this.grbThongTinChiTiet.Controls.Add(this.v6Label9);
+            this.grbThongTinChiTiet.Controls.Add(this.v6Label3);
+            this.grbThongTinChiTiet.Controls.Add(this.v6Label10);
+            this.grbThongTinChiTiet.Controls.Add(this.v6Label2);
+            this.grbThongTinChiTiet.Controls.Add(this.v6Label11);
+            this.grbThongTinChiTiet.Controls.Add(this.v6Label12);
+            this.grbThongTinChiTiet.Controls.Add(this.v6Label30);
+            this.grbThongTinChiTiet.Controls.Add(this.v6Label1);
+            this.grbThongTinChiTiet.Controls.Add(this.v6Label32);
+            this.grbThongTinChiTiet.Controls.Add(this.v6Label34);
+            this.grbThongTinChiTiet.Controls.Add(this.v6Label35);
+            this.grbThongTinChiTiet.Controls.Add(this.v6Label36);
+            this.grbThongTinChiTiet.Controls.Add(this.v6Label37);
+            this.grbThongTinChiTiet.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grbThongTinChiTiet.Location = new System.Drawing.Point(0, 0);
+            this.grbThongTinChiTiet.Name = "grbThongTinChiTiet";
+            this.grbThongTinChiTiet.Size = new System.Drawing.Size(759, 234);
+            this.grbThongTinChiTiet.TabIndex = 0;
+            this.grbThongTinChiTiet.TabStop = false;
+            this.grbThongTinChiTiet.Text = "Lọc thông tin chi tiết";
             // 
             // taiKhoanNo
             // 
@@ -493,18 +493,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuNh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.grbThongTinChiTiet);
             this.Name = "CPN_CT_HoaDon";
             this.Size = new System.Drawing.Size(759, 234);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.grbThongTinChiTiet.ResumeLayout(false);
+            this.grbThongTinChiTiet.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grbThongTinChiTiet;
         private V6Label v6Label9;
         private V6Label v6Label10;
         private V6Label v6Label11;

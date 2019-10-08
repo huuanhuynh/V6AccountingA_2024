@@ -204,6 +204,30 @@ namespace V6ReportControls
             return result;
         }
 
+        public string GetQueryString_Mapping(V6TableStruct tableStruct, IDictionary<string, object> fieldMap , string tableLable = null, bool and = true)
+        {
+            var and_or = and ? " AND " : " OR ";
+            string result = "";
+            foreach (FilterLineDynamic c in Controls)
+            {
+                if (fieldMap != null && fieldMap.ContainsKey(c.FieldName))
+                {
+                    string newField = fieldMap[c.FieldName.ToUpper()].ToString();
+                    if (tableStruct.ContainsKey(newField))
+                    if (c.IsSelected)
+                        result += and_or + string.Format("[{0}] {1} {2}", newField, c.Operator, c.FormatValue(c.StringValue, c.ValueType));
+                }
+                else
+                {
+                    if (tableStruct.ContainsKey(c.FieldName))
+                    if (c.IsSelected)
+                        result += and_or + c.GetQuery();
+                }
+            }
+            if (result.Length > 4) result = result.Substring(4);
+            return result;
+        }
+
         public SortedDictionary<string, object> GetQueryKeys()
         {
             var result = new SortedDictionary<string, object>();

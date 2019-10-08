@@ -107,7 +107,7 @@ namespace V6ReportControls
         /// <param name="value">StringValue</param>
         /// <param name="type">Kiểu dữ liệu typeof(string) hoặc typeof(decimal) hoặc typeof(DateTime)</param>
         /// <returns></returns>
-        protected string FormatValue(string value, Type type)
+        public string FormatValue(string value, Type type)
         {
             //Type type = typeof(string);
 
@@ -160,7 +160,7 @@ namespace V6ReportControls
             {
                 var oper = Operator;
                 if (oper == "start") oper = "like";
-                var result = string.Format("[{0}] {1} {2}", FieldName, oper, StringValue);
+                var result = string.Format("[{0}] {1} {2}", FieldName, oper, FormatValue(StringValue, ObjectValue.GetType()));
                 return result;
             }
         }

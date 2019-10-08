@@ -6523,23 +6523,27 @@ namespace V6Controls.Forms
             else if (!filter.Contains("All file|*.*".ToUpper())) filter += "|All file|*.*";
             if (!string.IsNullOrEmpty(fileName))
             {
-                if (Path.IsPathRooted(fileName)) saveFileDialog.FileName = fileName;
-                else
+                if (Path.IsPathRooted(fileName))
                 {
-                    var folder = string.IsNullOrEmpty(saveFileDialog.FileName)
-                        ? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-                        : Path.GetFullPath(saveFileDialog.FileName);
-                    fileName = Path.Combine(folder, fileName);
+                    fileName = Path.GetFullPath(fileName);
+                    var folder = Path.GetDirectoryName(fileName);
                     saveFileDialog.InitialDirectory = folder;
-                    saveFileDialog.FileName = fileName;
                 }
+                
+                //var folder = string.IsNullOrEmpty(saveFileDialog.FileName)
+                //    ? Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+                //    : Path.GetFullPath(saveFileDialog.FileName);
+                //filePath = Path.Combine(folder, filePath);
+
+                saveFileDialog.FileName = Path.GetFileName(fileName);
             }
+
             saveFileDialog.Filter = filter;
             if (saveFileDialog.ShowDialog(owner) == DialogResult.OK)
             {
                 return saveFileDialog.FileName;
             }
-            return "";
+            return null;
         }
 
         private static OpenFileDialog openFileDialog = new OpenFileDialog()

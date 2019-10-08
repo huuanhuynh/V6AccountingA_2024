@@ -2092,6 +2092,16 @@ namespace V6ControlManager.FormManager.ChungTuManager
             firstField = null;
             try
             {
+                string inv = "";
+                All_Objects["DETAILDATA"] = data;
+                inv += InvokeFormEvent(FormDynamicEvent.VALIDATEDETAILDATA);
+                V6Tag invTag = new V6Tag(inv);
+                if (invTag.Cancel)
+                {
+                    error += invTag.DescriptionLang(V6Setting.IsVietnamese);
+                    return error;
+                }
+
                 var config = ConfigManager.GetV6ValidConfig(Invoice.Mact, 2);
                 
                 if (config != null && config.HaveInfo)

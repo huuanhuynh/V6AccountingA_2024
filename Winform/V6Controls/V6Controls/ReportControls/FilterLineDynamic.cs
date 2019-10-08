@@ -160,7 +160,7 @@ namespace V6ReportControls
             }
         }
 
-        private Type ValueType
+        public Type ValueType
         {
             get
             {

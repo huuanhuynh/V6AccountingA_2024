@@ -635,7 +635,7 @@ namespace V6Tools.V6Convert
             return new Dictionary<string, object>();
         }
 
-        private static IDictionary<string, object> StringToDictionary(string tag, char group_char = ';', char element_char = ':')
+        public static IDictionary<string, object> StringToDictionary(string tag, char group_char = ';', char element_char = ':')
         {
             Dictionary<string,object> result = new Dictionary<string, object>();
             string[] sss = string.IsNullOrEmpty(tag) ? new string[]{} : tag.Split(new []{group_char}, StringSplitOptions.RemoveEmptyEntries);
