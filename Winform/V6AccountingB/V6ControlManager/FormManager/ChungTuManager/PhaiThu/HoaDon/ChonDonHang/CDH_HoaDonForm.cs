@@ -350,13 +350,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang
                     if (string.IsNullOrEmpty(ma_kh_me))
                     {
                         result += string.Format(
-                           "{0}{1}MA_KH in (Select ma_kh from alkh where MA_KH like '{2}')",
+                           "{0}{1}MA_KH in (Select ma_kh from alkh where MA_KH like '{2}' or MA_KH_ME like '{2}')",
                            (result.Length > 0 ? and_or : ""), tbL, maKhach.Text.Trim());
                     }
                     else
                     {
                         result += string.Format(
-                              "{0}{1}MA_KH in (Select ma_kh from alkh where MA_KH like '{2}' or MA_KH like '{3}')",
+                              "{0}{1}MA_KH in (Select ma_kh from alkh where MA_KH like '{2}' or MA_KH like '{3}' or MA_KH_ME like '{2}')",
                               (result.Length > 0 ? and_or : ""), tbL, maKhach.Text.Trim(), ma_kh_me);  
                     }
                    

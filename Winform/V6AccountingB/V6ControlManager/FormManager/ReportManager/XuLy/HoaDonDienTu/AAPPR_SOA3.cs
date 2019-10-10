@@ -13,6 +13,7 @@ using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6ThuePostManager;
+using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
@@ -155,14 +156,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         if (FilterControl.String1 == "1")
                         {
                             string invoiceNo = row.Cells["SO_SERI"].Value.ToString().Trim() + row.Cells["SO_CT"].Value.ToString().Trim();
-                            string parttern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
+                            string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
+                            string strIssueDate = ObjectAndString.ObjectToString(row.Cells["NGAY_CT"].Value, "yyyyMMddHHmmss");
 
                             var pmparams1 = new PostManagerParams
                             {
                                 DataSet = map_table.DataSet,
                                 Branch = FilterControl.String1,
                                 InvoiceNo = invoiceNo,
-                                Parttern = parttern,
+                                Pattern = pattern,
+                                strIssueDate = strIssueDate,
                             };
                             pdf_file = PostManager.PowerDownloadPDF(pmparams1, out error);
                             if (!string.IsNullOrEmpty(error))
@@ -183,7 +186,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 Branch = FilterControl.String1,
                                 //InvoiceNo = invoiceNo,
                                 Fkey_hd = fkey_hd,
-                                //Parttern = parttern,
+                                //Pattern = pattern,
                             };
                             pdf_file = PostManager.PowerDownloadPDF(pmparams1, out error);
                             if (!string.IsNullOrEmpty(error))
@@ -309,16 +312,19 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var map_table = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='" + FilterControl.String1 + "' or ma_td1='0' or ma_td1='') order by date0,time0").Data;
 
                 string invoiceNo = row.Cells["SO_SERI"].Value.ToString().Trim() + row.Cells["SO_CT"].Value.ToString().Trim();
-                string parttern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
+                string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
                 string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
-
+                string strIssueDate = ObjectAndString.ObjectToString(row.Cells["NGAY_CT"].Value, "yyyyMMddHHmmss");
+                
                 var pmparams = new PostManagerParams
                 {
                     DataSet = map_table.DataSet,
                     Branch = FilterControl.String1,
                     InvoiceNo = invoiceNo,
-                    Parttern = parttern,
+                    Pattern = pattern,
                     Fkey_hd = fkey_hd,
+                    strIssueDate = strIssueDate,
+                    Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
                 };
                 string error;
                 pdf_file = PostManager.PowerDownloadPDF(pmparams, out error);
@@ -363,7 +369,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.btnTestView.Name = "btnTestView";
             this.btnTestView.Size = new System.Drawing.Size(111, 23);
             this.btnTestView.TabIndex = 22;
-            this.btnTestView.Text = "Bản thể hiện";
+            this.btnTestView.Text = "Xem Einvoice";
             this.btnTestView.UseVisualStyleBackColor = true;
             this.btnTestView.Click += new System.EventHandler(this.btnTestView_Click);
             // 

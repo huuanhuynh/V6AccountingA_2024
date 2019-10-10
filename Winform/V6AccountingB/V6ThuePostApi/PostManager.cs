@@ -64,6 +64,7 @@ namespace V6ThuePostManager
         /// InvoiceAPI/InvoiceUtilsWS/getInvoiceRepresentationFile (getInvoiceRepresentationFile url part.)
         /// </summary>
         private static string _downloadlinkpdf = "";
+        private static string _downloadlinkpdfe = "";
 
         public static string _link_Publish_vnpt = "";
         public static string _link_Portal_vnpt = "";
@@ -92,7 +93,7 @@ namespace V6ThuePostManager
         private static string _SERIAL_CERT = null;
         private static string _token_password_title = null;
         private static string _token_password = null;
-        private static string __partten, partten_field;
+        private static string __pattern, pattern_field;
         private static string __serial, seri_field;
         private static string convert = "0";
 
@@ -797,7 +798,7 @@ namespace V6ThuePostManager
                 //}
 
                 inv.key = fkeyA;
-                __partten = row0[partten_field].ToString().Trim();
+                __pattern = row0[pattern_field].ToString().Trim();
                 __serial = row0[seri_field].ToString().Trim();
                 //flagName = fkeyA;
                 //MakeFlagNames(fkeyA);
@@ -947,7 +948,7 @@ namespace V6ThuePostManager
                 fkeyA = row0["fkey_hd"].ToString().Trim();
                 
                 inv.key = fkeyA;
-                //partten = row0[partten_field].ToString().Trim();
+                //pattern = row0[pattern_field].ToString().Trim();
                 //seri = row0[seri_field].ToString().Trim();
                 //MakeFlagNames(fkeyA);
 
@@ -1022,7 +1023,7 @@ namespace V6ThuePostManager
             try
             {
                 var publishService = new PublishService(_link_Publish_vnpt);
-                result = publishService.ImportAndPublishInv(_account, _accountpassword, xml, _username, _password, __partten, __serial, convert == "1" ? 1 : 0);
+                result = publishService.ImportAndPublishInv(_account, _accountpassword, xml, _username, _password, __pattern, __serial, convert == "1" ? 1 : 0);
 
                 if (result.StartsWith("ERR:20"))
                 {
@@ -1909,7 +1910,7 @@ namespace V6ThuePostManager
             string result = null;
             try
             {
-                result = VNPTEInvoiceSignToken.PublishInvWithToken(_account, _accountpassword, xmlInvData, _username, _password, _SERIAL_CERT, __partten, __serial, _link_Publish_vnpt);
+                result = VNPTEInvoiceSignToken.PublishInvWithToken(_account, _accountpassword, xmlInvData, _username, _password, _SERIAL_CERT, __pattern, __serial, _link_Publish_vnpt);
                 result += GetResultDescription_Dll(result);
             }
             catch (Exception ex)
@@ -2376,8 +2377,11 @@ namespace V6ThuePostManager
         public static string ViettelDownloadInvoicePDF(PostManagerParams postManagerParams)
         {
             ViettelWS viettel_ws = new ViettelWS(baseUrl, _username, _password);
+
+            if (postManagerParams.Mode == "1") // Mode Thể hiện
+                return viettel_ws.DownloadInvoicePDF(_codetax, _downloadlinkpdf, postManagerParams.InvoiceNo, postManagerParams.Pattern, V6Setting.V6SoftLocalAppData_Directory);
             
-            return viettel_ws.DownloadInvoicePDF(_codetax, _downloadlinkpdf, postManagerParams.InvoiceNo, postManagerParams.Parttern, V6Setting.V6SoftLocalAppData_Directory);
+            return viettel_ws.DownloadInvoicePDFexchange(_codetax, _downloadlinkpdfe, postManagerParams.InvoiceNo, postManagerParams.strIssueDate, V6Setting.V6SoftLocalAppData_Directory);
         }
         
         #endregion viettel
@@ -2551,6 +2555,9 @@ namespace V6ThuePostManager
                                 case "downloadlinkpdf":
                                     _downloadlinkpdf = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
+                                case "downloadlinkpdfe":
+                                    _downloadlinkpdfe = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                    break;
                                     //Vnpt, có dùng cả username, password
                                 case "link_publish":
                                         _link_Publish_vnpt = UtilityHelper.DeCrypt(line.Value);
@@ -2579,8 +2586,8 @@ namespace V6ThuePostManager
                                 case "token_password":
                                     _token_password = UtilityHelper.DeCrypt(line.Value);
                                     break;
-                                case "partten":
-                                    partten_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                case "partten": // Đang sử dụng chữ partten trong config V6Info.Field
+                                    pattern_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
                                 case "seri":
                                     seri_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;

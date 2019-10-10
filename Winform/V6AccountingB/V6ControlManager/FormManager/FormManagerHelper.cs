@@ -198,7 +198,13 @@ namespace V6ControlManager.FormManager
                         input = new V6VvarTextBox()
                         {
                             VVar = defineInfo.Vvar,
+                            BrotherFields = defineInfo.BField,
+                            BrotherFields2 = defineInfo.BField2,
+                            NeighborFields = defineInfo.NField,
                         };
+                        var tT = (V6VvarTextBox) input;
+                        tT.SetInitFilter(defineInfo.InitFilter);
+                        tT.F2 = defineInfo.F2;
                     }
                     else if (defineInfo.ControlType.ToUpper() == "LOOKUPTEXTBOX")
                     {
@@ -284,6 +290,9 @@ namespace V6ControlManager.FormManager
                     input = new V6VvarTextBox()
                     {
                         VVar = defineInfo.Vvar,
+                        BrotherFields = defineInfo.BField,
+                        BrotherFields2 = defineInfo.BField2,
+                        NeighborFields = defineInfo.NField,
                     };
                     var vV = (V6VvarTextBox)input;
                     if (defineInfo.ToUpper) vV.CharacterCasing = CharacterCasing.Upper;

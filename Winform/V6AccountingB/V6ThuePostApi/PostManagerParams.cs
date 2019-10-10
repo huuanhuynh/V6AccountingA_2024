@@ -14,6 +14,9 @@ namespace V6ThuePostManager
         /// Dữ liệu 3 bảng map, ad, am?
         /// </summary>
         public DataSet DataSet { get; set; }
+        /// <summary>
+        /// Khi download pdf viettel 1: thể hiện, mặc định(2): Chuyển đổi
+        /// </summary>
         public string Mode { get; set; }
         /// <summary>
         /// 1:Viettel   2:Vnpt  3:Bkav  4:Vnpt_token
@@ -48,8 +51,9 @@ namespace V6ThuePostManager
         /// <summary>
         /// Mẫu hóa đơn vd:01GTKT0/001
         /// </summary>
-        public string Parttern;
+        public string Pattern;
 
+        public string strIssueDate = null;
         public PM_Result Result = null;
     }
 
