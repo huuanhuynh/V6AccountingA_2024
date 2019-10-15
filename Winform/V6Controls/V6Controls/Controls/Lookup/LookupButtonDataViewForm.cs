@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 using V6Controls.Forms;
@@ -13,9 +14,19 @@ namespace V6Controls.Controls
             InitializeComponent();
         }
 
+        private LookupButton _lookupButton;
         private DataSet _ds;
-        public LookupButtonDataViewForm(DataSet ds)
+
+        public event DataSelectHandler AcceptSelectedtData;
+        protected virtual void OnAccepSelectedtData(string idlist, List<IDictionary<string, object>> datalist)
         {
+            var handler = AcceptSelectedtData;
+            if (handler != null) handler(idlist, datalist);
+        }
+
+        public LookupButtonDataViewForm(LookupButton lookupButton, DataSet ds)
+        {
+            _lookupButton = lookupButton;
             _ds = ds;
             InitializeComponent();
             MyInit();
@@ -27,6 +38,10 @@ namespace V6Controls.Controls
             {
                 dataGridView1.DataSource = _ds.Tables[0];
                 FormatGridView();
+                if (_lookupButton.M_Type == "4")
+                {
+                    dataGridView1.EnableSelect();
+                }
             }
             catch (Exception ex)
             {
@@ -72,6 +87,31 @@ namespace V6Controls.Controls
                 else if (keyData == Keys.F5)
                 {
 
+                }
+                else if (keyData == Keys.Enter)
+                {
+                    if (_lookupButton.M_Type == "4")
+                    {
+                        // Gọi sự kiện Accept Select.
+                        var selectedData = dataGridView1.GetSelectedData();
+                        if (selectedData.Count == 0 && dataGridView1.RowCount > 0)
+                        {
+                            selectedData.Add(V6Tools.V6ToolExtensionMethods.DataGridViewRowToDataDictionary(dataGridView1.CurrentRow));
+                        }
+                        string selectedValues = "";
+                        V6lookupConfig config = V6Lookup.GetV6lookupConfig(_lookupButton.R_Vvar);
+                        foreach (IDictionary<string, object> item in selectedData)
+                        {
+                            selectedValues += "," + item[config.vValue].ToString().Trim();
+                        }
+
+                        if (selectedValues.Length > 0) selectedValues = selectedValues.Substring(1);
+
+                        _lookupButton.ReferenceControl.Text = selectedValues;
+
+                        OnAccepSelectedtData(selectedValues, selectedData);
+                        Close();
+                    }
                 }
 
                 return base.DoHotKey0(keyData);

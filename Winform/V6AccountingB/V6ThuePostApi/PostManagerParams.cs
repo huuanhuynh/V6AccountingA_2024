@@ -19,7 +19,7 @@ namespace V6ThuePostManager
         /// </summary>
         public string Mode { get; set; }
         /// <summary>
-        /// 1:Viettel   2:Vnpt  3:Bkav  4:Vnpt_token
+        /// 1:Viettel   2:Vnpt  3:Bkav  4:Vnpt_token    5:SoftDreams
         /// </summary>
         public string Branch { get; set; }
 

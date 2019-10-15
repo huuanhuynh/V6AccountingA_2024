@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -160,7 +161,7 @@ namespace V6Controls.Controls
         [Category("V6")]
         public string M_Ma_ct { get; set; }
         /// <summary>
-        /// 1 Chứng từ, 2 Danh mục, 3 Báo cáo
+        /// 1 Chứng từ, 2 Danh mục, 3 Báo cáo, 4 MultiSelect(F2 vvar)
         /// </summary>
         [Category("V6")]
         public string M_Type { get; set; }
@@ -229,9 +230,10 @@ namespace V6Controls.Controls
                 };
                 var ds = V6BusinessHelper.ExecuteProcedure("V6LOOKUPCONTROL", plist);
 
-                LookupButtonDataViewForm f = new LookupButtonDataViewForm(ds);
+                LookupButtonDataViewForm f = new LookupButtonDataViewForm(this, ds);
                 f.Text = V6Setting.IsVietnamese ? "Tham chiếu dữ liệu" : "Reference viewer";
                 f.LookupButtonF3Event += f_LookupButtonF3Event;
+                f.AcceptSelectedtData += f_LookupButtonAcceptSelect;
                 f.ShowDialog(this);
             }
             catch (Exception ex)
@@ -244,12 +246,31 @@ namespace V6Controls.Controls
         protected virtual void OnLookupButtonEvent(object sender, LookupEventArgs e)
         {
             var handler = LookupButtonF3Event;
-            if (handler != null) handler(sender, e);
+            if (handler != null)
+            {
+                handler(sender, e);
+            }
+            else
+            {
+                //string title = V6Text.Invoice + " " + e.MaCt;
+                //var alct = ConfigManager.GetAlctConfig(e.MaCt);
+                //if (alct.HaveInfo)
+                //{
+                //    title = V6Setting.IsVietnamese ? alct.TEN_CT : alct.TEN_CT2;
+                //}
+                //var hoaDonForm = ChungTuF3.GetChungTuControl(e.MaCt, "Name", e.Stt_rec);
+                //hoaDonForm.ShowToForm(this, title, true, true, true);
+            }
         }
 
         void f_LookupButtonF3Event(object sender, LookupEventArgs e)
         {
             OnLookupButtonEvent(this, e);
+        }
+
+        void f_LookupButtonAcceptSelect(string selectedValues, List<IDictionary<string, object>> selectedData)
+        {
+            //this.ReferenceControl.Text = selectedValues;
         }
 
     }

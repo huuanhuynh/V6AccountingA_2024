@@ -82,6 +82,14 @@
       <Project>{3d8928f4-81c7-443e-98b3-c155eee33927}</Project>
       <Name>V6ThuePostBkavApi</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Copy\Code\HoaDonDienTu\PostObjects\V6ThuePostObjects.csproj">
+      <Project>{14A2C520-1939-4B6A-B584-EE5797F26701}</Project>
+      <Name>V6ThuePostObjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\..\Copy\Code\HoaDonDienTu\SOFT_DREAMS\V6ThuePost_SoftDreams\ApiConnect\V6ThuePostSoftDreamsApi.csproj">
+      <Project>{123e4986-123d-4d08-adea-c8ce23b8ab5a}</Project>
+      <Name>V6ThuePostSoftDreamsApi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\..\Copy\Code\HoaDonDienTu\VIETTEL_OLD\V6ThuePost\ApiConnect\V6ThuePostViettelApi.csproj">
       <Project>{938cf42a-d1a7-46d4-866c-1222495a1c4c}</Project>
       <Name>V6ThuePostViettelApi</Name>

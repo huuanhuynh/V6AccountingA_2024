@@ -344,22 +344,38 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang
             //ma_kh
             if (maKhach.Text.Trim() != "")
             {
-                if (maKhach.Data != null)
+                string makh_like_or = "", or_makhme_like = "";
+                
+                var makhs = ObjectAndString.SplitString(maKhach.Text);
+                foreach (string makh in makhs)
                 {
+                    makh_like_or += string.Format(" or MA_KH like '{0}'", makh);
+                }
+                makh_like_or = makh_like_or.Substring(4);
+
+                if (makhs.Length > 1)
+                {
+                    result += string.Format(
+                          "{0}{1}MA_KH in (Select ma_kh from alkh where {2})",
+                          (result.Length > 0 ? and_or : ""), tbL, makh_like_or);
+                }
+                else if (maKhach.Data != null)
+                {
+                    or_makhme_like = string.Format(" or MA_KH_ME like '{0}'", maKhach.Text);
+
                     var ma_kh_me = maKhach.Data["MA_KH_ME"].ToString().Trim();
                     if (string.IsNullOrEmpty(ma_kh_me))
                     {
                         result += string.Format(
-                           "{0}{1}MA_KH in (Select ma_kh from alkh where MA_KH like '{2}' or MA_KH_ME like '{2}')",
-                           (result.Length > 0 ? and_or : ""), tbL, maKhach.Text.Trim());
+                            "{0}{1}MA_KH in (Select ma_kh from alkh where {2} {3})",
+                            (result.Length > 0 ? and_or : ""), tbL, makh_like_or, or_makhme_like);
                     }
                     else
                     {
                         result += string.Format(
-                              "{0}{1}MA_KH in (Select ma_kh from alkh where MA_KH like '{2}' or MA_KH like '{3}' or MA_KH_ME like '{2}')",
-                              (result.Length > 0 ? and_or : ""), tbL, maKhach.Text.Trim(), ma_kh_me);  
+                            "{0}{1}MA_KH in (Select ma_kh from alkh where {2} or MA_KH like '{3}' {4})",
+                            (result.Length > 0 ? and_or : ""), tbL, makh_like_or, ma_kh_me, or_makhme_like);
                     }
-                   
                 }
                 else
                 {
@@ -591,6 +607,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang
         {
             var handler = AcceptSelectEvent;
             if (handler != null) handler(selecteddatalist, e);
+        }
+
+        private void lbtMaKH_LookupButtonF3Event(object sender, LookupEventArgs e)
+        {
+            try
+            {
+                string title = V6Text.Invoice + " " + e.MaCt;
+                var alct = ConfigManager.GetAlctConfig(e.MaCt);
+                if (alct.HaveInfo)
+                {
+                    title = V6Setting.IsVietnamese ? alct.TEN_CT : alct.TEN_CT2;
+                }
+                var hoaDonForm = ChungTuF3.GetChungTuControl(e.MaCt, "Name", e.Stt_rec);
+
+                hoaDonForm.ShowToForm(this, title, true, true, true);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + "lbtMaKH_LookupButtonF3Event", ex);
+            }
         }
     }
 }

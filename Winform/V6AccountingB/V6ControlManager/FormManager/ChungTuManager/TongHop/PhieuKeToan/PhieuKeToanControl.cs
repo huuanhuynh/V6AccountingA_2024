@@ -3429,11 +3429,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
 
         private void lookupButton1_LookupButtonF3Event(object sender, LookupEventArgs e)
         {
-            string title = "Chứng từ " + e.MaCt;
-            var alct = V6BusinessHelper.Select("Alct", "*", "ma_ct=@mact", "", "", new SqlParameter("@mact", e.MaCt)).Data;
-            if (alct != null && alct.Rows.Count == 1)
+            string title = V6Text.Invoice + " " + e.MaCt;
+            var alct = ConfigManager.GetAlctConfig(e.MaCt);
+            if (alct.HaveInfo)
             {
-                title = alct.Rows[0][V6Setting.IsVietnamese ? "Ten_ct" : "Ten_ct2"].ToString();
+                title = V6Setting.IsVietnamese ? alct.TEN_CT : alct.TEN_CT2;
             }
             var hoaDonForm = ChungTuF3.GetChungTuControl(e.MaCt, "Name", e.Stt_rec);
 

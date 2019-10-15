@@ -1274,6 +1274,10 @@ namespace V6Controls
                     e.Handled = true;
                     this.SelectAllRow();
                 }
+                else if (e.KeyData == (Keys.Control | Keys.U))
+                {
+                    this.UnSelectAllRow();
+                }
                 else if (e.KeyData == (Keys.Control | Keys.Space) && Control_Space)
                 {
                     if (CurrentRow != null)
@@ -1288,10 +1292,6 @@ namespace V6Controls
                     {
                         CurrentRow.ChangeSelect();
                     }
-                }
-                else if (e.KeyData == (Keys.Control | Keys.U))
-                {
-                    this.UnSelectAllRow();
                 }
                 else if (e.KeyData == (Keys.Control | Keys.S) && Control_S)
                 {
@@ -1705,6 +1705,12 @@ namespace V6Controls
             LockGridView = false;
         }
 
-        
+
+        public void EnableSelect()
+        {
+            Space_Bar = true;
+            Control_Space = true;
+            Control_A = true;
+        }
     }
 }
