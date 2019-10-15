@@ -12,6 +12,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
     public class LocKetQuaBase : V6Control
     {
         protected V6InvoiceBase _invoice;
+        public AldmConfig _aldmConfig;
         public delegate void SelectAMRow(int index, string mact, string sttrec, decimal ttt_nt, decimal ttt, string mant);
         public event SelectAMRow OnSelectAMRow;
         public delegate void AcceptSelect();

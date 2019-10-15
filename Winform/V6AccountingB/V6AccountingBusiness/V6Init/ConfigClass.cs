@@ -318,8 +318,16 @@ namespace V6Init
         public string B_FIELD2 { get { return GetString("B_FIELD2"); } }
         public string GRDS_V1 { get { return GetString("GRDS_V1"); } }
         public string GRDF_V1 { get { return GetString("GRDF_V1"); } }
+        /// <summary>
+        /// Tiêu đề tương ứng GRDS_V1.
+        /// </summary>
+        public string GRDH_LANG_V1 { get { return V6Setting.IsVietnamese ? GRDHV_V1 : GRDHE_V1; } }
         public string GRDHV_V1 { get { return GetString("GRDHV_V1"); } }
         public string GRDHE_V1 { get { return GetString("GRDHE_V1"); } }
+        /// <summary>
+        /// Cột không sum gridViewSummary
+        /// </summary>
+        public string GRDT_V1 { get { return GetString("GRDT_V1"); } }
         public bool IsGroup { get { return GetString("IS_GROUP") == "1"; } }
         public bool IS_ALDM { get { return GetString("IS_ALDM") == "1"; } }
 

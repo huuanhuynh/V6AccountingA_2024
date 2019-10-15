@@ -74,14 +74,14 @@
             this.ChkVisible = new V6Controls.V6CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.v6ColorTextBox22 = new V6Controls.V6ColorTextBox();
-            this.v6ColorTextBox21 = new V6Controls.V6ColorTextBox();
-            this.label53 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
-            this.v6ColorTextBox16 = new V6Controls.V6ColorTextBox();
-            this.v6ColorTextBox15 = new V6Controls.V6ColorTextBox();
-            this.label47 = new System.Windows.Forms.Label();
-            this.label46 = new System.Windows.Forms.Label();
+            this.txtGRDHE_V1 = new V6Controls.V6ColorTextBox();
+            this.txtGRDHV_V1 = new V6Controls.V6ColorTextBox();
+            this.lblGRDHE_V1 = new System.Windows.Forms.Label();
+            this.lblGRDHV_V1 = new System.Windows.Forms.Label();
+            this.txtGRDF_V1 = new V6Controls.V6ColorTextBox();
+            this.txtGRDS_V1 = new V6Controls.V6ColorTextBox();
+            this.lblGRDF_V1 = new System.Windows.Forms.Label();
+            this.lblGRDS_V1 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.v6NumberTextBox1 = new V6Controls.V6NumberTextBox();
             this.lblFrozen = new System.Windows.Forms.Label();
@@ -141,6 +141,8 @@
             this.lblMaDM = new System.Windows.Forms.Label();
             this.TxtForder = new V6Controls.V6NumberTextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.lblGRDT_V1 = new System.Windows.Forms.Label();
+            this.txtGRDT_V1 = new V6Controls.V6ColorTextBox();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -860,14 +862,16 @@
             this.tabPage2.AccessibleDescription = "ADDEDITT00009";
             this.tabPage2.AutoScroll = true;
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage2.Controls.Add(this.v6ColorTextBox22);
-            this.tabPage2.Controls.Add(this.v6ColorTextBox21);
-            this.tabPage2.Controls.Add(this.label53);
-            this.tabPage2.Controls.Add(this.label52);
-            this.tabPage2.Controls.Add(this.v6ColorTextBox16);
-            this.tabPage2.Controls.Add(this.v6ColorTextBox15);
-            this.tabPage2.Controls.Add(this.label47);
-            this.tabPage2.Controls.Add(this.label46);
+            this.tabPage2.Controls.Add(this.txtGRDHE_V1);
+            this.tabPage2.Controls.Add(this.txtGRDHV_V1);
+            this.tabPage2.Controls.Add(this.lblGRDHE_V1);
+            this.tabPage2.Controls.Add(this.lblGRDHV_V1);
+            this.tabPage2.Controls.Add(this.txtGRDF_V1);
+            this.tabPage2.Controls.Add(this.txtGRDT_V1);
+            this.tabPage2.Controls.Add(this.txtGRDS_V1);
+            this.tabPage2.Controls.Add(this.lblGRDT_V1);
+            this.tabPage2.Controls.Add(this.lblGRDF_V1);
+            this.tabPage2.Controls.Add(this.lblGRDS_V1);
             this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
@@ -876,121 +880,121 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Thông tin ngầm định";
             // 
-            // v6ColorTextBox22
+            // txtGRDHE_V1
             // 
-            this.v6ColorTextBox22.AccessibleName = "GRDHE_V1";
-            this.v6ColorTextBox22.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtGRDHE_V1.AccessibleName = "GRDHE_V1";
+            this.txtGRDHE_V1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox22.BackColor = System.Drawing.Color.White;
-            this.v6ColorTextBox22.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox22.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox22.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox22.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox22.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox22.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox22.Location = new System.Drawing.Point(171, 98);
-            this.v6ColorTextBox22.Margin = new System.Windows.Forms.Padding(4);
-            this.v6ColorTextBox22.Name = "v6ColorTextBox22";
-            this.v6ColorTextBox22.Size = new System.Drawing.Size(613, 23);
-            this.v6ColorTextBox22.TabIndex = 3;
+            this.txtGRDHE_V1.BackColor = System.Drawing.Color.White;
+            this.txtGRDHE_V1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtGRDHE_V1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtGRDHE_V1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtGRDHE_V1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtGRDHE_V1.HoverColor = System.Drawing.Color.Yellow;
+            this.txtGRDHE_V1.LeaveColor = System.Drawing.Color.White;
+            this.txtGRDHE_V1.Location = new System.Drawing.Point(171, 96);
+            this.txtGRDHE_V1.Margin = new System.Windows.Forms.Padding(4);
+            this.txtGRDHE_V1.Name = "txtGRDHE_V1";
+            this.txtGRDHE_V1.Size = new System.Drawing.Size(613, 23);
+            this.txtGRDHE_V1.TabIndex = 7;
             // 
-            // v6ColorTextBox21
+            // txtGRDHV_V1
             // 
-            this.v6ColorTextBox21.AccessibleName = "GRDHV_V1";
-            this.v6ColorTextBox21.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtGRDHV_V1.AccessibleName = "GRDHV_V1";
+            this.txtGRDHV_V1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox21.BackColor = System.Drawing.Color.White;
-            this.v6ColorTextBox21.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox21.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox21.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox21.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox21.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox21.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox21.Location = new System.Drawing.Point(171, 71);
-            this.v6ColorTextBox21.Margin = new System.Windows.Forms.Padding(4);
-            this.v6ColorTextBox21.Name = "v6ColorTextBox21";
-            this.v6ColorTextBox21.Size = new System.Drawing.Size(613, 23);
-            this.v6ColorTextBox21.TabIndex = 2;
+            this.txtGRDHV_V1.BackColor = System.Drawing.Color.White;
+            this.txtGRDHV_V1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtGRDHV_V1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtGRDHV_V1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtGRDHV_V1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtGRDHV_V1.HoverColor = System.Drawing.Color.Yellow;
+            this.txtGRDHV_V1.LeaveColor = System.Drawing.Color.White;
+            this.txtGRDHV_V1.Location = new System.Drawing.Point(171, 70);
+            this.txtGRDHV_V1.Margin = new System.Windows.Forms.Padding(4);
+            this.txtGRDHV_V1.Name = "txtGRDHV_V1";
+            this.txtGRDHV_V1.Size = new System.Drawing.Size(613, 23);
+            this.txtGRDHV_V1.TabIndex = 5;
             // 
-            // label53
+            // lblGRDHE_V1
             // 
-            this.label53.AccessibleDescription = "ADDEDITL00341";
-            this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(9, 101);
-            this.label53.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(85, 17);
-            this.label53.TabIndex = 51;
-            this.label53.Text = "Tiêu đề Anh";
+            this.lblGRDHE_V1.AccessibleDescription = "ADDEDITL00341";
+            this.lblGRDHE_V1.AutoSize = true;
+            this.lblGRDHE_V1.Location = new System.Drawing.Point(9, 99);
+            this.lblGRDHE_V1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblGRDHE_V1.Name = "lblGRDHE_V1";
+            this.lblGRDHE_V1.Size = new System.Drawing.Size(85, 17);
+            this.lblGRDHE_V1.TabIndex = 6;
+            this.lblGRDHE_V1.Text = "Tiêu đề Anh";
             // 
-            // label52
+            // lblGRDHV_V1
             // 
-            this.label52.AccessibleDescription = "ADDEDITL00340";
-            this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(9, 74);
-            this.label52.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(84, 17);
-            this.label52.TabIndex = 52;
-            this.label52.Text = "Tiêu đề Việt";
+            this.lblGRDHV_V1.AccessibleDescription = "ADDEDITL00340";
+            this.lblGRDHV_V1.AutoSize = true;
+            this.lblGRDHV_V1.Location = new System.Drawing.Point(9, 73);
+            this.lblGRDHV_V1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblGRDHV_V1.Name = "lblGRDHV_V1";
+            this.lblGRDHV_V1.Size = new System.Drawing.Size(84, 17);
+            this.lblGRDHV_V1.TabIndex = 4;
+            this.lblGRDHV_V1.Text = "Tiêu đề Việt";
             // 
-            // v6ColorTextBox16
+            // txtGRDF_V1
             // 
-            this.v6ColorTextBox16.AccessibleName = "GRDF_V1";
-            this.v6ColorTextBox16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtGRDF_V1.AccessibleName = "GRDF_V1";
+            this.txtGRDF_V1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox16.BackColor = System.Drawing.Color.White;
-            this.v6ColorTextBox16.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox16.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox16.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox16.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox16.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox16.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox16.Location = new System.Drawing.Point(171, 44);
-            this.v6ColorTextBox16.Margin = new System.Windows.Forms.Padding(4);
-            this.v6ColorTextBox16.Name = "v6ColorTextBox16";
-            this.v6ColorTextBox16.Size = new System.Drawing.Size(613, 23);
-            this.v6ColorTextBox16.TabIndex = 1;
+            this.txtGRDF_V1.BackColor = System.Drawing.Color.White;
+            this.txtGRDF_V1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtGRDF_V1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtGRDF_V1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtGRDF_V1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtGRDF_V1.HoverColor = System.Drawing.Color.Yellow;
+            this.txtGRDF_V1.LeaveColor = System.Drawing.Color.White;
+            this.txtGRDF_V1.Location = new System.Drawing.Point(171, 44);
+            this.txtGRDF_V1.Margin = new System.Windows.Forms.Padding(4);
+            this.txtGRDF_V1.Name = "txtGRDF_V1";
+            this.txtGRDF_V1.Size = new System.Drawing.Size(613, 23);
+            this.txtGRDF_V1.TabIndex = 3;
             // 
-            // v6ColorTextBox15
+            // txtGRDS_V1
             // 
-            this.v6ColorTextBox15.AccessibleName = "GRDS_V1";
-            this.v6ColorTextBox15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtGRDS_V1.AccessibleName = "GRDS_V1";
+            this.txtGRDS_V1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox15.BackColor = System.Drawing.Color.White;
-            this.v6ColorTextBox15.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox15.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox15.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox15.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox15.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox15.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox15.Location = new System.Drawing.Point(171, 18);
-            this.v6ColorTextBox15.Margin = new System.Windows.Forms.Padding(4);
-            this.v6ColorTextBox15.Name = "v6ColorTextBox15";
-            this.v6ColorTextBox15.Size = new System.Drawing.Size(613, 23);
-            this.v6ColorTextBox15.TabIndex = 0;
+            this.txtGRDS_V1.BackColor = System.Drawing.Color.White;
+            this.txtGRDS_V1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtGRDS_V1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtGRDS_V1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtGRDS_V1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtGRDS_V1.HoverColor = System.Drawing.Color.Yellow;
+            this.txtGRDS_V1.LeaveColor = System.Drawing.Color.White;
+            this.txtGRDS_V1.Location = new System.Drawing.Point(171, 18);
+            this.txtGRDS_V1.Margin = new System.Windows.Forms.Padding(4);
+            this.txtGRDS_V1.Name = "txtGRDS_V1";
+            this.txtGRDS_V1.Size = new System.Drawing.Size(613, 23);
+            this.txtGRDS_V1.TabIndex = 1;
             // 
-            // label47
+            // lblGRDF_V1
             // 
-            this.label47.AccessibleDescription = "ADDEDITL00452";
-            this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(9, 47);
-            this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(73, 17);
-            this.label47.TabIndex = 49;
-            this.label47.Text = "Định dạng";
+            this.lblGRDF_V1.AccessibleDescription = "ADDEDITL00452";
+            this.lblGRDF_V1.AutoSize = true;
+            this.lblGRDF_V1.Location = new System.Drawing.Point(9, 47);
+            this.lblGRDF_V1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblGRDF_V1.Name = "lblGRDF_V1";
+            this.lblGRDF_V1.Size = new System.Drawing.Size(73, 17);
+            this.lblGRDF_V1.TabIndex = 2;
+            this.lblGRDF_V1.Text = "Định dạng";
             // 
-            // label46
+            // lblGRDS_V1
             // 
-            this.label46.AccessibleDescription = "ADDEDITL00451";
-            this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(9, 21);
-            this.label46.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(159, 17);
-            this.label46.TabIndex = 47;
-            this.label46.Text = "Trường hiển thị tìm kiếm";
+            this.lblGRDS_V1.AccessibleDescription = "ADDEDITL00451";
+            this.lblGRDS_V1.AutoSize = true;
+            this.lblGRDS_V1.Location = new System.Drawing.Point(9, 21);
+            this.lblGRDS_V1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblGRDS_V1.Name = "lblGRDS_V1";
+            this.lblGRDS_V1.Size = new System.Drawing.Size(159, 17);
+            this.lblGRDS_V1.TabIndex = 0;
+            this.lblGRDS_V1.Text = "Trường hiển thị tìm kiếm";
             // 
             // tabPage3
             // 
@@ -1896,6 +1900,35 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Sắp xếp";
             // 
+            // lblGRDT_V1
+            // 
+            this.lblGRDT_V1.AccessibleDescription = "ADDEDITL00779";
+            this.lblGRDT_V1.AutoSize = true;
+            this.lblGRDT_V1.Location = new System.Drawing.Point(9, 125);
+            this.lblGRDT_V1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblGRDT_V1.Name = "lblGRDT_V1";
+            this.lblGRDT_V1.Size = new System.Drawing.Size(127, 17);
+            this.lblGRDT_V1.TabIndex = 8;
+            this.lblGRDT_V1.Text = "Trường không sum";
+            // 
+            // txtGRDT_V1
+            // 
+            this.txtGRDT_V1.AccessibleName = "GRDT_V1";
+            this.txtGRDT_V1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtGRDT_V1.BackColor = System.Drawing.Color.White;
+            this.txtGRDT_V1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtGRDT_V1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtGRDT_V1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtGRDT_V1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtGRDT_V1.HoverColor = System.Drawing.Color.Yellow;
+            this.txtGRDT_V1.LeaveColor = System.Drawing.Color.White;
+            this.txtGRDT_V1.Location = new System.Drawing.Point(171, 122);
+            this.txtGRDT_V1.Margin = new System.Windows.Forms.Padding(4);
+            this.txtGRDT_V1.Name = "txtGRDT_V1";
+            this.txtGRDT_V1.Size = new System.Drawing.Size(613, 23);
+            this.txtGRDT_V1.TabIndex = 9;
+            // 
             // Aldm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1939,14 +1972,14 @@
         private System.Windows.Forms.Label label12;
         private V6Controls.V6CheckBox ChkVisible;
         private V6NumberTextBox TxtForder;
-        private V6ColorTextBox v6ColorTextBox22;
-        private V6ColorTextBox v6ColorTextBox21;
-        private System.Windows.Forms.Label label53;
-        private System.Windows.Forms.Label label52;
-        private V6ColorTextBox v6ColorTextBox16;
-        private V6ColorTextBox v6ColorTextBox15;
-        private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.Label label46;
+        private V6ColorTextBox txtGRDHE_V1;
+        private V6ColorTextBox txtGRDHV_V1;
+        private System.Windows.Forms.Label lblGRDHE_V1;
+        private System.Windows.Forms.Label lblGRDHV_V1;
+        private V6ColorTextBox txtGRDF_V1;
+        private V6ColorTextBox txtGRDS_V1;
+        private System.Windows.Forms.Label lblGRDF_V1;
+        private System.Windows.Forms.Label lblGRDS_V1;
         private V6ColorTextBox v6ColorTextBox14;
         private System.Windows.Forms.Label label16;
         private V6ColorTextBox txtvalue;
@@ -2037,5 +2070,7 @@
         private System.Windows.Forms.Label label42;
         private V6ColorTextBox txtFormCode;
         private System.Windows.Forms.Label lblFormCode;
+        private V6ColorTextBox txtGRDT_V1;
+        private System.Windows.Forms.Label lblGRDT_V1;
     }
 }

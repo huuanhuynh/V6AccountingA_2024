@@ -22,6 +22,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang
         {
             InitializeComponent();
             _invoice = invoice;
+            MyInit();
+        }
+
+        private void MyInit()
+        {
+            try
+            {
+                _aldmConfig = ConfigManager.GetAldmConfig("AMAD91A");
+                if (_aldmConfig.HaveInfo) gridViewSummary1.NoSumColumns = _aldmConfig.GRDT_V1;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".MyInit", ex);
+            }
         }
 
         public void SetAM(DataTable am)
@@ -34,35 +48,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang
         {
             try
             {
-                string grd_show = "", grd_format = "", grd_header = "";
-                var config = ConfigManager.GetAldmConfig("AMAD91A");
+                if (!_aldmConfig.HaveInfo) return;
 
-                var data = V6BusinessHelper.Select("ALDM", "*", "ma_dm='AMAD91A'").Data;
-                if (data.Rows.Count > 0)
-                {
-                    var row = data.Rows[0];
-                    grd_show = row["GRDS_V1"].ToString().Trim();
-                    grd_format = row["GRDF_V1"].ToString().Trim();
-                    grd_header = V6Setting.IsVietnamese ? row["GRDHV_V1"].ToString().Trim() : row["GRDHE_V1"].ToString().Trim();
-                }
+                V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, _aldmConfig.GRDS_V1, _aldmConfig.GRDF_V1, _aldmConfig.GRDH_LANG_V1);
 
-                V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, grd_show, grd_format, grd_header);
-                
-                if (!string.IsNullOrEmpty(config.FIELD))
+                if (!string.IsNullOrEmpty(_aldmConfig.FIELD))
                 {
-                    var field_valid = ObjectAndString.SplitString(config.FIELD);
+                    var field_valid = ObjectAndString.SplitString(_aldmConfig.FIELD);
 
                     dataGridView1.SetEditColumnParams(field_valid[0]);
                     dataGridView1.CongThuc_CellEndEdit_ApplyAllRow = false;
-                    dataGridView1.ChangeColumnType(field_valid[0], typeof(V6NumberDataGridViewColumn), null);
-                    if (!string.IsNullOrEmpty(config.CACH_TINH1))
+                    dataGridView1.ChangeColumnType(field_valid[0], typeof (V6NumberDataGridViewColumn), null);
+                    if (!string.IsNullOrEmpty(_aldmConfig.CACH_TINH1))
                     {
-                        dataGridView1.GanCongThuc(field_valid[0], config.CACH_TINH1);
+                        dataGridView1.GanCongThuc(field_valid[0], _aldmConfig.CACH_TINH1);
                     }
 
-                    if (!string.IsNullOrEmpty(config.FIELD2))
+                    if (!string.IsNullOrEmpty(_aldmConfig.FIELD2))
                     {
-                        dataGridView1.SetValid(field_valid[0], field_valid[1], config.FIELD2);
+                        dataGridView1.SetValid(field_valid[0], field_valid[1], _aldmConfig.FIELD2);
                     }
                 }
                 //dataGridView1.GanCongThuc("SL_QD", "SO_LUONG=SL_QD*HS_QD1");
