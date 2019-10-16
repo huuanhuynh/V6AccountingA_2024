@@ -95,6 +95,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // nhomKhach4
             // 
             this.nhomKhach4.AccessibleDescription = "SEARCHF00004";
+            this.nhomKhach4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.nhomKhach4.Caption = "Nhóm khách hàng 4";
             this.nhomKhach4.FieldName = "NH_KH4";
             this.nhomKhach4.Location = new System.Drawing.Point(313, 29);
@@ -106,6 +107,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // nhomKhach5
             // 
             this.nhomKhach5.AccessibleDescription = "SEARCHF00005";
+            this.nhomKhach5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.nhomKhach5.Caption = "Nhóm khách hàng 5";
             this.nhomKhach5.FieldName = "NH_KH5";
             this.nhomKhach5.Location = new System.Drawing.Point(313, 52);
@@ -117,6 +119,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // nhomKhach6
             // 
             this.nhomKhach6.AccessibleDescription = "SEARCHF00006";
+            this.nhomKhach6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.nhomKhach6.Caption = "Nhóm khách hàng 6";
             this.nhomKhach6.FieldName = "NH_KH6";
             this.nhomKhach6.Location = new System.Drawing.Point(313, 75);
@@ -128,6 +131,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // nhomKhach1
             // 
             this.nhomKhach1.AccessibleDescription = "SEARCHF00001";
+            this.nhomKhach1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.nhomKhach1.Caption = "Nhóm khách hàng 1";
             this.nhomKhach1.FieldName = "NH_KH1";
             this.nhomKhach1.Location = new System.Drawing.Point(15, 29);
@@ -139,6 +143,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // nhomKhach2
             // 
             this.nhomKhach2.AccessibleDescription = "SEARCHF00002";
+            this.nhomKhach2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.nhomKhach2.Caption = "Nhóm khách hàng 2";
             this.nhomKhach2.FieldName = "NH_KH2";
             this.nhomKhach2.Location = new System.Drawing.Point(15, 52);
@@ -150,6 +155,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // taiKhoan
             // 
             this.taiKhoan.AccessibleDescription = "SEARCHF00011";
+            this.taiKhoan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.taiKhoan.Caption = "Tài khoản";
             this.taiKhoan.FieldName = "TK";
             this.taiKhoan.Location = new System.Drawing.Point(313, 98);
@@ -161,6 +167,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // txtMaKh
             // 
             this.txtMaKh.AccessibleDescription = "SEARCHF00010";
+            this.txtMaKh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtMaKh.Caption = "Mã khách hàng";
             this.txtMaKh.FieldName = "MA_KH";
             this.txtMaKh.Location = new System.Drawing.Point(15, 98);
@@ -172,6 +179,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // nhomKhach3
             // 
             this.nhomKhach3.AccessibleDescription = "SEARCHF00003";
+            this.nhomKhach3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.nhomKhach3.Caption = "Nhóm khách hàng 3";
             this.nhomKhach3.FieldName = "NH_KH3";
             this.nhomKhach3.Location = new System.Drawing.Point(15, 75);
@@ -229,7 +237,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             this.v6Label8.TabIndex = 9;
             this.v6Label8.Text = "BP/NV";
             // 
-            // txtMadvcs
+            // txtMaDVCS
             // 
             this.txtMaDVCS.AccessibleName = "MA_DVCS";
             this.txtMaDVCS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -397,6 +405,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.CancelButton = this.btnESC;
             this.ClientSize = new System.Drawing.Size(829, 526);
             this.Controls.Add(this.gridViewSummary1);

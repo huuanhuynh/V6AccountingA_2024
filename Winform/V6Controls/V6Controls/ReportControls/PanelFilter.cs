@@ -104,26 +104,6 @@ namespace V6ReportControls
             }
         }
         
-        //public void AddMultiFilterLine(V6TableStruct structTable, string[] fields)
-        //{
-        //    foreach (string field in fields)
-        //    {
-        //        string err = "";
-        //        try
-        //        {
-        //            if(!string.IsNullOrEmpty(field))
-        //                AddFilterLineControl(structTable, field, "", "");
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            err += "\n" + ex.Message;
-        //        }
-        //        if (err.Length > 0)
-        //        {
-        //            V6ControlFormHelper.ShowErrorMessage("AddMultiFilterLine error!" + err, "PanelFilter");
-        //        }
-        //    }
-        //}
 
         /// <summary>
         /// Thêm vào các ô nhập filterLine tự động
@@ -133,7 +113,7 @@ namespace V6ReportControls
         public void AddMultiFilterLine(V6TableStruct structTable, string adv)
         {
             _maxIndex = -1;
-            var spliter = ObjectAndString.SplitString(adv);
+            var spliter = ObjectAndString.SplitStringBy(adv, ';');
             foreach (string s in spliter)
             {
                 string err = "";
