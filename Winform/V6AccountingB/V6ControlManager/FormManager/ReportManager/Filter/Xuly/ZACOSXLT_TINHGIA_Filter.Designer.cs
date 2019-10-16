@@ -125,7 +125,6 @@
             this.lineMaBpHt.AccessibleDescription = "XULYL00026";
             this.lineMaBpHt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.lineMaBpHt.Caption = "Mã bộ phận ht";
-            this.lineMaBpHt.CodeForm = null;
             this.lineMaBpHt.FieldName = "MA_BPHT";
             this.lineMaBpHt.Location = new System.Drawing.Point(6, 19);
             this.lineMaBpHt.Name = "lineMaBpHt";

@@ -36,7 +36,6 @@
             // 
             this.xasendmail1.Advance = null;
             this.xasendmail1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.xasendmail1.CodeForm = null;
             this.xasendmail1.Date1 = new System.DateTime(((long)(0)));
             this.xasendmail1.Date2 = new System.DateTime(((long)(0)));
             this.xasendmail1.Date3 = new System.DateTime(((long)(0)));

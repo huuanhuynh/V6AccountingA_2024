@@ -36,7 +36,6 @@
             // 
             this.lichViewControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.lichViewControl1.BorderColor = System.Drawing.Color.Black;
-            this.lichViewControl1.CodeForm = null;
             this.lichViewControl1.DataSource = ((System.Collections.Generic.IDictionary<int, V6Controls.Controls.LichView.LichViewCellData>)(resources.GetObject("lichViewControl1.DataSource")));
             this.lichViewControl1.DetailColor = System.Drawing.Color.Orange;
             this.lichViewControl1.Dock = System.Windows.Forms.DockStyle.Fill;

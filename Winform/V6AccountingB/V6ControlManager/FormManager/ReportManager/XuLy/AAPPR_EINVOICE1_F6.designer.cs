@@ -80,7 +80,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.xuLyBase1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.xuLyBase1.CodeForm = null;
             this.xuLyBase1.FilterControl = null;
             this.xuLyBase1.FilterType = "4";
             this.xuLyBase1.Location = new System.Drawing.Point(0, 0);

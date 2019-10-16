@@ -300,7 +300,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.filterLineVvarTextBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.filterLineVvarTextBox4.Caption = "Mã bộ phận";
-            this.filterLineVvarTextBox4.CodeForm = null;
             this.filterLineVvarTextBox4.FieldName = "MA_BP";
             this.filterLineVvarTextBox4.Location = new System.Drawing.Point(6, 157);
             this.filterLineVvarTextBox4.Name = "filterLineVvarTextBox4";
@@ -316,7 +315,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.filterLineVvarTextBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.filterLineVvarTextBox3.Caption = "Mã khách hàng";
-            this.filterLineVvarTextBox3.CodeForm = null;
             this.filterLineVvarTextBox3.FieldName = "MA_KH";
             this.filterLineVvarTextBox3.Location = new System.Drawing.Point(6, 132);
             this.filterLineVvarTextBox3.Name = "filterLineVvarTextBox3";
@@ -332,7 +330,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lineMaDvcs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.lineMaDvcs.Caption = "Mã đơn vị";
-            this.lineMaDvcs.CodeForm = null;
             this.lineMaDvcs.FieldName = "MA_DVCS";
             this.lineMaDvcs.Location = new System.Drawing.Point(6, 107);
             this.lineMaDvcs.Name = "lineMaDvcs";
@@ -348,7 +345,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lineMact.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.lineMact.Caption = "Mã chứng từ";
-            this.lineMact.CodeForm = null;
             this.lineMact.FieldName = "";
             this.lineMact.Location = new System.Drawing.Point(6, 82);
             this.lineMact.Name = "lineMact";

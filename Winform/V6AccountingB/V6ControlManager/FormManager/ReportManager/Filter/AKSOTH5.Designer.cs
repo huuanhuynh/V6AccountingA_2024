@@ -82,7 +82,6 @@
             this.filterLineVvarTextBox1.AccessibleName2 = "MA_KHO";
             this.filterLineVvarTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.filterLineVvarTextBox1.Caption = "Mã kho";
-            this.filterLineVvarTextBox1.CodeForm = null;
             this.filterLineVvarTextBox1.FieldName = "MA_KHO";
             this.filterLineVvarTextBox1.Location = new System.Drawing.Point(6, 66);
             this.filterLineVvarTextBox1.Name = "filterLineVvarTextBox1";
@@ -96,7 +95,6 @@
             this.filterLineVvarTextBox3.AccessibleName2 = "MA_KH";
             this.filterLineVvarTextBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.filterLineVvarTextBox3.Caption = "Mã khách hàng";
-            this.filterLineVvarTextBox3.CodeForm = null;
             this.filterLineVvarTextBox3.FieldName = "MA_KH";
             this.filterLineVvarTextBox3.Location = new System.Drawing.Point(6, 88);
             this.filterLineVvarTextBox3.Name = "filterLineVvarTextBox3";
@@ -151,7 +149,6 @@
             this.lineNH_KH9.AccessibleName2 = "NH_KH9";
             this.lineNH_KH9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.lineNH_KH9.Caption = "Nhóm khách hàng 9";
-            this.lineNH_KH9.CodeForm = null;
             this.lineNH_KH9.FieldName = "NH_KH9";
             this.lineNH_KH9.Location = new System.Drawing.Point(6, 396);
             this.lineNH_KH9.Name = "lineNH_KH9";
@@ -165,7 +162,6 @@
             this.lineNH_KH8.AccessibleName2 = "NH_KH8";
             this.lineNH_KH8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.lineNH_KH8.Caption = "Nhóm khách hàng 8";
-            this.lineNH_KH8.CodeForm = null;
             this.lineNH_KH8.FieldName = "NH_KH8";
             this.lineNH_KH8.Location = new System.Drawing.Point(6, 374);
             this.lineNH_KH8.Name = "lineNH_KH8";
@@ -179,7 +175,6 @@
             this.lineNH_KH7.AccessibleName2 = "NH_KH7";
             this.lineNH_KH7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.lineNH_KH7.Caption = "Nhóm khách hàng 7";
-            this.lineNH_KH7.CodeForm = null;
             this.lineNH_KH7.FieldName = "NH_KH7";
             this.lineNH_KH7.Location = new System.Drawing.Point(6, 352);
             this.lineNH_KH7.Name = "lineNH_KH7";
@@ -193,7 +188,6 @@
             this.Txtnh_vt6.AccessibleName2 = "NH_VT6";
             this.Txtnh_vt6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt6.Caption = "Nhóm vật tư 6";
-            this.Txtnh_vt6.CodeForm = null;
             this.Txtnh_vt6.FieldName = "NH_VT6";
             this.Txtnh_vt6.Location = new System.Drawing.Point(6, 528);
             this.Txtnh_vt6.Name = "Txtnh_vt6";
@@ -207,7 +201,6 @@
             this.Txtnh_vt4.AccessibleName2 = "NH_VT4";
             this.Txtnh_vt4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt4.Caption = "Nhóm vật tư 4";
-            this.Txtnh_vt4.CodeForm = null;
             this.Txtnh_vt4.FieldName = "NH_VT4";
             this.Txtnh_vt4.Location = new System.Drawing.Point(6, 484);
             this.Txtnh_vt4.Name = "Txtnh_vt4";
@@ -221,7 +214,6 @@
             this.Txtnh_vt5.AccessibleName2 = "NH_VT5";
             this.Txtnh_vt5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt5.Caption = "Nhóm vật tư 5";
-            this.Txtnh_vt5.CodeForm = null;
             this.Txtnh_vt5.FieldName = "NH_VT5";
             this.Txtnh_vt5.Location = new System.Drawing.Point(6, 506);
             this.Txtnh_vt5.Name = "Txtnh_vt5";
@@ -235,7 +227,6 @@
             this.Txtnh_kh6.AccessibleName2 = "NH_KH6";
             this.Txtnh_kh6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_kh6.Caption = "Nhóm khách hàng 6";
-            this.Txtnh_kh6.CodeForm = null;
             this.Txtnh_kh6.FieldName = "NH_KH6";
             this.Txtnh_kh6.Location = new System.Drawing.Point(6, 330);
             this.Txtnh_kh6.Name = "Txtnh_kh6";
@@ -249,7 +240,6 @@
             this.Txtnh_kh5.AccessibleName2 = "NH_KH5";
             this.Txtnh_kh5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_kh5.Caption = "Nhóm khách hàng 5";
-            this.Txtnh_kh5.CodeForm = null;
             this.Txtnh_kh5.FieldName = "NH_KH5";
             this.Txtnh_kh5.Location = new System.Drawing.Point(6, 308);
             this.Txtnh_kh5.Name = "Txtnh_kh5";
@@ -263,7 +253,6 @@
             this.Txtnh_kh4.AccessibleName2 = "NH_KH4";
             this.Txtnh_kh4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_kh4.Caption = "Nhóm khách hàng 4";
-            this.Txtnh_kh4.CodeForm = null;
             this.Txtnh_kh4.FieldName = "NH_KH4";
             this.Txtnh_kh4.Location = new System.Drawing.Point(6, 286);
             this.Txtnh_kh4.Name = "Txtnh_kh4";
@@ -277,7 +266,6 @@
             this.Txtnh_kh1.AccessibleName2 = "NH_KH1";
             this.Txtnh_kh1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_kh1.Caption = "Nhóm khách hàng 1";
-            this.Txtnh_kh1.CodeForm = null;
             this.Txtnh_kh1.FieldName = "NH_KH1";
             this.Txtnh_kh1.Location = new System.Drawing.Point(6, 220);
             this.Txtnh_kh1.Name = "Txtnh_kh1";
@@ -291,7 +279,6 @@
             this.Txtnh_kh2.AccessibleName2 = "NH_KH2";
             this.Txtnh_kh2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_kh2.Caption = "Nhóm khách hàng 2";
-            this.Txtnh_kh2.CodeForm = null;
             this.Txtnh_kh2.FieldName = "NH_KH2";
             this.Txtnh_kh2.Location = new System.Drawing.Point(6, 242);
             this.Txtnh_kh2.Name = "Txtnh_kh2";
@@ -305,7 +292,6 @@
             this.Txtnh_vt3.AccessibleName2 = "NH_VT3";
             this.Txtnh_vt3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt3.Caption = "Nhóm vật tư 3";
-            this.Txtnh_vt3.CodeForm = null;
             this.Txtnh_vt3.FieldName = "NH_VT3";
             this.Txtnh_vt3.Location = new System.Drawing.Point(6, 462);
             this.Txtnh_vt3.Name = "Txtnh_vt3";
@@ -319,7 +305,6 @@
             this.Txtnh_vt1.AccessibleName2 = "NH_VT1";
             this.Txtnh_vt1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt1.Caption = "Nhóm vật tư 1";
-            this.Txtnh_vt1.CodeForm = null;
             this.Txtnh_vt1.FieldName = "NH_VT1";
             this.Txtnh_vt1.Location = new System.Drawing.Point(6, 418);
             this.Txtnh_vt1.Name = "Txtnh_vt1";
@@ -333,7 +318,6 @@
             this.Txtnh_vt2.AccessibleName2 = "NH_VT2";
             this.Txtnh_vt2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_vt2.Caption = "Nhóm vật tư 2";
-            this.Txtnh_vt2.CodeForm = null;
             this.Txtnh_vt2.FieldName = "NH_VT2";
             this.Txtnh_vt2.Location = new System.Drawing.Point(6, 440);
             this.Txtnh_vt2.Name = "Txtnh_vt2";
@@ -347,7 +331,6 @@
             this.Txtnh_kh3.AccessibleName2 = "NH_KH3";
             this.Txtnh_kh3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.Txtnh_kh3.Caption = "Nhóm khách hàng 3";
-            this.Txtnh_kh3.CodeForm = null;
             this.Txtnh_kh3.FieldName = "NH_KH3";
             this.Txtnh_kh3.Location = new System.Drawing.Point(6, 264);
             this.Txtnh_kh3.Name = "Txtnh_kh3";
@@ -361,7 +344,6 @@
             this.filterLineVvarTextBox2.AccessibleName2 = "MA_NVIEN";
             this.filterLineVvarTextBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.filterLineVvarTextBox2.Caption = "Mã nhân viên";
-            this.filterLineVvarTextBox2.CodeForm = null;
             this.filterLineVvarTextBox2.FieldName = "MA_NVIEN";
             this.filterLineVvarTextBox2.Location = new System.Drawing.Point(6, 572);
             this.filterLineVvarTextBox2.Name = "filterLineVvarTextBox2";
@@ -375,7 +357,6 @@
             this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
             this.txtMaDvcs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtMaDvcs.Caption = "Mã đơn vị";
-            this.txtMaDvcs.CodeForm = null;
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 44);
             this.txtMaDvcs.Name = "txtMaDvcs";
@@ -414,7 +395,6 @@
             this.filterLineVvarTextBox8.AccessibleName2 = "MA_NX";
             this.filterLineVvarTextBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.filterLineVvarTextBox8.Caption = "Mã dạng nx";
-            this.filterLineVvarTextBox8.CodeForm = null;
             this.filterLineVvarTextBox8.FieldName = "MA_NX";
             this.filterLineVvarTextBox8.Location = new System.Drawing.Point(6, 198);
             this.filterLineVvarTextBox8.Name = "filterLineVvarTextBox8";
@@ -428,7 +408,6 @@
             this.filterLineVvarTextBox12.AccessibleName2 = "MA_QG";
             this.filterLineVvarTextBox12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.filterLineVvarTextBox12.Caption = "Mã quốc gia";
-            this.filterLineVvarTextBox12.CodeForm = null;
             this.filterLineVvarTextBox12.FieldName = "MA_QG";
             this.filterLineVvarTextBox12.Location = new System.Drawing.Point(6, 550);
             this.filterLineVvarTextBox12.Name = "filterLineVvarTextBox12";
@@ -442,7 +421,6 @@
             this.filterLineVvarTextBox6.AccessibleName2 = "TK_VT";
             this.filterLineVvarTextBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.filterLineVvarTextBox6.Caption = "TK vật tư";
-            this.filterLineVvarTextBox6.CodeForm = null;
             this.filterLineVvarTextBox6.FieldName = "TK_VT";
             this.filterLineVvarTextBox6.Location = new System.Drawing.Point(6, 154);
             this.filterLineVvarTextBox6.Name = "filterLineVvarTextBox6";
@@ -456,7 +434,6 @@
             this.filterLineVvarTextBox4.AccessibleName2 = "MA_BP";
             this.filterLineVvarTextBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.filterLineVvarTextBox4.Caption = "Mã bộ phận";
-            this.filterLineVvarTextBox4.CodeForm = null;
             this.filterLineVvarTextBox4.FieldName = "MA_BP";
             this.filterLineVvarTextBox4.Location = new System.Drawing.Point(6, 110);
             this.filterLineVvarTextBox4.Name = "filterLineVvarTextBox4";
@@ -470,7 +447,6 @@
             this.filterLineVvarTextBox10.AccessibleName2 = "MA_NSX";
             this.filterLineVvarTextBox10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.filterLineVvarTextBox10.Caption = "Mã nhà sx";
-            this.filterLineVvarTextBox10.CodeForm = null;
             this.filterLineVvarTextBox10.FieldName = "MA_NSX";
             this.filterLineVvarTextBox10.Location = new System.Drawing.Point(6, 594);
             this.filterLineVvarTextBox10.Name = "filterLineVvarTextBox10";
@@ -485,7 +461,6 @@
             this.filterLineVvarTextBox7.AccessibleName2 = "MA_VV";
             this.filterLineVvarTextBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.filterLineVvarTextBox7.Caption = "Mã vụ việc";
-            this.filterLineVvarTextBox7.CodeForm = null;
             this.filterLineVvarTextBox7.FieldName = "MA_VV";
             this.filterLineVvarTextBox7.Location = new System.Drawing.Point(6, 176);
             this.filterLineVvarTextBox7.Name = "filterLineVvarTextBox7";
@@ -499,7 +474,6 @@
             this.filterLineVvarTextBox5.AccessibleName2 = "MA_VT";
             this.filterLineVvarTextBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.filterLineVvarTextBox5.Caption = "Mã vật tư";
-            this.filterLineVvarTextBox5.CodeForm = null;
             this.filterLineVvarTextBox5.FieldName = "MA_VT";
             this.filterLineVvarTextBox5.Location = new System.Drawing.Point(6, 132);
             this.filterLineVvarTextBox5.Name = "filterLineVvarTextBox5";

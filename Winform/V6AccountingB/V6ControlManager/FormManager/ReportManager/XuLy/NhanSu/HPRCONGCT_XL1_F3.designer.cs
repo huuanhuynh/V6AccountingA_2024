@@ -77,7 +77,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lichView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.lichView1.BorderColor = System.Drawing.Color.Black;
-            this.lichView1.CodeForm = null;
             this.lichView1.DataSource = ((System.Collections.Generic.IDictionary<int, V6Controls.Controls.LichView.LichViewCellData>)(resources.GetObject("lichView1.DataSource")));
             this.lichView1.DetailColor = System.Drawing.Color.Orange;
             this.lichView1.FooterHeight = 20;

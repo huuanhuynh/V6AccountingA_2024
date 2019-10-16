@@ -44,7 +44,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lichView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.lichView1.BorderColor = System.Drawing.Color.Black;
-            this.lichView1.CodeForm = null;
             this.lichView1.DataSource = ((System.Collections.Generic.IDictionary<int, V6Controls.Controls.LichView.LichViewCellData>)(resources.GetObject("lichView1.DataSource")));
             this.lichView1.DetailColor = System.Drawing.Color.Orange;
             this.lichView1.FooterHeight = 20;
@@ -103,7 +102,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             this.stickNoteCellView1.AutoSize = true;
             this.stickNoteCellView1.BackColor = System.Drawing.Color.Cyan;
             this.stickNoteCellView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.stickNoteCellView1.CodeForm = null;
             this.stickNoteCellView1.Location = new System.Drawing.Point(12, 50);
             this.stickNoteCellView1.Margin = new System.Windows.Forms.Padding(5);
             this.stickNoteCellView1.Name = "stickNoteCellView1";

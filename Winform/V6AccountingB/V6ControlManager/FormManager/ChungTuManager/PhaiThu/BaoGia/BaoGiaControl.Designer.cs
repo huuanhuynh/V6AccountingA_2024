@@ -291,7 +291,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             // detail1
             // 
             this.detail1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.detail1.CodeForm = null;
             this.detail1.Dock = System.Windows.Forms.DockStyle.Top;
             this.detail1.Location = new System.Drawing.Point(3, 3);
             this.detail1.MODE = V6Structs.V6Mode.Init;
