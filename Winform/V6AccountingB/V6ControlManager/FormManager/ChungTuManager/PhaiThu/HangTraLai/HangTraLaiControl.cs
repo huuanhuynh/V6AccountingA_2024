@@ -1724,7 +1724,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
 
-            SetControlReadOnlyHide(this, Invoice, Mode);
+            SetControlReadOnlyHide(this, Invoice, Mode, V6Mode.View);
         }
 
         #region ==== DataGridView ====
@@ -3465,9 +3465,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                     GetTyGiaDefault();
                     GetDefault_Other();
                     SetDefaultData(Invoice);
-                    detail1.DoAddButtonClick();
-                    SetControlReadOnlyHide(detail1, Invoice, V6Mode.Add);
-                    SetDefaultDetail();
+                    detail1.DoAddButtonClick( );
+                    var readonly_list = SetControlReadOnlyHide(detail1, Invoice, Mode, V6Mode.Add);
+                    if (readonly_list.Contains(detail1.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))
+                    {
+                        detail1.ChangeToViewMode();
+                    }
+                    else
+                    {
+                        SetDefaultDetail();
+                    }
                     GoToFirstFocus(txtMa_sonb);
                 }
                 else
@@ -3907,8 +3914,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             try
             {
                 SetDefaultDetail();
-                SetControlReadOnlyHide(detail1, Invoice, V6Mode.Add);
-                _maVt.Focus();
+                var readonly_list = SetControlReadOnlyHide(detail1, Invoice, Mode, V6Mode.Add);
+                if (readonly_list.Contains(detail1.btnMoi.Name, StringComparer.InvariantCultureIgnoreCase))
+                {
+                    detail1.ChangeToViewMode();
+                }
+                else
+                {
+                    _maVt.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -4434,27 +4448,35 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                         this.ShowWarningMessage(V6Text.NoSelection);
                         return;
                     }
-                    dataGridView1.Lock();
+                    
                     detail1.ChangeToEditMode();
-                    SetControlReadOnlyHide(detail1, Invoice, V6Mode.Edit);
-                    //Bật tắt Xuất ĐD
-                    if (_xuat_dd.Text == "")
+                    var readonly_list = SetControlReadOnlyHide(detail1, Invoice, Mode, V6Mode.Edit);
+                    if (readonly_list.Contains(detail1.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))
                     {
-                        _gia_nt.Enabled = true;
-                        if (chkSuaTien.Checked)
-                            _tienNt.Enabled = true;
-                        else _tienNt.Enabled = false;
+                        detail1.ChangeToViewMode();
                     }
                     else
                     {
-                        _gia_nt.Enabled = false;
-                        _tienNt.Enabled = false;
-                    }
+                        dataGridView1.Lock();
+                        //Bật tắt Xuất ĐD
+                        if (_xuat_dd.Text == "")
+                        {
+                            _gia_nt.Enabled = true;
+                            if (chkSuaTien.Checked)
+                                _tienNt.Enabled = true;
+                            else _tienNt.Enabled = false;
+                        }
+                        else
+                        {
+                            _gia_nt.Enabled = false;
+                            _tienNt.Enabled = false;
+                        }
 
-                    _maVt.RefreshLoDateYnValue();
-                    _maKhoI.RefreshLoDateYnValue();
-                    XuLyDonViTinhKhiChonMaVt(_maVt.Text, false);
-                    _maVt.Focus();
+                        _maVt.RefreshLoDateYnValue();
+                        _maKhoI.RefreshLoDateYnValue();
+                        XuLyDonViTinhKhiChonMaVt(_maVt.Text, false);
+                        _maVt.Focus();
+                    }
                 }
             }
             catch (Exception ex)

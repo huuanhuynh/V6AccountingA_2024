@@ -330,12 +330,12 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         public virtual void EnableNavigationButtons()
         {
-            throw new System.NotImplementedException("Cần override.");
+            throw new System.NotImplementedException("EnableNavigationButtons Cần override.");
         }
 
         public virtual void EnableFunctionButtons()
         {
-            throw new System.NotImplementedException("Cần override.");
+            throw new System.NotImplementedException("EnableFunctionButtons Cần override.");
         }
 
         /// <summary>
@@ -343,20 +343,59 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// </summary>
         public virtual void EnableVisibleControls()
         {
-            throw new System.NotImplementedException("Cần override.");
+            throw new System.NotImplementedException("EnableVisibleControls Cần override.");
         }
 
-        public void SetControlReadOnlyHide(Control container, V6InvoiceBase invoice, V6Mode mode)
+        /// <summary>
+        /// Khóa control theo quyền, trả về list name hoặc Aname của readonly để xử lý tác vụ khác.
+        /// </summary>
+        /// <param name="container"></param>
+        /// <param name="invoice"></param>
+        /// <param name="mode">Mode chính, đang thêm mới hay sửa chứng từ.</param>
+        /// <param name="modeDetail">Mode chi tiết, đang thêm mới chi tiết hay sửa.</param>
+        /// <returns></returns>
+        public List<string> SetControlReadOnlyHide(Control container, V6InvoiceBase invoice, V6Mode mode, V6Mode modeDetail)
         {
-            try //  Ẩn hiện theo quyền trong Alctct
+            if (AM == null) return null;
+            List<string> add_readonly = new List<string>();
+            List<string> edit_readonly = new List<string>();
+            try // try 1
             {
-                if (AM == null) return;
-                List<string> add_readonly = new List<string>();
-                List<string> edit_readonly = new List<string>();
                 int sl_in = 0;
                 if(Mode == V6Mode.Edit)
                     if(AM.Columns.Contains("SL_IN")) sl_in = ObjectAndString.ObjectToInt(AM_current["SL_IN"]);
 
+                // Khóa theo điều kiện dữ liệu (tùy chỉnh trong procedure VPA_SET_EDIT_READONLY_ALL
+                try // try 2
+                {
+                    SqlParameter[] plist =
+                        {
+                            new SqlParameter("@Ma_ct", _invoice.Mact),
+                            new SqlParameter("@STT_REC", _sttRec),
+                            new SqlParameter("@Mode",  mode == V6Mode.Add ? "M" : mode == V6Mode.Edit ? "S" : "V"),
+                            new SqlParameter("@ModeDetail", modeDetail == V6Mode.Add ? "M" : modeDetail == V6Mode.Edit ? "S" : "V"),
+                            new SqlParameter("@User_id", V6Login.UserId),
+                        };
+                    var data = V6BusinessHelper.ExecuteProcedure("VPA_SET_EDIT_READONLY_ALL", plist).Tables[0];
+                    if (container is HD_Detail)
+                    {
+                        string L_FIELD_N = "L_FIELDS" + container.Name.Right(1);
+                        if (data.Columns.Contains(L_FIELD_N))
+                        {
+                            edit_readonly.AddRange(ObjectAndString.SplitString(data.Rows[0][L_FIELD_N].ToString()));
+                        }
+                    }
+                    else
+                    {
+                        edit_readonly.AddRange(ObjectAndString.SplitString(data.Rows[0]["L_FIELDS0"].ToString()));
+                    }
+                }
+                catch (Exception ex2)
+                {
+                    this.WriteExLog(GetType() + ".SetControlReadOnlyHide ex2" + _sttRec, ex2);
+                }
+
+                //  Ẩn hiện theo quyền trong Alctct
                 foreach (string s in invoice.GRD_READONLY)
                 {
                     if (s.Contains(":"))
@@ -375,26 +414,41 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         edit_readonly.Add(s);
                     }
                 }
-                
-                if (mode == V6Mode.Add)
+
+                if (container is HD_Detail)
                 {
-                    V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(container, edit_readonly, false);
-                    V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(container, add_readonly, true);
+                    if (modeDetail == V6Mode.Add)
+                    {
+                        V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(container, edit_readonly, false);
+                        V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(container, add_readonly, true);
+                    }
+                    else if (modeDetail == V6Mode.Edit)
+                    {
+                        V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(container, add_readonly, false);
+                        V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(container, edit_readonly, true);
+                    }
                 }
-                else if (mode == V6Mode.Edit)
+                else
                 {
-                    V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(container, add_readonly, false);
-                    V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(container, edit_readonly, true);
-                    //V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(container, in_readonly, true);
+                    if (mode == V6Mode.Add)
+                    {
+                        V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(container, edit_readonly, false);
+                        V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(container, add_readonly, true);
+                    }
+                    else if (mode == V6Mode.Edit)
+                    {
+                        V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(container, add_readonly, false);
+                        V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(container, edit_readonly, true);
+                    }
                 }
 
-                //V6ControlFormHelper.SetListControlReadOnlyByAccessibleNames(container, invoice.GRD_READONLY, true);
                 V6ControlFormHelper.SetListControlVisibleByAccessibleNames(container, invoice.GRD_HIDE, false);
             }
-            catch (Exception ex2)
+            catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".EnableFormControls ex2", ex2);
+                this.WriteExLog(GetType() + ".SetControlReadOnlyHide", ex);
             }
+            return mode == V6Mode.Edit ? edit_readonly : add_readonly;
         }
 
         public void CallViewInvoice(string sttrec, V6Mode mode)
@@ -1145,8 +1199,15 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         public void HienThiTongSoDong(Label lblTongSoDong)
         {
-            var tSoDong = AD == null ? 0 : AD.Rows.Count;
-            lblTongSoDong.Text = tSoDong.ToString(CultureInfo.InvariantCulture);
+            try
+            {
+                var tSoDong = AD == null ? 0 : AD.Rows.Count;
+                lblTongSoDong.Text = tSoDong.ToString(CultureInfo.InvariantCulture);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".HienThiTongSoDong", ex);
+            }
         }
 
         /// <summary>

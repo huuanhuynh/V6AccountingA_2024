@@ -1,0 +1,143 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Reflection;
+using V6Tools.V6Objects;
+
+namespace V6Tools.V6Convert
+{
+    public static class V6JsonConverter
+    {
+        //JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
+        /// <summary>
+        /// <para>Chuyển 1 đối tượng dạng Class thành json.</para>
+        /// <para>Các property hoặc field sẽ là 1 phần tử bên trong json object. Ví dụ: {"Property1":"value", "Field1":"value"}</para>
+        /// <para>"value" có thể là 1 "string" hoặc number hoặc {Class}</para>
+        /// </summary>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        public static string ClassToJson(object o)
+        {
+            string result = "";
+            foreach (PropertyInfo property in o.GetType().GetProperties())
+            {
+                if (property.CanRead && property.CanWrite)
+                {
+                    object value = property.GetValue(o, null);
+                    result += ",\n" + ValueToJson(property.Name, value);
+                }
+            }
+
+            foreach (FieldInfo field in o.GetType().GetFields())
+            {
+                object value = field.GetValue(o);
+                result += ",\n" + ValueToJson(field.Name, value);
+            }
+
+            if (result.Length > 0) result = result.Substring(1);
+            return "{" + result + "\n}";
+        }
+
+
+        private static string ValueToJson(string name, object value)
+        {
+            string result = "";
+
+            result = string.Format("\"{0}\":{1}", name, ObjectToJson(value));
+
+            return result;
+        }
+
+        private static string ObjectToJson(object value)
+        {
+            if (value == null) return "null";
+
+            string result = "";
+
+            if (value is V6JsonObject)
+            {
+                result = ((V6JsonObject)value).ToJson();
+            }
+            else if (value is IDictionary<string, object>)
+            {
+                result = DictionaryToJson((IDictionary<string, object>)value);
+            }
+            else if (value is string)
+            {
+                result = "\"" + value.ToString().Replace("\"", "\\\"") + "\"";
+            }
+            else if (value is DateTime)
+            {
+                DateTime date = (DateTime)value;
+                //DateTime now = DateTime.Now;
+                //DateTime date_time = new DateTime(date.Year, date.Month, date.Day, now.Hour, now.Minute, now.Second);
+                result = "" + (long)(date - new DateTime(1970, 1, 1)).TotalMilliseconds;
+            }
+            //else if (value is Boolean)
+            //{
+
+            //}
+            else if (value is IEnumerable)
+            {
+                result = ListToJson((IEnumerable)value);
+            }
+            else if (ObjectAndString.IsNumber(value))
+            {
+                if (value is decimal || value is double || value is float)
+                {
+                    result = Convert.ToDecimal(value).ToString(CultureInfo.InvariantCulture);
+                }
+                else
+                {
+                    result = value.ToString();
+                }
+            }
+            else if (value is bool)
+            {
+                result += (bool)value ? "true" : "false";
+            }
+            else if (value.GetType().IsClass) // object
+            {
+                result = ClassToJson(value);
+            }
+            else
+            {
+                result = "\"" + value + "\"";
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Đưa 1 list hoặc mảng về dạng chuỗi json [value1,"value2",{object}...]
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private static string ListToJson(IEnumerable value)
+        {
+            string result = "";
+            foreach (object o in value)
+            {
+                result += "," + ObjectToJson(o);
+            }
+            if (result.Length > 0) result = result.Substring(1);
+            return "[" + result + "]";
+        }
+
+        /// <summary>
+        /// Chuyển 1 từ điển dữ liệu thành chuỗi json {"name":"value",...}
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private static string DictionaryToJson(IDictionary<string, object> value)
+        {
+            string result = "";
+            foreach (KeyValuePair<string, object> item in value)
+            {
+                result += "," + ValueToJson(item.Key, item.Value);
+            }
+            if (result.Length > 0) result = result.Substring(1);
+            return "{\n" + result + "\n}";
+        }
+    }
+}

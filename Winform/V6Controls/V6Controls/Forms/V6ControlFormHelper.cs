@@ -1197,29 +1197,27 @@ namespace V6Controls.Forms
         /// Lấy danh sách control theo AccessibleName, nếu ko có thì lấy theo Name
         /// </summary>
         /// <param name="container"></param>
-        /// <param name="accessibleName"></param>
+        /// <param name="accessibleNames"></param>
         /// <returns></returns>
-        public static List<Object> GetListControlByAccessibleOrNames(Control container, IList<string> accessibleName)
+        public static List<Object> GetListControlByAccessibleOrNames(Control container, IList<string> accessibleNames)
         {
             try
             {
-                List<Object> ControlList = new List<Object>();
+                List<Object> result = new List<Object>();
+                if (accessibleNames == null || accessibleNames.Count == 0) return result;
+
+                if (accessibleNames.Contains(container.AccessibleName, StringComparer.InvariantCultureIgnoreCase))
+                {
+                    result.Add(container);
+                }
+                else if (accessibleNames.Contains(container.Name, StringComparer.InvariantCultureIgnoreCase))
+                {
+                    result.Add(container);
+                }
+
                 foreach (Control c in container.Controls)
                 {
-                    if (accessibleName.Contains(c.AccessibleName, StringComparer.InvariantCultureIgnoreCase))
-                    {
-                        ControlList.Add(c);
-                    }
-                    else if (accessibleName.Contains(c.Name, StringComparer.InvariantCultureIgnoreCase))
-                    {
-                        ControlList.Add(c);
-                    }
-                    if (c.Name.StartsWith("btnChucN"))
-                    {
-                        string a = "a";
-                    }
-                    List<Object> cl = GetListControlByAccessibleOrNames(c, accessibleName);
-                    ControlList.AddRange(cl);
+                    result.AddRange(GetListControlByAccessibleOrNames(c, accessibleNames));
                 }
 
                 // Dò qua menu
@@ -1229,9 +1227,9 @@ namespace V6Controls.Forms
                     if(button.Menu != null)
                     foreach (ToolStripMenuItem item in button.Menu.Items)
                     {
-                        if (accessibleName.Contains(item.Name, StringComparer.InvariantCultureIgnoreCase))
+                        if (accessibleNames.Contains(item.Name, StringComparer.InvariantCultureIgnoreCase))
                         {
-                            ControlList.Add(item);
+                            result.Add(item);
                         }
                     }
                 }
@@ -1239,14 +1237,14 @@ namespace V6Controls.Forms
                 {
                     foreach (ToolStripMenuItem item in container.ContextMenuStrip.Items)
                     {
-                        if (accessibleName.Contains(item.Name, StringComparer.InvariantCultureIgnoreCase))
+                        if (accessibleNames.Contains(item.Name, StringComparer.InvariantCultureIgnoreCase))
                         {
-                            ControlList.Add(item);
+                            result.Add(item);
                         }
                     }
                 }
 
-                return ControlList;
+                return result;
             }
             catch (Exception ex)
             {
@@ -2594,7 +2592,7 @@ namespace V6Controls.Forms
                         if (data.Columns.Contains(labelField))
                         {
                             string s = row[labelField].ToString().Trim();
-                            string[] ssss = s.Split(new[] {','}, 4);
+                            string[] ssss = ObjectAndString.SplitString(s);
                             //check visible
                             bool visible = true;
                             string[] ss = ssss[0].Split('=');
@@ -6670,6 +6668,7 @@ namespace V6Controls.Forms
                     || control is ComboBox
                     || control is V6FormButton
                     || control is GioiTinhControl
+                    || control.GetType().Name == "HD_Detail"
                     )
                 {
                     control.Enabled = !(readOnly);
@@ -6699,6 +6698,7 @@ namespace V6Controls.Forms
         {
             try
             {
+                if (accNameList == null || accNameList.Count == 0) return;
                 var listControl = GetListControlByAccessibleOrNames(container, accNameList);
                 foreach (Object o in listControl)
                 {

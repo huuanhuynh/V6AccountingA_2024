@@ -202,10 +202,16 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
         
 
-        //Ngoai form goi khi da chac chan chuyen mod sua
+        /// <summary>
+        /// Ngoai form goi khi da chac chan chuyen mod sua
+        /// </summary>
         public void ChangeToEditMode()
         {
             MODE = V6Mode.Edit;
+        }
+        public void ChangeToViewMode()
+        {
+            MODE = V6Mode.View;
         }
 
         /// <summary>

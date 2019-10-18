@@ -93,8 +93,6 @@
             this.matd1f = new V6Controls.V6ColorTextBox();
             this.matd1e = new V6Controls.V6ColorTextBox();
             this.matd1v = new V6Controls.V6ColorTextBox();
-            this.btnNhan = new System.Windows.Forms.Button();
-            this.btnHuy = new System.Windows.Forms.Button();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -146,6 +144,8 @@
             this.ms1f = new V6Controls.V6ColorTextBox();
             this.ms1e = new V6Controls.V6ColorTextBox();
             this.ms1v = new V6Controls.V6ColorTextBox();
+            this.btnNhan = new System.Windows.Forms.Button();
+            this.btnHuy = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -232,7 +232,7 @@
             this.gctd3u.Margin = new System.Windows.Forms.Padding(4);
             this.gctd3u.Name = "gctd3u";
             this.gctd3u.Size = new System.Drawing.Size(86, 17);
-            this.gctd3u.TabIndex = 35;
+            this.gctd3u.TabIndex = 62;
             this.gctd3u.Text = "Có sử dụng?";
             this.gctd3u.UseVisualStyleBackColor = true;
             // 
@@ -244,7 +244,7 @@
             this.sltd3u.Margin = new System.Windows.Forms.Padding(4);
             this.sltd3u.Name = "sltd3u";
             this.sltd3u.Size = new System.Drawing.Size(86, 17);
-            this.sltd3u.TabIndex = 26;
+            this.sltd3u.TabIndex = 47;
             this.sltd3u.Text = "Có sử dụng?";
             this.sltd3u.UseVisualStyleBackColor = true;
             // 
@@ -256,7 +256,7 @@
             this.ngaytd3u.Margin = new System.Windows.Forms.Padding(4);
             this.ngaytd3u.Name = "ngaytd3u";
             this.ngaytd3u.Size = new System.Drawing.Size(86, 17);
-            this.ngaytd3u.TabIndex = 17;
+            this.ngaytd3u.TabIndex = 32;
             this.ngaytd3u.Text = "Có sử dụng?";
             this.ngaytd3u.UseVisualStyleBackColor = true;
             // 
@@ -268,7 +268,7 @@
             this.matd3u.Margin = new System.Windows.Forms.Padding(4);
             this.matd3u.Name = "matd3u";
             this.matd3u.Size = new System.Drawing.Size(86, 17);
-            this.matd3u.TabIndex = 8;
+            this.matd3u.TabIndex = 17;
             this.matd3u.Text = "Có sử dụng?";
             this.matd3u.UseVisualStyleBackColor = true;
             // 
@@ -280,7 +280,7 @@
             this.gctd2u.Margin = new System.Windows.Forms.Padding(4);
             this.gctd2u.Name = "gctd2u";
             this.gctd2u.Size = new System.Drawing.Size(86, 17);
-            this.gctd2u.TabIndex = 32;
+            this.gctd2u.TabIndex = 57;
             this.gctd2u.Text = "Có sử dụng?";
             this.gctd2u.UseVisualStyleBackColor = true;
             // 
@@ -292,7 +292,7 @@
             this.sltd2u.Margin = new System.Windows.Forms.Padding(4);
             this.sltd2u.Name = "sltd2u";
             this.sltd2u.Size = new System.Drawing.Size(86, 17);
-            this.sltd2u.TabIndex = 23;
+            this.sltd2u.TabIndex = 42;
             this.sltd2u.Text = "Có sử dụng?";
             this.sltd2u.UseVisualStyleBackColor = true;
             // 
@@ -304,7 +304,7 @@
             this.ngaytd2u.Margin = new System.Windows.Forms.Padding(4);
             this.ngaytd2u.Name = "ngaytd2u";
             this.ngaytd2u.Size = new System.Drawing.Size(86, 17);
-            this.ngaytd2u.TabIndex = 14;
+            this.ngaytd2u.TabIndex = 27;
             this.ngaytd2u.Text = "Có sử dụng?";
             this.ngaytd2u.UseVisualStyleBackColor = true;
             // 
@@ -316,7 +316,7 @@
             this.matd2u.Margin = new System.Windows.Forms.Padding(4);
             this.matd2u.Name = "matd2u";
             this.matd2u.Size = new System.Drawing.Size(86, 17);
-            this.matd2u.TabIndex = 5;
+            this.matd2u.TabIndex = 12;
             this.matd2u.Text = "Có sử dụng?";
             this.matd2u.UseVisualStyleBackColor = true;
             // 
@@ -328,7 +328,7 @@
             this.gctd1u.Margin = new System.Windows.Forms.Padding(4);
             this.gctd1u.Name = "gctd1u";
             this.gctd1u.Size = new System.Drawing.Size(86, 17);
-            this.gctd1u.TabIndex = 29;
+            this.gctd1u.TabIndex = 52;
             this.gctd1u.Text = "Có sử dụng?";
             this.gctd1u.UseVisualStyleBackColor = true;
             // 
@@ -340,7 +340,7 @@
             this.sltd1u.Margin = new System.Windows.Forms.Padding(4);
             this.sltd1u.Name = "sltd1u";
             this.sltd1u.Size = new System.Drawing.Size(86, 17);
-            this.sltd1u.TabIndex = 20;
+            this.sltd1u.TabIndex = 37;
             this.sltd1u.Text = "Có sử dụng?";
             this.sltd1u.UseVisualStyleBackColor = true;
             // 
@@ -352,7 +352,7 @@
             this.ngaytd1u.Margin = new System.Windows.Forms.Padding(4);
             this.ngaytd1u.Name = "ngaytd1u";
             this.ngaytd1u.Size = new System.Drawing.Size(86, 17);
-            this.ngaytd1u.TabIndex = 11;
+            this.ngaytd1u.TabIndex = 22;
             this.ngaytd1u.Text = "Có sử dụng?";
             this.ngaytd1u.UseVisualStyleBackColor = true;
             // 
@@ -364,7 +364,7 @@
             this.matd1u.Margin = new System.Windows.Forms.Padding(4);
             this.matd1u.Name = "matd1u";
             this.matd1u.Size = new System.Drawing.Size(86, 17);
-            this.matd1u.TabIndex = 2;
+            this.matd1u.TabIndex = 7;
             this.matd1u.Text = "Có sử dụng?";
             this.matd1u.UseVisualStyleBackColor = true;
             // 
@@ -376,7 +376,7 @@
             this.lblGC_TD3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGC_TD3.Name = "lblGC_TD3";
             this.lblGC_TD3.Size = new System.Drawing.Size(109, 13);
-            this.lblGC_TD3.TabIndex = 2;
+            this.lblGC_TD3.TabIndex = 58;
             this.lblGC_TD3.Text = "Ghi chú định nghĩa 3";
             // 
             // lblSL_TD3
@@ -387,7 +387,7 @@
             this.lblSL_TD3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSL_TD3.Name = "lblSL_TD3";
             this.lblSL_TD3.Size = new System.Drawing.Size(114, 13);
-            this.lblSL_TD3.TabIndex = 2;
+            this.lblSL_TD3.TabIndex = 43;
             this.lblSL_TD3.Text = "Số lượng định nghĩa 3";
             // 
             // lblNGAY_TD3
@@ -398,7 +398,7 @@
             this.lblNGAY_TD3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNGAY_TD3.Name = "lblNGAY_TD3";
             this.lblNGAY_TD3.Size = new System.Drawing.Size(97, 13);
-            this.lblNGAY_TD3.TabIndex = 2;
+            this.lblNGAY_TD3.TabIndex = 28;
             this.lblNGAY_TD3.Text = "Ngày định nghĩa 3";
             // 
             // lblMA_TD
@@ -409,7 +409,7 @@
             this.lblMA_TD.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMA_TD.Name = "lblMA_TD";
             this.lblMA_TD.Size = new System.Drawing.Size(87, 13);
-            this.lblMA_TD.TabIndex = 2;
+            this.lblMA_TD.TabIndex = 13;
             this.lblMA_TD.Text = "Mã định nghĩa 3";
             // 
             // lblGC_TD2
@@ -420,7 +420,7 @@
             this.lblGC_TD2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGC_TD2.Name = "lblGC_TD2";
             this.lblGC_TD2.Size = new System.Drawing.Size(109, 13);
-            this.lblGC_TD2.TabIndex = 2;
+            this.lblGC_TD2.TabIndex = 53;
             this.lblGC_TD2.Text = "Ghi chú định nghĩa 2";
             // 
             // lblSL_TD2
@@ -431,7 +431,7 @@
             this.lblSL_TD2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSL_TD2.Name = "lblSL_TD2";
             this.lblSL_TD2.Size = new System.Drawing.Size(114, 13);
-            this.lblSL_TD2.TabIndex = 2;
+            this.lblSL_TD2.TabIndex = 38;
             this.lblSL_TD2.Text = "Số lượng định nghĩa 2";
             // 
             // lblNGAY_TD2
@@ -442,7 +442,7 @@
             this.lblNGAY_TD2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNGAY_TD2.Name = "lblNGAY_TD2";
             this.lblNGAY_TD2.Size = new System.Drawing.Size(97, 13);
-            this.lblNGAY_TD2.TabIndex = 2;
+            this.lblNGAY_TD2.TabIndex = 23;
             this.lblNGAY_TD2.Text = "Ngày định nghĩa 2";
             // 
             // lblMA_TD2
@@ -453,7 +453,7 @@
             this.lblMA_TD2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMA_TD2.Name = "lblMA_TD2";
             this.lblMA_TD2.Size = new System.Drawing.Size(87, 13);
-            this.lblMA_TD2.TabIndex = 2;
+            this.lblMA_TD2.TabIndex = 8;
             this.lblMA_TD2.Text = "Mã định nghĩa 2";
             // 
             // lblGC_TD1
@@ -464,7 +464,7 @@
             this.lblGC_TD1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGC_TD1.Name = "lblGC_TD1";
             this.lblGC_TD1.Size = new System.Drawing.Size(109, 13);
-            this.lblGC_TD1.TabIndex = 2;
+            this.lblGC_TD1.TabIndex = 48;
             this.lblGC_TD1.Text = "Ghi chú định nghĩa 1";
             // 
             // lblSL_TD1
@@ -475,7 +475,7 @@
             this.lblSL_TD1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSL_TD1.Name = "lblSL_TD1";
             this.lblSL_TD1.Size = new System.Drawing.Size(114, 13);
-            this.lblSL_TD1.TabIndex = 2;
+            this.lblSL_TD1.TabIndex = 33;
             this.lblSL_TD1.Text = "Số lượng định nghĩa 1";
             // 
             // lblNGAY_TD1
@@ -486,7 +486,7 @@
             this.lblNGAY_TD1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNGAY_TD1.Name = "lblNGAY_TD1";
             this.lblNGAY_TD1.Size = new System.Drawing.Size(97, 13);
-            this.lblNGAY_TD1.TabIndex = 2;
+            this.lblNGAY_TD1.TabIndex = 18;
             this.lblNGAY_TD1.Text = "Ngày định nghĩa 1";
             // 
             // label15
@@ -508,7 +508,7 @@
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(56, 13);
-            this.label14.TabIndex = 2;
+            this.label14.TabIndex = 1;
             this.label14.Text = "Tiếng Anh";
             // 
             // label13
@@ -519,7 +519,7 @@
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(55, 13);
-            this.label13.TabIndex = 2;
+            this.label13.TabIndex = 0;
             this.label13.Text = "Tiếng Việt";
             // 
             // lblMA_TD1
@@ -530,7 +530,7 @@
             this.lblMA_TD1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMA_TD1.Name = "lblMA_TD1";
             this.lblMA_TD1.Size = new System.Drawing.Size(87, 13);
-            this.lblMA_TD1.TabIndex = 2;
+            this.lblMA_TD1.TabIndex = 3;
             this.lblMA_TD1.Text = "Mã định nghĩa 1";
             // 
             // gctd3e
@@ -547,7 +547,7 @@
             this.gctd3e.Margin = new System.Windows.Forms.Padding(4);
             this.gctd3e.Name = "gctd3e";
             this.gctd3e.Size = new System.Drawing.Size(164, 20);
-            this.gctd3e.TabIndex = 34;
+            this.gctd3e.TabIndex = 60;
             // 
             // sltd3e
             // 
@@ -563,7 +563,7 @@
             this.sltd3e.Margin = new System.Windows.Forms.Padding(4);
             this.sltd3e.Name = "sltd3e";
             this.sltd3e.Size = new System.Drawing.Size(164, 20);
-            this.sltd3e.TabIndex = 25;
+            this.sltd3e.TabIndex = 45;
             // 
             // ngaytd3e
             // 
@@ -579,7 +579,7 @@
             this.ngaytd3e.Margin = new System.Windows.Forms.Padding(4);
             this.ngaytd3e.Name = "ngaytd3e";
             this.ngaytd3e.Size = new System.Drawing.Size(164, 20);
-            this.ngaytd3e.TabIndex = 16;
+            this.ngaytd3e.TabIndex = 30;
             // 
             // matd3e
             // 
@@ -595,7 +595,7 @@
             this.matd3e.Margin = new System.Windows.Forms.Padding(4);
             this.matd3e.Name = "matd3e";
             this.matd3e.Size = new System.Drawing.Size(164, 20);
-            this.matd3e.TabIndex = 7;
+            this.matd3e.TabIndex = 15;
             // 
             // gctd3v
             // 
@@ -611,7 +611,7 @@
             this.gctd3v.Margin = new System.Windows.Forms.Padding(4);
             this.gctd3v.Name = "gctd3v";
             this.gctd3v.Size = new System.Drawing.Size(164, 20);
-            this.gctd3v.TabIndex = 33;
+            this.gctd3v.TabIndex = 59;
             // 
             // sltd3v
             // 
@@ -627,7 +627,7 @@
             this.sltd3v.Margin = new System.Windows.Forms.Padding(4);
             this.sltd3v.Name = "sltd3v";
             this.sltd3v.Size = new System.Drawing.Size(164, 20);
-            this.sltd3v.TabIndex = 24;
+            this.sltd3v.TabIndex = 44;
             // 
             // ngaytd3v
             // 
@@ -643,7 +643,7 @@
             this.ngaytd3v.Margin = new System.Windows.Forms.Padding(4);
             this.ngaytd3v.Name = "ngaytd3v";
             this.ngaytd3v.Size = new System.Drawing.Size(164, 20);
-            this.ngaytd3v.TabIndex = 15;
+            this.ngaytd3v.TabIndex = 29;
             // 
             // matd3v
             // 
@@ -659,7 +659,7 @@
             this.matd3v.Margin = new System.Windows.Forms.Padding(4);
             this.matd3v.Name = "matd3v";
             this.matd3v.Size = new System.Drawing.Size(164, 20);
-            this.matd3v.TabIndex = 6;
+            this.matd3v.TabIndex = 14;
             // 
             // gctd2e
             // 
@@ -675,7 +675,7 @@
             this.gctd2e.Margin = new System.Windows.Forms.Padding(4);
             this.gctd2e.Name = "gctd2e";
             this.gctd2e.Size = new System.Drawing.Size(164, 20);
-            this.gctd2e.TabIndex = 31;
+            this.gctd2e.TabIndex = 55;
             // 
             // sltd2e
             // 
@@ -691,7 +691,7 @@
             this.sltd2e.Margin = new System.Windows.Forms.Padding(4);
             this.sltd2e.Name = "sltd2e";
             this.sltd2e.Size = new System.Drawing.Size(164, 20);
-            this.sltd2e.TabIndex = 22;
+            this.sltd2e.TabIndex = 40;
             // 
             // ngaytd2e
             // 
@@ -707,7 +707,7 @@
             this.ngaytd2e.Margin = new System.Windows.Forms.Padding(4);
             this.ngaytd2e.Name = "ngaytd2e";
             this.ngaytd2e.Size = new System.Drawing.Size(164, 20);
-            this.ngaytd2e.TabIndex = 13;
+            this.ngaytd2e.TabIndex = 25;
             // 
             // matd2e
             // 
@@ -723,7 +723,7 @@
             this.matd2e.Margin = new System.Windows.Forms.Padding(4);
             this.matd2e.Name = "matd2e";
             this.matd2e.Size = new System.Drawing.Size(164, 20);
-            this.matd2e.TabIndex = 4;
+            this.matd2e.TabIndex = 10;
             // 
             // gctd2v
             // 
@@ -739,7 +739,7 @@
             this.gctd2v.Margin = new System.Windows.Forms.Padding(4);
             this.gctd2v.Name = "gctd2v";
             this.gctd2v.Size = new System.Drawing.Size(164, 20);
-            this.gctd2v.TabIndex = 30;
+            this.gctd2v.TabIndex = 54;
             // 
             // sltd2v
             // 
@@ -755,7 +755,7 @@
             this.sltd2v.Margin = new System.Windows.Forms.Padding(4);
             this.sltd2v.Name = "sltd2v";
             this.sltd2v.Size = new System.Drawing.Size(164, 20);
-            this.sltd2v.TabIndex = 21;
+            this.sltd2v.TabIndex = 39;
             // 
             // ngaytd2v
             // 
@@ -771,7 +771,7 @@
             this.ngaytd2v.Margin = new System.Windows.Forms.Padding(4);
             this.ngaytd2v.Name = "ngaytd2v";
             this.ngaytd2v.Size = new System.Drawing.Size(164, 20);
-            this.ngaytd2v.TabIndex = 12;
+            this.ngaytd2v.TabIndex = 24;
             // 
             // matd2v
             // 
@@ -787,7 +787,7 @@
             this.matd2v.Margin = new System.Windows.Forms.Padding(4);
             this.matd2v.Name = "matd2v";
             this.matd2v.Size = new System.Drawing.Size(164, 20);
-            this.matd2v.TabIndex = 3;
+            this.matd2v.TabIndex = 9;
             // 
             // gctd1e
             // 
@@ -803,7 +803,7 @@
             this.gctd1e.Margin = new System.Windows.Forms.Padding(4);
             this.gctd1e.Name = "gctd1e";
             this.gctd1e.Size = new System.Drawing.Size(164, 20);
-            this.gctd1e.TabIndex = 28;
+            this.gctd1e.TabIndex = 50;
             // 
             // gctd1v
             // 
@@ -819,7 +819,7 @@
             this.gctd1v.Margin = new System.Windows.Forms.Padding(4);
             this.gctd1v.Name = "gctd1v";
             this.gctd1v.Size = new System.Drawing.Size(164, 20);
-            this.gctd1v.TabIndex = 27;
+            this.gctd1v.TabIndex = 49;
             // 
             // sltd1e
             // 
@@ -835,7 +835,7 @@
             this.sltd1e.Margin = new System.Windows.Forms.Padding(4);
             this.sltd1e.Name = "sltd1e";
             this.sltd1e.Size = new System.Drawing.Size(164, 20);
-            this.sltd1e.TabIndex = 19;
+            this.sltd1e.TabIndex = 35;
             // 
             // sltd1v
             // 
@@ -851,7 +851,7 @@
             this.sltd1v.Margin = new System.Windows.Forms.Padding(4);
             this.sltd1v.Name = "sltd1v";
             this.sltd1v.Size = new System.Drawing.Size(164, 20);
-            this.sltd1v.TabIndex = 18;
+            this.sltd1v.TabIndex = 34;
             // 
             // ngaytd1e
             // 
@@ -867,7 +867,7 @@
             this.ngaytd1e.Margin = new System.Windows.Forms.Padding(4);
             this.ngaytd1e.Name = "ngaytd1e";
             this.ngaytd1e.Size = new System.Drawing.Size(164, 20);
-            this.ngaytd1e.TabIndex = 10;
+            this.ngaytd1e.TabIndex = 20;
             // 
             // ngaytd1v
             // 
@@ -883,7 +883,7 @@
             this.ngaytd1v.Margin = new System.Windows.Forms.Padding(4);
             this.ngaytd1v.Name = "ngaytd1v";
             this.ngaytd1v.Size = new System.Drawing.Size(164, 20);
-            this.ngaytd1v.TabIndex = 9;
+            this.ngaytd1v.TabIndex = 19;
             // 
             // gctd3f
             // 
@@ -899,7 +899,7 @@
             this.gctd3f.Margin = new System.Windows.Forms.Padding(4);
             this.gctd3f.Name = "gctd3f";
             this.gctd3f.Size = new System.Drawing.Size(50, 20);
-            this.gctd3f.TabIndex = 1;
+            this.gctd3f.TabIndex = 61;
             // 
             // sltd2f
             // 
@@ -915,7 +915,7 @@
             this.sltd2f.Margin = new System.Windows.Forms.Padding(4);
             this.sltd2f.Name = "sltd2f";
             this.sltd2f.Size = new System.Drawing.Size(50, 20);
-            this.sltd2f.TabIndex = 1;
+            this.sltd2f.TabIndex = 41;
             // 
             // ngaytd1f
             // 
@@ -931,7 +931,7 @@
             this.ngaytd1f.Margin = new System.Windows.Forms.Padding(4);
             this.ngaytd1f.Name = "ngaytd1f";
             this.ngaytd1f.Size = new System.Drawing.Size(50, 20);
-            this.ngaytd1f.TabIndex = 1;
+            this.ngaytd1f.TabIndex = 21;
             // 
             // gctd1f
             // 
@@ -947,7 +947,7 @@
             this.gctd1f.Margin = new System.Windows.Forms.Padding(4);
             this.gctd1f.Name = "gctd1f";
             this.gctd1f.Size = new System.Drawing.Size(50, 20);
-            this.gctd1f.TabIndex = 1;
+            this.gctd1f.TabIndex = 51;
             // 
             // ngaytd3f
             // 
@@ -963,7 +963,7 @@
             this.ngaytd3f.Margin = new System.Windows.Forms.Padding(4);
             this.ngaytd3f.Name = "ngaytd3f";
             this.ngaytd3f.Size = new System.Drawing.Size(50, 20);
-            this.ngaytd3f.TabIndex = 1;
+            this.ngaytd3f.TabIndex = 31;
             // 
             // matd2f
             // 
@@ -979,7 +979,7 @@
             this.matd2f.Margin = new System.Windows.Forms.Padding(4);
             this.matd2f.Name = "matd2f";
             this.matd2f.Size = new System.Drawing.Size(50, 20);
-            this.matd2f.TabIndex = 1;
+            this.matd2f.TabIndex = 11;
             // 
             // gctd2f
             // 
@@ -995,7 +995,7 @@
             this.gctd2f.Margin = new System.Windows.Forms.Padding(4);
             this.gctd2f.Name = "gctd2f";
             this.gctd2f.Size = new System.Drawing.Size(50, 20);
-            this.gctd2f.TabIndex = 1;
+            this.gctd2f.TabIndex = 56;
             // 
             // sltd1f
             // 
@@ -1011,7 +1011,7 @@
             this.sltd1f.Margin = new System.Windows.Forms.Padding(4);
             this.sltd1f.Name = "sltd1f";
             this.sltd1f.Size = new System.Drawing.Size(50, 20);
-            this.sltd1f.TabIndex = 1;
+            this.sltd1f.TabIndex = 36;
             // 
             // matd3f
             // 
@@ -1027,7 +1027,7 @@
             this.matd3f.Margin = new System.Windows.Forms.Padding(4);
             this.matd3f.Name = "matd3f";
             this.matd3f.Size = new System.Drawing.Size(50, 20);
-            this.matd3f.TabIndex = 1;
+            this.matd3f.TabIndex = 16;
             // 
             // sltd3f
             // 
@@ -1043,7 +1043,7 @@
             this.sltd3f.Margin = new System.Windows.Forms.Padding(4);
             this.sltd3f.Name = "sltd3f";
             this.sltd3f.Size = new System.Drawing.Size(50, 20);
-            this.sltd3f.TabIndex = 1;
+            this.sltd3f.TabIndex = 46;
             // 
             // ngaytd2f
             // 
@@ -1059,7 +1059,7 @@
             this.ngaytd2f.Margin = new System.Windows.Forms.Padding(4);
             this.ngaytd2f.Name = "ngaytd2f";
             this.ngaytd2f.Size = new System.Drawing.Size(50, 20);
-            this.ngaytd2f.TabIndex = 1;
+            this.ngaytd2f.TabIndex = 26;
             // 
             // matd1f
             // 
@@ -1075,7 +1075,7 @@
             this.matd1f.Margin = new System.Windows.Forms.Padding(4);
             this.matd1f.Name = "matd1f";
             this.matd1f.Size = new System.Drawing.Size(50, 20);
-            this.matd1f.TabIndex = 1;
+            this.matd1f.TabIndex = 6;
             // 
             // matd1e
             // 
@@ -1091,7 +1091,7 @@
             this.matd1e.Margin = new System.Windows.Forms.Padding(4);
             this.matd1e.Name = "matd1e";
             this.matd1e.Size = new System.Drawing.Size(164, 20);
-            this.matd1e.TabIndex = 1;
+            this.matd1e.TabIndex = 5;
             // 
             // matd1v
             // 
@@ -1107,33 +1107,7 @@
             this.matd1v.Margin = new System.Windows.Forms.Padding(4);
             this.matd1v.Name = "matd1v";
             this.matd1v.Size = new System.Drawing.Size(164, 20);
-            this.matd1v.TabIndex = 0;
-            // 
-            // btnNhan
-            // 
-            this.btnNhan.AccessibleDescription = "ADDEDITB00001";
-            this.btnNhan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnNhan.Location = new System.Drawing.Point(12, 381);
-            this.btnNhan.Name = "btnNhan";
-            this.btnNhan.Size = new System.Drawing.Size(84, 29);
-            this.btnNhan.TabIndex = 1;
-            this.btnNhan.Text = "&Nhận";
-            this.btnNhan.UseVisualStyleBackColor = true;
-            this.btnNhan.Click += new System.EventHandler(this.btnNhan_Click);
-            // 
-            // btnHuy
-            // 
-            this.btnHuy.AccessibleDescription = "ADDEDITB00002";
-            this.btnHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnHuy.Location = new System.Drawing.Point(102, 381);
-            this.btnHuy.Name = "btnHuy";
-            this.btnHuy.Size = new System.Drawing.Size(84, 29);
-            this.btnHuy.TabIndex = 2;
-            this.btnHuy.Tag = "Escape";
-            this.btnHuy.Text = "&Hủy";
-            this.btnHuy.UseVisualStyleBackColor = true;
-            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
+            this.matd1v.TabIndex = 4;
             // 
             // v6TabControl1
             // 
@@ -1145,7 +1119,7 @@
             this.v6TabControl1.Name = "v6TabControl1";
             this.v6TabControl1.SelectedIndex = 0;
             this.v6TabControl1.Size = new System.Drawing.Size(675, 365);
-            this.v6TabControl1.TabIndex = 36;
+            this.v6TabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
@@ -1872,17 +1846,51 @@
             this.ms1v.Size = new System.Drawing.Size(164, 20);
             this.ms1v.TabIndex = 27;
             // 
+            // btnNhan
+            // 
+            this.btnNhan.AccessibleDescription = "ADDEDITB00001";
+            this.btnNhan.AccessibleName = "";
+            this.btnNhan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnNhan.Image = global::V6Controls.Properties.Resources.Apply;
+            this.btnNhan.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnNhan.Location = new System.Drawing.Point(12, 375);
+            this.btnNhan.Name = "btnNhan";
+            this.btnNhan.Size = new System.Drawing.Size(88, 40);
+            this.btnNhan.TabIndex = 1;
+            this.btnNhan.Tag = "Return, Control";
+            this.btnNhan.Text = "&Nhận";
+            this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNhan.UseVisualStyleBackColor = true;
+            this.btnNhan.Click += new System.EventHandler(this.btnNhan_Click);
+            // 
+            // btnHuy
+            // 
+            this.btnHuy.AccessibleDescription = "ADDEDITB00002";
+            this.btnHuy.AccessibleName = "";
+            this.btnHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnHuy.Image = global::V6Controls.Properties.Resources.Cancel;
+            this.btnHuy.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnHuy.Location = new System.Drawing.Point(102, 375);
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.Size = new System.Drawing.Size(88, 40);
+            this.btnHuy.TabIndex = 2;
+            this.btnHuy.Tag = "Escape";
+            this.btnHuy.Text = "&Hủy";
+            this.btnHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
+            // 
             // ThongTinDinhNghiaForm
             // 
             this.AccessibleDescription = "ADDEDITF00001";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.CancelButton = this.btnHuy;
             this.ClientSize = new System.Drawing.Size(676, 422);
-            this.Controls.Add(this.v6TabControl1);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
+            this.Controls.Add(this.v6TabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -1890,10 +1898,10 @@
             this.Name = "ThongTinDinhNghiaForm";
             this.Text = "Sửa thông tin trường định nghĩa";
             this.Load += new System.EventHandler(this.FormAdd_Edit_Load);
-            this.Controls.SetChildIndex(this.btnNhan, 0);
-            this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.v6TabControl1, 0);
             this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            this.Controls.SetChildIndex(this.btnNhan, 0);
+            this.Controls.SetChildIndex(this.btnHuy, 0);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.v6TabControl1.ResumeLayout(false);
@@ -1908,8 +1916,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnNhan;
-        private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.Label lblMA_TD1;
         private V6ColorTextBox matd1v;
         private V6Controls.V6CheckBox matd1u;
@@ -2024,5 +2030,7 @@
         private V6ColorTextBox ms1f;
         private V6ColorTextBox ms1e;
         private V6ColorTextBox ms1v;
+        protected System.Windows.Forms.Button btnNhan;
+        protected System.Windows.Forms.Button btnHuy;
     }
 }

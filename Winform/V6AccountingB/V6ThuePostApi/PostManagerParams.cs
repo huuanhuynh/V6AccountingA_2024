@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using V6ThuePost.ResponseObjects;
 using V6ThuePostBkavApi.ResponseObjects;
 using V6Tools.V6Convert;
 
@@ -15,7 +16,8 @@ namespace V6ThuePostManager
         /// </summary>
         public DataSet DataSet { get; set; }
         /// <summary>
-        /// Khi download pdf viettel 1: thể hiện, mặc định(2): Chuyển đổi
+        /// <para>Khi download pdf viettel 1: thể hiện, mặc định(2): Chuyển đổi</para>
+        /// <para>Vnpt M: mới, S: sửa, X: xóa-cancel</para>
         /// </summary>
         public string Mode { get; set; }
         /// <summary>
@@ -51,7 +53,9 @@ namespace V6ThuePostManager
         /// <summary>
         /// Mẫu hóa đơn vd:01GTKT0/001
         /// </summary>
-        public string Pattern;
+        public string Pattern { get; set; }
+
+        public string Serial { get; set; }
 
         public string strIssueDate = null;
         public PM_Result Result = null;
@@ -74,48 +78,48 @@ namespace V6ThuePostManager
         {
             get
             {
-                if (ResultDictionary != null && ResultDictionary.ContainsKey(RESULT_STRING))
+                if (V6ReturnValues != null)
                 {
-                    return ObjectAndString.ObjectToString(ResultDictionary[RESULT_STRING]);
+                    return V6ReturnValues.RESULT_STRING;
                 }
                 return null;
             }
             set
             {
-                if (ResultDictionary == null) ResultDictionary = new SortedDictionary<string, object>();
-                ResultDictionary[RESULT_STRING] = value;
+                if (V6ReturnValues == null) V6ReturnValues = new V6Return();
+                V6ReturnValues.RESULT_STRING = value;
             }
         }
         public string ResultMessage
         {
             get
             {
-                if (ResultDictionary != null && ResultDictionary.ContainsKey(RESULT_MESSAGE))
+                if (V6ReturnValues != null)
                 {
-                    return ObjectAndString.ObjectToString(ResultDictionary[RESULT_MESSAGE]);
+                    return V6ReturnValues.RESULT_MESSAGE;
                 }
                 return null;
             }
             set
             {
-                if(ResultDictionary == null) ResultDictionary = new SortedDictionary<string, object>();
-                ResultDictionary[RESULT_MESSAGE] = value;
+                if (V6ReturnValues == null) V6ReturnValues = new V6Return();
+                V6ReturnValues.RESULT_MESSAGE = value;
             }
         }
         public string ResultError
         {
             get
             {
-                if (ResultDictionary != null && ResultDictionary.ContainsKey(RESULT_ERROR))
+                if (V6ReturnValues != null)
                 {
-                    return ObjectAndString.ObjectToString(ResultDictionary[RESULT_ERROR]);
+                    return V6ReturnValues.RESULT_ERROR;
                 }
                 return null;
             }
             set
             {
-                if(ResultDictionary == null) ResultDictionary = new SortedDictionary<string, object>();
-                ResultDictionary[RESULT_ERROR] = value;
+                if (V6ReturnValues == null) V6ReturnValues = new V6Return();
+                V6ReturnValues.RESULT_ERROR = value;
             }
         }
         
@@ -123,16 +127,16 @@ namespace V6ThuePostManager
         {
             get
             {
-                if (ResultDictionary != null && ResultDictionary.ContainsKey(EXCEPTION_MESSAGE))
+                if (V6ReturnValues != null)
                 {
-                    return ObjectAndString.ObjectToString(ResultDictionary[EXCEPTION_MESSAGE]);
+                    return V6ReturnValues.EXCEPTION_MESSAGE;
                 }
                 return null;
             }
             set
             {
-                if(ResultDictionary == null) ResultDictionary = new SortedDictionary<string, object>();
-                ResultDictionary[EXCEPTION_MESSAGE] = value;
+                if (V6ReturnValues == null) V6ReturnValues = new V6Return();
+                V6ReturnValues.EXCEPTION_MESSAGE = value;
             }
         }
 
@@ -140,34 +144,35 @@ namespace V6ThuePostManager
         {
             get
             {
-                if (ResultDictionary != null && ResultDictionary.ContainsKey(RESULT_OBJECT))
+                if (V6ReturnValues != null)
                 {
-                    return ResultDictionary[RESULT_OBJECT];
+                    return V6ReturnValues.RESULT_OBJECT;
                 }
                 return null;
             }
         }
 
+        //public IDictionary<string,object> ResultDictionary0 = null;
         /// <summary>
         /// Chứa tất cả các giá trị đơn có được do hàm trả về (được phân tích và lưu lại).
         /// <para>Trong đó có 2 biến cơ bản [RESULT_STRING] và [RESULT_OBJECT].</para>
         /// </summary>
-        public IDictionary<string,object> ResultDictionary = null;
+        public V6Return V6ReturnValues = null;
 
         public string InvoiceNo
         {
             get
             {
-                if (ResultDictionary != null && ResultDictionary.ContainsKey(SO_HD))
+                if (V6ReturnValues != null)
                 {
-                    return ResultDictionary[SO_HD].ToString();
+                    return V6ReturnValues.SO_HD;
                 }
                 return null;
             }
             set
             {
-                if (ResultDictionary == null) ResultDictionary = new SortedDictionary<string, object>();
-                ResultDictionary[SO_HD] = value;
+                if (V6ReturnValues == null) V6ReturnValues = new V6Return();
+                V6ReturnValues.SO_HD = value;
             }
         }
         /// <summary>
@@ -177,9 +182,9 @@ namespace V6ThuePostManager
         {
             get
             {
-                if (ResultDictionary != null && ResultDictionary.ContainsKey(ID))
+                if (V6ReturnValues != null)
                 {
-                    return ResultDictionary[ID].ToString();
+                    return V6ReturnValues.ID;
                 }
                 return null;
             }
@@ -188,14 +193,14 @@ namespace V6ThuePostManager
         {
             get
             {
-                if (ResultDictionary != null && ResultDictionary.ContainsKey(SECRET_CODE))
+                if (V6ReturnValues != null)
                 {
-                    return ResultDictionary[SECRET_CODE].ToString();
+                    return V6ReturnValues.SECRET_CODE;
                 }
-                else if (ResultDictionary != null && ResultDictionary.ContainsKey("MTC"))
-                {
-                    return ResultDictionary["MCT"].ToString();
-                }
+                //else if (ResultDictionary != null && ResultDictionary.ContainsKey("MTC"))
+                //{
+                //    return V6ReturnValues["MCT"].ToString();
+                //}
                 return null;
             }
         }

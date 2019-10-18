@@ -152,11 +152,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         
                        
                         // Download
-                        // 1:VIETTEL 2:VNPT 3:BKAV
+                        // 1:VIETTEL 2:VNPT 3:BKAV 4:VNPT_TOKEN 5:SOFT_DREAMS
                         if (FilterControl.String1 == "1")
                         {
-                            string invoiceNo = row.Cells["SO_SERI"].Value.ToString().Trim() + row.Cells["SO_CT"].Value.ToString().Trim();
                             string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
+                            string serial = row.Cells["SO_SERI"].Value.ToString().Trim();
+                            string invoiceNo = serial + row.Cells["SO_CT"].Value.ToString().Trim();
+                            
                             string strIssueDate = ObjectAndString.ObjectToString(row.Cells["NGAY_CT"].Value, "yyyyMMddHHmmss");
 
                             var pmparams1 = new PostManagerParams
@@ -165,6 +167,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 Branch = FilterControl.String1,
                                 InvoiceNo = invoiceNo,
                                 Pattern = pattern,
+                                Serial = serial,
                                 strIssueDate = strIssueDate,
                             };
                             pdf_file = PostManager.PowerDownloadPDF(pmparams1, out error);
@@ -176,7 +179,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 continue;
                             }
                         }
-                        else if (FilterControl.String1 == "2")
+                        else if (FilterControl.String1 == "2" || FilterControl.String1 == "4")
                         {
                             string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
                             //var download = PostManager.DownloadInvFkeyNoPay(fkey_hd);
@@ -206,6 +209,30 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 Branch = FilterControl.String1,
                                 //InvoiceNo = invoiceNo,
                                 Fkey_hd = fkey_hd,
+                            };
+                            pdf_file = PostManager.PowerDownloadPDF(pmparams1, out error);
+                            if (!string.IsNullOrEmpty(error))
+                            {
+                                f9Error += error;
+                                f9ErrorAll += error;
+                                f9MessageAll += error;
+                                continue;
+                            }
+                        }
+                        else if (FilterControl.String1 == "5")
+                        {
+                            string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
+                            string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
+                            string serial = row.Cells["SO_SERI"].Value.ToString().Trim();
+                            //var download = PostManager.DownloadInvFkeyNoPay(fkey_hd);
+                            var pmparams1 = new PostManagerParams
+                            {
+                                DataSet = map_table.DataSet,
+                                Branch = FilterControl.String1,
+                                //InvoiceNo = invoiceNo,
+                                Fkey_hd = fkey_hd,
+                                Pattern = pattern,
+                                Serial = serial,
                             };
                             pdf_file = PostManager.PowerDownloadPDF(pmparams1, out error);
                             if (!string.IsNullOrEmpty(error))

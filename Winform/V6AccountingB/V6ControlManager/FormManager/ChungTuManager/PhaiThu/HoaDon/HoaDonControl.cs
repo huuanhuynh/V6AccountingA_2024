@@ -3303,7 +3303,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 this.WriteExLog(GetType() + ".EnableFormControls " + _sttRec, ex);
             }
 
-            SetControlReadOnlyHide(this, Invoice, Mode);
+            SetControlReadOnlyHide(this, Invoice, Mode, V6Mode.View);
             
         }
 
@@ -3754,7 +3754,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         #region ==== Tính toán hóa đơn ====
         
-        public void TinhTongValues()
+        public void TinhTongValues(out decimal tTienNt2)
         {
             txtTongSoLuong1.Value = TinhTong(AD, "SO_LUONG1");
             txtTongSoLuong.Value = TinhTong(AD, "SO_LUONG");
@@ -3770,7 +3770,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 //
             }
-            var tTienNt2 = TinhTong(AD, "TIEN_NT2");
+            tTienNt2 = V6BusinessHelper.TinhTong(AD, "TIEN_NT2");
             if (tPsNoNt != 0)
             {
                 ShowParentMessage("tPsNoNt=" + tPsNoNt);
@@ -3811,17 +3811,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         }
 
 
-        public void TinhChietKhau()
+        public void TinhChietKhau(decimal tTienNt2)
         {
             try
             {
-                var tTienNt2 = V6BusinessHelper.TinhTong(AD, "TIEN_NT2");
                 var tyGia = txtTyGia.Value;
                 var t_tien_nt2 = txtTongTienNt2.Value;
-                txtTongTienNt2.Value = V6BusinessHelper.Vround(tTienNt2, M_ROUND_NT);
                 decimal t_ck_nt = 0, t_ck=0;
-
-
 
                 if (chkLoaiChietKhau.Checked)//==1
                 {
@@ -3923,7 +3919,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        public void TinhPhanBoGiamGia()
+
+        public void TinhPhanBoGiamGia(decimal tTienNt2)
         {
             try
             {
@@ -3941,61 +3938,56 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 
                     //tính giam gia cho mỗi chi tiết
 
-                var tTienNt2 = V6BusinessHelper.TinhTong(AD, "TIEN_NT2");
                 var tyGia = txtTyGia.Value;
-                var t_tien_nt2 = txtTongTienNt2.Value;
-                txtTongTienNt2.Value = V6BusinessHelper.Vround(tTienNt2, M_ROUND_NT);
+                
 
-                    var t_gg_nt_check = 0m;
-                    var t_gg_check = 0m;
-                    var index_gg = -1;
+                var t_gg_nt_check = 0m;
+                var t_gg_check = 0m;
+                var index_gg = -1;
 
-                    for (var i = 0; i < AD.Rows.Count; i++)
+                for (var i = 0; i < AD.Rows.Count; i++)
+                {
+                    if (tTienNt2 != 0)
                     {
-                        if (t_tien_nt2 != 0)
-                        {
-                            var tien_nt2 = ObjectAndString.ObjectToDecimal(AD.Rows[i]["Tien_nt2"]);
-                            var gg_nt = V6BusinessHelper.Vround(tien_nt2 * t_gg_nt / t_tien_nt2, M_ROUND_NT);
-                            var gg = V6BusinessHelper.Vround(gg_nt * tyGia, M_ROUND);
+                        var tien_nt2 = ObjectAndString.ObjectToDecimal(AD.Rows[i]["Tien_nt2"]);
+                        var gg_nt = V6BusinessHelper.Vround(tien_nt2 * t_gg_nt / tTienNt2, M_ROUND_NT);
+                        var gg = V6BusinessHelper.Vround(gg_nt * tyGia, M_ROUND);
 
-                            if (_maNt == _mMaNt0)
-                                gg = gg_nt;
+                        if (_maNt == _mMaNt0)
+                            gg = gg_nt;
 
 
-                            t_gg_nt_check = t_gg_nt_check + gg_nt;
-                            t_gg_check += gg;
+                        t_gg_nt_check = t_gg_nt_check + gg_nt;
+                        t_gg_check += gg;
 
-                            if (gg_nt != 0 && index_gg == -1)
-                                index_gg = i;
+                        if (gg_nt != 0 && index_gg == -1)
+                            index_gg = i;
 
 
-                            //gán lại gg_nt
-                            if (AD.Columns.Contains("GG_NT")) AD.Rows[i]["GG_NT"] = gg_nt;
-                            if (AD.Columns.Contains("GG")) AD.Rows[i]["GG"] = gg;
-                            
-
-                        }
-                    }
-                    // Xu ly chenh lech
-                    // Tìm dòng có số tiền
-                    if (index_gg != -1)
-                    {
-                        decimal _gg_nt = ObjectAndString.ObjectToDecimal(AD.Rows[index_gg]["GG_NT"]) + (t_gg_nt - t_gg_nt_check);
-                        AD.Rows[index_gg]["GG_NT"] = _gg_nt;
-
-                        decimal _gg = ObjectAndString.ObjectToDecimal(AD.Rows[index_gg]["GG"]) + (t_gg - t_gg_check);
-                        AD.Rows[index_gg]["GG"] = _gg;
+                        //gán lại gg_nt
+                        if (AD.Columns.Contains("GG_NT")) AD.Rows[i]["GG_NT"] = gg_nt;
+                        if (AD.Columns.Contains("GG")) AD.Rows[i]["GG"] = gg;
                     }
                 }
+                // Xu ly chenh lech
+                // Tìm dòng có số tiền
+                if (index_gg != -1)
+                {
+                    decimal _gg_nt = ObjectAndString.ObjectToDecimal(AD.Rows[index_gg]["GG_NT"]) + (t_gg_nt - t_gg_nt_check);
+                    AD.Rows[index_gg]["GG_NT"] = _gg_nt;
+
+                    decimal _gg = ObjectAndString.ObjectToDecimal(AD.Rows[index_gg]["GG"]) + (t_gg - t_gg_check);
+                    AD.Rows[index_gg]["GG"] = _gg;
+                }
+            }
               
             catch (Exception ex)
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        
 
-        public void TinhThue()
+        public void TinhThue(decimal tTienNt2)
         {
             //Tính tiền thuế theo thuế suất
             decimal thue_suat;
@@ -4003,12 +3995,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             decimal t_thue;
 
             var ty_gia = txtTyGia.Value;
-            var t_tien_nt2 = txtTongTienNt2.Value;
+            //var t_tien_nt2 = txtTongTienNt2.Value;
             var t_gg_nt = txtTongGiamNt.Value;
             var t_vc_nt = txtT_TIENVCNT.Value;
             var t_ck_nt = txtTongCkNt.Value;
 
-            var t_tien_truocthue = t_tien_nt2 - t_gg_nt - t_ck_nt + t_vc_nt;
+            var t_tien_truocthue = tTienNt2 - t_gg_nt - t_ck_nt + t_vc_nt;
 
             if (chkT_THUE_NT.Checked)//Tiền thuế gõ tự do
             {
@@ -4029,8 +4021,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 t_thue = V6BusinessHelper.Vround(t_thue_nt * ty_gia, M_ROUND);
                 if (_maNt == _mMaNt0)
                     t_thue = t_thue_nt;
-                
-               
             }
             // Tuanmh 25/07/2017
             txtTongThueNt.Value = t_thue_nt;
@@ -4166,13 +4156,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             
                 HienThiTongSoDong(lblTongSoDong);
                 debug_flag = "TinhTongValues";
-                TinhTongValues();
+                decimal tTienNt2;
+                TinhTongValues(out tTienNt2);
                 try
                 {
                     debug_flag = "TinhChietKhau";
-                    TinhChietKhau(); //Đã tính //t_tien_nt2, T_CK_NT, PT_CK
+                    TinhChietKhau(tTienNt2); //Đã tính //t_tien_nt2, T_CK_NT, PT_CK
                     debug_flag = "TinhPhanBoGiamGia";
-                    TinhPhanBoGiamGia();//Tuanmh bo sung 05/12/2017
+                    TinhPhanBoGiamGia(tTienNt2);//Tuanmh bo sung 05/12/2017
 
                     if (M_SOA_MULTI_VAT == "1")
                     {
@@ -4184,7 +4175,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     else
                     {
                         debug_flag = "TinhThue";
-                        TinhThue();
+                        TinhThue(tTienNt2);
                     }
                 }
                 catch (Exception ex)
@@ -4243,7 +4234,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
             catch
             {
-                //
+                // No log for extra log.
             }
         }
 
@@ -5411,10 +5402,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     GetDefault_Other();
                     SetDefaultData(Invoice);
                     Txtma_td_ph.Text = base.GetCA();
-                    detail1.DoAddButtonClick();
-                    SetControlReadOnlyHide(detail1, Invoice, V6Mode.Add);
-
-                    SetDefaultDetail();
+                    detail1.DoAddButtonClick( );
+                    var readonly_list = SetControlReadOnlyHide(detail1, Invoice, Mode, V6Mode.Add);
+                    if (readonly_list.Contains(detail1.btnMoi.Name, StringComparer.InvariantCultureIgnoreCase))
+                    {
+                        detail1.ChangeToViewMode();
+                    }
+                    else
+                    {
+                        SetDefaultDetail();
+                    }
+                    
                     detail3.MODE = V6Mode.Init;
                     GoToFirstFocus(txtMa_sonb);
                 }
@@ -5940,12 +5938,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             try
             {
                 SetDefaultDetail();
-                SetControlReadOnlyHide(detail1, Invoice, V6Mode.Add);
-                _maVt.Focus();
+                var readonly_list = SetControlReadOnlyHide(detail1, Invoice, Mode, V6Mode.Add);
+                if (readonly_list.Contains(detail1.btnMoi.Name, StringComparer.InvariantCultureIgnoreCase))
+                {
+                    detail1.ChangeToViewMode();
+                }
+                else
+                {
+                    _maVt.Focus();
+                }
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
         
@@ -6509,15 +6515,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         this.ShowWarningMessage(V6Text.NoSelection);
                         return;
                     }
-                    dataGridView1.Lock();
-                    detail1.ChangeToEditMode();
-                    SetControlReadOnlyHide(detail1, Invoice, V6Mode.Edit);
                     
-                    _maVt.RefreshLoDateYnValue();
-                    _maKhoI.RefreshLoDateYnValue();
-                    XuLyDonViTinhKhiChonMaVt(_maVt.Text, false);
-                    _maVt.Focus();
-                    GetLoDate13();
+                    detail1.ChangeToEditMode();
+                    
+                    var readonly_list = SetControlReadOnlyHide(detail1, Invoice, Mode, V6Mode.Edit);
+                    if (readonly_list.Contains(detail1.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))
+                    {
+                        detail1.ChangeToViewMode();
+                    }
+                    else
+                    {
+                        dataGridView1.Lock();
+                        _maVt.RefreshLoDateYnValue();
+                        _maKhoI.RefreshLoDateYnValue();
+                        XuLyDonViTinhKhiChonMaVt(_maVt.Text, false);
+                        _maVt.Focus();
+                        GetLoDate13();
+                    }
                 }
             }
             catch (Exception ex)
