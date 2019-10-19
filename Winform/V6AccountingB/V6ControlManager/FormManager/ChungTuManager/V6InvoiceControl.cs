@@ -373,7 +373,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                             new SqlParameter("@Ma_ct", _invoice.Mact),
                             new SqlParameter("@STT_REC", _sttRec),
                             new SqlParameter("@Mode",  mode == V6Mode.Add ? "M" : mode == V6Mode.Edit ? "S" : "V"),
-                            new SqlParameter("@ModeDetail", modeDetail == V6Mode.Add ? "M" : modeDetail == V6Mode.Edit ? "S" : "V"),
+                            new SqlParameter("@ModeDetail", modeDetail == V6Mode.Add ? "M" : modeDetail == V6Mode.Edit ? "S" : modeDetail == V6Mode.Delete? "X" : "V"),
                             new SqlParameter("@User_id", V6Login.UserId),
                         };
                     var data = V6BusinessHelper.ExecuteProcedure("VPA_SET_EDIT_READONLY_ALL", plist).Tables[0];

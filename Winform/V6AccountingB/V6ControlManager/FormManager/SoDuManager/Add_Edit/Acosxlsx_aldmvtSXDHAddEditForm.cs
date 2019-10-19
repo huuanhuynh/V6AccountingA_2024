@@ -483,6 +483,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 this.ShowInfoMessage(V6Text.DeleteDenied + "\nMode: " + Mode);
                 return;
             }
+
             try
             {
                 if (dataGridView1.CurrentRow != null)
