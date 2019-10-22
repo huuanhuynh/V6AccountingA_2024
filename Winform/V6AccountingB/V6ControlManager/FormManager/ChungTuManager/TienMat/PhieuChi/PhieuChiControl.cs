@@ -4282,6 +4282,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 if (!string.IsNullOrEmpty(errors))
                 {
                     this.ShowWarningMessage(errors);
+                    detail1.MODE = detail1.Old_mode;
                     var c = detail1.GetControlByAccessibleName(firstErrorField);
                     if (c != null) c.Focus();
                     return false;
@@ -4303,7 +4304,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 if (!string.IsNullOrEmpty(errors))
                 {
                     this.ShowWarningMessage(errors);
-                    var c = detail1.GetControlByAccessibleName(firstErrorField);
+                    detail2.MODE = detail2.Old_mode;
+                    var c = detail2.GetControlByAccessibleName(firstErrorField);
                     if (c != null) c.Focus();
                     return false;
                 }

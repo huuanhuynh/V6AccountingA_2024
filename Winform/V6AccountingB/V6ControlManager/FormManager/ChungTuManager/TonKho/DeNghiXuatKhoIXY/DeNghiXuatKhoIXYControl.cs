@@ -4552,17 +4552,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
         {
             try
             {
-                //if (_tkDt.Int_Data("Loai_tk") == 0)
-                //{
-                //    this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
-                //    return false;
-                //}
-
                 string firstErrorField;
                 string errors = ValidateDetailData(detail1, Invoice, data, out firstErrorField);
                 if (!string.IsNullOrEmpty(errors))
                 {
                     this.ShowWarningMessage(errors);
+                    detail1.MODE = detail1.Old_mode;
                     var c = detail1.GetControlByAccessibleName(firstErrorField);
                     if (c != null) c.Focus();
                     return false;

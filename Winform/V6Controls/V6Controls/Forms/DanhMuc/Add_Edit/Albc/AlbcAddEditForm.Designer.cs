@@ -136,6 +136,8 @@
             this.btnExcel2View = new System.Windows.Forms.Button();
             this.txtND51 = new V6Controls.V6NumberTextBox();
             this.chkCheckPrint = new V6Controls.V6CheckBox();
+            this.txtRPT_DIR = new V6Controls.V6ColorTextBox();
+            this.lblRPT_DIR = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -153,7 +155,7 @@
             this.txtCaption.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtCaption.HoverColor = System.Drawing.Color.Yellow;
             this.txtCaption.LeaveColor = System.Drawing.Color.White;
-            this.txtCaption.Location = new System.Drawing.Point(104, 34);
+            this.txtCaption.Location = new System.Drawing.Point(104, 33);
             this.txtCaption.Name = "txtCaption";
             this.txtCaption.Size = new System.Drawing.Size(298, 20);
             this.txtCaption.TabIndex = 6;
@@ -162,7 +164,7 @@
             // 
             this.label1.AccessibleDescription = "ADDEDITL00229";
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 37);
+            this.label1.Location = new System.Drawing.Point(12, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 13);
             this.label1.TabIndex = 6;
@@ -178,7 +180,7 @@
             this.txtCaption2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtCaption2.HoverColor = System.Drawing.Color.Yellow;
             this.txtCaption2.LeaveColor = System.Drawing.Color.White;
-            this.txtCaption2.Location = new System.Drawing.Point(104, 60);
+            this.txtCaption2.Location = new System.Drawing.Point(104, 58);
             this.txtCaption2.Name = "txtCaption2";
             this.txtCaption2.Size = new System.Drawing.Size(298, 20);
             this.txtCaption2.TabIndex = 8;
@@ -187,7 +189,7 @@
             // 
             this.label2.AccessibleDescription = "ADDEDITL00335";
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 63);
+            this.label2.Location = new System.Drawing.Point(12, 61);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 13);
             this.label2.TabIndex = 7;
@@ -203,7 +205,7 @@
             this.txtTitle.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtTitle.HoverColor = System.Drawing.Color.Yellow;
             this.txtTitle.LeaveColor = System.Drawing.Color.White;
-            this.txtTitle.Location = new System.Drawing.Point(104, 86);
+            this.txtTitle.Location = new System.Drawing.Point(104, 83);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.ShiftF3 = true;
             this.txtTitle.Size = new System.Drawing.Size(298, 20);
@@ -220,7 +222,7 @@
             this.txtMa_File.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMa_File.HoverColor = System.Drawing.Color.Yellow;
             this.txtMa_File.LeaveColor = System.Drawing.Color.White;
-            this.txtMa_File.Location = new System.Drawing.Point(104, 112);
+            this.txtMa_File.Location = new System.Drawing.Point(104, 108);
             this.txtMa_File.Name = "txtMa_File";
             this.txtMa_File.ReadOnly = true;
             this.txtMa_File.Size = new System.Drawing.Size(142, 20);
@@ -232,7 +234,7 @@
             // 
             this.label3.AccessibleDescription = "ADDEDITL00336";
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 89);
+            this.label3.Location = new System.Drawing.Point(12, 86);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 9;
@@ -242,7 +244,7 @@
             // 
             this.label4.AccessibleDescription = ".";
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 115);
+            this.label4.Location = new System.Drawing.Point(12, 111);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(23, 13);
             this.label4.TabIndex = 11;
@@ -258,7 +260,7 @@
             this.txtReportFileEnd.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtReportFileEnd.HoverColor = System.Drawing.Color.Yellow;
             this.txtReportFileEnd.LeaveColor = System.Drawing.Color.White;
-            this.txtReportFileEnd.Location = new System.Drawing.Point(260, 112);
+            this.txtReportFileEnd.Location = new System.Drawing.Point(260, 108);
             this.txtReportFileEnd.Name = "txtReportFileEnd";
             this.txtReportFileEnd.Size = new System.Drawing.Size(142, 20);
             this.txtReportFileEnd.TabIndex = 13;
@@ -275,7 +277,7 @@
             this.txtReportFileNew.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtReportFileNew.HoverColor = System.Drawing.Color.Yellow;
             this.txtReportFileNew.LeaveColor = System.Drawing.Color.White;
-            this.txtReportFileNew.Location = new System.Drawing.Point(104, 138);
+            this.txtReportFileNew.Location = new System.Drawing.Point(104, 133);
             this.txtReportFileNew.Name = "txtReportFileNew";
             this.txtReportFileNew.ReadOnly = true;
             this.txtReportFileNew.Size = new System.Drawing.Size(142, 20);
@@ -286,7 +288,7 @@
             // 
             this.label5.AccessibleDescription = ".";
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 141);
+            this.label5.Location = new System.Drawing.Point(12, 136);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(39, 13);
             this.label5.TabIndex = 14;
@@ -302,7 +304,7 @@
             this.txtMAU.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMAU.HoverColor = System.Drawing.Color.Yellow;
             this.txtMAU.LeaveColor = System.Drawing.Color.White;
-            this.txtMAU.Location = new System.Drawing.Point(260, 141);
+            this.txtMAU.Location = new System.Drawing.Point(260, 133);
             this.txtMAU.Name = "txtMAU";
             this.txtMAU.ReadOnly = true;
             this.txtMAU.Size = new System.Drawing.Size(22, 20);
@@ -321,7 +323,7 @@
             this.txtLAN.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtLAN.HoverColor = System.Drawing.Color.Yellow;
             this.txtLAN.LeaveColor = System.Drawing.Color.White;
-            this.txtLAN.Location = new System.Drawing.Point(288, 141);
+            this.txtLAN.Location = new System.Drawing.Point(288, 133);
             this.txtLAN.Name = "txtLAN";
             this.txtLAN.ReadOnly = true;
             this.txtLAN.Size = new System.Drawing.Size(22, 20);
@@ -360,7 +362,7 @@
             this.txtExcel2.AccessibleName = "EXCEL2";
             this.txtExcel2.BackColor = System.Drawing.Color.AntiqueWhite;
             this.txtExcel2.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtExcel2.Location = new System.Drawing.Point(344, 141);
+            this.txtExcel2.Location = new System.Drawing.Point(344, 133);
             this.txtExcel2.Name = "txtExcel2";
             this.txtExcel2.ReadOnly = true;
             this.txtExcel2.Size = new System.Drawing.Size(41, 37);
@@ -460,7 +462,7 @@
             this.txtIsUser.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtIsUser.HoverColor = System.Drawing.Color.Yellow;
             this.txtIsUser.LeaveColor = System.Drawing.Color.White;
-            this.txtIsUser.Location = new System.Drawing.Point(316, 141);
+            this.txtIsUser.Location = new System.Drawing.Point(316, 133);
             this.txtIsUser.Name = "txtIsUser";
             this.txtIsUser.ReadOnly = true;
             this.txtIsUser.Size = new System.Drawing.Size(22, 20);
@@ -1624,7 +1626,7 @@
             this.txtExcel2View.AccessibleName = "EXCEL2_VIEW";
             this.txtExcel2View.BackColor = System.Drawing.Color.AntiqueWhite;
             this.txtExcel2View.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtExcel2View.Location = new System.Drawing.Point(391, 141);
+            this.txtExcel2View.Location = new System.Drawing.Point(391, 133);
             this.txtExcel2View.Name = "txtExcel2View";
             this.txtExcel2View.ReadOnly = true;
             this.txtExcel2View.Size = new System.Drawing.Size(41, 37);
@@ -1681,6 +1683,35 @@
             this.chkCheckPrint.UseVisualStyleBackColor = true;
             this.chkCheckPrint.CheckedChanged += new System.EventHandler(this.chknd51_CheckedChanged);
             // 
+            // txtRPT_DIR
+            // 
+            this.txtRPT_DIR.AccessibleName = "RPT_DIR";
+            this.txtRPT_DIR.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtRPT_DIR.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtRPT_DIR.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtRPT_DIR.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtRPT_DIR.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtRPT_DIR.HoverColor = System.Drawing.Color.Yellow;
+            this.txtRPT_DIR.LeaveColor = System.Drawing.Color.White;
+            this.txtRPT_DIR.Location = new System.Drawing.Point(104, 158);
+            this.txtRPT_DIR.Name = "txtRPT_DIR";
+            this.txtRPT_DIR.ReadOnly = true;
+            this.txtRPT_DIR.Size = new System.Drawing.Size(142, 20);
+            this.txtRPT_DIR.TabIndex = 25;
+            this.txtRPT_DIR.TabStop = false;
+            this.txtRPT_DIR.Visible = false;
+            // 
+            // lblRPT_DIR
+            // 
+            this.lblRPT_DIR.AccessibleDescription = ".";
+            this.lblRPT_DIR.AutoSize = true;
+            this.lblRPT_DIR.Location = new System.Drawing.Point(12, 161);
+            this.lblRPT_DIR.Name = "lblRPT_DIR";
+            this.lblRPT_DIR.Size = new System.Drawing.Size(54, 13);
+            this.lblRPT_DIR.TabIndex = 14;
+            this.lblRPT_DIR.Text = "RPT_DIR";
+            this.lblRPT_DIR.Visible = false;
+            // 
             // AlbcAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1703,7 +1734,9 @@
             this.Controls.Add(this.txtLAN);
             this.Controls.Add(this.txtExcel2View);
             this.Controls.Add(this.txtExcel2);
+            this.Controls.Add(this.txtRPT_DIR);
             this.Controls.Add(this.txtMAU);
+            this.Controls.Add(this.lblRPT_DIR);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
@@ -1846,5 +1879,7 @@
         private V6ColorTextBox txtExtraInfo;
         private V6NumberTextBox TxtSTT13;
         private System.Windows.Forms.Label lblFrozen;
+        private V6ColorTextBox txtRPT_DIR;
+        private System.Windows.Forms.Label lblRPT_DIR;
     }
 }

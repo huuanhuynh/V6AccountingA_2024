@@ -144,7 +144,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public bool ViewDetail { get; set; }
 
-        private DataRow MauInSelectedRow
+        public DataRow MauInSelectedRow
         {
             get
             {

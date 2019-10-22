@@ -383,7 +383,7 @@ namespace V6AccountingBusiness.Invoices
         private DataTable GetAlImtype()
         {
             return SqlConnect.Select("AlImtype", "IMTYPE, [default], ten, ten2",
-                "Ma_ct=@mact", "", "[Status]", new SqlParameter("@mact", Mact)).Data;
+                "Ma_ct=@mact", "", "[Stt_in]", new SqlParameter("@mact", Mact)).Data;
         }
         
         public DataTable AlPost

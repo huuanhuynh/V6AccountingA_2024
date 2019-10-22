@@ -103,18 +103,27 @@ namespace V6ReportControls
                 V6ControlFormHelper.ShowErrorMessage(fieldName + ": " + ex.Message, ex.Source);
             }
         }
-        
 
         /// <summary>
         /// Thêm vào các ô nhập filterLine tự động
         /// </summary>
         /// <param name="structTable"></param>
-        /// <param name="adv">Field:vvar;Field2:vvar2:Field2 like '%':tableLable:oper</param>
-        public void AddMultiFilterLine(V6TableStruct structTable, string adv)
+        /// <param name="fields_adv">Field:vvar;Field2:vvar2:Field2 like '%':tableLable:oper</param>
+        public void AddMultiFilterLine(V6TableStruct structTable, string fields_adv)
+        {
+            AddMultiFilterLine(structTable, ObjectAndString.SplitStringBy(fields_adv, ';'));
+        }
+
+        /// <summary>
+        /// Thêm vào các ô nhập filterLine tự động
+        /// </summary>
+        /// <param name="structTable"></param>
+        /// <param name="fields_adv">Cấu trúc phần tử đầy đủ: Field2:vvar2:Field2 like '%':tableLable:oper</param>
+        public void AddMultiFilterLine(V6TableStruct structTable, IList<string> fields_adv)
         {
             _maxIndex = -1;
-            var spliter = ObjectAndString.SplitStringBy(adv, ';');
-            foreach (string s in spliter)
+            //var spliter = ObjectAndString.SplitStringBy(fields_adv, ';');
+            foreach (string s in fields_adv)
             {
                 string err = "";
                 try

@@ -20,38 +20,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     /// </summary>
     public class AAPPR_SOA2 : XuLyBase
     {
-        public string MAU
-        {
-            get
-            {
-                return FilterControl != null ? FilterControl.String2 : "";
-            }
-        }
-
-        public string LAN
-        {
-            get { return "V"; }
-        }
-        private string ReportFileFull
-        {
-            get
-            {
-                var result = @"Reports\"
-                       + MAU + @"\"
-                       + LAN + @"\"
-                       + ReportFile + ".rpt";//ReportFile co su thay doi khi chon o combobox
-                if (!File.Exists(result))
-                {
-                    result = @"Reports\"
-                       + MAU + @"\"
-                       + LAN + @"\"
-                       + _reportFile + ".rpt";//_reportFile gốc
-                }
-                return result;
-            }
-        }
-        
-
         public AAPPR_SOA2(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {

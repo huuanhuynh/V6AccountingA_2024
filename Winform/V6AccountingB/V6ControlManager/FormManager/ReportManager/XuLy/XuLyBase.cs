@@ -119,11 +119,58 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public bool ViewDetail { get; set; }
 
-        private DataRow MauInSelectedRow
+        public DataRow MauInSelectedRow
         {
             get
             {
                 return MauInData == null || MauInData.Rows.Count == 0 ? null : MauInData.Rows[0];
+            }
+        }
+
+        public string MAU
+        {
+            get
+            {
+                return FilterControl != null ? FilterControl.String2 : "";
+            }
+        }
+
+        public string LAN
+        {
+            get { return "V"; }
+        }
+
+        public string RPT_DIR
+        {
+            get
+            {
+                string result = "";
+                if (MauInData.Columns.Contains("RPT_DIR") && MauInSelectedRow["RPT_DIR"] != null)
+                {
+                    string rpt_dir = MauInSelectedRow["RPT_DIR"].ToString().Trim();
+                    if (rpt_dir != "") result += rpt_dir + @"\";
+                }
+                return result;
+            }
+        }
+
+        public string ReportFileFull
+        {
+            get
+            {
+                var result = @"Reports\"
+                    + RPT_DIR
+                       + MAU + @"\"
+                       + LAN + @"\"
+                       + ReportFile + ".rpt";
+                if (!File.Exists(result))
+                {
+                    result = @"Reports\"
+                       + MAU + @"\"
+                       + LAN + @"\"
+                       + _reportFile + ".rpt";//_reportFile gốc
+                }
+                return result;
             }
         }
 

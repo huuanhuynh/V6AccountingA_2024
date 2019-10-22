@@ -67,7 +67,7 @@ namespace V6Controls.Controls
                     }
                     _fields = list.ToArray();
                 }
-                panel1.AddMultiFilterLine(_structTable, string.Join(",", _fields));
+                panel1.AddMultiFilterLine(_structTable, _fields);
             }
             catch (Exception ex)
             {

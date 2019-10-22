@@ -29,7 +29,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected DataSet _ds;
         protected DataTable _tbl, _tbl2;
         private DataTable MauInData;
-        private DataRow MauInSelectedRow
+        public DataRow MauInSelectedRow
         {
             get
             {

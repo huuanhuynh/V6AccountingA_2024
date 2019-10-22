@@ -6476,6 +6476,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 if (!string.IsNullOrEmpty(errors))
                 {
                     this.ShowWarningMessage(errors);
+                    detail1.MODE = detail1.Old_mode;
                     var c = detail1.GetControlByAccessibleName(firstErrorField);
                     if (c != null) c.Focus();
                     return false;
@@ -6491,17 +6492,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             try
             {
-                //if (_tkDt.Int_Data("Loai_tk") == 0)
-                //{
-                //    this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
-                //    return false;
-                //}
                 string firstErrorField;
                 string errors = ValidateDetail2Data(detail2, Invoice, data, out firstErrorField);
                 if (!string.IsNullOrEmpty(errors))
                 {
                     this.ShowWarningMessage(errors);
-                    var c = detail1.GetControlByAccessibleName(firstErrorField);
+                    detail2.MODE = detail2.Old_mode;
+                    var c = detail2.GetControlByAccessibleName(firstErrorField);
                     if (c != null) c.Focus();
                     return false;
                 }

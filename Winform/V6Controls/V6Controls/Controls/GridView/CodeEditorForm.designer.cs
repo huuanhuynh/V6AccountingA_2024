@@ -409,7 +409,8 @@
             // buildToolStripMenuItem
             // 
             this.buildToolStripMenuItem.Name = "buildToolStripMenuItem";
-            this.buildToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.buildToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.buildToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.buildToolStripMenuItem.Text = "Build";
             this.buildToolStripMenuItem.Click += new System.EventHandler(this.buildToolStripMenuItem_Click);
             // 
@@ -418,8 +419,7 @@
             this.chạyMãToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("chạyMãToolStripMenuItem.Image")));
             this.chạyMãToolStripMenuItem.Name = "chạyMãToolStripMenuItem";
             this.chạyMãToolStripMenuItem.ShortcutKeyDisplayString = "";
-            this.chạyMãToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.chạyMãToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.chạyMãToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.chạyMãToolStripMenuItem.Text = "&Thực thi";
             this.chạyMãToolStripMenuItem.Click += new System.EventHandler(this.btnRun);
             // 

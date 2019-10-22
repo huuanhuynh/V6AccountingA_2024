@@ -211,7 +211,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
         }
 
-        private DataRow MauInSelectedRow
+        public DataRow MauInSelectedRow
         {
             get
             {
@@ -381,14 +381,29 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
         }
 
-        private string ReportFileFull
+        public string RPT_DIR
+        {
+            get
+            {
+                string result = "";
+                if (MauInData.Columns.Contains("RPT_DIR") && MauInSelectedRow["RPT_DIR"] != null)
+                {
+                    string rpt_dir = MauInSelectedRow["RPT_DIR"].ToString().Trim();
+                    if (rpt_dir != "") result += rpt_dir + @"\";
+                }
+                return result;
+            }
+        }
+
+        public string ReportFileFull
         {
             get
             {
                 var result = @"Reports\"
+                    + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
-                       + ReportFile + ".rpt";//ReportFile co su thay doi khi chon o combobox
+                       + ReportFile + ".rpt";
                 if (!File.Exists(result))
                 {
                     result = @"Reports\"
@@ -399,14 +414,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 return result;
             }
         }
-        private string ReportFileFull_1
+
+        public string ReportFileFull_1
         {
             get
             {
                 var result = @"Reports\"
+                    + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
-                       + ReportFile + "_1.rpt";//ReportFile co su thay doi khi chon o combobox
+                       + ReportFile + "_1.rpt";
                 if (!File.Exists(result))
                 {
                     result = @"Reports\"
@@ -417,14 +434,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 return result;
             }
         }
-        private string ReportFileFull_2
+
+        public string ReportFileFull_2
         {
             get
             {
                 var result = @"Reports\"
+                    + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
-                       + ReportFile + "_2.rpt";//ReportFile co su thay doi khi chon o combobox
+                       + ReportFile + "_2.rpt";
                 if (!File.Exists(result))
                 {
                     result = @"Reports\"
@@ -435,14 +454,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 return result;
             }
         }
-        private string ReportFileFull_3
+
+        public string ReportFileFull_3
         {
             get
             {
                 var result = @"Reports\"
+                    + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
-                       + ReportFile + "_3.rpt";//ReportFile co su thay doi khi chon o combobox
+                       + ReportFile + "_3.rpt";
                 if (!File.Exists(result))
                 {
                     result = @"Reports\"
@@ -453,14 +474,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 return result;
             }
         }
-        private string ReportFileFull_4
+
+        public string ReportFileFull_4
         {
             get
             {
                 var result = @"Reports\"
+                    + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
-                       + ReportFile + "_4.rpt";//ReportFile co su thay doi khi chon o combobox
+                       + ReportFile + "_4.rpt";
                 if (!File.Exists(result))
                 {
                     result = @"Reports\"
@@ -480,6 +503,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             get
             {
                 var result = @"Reports\"
+                    + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
                        + ReportFile + ".xls";
@@ -502,6 +526,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             get
             {
                 var result = @"Reports\"
+                    + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
                        + ReportFile + "_view.xls";
@@ -521,6 +546,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             get
             {
                 var result = @"Reports\"
+                    + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
                        + ReportFile + "HTKK.xls";
@@ -543,6 +569,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             get
             {
                 var result = @"Reports\"
+                    + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
                        + ReportFile + "ONLINE.xls";

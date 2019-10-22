@@ -48,7 +48,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private DataRow MauInSelectedRow
+        public DataRow MauInSelectedRow
         {
             get
             {

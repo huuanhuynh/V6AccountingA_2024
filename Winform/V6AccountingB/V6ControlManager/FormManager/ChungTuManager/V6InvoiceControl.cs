@@ -2154,11 +2154,13 @@ namespace V6ControlManager.FormManager.ChungTuManager
             try
             {
                 string inv = "";
+                All_Objects["detail1"] = detail1;
                 All_Objects["DETAILDATA"] = data;
                 inv += InvokeFormEvent(FormDynamicEvent.VALIDATEDETAILDATA);
                 V6Tag invTag = new V6Tag(inv);
                 if (invTag.Cancel)
                 {
+                    firstField = invTag.Field;
                     error += invTag.DescriptionLang(V6Setting.IsVietnamese);
                     return error;
                 }

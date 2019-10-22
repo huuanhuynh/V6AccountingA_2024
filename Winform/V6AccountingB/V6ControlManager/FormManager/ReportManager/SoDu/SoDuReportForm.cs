@@ -63,7 +63,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             }
         }
 
-        private DataRow MauInSelectedRow
+        public DataRow MauInSelectedRow
         {
             get
             {
@@ -159,14 +159,30 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 return result;
             }
         }
-        private string ReportFileFull
+
+        public string RPT_DIR
+        {
+            get
+            {
+                string result = "";
+                if (MauInData.Columns.Contains("RPT_DIR") && MauInSelectedRow["RPT_DIR"] != null)
+                {
+                    string rpt_dir = MauInSelectedRow["RPT_DIR"].ToString().Trim();
+                    if (rpt_dir != "") result += rpt_dir + @"\";
+                }
+                return result;
+            }
+        }
+
+        public string ReportFileFull
         {
             get
             {
                 var result = @"Reports\"
+                    + RPT_DIR
                        + MAU + @"\"
                        + LAN + @"\"
-                       + ReportFile + ".rpt";//ReportFile co su thay doi khi chon o combobox
+                       + ReportFile + ".rpt";
                 if (!File.Exists(result))
                 {
                     result = @"Reports\"
@@ -183,6 +199,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             get
             {
                 var result = @"Reports\"
+                    + RPT_DIR
                         + MAU + @"\"
                         + LAN + @"\"
                         + ReportFile + ".xls";

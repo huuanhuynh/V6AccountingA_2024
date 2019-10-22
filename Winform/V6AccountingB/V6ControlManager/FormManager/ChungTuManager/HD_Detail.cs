@@ -255,6 +255,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
+        public V6Mode Old_mode = V6Mode.Init;
         /// <summary>
         /// Gọi sự kiện, giả lập bấm nút Nhận.
         /// </summary>
@@ -265,7 +266,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             V6ControlFormHelper.SetCarryValues(this);
 
             bool ok = false;
-            var Old_mode = MODE;
+            Old_mode = MODE;
             if (MODE == V6Mode.Add)
             {
                 OnAddHandle();
