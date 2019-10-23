@@ -890,8 +890,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             try
             {
-                TruDanTheoNhomDk();
-                _tk_i_33.Focus();
+                var readonly_list = SetControlReadOnlyHide(detail3, Invoice, Mode, V6Mode.Add);
+                if (readonly_list.Contains(detail3.btnMoi.Name, StringComparer.InvariantCultureIgnoreCase))
+                {
+                    detail3.ChangeToViewMode();
+                }
+                else
+                {
+                    TruDanTheoNhomDk();
+                    _tk_i_33.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -1117,7 +1125,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             return true;
         }
 
-        private void Detail3_ClickEdit(object sender)
+        private void Detail3_ClickEdit (object sender)
         {
             try
             {
@@ -1128,11 +1136,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
                     if (!string.IsNullOrEmpty(_sttRec03))
                     {
-                        _tk_i_33.Focus();
+                        var readonly_list = SetControlReadOnlyHide(detail3, Invoice, Mode, V6Mode.Edit);
+                        if (readonly_list.Contains(detail3.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))
+                        {
+                            detail3.ChangeToViewMode();
+                        }
+                        else
+                        {
+                            _tk_i_33.Focus();
+                        }
                     }
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -1155,6 +1169,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             try
             {
+                var readonly_list = SetControlReadOnlyHide(new HD_Detail() { Name = "detail3" }, Invoice, Mode, V6Mode.Delete);
+                if (readonly_list.Contains(detail3.btnXoa.Name, StringComparer.InvariantCultureIgnoreCase))
+                {
+                    this.ShowInfoMessage(V6Text.DeleteDenied + "\nMode: " + Mode);
+                    return;
+                }
+
                 if (dataGridView3.CurrentRow != null)
                 {
                     var cIndex = dataGridView3.CurrentRow.Index;
@@ -5096,7 +5117,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     }
                     TinhTienThue22();
                 }
-                _mau_bc22.Focus();
+
+                var readonly_list = SetControlReadOnlyHide(detail2, Invoice, Mode, V6Mode.Add);
+                if (readonly_list.Contains(detail2.btnMoi.Name, StringComparer.InvariantCultureIgnoreCase))
+                {
+                    detail2.ChangeToViewMode();
+                }
+                else
+                {
+                    _mau_bc22.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -5250,6 +5280,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
             try
             {
+                var readonly_list = SetControlReadOnlyHide(new HD_Detail() { Name = "detail2" }, Invoice, Mode, V6Mode.Delete);
+                if (readonly_list.Contains(detail2.btnXoa.Name, StringComparer.InvariantCultureIgnoreCase))
+                {
+                    this.ShowInfoMessage(V6Text.DeleteDenied + "\nMode: " + Mode);
+                    return;
+                }
+
                 if (dataGridView2.CurrentRow != null)
                 {
                     var cIndex2 = dataGridView2.CurrentRow.Index;
@@ -5307,7 +5344,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                                 _dia_chi22.Enabled = _dia_chi22.Text.Trim() == "";
                                 _ma_so_thue22.Enabled = _ma_so_thue22.Text.Trim() == "";
                             }
-                            _mau_bc22.Focus();
+
+                            var readonly_list = SetControlReadOnlyHide(detail2, Invoice, Mode, V6Mode.Edit);
+                            if (readonly_list.Contains(detail2.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))
+                            {
+                                detail2.ChangeToViewMode();
+                            }
+                            else
+                            {
+                                _mau_bc22.Focus();
+                            }
                         }
                     }
                 }

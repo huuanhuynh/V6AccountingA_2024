@@ -126,7 +126,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
         private V6VvarTextBox _maVt, _dvt1, _maKho, _maKhoI, _tkVt, _maLo, _ma_thue_i, txtPMA_KHC;
         private V6NumberTextBox _giaNt, _giaNt01, _tien0, _tienNt0, _gia0, _gia01, _gia, _gia_Nt0,
             _ck, _ckNt, _pt_cki, _thue, _thue_nt, _thue_suat_i;
-        private V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _ton13, _ton13Qd, _tienNt, _tien, _mau_bc;
+        private V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _ton13, _ton13Qd, _tienNt, _tien, _mau_bc22;
         private V6NumberTextBox _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4, _ggNt, _gg, _tien_vcNt, _tien_vc, _cpNt, _cp;
         private V6DateTimeColor _hanSd;
         private V6ColorTextBox _so_ct022,_so_seri022,_ten_kh22, _dia_chi22,_ma_so_thue22;
@@ -627,8 +627,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                         }
                         break;
                     case "MAU_BC":
-                        _mau_bc = control as V6NumberTextBox;
-                        if (_mau_bc != null)
+                        _mau_bc22 = control as V6NumberTextBox;
+                        if (_mau_bc22 != null)
                         {
 
                         }
@@ -3739,6 +3739,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
+
         private void XuLyDetail2ClickAdd(object sender)
         {
             try
@@ -3757,7 +3758,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                     _thue_suat22.Value = txtThueSuat.Value;
                     _tk_thue_no22.Text = txtTkThueNo.Text.Trim();
                     _tk_du22.Text = txtManx.Text.Trim();
-                    _mau_bc.Value = 1;
+                    _mau_bc22.Value = 1;
                     if (_ma_kh22.Text.Trim() == "")
                     {
                         //enable
@@ -3770,7 +3771,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                     }
                     TinhTienThue22();
                 }
-                _mau_bc.Focus();
+
+                var readonly_list = SetControlReadOnlyHide(detail2, Invoice, Mode, V6Mode.Add);
+                if (readonly_list.Contains(detail2.btnMoi.Name, StringComparer.InvariantCultureIgnoreCase))
+                {
+                    detail2.ChangeToViewMode();
+                }
+                else
+                {
+                    _mau_bc22.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -4086,6 +4096,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             }
             try
             {
+                var readonly_list = SetControlReadOnlyHide(new HD_Detail() { Name = "detail2" }, Invoice, Mode, V6Mode.Delete);
+                if (readonly_list.Contains(detail2.btnXoa.Name, StringComparer.InvariantCultureIgnoreCase))
+                {
+                    this.ShowInfoMessage(V6Text.DeleteDenied + "\nMode: " + Mode);
+                    return;
+                }
+
                 if (dataGridView2.CurrentRow != null)
                 {
                     var cIndex2 = dataGridView2.CurrentRow.Index;
@@ -4266,7 +4283,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             }
         }
 
-        private void hoaDonDetail2_ClickEdit(object sender)
+        private void detail2_ClickEdit(object sender)
         {
             try
             {
@@ -4286,7 +4303,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                             _dia_chi22.Enabled = _dia_chi22.Text.Trim() == "";
                             _ma_so_thue22.Enabled = _ma_so_thue22.Text.Trim() == "";
                         }
-                        _mau_bc.Focus();
+
+                        var readonly_list = SetControlReadOnlyHide(detail2, Invoice, Mode, V6Mode.Edit);
+                        if (readonly_list.Contains(detail2.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))
+                        {
+                            detail2.ChangeToViewMode();
+                        }
+                        else
+                        {
+                            _mau_bc22.Focus();
+                        }
                     }
                 }
             }

@@ -143,7 +143,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private V6VvarTextBox _maVt, _dvt1, _maKho, _maKhoI, _tkVt, _maLo, _maVt_excel, _ma_thue_i;
         private V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _giaNt, _giaNt01, _tien0, _tienNt0,
             _ck, _ckNt, _gia0, _gia1, _gia_nt1, _gia01, _gia, _gia_Nt0, _pt_cki, _cpNt, _cp, _ggNt, _gg;
-        private V6NumberTextBox _ton13, _ton13Qd, _tienNt, _tien, _mau_bc, _thue, _thue_nt, _thue_suat_i;
+        private V6NumberTextBox _ton13, _ton13Qd, _tienNt, _tien, _mau_bc22, _thue, _thue_nt, _thue_suat_i;
         private V6NumberTextBox _sl_qd, _sl_qd2, _tien_vcNt, _tien_vc, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4;//, _ggNt, _gg;
         private V6DateTimeColor _hanSd;
         private V6ColorTextBox _so_ct022,_so_seri022,_ten_kh22,
@@ -764,13 +764,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         }
                         break;
                     case "MAU_BC":
-                        _mau_bc = control as V6NumberTextBox;
-                        if (_mau_bc != null)
+                        _mau_bc22 = control as V6NumberTextBox;
+                        if (_mau_bc22 != null)
                         {
                             //_mau_bc.LimitCharacters = "1;2;3;4;5;8";
-                            _mau_bc.MaxNumLength = 1;
-                            _mau_bc.MaxLength = 1;
-                            _mau_bc.GotFocus += _mau_bc_GotFocus;
+                            _mau_bc22.MaxNumLength = 1;
+                            _mau_bc22.MaxLength = 1;
+                            _mau_bc22.GotFocus += MauBc22GotFocus;
                         }
                         break;
                     case "TEN_KH":
@@ -1162,8 +1162,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         {
             try
             {
-                TruDanTheoNhomDk();
-                _tk_i_33.Focus();
+                var readonly_list = SetControlReadOnlyHide(detail3, Invoice, Mode, V6Mode.Add);
+                if (readonly_list.Contains(detail3.btnMoi.Name, StringComparer.InvariantCultureIgnoreCase))
+                {
+                    detail3.ChangeToViewMode();
+                }
+                else
+                {
+                    TruDanTheoNhomDk();
+                    _tk_i_33.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -1383,7 +1391,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             return true;
         }
         
-        private void Detail3_ClickEdit(object sender)
+        private void Detail3_ClickEdit (object sender)
         {
             try
             {
@@ -1394,7 +1402,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     _sttRec03 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView3, detail3, out _gv3EditingRow);
                     if (!string.IsNullOrEmpty(_sttRec03))
                     {
-                        _tk_i_33.Focus();
+                        var readonly_list = SetControlReadOnlyHide(detail3, Invoice, Mode, V6Mode.Edit);
+                        if (readonly_list.Contains(detail3.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))
+                        {
+                            detail3.ChangeToViewMode();
+                        }
+                        else
+                        {
+                            _tk_i_33.Focus();
+                        }
                     }
                 }
             }
@@ -1417,6 +1433,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             try
             {
+                var readonly_list = SetControlReadOnlyHide(new HD_Detail() { Name = "detail3" }, Invoice, Mode, V6Mode.Delete);
+                if (readonly_list.Contains(detail3.btnXoa.Name, StringComparer.InvariantCultureIgnoreCase))
+                {
+                    this.ShowInfoMessage(V6Text.DeleteDenied + "\nMode: " + Mode);
+                    return;
+                }
+
                 if (dataGridView3.CurrentRow != null)
                 {
                     var cIndex = dataGridView3.CurrentRow.Index;
@@ -1492,11 +1515,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             e.ThrowException = false;
         }
 
-        void _mau_bc_GotFocus(object sender, EventArgs e)
+        void MauBc22GotFocus(object sender, EventArgs e)
         {
-            if (_mau_bc.Value == 0)
+            if (_mau_bc22.Value == 0)
             {
-                _mau_bc.Value =1;
+                _mau_bc22.Value =1;
             }
         }
         void _maLo_V6LostFocus(object sender)
@@ -5066,7 +5089,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     _tk_thue_no22.Text = txtTkThueNo.Text.Trim();
                     _tk_du22.Text = txtManx.Text.Trim();
                     _han_tt22.Value = txtHanTT.Value;
-                    _mau_bc.Value = 1;
+                    _mau_bc22.Value = 1;
                     if (_ma_kh22.Text.Trim() == "")
                     {
                         //enable
@@ -5095,9 +5118,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     _tk_thue_no22.Text = txtTkThueNo.Text.Trim();
                     _tk_du22.Text = txtManx.Text.Trim();
                     _han_tt22.Value = txtHanTT.Value;
-                    _mau_bc.Value = 1;
+                    _mau_bc22.Value = 1;
                 }
-                _mau_bc.Focus();
+
+                var readonly_list = SetControlReadOnlyHide(detail2, Invoice, Mode, V6Mode.Add);
+                if (readonly_list.Contains(detail2.btnMoi.Name, StringComparer.InvariantCultureIgnoreCase))
+                {
+                    detail2.ChangeToViewMode();
+                }
+                else
+                {
+                    _mau_bc22.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -5413,6 +5445,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             try
             {
+                var readonly_list = SetControlReadOnlyHide(new HD_Detail() { Name = "detail2" }, Invoice, Mode, V6Mode.Delete);
+                if (readonly_list.Contains(detail2.btnXoa.Name, StringComparer.InvariantCultureIgnoreCase))
+                {
+                    this.ShowInfoMessage(V6Text.DeleteDenied + "\nMode: " + Mode);
+                    return;
+                }
+
                 if (dataGridView2.CurrentRow != null)
                 {
                     var cIndex2 = dataGridView2.CurrentRow.Index;
@@ -5593,7 +5632,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
         }
 
-        private void hoaDonDetail2_ClickEdit(object sender)
+        private void detail2_ClickEdit(object sender)
         {
             try
             {
@@ -5613,7 +5652,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             _dia_chi22.Enabled = _dia_chi22.Text.Trim() == "";
                             _ma_so_thue22.Enabled = _ma_so_thue22.Text.Trim() == "";
                         }
-                        _mau_bc.Focus();
+
+                        var readonly_list = SetControlReadOnlyHide(detail2, Invoice, Mode, V6Mode.Edit);
+                        if (readonly_list.Contains(detail2.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))
+                        {
+                            detail2.ChangeToViewMode();
+                        }
+                        else
+                        {
+                            _mau_bc22.Focus();
+                        }
                     }
                 }
             }

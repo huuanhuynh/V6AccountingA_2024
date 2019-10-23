@@ -852,7 +852,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.detail2.Tag = "cancelall";
             this.detail2.Vtype = null;
             this.detail2.ClickAdd += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail2_ClickAdd);
-            this.detail2.ClickEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.hoaDonDetail2_ClickEdit);
+            this.detail2.ClickEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail2_ClickEdit);
             this.detail2.ClickCancelEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.hoaDonDetail2_ClickCancelEdit);
             this.detail2.AddHandle += new V6Controls.HandleData(this.hoaDonDetail2_AddHandle);
             this.detail2.EditHandle += new V6Controls.HandleData(this.hoaDonDetail2_EditHandle);

@@ -124,7 +124,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         private V6VvarTextBox _maVt, _dvt1, _maKho, _maKhoI, _tkVt,_maLo;
         private V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _giaNt, _giaNt01, _tien0, _tienNt0,
             _ck, _ckNt, _gia0, _gia01, _gia, _gia_Nt0;
-        private V6NumberTextBox _ton13, _ton13Qd, _tienNt, _tien, _mau_bc;
+        private V6NumberTextBox _ton13, _ton13Qd, _tienNt, _tien, _mau_bc22;
         private V6DateTimeColor _hanSd;
         private V6ColorTextBox _so_ct022,_so_seri022,_ten_kh22,
             _dia_chi22,_ma_so_thue22;
@@ -498,11 +498,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                         }
                         break;
                     case "MAU_BC":
-                        _mau_bc = control as V6NumberTextBox;
-                        if (_mau_bc != null)
+                        _mau_bc22 = control as V6NumberTextBox;
+                        if (_mau_bc22 != null)
                         {
-                            _mau_bc.MaxNumLength = 1;
-                            _mau_bc.MaxLength = 1;
+                            _mau_bc22.MaxNumLength = 1;
+                            _mau_bc22.MaxLength = 1;
                         }
                         break;
                     case "TEN_KH":
@@ -3043,7 +3043,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     _thue_suat22.Value = txtThueSuat.Value;
                     _tk_thue_no22.Text = txtTkThueNo.Text.Trim();
                     _tk_du22.Text = txtManx.Text.Trim();
-                    _mau_bc.Value = 1;
+                    _mau_bc22.Value = 1;
                     if (_ma_kh22.Text.Trim() == "")
                     {
                         //enable
@@ -3056,7 +3056,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     }
                     TinhTienThue22();
                 }
-                _mau_bc.Focus();
+
+                var readonly_list = SetControlReadOnlyHide(detail2, Invoice, Mode, V6Mode.Add);
+                if (readonly_list.Contains(detail2.btnMoi.Name, StringComparer.InvariantCultureIgnoreCase))
+                {
+                    detail2.ChangeToViewMode();
+                }
+                else
+                {
+                    _mau_bc22.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -3374,6 +3383,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             }
             try
             {
+                var readonly_list = SetControlReadOnlyHide(new HD_Detail() { Name = "detail2" }, Invoice, Mode, V6Mode.Delete);
+                if (readonly_list.Contains(detail2.btnXoa.Name, StringComparer.InvariantCultureIgnoreCase))
+                {
+                    this.ShowInfoMessage(V6Text.DeleteDenied + "\nMode: " + Mode);
+                    return;
+                }
+
                 if (dataGridView2.CurrentRow != null)
                 {
                     var cIndex2 = dataGridView2.CurrentRow.Index;
@@ -3554,7 +3570,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             }
         }
 
-        private void hoaDonDetail2_ClickEdit(object sender)
+        private void detail2_ClickEdit(object sender)
         {
             try
             {
@@ -3574,7 +3590,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                             _dia_chi22.Enabled = _dia_chi22.Text.Trim() == "";
                             _ma_so_thue22.Enabled = _ma_so_thue22.Text.Trim() == "";
                         }
-                        _mau_bc.Focus();
+
+                        var readonly_list = SetControlReadOnlyHide(detail2, Invoice, Mode, V6Mode.Edit);
+                        if (readonly_list.Contains(detail2.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))
+                        {
+                            detail2.ChangeToViewMode();
+                        }
+                        else
+                        {
+                            _mau_bc22.Focus();
+                        }
                     }
                 }
             }

@@ -993,8 +993,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
-                TruDanTheoNhomDk();
-                _tk_i_33.Focus();
+                var readonly_list = SetControlReadOnlyHide(detail3, Invoice, Mode, V6Mode.Add);
+                if (readonly_list.Contains(detail3.btnMoi.Name, StringComparer.InvariantCultureIgnoreCase))
+                {
+                    detail3.ChangeToViewMode();
+                }
+                else
+                {
+                    TruDanTheoNhomDk();
+                    _tk_i_33.Focus();
+                }
             }
             catch (Exception ex)
             {
@@ -1213,7 +1221,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             return true;
         }
         
-        private void Detail3_ClickEdit(object sender)
+        private void Detail3_ClickEdit (object sender)
         {
             try
             {
@@ -1224,11 +1232,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     _sttRec03 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView3, detail3, out _gv3EditingRow);
                     if (!string.IsNullOrEmpty(_sttRec03))
                     {
-                        _tk_i_33.Focus();
+                        var readonly_list = SetControlReadOnlyHide(detail3, Invoice, Mode, V6Mode.Edit);
+                        if (readonly_list.Contains(detail3.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))
+                        {
+                            detail3.ChangeToViewMode();
+                        }
+                        else
+                        {
+                            _tk_i_33.Focus();
+                        }
                     }
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -1249,6 +1263,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
             try
             {
+                var readonly_list = SetControlReadOnlyHide(new HD_Detail() { Name = "detail3" }, Invoice, Mode, V6Mode.Delete);
+                if (readonly_list.Contains(detail3.btnXoa.Name, StringComparer.InvariantCultureIgnoreCase))
+                {
+                    this.ShowInfoMessage(V6Text.DeleteDenied + "\nMode: " + Mode);
+                    return;
+                }
+
                 if (dataGridView3.CurrentRow != null)
                 {
                     var cIndex = dataGridView3.CurrentRow.Index;
