@@ -416,7 +416,8 @@
             "VIETTEL",
             "VNPT",
             "BKAV",
-            "VNPT_TOKEN"});
+            "VNPT_TOKEN",
+            "SOFTDREAMS"});
             this.cboSendType.Location = new System.Drawing.Point(3, 134);
             this.cboSendType.Name = "cboSendType";
             this.cboSendType.Size = new System.Drawing.Size(121, 21);

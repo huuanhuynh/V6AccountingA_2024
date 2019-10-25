@@ -224,7 +224,7 @@ namespace V6ThuePostManager
                         result = BkavDownloadInvoicePDF(paras);
                         break;
                     case "5":
-                        SoftDreamsWS softDreamsWs = new SoftDreamsWS(_baseUrl, _username, _password);
+                        SoftDreamsWS softDreamsWs = new SoftDreamsWS(_baseUrl, _username, _password, _SERIAL_CERT);
                         result = softDreamsWs.GetInvoicePdf(paras.Fkey_hd, 2, paras.Pattern, paras.Serial, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
                         break;
                     default:
@@ -2028,7 +2028,7 @@ namespace V6ThuePostManager
 
             try
             {
-                SoftDreamsWS softDreamsWS = new SoftDreamsWS(_baseUrl, _username, _password);
+                SoftDreamsWS softDreamsWS = new SoftDreamsWS(_baseUrl, _username, _password, _SERIAL_CERT);
                 var row0 = am_table.Rows[0];
 
                 if (paras.Mode == "TestView")
@@ -2084,6 +2084,7 @@ namespace V6ThuePostManager
                     bool issue = true;
                     if (paras.Key_Down == "F4" || paras.Key_Down == "F6") issue = false;
 
+                    StartAutoInputTokenPassword();
                     result = softDreamsWS.ImportInvoices(invoices, __pattern, __serial, issue, _signmode, out paras.Result.V6ReturnValues);
                 }
                 else if (paras.Mode.ToLower() == "DownloadInvFkeyNoPay".ToLower())
@@ -2250,7 +2251,7 @@ namespace V6ThuePostManager
                 result += "ERR:EX\r\n" + ex.Message;
                 paras.Result.ExceptionMessage = ex.Message;
             }
-
+            StopAutoInputTokenPassword();
             End:
             return result;
         }
@@ -2538,7 +2539,7 @@ namespace V6ThuePostManager
                 {
                     paras.Result.V6ReturnValues.RESULT_ERROR = ex.Message;
                     paras.Result.V6ReturnValues.EXCEPTION_MESSAGE = ex.Message;
-                    Logger.WriteToLog("EXECUTE_VIETTEL ConverResultObjectException: " + ex.Message);
+                    Logger.WriteToLog("EXECUTE_VIETTEL ConverResultObjectException: " + paras.Fkey_hd + ex.Message);
                     message = "Kết quả:";
                 }
                 result = message + "\n" + result;

@@ -1072,7 +1072,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
         public void TienNt2_V6LostFocus(object sender)
         {
-            TinhGiaNt2();
+            TinhGiaNt2_TienNt2();
         }
 
         void SoLuong1_V6LostFocus(object sender)
@@ -1781,9 +1781,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
                 if (_soLuong.Value != 0)
                 {
-                    _giaNt2.Value = V6BusinessHelper.Vround(_tienNt2.Value / _soLuong.Value,M_ROUND_GIA_NT);
-                    _gia2.Value = V6BusinessHelper.Vround(_tien2.Value / _soLuong.Value, M_ROUND_GIA);
-                    
+                    if (_he_so1T.Value == 1 && _he_so1M.Value == 1)
+                    {
+                        _giaNt2.Value = _giaNt21.Value;
+                        _gia2.Value = _gia21.Value;
+                    }
+                    else
+                    {
+                        _giaNt2.Value = V6BusinessHelper.Vround((_tienNt2.Value / _soLuong.Value), M_ROUND_GIA_NT);
+                        _gia2.Value = V6BusinessHelper.Vround((_tien2.Value / _soLuong.Value), M_ROUND_GIA);
+                    }
+
                     if (_maNt == _mMaNt0)
                     {
                         _gia2.Value = _giaNt2.Value;
@@ -1822,6 +1830,54 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     cell_GIA_NT2.Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_TIEN_NT2.Value) / ObjectAndString.ObjectToDecimal(cell_SO_LUONG.Value), M_ROUND_GIA_NT);
                     cell_GIA2.Value = _maNt == _mMaNt0 ? cell_GIA_NT2.Value
                         : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(_tien2.Value) / ObjectAndString.ObjectToDecimal(cell_SO_LUONG.Value), M_ROUND_GIA);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        /// <summary>
+        /// chay khi nhap tien
+        /// </summary>
+        public void TinhGiaNt2_TienNt2()
+        {
+            try
+            {
+                _tien2.Value = V6BusinessHelper.Vround((_tienNt2.Value * txtTyGia.Value), M_ROUND);
+
+                if (_maNt == _mMaNt0)
+                {
+                    _tien2.Value = _tienNt2.Value;
+
+                }
+
+                if (_soLuong1.Value != 0)
+                {
+                    _giaNt21.Value = V6BusinessHelper.Vround((_tienNt2.Value / _soLuong1.Value), M_ROUND_GIA_NT);
+                    _gia21.Value = V6BusinessHelper.Vround((_tien2.Value / _soLuong1.Value), M_ROUND_GIA);
+
+                    if (_maNt == _mMaNt0)
+                    {
+                        _gia21.Value = _giaNt21.Value;
+                    }
+                }
+
+                if (_he_so1T.Value == 1 && _he_so1M.Value == 1)
+                {
+                    _giaNt2.Value = _giaNt21.Value;
+                    _gia2.Value = _gia21.Value;
+                }
+                else if (_soLuong.Value != 0)
+                {
+                    _giaNt2.Value = V6BusinessHelper.Vround((_tienNt2.Value / _soLuong.Value), M_ROUND_GIA_NT);
+                    _gia2.Value = V6BusinessHelper.Vround((_tien2.Value / _soLuong.Value), M_ROUND_GIA);
+
+                    if (_maNt == _mMaNt0)
+                    {
+                        _gia2.Value = _giaNt2.Value;
+                    }
                 }
             }
             catch (Exception ex)

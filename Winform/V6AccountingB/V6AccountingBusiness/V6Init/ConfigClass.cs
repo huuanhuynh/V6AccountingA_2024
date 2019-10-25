@@ -431,7 +431,7 @@ namespace V6Init
             {
                 string lang = V6Setting.Language;
                 string result = GetString(lang + "Fields");
-                return result.Split(',');
+                return result.Split(';');
             }
         }
         public V6TableName V6TableName { get; private set; }
