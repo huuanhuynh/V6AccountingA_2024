@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen;
@@ -10,6 +12,7 @@ using V6Controls.Forms.Editor;
 using V6Init;
 using V6Structs;
 using V6Tools;
+using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
 {
@@ -37,11 +40,48 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         private bool _ready_nd51 = false;
         private void AlbcAddEditForm_Load(object sender, EventArgs e)
         {
-            chknd51.Checked = (1 & (int) txtND51.Value) > 0;
-            chkCheckPrint.Checked = (2 & (int) txtND51.Value) > 0;
-            _ready_nd51 = true;
+            try
+            {
+                chknd51.Checked = (1 & (int)txtND51.Value) > 0;
+                chkCheckPrint.Checked = (2 & (int)txtND51.Value) > 0;
+                _ready_nd51 = true;
 
-            chkRight_YN_CheckedChanged(null, null);
+                chkRight_YN_CheckedChanged(null, null);
+                EnableFieldsSelector();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".AlbcAddEditForm_Load", ex);
+            }
+        }
+
+        private void EnableFieldsSelector()
+        {
+            DataGridView dataGridView1 = _grandFatherControl.GetControlByName("dataGridView1") as DataGridView;
+            if (dataGridView1 == null)
+            {
+                ShowTopLeftMessage("Không tìm thấy dataGridView1!");
+                return;
+            }
+            DataTable data1 = dataGridView1.DataSource as DataTable;
+
+            if (data1 != null)
+            {
+                btnEXCEL1.Enabled = true;
+                btnGRDS_V1.Enabled = true;
+
+                DataGridView dataGridView2 = _grandFatherControl.GetControlByName("dataGridView2") as DataGridView;
+                if (dataGridView2 == null)
+                {
+                    ShowTopLeftMessage("Không tìm thấy dataGridView2!");
+                    return;
+                }
+                DataTable data2 = dataGridView2.DataSource as DataTable;
+                if (data2 != null)
+                {
+                    btnGRDS_V2.Enabled = true;
+                }
+            }
         }
 
         private void EnablePhanQuyen()
@@ -452,9 +492,120 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                     txtND51.Value = nd51;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                this.WriteExLog(GetType() + ".chknd51_CheckedChanged", ex);
+            }
+        }
+
+        private void btnEXCEL1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SelectMultiFieldsForm f = new SelectMultiFieldsForm();
+                List<AlbcFieldInfo> fieldInfoList = new List<AlbcFieldInfo>();
+                var fff = ObjectAndString.SplitString(txtExcel1.Text);
+                foreach (string field in fff)
+                {
+                    string FIELD = field.Trim().ToUpper();
+                    AlbcFieldInfo fi = new AlbcFieldInfo()
+                    {
+                        FieldName = FIELD
+                    };
+                    fieldInfoList.Add(fi);
+                }
+                List<AlbcFieldInfo> sourceFields = GetSourceFieldsInfo1();
+                f.AddSourceFieldList(sourceFields);
+                f.AddTargetFieldList(fieldInfoList);
+                if (f.ShowDialog(this) == DialogResult.OK)
+                {
+                    txtExcel1.Text = f.GetFieldsString();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".btnEXCEL1_Click", ex);
+            }
+        }
+
+        private List<AlbcFieldInfo> GetSourceFieldsInfo1()
+        {
+            List<AlbcFieldInfo> result = new List<AlbcFieldInfo>();
+            try
+            {
+                DataGridView dataGridView1 = _grandFatherControl.GetControlByName("dataGridView1") as DataGridView;
+                if (dataGridView1 == null)
+                {
+                    ShowTopLeftMessage("Không tìm thấy dataGridView1!");
+                    return result;
+                }
+                DataTable data1 = dataGridView1.DataSource as DataTable;
                 
+                if (data1 != null)
+                {
+                    foreach (DataColumn column in data1.Columns)
+                    {
+                        AlbcFieldInfo fi = new AlbcFieldInfo();
+                        result.Add(fi);
+                        fi.FieldName = column.ColumnName.ToUpper();
+                        if (ObjectAndString.IsNumberType(column.DataType)) fi.FieldType = AlbcFieldType.N;
+                        else if (column.DataType == typeof (DateTime)) fi.FieldType = AlbcFieldType.D;
+                        else fi.FieldType = AlbcFieldType.C;
+
+                        var gColumn = dataGridView1.Columns[fi.FieldName];
+                        if (gColumn != null)
+                        {
+                            fi.FieldWidth = gColumn.Width;
+                        }
+                        else
+                        {
+                            fi.FieldWidth = 100;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".GetSourceFieldsInfo", ex);
+            }
+            return result;
+        }
+
+        private void btnGRDS_V1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SelectMultiFieldsForm f = new SelectMultiFieldsForm();
+                if (f.ShowDialog(this) == DialogResult.OK)
+                {
+                    txtShowFields1.Text = f.GetFieldsString();
+                    txtFormats1.Text = f.GetFormatsString();
+                    txtHeaderV1.Text = f.GetFieldsString();
+                    txtHeaderE1.Text = f.GetFieldsString();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".btnGRDS_V1_Click", ex);
+            }
+        }
+
+        private void btnGRDS_V2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SelectMultiFieldsForm f = new SelectMultiFieldsForm();
+                if (f.ShowDialog(this) == DialogResult.OK)
+                {
+                    txtShowFields2.Text = f.GetFieldsString();
+                    txtFormats2.Text = f.GetFormatsString();
+                    txtHeaderV2.Text = f.GetFieldsString();
+                    txtHeaderE2.Text = f.GetFieldsString();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".btnGRDS_V2_Click", ex);
             }
         }
     }

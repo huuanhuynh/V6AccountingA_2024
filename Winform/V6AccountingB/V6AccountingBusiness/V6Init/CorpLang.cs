@@ -5,6 +5,9 @@ using V6SqlConnect;
 
 namespace V6Init
 {
+    /// <summary>
+    /// Danh sách ngôn ngữ.
+    /// </summary>
     public static class CorpLang
     {
         private static DataTable lTable = null;

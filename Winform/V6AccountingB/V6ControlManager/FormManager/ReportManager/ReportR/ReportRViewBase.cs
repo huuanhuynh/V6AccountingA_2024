@@ -1755,6 +1755,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Edit, AlbcKeys, null);
                 f2.AfterInitControl += f_AfterInitControl;
                 f2.InitFormControl();
+                f2.SetFather(this);
                 //f2.UpdateSuccessEvent += (data) =>
                 //{
                     

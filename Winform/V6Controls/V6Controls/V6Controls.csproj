@@ -114,6 +114,13 @@
     <Compile Include="Controls\V6DateTimeFullPickerNull.Designer.cs">
       <DependentUpon>V6DateTimeFullPickerNull.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Albc\AlbcFieldInfo.cs" />
+    <Compile Include="Forms\DanhMuc\Add_Edit\Albc\SelectMultiIDForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Albc\SelectMultiIDForm.designer.cs">
+      <DependentUpon>SelectMultiIDForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\StringInput.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1547,6 +1554,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Label\FormChangeControlLanguageText.resx">
       <DependentUpon>FormChangeControlLanguageText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Albc\SelectMultiIDForm.resx">
+      <DependentUpon>SelectMultiIDForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\StringInput.resx">
       <DependentUpon>StringInput.cs</DependentUpon>

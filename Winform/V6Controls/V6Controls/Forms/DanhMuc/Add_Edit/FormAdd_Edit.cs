@@ -11,6 +11,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
     public partial class FormAddEdit : V6Form
     {
+        public V6Control _fatherControl;
         public AddEditControlVirtual FormControl;
         private readonly V6TableName _tableName = V6TableName.Notable;
         private V6Mode _mode;
@@ -113,6 +114,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// Dữ liệu đã dùng để thêm hoặc sửa (insert/update).
         /// </summary>
         public IDictionary<string, object> Data { get { return FormControl.DataDic; } }
+        
+        public void SetFather(V6Control fatherControl)
+        {
+            _fatherControl = fatherControl;
+            FormControl.SetGrandFather(fatherControl);
+        }
 
         public void SetParentData()
         {
@@ -350,6 +357,5 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     FormControl, this, _tableName.ToString());
             }
         }
-        
     }
 }

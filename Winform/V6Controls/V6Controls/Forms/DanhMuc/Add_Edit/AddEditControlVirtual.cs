@@ -17,8 +17,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
     {
         protected V6Categories Categories;
         public V6TableName TableName { get; set; }
-        protected V6TableStruct _structTable;
+        public V6TableStruct _structTable;
         public V6Mode Mode = V6Mode.Add;
+        public V6Control _grandFatherControl;
+        public IDictionary<string, object> _parentData; 
+
         /// <summary>
         /// Bật tắt tính năng gọi hàm Reload sau khi insert hoặc update thành công.
         /// </summary>
@@ -62,6 +65,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
+        public void SetGrandFather(V6Control grandFatherControl)
+        {
+            _grandFatherControl = grandFatherControl;
+        }
+
         public void SetParentData()
         {
             try
@@ -78,8 +86,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             V6ControlFormHelper.SetSomeDataDictionary(this, data);
         }
-
-        protected IDictionary<string, object> _parentData; 
 
         /// <summary>
         /// Dùng tự do, gán các propertie, field xong sẽ gọi loadAll
@@ -987,7 +993,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             return "";
         }
-        
+
     }
 
 }

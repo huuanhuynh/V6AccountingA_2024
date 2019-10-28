@@ -11,14 +11,21 @@ namespace V6Init
     /// </summary>
     public static class CorpLan2
     {
-        private static SortedDictionary<string, string> fieldHeaderDictionary = new SortedDictionary<string, string>();
+        private static SortedDictionary<string, string> fieldHeaderDictionaryV = new SortedDictionary<string, string>();
+        private static SortedDictionary<string, string> fieldHeaderDictionaryE = new SortedDictionary<string, string>();
 
         public static string GetFieldHeader(string fieldName)
         {
+            return GetFieldHeader(fieldName, V6Setting.Language);
+        }
+
+        public static string GetFieldHeader(string fieldName, string lang)
+        {
+            if (string.IsNullOrEmpty(lang)) lang = V6Setting.Language;
             var fieldUpper = fieldName.ToUpper();
-            if (fieldHeaderDictionary.ContainsKey(fieldUpper))
+            if (fieldHeaderDictionaryV.ContainsKey(fieldUpper))
             {
-                return fieldHeaderDictionary[fieldUpper];
+                return fieldHeaderDictionaryV[fieldUpper];
             }
             else
             {
@@ -32,10 +39,10 @@ namespace V6Init
                             ? row[1].ToString().Trim()
                             : row[0].ToString().Trim());
 
-                fieldHeaderDictionary.AddRange(d);
-                if (fieldHeaderDictionary.ContainsKey(fieldUpper))
+                fieldHeaderDictionaryV.AddRange(d);
+                if (fieldHeaderDictionaryV.ContainsKey(fieldUpper))
                 {
-                    return fieldHeaderDictionary[fieldUpper];
+                    return fieldHeaderDictionaryV[fieldUpper];
                 }
             }
             return fieldUpper;
@@ -57,9 +64,9 @@ namespace V6Init
             {
                 string COLUMN_NAME = column.ToUpper();
                 
-                if (fieldHeaderDictionary.ContainsKey(COLUMN_NAME))
+                if (fieldHeaderDictionaryV.ContainsKey(COLUMN_NAME))
                 {
-                    result.Add(COLUMN_NAME, fieldHeaderDictionary[COLUMN_NAME]);
+                    result.Add(COLUMN_NAME, fieldHeaderDictionaryV[COLUMN_NAME]);
                 }
                 else
                 {
@@ -86,7 +93,7 @@ namespace V6Init
                             ? row[1].ToString().Trim()
                             : row[0].ToString().Trim());
 
-                fieldHeaderDictionary.AddRange(d);
+                fieldHeaderDictionaryV.AddRange(d);
                 result.AddRange(d);
             }
             return result;

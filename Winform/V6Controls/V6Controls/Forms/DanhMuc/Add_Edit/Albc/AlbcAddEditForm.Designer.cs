@@ -82,6 +82,9 @@
             this.label18 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnGRDS_V2 = new System.Windows.Forms.Button();
+            this.btnGRDS_V1 = new System.Windows.Forms.Button();
+            this.btnEXCEL1 = new System.Windows.Forms.Button();
             this.btnNhapXML = new System.Windows.Forms.Button();
             this.btnXuatXML = new System.Windows.Forms.Button();
             this.btnEditXml = new System.Windows.Forms.Button();
@@ -342,9 +345,9 @@
             this.txtExcel1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtExcel1.HoverColor = System.Drawing.Color.Yellow;
             this.txtExcel1.LeaveColor = System.Drawing.Color.White;
-            this.txtExcel1.Location = new System.Drawing.Point(99, 6);
+            this.txtExcel1.Location = new System.Drawing.Point(137, 6);
             this.txtExcel1.Name = "txtExcel1";
-            this.txtExcel1.Size = new System.Drawing.Size(643, 20);
+            this.txtExcel1.Size = new System.Drawing.Size(605, 20);
             this.txtExcel1.TabIndex = 17;
             // 
             // label6
@@ -584,9 +587,9 @@
             this.txtShowFields1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtShowFields1.HoverColor = System.Drawing.Color.Yellow;
             this.txtShowFields1.LeaveColor = System.Drawing.Color.White;
-            this.txtShowFields1.Location = new System.Drawing.Point(99, 32);
+            this.txtShowFields1.Location = new System.Drawing.Point(137, 32);
             this.txtShowFields1.Name = "txtShowFields1";
-            this.txtShowFields1.Size = new System.Drawing.Size(643, 20);
+            this.txtShowFields1.Size = new System.Drawing.Size(605, 20);
             this.txtShowFields1.TabIndex = 17;
             // 
             // label9
@@ -684,9 +687,9 @@
             this.txtShowFields2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtShowFields2.HoverColor = System.Drawing.Color.Yellow;
             this.txtShowFields2.LeaveColor = System.Drawing.Color.White;
-            this.txtShowFields2.Location = new System.Drawing.Point(99, 146);
+            this.txtShowFields2.Location = new System.Drawing.Point(137, 146);
             this.txtShowFields2.Name = "txtShowFields2";
-            this.txtShowFields2.Size = new System.Drawing.Size(643, 20);
+            this.txtShowFields2.Size = new System.Drawing.Size(605, 20);
             this.txtShowFields2.TabIndex = 17;
             // 
             // txtFormats2
@@ -840,6 +843,9 @@
             // 
             this.tabPage1.AccessibleDescription = "ADDEDITT00019";
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage1.Controls.Add(this.btnGRDS_V2);
+            this.tabPage1.Controls.Add(this.btnGRDS_V1);
+            this.tabPage1.Controls.Add(this.btnEXCEL1);
             this.tabPage1.Controls.Add(this.btnNhapXML);
             this.tabPage1.Controls.Add(this.btnXuatXML);
             this.tabPage1.Controls.Add(this.btnEditXml);
@@ -875,6 +881,51 @@
             this.tabPage1.Size = new System.Drawing.Size(747, 384);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Định dạng xem và Excel";
+            // 
+            // btnGRDS_V2
+            // 
+            this.btnGRDS_V2.AccessibleDescription = ".";
+            this.btnGRDS_V2.AccessibleName = "";
+            this.btnGRDS_V2.Enabled = false;
+            this.btnGRDS_V2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnGRDS_V2.Location = new System.Drawing.Point(106, 144);
+            this.btnGRDS_V2.Name = "btnGRDS_V2";
+            this.btnGRDS_V2.Size = new System.Drawing.Size(25, 23);
+            this.btnGRDS_V2.TabIndex = 28;
+            this.btnGRDS_V2.Text = "...";
+            this.btnGRDS_V2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnGRDS_V2.UseVisualStyleBackColor = true;
+            this.btnGRDS_V2.Click += new System.EventHandler(this.btnGRDS_V2_Click);
+            // 
+            // btnGRDS_V1
+            // 
+            this.btnGRDS_V1.AccessibleDescription = ".";
+            this.btnGRDS_V1.AccessibleName = "";
+            this.btnGRDS_V1.Enabled = false;
+            this.btnGRDS_V1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnGRDS_V1.Location = new System.Drawing.Point(106, 29);
+            this.btnGRDS_V1.Name = "btnGRDS_V1";
+            this.btnGRDS_V1.Size = new System.Drawing.Size(25, 23);
+            this.btnGRDS_V1.TabIndex = 28;
+            this.btnGRDS_V1.Text = "...";
+            this.btnGRDS_V1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnGRDS_V1.UseVisualStyleBackColor = true;
+            this.btnGRDS_V1.Click += new System.EventHandler(this.btnGRDS_V1_Click);
+            // 
+            // btnEXCEL1
+            // 
+            this.btnEXCEL1.AccessibleDescription = ".";
+            this.btnEXCEL1.AccessibleName = "";
+            this.btnEXCEL1.Enabled = false;
+            this.btnEXCEL1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnEXCEL1.Location = new System.Drawing.Point(106, 4);
+            this.btnEXCEL1.Name = "btnEXCEL1";
+            this.btnEXCEL1.Size = new System.Drawing.Size(25, 23);
+            this.btnEXCEL1.TabIndex = 28;
+            this.btnEXCEL1.Text = "...";
+            this.btnEXCEL1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEXCEL1.UseVisualStyleBackColor = true;
+            this.btnEXCEL1.Click += new System.EventHandler(this.btnEXCEL1_Click);
             // 
             // btnNhapXML
             // 
@@ -1881,5 +1932,8 @@
         private System.Windows.Forms.Label lblFrozen;
         private V6ColorTextBox txtRPT_DIR;
         private System.Windows.Forms.Label lblRPT_DIR;
+        protected System.Windows.Forms.Button btnEXCEL1;
+        protected System.Windows.Forms.Button btnGRDS_V2;
+        protected System.Windows.Forms.Button btnGRDS_V1;
     }
 }
