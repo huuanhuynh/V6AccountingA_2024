@@ -1,6 +1,6 @@
 ﻿namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
 {
-    partial class SelectMultiFieldsForm
+    partial class FieldSelectorForm
     {
         /// <summary>
         /// Required designer variable.
@@ -35,7 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectMultiFieldsForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FieldSelectorForm));
             this.btnAddSelect = new System.Windows.Forms.Button();
             this.btnAddAll = new System.Windows.Forms.Button();
             this.btnRemoveSelect = new System.Windows.Forms.Button();
@@ -47,10 +47,10 @@
             this.btnTimTatCa = new System.Windows.Forms.Button();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
-            this.dataGridView2 = new V6Controls.V6ColorDataGridView();
-            this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.btnMove2Up = new System.Windows.Forms.Button();
             this.btnMove2Down = new System.Windows.Forms.Button();
+            this.dataGridView2 = new V6Controls.V6ColorDataGridView();
+            this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -120,7 +120,7 @@
             // lbldsdc
             // 
             this.lbldsdc.AutoSize = true;
-            this.lbldsdc.Location = new System.Drawing.Point(371, 22);
+            this.lbldsdc.Location = new System.Drawing.Point(592, 22);
             this.lbldsdc.Name = "lbldsdc";
             this.lbldsdc.Size = new System.Drawing.Size(117, 13);
             this.lbldsdc.TabIndex = 3;
@@ -171,6 +171,26 @@
             this.btnNhan.UseVisualStyleBackColor = true;
             this.btnNhan.Click += new System.EventHandler(this.btnOK_Click);
             // 
+            // btnMove2Up
+            // 
+            this.btnMove2Up.Location = new System.Drawing.Point(1138, 38);
+            this.btnMove2Up.Name = "btnMove2Up";
+            this.btnMove2Up.Size = new System.Drawing.Size(28, 43);
+            this.btnMove2Up.TabIndex = 5;
+            this.btnMove2Up.Text = "▲";
+            this.btnMove2Up.UseVisualStyleBackColor = true;
+            this.btnMove2Up.Click += new System.EventHandler(this.btnMove2Up_Click);
+            // 
+            // btnMove2Down
+            // 
+            this.btnMove2Down.Location = new System.Drawing.Point(1138, 87);
+            this.btnMove2Down.Name = "btnMove2Down";
+            this.btnMove2Down.Size = new System.Drawing.Size(28, 43);
+            this.btnMove2Down.TabIndex = 6;
+            this.btnMove2Down.Text = "▼";
+            this.btnMove2Down.UseVisualStyleBackColor = true;
+            this.btnMove2Down.Click += new System.EventHandler(this.btnMove2Down_Click);
+            // 
             // dataGridView2
             // 
             this.dataGridView2.AllowUserToAddRows = false;
@@ -192,14 +212,12 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(592, 38);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView2.Size = new System.Drawing.Size(540, 428);
             this.dataGridView2.TabIndex = 4;
-            this.dataGridView2.DoubleClick += new System.EventHandler(this.btnRemoveSelect_Click);
-            this.dataGridView2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView2_KeyDown);
+            this.dataGridView2.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView2_ColumnAdded);
             // 
             // dataGridView1
             // 
@@ -228,24 +246,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(540, 428);
             this.dataGridView1.TabIndex = 2;
             // 
-            // btnMove2Up
-            // 
-            this.btnMove2Up.Location = new System.Drawing.Point(1138, 38);
-            this.btnMove2Up.Name = "btnMove2Up";
-            this.btnMove2Up.Size = new System.Drawing.Size(28, 43);
-            this.btnMove2Up.TabIndex = 5;
-            this.btnMove2Up.Text = "▲";
-            this.btnMove2Up.UseVisualStyleBackColor = true;
-            // 
-            // btnMove2Down
-            // 
-            this.btnMove2Down.Location = new System.Drawing.Point(1138, 87);
-            this.btnMove2Down.Name = "btnMove2Down";
-            this.btnMove2Down.Size = new System.Drawing.Size(28, 43);
-            this.btnMove2Down.TabIndex = 6;
-            this.btnMove2Down.Text = "▼";
-            this.btnMove2Down.UseVisualStyleBackColor = true;
-            // 
             // SelectMultiFieldsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -268,7 +268,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "SelectMultiFieldsForm";
+            this.Name = "FieldSelectorForm";
             this.ShowInTaskbar = false;
             this.Text = "Chọn";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SelectMultiIDForm_FormClosing);

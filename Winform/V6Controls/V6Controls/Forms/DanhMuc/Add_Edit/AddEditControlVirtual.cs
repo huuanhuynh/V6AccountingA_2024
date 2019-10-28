@@ -19,7 +19,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public V6TableName TableName { get; set; }
         public V6TableStruct _structTable;
         public V6Mode Mode = V6Mode.Add;
-        public V6Control _grandFatherControl;
+        public Control _grandFatherControl;
         public IDictionary<string, object> _parentData; 
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
-        public void SetGrandFather(V6Control grandFatherControl)
+        public void SetGrandFather(Control grandFatherControl)
         {
             _grandFatherControl = grandFatherControl;
         }

@@ -6,17 +6,17 @@ using V6Init;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
 {
-    public partial class SelectMultiFieldsForm : Form
+    public partial class FieldSelectorForm : Form
     {
-        public SelectMultiFieldsForm()
+        public FieldSelectorForm()
         {
             InitializeComponent();
         }
         
-        public SelectMultiFieldsForm(string tempTable, string keyField, string nameField, string sourceTable)
-        {
-            InitializeComponent();
-        }
+        //public FieldSelectorForm(string tempTable, string keyField, string nameField, string sourceTable)
+        //{
+        //    InitializeComponent();
+        //}
 
         private const string FIELD_NAME = "FIELD_NAME";
         private const string FIELD_TYPE = "FIELD_TYPE";
@@ -59,18 +59,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         }
         private void dataGridView2_KeyDown(object sender, KeyEventArgs e)
         {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    e.Handled = true;
-                    btnRemoveSelect_Click(sender, e);
-                }
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".dataGridView2_KeyDown", ex);
-            }
+
         }
 
         private void MoveSelectedRowLeftToRight()
@@ -112,13 +101,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         {
             while (table1.Rows.Count>0)
             {
+                DataRow row1 = table1.Rows[0];
                 DataRow copy = table2.NewRow();
-                //for (int i = 0; i < copy.Cells.Count; i++)
-                //{
-                //    copy.Cells[i].Value = table1.Rows[0].Cells[i].Value;
-                //}
-                //table2.Rows.Add(copy);
-                //table1.Rows.Remove(table1.Rows[0]);
+                copy[FIELD_NAME] = row1[FIELD_NAME];
+                copy[FIELD_TYPE] = row1[FIELD_TYPE];
+                copy[FIELD_WIDTH] = row1[FIELD_WIDTH];
+
+                table2.Rows.Add(copy);
+                table1.Rows.Remove(row1);
             }
         }
 
@@ -330,6 +320,52 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             {
                 _sourceTable.Rows.Remove(listRow[0]);
                 listRow.RemoveAt(0);
+            }
+        }
+
+        private void ChangeRowData(DataRow row1, DataRow row2)
+        {
+            if (row1 == null || row2 == null)
+            {
+                return;
+            }
+            if (row1.Table != row2.Table)
+            {
+                V6Message.ShowWarning("Khác bảng", this);
+                return;
+            }
+            foreach (DataColumn column in row1.Table.Columns)
+            {
+                object o1 = row1[column.ColumnName];
+                row1[column.ColumnName] = row2[column.ColumnName];
+                row2[column.ColumnName] = o1;
+            }
+        }
+
+        private void dataGridView2_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
+        {
+            e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        }
+
+        private void btnMove2Up_Click(object sender, EventArgs e)
+        {
+            var currentRow = dataGridView2.CurrentRow;
+            if (currentRow != null && currentRow.Index > 0)
+            {
+                var changeRow = dataGridView2.Rows[currentRow.Index - 1];
+                ChangeRowData(((DataRowView)currentRow.DataBoundItem).Row, ((DataRowView)changeRow.DataBoundItem).Row);
+                dataGridView2.CurrentCell = changeRow.Cells[0];
+            }
+        }
+
+        private void btnMove2Down_Click(object sender, EventArgs e)
+        {
+            var currentRow = dataGridView2.CurrentRow;
+            if (currentRow != null && currentRow.Index < dataGridView2.RowCount - 1)
+            {
+                var changeRow = dataGridView2.Rows[currentRow.Index + 1];
+                ChangeRowData(((DataRowView)currentRow.DataBoundItem).Row, ((DataRowView)changeRow.DataBoundItem).Row);
+                dataGridView2.CurrentCell = changeRow.Cells[0];
             }
         }
     }

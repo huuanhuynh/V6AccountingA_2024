@@ -658,6 +658,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     var f = new FormAddEdit(V6TableName.Albc, V6Mode.Add, keys, data0);
                     f.AfterInitControl += f_AfterInitControl;
                     f.InitFormControl();
+                    f.SetFather(this);
                     f.InsertSuccessEvent += (data) =>
                     {
                         //cap nhap thong tin
@@ -707,6 +708,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var f = new FormAddEdit(V6TableName.Albc, V6Mode.Edit, keys, null);
                 f.AfterInitControl += f_AfterInitControl;
                 f.InitFormControl();
+                f.SetFather(this);
                 f.UpdateSuccessEvent += (data) =>
                 {
                     //cap nhap thong tin

@@ -57,7 +57,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
 
         private void EnableFieldsSelector()
         {
-            DataGridView dataGridView1 = _grandFatherControl.GetControlByName("dataGridView1") as DataGridView;
+            DataGridView dataGridView1 = V6ControlFormHelper.GetControlByName(_grandFatherControl, "dataGridView1") as DataGridView;
             if (dataGridView1 == null)
             {
                 ShowTopLeftMessage("Không tìm thấy dataGridView1!");
@@ -70,7 +70,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                 btnEXCEL1.Enabled = true;
                 btnGRDS_V1.Enabled = true;
 
-                DataGridView dataGridView2 = _grandFatherControl.GetControlByName("dataGridView2") as DataGridView;
+                DataGridView dataGridView2 = V6ControlFormHelper.GetControlByName(_grandFatherControl, "dataGridView2") as DataGridView;
                 if (dataGridView2 == null)
                 {
                     ShowTopLeftMessage("Không tìm thấy dataGridView2!");
@@ -502,7 +502,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         {
             try
             {
-                SelectMultiFieldsForm f = new SelectMultiFieldsForm();
+                FieldSelectorForm f = new FieldSelectorForm();
                 List<AlbcFieldInfo> fieldInfoList = new List<AlbcFieldInfo>();
                 var fff = ObjectAndString.SplitString(txtExcel1.Text);
                 foreach (string field in fff)
@@ -533,7 +533,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             List<AlbcFieldInfo> result = new List<AlbcFieldInfo>();
             try
             {
-                DataGridView dataGridView1 = _grandFatherControl.GetControlByName("dataGridView1") as DataGridView;
+                DataGridView dataGridView1 = V6ControlFormHelper.GetControlByName(_grandFatherControl, "dataGridView1") as DataGridView;
                 if (dataGridView1 == null)
                 {
                     ShowTopLeftMessage("Không tìm thấy dataGridView1!");
@@ -575,7 +575,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         {
             try
             {
-                SelectMultiFieldsForm f = new SelectMultiFieldsForm();
+                FieldSelectorForm f = new FieldSelectorForm();
                 if (f.ShowDialog(this) == DialogResult.OK)
                 {
                     txtShowFields1.Text = f.GetFieldsString();
@@ -594,7 +594,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         {
             try
             {
-                SelectMultiFieldsForm f = new SelectMultiFieldsForm();
+                FieldSelectorForm f = new FieldSelectorForm();
                 if (f.ShowDialog(this) == DialogResult.OK)
                 {
                     txtShowFields2.Text = f.GetFieldsString();

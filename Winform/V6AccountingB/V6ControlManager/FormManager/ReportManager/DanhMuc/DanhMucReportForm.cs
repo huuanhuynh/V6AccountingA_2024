@@ -1398,6 +1398,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Edit, keys, null);
                 f2.AfterInitControl += f_AfterInitControl;
                 f2.InitFormControl();
+                f2.SetFather(this);
                 f2.UpdateSuccessEvent += data =>
                 {
                     //cap nhap thong tin
@@ -1459,6 +1460,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Add, AlbcKeys, data0);
                 f2.AfterInitControl += f_AfterInitControl;
                 f2.InitFormControl();
+                f2.SetFather(this);
                 f2.InsertSuccessEvent += data =>
                 {
                     //cap nhap thong tin

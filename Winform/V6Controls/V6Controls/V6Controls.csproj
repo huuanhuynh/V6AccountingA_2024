@@ -115,11 +115,11 @@
       <DependentUpon>V6DateTimeFullPickerNull.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\Albc\AlbcFieldInfo.cs" />
-    <Compile Include="Forms\DanhMuc\Add_Edit\Albc\SelectMultiIDForm.cs">
+    <Compile Include="Forms\DanhMuc\Add_Edit\Albc\FieldSelectorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DanhMuc\Add_Edit\Albc\SelectMultiIDForm.designer.cs">
-      <DependentUpon>SelectMultiIDForm.cs</DependentUpon>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Albc\FieldSelectorForm.designer.cs">
+      <DependentUpon>FieldSelectorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\StringInput.cs">
       <SubType>Form</SubType>
@@ -1555,8 +1555,8 @@
     <EmbeddedResource Include="Controls\Label\FormChangeControlLanguageText.resx">
       <DependentUpon>FormChangeControlLanguageText.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Albc\SelectMultiIDForm.resx">
-      <DependentUpon>SelectMultiIDForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Albc\FieldSelectorForm.resx">
+      <DependentUpon>FieldSelectorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\StringInput.resx">
       <DependentUpon>StringInput.cs</DependentUpon>
