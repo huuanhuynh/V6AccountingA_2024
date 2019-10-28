@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><soap:Header><Authentication xmlns="http://thaison.vn/inv"><userName>tsd</userName><password>tsd@123</password></Authentication></soap:Header><soap:Body><XuatHoaDonDienTu_XML xmlns="http://thaison.vn/inv"><hoaDonEntity>
+
+
+<MaChiNhanh>TEST</MaChiNhanh>
+<MaLoaiHoaDon>TEST</MaLoaiHoaDon>
+<TenLoaiHoaDon>TEST</TenLoaiHoaDon>
+<dhoadonid>0</dhoadonid>
+<MauSo>01GTKT0/001</MauSo>
+<KyHieu>AA/17E</KyHieu>
+<SoHoaDon>0000042</SoHoaDon>
+<MauSoGoc>01GTKT0/001</MauSoGoc>
+<KyHieuGoc>AA/17E</KyHieuGoc>
+<NamSinh>TEST</NamSinh>
+<NgayNhapVien>2018-02-20T00:00:00</NgayNhapVien>
+<SoNhapVien>TEST</SoNhapVien>
+<PCName>TEST</PCName>
+<NgayTaoHoaDon>2018-09-20T10:11:31</NgayTaoHoaDon>
+<NgayXuatHoaDon>2018-09-20T10:11:31</NgayXuatHoaDon>
+<BenMuaMaDonVi>MB031</BenMuaMaDonVi>
+<BenMuaMaSoThue>1600301924</BenMuaMaSoThue>
+<BenMuaTenDonVi>Nguyễn Thị Ngọc Giàu</BenMuaTenDonVi>
+<BenMuaHoTen>Nguyễn Thị Ngọc Giàu</BenMuaHoTen>
+<BenMuaDiaChi>Lô A2, 1+7 Chợ Mỹ Bình, TP. Long Xuyên, T.An Giang</BenMuaDiaChi>
+<BenMuaDienThoai></BenMuaDienThoai>
+<BenMuaFax></BenMuaFax>
+<BenMuaEmail></BenMuaEmail>
+<IsSendMail>1</IsSendMail>
+<BenMuaTaiKhoanNganHang></BenMuaTaiKhoanNganHang>
+<BenMuaTenNganHang></BenMuaTenNganHang>
+<BenBanMaDonVi>CÔNG TY V6</BenBanMaDonVi>
+<BenBanMaSoThue>0101300842-999</BenBanMaSoThue>
+<BenBanTenDonVi>CÔNG TY V6</BenBanTenDonVi>
+<BenBanDiaChi>38 Lê Văn Huân</BenBanDiaChi>
+<BenBanDienThoai>0123456789</BenBanDienThoai>
+<BenBanFax>0123456789</BenBanFax>
+<BenBanTaiKhoanNganHang>0123456789</BenBanTaiKhoanNganHang>
+<BenBanTenNganHang>Ngân hàng ABC</BenBanTenNganHang>
+<BenBanNganHangDiaChi>Địa chỉ Ngân hàng ABC</BenBanNganHangDiaChi>
+<HangHoas>
+<!-- HangHoaEntity_0 -->
+<HangHoaEntity>
+
+
+<SoThuTu>1</SoThuTu>
+<MaHang>BCHOB31</MaHang>
+<TenHang>Bánh Ostar Muối 30g/80</TenHang>
+<DonViTinh>gói</DonViTinh>
+<SoLuong>800.000</SoLuong>
+<DonGia>4818.1820</DonGia>
+<ThanhTien>3854546.00</ThanhTien>
+<Vat>10</Vat>
+<TienVat>366182.00</TienVat>
+<ThanhTienSauThue>0</ThanhTienSauThue>
+
+
+</HangHoaEntity>
+
+<!-- HangHoaEntity_1 -->
+<HangHoaEntity>
+
+
+<SoThuTu>2</SoThuTu>
+<MaHang>MIACEH009</MaHang>
+<TenHang>Mì Hảo hảo xào chua ngọt (30)</TenHang>
+<DonViTinh>thùng</DonViTinh>
+<SoLuong>120.000</SoLuong>
+<DonGia>85000.0000</DonGia>
+<ThanhTien>10200000.00</ThanhTien>
+<Vat>10</Vat>
+<TienVat>969000.00</TienVat>
+<ThanhTienSauThue>0</ThanhTienSauThue>
+
+
+</HangHoaEntity>
+
+<!-- HangHoaEntity_2 -->
+<HangHoaEntity>
+
+
+<SoThuTu>3</SoThuTu>
+<MaHang>DA004</MaHang>
+<TenHang>Dầu ăn Olein Marvela 400ml/24</TenHang>
+<DonViTinh>thùng</DonViTinh>
+<SoLuong>24.000</SoLuong>
+<DonGia>307627.2720</DonGia>
+<ThanhTien>7383055.00</ThanhTien>
+<Vat>10</Vat>
+<TienVat>701390.00</TienVat>
+<ThanhTienSauThue>0</ThanhTienSauThue>
+
+
+</HangHoaEntity>
+
+<!-- HangHoaEntity_3 -->
+<HangHoaEntity>
+
+
+<SoThuTu>4</SoThuTu>
+<MaHang>HALO001</MaHang>
+<TenHang>Cà phê hòa tan 3in1 Halo/20</TenHang>
+<DonViTinh>bịch</DonViTinh>
+<SoLuong>720.000</SoLuong>
+<DonGia>30000.0000</DonGia>
+<ThanhTien>21600000.00</ThanhTien>
+<Vat>10</Vat>
+<TienVat>2052000.00</TienVat>
+<ThanhTienSauThue>0</ThanhTienSauThue>
+
+
+</HangHoaEntity>
+
+<!-- HangHoaEntity_4 -->
+<HangHoaEntity>
+
+
+<SoThuTu>5</SoThuTu>
+<MaHang>MIACEH074</MaHang>
+<TenHang>Mì Thế Giới Mì Hoành Thánh Tôm/30</TenHang>
+<DonViTinh>thùng</DonViTinh>
+<SoLuong>48.000</SoLuong>
+<DonGia>131818.1820</DonGia>
+<ThanhTien>6327273.00</ThanhTien>
+<Vat>10</Vat>
+<TienVat>601091.00</TienVat>
+<ThanhTienSauThue>0</ThanhTienSauThue>
+
+
+</HangHoaEntity>
+
+<!-- HangHoaEntity_5 -->
+<HangHoaEntity>
+
+
+<SoThuTu>6</SoThuTu>
+<MaHang>MIPH77</MaHang>
+<TenHang>Mì Tabiket 75gr/100</TenHang>
+<DonViTinh>thùng</DonViTinh>
+<SoLuong>24.000</SoLuong>
+<DonGia>165600.0000</DonGia>
+<ThanhTien>3974400.00</ThanhTien>
+<Vat>10</Vat>
+<TienVat>377568.00</TienVat>
+<ThanhTienSauThue>0</ThanhTienSauThue>
+
+
+</HangHoaEntity>
+
+<!-- HangHoaEntity_6 -->
+<HangHoaEntity>
+
+
+<SoThuTu>7</SoThuTu>
+<MaHang>BCHOB111</MaHang>
+<TenHang>Bánh MarineBoy Tảo 32g/30</TenHang>
+<DonViTinh>hộp</DonViTinh>
+<SoLuong>60.000</SoLuong>
+<DonGia>8181.8180</DonGia>
+<ThanhTien>490909.00</ThanhTien>
+<Vat>10</Vat>
+<TienVat>46636.00</TienVat>
+<ThanhTienSauThue>0</ThanhTienSauThue>
+
+
+</HangHoaEntity>
+
+<!-- HangHoaEntity_7 -->
+<HangHoaEntity>
+
+
+<SoThuTu>8</SoThuTu>
+<MaHang>MIACEH036</MaHang>
+<TenHang>Bún Hằng Nga Giò Heo/30</TenHang>
+<DonViTinh>thùng</DonViTinh>
+<SoLuong>48.000</SoLuong>
+<DonGia>145454.5450</DonGia>
+<ThanhTien>6981818.00</ThanhTien>
+<Vat>10</Vat>
+<TienVat>663273.00</TienVat>
+<ThanhTienSauThue>0</ThanhTienSauThue>
+
+
+</HangHoaEntity>
+
+<!-- HangHoaEntity_8 -->
+<HangHoaEntity>
+
+
+<SoThuTu>0</SoThuTu>
+<MaHang>*</MaHang>
+<TenHang>Chiết khấu thương mại</TenHang>
+<DonViTinh></DonViTinh>
+<SoLuong>0</SoLuong>
+<DonGia>0</DonGia>
+<ThanhTien>3040600.00</ThanhTien>
+<Vat>0</Vat>
+<TienVat>0</TienVat>
+<ThanhTienSauThue>0</ThanhTienSauThue>
+
+
+</HangHoaEntity>
+</HangHoas>
+<TienThueVat>5777140.00</TienThueVat>
+<TongTienHang>60812001.00</TongTienHang>
+<TongTienThanhToan>63548541.00</TongTienThanhToan>
+<TienChietKhau>3040600.00</TienChietKhau>
+<TongTienThanhToanBangChu>Sáu mươi ba triệu năm trăm bốn mươi tám nghìn năm trăm bốn mươi mốt đồng chẵn</TongTienThanhToanBangChu>
+<DongTienThanhToan>VND</DongTienThanhToan>
+<HinhThucThanhToan>TM/CK</HinhThucThanhToan>
+<TyGia>1.00</TyGia>
+<TamUng>0</TamUng>
+<TrangThaiDieuChinh>0</TrangThaiDieuChinh>
+
+
+</hoaDonEntity>
+</XuatHoaDonDienTu_XML></soap:Body></soap:Envelope>

@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="V6ThuePostXmlApi.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="V6ThuePostXmlApi_PublishService0315511086_PublishService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://0315511086-democadmin.vnpt-invoice.com.vn/PublishService.asmx</Value>
+    </Setting>
+    <Setting Name="V6ThuePostXmlApi_PortalService0315511086_PortalService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://0315511086-democadmin.vnpt-invoice.com.vn/PortalService.asmx</Value>
+    </Setting>
+    <Setting Name="V6ThuePostXmlApi_BusinessService0315511086_BusinessService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://0315511086-democadmin.vnpt-invoice.com.vn/BusinessService.asmx</Value>
+    </Setting>
+    <Setting Name="V6ThuePostXmlApi_AttachmentService0315511086_AttachmentService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://0315511086-democadmin.vnpt-invoice.com.vn/AttachmentService.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

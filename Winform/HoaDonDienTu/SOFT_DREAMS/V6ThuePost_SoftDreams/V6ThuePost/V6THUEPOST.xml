@@ -1,0 +1,113 @@
+﻿<?xml version="1.0"?>
+<Root>
+  <V6Info Field='username' 	Value='jcazIng8TUA=' Type='ENCRYPT'/>
+  <V6Info Field='password' 	Value='jRI4xuxJaXTFsUDNglqNEA=='/>
+  <V6Info Field='serialcert' 	Value='kt/nJFTlC155GrxHL1CLotBtpCbxeaXNghh0rjQD7Grp2CdF43g85g=='/>
+  <V6Info Field='token_password_title' 	Value='Kiểm tra mã PIN'/>
+	<V6Info Field='token_password' 	Value='c0PWOMZE43dQSU1zjuEyuw=='/>
+  <V6Info Field='baselink' 	Value='ccwnkNWLR6hrJxN+FZ7nHdzUva4Ytu3PC8DnL3HuW98='  Type=''/>
+  <V6Info Field='pattern' 	Value='MA_MAUHD' Type=''/>
+  <V6Info Field='seri' 		Value='SO_SERI' Type=''/>
+  <V6Info Field='v6fkey' 		Value='V6' Type=''/>
+  <V6Info Field='v6fkeyexcel' 		Value='V6_05' Type=''/>
+  <V6Info Field='signmode' 		Value='1' Type='' Note='mặc định Server, 1 Client'/>
+
+  <ExcelConfig Type='0' Field='TEMPLATE' 	Value='V6_EXCEL.XLS'/>
+  <ExcelConfig Type='0' Field='FIRSTCELL' 	Value='B18'/>
+  <ExcelConfig Type='0' Field='INSERTROW' 	Value='1'/>
+  <ExcelConfig Type='0' Field='DRAWLINE' 		Value='1'/>
+  <ExcelConfig Type='E' Field='COLUMNS' 	Value='STT,TEN_VT,DVT,SO_LUONG,GIA2,TIEN2'/>
+  <ExcelConfig Type='E' Field='COLUMNS11' 	Value=''/>
+  <ExcelConfig Type='E' Field='COLUMNS21' 	Value=''/>
+  <ExcelConfig Type='E' Field='COLUMNS31' 	Value=''/>
+
+  <ExcelConfig Type='2' Field='D9' 	Value='{SO_CT}'/>
+  <ExcelConfig Type='2' Field='D10' 	Value='NGAY_CT'/>
+  <ExcelConfig Type='2' Field='B11' 	Value='{TEN_KH}'/>
+  <ExcelConfig Type='2' Field='B12' 	Value='{DIA_CHI}'/>
+  <ExcelConfig Type='2' Field='B13' 	Value='{MA_SO_THUE}'/>
+
+  <ExcelConfig Type='2' Field='G19' 	Value='T_TIEN2'/>
+  <ExcelConfig Type='2' Field='G20' 	Value='T_THUE'/>
+  <ExcelConfig Type='2' Field='G21' 	Value='T_TT'/>
+
+  <!--Một số ký tự web: [&apos;]=[']	[&quot;]=["]	[&lt;]=[<]	[&gt;]=[>]	[&amp;]=[&]	-->
+
+  <SellerInfo Field='ComName'			FieldV6=''		Value='CHI NHÁNH CÔNG TY TNHH THƯƠNG MẠI VÀ DỊCH VỤ PHÁT TIẾN' Type=''/>
+  <SellerInfo Field='ComTaxCode'		FieldV6=''		Value='0301049150-029' Type=''/>
+  <SellerInfo Field='ComAddress'		FieldV6=''		Value='138 Quốc lộ 62, Phường 2, Thành phố Tân An, Tỉnh Long An, Việt Nam' Type=''/>
+  <SellerInfo Field='ComFax'			FieldV6=''		Value='' Type=''/>
+
+  <BuyerInfo Field='CusCode' 			FieldV6='MA_KH'			Type='Field'/>
+  <!-- Buyer và CusName không được đồng thời bỏ trống -->
+  <BuyerInfo Field='CusName' 			FieldV6='ten_kh' 			Type='Field'/>
+  <BuyerInfo Field='Buyer' 			FieldV6='ong_ba' 			Type='Field'/>
+  <BuyerInfo Field='CusTaxCode' 			FieldV6='ma_so_thue'		Type='Field'/>
+  <BuyerInfo Field='Email' 		    FieldV6='e_mail'		Type='Field'  Note='Email của khách nhận thông báo phát hành hoá đơn'/>
+  <BuyerInfo Field='EmailCC'      FieldV6=''		Type='Field'  Note='Danh sách email khác nhận thông báo phát hành hoá đơn (ngăn cách bởi dấu phẩy)'/>
+  <BuyerInfo Field='CusAddress' 			FieldV6='dia_chi'			Type='Field'/>
+  <BuyerInfo Field='CusPhone' 			FieldV6='DIEN_THOAI'			Type='Field'/>
+  <BuyerInfo Field='CusBankName' 			FieldV6=''			Type='Field'/>
+  <BuyerInfo Field='CusBankNo' 			FieldV6=''			Type='Field'/>
+  
+  <BuyerInfo Field='KindOfService' FieldNode='Tháng hóa đơn' 	Value=''/>
+
+  <GeneralInvoiceInfo Field='PaymentMethod' 		FieldV6='MA_HTTT'			Type='Field'  Value=''
+             Note='T/M=Tiền mặt, C/K=Thanh toán chuyển khoản, TM/CK=Thanh toán tiền mặt hoặc chuyển khoản, TT/D=Thanh toán thẻ tín dụng, Bù trừ, Các dạng khác ghi thoải mái, tên sẽ như mã.'/>
+  <GeneralInvoiceInfo	Field='ArisingDate'		Note='Ngày phát hành hóa đơn'	FieldV6='NGAY_CT'	Type='Field'/>
+  <GeneralInvoiceInfo	Field='ExchangeRate'	FieldV6='TY_GIA'	Type='Field'/>
+  <GeneralInvoiceInfo	Field='CurrencyUnit'	FieldV6='MA_NT'	Type='' Note='Đơn vị tiền tệ (ví dụ VND, USD)'/>
+  <GeneralInvoiceInfo	Field='Extra'			FieldV6=''	Type='Field'  Note='Thông tin bổ sung chưa thẻ con có tên theo quy ước nếu có phát sinh'/>
+  <GeneralInvoiceInfo	Field='Fkey'    Value=''			FieldV6='STT_REC'	Type='Field'  Note='Mã tra cứu'/>
+  <!-- Full fields
+  VatAmount5 OrderDate CusBankName CusCom InvNo Discount OrderNo EmailCC CusTaxCode CusAddress KindOfService
+  CusBankNo VATRate DiscountAmount Note CusComName AmountInWords ComTaxCode CusCode Email GrossValue Buyer
+  ComName GrossValue5 VatAmount0 CusPhone Products ComFax BankName VATAmount CreateBy ResourceCode ComAddress
+  Total GrossValue10 InvoiceType GrossValue0 Hidden InvPattern PaymentStatus CusName InvSerial Fkey Amount 
+  VatAmount10 BankAccount
+  -->
+  
+  <!--a____________Tên sử dụng trong report_____________Tên trường dữ liệu tương ứng_____________-->
+  <!-- Full fields: VATRate Amount ProdQuantity Extra Total IsSum Code VATAmount ProdUnit ProdName ProdPrice DiscountAmount'. -->
+  <!--ItemInfo	Field='lineNumber'		FieldV6='stt'	Type='Field'/-->
+  <ItemInfo	Field='Extra'	FieldV6='stt'		Type='Field'	DataType='int'/>
+  <ItemInfo	Field='IsSum' Value='0'   FieldV6=''		Type=''	DataType='int'/>
+  <ItemInfo	Field='Code'	FieldV6='ma_vt'		Type='Field'/>
+  <ItemInfo	Field='ProdName'	FieldV6='ten_vt'	Type='Field'/>
+  <ItemInfo	Field='ProdUnit'		FieldV6='dvt'	Type='Field'/>
+  <ItemInfo	Field='ProdQuantity'	FieldV6='so_luong'	Type='Field'	DataType=''/>
+  <ItemInfo	Field='ProdPrice'	FieldV6='gia2'	Type='Field'	DataType=''/>
+  <ItemInfo	Field='Amount'	FieldV6='tien2'	Type='Field'	DataType='long'/>
+  <ItemInfo	Field='Total'	FieldV6='tien2'	Type='Field'/>
+  <ItemInfo	Field='DiscountAmount'	FieldV6='ck'	Type='Field'/>
+  <ItemInfo	Field='VATRate'	FieldV6='thue_suati'	Type='Field'	DataType='long'/>
+  <ItemInfo	Field='VATAmount'	FieldV6='thue'	Type='Field'	DataType='long'/>
+
+
+  <!--SummarizeInfo	Field='sumOfTotalLineAmountWithoutTax'		FieldV6='T_TIEN2'	Type='Field'/-->
+  <SummarizeInfo	Field='Total'	Note='Tổng tiền trước thuế'	FieldV6='T_TIEN2'	Type='Field'/>
+  <SummarizeInfo	Field='Discount'		FieldV6='PT_CK'	Type='Field'	DataType=''/>
+  <SummarizeInfo	Field='DiscountAmount'		FieldV6='T_CK'	Type='Field'	DataType='long'/>
+  <SummarizeInfo	Field='VATRate'		FieldV6='THUE_SUAT'	Type='Field'		DataType='long'/>
+  <SummarizeInfo	Field='VATAmount'		FieldV6='T_THUE'	Type='Field'	DataType='long'/>
+  <SummarizeInfo	Field='Amount'		FieldV6='T_TT'	Type='Field'	DataType='long'/>
+  <SummarizeInfo	Field='AmountInWords'		FieldV6='t_tt' Type='Field:N2C'/>
+  <SummarizeInfo	Field='PaymentStatus'	Note='Trạng  thái  thanh  toán  hóa  đơn  ban  đầu(0,1 – chưa  thanh toán, đã thanh toán)' Value='0'	FieldV6='Payment_s'	Type=''/>
+  <SummarizeInfo	Field='ResourceCode'	Note='' Value=''	FieldV6=''	Type=''/>
+
+  <!--CustomerInfo	Các trường thông tin khách hàng sử dụng cho hàm UpdateCus	/-->
+  <CustomerInfo	Field='Name'	Value=''	FieldV6='TEN_KH'	Type='Field'/>
+  <CustomerInfo	Field='Code'	Value=''	FieldV6='MA_KH'	Type='Field'/>
+  <CustomerInfo	Field='TaxCode'	Value=''	FieldV6='MA_SO_THUE'	Type='Field'/>
+  <CustomerInfo	Field='Address'	Value=''	FieldV6='DIA_CHI'	Type='Field'	Note='Địa chỉ thanh toán'/>
+  <CustomerInfo	Field='BankAccountName'	Value=''	FieldV6='TEN_KH'	Type='Field'/>
+  <CustomerInfo	Field='BankName'	Value=''	FieldV6='TEN_NH'	Type='Field'/>
+  <CustomerInfo	Field='BankNumber'	Value=''	FieldV6='TK_NH'	Type='Field'/>
+  <CustomerInfo	Field='Email'		Value=''	FieldV6='E_MAIL'	Type='Field'/>
+  <CustomerInfo	Field='Fax'			Value=''	FieldV6='Fax'	Type='Field'/>
+  <CustomerInfo	Field='Phone'		Value=''	FieldV6='DIEN_THOAI'	Type='Field'/>
+  <CustomerInfo	Field='ContactPerson'	Value=''	FieldV6='DOI_TAC'	Type='Field'/>
+  <CustomerInfo	Field='RepresentPerson'	Value=''	FieldV6='GC_TD1'	Type='Field'/>
+  <CustomerInfo	Field='CusType'	Value='CusTypeTestNoField'	FieldV6='SL_TD1'	Type='Field'	DataType='Int'	Note='1: Doanh nghiệp/0: Cá nhân'/>
+
+</Root>

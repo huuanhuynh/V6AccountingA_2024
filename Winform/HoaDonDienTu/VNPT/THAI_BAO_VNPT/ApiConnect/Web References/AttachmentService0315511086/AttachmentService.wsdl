@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="downloadInvAttachment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="invId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="comId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPass" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="downloadInvAttachmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="downloadInvAttachmentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFullPathRecordsAttachForPortal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="path" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFullPathRecordsAttachForPortalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFullPathRecordsAttachForPortalResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="downloadInvAttachmentSoapIn">
+    <wsdl:part name="parameters" element="tns:downloadInvAttachment" />
+  </wsdl:message>
+  <wsdl:message name="downloadInvAttachmentSoapOut">
+    <wsdl:part name="parameters" element="tns:downloadInvAttachmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFullPathRecordsAttachForPortalSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFullPathRecordsAttachForPortal" />
+  </wsdl:message>
+  <wsdl:message name="GetFullPathRecordsAttachForPortalSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFullPathRecordsAttachForPortalResponse" />
+  </wsdl:message>
+  <wsdl:portType name="AttachmentServiceSoap">
+    <wsdl:operation name="downloadInvAttachment">
+      <wsdl:input message="tns:downloadInvAttachmentSoapIn" />
+      <wsdl:output message="tns:downloadInvAttachmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFullPathRecordsAttachForPortal">
+      <wsdl:input message="tns:GetFullPathRecordsAttachForPortalSoapIn" />
+      <wsdl:output message="tns:GetFullPathRecordsAttachForPortalSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AttachmentServiceSoap" type="tns:AttachmentServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="downloadInvAttachment">
+      <soap:operation soapAction="http://tempuri.org/downloadInvAttachment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFullPathRecordsAttachForPortal">
+      <soap:operation soapAction="http://tempuri.org/GetFullPathRecordsAttachForPortal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AttachmentServiceSoap12" type="tns:AttachmentServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="downloadInvAttachment">
+      <soap12:operation soapAction="http://tempuri.org/downloadInvAttachment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFullPathRecordsAttachForPortal">
+      <soap12:operation soapAction="http://tempuri.org/GetFullPathRecordsAttachForPortal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AttachmentService">
+    <wsdl:port name="AttachmentServiceSoap" binding="tns:AttachmentServiceSoap">
+      <soap:address location="https://0315511086-democadmin.vnpt-invoice.com.vn/AttachmentService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AttachmentServiceSoap12" binding="tns:AttachmentServiceSoap12">
+      <soap12:address location="https://0315511086-democadmin.vnpt-invoice.com.vn/AttachmentService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

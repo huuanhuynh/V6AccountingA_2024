@@ -1,0 +1,92 @@
+<Invoices>
+	<Inv>
+		<Invoice>
+			<Ikey>443b84bb-c86a-4d75-a84c-eb7fb5d6c5e0</Ikey>
+			<CusCode>0103755877</CusCode>
+			<Buyer/>
+			<CusName>CÔNG TY CỔ PHẦN THÉP ĐỈNH CAO</CusName>
+			<CusAddress>Số nhà 502 đường Phúc Diễm, Phường Xuân Phương, Quận Nam Từ Liêm, thành phố Hà Nội</CusAddress>
+			<Email>test@softdreams.vn</Email>
+			<EmailCC>test1@softdreams.vn,test2@softdreams.vn</EmailCC>
+			<CusBankName>Vietcombank</CusBankName>
+			<CusBankNo>999999999</CusBankNo>
+			<CusTaxCode>0103755877</CusTaxCode>
+			<PaymentMethod>Tiền mặt</PaymentMethod>
+			<CurrencyUnit>VND</CurrencyUnit>
+			<ExchangeRate>1.0000</ExchangeRate>
+			<PaymentStatus>1</PaymentStatus>
+			<Email>test@softdreams.vn</Email>
+			<EmailCC>test1@softdreams.vn,test2@softdreams.vn</EmailCC>
+			<Products>
+				<Product>
+					<!-- SẢN PHẨM GHI CHÚ -->
+					<ProdName>Thanh toán theo hợp đồng ABC/123</ProdName>
+					<ProdUnit/>
+					<ProdQuantity/>
+					<ProdPrice/>
+					<Total/>
+					<VATRate/>
+					<VATAmount/>
+					<Amount>0</Amount>
+					<!-- Product Extra sử dụng định dạng JSON -->
+					<Extra>{"Pos":""}</Extra>
+					<!-- Product Extra chứa thuộc tính Pos (có phân biệt hoá thường) mang, giá trị "" (BẮT BUỘC) sẽ không được đánh số thứ tự trên hoá đơn -->
+				</Product>
+				<Product>
+					<ProdName>Thép</ProdName>
+					<ProdUnit>kg</ProdUnit>
+					<ProdQuantity>30</ProdQuantity>
+					<ProdPrice>750000</ProdPrice>
+					<Total>22500000</Total>
+					<VATRate>10</VATRate>
+					<VATAmount>2250000</VATAmount>
+					<Amount>22500000</Amount>
+					<Extra>{"Pos":"1"}</Extra>
+					<!-- Product Extra chứa thuộc tính Pos mang giá trị 1 sẽ được đánh số thứ tự 1 trên hoá đơn -->
+				</Product>
+				<Product>
+					<ProdName>Chiết khấu</ProdName>
+					<ProdUnit/>
+					<ProdQuantity/>
+					<ProdPrice/>
+					<Total>-450000</Total>
+					<VATRate>10</VATRate>
+					<VATAmount>-45000</VATAmount>
+					<Amount>-450000</Amount>
+					<Extra>{"Pos":"2"}</Extra>
+					<!-- Product Extra chứa thuộc tính Pos mang giá trị 2 sẽ được đánh số thứ tự 2 trên hoá đơn -->
+				</Product>
+				<Product>
+					<ProdName>Tôn </ProdName>
+					<ProdUnit>m2</ProdUnit>
+					<ProdQuantity>50</ProdQuantity>
+					<ProdPrice>350000</ProdPrice>
+					<Total>17500000</Total>
+					<VATRate>10</VATRate>
+					<VATAmount>1750000</VATAmount>
+					<Amount>17500000</Amount>
+					<Extra>{"Pos":"3"}</Extra>
+					<!-- Product Extra chứa thuộc tính Pos mang giá trị 3 sẽ được đánh số thứ tự 3 trên hoá đơn -->
+				</Product>
+				<Product>
+					<ProdName>Chiết khấu</ProdName>
+					<ProdUnit/>
+					<ProdQuantity/>
+					<ProdPrice/>
+					<Total>-350000</Total>
+					<VATRate>10</VATRate>
+					<VATAmount>-35000</VATAmount>
+					<Amount>-350000</Amount>
+					<Extra>{"Pos":"4"}</Extra>
+					<!-- Product Extra chứa thuộc tính Pos mang giá trị 4 sẽ được đánh số thứ tự 4 trên hoá đơn -->
+				</Product>
+			</Products>
+			<ArisingDate>29/08/2018</ArisingDate>
+			<Total>39200000</Total>
+			<VATRate>10</VATRate>
+			<VATAmount>3920000</VATAmount>
+			<Amount>43120000</Amount>
+			<AmountInWords>Bốn mươi ba triệu một trăm hai mươi nghìn đồng.</AmountInWords>
+		</Invoice>
+	</Inv>
+</Invoices>

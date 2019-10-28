@@ -1,0 +1,28 @@
+<?xml version="1.0" standalone="yes"?>
+<Config>
+  <DatabaseList>
+    <Stt>1</Stt>
+    <Server>192.168.1.99\SQLSERVER2K8</Server>
+    <Server2>192.168.1.99\SQLSERVER2K8</Server2>
+    <Database>TS24</Database>
+    <Database2>TS24</Database2>
+    <UserId>sa</UserId>
+    <UserId2>sa</UserId2>
+    <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
+    <Epassword2>l3q0CpB7reTyiOANz2nQMA==</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <TimeOut>120</TimeOut>
+    <Note>Dữ liệu TEST</Note>
+    <UseIsolation>1</UseIsolation>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>n3RNqI9XXEog0njmmdo/yUZAoF2wV8KJuwwoEAVvRsQ=</Key>
+  </DatabaseList>
+  <ServerConfig>
+    <ServerName>HUUANV6</ServerName>
+    <ServerIP>192.168.1.141</ServerIP>
+    <CheckServer>0</CheckServer>
+    <PasswordV6>bHyNgIHonRs=</PasswordV6>
+  </ServerConfig>
+</Config>

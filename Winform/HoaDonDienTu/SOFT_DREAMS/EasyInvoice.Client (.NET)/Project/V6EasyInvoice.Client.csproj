@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{32176E0C-BA35-4973-8E9C-89DF31C5DF83}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <AssemblyName>V6EasyInvoice.Client</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EasyInvoice.Json">
+      <HintPath>..\EasyInvoice.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Security" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="V6EasyInvoice.Client.Interop\FontCase.cs" />
+    <Compile Include="V6EasyInvoice.Client.Interop\FontConverter.cs" />
+    <Compile Include="V6EasyInvoice.Client.Interop\FontIndex.cs" />
+    <Compile Include="V6EasyInvoice.Client.Interop\Service.cs" />
+    <Compile Include="V6EasyInvoice.Client.Services\EasyService.cs" />
+    <Compile Include="V6EasyInvoice.Client\Cryptography.cs" />
+    <Compile Include="V6EasyInvoice.Client\EasyClient.cs" />
+    <Compile Include="V6EasyInvoice.Client\EasyRequest.cs" />
+    <Compile Include="V6EasyInvoice.Client\EasyResponse.cs" />
+    <Compile Include="V6EasyInvoice.Client\InvoiceInfo.cs" />
+    <Compile Include="V6EasyInvoice.Client\Method.cs" />
+    <Compile Include="V6EasyInvoice.Client\Request.cs" />
+    <Compile Include="V6EasyInvoice.Client\Resource.cs" />
+    <Compile Include="V6EasyInvoice.Client\Response.cs" />
+    <Compile Include="V6EasyInvoice.Client\ResponseData.cs" />
+    <Compile Include="V6EasyInvoice.Client\Utils.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

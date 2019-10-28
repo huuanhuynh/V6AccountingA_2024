@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="ExecCommand">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PartnerGUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EncryptedCommandData" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExecCommandResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExecCommandResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateInvoice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="encodedInvoiceData" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="partnerGUID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateInvoiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateInvoiceResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInvoiceInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="invoiceGUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="partnerGUID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInvoiceInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInvoiceInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInvoiceStatusID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="invoiceGUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="partnerGUID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInvoiceStatusIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInvoiceStatusIDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReSend">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="invoiceGUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="partnerGUID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReSendResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReSendResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInvoiceHistory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="invoiceGUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="partnerGUID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInvoiceHistoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInvoiceHistoryResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ExecCommandSoapIn">
+    <wsdl:part name="parameters" element="tns:ExecCommand" />
+  </wsdl:message>
+  <wsdl:message name="ExecCommandSoapOut">
+    <wsdl:part name="parameters" element="tns:ExecCommandResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateInvoiceSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateInvoice" />
+  </wsdl:message>
+  <wsdl:message name="CreateInvoiceSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateInvoiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInvoiceInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInvoiceInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetInvoiceInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInvoiceInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInvoiceStatusIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInvoiceStatusID" />
+  </wsdl:message>
+  <wsdl:message name="GetInvoiceStatusIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInvoiceStatusIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReSendSoapIn">
+    <wsdl:part name="parameters" element="tns:ReSend" />
+  </wsdl:message>
+  <wsdl:message name="ReSendSoapOut">
+    <wsdl:part name="parameters" element="tns:ReSendResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInvoiceHistorySoapIn">
+    <wsdl:part name="parameters" element="tns:GetInvoiceHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetInvoiceHistorySoapOut">
+    <wsdl:part name="parameters" element="tns:GetInvoiceHistoryResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WSPublicEHoaDonSoap">
+    <wsdl:operation name="ExecCommand">
+      <wsdl:input message="tns:ExecCommandSoapIn" />
+      <wsdl:output message="tns:ExecCommandSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateInvoice">
+      <wsdl:input message="tns:CreateInvoiceSoapIn" />
+      <wsdl:output message="tns:CreateInvoiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoiceInfo">
+      <wsdl:input message="tns:GetInvoiceInfoSoapIn" />
+      <wsdl:output message="tns:GetInvoiceInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoiceStatusID">
+      <wsdl:input message="tns:GetInvoiceStatusIDSoapIn" />
+      <wsdl:output message="tns:GetInvoiceStatusIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReSend">
+      <wsdl:input message="tns:ReSendSoapIn" />
+      <wsdl:output message="tns:ReSendSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoiceHistory">
+      <wsdl:input message="tns:GetInvoiceHistorySoapIn" />
+      <wsdl:output message="tns:GetInvoiceHistorySoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSPublicEHoaDonSoap" type="tns:WSPublicEHoaDonSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ExecCommand">
+      <soap:operation soapAction="http://tempuri.org/ExecCommand" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateInvoice">
+      <soap:operation soapAction="http://tempuri.org/CreateInvoice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoiceInfo">
+      <soap:operation soapAction="http://tempuri.org/GetInvoiceInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoiceStatusID">
+      <soap:operation soapAction="http://tempuri.org/GetInvoiceStatusID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReSend">
+      <soap:operation soapAction="http://tempuri.org/ReSend" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoiceHistory">
+      <soap:operation soapAction="http://tempuri.org/GetInvoiceHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSPublicEHoaDonSoap12" type="tns:WSPublicEHoaDonSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ExecCommand">
+      <soap12:operation soapAction="http://tempuri.org/ExecCommand" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateInvoice">
+      <soap12:operation soapAction="http://tempuri.org/CreateInvoice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoiceInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetInvoiceInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoiceStatusID">
+      <soap12:operation soapAction="http://tempuri.org/GetInvoiceStatusID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReSend">
+      <soap12:operation soapAction="http://tempuri.org/ReSend" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoiceHistory">
+      <soap12:operation soapAction="http://tempuri.org/GetInvoiceHistory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSPublicEHoaDon">
+    <wsdl:port name="WSPublicEHoaDonSoap" binding="tns:WSPublicEHoaDonSoap">
+      <soap:address location="https://wsdemo.ehoadon.vn/WSPublicEHoaDon.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSPublicEHoaDonSoap12" binding="tns:WSPublicEHoaDonSoap12">
+      <soap12:address location="https://wsdemo.ehoadon.vn/WSPublicEHoaDon.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

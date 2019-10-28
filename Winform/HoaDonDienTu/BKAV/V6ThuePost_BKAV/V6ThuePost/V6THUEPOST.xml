@@ -1,0 +1,73 @@
+﻿<?xml version="1.0"?>
+<Root>
+	<V6Info Field='BkavPartnerGUID' 	Value='C0lnuR2zxo+VxcfjEYp6FUep+/CBDmu19fyCpuY3JAxddM+HIkqaNQ=='/>
+	<V6Info Field='BkavPartnerToken' 	Value='S7E75uuQXj//rSgk71Iw8EYRCmhIS+7RDy2hXK6zDhqR/X8cEX3txl1skdjN2oYfZPSh7RKFAAopNVRp5lX+o+5kLp8ZvWD/'/>
+  <V6Info Field='BkavCommandTypeNew' 	Value='Ers0JMABBas='/>
+	<V6Info Field='baselink' 	Value='https://wsdemo.ehoadon.vn/WSPublicEHoaDon.asmx' Type=''/>
+	
+	<!--Một số ký tự web: [&apos;]=[']	[&quot;]=["]	[&lt;]=[<]	[&gt;]=[>]	[&amp;]=[&]	-->
+	<!--Các thông tin đơn vị được in trên hóa đơn-->			
+	<GeneralInvoiceInfo Field='InvoiceTypeID' 	Value='1'	DataType='Int'	Note='Loại Hoá đơn: luôn là 1	(Hóa đơn giá trị gia tăng)'/>
+	<GeneralInvoiceInfo Field='InvoiceDate' 	FieldV6='ngay_ct' 		Type='Field'/>
+	<GeneralInvoiceInfo Field='BuyerName' 		FieldV6='ong_ba'		Type='Field'/>
+	<GeneralInvoiceInfo Field='BuyerTaxCode' 	FieldV6='ma_so_thue'	Type='Field'/>
+	<GeneralInvoiceInfo Field='BuyerUnitName' 	FieldV6='ten_kh'		Type='Field'/>
+	<GeneralInvoiceInfo Field='BuyerAddress' 	FieldV6='dia_chi'		Type='Field'/>
+	<GeneralInvoiceInfo Field='BuyerBankAccount'	FieldV6=''		Value='' 	Type='Field'/>
+	<GeneralInvoiceInfo Field='PayMethodID' 	FieldV6='ma_httt1' Type='Field'	DataType='Int'	Value='1'	Note='Hình thức thanh toán: 1	Tiền mặt (mặc định), 2	Chuyển khoản, 3	Tiền mặt/Chuyển khoản, 4	Xuất hàng cho chi nhánh, 5	Hàng biếu tặng'/>
+	<GeneralInvoiceInfo Field='ReceiveTypeID'	Value='1' 	FieldV6=''	Type='Field'		DataType='Int'/>
+	<GeneralInvoiceInfo Field='ReceiverEmail'	Value='dtdnhathoang2017@gmail.com' 	FieldV6='' Type='Field'/>
+	<GeneralInvoiceInfo Field='ReceiverMobile'	Value='' 	FieldV6='' Type='Field'/>
+	<GeneralInvoiceInfo Field='ReceiverAddress'	FieldV6='Dia_chi' Type='Field'	Value='' 	Note='Địa chỉ nhận Hoá đơn (Hoá đơn in chuyển đổi)'/>
+	<GeneralInvoiceInfo Field='ReceiverName'	FieldV6='Ten_kh' Type='Field'	Value='' 	Note='Tên người nhận Hoá đơn (Hoá đơn in chuyển đổi)'/>
+	
+	<GeneralInvoiceInfo Field='Note'			FieldV6='Ghi_chu' 	Type='Field'/>
+	<GeneralInvoiceInfo Field='UserDefine'		FieldV6='Ghi_chu' 	Type='Field'/>
+	<GeneralInvoiceInfo Field='BillCode'		FieldV6='So_CT' 	Type='Field'/>
+	<GeneralInvoiceInfo Field='CurrencyID' 		FieldV6='MA_NT'		Type='Field'/>
+	<GeneralInvoiceInfo Field='ExchangeRate' 	FieldV6='TY_GIA'	Type='Field'/>
+	<GeneralInvoiceInfo Field='InvoiceGUID' 	FieldV6='UID'		Type='Field'/>
+	<GeneralInvoiceInfo Field='InvoiceStatusID' FieldV6='StatusID'	Type='Field'/>
+	<GeneralInvoiceInfo Field='InvoiceForm' 	FieldV6='MA_MAUHD'	Type='Field'/>
+	<GeneralInvoiceInfo Field='InvoiceSerial' 	FieldV6='SO_SERI'	Type='Field'/>
+	<GeneralInvoiceInfo Field='InvoiceNo' 		FieldV6='SO_CT'		Type='Field'/>
+	<GeneralInvoiceInfo Field='InvoiceCode' 	FieldV6='STT_REC'	Type='Field'/>
+	<GeneralInvoiceInfo Field='SignedDate' 		FieldV6='ngay_ct'	Type='Field'/>
+	<GeneralInvoiceInfo Field='TypeCreateInvoice' 	Value='0'	FieldV6=''	Type='Field'	Note='default 0: Tạo Hoá đơn, 1: Tạo Hoá đơn thay thế, 2: Tạo Hoá đơn điều chỉnh thông tin, 3: Tạo Hoá đơn điều chỉnh tăng, 4: Tạo Hoá đơn điều chỉnh giảm'/>
+	<GeneralInvoiceInfo Field='OriginalInvoiceIdentify' 	Value=''	FieldV6='FKEY_HD'	Type='Field'	Note='Thông tin Hoá đơn gốc dùng trong trường hợp thay thế, điều chỉnh. Định dạng như sau: [Mẫu Số]_[Ký hiệu]_[Số Hoá đơn], ví dụ: [01GTKT0/001]_[AA/17E]_[0000001]'/>	
+	
+
+<!--a____________Tên sử dụng trong report_____________Tên trường dữ liệu tương ứng_____________-->
+	<ItemInfo	Field='ItemName'	FieldV6='ten_vt'	Type='Field'/>
+	<ItemInfo	Field='UnitName'		FieldV6='dvt'	Type='Field'/>
+	<ItemInfo	Field='Qty'	FieldV6='so_luong'	Type='Field'/>
+	<ItemInfo	Field='Price'	FieldV6='gia2'	Type='Field'/>
+	<ItemInfo	Field='Amount'	FieldV6='tien2'	Type='Field'/>
+	<ItemInfo	Field='TaxRateID'	Value='1'	DataType='Int'	FieldV6='TaxRateID'	Type='Field'	Note='1	0%, 2	5%, 3	10%, 4	Không chịu thuế, 5	Không kê khai thuế, 6 Khác'/>
+	<ItemInfo	Field='TaxAmount'	FieldV6='thue'	Type='Field'/>
+	<ItemInfo	Field='IsDiscount'	FieldV6='ck'	Type='Field'	DataType='Bool'/>
+	<ItemInfo	Field='UserDefineDetails'	Value='string đối tượng dạng json hoặc xml'	FieldV6='GC_TD1'	Type='Field'/>
+	<ItemInfo	Field='IsIncrease'	FieldV6='GC_TD1'	Note='Dùng mã lệnh 121: Điều chỉnh thì Báo tăng là True, Báo giảm là False'	DataType='Bool'	Type='Field'/>
+	
+	<!--
+	// Định danh duy nhất cho hóa đơn ở hệ thống của Partner (Phía Client).
+    // Chỉ dùng 1 trong 2 trường PartnerInvoiceID, PartnerInvoiceStringID theo 1 trong 2 cách sau:
+    // Cách 1: Dùng PartnerInvoiceID: Set PartnerInvoiceID > 0 và PartnerInvoiceStringID = null
+    // Cách 2: Dùng PartnerInvoiceStringID: Set PartnerInvoiceID = 0 và PartnerInvoiceStringID != null
+	-->
+	<SummarizeInfo	Field='PartnerInvoiceID'		Value='26062018092846'	FieldV6='Partner_id'	Type='Field'	DataType='string'/>
+	<SummarizeInfo	Field='PartnerInvoiceStringID'	Value=''	FieldV6=''	Type=''/>
+	
+	<SummarizeInfo	Field='sumOfTotalLineAmountWithoutTax'		FieldV6='T_TIEN2'	Type='Field'/>
+	<SummarizeInfo	Field='totalAmountWithoutTax'		FieldV6='T_TIEN2'	Type='Field'/>
+	<SummarizeInfo	Field='totalTaxAmount'		FieldV6='T_THUE'	Type='Field'/>
+	<SummarizeInfo	Field='totalAmountWithTax'		FieldV6='T_TT'	Type='Field'/>
+	<SummarizeInfo	Field='totalAmountWithTaxInWords'		FieldV6='t_tt' Type='Field:N2C'/>
+	<SummarizeInfo	Field='discountAmount'		FieldV6='T_CK'	Type='Field'/>
+	<SummarizeInfo	Field='taxPercentage'		FieldV6='THUE_SUAT'	Type='Field'/>
+	
+	
+	<TaxBreakdowns	Field='taxPercentage'		FieldV6='THUE_SUAT'	Type='Field'/>
+	<TaxBreakdowns	Field='taxableAmount'		FieldV6='T_TIEN2'	Type='Field'/>
+	<TaxBreakdowns	Field='taxAmount'		FieldV6='T_THUE'	Type='Field'/>
+</Root>	

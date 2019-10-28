@@ -1,0 +1,28 @@
+﻿chị ơi có demo rồi chị kiểm tra giúp em 
+Cadmin:
+https://0315511086-democadmin.vnpt-invoice.com.vn
+/ USER:
+   0315511086_admin_demo
+PASS:
+   123456aA@2
+/Portal:https://demo-portaltool-notax.vnpt-invoice.com.vn/
+LogOn
+0315511086-democadmin.vnpt-invoice.com.vn
+https://0315511086-democadmin.vnpt-invoice.com.vn/
+
+
+LogOn
+0315511086-democadmin.vnpt-invoice.com.vn
+https://0315511086-democadmin.vnpt-invoice.com.vn/
+
+
+3/ Webservice:
+
+https://0315511086-democadmin.vnpt-invoice.com.vn/PublishService.asmx
+https://0315511086-democadmin.vnpt-invoice.com.vn/PortalService.asmx
+https://0315511086-democadmin.vnpt-invoice.com.vn/BusinessService.asmx
+
+Acc: 0315511086_service
+Pass: 123456aA@
+
+Số anh Tưởng bên vnpt nè a. 0919071268

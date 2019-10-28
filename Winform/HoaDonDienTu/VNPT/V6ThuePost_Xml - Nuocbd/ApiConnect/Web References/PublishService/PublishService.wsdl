@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="UpdateCus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="XMLCusData" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="convert" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateCusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateCusResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setCusCert">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="certSerial" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="certString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cusCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setCusCertResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="setCusCertResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportAndPublishInv">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Account" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ACpass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="xmlInvData" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pattern" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serial" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="convert" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportAndPublishInvResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ImportAndPublishInvResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="UpdateCusSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateCus" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCusSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateCusResponse" />
+  </wsdl:message>
+  <wsdl:message name="setCusCertSoapIn">
+    <wsdl:part name="parameters" element="tns:setCusCert" />
+  </wsdl:message>
+  <wsdl:message name="setCusCertSoapOut">
+    <wsdl:part name="parameters" element="tns:setCusCertResponse" />
+  </wsdl:message>
+  <wsdl:message name="ImportAndPublishInvSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportAndPublishInv" />
+  </wsdl:message>
+  <wsdl:message name="ImportAndPublishInvSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportAndPublishInvResponse" />
+  </wsdl:message>
+  <wsdl:portType name="PublishServiceSoap">
+    <wsdl:operation name="UpdateCus">
+      <wsdl:input message="tns:UpdateCusSoapIn" />
+      <wsdl:output message="tns:UpdateCusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setCusCert">
+      <wsdl:input message="tns:setCusCertSoapIn" />
+      <wsdl:output message="tns:setCusCertSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportAndPublishInv">
+      <wsdl:input message="tns:ImportAndPublishInvSoapIn" />
+      <wsdl:output message="tns:ImportAndPublishInvSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PublishServiceSoap" type="tns:PublishServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UpdateCus">
+      <soap:operation soapAction="http://tempuri.org/UpdateCus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setCusCert">
+      <soap:operation soapAction="http://tempuri.org/setCusCert" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportAndPublishInv">
+      <soap:operation soapAction="http://tempuri.org/ImportAndPublishInv" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PublishServiceSoap12" type="tns:PublishServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UpdateCus">
+      <soap12:operation soapAction="http://tempuri.org/UpdateCus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setCusCert">
+      <soap12:operation soapAction="http://tempuri.org/setCusCert" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportAndPublishInv">
+      <soap12:operation soapAction="http://tempuri.org/ImportAndPublishInv" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PublishService">
+    <wsdl:port name="PublishServiceSoap" binding="tns:PublishServiceSoap">
+      <soap:address location="https://nuocbdgservicedemo.vnpt-invoice.com.vn/PublishService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PublishServiceSoap12" binding="tns:PublishServiceSoap12">
+      <soap12:address location="https://nuocbdgservicedemo.vnpt-invoice.com.vn/PublishService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

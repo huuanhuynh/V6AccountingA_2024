@@ -1,0 +1,77 @@
+﻿<?xml version="1.0"?>
+<Root>
+	<V6Info Field='username' 	Value='R9IdUR3U6ZRfjsWtfNxwCg==' Type=''/>
+	<V6Info Field='password' 	Value='+BLJxEoTt8bFtr5K6PNtaA=='/>
+	<V6Info Field='codetax' 	Value='R9IdUR3U6ZRfjsWtfNxwCg=='/>
+	<V6Info Field='baselink' 	Value='UQL2EugVpi3xME/peQKMdCdZcQDd2k1SzF/sryJAHCytodGJelrl1w=='  Value0='UQL2EugVpi2UK60F+6oJmQTg/pet0ME5B1oK/prF4UUmf2yaMYFYwg==' Type=''/>
+	<V6Info Field='createlink' 	Value='ApVGcixL0L/ZAQbTph04SmvCWY+TDkm5dka0wKDVUTBClXa0XdDH9lGXBV2st+to' Type=''/>
+	<V6Info Field='modifylink' 	Value='' Type='ApVGcixL0L/ZAQbTph04SmvCWY+TDkm5dka0wKDVUTBClXa0XdDH9lGXBV2st+to'/>
+	<V6Info Field='downloadlinkzip' 	Value='ApVGcixL0L/ZAQbTph04SgTqfrLyCuDXIisNPBY8U8KNdWMoBjaDHenYJ0XjeDzm' Type=''/>
+	<V6Info Field='downloadlinkpdf' 	Value='ApVGcixL0L/ZAQbTph04SgTqfrLyCuDXIisNPBY8U8IPddWuSQO/r0pod3iNgy2tDN+zBmQaM60=' Type=''/>
+  <V6Info Field='downloadlinkpdfe' 	Value='ApVGcixL0L/ZAQbTph04SmvCWY+TDkm5IXrTggpecfcuPLcm2kgTIKtlIs92Pkb3' Type=''/>
+	
+	<!--Một số ký tự web: [&apos;]=[']	[&quot;]=["]	[&lt;]=[<]	[&gt;]=[>]	[&amp;]=[&]	-->
+	<!--Các thông tin đơn vị được in trên hóa đơn-->			
+	<GeneralInvoiceInfo Field='invoiceType' 	Value='02GTTT'/>
+	<GeneralInvoiceInfo Field='templateCode' 	Value='01GTKT0/001'/>
+	<GeneralInvoiceInfo Field='invoiceSeries'	Value='AB/19E' 	FieldV6='SO_SERI' 	Type=''/>
+	<GeneralInvoiceInfo Field='transactionUuid' 	Value=''	Type='Field'	FieldV6='UID'/>
+	<GeneralInvoiceInfo Field='invoiceIssuedDate' 	Value='07/07/2018' FieldV6='ngay_ct' Type='Field'	DataType='Date'/>
+	<GeneralInvoiceInfo Field='currencyCode' 	Value='VND'/>
+	<GeneralInvoiceInfo Field='adjustmentType' 	Value='1'	FieldV6='adjustmentType' Type='Field'/>
+	<GeneralInvoiceInfo Field='paymentStatus' 	Value=''	FieldV6='status' Type='Field' DataType='Bool'/>
+	<GeneralInvoiceInfo Field='paymentType' 	Value=''	FieldV6='httt' Type='Field'/>
+	<GeneralInvoiceInfo Field='paymentTypeName' 	Value=''/>
+	<GeneralInvoiceInfo Field='cusGetInvoiceRight' 	Value='1'	FieldV6=''	Type='Field' DataType='Bool'/>
+	<GeneralInvoiceInfo Field='buyerIdNo' 	Value=''/>
+	<GeneralInvoiceInfo Field='buyerIdType' 	Value=''/>
+  
+	<SellerInfo Field='sellerLegalName' 	Value='CÔNG TY A'/>
+	<SellerInfo Field='sellerTaxCode' 		Value='0302375710'/>
+	<SellerInfo Field='sellerAddressLine'	Value='6A HCM'/>
+	<SellerInfo Field='sellerPhoneNumber'	Value='08'/>
+	<SellerInfo Field='sellerFaxNumber'		Value='08'/>
+	<SellerInfo Field='sellerEmail'			Value='a@gmail.com'/>
+	
+	
+	<Payments Field='paymentMethodName'			Value=''	FieldV6='MA_HTTT' Type='Field'/>
+	
+	<!--a____________Tên parameter trong report_____________Tên trường dữ liệu tương ứng_____________-->
+	<BuyerInfo Field='buyerName' 	FieldV6='ong_ba'			Type='Field'/>
+	<BuyerInfo Field='buyerLegalName' 			FieldV6='ten_kh' 			Type='Field'  DataType='UPPER'/>
+	<BuyerInfo Field='buyerTaxCode' 			FieldV6='ma_so_thue'		Type='Field'/>
+	<BuyerInfo Field='buyerAddressLine' 			FieldV6='dia_chi'			Type='Field'/>
+	<BuyerInfo Field='buyerPhoneNumber' 			FieldV6='DIEN_THOAI'			Type='Field'/>
+	<BuyerInfo Field='buyerFaxNumber' 			FieldV6='FAX'			Type='Field'/>
+	<BuyerInfo Field='buyerEmail' 			FieldV6='EMAIL'			Type='Field'/>
+	<BuyerInfo Field='buyerIdNo' 			FieldV6='MA_KH'			Type='Field'/>
+	<BuyerInfo Field='buyerIdType' 			FieldV6='LOAI'			Type='Field'/>	
+
+<!--a____________Tên sử dụng trong report_____________Tên trường dữ liệu tương ứng_____________-->
+	<ItemInfo	Field='lineNumber'		FieldV6='stt'	Type='Field'/>
+	<ItemInfo	Field='itemCode'	FieldV6='ma_vt'		Type='Field'/>
+	<ItemInfo	Field='itemName'	FieldV6='ma_vt+"->"+ten_vt'	Type='Field'/>
+	<ItemInfo	Field='unitName'		FieldV6='dvt'	Type='Field'/>
+	<ItemInfo	Field='quantity'	FieldV6='so_luong'	Type='Field'/>
+	<ItemInfo	Field='unitPrice'	FieldV6='gia2'	Type='Field'/>
+	<ItemInfo	Field='itemTotalAmountWithoutTax'	FieldV6='tien2'	Type='Field'/>
+	<ItemInfo	Field='taxPercentage'	FieldV6='thue_suatI'	Type='Field'/>
+	<ItemInfo	Field='taxAmount'	FieldV6='thue'	Type='Field'/>
+	<ItemInfo	Field='discount'	FieldV6='0'	Type='Field'/>
+	<ItemInfo	Field='itemDiscount'	FieldV6='ck'	Type='Field'/>
+  <!--ItemInfo	Field='selection'	FieldV6='0'	Type='Field'/-->
+	
+	
+	<SummarizeInfo	Field='sumOfTotalLineAmountWithoutTax'		FieldV6='T_TIEN2'	Type='Field'/>
+	<SummarizeInfo	Field='totalAmountWithoutTax'		FieldV6='T_TIEN2'	Type='Field'/>
+	<SummarizeInfo	Field='totalTaxAmount'		FieldV6='T_THUE'	Type='Field'/>
+	<SummarizeInfo	Field='totalAmountWithTax'		FieldV6='T_TT'	Type='Field'/>
+	<SummarizeInfo	Field='totalAmountWithTaxInWords'		FieldV6='t_tt' Type='Field' DataType='N2CMANT'/>
+	<SummarizeInfo	Field='discountAmount'		FieldV6='T_CK'	Type='Field'/>
+	<SummarizeInfo	Field='taxPercentage'		FieldV6='THUE_SUAT'	Type='Field'/>
+	
+	
+	<TaxBreakdowns	Field='taxPercentage'		FieldV6='THUE_SUAT'	Type='Field'/>
+	<TaxBreakdowns	Field='taxableAmount'		FieldV6='T_TIEN2'	Type='Field'/>
+	<TaxBreakdowns	Field='taxAmount'		FieldV6='T_THUE'	Type='Field'/>
+</Root>	

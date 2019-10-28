@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{14A2C520-1939-4B6A-B584-EE5797F26701}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>V6ThuePost</RootNamespace>
+    <AssemblyName>V6ThuePostObjects</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ResponseObjects\V6Return.cs" />
+    <Compile Include="ViettelObjects\BuyerInfo.cs" />
+    <Compile Include="ViettelObjects\CreateInvoiceResponse.cs" />
+    <Compile Include="ViettelObjects\CreateInvoiceResponse_Result.cs" />
+    <Compile Include="ViettelObjects\GeneralInvoiceInfo.cs" />
+    <Compile Include="ViettelObjects\GetInvoice\GetInvoiceRepresentationFileParameters.cs" />
+    <Compile Include="ViettelObjects\InvoiceInfo.cs" />
+    <Compile Include="ViettelObjects\ItemInfo.cs" />
+    <Compile Include="ViettelObjects\PostObjectViettel.cs" />
+    <Compile Include="ViettelObjects\SellerInfo.cs" />
+    <Compile Include="ViettelObjects\SummarizeInfo.cs" />
+    <Compile Include="ViettelObjects\TaxBreakdown.cs" />
+    <Compile Include="VnptObjects\Customers.cs" />
+    <Compile Include="VnptObjects\Customer.cs" />
+    <Compile Include="VnptObjects\ReplaceInv.cs" />
+    <Compile Include="VnptObjects\AdjustInv.cs" />
+    <Compile Include="VnptObjects\Product.cs" />
+    <Compile Include="VnptObjects\Products.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="VnptObjects\Invoices.cs" />
+    <Compile Include="VnptObjects\Inv.cs" />
+    <Compile Include="VnptObjects\CreateInvoiceResponse_Result.cs" />
+    <Compile Include="VnptObjects\CreateInvoiceResponse.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\V6Tools\V6Tools\V6Tools.csproj">
+      <Project>{4F797E67-948D-4EEC-ACD7-758028E9166F}</Project>
+      <Name>V6Tools</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="downloadInvAttachmentFkey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fkey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPass" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="downloadInvAttachmentFkeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="downloadInvAttachmentFkeyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="uploadInvAttachmentFkey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fkey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPass" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Attachment" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AttachmentExt" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AttachmentName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="uploadInvAttachmentFkeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="uploadInvAttachmentFkeyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="downloadInvAttachmentFkeySoapIn">
+    <wsdl:part name="parameters" element="tns:downloadInvAttachmentFkey" />
+  </wsdl:message>
+  <wsdl:message name="downloadInvAttachmentFkeySoapOut">
+    <wsdl:part name="parameters" element="tns:downloadInvAttachmentFkeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="uploadInvAttachmentFkeySoapIn">
+    <wsdl:part name="parameters" element="tns:uploadInvAttachmentFkey" />
+  </wsdl:message>
+  <wsdl:message name="uploadInvAttachmentFkeySoapOut">
+    <wsdl:part name="parameters" element="tns:uploadInvAttachmentFkeyResponse" />
+  </wsdl:message>
+  <wsdl:portType name="AttachmentServiceSoap">
+    <wsdl:operation name="downloadInvAttachmentFkey">
+      <wsdl:input message="tns:downloadInvAttachmentFkeySoapIn" />
+      <wsdl:output message="tns:downloadInvAttachmentFkeySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="uploadInvAttachmentFkey">
+      <wsdl:input message="tns:uploadInvAttachmentFkeySoapIn" />
+      <wsdl:output message="tns:uploadInvAttachmentFkeySoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AttachmentServiceSoap" type="tns:AttachmentServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="downloadInvAttachmentFkey">
+      <soap:operation soapAction="http://tempuri.org/downloadInvAttachmentFkey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uploadInvAttachmentFkey">
+      <soap:operation soapAction="http://tempuri.org/uploadInvAttachmentFkey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AttachmentServiceSoap12" type="tns:AttachmentServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="downloadInvAttachmentFkey">
+      <soap12:operation soapAction="http://tempuri.org/downloadInvAttachmentFkey" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uploadInvAttachmentFkey">
+      <soap12:operation soapAction="http://tempuri.org/uploadInvAttachmentFkey" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AttachmentService">
+    <wsdl:port name="AttachmentServiceSoap" binding="tns:AttachmentServiceSoap">
+      <soap:address location="https://nuocbdgservicedemo.vnpt-invoice.com.vn/AttachmentService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AttachmentServiceSoap12" binding="tns:AttachmentServiceSoap12">
+      <soap12:address location="https://nuocbdgservicedemo.vnpt-invoice.com.vn/AttachmentService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

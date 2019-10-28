@@ -1,0 +1,23 @@
+﻿Dear anh Tuân, 
+
+Em gửi anh các file và webservice test của Thái Sơn. Anh tham khảo giúp em.
+
+Link test tham khảo chung:
+
+http://210.245.8.58:6789/einvoiceservice.asmx
+
+USER: tsd
+
+PASS: tsd@123
+
+Hàm sử dụng: XuatHoaDonDienTu_XML
+
+Hàm xem hóa đơn
+
+http://210.245.8.58:6789/hoadonviewer.aspx?mhd=6090f0c7-e07c-4fb2-93d6-7cba2c078733
+
+6090f0c7-e07c-4fb2-93d6-7cba2c078733: là mã trả vể khi thực hiện service xuất hóa đơn
+
+Mẫu số:01GTKT0/001
+
+Ký hiệu:AA/17E

@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>AngularJs $http.post() Service Method Example
+    </title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script type="text/javascript">
+        var app = angular.module('postserviceApp', []);
+        app.controller('postserviceCtrl', function ($scope, $http) {
+            $scope.name = null;
+            $scope.age = null;
+            $scope.adress = null;
+            $scope.lblMsg = null;
+            $scope.postdata = function (name, age, adress) {
+                var data = {
+                    
+                    
+                    : "e3910a90-cb86-48bf-98b4-fdf3c399d205",
+                    CommandData: "8qsKPRJps+0Ul4Hmy4Ux06xMTYyHnDBGNETQNH59Zg49PT/TTY5H+BZWi19WhFwuF023eoNBmF4s/2Wf2ub2A4lFwEbN9QCaEY/S3EubSA64rJTww/Q2XCQEZ1B5gHHEzMR9UfBpC0b5RV+uXY3NQL+wAdWYg8r1VOy8T3Zaxc9E+ra2xJLdKLFndPdS+88iaJCutGzdSGgQusAP1TtJv0tq+lJ6CMRRJe1uVBUrSEvCJsZU9Yj31XIRu2WxNyMKUhOpQ5/UV6gzgFFWNm97aHSpyaB81PzLatemUYO8eQhSjKjMr7x7V+GPuJvHuJr/MzZf+FBK8g04P5dY+SwcHJBb+ruUJAwHjCwlqU/zCgjDhNB7IPhGEd6DZ4eD+myseTuiEL4Iy7uwCwjloivE2jbkK2WSb2ye24smuvIUnvx6OKW+rQTi3LDo17dR0EHK9Oq7u1WfrsDSdXIvNxamgFnz+TVqbZGORezqBbNWQA6zZVZvtaT1EswLsK+WYUqB/dArCeVp0T0m3WMzOmvscjZHvUbHl92QIMv5Fn31ZVrELsFEcf2+70uVbThvh9EX3dKL0DEP6eU25kfh2nUGWqwrtDY5NPkOAN1B5/6Cwpjrv6jU4DxCR9tlG7/fd1lEArJp2g4szvhP7jQP45Mi/2eI4jmjJ/XdryrhGfDRyf4dBWthio0n0+Eobs/rxkx1O4slOsLquCUPO8OG1EsMfErmxTpMe9XETvLm7t01r0VWfIfJIWk4RWLAX8+BYo1IhVIU0baTfv79uFLzZEuYYxw1f1vQB4OSY8Qlx9M6yvE+K1g1Hz7bfSJ32EcJ13n/m7dRlCMUbpJT6r0qY0hsdnEg7B8f7s+Q"
+                //var data = { params: { partnerGUID: "e3910a90-cb86-48bf-98b4-fdf3c399d205", CommandData: "8qsKPRJps+0Ul4Hmy4Ux06xMTYyHnDBGNETQNH59Zg49PT/TTY5H+BZWi19WhFwuF023eoNBmF4s/2Wf2ub2A4lFwEbN9QCaEY/S3EubSA64rJTww/Q2XCQEZ1B5gHHEzMR9UfBpC0b5RV+uXY3NQL+wAdWYg8r1VOy8T3Zaxc9E+ra2xJLdKLFndPdS+88iaJCutGzdSGgQusAP1TtJv0tq+lJ6CMRRJe1uVBUrSEvCJsZU9Yj31XIRu2WxNyMKUhOpQ5/UV6gzgFFWNm97aHSpyaB81PzLatemUYO8eQhSjKjMr7x7V+GPuJvHuJr/MzZf+FBK8g04P5dY+SwcHJBb+ruUJAwHjCwlqU/zCgjDhNB7IPhGEd6DZ4eD+myseTuiEL4Iy7uwCwjloivE2jbkK2WSb2ye24smuvIUnvx6OKW+rQTi3LDo17dR0EHK9Oq7u1WfrsDSdXIvNxamgFnz+TVqbZGORezqBbNWQA6zZVZvtaT1EswLsK+WYUqB/dArCeVp0T0m3WMzOmvscjZHvUbHl92QIMv5Fn31ZVrELsFEcf2+70uVbThvh9EX3dKL0DEP6eU25kfh2nUGWqwrtDY5NPkOAN1B5/6Cwpjrv6jU4DxCR9tlG7/fd1lEArJp2g4szvhP7jQP45Mi/2eI4jmjJ/XdryrhGfDRyf4dBWthio0n0+Eobs/rxkx1O4slOsLquCUPO8OG1EsMfErmxTpMe9XETvLm7t01r0VWfIfJIWk4RWLAX8+BYo1IhVIU0baTfv79uFLzZEuYYxw1f1vQB4OSY8Qlx9M6yvE+K1g1Hz7bfSJ32EcJ13n/m7dRlCMUbpJT6r0qY0hsdnEg7B8f7s+Q" } };
+                };
+                //Call the services
+            $http.post('https://wsdemo.ehoadon.vn/WSPublicEHoaDon.asmx/ExecCommand', JSON.stringify(data)).then(function (response) {
+                    if (response.data)
+                        $scope.msg = "Post Data Submitted Successfully!";
+                }, function (response) {
+                    $scope.msg = "Service not Exists";
+                    $scope.statusval = response.status;
+                    $scope.statustext = response.statusText;
+                    $scope.headers = response.headers();
+                });
+            };
+        });
+    </script>
+</head>
+<body>
+    <h2>AngularJS Http Post Method Example</h2>
+    <div ng-app="postserviceApp" ng-controller="postserviceCtrl">
+        <div>
+            Name :
+            <input ng-model="name" /><br />
+            <br />
+            Age :
+            <input ng-model="age" /><br />
+            <br />
+            Adress :
+            <input ng-model="adress" /><br />
+            <br />
+            <input type="button" value="Send" ng-click="postdata(name, age, adress)" />
+            <br />
+            <br />
+        </div>
+        <p>Output Message : {{msg}}</p>
+        <p>StatusCode: {{statusval}}</p>
+        <p>Status: {{statustext}}</p>
+        <p>Response Headers: {{headers}}</p>
+    </div>
+</body>
+</html>

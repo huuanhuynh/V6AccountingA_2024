@@ -1,0 +1,37 @@
+namespace V6EasyInvoice.Client
+{
+	public enum Resource
+	{
+		Adjust,
+		Cancel,
+		Replace,
+		RemoveUnsigned,
+		Import,
+		ImportReserved,
+		ImportAndIssue,
+		CheckState,
+		GetByIkeys,
+		Issue,
+		ViewInvoice,
+		UpdateCustomer,
+		UpdateProduct,
+		CreateInvoiceStrip,
+		GetInvoiceStrip,
+		ClientReplace,
+		ClientReplaceTemp,
+		ClientLaunchReplacement,
+		ClientImport,
+		ClientLaunchImportation,
+		ClientAdjust,
+		ClientAdjustTemp,
+		ClientLaunchAdjustment,
+		ClientIssue,
+		ClientLaunchIssuance,
+		ReportUsage,
+		GetByDateRange,
+		GetPdf,
+		ReportInvoice,
+		ReportByProduct,
+		ReportByCustomer
+	}
+}

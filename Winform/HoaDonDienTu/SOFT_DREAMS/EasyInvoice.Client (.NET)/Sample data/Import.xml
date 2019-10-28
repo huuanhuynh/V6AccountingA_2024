@@ -1,0 +1,65 @@
+<Invoices>
+	<Inv>
+		<Invoice>
+			<Ikey>A000116038HDA</Ikey>
+			<CusCode>070DC</CusCode>
+			<Buyer/>
+			<CusName><![CDATA[Peek A Boo Dink & ICE]]></CusName>
+			<CusAddress>503 Trần Hưng Đạo, Hải Châu, Đà Nẵng</CusAddress>
+			<CusBankName/>
+			<CusPhone/>
+			<CusBankNo/>
+			<CusTaxCode/>
+			<PaymentMethod>TM/CK</PaymentMethod>
+			<CurrencyUnit>VND</CurrencyUnit>
+			<ExchangeRate>1</ExchangeRate>
+			<PaymentStatus>1</PaymentStatus>
+			<Email>test@softdreams.vn</Email>
+			<EmailCC>test1@softdreams.vn,test2@softdreams.vn</EmailCC>
+			<Products>
+				<Product>
+					<Code/>
+					<ProdName>Kem VANI 2800ml - Thường</ProdName>
+					<ProdUnit>Hộp</ProdUnit>
+					<ProdQuantity>2</ProdQuantity>
+					<ProdPrice>292160</ProdPrice>
+					<Total>584320</Total>
+					<VATRate>10</VATRate>
+					<VATAmount>58432</VATAmount>
+					<Amount>642752</Amount>
+					<Extra>{"Pos":"1"}</Extra>
+				</Product>
+				<Product>
+					<Code/>
+					<ProdName>Kem DÂU SỮA 2800ml - Thường</ProdName>
+					<ProdUnit>Hộp</ProdUnit>
+					<ProdQuantity>2</ProdQuantity>
+					<ProdPrice>292160</ProdPrice>
+					<Total>584320</Total>
+					<VATRate>10</VATRate>
+					<VATAmount>58433</VATAmount>
+					<Amount>642753</Amount>
+					<Extra>{"Pos":"2"}</Extra>
+				</Product>
+				<Product>
+					<Code/>
+					<ProdName>Chiết khấu 2%</ProdName>
+					<ProdUnit/>
+					<ProdQuantity/>
+					<ProdPrice/>
+					<Total>-23372</Total>
+					<VATRate>10</VATRate>
+					<VATAmount>-2338</VATAmount>
+					<Amount>-25710</Amount>
+					<Extra>{"Pos":"3"}</Extra>
+				</Product>
+			</Products>
+			<ArisingDate>06/03/2017</ArisingDate>
+			<Total>1145268</Total>
+			<VATRate>10</VATRate>
+			<VATAmount>114527</VATAmount>
+			<Amount>1259795</Amount>
+			<AmountInWords>Một triệu hai trăm năm mươi chín nghìn bảy trăm chín mươi lăm đồng.</AmountInWords>
+		</Invoice>
+	</Inv>
+</Invoices>

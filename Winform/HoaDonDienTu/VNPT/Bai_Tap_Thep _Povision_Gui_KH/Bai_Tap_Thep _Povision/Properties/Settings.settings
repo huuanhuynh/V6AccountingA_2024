@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Bai_Tap_Thep__Povision.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Bai_Tap_Thep__Povision_PublishServices_PublishService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://dv204admindemo.vnpt-invoice.com.vn/PublishService.asmx</Value>
+    </Setting>
+    <Setting Name="Bai_Tap_Thep__Povision_PortalServices_PortalService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://dv204admindemo.vnpt-invoice.com.vn/PortalService.asmx</Value>
+    </Setting>
+    <Setting Name="Bai_Tap_Thep__Povision_BusinessServices_BusinessService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://dv204admindemo.vnpt-invoice.com.vn/BusinessService.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:inv="http://thaison.vn/inv" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Header>
+    <inv:Authentication>
+      <inv:userName>tsd</inv:userName>
+      <inv:password>tsd@123</inv:password>
+    </inv:Authentication>
+  </soapenv:Header>
+  <soapenv:Body>
+    <inv:XuatHoaDonDienTu>
+      <inv:hoaDonEntity>
+        <inv:MaLoaiHoaDon>01</inv:MaLoaiHoaDon>
+        <inv:MauSo>01GTKT0/001</inv:MauSo>
+        <inv:KyHieu>AA/17E</inv:KyHieu>
+        <inv:NgayTaoHoaDon>2017-10-30</inv:NgayTaoHoaDon>
+        <inv:NgayXuatHoaDon>2017-10-30</inv:NgayXuatHoaDon>
+        <inv:BenBanMaDonVi/>
+        <inv:BenBanMaSoThue>0313572904</inv:BenBanMaSoThue>
+        <inv:BenBanTenDonVi></inv:BenBanTenDonVi>
+        <inv:BenBanDiaChi></inv:BenBanDiaChi>
+        <inv:BenMuaMaDonVi>0000133</inv:BenMuaMaDonVi>
+        <inv:BenMuaMaSoThue>0313682294</inv:BenMuaMaSoThue>
+        <inv:BenMuaTenDonVi>Công ty phát triển công nghệ thái sõn</inv:BenMuaTenDonVi>
+        <inv:BenMuaHoten>Công ty phát tri?n công nghêk thái sơn</inv:BenMuaHoten>
+        <inv:BenMuaDiaChi>5A Phan K? Bính P.ÐaKao Q.1 TP.HCM</inv:BenMuaDiaChi>
+        <inv:BenMuaFax>23578778978</inv:BenMuaFax>
+        <inv:BenMuaDienThoai>753453534298</inv:BenMuaDienThoai>
+        <inv:BenMuaEmail>aaaaa@gmail.com</inv:BenMuaEmail>
+        <inv:TienThueVat>19864.00</inv:TienThueVat>
+        <inv:TongTienHang>198636.00</inv:TongTienHang>
+        <inv:TongTienThanhToan>-218500.00</inv:TongTienThanhToan>
+        <inv:TienChietKhau>0.00</inv:TienChietKhau>
+        <inv:TongTienThanhToanBangChu/>
+        <inv:DongTienThanhToan>VND</inv:DongTienThanhToan>
+        <inv:HinhThucThanhToan>01</inv:HinhThucThanhToan>
+        <inv:TyGia>1</inv:TyGia>
+        <inv:SoBienLai>P0234HUS</inv:SoBienLai>
+        <inv:Tamung>0</inv:Tamung>
+        <inv:NoiXuatHoaDon>AB</inv:NoiXuatHoaDon>
+        <inv:MaKho>AB01</inv:MaKho>
+        <inv:NamHoc>0</inv:NamHoc>
+        <inv:TrangThaiDieuChinh>1</inv:TrangThaiDieuChinh>
+        <inv:LoaiBangKe>0</inv:LoaiBangKe>
+        <inv:HangHoas>
+          <inv:HangHoaEntity>
+            <inv:SoThuTu>1</inv:SoThuTu>
+            <inv:TenHang>Máy tính</inv:TenHang>
+            <inv:DonViTinh>CAI</inv:DonViTinh>
+            <inv:SoLuong>1.000</inv:SoLuong>
+            <inv:DonGia>198636.0000</inv:DonGia>
+            <inv:ThanhTien>198636.00</inv:ThanhTien>
+            <inv:Vat>10</inv:Vat>
+            <inv:TienVat>19864.00</inv:TienVat>
+            <inv:ThanhTienSauThue>0</inv:ThanhTienSauThue>
+            <inv:HeSoMon>0</inv:HeSoMon>
+            <inv:HeSo>0</inv:HeSo>
+            <inv:DonViPhi>0</inv:DonViPhi>
+            <inv:DieuChinh>0</inv:DieuChinh>
+            <inv:ChietKhauTien>0.00</inv:ChietKhauTien>
+          </inv:HangHoaEntity>
+        </inv:HangHoas>
+      </inv:hoaDonEntity>
+    </inv:XuatHoaDonDienTu>
+  </soapenv:Body>
+</soapenv:Envelope>

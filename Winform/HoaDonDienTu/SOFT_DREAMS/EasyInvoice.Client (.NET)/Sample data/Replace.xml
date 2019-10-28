@@ -1,0 +1,64 @@
+<ReplaceInv>
+	<Ikey>BR16/06-0038</Ikey>
+	<Buyer>
+		<![CDATA[Chi Nhánh Công Ty CP Trung Thành tại Bình Phước]]>
+	</Buyer>
+	<CusCode>
+		<![CDATA[14226]]>
+	</CusCode>
+	<CusName>
+		<![CDATA[Chi Nhánh Công Ty CP Trung Thành tại Bình Phước]]>
+	</CusName>
+	<CusAddress>
+		<![CDATA[L1B2 Nhà Văn Phòng KCN Minh Hưng - HQ, Ấp 3a, Xã Minh Hưng - H.CT - BP]]>
+	</CusAddress>
+	<CusPhone>
+		<![CDATA[]]>
+	</CusPhone>
+	<CusTaxCode>3700217123-003</CusTaxCode>
+	<PaymentMethod>TM/CK</PaymentMethod>
+	<ArisingDate>24/11/2018</ArisingDate>
+	<Email>client@test.com</Email>
+	<EmailCC>client1@test.com,client2@test.com</EmailCC>
+	<Products>
+		<Product>
+			<Code>
+				<![CDATA[08138]]>
+			</Code>
+			<ProdName>
+				<![CDATA[Bê tông Mac 200 10±2]]>
+			</ProdName>
+			<ProdUnit>
+				<![CDATA[M3]]>
+			</ProdUnit>
+			<ProdQuantity>10.00000</ProdQuantity>
+			<ProdPrice>1100000.00</ProdPrice>
+			<Total>11000000.00</Total>
+			<VATRate>10</VATRate>
+			<VATAmount>1100000.00</VATAmount>
+			<Amount>11000000.00</Amount>
+		</Product>
+		<Product>
+			<Code>
+				<![CDATA[08139]]>
+			</Code>
+			<ProdName>
+				<![CDATA[Bê tông Mac 300 10±2]]>
+			</ProdName>
+			<ProdUnit>
+				<![CDATA[M3]]>
+			</ProdUnit>
+			<ProdQuantity>1.00000</ProdQuantity>
+			<ProdPrice>1000000.00</ProdPrice>
+			<Total>1000000.00</Total>
+			<VATRate>10</VATRate>
+			<VATAmount>100000.00</VATAmount>
+			<Amount>1000000.00</Amount>
+		</Product>
+	</Products>
+	<VATRate>10</VATRate>
+	<VATAmount>1200000.00</VATAmount>
+	<Total>12000000.00</Total>
+	<Amount>13200000.00</Amount>
+	<AmountInWords>Mười ba triệu hai trăm ngàn đồng chẵn</AmountInWords>
+</ReplaceInv>

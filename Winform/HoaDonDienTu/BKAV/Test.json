@@ -1,0 +1,146 @@
+[
+{
+	"Invoice":
+	{
+		"InvoiceTypeID":1,
+		"InvoiceDate":"2018-05-17T11:13:15.0700178+07:00",
+		"BuyerName":"Nguyễn Văn A Update",
+		"BuyerTaxCode":"0104746603",
+		"BuyerUnitName":"Công Ty Luật TNHH ABC",
+		"BuyerAddress":"Nhà N2D Khu ĐT Trung Hoà-Nhân Chính, Phường Nhân Chính, Quận Thanh Xuân, Hà Nội",
+		"BuyerBankAccount":"",
+		"PayMethodID":1,
+		"ReceiveTypeID":3,
+		"ReceiverEmail":"dtdnhathoang2017@gmail.com",
+		"ReceiverMobile":"01789143399",
+		"ReceiverAddress":"Nhà N2D Khu ĐT Trung Hoà-Nhân Chính, Phường Nhân Chính, Quận Thanh Xuân, Hà Nội",
+		"ReceiverName":"Nguyễn Văn A",
+		"Note":"Test eHoaDon",
+		"UserDefine":null,
+		"BillCode":"",
+		"CurrencyID":"VND",
+		"ExchangeRate":1.0,
+		"InvoiceGUID":"00000000-0000-0000-0000-000000000000",
+		"InvoiceStatusID":1,
+		"InvoiceForm":"",
+		"InvoiceSerial":"",
+		"InvoiceNo":0,
+		"InvoiceCode":null,
+		"SignedDate":"2018-05-17T11:13:15.0700178+07:00",
+		"TypeCreateInvoice":0,
+		"OriginalInvoiceIdentify":null
+	},
+	"ListInvoiceDetailsWS":
+	[
+		{
+			"ItemName":"Chữ ký số Bkav CA ENT BN (bao gồm Thiết bị USB Token) update",
+			"UnitName":"Gói",
+			"Qty":1.0,
+			"Price":600000.0,
+			"Amount":600000.0,
+			"TaxRateID":3,
+			"TaxAmount":60000.0,
+			"IsDiscount":false,
+			"UserDefineDetails":"string đối tượng dạng json hoặc xml",
+			"IsIncrease":false
+		},
+		{
+			
+		}
+	],
+	"ListInvoiceAttachFileWS":[],
+	"PartnerInvoiceID":17052018111315,
+	"PartnerInvoiceStringID":""
+}
+]
+
+{
+"Invoice":{
+	"invoiceType":"",
+	"templateCode":"",
+	"invoiceIssuedDate":1515369600000,
+	"currencyCode":"",
+	"adjustmentType":"1",
+	"paymentStatus":false,
+	"paymentType":"",
+	"paymentTypeName":"",
+	"cusGetInvoiceRight":true,
+	"buyerIdNo":"",
+	"buyerIdType":""
+},
+"ListInvoiceDetailsWS":
+[
+{
+	"lineNumber":1,
+	"itemCode":"BCHOB31",
+	"itemName":"Bánh Ostar Muối 30g/80",
+	"unitName":"gói",
+	"quantity":800.000,
+	"unitPrice":4818.1820,
+	"itemTotalAmountWithoutTax":3854546.00,
+	"taxPercentage":10.00,
+	"taxAmount":366182.00,
+	"discount":null,
+	"itemDiscount":192727.00
+},{
+"lineNumber":2,"itemCode":"MIACEH009","itemName":"Mì Hảo hảo xào chua ngọt (30)","unitName":"thùng","quantity":120.000,"unitPrice":85000.0000,"itemTotalAmountWithoutTax":10200000.00,"taxPercentage":10.00,"taxAmount":969000.00,"discount":null,"itemDiscount":510000.00
+},{
+"lineNumber":3,"itemCode":"DA004","itemName":"Dầu ăn Olein Marvela 400ml/24","unitName":"thùng","quantity":24.000,"unitPrice":307627.2720,"itemTotalAmountWithoutTax":7383055.00,"taxPercentage":10.00,"taxAmount":701390.00,"discount":null,"itemDiscount":369153.00
+},{
+"lineNumber":4,"itemCode":"HALO001","itemName":"Cà phê hòa tan 3in1 Halo/20","unitName":"bịch","quantity":720.000,"unitPrice":30000.0000,"itemTotalAmountWithoutTax":21600000.00,"taxPercentage":10.00,"taxAmount":2052000.00,"discount":null,"itemDiscount":1080000.00
+},{
+"lineNumber":5,"itemCode":"MIACEH074","itemName":"Mì Thế Giới Mì Hoành Thánh Tôm/30","unitName":"thùng","quantity":48.000,"unitPrice":131818.1820,"itemTotalAmountWithoutTax":6327273.00,"taxPercentage":10.00,"taxAmount":601091.00,"discount":null,"itemDiscount":316364.00
+},{
+"lineNumber":6,"itemCode":"MIPH77","itemName":"Mì Tabiket 75gr/100","unitName":"thùng","quantity":24.000,"unitPrice":165600.0000,"itemTotalAmountWithoutTax":3974400.00,"taxPercentage":10.00,"taxAmount":377568.00,"discount":null,"itemDiscount":198720.00
+},{
+"lineNumber":7,"itemCode":"BCHOB111","itemName":"Bánh MarineBoy Tảo 32g/30","unitName":"hộp","quantity":60.000,"unitPrice":8181.8180,"itemTotalAmountWithoutTax":490909.00,"taxPercentage":10.00,"taxAmount":46636.00,"discount":null,"itemDiscount":24545.00
+},{
+"lineNumber":8,"itemCode":"MIACEH036","itemName":"Bún Hằng Nga Giò Heo/30","unitName":"thùng","quantity":48.000,"unitPrice":145454.5450,"itemTotalAmountWithoutTax":6981818.00,"taxPercentage":10.00,"taxAmount":663273.00,"discount":null,"itemDiscount":349091.00
+}],
+"ListInvoiceAttachFileWS":[],
+"PartnerInvoiceID":"",
+"PartnerInvoiceStringID":""
+}
+
+{
+	"generalInvoiceInfo":{
+	"invoiceType":"","templateCode":"","invoiceIssuedDate":1515369600000,"currencyCode":"","adjustmentType":"1","paymentStatus":false,"paymentType":"","paymentTypeName":"","cusGetInvoiceRight":true,"buyerIdNo":"","buyerIdType":""
+	},
+	"buyerInfo":{
+	"buyerName":"Nguyễn Thị Ngọc Giàu","buyerLegalName":"Nguyễn Thị Ngọc Giàu","buyerTaxCode":"1600301924","buyerAddressLine":"Lô A2, 1+7 Chợ Mỹ Bình, TP. Long Xuyên, T.An Giang","buyerPhoneNumber":"","buyerEmail":null,"buyerIdNo":"MB031","buyerIdType":1
+	},
+	"sellerInfo":{
+	"sellerLegalName":"CÔNG TY TNHH BAO BÌ NHỰA THÁI DƯƠNG","sellerTaxCode":"0100109106","sellerAddressLine":"6A Phan Đình Phùng, Phường 2, Q. Phú Nhuận,Tp. HCM","sellerPhoneNumber":"08 38440454","sellerEmail":"baobithaiduong@gmail.com"
+	},
+	"extAttribute":[],
+	"payments":[{
+	"paymentMethodName":"TM/CK"
+	}],
+	"deliveryInfo":{
+
+	},
+	"itemInfo":[{
+	"lineNumber":1,"itemCode":"BCHOB31","itemName":"Bánh Ostar Muối 30g/80","unitName":"gói","quantity":800.000,"unitPrice":4818.1820,"itemTotalAmountWithoutTax":3854546.00,"taxPercentage":10.00,"taxAmount":366182.00,"discount":null,"itemDiscount":192727.00
+	},{
+	"lineNumber":2,"itemCode":"MIACEH009","itemName":"Mì Hảo hảo xào chua ngọt (30)","unitName":"thùng","quantity":120.000,"unitPrice":85000.0000,"itemTotalAmountWithoutTax":10200000.00,"taxPercentage":10.00,"taxAmount":969000.00,"discount":null,"itemDiscount":510000.00
+	},{
+	"lineNumber":3,"itemCode":"DA004","itemName":"Dầu ăn Olein Marvela 400ml/24","unitName":"thùng","quantity":24.000,"unitPrice":307627.2720,"itemTotalAmountWithoutTax":7383055.00,"taxPercentage":10.00,"taxAmount":701390.00,"discount":null,"itemDiscount":369153.00
+	},{
+	"lineNumber":4,"itemCode":"HALO001","itemName":"Cà phê hòa tan 3in1 Halo/20","unitName":"bịch","quantity":720.000,"unitPrice":30000.0000,"itemTotalAmountWithoutTax":21600000.00,"taxPercentage":10.00,"taxAmount":2052000.00,"discount":null,"itemDiscount":1080000.00
+	},{
+	"lineNumber":5,"itemCode":"MIACEH074","itemName":"Mì Thế Giới Mì Hoành Thánh Tôm/30","unitName":"thùng","quantity":48.000,"unitPrice":131818.1820,"itemTotalAmountWithoutTax":6327273.00,"taxPercentage":10.00,"taxAmount":601091.00,"discount":null,"itemDiscount":316364.00
+	},{
+	"lineNumber":6,"itemCode":"MIPH77","itemName":"Mì Tabiket 75gr/100","unitName":"thùng","quantity":24.000,"unitPrice":165600.0000,"itemTotalAmountWithoutTax":3974400.00,"taxPercentage":10.00,"taxAmount":377568.00,"discount":null,"itemDiscount":198720.00
+	},{
+	"lineNumber":7,"itemCode":"BCHOB111","itemName":"Bánh MarineBoy Tảo 32g/30","unitName":"hộp","quantity":60.000,"unitPrice":8181.8180,"itemTotalAmountWithoutTax":490909.00,"taxPercentage":10.00,"taxAmount":46636.00,"discount":null,"itemDiscount":24545.00
+	},{
+	"lineNumber":8,"itemCode":"MIACEH036","itemName":"Bún Hằng Nga Giò Heo/30","unitName":"thùng","quantity":48.000,"unitPrice":145454.5450,"itemTotalAmountWithoutTax":6981818.00,"taxPercentage":10.00,"taxAmount":663273.00,"discount":null,"itemDiscount":349091.00
+	}],
+	"discountItemInfo":[],
+	"summarizeInfo":{
+	"sumOfTotalLineAmountWithoutTax":60812001.00,"totalAmountWithoutTax":60812001.00,"totalTaxAmount":5777140.00,"totalAmountWithTax":63548541.00,"totalAmountWithTaxInWords":"Sáu mươi ba triệu năm trăm bốn mươi tám nghìn năm trăm bốn mươi mốt đồng chẵn","discountAmount":3040600.00,"taxPercentage":10.00
+	},
+	"taxBreakdowns":[{
+	"taxPercentage":10.00,"taxableAmount":60812001.00,"taxAmount":5777140.00
+	}]
+}

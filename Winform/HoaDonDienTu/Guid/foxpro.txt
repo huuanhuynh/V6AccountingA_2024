@@ -1,0 +1,61 @@
+FUNCTION CreateGUID
+************************************************************************
+* https://west-wind.com/wconnect/weblog/ShowEntry.blog?id=926
+* wwapi::CreateGUID
+********************
+***    Author: Rick Strahl, West Wind Technologies
+***            http://www.west-wind.com/
+***  Modified: 01/26/98
+***  Function: Creates a globally unique identifier using Win32
+***            COM services. The vlaue is guaranteed to be unique
+***    Format: {9F47F480-9641-11D1-A3D0-00600889F23B}
+               if llRaw .T. binary string is returned
+***    Return: GUID as a string or "" if the function failed 
+*************************************************************************
+LPARAMETERS llRaw
+LOCAL lcStruc_GUID, lcGUID, lnSize
+
+DECLARE INTEGER CoCreateGuid ;
+  IN Ole32.dll ;
+  STRING @lcGUIDStruc
+  
+DECLARE INTEGER StringFromGUID2 ;
+  IN Ole32.dll ;
+  STRING cGUIDStruc, ;
+  STRING @cGUID, ;
+  LONG nSize
+  
+*** Simulate GUID strcuture with a string
+lcStruc_GUID = REPLICATE(" ",16) 
+lcGUID = REPLICATE(" ",80)
+lnSize = LEN(lcGUID) / 2
+IF CoCreateGuid(@lcStruc_GUID) # 0
+   RETURN ""
+ENDIF
+
+IF llRaw
+   RETURN lcStruc_GUID
+ENDIF   
+
+*** Now convert the structure to the GUID string
+IF StringFromGUID2(lcStruc_GUID,@lcGuid,lnSize) = 0
+  RETURN ""
+ENDIF
+
+*** String is UniCode so we must convert to ANSI
+RETURN  StrConv(LEFT(lcGUID,76),6)
+* Eof CreateGUID
+
+==========================================
+To use these Guid routines:
+
+? CreateGuid()
+* {344986DB-D674-42BD-9A2E-A7833B190E05}
+
+? CreateGuid(.t.)
+*‰öÓeî‹èK“§Y‚þ¡I
+
+? LOWER(CHRTRAN(CreateGuid(),"{}-"))
+* 6823a6f0af7040318964e74cc8a78833
+================ Xem thêm ==========================
+http://fox.wikis.com/wc.dll?Wiki~GUID
