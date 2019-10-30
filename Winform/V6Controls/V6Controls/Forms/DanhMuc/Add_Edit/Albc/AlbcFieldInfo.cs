@@ -10,6 +10,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         public string FieldName { get; set; }
         public AlbcFieldType FieldType { get; set; }
         public int FieldWidth { get; set; }
+        public string FieldHeaderV { get; set; }
+        public string FieldHeaderE { get; set; }
+        public bool FieldNoSum { get; set; }
 
         public string GetFormat()
         {
@@ -40,6 +43,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         /// <summary>
         /// Number
         /// </summary>
-        N = 3
+        N0 = 10,
+        N1 = 11,
+        N2 = 12,
+        N3 = 13,
+        N4 = 14,
+        N5 = 15,
     }
 }

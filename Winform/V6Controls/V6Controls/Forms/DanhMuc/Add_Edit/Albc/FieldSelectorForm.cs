@@ -21,6 +21,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         private const string FIELD_NAME = "FIELD_NAME";
         private const string FIELD_TYPE = "FIELD_TYPE";
         private const string FIELD_WIDTH = "FIELD_WIDTH";
+        private const string FIELD_CAPTION_V = "FIELD_CAPTION_V";
+        private const string FIELD_CAPTION_E = "FIELD_CAPTION_E";
+        //private const string FIELD_NOSUM = "FIELD_NOSUM";
 
         private void SelectMultiIDForm_Load(object sender, EventArgs e)
         {
@@ -74,6 +77,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                     copy[FIELD_NAME] = left_row[FIELD_NAME];
                     copy[FIELD_TYPE] = left_row[FIELD_TYPE];
                     copy[FIELD_WIDTH] = left_row[FIELD_WIDTH];
+                    copy[FIELD_CAPTION_V] = left_row[FIELD_CAPTION_V];
+                    copy[FIELD_CAPTION_E] = left_row[FIELD_CAPTION_E];
+                    //copy[FIELD_NOSUM] = left_row[FIELD_NOSUM];
                     _targetTable.Rows.Add(copy);
                     _sourceTable.Rows.Remove(left_row);
                 }
@@ -91,6 +97,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                     copy[FIELD_NAME] = right_row[FIELD_NAME];
                     copy[FIELD_TYPE] = right_row[FIELD_TYPE];
                     copy[FIELD_WIDTH] = right_row[FIELD_WIDTH];
+                    copy[FIELD_CAPTION_V] = right_row[FIELD_CAPTION_V];
+                    copy[FIELD_CAPTION_E] = right_row[FIELD_CAPTION_E];
+                    //copy[FIELD_NOSUM] = right_row[FIELD_NOSUM];
                     _sourceTable.Rows.Add(copy);
                     _targetTable.Rows.Remove(right_row);
                 }
@@ -106,6 +115,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                 copy[FIELD_NAME] = row1[FIELD_NAME];
                 copy[FIELD_TYPE] = row1[FIELD_TYPE];
                 copy[FIELD_WIDTH] = row1[FIELD_WIDTH];
+                copy[FIELD_CAPTION_V] = row1[FIELD_CAPTION_V];
+                copy[FIELD_CAPTION_E] = row1[FIELD_CAPTION_E];
+                //copy[FIELD_NOSUM] = row1[FIELD_NOSUM];
 
                 table2.Rows.Add(copy);
                 table1.Rows.Remove(row1);
@@ -218,13 +230,24 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             if (result.Length > 0) result = result.Substring(1);
             return result;
         }
+        
+        //public string GetNoSumFieldsString()
+        //{
+        //    string result = "";
+        //    foreach (DataGridViewRow row in dataGridView2.Rows)
+        //    {
+        //        result += ";" + row.Cells[FIELD_NOSUM].Value.ToString().Trim();
+        //    }
+        //    if (result.Length > 0) result = result.Substring(1);
+        //    return result;
+        //}
 
         public string GetFormatsString()
         {
             string result = "";
             foreach (DataGridViewRow row in dataGridView2.Rows)
             {
-                string dataType = row.Cells[FIELD_TYPE].Value.ToString().Trim();
+                string dataType = ((AlbcFieldType)row.Cells[FIELD_TYPE].Value).ToString();
                 string fieldWidth = row.Cells[FIELD_WIDTH].Value.ToString().Trim();
                 result += ";" + dataType;
                 if (dataType.StartsWith("N")) // N0 N1 N2...
@@ -243,7 +266,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             foreach (DataGridViewRow row in dataGridView2.Rows)
             {
                 string fieldName = row.Cells[FIELD_NAME].Value.ToString().Trim();
-                result += ";" + CorpLan2.GetFieldHeader(fieldName);
+                string caption = row.Cells[FIELD_CAPTION_V].Value.ToString();
+                if (caption == "") caption = CorpLan2.GetFieldHeader(fieldName, "V");
+                result += ";" + caption;
             }
             if (result.Length > 0) result = result.Substring(1);
             return result;
@@ -254,7 +279,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             string result = "";
             foreach (DataGridViewRow row in dataGridView2.Rows)
             {
-                result += ";" + row.Cells[FIELD_NAME].Value.ToString().Trim();
+                string fieldName = row.Cells[FIELD_NAME].Value.ToString().Trim();
+                string caption = row.Cells[FIELD_CAPTION_E].Value.ToString();
+                if (caption == "") caption = CorpLan2.GetFieldHeader(fieldName, "V");
+                result += ";" + caption;
             }
             if (result.Length > 0) result = result.Substring(1);
             return result;
@@ -270,12 +298,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             table.Columns.Add(FIELD_NAME, typeof(string));
             table.Columns.Add(FIELD_TYPE, typeof(AlbcFieldType));
             table.Columns.Add(FIELD_WIDTH, typeof(int));
+            table.Columns.Add(FIELD_CAPTION_V, typeof(string));
+            table.Columns.Add(FIELD_CAPTION_E, typeof(string));
+            //table.Columns.Add(FIELD_NOSUM, typeof(string));
             foreach (AlbcFieldInfo info in fieldInfoList)
             {
                 DataRow row = table.NewRow();
                 row[FIELD_NAME] = info.FieldName;
                 row[FIELD_TYPE] = info.FieldType;
                 row[FIELD_WIDTH] = info.FieldWidth;
+                row[FIELD_CAPTION_V] = info.FieldHeaderV;
+                row[FIELD_CAPTION_E] = info.FieldHeaderE;
+                //row[FIELD_NOSUM] = info.FieldNoSum;
                 table.Rows.Add(row);
             }
             return table;
@@ -303,18 +337,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                 {
                     if (sourceRow[FIELD_NAME].ToString().Trim().ToUpper() == targetRow[FIELD_NAME].ToString().Trim().ToUpper())
                     {
+                        //targetRow[FIELD_TYPE] = sourceRow[FIELD_TYPE];
+                        //targetRow[FIELD_WIDTH] = sourceRow[FIELD_WIDTH];
+                        //targetRow[FIELD_CAPTION_V] = sourceRow[FIELD_CAPTION_V];
+                        //targetRow[FIELD_CAPTION_E] = sourceRow[FIELD_CAPTION_E];
                         listRow.Add(sourceRow);
                         break;
                     }
                 }
-                //foreach (AlbcFieldInfo fi0 in _sourceFieldInfoList)
-                //{
-                //    if (fi0.FieldName.ToUpper() == fi.FieldName.ToUpper())
-                //    {
-                //        _sourceFieldInfoList.Remove(fi0);
-                //        break;
-                //    }
-                //}
             }
             while (listRow.Count>0)
             {
@@ -339,6 +369,26 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                 object o1 = row1[column.ColumnName];
                 row1[column.ColumnName] = row2[column.ColumnName];
                 row2[column.ColumnName] = o1;
+            }
+        }
+
+        private void FixSize()
+        {
+            try
+            {
+                dataGridView1.Width = Width/2 - 55;
+                btnAddSelect.Left = dataGridView1.Right + 6;
+                btnAddAll.Left = btnAddSelect.Left;
+                btnRemoveSelect.Left = btnAddSelect.Left;
+                btnRemoveAll.Left = btnAddSelect.Left;
+                dataGridView2.Left = btnAddSelect.Right + 6;
+                dataGridView2.Width = dataGridView1.Width;
+                btnMove2Up.Left = dataGridView2.Right + 6;
+                btnMove2Down.Left = btnMove2Up.Left;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".FixSize", ex);
             }
         }
 
@@ -367,6 +417,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                 ChangeRowData(((DataRowView)currentRow.DataBoundItem).Row, ((DataRowView)changeRow.DataBoundItem).Row);
                 dataGridView2.CurrentCell = changeRow.Cells[0];
             }
+        }
+
+        private void FieldSelectorForm_SizeChanged(object sender, EventArgs e)
+        {
+            FixSize();
         }
     }
 }

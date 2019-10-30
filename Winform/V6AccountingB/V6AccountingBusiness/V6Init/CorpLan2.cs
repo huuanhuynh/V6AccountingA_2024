@@ -22,15 +22,16 @@ namespace V6Init
         public static string GetFieldHeader(string fieldName, string lang)
         {
             if (string.IsNullOrEmpty(lang)) lang = V6Setting.Language;
+            var DIC = lang == "V" ? fieldHeaderDictionaryV : fieldHeaderDictionaryE;
             var fieldUpper = fieldName.ToUpper();
-            if (fieldHeaderDictionaryV.ContainsKey(fieldUpper))
+            if (DIC.ContainsKey(fieldUpper))
             {
-                return fieldHeaderDictionaryV[fieldUpper];
+                return DIC[fieldUpper];
             }
             else
             {
-                DataTable t = SqlConnect.Select("Corplan2", " distinct ID," + V6Setting.Language,
-                    "ID='"+fieldName+"'", "", V6Setting.Language).Data;
+                DataTable t = SqlConnect.Select("Corplan2", " distinct ID," + lang,
+                    "ID='"+fieldName+"'", "", lang).Data;
                 var d = t.Rows.Cast<DataRow>().ToDictionary(
                     row =>
                         row[0].ToString().Trim().ToUpper(),
@@ -39,10 +40,10 @@ namespace V6Init
                             ? row[1].ToString().Trim()
                             : row[0].ToString().Trim());
 
-                fieldHeaderDictionaryV.AddRange(d);
-                if (fieldHeaderDictionaryV.ContainsKey(fieldUpper))
+                DIC.AddRange(d);
+                if (DIC.ContainsKey(fieldUpper))
                 {
-                    return fieldHeaderDictionaryV[fieldUpper];
+                    return DIC[fieldUpper];
                 }
             }
             return fieldUpper;
@@ -57,16 +58,17 @@ namespace V6Init
         public static SortedDictionary<string, string>GetFieldsHeader(List<string> columns, string lang="")
         {
             if(string.IsNullOrEmpty(lang)) lang = V6Setting.Language;
+            var DIC = lang == "V" ? fieldHeaderDictionaryV : fieldHeaderDictionaryE;
             var result = new SortedDictionary<string, string>();
             var haventList = new List<string>();//Danh sách field chưa có.
 
             foreach (string column in columns)
             {
                 string COLUMN_NAME = column.ToUpper();
-                
-                if (fieldHeaderDictionaryV.ContainsKey(COLUMN_NAME))
+
+                if (DIC.ContainsKey(COLUMN_NAME))
                 {
-                    result.Add(COLUMN_NAME, fieldHeaderDictionaryV[COLUMN_NAME]);
+                    result.Add(COLUMN_NAME, DIC[COLUMN_NAME]);
                 }
                 else
                 {
@@ -93,7 +95,7 @@ namespace V6Init
                             ? row[1].ToString().Trim()
                             : row[0].ToString().Trim());
 
-                fieldHeaderDictionaryV.AddRange(d);
+                DIC.AddRange(d);
                 result.AddRange(d);
             }
             return result;

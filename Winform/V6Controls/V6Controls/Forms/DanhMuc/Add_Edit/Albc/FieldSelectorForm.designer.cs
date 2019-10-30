@@ -57,7 +57,7 @@
             // 
             // btnAddSelect
             // 
-            this.btnAddSelect.Location = new System.Drawing.Point(558, 38);
+            this.btnAddSelect.Location = new System.Drawing.Point(368, 38);
             this.btnAddSelect.Name = "btnAddSelect";
             this.btnAddSelect.Size = new System.Drawing.Size(28, 43);
             this.btnAddSelect.TabIndex = 5;
@@ -67,7 +67,7 @@
             // 
             // btnAddAll
             // 
-            this.btnAddAll.Location = new System.Drawing.Point(558, 87);
+            this.btnAddAll.Location = new System.Drawing.Point(368, 87);
             this.btnAddAll.Name = "btnAddAll";
             this.btnAddAll.Size = new System.Drawing.Size(28, 43);
             this.btnAddAll.TabIndex = 6;
@@ -77,7 +77,7 @@
             // 
             // btnRemoveSelect
             // 
-            this.btnRemoveSelect.Location = new System.Drawing.Point(558, 136);
+            this.btnRemoveSelect.Location = new System.Drawing.Point(368, 136);
             this.btnRemoveSelect.Name = "btnRemoveSelect";
             this.btnRemoveSelect.Size = new System.Drawing.Size(28, 43);
             this.btnRemoveSelect.TabIndex = 7;
@@ -87,7 +87,7 @@
             // 
             // btnRemoveAll
             // 
-            this.btnRemoveAll.Location = new System.Drawing.Point(558, 185);
+            this.btnRemoveAll.Location = new System.Drawing.Point(368, 185);
             this.btnRemoveAll.Name = "btnRemoveAll";
             this.btnRemoveAll.Size = new System.Drawing.Size(28, 43);
             this.btnRemoveAll.TabIndex = 8;
@@ -120,7 +120,7 @@
             // lbldsdc
             // 
             this.lbldsdc.AutoSize = true;
-            this.lbldsdc.Location = new System.Drawing.Point(592, 22);
+            this.lbldsdc.Location = new System.Drawing.Point(399, 22);
             this.lbldsdc.Name = "lbldsdc";
             this.lbldsdc.Size = new System.Drawing.Size(117, 13);
             this.lbldsdc.TabIndex = 3;
@@ -173,7 +173,7 @@
             // 
             // btnMove2Up
             // 
-            this.btnMove2Up.Location = new System.Drawing.Point(1138, 38);
+            this.btnMove2Up.Location = new System.Drawing.Point(758, 38);
             this.btnMove2Up.Name = "btnMove2Up";
             this.btnMove2Up.Size = new System.Drawing.Size(28, 43);
             this.btnMove2Up.TabIndex = 5;
@@ -183,7 +183,7 @@
             // 
             // btnMove2Down
             // 
-            this.btnMove2Down.Location = new System.Drawing.Point(1138, 87);
+            this.btnMove2Down.Location = new System.Drawing.Point(758, 87);
             this.btnMove2Down.Name = "btnMove2Down";
             this.btnMove2Down.Size = new System.Drawing.Size(28, 43);
             this.btnMove2Down.TabIndex = 6;
@@ -198,8 +198,7 @@
             this.dataGridView2.AllowUserToOrderColumns = true;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
             this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.dataGridView2.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
@@ -210,12 +209,12 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(592, 38);
+            this.dataGridView2.Location = new System.Drawing.Point(402, 38);
             this.dataGridView2.Name = "dataGridView2";
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(540, 428);
+            this.dataGridView2.Size = new System.Drawing.Size(350, 428);
             this.dataGridView2.TabIndex = 4;
             this.dataGridView2.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView2_ColumnAdded);
             // 
@@ -243,14 +242,14 @@
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(540, 428);
+            this.dataGridView1.Size = new System.Drawing.Size(350, 428);
             this.dataGridView1.TabIndex = 2;
             // 
-            // SelectMultiFieldsForm
+            // FieldSelectorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 518);
+            this.ClientSize = new System.Drawing.Size(794, 518);
             this.Controls.Add(this.btnRemoveAll);
             this.Controls.Add(this.btnRemoveSelect);
             this.Controls.Add(this.btnMove2Down);
@@ -266,13 +265,14 @@
             this.Controls.Add(this.txtTim);
             this.Controls.Add(this.dataGridView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FieldSelectorForm";
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Chọn";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SelectMultiIDForm_FormClosing);
             this.Load += new System.EventHandler(this.SelectMultiIDForm_Load);
+            this.SizeChanged += new System.EventHandler(this.FieldSelectorForm_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
