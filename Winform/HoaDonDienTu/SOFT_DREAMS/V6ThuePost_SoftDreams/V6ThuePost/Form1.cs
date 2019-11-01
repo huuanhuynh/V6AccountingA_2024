@@ -26,11 +26,11 @@ namespace V6ThuePost
         private void btnRead_Click(object sender, EventArgs e)
         {
             Program.ReadXmlInfo(txtXmlFile.Text);
-            Program._softDreams_ws = new SoftDreamsWS(Program.baseUrl, Program.username, Program.password, Program.token_serial);
+            Program._softDreams_ws = new SoftDreamsWS(Program._baseUrl, Program._username, Program._password, Program._token_serial);
             invoices = Program.ReadDataXml(txtDbfFile.Text);
             string xmlData = V6XmlConverter.ClassToXml(invoices);
-            txtUsername.Text = Program.username;
-            txtPassword.Text = Program.password;
+            txtUsername.Text = Program._username;
+            txtPassword.Text = Program._password;
             txtURL.Text = Program.link_Publish;
             richTextBox1.Text = xmlData;
 
@@ -43,11 +43,11 @@ namespace V6ThuePost
         private void btnReadS_Click(object sender, EventArgs e)
         {
             Program.ReadXmlInfo(txtXmlFile.Text);
-            Program._softDreams_ws = new SoftDreamsWS(Program.baseUrl, Program.username, Program.password, Program.token_serial);
+            Program._softDreams_ws = new SoftDreamsWS(Program._baseUrl, Program._username, Program._password, Program._token_serial);
             adjustInv = Program.ReadDataXmlS(txtDbfFile.Text);
             string xmlData = adjustInv.ToXml();
-            txtUsername.Text = Program.username;
-            txtPassword.Text = Program.password;
+            txtUsername.Text = Program._username;
+            txtPassword.Text = Program._password;
             txtURL.Text = Program.link_Publish;
             richTextBox1.Text = xmlData;
 
@@ -59,11 +59,11 @@ namespace V6ThuePost
         private void btnReadT_Click(object sender, EventArgs e)
         {
             Program.ReadXmlInfo(txtXmlFile.Text);
-            Program._softDreams_ws = new SoftDreamsWS(Program.baseUrl, Program.username, Program.password, Program.token_serial);
+            Program._softDreams_ws = new SoftDreamsWS(Program._baseUrl, Program._username, Program._password, Program._token_serial);
             replaceInv = Program.ReadDataXmlT(txtDbfFile.Text);
             string xmlData = replaceInv.ToXml();
-            txtUsername.Text = Program.username;
-            txtPassword.Text = Program.password;
+            txtUsername.Text = Program._username;
+            txtPassword.Text = Program._password;
             txtURL.Text = Program.link_Publish;
             richTextBox1.Text = xmlData;
 

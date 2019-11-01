@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace V6ThuePostApi.PostObjects
+﻿namespace V6ThuePostThaiSonApi.ThaiSonPostObjects
 {
     public class XuatHoaDonDienTu_XML
     {

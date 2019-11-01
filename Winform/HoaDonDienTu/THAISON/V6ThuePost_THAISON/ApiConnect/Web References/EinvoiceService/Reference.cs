@@ -13,7 +13,7 @@
 // 
 #pragma warning disable 1591
 
-namespace V6ThuePostApi.EinvoiceService {
+namespace V6ThuePostThaiSonApi.EinvoiceService {
     using System;
     using System.Web.Services;
     using System.Diagnostics;
@@ -24,10 +24,11 @@ namespace V6ThuePostApi.EinvoiceService {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="EinvoiceServiceSoap", Namespace="http://thaison.vn/inv")]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(HoaDonThanhToanEntity))]
     public partial class EinvoiceService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
         private Authentication authenticationValueField;
@@ -41,6 +42,12 @@ namespace V6ThuePostApi.EinvoiceService {
         private System.Threading.SendOrPostCallback TaoMauSoKyHieuOperationCompleted;
         
         private System.Threading.SendOrPostCallback ImportThongTinHoaDonOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ImportInvoice_NotAuthenOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback Import_Group_Invoice_NotAuthenOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetInvoice_ExportOperationCompleted;
         
         private System.Threading.SendOrPostCallback TaoHoaDonGiuLaiOperationCompleted;
         
@@ -130,16 +137,48 @@ namespace V6ThuePostApi.EinvoiceService {
         
         private System.Threading.SendOrPostCallback CapNhatDonViOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetReportBranchOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback KySoHoaDonListOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback CheckSoBienLaiDaXuatOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback CheckSoBienLaiDaXuatNewOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback DanhSachHoaDonChuaDongBoOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback DanhSachHoaDonChuaDongBoNewOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetEmailSmsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback RemoveBillOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback MakeInvoiceAdjusmentRecordsOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
         public EinvoiceService() {
-            this.Url = global::V6ThuePostApi.Properties.Settings.Default.V6ThuePostThaiSonApi_EinvoiceService_EinvoiceService;
+            this.Url = global::V6ThuePostThaiSonApi.Properties.Settings.Default.V6ThuePostThaiSonApi_EinvoiceService_EinvoiceService;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;
             }
             else {
+                this.useDefaultCredentialsSetExplicitly = true;
+            }
+        }
+
+        public EinvoiceService(string url)
+        {
+            this.Url = url;
+            if ((this.IsLocalFileSystemWebService(this.Url) == true))
+            {
+                this.UseDefaultCredentials = true;
+                this.useDefaultCredentialsSetExplicitly = false;
+            }
+            else
+            {
                 this.useDefaultCredentialsSetExplicitly = true;
             }
         }
@@ -191,6 +230,15 @@ namespace V6ThuePostApi.EinvoiceService {
         
         /// <remarks/>
         public event ImportThongTinHoaDonCompletedEventHandler ImportThongTinHoaDonCompleted;
+        
+        /// <remarks/>
+        public event ImportInvoice_NotAuthenCompletedEventHandler ImportInvoice_NotAuthenCompleted;
+        
+        /// <remarks/>
+        public event Import_Group_Invoice_NotAuthenCompletedEventHandler Import_Group_Invoice_NotAuthenCompleted;
+        
+        /// <remarks/>
+        public event GetInvoice_ExportCompletedEventHandler GetInvoice_ExportCompleted;
         
         /// <remarks/>
         public event TaoHoaDonGiuLaiCompletedEventHandler TaoHoaDonGiuLaiCompleted;
@@ -323,6 +371,33 @@ namespace V6ThuePostApi.EinvoiceService {
         
         /// <remarks/>
         public event CapNhatDonViCompletedEventHandler CapNhatDonViCompleted;
+        
+        /// <remarks/>
+        public event GetReportBranchCompletedEventHandler GetReportBranchCompleted;
+        
+        /// <remarks/>
+        public event KySoHoaDonListCompletedEventHandler KySoHoaDonListCompleted;
+        
+        /// <remarks/>
+        public event CheckSoBienLaiDaXuatCompletedEventHandler CheckSoBienLaiDaXuatCompleted;
+        
+        /// <remarks/>
+        public event CheckSoBienLaiDaXuatNewCompletedEventHandler CheckSoBienLaiDaXuatNewCompleted;
+        
+        /// <remarks/>
+        public event DanhSachHoaDonChuaDongBoCompletedEventHandler DanhSachHoaDonChuaDongBoCompleted;
+        
+        /// <remarks/>
+        public event DanhSachHoaDonChuaDongBoNewCompletedEventHandler DanhSachHoaDonChuaDongBoNewCompleted;
+        
+        /// <remarks/>
+        public event GetEmailSmsCompletedEventHandler GetEmailSmsCompleted;
+        
+        /// <remarks/>
+        public event RemoveBillCompletedEventHandler RemoveBillCompleted;
+        
+        /// <remarks/>
+        public event MakeInvoiceAdjusmentRecordsCompletedEventHandler MakeInvoiceAdjusmentRecordsCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationValue")]
@@ -471,6 +546,93 @@ namespace V6ThuePostApi.EinvoiceService {
             if ((this.ImportThongTinHoaDonCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.ImportThongTinHoaDonCompleted(this, new ImportThongTinHoaDonCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://thaison.vn/inv/ImportInvoice_NotAuthen", RequestNamespace="http://thaison.vn/inv", ResponseNamespace="http://thaison.vn/inv", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ImportResponse ImportInvoice_NotAuthen(HoaDonEntity hoaDonEntity) {
+            object[] results = this.Invoke("ImportInvoice_NotAuthen", new object[] {
+                        hoaDonEntity});
+            return ((ImportResponse)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ImportInvoice_NotAuthenAsync(HoaDonEntity hoaDonEntity) {
+            this.ImportInvoice_NotAuthenAsync(hoaDonEntity, null);
+        }
+        
+        /// <remarks/>
+        public void ImportInvoice_NotAuthenAsync(HoaDonEntity hoaDonEntity, object userState) {
+            if ((this.ImportInvoice_NotAuthenOperationCompleted == null)) {
+                this.ImportInvoice_NotAuthenOperationCompleted = new System.Threading.SendOrPostCallback(this.OnImportInvoice_NotAuthenOperationCompleted);
+            }
+            this.InvokeAsync("ImportInvoice_NotAuthen", new object[] {
+                        hoaDonEntity}, this.ImportInvoice_NotAuthenOperationCompleted, userState);
+        }
+        
+        private void OnImportInvoice_NotAuthenOperationCompleted(object arg) {
+            if ((this.ImportInvoice_NotAuthenCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ImportInvoice_NotAuthenCompleted(this, new ImportInvoice_NotAuthenCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://thaison.vn/inv/Import_Group_Invoice_NotAuthen", RequestNamespace="http://thaison.vn/inv", ResponseNamespace="http://thaison.vn/inv", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ImportResponse Import_Group_Invoice_NotAuthen(HoaDonList hoaDonEntityList) {
+            object[] results = this.Invoke("Import_Group_Invoice_NotAuthen", new object[] {
+                        hoaDonEntityList});
+            return ((ImportResponse)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void Import_Group_Invoice_NotAuthenAsync(HoaDonList hoaDonEntityList) {
+            this.Import_Group_Invoice_NotAuthenAsync(hoaDonEntityList, null);
+        }
+        
+        /// <remarks/>
+        public void Import_Group_Invoice_NotAuthenAsync(HoaDonList hoaDonEntityList, object userState) {
+            if ((this.Import_Group_Invoice_NotAuthenOperationCompleted == null)) {
+                this.Import_Group_Invoice_NotAuthenOperationCompleted = new System.Threading.SendOrPostCallback(this.OnImport_Group_Invoice_NotAuthenOperationCompleted);
+            }
+            this.InvokeAsync("Import_Group_Invoice_NotAuthen", new object[] {
+                        hoaDonEntityList}, this.Import_Group_Invoice_NotAuthenOperationCompleted, userState);
+        }
+        
+        private void OnImport_Group_Invoice_NotAuthenOperationCompleted(object arg) {
+            if ((this.Import_Group_Invoice_NotAuthenCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.Import_Group_Invoice_NotAuthenCompleted(this, new Import_Group_Invoice_NotAuthenCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://thaison.vn/inv/GetInvoice_Export", RequestNamespace="http://thaison.vn/inv", ResponseNamespace="http://thaison.vn/inv", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Invoice_Responce[] GetInvoice_Export(Getinvoices[] BillingList) {
+            object[] results = this.Invoke("GetInvoice_Export", new object[] {
+                        BillingList});
+            return ((Invoice_Responce[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetInvoice_ExportAsync(Getinvoices[] BillingList) {
+            this.GetInvoice_ExportAsync(BillingList, null);
+        }
+        
+        /// <remarks/>
+        public void GetInvoice_ExportAsync(Getinvoices[] BillingList, object userState) {
+            if ((this.GetInvoice_ExportOperationCompleted == null)) {
+                this.GetInvoice_ExportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetInvoice_ExportOperationCompleted);
+            }
+            this.InvokeAsync("GetInvoice_Export", new object[] {
+                        BillingList}, this.GetInvoice_ExportOperationCompleted, userState);
+        }
+        
+        private void OnGetInvoice_ExportOperationCompleted(object arg) {
+            if ((this.GetInvoice_ExportCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetInvoice_ExportCompleted(this, new GetInvoice_ExportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -659,28 +821,32 @@ namespace V6ThuePostApi.EinvoiceService {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationValue")]
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://thaison.vn/inv/ImportEodInformation", RequestNamespace="http://thaison.vn/inv", ResponseNamespace="http://thaison.vn/inv", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string ImportEodInformation(System.DateTime NgayChot, System.DateTime GioChot, string MaDv) {
+        public string ImportEodInformation(System.DateTime NgayChot, System.DateTime GioChot, string MaDv, string Store, string IsOffline) {
             object[] results = this.Invoke("ImportEodInformation", new object[] {
                         NgayChot,
                         GioChot,
-                        MaDv});
+                        MaDv,
+                        Store,
+                        IsOffline});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void ImportEodInformationAsync(System.DateTime NgayChot, System.DateTime GioChot, string MaDv) {
-            this.ImportEodInformationAsync(NgayChot, GioChot, MaDv, null);
+        public void ImportEodInformationAsync(System.DateTime NgayChot, System.DateTime GioChot, string MaDv, string Store, string IsOffline) {
+            this.ImportEodInformationAsync(NgayChot, GioChot, MaDv, Store, IsOffline, null);
         }
         
         /// <remarks/>
-        public void ImportEodInformationAsync(System.DateTime NgayChot, System.DateTime GioChot, string MaDv, object userState) {
+        public void ImportEodInformationAsync(System.DateTime NgayChot, System.DateTime GioChot, string MaDv, string Store, string IsOffline, object userState) {
             if ((this.ImportEodInformationOperationCompleted == null)) {
                 this.ImportEodInformationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnImportEodInformationOperationCompleted);
             }
             this.InvokeAsync("ImportEodInformation", new object[] {
                         NgayChot,
                         GioChot,
-                        MaDv}, this.ImportEodInformationOperationCompleted, userState);
+                        MaDv,
+                        Store,
+                        IsOffline}, this.ImportEodInformationOperationCompleted, userState);
         }
         
         private void OnImportEodInformationOperationCompleted(object arg) {
@@ -982,14 +1148,6 @@ namespace V6ThuePostApi.EinvoiceService {
         [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationValue")]
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://thaison.vn/inv/XuatHoaDonDienTu_XML", RequestNamespace="http://thaison.vn/inv", ResponseNamespace="http://thaison.vn/inv", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public HoaDonEntityResponse XuatHoaDonDienTu_XML(HoaDonEntity hoaDonEntity) {
-            object[] results = this.Invoke("XuatHoaDonDienTu_XML", new object[] {
-                        hoaDonEntity});
-            return ((HoaDonEntityResponse)(results[0]));
-        }
-        
-        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationValue")]
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://thaison.vn/inv/XuatHoaDonDienTu_XML", RequestNamespace="http://thaison.vn/inv", ResponseNamespace="http://thaison.vn/inv", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public HoaDonEntityResponse XuatHoaDonDienTu_XML2(string hoaDonEntity) {
             object[] results = this.Invoke("XuatHoaDonDienTu_XML", new object[] {
                         hoaDonEntity});
             return ((HoaDonEntityResponse)(results[0]));
@@ -1918,6 +2076,280 @@ namespace V6ThuePostApi.EinvoiceService {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://thaison.vn/inv/GetReportBranch", RequestNamespace="http://thaison.vn/inv", ResponseNamespace="http://thaison.vn/inv", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public BranchReportEntity GetReportBranch(BranchReportEntity rsIn) {
+            object[] results = this.Invoke("GetReportBranch", new object[] {
+                        rsIn});
+            return ((BranchReportEntity)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetReportBranchAsync(BranchReportEntity rsIn) {
+            this.GetReportBranchAsync(rsIn, null);
+        }
+        
+        /// <remarks/>
+        public void GetReportBranchAsync(BranchReportEntity rsIn, object userState) {
+            if ((this.GetReportBranchOperationCompleted == null)) {
+                this.GetReportBranchOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetReportBranchOperationCompleted);
+            }
+            this.InvokeAsync("GetReportBranch", new object[] {
+                        rsIn}, this.GetReportBranchOperationCompleted, userState);
+        }
+        
+        private void OnGetReportBranchOperationCompleted(object arg) {
+            if ((this.GetReportBranchCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetReportBranchCompleted(this, new GetReportBranchCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://thaison.vn/inv/KySoHoaDonList", RequestNamespace="http://thaison.vn/inv", ResponseNamespace="http://thaison.vn/inv", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public HoaDonKySoList KySoHoaDonList(HoaDonKySoList hoaDonEntityList) {
+            object[] results = this.Invoke("KySoHoaDonList", new object[] {
+                        hoaDonEntityList});
+            return ((HoaDonKySoList)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void KySoHoaDonListAsync(HoaDonKySoList hoaDonEntityList) {
+            this.KySoHoaDonListAsync(hoaDonEntityList, null);
+        }
+        
+        /// <remarks/>
+        public void KySoHoaDonListAsync(HoaDonKySoList hoaDonEntityList, object userState) {
+            if ((this.KySoHoaDonListOperationCompleted == null)) {
+                this.KySoHoaDonListOperationCompleted = new System.Threading.SendOrPostCallback(this.OnKySoHoaDonListOperationCompleted);
+            }
+            this.InvokeAsync("KySoHoaDonList", new object[] {
+                        hoaDonEntityList}, this.KySoHoaDonListOperationCompleted, userState);
+        }
+        
+        private void OnKySoHoaDonListOperationCompleted(object arg) {
+            if ((this.KySoHoaDonListCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.KySoHoaDonListCompleted(this, new KySoHoaDonListCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://thaison.vn/inv/CheckSoBienLaiDaXuat", RequestNamespace="http://thaison.vn/inv", ResponseNamespace="http://thaison.vn/inv", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public BienLaiEntity CheckSoBienLaiDaXuat(string MST, string SoBienLai) {
+            object[] results = this.Invoke("CheckSoBienLaiDaXuat", new object[] {
+                        MST,
+                        SoBienLai});
+            return ((BienLaiEntity)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CheckSoBienLaiDaXuatAsync(string MST, string SoBienLai) {
+            this.CheckSoBienLaiDaXuatAsync(MST, SoBienLai, null);
+        }
+        
+        /// <remarks/>
+        public void CheckSoBienLaiDaXuatAsync(string MST, string SoBienLai, object userState) {
+            if ((this.CheckSoBienLaiDaXuatOperationCompleted == null)) {
+                this.CheckSoBienLaiDaXuatOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCheckSoBienLaiDaXuatOperationCompleted);
+            }
+            this.InvokeAsync("CheckSoBienLaiDaXuat", new object[] {
+                        MST,
+                        SoBienLai}, this.CheckSoBienLaiDaXuatOperationCompleted, userState);
+        }
+        
+        private void OnCheckSoBienLaiDaXuatOperationCompleted(object arg) {
+            if ((this.CheckSoBienLaiDaXuatCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CheckSoBienLaiDaXuatCompleted(this, new CheckSoBienLaiDaXuatCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://thaison.vn/inv/CheckSoBienLaiDaXuatNew", RequestNamespace="http://thaison.vn/inv", ResponseNamespace="http://thaison.vn/inv", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public BienLaiEntity CheckSoBienLaiDaXuatNew(string MST, string SoBienLai) {
+            object[] results = this.Invoke("CheckSoBienLaiDaXuatNew", new object[] {
+                        MST,
+                        SoBienLai});
+            return ((BienLaiEntity)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CheckSoBienLaiDaXuatNewAsync(string MST, string SoBienLai) {
+            this.CheckSoBienLaiDaXuatNewAsync(MST, SoBienLai, null);
+        }
+        
+        /// <remarks/>
+        public void CheckSoBienLaiDaXuatNewAsync(string MST, string SoBienLai, object userState) {
+            if ((this.CheckSoBienLaiDaXuatNewOperationCompleted == null)) {
+                this.CheckSoBienLaiDaXuatNewOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCheckSoBienLaiDaXuatNewOperationCompleted);
+            }
+            this.InvokeAsync("CheckSoBienLaiDaXuatNew", new object[] {
+                        MST,
+                        SoBienLai}, this.CheckSoBienLaiDaXuatNewOperationCompleted, userState);
+        }
+        
+        private void OnCheckSoBienLaiDaXuatNewOperationCompleted(object arg) {
+            if ((this.CheckSoBienLaiDaXuatNewCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CheckSoBienLaiDaXuatNewCompleted(this, new CheckSoBienLaiDaXuatNewCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://thaison.vn/inv/DanhSachHoaDonChuaDongBo", RequestNamespace="http://thaison.vn/inv", ResponseNamespace="http://thaison.vn/inv", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ListBienLaiExtensionEntity DanhSachHoaDonChuaDongBo(string MaSoThue) {
+            object[] results = this.Invoke("DanhSachHoaDonChuaDongBo", new object[] {
+                        MaSoThue});
+            return ((ListBienLaiExtensionEntity)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void DanhSachHoaDonChuaDongBoAsync(string MaSoThue) {
+            this.DanhSachHoaDonChuaDongBoAsync(MaSoThue, null);
+        }
+        
+        /// <remarks/>
+        public void DanhSachHoaDonChuaDongBoAsync(string MaSoThue, object userState) {
+            if ((this.DanhSachHoaDonChuaDongBoOperationCompleted == null)) {
+                this.DanhSachHoaDonChuaDongBoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDanhSachHoaDonChuaDongBoOperationCompleted);
+            }
+            this.InvokeAsync("DanhSachHoaDonChuaDongBo", new object[] {
+                        MaSoThue}, this.DanhSachHoaDonChuaDongBoOperationCompleted, userState);
+        }
+        
+        private void OnDanhSachHoaDonChuaDongBoOperationCompleted(object arg) {
+            if ((this.DanhSachHoaDonChuaDongBoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DanhSachHoaDonChuaDongBoCompleted(this, new DanhSachHoaDonChuaDongBoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://thaison.vn/inv/DanhSachHoaDonChuaDongBoNew", RequestNamespace="http://thaison.vn/inv", ResponseNamespace="http://thaison.vn/inv", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ListBienLaiExtensionEntity DanhSachHoaDonChuaDongBoNew(string MaSoThue) {
+            object[] results = this.Invoke("DanhSachHoaDonChuaDongBoNew", new object[] {
+                        MaSoThue});
+            return ((ListBienLaiExtensionEntity)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void DanhSachHoaDonChuaDongBoNewAsync(string MaSoThue) {
+            this.DanhSachHoaDonChuaDongBoNewAsync(MaSoThue, null);
+        }
+        
+        /// <remarks/>
+        public void DanhSachHoaDonChuaDongBoNewAsync(string MaSoThue, object userState) {
+            if ((this.DanhSachHoaDonChuaDongBoNewOperationCompleted == null)) {
+                this.DanhSachHoaDonChuaDongBoNewOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDanhSachHoaDonChuaDongBoNewOperationCompleted);
+            }
+            this.InvokeAsync("DanhSachHoaDonChuaDongBoNew", new object[] {
+                        MaSoThue}, this.DanhSachHoaDonChuaDongBoNewOperationCompleted, userState);
+        }
+        
+        private void OnDanhSachHoaDonChuaDongBoNewOperationCompleted(object arg) {
+            if ((this.DanhSachHoaDonChuaDongBoNewCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DanhSachHoaDonChuaDongBoNewCompleted(this, new DanhSachHoaDonChuaDongBoNewCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://thaison.vn/inv/GetEmailSms", RequestNamespace="http://thaison.vn/inv", ResponseNamespace="http://thaison.vn/inv", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ListEmailSmsEntity GetEmailSms(ListEmailSmsEntity emailsms) {
+            object[] results = this.Invoke("GetEmailSms", new object[] {
+                        emailsms});
+            return ((ListEmailSmsEntity)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetEmailSmsAsync(ListEmailSmsEntity emailsms) {
+            this.GetEmailSmsAsync(emailsms, null);
+        }
+        
+        /// <remarks/>
+        public void GetEmailSmsAsync(ListEmailSmsEntity emailsms, object userState) {
+            if ((this.GetEmailSmsOperationCompleted == null)) {
+                this.GetEmailSmsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetEmailSmsOperationCompleted);
+            }
+            this.InvokeAsync("GetEmailSms", new object[] {
+                        emailsms}, this.GetEmailSmsOperationCompleted, userState);
+        }
+        
+        private void OnGetEmailSmsOperationCompleted(object arg) {
+            if ((this.GetEmailSmsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetEmailSmsCompleted(this, new GetEmailSmsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://thaison.vn/inv/RemoveBill", RequestNamespace="http://thaison.vn/inv", ResponseNamespace="http://thaison.vn/inv", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public RemoveBillEntity RemoveBill(RemoveBillEntity enti) {
+            object[] results = this.Invoke("RemoveBill", new object[] {
+                        enti});
+            return ((RemoveBillEntity)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void RemoveBillAsync(RemoveBillEntity enti) {
+            this.RemoveBillAsync(enti, null);
+        }
+        
+        /// <remarks/>
+        public void RemoveBillAsync(RemoveBillEntity enti, object userState) {
+            if ((this.RemoveBillOperationCompleted == null)) {
+                this.RemoveBillOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRemoveBillOperationCompleted);
+            }
+            this.InvokeAsync("RemoveBill", new object[] {
+                        enti}, this.RemoveBillOperationCompleted, userState);
+        }
+        
+        private void OnRemoveBillOperationCompleted(object arg) {
+            if ((this.RemoveBillCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.RemoveBillCompleted(this, new RemoveBillCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapHeaderAttribute("AuthenticationValue")]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://thaison.vn/inv/MakeInvoiceAdjusmentRecords", RequestNamespace="http://thaison.vn/inv", ResponseNamespace="http://thaison.vn/inv", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public InvoiceRecordEntity MakeInvoiceAdjusmentRecords(InvoiceRecordEntity invRecordEntity) {
+            object[] results = this.Invoke("MakeInvoiceAdjusmentRecords", new object[] {
+                        invRecordEntity});
+            return ((InvoiceRecordEntity)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void MakeInvoiceAdjusmentRecordsAsync(InvoiceRecordEntity invRecordEntity) {
+            this.MakeInvoiceAdjusmentRecordsAsync(invRecordEntity, null);
+        }
+        
+        /// <remarks/>
+        public void MakeInvoiceAdjusmentRecordsAsync(InvoiceRecordEntity invRecordEntity, object userState) {
+            if ((this.MakeInvoiceAdjusmentRecordsOperationCompleted == null)) {
+                this.MakeInvoiceAdjusmentRecordsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnMakeInvoiceAdjusmentRecordsOperationCompleted);
+            }
+            this.InvokeAsync("MakeInvoiceAdjusmentRecords", new object[] {
+                        invRecordEntity}, this.MakeInvoiceAdjusmentRecordsOperationCompleted, userState);
+        }
+        
+        private void OnMakeInvoiceAdjusmentRecordsOperationCompleted(object arg) {
+            if ((this.MakeInvoiceAdjusmentRecordsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.MakeInvoiceAdjusmentRecordsCompleted(this, new MakeInvoiceAdjusmentRecordsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -1937,7 +2369,7 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1984,7 +2416,1524 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://thaison.vn/inv")]
+    public partial class InvoiceRecordEntity {
+        
+        private string invoiceRecordTypeField;
+        
+        private string mA_TEMPLATEField;
+        
+        private string invoiceRecordNumberField;
+        
+        private string invoiceTemplateCodeField;
+        
+        private string invoiceSeriesField;
+        
+        private string invoiceNumberField;
+        
+        private string sellerTaxCodeField;
+        
+        private string sellerAddressLineField;
+        
+        private string sellerPhoneNumberField;
+        
+        private string sellerLegalNameField;
+        
+        private string seller_NGUOI_DAI_DIENField;
+        
+        private string seller_NGUOI_DAI_DIEN_CVField;
+        
+        private string buyerCodeField;
+        
+        private string buyerTaxCodeField;
+        
+        private string buyerLegalNameField;
+        
+        private string buyerAddressLineField;
+        
+        private string buyerPhoneNumberField;
+        
+        private string buyer_NGUOI_DAI_DIENField;
+        
+        private string buyer_NGUOI_DAI_DIEN_CVField;
+        
+        private System.DateTime invoiceIssuedDateField;
+        
+        private string lI_DO_DIEU_CHINHField;
+        
+        private string nOI_DUNG_DUNGField;
+        
+        private string nOI_DUNG_SAIField;
+        
+        private System.DateTime invoiceRecordDateField;
+        
+        private decimal gIA_TRI_HOA_DONField;
+        
+        private string tEN_DICH_VUField;
+        
+        private MsgError msgErrorField;
+        
+        /// <remarks/>
+        public string InvoiceRecordType {
+            get {
+                return this.invoiceRecordTypeField;
+            }
+            set {
+                this.invoiceRecordTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MA_TEMPLATE {
+            get {
+                return this.mA_TEMPLATEField;
+            }
+            set {
+                this.mA_TEMPLATEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string InvoiceRecordNumber {
+            get {
+                return this.invoiceRecordNumberField;
+            }
+            set {
+                this.invoiceRecordNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string InvoiceTemplateCode {
+            get {
+                return this.invoiceTemplateCodeField;
+            }
+            set {
+                this.invoiceTemplateCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string InvoiceSeries {
+            get {
+                return this.invoiceSeriesField;
+            }
+            set {
+                this.invoiceSeriesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string InvoiceNumber {
+            get {
+                return this.invoiceNumberField;
+            }
+            set {
+                this.invoiceNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SellerTaxCode {
+            get {
+                return this.sellerTaxCodeField;
+            }
+            set {
+                this.sellerTaxCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SellerAddressLine {
+            get {
+                return this.sellerAddressLineField;
+            }
+            set {
+                this.sellerAddressLineField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SellerPhoneNumber {
+            get {
+                return this.sellerPhoneNumberField;
+            }
+            set {
+                this.sellerPhoneNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SellerLegalName {
+            get {
+                return this.sellerLegalNameField;
+            }
+            set {
+                this.sellerLegalNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Seller_NGUOI_DAI_DIEN {
+            get {
+                return this.seller_NGUOI_DAI_DIENField;
+            }
+            set {
+                this.seller_NGUOI_DAI_DIENField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Seller_NGUOI_DAI_DIEN_CV {
+            get {
+                return this.seller_NGUOI_DAI_DIEN_CVField;
+            }
+            set {
+                this.seller_NGUOI_DAI_DIEN_CVField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BuyerCode {
+            get {
+                return this.buyerCodeField;
+            }
+            set {
+                this.buyerCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BuyerTaxCode {
+            get {
+                return this.buyerTaxCodeField;
+            }
+            set {
+                this.buyerTaxCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BuyerLegalName {
+            get {
+                return this.buyerLegalNameField;
+            }
+            set {
+                this.buyerLegalNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BuyerAddressLine {
+            get {
+                return this.buyerAddressLineField;
+            }
+            set {
+                this.buyerAddressLineField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BuyerPhoneNumber {
+            get {
+                return this.buyerPhoneNumberField;
+            }
+            set {
+                this.buyerPhoneNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Buyer_NGUOI_DAI_DIEN {
+            get {
+                return this.buyer_NGUOI_DAI_DIENField;
+            }
+            set {
+                this.buyer_NGUOI_DAI_DIENField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Buyer_NGUOI_DAI_DIEN_CV {
+            get {
+                return this.buyer_NGUOI_DAI_DIEN_CVField;
+            }
+            set {
+                this.buyer_NGUOI_DAI_DIEN_CVField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime InvoiceIssuedDate {
+            get {
+                return this.invoiceIssuedDateField;
+            }
+            set {
+                this.invoiceIssuedDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LI_DO_DIEU_CHINH {
+            get {
+                return this.lI_DO_DIEU_CHINHField;
+            }
+            set {
+                this.lI_DO_DIEU_CHINHField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string NOI_DUNG_DUNG {
+            get {
+                return this.nOI_DUNG_DUNGField;
+            }
+            set {
+                this.nOI_DUNG_DUNGField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string NOI_DUNG_SAI {
+            get {
+                return this.nOI_DUNG_SAIField;
+            }
+            set {
+                this.nOI_DUNG_SAIField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime InvoiceRecordDate {
+            get {
+                return this.invoiceRecordDateField;
+            }
+            set {
+                this.invoiceRecordDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal GIA_TRI_HOA_DON {
+            get {
+                return this.gIA_TRI_HOA_DONField;
+            }
+            set {
+                this.gIA_TRI_HOA_DONField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string TEN_DICH_VU {
+            get {
+                return this.tEN_DICH_VUField;
+            }
+            set {
+                this.tEN_DICH_VUField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public MsgError MsgError {
+            get {
+                return this.msgErrorField;
+            }
+            set {
+                this.msgErrorField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://thaison.vn/inv")]
+    public partial class MsgError {
+        
+        private string codeField;
+        
+        private string messageField;
+        
+        private string eMessageField;
+        
+        private string descriptionField;
+        
+        private string eDescriptionField;
+        
+        /// <remarks/>
+        public string Code {
+            get {
+                return this.codeField;
+            }
+            set {
+                this.codeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Message {
+            get {
+                return this.messageField;
+            }
+            set {
+                this.messageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string EMessage {
+            get {
+                return this.eMessageField;
+            }
+            set {
+                this.eMessageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string EDescription {
+            get {
+                return this.eDescriptionField;
+            }
+            set {
+                this.eDescriptionField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://thaison.vn/inv")]
+    public partial class RemoveBillEntity {
+        
+        private string maSoThueField;
+        
+        private string soBienLaiField;
+        
+        private string userHuyField;
+        
+        private string soThamChieuField;
+        
+        private string maEinvoiceField;
+        
+        private MsgError msgErrorField;
+        
+        /// <remarks/>
+        public string MaSoThue {
+            get {
+                return this.maSoThueField;
+            }
+            set {
+                this.maSoThueField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SoBienLai {
+            get {
+                return this.soBienLaiField;
+            }
+            set {
+                this.soBienLaiField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string UserHuy {
+            get {
+                return this.userHuyField;
+            }
+            set {
+                this.userHuyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SoThamChieu {
+            get {
+                return this.soThamChieuField;
+            }
+            set {
+                this.soThamChieuField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MaEinvoice {
+            get {
+                return this.maEinvoiceField;
+            }
+            set {
+                this.maEinvoiceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public MsgError MsgError {
+            get {
+                return this.msgErrorField;
+            }
+            set {
+                this.msgErrorField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://thaison.vn/inv")]
+    public partial class EmailSmsEntity {
+        
+        private string soHoaDonField;
+        
+        private string mauSoField;
+        
+        private string kyHieuField;
+        
+        private System.DateTime ngayHoaDonField;
+        
+        private string benBanMaDonViField;
+        
+        private string benBanTenDonViField;
+        
+        private string benBanDiaChiField;
+        
+        private string maChiNhanhField;
+        
+        private string benMuaMaField;
+        
+        private string benMuaMaDonViField;
+        
+        private string benMuaTenDonViField;
+        
+        private string benMuaDiaChiField;
+        
+        private string dienThoaiField;
+        
+        private string emailField;
+        
+        private string noiDungField;
+        
+        private System.Nullable<System.DateTime> thoiGianGuiField;
+        
+        private int trangThaiField;
+        
+        private int lanGuiField;
+        
+        /// <remarks/>
+        public string SoHoaDon {
+            get {
+                return this.soHoaDonField;
+            }
+            set {
+                this.soHoaDonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MauSo {
+            get {
+                return this.mauSoField;
+            }
+            set {
+                this.mauSoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string KyHieu {
+            get {
+                return this.kyHieuField;
+            }
+            set {
+                this.kyHieuField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime NgayHoaDon {
+            get {
+                return this.ngayHoaDonField;
+            }
+            set {
+                this.ngayHoaDonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BenBanMaDonVi {
+            get {
+                return this.benBanMaDonViField;
+            }
+            set {
+                this.benBanMaDonViField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BenBanTenDonVi {
+            get {
+                return this.benBanTenDonViField;
+            }
+            set {
+                this.benBanTenDonViField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BenBanDiaChi {
+            get {
+                return this.benBanDiaChiField;
+            }
+            set {
+                this.benBanDiaChiField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MaChiNhanh {
+            get {
+                return this.maChiNhanhField;
+            }
+            set {
+                this.maChiNhanhField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BenMuaMa {
+            get {
+                return this.benMuaMaField;
+            }
+            set {
+                this.benMuaMaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BenMuaMaDonVi {
+            get {
+                return this.benMuaMaDonViField;
+            }
+            set {
+                this.benMuaMaDonViField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BenMuaTenDonVi {
+            get {
+                return this.benMuaTenDonViField;
+            }
+            set {
+                this.benMuaTenDonViField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BenMuaDiaChi {
+            get {
+                return this.benMuaDiaChiField;
+            }
+            set {
+                this.benMuaDiaChiField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string DienThoai {
+            get {
+                return this.dienThoaiField;
+            }
+            set {
+                this.dienThoaiField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Email {
+            get {
+                return this.emailField;
+            }
+            set {
+                this.emailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string NoiDung {
+            get {
+                return this.noiDungField;
+            }
+            set {
+                this.noiDungField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> ThoiGianGui {
+            get {
+                return this.thoiGianGuiField;
+            }
+            set {
+                this.thoiGianGuiField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int TrangThai {
+            get {
+                return this.trangThaiField;
+            }
+            set {
+                this.trangThaiField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int LanGui {
+            get {
+                return this.lanGuiField;
+            }
+            set {
+                this.lanGuiField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://thaison.vn/inv")]
+    public partial class ListEmailSmsEntity {
+        
+        private System.DateTime tuNgayField;
+        
+        private System.DateTime denNgayField;
+        
+        private string loaiThongTinField;
+        
+        private string maSoThueField;
+        
+        private string maChiNhanhField;
+        
+        private MsgError msgErrorField;
+        
+        private EmailSmsEntity[] listEmailSmsField;
+        
+        /// <remarks/>
+        public System.DateTime TuNgay {
+            get {
+                return this.tuNgayField;
+            }
+            set {
+                this.tuNgayField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime DenNgay {
+            get {
+                return this.denNgayField;
+            }
+            set {
+                this.denNgayField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LoaiThongTin {
+            get {
+                return this.loaiThongTinField;
+            }
+            set {
+                this.loaiThongTinField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MaSoThue {
+            get {
+                return this.maSoThueField;
+            }
+            set {
+                this.maSoThueField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MaChiNhanh {
+            get {
+                return this.maChiNhanhField;
+            }
+            set {
+                this.maChiNhanhField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public MsgError MsgError {
+            get {
+                return this.msgErrorField;
+            }
+            set {
+                this.msgErrorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public EmailSmsEntity[] ListEmailSms {
+            get {
+                return this.listEmailSmsField;
+            }
+            set {
+                this.listEmailSmsField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://thaison.vn/inv")]
+    public partial class BienLaiExtensionEntity {
+        
+        private string maSoThueField;
+        
+        private string maEinvoiceField;
+        
+        private string mauSoField;
+        
+        private string kyHieuField;
+        
+        private string soHoaDonField;
+        
+        private System.Nullable<System.DateTime> ngayTaoHoaDonField;
+        
+        private System.Nullable<System.DateTime> ngayXuatHoaDonField;
+        
+        private string noiDungField;
+        
+        private string soBienLaiField;
+        
+        private string soBienLaiGocField;
+        
+        private int trangThaiDieuChinhField;
+        
+        /// <remarks/>
+        public string MaSoThue {
+            get {
+                return this.maSoThueField;
+            }
+            set {
+                this.maSoThueField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MaEinvoice {
+            get {
+                return this.maEinvoiceField;
+            }
+            set {
+                this.maEinvoiceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MauSo {
+            get {
+                return this.mauSoField;
+            }
+            set {
+                this.mauSoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string KyHieu {
+            get {
+                return this.kyHieuField;
+            }
+            set {
+                this.kyHieuField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SoHoaDon {
+            get {
+                return this.soHoaDonField;
+            }
+            set {
+                this.soHoaDonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> NgayTaoHoaDon {
+            get {
+                return this.ngayTaoHoaDonField;
+            }
+            set {
+                this.ngayTaoHoaDonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> NgayXuatHoaDon {
+            get {
+                return this.ngayXuatHoaDonField;
+            }
+            set {
+                this.ngayXuatHoaDonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string NoiDung {
+            get {
+                return this.noiDungField;
+            }
+            set {
+                this.noiDungField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SoBienLai {
+            get {
+                return this.soBienLaiField;
+            }
+            set {
+                this.soBienLaiField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SoBienLaiGoc {
+            get {
+                return this.soBienLaiGocField;
+            }
+            set {
+                this.soBienLaiGocField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int TrangThaiDieuChinh {
+            get {
+                return this.trangThaiDieuChinhField;
+            }
+            set {
+                this.trangThaiDieuChinhField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://thaison.vn/inv")]
+    public partial class ListBienLaiExtensionEntity {
+        
+        private string maSoThueField;
+        
+        private MsgError msgErrorField;
+        
+        private BienLaiExtensionEntity[] listBienLaiField;
+        
+        /// <remarks/>
+        public string MaSoThue {
+            get {
+                return this.maSoThueField;
+            }
+            set {
+                this.maSoThueField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public MsgError MsgError {
+            get {
+                return this.msgErrorField;
+            }
+            set {
+                this.msgErrorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public BienLaiExtensionEntity[] ListBienLai {
+            get {
+                return this.listBienLaiField;
+            }
+            set {
+                this.listBienLaiField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://thaison.vn/inv")]
+    public partial class BienLaiEntity {
+        
+        private string maSoThueField;
+        
+        private string maEinvoiceField;
+        
+        private string mauSoField;
+        
+        private string kyHieuField;
+        
+        private string soHoaDonField;
+        
+        private bool isHoaDonField;
+        
+        private System.Nullable<System.DateTime> ngayTaoHoaDonField;
+        
+        private System.Nullable<System.DateTime> ngayXuatHoaDonField;
+        
+        private string noiDungField;
+        
+        private MsgError msgErrorField;
+        
+        private string soBienLaiField;
+        
+        private string soBienLaiGocField;
+        
+        private int trangThaiDieuChinhField;
+        
+        /// <remarks/>
+        public string MaSoThue {
+            get {
+                return this.maSoThueField;
+            }
+            set {
+                this.maSoThueField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MaEinvoice {
+            get {
+                return this.maEinvoiceField;
+            }
+            set {
+                this.maEinvoiceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MauSo {
+            get {
+                return this.mauSoField;
+            }
+            set {
+                this.mauSoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string KyHieu {
+            get {
+                return this.kyHieuField;
+            }
+            set {
+                this.kyHieuField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SoHoaDon {
+            get {
+                return this.soHoaDonField;
+            }
+            set {
+                this.soHoaDonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsHoaDon {
+            get {
+                return this.isHoaDonField;
+            }
+            set {
+                this.isHoaDonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> NgayTaoHoaDon {
+            get {
+                return this.ngayTaoHoaDonField;
+            }
+            set {
+                this.ngayTaoHoaDonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> NgayXuatHoaDon {
+            get {
+                return this.ngayXuatHoaDonField;
+            }
+            set {
+                this.ngayXuatHoaDonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string NoiDung {
+            get {
+                return this.noiDungField;
+            }
+            set {
+                this.noiDungField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public MsgError MsgError {
+            get {
+                return this.msgErrorField;
+            }
+            set {
+                this.msgErrorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SoBienLai {
+            get {
+                return this.soBienLaiField;
+            }
+            set {
+                this.soBienLaiField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SoBienLaiGoc {
+            get {
+                return this.soBienLaiGocField;
+            }
+            set {
+                this.soBienLaiGocField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int TrangThaiDieuChinh {
+            get {
+                return this.trangThaiDieuChinhField;
+            }
+            set {
+                this.trangThaiDieuChinhField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(HoaDonKySoEntity))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://thaison.vn/inv")]
+    public partial class HoaDonThanhToanEntity {
+        
+        private string maSoThueField;
+        
+        private string maEinvoiceField;
+        
+        private string mauSoField;
+        
+        private string kyHieuField;
+        
+        private string soHoaDonField;
+        
+        private System.Nullable<System.DateTime> ngayTaoHoaDonField;
+        
+        private System.Nullable<System.DateTime> ngayXuatHoaDonField;
+        
+        private string noiDungField;
+        
+        private MsgError msgErrorField;
+        
+        private string soBienLaiField;
+        
+        /// <remarks/>
+        public string MaSoThue {
+            get {
+                return this.maSoThueField;
+            }
+            set {
+                this.maSoThueField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MaEinvoice {
+            get {
+                return this.maEinvoiceField;
+            }
+            set {
+                this.maEinvoiceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MauSo {
+            get {
+                return this.mauSoField;
+            }
+            set {
+                this.mauSoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string KyHieu {
+            get {
+                return this.kyHieuField;
+            }
+            set {
+                this.kyHieuField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SoHoaDon {
+            get {
+                return this.soHoaDonField;
+            }
+            set {
+                this.soHoaDonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> NgayTaoHoaDon {
+            get {
+                return this.ngayTaoHoaDonField;
+            }
+            set {
+                this.ngayTaoHoaDonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> NgayXuatHoaDon {
+            get {
+                return this.ngayXuatHoaDonField;
+            }
+            set {
+                this.ngayXuatHoaDonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string NoiDung {
+            get {
+                return this.noiDungField;
+            }
+            set {
+                this.noiDungField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public MsgError MsgError {
+            get {
+                return this.msgErrorField;
+            }
+            set {
+                this.msgErrorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SoBienLai {
+            get {
+                return this.soBienLaiField;
+            }
+            set {
+                this.soBienLaiField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://thaison.vn/inv")]
+    public partial class HoaDonKySoEntity : HoaDonThanhToanEntity {
+        
+        private string soDonHangField;
+        
+        private string einvoiceContentField;
+        
+        /// <remarks/>
+        public string SoDonHang {
+            get {
+                return this.soDonHangField;
+            }
+            set {
+                this.soDonHangField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string EinvoiceContent {
+            get {
+                return this.einvoiceContentField;
+            }
+            set {
+                this.einvoiceContentField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://thaison.vn/inv")]
+    public partial class HoaDonKySoList {
+        
+        private HoaDonKySoEntity[] hoaDonsField;
+        
+        private string canhBaoHoaDonField;
+        
+        private MsgError msgErrorField;
+        
+        /// <remarks/>
+        public HoaDonKySoEntity[] HoaDons {
+            get {
+                return this.hoaDonsField;
+            }
+            set {
+                this.hoaDonsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CanhBaoHoaDon {
+            get {
+                return this.canhBaoHoaDonField;
+            }
+            set {
+                this.canhBaoHoaDonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public MsgError MsgError {
+            get {
+                return this.msgErrorField;
+            }
+            set {
+                this.msgErrorField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://thaison.vn/inv")]
+    public partial class BranchDataSumEntity {
+        
+        private string maCuaHangField;
+        
+        private decimal tongTienChuaThueField;
+        
+        private decimal tongTienSauThueField;
+        
+        private decimal tienThueField;
+        
+        private decimal thueSuatField;
+        
+        /// <remarks/>
+        public string MaCuaHang {
+            get {
+                return this.maCuaHangField;
+            }
+            set {
+                this.maCuaHangField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal TongTienChuaThue {
+            get {
+                return this.tongTienChuaThueField;
+            }
+            set {
+                this.tongTienChuaThueField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal TongTienSauThue {
+            get {
+                return this.tongTienSauThueField;
+            }
+            set {
+                this.tongTienSauThueField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal TienThue {
+            get {
+                return this.tienThueField;
+            }
+            set {
+                this.tienThueField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal ThueSuat {
+            get {
+                return this.thueSuatField;
+            }
+            set {
+                this.thueSuatField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://thaison.vn/inv")]
+    public partial class BranchReportEntity {
+        
+        private string maSoThueField;
+        
+        private string userNameField;
+        
+        private string passWordField;
+        
+        private string reportDateField;
+        
+        private BranchDataSumEntity[] reportListField;
+        
+        private MsgError msgErrorField;
+        
+        /// <remarks/>
+        public string maSoThue {
+            get {
+                return this.maSoThueField;
+            }
+            set {
+                this.maSoThueField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string userName {
+            get {
+                return this.userNameField;
+            }
+            set {
+                this.userNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string passWord {
+            get {
+                return this.passWordField;
+            }
+            set {
+                this.passWordField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string reportDate {
+            get {
+                return this.reportDateField;
+            }
+            set {
+                this.reportDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public BranchDataSumEntity[] ReportList {
+            get {
+                return this.reportListField;
+            }
+            set {
+                this.reportListField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public MsgError MsgError {
+            get {
+                return this.msgErrorField;
+            }
+            set {
+                this.msgErrorField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -1997,7 +3946,7 @@ namespace V6ThuePostApi.EinvoiceService {
         
         private string maChiNhanhField;
         
-        private string tenDonViField;
+        private string tenChiNhanhField;
         
         private string diaChiField;
         
@@ -2046,12 +3995,12 @@ namespace V6ThuePostApi.EinvoiceService {
         }
         
         /// <remarks/>
-        public string TenDonVi {
+        public string TenChiNhanh {
             get {
-                return this.tenDonViField;
+                return this.tenChiNhanhField;
             }
             set {
-                this.tenDonViField = value;
+                this.tenChiNhanhField = value;
             }
         }
         
@@ -2137,76 +4086,7 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://thaison.vn/inv")]
-    public partial class MsgError {
-        
-        private string codeField;
-        
-        private string messageField;
-        
-        private string eMessageField;
-        
-        private string descriptionField;
-        
-        private string eDescriptionField;
-        
-        /// <remarks/>
-        public string Code {
-            get {
-                return this.codeField;
-            }
-            set {
-                this.codeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Message {
-            get {
-                return this.messageField;
-            }
-            set {
-                this.messageField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string EMessage {
-            get {
-                return this.eMessageField;
-            }
-            set {
-                this.eMessageField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Description {
-            get {
-                return this.descriptionField;
-            }
-            set {
-                this.descriptionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string EDescription {
-            get {
-                return this.eDescriptionField;
-            }
-            set {
-                this.eDescriptionField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2263,7 +4143,7 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2344,7 +4224,7 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2461,7 +4341,7 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2542,7 +4422,7 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2659,7 +4539,7 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2692,7 +4572,7 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2711,6 +4591,8 @@ namespace V6ThuePostApi.EinvoiceService {
         
         private string userHuyField;
         
+        private string soThamChieuField;
+        
         private string soHoaDonField;
         
         private System.Nullable<System.DateTime> ngayTaoHoaDonField;
@@ -2720,6 +4602,8 @@ namespace V6ThuePostApi.EinvoiceService {
         private MsgError msgErrorField;
         
         private string soBienLaiField;
+        
+        private string soBienLaiGocField;
         
         private string noiXuatHoaDonField;
         
@@ -2788,6 +4672,16 @@ namespace V6ThuePostApi.EinvoiceService {
         }
         
         /// <remarks/>
+        public string SoThamChieu {
+            get {
+                return this.soThamChieuField;
+            }
+            set {
+                this.soThamChieuField = value;
+            }
+        }
+        
+        /// <remarks/>
         public string SoHoaDon {
             get {
                 return this.soHoaDonField;
@@ -2839,6 +4733,16 @@ namespace V6ThuePostApi.EinvoiceService {
         }
         
         /// <remarks/>
+        public string SoBienLaiGoc {
+            get {
+                return this.soBienLaiGocField;
+            }
+            set {
+                this.soBienLaiGocField = value;
+            }
+        }
+        
+        /// <remarks/>
         public string NoiXuatHoaDon {
             get {
                 return this.noiXuatHoaDonField;
@@ -2870,7 +4774,7 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3107,7 +5011,7 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3140,7 +5044,7 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3389,7 +5293,7 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3421,6 +5325,12 @@ namespace V6ThuePostApi.EinvoiceService {
         private string maNhanHoaDonField;
         
         private decimal dhoadonidField;
+        
+        private string refNoField;
+        
+        private string docTypeField;
+        
+        private int statusField;
         
         /// <remarks/>
         public MsgError MsgError {
@@ -3551,10 +5461,40 @@ namespace V6ThuePostApi.EinvoiceService {
                 this.dhoadonidField = value;
             }
         }
+        
+        /// <remarks/>
+        public string RefNo {
+            get {
+                return this.refNoField;
+            }
+            set {
+                this.refNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string DocType {
+            get {
+                return this.docTypeField;
+            }
+            set {
+                this.docTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Status {
+            get {
+                return this.statusField;
+            }
+            set {
+                this.statusField = value;
+            }
+        }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -4010,7 +5950,7 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -4151,7 +6091,7 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -4676,7 +6616,121 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://thaison.vn/inv")]
+    public partial class Invoice_Responce {
+        
+        private string e_Invoice_NoField;
+        
+        private string form_NoField;
+        
+        private string invoice_SerialField;
+        
+        private string invoice_DateField;
+        
+        private string sAP_Billing_NoField;
+        
+        private string decisionField;
+        
+        /// <remarks/>
+        public string E_Invoice_No {
+            get {
+                return this.e_Invoice_NoField;
+            }
+            set {
+                this.e_Invoice_NoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Form_No {
+            get {
+                return this.form_NoField;
+            }
+            set {
+                this.form_NoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Invoice_Serial {
+            get {
+                return this.invoice_SerialField;
+            }
+            set {
+                this.invoice_SerialField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Invoice_Date {
+            get {
+                return this.invoice_DateField;
+            }
+            set {
+                this.invoice_DateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SAP_Billing_No {
+            get {
+                return this.sAP_Billing_NoField;
+            }
+            set {
+                this.sAP_Billing_NoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Decision {
+            get {
+                return this.decisionField;
+            }
+            set {
+                this.decisionField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://thaison.vn/inv")]
+    public partial class Getinvoices {
+        
+        private string taxCodeField;
+        
+        private string billingNumberField;
+        
+        /// <remarks/>
+        public string TaxCode {
+            get {
+                return this.taxCodeField;
+            }
+            set {
+                this.taxCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BillingNumber {
+            get {
+                return this.billingNumberField;
+            }
+            set {
+                this.billingNumberField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -4684,6 +6738,10 @@ namespace V6ThuePostApi.EinvoiceService {
     public partial class ImportResponse {
         
         private int statusField;
+        
+        private string soBienLaiField;
+        
+        private System.DateTime ngayTaoHoaDonField;
         
         private MsgError msgErrorField;
         
@@ -4698,6 +6756,8 @@ namespace V6ThuePostApi.EinvoiceService {
         private string benBanDiaChiField;
         
         private decimal tienThueVatField;
+        
+        private decimal tongTienGTGTField;
         
         private decimal tongTienHangField;
         
@@ -4714,8 +6774,6 @@ namespace V6ThuePostApi.EinvoiceService {
         private string hinhThucThanhToanField;
         
         private decimal tyGiaField;
-        
-        private string soBienLaiField;
         
         private string outputVoucherIdField;
         
@@ -4758,6 +6816,26 @@ namespace V6ThuePostApi.EinvoiceService {
             }
             set {
                 this.statusField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SoBienLai {
+            get {
+                return this.soBienLaiField;
+            }
+            set {
+                this.soBienLaiField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime NgayTaoHoaDon {
+            get {
+                return this.ngayTaoHoaDonField;
+            }
+            set {
+                this.ngayTaoHoaDonField = value;
             }
         }
         
@@ -4828,6 +6906,16 @@ namespace V6ThuePostApi.EinvoiceService {
             }
             set {
                 this.tienThueVatField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal TongTienGTGT {
+            get {
+                return this.tongTienGTGTField;
+            }
+            set {
+                this.tongTienGTGTField = value;
             }
         }
         
@@ -4908,16 +6996,6 @@ namespace V6ThuePostApi.EinvoiceService {
             }
             set {
                 this.tyGiaField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string SoBienLai {
-            get {
-                return this.soBienLaiField;
-            }
-            set {
-                this.soBienLaiField = value;
             }
         }
         
@@ -5094,7 +7172,7 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -5116,6 +7194,8 @@ namespace V6ThuePostApi.EinvoiceService {
         private decimal thanhTienField;
         
         private System.Nullable<int> vatField;
+        
+        private string vat_CODEField;
         
         private System.Nullable<decimal> tienVatField;
         
@@ -5143,6 +7223,8 @@ namespace V6ThuePostApi.EinvoiceService {
         
         private string ghiChuField;
         
+        private string soLoField;
+        
         private decimal heSoMonField;
         
         private decimal heSoField;
@@ -5160,6 +7242,18 @@ namespace V6ThuePostApi.EinvoiceService {
         private System.Nullable<decimal> chietKhauTienField;
         
         private ExtensionEntity[] dataExtensionField;
+        
+        private System.Nullable<decimal> soLuongNhapField;
+        
+        private string maKhoField;
+        
+        private string tenHang_Text1Field;
+        
+        private string tenHang_Text2Field;
+        
+        private string tenHang_Text3Field;
+        
+        private string tenHang_Text4Field;
         
         /// <remarks/>
         public uint SoThuTu {
@@ -5241,6 +7335,16 @@ namespace V6ThuePostApi.EinvoiceService {
             }
             set {
                 this.vatField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Vat_CODE {
+            get {
+                return this.vat_CODEField;
+            }
+            set {
+                this.vat_CODEField = value;
             }
         }
         
@@ -5381,6 +7485,16 @@ namespace V6ThuePostApi.EinvoiceService {
         }
         
         /// <remarks/>
+        public string SoLo {
+            get {
+                return this.soLoField;
+            }
+            set {
+                this.soLoField = value;
+            }
+        }
+        
+        /// <remarks/>
         public decimal HeSoMon {
             get {
                 return this.heSoMonField;
@@ -5472,10 +7586,71 @@ namespace V6ThuePostApi.EinvoiceService {
                 this.dataExtensionField = value;
             }
         }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> SoLuongNhap {
+            get {
+                return this.soLuongNhapField;
+            }
+            set {
+                this.soLuongNhapField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MaKho {
+            get {
+                return this.maKhoField;
+            }
+            set {
+                this.maKhoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string TenHang_Text1 {
+            get {
+                return this.tenHang_Text1Field;
+            }
+            set {
+                this.tenHang_Text1Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string TenHang_Text2 {
+            get {
+                return this.tenHang_Text2Field;
+            }
+            set {
+                this.tenHang_Text2Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string TenHang_Text3 {
+            get {
+                return this.tenHang_Text3Field;
+            }
+            set {
+                this.tenHang_Text3Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string TenHang_Text4 {
+            get {
+                return this.tenHang_Text4Field;
+            }
+            set {
+                this.tenHang_Text4Field = value;
+            }
+        }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -5508,7 +7683,7 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -5613,7 +7788,7 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -5646,7 +7821,7 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -5675,7 +7850,9 @@ namespace V6ThuePostApi.EinvoiceService {
         
         private string namSinhField;
         
-        private System.DateTime ngayNhapVienField;
+        private System.Nullable<System.DateTime> ngayNhapVienField;
+        
+        private bool ngayNhapVienFieldSpecified;
         
         private string soNhapVienField;
         
@@ -5715,6 +7892,8 @@ namespace V6ThuePostApi.EinvoiceService {
         
         private string benMuaDienThoaiField;
         
+        private string benMuaDienThoaiNhanHoaDonField;
+        
         private string benMuaFaxField;
         
         private string benMuaEmailField;
@@ -5726,6 +7905,8 @@ namespace V6ThuePostApi.EinvoiceService {
         private string benMuaTenNganHangField;
         
         private decimal tienThueVatField;
+        
+        private decimal tongTienGTGTField;
         
         private decimal tongTienHangField;
         
@@ -5744,6 +7925,8 @@ namespace V6ThuePostApi.EinvoiceService {
         private decimal tyGiaField;
         
         private string soBienLaiField;
+        
+        private string soBienLaiGocField;
         
         private string outputVoucherIdField;
         
@@ -5775,13 +7958,17 @@ namespace V6ThuePostApi.EinvoiceService {
         
         private string nguoiLienHeGuiHoaDonField;
         
-        private System.DateTime dATECLOSEDBILLField;
+        private string termOfPaymentField;
+        
+        private System.Nullable<System.DateTime> dATECLOSEDBILLField;
+        
+        private bool dATECLOSEDBILLFieldSpecified;
         
         private string linkDownloadfileField;
         
         private int trangThaiDieuChinhField;
         
-        private int loaiBangKeField;
+        private System.Nullable<int> loaiBangKeField;
         
         private string noiDungBangKeField;
         
@@ -5815,7 +8002,13 @@ namespace V6ThuePostApi.EinvoiceService {
         
         private System.Nullable<System.DateTime> ngayDieuChinhField;
         
+        private bool ngayDieuChinhFieldSpecified;
+        
         private string soHopDongField;
+        
+        private System.Nullable<System.DateTime> ngayHopDongField;
+        
+        private bool ngayHopDongFieldSpecified;
         
         private string referenceIdField;
         
@@ -5845,6 +8038,8 @@ namespace V6ThuePostApi.EinvoiceService {
         
         private System.Nullable<System.DateTime> invoiceDueDateField;
         
+        private bool invoiceDueDateFieldSpecified;
+        
         private string maNhanHoaDonField;
         
         private string rescodeField;
@@ -5853,7 +8048,9 @@ namespace V6ThuePostApi.EinvoiceService {
         
         private string vendorCodeField;
         
-        private System.DateTime transDateField;
+        private System.Nullable<System.DateTime> transDateField;
+        
+        private bool transDateFieldSpecified;
         
         private int kieuHoaDonField;
         
@@ -5868,6 +8065,26 @@ namespace V6ThuePostApi.EinvoiceService {
         private string receiptRefundNoField;
         
         private string receiptVoidNoField;
+        
+        private string tenDonViVanChuyenField;
+        
+        private string maPhuongTienVanChuyenField;
+        
+        private string soHopDongVanChuyenField;
+        
+        private string lenhDieuDongSoField;
+        
+        private System.Nullable<System.DateTime> lenhDieuDongNgayField;
+        
+        private string lenhDieuDongCuaField;
+        
+        private string lenhDieuDongVeViecField;
+        
+        private string hoTenNguoiVanChuyenField;
+        
+        private string maKhoXuatField;
+        
+        private System.Nullable<System.DateTime> ngayNhapKhoField;
         
         private string plantCodeField;
         
@@ -5890,6 +8107,8 @@ namespace V6ThuePostApi.EinvoiceService {
         private string loaiHoaDonField;
         
         private System.Nullable<System.DateTime> paymentTermField;
+        
+        private bool paymentTermFieldSpecified;
         
         private System.Nullable<decimal> noVatAmountField;
         
@@ -5919,7 +8138,9 @@ namespace V6ThuePostApi.EinvoiceService {
         
         private string origPurStoreField;
         
-        private System.DateTime origPurDateField;
+        private System.Nullable<System.DateTime> origPurDateField;
+        
+        private bool origPurDateFieldSpecified;
         
         private string origPurDocNoField;
         
@@ -5928,6 +8149,28 @@ namespace V6ThuePostApi.EinvoiceService {
         private string ngayHoaDonStrField;
         
         private bool isGiuLaiField;
+        
+        private string diaDiemNhanHangField;
+        
+        private string printAutoField;
+        
+        private decimal diemPointTichLuyField;
+        
+        private decimal thanhToanDiemPointTichLuyField;
+        
+        private EmptyEntity[] emptysField;
+        
+        private string benMuaDiaChiStreet1Field;
+        
+        private string benMuaDiaChiStreet2Field;
+        
+        private string benMuaDiaChiStreet3Field;
+        
+        private string benMuaDiaChiStreet4Field;
+        
+        private string benMuaDiaChiCityField;
+        
+        private string benMuaDiaChiCountryField;
         
         /// <remarks/>
         public MsgError MsgError {
@@ -6040,12 +8283,24 @@ namespace V6ThuePostApi.EinvoiceService {
         }
         
         /// <remarks/>
-        public System.DateTime NgayNhapVien {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> NgayNhapVien {
             get {
                 return this.ngayNhapVienField;
             }
             set {
                 this.ngayNhapVienField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool NgayNhapVienSpecified {
+            get {
+                return this.ngayNhapVienFieldSpecified;
+            }
+            set {
+                this.ngayNhapVienFieldSpecified = value;
             }
         }
         
@@ -6240,6 +8495,16 @@ namespace V6ThuePostApi.EinvoiceService {
         }
         
         /// <remarks/>
+        public string BenMuaDienThoaiNhanHoaDon {
+            get {
+                return this.benMuaDienThoaiNhanHoaDonField;
+            }
+            set {
+                this.benMuaDienThoaiNhanHoaDonField = value;
+            }
+        }
+        
+        /// <remarks/>
         public string BenMuaFax {
             get {
                 return this.benMuaFaxField;
@@ -6297,6 +8562,16 @@ namespace V6ThuePostApi.EinvoiceService {
             }
             set {
                 this.tienThueVatField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal TongTienGTGT {
+            get {
+                return this.tongTienGTGTField;
+            }
+            set {
+                this.tongTienGTGTField = value;
             }
         }
         
@@ -6387,6 +8662,16 @@ namespace V6ThuePostApi.EinvoiceService {
             }
             set {
                 this.soBienLaiField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SoBienLaiGoc {
+            get {
+                return this.soBienLaiGocField;
+            }
+            set {
+                this.soBienLaiGocField = value;
             }
         }
         
@@ -6542,12 +8827,34 @@ namespace V6ThuePostApi.EinvoiceService {
         }
         
         /// <remarks/>
-        public System.DateTime DATECLOSEDBILL {
+        public string TermOfPayment {
+            get {
+                return this.termOfPaymentField;
+            }
+            set {
+                this.termOfPaymentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> DATECLOSEDBILL {
             get {
                 return this.dATECLOSEDBILLField;
             }
             set {
                 this.dATECLOSEDBILLField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool DATECLOSEDBILLSpecified {
+            get {
+                return this.dATECLOSEDBILLFieldSpecified;
+            }
+            set {
+                this.dATECLOSEDBILLFieldSpecified = value;
             }
         }
         
@@ -6572,7 +8879,8 @@ namespace V6ThuePostApi.EinvoiceService {
         }
         
         /// <remarks/>
-        public int LoaiBangKe {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> LoaiBangKe {
             get {
                 return this.loaiBangKeField;
             }
@@ -6743,12 +9051,45 @@ namespace V6ThuePostApi.EinvoiceService {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool NgayDieuChinhSpecified {
+            get {
+                return this.ngayDieuChinhFieldSpecified;
+            }
+            set {
+                this.ngayDieuChinhFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
         public string SoHopDong {
             get {
                 return this.soHopDongField;
             }
             set {
                 this.soHopDongField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> NgayHopDong {
+            get {
+                return this.ngayHopDongField;
+            }
+            set {
+                this.ngayHopDongField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool NgayHopDongSpecified {
+            get {
+                return this.ngayHopDongFieldSpecified;
+            }
+            set {
+                this.ngayHopDongFieldSpecified = value;
             }
         }
         
@@ -6894,6 +9235,17 @@ namespace V6ThuePostApi.EinvoiceService {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool InvoiceDueDateSpecified {
+            get {
+                return this.invoiceDueDateFieldSpecified;
+            }
+            set {
+                this.invoiceDueDateFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
         public string MaNhanHoaDon {
             get {
                 return this.maNhanHoaDonField;
@@ -6934,12 +9286,24 @@ namespace V6ThuePostApi.EinvoiceService {
         }
         
         /// <remarks/>
-        public System.DateTime TransDate {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> TransDate {
             get {
                 return this.transDateField;
             }
             set {
                 this.transDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool TransDateSpecified {
+            get {
+                return this.transDateFieldSpecified;
+            }
+            set {
+                this.transDateFieldSpecified = value;
             }
         }
         
@@ -7010,6 +9374,108 @@ namespace V6ThuePostApi.EinvoiceService {
             }
             set {
                 this.receiptVoidNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string TenDonViVanChuyen {
+            get {
+                return this.tenDonViVanChuyenField;
+            }
+            set {
+                this.tenDonViVanChuyenField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MaPhuongTienVanChuyen {
+            get {
+                return this.maPhuongTienVanChuyenField;
+            }
+            set {
+                this.maPhuongTienVanChuyenField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SoHopDongVanChuyen {
+            get {
+                return this.soHopDongVanChuyenField;
+            }
+            set {
+                this.soHopDongVanChuyenField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LenhDieuDongSo {
+            get {
+                return this.lenhDieuDongSoField;
+            }
+            set {
+                this.lenhDieuDongSoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> LenhDieuDongNgay {
+            get {
+                return this.lenhDieuDongNgayField;
+            }
+            set {
+                this.lenhDieuDongNgayField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LenhDieuDongCua {
+            get {
+                return this.lenhDieuDongCuaField;
+            }
+            set {
+                this.lenhDieuDongCuaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LenhDieuDongVeViec {
+            get {
+                return this.lenhDieuDongVeViecField;
+            }
+            set {
+                this.lenhDieuDongVeViecField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string HoTenNguoiVanChuyen {
+            get {
+                return this.hoTenNguoiVanChuyenField;
+            }
+            set {
+                this.hoTenNguoiVanChuyenField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MaKhoXuat {
+            get {
+                return this.maKhoXuatField;
+            }
+            set {
+                this.maKhoXuatField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> NgayNhapKho {
+            get {
+                return this.ngayNhapKhoField;
+            }
+            set {
+                this.ngayNhapKhoField = value;
             }
         }
         
@@ -7121,6 +9587,17 @@ namespace V6ThuePostApi.EinvoiceService {
             }
             set {
                 this.paymentTermField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool PaymentTermSpecified {
+            get {
+                return this.paymentTermFieldSpecified;
+            }
+            set {
+                this.paymentTermFieldSpecified = value;
             }
         }
         
@@ -7266,12 +9743,24 @@ namespace V6ThuePostApi.EinvoiceService {
         }
         
         /// <remarks/>
-        public System.DateTime OrigPurDate {
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> OrigPurDate {
             get {
                 return this.origPurDateField;
             }
             set {
                 this.origPurDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool OrigPurDateSpecified {
+            get {
+                return this.origPurDateFieldSpecified;
+            }
+            set {
+                this.origPurDateFieldSpecified = value;
             }
         }
         
@@ -7314,14 +9803,181 @@ namespace V6ThuePostApi.EinvoiceService {
                 this.isGiuLaiField = value;
             }
         }
+        
+        /// <remarks/>
+        public string DiaDiemNhanHang {
+            get {
+                return this.diaDiemNhanHangField;
+            }
+            set {
+                this.diaDiemNhanHangField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PrintAuto {
+            get {
+                return this.printAutoField;
+            }
+            set {
+                this.printAutoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal DiemPointTichLuy {
+            get {
+                return this.diemPointTichLuyField;
+            }
+            set {
+                this.diemPointTichLuyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal ThanhToanDiemPointTichLuy {
+            get {
+                return this.thanhToanDiemPointTichLuyField;
+            }
+            set {
+                this.thanhToanDiemPointTichLuyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public EmptyEntity[] Emptys {
+            get {
+                return this.emptysField;
+            }
+            set {
+                this.emptysField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BenMuaDiaChiStreet1 {
+            get {
+                return this.benMuaDiaChiStreet1Field;
+            }
+            set {
+                this.benMuaDiaChiStreet1Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BenMuaDiaChiStreet2 {
+            get {
+                return this.benMuaDiaChiStreet2Field;
+            }
+            set {
+                this.benMuaDiaChiStreet2Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BenMuaDiaChiStreet3 {
+            get {
+                return this.benMuaDiaChiStreet3Field;
+            }
+            set {
+                this.benMuaDiaChiStreet3Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BenMuaDiaChiStreet4 {
+            get {
+                return this.benMuaDiaChiStreet4Field;
+            }
+            set {
+                this.benMuaDiaChiStreet4Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BenMuaDiaChiCity {
+            get {
+                return this.benMuaDiaChiCityField;
+            }
+            set {
+                this.benMuaDiaChiCityField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BenMuaDiaChiCountry {
+            get {
+                return this.benMuaDiaChiCountryField;
+            }
+            set {
+                this.benMuaDiaChiCountryField = value;
+            }
+        }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3761.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://thaison.vn/inv")]
+    public partial class EmptyEntity {
+        
+        private string emptyCodeField;
+        
+        private string emptyNameField;
+        
+        private decimal emptyCountField;
+        
+        private decimal emptyPriceField;
+        
+        /// <remarks/>
+        public string EmptyCode {
+            get {
+                return this.emptyCodeField;
+            }
+            set {
+                this.emptyCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string EmptyName {
+            get {
+                return this.emptyNameField;
+            }
+            set {
+                this.emptyNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal EmptyCount {
+            get {
+                return this.emptyCountField;
+            }
+            set {
+                this.emptyCountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal EmptyPrice {
+            get {
+                return this.emptyPriceField;
+            }
+            set {
+                this.emptyPriceField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void XuatHoaDonCompletedEventHandler(object sender, XuatHoaDonCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class XuatHoaDonCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7343,11 +9999,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void XuatHoaDonDienTu_XML_ListCompletedEventHandler(object sender, XuatHoaDonDienTu_XML_ListCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class XuatHoaDonDienTu_XML_ListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7369,11 +10025,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void XuatListHoaDonCompletedEventHandler(object sender, XuatListHoaDonCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class XuatListHoaDonCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7395,11 +10051,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void TaoMauSoKyHieuCompletedEventHandler(object sender, TaoMauSoKyHieuCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class TaoMauSoKyHieuCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7421,11 +10077,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void ImportThongTinHoaDonCompletedEventHandler(object sender, ImportThongTinHoaDonCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ImportThongTinHoaDonCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7447,11 +10103,89 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void ImportInvoice_NotAuthenCompletedEventHandler(object sender, ImportInvoice_NotAuthenCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ImportInvoice_NotAuthenCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ImportInvoice_NotAuthenCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ImportResponse Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ImportResponse)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void Import_Group_Invoice_NotAuthenCompletedEventHandler(object sender, Import_Group_Invoice_NotAuthenCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class Import_Group_Invoice_NotAuthenCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal Import_Group_Invoice_NotAuthenCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ImportResponse Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ImportResponse)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void GetInvoice_ExportCompletedEventHandler(object sender, GetInvoice_ExportCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetInvoice_ExportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetInvoice_ExportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Invoice_Responce[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Invoice_Responce[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void TaoHoaDonGiuLaiCompletedEventHandler(object sender, TaoHoaDonGiuLaiCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class TaoHoaDonGiuLaiCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7473,11 +10207,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void LaySoHoaDonSuDungGanNhatCompletedEventHandler(object sender, LaySoHoaDonSuDungGanNhatCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LaySoHoaDonSuDungGanNhatCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7499,11 +10233,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void LayDuLieuHoaDonGiuLaiCompletedEventHandler(object sender, LayDuLieuHoaDonGiuLaiCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LayDuLieuHoaDonGiuLaiCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7525,11 +10259,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void XuatVaXacThucHoaDonCompletedEventHandler(object sender, XuatVaXacThucHoaDonCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class XuatVaXacThucHoaDonCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7551,11 +10285,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void ImportBangKeCompletedEventHandler(object sender, ImportBangKeCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ImportBangKeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7577,11 +10311,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void ImportEodInformationCompletedEventHandler(object sender, ImportEodInformationCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ImportEodInformationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7603,11 +10337,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void ImportBangKeByteCompletedEventHandler(object sender, ImportBangKeByteCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ImportBangKeByteCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7629,11 +10363,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void XuatHoaDonDienTuCompletedEventHandler(object sender, XuatHoaDonDienTuCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class XuatHoaDonDienTuCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7655,11 +10389,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void XuatHoaDonDienTuAeonCompletedEventHandler(object sender, XuatHoaDonDienTuAeonCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class XuatHoaDonDienTuAeonCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7681,11 +10415,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetBBCompletedEventHandler(object sender, GetBBCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetBBCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7707,11 +10441,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void GetHoaDonByReferenceIDCompletedEventHandler(object sender, GetHoaDonByReferenceIDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetHoaDonByReferenceIDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7733,11 +10467,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void LuuBienBanCompletedEventHandler(object sender, LuuBienBanCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LuuBienBanCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7759,11 +10493,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void SendMailCompletedEventHandler(object sender, SendMailCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SendMailCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7785,11 +10519,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void KySoHoaDonDienTuCompletedEventHandler(object sender, KySoHoaDonDienTuCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class KySoHoaDonDienTuCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7811,11 +10545,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void KySoListXMLFromStringCompletedEventHandler(object sender, KySoListXMLFromStringCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class KySoListXMLFromStringCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7837,11 +10571,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void XuatHoaDonDienTu_XMLCompletedEventHandler(object sender, XuatHoaDonDienTu_XMLCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class XuatHoaDonDienTu_XMLCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7863,11 +10597,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void XuatHoaDonDienTuCheckCompletedEventHandler(object sender, XuatHoaDonDienTuCheckCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class XuatHoaDonDienTuCheckCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7889,11 +10623,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void ExportReportDatatableCompletedEventHandler(object sender, ExportReportDatatableCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ExportReportDatatableCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7915,11 +10649,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void LayDuLieuBaoCao_THSDHDCompletedEventHandler(object sender, LayDuLieuBaoCao_THSDHDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LayDuLieuBaoCao_THSDHDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7941,11 +10675,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void LayThongTinHoaDonDaXuatCompletedEventHandler(object sender, LayThongTinHoaDonDaXuatCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LayThongTinHoaDonDaXuatCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7967,11 +10701,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void HuyHoaDonCompletedEventHandler(object sender, HuyHoaDonCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class HuyHoaDonCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -7993,11 +10727,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void HuyImportHoadonCompletedEventHandler(object sender, HuyImportHoadonCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class HuyImportHoadonCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -8019,11 +10753,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void UpdateInChuyenDoiCompletedEventHandler(object sender, UpdateInChuyenDoiCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class UpdateInChuyenDoiCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -8045,11 +10779,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void XoaBoHoaDonChuaXuatCompletedEventHandler(object sender, XoaBoHoaDonChuaXuatCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class XoaBoHoaDonChuaXuatCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -8071,11 +10805,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void TraCuuMSTCompletedEventHandler(object sender, TraCuuMSTCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class TraCuuMSTCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -8097,11 +10831,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void HuyHoaDonXacThucCompletedEventHandler(object sender, HuyHoaDonXacThucCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class HuyHoaDonXacThucCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -8123,11 +10857,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void InBienBanCompletedEventHandler(object sender, InBienBanCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class InBienBanCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -8149,11 +10883,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void XoaBoHoaDonXacThucCompletedEventHandler(object sender, XoaBoHoaDonXacThucCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class XoaBoHoaDonXacThucCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -8175,11 +10909,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void LayThongTinHoaDonCompletedEventHandler(object sender, LayThongTinHoaDonCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LayThongTinHoaDonCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -8201,11 +10935,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void LayThongTinMauSoKyHieuCompletedEventHandler(object sender, LayThongTinMauSoKyHieuCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LayThongTinMauSoKyHieuCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -8227,11 +10961,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void LayThongTinHoaDonGocCompletedEventHandler(object sender, LayThongTinHoaDonGocCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LayThongTinHoaDonGocCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -8253,11 +10987,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void LayThongTinHoaDonDieuChinhCompletedEventHandler(object sender, LayThongTinHoaDonDieuChinhCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LayThongTinHoaDonDieuChinhCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -8279,11 +11013,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void InHoaDonCompletedEventHandler(object sender, InHoaDonCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class InHoaDonCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -8305,11 +11039,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void XacThucHoaDonCompletedEventHandler(object sender, XacThucHoaDonCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class XacThucHoaDonCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -8331,11 +11065,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void LayThongTinHoaDonXMLCompletedEventHandler(object sender, LayThongTinHoaDonXMLCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LayThongTinHoaDonXMLCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -8357,11 +11091,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void LayDanhMucCompletedEventHandler(object sender, LayDanhMucCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LayDanhMucCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -8383,11 +11117,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void DanhSachHoaDonCompletedEventHandler(object sender, DanhSachHoaDonCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class DanhSachHoaDonCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -8409,11 +11143,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void BaoCaoHangHoaGTGTCompletedEventHandler(object sender, BaoCaoHangHoaGTGTCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class BaoCaoHangHoaGTGTCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -8435,11 +11169,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void ChotBaoCaoTHSDHDCompletedEventHandler(object sender, ChotBaoCaoTHSDHDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ChotBaoCaoTHSDHDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -8461,11 +11195,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void ExportBaoCaoTHSDHDXMLCompletedEventHandler(object sender, ExportBaoCaoTHSDHDXMLCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ExportBaoCaoTHSDHDXMLCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -8487,11 +11221,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void LayThongTinHeThongCompletedEventHandler(object sender, LayThongTinHeThongCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LayThongTinHeThongCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -8513,11 +11247,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void CapNhatHeThongTichHopCompletedEventHandler(object sender, CapNhatHeThongTichHopCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CapNhatHeThongTichHopCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -8539,11 +11273,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void SpellTienChuCompletedEventHandler(object sender, SpellTienChuCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SpellTienChuCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -8565,11 +11299,11 @@ namespace V6ThuePostApi.EinvoiceService {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void CapNhatDonViCompletedEventHandler(object sender, CapNhatDonViCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1055.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CapNhatDonViCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -8586,6 +11320,240 @@ namespace V6ThuePostApi.EinvoiceService {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((DonViEntity)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void GetReportBranchCompletedEventHandler(object sender, GetReportBranchCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetReportBranchCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetReportBranchCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public BranchReportEntity Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((BranchReportEntity)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void KySoHoaDonListCompletedEventHandler(object sender, KySoHoaDonListCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class KySoHoaDonListCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal KySoHoaDonListCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public HoaDonKySoList Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((HoaDonKySoList)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void CheckSoBienLaiDaXuatCompletedEventHandler(object sender, CheckSoBienLaiDaXuatCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CheckSoBienLaiDaXuatCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CheckSoBienLaiDaXuatCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public BienLaiEntity Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((BienLaiEntity)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void CheckSoBienLaiDaXuatNewCompletedEventHandler(object sender, CheckSoBienLaiDaXuatNewCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CheckSoBienLaiDaXuatNewCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CheckSoBienLaiDaXuatNewCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public BienLaiEntity Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((BienLaiEntity)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void DanhSachHoaDonChuaDongBoCompletedEventHandler(object sender, DanhSachHoaDonChuaDongBoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class DanhSachHoaDonChuaDongBoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal DanhSachHoaDonChuaDongBoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ListBienLaiExtensionEntity Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ListBienLaiExtensionEntity)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void DanhSachHoaDonChuaDongBoNewCompletedEventHandler(object sender, DanhSachHoaDonChuaDongBoNewCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class DanhSachHoaDonChuaDongBoNewCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal DanhSachHoaDonChuaDongBoNewCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ListBienLaiExtensionEntity Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ListBienLaiExtensionEntity)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void GetEmailSmsCompletedEventHandler(object sender, GetEmailSmsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetEmailSmsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetEmailSmsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ListEmailSmsEntity Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ListEmailSmsEntity)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void RemoveBillCompletedEventHandler(object sender, RemoveBillCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class RemoveBillCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal RemoveBillCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public RemoveBillEntity Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((RemoveBillEntity)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void MakeInvoiceAdjusmentRecordsCompletedEventHandler(object sender, MakeInvoiceAdjusmentRecordsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class MakeInvoiceAdjusmentRecordsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal MakeInvoiceAdjusmentRecordsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public InvoiceRecordEntity Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((InvoiceRecordEntity)(this.results[0]));
             }
         }
     }

@@ -60,11 +60,11 @@ namespace HaUtility.Converter
         /// <typeparam name="T">Kiểu object đưa vào. Vd ModelBenhNhan</typeparam>
         /// <param name="entity">Đối tượng đưa vào</param>
         /// <returns></returns>
-        public static SortedDictionary<string, object> ToDic<T>(this T entity)
+        public static SortedDictionary<string, object> ToDicH<T>(this T entity)
         {
             if (entity is DataRow)
             {
-                return (entity as DataRow).ToDataDictionary();
+                return (entity as DataRow).ToDataDictionaryH();
             }
             var dic = new SortedDictionary<string, object>();
             foreach (PropertyInfo propertyInfo in entity.GetType().GetProperties())
@@ -80,7 +80,7 @@ namespace HaUtility.Converter
             return dic;
         }
 
-        public static T ToModel<T>(this IDictionary<string, object> dataDic) where T : new()
+        public static T ToModelH<T>(this IDictionary<string, object> dataDic) where T : new()
         {
             var t = new T();
             foreach (PropertyInfo propertyInfo in t.GetType().GetProperties())
@@ -106,7 +106,7 @@ namespace HaUtility.Converter
         /// <returns></returns>
         public static List<SortedDictionary<string, object>> ToListDataDictionary(this DataTable data)
         {
-            return (from DataRow row in data.Rows select row.ToDataDictionary()).ToList();
+            return (from DataRow row in data.Rows select row.ToDataDictionaryH()).ToList();
         }
 
         public static SortedDictionary<string, object>[] ToArrayDataDictionary(this DataTable data)
@@ -114,12 +114,12 @@ namespace HaUtility.Converter
             var result = new SortedDictionary<string, object>[data.Rows.Count];
             for (int i = 0; i < data.Rows.Count; i++)
             {
-                result[i] = data.Rows[i].ToDataDictionary();
+                result[i] = data.Rows[i].ToDataDictionaryH();
             }
             return result;
         }
 
-        public static SortedDictionary<string, object> ToDataDictionary(this DataRow row)
+        public static SortedDictionary<string, object> ToDataDictionaryH(this DataRow row)
         {
             var DataDic = new SortedDictionary<string, object>();
             for (int i = 0; i < row.Table.Columns.Count; i++)

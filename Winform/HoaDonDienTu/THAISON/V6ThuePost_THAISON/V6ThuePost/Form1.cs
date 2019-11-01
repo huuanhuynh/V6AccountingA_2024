@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using V6ThuePostThaiSonApi.EinvoiceService;
+using V6Tools.V6Convert;
 
 namespace V6ThuePost
 {
@@ -10,14 +12,16 @@ namespace V6ThuePost
             InitializeComponent();
         }
 
+        private HoaDonEntity _invoice;
+
         private void btnRead_Click(object sender, EventArgs e)
         {
             Program.ReadXmlInfo(txtXmlFile.Text);
-            string xmlData = Program.ReadDataXml(txtDbfFile.Text);
+            _invoice = Program.ReadDataXml(txtDbfFile.Text);
             txtUsername.Text = Program._username;
             txtPassword.Text = Program._password;
             txtURL.Text = Program.link_Publish;
-            richTextBox1.Text = xmlData;
+            richTextBox1.Text = V6XmlConverter.ClassToXml(_invoice);
 
             btnSend.Enabled = true;
             btnSendS.Enabled = false;
@@ -26,11 +30,11 @@ namespace V6ThuePost
         private void btnReadS_Click(object sender, EventArgs e)
         {
             Program.ReadXmlInfo(txtXmlFile.Text);
-            string xmlData = Program.ReadDataXmlS(txtDbfFile.Text);
+            _invoice = Program.ReadDataXml(txtDbfFile.Text);
             txtUsername.Text = Program._username;
             txtPassword.Text = Program._password;
             txtURL.Text = Program.link_Publish;
-            richTextBox1.Text = xmlData;
+            richTextBox1.Text = V6XmlConverter.ClassToXml(_invoice); ;
 
             btnSend.Enabled = false;
             btnSendS.Enabled = true;
@@ -39,11 +43,11 @@ namespace V6ThuePost
         private void btnReadT_Click(object sender, EventArgs e)
         {
             Program.ReadXmlInfo(txtXmlFile.Text);
-            string xmlData = Program.ReadDataXmlT(txtDbfFile.Text);
+            _invoice = Program.ReadDataXml(txtDbfFile.Text);
             txtUsername.Text = Program._username;
             txtPassword.Text = Program._password;
             txtURL.Text = Program.link_Publish;
-            richTextBox1.Text = xmlData;
+            richTextBox1.Text = V6XmlConverter.ClassToXml(_invoice); ;
 
             btnSend.Enabled = false;
             btnSendS.Enabled = true;
@@ -66,16 +70,16 @@ namespace V6ThuePost
 
         private void btnSendS_Click(object sender, EventArgs e)
         {
-            string result = Program.adjustInv(richTextBox1.Text,"old_fkey");
-            lblResult.Text = result;
-            if (result != null)
-            {
-                BaseMessage.Show(result, 500, this);
-            }
-            else
-            {
-                MessageBox.Show("Response is null!");
-            }
+            //string result = Program.adjustInv(richTextBox1.Text,"old_fkey");
+            //lblResult.Text = result;
+            //if (result != null)
+            //{
+            //    BaseMessage.Show(result, 500, this);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Response is null!");
+            //}
         }
 
         private void btnUpload_Click(object sender, EventArgs e)

@@ -30,7 +30,7 @@ namespace V6ThuePost
         /// <summary>
         /// Link host
         /// </summary>
-        public static string baseUrl = "";
+        public static string _baseUrl = "";
         /// <summary>
         /// Tên cờ V6STT_REC
         /// </summary>
@@ -69,9 +69,9 @@ namespace V6ThuePost
         /// services
         /// <para>Được gán khi đọc info</para>
         /// </summary>
-        public static string username { get; set; }
-        public static string password;
-        public static string token_serial = "";
+        public static string _username { get; set; }
+        public static string _password;
+        public static string _token_serial = "";
         private static string token_password_title = "";
         private static string token_password = "";
         /// <summary>
@@ -170,7 +170,7 @@ namespace V6ThuePost
                     
                     ReadXmlInfo(arg1_xmlFile);
 
-                    _softDreams_ws = new SoftDreamsWS(baseUrl, username, password, token_serial);
+                    _softDreams_ws = new SoftDreamsWS(_baseUrl, _username, _password, _token_serial);
 
                     if (mode.ToLower() == "DownloadInvPDFFkey".ToLower())
                     {
@@ -1743,13 +1743,13 @@ namespace V6ThuePost
                             switch (line.Field.ToLower())
                             {
                                 case "username":
-                                    username = UtilityHelper.DeCrypt(line.Value);
+                                    _username = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "password":
-                                    password = UtilityHelper.DeCrypt(line.Value);
+                                    _password = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "serialcert":
-                                    token_serial = UtilityHelper.DeCrypt(line.Value).ToUpper();
+                                    _token_serial = UtilityHelper.DeCrypt(line.Value).ToUpper();
                                     break;
                                 case "token_password_title":
                                     token_password_title = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
@@ -1758,7 +1758,7 @@ namespace V6ThuePost
                                     token_password = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "baselink":
-                                    baseUrl = UtilityHelper.DeCrypt(line.Value);
+                                    _baseUrl = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "pattern":
                                     pattern_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;

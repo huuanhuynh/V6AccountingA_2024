@@ -47,7 +47,7 @@
       <HintPath>..\..\..\..\..\..\Git\MicrosoftSource\Framework35\Lib\Winform\PdfiumViewer\PdfiumViewer.dll</HintPath>
     </Reference>
     <Reference Include="Spy001">
-      <HintPath>..\..\..\..\UltrasoundM1SetupSolution\spy001\bin\Debug\Spy001.dll</HintPath>
+      <HintPath>..\..\..\..\..\Lib\Winform\V6ThuePost\VNPT_HCM\Spy001.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -11,19 +11,26 @@ using System.Xml.Serialization;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 using V6ThuePostApi;
-using V6ThuePostApi.EinvoiceService;
-using V6ThuePostApi.PostObjects;
-using V6ThuePostXmlApi;
+using V6ThuePostThaiSonApi;
+using V6ThuePostThaiSonApi.EinvoiceService;
 using V6Tools;
 using V6Tools.V6Convert;
-using HangHoaEntity = V6ThuePostApi.PostObjects.HangHoaEntity;
+using HaUtility.Converter;
+using V6ThuePost.ResponseObjects;
 using ParseDBF = V6Tools.ParseDBF;
 
 namespace V6ThuePost
 {
     static class Program
     {
+        public static bool _TEST_ = true;
+        private static DateTime _TEST_DATE_ = DateTime.Now;
+        public static ThaiSonWS _softDreams_ws = null;
         #region ===== VAR =====
+        /// <summary>
+        /// Link host
+        /// </summary>
+        public static string _baseUrl = "";
         /// <summary>
         /// Tên cờ V6STT_REC
         /// </summary>
@@ -64,6 +71,9 @@ namespace V6ThuePost
         /// </summary>
         public static string _username { get; set; }
         public static string _password;
+        public static string _token_serial = "";
+        private static string token_password_title = "";
+        private static string token_password = "";
         private static string account;
         private static string accountpassword;
         private static string partten, partten_field;
@@ -104,6 +114,20 @@ namespace V6ThuePost
         [STAThread]
         static void Main(string[] args)
         {
+            var startupPath = Application.StartupPath;
+            var dir = new DirectoryInfo(startupPath);
+            var dir_name = dir.Name.ToLower();
+            if (dir_name == "debug")
+            {
+                _TEST_ = true;
+                MessageBox.Show("Test");
+            }
+            else
+            {
+                _TEST_ = false;
+            }
+
+            V6Return v6return;
             //MessageBox.Show("Debug!");
             if (args != null && args.Length > 0)
             {
@@ -122,13 +146,17 @@ namespace V6ThuePost
                     if (args.Length > 4) arg4 = args[4];
                     
                     ReadXmlInfo(arg1_xmlFile);
+
+                    _softDreams_ws = new ThaiSonWS(_baseUrl, _username, _password, _token_serial);
                     
                     //MSHDT//Mới Sửa Hủy ĐiềuChỉnh(S) ThayThế
                     if (mode.StartsWith("M") || mode == "")
                     {
-                        var xml = ReadDataXml(arg2);
+                        
+                        var invoice = ReadDataXml(arg2);
                         File.Create(flagFileName1).Close();
-                        result = XuatHoaDonDienTu_XML(xml);
+                        result = _softDreams_ws.XuatHoaDonDienTu(invoice, out v6return);
+                        //result = XuatHoaDonDienTu_XML(xml);
                         
                         if (arg3.Length>0 && result.StartsWith("OK"))
                         {
@@ -153,61 +181,6 @@ namespace V6ThuePost
                                     result += UploadInvAttachmentFkey(fkeyA, export_file);
                                 }
                             }
-                            else if (mode.EndsWith("3")) // Tự xuất pdf rồi gửi
-                            {
-                                string export_file = null;
-                                if (string.IsNullOrEmpty(exportName))
-                                {
-                                    var save = new SaveFileDialog
-                                    {
-                                        Filter = "Pdf files (*.pdf)|*.pdf",
-                                        Title = "Xuất pdf để gửi đi.",
-                                    };
-                                    if (save.ShowDialog() == DialogResult.OK)
-                                    {
-                                        export_file = save.FileName;
-                                    }
-                                    else
-                                    {
-                                        export_file = null;
-                                        return;
-                                    }
-                                }
-                                else
-                                {
-                                    export_file = exportName + ".pdf";
-                                }
-                                string dbfDataFile = arg3;
-                                string rptFile = arg4;
-                                ReportDocument rpt = new ReportDocument();
-                                rpt.Load(rptFile);
-                                DataSet ds = new DataSet();
-                                DataTable data1 = ReadDbf(dbfDataFile);
-                                data1.TableName = "DataTable1";
-                                DataTable data2 = data1.Clone();
-                                data2.TableName = "DataTable2";
-                                var row0Data = data1.Rows[0].ToDataDictionary();
-                                data2.AddRow(row0Data);
-                                ds.Tables.Add(data1);
-                                ds.Tables.Add(data2);
-                                string tien_bang_chu = MoneyToWords(ObjectAndString.ObjectToDecimal(row0Data["T_TT"]), "V", "VND");
-                                rpt.SetDataSource(ds);
-                                rpt.SetParameterValue("SoTienVietBangChu", tien_bang_chu);
-                                bool export_ok = ExportRptToPdf(null, rpt, export_file);
-                                if (export_ok)
-                                {
-                                    result += "\r\nExport ok.";
-                                }
-                                else
-                                {
-                                    result += "\r\nExport fail.";
-                                }
-
-                                if (export_ok && File.Exists(export_file))
-                                {
-                                    result += UploadInvAttachmentFkey(fkeyA, export_file);
-                                }
-                            }
                         }
                     }
                     else if (mode.ToLower() == "DownloadInvFkeyNoPay".ToLower())
@@ -223,9 +196,9 @@ namespace V6ThuePost
                     }
                     else if (mode == "S")
                     {
-                        var xml = ReadDataXmlS(dbfFile: arg2);
+                        var invoice = ReadDataXml(dbfFile: arg2);
                         File.Create(flagFileName1).Close();
-                        result = adjustInv(xml, fkey_old: arg3);
+                        result = _softDreams_ws.AdjustInvoice(invoice, arg3, out v6return);
                         if (arg4.Length > 0 && result.StartsWith("OK"))
                         {
                             if (File.Exists(arg4))
@@ -240,26 +213,26 @@ namespace V6ThuePost
                     }
                     else if (mode == "T")
                     {
-                        var xml = ReadDataXmlT(arg2);
+                        var invoice = ReadDataXml(arg2);
                         File.Create(flagFileName1).Close();
-                        result = replaceInv(xml, arg3);
+                        //result = replaceInv(invoice, arg3);
                     }
                     else if (mode.StartsWith("G"))
                     {
                         if (mode == "G1") // Gạch nợ theo fkey
                         {
                             File.Create(flagFileName1).Close();
-                            confirmPaymentFkey(arg2);
+                            //confirmPaymentFkey(arg2);
                         }
                         else if (mode == "G2") // Gạch nợ
                         {
                             File.Create(flagFileName1).Close();
-                            confirmPayment(arg2);
+                            //confirmPayment(arg2);
                         }
                         else if (mode == "G3") // Hủy gạch nợ theo fkey
                         {
                             File.Create(flagFileName1).Close();
-                            UnconfirmPaymentFkey(arg2);
+                            //UnconfirmPaymentFkey(arg2);
                         }
                     }
                     else if (mode == "H")
@@ -390,7 +363,7 @@ namespace V6ThuePost
                     {
                         string type = "1";
                         if (mode.Length > 1) type = mode[1].ToString();
-                        result = DoUpdateCus(arg2, type);
+                        result = "DoUpdateCus(arg2, type)";
                     }
 
 
@@ -652,16 +625,20 @@ namespace V6ThuePost
             return data;
         }
 
-        public static string ReadDataXml(string dbfFile)
+        public static HoaDonEntity ReadDataXml(string dbfFile)
         {
-            string result = "";
+            //string result = "";
+            HoaDonEntity hoa_don_entity = new HoaDonEntity();
             column_config = new SortedDictionary<string, string>();
+            var am_data = new Dictionary<string, object>();
+            List<HangHoaEntity> list_hanghoa = new List<HangHoaEntity>();
             parameters_config = new List<ConfigLine>();
             //try
             {
                 //PostObject obj = new PostObject();
                 //XuatHoaDonDienTu_XML postObject0 = new XuatHoaDonDienTu_XML();
-                hoaDonEntity hoa_don_entity = new hoaDonEntity();
+                
+                
                 //postObject0.hoaDonEntity = hoa_don_entity;
                 //ReadXmlInfo(xmlFile);
                 DataTable data = ReadDbf(dbfFile);
@@ -683,77 +660,64 @@ namespace V6ThuePost
                 //private static Dictionary<string, XmlLine> generalInvoiceInfoConfig = null;
                 foreach (KeyValuePair<string, ConfigLine> item in generalInvoiceInfoConfig)
                 {
-                    hoa_don_entity.Invoice[item.Key] = GetValue(row0, item.Value);
+                    am_data[item.Key] = GetValue(row0, item.Value);
                     //postObject.generalInvoiceInfo[item.Key] = GetValue(row0, item.Value);
                 }
                 //private static Dictionary<string, XmlLine> buyerInfoConfig = null;
                 foreach (KeyValuePair<string, ConfigLine> item in buyerInfoConfig)
                 {
-                    hoa_don_entity.Invoice[item.Key] = GetValue(row0, item.Value);
+                    am_data[item.Key] = GetValue(row0, item.Value);
                     //postObject.buyerInfo[item.Key] = GetValue(row0, item.Value);
                 }
                 //private static Dictionary<string, XmlLine> sellerInfoConfig = null;
                 foreach (KeyValuePair<string, ConfigLine> item in sellerInfoConfig)
                 {
-                    hoa_don_entity.Invoice[item.Key] = GetValue(row0, item.Value);
+                    am_data[item.Key] = GetValue(row0, item.Value);
                     //postObject.sellerInfo[item.Key] = GetValue(row0, item.Value);
                 }
                 
                 
                 foreach (KeyValuePair<string, ConfigLine> item in paymentsConfig)
                 {
-                    hoa_don_entity.Invoice[item.Key] = GetValue(row0, item.Value);
+                    am_data[item.Key] = GetValue(row0, item.Value);
                 }
 
 
-                var products = new Products();
                 foreach (DataRow row in data.Rows)
                 {
                     //if (row["STT"].ToString() == "0") continue;
-
-                    HangHoaEntity product = new HangHoaEntity();
+                    var ad_data = new Dictionary<string, object>();
                     foreach (KeyValuePair<string, ConfigLine> item in itemInfoConfig)
                     {
-                        product.Details[item.Key] = GetValue(row, item.Value);
+                        ad_data[item.Key] = GetValue(row, item.Value);
                     }
 
-                    products.Add(product);
+                    var product = ad_data.ToModelH<HangHoaEntity>();
+                    list_hanghoa.Add(product);
                 }
-                hoa_don_entity.Invoice["HangHoas"] = products;
-                
                 
                 foreach (KeyValuePair<string, ConfigLine> item in summarizeInfoConfig)
                 {
-                    hoa_don_entity.Invoice[item.Key] = GetValue(row0, item.Value);
+                    am_data[item.Key] = GetValue(row0, item.Value);
                 }
                 
                 foreach (KeyValuePair<string, ConfigLine> item in taxBreakdownsConfig)
                 {
-                    hoa_don_entity.Invoice[item.Key] = GetValue(row0, item.Value);
+                    am_data[item.Key] = GetValue(row0, item.Value);
                 }
 
-                result = XmlConverter.ClassToXml(hoa_don_entity);
+                //result = XmlConverter.ClassToXml(hoa_don_entity);
+                hoa_don_entity = am_data.ToModelH<HoaDonEntity>();
+                
+                hoa_don_entity.HangHoas = list_hanghoa.ToArray();
             }
             //catch (Exception ex)
             {
                 //
             }
-            return result;
+            return hoa_don_entity;
         }
-
-        public static Customer ReadCusDataXml(DataRow row)
-        {
-            string result = "";
-            Customer cus = new Customer();
-
-            foreach (KeyValuePair<string, ConfigLine> item in customerInfoConfig)
-            {
-                cus.Customer_Info[item.Key] = GetValue(row, item.Value);
-            }
-            
-            return cus;
-        }
-
+        
         private static void MakeFlagNames(string flagName)
         {
             flagFileName1 = flagName + ".flag1";
@@ -763,169 +727,6 @@ namespace V6ThuePost
             flagFileName9 = flagName + ".flag9";
         }
 
-        public static string ReadDataXmlS(string dbfFile)
-        {
-            string result = "";
-            //try
-            {
-                //PostObject obj = new PostObject();
-                AdjustInv inv = new AdjustInv();
-                //ReadXmlInfo(xmlFile);
-                DataTable data = ReadDbf(dbfFile);
-
-                //Fill data to postObject
-                
-                DataRow row0 = data.Rows[0];
-                fkeyA = fkey0 + row0["STT_REC"];
-                inv.key = fkeyA;
-                //partten = row0[partten_field].ToString().Trim();
-                //seri = row0[seri_field].ToString().Trim();
-                MakeFlagNames(fkeyA);
-
-                //private static Dictionary<string, XmlLine> generalInvoiceInfoConfig = null;
-                foreach (KeyValuePair<string, ConfigLine> item in generalInvoiceInfoConfig)
-                {
-                    inv.Invoice[item.Key] = GetValue(row0, item.Value);
-                    //postObject.generalInvoiceInfo[item.Key] = GetValue(row0, item.Value);
-                }
-                //private static Dictionary<string, XmlLine> buyerInfoConfig = null;
-                foreach (KeyValuePair<string, ConfigLine> item in buyerInfoConfig)
-                {
-                    inv.Invoice[item.Key] = GetValue(row0, item.Value);
-                    //postObject.buyerInfo[item.Key] = GetValue(row0, item.Value);
-                }
-                //private static Dictionary<string, XmlLine> sellerInfoConfig = null;
-                foreach (KeyValuePair<string, ConfigLine> item in sellerInfoConfig)
-                {
-                    inv.Invoice[item.Key] = GetValue(row0, item.Value);
-                    //postObject.sellerInfo[item.Key] = GetValue(row0, item.Value);
-                }
-
-
-                foreach (KeyValuePair<string, ConfigLine> item in paymentsConfig)
-                {
-                    inv.Invoice[item.Key] = GetValue(row0, item.Value);
-                }
-
-                var products = new List<HangHoaEntity>();
-                foreach (DataRow row in data.Rows)
-                {
-                    if (row["STT"].ToString() == "0") continue;
-
-                    HangHoaEntity product = new HangHoaEntity();
-                    foreach (KeyValuePair<string, ConfigLine> item in itemInfoConfig)
-                    {
-                        product.Details[item.Key] = GetValue(row, item.Value);
-                    }
-
-                    products.Add(product);
-                }
-                inv.Invoice["Products"] = products;
-
-                //private static Dictionary<string, XmlLine> summarizeInfoConfig = null;
-                foreach (KeyValuePair<string, ConfigLine> item in summarizeInfoConfig)
-                {
-                    inv.Invoice[item.Key] = GetValue(row0, item.Value);
-                }
-
-                foreach (KeyValuePair<string, ConfigLine> item in taxBreakdownsConfig)
-                {
-                    inv.Invoice[item.Key] = GetValue(row0, item.Value);
-                }
-
-                result = XmlConverter.ClassToXml(inv);
-            }
-            //catch (Exception ex)
-            {
-                //
-            }
-            return result;
-        }
-        
-        /// <summary>
-        /// Đọc và tạo xml data Thay thế.
-        /// </summary>
-        /// <param name="dbfFile"></param>
-        /// <returns></returns>
-        public static string ReadDataXmlT(string dbfFile)
-        {
-            string result = "";
-            //try
-            {
-                //PostObject obj = new PostObject();
-                ReplaceInv inv = new ReplaceInv();
-                //ReadXmlInfo(xmlFile);
-                DataTable data = ReadDbf(dbfFile);
-
-                //Fill data to postObject
-                
-                DataRow row0 = data.Rows[0];
-                fkeyA = fkey0 + row0["STT_REC"];
-                inv.key = fkeyA;
-                //partten = row0[partten_field].ToString().Trim();
-                //seri = row0[seri_field].ToString().Trim();
-                MakeFlagNames(fkeyA);
-
-                //private static Dictionary<string, XmlLine> generalInvoiceInfoConfig = null;
-                foreach (KeyValuePair<string, ConfigLine> item in generalInvoiceInfoConfig)
-                {
-                    inv.Invoice[item.Key] = GetValue(row0, item.Value);
-                    //postObject.generalInvoiceInfo[item.Key] = GetValue(row0, item.Value);
-                }
-                //private static Dictionary<string, XmlLine> buyerInfoConfig = null;
-                foreach (KeyValuePair<string, ConfigLine> item in buyerInfoConfig)
-                {
-                    inv.Invoice[item.Key] = GetValue(row0, item.Value);
-                    //postObject.buyerInfo[item.Key] = GetValue(row0, item.Value);
-                }
-                //private static Dictionary<string, XmlLine> sellerInfoConfig = null;
-                foreach (KeyValuePair<string, ConfigLine> item in sellerInfoConfig)
-                {
-                    inv.Invoice[item.Key] = GetValue(row0, item.Value);
-                    //postObject.sellerInfo[item.Key] = GetValue(row0, item.Value);
-                }
-
-
-                foreach (KeyValuePair<string, ConfigLine> item in paymentsConfig)
-                {
-                    inv.Invoice[item.Key] = GetValue(row0, item.Value);
-                }
-
-                var products = new List<HangHoaEntity>();
-                foreach (DataRow row in data.Rows)
-                {
-                    if (row["STT"].ToString() == "0") continue;
-
-                    HangHoaEntity product = new HangHoaEntity();
-                    foreach (KeyValuePair<string, ConfigLine> item in itemInfoConfig)
-                    {
-                        product.Details[item.Key] = GetValue(row, item.Value);
-                    }
-
-                    products.Add(product);
-                }
-                inv.Invoice["Products"] = products;
-
-                //private static Dictionary<string, XmlLine> summarizeInfoConfig = null;
-                foreach (KeyValuePair<string, ConfigLine> item in summarizeInfoConfig)
-                {
-                    inv.Invoice[item.Key] = GetValue(row0, item.Value);
-                }
-
-                foreach (KeyValuePair<string, ConfigLine> item in taxBreakdownsConfig)
-                {
-                    inv.Invoice[item.Key] = GetValue(row0, item.Value);
-                }
-
-                result = XmlConverter.ClassToXml(inv);
-            }
-            //catch (Exception ex)
-            {
-                //
-            }
-            return result;
-        }
-        
         private static object GetValue(DataRow row, ConfigLine config)
         {
             object fieldValue = config.Value;
@@ -1195,12 +996,13 @@ namespace V6ThuePost
             string result = null;
             try
             {
-                //var publishService = new EinvoiceService();// PublishService(link_Publish);
-                //publishService.AuthenticationValue = new Authentication()
-                //{
-                //    userName = _username,
-                //    password = _password
-                //};
+                var publishService = new EinvoiceService();// PublishService(link_Publish);
+                publishService.AuthenticationValue = new Authentication()
+                {
+                    userName = _username,
+                    password = _password
+                };
+                publishService.XuatHoaDonDienTu(new HoaDonEntity());
 
                 string requestText = "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">"
                     + "<soap:Header><Authentication xmlns=\"http://thaison.vn/inv\">"
@@ -1390,212 +1192,7 @@ namespace V6ThuePost
             return fileBase64;
         }
 
-        public static string adjustInv(string xml, string fkey_old)
-        {
-            string result = null;
-            try
-            {
-                //result = new BusinessService(link_Business).adjustInv(account, accountpassword, xml, _username, _password, fkey_old, 0);
-
-                if (result.StartsWith("ERR:9"))
-                {
-                    result += "\r\nTrạng thái hóa đơn không được điều chỉnh.";
-                }
-                else if (result.StartsWith("ERR:8"))
-                {
-                    result += "\r\nHóa đơn cần điều chỉnh đã bị thay thế. Không thể điều chỉnh được nữa.";
-                }
-                else if (result.StartsWith("ERR:7"))
-                {
-                    result += "\r\nUser name không phù hợp, không tìm thấy company tương ứng cho user.";
-                }
-                else if (result.StartsWith("ERR:6"))
-                {
-                    result += "\r\nDải hóa đơn cũ đã hết.";
-                }
-                else if (result.StartsWith("ERR:5"))
-                {
-                    result += "\r\nKhông phát hành được hóa đơn.";
-                }
-                else if (result.StartsWith("ERR:3"))
-                {
-                    result += "\r\nDữ liệu xml đầu vào không đúng quy định.";
-                }
-                else if (result.StartsWith("ERR:2"))
-                {
-                    result += "\r\nHóa đơn cần điều chỉnh không tôn tại.";
-                }
-                else if (result.StartsWith("ERR:1"))
-                {
-                    result += "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
-                }
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
-
-            Logger.WriteToLog("Program.adjustInv " + result);
-            return result;
-        }
-
-        public static string replaceInv(string xml, string fkey_old)
-        {
-            string result = null;
-            try
-            {
-                //result = new BusinessService(link_Business).replaceInv(account, accountpassword, xml, _username, _password, fkey_old, 0);
-
-                if (result.StartsWith("ERR:9"))
-                {
-                    result += "\r\nTrạng thái hóa đơn không được thay thế.";
-                }
-                else if (result.StartsWith("ERR:8"))
-                {
-                    result += "\r\nHóa đơn đã được thay thế rồi. Không thể thay thế nữa.";
-                }
-                else if (result.StartsWith("ERR:7"))
-                {
-                    result += "\r\nUser name không phù hợp, không tìm thấy company tương ứng cho user.";
-                }
-                else if (result.StartsWith("ERR:6"))
-                {
-                    result += "\r\nDải hóa đơn cũ đã hết.";
-                }
-                else if (result.StartsWith("ERR:5"))
-                {
-                    result += "\r\nCó lỗi trong quá trình thay thế hóa đơn.";
-                }
-                else if (result.StartsWith("ERR:3"))
-                {
-                    result += "\r\nDữ liệu xml đầu vào không đúng quy định.";
-                }
-                else if (result.StartsWith("ERR:2"))
-                {
-                    result += "\r\nKhông tồn tại hóa đơn cần thay thế.";
-                }
-                else if (result.StartsWith("ERR:1"))
-                {
-                    result += "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
-                }
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
-
-            Logger.WriteToLog("Program.replaceInv " + result);
-            return result;
-        }
-
-        /// <summary>
-        /// Gạch nợ hóa đơn theo fkey
-        /// </summary>
-        /// <param name="fkey_old"></param>
-        /// <returns></returns>
-        public static string confirmPaymentFkey(string fkey_old)
-        {
-            string result = null;
-            try
-            {
-                //result = new BusinessService(link_Business).confirmPaymentFkey(fkey_old, _username, _password);
-
-                if (result.StartsWith("ERR:13"))
-                {
-                    result += "\r\nHóa đơn đã được gạch nợ.";
-                }
-                else if (result.StartsWith("ERR:7"))
-                {
-                    result += "\r\nKhông gạch nợ được.";
-                }
-                else if (result.StartsWith("ERR:6"))
-                {
-                    result += "\r\nKhông tìm thấy hóa đơn tương ứng chuỗi đưa vào.";
-                }
-                else if (result.StartsWith("ERR:1"))
-                {
-                    result += "\r\nTài khoản đăng nhập sai.";
-                }
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
-
-            Logger.WriteToLog("Program.confirmPaymentFkey " + result);
-            return result;
-        }
-
-        /// <summary>
-        /// Gạch nợ hóa đơn theo lstInvToken(01GTKT2/001;AA/13E;10)
-        /// </summary>
-        /// <param name="fkey_old"></param>
-        /// <returns></returns>
-        public static string confirmPayment(string fkey_old)
-        {
-            string result = null;
-            try
-            {
-                //result = new BusinessService(link_Business).confirmPayment(fkey_old, _username, _password);
-
-                if (result.StartsWith("ERR:13"))
-                {
-                    result += "\r\nHóa đơn đã được gạch nợ.";
-                }
-                else if (result.StartsWith("ERR:7"))
-                {
-                    result += "\r\nKhông gạch nợ được.";
-                }
-                else if (result.StartsWith("ERR:6"))
-                {
-                    result += "\r\nKhông tìm thấy hóa đơn tương ứng chuỗi đưa vào.";
-                }
-                else if (result.StartsWith("ERR:1"))
-                {
-                    result += "\r\nTài khoản đăng nhập sai.";
-                }
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
-
-            Logger.WriteToLog("Program.confirmPayment " + result);
-            return result;
-        }
-
-        public static string UnconfirmPaymentFkey(string fkey_old)
-        {
-            string result = null;
-            try
-            {
-                //result = new BusinessService(link_Business).UnConfirmPaymentFkey(fkey_old, _username, _password);
-
-                if (result.StartsWith("ERR:13"))
-                {
-                    result += "\r\nHóa đơn đã được bỏ gạch nợ.";
-                }
-                else if (result.StartsWith("ERR:7"))
-                {
-                    result += "\r\nKhông bỏ gạch nợ được.";
-                }
-                else if (result.StartsWith("ERR:6"))
-                {
-                    result += "\r\nKhông tìm thấy hóa đơn tương ứng chuỗi đưa vào.";
-                }
-                else if (result.StartsWith("ERR:1"))
-                {
-                    result += "\r\nTài khoản đăng nhập sai.";
-                }
-            }
-            catch (Exception ex)
-            {
-                result = "ERR:EX\r\n" + ex.Message;
-            }
-
-            Logger.WriteToLog("Program.UnconfirmPaymentFkey " + result);
-            return result;
-        }
+        
 
         /// <summary>
         /// Hủy hóa đơn.
@@ -1634,130 +1231,7 @@ namespace V6ThuePost
             Logger.WriteToLog("Program.cancelInv " + result);
             return result;
         }
-
-        /// <summary>
-        /// Thực hiện cập nhập thông tin khách hàng.
-        /// </summary>
-        /// <param name="dbf"></param>
-        /// <param name="type">
-        /// <para>1: thực hiện lặp qua từng dòng, mỗi lần gửi thông tin 1 customer.</para>
-        /// <para>2: gửi 1 lần tất cả customers.</para>
-        /// </param>
-        /// <returns></returns>
-        public static string DoUpdateCus(string dbf, string type = "1")
-        {
-            string result = "";
-            string error = "";
-            int error_count = 0, success_count = 0;
-            //MessageBox.Show("Test Debug");
-            try
-            {
-                var data = ReadDbf(dbf);
-                if (type == "1")
-                {
-                    Customer cus = null;
-                    string ma_kh = null;
-                    foreach (DataRow row in data.Rows)
-                    {
-                        try
-                        {
-                            cus = null;
-                            ma_kh = null;
-                            Customers cuss = new Customers();
-                            cus = ReadCusDataXml(row);
-                            ma_kh = row["MA_KH"].ToString().Trim();
-                            cuss.Customer_List.Add(cus);
-                            string xml = XmlConverter.ClassToXml(cuss);
-                            var num = UpdateCus(xml);
-                            if (num == "1") success_count++;
-                            else error_count ++;
-
-                            result += string.Format("\r\n Update {0} status: {1}", ma_kh, num);
-                        }
-                        catch (Exception ex)
-                        {
-                            error_count++;
-                            if (!string.IsNullOrEmpty(ma_kh) && cus != null)
-                            {
-                                error += "\nCustomer" + ma_kh;
-                            }
-                            else
-                            {
-                                error += "\nCustomer null OR no code.";
-                            }
-                            error += "\n" + ex.Message;
-                        }
-                    }
-                }
-                else
-                {
-                    try
-                    {
-                        Customers cuss = new Customers();
-                        foreach (DataRow row in data.Rows)
-                        {
-                            Customer cus = ReadCusDataXml(row);
-                            cuss.Customer_List.Add(cus);
-                        }
-                        string xml = XmlConverter.ClassToXml(cuss);
-                        var num = UpdateCus(xml);
-                        success_count = Convert.ToInt32(num);
-                        result += "Success " + num + "/" + data.Rows.Count;
-                    }
-                    catch (Exception ex)
-                    {
-                        error += ex.Message;
-                        error_count = 1;
-                    }
-                }
-                
-            }
-            catch (Exception ex)
-            {
-                error += "\n" + ex.Message;
-            }
-            
-            if (error.Length > 0) result += "ERR: " + error;
-            Logger.WriteToLog("Program.DoUpdateCus " + result);
-            //return result;
-            return string.Format("Success {0}   Error {1}\n{2}", success_count, error_count, result);
-        }
-
-        public static string UpdateCus(string xml)
-        {
-            int result = 0;
-            string message = "";
-            try
-            {
-                //result = new PublishService(link_Publish).UpdateCus(xml, _username, _password, 0);
-                message += result;
-
-                if (result == -5)
-                {
-                    message = "ERR:" + message + "\r\nCó khách hàng đã tồn tại.";
-                }
-                else if (result == -3)
-                {
-                    message = "ERR:" + message + "\r\nDữ liệu xml đầu vào không đúng quy định.";
-                }
-                else if (result == -2)
-                {
-                    message = "ERR:" + message + "\r\nKhông import được khách hàng vào database.";
-                }
-                else if (result == -1)
-                {
-                    message = "ERR:" + message + "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
-                }
-            }
-            catch (Exception ex)
-            {
-                message = "ERR:EX\r\n" + ex.Message;
-                Logger.WriteToLog("Program.UpdateCus " + message);
-            }
-            
-            return message;
-        }
-
+        
         //private static Dictionary<string, string> sellerInfo;
         //private static Invoices postObject;
         /// <summary>
@@ -1797,37 +1271,34 @@ namespace V6ThuePost
                             switch (line.Field.ToLower())
                             {
                                 case "username":
-                                    _username = line.Value;
+                                    _username = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "password":
                                     _password = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "account":
-                                    account = line.Value;
+                                    account = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "accountpassword":
                                     accountpassword = UtilityHelper.DeCrypt(line.Value);
+                                    break;
+                                case "serialcert":
+                                    _token_serial = UtilityHelper.DeCrypt(line.Value).ToUpper();
+                                    break;
+                                case "token_password_title":
+                                    token_password_title = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                    break;
+                                case "token_password":
+                                    token_password = UtilityHelper.DeCrypt(line.Value);
+                                    break;
+                                case "baselink":
+                                    _baseUrl = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "partten":
                                     partten_field = line.Value;
                                     break;
                                 case "seri":
                                     seri_field = line.Value;
-                                    break;
-                                case "link_base":
-                                    link_Base = UtilityHelper.DeCrypt(line.Value);
-                                    break;
-                                case "link_publish":
-                                    link_Publish = UtilityHelper.DeCrypt(line.Value);
-                                    break;
-                                case "link_portal":
-                                    link_Portal = UtilityHelper.DeCrypt(line.Value);
-                                    break;
-                                case "link_business":
-                                    link_Business = UtilityHelper.DeCrypt(line.Value);
-                                    break;
-                                case "link_attachment":
-                                    link_Attachment = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "v6fkey":
                                     fkey0 = line.Value;

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace V6ThuePostApi {
+namespace V6ThuePostThaiSonApi {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

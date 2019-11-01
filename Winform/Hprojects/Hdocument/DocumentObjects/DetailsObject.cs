@@ -125,7 +125,7 @@ namespace H_document.DocumentObjects
                     ICollection dataCollection = Data as ICollection;
                     foreach (object o in dataCollection)
                     {
-                        DrawOneLine(g, margins, penLine, brush, drawMode, selectedObjects, startTop, o.ToDic(), out startTop);
+                        DrawOneLine(g, margins, penLine, brush, drawMode, selectedObjects, startTop, o.ToDicH(), out startTop);
                     }
                 }
             }

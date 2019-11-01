@@ -58,7 +58,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
         /// <summary>
-        /// Danh sách các trường được edit.
+        /// Danh sách các trường được edit. Field:vvar;Field2:vvar2:Field2 like '%':tableLable:oper
         /// </summary>
         private string ADV_AL1
         {

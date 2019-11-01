@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{ABC35001-3755-4AFF-88D6-B48598BBC651}</ProjectGuid>
+    <ProjectGuid>{B2965A48-A4F2-406A-8D0A-D4134A1351F0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>V6ThuePostApi</RootNamespace>
+    <RootNamespace>V6ThuePostThaiSonApi</RootNamespace>
     <AssemblyName>V6ThuePostThaiSonApi</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -50,13 +50,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>App.settings</DependentUpon>
     </Compile>
-    <Compile Include="PostObjects\Customers.cs" />
-    <Compile Include="PostObjects\Customer.cs" />
-    <Compile Include="PostObjects\XuatHoaDonDienTu_XML.cs" />
-    <Compile Include="PostObjects\ReplaceInv.cs" />
-    <Compile Include="PostObjects\AdjustInv.cs" />
-    <Compile Include="PostObjects\HangHoaEntity.cs" />
-    <Compile Include="PostObjects\Products.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -64,19 +57,13 @@
     </Compile>
     <Compile Include="RequestManager.cs" />
     <Compile Include="V6Http.cs" />
+    <Compile Include="ThaiSonWS.cs" />
     <Compile Include="Web References\EinvoiceService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
-    <Compile Include="PostObjects\hoaDonEntitys.cs" />
-    <Compile Include="PostObjects\hoaDonEntity.cs" />
-    <Compile Include="ResponseObjects\CreateInvoiceResponse_Result.cs" />
-    <Compile Include="ResponseObjects\CreateInvoiceResponse.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XmlConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -88,59 +75,80 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Web References\EinvoiceService\DanhSachThongTinHoaDonDaXuat.datasource">
+    <None Include="Web References\EinvoiceService\BienLaiEntity.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\EinvoiceService\DonViEntity.datasource">
+    <None Include="Web References\EinvoiceService\BranchReportEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\EinvoiceService\DanhSachThongTinHoaDonDaXuat1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\EinvoiceService\DonViEntity1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\EinvoiceService\einvoiceservice.wsdl" />
-    <None Include="Web References\EinvoiceService\HoaDonEntity.datasource">
+    <None Include="Web References\EinvoiceService\HoaDonEntity1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\EinvoiceService\HoaDonEntityAeon.datasource">
+    <None Include="Web References\EinvoiceService\HoaDonEntityAeon1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\EinvoiceService\HoaDonEntityResponse.datasource">
+    <None Include="Web References\EinvoiceService\HoaDonEntityResponse1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\EinvoiceService\HoaDonHuyEntity.datasource">
+    <None Include="Web References\EinvoiceService\HoaDonHuyEntity1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\EinvoiceService\HoaDonList.datasource">
+    <None Include="Web References\EinvoiceService\HoaDonKySoList.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\EinvoiceService\HuyHoaDonXacThucResponse.datasource">
+    <None Include="Web References\EinvoiceService\HoaDonList1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\EinvoiceService\ImportResponse.datasource">
+    <None Include="Web References\EinvoiceService\HuyHoaDonXacThucResponse1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\EinvoiceService\InBienBanEntity.datasource">
+    <None Include="Web References\EinvoiceService\ImportResponse1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\EinvoiceService\MauSoKyHieuEntity.datasource">
+    <None Include="Web References\EinvoiceService\InBienBanEntity1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\EinvoiceService\MauSoKyHieuResponse.datasource">
+    <None Include="Web References\EinvoiceService\InvoiceRecordEntity.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
-    <None Include="Web References\EinvoiceService\MsgError.datasource">
+    <None Include="Web References\EinvoiceService\Invoice_Responce.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\EinvoiceService\ListBienLaiExtensionEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\EinvoiceService\ListEmailSmsEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\EinvoiceService\MauSoKyHieuEntity1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\EinvoiceService\MauSoKyHieuResponse1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\EinvoiceService\MsgError1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\EinvoiceService\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\EinvoiceService\ThongTinMSTResponse.datasource">
+    <None Include="Web References\EinvoiceService\RemoveBillEntity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\EinvoiceService\ThongTinMSTResponse1.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <WebReferenceUrl Include="http://210.245.8.58:6789/einvoiceservice.asmx">
@@ -159,7 +167,14 @@
     <None Include="Web References\EinvoiceService\einvoiceservice.disco" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PostObjects\HuuanXmlObjectRule.txt" />
+    <ProjectReference Include="..\..\..\..\V6Tools\V6Tools\V6Tools.csproj">
+      <Project>{4F797E67-948D-4EEC-ACD7-758028E9166F}</Project>
+      <Name>V6Tools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\PostObjects\V6ThuePostObjects.csproj">
+      <Project>{14A2C520-1939-4B6A-B584-EE5797F26701}</Project>
+      <Name>V6ThuePostObjects</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

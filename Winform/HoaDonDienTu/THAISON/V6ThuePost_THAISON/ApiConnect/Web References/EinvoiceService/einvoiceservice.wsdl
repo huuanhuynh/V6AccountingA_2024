@@ -22,7 +22,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="MauSoGoc" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="KyHieuGoc" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="NamSinh" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="NgayNhapVien" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="NgayNhapVien" nillable="true" type="s:dateTime" />
           <s:element minOccurs="0" maxOccurs="1" name="SoNhapVien" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="PCName" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="NgayTaoHoaDon" type="s:dateTime" />
@@ -42,12 +42,14 @@
           <s:element minOccurs="0" maxOccurs="1" name="BenMuaHoTen" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="BenMuaDiaChi" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="BenMuaDienThoai" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BenMuaDienThoaiNhanHoaDon" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="BenMuaFax" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="BenMuaEmail" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="IsSendMail" nillable="true" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="BenMuaTaiKhoanNganHang" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="BenMuaTenNganHang" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="TienThueVat" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="TongTienGTGT" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="TongTienHang" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="TongTienThanhToan" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="TienChietKhau" type="s:decimal" />
@@ -57,6 +59,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="HinhThucThanhToan" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="TyGia" type="s:decimal" />
           <s:element minOccurs="0" maxOccurs="1" name="SoBienLai" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SoBienLaiGoc" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="OutputVoucherId" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="QuyenSo" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="NguoiXuatHoaDon" type="s:string" />
@@ -72,10 +75,11 @@
           <s:element minOccurs="0" maxOccurs="1" name="Lop" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="IsSign" nillable="true" type="s:boolean" />
           <s:element minOccurs="0" maxOccurs="1" name="NguoiLienHeGuiHoaDon" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="DATECLOSEDBILL" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="TermOfPayment" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DATECLOSEDBILL" nillable="true" type="s:dateTime" />
           <s:element minOccurs="0" maxOccurs="1" name="LinkDownloadfile" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="TrangThaiDieuChinh" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="LoaiBangKe" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LoaiBangKe" nillable="true" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="NoiDungBangKe" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="HangHoas" type="tns:ArrayOfHangHoaEntity" />
           <s:element minOccurs="0" maxOccurs="1" name="dataExtension" type="tns:ArrayOfExtensionEntity" />
@@ -91,8 +95,9 @@
           <s:element minOccurs="0" maxOccurs="1" name="SoHoaDonGocId" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="LoaiHang" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="NoiDungDieuChinh" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="NgayDieuChinh" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="NgayDieuChinh" nillable="true" type="s:dateTime" />
           <s:element minOccurs="0" maxOccurs="1" name="SoHopDong" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NgayHopDong" nillable="true" type="s:dateTime" />
           <s:element minOccurs="0" maxOccurs="1" name="ReferenceId" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="RefNo" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="InvoiceSubject" type="s:string" />
@@ -106,12 +111,12 @@
           <s:element minOccurs="0" maxOccurs="1" name="InvoiceSubType" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="InvoiceId" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="ProjectPhone" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="InvoiceDueDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceDueDate" nillable="true" type="s:dateTime" />
           <s:element minOccurs="0" maxOccurs="1" name="MaNhanHoaDon" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Rescode" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="NgayTao" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="vendorCode" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="TransDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransDate" nillable="true" type="s:dateTime" />
           <s:element minOccurs="1" maxOccurs="1" name="KieuHoaDon" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="MaKho" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="SoDonHang" type="s:string" />
@@ -119,6 +124,16 @@
           <s:element minOccurs="0" maxOccurs="1" name="ReceiptType" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="ReceiptRefundNo" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="ReceiptVoidNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TenDonViVanChuyen" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaPhuongTienVanChuyen" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SoHopDongVanChuyen" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LenhDieuDongSo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LenhDieuDongNgay" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="LenhDieuDongCua" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LenhDieuDongVeViec" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HoTenNguoiVanChuyen" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaKhoXuat" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NgayNhapKho" nillable="true" type="s:dateTime" />
           <s:element minOccurs="0" maxOccurs="1" name="PlantCode" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="DocType" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="StorageLocationCode" type="s:string" />
@@ -129,7 +144,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="CrDrMemo" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="AdjustBilling" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="LoaiHoaDon" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="PaymentTerm" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentTerm" nillable="true" type="s:dateTime" />
           <s:element minOccurs="1" maxOccurs="1" name="NoVatAmount" nillable="true" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="TTamtNoTax" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="TTvatNoTax" type="s:decimal" />
@@ -144,11 +159,22 @@
           <s:element minOccurs="1" maxOccurs="1" name="TTvat10Tax" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="TTnet10Tax" type="s:decimal" />
           <s:element minOccurs="0" maxOccurs="1" name="OrigPurStore" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="OrigPurDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrigPurDate" nillable="true" type="s:dateTime" />
           <s:element minOccurs="0" maxOccurs="1" name="OrigPurDocNo" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="MaCN" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="NgayHoaDonStr" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="IsGiuLai" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="DiaDiemNhanHang" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrintAuto" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DiemPointTichLuy" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ThanhToanDiemPointTichLuy" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Emptys" type="tns:ArrayOfEmptyEntity" />
+          <s:element minOccurs="0" maxOccurs="1" name="BenMuaDiaChiStreet1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BenMuaDiaChiStreet2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BenMuaDiaChiStreet3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BenMuaDiaChiStreet4" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BenMuaDiaChiCity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BenMuaDiaChiCountry" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="MsgError">
@@ -175,6 +201,7 @@
           <s:element minOccurs="1" maxOccurs="1" name="DonGia" nillable="true" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="ThanhTien" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="Vat" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Vat_CODE" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="TienVat" nillable="true" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="ThanhTienSauThue" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="SoLuongGoc" nillable="true" type="s:decimal" />
@@ -188,6 +215,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="MaDoiTuong" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="TenDoiTuong" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="GhiChu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SoLo" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="HeSoMon" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="HeSo" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="DonViPhi" type="s:decimal" />
@@ -197,6 +225,12 @@
           <s:element minOccurs="1" maxOccurs="1" name="SctTien" nillable="true" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="ChietKhauTien" nillable="true" type="s:decimal" />
           <s:element minOccurs="0" maxOccurs="1" name="dataExtension" type="tns:ArrayOfExtensionEntity" />
+          <s:element minOccurs="1" maxOccurs="1" name="SoLuongNhap" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaKho" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TenHang_Text1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TenHang_Text2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TenHang_Text3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TenHang_Text4" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="ArrayOfExtensionEntity">
@@ -208,6 +242,19 @@
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="1" name="Keys" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Values" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEmptyEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EmptyEntity" nillable="true" type="tns:EmptyEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EmptyEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="EmptyCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmptyName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EmptyCount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="EmptyPrice" type="s:decimal" />
         </s:sequence>
       </s:complexType>
       <s:element name="XuatHoaDonResponse">
@@ -307,6 +354,8 @@
       <s:complexType name="ImportResponse">
         <s:sequence>
           <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SoBienLai" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NgayTaoHoaDon" type="s:dateTime" />
           <s:element minOccurs="0" maxOccurs="1" name="MsgError" type="tns:MsgError" />
           <s:element minOccurs="0" maxOccurs="1" name="MaEinvoice" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="BenBanMaDonVi" type="s:string" />
@@ -314,6 +363,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="BenBanTenDonVi" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="BenBanDiaChi" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="TienThueVat" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="TongTienGTGT" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="TongTienHang" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="TongTienThanhToan" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="TienChietKhau" type="s:decimal" />
@@ -322,7 +372,6 @@
           <s:element minOccurs="0" maxOccurs="1" name="DongTienThanhToan" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="HinhThucThanhToan" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="TyGia" type="s:decimal" />
-          <s:element minOccurs="0" maxOccurs="1" name="SoBienLai" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="OutputVoucherId" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="QuyenSo" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="NguoiXuatHoaDon" type="s:string" />
@@ -340,6 +389,74 @@
           <s:element minOccurs="1" maxOccurs="1" name="DATECLOSEDBILL" type="s:dateTime" />
           <s:element minOccurs="1" maxOccurs="1" name="TrangThaiDieuChinh" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="HangHoas" type="tns:ArrayOfHangHoaEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ImportInvoice_NotAuthen">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hoaDonEntity" type="tns:HoaDonEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ImportInvoice_NotAuthenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ImportInvoice_NotAuthenResult" type="tns:ImportResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_Group_Invoice_NotAuthen">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hoaDonEntityList" type="tns:HoaDonList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Import_Group_Invoice_NotAuthenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Import_Group_Invoice_NotAuthenResult" type="tns:ImportResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInvoice_Export">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BillingList" type="tns:ArrayOfGetinvoices" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfGetinvoices">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Getinvoices" nillable="true" type="tns:Getinvoices" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Getinvoices">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TaxCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillingNumber" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetInvoice_ExportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInvoice_ExportResult" type="tns:ArrayOfInvoice_Responce" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfInvoice_Responce">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Invoice_Responce" nillable="true" type="tns:Invoice_Responce" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Invoice_Responce">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="E_Invoice_No" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Form_No" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Invoice_Serial" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Invoice_Date" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SAP_Billing_No" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Decision" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:element name="TaoHoaDonGiuLai">
@@ -442,6 +559,8 @@
             <s:element minOccurs="1" maxOccurs="1" name="NgayChot" type="s:dateTime" />
             <s:element minOccurs="1" maxOccurs="1" name="GioChot" type="s:dateTime" />
             <s:element minOccurs="0" maxOccurs="1" name="MaDv" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Store" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IsOffline" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -732,6 +851,9 @@
           <s:element minOccurs="0" maxOccurs="1" name="SoThamChieu" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="MaNhanHoaDon" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="Dhoadonid" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="RefNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocType" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:int" />
         </s:sequence>
       </s:complexType>
       <s:element name="XuatHoaDonDienTuCheck">
@@ -876,11 +998,13 @@
           <s:element minOccurs="0" maxOccurs="1" name="MauSo" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="KyHieu" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="UserHuy" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SoThamChieu" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="SoHoaDon" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="NgayTaoHoaDon" nillable="true" type="s:dateTime" />
           <s:element minOccurs="0" maxOccurs="1" name="NoiDung" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="MsgError" type="tns:MsgError" />
           <s:element minOccurs="0" maxOccurs="1" name="SoBienLai" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SoBienLaiGoc" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="NoiXuatHoaDon" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="DHOADONID" type="s:double" />
           <s:element minOccurs="0" maxOccurs="1" name="RefDoc" type="s:string" />
@@ -1319,7 +1443,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="MaDonVi" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="MaChiNhanhCha" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="MaChiNhanh" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="TenDonVi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TenChiNhanh" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="DiaChi" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="DienThoai" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Fax" type="s:string" />
@@ -1334,6 +1458,317 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="CapNhatDonViResult" type="tns:DonViEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReportBranch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rsIn" type="tns:BranchReportEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BranchReportEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="maSoThue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="reportDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReportList" type="tns:ArrayOfBranchDataSumEntity" />
+          <s:element minOccurs="0" maxOccurs="1" name="MsgError" type="tns:MsgError" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBranchDataSumEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BranchDataSumEntity" nillable="true" type="tns:BranchDataSumEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BranchDataSumEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MaCuaHang" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TongTienChuaThue" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="TongTienSauThue" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="TienThue" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ThueSuat" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetReportBranchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetReportBranchResult" type="tns:BranchReportEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="KySoHoaDonList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hoaDonEntityList" type="tns:HoaDonKySoList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="HoaDonKySoList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="HoaDons" type="tns:ArrayOfHoaDonKySoEntity" />
+          <s:element minOccurs="0" maxOccurs="1" name="CanhBaoHoaDon" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MsgError" type="tns:MsgError" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfHoaDonKySoEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="HoaDonKySoEntity" nillable="true" type="tns:HoaDonKySoEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="HoaDonKySoEntity">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:HoaDonThanhToanEntity">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="SoDonHang" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EinvoiceContent" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="HoaDonThanhToanEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MaSoThue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaEinvoice" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MauSo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="KyHieu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SoHoaDon" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NgayTaoHoaDon" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="NgayXuatHoaDon" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="NoiDung" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MsgError" type="tns:MsgError" />
+          <s:element minOccurs="0" maxOccurs="1" name="SoBienLai" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="KySoHoaDonListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="KySoHoaDonListResult" type="tns:HoaDonKySoList" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSoBienLaiDaXuat">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SoBienLai" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSoBienLaiDaXuatResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckSoBienLaiDaXuatResult" type="tns:BienLaiEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BienLaiEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MaSoThue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaEinvoice" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MauSo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="KyHieu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SoHoaDon" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsHoaDon" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="NgayTaoHoaDon" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="NgayXuatHoaDon" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="NoiDung" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MsgError" type="tns:MsgError" />
+          <s:element minOccurs="0" maxOccurs="1" name="SoBienLai" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SoBienLaiGoc" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TrangThaiDieuChinh" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CheckSoBienLaiDaXuatNew">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SoBienLai" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSoBienLaiDaXuatNewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckSoBienLaiDaXuatNewResult" type="tns:BienLaiEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DanhSachHoaDonChuaDongBo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MaSoThue" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DanhSachHoaDonChuaDongBoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DanhSachHoaDonChuaDongBoResult" type="tns:ListBienLaiExtensionEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ListBienLaiExtensionEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MaSoThue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MsgError" type="tns:MsgError" />
+          <s:element minOccurs="0" maxOccurs="1" name="ListBienLai" type="tns:ArrayOfBienLaiExtensionEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBienLaiExtensionEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BienLaiExtensionEntity" nillable="true" type="tns:BienLaiExtensionEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BienLaiExtensionEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MaSoThue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaEinvoice" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MauSo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="KyHieu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SoHoaDon" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NgayTaoHoaDon" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="NgayXuatHoaDon" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="NoiDung" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SoBienLai" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SoBienLaiGoc" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TrangThaiDieuChinh" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DanhSachHoaDonChuaDongBoNew">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MaSoThue" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DanhSachHoaDonChuaDongBoNewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DanhSachHoaDonChuaDongBoNewResult" type="tns:ListBienLaiExtensionEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmailSms">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="emailsms" type="tns:ListEmailSmsEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ListEmailSmsEntity">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TuNgay" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DenNgay" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="LoaiThongTin" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaSoThue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaChiNhanh" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MsgError" type="tns:MsgError" />
+          <s:element minOccurs="0" maxOccurs="1" name="ListEmailSms" type="tns:ArrayOfEmailSmsEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEmailSmsEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EmailSmsEntity" nillable="true" type="tns:EmailSmsEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EmailSmsEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SoHoaDon" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MauSo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="KyHieu" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NgayHoaDon" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="BenBanMaDonVi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BenBanTenDonVi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BenBanDiaChi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaChiNhanh" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BenMuaMa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BenMuaMaDonVi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BenMuaTenDonVi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BenMuaDiaChi" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DienThoai" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NoiDung" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ThoiGianGui" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="TrangThai" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LanGui" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetEmailSmsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmailSmsResult" type="tns:ListEmailSmsEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveBill">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="enti" type="tns:RemoveBillEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RemoveBillEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MaSoThue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SoBienLai" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserHuy" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SoThamChieu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaEinvoice" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MsgError" type="tns:MsgError" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RemoveBillResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RemoveBillResult" type="tns:RemoveBillEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MakeInvoiceAdjusmentRecords">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="invRecordEntity" type="tns:InvoiceRecordEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InvoiceRecordEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceRecordType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MA_TEMPLATE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceRecordNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceTemplateCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceSeries" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SellerTaxCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SellerAddressLine" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SellerPhoneNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SellerLegalName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Seller_NGUOI_DAI_DIEN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Seller_NGUOI_DAI_DIEN_CV" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BuyerCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BuyerTaxCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BuyerLegalName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BuyerAddressLine" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BuyerPhoneNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Buyer_NGUOI_DAI_DIEN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Buyer_NGUOI_DAI_DIEN_CV" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="InvoiceIssuedDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="LI_DO_DIEU_CHINH" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NOI_DUNG_DUNG" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NOI_DUNG_SAI" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="InvoiceRecordDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="GIA_TRI_HOA_DON" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="TEN_DICH_VU" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MsgError" type="tns:MsgError" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="MakeInvoiceAdjusmentRecordsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MakeInvoiceAdjusmentRecordsResult" type="tns:InvoiceRecordEntity" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -1383,6 +1818,24 @@
   </wsdl:message>
   <wsdl:message name="ImportThongTinHoaDonAuthentication">
     <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:message name="ImportInvoice_NotAuthenSoapIn">
+    <wsdl:part name="parameters" element="tns:ImportInvoice_NotAuthen" />
+  </wsdl:message>
+  <wsdl:message name="ImportInvoice_NotAuthenSoapOut">
+    <wsdl:part name="parameters" element="tns:ImportInvoice_NotAuthenResponse" />
+  </wsdl:message>
+  <wsdl:message name="Import_Group_Invoice_NotAuthenSoapIn">
+    <wsdl:part name="parameters" element="tns:Import_Group_Invoice_NotAuthen" />
+  </wsdl:message>
+  <wsdl:message name="Import_Group_Invoice_NotAuthenSoapOut">
+    <wsdl:part name="parameters" element="tns:Import_Group_Invoice_NotAuthenResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInvoice_ExportSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInvoice_Export" />
+  </wsdl:message>
+  <wsdl:message name="GetInvoice_ExportSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInvoice_ExportResponse" />
   </wsdl:message>
   <wsdl:message name="TaoHoaDonGiuLaiSoapIn">
     <wsdl:part name="parameters" element="tns:TaoHoaDonGiuLai" />
@@ -1756,6 +2209,87 @@
   <wsdl:message name="CapNhatDonViAuthentication">
     <wsdl:part name="Authentication" element="tns:Authentication" />
   </wsdl:message>
+  <wsdl:message name="GetReportBranchSoapIn">
+    <wsdl:part name="parameters" element="tns:GetReportBranch" />
+  </wsdl:message>
+  <wsdl:message name="GetReportBranchSoapOut">
+    <wsdl:part name="parameters" element="tns:GetReportBranchResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetReportBranchAuthentication">
+    <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:message name="KySoHoaDonListSoapIn">
+    <wsdl:part name="parameters" element="tns:KySoHoaDonList" />
+  </wsdl:message>
+  <wsdl:message name="KySoHoaDonListSoapOut">
+    <wsdl:part name="parameters" element="tns:KySoHoaDonListResponse" />
+  </wsdl:message>
+  <wsdl:message name="KySoHoaDonListAuthentication">
+    <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:message name="CheckSoBienLaiDaXuatSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckSoBienLaiDaXuat" />
+  </wsdl:message>
+  <wsdl:message name="CheckSoBienLaiDaXuatSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckSoBienLaiDaXuatResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckSoBienLaiDaXuatAuthentication">
+    <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:message name="CheckSoBienLaiDaXuatNewSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckSoBienLaiDaXuatNew" />
+  </wsdl:message>
+  <wsdl:message name="CheckSoBienLaiDaXuatNewSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckSoBienLaiDaXuatNewResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckSoBienLaiDaXuatNewAuthentication">
+    <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:message name="DanhSachHoaDonChuaDongBoSoapIn">
+    <wsdl:part name="parameters" element="tns:DanhSachHoaDonChuaDongBo" />
+  </wsdl:message>
+  <wsdl:message name="DanhSachHoaDonChuaDongBoSoapOut">
+    <wsdl:part name="parameters" element="tns:DanhSachHoaDonChuaDongBoResponse" />
+  </wsdl:message>
+  <wsdl:message name="DanhSachHoaDonChuaDongBoAuthentication">
+    <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:message name="DanhSachHoaDonChuaDongBoNewSoapIn">
+    <wsdl:part name="parameters" element="tns:DanhSachHoaDonChuaDongBoNew" />
+  </wsdl:message>
+  <wsdl:message name="DanhSachHoaDonChuaDongBoNewSoapOut">
+    <wsdl:part name="parameters" element="tns:DanhSachHoaDonChuaDongBoNewResponse" />
+  </wsdl:message>
+  <wsdl:message name="DanhSachHoaDonChuaDongBoNewAuthentication">
+    <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailSmsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmailSms" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailSmsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmailSmsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailSmsAuthentication">
+    <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:message name="RemoveBillSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveBill" />
+  </wsdl:message>
+  <wsdl:message name="RemoveBillSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveBillResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveBillAuthentication">
+    <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
+  <wsdl:message name="MakeInvoiceAdjusmentRecordsSoapIn">
+    <wsdl:part name="parameters" element="tns:MakeInvoiceAdjusmentRecords" />
+  </wsdl:message>
+  <wsdl:message name="MakeInvoiceAdjusmentRecordsSoapOut">
+    <wsdl:part name="parameters" element="tns:MakeInvoiceAdjusmentRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="MakeInvoiceAdjusmentRecordsAuthentication">
+    <wsdl:part name="Authentication" element="tns:Authentication" />
+  </wsdl:message>
   <wsdl:portType name="EinvoiceServiceSoap">
     <wsdl:operation name="XuatHoaDon">
       <wsdl:input message="tns:XuatHoaDonSoapIn" />
@@ -1776,6 +2310,18 @@
     <wsdl:operation name="ImportThongTinHoaDon">
       <wsdl:input message="tns:ImportThongTinHoaDonSoapIn" />
       <wsdl:output message="tns:ImportThongTinHoaDonSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportInvoice_NotAuthen">
+      <wsdl:input message="tns:ImportInvoice_NotAuthenSoapIn" />
+      <wsdl:output message="tns:ImportInvoice_NotAuthenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Import_Group_Invoice_NotAuthen">
+      <wsdl:input message="tns:Import_Group_Invoice_NotAuthenSoapIn" />
+      <wsdl:output message="tns:Import_Group_Invoice_NotAuthenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoice_Export">
+      <wsdl:input message="tns:GetInvoice_ExportSoapIn" />
+      <wsdl:output message="tns:GetInvoice_ExportSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="TaoHoaDonGiuLai">
       <wsdl:input message="tns:TaoHoaDonGiuLaiSoapIn" />
@@ -1953,6 +2499,42 @@
       <wsdl:input message="tns:CapNhatDonViSoapIn" />
       <wsdl:output message="tns:CapNhatDonViSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetReportBranch">
+      <wsdl:input message="tns:GetReportBranchSoapIn" />
+      <wsdl:output message="tns:GetReportBranchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="KySoHoaDonList">
+      <wsdl:input message="tns:KySoHoaDonListSoapIn" />
+      <wsdl:output message="tns:KySoHoaDonListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSoBienLaiDaXuat">
+      <wsdl:input message="tns:CheckSoBienLaiDaXuatSoapIn" />
+      <wsdl:output message="tns:CheckSoBienLaiDaXuatSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSoBienLaiDaXuatNew">
+      <wsdl:input message="tns:CheckSoBienLaiDaXuatNewSoapIn" />
+      <wsdl:output message="tns:CheckSoBienLaiDaXuatNewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DanhSachHoaDonChuaDongBo">
+      <wsdl:input message="tns:DanhSachHoaDonChuaDongBoSoapIn" />
+      <wsdl:output message="tns:DanhSachHoaDonChuaDongBoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DanhSachHoaDonChuaDongBoNew">
+      <wsdl:input message="tns:DanhSachHoaDonChuaDongBoNewSoapIn" />
+      <wsdl:output message="tns:DanhSachHoaDonChuaDongBoNewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailSms">
+      <wsdl:input message="tns:GetEmailSmsSoapIn" />
+      <wsdl:output message="tns:GetEmailSmsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveBill">
+      <wsdl:input message="tns:RemoveBillSoapIn" />
+      <wsdl:output message="tns:RemoveBillSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MakeInvoiceAdjusmentRecords">
+      <wsdl:input message="tns:MakeInvoiceAdjusmentRecordsSoapIn" />
+      <wsdl:output message="tns:MakeInvoiceAdjusmentRecordsSoapOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="EinvoiceServiceSoap" type="tns:EinvoiceServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -2001,6 +2583,33 @@
       <wsdl:input>
         <soap:body use="literal" />
         <soap:header message="tns:ImportThongTinHoaDonAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportInvoice_NotAuthen">
+      <soap:operation soapAction="http://thaison.vn/inv/ImportInvoice_NotAuthen" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_Group_Invoice_NotAuthen">
+      <soap:operation soapAction="http://thaison.vn/inv/Import_Group_Invoice_NotAuthen" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoice_Export">
+      <soap:operation soapAction="http://thaison.vn/inv/GetInvoice_Export" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
@@ -2438,6 +3047,96 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetReportBranch">
+      <soap:operation soapAction="http://thaison.vn/inv/GetReportBranch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetReportBranchAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="KySoHoaDonList">
+      <soap:operation soapAction="http://thaison.vn/inv/KySoHoaDonList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:KySoHoaDonListAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSoBienLaiDaXuat">
+      <soap:operation soapAction="http://thaison.vn/inv/CheckSoBienLaiDaXuat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CheckSoBienLaiDaXuatAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSoBienLaiDaXuatNew">
+      <soap:operation soapAction="http://thaison.vn/inv/CheckSoBienLaiDaXuatNew" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CheckSoBienLaiDaXuatNewAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DanhSachHoaDonChuaDongBo">
+      <soap:operation soapAction="http://thaison.vn/inv/DanhSachHoaDonChuaDongBo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DanhSachHoaDonChuaDongBoAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DanhSachHoaDonChuaDongBoNew">
+      <soap:operation soapAction="http://thaison.vn/inv/DanhSachHoaDonChuaDongBoNew" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DanhSachHoaDonChuaDongBoNewAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailSms">
+      <soap:operation soapAction="http://thaison.vn/inv/GetEmailSms" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEmailSmsAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveBill">
+      <soap:operation soapAction="http://thaison.vn/inv/RemoveBill" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:RemoveBillAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MakeInvoiceAdjusmentRecords">
+      <soap:operation soapAction="http://thaison.vn/inv/MakeInvoiceAdjusmentRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:MakeInvoiceAdjusmentRecordsAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="EinvoiceServiceSoap12" type="tns:EinvoiceServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -2486,6 +3185,33 @@
       <wsdl:input>
         <soap12:body use="literal" />
         <soap12:header message="tns:ImportThongTinHoaDonAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportInvoice_NotAuthen">
+      <soap12:operation soapAction="http://thaison.vn/inv/ImportInvoice_NotAuthen" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import_Group_Invoice_NotAuthen">
+      <soap12:operation soapAction="http://thaison.vn/inv/Import_Group_Invoice_NotAuthen" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoice_Export">
+      <soap12:operation soapAction="http://thaison.vn/inv/GetInvoice_Export" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap12:body use="literal" />
@@ -2918,6 +3644,96 @@
       <wsdl:input>
         <soap12:body use="literal" />
         <soap12:header message="tns:CapNhatDonViAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReportBranch">
+      <soap12:operation soapAction="http://thaison.vn/inv/GetReportBranch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetReportBranchAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="KySoHoaDonList">
+      <soap12:operation soapAction="http://thaison.vn/inv/KySoHoaDonList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:KySoHoaDonListAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSoBienLaiDaXuat">
+      <soap12:operation soapAction="http://thaison.vn/inv/CheckSoBienLaiDaXuat" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CheckSoBienLaiDaXuatAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSoBienLaiDaXuatNew">
+      <soap12:operation soapAction="http://thaison.vn/inv/CheckSoBienLaiDaXuatNew" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CheckSoBienLaiDaXuatNewAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DanhSachHoaDonChuaDongBo">
+      <soap12:operation soapAction="http://thaison.vn/inv/DanhSachHoaDonChuaDongBo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DanhSachHoaDonChuaDongBoAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DanhSachHoaDonChuaDongBoNew">
+      <soap12:operation soapAction="http://thaison.vn/inv/DanhSachHoaDonChuaDongBoNew" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DanhSachHoaDonChuaDongBoNewAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailSms">
+      <soap12:operation soapAction="http://thaison.vn/inv/GetEmailSms" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEmailSmsAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveBill">
+      <soap12:operation soapAction="http://thaison.vn/inv/RemoveBill" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:RemoveBillAuthentication" part="Authentication" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MakeInvoiceAdjusmentRecords">
+      <soap12:operation soapAction="http://thaison.vn/inv/MakeInvoiceAdjusmentRecords" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:MakeInvoiceAdjusmentRecordsAuthentication" part="Authentication" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap12:body use="literal" />

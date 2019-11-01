@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{92801EE7-A5BA-430C-8434-7EE3A8A03414}</ProjectGuid>
+    <ProjectGuid>{18F4AF88-0E70-4264-BFB0-20E585D416B8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>V6ThuePost</RootNamespace>
@@ -106,16 +106,27 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\Git\MicrosoftSource\Framework35\Winform\V6Tools\V6Tools\V6Tools.csproj">
+    <ProjectReference Include="..\..\..\..\Hprojects\HaUtility\HaUtility.csproj">
+      <Project>{0A11F974-1C92-457B-837A-911A8EF85055}</Project>
+      <Name>HaUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\V6Tools\V6Tools\V6Tools.csproj">
       <Project>{4f797e67-948d-4eec-acd7-758028e9166f}</Project>
       <Name>V6Tools</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\PostObjects\V6ThuePostObjects.csproj">
+      <Project>{14A2C520-1939-4B6A-B584-EE5797F26701}</Project>
+      <Name>V6ThuePostObjects</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ApiConnect\V6ThuePostThaiSonApi.csproj">
-      <Project>{ABC35001-3755-4AFF-88D6-B48598BBC651}</Project>
+      <Project>{b2965a48-a4f2-406a-8d0a-d4134a1351f0}</Project>
       <Name>V6ThuePostThaiSonApi</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="V6THUEPOST.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\V600.png" />
     <None Include="Resources\Error_48x48_72.png" />
     <None Include="Resources\Question.png" />
