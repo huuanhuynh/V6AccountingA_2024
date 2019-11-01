@@ -242,7 +242,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 try
                 {
-                    MODE = V6Mode.View;
+                    //MODE = V6Mode.View;
+                    SetFormControlsReadOnly(true);
                     handler(GetData());
                     addhandle_ok = true;
                 }

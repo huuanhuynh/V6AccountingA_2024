@@ -194,17 +194,29 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                 if (errors.Length == 0)
                 {
                     bool ok = true;
-                    var ReportFileFullOld = @"Reports\"
+                    string old_dir = "";
+                    if (DataOld.ContainsKey("RPT_DIR") && DataOld["RPT_DIR"].ToString().Trim() != "")
+                    {
+                        old_dir = DataOld["RPT_DIR"].ToString().Trim() + @"\";
+                    }
+
+                    var ReportFileFullOld = @"Reports\" + old_dir
                                             + DataOld["MAU"] + @"\" + DataOld["LAN"] + @"\" +
                                             DataOld["REPORT"].ToString().Trim() + ".rpt";
-                    var ExcelFileFullOld = @"Reports\"
+                    var ExcelFileFullOld = @"Reports\" + old_dir
                                             + DataOld["MAU"] + @"\" + DataOld["LAN"] + @"\" +
                                             DataOld["REPORT"].ToString().Trim() + ".xls";
 
-                    var ReportFileFullNew = @"Reports\"
+                    string new_dir = "";
+                    if (DataDic.ContainsKey("RPT_DIR") && DataDic["RPT_DIR"].ToString().Trim() != "")
+                    {
+                        new_dir = DataDic["RPT_DIR"].ToString().Trim() + @"\";
+                    }
+
+                    var ReportFileFullNew = @"Reports\" + new_dir
                                             + DataDic["MAU"] + @"\" + DataDic["LAN"] + @"\" +
                                             DataDic["REPORT"].ToString().Trim() + ".rpt";
-                    var ExcelFileFullNew = @"Reports\"
+                    var ExcelFileFullNew = @"Reports\" + new_dir
                                             + DataDic["MAU"] + @"\" + DataDic["LAN"] + @"\" +
                                             DataDic["REPORT"].ToString().Trim() + ".xls";
                     
@@ -370,6 +382,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             lblThongTinThem.Visible = true;
             txtExtraInfo.Visible = true;
             txtRPT_DIR.Visible = true;
+            txtRPT_DIR.Enabled = true;
             txtRPT_DIR.ReadOnly = false;
             lblRPT_DIR.Visible = true;
 

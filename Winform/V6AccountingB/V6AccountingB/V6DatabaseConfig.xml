@@ -2,12 +2,12 @@
 <Config>
   <DatabaseList>
     <Stt>1</Stt>
-    <Server>192.168.1.99\SQLSERVER2K8</Server>
-    <Server2>192.168.1.99\SQLSERVER2K8</Server2>
+    <Server>192.168.1.99\SQLSERVER2K8,7979</Server>
+    <Server2>192.168.1.99\SQLSERVER2K8,7979</Server2>
     <Database>VIETHA16</Database>
     <Database2>VIETHA16</Database2>
-    <UserId>sa</UserId>
-    <UserId2>sa</UserId2>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
     <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
     <Epassword2>l3q0CpB7reTyiOANz2nQMA==</Epassword2>
     <Api>api</Api>
@@ -17,16 +17,16 @@
     <UseIsolation>1</UseIsolation>
     <Run>0</Run>
     <Type>0</Type>
-    <Key>n3RNqI9XXEog0njmmdo/yUZAoF2wV8KJ9/oYAJ0sJzOOqrvhZwsS+Q==</Key>
+    <Key>n3RNqI9XXEog0njmmdo/yUZAoF2wV8KJLv7MWuB2aPgmK8bhJbuPsQ==</Key>
   </DatabaseList>
   <DatabaseList>
     <Stt>2</Stt>
-    <Server>192.168.1.99\SQLSERVER2K8</Server>
-    <Server2>192.168.1.99\SQLSERVER2K8</Server2>
+    <Server>192.168.1.99\SQLSERVER2K8,7979</Server>
+    <Server2>192.168.1.99\SQLSERVER2K8,7979</Server2>
     <Database>VIETHA16_CUST</Database>
     <Database2>VIETHA16_CUST</Database2>
-    <UserId>sa</UserId>
-    <UserId2>sa</UserId2>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
     <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
     <Epassword2>l3q0CpB7reTyiOANz2nQMA==</Epassword2>
     <Api>api</Api>
@@ -36,16 +36,16 @@
     <UseIsolation>1</UseIsolation>
     <Run>1</Run>
     <Type>0</Type>
-    <Key>TDGEME1hgGcg0njmmdo/yUZAoF2wV8KJ9/oYAJ0sJzOQvdT7BIVU7A==</Key>
+    <Key>TDGEME1hgGcg0njmmdo/yUZAoF2wV8KJLv7MWuB2aPjvJlb6IiNqYLg98+MJKXom</Key>
   </DatabaseList>
   <DatabaseList>
     <Stt>3</Stt>
-    <Server>192.168.1.99\SQLSERVER2K8</Server>
-    <Server2>192.168.1.99\SQLSERVER2K8</Server2>
+    <Server>192.168.1.99\SQLSERVER2K8,7979</Server>
+    <Server2>192.168.1.99\SQLSERVER2K8,7979</Server2>
     <Database>MOTEL38</Database>
     <Database2>MOTEL38</Database2>
-    <UserId>sa</UserId>
-    <UserId2>sa</UserId2>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
     <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
     <Epassword2>l3q0CpB7reTyiOANz2nQMA==</Epassword2>
     <Api>api</Api>
@@ -59,12 +59,12 @@
   </DatabaseList>
   <DatabaseList>
     <Stt>4</Stt>
-    <Server>192.168.1.99\SQLSERVER2K8</Server>
-    <Server2>192.168.1.99\SQLSERVER2K8</Server2>
+    <Server>192.168.1.99\SQLSERVER2K8,7979</Server>
+    <Server2>192.168.1.99\SQLSERVER2K8,7979</Server2>
     <Database>HOANGPHIEN17</Database>
     <Database2>HOANGPHIEN17</Database2>
-    <UserId>sa</UserId>
-    <UserId2>sa</UserId2>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
     <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
     <Epassword2>l3q0CpB7reTyiOANz2nQMA==</Epassword2>
     <Api>api</Api>
@@ -78,12 +78,12 @@
   </DatabaseList>
   <DatabaseList>
     <Stt>5</Stt>
-    <Server>192.168.1.99\SQLSERVER2K8</Server>
-    <Server2>192.168.1.99\SQLSERVER2K8</Server2>
+    <Server>192.168.1.99\SQLSERVER2K8,7979</Server>
+    <Server2>192.168.1.99\SQLSERVER2K8,7979</Server2>
     <Database>MOTEL17</Database>
     <Database2>MOTEL17</Database2>
-    <UserId>sa</UserId>
-    <UserId2>sa</UserId2>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
     <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
     <Epassword2>l3q0CpB7reTyiOANz2nQMA==</Epassword2>
     <Api>api</Api>
@@ -97,12 +97,12 @@
   </DatabaseList>
   <DatabaseList>
     <Stt>6</Stt>
-    <Server>192.168.1.99\SQLSERVER2K8</Server>
-    <Server2>192.168.1.99\SQLSERVER2K8</Server2>
+    <Server>192.168.1.99\SQLSERVER2K8,7979</Server>
+    <Server2>192.168.1.99\SQLSERVER2K8,7979</Server2>
     <Database>VIETHA17_WH</Database>
     <Database2>VIETHA17_WH</Database2>
-    <UserId>sa</UserId>
-    <UserId2>sa</UserId2>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
     <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
     <Epassword2>l3q0CpB7reTyiOANz2nQMA==</Epassword2>
     <Api>api</Api>
@@ -116,12 +116,12 @@
   </DatabaseList>
   <DatabaseList>
     <Stt>7</Stt>
-    <Server>192.168.1.99\SQLSERVER2K8</Server>
-    <Server2>192.168.1.99\SQLSERVER2K8</Server2>
+    <Server>192.168.1.99\SQLSERVER2K8,7979</Server>
+    <Server2>192.168.1.99\SQLSERVER2K8,7979</Server2>
     <Database>CRV_NB17</Database>
     <Database2>CRV_NB17</Database2>
-    <UserId>sa</UserId>
-    <UserId2>sa</UserId2>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
     <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
     <Epassword2>l3q0CpB7reTyiOANz2nQMA==</Epassword2>
     <Api>api</Api>
@@ -153,12 +153,12 @@
   </DatabaseList>
   <DatabaseList>
     <Stt>9</Stt>
-    <Server>192.168.1.99\SQLSERVER2K8</Server>
-    <Server2>192.168.1.99\SQLSERVER2K8</Server2>
+    <Server>192.168.1.99\SQLSERVER2K8,7979</Server>
+    <Server2>192.168.1.99\SQLSERVER2K8,7979</Server2>
     <Database>TH_K17</Database>
     <Database2>TH_K17</Database2>
-    <UserId>sa</UserId>
-    <UserId2>sa</UserId2>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
     <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
     <Epassword2>l3q0CpB7reTyiOANz2nQMA==</Epassword2>
     <Api>api</Api>
@@ -190,12 +190,12 @@
   </DatabaseList>
   <DatabaseList>
     <Stt>11</Stt>
-    <Server>192.168.1.99\SQLSERVER2K8</Server>
-    <Server2>192.168.1.99\SQLSERVER2K8</Server2>
+    <Server>192.168.1.99\SQLSERVER2K8,7979</Server>
+    <Server2>192.168.1.99\SQLSERVER2K8,7979</Server2>
     <Database>SBC2018</Database>
     <Database2>SBC2018</Database2>
-    <UserId>sa</UserId>
-    <UserId2>sa</UserId2>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
     <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
     <Epassword2>l3q0CpB7reTyiOANz2nQMA==</Epassword2>
     <Api>api</Api>
@@ -208,12 +208,12 @@
   </DatabaseList>
   <DatabaseList>
     <Stt>12</Stt>
-    <Server>192.168.1.99\SQLSERVER2K8</Server>
-    <Server2>192.168.1.99\SQLSERVER2K8</Server2>
+    <Server>192.168.1.99\SQLSERVER2K8,7979</Server>
+    <Server2>192.168.1.99\SQLSERVER2K8,7979</Server2>
     <Database>SUN18_HRM</Database>
     <Database2>SUN18_HRM</Database2>
-    <UserId>sa</UserId>
-    <UserId2>sa</UserId2>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
     <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
     <Epassword2>l3q0CpB7reTyiOANz2nQMA==</Epassword2>
     <Api>api</Api>
@@ -226,12 +226,12 @@
   </DatabaseList>
   <DatabaseList>
     <Stt>13</Stt>
-    <Server>192.168.1.99\SQLSERVER2K8</Server>
-    <Server2>192.168.1.99\SQLSERVER2K8</Server2>
+    <Server>192.168.1.99\SQLSERVER2K8,7979</Server>
+    <Server2>192.168.1.99\SQLSERVER2K8,7979</Server2>
     <Database>VQT18_NB</Database>
     <Database2>VQT18_NB</Database2>
-    <UserId>sa</UserId>
-    <UserId2>sa</UserId2>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
     <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
     <Epassword2>l3q0CpB7reTyiOANz2nQMA==</Epassword2>
     <Api>api</Api>
@@ -244,12 +244,12 @@
   </DatabaseList>
    <DatabaseList>
     <Stt>14</Stt>
-    <Server>192.168.1.99\SQLSERVER2K8</Server>
-    <Server2>192.168.1.99\SQLSERVER2K8</Server2>
+    <Server>192.168.1.99\SQLSERVER2K8,7979</Server>
+    <Server2>192.168.1.99\SQLSERVER2K8,7979</Server2>
     <Database>NAMQUOC_19</Database>
     <Database2>NAMQUOC_19</Database2>
-    <UserId>sa</UserId>
-    <UserId2>sa</UserId2>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
     <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
     <Epassword2>l3q0CpB7reTyiOANz2nQMA==</Epassword2>
     <Api>api</Api>
@@ -266,8 +266,8 @@
     <Server2>V6DEMO\SQL2016</Server2>
     <Database>GKP19_NB</Database>
     <Database2>GKP19_NB</Database2>
-    <UserId>sa</UserId>
-    <UserId2>sa</UserId2>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
     <Epassword>Ai0I9gx1t2OUAygIZXqi4g==</Epassword>
     <Epassword2>Ai0I9gx1t2OUAygIZXqi4g==</Epassword2>
     <Api>api</Api>
@@ -285,8 +285,8 @@
     <Server2>V6DEMO\SQL2016</Server2>
     <Database>GKP19_THUE</Database>
     <Database2>GKP19_THUE</Database2>
-    <UserId>sa</UserId>
-    <UserId2>sa</UserId2>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
     <Epassword>Ai0I9gx1t2OUAygIZXqi4g==</Epassword>
     <Epassword2>Ai0I9gx1t2OUAygIZXqi4g==</Epassword2>
     <Api>api</Api>
@@ -304,8 +304,8 @@
     <Server2>V6DEMO\SQL2016</Server2>
     <Database>V6DK5</Database>
     <Database2>V6DK5</Database2>
-    <UserId>sa</UserId>
-    <UserId2>sa</UserId2>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
     <Epassword>Ai0I9gx1t2OUAygIZXqi4g==</Epassword>
     <Epassword2>Ai0I9gx1t2OUAygIZXqi4g==</Epassword2>
     <Api>api</Api>

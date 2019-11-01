@@ -4271,7 +4271,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 if (!string.IsNullOrEmpty(errors))
                 {
                     this.ShowWarningMessage(errors);
-                    detail1.MODE = detail1.Old_mode;
+                    //detail1.MODE = detail1.Old_mode;
+                    detail1.SetFormControlsReadOnly(false);
                     var c = detail1.GetControlByAccessibleName(firstErrorField);
                     if (c != null) c.Focus();
                     return false;
@@ -4298,7 +4299,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 if (!string.IsNullOrEmpty(errors))
                 {
                     this.ShowWarningMessage(errors);
-                    detail2.MODE = detail2.Old_mode;
+                    detail2.SetFormControlsReadOnly(false);
                     var c = detail2.GetControlByAccessibleName(firstErrorField);
                     if (c != null) c.Focus();
                     return false;

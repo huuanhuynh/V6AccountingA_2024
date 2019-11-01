@@ -1784,7 +1784,6 @@
             this.txtRPT_DIR.Size = new System.Drawing.Size(142, 20);
             this.txtRPT_DIR.TabIndex = 25;
             this.txtRPT_DIR.TabStop = false;
-            this.txtRPT_DIR.Visible = false;
             // 
             // lblRPT_DIR
             // 

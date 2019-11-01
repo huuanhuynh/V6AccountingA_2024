@@ -3513,7 +3513,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                 if (!string.IsNullOrEmpty(errors))
                 {
                     this.ShowWarningMessage(errors);
-                    detail1.MODE = detail1.Old_mode;
+                    //detail1.MODE = detail1.Old_mode;
+                    detail1.SetFormControlsReadOnly(false);
                     var c = detail1.GetControlByAccessibleName(firstErrorField);
                     if (c != null) c.Focus();
                     return false;
