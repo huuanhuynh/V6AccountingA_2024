@@ -173,7 +173,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             }
             catch (Exception ex)
             {
-                _message = "Query Error!\n" + ex.Message;
+                _message = V6Text.Text("QUERY_FAILED") + "\n";
+                if (ex.Message.StartsWith("Could not find stored procedure")) _message += V6Text.NotExist + ex.Message.Substring(31);
+                else _message += ex.Message;
+
                 _ds = null;
                 data = null;
                 _dataloaded = false;

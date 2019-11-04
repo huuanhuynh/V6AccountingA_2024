@@ -900,7 +900,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             catch (Exception ex)
             {
-                _message = "Query Error!\n"+ex.Message;
+                _message = V6Text.Text("QUERY_FAILED") + "\n";
+                if (ex.Message.StartsWith("Could not find stored procedure")) _message += V6Text.NotExist + ex.Message.Substring(31);
+                else _message += ex.Message;
+
                 _tbl1 = null;
                 _tbl2 = null;
                 _tbl3 = null;

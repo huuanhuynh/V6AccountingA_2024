@@ -150,7 +150,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Query Error!\n" + ex.Message);
+                _message = V6Text.Text("QUERY_FAILED") + "\n";
+                if (ex.Message.StartsWith("Could not find stored procedure")) _message += V6Text.NotExist + ex.Message.Substring(31);
+                else _message += ex.Message;
+
+                this.ShowErrorMessage(GetType() + ".TinhGiaAll " + _message);
                 _tbl = null;
                 _tbl2 = null;
                 _ds = null;
