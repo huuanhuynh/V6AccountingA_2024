@@ -92,7 +92,14 @@ namespace HaUtility.Converter
                     if (dataDic.ContainsKey(propertyInfo.Name.ToUpper()))
                         o = dataDic[propertyInfo.Name.ToUpper()];
                     var value = PrimitiveTypes.ObjectTo(propertyInfo.PropertyType, o);
-                    propertyInfo.SetValue(t, value, null);
+                    try
+                    {
+                        propertyInfo.SetValue(t, value, null);
+                    }
+                    catch
+                    {
+                        
+                    }
                 }
             }
             return t;

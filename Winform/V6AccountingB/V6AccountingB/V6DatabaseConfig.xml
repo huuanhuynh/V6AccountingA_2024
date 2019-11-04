@@ -317,6 +317,25 @@
     <Type>0</Type>
     <Key>xg9O+cDEVJhZs67AnhS0RDD1a34gYiYu</Key>
   </DatabaseList>
+  <DatabaseList>
+    <Stt>18</Stt>
+    <Server>116.118.106.45,7171</Server>
+    <Server2>116.118.106.45,7171</Server2>
+    <Database>TEDIS19</Database>
+    <Database2>TEDIS19</Database2>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
+    <Epassword>vLNQLSTnl/mKXnlflaZwMtAB4n+IhHpb</Epassword>
+    <Epassword2>vLNQLSTnl/mKXnlflaZwMtAB4n+IhHpb</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <TimeOut>120</TimeOut>
+    <Note>Dữ liệu TEDIS19 ACC</Note>
+    <UseIsolation>1</UseIsolation>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>aFqPEU2ASNxvKQxMZ3qAnGnidOYkYfySDRhvRPbfv+4=</Key>
+  </DatabaseList>
   <ServerConfig>
     <ServerName>HUUANV6</ServerName>
     <ServerIP>192.168.1.141</ServerIP>

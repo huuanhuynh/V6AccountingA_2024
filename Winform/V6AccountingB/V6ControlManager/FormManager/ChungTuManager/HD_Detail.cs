@@ -296,7 +296,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 //Carry values
                 //V6ControlFormHelper.SetCarryValues(this);
-                //MODE = V6Mode.View;
+                MODE = V6Mode.View;
                 btnMoi.Focus();
             }
             else

@@ -25,7 +25,7 @@ namespace V6ThuePost
     {
         public static bool _TEST_ = true;
         private static DateTime _TEST_DATE_ = DateTime.Now;
-        public static ThaiSonWS _softDreams_ws = null;
+        public static ThaiSonWS _ThaiSon_ws = null;
         #region ===== VAR =====
         /// <summary>
         /// Link host
@@ -147,7 +147,8 @@ namespace V6ThuePost
                     
                     ReadXmlInfo(arg1_xmlFile);
 
-                    _softDreams_ws = new ThaiSonWS(_baseUrl, _username, _password, _token_serial);
+                    _ThaiSon_ws = new ThaiSonWS(_baseUrl, _username, _password, _token_serial);
+
                     
                     //MSHDT//Mới Sửa Hủy ĐiềuChỉnh(S) ThayThế
                     if (mode.StartsWith("M") || mode == "")
@@ -155,7 +156,7 @@ namespace V6ThuePost
                         
                         var invoice = ReadDataXml(arg2);
                         File.Create(flagFileName1).Close();
-                        result = _softDreams_ws.XuatHoaDonDienTu(invoice, out v6return);
+                        result = _ThaiSon_ws.XuatHoaDonDienTu(invoice, out v6return);
                         //result = XuatHoaDonDienTu_XML(xml);
                         
                         if (arg3.Length>0 && result.StartsWith("OK"))
@@ -198,7 +199,7 @@ namespace V6ThuePost
                     {
                         var invoice = ReadDataXml(dbfFile: arg2);
                         File.Create(flagFileName1).Close();
-                        result = _softDreams_ws.AdjustInvoice(invoice, arg3, out v6return);
+                        result = _ThaiSon_ws.AdjustInvoice(invoice, arg3, out v6return);
                         if (arg4.Length > 0 && result.StartsWith("OK"))
                         {
                             if (File.Exists(arg4))

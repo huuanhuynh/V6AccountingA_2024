@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using V6ThuePost.ResponseObjects;
+using V6ThuePostThaiSonApi;
 using V6ThuePostThaiSonApi.EinvoiceService;
 using V6Tools.V6Convert;
 
@@ -18,6 +20,7 @@ namespace V6ThuePost
         {
             Program.ReadXmlInfo(txtXmlFile.Text);
             _invoice = Program.ReadDataXml(txtDbfFile.Text);
+            Program._ThaiSon_ws = new ThaiSonWS(Program._baseUrl, Program._username, Program._password, Program._token_serial);
             txtUsername.Text = Program._username;
             txtPassword.Text = Program._password;
             txtURL.Text = Program.link_Publish;
@@ -56,7 +59,8 @@ namespace V6ThuePost
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            string result = Program.XuatHoaDonDienTu_XML(richTextBox1.Text);
+            V6Return v6return;
+            string result = Program._ThaiSon_ws.XuatHoaDonDienTu(_invoice, out v6return);
             lblResult.Text = result;
             if (result != null)
             {

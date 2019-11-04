@@ -18,17 +18,17 @@ namespace V6ThuePostThaiSonApi
         {
             try
             {
+                _host = host;
+                _username = username;
+                _password = password;
+                _token_serial = token_serial;
                 _easyService = new EinvoiceService.EinvoiceService(_host);
                 _easyService.AuthenticationValue = new Authentication()
                 {
                     userName = _username,
                     password = _password
                 };
-
-                _host = host;
-                _username = username;
-                _password = password;
-                _token_serial = token_serial;
+                
                 return;
             }
             catch (Exception)

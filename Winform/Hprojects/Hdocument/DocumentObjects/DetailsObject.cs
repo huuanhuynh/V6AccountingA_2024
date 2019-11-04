@@ -117,7 +117,7 @@ namespace H_document.DocumentObjects
                     {
                         var row = tableData.Rows[i];
                         
-                        DrawOneLine(g, margins, penLine, brush, drawMode, selectedObjects, startTop, row.ToDataDictionary(), out startTop);
+                        DrawOneLine(g, margins, penLine, brush, drawMode, selectedObjects, startTop, row.ToDataDictionaryH(), out startTop);
                     }
                 }
                 else if (Data is ICollection)
