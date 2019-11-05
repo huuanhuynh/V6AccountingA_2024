@@ -15,7 +15,6 @@ using V6ThuePostThaiSonApi;
 using V6ThuePostThaiSonApi.EinvoiceService;
 using V6Tools;
 using V6Tools.V6Convert;
-using HaUtility.Converter;
 using V6ThuePost.ResponseObjects;
 using ParseDBF = V6Tools.ParseDBF;
 
@@ -693,7 +692,7 @@ namespace V6ThuePost
                         ad_data[item.Key] = GetValue(row, item.Value);
                     }
 
-                    var product = ad_data.ToModelH<HangHoaEntity>();
+                    var product = ad_data.ToClass<HangHoaEntity>();
                     list_hanghoa.Add(product);
                 }
                 
@@ -708,9 +707,11 @@ namespace V6ThuePost
                 }
 
                 //result = XmlConverter.ClassToXml(hoa_don_entity);
-                hoa_don_entity = am_data.ToModelH<HoaDonEntity>();
+                hoa_don_entity = am_data.ToClass<HoaDonEntity>();
                 
                 hoa_don_entity.HangHoas = list_hanghoa.ToArray();
+                //hoa_don_entity.dataExtension = list_extension.ToArray();
+                //hoa_don_entity.emptysField = emptysField.ToArray();
             }
             //catch (Exception ex)
             {

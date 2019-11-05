@@ -452,6 +452,32 @@ namespace V6Tools.V6Convert
             return value;
         }
 
+        public static T ToClass<T>(this IDictionary<string, object> dataDic0) where T : new()
+        {
+            var t = new T();
+            var dataDic = dataDic0.ToUpperKeys();
+            foreach (PropertyInfo propertyInfo in t.GetType().GetProperties())
+            {
+                if (propertyInfo.CanWrite)
+                {
+                    //object value = GetFormValue(container, propertyInfo.Name);
+                    object o = "";
+                    if (dataDic.ContainsKey(propertyInfo.Name.ToUpper()))
+                        o = dataDic[propertyInfo.Name.ToUpper()];
+                    var value = ObjectTo(propertyInfo.PropertyType, o);
+                    try
+                    {
+                        propertyInfo.SetValue(t, value, null);
+                    }
+                    catch
+                    {
+
+                    }
+                }
+            }
+            return t;
+        }
+
         public static T ToObject<T>(object o)// where T:new()
         {
             return (T)ObjectTo(typeof(T), o);

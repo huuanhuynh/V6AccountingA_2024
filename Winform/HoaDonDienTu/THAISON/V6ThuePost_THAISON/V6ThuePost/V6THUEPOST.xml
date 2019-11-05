@@ -42,6 +42,7 @@
 	
 	<GeneralInvoiceInfo Field='NamSinh'		Type='Field'		FieldV6=''		Value='TEST' />
 	<GeneralInvoiceInfo Field='NgayNhapVien'	Type='Field'		FieldV6=''		Value='20/02/2018' DataType='DateTime'/>
+	<GeneralInvoiceInfo Field='NgayNhapVienSpecified'	  Value='0'   DataType='bool'/>
 	<GeneralInvoiceInfo Field='SoNhapVien'		Type='Field'		FieldV6=''		Value='TEST' />
 	<GeneralInvoiceInfo Field='PCName'		Type='Field'		FieldV6=''		Value='TEST' />
 	
@@ -90,6 +91,7 @@
 	<!--ItemInfo	Field='ChietKhauTien'	FieldV6=''		Type='Field'	DataType='Decimal'/-->
 	
 	<!--SummarizeInfo	Field='sumOfTotalLineAmountWithoutTax'		FieldV6='T_TIEN2'	Type='Field'/-->
+  <SummarizeInfo Field='TrangThaiDieuChinh' Type='Field' FieldV6='Payment_s' Value='' />
 	<SummarizeInfo Field='TienThueVat' Type='Field' FieldV6='T_THUE' Value='' />
 	<SummarizeInfo Field='TongTienHang' Type='Field' FieldV6='T_TIEN2' Value='' />
 	<SummarizeInfo Field='TongTienThanhToan' Type='Field' FieldV6='T_TT' Value='' />
@@ -98,9 +100,127 @@
 	<SummarizeInfo Field='DongTienThanhToan' Type='Field' FieldV6='MA_NT' Value='' />
 	<SummarizeInfo Field='HinhThucThanhToan' Type='Field' FieldV6='MA_HTTT' Value='TM' />
 	<SummarizeInfo Field='TyGia' Type='Field' FieldV6='TY_GIA' Value='' />
+  <!--
+	<SummarizeInfo Field='SoBienLai' Type='Field' FieldV6='' Value='' />
+	<SummarizeInfo Field='SoBienLaiGoc' Type='Field' FieldV6='' Value='' />
+	<SummarizeInfo Field='OutputVoucherId' Type='Field' FieldV6='' Value='' />
+	<SummarizeInfo Field='QuyenSo' Type='Field' FieldV6='' Value='' />
+	<SummarizeInfo Field='NguoiXuatHoaDon' Type='Field' FieldV6='' Value='' />
 	<SummarizeInfo Field='TamUng' Type='Field' FieldV6='' Value='0'	DataType='Decimal' />
-	<SummarizeInfo Field='TrangThaiDieuChinh' Type='Field' FieldV6='Payment_s' Value='' />
-		
+  <SummarizeInfo Field='GhiChu' Type='Field' FieldV6='' Value='' />
+  <SummarizeInfo Field='GhiChuNB' Type='Field' FieldV6='' Value='' />
+  <SummarizeInfo Field='GhiChuGH' Type='Field' FieldV6='' Value='' />
+  <SummarizeInfo Field='RECEITP' Type='Field' FieldV6='' Value='' />
+  <SummarizeInfo Field='NoiXuatHoaDon' Type='Field' FieldV6='' Value='' />
+  <SummarizeInfo Field='KyHoc' Type='Field' FieldV6='' Value='' />
+  <SummarizeInfo Field='NamHoc' Type='Field' FieldV6='' Value='2019'  DataType='Int' />
+  <SummarizeInfo Field='Nhom' Type='Field' FieldV6='' Value='' />
+  <SummarizeInfo Field='Lop' Type='Field' FieldV6='' Value='' />
+  <SummarizeInfo Field='IsSign' Type='Field' FieldV6='' Value=''  DataType='Bool' />
+  <SummarizeInfo Field='NguoiLienHeGuiHoaDon' Type='Field' FieldV6='' Value='' />
+  <SummarizeInfo Field='TermOfPayment' Type='Field' FieldV6='' Value='' />
+  <SummarizeInfo Field='DATECLOSEDBILL' Type='Field' FieldV6='' Value=''  DataType='DateTime'/>
+  <SummarizeInfo Field='LinkDownloadfile' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='LoaiBangKe' Type='Field' FieldV6='' Value=''  DataType='Int'/>
+  <SummarizeInfo Field='NoiDungBangKe' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='isSuDungBangKe' Type='Field' FieldV6='' Value=''  DataType='bool'/>
+  <SummarizeInfo Field='ThongTinChung' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='MaEinvoice' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='MaXacThuc' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='mst' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='soXacThuc' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='soXacThucGoc' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='soThamChieu' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='soHoaDonGoc' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='soHoaDonGocId' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='loaiHang' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='noiDungDieuChinh' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='ngayDieuChinh' Type='Field' FieldV6='' Value=''  DataType='DateTime'/>
+  <SummarizeInfo Field='ngayDieuChinhSpecified' Type='Field' FieldV6='' Value=''  DataType='bool'/>
+  <SummarizeInfo Field='soHopDong' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='ngayHopDong' Type='Field' FieldV6='' Value=''  DataType='DateTime'/>
+  <SummarizeInfo Field='ngayHopDongSpecified' Type='Field' FieldV6='' Value=''  DataType='bool'/>
+  <SummarizeInfo Field='referenceId' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='refNo' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='invoiceSubject' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='swiftCode' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='projectCode' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='paymentTypeInWords' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='paymentToType' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='paymentNote' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='applicateName' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='beneficaiaryName' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='invoiceSubType' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='invoiceId' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='projectPhone' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='invoiceDueDate' Type='Field' FieldV6='' Value=''  DataType='DateTime'/>
+  <SummarizeInfo Field='invoiceDueDateSpecified' Type='Field' FieldV6='' Value='0'  DataType='bool'/>
+  <SummarizeInfo Field='maNhanHoaDon' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='rescode' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='ngayTao' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='vendorCode' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='transDate' Type='Field' FieldV6='' Value=''  DataType='DateTime'/>
+  <SummarizeInfo Field='transDateSpecified' Type='' FieldV6='' Value='0'  DataType='bool'/>
+  <SummarizeInfo Field='kieuHoaDon' Type='Field' FieldV6='' Value='0'  DataType='int'/>
+  <SummarizeInfo Field='maKho' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='soDonHang' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='tranIndex' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='receiptType' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='receiptRefundNo' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='receiptVoidNo' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='tenDonViVanChuyen' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='maPhuongTienVanChuyen' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='soHopDongVanChuyen' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='lenhDieuDongSo' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='lenhDieuDongNgay' Type='Field' FieldV6='' Value=''  DataType='DateTime'/>
+  <SummarizeInfo Field='lenhDieuDongCua' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='lenhDieuDongVeViec' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='hoTenNguoiVanChuyen' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='maKhoXuat' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='ngayNhapKho' Type='Field' FieldV6='' Value=''  DataType='DateTime'/>
+  <SummarizeInfo Field='plantCode' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='docType' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='storageLocationCode' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='salesOrder' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='deliveryOrder' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='originalBilling' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='originalDoc' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='crDrMemo' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='adjustBilling' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='loaiHoaDon' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='paymentTerm' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='paymentTermSpecified' Type='Field' FieldV6='' Value='0'  DataType='bool'/>
+  <SummarizeInfo Field='noVatAmount' Type='Field' FieldV6='' Value='0'  DataType='decimal'/>
+  <SummarizeInfo Field='tTamtNoTax' Type='Field' FieldV6='' Value=''  DataType='decimal'/>
+  <SummarizeInfo Field='tTvatNoTax' Type='Field' FieldV6='' Value=''  DataType='decimal'/>
+  <SummarizeInfo Field='tTnetNoTax' Type='Field' FieldV6='' Value=''  DataType='decimal'/>
+  <SummarizeInfo Field='tTamt0Tax' Type='Field' FieldV6='' Value=''  DataType='decimal'/>
+  <SummarizeInfo Field='tTvat0Tax' Type='Field' FieldV6='' Value=''  DataType='decimal'/>
+  <SummarizeInfo Field='tTnet0Tax' Type='Field' FieldV6='' Value=''  DataType='decimal'/>
+  <SummarizeInfo Field='tTamt5Tax' Type='Field' FieldV6='' Value=''  DataType='decimal'/>
+  <SummarizeInfo Field='tTvat5Tax' Type='Field' FieldV6='' Value=''  DataType='decimal'/>
+  <SummarizeInfo Field='tTnet5Tax' Type='Field' FieldV6='' Value=''  DataType='decimal'/>
+  <SummarizeInfo Field='tTamt10Tax' Type='Field' FieldV6='' Value=''  DataType='decimal'/>
+  <SummarizeInfo Field='tTvat10Tax' Type='Field' FieldV6='' Value=''  DataType='decimal'/>
+  <SummarizeInfo Field='tTnet10Tax' Type='Field' FieldV6='' Value=''  DataType='decimal'/>
+  <SummarizeInfo Field='origPurStore' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='origPurDate' Type='Field' FieldV6='' Value=''  DataType='DateTime'/>
+  <SummarizeInfo Field='origPurDateSpecified' Type='Field' FieldV6='' Value='0'  DataType='bool'/>
+  <SummarizeInfo Field='origPurDocNo' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='maCN' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='ngayHoaDonStr' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='isGiuLai' Type='Field' FieldV6='' Value='0'  DataType='bool'/>
+  <SummarizeInfo Field='diaDiemNhanHang' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='printAuto' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='diemPointTichLuy' Type='Field' FieldV6='' Value='0'  DataType='decimal'/>
+  <SummarizeInfo Field='thanhToanDiemPointTichLuy' Type='Field' FieldV6='' Value=''  DataType='decimal'/>
+  <SummarizeInfo Field='benMuaDiaChiStreet1' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='benMuaDiaChiStreet2' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='benMuaDiaChiStreet3' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='benMuaDiaChiStreet4' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='benMuaDiaChiCity' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <SummarizeInfo Field='benMuaDiaChiCountry' Type='Field' FieldV6='' Value=''  DataType=''/>
+		-->
 	<!--CustomerInfo	Các trường thông tin khách hàng sử dụng cho hàm UpdateCus	/-->
 	<CustomerInfo	Field='Name'	Value=''	FieldV6='TEN_KH'	Type='Field'/>
 	<CustomerInfo	Field='Code'	Value=''	FieldV6='MA_KH'	Type='Field'/>

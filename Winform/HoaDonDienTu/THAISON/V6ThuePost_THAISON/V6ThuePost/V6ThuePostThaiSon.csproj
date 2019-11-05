@@ -106,10 +106,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Hprojects\HaUtility\HaUtility.csproj">
-      <Project>{0A11F974-1C92-457B-837A-911A8EF85055}</Project>
-      <Name>HaUtility</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\V6Tools\V6Tools\V6Tools.csproj">
       <Project>{4f797e67-948d-4eec-acd7-758028e9166f}</Project>
       <Name>V6Tools</Name>
@@ -126,6 +122,7 @@
   <ItemGroup>
     <Content Include="V6THUEPOST.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="Resources\V600.png" />
     <None Include="Resources\Error_48x48_72.png" />
