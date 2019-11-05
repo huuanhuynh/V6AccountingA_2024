@@ -6817,6 +6817,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private void txtMa_sonb_V6LostFocus(object sender)
         {
+            if (NotAddEdit) return;
+
             GetSoPhieu();
             var data = txtMa_sonb.Data;
             if (data != null)
@@ -6874,13 +6876,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private void txtMa_sonb_V6LostFocusNoChange(object sender)
         {
+            if (NotAddEdit) return;
+
             var data = txtMa_sonb.Data;
-            if (data != null)
-            {
-                txtMaMauHD.Text = (data["MA_MAUHD"] ?? "").ToString().Trim();
-                txtso_seri.Text = (data["SO_SERI"] ?? "").ToString().Trim();
-            }
-            //Tuanmh 05/05/2017
             if (data != null)
             {
                 if (txtSoPhieu.Text.Trim() == "")

@@ -99,9 +99,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
             string pdf_file = "";
             string tableName = "V6MAPINFO";
+            bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            if (shift_is_down) tableName = "V6MAPINFO1";
             string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
-            var map_table = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_AR12' and (MA_TD1='" + FilterControl.String1 + "' or ma_td1='0' or ma_td1='') order by date0,time0").Data;
-
+            //var map_table = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_AR12' and (MA_TD1='" + FilterControl.String1 + "' or ma_td1='0' or ma_td1='') order by date0,time0").Data;
+            
             int i = 0;
             while(i<dataGridView1.Rows.Count)
             {
@@ -117,7 +119,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         //string soct = row.Cells["So_ct"].Value.ToString().Trim();
                         //string dir = row.Cells["Dir_in"].Value.ToString().Trim();
                         //string file = row.Cells["File_in"].Value.ToString().Trim();
-                        
+                        SqlParameter[] plist0 =
+                        {
+                            new SqlParameter("@Loai", "AAPPR_AR12"),
+                            new SqlParameter("@MA_TD1", FilterControl.String1),
+                            new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
+                            new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
+                            new SqlParameter("@Ma_dvcs", row.Cells["MA_DVCS"].Value.ToString()),
+                            new SqlParameter("@User_ID", V6Login.UserId),
+                            new SqlParameter("@Advance", ""),
+                        };
+                        var map_table = V6BusinessHelper.ExecuteProcedure("VPA_GET_V6MAPINFO", plist0).Tables[0];
                        
                         // Download
                         // 1:VIETTEL 2:VNPT 3:BKAV
@@ -276,8 +288,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //, error = "", sohoadon = "", id = "";
                 string pdf_file = "";
                 string tableName = "V6MAPINFO";
+                
                 string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
-                var map_table = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='" + FilterControl.String1 + "' or ma_td1='0' or ma_td1='') order by date0,time0").Data;
+                //var map_table = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_AR12' and (MA_TD1='" + FilterControl.String1 + "' or ma_td1='0' or ma_td1='') order by date0,time0").Data;
+                SqlParameter[] plist0 =
+                {
+                    new SqlParameter("@Loai", "AAPPR_AR12"),
+                    new SqlParameter("@MA_TD1", FilterControl.String1),
+                    new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
+                    new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
+                    new SqlParameter("@Ma_dvcs", row.Cells["MA_DVCS"].Value.ToString()),
+                    new SqlParameter("@User_ID", V6Login.UserId),
+                    new SqlParameter("@Advance", ""),
+                };
+                var map_table = V6BusinessHelper.ExecuteProcedure("VPA_GET_V6MAPINFO", plist0).Tables[0];
 
                 string invoiceNo = row.Cells["SO_SERI"].Value.ToString().Trim() + row.Cells["SO_CT"].Value.ToString().Trim();
                 string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();

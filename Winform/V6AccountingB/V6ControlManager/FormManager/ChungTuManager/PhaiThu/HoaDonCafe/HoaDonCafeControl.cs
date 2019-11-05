@@ -6359,6 +6359,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
         private void txtMa_sonb_V6LostFocus(object sender)
         {
+            if (NotAddEdit) return;
+
             GetSoPhieu(txtMa_sonb.Text);
             var data = txtMa_sonb.Data;
             if (data != null) txtso_seri.Text = (data["SO_SERI"] ?? "").ToString().Trim();
@@ -6412,8 +6414,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
         private void txtMa_sonb_V6LostFocusNoChange(object sender)
         {
+            if (NotAddEdit) return;
+
             var data = txtMa_sonb.Data;
-            if (data != null) txtso_seri.Text = (data["SO_SERI"] ?? "").ToString().Trim();
             //Tuanmh 05/05/2017
             if (data != null)
             {
@@ -6421,9 +6424,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 {
                     GetSoPhieu(txtMa_sonb.Text);
                 }
-
             }
-
         }
 
         #region ==== Chức năng ====

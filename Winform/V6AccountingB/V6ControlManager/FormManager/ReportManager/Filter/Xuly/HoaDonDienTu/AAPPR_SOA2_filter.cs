@@ -199,8 +199,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         private void btnSuaChiTieu_Click(object sender, System.EventArgs e)
         {
+            bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
             if (new ConfirmPasswordV6().ShowDialog(this) != DialogResult.OK) return;
             string tableName = "V6MAPINFO";
+            if (shift_is_down) tableName = "V6MAPINFO1";
             string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
             var data = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='"+String1+"' or ma_td1='0' or ma_td1='') order by date0,time0").Data;
             IDictionary<string, object> defaultData = new Dictionary<string, object>();
