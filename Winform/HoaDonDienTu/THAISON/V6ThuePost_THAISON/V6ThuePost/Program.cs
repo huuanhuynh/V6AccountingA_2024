@@ -75,7 +75,7 @@ namespace V6ThuePost
         private static string token_password = "";
         private static string account;
         private static string accountpassword;
-        private static string partten, partten_field;
+        private static string partten, pattern_field;
         private static string seri, seri_field;
         private static string convert = "0";
         //Excel config
@@ -153,9 +153,9 @@ namespace V6ThuePost
                     if (mode.StartsWith("M") || mode == "")
                     {
                         
-                        var invoice = ReadDataXml(arg2);
+                        var hoadon_entity = ReadDataXml(arg2);
                         File.Create(flagFileName1).Close();
-                        result = _ThaiSon_ws.XuatHoaDonDienTu(invoice, out v6return);
+                        result = _ThaiSon_ws.XuatHoaDonDienTu(hoadon_entity, out v6return);
                         //result = XuatHoaDonDienTu_XML(xml);
                         
                         if (arg3.Length>0 && result.StartsWith("OK"))
@@ -651,7 +651,7 @@ namespace V6ThuePost
                 //}
 
                 //postObject.key = fkeyA;
-                partten = row0[partten_field].ToString().Trim();
+                partten = row0[pattern_field].ToString().Trim();
                 seri = row0[seri_field].ToString().Trim();
                 //flagName = fkeyA;
                 MakeFlagNames(fkeyA);
@@ -1297,7 +1297,7 @@ namespace V6ThuePost
                                     _baseUrl = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "partten":
-                                    partten_field = line.Value;
+                                    pattern_field = line.Value;
                                     break;
                                 case "seri":
                                     seri_field = line.Value;

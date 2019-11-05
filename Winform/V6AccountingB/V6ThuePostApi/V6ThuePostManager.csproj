@@ -90,6 +90,10 @@
       <Project>{123E4986-123D-4D08-ADEA-C8CE23B8AB5A}</Project>
       <Name>V6ThuePostSoftDreamsApi</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\HoaDonDienTu\THAISON\V6ThuePost_THAISON\ApiConnect\V6ThuePostThaiSonApi.csproj">
+      <Project>{B2965A48-A4F2-406A-8D0A-D4134A1351F0}</Project>
+      <Name>V6ThuePostThaiSonApi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\HoaDonDienTu\VIETTEL_OLD\V6ThuePost\ApiConnect\V6ThuePostViettelApi.csproj">
       <Project>{938CF42A-D1A7-46D4-866C-1222495A1C4C}</Project>
       <Name>V6ThuePostViettelApi</Name>

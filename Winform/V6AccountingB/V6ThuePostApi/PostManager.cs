@@ -25,6 +25,8 @@ using V6ThuePostBkavApi;
 using V6ThuePostBkavApi.PostObjects;
 using V6ThuePostBkavApi.ResponseObjects;
 using V6ThuePostSoftDreamsApi;
+using V6ThuePostThaiSonApi;
+using V6ThuePostThaiSonApi.EinvoiceService;
 using V6ThuePostViettelApi;
 using V6ThuePostXmlApi;
 using V6ThuePostXmlApi.AttachmentService;
@@ -169,6 +171,9 @@ namespace V6ThuePostManager
                         break;
                     case "5":
                         result0 = EXECUTE_SOFTDREAMS(paras);
+                        break;
+                    case "6":
+                        result0 = EXECUTE_THAI_SON(paras);
                         break;
                     default:
                         paras.Result = new PM_Result();
@@ -474,7 +479,7 @@ namespace V6ThuePostManager
 
                 if (paras.Mode == "TestView")
                 {
-                    var xml = ReadDataXml();
+                    var xml = ReadData_Vnpt();
                     result = xml;
                     paras.Result.ResultString = xml;
                 }
@@ -516,7 +521,7 @@ namespace V6ThuePostManager
                 }
                 else  if (paras.Mode.StartsWith("M") || paras.Mode == "") // MSHDT//Mới Sửa Hủy ĐiềuChỉnh(S) ThayThế
                 {
-                    var xml = ReadDataXml();
+                    var xml = ReadData_Vnpt();
                     //File.Create(flagFileName1).Close();
                     result = ImportAndPublishInv(xml);
 
@@ -788,7 +793,7 @@ namespace V6ThuePostManager
             return result;
         }
 
-        public static string ReadDataXml()
+        public static string ReadData_Vnpt()
         {
             string result = "";
             //column_config = new SortedDictionary<string, string>();
@@ -1118,6 +1123,84 @@ namespace V6ThuePostManager
                 //
             }
             return postObject;
+        }
+
+        public static HoaDonEntity ReadData_ThaiSon(string mode)
+        {
+            //string result = "";
+            HoaDonEntity hoa_don_entity = new HoaDonEntity();
+            column_config = new SortedDictionary<string, string>();
+            var am_data = new Dictionary<string, object>();
+            List<HangHoaEntity> list_hanghoa = new List<HangHoaEntity>();
+            parameters_config = new List<ConfigLine>();
+            //try
+            {
+                DataTable data = am_table;
+
+                DataRow row0 = am_table.Rows[0];
+                //fkeyA = fkey0 + row0["STT_REC"];
+                fkeyA = row0["fkey_hd"].ToString().Trim();
+
+                exportName = string.Format("{0}_{1}_{2}_{3}", fkeyexcel0, row0["MA_KH"].ToString().Trim(), row0["SO_CT"].ToString().Trim(), row0["STT_REC"]);
+                
+                __pattern = row0[pattern_field].ToString().Trim();
+                __serial = row0[seri_field].ToString().Trim();
+                
+                foreach (KeyValuePair<string, ConfigLine> item in generalInvoiceInfoConfig)
+                {
+                    am_data[item.Key] = GetValue(row0, item.Value);
+                }
+                
+                foreach (KeyValuePair<string, ConfigLine> item in buyerInfoConfig)
+                {
+                    am_data[item.Key] = GetValue(row0, item.Value);
+                }
+                
+                foreach (KeyValuePair<string, ConfigLine> item in sellerInfoConfig)
+                {
+                    am_data[item.Key] = GetValue(row0, item.Value);
+                }
+
+                foreach (KeyValuePair<string, ConfigLine> item in paymentsConfig)
+                {
+                    am_data[item.Key] = GetValue(row0, item.Value);
+                }
+
+                foreach (DataRow row in data.Rows)
+                {
+                    //if (row["STT"].ToString() == "0") continue;
+                    var ad_data = new Dictionary<string, object>();
+                    foreach (KeyValuePair<string, ConfigLine> item in itemInfoConfig)
+                    {
+                        ad_data[item.Key] = GetValue(row, item.Value);
+                    }
+
+                    var product = ad_data.ToClass<HangHoaEntity>();
+                    list_hanghoa.Add(product);
+                }
+
+                foreach (KeyValuePair<string, ConfigLine> item in summarizeInfoConfig)
+                {
+                    am_data[item.Key] = GetValue(row0, item.Value);
+                }
+
+                foreach (KeyValuePair<string, ConfigLine> item in taxBreakdownsConfig)
+                {
+                    am_data[item.Key] = GetValue(row0, item.Value);
+                }
+
+                //result = XmlConverter.ClassToXml(hoa_don_entity);
+                hoa_don_entity = am_data.ToClass<HoaDonEntity>();
+
+                hoa_don_entity.HangHoas = list_hanghoa.ToArray();
+                //hoa_don_entity.dataExtension = list_extension.ToArray();
+                //hoa_don_entity.emptysField = emptysField.ToArray();
+            }
+            //catch (Exception ex)
+            {
+                //
+            }
+            return hoa_don_entity;
         }
 
         /// <summary>
@@ -1718,13 +1801,13 @@ namespace V6ThuePostManager
                 var row0 = am_table.Rows[0];
                 if (paras.Mode == "TestView")
                 {
-                    var xml = ReadDataXml();
+                    var xml = ReadData_Vnpt();
                     result = xml;
                     paras.Result.ResultString = xml;
                 }
                 else if (paras.Mode.StartsWith("M") || paras.Mode == "")     //  MSHDT//Mới Sửa Hủy ĐiềuChỉnh(S) ThayThế
                 {
-                    var xml = ReadDataXml();
+                    var xml = ReadData_Vnpt();
                     StartAutoInputTokenPassword();
                     string resultM = PublishInvWithToken_Dll(xml);
                     result = resultM;
@@ -2256,6 +2339,271 @@ namespace V6ThuePostManager
             return result;
         }
 
+        /// <summary>
+        /// Copy từ SoftDreams - Vnpt, sửa từ từ.
+        /// </summary>
+        /// <param name="paras"></param>
+        /// <returns></returns>
+        private static string EXECUTE_THAI_SON(PostManagerParams paras)
+        {
+            string result = "";
+            paras.Result = new PM_Result();
+
+            try
+            {
+                ThaiSonWS thaiSonWS = new ThaiSonWS(_baseUrl, _username, _password, _SERIAL_CERT);
+                var row0 = am_table.Rows[0];
+
+                if (paras.Mode == "TestView")
+                {
+                    var invoices = ReadData_ThaiSon(paras.Mode);
+                    result = V6XmlConverter.ClassToXml(invoices);
+                    paras.Result.ResultString = result;
+                }
+                else if (paras.Mode.StartsWith("E_"))
+                {
+                    if (paras.Mode == "E_G1") // Gạch nợ theo fkey !!!!! SoftDreams không có hàm.
+                    {
+                        if (string.IsNullOrEmpty(paras.Fkey_hd))
+                        {
+                            paras.Result.ResultError = "Không có Fkey_hd truyền vào.";
+                        }
+                        else
+                        {
+                            result = thaiSonWS.ConfirmPaymentFkey(paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                        }
+                    }
+                    else if (paras.Mode == "E_G2") // Gạch nợ // !!!!! SoftDreams không có hàm.
+                    {
+                        result = thaiSonWS.ConfirmPayment(paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                    }
+                    else if (paras.Mode == "E_G3") // Hủy gạch nợ theo fkey !!!!! SoftDreams không có hàm.
+                    {
+                        result = thaiSonWS.UnconfirmPaymentFkey(paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                    }
+                    else if (paras.Mode == "E_H1")
+                    {
+                        result = thaiSonWS.CancelInvoice(paras.Fkey_hd, paras.Pattern, paras.Serial);
+                    }
+                    else if (paras.Mode == "E_S1")
+                    {
+                        var hoadon_entity = ReadData_ThaiSon(paras.Mode);
+                        result += thaiSonWS.AdjustInvoice(hoadon_entity, paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                    }
+                    else if (paras.Mode == "E_T1")
+                    {
+                        var invoices = ReadData_SoftDreams(paras.Mode);
+                        var inv = invoices.Inv[0].ToReplaceInv();
+                        result = thaiSonWS.ReplaceInvoice(inv, paras.Fkey_hd, paras.Pattern, paras.Serial, true, _signmode, out paras.Result.V6ReturnValues);
+                    }
+                }
+                else if (paras.Mode.StartsWith("M")) // MSHDT//Mới Sửa Hủy ĐiềuChỉnh(S) ThayThế
+                {
+                    //Invoices invoices = ReadData_SoftDreams(paras.Mode.Substring(0, 1));
+                    //bool issue = true;
+                    //if (paras.Key_Down == "F4" || paras.Key_Down == "F6") issue = false;
+                    //StartAutoInputTokenPassword();
+                    //result = thaiSonWS.ImportInvoices(invoices, __pattern, __serial, issue, _signmode, out paras.Result.V6ReturnValues);
+
+                    var hoadon_entity = ReadData_ThaiSon(paras.Mode.Substring(0, 1));
+                    //File.Create(flagFileName1).Close();
+                    result = thaiSonWS.XuatHoaDonDienTu(hoadon_entity, out paras.Result.V6ReturnValues);
+                    //result = XuatHoaDonDienTu_XML(xml);
+
+                    if (result.StartsWith("OK"))
+                    {
+                        string filePath = Path.Combine(paras.Dir, paras.FileName);
+                        if (paras.Mode.EndsWith("1"))//Gửi file excel có sẵn
+                        {
+                            if (File.Exists(filePath))
+                            {
+                                result += UploadInvAttachmentFkey(fkeyA, filePath);
+                            }
+                            else
+                            {
+                                result += "Không tồn tại " + filePath;
+                            }
+                        }
+                        else if (paras.Mode.EndsWith("2")) // Tự xuất excel rồi gửi.
+                        {
+                            string export_file;
+                            bool export_ok = ExportExcel(am_table, ad2_table, out export_file, ref result);
+
+                            if (export_ok && File.Exists(export_file))
+                            {
+                                result += UploadInvAttachmentFkey(fkeyA, export_file);
+                            }
+                        }
+                    }
+                }
+                else if (paras.Mode.ToLower() == "DownloadInvFkeyNoPay".ToLower())
+                {
+                    fkeyA = paras.Fkey_hd;
+
+                    string invXml = thaiSonWS.DownloadInvPDFFkeyNoPay(fkeyA);
+                    paras.Result.InvoiceNo = GetSoHoaDon_VNPT(invXml);
+                    //WriteFlag(flagFileName4, so_hoa_don);
+                    result += paras.Result.InvoiceNo;
+                    //result += invXml;
+                }
+                else if (paras.Mode == "S")// || paras.Mode == "D")
+                {
+                    var xml = ReadDataXmlS();
+                    result = adjustInv(xml, paras.Fkey_hd);
+                    string filePath = Path.Combine(paras.Dir, paras.FileName);
+                    if (filePath.Length > 0 && result.StartsWith("OK"))
+                    {
+                        if (File.Exists(filePath))
+                        {
+                            result += UploadInvAttachmentFkey(fkeyA, filePath);
+                        }
+                        else
+                        {
+                            result += "Không tồn tại " + filePath;
+                        }
+                    }
+                }
+                else if (paras.Mode == "T")
+                {
+                    var xml = ReadDataXmlT();
+                    result = replaceInv(xml, paras.Fkey_hd);
+                }
+                else if (paras.Mode.StartsWith("G"))
+                {
+                    if (paras.Mode == "G1") // Gạch nợ theo fkey
+                    {
+                        result = thaiSonWS.ConfirmPaymentFkey(paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                    }
+                    else if (paras.Mode == "G2") // Gạch nợ theo lstInvToken(01GTKT2/001;AA/13E;10)
+                    {
+                        result = thaiSonWS.ConfirmPayment(paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                    }
+                    else if (paras.Mode == "G3") // Hủy gạch nợ theo fkey
+                    {
+                        result = thaiSonWS.UnconfirmPaymentFkey(paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                    }
+                }
+                else if (paras.Mode == "H")
+                {
+                    result = thaiSonWS.CancelInvoice(paras.Fkey_hd, paras.Pattern, paras.Serial);
+                }
+                else if (paras.Mode.StartsWith("U"))//U1,U2
+                {
+                    if (paras.Mode == "U")        // upload file có sẵn, fkey truyền vào
+                    {
+                        string fkey = paras.Fkey_hd;
+                        string file = Path.Combine(paras.Dir, paras.FileName);
+                        UploadInvAttachmentFkey(fkey, file);
+                    }
+                    else if (paras.Mode == "U1") // upload file có sẵn, fkey tự đọc từ data
+                    {
+                        //ReadDataXml(arg2);
+                        string fkey = paras.Fkey_hd;
+                        UploadInvAttachmentFkey(fkey, fkey + ".xls");
+                    }
+                    else if (paras.Mode == "U2") // Đọc dữ liệu hóa đơn, lấy fkey, đọc dữ liệu excel và xuất excel rồi upload.
+                    {
+                        string export_file;
+                        //ReadDataXml(arg2);
+                        bool export_ok = ExportExcel(am_table, ad2_table, out export_file, ref result);
+
+                        if (export_ok && File.Exists(export_file))
+                        {
+                            result += UploadInvAttachmentFkey(fkeyA, export_file);
+                        }
+                    }
+                    else if (paras.Mode == "U3") // Đọc dữ liệu hóa đơn, lấy fkey, đọc dữ liệu excel và xuất excel để đó xem.
+                    {
+                        string export_file;
+                        //ReadDataXml(arg2);
+                        bool export_ok = ExportExcel(am_table, ad2_table, out export_file, ref result);
+
+                        if (export_ok && File.Exists(export_file))
+                        {
+                            result += "\r\nExport ok.";
+                        }
+                    }
+                }
+                else if (paras.Mode.StartsWith("E"))
+                {
+                    if (paras.Mode == "E")
+                    {
+
+                    }
+                    else if (paras.Mode == "E1")
+                    {
+                        string rptFile = paras.RptFileFull;
+                        //string saveFile = arg4;
+
+                        string export_file;
+                        //ReadDataXml(arg2);
+                        bool export_ok = ExportExcel(am_table, ad2_table, out export_file, ref result);
+
+                        if (export_ok && File.Exists(export_file))
+                        {
+                            result += "\r\nExport ok.";
+                        }
+                    }
+                    else if (paras.Mode == "E2")  // Xuất PDF bằng RPT
+                    {
+                        string rptFile = paras.RptFileFull;
+                        string saveFile = Path.Combine(paras.Dir, paras.FileName);// arg4;
+
+                        ReportDocument rpt = new ReportDocument();
+                        rpt.Load(rptFile);
+                        DataSet ds = new DataSet();
+                        DataTable data1 = ad_table.Copy();
+                        data1.TableName = "DataTable1";
+                        DataTable data2 = am_table.Copy();
+                        data2.TableName = "DataTable2";
+                        ds.Tables.Add(data1);
+                        ds.Tables.Add(data2);
+                        string tien_bang_chu = MoneyToWords(ObjectAndString.ObjectToDecimal(row0["T_TT"]), "V", "VND");
+                        rpt.SetDataSource(ds);
+                        rpt.SetParameterValue("SoTienVietBangChu", tien_bang_chu);
+
+                        bool export_ok = false;
+                        if (string.IsNullOrEmpty(saveFile))
+                        {
+                            export_ok = ExportRptToPdf_As(null, rpt, saveFile);
+                        }
+                        else
+                        {
+                            export_ok = ExportRptToPdf(null, rpt, saveFile);
+                        }
+
+                        if (export_ok)
+                        {
+                            result += "\r\nExport ok.";
+                        }
+                        else
+                        {
+                            result += "\r\nExport fail.";
+                        }
+                    }
+                }
+
+
+
+                if (result.StartsWith("ERR"))
+                {
+                    //error += result;
+                    paras.Result.ResultError = result;
+                }
+                else
+                {
+                    //File.Create(flagFileName2).Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                result += "ERR:EX\r\n" + ex.Message;
+                paras.Result.ExceptionMessage = ex.Message;
+            }
+            StopAutoInputTokenPassword();
+        End:
+            return result;
+        }
 
         /// <summary>
         /// Đẩy lên và phát hành hóa đơn có ký chữ ký số (Token).

@@ -59,13 +59,13 @@ namespace V6ThuePostThaiSonApi
                 v6return.SECRET_CODE = response.MaEinvoice;
                 v6return.SO_HD = response.SoHoaDon;
 
-                if (response.MsgError == null || response.MsgError.Code == "0")
+                if (response.MsgError == null || response.MsgError.Code == null || response.MsgError.Code == "000")
                 {
                     result += "OK:" + string.Format("SoHoaDon:{0}, MaEinvoice:{1}", response.SoHoaDon, response.MaEinvoice);
                 }
                 else
                 {
-                    result += "ERR:" + response.MsgError.Code + " " + response.MsgError.Description + " ";
+                    result += "ERR:" + response.MsgError.Code + " " + response.MsgError.Description + " " + response.MsgError.EDescription + " " + response.MsgError.EMessage;
                 }
             }
             catch (Exception ex)

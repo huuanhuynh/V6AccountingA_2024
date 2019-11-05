@@ -615,7 +615,8 @@
             "VNPT",
             "BKAV",
             "VNPT_TOKEN",
-            "SOFTDREAMS"});
+            "SOFTDREAMS",
+            "THAI_SON"});
             this.cboSendType.Location = new System.Drawing.Point(11, 140);
             this.cboSendType.Name = "cboSendType";
             this.cboSendType.Size = new System.Drawing.Size(121, 21);
@@ -663,7 +664,7 @@
             this.rTienViet.Text = "Tiền Việt";
             this.rTienViet.UseVisualStyleBackColor = true;
             // 
-            // AAPPR_SOA2
+            // AAPPR_SOA2_filter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
