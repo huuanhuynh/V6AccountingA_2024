@@ -38,6 +38,39 @@ namespace V6ThuePostThaiSonApi
             return;
         }
 
+        public string ImportThongTinHoaDon(HoaDonEntity invoice, out V6Return v6return)
+        {
+            string result = null;
+            v6return = new V6Return();
+            try
+            {
+                var response = _easyService.ImportThongTinHoaDon(invoice);
+
+                v6return.RESULT_OBJECT = response;
+                v6return.RESULT_STRING = V6XmlConverter.ClassToXml(response);
+                v6return.RESULT_MESSAGE = response.MsgError.Message;
+                v6return.RESULT_ERROR_CODE = response.MsgError.Code;
+                v6return.ID = response.MaEinvoice;
+                v6return.SECRET_CODE = response.MaEinvoice;
+                v6return.SO_HD = null;
+
+                if (response.MsgError == null || response.MsgError.Code == null || response.MsgError.Code == "000")
+                {
+                    result += "OK:" + string.Format("MaEinvoice:{0}", response.MaEinvoice);
+                }
+                else
+                {
+                    result += "ERR:" + response.MsgError.Code + " " + response.MsgError.Description + " " + response.MsgError.EDescription + " " + response.MsgError.EMessage;
+                }
+            }
+            catch (Exception ex)
+            {
+                v6return.EXCEPTION_MESSAGE = ex.Message;
+                result = "ERR:EX\r\n" + ex.Message;
+            }
+            return result;
+        }
+
         /// <summary>
         /// Phát hành hóa đơn.
         /// </summary>
@@ -54,8 +87,10 @@ namespace V6ThuePostThaiSonApi
 
                 v6return.RESULT_OBJECT = response;
                 v6return.RESULT_STRING = V6XmlConverter.ClassToXml(response);
-                v6return.RESULT_MESSAGE = response.MsgError.Message;
+                v6return.RESULT_MESSAGE = response.MsgError.Description;
                 v6return.RESULT_ERROR_CODE = response.MsgError.Code;
+                v6return.RESULT_ERROR = response.MsgError.Message;
+                v6return.ID = response.MaEinvoice;
                 v6return.SECRET_CODE = response.MaEinvoice;
                 v6return.SO_HD = response.SoHoaDon;
 
@@ -70,6 +105,7 @@ namespace V6ThuePostThaiSonApi
             }
             catch (Exception ex)
             {
+                v6return.EXCEPTION_MESSAGE = ex.Message;
                 result = "ERR:EX\r\n" + ex.Message;
             }
 
@@ -77,6 +113,9 @@ namespace V6ThuePostThaiSonApi
             return result;
         }
 
+        /// <summary>
+        /// Hàm test của ThaiSon
+        /// </summary>
         public void XuatHoaDonCallMessage()
         {
 
@@ -164,75 +203,129 @@ namespace V6ThuePostThaiSonApi
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="inv"></param>
-        /// <param name="old_ikey"></param>
+        /// <param name="invoice"></param>
         /// <param name="v6return"></param>
         /// <returns></returns>
-        public string AdjustInvoice(HoaDonEntity inv, string old_ikey, out V6Return v6return)
+        public string AdjustInvoice(HoaDonEntity invoice, out V6Return v6return)
         {
             string result = null;
             v6return = new V6Return();
             try
             {
+                invoice.TrangThaiDieuChinh = 5; // Điều chỉnh
                 
+                var response = _easyService.XuatHoaDonDienTu(invoice);
+
+                v6return.RESULT_OBJECT = response;
+                v6return.RESULT_STRING = V6XmlConverter.ClassToXml(response);
+                v6return.RESULT_MESSAGE = response.MsgError.Description;
+                v6return.RESULT_ERROR_CODE = response.MsgError.Code;
+                v6return.RESULT_ERROR = response.MsgError.Message;
+                v6return.ID = response.MaEinvoice;
+                v6return.SECRET_CODE = response.MaEinvoice;
+                v6return.SO_HD = response.SoHoaDon;
+
+                if (response.MsgError == null || response.MsgError.Code == null || response.MsgError.Code == "000")
+                {
+                    result += "OK:" + string.Format("SoHoaDon:{0}, MaEinvoice:{1}", response.SoHoaDon, response.MaEinvoice);
+                }
+                else
+                {
+                    result += "ERR:" + response.MsgError.Code + " " + response.MsgError.Description + " " + response.MsgError.EDescription + " " + response.MsgError.EMessage;
+                }
             }
             catch (Exception ex)
             {
+                v6return.EXCEPTION_MESSAGE = ex.Message;
                 result = "ERR:EX\r\n" + ex.Message;
             }
 
-            Logger.WriteToLog("Program.adjustInv " + result);
+            Logger.WriteToLog("Program.ReplaceInvoice " + result);
             return result;
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="inv"></param>
-        /// <param name="old_ikey"></param>
-        /// <param name="pattern"></param>
-        /// <param name="serial"></param>
-        /// <param name="issue">Phát hành.</param>
-        /// <param name="signmode">Kiểu ký 1 client, mặc định server.</param>
+        /// <param name="invoice"></param>
         /// <param name="v6return"></param>
         /// <returns></returns>
-        public string ReplaceInvoice(ReplaceInv inv, string old_ikey, string pattern, string serial, bool issue, string signmode, out V6Return v6return)
+        public string ReplaceInvoice(HoaDonEntity invoice, out V6Return v6return)
         {
             string result = null;
             v6return = new V6Return();
             try
             {
-               
+                invoice.TrangThaiDieuChinh = 3; // Thay thế
+                var response = _easyService.XuatHoaDonDienTu(invoice);
+
+                v6return.RESULT_OBJECT = response;
+                v6return.RESULT_STRING = V6XmlConverter.ClassToXml(response);
+                v6return.RESULT_MESSAGE = response.MsgError.Description;
+                v6return.RESULT_ERROR_CODE = response.MsgError.Code;
+                v6return.RESULT_ERROR = response.MsgError.Message;
+                v6return.ID = response.MaEinvoice;
+                v6return.SECRET_CODE = response.MaEinvoice;
+                v6return.SO_HD = response.SoHoaDon;
+
+                if (response.MsgError == null || response.MsgError.Code == null || response.MsgError.Code == "000")
+                {
+                    result += "OK:" + string.Format("SoHoaDon:{0}, MaEinvoice:{1}", response.SoHoaDon, response.MaEinvoice);
+                }
+                else
+                {
+                    result += "ERR:" + response.MsgError.Code + " " + response.MsgError.Description + " " + response.MsgError.EDescription + " " + response.MsgError.EMessage;
+                }
             }
             catch (Exception ex)
             {
+                v6return.EXCEPTION_MESSAGE = ex.Message;
                 result = "ERR:EX\r\n" + ex.Message;
             }
 
-            Logger.WriteToLog("Program.replaceInv " + result);
+            Logger.WriteToLog("Program.ReplaceInvoice " + result);
             return result;
         }
 
         /// <summary>
         /// Hủy bỏ hóa đơn (đã ký số).
         /// </summary>
-        /// <param name="ikey"></param>
-        /// <param name="pattern"></param>
-        /// <param name="serial"></param>
+        /// <param name="invoice"></param>
+        /// <param name="v6return"></param>
         /// <returns></returns>
-        public string CancelInvoice(string ikey, string pattern, string serial)
+        public string CancelInvoice(HoaDonHuyEntity invoice, out V6Return v6return)
         {
             string result = null;
+            v6return = new V6Return();
             try
             {
-               
+                var response = _easyService.HuyHoaDon(invoice);
+
+                v6return.RESULT_OBJECT = response;
+                v6return.RESULT_STRING = V6XmlConverter.ClassToXml(response);
+                v6return.RESULT_MESSAGE = response.NoiDung;
+                v6return.RESULT_ERROR_CODE = response.MsgError.Code;
+                v6return.RESULT_ERROR = response.MsgError.Message;
+                v6return.ID = response.MaEinvoice;
+                v6return.SECRET_CODE = response.UserHuy;
+                v6return.SO_HD = response.SoHoaDon;
+
+                if (response.MsgError == null || response.MsgError.Code == null || response.MsgError.Code == "000")
+                {
+                    result += "OK:" + string.Format("SoHoaDon:{0}, MaEinvoice:{1}, UserHuy:{2}", response.SoHoaDon, response.MaEinvoice, response.UserHuy);
+                }
+                else
+                {
+                    result += "ERR:" + response.MsgError.Code + " " + response.MsgError.Description + " " + response.MsgError.EDescription + " " + response.MsgError.EMessage;
+                }
             }
             catch (Exception ex)
             {
+                v6return.EXCEPTION_MESSAGE = ex.Message;
                 result = "ERR:EX\r\n" + ex.Message;
             }
 
-            Logger.WriteToLog("Program.cancelInv " + result);
+            Logger.WriteToLog("Program.CancelInvoice " + result);
             return result;
         }
 
@@ -263,34 +356,29 @@ namespace V6ThuePostThaiSonApi
         /// <summary>
         /// Tải hoá đơn định dạng PDF
         /// </summary>
-        /// <param name="ikey"></param>
-        /// <param name="option">0 - Bản pdf thông thường; 1 - Bản pdf chuyển đổi chứng minh nguồn gốc; 2 – Bản pdf chuyển đổi lưu trữ</param>
-        /// <param name="pattern"></param>
-        /// <param name="serial"></param>
+        /// <param name="maEinvoice"></param>
+        /// <param name="option">0 - Bản thể hiện; 1 - Bản pdf chuyển đổi</param>
         /// <param name="savefolder"></param>
         /// <param name="v6return"></param>
         /// <returns></returns>
-        public string GetInvoicePdf(string ikey, int option, string pattern, string serial, string savefolder, out V6Return v6return)
+        public string GetInvoicePdf(string maEinvoice, string option, string savefolder, out V6Return v6return)
         {
-            string path = Path.Combine(savefolder, ikey + ".pdf");
+            if (option != "0" && option != "1") option = "1";
+            string path = Path.Combine(savefolder, maEinvoice + ".pdf");
             v6return = new V6Return();
-            //var request = new Request()
-            //{
-            //    Ikey = ikey,
-            //    Option = option,
-            //    Pattern = pattern,
-            //    Serial = serial
-            //};
 
-            //if (!File.Exists(path))
-            //{
-            //    var response = _easyService.GetInvoicePdf(request, path, _host, _username, _password);
-            //    v6return.RESULT_OBJECT = response;
-            //    v6return.RESULT_STRING = V6XmlConverter.ClassToXml(response);
-            //    v6return.RESULT_MESSAGE = response.Message;
-            //}
-
+            string download_link =
+                string.Format(@"http://210.245.8.58:6789/HoaDonPDF.aspx?mhd={0}&iscd={1}", maEinvoice, option);
+            using (var client = new WebClient())
+            {
+                client.DownloadFile(download_link, path);
+            }
+            
+            v6return.RESULT_OBJECT = download_link;
+            v6return.RESULT_STRING = download_link;
+            v6return.RESULT_MESSAGE = path;
             v6return.PATH = path;
+            
             return path;
         }
 

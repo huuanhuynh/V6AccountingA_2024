@@ -120,9 +120,4 @@
   <metadata name="toolTipV6FormControl.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="v6ColorTextBox11.ToolTip" xml:space="preserve">
-    <value>Các trường Filter khi in danh mục MA_KH:MA_KH:MA_KH like '%abc%':a
-Các bộ cách nhau bằng phẩy (,) hoặc chấm phẩy (;) thống nhất.
-Cấu trúc (FIELD:vvar:Filter:TableLabel), Các phần sau : có thể bỏ qua.</value>
-  </data>
 </root>

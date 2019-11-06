@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(V6lookupForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtVvar = new V6Controls.V6VvarTextBox();
             this.txtVName2 = new V6Controls.V6ColorTextBox();
@@ -771,6 +770,7 @@
             this.v6ColorTextBox19.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox19.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox19.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox19.GrayText = "Field1,Field2...";
             this.v6ColorTextBox19.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox19.LeaveColor = System.Drawing.Color.White;
             this.v6ColorTextBox19.Location = new System.Drawing.Point(111, 183);
@@ -890,6 +890,7 @@
             this.v6ColorTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.v6ColorTextBox1.GrayText = "FieldCaption,Field2Caption...";
             this.v6ColorTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox1.LeaveColor = System.Drawing.Color.White;
             this.v6ColorTextBox1.Location = new System.Drawing.Point(111, 108);
@@ -958,7 +959,9 @@
             this.v6ColorTextBox11.Name = "v6ColorTextBox11";
             this.v6ColorTextBox11.Size = new System.Drawing.Size(670, 23);
             this.v6ColorTextBox11.TabIndex = 1;
-            this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox11, resources.GetString("v6ColorTextBox11.ToolTip"));
+            this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox11, "Các trường Filter khi in danh mục MA_KH:MA_KH:MA_KH like \'%abc%\':a\r\nCác bộ cách n" +
+        "hau bằng chấm phẩy (;) thống nhất.\r\nCấu trúc (FIELD:vvar:Filter:TableLabel), Các" +
+        " phần sau : có thể bỏ qua.");
             // 
             // label7
             // 

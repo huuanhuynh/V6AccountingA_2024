@@ -43,7 +43,7 @@ namespace V6ThuePostBkavApi.PostObjects
 
         private string ObjectToJson(object value)
         {
-            if (value == null) return "\"\"";//Bkav không xử lý null.
+            if (value == null || value is DBNull) return "\"\"";//Bkav không xử lý null.
 
             string result = "";
             

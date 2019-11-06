@@ -37,8 +37,12 @@
 	<GeneralInvoiceInfo Field='MauSo'			Type='Field'		FieldV6=''		Value='01GTKT0/001' />
 	<GeneralInvoiceInfo Field='KyHieu'			Type='Field'		FieldV6=''		Value='AA/17E' />
 	<GeneralInvoiceInfo Field='SoHoaDon'		Type='Field'		FieldV6='SO_CT'		Value='TEST' />
+  <GeneralInvoiceInfo Field='SoHoaDonGoc' Type='Field' FieldV6='SO_CT0' DataType='' Note='Số hóa đơn bị thay thế.'/>
+  <GeneralInvoiceInfo Field='soHoaDonGocId' Type='Field' FieldV6='' Value=''  DataType=''/>
 	<GeneralInvoiceInfo Field='MauSoGoc'		Type='Field'		FieldV6=''		Value='01GTKT0/001' />
 	<GeneralInvoiceInfo Field='KyHieuGoc'		Type='Field'		FieldV6=''		Value='AA/17E' />
+  <GeneralInvoiceInfo Field='NoiDungDieuChinh' Type='Field' FieldV6='' Value=''  DataType=''/>
+  <GeneralInvoiceInfo Field='NgayDieuChinh' Type='Field' FieldV6='' Value=''  DataType='DateTime'/>
 	
 	<GeneralInvoiceInfo Field='NamSinh'		Type='Field'		FieldV6=''		Value='TEST' />
 	<GeneralInvoiceInfo Field='NgayNhapVien'	Type='Field'		FieldV6=''		Value='20/02/2018' DataType='DateTime'/>
@@ -84,10 +88,11 @@
 	<ItemInfo	Field='Vat'		FieldV6='thue_suati'	Type='Field'	DataType='int'/>
 	<ItemInfo	Field='TienVat'	FieldV6='thue'			Type='Field'	DataType='Decimal'/>
 	<ItemInfo	Field='ThanhTienSauThue'	FieldV6=''		Type='Field'	DataType='Decimal'/>
+
+  <ItemInfo	Field='DieuChinh' Value='0'	FieldV6=''		Type='Field'	DataType='int'  Note='1:tăng -1:giảm'/>
 	<!--ItemInfo	Field='HeSoMon'	FieldV6=''		Type='Field'	DataType=''/-->
 	<!--ItemInfo	Field='HeSo'	FieldV6=''		Type='Field'	DataType=''/-->
 	<!--ItemInfo	Field='DonViPhi'	FieldV6=''		Type='Field'	DataType=''/-->
-	<!--ItemInfo	Field='DieuChinh'	FieldV6=''		Type='Field'	DataType=''/-->
 	<!--ItemInfo	Field='ChietKhauTien'	FieldV6=''		Type='Field'	DataType='Decimal'/-->
 	
 	<!--SummarizeInfo	Field='sumOfTotalLineAmountWithoutTax'		FieldV6='T_TIEN2'	Type='Field'/-->
@@ -131,11 +136,10 @@
   <SummarizeInfo Field='soXacThuc' Type='Field' FieldV6='' Value=''  DataType=''/>
   <SummarizeInfo Field='soXacThucGoc' Type='Field' FieldV6='' Value=''  DataType=''/>
   <SummarizeInfo Field='soThamChieu' Type='Field' FieldV6='' Value=''  DataType=''/>
-  <SummarizeInfo Field='soHoaDonGoc' Type='Field' FieldV6='' Value=''  DataType=''/>
-  <SummarizeInfo Field='soHoaDonGocId' Type='Field' FieldV6='' Value=''  DataType=''/>
+  
+  
   <SummarizeInfo Field='loaiHang' Type='Field' FieldV6='' Value=''  DataType=''/>
-  <SummarizeInfo Field='noiDungDieuChinh' Type='Field' FieldV6='' Value=''  DataType=''/>
-  <SummarizeInfo Field='ngayDieuChinh' Type='Field' FieldV6='' Value=''  DataType='DateTime'/>
+  
   <SummarizeInfo Field='ngayDieuChinhSpecified' Type='Field' FieldV6='' Value=''  DataType='bool'/>
   <SummarizeInfo Field='soHopDong' Type='Field' FieldV6='' Value=''  DataType=''/>
   <SummarizeInfo Field='ngayHopDong' Type='Field' FieldV6='' Value=''  DataType='DateTime'/>

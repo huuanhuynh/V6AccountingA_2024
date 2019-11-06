@@ -232,6 +232,10 @@ namespace V6ThuePostManager
                         SoftDreamsWS softDreamsWs = new SoftDreamsWS(_baseUrl, _username, _password, _SERIAL_CERT);
                         result = softDreamsWs.GetInvoicePdf(paras.Fkey_hd, 2, paras.Pattern, paras.Serial, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
                         break;
+                    case "6":
+                        ThaiSonWS thaiSonWS = new ThaiSonWS(_baseUrl, _username, _password, _SERIAL_CERT);
+                        result = thaiSonWS.GetInvoicePdf(paras.V6PartnerID, paras.Mode, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        break;
                     default:
                         paras.Result.ResultError = V6Text.NotSupported + paras.Branch;
                         break;
@@ -1125,10 +1129,15 @@ namespace V6ThuePostManager
             return postObject;
         }
 
-        public static HoaDonEntity ReadData_ThaiSon(string mode)
+        /// <summary>
+        /// Đọc dữ liệu trả về Class object cho Webservice.
+        /// </summary>
+        /// <param name="mode">M-H</param>
+        /// <returns></returns>
+        public static object ReadData_ThaiSon(string mode)
         {
-            //string result = "";
-            HoaDonEntity hoa_don_entity = new HoaDonEntity();
+            object result_entity = null;
+
             column_config = new SortedDictionary<string, string>();
             var am_data = new Dictionary<string, object>();
             List<HangHoaEntity> list_hanghoa = new List<HangHoaEntity>();
@@ -1166,7 +1175,9 @@ namespace V6ThuePostManager
                     am_data[item.Key] = GetValue(row0, item.Value);
                 }
 
-                foreach (DataRow row in data.Rows)
+
+                if (mode == "H") goto EndDetail;
+                foreach (DataRow row in ad_table.Rows)
                 {
                     //if (row["STT"].ToString() == "0") continue;
                     var ad_data = new Dictionary<string, object>();
@@ -1178,6 +1189,7 @@ namespace V6ThuePostManager
                     var product = ad_data.ToClass<HangHoaEntity>();
                     list_hanghoa.Add(product);
                 }
+            EndDetail:
 
                 foreach (KeyValuePair<string, ConfigLine> item in summarizeInfoConfig)
                 {
@@ -1189,18 +1201,27 @@ namespace V6ThuePostManager
                     am_data[item.Key] = GetValue(row0, item.Value);
                 }
 
-                //result = XmlConverter.ClassToXml(hoa_don_entity);
-                hoa_don_entity = am_data.ToClass<HoaDonEntity>();
+                if (mode == "H")
+                {
+                    var hoa_don_huy_entity = am_data.ToClass<HoaDonHuyEntity>();
+                    result_entity = hoa_don_huy_entity;
+                }
+                else // mode M
+                {
+                    var hoa_don_entity = am_data.ToClass<HoaDonEntity>();
+                    hoa_don_entity.HangHoas = list_hanghoa.ToArray();
+                    //hoa_don_entity.dataExtension = list_extension.ToArray();
+                    //hoa_don_entity.emptysField = emptysField.ToArray();
+                    result_entity = hoa_don_entity;
+                }
 
-                hoa_don_entity.HangHoas = list_hanghoa.ToArray();
-                //hoa_don_entity.dataExtension = list_extension.ToArray();
-                //hoa_don_entity.emptysField = emptysField.ToArray();
+                
             }
             //catch (Exception ex)
             {
                 //
             }
-            return hoa_don_entity;
+            return result_entity;
         }
 
         /// <summary>
@@ -2383,23 +2404,23 @@ namespace V6ThuePostManager
                     }
                     else if (paras.Mode == "E_H1")
                     {
-                        result = thaiSonWS.CancelInvoice(paras.Fkey_hd, paras.Pattern, paras.Serial);
+                        var hoadon_entity = ReadData_ThaiSon("H");
+                        result = thaiSonWS.CancelInvoice((HoaDonHuyEntity)hoadon_entity, out paras.Result.V6ReturnValues);
                     }
                     else if (paras.Mode == "E_S1")
                     {
-                        var hoadon_entity = ReadData_ThaiSon(paras.Mode);
-                        result += thaiSonWS.AdjustInvoice(hoadon_entity, paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                        var hoadon_entity = ReadData_ThaiSon("S");
+                        result += thaiSonWS.AdjustInvoice((HoaDonEntity) hoadon_entity, out paras.Result.V6ReturnValues);
                     }
                     else if (paras.Mode == "E_T1")
                     {
-                        var invoices = ReadData_SoftDreams(paras.Mode);
-                        var inv = invoices.Inv[0].ToReplaceInv();
-                        result = thaiSonWS.ReplaceInvoice(inv, paras.Fkey_hd, paras.Pattern, paras.Serial, true, _signmode, out paras.Result.V6ReturnValues);
+                        var invoices = ReadData_ThaiSon("T");
+                        result = thaiSonWS.ReplaceInvoice((HoaDonEntity) invoices, out paras.Result.V6ReturnValues);
                     }
                 }
                 else if (paras.Mode.StartsWith("M")) // MSHDT//Mới Sửa Hủy ĐiềuChỉnh(S) ThayThế
                 {
-                    //Invoices invoices = ReadData_SoftDreams(paras.Mode.Substring(0, 1));
+                    //Invoices invoices = ReadData_ThaiSon(paras.Mode.Substring(0, 1));
                     //bool issue = true;
                     //if (paras.Key_Down == "F4" || paras.Key_Down == "F6") issue = false;
                     //StartAutoInputTokenPassword();
@@ -2407,7 +2428,7 @@ namespace V6ThuePostManager
 
                     var hoadon_entity = ReadData_ThaiSon(paras.Mode.Substring(0, 1));
                     //File.Create(flagFileName1).Close();
-                    result = thaiSonWS.XuatHoaDonDienTu(hoadon_entity, out paras.Result.V6ReturnValues);
+                    result = thaiSonWS.XuatHoaDonDienTu((HoaDonEntity) hoadon_entity, out paras.Result.V6ReturnValues);
                     //result = XuatHoaDonDienTu_XML(xml);
 
                     if (result.StartsWith("OK"))
@@ -2485,7 +2506,8 @@ namespace V6ThuePostManager
                 }
                 else if (paras.Mode == "H")
                 {
-                    result = thaiSonWS.CancelInvoice(paras.Fkey_hd, paras.Pattern, paras.Serial);
+                    var hoadon_entity = ReadData_ThaiSon(paras.Mode.Substring(0, 1));
+                    result = thaiSonWS.CancelInvoice((HoaDonHuyEntity) hoadon_entity, out paras.Result.V6ReturnValues);
                 }
                 else if (paras.Mode.StartsWith("U"))//U1,U2
                 {

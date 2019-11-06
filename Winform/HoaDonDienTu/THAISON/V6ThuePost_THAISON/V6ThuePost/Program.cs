@@ -198,7 +198,7 @@ namespace V6ThuePost
                     {
                         var invoice = ReadDataXml(dbfFile: arg2);
                         File.Create(flagFileName1).Close();
-                        result = _ThaiSon_ws.AdjustInvoice(invoice, arg3, out v6return);
+                        result = _ThaiSon_ws.AdjustInvoice(invoice, out v6return);
                         if (arg4.Length > 0 && result.StartsWith("OK"))
                         {
                             if (File.Exists(arg4))

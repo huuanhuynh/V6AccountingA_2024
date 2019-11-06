@@ -1558,8 +1558,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 "F3-Edit quantity, F4-Add details, F6-Move location, F7-Save and print, F8-Reset.");
         }
         
+        private int _shift_count = 0;
         public override bool DoHotKey0(Keys keyData)
         {
+            if (keyData == Keys.Shift)
+            {
+                _shift_count++;
+                if (_shift_count >= 4)
+                {
+                    _shift_count = 0;
+                    EnableFunctionButtons();
+                }
+            }
+            else
+            {
+                _shift_count = 0;
+            }
+
             if (keyData == (Keys.LButton | Keys.Space))//pageUp
             {
                 if (btnPrevious.Enabled) btnPrevious.PerformClick();
@@ -4672,7 +4687,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         /// <param name="ma_vitriPH"></param>
         /// <param name="post"></param>
         /// <param name="ma_khoPH"></param>
-        internal void Luu(string ma_khoPH, string ma_vitriPH, bool post)
+        internal bool Luu(string ma_khoPH, string ma_vitriPH, bool post)
         {
             _post = post;
             try
@@ -4680,9 +4695,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 if (Mode == V6Mode.Edit)
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
-                    //ShowMainMessage(V6Text.DetailNotComplete);
-                    //return;
-                    detail1.OnNhanClick();
+                    ShowMainMessage(V6Text.DetailNotComplete);
+                    return false;                 // Tránh lặp vô tận.
+                    detail1.OnNhanClick();  // AutoClick
                 }
 
                 if (_post) V6ControlFormHelper.RemoveRunningList(_sttRec);
@@ -4711,14 +4726,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     //V6ControlFormHelper.DisableControls(btnLuu, btnHuy, btnQuayRa);
                     DoAddThread();
                     if(!post) GetCurrentIndex();
-                    return;
+                    return true;
                 }
                 if (Mode == V6Mode.Edit)
                 {
                     //V6ControlFormHelper.DisableControls(btnLuu, btnHuy, btnQuayRa);
                     if (!post) GetCurrentIndex();
                     DoEditThread();
-                    return;
+                    return true;
                 }
                 if (Mode == V6Mode.View)
                 {
@@ -4728,6 +4743,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
+            return false;
         }
 
         private void GetCurrentIndex()
@@ -5142,8 +5158,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     _sttRec_In = _sttRec;
                     txtSL_UD1.Value = payform.KhachDua;
                     
-                    Luu(MA_KHOPH, MA_VITRIPH, true);
-                    Status = "3";
+                    if (Luu(MA_KHOPH, MA_VITRIPH, true)) Status = "3";
                 }
                 else if (dr == DialogResult.OK) // luu ko in
                 {
@@ -5151,8 +5166,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     _sttRec_In = _sttRec;
                     txtSL_UD1.Value = payform.KhachDua;
                     
-                    Luu(MA_KHOPH, MA_VITRIPH, true);
-                    Status = "3";
+                    if (Luu(MA_KHOPH, MA_VITRIPH, true)) Status = "3";
                 }
                 else
                 {
@@ -5762,8 +5776,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             DisableAllFunctionButtons(btnLuu, btnMoi, btnCopy, btnIn, btnSua, btnHuy, btnXoa, btnXem, btnTim, btnQuayRa);
             if (ValidateData_Master())
             {
-                Luu(MA_KHOPH, MA_VITRIPH, true);
-                Status = "3";
+                if (Luu(MA_KHOPH, MA_VITRIPH, true))
+                {
+                    Status = "3";
+                }
+                else
+                {
+                    EnableFunctionButtons();
+                }
             }
             else
             {
@@ -5848,6 +5868,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             {
                 if (XuLyThemDetail(data))
                 {
+                    detail1._mode = V6Mode.View;
                     Luu(MA_KHOPH, MA_VITRIPH, false);
                     return;
                 }
@@ -6330,8 +6351,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 if (!string.IsNullOrEmpty(errors))
                 {
                     this.ShowWarningMessage(errors);
-                    //detail1.MODE = detail1.Old_mode;
-                    detail1.SetFormControlsReadOnly(false);
+                    detail1.MODE = detail1.Old_mode;
+                    //detail1.SetFormControlsReadOnly(false);   // Lỗi vòng lặp vô tận.
                     var c = detail1.GetControlByAccessibleName(firstErrorField);
                     if (c != null) c.Focus();
                     return false;

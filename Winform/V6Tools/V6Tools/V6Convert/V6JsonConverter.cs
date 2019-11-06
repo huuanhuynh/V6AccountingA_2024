@@ -51,7 +51,7 @@ namespace V6Tools.V6Convert
 
         private static string ObjectToJson(object value)
         {
-            if (value == null) return "null";
+            if (value == null || value is DBNull) return "null";
 
             string result = "";
 

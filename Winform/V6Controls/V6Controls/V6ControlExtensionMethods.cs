@@ -170,7 +170,7 @@ namespace V6Controls
                     }
                     
                     var value = data[field];
-                    if (value == null) return false;
+                    if (value == null || value is DBNull) return false;
                     if (ObjectAndString.IsNumberType(value.GetType()))
                     {
                         if (ObjectAndString.ObjectToDecimal(value) == 0) return false;

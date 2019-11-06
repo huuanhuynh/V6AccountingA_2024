@@ -730,8 +730,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         data3 = SqlConnect.ExecuteDataset(CommandType.Text, sql, plist)
                             .Tables[0];
                         gView3.DataSource = data3;
-                        gView3.HideColumnsAldm(_table3Name);
-                        gView3.SetCorplan2();
+                        gView3.FormatGridViewAldm(_table3Name);
+                        if (!gView3.IsFormated)
+                        {
+                            gView3.SetCorplan2();
+                        }
                     }
 
                     //Data4
@@ -741,8 +744,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         data4 = SqlConnect.ExecuteDataset(CommandType.Text, sql, plist).Tables[0];
                         
                         gView4.DataSource = data4;
-                        gView4.HideColumnsAldm(_table4Name);
-                        gView4.SetCorplan2();
+                        gView4.FormatGridViewAldm(_table4Name);
+                        if (!gView4.IsFormated)
+                        {
+                            gView4.SetCorplan2();
+                        }
                     }
 
                     TinhTongCong();
@@ -766,8 +772,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         data3 = SqlConnect.ExecuteDataset(CommandType.Text, sql, plist)
                             .Tables[0];
                         gView3.DataSource = data3;
-                        gView3.HideColumnsAldm(_table3Name);
-                        gView3.SetCorplan2();
+                        gView3.FormatGridViewAldm(_table3Name);
+                        if (!gView3.IsFormated)
+                        {
+                            gView3.SetCorplan2();
+                        }
                     }
 
                     //Data4
@@ -777,8 +786,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         data4 = SqlConnect.ExecuteDataset(CommandType.Text, sql, plist).Tables[0];
                         
                         gView4.DataSource = data4;
-                        gView4.HideColumnsAldm(_table4Name);
-                        gView4.SetCorplan2();
+                        gView4.FormatGridViewAldm(_table4Name);
+                        if (!gView4.IsFormated)
+                        {
+                            gView4.SetCorplan2();
+                        }
                     }
                 }
 
