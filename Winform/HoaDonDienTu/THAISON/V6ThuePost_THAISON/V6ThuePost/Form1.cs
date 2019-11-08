@@ -20,7 +20,7 @@ namespace V6ThuePost
         {
             Program.ReadXmlInfo(txtXmlFile.Text);
             _invoice = Program.ReadDataXml(txtDbfFile.Text);
-            Program._ThaiSon_ws = new ThaiSonWS(Program._baseUrl, Program._username, Program._password, Program._token_serial);
+            Program._ThaiSon_ws = new ThaiSonWS(Program._baseUrl, Program.link_Publish, Program._username, Program._password, Program._token_serial);
             txtUsername.Text = Program._username;
             txtPassword.Text = Program._password;
             txtURL.Text = Program.link_Publish;

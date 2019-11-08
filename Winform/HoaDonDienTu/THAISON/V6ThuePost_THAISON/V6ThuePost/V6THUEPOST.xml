@@ -6,8 +6,9 @@
 	<V6Info Field='seri' 		Value='SO_SERI' Type=''/>
 	<V6Info Field='v6fkey' 		Value='V6XNCT_05' Type=''/>
 	<V6Info Field='v6fkeyexcel' 		Value='V6_05' Type=''/>
-	<V6Info Field='baselink'    Value='ifGND2gP+by1m4h+wJl7l+B8H5drbssHQBL5H+UJtboe5zIEut3mREexAdi+5lPf'		Value0='http://210.245.8.58:6789/einvoiceservice.asmx' Type=''/>
-	
+	<V6Info Field='baselink'    Value='ifGND2gP+by1m4h+wJl7l+B8H5drbssHJn9smjGBWMI='		Value0='http://210.245.8.58:6789/' Type=''/>
+	<V6Info Field='link_Publish'    Value='ifGND2gP+by1m4h+wJl7l+B8H5drbssHQBL5H+UJtboe5zIEut3mREexAdi+5lPf'		Value0='http://210.245.8.58:6789/einvoiceservice.asmx' Type=''/>
+  
 	<ExcelConfig Type='0' Field='TEMPLATE' 	Value='V6_EXCEL.XLS'/>
 	<ExcelConfig Type='0' Field='FIRSTCELL' 	Value='B18'/>
 	<ExcelConfig Type='0' Field='INSERTROW' 	Value='1'/>
@@ -37,7 +38,7 @@
 	<GeneralInvoiceInfo Field='MauSo'			Type='Field'		FieldV6=''		Value='01GTKT0/001' />
 	<GeneralInvoiceInfo Field='KyHieu'			Type='Field'		FieldV6=''		Value='AA/17E' />
 	<GeneralInvoiceInfo Field='SoHoaDon'		Type='Field'		FieldV6='SO_CT'		Value='TEST' />
-  <GeneralInvoiceInfo Field='SoHoaDonGoc' Type='Field' FieldV6='SO_CT0' DataType='' Note='Số hóa đơn bị thay thế.'/>
+  <!--GeneralInvoiceInfo Field='SoHoaDonGoc' Type='Field' FieldV6='SO_CT0' DataType='' Note='Số hóa đơn bị thay thế - được gán trong code, không cần cấu hình.'/-->
   <GeneralInvoiceInfo Field='soHoaDonGocId' Type='Field' FieldV6='' Value=''  DataType=''/>
 	<GeneralInvoiceInfo Field='MauSoGoc'		Type='Field'		FieldV6=''		Value='01GTKT0/001' />
 	<GeneralInvoiceInfo Field='KyHieuGoc'		Type='Field'		FieldV6=''		Value='AA/17E' />

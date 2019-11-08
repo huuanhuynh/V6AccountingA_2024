@@ -161,6 +161,18 @@ namespace V6ThuePostViettelApi
 
                 PDFFileResponse objFile = JsonConvert.DeserializeObject<PDFFileResponse>(result);
                 string path = Path.Combine(savefolder, fileName + ".pdf");
+
+                if (File.Exists(path))
+                {
+                    try
+                    {
+                        File.Delete(path);
+                    }
+                    catch
+                    {
+                        //
+                    }
+                }
                 if (!File.Exists(path))
                 {
                     File.WriteAllBytes(path, objFile.fileToBytes);
@@ -211,6 +223,18 @@ namespace V6ThuePostViettelApi
 
                 PDFFileResponse objFile = JsonConvert.DeserializeObject<PDFFileResponse>(result);
                 string path = Path.Combine(savefolder, fileName + ".pdf");
+
+                if (File.Exists(path))
+                {
+                    try
+                    {
+                        File.Delete(path);
+                    }
+                    catch
+                    {
+                        //
+                    }
+                }
                 if (!File.Exists(path))
                 {
                     File.WriteAllBytes(path, objFile.fileToBytes);

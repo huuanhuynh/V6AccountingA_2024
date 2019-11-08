@@ -13,16 +13,19 @@ namespace V6ThuePostThaiSonApi
     public class ThaiSonWS
     {
         private EinvoiceService.EinvoiceService _easyService = new EinvoiceService.EinvoiceService();
-        private string _host = "", _username = "", _password = "", _token_serial;
-        public ThaiSonWS(string host, string username, string password, string token_serial)
+        private string _baseurl = "";
+        private string _serviceurl = "", _username = "", _password = "", _token_serial;
+        public ThaiSonWS(string baseurl, string serviceurl, string username, string password, string token_serial)
         {
             try
             {
-                _host = host;
+                _baseurl = baseurl;
+                if (!_baseurl.EndsWith("/")) _baseurl += "/";
+                _serviceurl = serviceurl;
                 _username = username;
                 _password = password;
                 _token_serial = token_serial;
-                _easyService = new EinvoiceService.EinvoiceService(_host);
+                _easyService = new EinvoiceService.EinvoiceService(_serviceurl);
                 _easyService.AuthenticationValue = new Authentication()
                 {
                     userName = _username,
@@ -83,6 +86,7 @@ namespace V6ThuePostThaiSonApi
             v6return = new V6Return();
             try
             {
+                invoice.TrangThaiDieuChinh = 1;
                 var response = _easyService.XuatHoaDonDienTu(invoice);
 
                 v6return.RESULT_OBJECT = response;
@@ -119,7 +123,7 @@ namespace V6ThuePostThaiSonApi
         public void XuatHoaDonCallMessage()
         {
 
-            string url = _host;// "http://localhost:6666/EinvoiceService.asmx";
+            string url = _serviceurl;// "http://localhost:6666/EinvoiceService.asmx";
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"" + url + "");
             request.ContentType = "text/xml;charset=\"utf-8\"";
             request.Accept = "text/xml";
@@ -332,24 +336,42 @@ namespace V6ThuePostThaiSonApi
         /// <summary>
         /// Phát hành hóa đơn đã đưa lên
         /// </summary>
-        /// <param name="ikey"></param>
-        /// <param name="pattern"></param>
-        /// <param name="serial"></param>
-        /// <param name="signmode">Kiểu ký 1 client, mặc định server.</param>
+        /// <param name="invoice"></param>
+        /// <param name="v6return">.</param>
         /// <returns></returns>
-        public string IssueInvoices(string ikey, string pattern, string serial, string signmode)
+        public string XacThucHoaDon(XacThucHoaDonEntity invoice, out V6Return v6return)
         {
             string result = null;
+            v6return = new V6Return();
             try
             {
-                
+                var response = _easyService.XacThucHoaDon(invoice);
+
+                v6return.RESULT_OBJECT = response;
+                v6return.RESULT_STRING = V6XmlConverter.ClassToXml(response);
+                v6return.RESULT_MESSAGE = response.MsgError.Description;
+                v6return.RESULT_ERROR_CODE = response.MsgError.Code;
+                v6return.RESULT_ERROR = response.MsgError.Message;
+                v6return.ID = response.MaEinvoice;
+                v6return.SECRET_CODE = response.MaEinvoice;
+                v6return.SO_HD = response.SoHoaDon;
+
+                if (response.MsgError == null || response.MsgError.Code == null || response.MsgError.Code == "000")
+                {
+                    result += "OK:" + string.Format("SoHoaDon:{0}, MaEinvoice:{1}", response.SoHoaDon, response.MaEinvoice);
+                }
+                else
+                {
+                    result += "ERR:" + response.MsgError.Code + " " + response.MsgError.Description + " " + response.MsgError.EDescription + " " + response.MsgError.EMessage;
+                }
             }
             catch (Exception ex)
             {
+                v6return.EXCEPTION_MESSAGE = ex.Message;
                 result = "ERR:EX\r\n" + ex.Message;
             }
 
-            Logger.WriteToLog("Program.IssueInvoices " + result);
+            Logger.WriteToLog("Program.XacThucHoaDon " + result);
             return result;
         }
 
@@ -361,14 +383,14 @@ namespace V6ThuePostThaiSonApi
         /// <param name="savefolder"></param>
         /// <param name="v6return"></param>
         /// <returns></returns>
-        public string GetInvoicePdf(string maEinvoice, string option, string savefolder, out V6Return v6return)
+        public string GetInvoicePdf(string maEinvoice, int option, string savefolder, out V6Return v6return)
         {
-            if (option != "0" && option != "1") option = "1";
+            if (option != 0 && option != 1) option = 1;
             string path = Path.Combine(savefolder, maEinvoice + ".pdf");
             v6return = new V6Return();
 
             string download_link =
-                string.Format(@"http://210.245.8.58:6789/HoaDonPDF.aspx?mhd={0}&iscd={1}", maEinvoice, option);
+                string.Format(_baseurl + @"HoaDonPDF.aspx?mhd={0}&iscd={1}", maEinvoice, option);
             using (var client = new WebClient())
             {
                 client.DownloadFile(download_link, path);
@@ -380,6 +402,25 @@ namespace V6ThuePostThaiSonApi
             v6return.PATH = path;
             
             return path;
+        }
+        
+        public string ViewInvoiceWeb(string maEinvoice, int option, string savefolder, out V6Return v6return)
+        {
+            if (option != 0 && option != 1) option = 1;
+            //string path = Path.Combine(savefolder, maEinvoice + ".pdf");
+            v6return = new V6Return();
+
+            string download_link =
+                string.Format(_baseurl + @"hoadonviewer.aspx?mhd={0}&iscd={1}", maEinvoice, option);
+
+            System.Diagnostics.Process.Start(download_link);
+            
+            v6return.RESULT_OBJECT = download_link;
+            v6return.RESULT_STRING = download_link;
+            //v6return.RESULT_MESSAGE = path;
+            //v6return.PATH = path;
+            
+            return download_link;
         }
 
         /// <summary>

@@ -327,6 +327,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
+                bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
                 if (dataGridView1.DataSource == null || dataGridView1.CurrentRow == null)
                 {
                     return;
@@ -334,6 +335,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 var row = dataGridView1.CurrentRow;
 
+                string mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"];
+                if (shift_is_down)
+                {
+                    if (mode == "0") mode = "1";
+                    else if (mode == "1") mode = "0";
+                }
                 //Download selected einvoice
                 //, error = "", sohoadon = "", id = "";
                 string pdf_file = "";
@@ -367,7 +374,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     Pattern = pattern,
                     Fkey_hd = fkey_hd,
                     strIssueDate = strIssueDate,
-                    Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
+                    Mode = mode,
                 };
                 string error;
                 pdf_file = PostManager.PowerDownloadPDF(pmparams, out error);

@@ -146,7 +146,7 @@ namespace V6ThuePost
                     
                     ReadXmlInfo(arg1_xmlFile);
 
-                    _ThaiSon_ws = new ThaiSonWS(_baseUrl, _username, _password, _token_serial);
+                    _ThaiSon_ws = new ThaiSonWS(_baseUrl, link_Publish, _username, _password, _token_serial);
 
                     
                     //MSHDT//Mới Sửa Hủy ĐiềuChỉnh(S) ThayThế

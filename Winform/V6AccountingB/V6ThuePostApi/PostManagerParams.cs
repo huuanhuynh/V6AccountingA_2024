@@ -30,7 +30,10 @@ namespace V6ThuePostManager
         public string RptFileFull { get; set; }
         public string Fkey_hd { get; set; }
         /// <summary>
-        /// Key hóa đơn cũ dùng cho thay thế.
+        /// <para>Key hóa đơn cũ dùng cho thay thế.</para>
+        /// <para>1_Viettel:AA/17E0003470</para>
+        /// <para>3_Bkav:[01GTKT0/001]_[AB/19E]_[0000009]</para>
+        /// <para>6_ThaiSon:SO_CT0</para>
         /// </summary>
         public string Fkey_hd_tt { get; set; }
         /// <summary>

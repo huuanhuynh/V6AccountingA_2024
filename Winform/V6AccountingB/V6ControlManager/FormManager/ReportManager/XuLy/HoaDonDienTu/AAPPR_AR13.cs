@@ -277,6 +277,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
+                bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
                 if (dataGridView1.DataSource == null || dataGridView1.CurrentRow == null)
                 {
                     return;
@@ -284,6 +285,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 var row = dataGridView1.CurrentRow;
 
+                string mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"];
+                if (shift_is_down)
+                {
+                    if (mode == "0") mode = "1";
+                    else if (mode == "1") mode = "0";
+                }
                 //Download selected einvoice
                 //, error = "", sohoadon = "", id = "";
                 string pdf_file = "";
@@ -304,6 +311,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var map_table = V6BusinessHelper.ExecuteProcedure("VPA_GET_V6MAPINFO", plist0).Tables[0];
 
                 string invoiceNo = row.Cells["SO_SERI"].Value.ToString().Trim() + row.Cells["SO_CT"].Value.ToString().Trim();
+                string v6_partner_id = row.Cells["V6PARTNER_ID"].Value.ToString().Trim();
                 string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
                 string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
                 string strIssueDate = ObjectAndString.ObjectToString(row.Cells["NGAY_CT"].Value, "yyyyMMddHHmmss");
@@ -313,9 +321,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     DataSet = map_table.DataSet,
                     Branch = FilterControl.String1,
                     InvoiceNo = invoiceNo,
+                    V6PartnerID = v6_partner_id,
                     Pattern = pattern,
                     Fkey_hd = fkey_hd,
                     strIssueDate = strIssueDate,
+                    Mode = mode,
                 };
                 string error;
                 pdf_file = PostManager.PowerDownloadPDF(pmparams, out error);
