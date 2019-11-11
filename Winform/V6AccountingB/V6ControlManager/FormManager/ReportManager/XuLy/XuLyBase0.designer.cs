@@ -126,25 +126,25 @@
             // 
             // btnThemMauBC
             // 
-            this.btnThemMauBC.AccessibleDescription = "REPORTB00002";
+            this.btnThemMauBC.AccessibleDescription = ".";
             this.btnThemMauBC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnThemMauBC.Location = new System.Drawing.Point(526, 377);
+            this.btnThemMauBC.Image = global::V6ControlManager.Properties.Resources.SettingAdd24;
+            this.btnThemMauBC.Location = new System.Drawing.Point(509, 377);
             this.btnThemMauBC.Name = "btnThemMauBC";
-            this.btnThemMauBC.Size = new System.Drawing.Size(43, 23);
+            this.btnThemMauBC.Size = new System.Drawing.Size(30, 30);
             this.btnThemMauBC.TabIndex = 9;
-            this.btnThemMauBC.Text = "Thêm";
             this.btnThemMauBC.UseVisualStyleBackColor = true;
             this.btnThemMauBC.Click += new System.EventHandler(this.btnThemMauBC_Click);
             // 
             // btnSuaTTMauBC
             // 
-            this.btnSuaTTMauBC.AccessibleDescription = "REPORTB00001";
+            this.btnSuaTTMauBC.AccessibleDescription = ".";
             this.btnSuaTTMauBC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSuaTTMauBC.Image = global::V6ControlManager.Properties.Resources.Setting24;
             this.btnSuaTTMauBC.Location = new System.Drawing.Point(479, 377);
             this.btnSuaTTMauBC.Name = "btnSuaTTMauBC";
-            this.btnSuaTTMauBC.Size = new System.Drawing.Size(43, 23);
+            this.btnSuaTTMauBC.Size = new System.Drawing.Size(30, 30);
             this.btnSuaTTMauBC.TabIndex = 8;
-            this.btnSuaTTMauBC.Text = "Sửa tt";
             this.btnSuaTTMauBC.UseVisualStyleBackColor = true;
             this.btnSuaTTMauBC.Click += new System.EventHandler(this.btnSuaTTMauBC_Click);
             // 

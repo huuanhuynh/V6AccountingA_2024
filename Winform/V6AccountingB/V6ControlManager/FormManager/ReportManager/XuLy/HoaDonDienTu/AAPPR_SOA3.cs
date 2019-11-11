@@ -401,6 +401,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 var sttRec = row.Cells["Stt_rec"].Value.ToString().Trim();
                 var data = invoice.LoadAD(sttRec);
                 dataGridView2.DataSource = data;
+                dataGridView2.AutoGenerateColumns = true;
             }
             catch (Exception ex)
             {
@@ -415,7 +416,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             // 
             // btnTestView
             // 
-            this.btnTestView.Location = new System.Drawing.Point(190, 28);
+            this.btnTestView.Location = new System.Drawing.Point(190, 30);
             this.btnTestView.Name = "btnTestView";
             this.btnTestView.Size = new System.Drawing.Size(111, 23);
             this.btnTestView.TabIndex = 22;

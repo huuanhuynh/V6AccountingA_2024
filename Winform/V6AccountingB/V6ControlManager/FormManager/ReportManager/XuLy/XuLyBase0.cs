@@ -28,7 +28,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected DataSet _ds;
         protected DataTable _tbl, _tbl2;
-        private DataTable MauInData;
+        public DataTable MauInData;
         public DataRow MauInSelectedRow
         {
             get
@@ -186,7 +186,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        private void LoadComboboxSource()
+        protected void LoadComboboxSource()
         {
             MauInData = Albc.GetMauInData(_reportFile, "", "", "");
         }

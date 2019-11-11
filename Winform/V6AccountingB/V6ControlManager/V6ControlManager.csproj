@@ -8632,8 +8632,10 @@
     <Content Include="Resources\Box16.png" />
     <None Include="Resources\Excel32.ico" />
     <None Include="Resources\Excel16.png" />
+    <None Include="Resources\Export24.png" />
     <Content Include="Resources\HammerBlack16.png" />
     <Content Include="Resources\House16.png" />
+    <None Include="Resources\LineEdit24.png" />
     <Content Include="Resources\Person16.png" />
     <Content Include="Resources\PersonGroup16.png" />
     <None Include="Resources\TeamViewer32.png" />
@@ -8641,6 +8643,8 @@
     <None Include="Resources\sms.png" />
     <None Include="Resources\sms48.png" />
     <None Include="Resources\PrintInvoice16.png" />
+    <None Include="Resources\SettingAdd24.png" />
+    <None Include="Resources\Setting24.png" />
     <Content Include="Resources\ToolBox16.png" />
     <Content Include="Resources\TreeBlack16.png" />
     <Content Include="Resources\TreeFolderYellowk16.png" />

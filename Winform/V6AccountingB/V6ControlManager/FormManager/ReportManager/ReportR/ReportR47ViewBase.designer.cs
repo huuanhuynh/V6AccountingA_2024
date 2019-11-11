@@ -64,17 +64,17 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.rNgoaiTe = new System.Windows.Forms.RadioButton();
             this.rTienViet = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnIn = new System.Windows.Forms.Button();
-            this.btnNhan = new System.Windows.Forms.Button();
             this.btnSuaMau = new V6Controls.Controls.V6FormButton();
-            this.btnSuaTTMauBC = new V6Controls.Controls.V6FormButton();
-            this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
             this.chkHienTatCa = new V6Controls.V6CheckBox();
             this.gridViewSummary1 = new V6Controls.Controls.GridViewSummary();
             this.btnSuaLine = new V6Controls.Controls.V6FormButton();
             this.cboBaoCao = new V6Controls.V6ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnExport2 = new V6Controls.Controls.DropDownButton();
+            this.btnIn = new System.Windows.Forms.Button();
+            this.btnNhan = new System.Windows.Forms.Button();
+            this.btnSuaTTMauBC = new V6Controls.Controls.V6FormButton();
+            this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbDieuKienLoc.SuspendLayout();
@@ -96,7 +96,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(209, 158);
             // 
-            // exportToExcelTemplate
+            // exportToExcelTemplateMenu
             // 
             this.exportToExcelTemplateMenu.AccessibleDescription = "REPORTM00003";
             this.exportToExcelTemplateMenu.Name = "exportToExcelTemplateMenu";
@@ -104,7 +104,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.exportToExcelTemplateMenu.Text = "Export to Excel (template)";
             this.exportToExcelTemplateMenu.Click += new System.EventHandler(this.exportToExcelTemplate_Click);
             // 
-            // exportToExcelView
+            // exportToExcelViewMenu
             // 
             this.exportToExcelViewMenu.AccessibleDescription = "REPORTM00004";
             this.exportToExcelViewMenu.Name = "exportToExcelViewMenu";
@@ -120,7 +120,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.exportToExcel.Text = "Export to Excel (all)";
             this.exportToExcel.Click += new System.EventHandler(this.exportToExcel_Click);
             // 
-            // exportToXmlToolStripMenuItem
+            // exportToXmlMenu
             // 
             this.exportToXmlMenu.AccessibleDescription = "REPORTM00005";
             this.exportToXmlMenu.Name = "exportToXmlMenu";
@@ -136,7 +136,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.printGrid.Text = "Print Grid";
             this.printGrid.Click += new System.EventHandler(this.printGrid_Click);
             // 
-            // viewDataToolStripMenuItem
+            // viewDataMenu
             // 
             this.viewDataMenu.AccessibleDescription = "REPORTM00009";
             this.viewDataMenu.Name = "viewDataMenu";
@@ -144,7 +144,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.viewDataMenu.Text = "View Data";
             this.viewDataMenu.Click += new System.EventHandler(this.viewDataToolStripMenuItem_Click);
             // 
-            // exportToPdfToolStripMenuItem
+            // exportToPdfMenu
             // 
             this.exportToPdfMenu.AccessibleDescription = "REPORTM00006";
             this.exportToPdfMenu.Name = "exportToPdfMenu";
@@ -422,73 +422,19 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.panel1.TabIndex = 0;
             this.panel1.Leave += new System.EventHandler(this.panel1_Leave);
             // 
-            // btnIn
-            // 
-            this.btnIn.AccessibleDescription = "REPORTB00006";
-            this.btnIn.AccessibleName = "";
-            this.btnIn.Image = global::V6ControlManager.Properties.Resources.Print;
-            this.btnIn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnIn.Location = new System.Drawing.Point(123, 57);
-            this.btnIn.Name = "btnIn";
-            this.btnIn.Size = new System.Drawing.Size(110, 40);
-            this.btnIn.TabIndex = 2;
-            this.btnIn.Text = "&In";
-            this.btnIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnIn.UseVisualStyleBackColor = true;
-            this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
-            // 
-            // btnNhan
-            // 
-            this.btnNhan.AccessibleDescription = "REPORTB00004";
-            this.btnNhan.AccessibleName = "";
-            this.btnNhan.Image = global::V6ControlManager.Properties.Resources.Apply;
-            this.btnNhan.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNhan.Location = new System.Drawing.Point(12, 57);
-            this.btnNhan.Name = "btnNhan";
-            this.btnNhan.Size = new System.Drawing.Size(110, 40);
-            this.btnNhan.TabIndex = 1;
-            this.btnNhan.Text = "&Nhận";
-            this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnNhan.UseVisualStyleBackColor = true;
-            this.btnNhan.Click += new System.EventHandler(this.btnNhan_Click);
-            // 
             // btnSuaMau
             // 
-            this.btnSuaMau.AccessibleDescription = "REPORTB00003";
+            this.btnSuaMau.AccessibleDescription = ".";
             this.btnSuaMau.Enabled = false;
-            this.btnSuaMau.Location = new System.Drawing.Point(450, 1);
+            this.btnSuaMau.Image = global::V6ControlManager.Properties.Resources.Edit24;
+            this.btnSuaMau.Location = new System.Drawing.Point(420, -1);
             this.btnSuaMau.Name = "btnSuaMau";
-            this.btnSuaMau.Size = new System.Drawing.Size(39, 23);
+            this.btnSuaMau.Size = new System.Drawing.Size(30, 30);
             this.btnSuaMau.TabIndex = 7;
-            this.btnSuaMau.Text = "Sửa";
             this.toolTipV6FormControl.SetToolTip(this.btnSuaMau, "Sửa Mẫu");
             this.btnSuaMau.UseVisualStyleBackColor = true;
             this.btnSuaMau.Visible = false;
             this.btnSuaMau.Click += new System.EventHandler(this.btnSuaMau_Click);
-            // 
-            // btnSuaTTMauBC
-            // 
-            this.btnSuaTTMauBC.AccessibleDescription = "REPORTB00001";
-            this.btnSuaTTMauBC.Location = new System.Drawing.Point(360, 1);
-            this.btnSuaTTMauBC.Name = "btnSuaTTMauBC";
-            this.btnSuaTTMauBC.Size = new System.Drawing.Size(43, 23);
-            this.btnSuaTTMauBC.TabIndex = 5;
-            this.btnSuaTTMauBC.Text = "Sửa tt";
-            this.btnSuaTTMauBC.UseVisualStyleBackColor = true;
-            this.btnSuaTTMauBC.Visible = false;
-            this.btnSuaTTMauBC.Click += new System.EventHandler(this.btnSuaTTMauBC_Click);
-            // 
-            // btnThemMauBC
-            // 
-            this.btnThemMauBC.AccessibleDescription = "REPORTB00002";
-            this.btnThemMauBC.Location = new System.Drawing.Point(405, 1);
-            this.btnThemMauBC.Name = "btnThemMauBC";
-            this.btnThemMauBC.Size = new System.Drawing.Size(43, 23);
-            this.btnThemMauBC.TabIndex = 6;
-            this.btnThemMauBC.Text = "Thêm";
-            this.btnThemMauBC.UseVisualStyleBackColor = true;
-            this.btnThemMauBC.Visible = false;
-            this.btnThemMauBC.Click += new System.EventHandler(this.btnThemMauBC_Click);
             // 
             // chkHienTatCa
             // 
@@ -516,12 +462,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // 
             // btnSuaLine
             // 
-            this.btnSuaLine.AccessibleDescription = "REPORTB00009";
-            this.btnSuaLine.Location = new System.Drawing.Point(491, 1);
+            this.btnSuaLine.AccessibleDescription = ".";
+            this.btnSuaLine.Image = global::V6ControlManager.Properties.Resources.LineEdit24;
+            this.btnSuaLine.Location = new System.Drawing.Point(450, -1);
             this.btnSuaLine.Name = "btnSuaLine";
-            this.btnSuaLine.Size = new System.Drawing.Size(50, 23);
+            this.btnSuaLine.Size = new System.Drawing.Size(30, 30);
             this.btnSuaLine.TabIndex = 7;
-            this.btnSuaLine.Text = "ĐK lọc";
             this.toolTipV6FormControl.SetToolTip(this.btnSuaLine, "Sửa line");
             this.btnSuaLine.UseVisualStyleBackColor = true;
             this.btnSuaLine.Visible = false;
@@ -552,17 +498,72 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             // 
             // btnExport2
             // 
-            this.btnExport2.AccessibleDescription = "REPORTB00011";
-            this.btnExport2.Location = new System.Drawing.Point(542, 1);
+            this.btnExport2.AccessibleDescription = ".";
+            this.btnExport2.Image = global::V6ControlManager.Properties.Resources.Export24;
+            this.btnExport2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExport2.Location = new System.Drawing.Point(480, -1);
             this.btnExport2.Menu = this.contextMenuStrip1;
             this.btnExport2.Name = "btnExport2";
-            this.btnExport2.Size = new System.Drawing.Size(60, 23);
+            this.btnExport2.Size = new System.Drawing.Size(50, 30);
             this.btnExport2.TabIndex = 17;
             this.btnExport2.TabStop = false;
             this.btnExport2.Tag = "cancel";
-            this.btnExport2.Text = "&Export";
             this.btnExport2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExport2.UseVisualStyleBackColor = true;
+            // 
+            // btnIn
+            // 
+            this.btnIn.AccessibleDescription = "REPORTB00006";
+            this.btnIn.AccessibleName = "";
+            this.btnIn.Image = global::V6ControlManager.Properties.Resources.Print;
+            this.btnIn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnIn.Location = new System.Drawing.Point(123, 57);
+            this.btnIn.Name = "btnIn";
+            this.btnIn.Size = new System.Drawing.Size(110, 40);
+            this.btnIn.TabIndex = 2;
+            this.btnIn.Text = "&In";
+            this.btnIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnIn.UseVisualStyleBackColor = true;
+            this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
+            // 
+            // btnNhan
+            // 
+            this.btnNhan.AccessibleDescription = "REPORTB00004";
+            this.btnNhan.AccessibleName = "";
+            this.btnNhan.Image = global::V6ControlManager.Properties.Resources.Apply;
+            this.btnNhan.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnNhan.Location = new System.Drawing.Point(12, 57);
+            this.btnNhan.Name = "btnNhan";
+            this.btnNhan.Size = new System.Drawing.Size(110, 40);
+            this.btnNhan.TabIndex = 1;
+            this.btnNhan.Text = "&Nhận";
+            this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNhan.UseVisualStyleBackColor = true;
+            this.btnNhan.Click += new System.EventHandler(this.btnNhan_Click);
+            // 
+            // btnSuaTTMauBC
+            // 
+            this.btnSuaTTMauBC.AccessibleDescription = ".";
+            this.btnSuaTTMauBC.Image = global::V6ControlManager.Properties.Resources.Setting24;
+            this.btnSuaTTMauBC.Location = new System.Drawing.Point(360, -1);
+            this.btnSuaTTMauBC.Name = "btnSuaTTMauBC";
+            this.btnSuaTTMauBC.Size = new System.Drawing.Size(30, 30);
+            this.btnSuaTTMauBC.TabIndex = 5;
+            this.btnSuaTTMauBC.UseVisualStyleBackColor = true;
+            this.btnSuaTTMauBC.Visible = false;
+            this.btnSuaTTMauBC.Click += new System.EventHandler(this.btnSuaTTMauBC_Click);
+            // 
+            // btnThemMauBC
+            // 
+            this.btnThemMauBC.AccessibleDescription = ".";
+            this.btnThemMauBC.Image = global::V6ControlManager.Properties.Resources.SettingAdd24;
+            this.btnThemMauBC.Location = new System.Drawing.Point(390, -1);
+            this.btnThemMauBC.Name = "btnThemMauBC";
+            this.btnThemMauBC.Size = new System.Drawing.Size(30, 30);
+            this.btnThemMauBC.TabIndex = 6;
+            this.btnThemMauBC.UseVisualStyleBackColor = true;
+            this.btnThemMauBC.Visible = false;
+            this.btnThemMauBC.Click += new System.EventHandler(this.btnThemMauBC_Click);
             // 
             // ReportR47ViewBase
             // 

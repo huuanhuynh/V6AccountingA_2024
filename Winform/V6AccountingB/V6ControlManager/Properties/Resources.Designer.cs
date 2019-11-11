@@ -333,6 +333,16 @@ namespace V6ControlManager.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Export24 {
+            get {
+                object obj = ResourceManager.GetObject("Export24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap First {
             get {
                 object obj = ResourceManager.GetObject("First", resourceCulture);
@@ -406,6 +416,16 @@ namespace V6ControlManager.Properties {
         internal static System.Drawing.Bitmap Last {
             get {
                 object obj = ResourceManager.GetObject("Last", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LineEdit24 {
+            get {
+                object obj = ResourceManager.GetObject("LineEdit24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -596,6 +616,26 @@ namespace V6ControlManager.Properties {
         internal static System.Drawing.Bitmap Search24 {
             get {
                 object obj = ResourceManager.GetObject("Search24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Setting24 {
+            get {
+                object obj = ResourceManager.GetObject("Setting24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SettingAdd24 {
+            get {
+                object obj = ResourceManager.GetObject("SettingAdd24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

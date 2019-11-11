@@ -690,7 +690,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             dataGridView1.SetFrozen(0);
                             dataGridView1.DataSource = null;
                             dataGridView1.DataSource = _tbl;
-
+                            dataGridView1.AutoGenerateColumns = true;
+                            dataGridView2.AutoGenerateColumns = true;
                             FormatGridViewBase();
                             FormatGridViewExtern();
                             dataGridView1.Focus();
