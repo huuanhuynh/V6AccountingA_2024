@@ -2225,7 +2225,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 
                 //Co 2 truong hop them moi roi view va sua roi view
                 _sttRec = sttrec;
-                var loadAM = Invoice.SearchAM("", "Stt_rec='" + _sttRec + "'", "", "", "");
+                DataTable loadAM = null;
+                if (string.IsNullOrEmpty(_sttRec))
+                {
+                    loadAM = Invoice.SearchAM("1=0", "1=0", "", "", "");
+                }
+                else
+                {
+                    loadAM = Invoice.SearchAM("", "Stt_rec='" + _sttRec + "'", "", "", "");
+                }
+
                 if (loadAM.Rows.Count == 1)
                 {
                     var loadRow = loadAM.Rows[0];

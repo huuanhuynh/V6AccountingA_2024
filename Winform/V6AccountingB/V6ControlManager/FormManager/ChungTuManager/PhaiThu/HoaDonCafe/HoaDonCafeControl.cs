@@ -4197,7 +4197,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 }
 
                 //Nếu không có sẵn trong dữ liệu cục bộ. Tải lại dữ liệu, Thêm vào dòng mới cho AM
-                var loadAM = Invoice.SearchAM("", "Stt_rec='" + _sttRec + "'", "", "", "");
+                DataTable loadAM = null;
+                if (string.IsNullOrEmpty(_sttRec))
+                {
+                    loadAM = Invoice.SearchAM("1=0", "1=0", "", "", "");
+                }
+                else
+                {
+                    loadAM = Invoice.SearchAM("", "Stt_rec='" + _sttRec + "'", "", "", "");
+                }
+
                 if (loadAM.Rows.Count == 1)
                 {
                     var loadRow = loadAM.Rows[0];

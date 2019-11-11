@@ -89,7 +89,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 return result;
             }
         }
-        private string IDS_CHECK
+        private string ID_CHECK
         {
             get
             {
@@ -439,7 +439,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 int stt = 0;
                 total = _data.Rows.Count;
-                var id_list = IDS_CHECK.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                var id_list = ID_CHECK.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
 
                 for (int i = 0; i < total; i++)
                 {
@@ -742,7 +742,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 int stt = 0, skip = 0;
                 total = _data.Rows.Count;
-                var id_list = IDS_CHECK.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                var id_list = ID_CHECK.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                 
 
                 for (int i = 0; i < total; i++)

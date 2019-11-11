@@ -97,18 +97,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 return result;
             }
         }
-        private string IDS_CHECK
-        {
-            get
-            {
-                var result = "";
-                if (cboDanhMuc.SelectedIndex >= 0)
-                {
-                    result = ALIM2XLS_DATA.Rows[cboDanhMuc.SelectedIndex]["ID_CHECK"].ToString().Trim().ToUpper();
-                }
-                return result;
-            }
-        }
+
         private string TYPE_CHECK
         {
             get
@@ -985,7 +974,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 int stt = 0, skip = 0;
                 total = _data.Rows.Count;
-                var id_list = IDS_CHECK.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                var id_list = ID_CHECK.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
 
                 for (int i = 0; i < total; i++)
                 {

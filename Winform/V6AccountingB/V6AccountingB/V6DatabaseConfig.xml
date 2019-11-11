@@ -304,8 +304,8 @@
     <Server2>V6DEMO\SQL2016</Server2>
     <Database>V6DK5</Database>
     <Database2>V6DK5</Database2>
-    <UserId>v6admsa</UserId>
-    <UserId2>v6admsa</UserId2>
+    <UserId>sa</UserId>
+    <UserId2>sa</UserId2>
     <Epassword>Ai0I9gx1t2OUAygIZXqi4g==</Epassword>
     <Epassword2>Ai0I9gx1t2OUAygIZXqi4g==</Epassword2>
     <Api>api</Api>

@@ -74,6 +74,17 @@ namespace V6Tools.V6Export
 
         #region ==== SmartXLS ====
 
+        public class MyColumnInfo
+        {
+            public DataColumn Column { get; set; }
+            /// <summary>
+            /// Field dạng công thức
+            /// </summary>
+            public string Expression { get; set; }
+
+            public string ColumnName { get; set; }
+        }
+
         /// <summary>
         /// Gán data với định dạng tùy biến theo kiểu dữ liệu.
         /// workBook.ImportDataTable không đảm bảo được UID.
@@ -90,64 +101,103 @@ namespace V6Tools.V6Export
         /// <param name="maxColumns">Xuất hết thì để 0 hoặc -1.</param>
         /// <param name="autoColWidth">Chỉnh lại độ rộng mỗi cột cho phù hợp với dữ liệu.</param>
         /// <param name="bPreserveTypes">Chưa đụng tới - bảo toàn kiểu dữ liệu.</param>
-        private static void ImportDataTable(
-            WorkBook workBook, DataTable data, string[] columns,
-            bool isShiftRows, bool isFieldNameShown, bool drawLine,
-            int firstRow, int firstColumn,
-            int maxRows, int maxColumns,
-            //IList<DataColumn> arrColumns = null,
-            bool autoColWidth = false, bool bPreserveTypes = true)
+        private static void ImportDataTable(WorkBook workBook, DataTable data, string[] columns,
+            bool isShiftRows, bool isFieldNameShown, bool drawLine, int firstRow, int firstColumn,
+            int maxRows, int maxColumns, bool autoColWidth = false, bool bPreserveTypes = true)
         {
             if(data == null)
                 throw new ArgumentNullException("data");
 
+            
+
             var use_arr_cols = columns != null && columns.Length > 0;
-            var arrColumns = new List<DataColumn>();
+            var arrColumnsInfo = new List<MyColumnInfo>();
             if (use_arr_cols)
             {
-                foreach (string column0 in columns)
+                foreach (string column1 in columns)
                 {
-                    string column = column0.Trim();
-                    if (data.Columns.Contains(column))
+                    MyColumnInfo myColumnInfo = new MyColumnInfo();
+                    arrColumnsInfo.Add(myColumnInfo);
+
+                    string column_param_string = column1.Trim();
+
+                    if (data.Columns.Contains(column_param_string))
                     {
-                        arrColumns.Add(data.Columns[column]);
+                        myColumnInfo.Column = data.Columns[column_param_string];
+                        myColumnInfo.ColumnName = myColumnInfo.Column.ColumnName;
                     }
                     else
                     {
-                        string[] ss = column.Split(':');//"ColumnName:Type:DefaultValue ex GhiChu:C:abc ex2 ExtraDate:D:20/11/2018
+                        string[] ss = column_param_string.Split(':');
+                            //"ColumnName:Type:DefaultValue ex GhiChu:C:abc ex2 ExtraDate:D:20/11/2018
                         if (ss.Length > 1)
                         {
-                            object value = DBNull.Value;
+                            string columnName = ss[0];
+                            myColumnInfo.ColumnName = columnName;
+                            object default_value = DBNull.Value;
+
                             if (ss[1].ToUpper() == "N")
                             {
-                                if(!data.Columns.Contains(ss[0])) data.Columns.Add(ss[0], typeof(decimal));
-                                if(ss.Length>2) value = ObjectAndString.StringToDecimal(ss[2]);
+                                if (!data.Columns.Contains(columnName)) data.Columns.Add(columnName, typeof(decimal));
+                                if (ss.Length > 2)
+                                {
+                                    if (ss[2].Contains("+") || ss[2].Contains("-") || ss[2].Contains("*") || ss[2].Contains("/")
+                                         || ss[2].Contains("^"))
+                                    {
+                                        myColumnInfo.Expression = ss[2];
+                                    }
+                                    else
+                                    {
+                                        default_value = ObjectAndString.StringToDecimal(ss[2]);
+                                    }
+                                }
                             }
                             else if (ss[1].ToUpper() == "D")
                             {
-                                if (!data.Columns.Contains(ss[0])) data.Columns.Add(ss[0], typeof(DateTime));
-                                if (ss.Length > 2) value = ObjectAndString.StringToDate(ss[2]);
+                                if (!data.Columns.Contains(columnName)) data.Columns.Add(columnName, typeof(DateTime));
+                                if (ss.Length > 2) default_value = ObjectAndString.StringToDate(ss[2]);
                             }
                             else
                             {
-                                if (!data.Columns.Contains(ss[0])) data.Columns.Add(ss[0], typeof(string));
-                                if (ss.Length > 2) value = ss[2];
+                                if (!data.Columns.Contains(columnName)) data.Columns.Add(columnName, typeof(string));
+                                if (ss.Length > 2) default_value = ss[2];
                             }
-                            arrColumns.Add(data.Columns[ss[0]]);
+                            //arrColumns.Add(data.Columns[ss[0]]); // !!!!!!!!!!
+                            myColumnInfo.Column = data.Columns[columnName];
 
-                            foreach (DataRow row in data.Rows)
+                            if (myColumnInfo.Expression != null)
                             {
-                                row[ss[0]] = value;
+                                foreach (DataRow row in data.Rows)
+                                {
+                                    row[columnName] = Number.GiaTriBieuThuc(myColumnInfo.Expression, row.ToDataDictionary());
+                                }
+                            }
+                            else
+                            {
+                                foreach (DataRow row in data.Rows)
+                                {
+                                    row[columnName] = default_value;
+                                }
                             }
                         }
                     }
                 }
                 //var arrayCols = Cols.ToArray();
             }
+            else // Lấy tất cả columns.
+            {
+                foreach (DataColumn column in data.Columns)
+                {
+                    MyColumnInfo myColumnInfo = new MyColumnInfo();
+                    arrColumnsInfo.Add(myColumnInfo);
+                    myColumnInfo.Column = column;
+                    myColumnInfo.ColumnName = column.ColumnName;
+                }
+            }
 
             var numOfRows = data.Rows.Count;
-            
-            var numOfColumns = use_arr_cols ? arrColumns.Count : data.Columns.Count;
+            var numOfColumns = use_arr_cols ? arrColumnsInfo.Count : data.Columns.Count;
+
             if (numOfColumns < 1)
             {
                 throw new Exception("ExportExcel Column error.");
@@ -186,7 +236,7 @@ namespace V6Tools.V6Export
                 {
                     for (int i = 0; i < numOfColumns; i++)
                     {
-                        workBook.setText(firstRow, i + firstColumn, arrColumns[i].ColumnName);
+                        workBook.setText(firstRow, i + firstColumn, arrColumnsInfo[i].ColumnName);
                     }
                 }
                 else
@@ -237,15 +287,13 @@ namespace V6Tools.V6Export
             for (int i = 0; i < numOfColumns; i++)
             {
                 #region === Chèn dữ liệu cho cột i ===
-                var column = use_arr_cols ? arrColumns[i] : data.Columns[i];
+                var column_i = arrColumnsInfo[i].Column;
                 int excelCurrentColumnIndex = firstColumn + i;
                 //int excelCurrentColumnWidth = workBook.getColWidth(excelCurrentColumnIndex);
                 //y1 = y2;
                 //y2 += excelCurrentColumnWidth;
-                var type = column.DataType;
-                var field = column.ColumnName;
+                Type type = column_i.DataType;
                 
-
                 if (type == typeof(DateTime))
                 {
                     RangeStyle rs = workBook.getRangeStyle(firstRow, firstColumn + i, firstRow + numOfRows, firstColumn + i);
@@ -257,7 +305,7 @@ namespace V6Tools.V6Export
 
                     for (int j = 0; j < numOfRows; j++)
                     {
-                        var date_string = ObjectAndString.ObjectToString(data.Rows[j][field], systemFormat);
+                        var date_string = ObjectAndString.ObjectToString(data.Rows[j][column_i.ColumnName], systemFormat);
                         if (date_string != null)
                         {
                             workBook.setEntry(firstRow + j, firstColumn + i, date_string);
@@ -280,10 +328,10 @@ namespace V6Tools.V6Export
                         //x1 = x2;
                         //x2 += excelCurrentRowHeight;
 
-                        if (data.Rows[j][field] == DBNull.Value) continue;
+                        if (data.Rows[j][column_i.ColumnName] == DBNull.Value) continue;
                         try
                         {
-                            var picture = (byte[])data.Rows[j][field];
+                            var picture = (byte[])data.Rows[j][column_i.ColumnName];
                             workBook.addPicture(excelCurrentColumnIndex, excelCurrentRowIndex,
                                 excelCurrentColumnIndex + 1, excelCurrentRowIndex + 1, picture);
                         }
@@ -306,14 +354,14 @@ namespace V6Tools.V6Export
 
                     for (int j = 0; j < numOfRows; j++)
                     {
-                        workBook.setNumber(firstRow + j, firstColumn + i, ObjectAndString.ToObject<double>(data.Rows[j][field]));
+                        workBook.setNumber(firstRow + j, firstColumn + i, ObjectAndString.ToObject<double>(data.Rows[j][column_i.ColumnName]));
                     }
                 }
                 else
                 {
                     for (int j = 0; j < numOfRows; j++)
                     {
-                        workBook.setText(firstRow + j, firstColumn + i, ObjectAndString.ObjectToString(data.Rows[j][field]));
+                        workBook.setText(firstRow + j, firstColumn + i, ObjectAndString.ObjectToString(data.Rows[j][column_i.ColumnName]));
                     }
                 }
                 #endregion chèn dữ liệu cột i
@@ -1251,7 +1299,7 @@ namespace V6Tools.V6Export
         /// <param name="xlsTemplateFile">File Excel mẫu</param>
         /// <param name="data">Dữ liệu vào</param>
         /// <param name="firstCell">Vị trí ô bắt đầu điền dữ liệu vd: A2.</param>
-        /// <param name="columns">Danh sách cột dữ liệu sẽ lấy, null nếu lấy hết.</param>
+        /// <param name="columns">Danh sách cột dữ liệu sẽ lấy, null nếu lấy hết. Có thể là một công thức FieldA+FieldB</param>
         /// <param name="saveFile">Tên tập tin sẽ lưu, không được trùng với file mẫu</param>
         /// <param name="parameters">Giá trị theo vị trí trong excel. Với key là vị trí vd: A1</param>
         /// <param name="nfi">Thông tin định dạng kiểu số</param>
