@@ -1806,8 +1806,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 f2.AfterInitControl += f_AfterInitControl;
                 f2.InitFormControl();
                 f2.SetFather(this);
-                f2.UpdateSuccessEvent += data =>
+                f2.ShowDialog(this);
+                SetStatus2Text();
+                if (f2.InsertSuccess)
                 {
+                    var data = f2.FormControl.DataDic;
                     //cap nhap thong tin
                     LoadComboboxSource();
                     //Chọn cái mới.
@@ -1822,8 +1825,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                         }
                     }
                 };
-                f2.ShowDialog(this);
-                SetStatus2Text();
             }
             catch (Exception ex)
             {
@@ -1868,8 +1869,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 f2.AfterInitControl += f_AfterInitControl;
                 f2.InitFormControl();
                 f2.SetFather(this);
-                f2.InsertSuccessEvent += data =>
+                f2.ShowDialog(this);
+                SetStatus2Text();
+                if (f2.InsertSuccess)
                 {
+                    var data = f2.FormControl.DataDic;
                     //cap nhap thong tin
                     LoadComboboxSource();
                     //Chọn cái mới.
@@ -1884,8 +1888,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                         }
                     }
                 };
-                f2.ShowDialog(this);
-                SetStatus2Text();
             }
             catch (Exception ex)
             {

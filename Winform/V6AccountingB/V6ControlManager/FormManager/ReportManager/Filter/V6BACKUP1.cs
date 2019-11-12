@@ -17,7 +17,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 ("ALBAK", "MAX(NGAY_BK) AS NGAY_BK", "1=1").Data;
             if (t.Rows.Count == 1)
             {
-                if (t.Rows[0]["NGAY_BK"] != null)
+                if (t.Rows[0]["NGAY_BK"] != DBNull.Value)
                     txtngay_bk.Value = (DateTime?) t.Rows[0]["NGAY_BK"];
 
                 else

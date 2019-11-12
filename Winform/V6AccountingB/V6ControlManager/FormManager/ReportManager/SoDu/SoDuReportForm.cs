@@ -942,8 +942,10 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 f.AfterInitControl += f_AfterInitControl;
                 f.InitFormControl();
                 f.SetFather(this);
-                f.UpdateSuccessEvent += data =>
+                f.ShowDialog(this);
+                if (f.InsertSuccess)
                 {
+                    var data = f.FormControl.DataDic;
                     //cap nhap thong tin
                     LoadComboboxSource();
                     //Chọn cái mới.
@@ -958,7 +960,6 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                         }
                     }
                 };
-                f.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -994,12 +995,14 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                     {"LAN", LAN},
                     {"REPORT", ReportFile}
                 };
-                var f = new FormAddEdit(V6TableName.Albc, V6Mode.Add, keys, null);
-                f.AfterInitControl += f_AfterInitControl;
-                f.InitFormControl();
-                f.SetFather(this);
-                f.InsertSuccessEvent += data =>
+                var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Add, keys, null);
+                f2.AfterInitControl += f_AfterInitControl;
+                f2.InitFormControl();
+                f2.SetFather(this);
+                f2.ShowDialog(this);
+                if (f2.InsertSuccess)
                 {
+                    var data = f2.FormControl.DataDic;
                     //cap nhap thong tin
                     LoadComboboxSource();
                     //Chọn cái mới.
@@ -1014,7 +1017,6 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                         }
                     }
                 };
-                f.ShowDialog(this);
             }
             catch (Exception ex)
             {

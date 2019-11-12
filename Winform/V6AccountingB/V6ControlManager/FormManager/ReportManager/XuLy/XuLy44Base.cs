@@ -998,8 +998,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 FormAddEdit f = new FormAddEdit("ARS82", V6Mode.Add, null, data);
                 f.AfterInitControl += f_AfterInitControlARS82;
                 f.InitFormControl();
-                f.InsertSuccessEvent += (dataDic) =>
+                f.SetFather(this);
+                f.ShowDialog(thisForm);
+                SetStatus2Text();
+                if (f.InsertSuccess)
                 {
+                    //var data = f.FormControl.DataDic;
                     try
                     {
                         btnNhan.PerformClick();
@@ -1010,8 +1014,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         MessageBox.Show(ex.Message);
                     }
                 };
-                f.ShowDialog(thisForm);
-                SetStatus2Text();
             }
             catch (Exception ex)
             {
@@ -1448,12 +1450,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         data0["FirstAdd"] = "1";
                     }
 
-                    var f = new FormAddEdit(V6TableName.Albc, V6Mode.Add, keys, data0);
-                    f.AfterInitControl += f_AfterInitControl;
-                    f.InitFormControl();
-                    f.SetFather(this);
-                    f.InsertSuccessEvent += (data) =>
+                    var f2 = new FormAddEdit(V6TableName.Albc, V6Mode.Add, keys, data0);
+                    f2.AfterInitControl += f_AfterInitControl;
+                    f2.InitFormControl();
+                    f2.SetFather(this);
+                    f2.ShowDialog(this);
+                    SetStatus2Text();
+                    if (f2.InsertSuccess)
                     {
+                        //var data = f2.FormControl.DataDic;
                         //cap nhap thong tin
                         LoadComboboxSource();
                         //Chọn cái mới.
@@ -1468,8 +1473,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         //    }
                         //}
                     };
-                    f.ShowDialog(this);
-                    SetStatus2Text();
                 }
             }
             catch (Exception ex)
