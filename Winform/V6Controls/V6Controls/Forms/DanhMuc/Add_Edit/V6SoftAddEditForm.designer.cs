@@ -51,6 +51,9 @@
             this.v6ColorTextBox1 = new V6Controls.V6ColorTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.picLOGO = new System.Windows.Forms.PictureBox();
+            this.btnXoahinh = new V6Controls.Controls.V6FormButton();
+            this.btnChonhinh = new V6Controls.Controls.V6FormButton();
             this.txtval = new V6Controls.V6ColorTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
@@ -58,6 +61,7 @@
             this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLOGO)).BeginInit();
             this.v6TabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -432,6 +436,9 @@
             this.tabPage1.AccessibleDescription = "ADDEDITT00001";
             this.tabPage1.AutoScroll = true;
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage1.Controls.Add(this.picLOGO);
+            this.tabPage1.Controls.Add(this.btnXoahinh);
+            this.tabPage1.Controls.Add(this.btnChonhinh);
             this.tabPage1.Controls.Add(this.txtval);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
@@ -441,6 +448,49 @@
             this.tabPage1.Size = new System.Drawing.Size(742, 347);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin chính";
+            // 
+            // picLOGO
+            // 
+            this.picLOGO.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picLOGO.Location = new System.Drawing.Point(111, 54);
+            this.picLOGO.Name = "picLOGO";
+            this.picLOGO.Size = new System.Drawing.Size(350, 262);
+            this.picLOGO.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picLOGO.TabIndex = 48;
+            this.picLOGO.TabStop = false;
+            this.picLOGO.Visible = false;
+            // 
+            // btnXoahinh
+            // 
+            this.btnXoahinh.AccessibleDescription = "ADDEDITB00005";
+            this.btnXoahinh.AccessibleName = "";
+            this.btnXoahinh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXoahinh.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnXoahinh.Location = new System.Drawing.Point(3, 89);
+            this.btnXoahinh.Name = "btnXoahinh";
+            this.btnXoahinh.Size = new System.Drawing.Size(91, 29);
+            this.btnXoahinh.TabIndex = 47;
+            this.btnXoahinh.Text = "Xóa hình";
+            this.btnXoahinh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXoahinh.UseVisualStyleBackColor = true;
+            this.btnXoahinh.Visible = false;
+            this.btnXoahinh.Click += new System.EventHandler(this.btnXoahinh_Click);
+            // 
+            // btnChonhinh
+            // 
+            this.btnChonhinh.AccessibleDescription = "ADDEDITB00004";
+            this.btnChonhinh.AccessibleName = "";
+            this.btnChonhinh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnChonhinh.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnChonhinh.Location = new System.Drawing.Point(3, 54);
+            this.btnChonhinh.Name = "btnChonhinh";
+            this.btnChonhinh.Size = new System.Drawing.Size(91, 29);
+            this.btnChonhinh.TabIndex = 46;
+            this.btnChonhinh.Text = "Chọn hình";
+            this.btnChonhinh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnChonhinh.UseVisualStyleBackColor = true;
+            this.btnChonhinh.Visible = false;
+            this.btnChonhinh.Click += new System.EventHandler(this.btnChonhinh_Click);
             // 
             // txtval
             // 
@@ -518,6 +568,7 @@
             this.tabPage3.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLOGO)).EndInit();
             this.v6TabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -552,5 +603,8 @@
         private System.Windows.Forms.Label label11;
         private V6ColorTextBox v6ColorTextBox8;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.PictureBox picLOGO;
+        protected Controls.V6FormButton btnXoahinh;
+        protected Controls.V6FormButton btnChonhinh;
     }
 }

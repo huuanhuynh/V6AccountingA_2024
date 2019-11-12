@@ -1037,6 +1037,13 @@ namespace V6AccountingBusiness
             return result;
         }
 
+        /// <summary>
+        /// Update table parameters.
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="dataDictionary"></param>
+        /// <param name="keys"></param>
+        /// <returns></returns>
         public static int UpdateTable(string tableName, SortedDictionary<string, object> dataDictionary, SortedDictionary<string, object> keys)
         {
             V6TableStruct tableStruct = GetTableStruct(tableName);

@@ -58,6 +58,9 @@ namespace V6AccountingB
             
             lblCompanyName.Text = V6Soft.V6SoftValue["M_TEN_CTY"].ToUpper();
             controlsDictionary.Add("lblCompanyName", lblCompanyName);
+            
+            picLOGO.Image = V6Soft.CompanyLogo;
+            
             this.Text += " " + DatabaseConfig.Note;
 
             LoadMainFormInit();

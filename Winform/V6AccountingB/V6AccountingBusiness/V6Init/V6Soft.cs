@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using V6SqlConnect;
 using V6Structs;
+using V6Tools.V6Convert;
 
 namespace V6Init
 {
@@ -62,7 +64,32 @@ namespace V6Init
                 return V6SoftValue == null ? "PROPERTY" : V6SoftValue["PROPERTY"];
             }
         }
-        
+
+        private static Image _companyLogo = null;
+        public static Image CompanyLogo
+        {
+            get
+            {
+                if (_companyLogo == null)
+                {
+                    try
+                    {
+                        V6SelectResult selectResult = SqlConnect.Select("V6Soft", "name,type,val,attribute,logo", "name='M_TEN_CTY'");
+                        if (selectResult.Data.Rows.Count == 1)
+                        {
+                            var objectData = selectResult.Data.Rows[0]["LOGO"];
+                            if (objectData is Image) _companyLogo = (Image)objectData;
+                            else if (objectData is byte[]) _companyLogo = Picture.ByteArrayToImage((byte[])objectData);
+                        }
+                    }
+                    catch
+                    {
+                        // null
+                    }
+                }
+                return _companyLogo;
+            }
+        }
     }
 
 }

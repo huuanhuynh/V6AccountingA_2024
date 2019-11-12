@@ -3761,8 +3761,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     if (txtSoPhieu.Text.Trim() == "")
                         txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
 
+                    //if (txtMaMauHD.Text.Trim() == "")
+                    //{
+                    //    txtMaMauHD.Text = AM_old["MA_MAUHD"].ToString().Trim();
+                    //}
                     if (txtso_seri.Text.Trim() == "")
+                    {
                         txtso_seri.Text = AM_old["SO_SERI"].ToString().Trim();
+                    }
 
                 }
             }

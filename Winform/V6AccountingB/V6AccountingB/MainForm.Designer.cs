@@ -49,6 +49,8 @@ namespace V6AccountingB
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblStatus2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.menuMain = new V6Controls.MenuControl();
+            this.quickMenu1 = new V6AccountingB.QuickMenu();
             this.panelLogin = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.changeDVCSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,8 +62,6 @@ namespace V6AccountingB
             this.lblComment = new System.Windows.Forms.Label();
             this.lblUserName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.menuMain = new V6Controls.MenuControl();
-            this.quickMenu1 = new V6AccountingB.QuickMenu();
             this.panelMenuShow = new System.Windows.Forms.Panel();
             this.lblMenuShow = new V6Controls.V6VeticalLabel();
             this.lblMainMessage = new V6Controls.V6Label();
@@ -70,6 +70,7 @@ namespace V6AccountingB
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.lblV6Message = new System.Windows.Forms.Label();
+            this.picLOGO = new System.Windows.Forms.PictureBox();
             this.statusStrip1.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panelLogin.SuspendLayout();
@@ -77,6 +78,7 @@ namespace V6AccountingB
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMenuShow.SuspendLayout();
             this.panelView.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLOGO)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -120,129 +122,14 @@ namespace V6AccountingB
             this.panelMenu.AutoScroll = true;
             this.panelMenu.BackColor = System.Drawing.Color.AliceBlue;
             this.panelMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelMenu.Controls.Add(this.panelLogin);
             this.panelMenu.Controls.Add(this.menuMain);
             this.panelMenu.Controls.Add(this.quickMenu1);
+            this.panelMenu.Controls.Add(this.panelLogin);
             this.panelMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelMenu.Location = new System.Drawing.Point(0, 12);
             this.panelMenu.Name = "panelMenu";
             this.panelMenu.Size = new System.Drawing.Size(155, 551);
             this.panelMenu.TabIndex = 0;
-            // 
-            // panelLogin
-            // 
-            this.panelLogin.ContextMenuStrip = this.contextMenuStrip1;
-            this.panelLogin.Controls.Add(this.lblDVCS);
-            this.panelLogin.Controls.Add(this.pictureBox1);
-            this.panelLogin.Controls.Add(this.lblHotLine);
-            this.panelLogin.Controls.Add(this.btnExit);
-            this.panelLogin.Controls.Add(this.lblComment);
-            this.panelLogin.Controls.Add(this.lblUserName);
-            this.panelLogin.Controls.Add(this.label1);
-            this.panelLogin.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelLogin.Location = new System.Drawing.Point(0, 404);
-            this.panelLogin.Name = "panelLogin";
-            this.panelLogin.Size = new System.Drawing.Size(153, 145);
-            this.panelLogin.TabIndex = 1;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.changeDVCSToolStripMenuItem,
-            this.stickNoteToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(151, 48);
-            // 
-            // changeDVCSToolStripMenuItem
-            // 
-            this.changeDVCSToolStripMenuItem.Name = "changeDVCSToolStripMenuItem";
-            this.changeDVCSToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.changeDVCSToolStripMenuItem.Text = "Change Agent";
-            this.changeDVCSToolStripMenuItem.Click += new System.EventHandler(this.changeDVCSToolStripMenuItem_Click);
-            // 
-            // stickNoteToolStripMenuItem
-            // 
-            this.stickNoteToolStripMenuItem.Name = "stickNoteToolStripMenuItem";
-            this.stickNoteToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.stickNoteToolStripMenuItem.Text = "Stick note";
-            this.stickNoteToolStripMenuItem.Click += new System.EventHandler(this.stickNoteToolStripMenuItem_Click);
-            // 
-            // lblDVCS
-            // 
-            this.lblDVCS.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblDVCS.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDVCS.Location = new System.Drawing.Point(4, 66);
-            this.lblDVCS.Name = "lblDVCS";
-            this.lblDVCS.Size = new System.Drawing.Size(145, 20);
-            this.lblDVCS.TabIndex = 15;
-            this.lblDVCS.Text = "UserName";
-            this.lblDVCS.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lblDVCS_MouseClick);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pictureBox1.Image = global::V6AccountingB.Properties.Resources.Calculator;
-            this.pictureBox1.Location = new System.Drawing.Point(101, 106);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // lblHotLine
-            // 
-            this.lblHotLine.AutoSize = true;
-            this.lblHotLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHotLine.ForeColor = System.Drawing.Color.Red;
-            this.lblHotLine.Location = new System.Drawing.Point(2, 87);
-            this.lblHotLine.Name = "lblHotLine";
-            this.lblHotLine.Size = new System.Drawing.Size(147, 13);
-            this.lblHotLine.TabIndex = 13;
-            this.lblHotLine.Text = "HOTLINE: 0936 976 976";
-            this.lblHotLine.Click += new System.EventHandler(this.lblHotLine_Click);
-            // 
-            // btnExit
-            // 
-            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Image = global::V6AccountingB.Properties.Resources.exit;
-            this.btnExit.Location = new System.Drawing.Point(7, 102);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(78, 39);
-            this.btnExit.TabIndex = 12;
-            this.btnExit.Text = "Exit";
-            this.btnExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnExit.UseVisualStyleBackColor = false;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // lblComment
-            // 
-            this.lblComment.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblComment.Location = new System.Drawing.Point(2, 24);
-            this.lblComment.Name = "lblComment";
-            this.lblComment.Size = new System.Drawing.Size(148, 44);
-            this.lblComment.TabIndex = 0;
-            this.lblComment.Text = "coment";
-            // 
-            // lblUserName
-            // 
-            this.lblUserName.AutoSize = true;
-            this.lblUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserName.Location = new System.Drawing.Point(50, 5);
-            this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(88, 18);
-            this.lblUserName.TabIndex = 0;
-            this.lblUserName.Text = "UserName";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 18);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "User:";
             // 
             // menuMain
             // 
@@ -534,8 +421,129 @@ namespace V6AccountingB
             this.quickMenu1.Location = new System.Drawing.Point(0, 322);
             this.quickMenu1.Margin = new System.Windows.Forms.Padding(4);
             this.quickMenu1.Name = "quickMenu1";
-            this.quickMenu1.Size = new System.Drawing.Size(151, 81);
+            this.quickMenu1.Size = new System.Drawing.Size(151, 39);
             this.quickMenu1.TabIndex = 0;
+            // 
+            // panelLogin
+            // 
+            this.panelLogin.ContextMenuStrip = this.contextMenuStrip1;
+            this.panelLogin.Controls.Add(this.picLOGO);
+            this.panelLogin.Controls.Add(this.lblDVCS);
+            this.panelLogin.Controls.Add(this.pictureBox1);
+            this.panelLogin.Controls.Add(this.lblHotLine);
+            this.panelLogin.Controls.Add(this.btnExit);
+            this.panelLogin.Controls.Add(this.lblComment);
+            this.panelLogin.Controls.Add(this.lblUserName);
+            this.panelLogin.Controls.Add(this.label1);
+            this.panelLogin.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelLogin.Location = new System.Drawing.Point(0, 361);
+            this.panelLogin.Name = "panelLogin";
+            this.panelLogin.Size = new System.Drawing.Size(153, 188);
+            this.panelLogin.TabIndex = 1;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeDVCSToolStripMenuItem,
+            this.stickNoteToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(151, 48);
+            // 
+            // changeDVCSToolStripMenuItem
+            // 
+            this.changeDVCSToolStripMenuItem.Name = "changeDVCSToolStripMenuItem";
+            this.changeDVCSToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.changeDVCSToolStripMenuItem.Text = "Change Agent";
+            this.changeDVCSToolStripMenuItem.Click += new System.EventHandler(this.changeDVCSToolStripMenuItem_Click);
+            // 
+            // stickNoteToolStripMenuItem
+            // 
+            this.stickNoteToolStripMenuItem.Name = "stickNoteToolStripMenuItem";
+            this.stickNoteToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.stickNoteToolStripMenuItem.Text = "Stick note";
+            this.stickNoteToolStripMenuItem.Click += new System.EventHandler(this.stickNoteToolStripMenuItem_Click);
+            // 
+            // lblDVCS
+            // 
+            this.lblDVCS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblDVCS.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblDVCS.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDVCS.Location = new System.Drawing.Point(4, 109);
+            this.lblDVCS.Name = "lblDVCS";
+            this.lblDVCS.Size = new System.Drawing.Size(145, 20);
+            this.lblDVCS.TabIndex = 15;
+            this.lblDVCS.Text = "DVCS";
+            this.lblDVCS.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lblDVCS_MouseClick);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pictureBox1.Image = global::V6AccountingB.Properties.Resources.Calculator;
+            this.pictureBox1.Location = new System.Drawing.Point(101, 149);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // lblHotLine
+            // 
+            this.lblHotLine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblHotLine.AutoSize = true;
+            this.lblHotLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHotLine.ForeColor = System.Drawing.Color.Red;
+            this.lblHotLine.Location = new System.Drawing.Point(2, 130);
+            this.lblHotLine.Name = "lblHotLine";
+            this.lblHotLine.Size = new System.Drawing.Size(147, 13);
+            this.lblHotLine.TabIndex = 13;
+            this.lblHotLine.Text = "HOTLINE: 0936 976 976";
+            this.lblHotLine.Click += new System.EventHandler(this.lblHotLine_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.Image = global::V6AccountingB.Properties.Resources.exit;
+            this.btnExit.Location = new System.Drawing.Point(7, 145);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(78, 39);
+            this.btnExit.TabIndex = 12;
+            this.btnExit.Text = "Exit";
+            this.btnExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // lblComment
+            // 
+            this.lblComment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblComment.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblComment.Location = new System.Drawing.Point(2, 82);
+            this.lblComment.Name = "lblComment";
+            this.lblComment.Size = new System.Drawing.Size(148, 26);
+            this.lblComment.TabIndex = 0;
+            this.lblComment.Text = "coment";
+            // 
+            // lblUserName
+            // 
+            this.lblUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblUserName.AutoSize = true;
+            this.lblUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserName.Location = new System.Drawing.Point(50, 67);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(65, 13);
+            this.lblUserName.TabIndex = 0;
+            this.lblUserName.Text = "UserName";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(3, 67);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(37, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "User:";
             // 
             // panelMenuShow
             // 
@@ -630,6 +638,17 @@ namespace V6AccountingB
             this.lblV6Message.Text = ".....";
             this.lblV6Message.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // picLOGO
+            // 
+            this.picLOGO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.picLOGO.BackColor = System.Drawing.Color.AliceBlue;
+            this.picLOGO.Location = new System.Drawing.Point(11, 3);
+            this.picLOGO.Name = "picLOGO";
+            this.picLOGO.Size = new System.Drawing.Size(122, 61);
+            this.picLOGO.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picLOGO.TabIndex = 46;
+            this.picLOGO.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -667,6 +686,7 @@ namespace V6AccountingB
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelMenuShow.ResumeLayout(false);
             this.panelView.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picLOGO)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -700,6 +720,7 @@ namespace V6AccountingB
         private System.Windows.Forms.ToolStripMenuItem changeDVCSToolStripMenuItem;
         private System.Windows.Forms.Label lblDVCS;
         private ToolStripMenuItem stickNoteToolStripMenuItem;
+        private PictureBox picLOGO;
         
     }
 }

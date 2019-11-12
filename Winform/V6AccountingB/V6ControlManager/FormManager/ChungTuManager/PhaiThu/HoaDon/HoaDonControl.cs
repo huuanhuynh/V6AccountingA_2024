@@ -4371,7 +4371,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         {
                             txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(old_masonb, dateNgayCT.Date);
                         }
-
+                        if (txtMaMauHD.Text.Trim() == "")
+                        {
+                            txtMaMauHD.Text = AM_old["MA_MAUHD"].ToString().Trim();
+                        }
                         if (txtso_seri.Text.Trim() == "")
                         {
                             txtso_seri.Text = AM_old["SO_SERI"].ToString().Trim();
