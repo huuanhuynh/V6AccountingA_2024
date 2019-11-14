@@ -308,28 +308,37 @@ namespace V6Tools.V6Convert
         }
 
         /// <summary>
-        /// chuyển một object thành chuỗi hiển thị. (chưa có kiểu số)
+        /// chuyển một object thành chuỗi hiển thị.
         /// </summary>
         /// <param name="o"></param>
-        /// <param name="dateFormat">Chỉ có tác dụng khi o đưa vào kiểu ngày. Cần update thêm cho kiểu số</param>
+        /// <param name="formatString">Chỉ có tác dụng khi o đưa vào kiểu ngày. Cần update thêm cho kiểu số</param>
         /// <returns></returns>
-        public static string ObjectToString(object o, string dateFormat = "dd/MM/yyyy")
+        public static string ObjectToString(object o, string formatString = null)
         {
             if (o == null || o == DBNull.Value) return "";
             string result = "";
             Type t = o.GetType();
-            //if (IsNumberType(t))
-            //{
-            //    //Chua xu ly.
-            //    if (t == typeof(decimal) || t == typeof(double) || t == typeof(float))
-            //    {
-            //        result = NumberToString(ObjectToDecimal(o), 2, ",", " ");
-            //    }
-            //    else
-            //    {
-            //        result = o.ToString();
-            //    }
-            //}
+            if (IsNumberType(t))
+            {
+                var value = ObjectToDecimal(o);
+                if (string.IsNullOrEmpty(formatString))
+                {
+                    result = value.ToString(CultureInfo.InvariantCulture);
+                }
+                else
+                {
+                    result = value.ToString(formatString, CultureInfo.InvariantCulture);
+                }
+                return result;
+                //if (t == typeof(decimal) || t == typeof(double) || t == typeof(float))
+                //{
+                //    result = NumberToString(ObjectToDecimal(o), 2, ",", " ");
+                //}
+                //else
+                //{
+                //    result = o.ToString();
+                //}
+            }
             //if (result != "") return result;
 
             if (o is List<string>)
@@ -346,8 +355,9 @@ namespace V6Tools.V6Convert
             switch (t.ToString())
             {
                 case "System.DateTime":
-                    result = ((DateTime) o).ToString(dateFormat);
-                    if (!dateFormat.Contains(" "))
+                    if (string.IsNullOrEmpty(formatString)) formatString = "dd/MM/yyyy";
+                    result = ((DateTime) o).ToString(formatString);
+                    if (!formatString.Contains(" "))
                     {
                         result = result.Replace(" ", "");
                     }

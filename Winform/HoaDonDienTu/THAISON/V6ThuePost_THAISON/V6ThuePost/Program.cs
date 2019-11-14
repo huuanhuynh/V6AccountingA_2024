@@ -498,31 +498,49 @@ namespace V6ThuePost
                     SortedDictionary<string, object> parameters = new SortedDictionary<string, object>();
                     foreach (ConfigLine config_line in parameters_config)
                     {
-                        string replaced_value = config_line.Value;
+                        string content = config_line.Value;
                         if (config_line.Value.Contains("{") && config_line.Value.Contains("}"))
                         {
                             var regex = new Regex("{(.+?)}");
                             foreach (Match match in regex.Matches(config_line.Value))
                             {
-                                var matchKey = match.Groups[1].Value;
-                                if (data1.Columns.Contains(matchKey))
+                                var matchGroup0 = match.Groups[0].Value;
+                                var matchContain = match.Groups[1].Value;
+                                var matchColumn = matchContain;
+                                var matchFormat = "";
+                                if (matchContain.Contains(":"))
                                 {
-                                    replaced_value = config_line.Value.Replace(match.Groups[0].Value,
-                                        ObjectAndString.ObjectToString(row0[matchKey]));
+                                    int _2dotIndex = matchContain.IndexOf(":", StringComparison.InvariantCulture);
+                                    matchColumn = matchContain.Substring(0, _2dotIndex);
+                                    matchFormat = matchContain.Substring(_2dotIndex+1);
                                 }
+                                if (data1.Columns.Contains(matchColumn))
+                                {
+                                    if (data1.Columns[matchColumn].DataType == typeof(DateTime) && matchFormat == "")
+                                    {
+                                        matchFormat = "dd/MM/yyyy";
+                                    }
+                                    content = content.Replace(matchGroup0, ObjectAndString.ObjectToString(row0[matchColumn], matchFormat));
+                                }
+                                //var matchKey = match.Groups[1].Value;
+                                //if (data1.Columns.Contains(matchKey))
+                                //{
+                                //    replaced_value = config_line.Value.Replace(match.Groups[0].Value,
+                                //        ObjectAndString.ObjectToString(row0[matchKey]));
+                                //}
                             }
                             if (parameters.ContainsKey(config_line.Field))
                             {
                                 MessageBox.Show("Trùng khóa cấu hình excel: key=" + config_line.Field);
                                 continue;
                             }
-                            parameters.Add(config_line.Field, replaced_value);
+                            parameters.Add(config_line.Field, content);
                         }
                         else
                         {
                             if (data1.Columns.Contains(config_line.Value))
                             {
-                                parameters.Add(config_line.Field, row0[replaced_value]);
+                                parameters.Add(config_line.Field, row0[content]);
                             }
                         }
                     }

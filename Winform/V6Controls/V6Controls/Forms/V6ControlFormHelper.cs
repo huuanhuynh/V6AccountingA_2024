@@ -4018,18 +4018,30 @@ namespace V6Controls.Forms
                                 }
                                 else if (type == "2" && ExportExcelTemplate_tbl2 != null && ExportExcelTemplate_tbl2.Rows.Count > 0) //Lay value trong tbl2
                                 {
-                                    var tbl2_row = ExportExcelTemplate_tbl2.Rows[0];
+                                    var excel_row = ExportExcelTemplate_tbl2.Rows[0];
 
                                     if (content.Contains("{") && content.Contains("}"))
                                     {
                                         var regex = new Regex("{(.+?)}");
                                         foreach (Match match in regex.Matches(content))
                                         {
-                                            var matchKey = match.Groups[1].Value;
-                                            if (ExportExcelTemplate_tbl2.Columns.Contains(matchKey))
+                                            var matchGroup0 = match.Groups[0].Value;
+                                            var matchContain = match.Groups[1].Value;
+                                            var matchColumn = matchContain;
+                                            var matchFormat = "";
+                                            if (matchContain.Contains(":"))
                                             {
-                                                content = content.Replace(match.Groups[0].Value,
-                                                    ObjectAndString.ObjectToString(tbl2_row[matchKey]));
+                                                int _2dotIndex = matchContain.IndexOf(":", StringComparison.InvariantCulture);
+                                                matchColumn = matchContain.Substring(0, _2dotIndex);
+                                                matchFormat = matchContain.Substring(_2dotIndex+1);
+                                            }
+                                            if (ExportExcelTemplate_tbl2.Columns.Contains(matchColumn))
+                                            {
+                                                if (ExportExcelTemplate_tbl2.Columns[matchColumn].DataType == typeof(DateTime) && matchFormat == "")
+                                                {
+                                                    matchFormat = "dd/MM/yyyy";
+                                                }
+                                                content = content.Replace(matchGroup0, ObjectAndString.ObjectToString(excel_row[matchColumn], matchFormat));
                                             }
                                         }
                                         if (parameters.ContainsKey(KEY))
@@ -4043,7 +4055,7 @@ namespace V6Controls.Forms
                                     {
                                         if (ExportExcelTemplate_tbl2.Columns.Contains(content))
                                         {
-                                            parameters.Add(KEY, tbl2_row[content]);
+                                            parameters.Add(KEY, excel_row[content]);
                                         }
                                     }
                                 }
@@ -4271,19 +4283,31 @@ namespace V6Controls.Forms
                                     }
                                     else if (type == "2" && ExportExcelTemplateD_tbl2 != null && ExportExcelTemplateD_tbl2.Rows.Count > 0)//Lay value trong tbl2
                                     {
-                                        var tbl2_row = ExportExcelTemplateD_tbl2.Rows[0];
+                                        var excel_row = ExportExcelTemplateD_tbl2.Rows[0];
 
                                         if (content.Contains("{") && content.Contains("}"))
                                         {
                                             var regex = new Regex("{(.+?)}");
                                             foreach (Match match in regex.Matches(content))
                                             {
-                                                var matchKey = match.Groups[1].Value;
-                                                if (ExportExcelTemplateD_tbl2.Columns.Contains(matchKey))
+                                                var matchGroup0 = match.Groups[0].Value;
+                                                var matchContain = match.Groups[1].Value;
+                                                var matchColumn = matchContain;
+                                                var matchFormat = "";
+                                                if (matchContain.Contains(":"))
                                                 {
-                                                    content = content.Replace(match.Groups[0].Value,
-                                                        ObjectAndString.ObjectToString(tbl2_row[matchKey]));
+                                                    int _2dotIndex = matchContain.IndexOf(":", StringComparison.InvariantCulture);
+                                                    matchColumn = matchContain.Substring(0, _2dotIndex);
+                                                    matchFormat = matchContain.Substring(_2dotIndex+1);
+                                                }
 
+                                                if (ExportExcelTemplateD_tbl2.Columns.Contains(matchColumn))
+                                                {
+                                                    if (ExportExcelTemplateD_tbl2.Columns[matchColumn].DataType == typeof(DateTime) && matchFormat == "")
+                                                    {
+                                                        matchFormat = "dd/MM/yyyy";
+                                                    }
+                                                    content = content.Replace(matchGroup0, ObjectAndString.ObjectToString(excel_row[matchColumn], matchFormat));
                                                 }
                                             }
                                             if (parameters.ContainsKey(KEY))
@@ -4297,7 +4321,7 @@ namespace V6Controls.Forms
                                         {
                                             if (ExportExcelTemplateD_tbl2.Columns.Contains(content))
                                             {
-                                                parameters.Add(KEY, tbl2_row[content]);
+                                                parameters.Add(KEY, excel_row[content]);
                                             }
                                         }
                                     }
@@ -4551,18 +4575,30 @@ namespace V6Controls.Forms
                                 }
                                 else if (type == "2" && ExportExcelGroup_tbl3 != null && ExportExcelGroup_tbl3.Rows.Count > 0) //Lay value trong tbl2
                                 {
-                                    var tbl2_row = ExportExcelGroup_tbl3.Rows[0];
+                                    var excel_row = ExportExcelGroup_tbl3.Rows[0];
 
                                     if (content.Contains("{") && content.Contains("}"))
                                     {
                                         var regex = new Regex("{(.+?)}");
                                         foreach (Match match in regex.Matches(content))
                                         {
-                                            var matchKey = match.Groups[1].Value;
-                                            if (ExportExcelGroup_tbl3.Columns.Contains(matchKey))
+                                            var matchGroup0 = match.Groups[0].Value;
+                                            var matchContain = match.Groups[1].Value;
+                                            var matchColumn = matchContain;
+                                            var matchFormat = "";
+                                            if (matchContain.Contains(":"))
                                             {
-                                                content = content.Replace(match.Groups[0].Value,
-                                                    ObjectAndString.ObjectToString(tbl2_row[matchKey]));
+                                                int _2dotIndex = matchContain.IndexOf(":", StringComparison.InvariantCulture);
+                                                matchColumn = matchContain.Substring(0, _2dotIndex);
+                                                matchFormat = matchContain.Substring(_2dotIndex+1);
+                                            }
+                                            if (ExportExcelGroup_tbl3.Columns.Contains(matchColumn))
+                                            {
+                                                if (ExportExcelGroup_tbl3.Columns[matchColumn].DataType == typeof(DateTime) && matchFormat == "")
+                                                {
+                                                    matchFormat = "dd/MM/yyyy";
+                                                }
+                                                content = content.Replace(matchGroup0, ObjectAndString.ObjectToString(excel_row[matchColumn], matchFormat));
                                             }
                                         }
                                         if (parameters.ContainsKey(KEY))
@@ -4576,7 +4612,7 @@ namespace V6Controls.Forms
                                     {
                                         if (ExportExcelGroup_tbl3.Columns.Contains(content))
                                         {
-                                            parameters.Add(KEY, tbl2_row[content]);
+                                            parameters.Add(KEY, excel_row[content]);
                                         }
                                     }
                                 }
@@ -4844,19 +4880,30 @@ namespace V6Controls.Forms
                                     }
                                     else if (type == "2" && ExportExcelTemplateHTKK_tbl2 != null && ExportExcelTemplateHTKK_tbl2.Rows.Count > 0)//Lay value trong tbl2
                                     {
-                                        var tbl2_row = ExportExcelTemplateHTKK_tbl2.Rows[0];
+                                        var excel_row = ExportExcelTemplateHTKK_tbl2.Rows[0];
 
                                         if (content.Contains("{") && content.Contains("}"))
                                         {
                                             var regex = new Regex("{(.+?)}");
                                             foreach (Match match in regex.Matches(content))
                                             {
-                                                var matchKey = match.Groups[1].Value;
-                                                if (ExportExcelTemplateHTKK_tbl2.Columns.Contains(matchKey))
+                                                var matchGroup0 = match.Groups[0].Value;
+                                                var matchContain = match.Groups[1].Value;
+                                                var matchColumn = matchContain;
+                                                var matchFormat = "";
+                                                if (matchContain.Contains(":"))
                                                 {
-                                                    content = content.Replace(match.Groups[0].Value,
-                                                        ObjectAndString.ObjectToString(tbl2_row[matchKey]));
-
+                                                    int _2dotIndex = matchContain.IndexOf(":", StringComparison.InvariantCulture);
+                                                    matchColumn = matchContain.Substring(0, _2dotIndex);
+                                                    matchFormat = matchContain.Substring(_2dotIndex+1);
+                                                }
+                                                if (ExportExcelTemplateHTKK_tbl2.Columns.Contains(matchColumn))
+                                                {
+                                                    if (ExportExcelTemplateHTKK_tbl2.Columns[matchColumn].DataType == typeof(DateTime) && matchFormat == "")
+                                                    {
+                                                        matchFormat = "dd/MM/yyyy";
+                                                    }
+                                                    content = content.Replace(matchGroup0, ObjectAndString.ObjectToString(excel_row[matchColumn], matchFormat));
                                                 }
                                             }
                                             if (parameters.ContainsKey(KEY))
@@ -4870,7 +4917,7 @@ namespace V6Controls.Forms
                                         {
                                             if (ExportExcelTemplateHTKK_tbl2.Columns.Contains(content))
                                             {
-                                                parameters.Add(KEY, tbl2_row[content]);
+                                                parameters.Add(KEY, excel_row[content]);
                                             }
                                         }
                                     }
@@ -5080,19 +5127,30 @@ namespace V6Controls.Forms
                                     }
                                     else if (type == "2" && ExportExcelTemplateONLINE_tbl2 != null && ExportExcelTemplateONLINE_tbl2.Rows.Count > 0)//Lay value trong tbl2
                                     {
-                                        var tbl2_row = ExportExcelTemplateONLINE_tbl2.Rows[0];
+                                        var excel_row = ExportExcelTemplateONLINE_tbl2.Rows[0];
 
                                         if (content.Contains("{") && content.Contains("}"))
                                         {
                                             var regex = new Regex("{(.+?)}");
                                             foreach (Match match in regex.Matches(content))
                                             {
-                                                var matchKey = match.Groups[1].Value;
-                                                if (ExportExcelTemplateONLINE_tbl2.Columns.Contains(matchKey))
+                                                var matchGroup0 = match.Groups[0].Value;
+                                                var matchContain = match.Groups[1].Value;
+                                                var matchColumn = matchContain;
+                                                var matchFormat = "";
+                                                if (matchContain.Contains(":"))
                                                 {
-                                                    content = content.Replace(match.Groups[0].Value,
-                                                        ObjectAndString.ObjectToString(tbl2_row[matchKey]));
-
+                                                    int _2dotIndex = matchContain.IndexOf(":", StringComparison.InvariantCulture);
+                                                    matchColumn = matchContain.Substring(0, _2dotIndex);
+                                                    matchFormat = matchContain.Substring(_2dotIndex+1);
+                                                }
+                                                if (ExportExcelTemplateONLINE_tbl2.Columns.Contains(matchColumn))
+                                                {
+                                                    if (ExportExcelTemplateONLINE_tbl2.Columns[matchColumn].DataType == typeof(DateTime) && matchFormat == "")
+                                                    {
+                                                        matchFormat = "dd/MM/yyyy";
+                                                    }
+                                                    content = content.Replace(matchGroup0, ObjectAndString.ObjectToString(excel_row[matchColumn], matchFormat));
                                                 }
                                             }
                                             if (parameters.ContainsKey(KEY))
@@ -5106,7 +5164,7 @@ namespace V6Controls.Forms
                                         {
                                             if (ExportExcelTemplateONLINE_tbl2.Columns.Contains(content))
                                             {
-                                                parameters.Add(KEY, tbl2_row[content]);
+                                                parameters.Add(KEY, excel_row[content]);
                                             }
                                         }
                                     }
