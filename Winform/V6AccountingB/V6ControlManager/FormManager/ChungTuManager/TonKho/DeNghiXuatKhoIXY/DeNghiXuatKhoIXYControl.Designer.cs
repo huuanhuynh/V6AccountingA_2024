@@ -817,7 +817,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             // 
             this.TxtT_TIENVC.AccessibleDescription = "";
             this.TxtT_TIENVC.AccessibleName = "T_TIENVC";
-            this.TxtT_TIENVC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtT_TIENVC.BackColor = System.Drawing.SystemColors.Window;
             this.TxtT_TIENVC.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtT_TIENVC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -2617,7 +2616,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             this.v6Label34.TabIndex = 11;
             this.v6Label34.Text = "Tên hàng VAT";
             // 
-            // txtMadvcs
+            // txtMaDVCS
             // 
             this.txtMaDVCS.AccessibleName = "MA_DVCS";
             this.txtMaDVCS.BackColor = System.Drawing.SystemColors.Window;

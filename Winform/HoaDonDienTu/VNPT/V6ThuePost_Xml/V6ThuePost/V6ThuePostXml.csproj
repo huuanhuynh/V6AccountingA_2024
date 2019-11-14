@@ -128,7 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\V6Tools\V6Tools\V6Tools.csproj">
-      <Project>{4f797e67-948d-4eec-acd7-758028e9166f}</Project>
+      <Project>{4F797E67-948D-4EEC-ACD7-758028E9166F}</Project>
       <Name>V6Tools</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\PostObjects\V6ThuePostObjects.csproj">

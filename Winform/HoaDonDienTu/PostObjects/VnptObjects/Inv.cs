@@ -10,10 +10,10 @@ namespace V6ThuePost.VnptObjects
         public Inv()
         {
             Invoice = new Dictionary<string, object>();
-            Invoice["Ikey"] = "";
+            //Invoice["Ikey"] = "";
         }
 
-        public string key;
+        public string key { get; set; }
 
         /// <summary>
         /// &lt;Invoice>  &lt;key>value&lt;/key>[key2...]  &lt;/Invoice>

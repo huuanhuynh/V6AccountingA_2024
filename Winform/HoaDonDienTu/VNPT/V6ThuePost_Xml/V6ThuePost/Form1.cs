@@ -105,5 +105,13 @@ namespace V6ThuePost
             if (Program.ExportExcel(txtDbfExcel.Text, out exportFile, ref result)) btnUpload.Enabled = true;
             BaseMessage.Show(result + "\r\n" + exportFile, 0, this);
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            if (Program._TEST_)
+            {
+                richTextBox1.ReadOnly = false;
+            }
+        }
     }
 }

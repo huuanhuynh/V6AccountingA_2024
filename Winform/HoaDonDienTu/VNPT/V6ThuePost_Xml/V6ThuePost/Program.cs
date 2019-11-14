@@ -22,6 +22,8 @@ namespace V6ThuePost
 {
     static class Program
     {
+        public static bool _TEST_ = true;
+        private static DateTime _TEST_DATE_ = DateTime.Now;
         #region ===== VAR =====
         /// <summary>
         /// Tên cờ V6STT_REC
@@ -106,7 +108,19 @@ namespace V6ThuePost
         [STAThread]
         static void Main(string[] args)
         {
-            //MessageBox.Show("Debug!");
+            var startupPath = Application.StartupPath;
+            var dir = new DirectoryInfo(startupPath);
+            var dir_name = dir.Name.ToLower();
+            if (dir_name == "debug")
+            {
+                _TEST_ = true;
+                MessageBox.Show("Test");
+            }
+            else
+            {
+                _TEST_ = false;
+            }
+
             if (args != null && args.Length > 0)
             {
                 string result = "";
