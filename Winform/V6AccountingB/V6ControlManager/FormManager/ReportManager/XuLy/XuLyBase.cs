@@ -682,8 +682,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         FilterControl.LoadDataFinish(_ds);
                         All_Objects["_ds"] = _ds;
-                        All_Objects["_tbl"] = _tbl;
-                        All_Objects["_tbl2"] = _tbl2;
+                        All_Objects["_data"] = _tbl;
+                        All_Objects["_data2"] = _tbl2;
                         InvokeFormEvent(FormDynamicEvent.AFTERLOADDATA);
                         if (Load_Data)
                         {
@@ -833,7 +833,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private void exportToExcel_Click(object sender, EventArgs e)
         {
-            var data = dataGridView1.Focused ? _tbl : _tbl2;
+            var data = dataGridView2.Focused ? _tbl2 : _tbl;
             if (data == null)
             {
                 ShowTopLeftMessage(V6Text.NoData);

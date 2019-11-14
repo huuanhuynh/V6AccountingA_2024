@@ -21,7 +21,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     public partial class V6IMPORT2XLS : XuLyBase
     {
         private readonly V6Categories _categories = new V6Categories();
-        private DataTable _data;
         private DataTable ALIM2XLS_DATA;
 
         private string _selected_ma_ct;
@@ -209,7 +208,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                _data = Excel_File.Sheet1ToDataTable(txtFile.Text);
+                _tbl = Excel_File.Sheet1ToDataTable(txtFile.Text);
                 //Check1: chuyen ma, String12 A to U
                 string from0 = comboBox1.Text, to0 = comboBox2.Text;
                 if (chkChuyenMa.Checked)
@@ -222,7 +221,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var to = "U";
                         if (to0.StartsWith("TCVN3")) to = "A";
                         if (to0.StartsWith("VNI")) to = "V";
-                        _data = Data_Table.ChuyenMaTiengViet(_data, from, to);
+                        _tbl = Data_Table.ChuyenMaTiengViet(_tbl, from, to);
                     }
                     else
                     {
@@ -230,12 +229,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                 }
                 FixData();
-                All_Objects["_data"] = _data;
-                All_Objects["data"] = _data.Copy();
+                All_Objects["_data"] = _tbl;
+                All_Objects["data"] = _tbl.Copy();
                 string methodName = MA_IMEX + "AFTERFIXDATA";
                 SetStatusText(methodName);
                 V6ControlsHelper.InvokeMethodDynamic(XLS_program, methodName, All_Objects);
-                dataGridView1.DataSource = _data;
+                dataGridView1.DataSource = _tbl;
                 CheckDataInGridView(STATUS_INSERT);
             }
             catch (Exception ex)
@@ -248,16 +247,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                if (_data == null) return;
+                if (_tbl == null) return;
                 List<DataRow> remove_list = new List<DataRow>();
                 var check_fields = ObjectAndString.SplitString(CHECK_FIELDS);
                 var id_check = ObjectAndString.SplitString(ID_CHECK);
-                foreach (DataRow row in _data.Rows)
+                foreach (DataRow row in _tbl.Rows)
                 {
                     bool remove = false;
                     foreach (string field in check_fields)
                     {
-                        if (!_data.Columns.Contains(field) || row[field] == null || row[field].ToString().Trim() == "")
+                        if (!_tbl.Columns.Contains(field) || row[field] == null || row[field].ToString().Trim() == "")
                         {
                             remove = true;
                             break;
@@ -272,7 +271,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         foreach (string field in id_check)
                         {
-                            if (_data.Columns.Contains(field))
+                            if (_tbl.Columns.Contains(field))
                                 if (row[field] is string)
                                 {
                                     row[field] = ObjectAndString.TrimSpecial(row[field].ToString());
@@ -283,13 +282,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 foreach (DataRow row in remove_list)
                 {
-                    _data.Rows.Remove(row);
+                    _tbl.Rows.Remove(row);
                 }
 
                 //Thêm cột Excel_status
-                if (!_data.Columns.Contains(EXCEL_STATUS))
+                if (!_tbl.Columns.Contains(EXCEL_STATUS))
                 {
-                    _data.Columns.Add(EXCEL_STATUS, typeof (string));
+                    _tbl.Columns.Add(EXCEL_STATUS, typeof (string));
                 }
             }
             catch (Exception ex)
@@ -311,9 +310,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 string adv_al2 = ADV_AL2;
                 if (string.IsNullOrEmpty(adv_al2))
                 {
-                    if (_data.Columns.Contains(EXCEL_STATUS))
+                    if (_tbl.Columns.Contains(EXCEL_STATUS))
                     {
-                        foreach (DataRow row in _data.Rows)
+                        foreach (DataRow row in _tbl.Rows)
                         {
                             row[EXCEL_STATUS] = STATUS;
                         }
@@ -366,13 +365,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                if (_data != null)
+                if (_tbl != null)
                 {
                     check_field_list = CHECK_FIELDS.Split(new []{';'}, StringSplitOptions.RemoveEmptyEntries);
                     var check_ok = true;
                     foreach (string field in check_field_list)
                     {
-                        if (!_data.Columns.Contains(field))
+                        if (!_tbl.Columns.Contains(field))
                         {
                             check_ok = false;
                             break;
@@ -451,7 +450,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //Gom chi tiet theo SO_CT va NGAY_CT
                 Dictionary<string, List<DataRow>> data_dictionary = new Dictionary<string, List<DataRow>>();
                 DateTime? dateMin = null, dateMax = null;
-                foreach (DataRow row in _data.Rows)
+                foreach (DataRow row in _tbl.Rows)
                 {
                     var date = ObjectAndString.ObjectToFullDateTime(row["NGAY_CT"]);
                     if (dateMin == null || date < dateMin)
@@ -601,10 +600,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //Tính sum max
                 sumColumns = "," + sumColumns.ToUpper() + ",";
                 maxColumns = "," + maxColumns.ToUpper() + ",";
-                var am_row = _data.NewRow();
+                var am_row = _tbl.NewRow();
                 foreach (DataRow row in dataRows)
                 {
-                    foreach (DataColumn column in _data.Columns)
+                    foreach (DataColumn column in _tbl.Columns)
                     {
                         var FIELD = column.ColumnName.ToUpper();
                         if (sumColumns.Contains("," + FIELD + ","))
@@ -886,7 +885,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 Unlock();
                 ((Timer)sender).Stop();
-                RemoveDataRows(_data);
+                RemoveDataRows(_tbl);
                 V6ControlsHelper.InvokeMethodDynamic(XLS_program, MA_IMEX + "AFTERF9", All_Objects);
                 V6ControlFormHelper.SetStatusText("F9 finish "
                     + (f9Message.Length > 0 ? "Error: " : "")
@@ -908,7 +907,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                if (_data != null)
+                if (_tbl != null)
                 {
                     // 07/12/2017 Xu ly update
                     CheckDataInGridView(STATUS_UPDATE);
@@ -918,7 +917,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     var check_ok = true;
                     foreach (string field in check_field_list)
                     {
-                        if (!_data.Columns.Contains(field))
+                        if (!_tbl.Columns.Contains(field))
                         {
                             check_ok = false;
                             break;
@@ -966,25 +965,25 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 F10Running = true;
                 F10ErrorAll = "";
 
-                if (_data == null)
+                if (_tbl == null)
                 {
                     F10ErrorAll = V6Text.Text("INVALIDDATA");
                     goto End;
                 }
 
                 int stt = 0, skip = 0;
-                total = _data.Rows.Count;
+                total = _tbl.Rows.Count;
                 var id_list = ID_CHECK.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
 
                 for (int i = 0; i < total; i++)
                 {
-                    DataRow row = _data.Rows[i];
+                    DataRow row = _tbl.Rows[i];
                     index = i;
                     stt++;
                     try
                     {
                         // Bỏ qua các dòng có đánh dấu khác Insert.
-                        if (_data.Columns.Contains(EXCEL_STATUS))
+                        if (_tbl.Columns.Contains(EXCEL_STATUS))
                         {
                             var row_status = row[EXCEL_STATUS].ToString().Trim();
                             if (row_status != STATUS_UPDATE)
@@ -1125,7 +1124,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 Unlock();
 
                 ((Timer)sender).Stop();
-                RemoveDataRows(_data);
+                RemoveDataRows(_tbl);
                 V6ControlFormHelper.SetStatusText("F10 finish "
                     + (F10Error.Length > 0 ? "Error: " : "")
                     + F10Error);

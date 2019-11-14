@@ -23,8 +23,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// <para>01: _categories.IsExistOneCode_List</para>
         /// </summary>
         string TYPE_CHECK = "01";//S Cách nhau bởi (;)
-        private DataTable data;
-
+        
         public XLSALKH_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, false)
         {
@@ -42,7 +41,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 FilterControl.UpdateValues();
 
-                data = V6Tools.V6Convert.Excel_File
+                _tbl = V6Tools.V6Convert.Excel_File
                     .Sheet1ToDataTable(FilterControl.String1);
                 //Check1: chuyen ma, String12 A to U
                 if (FilterControl.Check1)
@@ -55,14 +54,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var to = "U";
                         if (FilterControl.String3.StartsWith("TCVN3")) to = "A";
                         if (FilterControl.String3.StartsWith("VNI")) to = "V";
-                        data = V6Tools.V6Convert.Data_Table.ChuyenMaTiengViet(data, from, to);
+                        _tbl = V6Tools.V6Convert.Data_Table.ChuyenMaTiengViet(_tbl, from, to);
                     }
                     else
                     {
                         V6ControlFormHelper.ShowMessage(V6Text.Text("NoFromTo"));
                     }
                 }
-                dataGridView1.DataSource = data;
+                dataGridView1.DataSource = _tbl;
             }
             catch (Exception)
             {
@@ -76,10 +75,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                if (data != null)
+                if (_tbl != null)
                 {
                     check_field_list = CHECK_FIELDS.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                    if (data.Columns.Contains(ID_FIELD) && data.Columns.Contains(NAME_FIELD))
+                    if (_tbl.Columns.Contains(ID_FIELD) && _tbl.Columns.Contains(NAME_FIELD))
                     {
                         Timer timerF9 = new Timer {Interval = 1000};
                         timerF9.Tick += tF9_Tick;
@@ -120,19 +119,19 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 f9Running = true;
                 f9ErrorAll = "";
 
-                if (data == null)
+                if (_tbl == null)
                 {
                     f9ErrorAll = V6Text.Text("INVALIDDATA");
                     goto End;
                 }
 
                 int stt = 0;
-                total = data.Rows.Count;
+                total = _tbl.Rows.Count;
                 var id_list = IDS_CHECK.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
 
                 for (int i = 0; i < total; i++)
                 {
-                    DataRow row = data.Rows[i];
+                    DataRow row = _tbl.Rows[i];
                     index = i;
                     stt++;
                     try
@@ -252,7 +251,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             else
             {
                 ((Timer)sender).Stop();
-                RemoveDataRows(data);
+                RemoveDataRows(_tbl);
                 //btnNhan.PerformClick();
                 V6ControlFormHelper.SetStatusText("F9 finish "
                     + (f9Error.Length > 0 ? "Error: " : "")

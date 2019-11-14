@@ -32,7 +32,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         /// <para>21: IsValidTwoCode_OneDate(</para>
         /// </summary>
         string TYPE_CHECK = "21";
-        private DataTable _data;
+        
         public XLSHRGENERAL2_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, false)
         {
@@ -50,7 +50,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             {
                 FilterControl.UpdateValues();
                 int beginRow = (int) FilterControl.Number2 - 1;
-                _data = V6Tools.V6Convert.Excel_File
+                _tbl = V6Tools.V6Convert.Excel_File
                     .Sheet1ToDataTable(FilterControl.String1, beginRow);
                 if (FilterControl.Check1)
                 {
@@ -62,18 +62,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                         var to = "U";
                         if (FilterControl.String3.StartsWith("TCVN3")) to = "A";
                         if (FilterControl.String3.StartsWith("VNI")) to = "V";
-                        _data = Data_Table.ChuyenMaTiengViet(_data, from, to);
+                        _tbl = Data_Table.ChuyenMaTiengViet(_tbl, from, to);
                     }
                     else
                     {
                         V6ControlFormHelper.ShowMessage(V6Text.Text("NoFromTo"));
                     }
                 }
-                dataGridView1.DataSource = _data;
+                dataGridView1.DataSource = _tbl;
 
                 //FixData();
-                All_Objects["_data"] = _data;
-                All_Objects["data"] = _data.Copy();
+                All_Objects["_data"] = _tbl;
+                All_Objects["data"] = _tbl.Copy();
                 InvokeFormEvent("AFTERFIXDATA");
                 //
             }
@@ -100,7 +100,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
         {
             try
             {
-                if (_data != null)
+                if (_tbl != null)
                 {
                     //"GIO:X,SL_TD2:D,SL_TD3:O,GC_TD1";
                     int soCot = Convert.ToInt32(FilterControl.Number1);
@@ -201,7 +201,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 f9Running = true;
                 f9ErrorAll = "";
 
-                if (_data == null)
+                if (_tbl == null)
                 {
                     f9ErrorAll = V6Text.Text("INVALIDDATA");
                     goto End;
@@ -212,11 +212,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
                 
                 int stt = 0;
                 //DateTime last_day = V6Setting.M_SV_DATE;
-                total = _data.Rows.Count;
+                total = _tbl.Rows.Count;
 
                 for (int i = 0; i < total; i++)
                 {
-                    DataRow row = _data.Rows[i];
+                    DataRow row = _tbl.Rows[i];
                     index = i;
                     stt++;
                     try
@@ -552,7 +552,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             else
             {
                 ((Timer)sender).Stop();
-                RemoveDataRows(_data);
+                RemoveDataRows(_tbl);
                 InvokeFormEvent(FormDynamicEvent.AFTERF9);
                 SetStatusText("F9 finish " + (f9Error.Length > 0 ? "Error: " : "") + f9Error);
                 ShowMainMessage("F9 " + V6Text.Finish + " " + f9ErrorAll);
