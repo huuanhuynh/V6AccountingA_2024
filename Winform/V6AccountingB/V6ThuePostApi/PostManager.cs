@@ -196,6 +196,55 @@ namespace V6ThuePostManager
             return result0;
         }
 
+        public static string PowerCheckNetwork(PostManagerParams paras, out string error)
+        {
+            string result = null;
+            error = null;
+            paras.Result = new PM_Result();
+            try
+            {
+                map_table = paras.DataSet.Tables[0];
+                //ad_table = pmparams.DataSet.Tables[1];
+                //am_table = pmparams.DataSet.Tables[2];
+                //DataRow row0 = am_table.Rows[0];
+                //ad2_table = pmparams.DataSet.Tables[3];
+
+                ReadConfigInfo(map_table);
+
+                switch (paras.Branch)
+                {
+                    case "1":
+                        result = ViettelDownloadInvoicePDF(paras);
+                        break;
+                    case "2":
+                    case "4":
+                        result = VnptWS.DownloadInvPDFFkey(_link_Portal_vnpt, paras.Fkey_hd, _username, _password, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        break;
+                    case "3":
+                        result = BkavDownloadInvoicePDF(paras);
+                        break;
+                    case "5":
+                        SoftDreamsWS softDreamsWs = new SoftDreamsWS(_baseUrl, _username, _password, _SERIAL_CERT);
+                        result = softDreamsWs.GetInvoicePdf(paras.Fkey_hd, paras.Mode == "2" ? 2 : paras.Mode == "1" ? 1 : 0, paras.Pattern, paras.Serial, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        break;
+                    case "6":
+                        ThaiSonWS thaiSonWS = new ThaiSonWS(_baseUrl, _link_Publish_vnpt_thaison, _username, _password, _SERIAL_CERT);
+                        result = thaiSonWS.GetInvoicePdf(paras.V6PartnerID, paras.Mode == "0" ? 0 : 1, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        break;
+                    default:
+                        paras.Result.ResultError = V6Text.NotSupported + paras.Branch;
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                paras.Result.ExceptionMessage = ex.Message;
+                error = ex.Message;
+                V6ControlFormHelper.WriteExLog("PostManager.PowerDownloadPDF", ex);
+            }
+            return result;
+        }
+
         /// <summary>
         /// <para>Tham số cần thiết: DataSet[map_table][ad_table][am_table], Branch[1viettel][2vnpt]</para>
         /// </summary>

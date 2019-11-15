@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6ThuePostManager;
 using V6Tools;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
@@ -213,6 +216,46 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         private void cboSendType_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             String1 = (cboSendType.SelectedIndex + 1).ToString();
+        }
+
+        private void btnTestNetwork_Click(object sender, System.EventArgs e)
+        {
+            try
+            {
+                //SqlParameter[] plist0 =
+                //        {
+                //            new SqlParameter("@Loai", "AAPPR_SOA2"),
+                //            new SqlParameter("@MA_TD1", String1),
+                //            new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
+                //            new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
+                //            new SqlParameter("@Ma_dvcs", row.Cells["MA_DVCS"].Value.ToString()),
+                //            new SqlParameter("@User_ID", V6Login.UserId),
+                //            new SqlParameter("@Advance", ""),
+                //        };
+                //var map_table = V6BusinessHelper.ExecuteProcedure("VPA_GET_V6MAPINFO", plist0).Tables[0];
+
+                //var pmparams1 = new PostManagerParams
+                //{
+                //    DataSet = map_table.DataSet,
+                //    Branch = FilterControl.String1,
+                //    InvoiceNo = invoiceNo,
+                //    Pattern = pattern,
+                //    Serial = serial,
+                //    strIssueDate = strIssueDate,
+                //    Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
+                //};
+                //string error;
+                //var check = PostManager.PowerCheckNetwork(pmparams1, out error);
+                //if (!string.IsNullOrEmpty(error))
+                //{
+                //    V6Message.ShowWarning(error);
+                //}
+                //this.ShowInfoMessage(check);
+            }
+            catch (Exception)
+            {
+                
+            }
         }
 
         

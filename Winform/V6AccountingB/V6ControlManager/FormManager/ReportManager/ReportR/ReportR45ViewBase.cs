@@ -329,7 +329,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             get
             {
                 string result = "";
-                if (MauInData.Columns.Contains("RPT_DIR") && MauInSelectedRow["RPT_DIR"] != null)
+                if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
+                if (MauInData != null && (MauInData.Columns.Contains("RPT_DIR") && MauInSelectedRow["RPT_DIR"] != null))
                 {
                     string rpt_dir = MauInSelectedRow["RPT_DIR"].ToString().Trim();
                     if (rpt_dir != "") result += rpt_dir + @"\";

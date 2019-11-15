@@ -20,7 +20,7 @@
 	<GeneralInvoiceInfo Field='currencyCode' 	Value='VND'/>
 	<GeneralInvoiceInfo Field='adjustmentType' 	Value='1'	FieldV6='adjustmentType' Type='Field'/>
 	<GeneralInvoiceInfo Field='paymentStatus' 	Value=''	FieldV6='status' Type='Field' DataType='Bool'/>
-	<GeneralInvoiceInfo Field='paymentType' 	Value=''	FieldV6='httt' Type='Field'/>
+	<GeneralInvoiceInfo Field='paymentType' 	Value=''	FieldV6='httt' Type='Field'   Note='CK – Chuyển khoản DTCN – Đối trừ công nợ TM – tiền mặt TM/CK – Tiền mặt/ Chuyển khoản'/>
 	<GeneralInvoiceInfo Field='paymentTypeName' 	Value=''/>
 	<GeneralInvoiceInfo Field='cusGetInvoiceRight' 	Value='1'	FieldV6=''	Type='Field' DataType='Bool'/>
 	<GeneralInvoiceInfo Field='buyerIdNo' 	Value=''/>

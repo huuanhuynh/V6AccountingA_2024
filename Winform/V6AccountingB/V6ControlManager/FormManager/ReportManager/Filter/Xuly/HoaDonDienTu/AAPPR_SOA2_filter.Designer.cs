@@ -72,6 +72,7 @@
             this.grbTienTe = new System.Windows.Forms.GroupBox();
             this.rNgoaiTe = new System.Windows.Forms.RadioButton();
             this.rTienViet = new System.Windows.Forms.RadioButton();
+            this.btnTestNetwork = new V6Controls.Controls.V6FormButton();
             this.groupBox1.SuspendLayout();
             this.grbTienTe.SuspendLayout();
             this.SuspendLayout();
@@ -664,10 +665,22 @@
             this.rTienViet.Text = "Tiền Việt";
             this.rTienViet.UseVisualStyleBackColor = true;
             // 
+            // btnTestNetwork
+            // 
+            this.btnTestNetwork.AccessibleDescription = ".";
+            this.btnTestNetwork.Image = global::V6ControlManager.Properties.Resources.Network24;
+            this.btnTestNetwork.Location = new System.Drawing.Point(265, 164);
+            this.btnTestNetwork.Name = "btnTestNetwork";
+            this.btnTestNetwork.Size = new System.Drawing.Size(30, 30);
+            this.btnTestNetwork.TabIndex = 24;
+            this.btnTestNetwork.UseVisualStyleBackColor = true;
+            this.btnTestNetwork.Click += new System.EventHandler(this.btnTestNetwork_Click);
+            // 
             // AAPPR_SOA2_filter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnTestNetwork);
             this.Controls.Add(this.cboSendType);
             this.Controls.Add(this.btnSuaChiTieu);
             this.Controls.Add(this.v6Label5);
@@ -746,5 +759,6 @@
         private V6ReportControls.FilterLineVvarTextBox lineMA_SONB;
         private V6ReportControls.FilterLineVvarTextBox lineTrangThai;
         private V6ReportControls.FilterLineVvarTextBox lineMaXuly;
+        private V6Controls.Controls.V6FormButton btnTestNetwork;
     }
 }
