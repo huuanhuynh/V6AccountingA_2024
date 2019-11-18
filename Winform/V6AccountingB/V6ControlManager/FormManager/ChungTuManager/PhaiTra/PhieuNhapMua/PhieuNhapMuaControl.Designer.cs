@@ -172,7 +172,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.xuLyKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.thayTheMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.thayThe2Menu = new System.Windows.Forms.ToolStripMenuItem();
-            this.chonDeNghiNhapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chonDeNghiNhapMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.btnChonPX = new V6Controls.Controls.V6FormButton();
             this.lblTongSoDong = new V6Controls.V6Label();
             this.v6Label20 = new V6Controls.V6Label();
@@ -2412,7 +2412,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             this.xuLyKhacMenu,
             this.thayTheMenu,
             this.thayThe2Menu,
-            this.chonDeNghiNhapToolStripMenuItem});
+            this.chonDeNghiNhapMenu});
             this.menuChucNang.Name = "menuChucNang";
             this.menuChucNang.Size = new System.Drawing.Size(200, 158);
             this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
@@ -2467,11 +2467,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             // 
             // chonDeNghiNhapToolStripMenuItem
             // 
-            this.chonDeNghiNhapToolStripMenuItem.AccessibleDescription = "INVOICEM00021";
-            this.chonDeNghiNhapToolStripMenuItem.Name = "chonDeNghiNhapToolStripMenuItem";
-            this.chonDeNghiNhapToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.chonDeNghiNhapToolStripMenuItem.Text = "Chọn đề nghị nhập kho";
-            this.chonDeNghiNhapToolStripMenuItem.Click += new System.EventHandler(this.chonDeNghiNhapToolStripMenuItem_Click);
+            this.chonDeNghiNhapMenu.AccessibleDescription = "INVOICEM00021";
+            this.chonDeNghiNhapMenu.Name = "chonDeNghiNhapMenu";
+            this.chonDeNghiNhapMenu.Size = new System.Drawing.Size(199, 22);
+            this.chonDeNghiNhapMenu.Text = "Chọn đề nghị nhập kho";
+            this.chonDeNghiNhapMenu.Click += new System.EventHandler(this.chonDeNghiNhapMenu_Click);
             // 
             // btnChonPX
             // 
@@ -4026,6 +4026,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private V6CheckBox chkTempSuaCT;
         private GridViewSummary gridViewSummary2;
         private GridViewSummary gridViewSummary3;
-        private System.Windows.Forms.ToolStripMenuItem chonDeNghiNhapToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem chonDeNghiNhapMenu;
     }
 }

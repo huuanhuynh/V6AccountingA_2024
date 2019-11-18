@@ -7837,7 +7837,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
         
-        private void chonDeNghiXuatToolStripMenuItem_Click(object sender, EventArgs e)
+        private void chonDeNghiXuatMenu_Click(object sender, EventArgs e)
         {
             try
             {

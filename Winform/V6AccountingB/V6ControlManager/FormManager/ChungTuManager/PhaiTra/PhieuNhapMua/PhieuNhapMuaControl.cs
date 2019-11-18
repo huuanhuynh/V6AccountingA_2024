@@ -7332,7 +7332,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
         }
 
-        private void chonDeNghiNhapToolStripMenuItem_Click(object sender, EventArgs e)
+        private void chonDeNghiNhapMenu_Click(object sender, EventArgs e)
         {
             try
             {

@@ -43,7 +43,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.xuLyKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.thayTheMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.thayThe2Menu = new System.Windows.Forms.ToolStripMenuItem();
-            this.chonDeNghiXuatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chonDeNghiXuatMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -208,7 +208,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.xuLyKhacMenu,
             this.thayTheMenu,
             this.thayThe2Menu,
-            this.chonDeNghiXuatToolStripMenuItem});
+            this.chonDeNghiXuatMenu});
             this.menuChucNang.Name = "menuChucNang";
             this.menuChucNang.Size = new System.Drawing.Size(195, 180);
             // 
@@ -268,13 +268,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.thayThe2Menu.Text = "Sửa nhiều dòng";
             this.thayThe2Menu.Click += new System.EventHandler(this.thayThe2toolStripMenuItem_Click);
             // 
-            // chonDeNghiXuatToolStripMenuItem
+            // chonDeNghiXuatMenu
             // 
-            this.chonDeNghiXuatToolStripMenuItem.AccessibleDescription = "INVOICEM00022";
-            this.chonDeNghiXuatToolStripMenuItem.Name = "chonDeNghiXuatToolStripMenuItem";
-            this.chonDeNghiXuatToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.chonDeNghiXuatToolStripMenuItem.Text = "Chọn đề nghị xuất kho";
-            this.chonDeNghiXuatToolStripMenuItem.Click += new System.EventHandler(this.chonDeNghiXuatToolStripMenuItem_Click);
+            this.chonDeNghiXuatMenu.AccessibleDescription = "INVOICEM00022";
+            this.chonDeNghiXuatMenu.Name = "chonDeNghiXuatMenu";
+            this.chonDeNghiXuatMenu.Size = new System.Drawing.Size(194, 22);
+            this.chonDeNghiXuatMenu.Text = "Chọn đề nghị xuất kho";
+            this.chonDeNghiXuatMenu.Click += new System.EventHandler(this.chonDeNghiXuatMenu_Click);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -2619,7 +2619,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         private V6VvarTextBox txtMaSanPhamPH;
         private V6Label v6Label9;
         private V6CheckBox chkTempSuaCT;
-        private System.Windows.Forms.ToolStripMenuItem chonDeNghiXuatToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem chonDeNghiXuatMenu;
         private V6IndexComboBox cboLoai_pb;
         private V6VvarTextBox txtLoai_pb;
     }

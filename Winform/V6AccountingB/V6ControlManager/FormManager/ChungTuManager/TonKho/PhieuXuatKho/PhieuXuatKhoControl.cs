@@ -5251,7 +5251,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             ChucNang_SuaNhieuDong(Invoice);
         }
 
-        private void chonDeNghiXuatToolStripMenuItem_Click(object sender, EventArgs e)
+        private void chonDeNghiXuatMenu_Click(object sender, EventArgs e)
         {
             try
             {
@@ -5325,7 +5325,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                         }
                         if (heso == 0) heso = 1;
                         decimal sum = 0, sum_qd = 0;
-                        var lodate_data = V6BusinessHelper.GetLoDatePriority(ma_vt, _sttRec, dateNgayCT.Date);
+
+                        DataTable lodate_data;
+                        if (temp_vt.VITRI_YN)
+                        {
+                            lodate_data = V6BusinessHelper.GetVitriLoDatePriority(ma_vt, _sttRec, dateNgayCT.Date);
+                        }
+                        else
+                        {
+                            lodate_data = V6BusinessHelper.GetLoDatePriority(ma_vt, _sttRec, dateNgayCT.Date);
+                        }
+                        
                         // Get Data
 
                         for (int i = lodate_data.Rows.Count - 1; i >= 0; i--)
@@ -5336,6 +5346,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                             decimal insert = (total - sum) < row_ton_dau ? (total - sum) : row_ton_dau;
                             decimal insert_qd = (total_qd - sum_qd) < row_ton_dau_qd ? (total_qd - sum_qd) : row_ton_dau_qd;
                             newData["MA_KHO_I"] = data_row["MA_KHO"];
+                            if (temp_vt.VITRI_YN) newData["MA_VITRI"] = data_row["MA_VITRI"];
                             newData["MA_LO"] = data_row["MA_LO"];
                             newData["HSD"] = data_row["HSD"];
                             newData["DVT"] = data_row["DVT"];

@@ -4490,18 +4490,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                     return false;
                 }
 
-                //if (txtManx.Text.Trim() == "")
-                //{
-                //    this.ShowWarningMessage(V6Text.NoInput + lblMaNX.Text);
-                //    txtManx.Focus();
-                //    return false;
-                //}
-                //if (txtManx.Int_Data("Loai_tk") == 0)
-                //{
-                //    this.ShowWarningMessage(V6Text.Text("TKNOTCT"));
-                //    txtManx.Focus();
-                //    return false;
-                //}
                 if (cboKieuPost.SelectedIndex == -1)
                 {
                     this.ShowWarningMessage(V6Text.Text("CHUACHONKIEUPOST"));
