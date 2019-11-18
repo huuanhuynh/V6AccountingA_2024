@@ -1535,6 +1535,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         public override void V6F3Execute()
         {
             ViewMauIn();
+            base.V6F3Execute();
         }
 
         private void ViewMauIn()

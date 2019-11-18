@@ -55,6 +55,7 @@ namespace V6ControlManager.FormManager.ToolManager
             chkAutoFixInvoiceVvar.Visible = true;
             chkWriteExtraLog.Visible = true;
             chkAllowAdd.Visible = true;
+            base.V6F3Execute();
         }
 
         private void btnTestInvoice_Click(object sender, EventArgs e)

@@ -394,6 +394,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             txtExcel2View.ReadOnly = false;
             txtMa_File.ReadOnly = false;
             txtReportFileNew.ReadOnly = false;
+            base.V6F3Execute();
         }
 
         public override void V6F3ExecuteUndo()

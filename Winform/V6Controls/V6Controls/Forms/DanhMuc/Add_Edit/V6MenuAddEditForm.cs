@@ -57,6 +57,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             btnMenuHide.Enabled = true;
             btnMenuHide.Visible = true;
+            base.V6F3Execute();
         }
 
         public override void V6F3ExecuteUndo()

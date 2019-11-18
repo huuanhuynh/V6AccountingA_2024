@@ -172,6 +172,10 @@ namespace V6Structs
         public string TableName { get; set; }
 
         public bool Cancel { get; set; }
+        /// <summary>
+        /// Cờ bật control khi nhập mật khẩu F3F3F3.
+        /// </summary>
+        public string VisibleF3 { get; set; }
 
         public string DescriptionLang(bool isVN)
         {

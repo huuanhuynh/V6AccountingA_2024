@@ -116,6 +116,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             txtJ.Visible = true;
             lblK.Visible = true;
             txtK.Visible = true;
+            base.V6F3Execute();
         }
 
         private int num;

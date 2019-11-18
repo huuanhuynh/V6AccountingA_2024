@@ -76,9 +76,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             if (errors.Length > 0) throw new Exception(errors);
         }
+
         public override void V6F3Execute()
         {
-            
+            base.V6F3Execute();
         }
 
         private void cboColorList_SelectedIndexChanged(object sender, EventArgs e)

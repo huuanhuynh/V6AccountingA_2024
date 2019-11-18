@@ -130,9 +130,12 @@ namespace V6Controls.Forms
                     {
                         if (++f3count == 3)
                         {
-                            var method_info = GetType().GetMethod("V6F3Execute");
-                            if (method_info != null && method_info.DeclaringType == GetType() && //Kiem tra co method override
-                                new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
+                            string type = this.GetType().ToString();
+                            
+                            //var method_info = GetType().GetMethod("V6F3Execute");
+                            //if (method_info != null && method_info.DeclaringType == GetType() && //Kiem tra co method override
+                            if (!type.EndsWith("Container") &&
+                             new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
                             {
                                 V6F3Execute();
                                 f3count = 0;
@@ -173,16 +176,15 @@ namespace V6Controls.Forms
                 {
                     do_hot_key = false;
                     //return false;
-                    return base.ProcessCmdKey(ref msg, keyData);
+                    //return base.ProcessCmdKey(ref msg, keyData);
                 }
 
-                //if(DoHotKey0(keyData)) return true;
             }
             catch
             {
                 return false;
             }
-
+            
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
@@ -212,8 +214,31 @@ namespace V6Controls.Forms
         /// </summary>
         public virtual void V6F3Execute()
         {
-            
+            try
+            {
+                ShowConfigTag();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".V6F3Execute", ex);
+            }
         }
+
+        private void ShowConfigTag()
+        {
+            var all_controls = V6ControlFormHelper.GetAllControls(this);
+            foreach (Control control in all_controls)
+            {
+                V6Tag tag = new V6Tag(control.Tag);
+                if (tag.VisibleF3 == "1")
+                {
+                    control.Visible = true;
+                    control.Enabled = true;
+                    V6ControlFormHelper.SetControlReadOnly(control, false);
+                }
+            }
+        }
+
         public virtual void V6F12Execute()
         {
             try

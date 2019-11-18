@@ -116,6 +116,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             {
                 this.WriteExLog(GetType() + ".V6F3Execute", ex);
             }
+            base.V6F3Execute();
         }
 
         public override void DoBeforeAdd()

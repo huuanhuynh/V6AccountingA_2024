@@ -85,6 +85,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 V6ControlFormHelper.ShowMainMessage("V6 Confirm ......OK....");
                 FilterControl.Call1();
             }
+            //base.V6F3Execute(); // Không cần
         }
 
         public override void V6F3ExecuteUndo()
