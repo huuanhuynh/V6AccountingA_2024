@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -36,8 +37,15 @@ namespace V6Controls.Forms
         /// </summary>
         protected string _message = "";
         public bool _executing, _executesuccess;
-        
 
+        /// <summary>
+        /// Cờ bật tắt chức năng F3 3 lần để thực hiện chức năng F3Execute gốc (mở tag VisibleF3:1)
+        /// </summary>
+        [Category("V6")]
+        [DefaultValue(true)]
+        public bool EnableF3F3F3 { get { return _enableF3F3F3; } set { _enableF3F3F3 = value; } }
+        protected bool _enableF3F3F3 = true;
+        
         public V6FormControl()
         {
             InitializeComponent();
@@ -134,7 +142,7 @@ namespace V6Controls.Forms
                             
                             //var method_info = GetType().GetMethod("V6F3Execute");
                             //if (method_info != null && method_info.DeclaringType == GetType() && //Kiem tra co method override
-                            if (!type.EndsWith("Container") &&
+                            if (EnableF3F3F3 && !type.EndsWith("Container") &&
                              new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
                             {
                                 V6F3Execute();

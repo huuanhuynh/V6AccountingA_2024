@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6ControlManager.FormManager.ReportManager.XuLy;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
@@ -218,43 +219,64 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             String1 = (cboSendType.SelectedIndex + 1).ToString();
         }
 
-        private void btnTestNetwork_Click(object sender, System.EventArgs e)
+        private void btnCheckConnection_Click(object sender, System.EventArgs e)
         {
             try
             {
-                //SqlParameter[] plist0 =
-                //        {
-                //            new SqlParameter("@Loai", "AAPPR_SOA2"),
-                //            new SqlParameter("@MA_TD1", String1),
-                //            new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
-                //            new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
-                //            new SqlParameter("@Ma_dvcs", row.Cells["MA_DVCS"].Value.ToString()),
-                //            new SqlParameter("@User_ID", V6Login.UserId),
-                //            new SqlParameter("@Advance", ""),
-                //        };
-                //var map_table = V6BusinessHelper.ExecuteProcedure("VPA_GET_V6MAPINFO", plist0).Tables[0];
+                AAPPR_SOA2 parentForm = FindParent<AAPPR_SOA2>() as AAPPR_SOA2;
+                if (parentForm == null)
+                {
+                    this.ShowWarningMessage(V6Text.NotFound + " AAPPR_SOA2.");
+                    return;
+                }
+                DataGridView dataGridView = parentForm.dataGridView1;
+                var row = dataGridView.CurrentRow;
+                if (row == null)
+                {
+                    this.ShowWarningMessage(V6Text.NoData);
+                    return;
+                }
 
-                //var pmparams1 = new PostManagerParams
-                //{
-                //    DataSet = map_table.DataSet,
-                //    Branch = FilterControl.String1,
-                //    InvoiceNo = invoiceNo,
-                //    Pattern = pattern,
-                //    Serial = serial,
-                //    strIssueDate = strIssueDate,
-                //    Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
-                //};
-                //string error;
-                //var check = PostManager.PowerCheckNetwork(pmparams1, out error);
-                //if (!string.IsNullOrEmpty(error))
-                //{
-                //    V6Message.ShowWarning(error);
-                //}
-                //this.ShowInfoMessage(check);
+                SqlParameter[] plist0 =
+                {
+                    new SqlParameter("@Loai", "AAPPR_SOA2"),
+                    new SqlParameter("@MA_TD1", String1),
+                    new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
+                    new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
+                    new SqlParameter("@Ma_dvcs", row.Cells["MA_DVCS"].Value.ToString()),
+                    new SqlParameter("@User_ID", V6Login.UserId),
+                    new SqlParameter("@Advance", ""),
+                };
+                var map_table = V6BusinessHelper.ExecuteProcedure("VPA_GET_V6MAPINFO", plist0).Tables[0];
+
+                var pmparams1 = new PostManagerParams
+                {
+                    DataSet = map_table.DataSet,
+                    Branch = String1,
+                    //InvoiceNo = invoiceNo,
+                    //Pattern = pattern,
+                    //Serial = serial,
+                    //strIssueDate = strIssueDate,
+                    Mode = "CheckConnection",
+                };
+                string exception;
+                var check = PostManager.PowerCheckConnection(pmparams1, out exception);
+                if (string.IsNullOrEmpty(check))
+                {
+                    this.ShowInfoMessage(V6Text.ConnectionOk);
+                }
+                else
+                {
+                    if (!string.IsNullOrEmpty(exception))
+                    {
+                        V6Message.ShowWarning(exception);
+                    }
+                    this.ShowInfoMessage(check);
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                this.ShowErrorException(GetType() + "btnCheckConnection", ex);
             }
         }
 

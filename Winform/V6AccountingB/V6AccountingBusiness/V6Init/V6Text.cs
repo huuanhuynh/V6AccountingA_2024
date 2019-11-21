@@ -344,6 +344,7 @@
         public static string CheckInfor { get { return V6Setting.Language == "V" ? "Kiểm tra thông tin chưa đầy đủ!" : "Check information again !"; } }
         public static string CheckLock { get { return V6Setting.Language == "V" ? "Đã khóa số liệu!" : "Data locking !"; } }
         public static string CheckDeclare { get { return V6Setting.Language == "V" ? "Kiểm tra khai báo hệ thống quản lý !" : "Check system information again !"; } }
+        public static string ConnectionOk { get { return V6Setting.Language == "V" ? "Kết nối tốt." : "Connection good."; } }
         public static string DataLoading { get { return V6Setting.Language == "V" ? "Đang tải dữ liệu." : "Data loading."; } }
         public static string DeleteConfirm { get { return V6Setting.Language == "V" ? "Có chắc chắn xóa?" : "Are you sure to delete?"; } }
         public static string DeleteRowConfirm { get { return V6Setting.Language == "V" ? "Có chắc chắn xóa dòng đang chọn?" : "Are you sure to delete selected row?"; } }
@@ -427,7 +428,7 @@
         public static string WrongData { get { return Text("WRONGDATA"); } }
         public static string ZoomIn { get { return V6Setting.Language == "V" ? "Phóng" : "ZoomIn"; } }
         public static string ZoomOut { get { return V6Setting.Language == "V" ? "Thu" : "ZoomOut"; } }
-        
+
         #region ==== Fuctions ====
 
         

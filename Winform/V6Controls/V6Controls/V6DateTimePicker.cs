@@ -378,34 +378,42 @@ namespace V6Controls
         }
         void V6DateTimePick_KeyUp(object sender, KeyEventArgs e)
         {
-            if (ReadOnly || _input_history.Length > 1)
+            try
             {
-                return;
-            }
-            
-            if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
-            {
-                _input_history += "99";
-                return;
-            }
-
-            KeysConverter kc = new KeysConverter();
-            string now_digit = kc.ConvertToString(e.KeyData).Right(1);
-
-            if (_input_history.Length == 1)
-            {
-                var num = ObjectAndString.ObjectToInt(_input_history + now_digit);
-                if (num > DateTime.DaysInMonth(Value.Year, Value.Month))
+                if (ReadOnly || _input_history.Length > 1)
                 {
-                    if (num > 31) num = 31;
-                    Value = new DateTime(Value.Year, 1, num);
-                    SelectDatePartAfterValueChanged(1);
+                    return;
+                }
+
+                if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
+                {
+                    _input_history += "99";
+                    return;
+                }
+
+                KeysConverter kc = new KeysConverter();
+                string now_digit = kc.ConvertToString(e.KeyData).Right(1);
+
+                if (_input_history.Length == 1)
+                {
+                    var num = ObjectAndString.ObjectToInt(_input_history + now_digit);
+                    if (num > DateTime.DaysInMonth(Value.Year, Value.Month))
+                    {
+                        if (num > 31) num = 31;
+                        Value = new DateTime(Value.Year, 1, num);
+                        SelectDatePartAfterValueChanged(1);
+                    }
+                }
+
+                //if (char.IsDigit(Convert.ToChar(now_digit)))
+                if (char.IsDigit((char)e.KeyCode))
+                {
+                    _input_history += now_digit;
                 }
             }
-
-            if (char.IsDigit(Convert.ToChar(now_digit)))
+            catch (Exception)
             {
-                _input_history += now_digit;
+                //
             }
         }
 

@@ -196,10 +196,16 @@ namespace V6ThuePostManager
             return result0;
         }
 
-        public static string PowerCheckNetwork(PostManagerParams paras, out string error)
+        /// <summary>
+        /// Hàm kiểm tra kết nối. Nếu thành công trả về rỗng hoặc null.
+        /// </summary>
+        /// <param name="paras"></param>
+        /// <param name="error"></param>
+        /// <returns></returns>
+        public static string PowerCheckConnection(PostManagerParams paras, out string exception)
         {
             string result = null;
-            error = null;
+            exception = null;
             paras.Result = new PM_Result();
             try
             {
@@ -214,14 +220,33 @@ namespace V6ThuePostManager
                 switch (paras.Branch)
                 {
                     case "1":
-                        result = ViettelDownloadInvoicePDF(paras);
+                        ViettelWS viettel_ws = new ViettelWS(_baseUrl, _username, _password);
+                        result = viettel_ws.CheckConnection(_createInvoiceUrl);
                         break;
                     case "2":
                     case "4":
-                        result = VnptWS.DownloadInvPDFFkey(_link_Portal_vnpt, paras.Fkey_hd, _username, _password, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        result = VnptWS.CheckConnection();
                         break;
                     case "3":
-                        result = BkavDownloadInvoicePDF(paras);
+                        BkavWS bkavWS = new BkavWS();
+                
+                ExecCommandFunc wsExecCommand = null;
+                var webservice = new V6ThuePostBkavApi.vn.ehoadon.wsdemo.WSPublicEHoaDon(_baseUrl);
+                wsExecCommand = webservice.ExecuteCommand;
+                uint Constants_Mode = RemoteCommand.DefaultMode;
+                var remoteCommand = new RemoteCommand(wsExecCommand, BkavPartnerGUID, BkavPartnerToken, Constants_Mode);
+                        var jsonBody = "{}";
+                    int commandType = BkavCommandTypeNew;
+                    result = bkavWS.POST(remoteCommand, jsonBody, commandType, out paras.Result.V6ReturnValues);
+                        if (result.Contains(""))
+                        {
+                            result = null;
+                        }
+                        else
+                        {
+                            result = "Kết nối lỗi.";
+                        }
+
                         break;
                     case "5":
                         SoftDreamsWS softDreamsWs = new SoftDreamsWS(_baseUrl, _username, _password, _SERIAL_CERT);
@@ -239,7 +264,7 @@ namespace V6ThuePostManager
             catch (Exception ex)
             {
                 paras.Result.ExceptionMessage = ex.Message;
-                error = ex.Message;
+                exception = ex.Message;
                 V6ControlFormHelper.WriteExLog("PostManager.PowerDownloadPDF", ex);
             }
             return result;

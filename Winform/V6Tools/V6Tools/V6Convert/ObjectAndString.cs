@@ -692,6 +692,7 @@ namespace V6Tools.V6Convert
 
         /// <summary>
         /// Loại bỏ tất cả các ký tự khoảng trắng và khoảng trắng đặc biệt ở đầu chuỗi. Loại bỏ ký tự đặc biệt bên trong chuỗi.
+        /// <para>Ký tự đặc biệt đang biết: \u65279 \u12288</para>
         /// </summary>
         /// <param name="toString"></param>
         /// <param name="moreSpecialChars"></param>
@@ -714,6 +715,7 @@ namespace V6Tools.V6Convert
 
         /// <summary>
         /// Loại bỏ tất cả các ký tự khoảng trắng và khoảng trắng đặc biệt ở đầu và cuối chuỗi. Loại bỏ ký tự đặc biệt bên trong chuỗi.
+        /// <para>Ký tự đặc biệt đang biết: \u65279 \u12288</para>
         /// </summary>
         /// <param name="toString"></param>
         /// <param name="moreSpecialChars"></param>

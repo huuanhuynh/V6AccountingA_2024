@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -139,6 +140,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             detail1.AddContexMenu(menuDetail1);
             LoadDetail3Controls();
             LoadAdvanceControls(Invoice.Mact);
+            CreateCustomInfoTextBox();
             lblNameT.Left  = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             LoadTag(Invoice, detail1.Controls);
             ResetForm();
@@ -148,6 +150,93 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             LoadAll();
             InvokeFormEvent(FormDynamicEvent.INIT);
             V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
+        }
+
+        private V6ColorTextBox txtCustomInfo;
+        private void CreateCustomInfoTextBox()
+        {
+            try
+            {
+                txtCustomInfo = new V6ColorTextBox()
+                {
+                    Name = "txtCustomeInfo",
+                    Width = 100,
+                    Height = 23,
+                    Left = txtTongSoLuong1.Right + 5,
+                    Top = txtTongSoLuong1.Top,
+                    ReadOnly = true,
+                    Multiline = true,
+                    Visible = false,
+                    Tag = "readonly",
+                };
+                txtCustomInfo.TextChanged += delegate
+                {
+                    txtCustomInfo.Visible = txtCustomInfo.Text != "";
+                    txtCustomInfo.Height = 23;
+                };
+                txtCustomInfo.BorderStyle = BorderStyle.FixedSingle;
+                txtCustomInfo.Font = new Font(txtCustomInfo.Font, FontStyle.Bold);
+                //txtCustomInfo.Text = "V6Soft";
+                group4.Controls.Add(txtCustomInfo);
+                group4.SizeChanged += (sender, args) =>
+                {
+                    if (group4.Width > txtCustomInfo.Left + 100) txtCustomInfo.Width = group4.Width - txtCustomInfo.Left - 10;
+                };
+                txtCustomInfo.BringToFront();
+                txtCustomInfo.GotFocus += (sender, args) =>
+                {
+                    txtCustomInfo.Height = cboChuyenData.Bottom - txtTongSoLuong1.Top;
+                };
+                txtCustomInfo.MouseMove += delegate
+                {
+                    txtCustomInfo.Height = cboChuyenData.Bottom - txtTongSoLuong1.Top;
+                };
+                txtCustomInfo.LostFocus += (sender, args) =>
+                {
+                    txtCustomInfo.Height = 23;
+                };
+                txtCustomInfo.MouseLeave += delegate
+                {
+                    if (!txtCustomInfo.Focused) txtCustomInfo.Height = 23;
+                };
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "CreateCustomeInfoTextBox", ex);
+            }
+        }
+
+        /// <summary>
+        /// Tải thông tin.
+        /// </summary>
+        public void LoadCustomInfo()
+        {
+            string text = "";
+            try
+            {
+                //txtCustomInfo.Text = "";
+                //VPA_GET_SOA_MA_KH_INFOR
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@Ngay_ct", dateNgayCT.Value.Date),
+                    new SqlParameter("@Ma_kh", txtMaKh.Text),
+                    new SqlParameter("@Ma_ct", Invoice.Mact),
+                    new SqlParameter("@Stt_rec", _sttRec),
+                    new SqlParameter("@Lan", V6Setting.Language),
+                    new SqlParameter("@User_id", V6Login.UserId),
+                    new SqlParameter("@Advance", ""),
+                };
+                var data = V6BusinessHelper.ExecuteProcedure("VPA_GET_SOA_MA_KH_INFOR", plist).Tables[0];
+                if (data.Rows.Count > 0)
+                {
+                    text = data.Rows[0]["Mess1"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadCustomInfo", ex);
+            }
+            txtCustomInfo.Text = text;
         }
 
         private void InitDebug()
@@ -3916,6 +4005,28 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             if (AD.Columns.Contains("PT_CKI")) AD.Rows[i]["PT_CKI"] = txtPtCk.Value;
 
                         }
+                        else
+                        {
+                            var ck_nt = 0m;
+                            var ck = 0m;
+
+                            if (_maNt == _mMaNt0)
+                                ck = ck_nt;
+
+
+                            t_ck_nt_check = t_ck_nt_check + ck_nt;
+                            t_ck_check += ck;
+
+                            if (ck_nt != 0 && index_ck == -1)
+                                index_ck = i;
+
+
+                            //gán lại ck_nt
+                            if (AD.Columns.Contains("CK_NT")) AD.Rows[i]["CK_NT"] = ck_nt;
+                            if (AD.Columns.Contains("CK")) AD.Rows[i]["CK"] = ck;
+                            if (AD.Columns.Contains("PT_CKI")) AD.Rows[i]["PT_CKI"] = txtPtCk.Value;
+                            
+                        }
                     }
                     // Xu ly chenh lech
                     // Tìm dòng có số tiền
@@ -3984,8 +4095,28 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     if (tTienNt2 != 0)
                     {
                         var tien_nt2 = ObjectAndString.ObjectToDecimal(AD.Rows[i]["Tien_nt2"]);
-                        var gg_nt = V6BusinessHelper.Vround(tien_nt2 * t_gg_nt / tTienNt2, M_ROUND_NT);
-                        var gg = V6BusinessHelper.Vround(gg_nt * tyGia, M_ROUND);
+                        var gg_nt = V6BusinessHelper.Vround(tien_nt2*t_gg_nt/tTienNt2, M_ROUND_NT);
+                        var gg = V6BusinessHelper.Vround(gg_nt*tyGia, M_ROUND);
+
+                        if (_maNt == _mMaNt0)
+                            gg = gg_nt;
+
+
+                        t_gg_nt_check = t_gg_nt_check + gg_nt;
+                        t_gg_check += gg;
+
+                        if (gg_nt != 0 && index_gg == -1)
+                            index_gg = i;
+
+
+                        //gán lại gg_nt
+                        if (AD.Columns.Contains("GG_NT")) AD.Rows[i]["GG_NT"] = gg_nt;
+                        if (AD.Columns.Contains("GG")) AD.Rows[i]["GG"] = gg;
+                    }
+                    else
+                    {
+                        var gg_nt = 0m;
+                        var gg = 0m;
 
                         if (_maNt == _mMaNt0)
                             gg = gg_nt;
@@ -4954,7 +5085,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 FormatNumberControl();
                 FormatNumberGridView();
                 FixValues();
-                
+                LoadCustomInfo();
             }
             catch (Exception ex)
             {
@@ -6301,6 +6432,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 if (XuLyThemDetail(data))
                 {
+                    All_Objects["data"] = data;
+                    InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
                     return;
                 }
                 throw new Exception(V6Text.AddFail);
@@ -6313,7 +6446,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             dataGridView1.UnLock();
             if (ValidateData_Detail(data))
             {
-                if (XuLySuaDetail(data)) return;
+                if (XuLySuaDetail(data))
+                {
+                    All_Objects["data"] = data;
+                    InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
+                    return;
+                }
                 throw new Exception(V6Text.EditFail);
             }
             throw new Exception(V6Text.ValidateFail);
@@ -6843,6 +6981,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private void txtMaKh_V6LostFocus(object sender)
         {
             XuLyChonMaKhachHang();
+            LoadCustomInfo();
         }
         private void txtMaHttt_V6LostFocus(object sender)
         {
@@ -7237,6 +7376,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         if (XuLyThemDetail(data))
                         {
                             count++;
+                            All_Objects["data"] = data;
+                            InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
                         }
                     }
                     else

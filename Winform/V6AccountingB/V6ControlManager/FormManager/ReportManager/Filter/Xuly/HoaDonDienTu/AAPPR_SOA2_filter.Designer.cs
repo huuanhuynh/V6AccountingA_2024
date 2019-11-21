@@ -72,7 +72,7 @@
             this.grbTienTe = new System.Windows.Forms.GroupBox();
             this.rNgoaiTe = new System.Windows.Forms.RadioButton();
             this.rTienViet = new System.Windows.Forms.RadioButton();
-            this.btnTestNetwork = new V6Controls.Controls.V6FormButton();
+            this.btnCheckConnection = new V6Controls.Controls.V6FormButton();
             this.groupBox1.SuspendLayout();
             this.grbTienTe.SuspendLayout();
             this.SuspendLayout();
@@ -183,7 +183,7 @@
             this.groupBox1.Controls.Add(this.radAnd);
             this.groupBox1.Location = new System.Drawing.Point(0, 216);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(299, 464);
+            this.groupBox1.Size = new System.Drawing.Size(289, 464);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -599,7 +599,7 @@
             // btnSuaChiTieu
             // 
             this.btnSuaChiTieu.AccessibleDescription = "FILTERB00001";
-            this.btnSuaChiTieu.Location = new System.Drawing.Point(145, 140);
+            this.btnSuaChiTieu.Location = new System.Drawing.Point(141, 140);
             this.btnSuaChiTieu.Name = "btnSuaChiTieu";
             this.btnSuaChiTieu.Size = new System.Drawing.Size(150, 23);
             this.btnSuaChiTieu.TabIndex = 21;
@@ -618,7 +618,7 @@
             "VNPT_TOKEN",
             "SOFTDREAMS",
             "THAI_SON"});
-            this.cboSendType.Location = new System.Drawing.Point(11, 140);
+            this.cboSendType.Location = new System.Drawing.Point(7, 140);
             this.cboSendType.Name = "cboSendType";
             this.cboSendType.Size = new System.Drawing.Size(121, 21);
             this.cboSendType.TabIndex = 22;
@@ -629,7 +629,7 @@
             this.grbTienTe.AccessibleDescription = "REPORTL00007";
             this.grbTienTe.Controls.Add(this.rNgoaiTe);
             this.grbTienTe.Controls.Add(this.rTienViet);
-            this.grbTienTe.Location = new System.Drawing.Point(13, 211);
+            this.grbTienTe.Location = new System.Drawing.Point(13, 208);
             this.grbTienTe.Name = "grbTienTe";
             this.grbTienTe.Size = new System.Drawing.Size(224, 35);
             this.grbTienTe.TabIndex = 23;
@@ -665,22 +665,22 @@
             this.rTienViet.Text = "Tiền Việt";
             this.rTienViet.UseVisualStyleBackColor = true;
             // 
-            // btnTestNetwork
+            // btnCheckConnection
             // 
-            this.btnTestNetwork.AccessibleDescription = ".";
-            this.btnTestNetwork.Image = global::V6ControlManager.Properties.Resources.Network24;
-            this.btnTestNetwork.Location = new System.Drawing.Point(265, 164);
-            this.btnTestNetwork.Name = "btnTestNetwork";
-            this.btnTestNetwork.Size = new System.Drawing.Size(30, 30);
-            this.btnTestNetwork.TabIndex = 24;
-            this.btnTestNetwork.UseVisualStyleBackColor = true;
-            this.btnTestNetwork.Click += new System.EventHandler(this.btnTestNetwork_Click);
+            this.btnCheckConnection.AccessibleDescription = ".";
+            this.btnCheckConnection.Image = global::V6ControlManager.Properties.Resources.Network24;
+            this.btnCheckConnection.Location = new System.Drawing.Point(261, 164);
+            this.btnCheckConnection.Name = "btnCheckConnection";
+            this.btnCheckConnection.Size = new System.Drawing.Size(30, 30);
+            this.btnCheckConnection.TabIndex = 24;
+            this.btnCheckConnection.UseVisualStyleBackColor = true;
+            this.btnCheckConnection.Click += new System.EventHandler(this.btnCheckConnection_Click);
             // 
             // AAPPR_SOA2_filter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnTestNetwork);
+            this.Controls.Add(this.btnCheckConnection);
             this.Controls.Add(this.cboSendType);
             this.Controls.Add(this.btnSuaChiTieu);
             this.Controls.Add(this.v6Label5);
@@ -703,7 +703,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.grbTienTe);
             this.Name = "AAPPR_SOA2_filter";
-            this.Size = new System.Drawing.Size(299, 685);
+            this.Size = new System.Drawing.Size(294, 685);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.grbTienTe.ResumeLayout(false);
@@ -759,6 +759,6 @@
         private V6ReportControls.FilterLineVvarTextBox lineMA_SONB;
         private V6ReportControls.FilterLineVvarTextBox lineTrangThai;
         private V6ReportControls.FilterLineVvarTextBox lineMaXuly;
-        private V6Controls.Controls.V6FormButton btnTestNetwork;
+        private V6Controls.Controls.V6FormButton btnCheckConnection;
     }
 }

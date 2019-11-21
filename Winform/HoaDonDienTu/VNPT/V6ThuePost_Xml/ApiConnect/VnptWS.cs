@@ -188,5 +188,10 @@ namespace V6ThuePostXmlApi
                 throw new Exception(result);
             return null;
         }
+
+        public static string CheckConnection()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

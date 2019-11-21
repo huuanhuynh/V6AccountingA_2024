@@ -3525,7 +3525,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         {
             if (ValidateData_Detail(data))
             {
-                if (XuLyThemDetail(data)) return;
+                if (XuLyThemDetail(data))
+                {
+                    All_Objects["data"] = data;
+                    InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                    return;
+                }
                 throw new Exception(V6Text.AddFail);
             }
             throw new Exception(V6Text.ValidateFail);
@@ -3622,7 +3627,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             dataGridView1.UnLock();
             if (ValidateData_Detail(data))
             {
-                if (XuLySuaDetail(data)) return;
+                if (XuLySuaDetail(data))
+                {
+                    All_Objects["data"] = data;
+                    InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
+                    return;
+                }
                 throw new Exception(V6Text.EditFail);
             }
             throw new Exception(V6Text.ValidateFail);
@@ -4406,8 +4416,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 int addCount = 0, failCount = 0;
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {
-                    if (XuLyThemDetail(data)) addCount++;
-                    else failCount++;
+                    if (XuLyThemDetail(data))
+                    {
+                        addCount++;
+                        All_Objects["data"] = data;
+                        InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                    }
+                    else
+                    {
+                        failCount++;
+                    }
                 }
                 All_Objects["selectedDataList"] = selectedDataList;
                 InvokeFormEvent("AFTERCHON_" + _chon_px);

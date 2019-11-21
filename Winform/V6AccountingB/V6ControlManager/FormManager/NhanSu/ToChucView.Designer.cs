@@ -272,6 +272,7 @@
             this.Controls.Add(this.btnCopy);
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.btnDoiMa);
+            this.EnableF3F3F3 = false;
             this.Name = "ToChucView";
             this.Size = new System.Drawing.Size(749, 600);
             this.Load += new System.EventHandler(this.ToChucView_Load);

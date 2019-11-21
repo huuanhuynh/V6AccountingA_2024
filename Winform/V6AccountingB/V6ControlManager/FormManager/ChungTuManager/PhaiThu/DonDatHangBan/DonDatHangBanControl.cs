@@ -2203,6 +2203,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                             if (AD.Columns.Contains("CK")) AD.Rows[i]["CK"] = ck;
                             
                         }
+                        else
+                        {
+                            var ck_nt =0m;
+                            var ck = 0m;
+
+                            if (_maNt == _mMaNt0)
+                                ck = ck_nt;
+
+                            //gán lại ck_nt
+                            if (AD.Columns.Contains("CK_NT")) AD.Rows[i]["CK_NT"] = ck_nt;
+                            if (AD.Columns.Contains("CK")) AD.Rows[i]["CK"] = ck;
+                        }
                     }
                 }
                 else
@@ -2261,6 +2273,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                             var tien_nt2 = ObjectAndString.ObjectToDecimal(AD.Rows[i]["Tien_nt2"]);
                             var gg_nt = V6BusinessHelper.Vround(tien_nt2*t_gg_nt/t_tien_nt2, M_ROUND_NT);
                             var gg = V6BusinessHelper.Vround(gg_nt*tyGia, M_ROUND);
+
+                            if (_maNt == _mMaNt0)
+                                gg = gg_nt;
+
+                            //gán lại ck_nt
+                            if (AD.Columns.Contains("GG_NT")) AD.Rows[i]["GG_NT"] = gg_nt;
+                            if (AD.Columns.Contains("GG")) AD.Rows[i]["GG"] = gg;
+                        }
+                        else
+                        {
+                            var gg_nt = 0m;
+                            var gg = 0m;
 
                             if (_maNt == _mMaNt0)
                                 gg = gg_nt;
@@ -2353,6 +2377,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     t_thue_nt_check = t_thue_nt_check + thue_nt;
 
                     var thue = V6BusinessHelper.Vround(thue_nt * ty_gia, M_ROUND);
+
+                    if (_maNt == _mMaNt0)
+                        thue = thue_nt;
+                    t_thue_check += thue;
+
+                    if (thue_nt != 0 && index == -1)
+                        index = i;
+
+                    AD.Rows[i]["Thue_nt"] = thue_nt;
+                    AD.Rows[i]["Thue"] = thue;
+                }
+                else
+                {
+                    var thue_nt = 0m;
+                    var thue = 0m;
+
+                    t_thue_nt_check = t_thue_nt_check + thue_nt;
+                    
 
                     if (_maNt == _mMaNt0)
                         thue = thue_nt;
@@ -4189,7 +4231,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         {
             if (ValidateData_Detail(data))
             {
-                if (XuLyThemDetail(data)) return;
+                if (XuLyThemDetail(data))
+                {
+                    All_Objects["data"] = data;
+                    InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                    return;
+                }
                 throw new Exception(V6Text.AddFail);
             }
             throw new Exception(V6Text.ValidateFail);
@@ -4199,7 +4246,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             dataGridView1.UnLock();
             if (ValidateData_Detail(data))
             {
-                if (XuLySuaDetail(data)) return;
+                if (XuLySuaDetail(data))
+                {
+                    All_Objects["data"] = data;
+                    InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
+                    return;
+                }
                 throw new Exception(V6Text.EditFail);
             }
             throw new Exception(V6Text.ValidateFail);
@@ -4782,6 +4834,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         if (XuLyThemDetail(data))
                         {
                             count++;
+                            All_Objects["data"] = data;
+                            InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
                         }
                     }
                     else

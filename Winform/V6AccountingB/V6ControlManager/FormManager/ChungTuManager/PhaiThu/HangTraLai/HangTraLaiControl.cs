@@ -1143,8 +1143,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                         data["STT_REC0PX"] = "";
                     }
                     data["PN_GIA_TBI"] = "a";
-                    if (XuLyThemDetail(data)) addCount++;
-                    else failCount ++;
+                    if (XuLyThemDetail(data))
+                    {
+                        addCount++;
+                        All_Objects["data"] = data;
+                        InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                    }
+                    else
+                    {
+                        failCount ++;
+                    }
                 }
                 All_Objects["selectedDataList"] = selectedDataList;
                 InvokeFormEvent("AFTERCHON_" + _chon_px);
@@ -1791,9 +1799,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                         //TinhTienVon1(_soLuong1);
                         row.Cells["TIEN_NT2"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value)
                             * ObjectAndString.ObjectToDecimal(row.Cells["GIA_NT21"].Value), M_ROUND_NT);
-                        row.Cells["TIEN0"].Value = _maNt == _mMaNt0
+                        row.Cells["TIEN2"].Value = _maNt == _mMaNt0
                             ? row.Cells["TIEN_NT2"].Value
                             : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT2"].Value) * txtTyGia.Value, M_ROUND);
+
+                        //TinhTienVon1(_soLuong1);
+                        row.Cells["TIEN_NT"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value)
+                            * ObjectAndString.ObjectToDecimal(row.Cells["GIA_NT1"].Value), M_ROUND_NT);
+                        row.Cells["TIEN"].Value = _maNt == _mMaNt0
+                            ? row.Cells["TIEN_NT"].Value
+                            : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT"].Value) * txtTyGia.Value, M_ROUND);
 
                         //TinhTienVon(_soLuong1);
                         if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0_Row(row, FIELD);
@@ -1801,8 +1816,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                         if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1_Row(row, FIELD);
                         //_tienNt.Value = _tienNt0.Value;
                         //_tien.Value = _tien0.Value;
-                        row.Cells["TIEN_NT"].Value = row.Cells["TIEN_NT2"].Value;
-                        row.Cells["TIEN"].Value = row.Cells["TIEN0"].Value;
+                        
 
                         #endregion ==== SO_LUONG1 ====
                         break;
@@ -1822,6 +1836,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                         row.Cells["GIA21"].Value = _maNt == _mMaNt0
                             ? row.Cells["GIA_NT21"].Value
                             : V6BusinessHelper.Vround((ObjectAndString.ObjectToDecimal(row.Cells["GIA_NT21"].Value) * txtTyGia.Value), M_ROUND_GIA_NT);
+
+                        //TinhGiaVon();
+                        row.Cells["GIA1"].Value = _maNt == _mMaNt0
+                            ? row.Cells["GIA_NT1"].Value
+                            : V6BusinessHelper.Vround((ObjectAndString.ObjectToDecimal(row.Cells["GIA_NT1"].Value) * txtTyGia.Value), M_ROUND_GIA_NT);
                         //TinhGiaNt2
                         if (ObjectAndString.ObjectToDecimal(row.Cells["SO_LUONG"].Value) != 0)
                         {
@@ -1830,6 +1849,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                                 ? row.Cells["GIA_NT2"].Value
                                 : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN2"].Value)
                                     / ObjectAndString.ObjectToDecimal(row.Cells["SO_LUONG"].Value), M_ROUND_GIA);
+                            
+                            row.Cells["GIA_NT"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT"].Value) / ObjectAndString.ObjectToDecimal(row.Cells["SO_LUONG"].Value), M_ROUND_GIA_NT);
+                            row.Cells["GIA"].Value = _maNt == _mMaNt0
+                                ? row.Cells["GIA_NT"].Value
+                                : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN"].Value)
+                                    / ObjectAndString.ObjectToDecimal(row.Cells["SO_LUONG"].Value), M_ROUND_GIA);
+
                         }
                         //TinhVanChuyenRow(row);
                         //TinhGiamGiaCtRow(row);
@@ -4199,7 +4225,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         {
             if (ValidateData_Detail(data))
             {
-                if (XuLyThemDetail(data)) return;
+                if (XuLyThemDetail(data))
+                {
+                    All_Objects["data"] = data;
+                    InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                    return;
+                }
                 throw new Exception(V6Text.AddFail);
             }
             throw new Exception(V6Text.ValidateFail);
@@ -4209,7 +4240,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             dataGridView1.UnLock();
             if (ValidateData_Detail(data))
             {
-                if (XuLySuaDetail(data)) return;
+                if (XuLySuaDetail(data))
+                {
+                    All_Objects["data"] = data;
+                    InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
+                    return;
+                }
                 throw new Exception(V6Text.EditFail);
             }
             throw new Exception(V6Text.ValidateFail);

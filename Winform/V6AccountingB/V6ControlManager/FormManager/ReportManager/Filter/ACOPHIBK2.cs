@@ -196,10 +196,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         }
 
         //Dynamic report -> After
-        public override void LoadDataFinish(DataSet ds)
-        {
-            _ds = ds;
-        }
+        //public override void LoadDataFinish(DataSet ds)
+        //{
+        //    _ds = ds;
+        //}
 
         public override void FormatGridView(V6ColorDataGridView dataGridView1)
         {

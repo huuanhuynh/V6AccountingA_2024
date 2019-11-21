@@ -2334,35 +2334,35 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         #endregion ==== SO_LUONG1 ====
                         break;
 
-                    case "GIA_NT21":
-                        #region ==== GIA_NT21 ====
+                    case "GIA_NT01":
+                        #region ==== GIA_NT01 ====
 
                         //TinhTienVon1(_gia_nt21);
-                        row.Cells["TIEN_NT2"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value)
-                            * ObjectAndString.ObjectToDecimal(row.Cells["GIA_NT21"].Value), M_ROUND_NT);
-                        row.Cells["TIEN2"].Value = _maNt == _mMaNt0
-                            ? row.Cells["TIEN_NT2"].Value
-                            : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT2"].Value) * txtTyGia.Value, M_ROUND);
+                        row.Cells["TIEN_NT0"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value)
+                            * ObjectAndString.ObjectToDecimal(row.Cells["GIA_NT01"].Value), M_ROUND_NT);
+                        row.Cells["TIEN0"].Value = _maNt == _mMaNt0
+                            ? row.Cells["TIEN_NT0"].Value
+                            : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT0"].Value) * txtTyGia.Value, M_ROUND);
                         //TinhChietKhauChiTiet
                         TinhChietKhauChiTietRow(false, row, txtTyGia.Value);
                         //TinhGiaVon();
-                        row.Cells["GIA21"].Value = _maNt == _mMaNt0
-                            ? row.Cells["GIA_NT21"].Value
-                            : V6BusinessHelper.Vround((ObjectAndString.ObjectToDecimal(row.Cells["GIA_NT21"].Value) * txtTyGia.Value), M_ROUND_GIA_NT);
+                        row.Cells["GIA01"].Value = _maNt == _mMaNt0
+                            ? row.Cells["GIA_NT01"].Value
+                            : V6BusinessHelper.Vround((ObjectAndString.ObjectToDecimal(row.Cells["GIA_NT01"].Value) * txtTyGia.Value), M_ROUND_GIA_NT);
                         //TinhGiaNt2
                         if (ObjectAndString.ObjectToDecimal(row.Cells["SO_LUONG"].Value) != 0)
                         {
-                            row.Cells["GIA_NT2"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT2"].Value) / ObjectAndString.ObjectToDecimal(row.Cells["SO_LUONG"].Value), M_ROUND_GIA_NT);
-                            row.Cells["GIA2"].Value = _maNt == _mMaNt0
-                                ? row.Cells["GIA_NT2"].Value
-                                : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN2"].Value)
+                            row.Cells["GIA_NT"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT"].Value) / ObjectAndString.ObjectToDecimal(row.Cells["SO_LUONG"].Value), M_ROUND_GIA_NT);
+                            row.Cells["GIA"].Value = _maNt == _mMaNt0
+                                ? row.Cells["GIA_NT"].Value
+                                : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN"].Value)
                                     / ObjectAndString.ObjectToDecimal(row.Cells["SO_LUONG"].Value), M_ROUND_GIA);
                         }
                         //TinhVanChuyenRow(row);
                         //TinhGiamGiaCtRow(row);
                         //Tinh_thue_ct_row(row);
 
-                        #endregion ==== GIA_NT21 ====
+                        #endregion ==== GIA_NT01 ====
                         break;
                     default:
                         break;
@@ -2906,18 +2906,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     //tính chiết khấu cho mỗi chi tiết
                     for (var i = 0; i < AD.Rows.Count; i++)
                     {
+                        var tien_nt0 = ObjectAndString.ObjectToDecimal(AD.Rows[i]["Tien_nt0"]);
+                        var tien0 = ObjectAndString.ObjectToDecimal(AD.Rows[i]["Tien0"]);
+
+                        var cp_nt = ObjectAndString.ObjectToDecimal(AD.Rows[i]["CP_NT"]);
+                        var cp = ObjectAndString.ObjectToDecimal(AD.Rows[i]["CP"]);
+                        var gg_nt = ObjectAndString.ObjectToDecimal(AD.Rows[i]["GG_NT"]);
+                        var gg = ObjectAndString.ObjectToDecimal(AD.Rows[i]["GG"]);
+
+                        var nk_nt = ObjectAndString.ObjectToDecimal(AD.Rows[i]["NK_NT"]);
+                        var nk = ObjectAndString.ObjectToDecimal(AD.Rows[i]["NK"]);
+
                         if (t_tien_nt0 != 0)
                         {
-                            var tien_nt0 = ObjectAndString.ObjectToDecimal(AD.Rows[i]["Tien_nt0"]);
-                            var tien0 = ObjectAndString.ObjectToDecimal(AD.Rows[i]["Tien0"]);
-
-                            var cp_nt = ObjectAndString.ObjectToDecimal(AD.Rows[i]["CP_NT"]);
-                            var cp = ObjectAndString.ObjectToDecimal(AD.Rows[i]["CP"]);
-                            var gg_nt = ObjectAndString.ObjectToDecimal(AD.Rows[i]["GG_NT"]);
-                            var gg = ObjectAndString.ObjectToDecimal(AD.Rows[i]["GG"]);
-
-                            var nk_nt = ObjectAndString.ObjectToDecimal(AD.Rows[i]["NK_NT"]);
-                            var nk = ObjectAndString.ObjectToDecimal(AD.Rows[i]["NK"]);
+                            
 
                             var ck_nt = V6BusinessHelper.Vround(tien_nt0 * t_ck_nt / t_tien_nt0, M_ROUND_NT);
                             var ck = V6BusinessHelper.Vround(ck_nt * tyGia, M_ROUND);
@@ -2940,6 +2942,29 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                             // gán lại tiền
                             if (AD.Columns.Contains("TIEN_NT")) AD.Rows[i]["TIEN_NT"] = tien_nt0 + cp_nt - ck_nt - gg_nt+nk_nt;
                             if (AD.Columns.Contains("TIEN")) AD.Rows[i]["TIEN"] = tien0 + cp - ck - gg+nk;
+                        }
+                        else
+                        {
+                            var ck_nt = 0m;
+                            var ck = 0m;
+
+                            if (_maNt == _mMaNt0)
+                                ck = ck_nt;
+                            
+                            t_ck_nt_check = t_ck_nt_check + ck_nt;
+                            t_ck_check += ck;
+
+                            if (ck_nt != 0 && index_ck == -1)
+                                index_ck = i;
+
+
+                            //gán lại ck_nt
+                            if (AD.Columns.Contains("CK_NT")) AD.Rows[i]["CK_NT"] = ck_nt;
+                            if (AD.Columns.Contains("CK")) AD.Rows[i]["CK"] = ck;
+                            if (AD.Columns.Contains("PT_CKI")) AD.Rows[i]["PT_CKI"] = txtPtCk.Value;
+                            // gán lại tiền
+                            if (AD.Columns.Contains("TIEN_NT")) AD.Rows[i]["TIEN_NT"] = tien_nt0 + cp_nt - ck_nt - gg_nt + nk_nt;
+                            if (AD.Columns.Contains("TIEN")) AD.Rows[i]["TIEN"] = tien0 + cp - ck - gg + nk;
                         }
                     }
                     // Xu ly chenh lech
@@ -2997,6 +3022,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             try
             {
+                
+
                 var tTienNt0 = TinhTong(AD, "TIEN_NT0");
                 var tyGia = txtTyGia.Value;
                 var t_tien_nt0 = txtTongTienNt0.Value;
@@ -5487,7 +5514,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             if (ValidateData_Detail(data))
             {
-                if (XuLyThemDetail(data)) return;
+                if (XuLyThemDetail(data))
+                {
+                    All_Objects["data"] = data;
+                    InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                    return;
+                }
                 throw new Exception(V6Text.AddFail);
             }
             throw new Exception(V6Text.ValidateFail);
@@ -5584,7 +5616,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             dataGridView1.UnLock();
             if (ValidateData_Detail(data))
             {
-                if (XuLySuaDetail(data)) return;
+                if (XuLySuaDetail(data))
+                {
+                    All_Objects["data"] = data;
+                    InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
+                    return;
+                }
                 throw new Exception(V6Text.EditFail);
             }
             throw new Exception(V6Text.ValidateFail);
@@ -6850,6 +6887,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         if (XuLyThemDetail(data))
                         {
                             count++;
+
+                            All_Objects["data"] = data;
+                            InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
                         }
                     }
                     else

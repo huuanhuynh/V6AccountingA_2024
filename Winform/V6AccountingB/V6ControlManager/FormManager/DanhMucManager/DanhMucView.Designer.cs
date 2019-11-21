@@ -430,6 +430,7 @@
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnDoiMa);
+            this.EnableF3F3F3 = false;
             this.FilterType = "2";
             this.Name = "DanhMucView";
             this.Size = new System.Drawing.Size(794, 373);

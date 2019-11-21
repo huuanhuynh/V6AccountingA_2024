@@ -1039,6 +1039,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                         if (XuLyThemDetail(detailData))
                         {
                             ShowParentMessage(V6Text.InvoiceF3AddDetailSuccess);
+                            All_Objects["data"] = detailData;
+                            InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
                         }
                     }
                 }
@@ -3837,7 +3839,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         {
             if (ValidateData_Detail(data))
             {
-                if (XuLyThemDetail(data)) return;
+                if (XuLyThemDetail(data))
+                {
+                    All_Objects["data"] = data;
+                    InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                    return;
+                }
                 throw new Exception(V6Text.AddFail);
             }
             throw new Exception(V6Text.ValidateFail);
@@ -3848,7 +3855,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             dataGridView1.UnLock();
             if (ValidateData_Detail(data))
             {
-                if (XuLySuaDetail(data)) return;
+                if (XuLySuaDetail(data))
+                {
+                    All_Objects["data"] = data;
+                    InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
+                    return;
+                }
                 throw new Exception(V6Text.EditFail);
             }
             throw new Exception(V6Text.ValidateFail);
@@ -4124,9 +4136,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                             dic["DIEN_GIAII"] = " Thu tiền bán hàng theo CT số " + data.Cells["SO_CT"].Value.ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)data.Cells["NGAY_CT"].Value);
                         }
                         //}
-                         
 
-                        XuLyThemDetail(dic);
+
+                        if (XuLyThemDetail(dic))
+                        {
+                            All_Objects["data"] = dic;
+                            InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                            return;
+                        }
                     };
 
                     if (f.ViewData.Count > 0)

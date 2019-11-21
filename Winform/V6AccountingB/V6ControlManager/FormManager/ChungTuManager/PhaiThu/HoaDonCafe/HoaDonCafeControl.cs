@@ -5885,6 +5885,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 {
                     detail1._mode = V6Mode.View;
                     Luu(MA_KHOPH, MA_VITRIPH, false);
+                    {
+                        All_Objects["data"] = data;
+                        InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                    }
                     return;
                 }
                 throw new Exception(V6Text.AddFail);
@@ -5899,6 +5903,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 if (XuLySuaDetail(data))
                 {
                     Luu(MA_KHOPH, MA_VITRIPH, false);
+                    All_Objects["data"] = data;
+                    InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
                     return;
                 }
                 throw new Exception(V6Text.EditFail);
@@ -6556,8 +6562,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 int addCount = 0, failCount = 0;
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {
-                    if (XuLyThemDetail(data)) addCount++;
-                    else failCount++;
+                    if (XuLyThemDetail(data)) // !!!!!!! Luu tam
+                    {
+                        addCount++;
+                        All_Objects["data"] = data;
+                        InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                    }
+                    else
+                    {
+                        failCount++;
+                    }
                 }
                 All_Objects["selectedDataList"] = selectedDataList;
                 InvokeFormEvent("AFTERCHON_" + _chon_px);
@@ -6659,6 +6673,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                         if (XuLyThemDetail(data))
                         {
                             count++;
+                            All_Objects["data"] = data;
+                            InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
                         }
                     }
                     else
@@ -6995,6 +7011,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                         if (XuLyThemDetail(data))
                         {
                             count++;
+                            All_Objects["data"] = data;
+                            InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
                         }
                     }
                     else

@@ -530,6 +530,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                         if (XuLyThemDetail(detailData))
                         {
                             ShowParentMessage(V6Text.InvoiceF3AddDetailSuccess);
+                            All_Objects["data"] = detailData;
+                            InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
                         }
                     }
                 }
@@ -2833,7 +2835,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
         {
             if (ValidateData_Detail(data))
             {
-                if (XuLyThemDetail(data)) return;
+                if (XuLyThemDetail(data))
+                {
+                    All_Objects["data"] = data;
+                    InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                    return;
+                }
                 throw new Exception(V6Text.AddFail);
             }
             throw new Exception(V6Text.ValidateFail);
@@ -2927,7 +2934,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             dataGridView1.UnLock();
             if (ValidateData_Detail(data))
             {
-                if (XuLySuaDetail(data)) return;
+                if (XuLySuaDetail(data))
+                {
+                    All_Objects["data"] = data;
+                    InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
+                    return;
+                }
                 throw new Exception(V6Text.EditFail);
             }
             throw new Exception(V6Text.ValidateFail);

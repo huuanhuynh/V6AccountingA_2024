@@ -43,6 +43,7 @@ namespace V6ThuePostViettelApi
             return requestManager.GetResponseContent(respone);
         }
 
+        private const string create_link0 = @"InvoiceAPI/InvoiceWS/createInvoice"; // + /MST
         private const string cancel_link = @"InvoiceAPI/InvoiceWS/cancelTransactionInvoice";
 
         /// <summary>
@@ -247,6 +248,26 @@ namespace V6ThuePostViettelApi
                 //MessageBox.Show("NOK " + ex.Message);
             }
             return null;
+        }
+
+        public string CheckConnection(string create_link)
+        {
+            string result = POST(create_link, "");
+            //Phân tích result
+            string message = null;
+            
+            CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
+            if (!string.IsNullOrEmpty(responseObject.description) && responseObject.description.Contains("Phải chọn loại template hóa đơn"))
+            {
+                ;
+            }
+
+            if (responseObject.result != null && !string.IsNullOrEmpty(responseObject.result.invoiceNo))
+            {
+                message += " " + responseObject.result.invoiceNo;
+            }
+
+            return message;
         }
     }
 }

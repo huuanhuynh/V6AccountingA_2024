@@ -21,6 +21,8 @@
 
 
         public const string AFTERADDFILTERCONTROL = "AFTERADDFILTERCONTROL";
+        public const string AFTERADDDETAILSUCCESS = "AFTERADDDETAILSUCCESS";
+        public const string AFTEREDITDETAILSUCCESS = "AFTEREDITDETAILSUCCESS";
         public const string AFTERADDSUCCESS = "AFTERADDSUCCESS";
         public const string AFTEREDITSUCCESS = "AFTEREDITSUCCESS";
         public const string AFTERF9 = "AFTERF9";

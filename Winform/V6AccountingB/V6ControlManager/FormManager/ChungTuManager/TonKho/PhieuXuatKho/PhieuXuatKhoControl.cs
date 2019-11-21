@@ -4465,7 +4465,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         {
             if (ValidateData_Detail(data))
             {
-                if (XuLyThemDetail(data)) return;
+                if (XuLyThemDetail(data))
+                {
+                    All_Objects["data"] = data;
+                    InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                    return;
+                }
                 throw new Exception(V6Text.AddFail);
             }
             throw new Exception(V6Text.ValidateFail);
@@ -4475,7 +4480,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             dataGridView1.UnLock();
             if (ValidateData_Detail(data))
             {
-                if (XuLySuaDetail(data)) return;
+                if (XuLySuaDetail(data))
+                {
+                    All_Objects["data"] = data;
+                    InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
+                    return;
+                }
                 throw new Exception(V6Text.EditFail);
             }
             throw new Exception(V6Text.ValidateFail);
@@ -4997,6 +5007,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                         if (XuLyThemDetail(data))
                         {
                             count++;
+                            All_Objects["data"] = data;
+                            InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
                         }
                     }
                     else
@@ -5072,8 +5084,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     if (XuLyThemDetail(data))
                     {
                         count++;
+                        All_Objects["data"] = data;
+                        InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
                     }
-                    
                 }
                 ShowParentMessage(string.Format(V6Text.Added + "[{0}].", count) + _message);
             }
@@ -5141,8 +5154,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     if (XuLyThemDetail(data))
                     {
                         count++;
+                        All_Objects["data"] = data;
+                        InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
                     }
-
                 }
                 ShowParentMessage(string.Format(V6Text.Added + "[{0}].", count) + _message);
             }

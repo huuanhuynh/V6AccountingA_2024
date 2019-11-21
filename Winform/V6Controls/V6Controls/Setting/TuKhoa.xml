@@ -42,6 +42,8 @@
 	<TuKhoa TenTuKhoa='GetControlByAccessibleName' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='GetControlByName' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='ObjectToDecimal' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='ObjectToDate' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='ObjectToFullDateTime' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='SetValue' 		        MauSac = 'Chocolate' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='Show' 		        MauSac = 'Chocolate' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='ShowMainMessage' 		MauSac = 'Chocolate' 	AutoComplete = '1' />

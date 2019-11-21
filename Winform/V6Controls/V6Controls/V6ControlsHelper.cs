@@ -129,6 +129,7 @@ namespace V6Controls
                     + "using System.Data.SqlClient;"
                     + "using System.IO;"
                     + "using V6Init;"
+                    + "using V6Structs;"
                     + "using V6SqlConnect;"
                     + "using V6AccountingBusiness;"
                     + "using V6AccountingBusiness.Invoices;"
