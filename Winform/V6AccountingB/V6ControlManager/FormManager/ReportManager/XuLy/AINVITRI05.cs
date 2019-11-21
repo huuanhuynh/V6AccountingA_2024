@@ -30,6 +30,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
             FilterControl.Visible = false;
+            btnSuaTTMauBC.Visible = false;
+            btnThemMauBC.Visible = false;
             InitializeComponent();
             MyInit();
         }

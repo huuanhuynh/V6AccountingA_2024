@@ -128,10 +128,10 @@ namespace V6ControlManager.FormManager.KhoHangManager
         {
             try
             {
-                var ID = row["CODE"].ToString().Substring(0, 1);
-                if (_listDay.ContainsKey(ID))
+                var ID_DAY = row["MA_KHO"].ToString().Trim() + row["CODE"].ToString().Substring(0, 1);
+                if (_listDay.ContainsKey(ID_DAY))
                 {
-                    var kho = _listDay[ID];
+                    var kho = _listDay[ID_DAY];
                     kho.AddRow(row);
                 }
                 else
@@ -151,7 +151,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
             {
                 DayHangControl day = new DayHangControl(KhoParams, row);
                 day.V6Click += day_V6Click;
-                _listDay.Add(day.ID, day);
+                _listDay.Add(day.ID_DAY, day);
                 day.Location = new Point(_p.X, _p.Y);
                 _p = new Point(_p.X, _p.Y + day.Height);
                 //panel1.Controls.Add(kho);

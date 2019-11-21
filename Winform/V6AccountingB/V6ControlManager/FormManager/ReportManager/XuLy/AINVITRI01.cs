@@ -8,12 +8,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     public class AINVITRI01 : XuLyBase0
     {
         private KhoHangContainer khoHangContainer;
-        private KhoHangContainerDraw khoHangContainerDraw;
+        private KhoHangContainerAll khoHangContainerDraw;
 
         public AINVITRI01(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
             FilterControl.Visible = false;
+            btnSuaTTMauBC.Visible = false;
+            btnThemMauBC.Visible = false;
             var cellWidth = 50;
             var cellHeight = 20;
             KhoParams kparams = new KhoParams
@@ -29,11 +31,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             if (program == "AINVITRI01Draw")
             {
                 kparams.Program = "AINVITRI01";
-                khoHangContainerDraw = new KhoHangContainerDraw(kparams);
+                khoHangContainerDraw = new KhoHangContainerAll(kparams);
                 khoHangContainerDraw.Dock = DockStyle.Fill;
                 khoHangContainerDraw.Name = itemId;
                 //khoHangContainer.CodeForm = CodeForm;
                 panel1.Controls.Add(khoHangContainerDraw);
+            }
+            else if (program == "AINVITRI01Draw")
+            {
+                //kparams.Program = "AINVITRI01";
+                //khoHangContainerDraw = new KhoHangContainerDraw(kparams);
+                //khoHangContainerDraw.Dock = DockStyle.Fill;
+                //khoHangContainerDraw.Name = itemId;
+                ////khoHangContainer.CodeForm = CodeForm;
+                //panel1.Controls.Add(khoHangContainerDraw);
             }
             else
             {

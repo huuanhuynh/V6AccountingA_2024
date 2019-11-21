@@ -178,8 +178,8 @@
         public System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.Button btnNhan;
         public System.Windows.Forms.Button btnHuy;
-        private V6Controls.Controls.V6FormButton btnThemMauBC;
-        private V6Controls.Controls.V6FormButton btnSuaTTMauBC;
+        public V6Controls.Controls.V6FormButton btnThemMauBC;
+        public V6Controls.Controls.V6FormButton btnSuaTTMauBC;
 
 
 

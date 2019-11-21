@@ -22,9 +22,16 @@ namespace V6ControlManager.FormManager.KhoHangManager
         private Point _p;
         private SortedList<string, KeHangControl> _listKeHang;
         public KhoParams KhoParams { get; set; }
-        public string ID { get; set; }
+        /// <summary>
+        /// Code dãy 1 ký tự đầu của CODE.
+        /// </summary>
+        public string CODE_DAY { get; set; }
         public string MA_KHO = null;
         public string TYPE = null;
+        /// <summary>
+        /// ID dãy kết hợp Mã kho + Code dãy
+        /// </summary>
+        public string ID_DAY { get; set; }
 
         public event HandleData V6Click;
         protected virtual void OnV6Click(IDictionary<string, object> data)
@@ -46,11 +53,12 @@ namespace V6ControlManager.FormManager.KhoHangManager
             KhoParams = kparas;
             _p = new Point(v6VeticalLable1.Right, v6VeticalLable1.Top);
             _listKeHang = new SortedList<string, KeHangControl>();
-            ID = row["CODE"].ToString().Substring(0, 1);
+            CODE_DAY = row["CODE"].ToString().Substring(0, 1);
             MA_KHO = row["MA_KHO"].ToString().Trim();
             TYPE = row["TYPE"].ToString().Trim();
-            v6VeticalLable1.HideText = ID;
-            v6VeticalLable1.ShowText = ID;
+            ID_DAY = MA_KHO + CODE_DAY;
+            v6VeticalLable1.HideText = ID_DAY;
+            v6VeticalLable1.ShowText = ID_DAY;
             AddRow(row);
         }
 
@@ -82,7 +90,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
             {
                 KeHangControl keHang = new KeHangControl(KhoParams, row);
                 keHang.V6Click += keHang_V6Click;
-                _listKeHang.Add(keHang.ID, keHang);
+                _listKeHang.Add(keHang.CODE_KE, keHang);
                 keHang.Location = new Point(_p.X, _p.Y);
                 _p = new Point(_p.X, _p.Y + keHang.Height);
                 Controls.Add(keHang);
@@ -148,7 +156,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
                 {
                     // Sửa nhiều dòng trong dãy"
                     var condition = string.Format("MA_KHO='{0}' and MA_VITRI like '__{1}%' and MA_VT ='{2}'", MA_KHO.Replace("'", "''"),
-                    ID.Replace("'", "''"), container._mavt.Replace("'", "''"));
+                    CODE_DAY.Replace("'", "''"), container._mavt.Replace("'", "''"));
 
                     SqlParameter[] plist =
                     {
@@ -161,7 +169,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
                     // Data danh cho F7
                     plistData = new SortedDictionary<string, object>();
                     plistData["MA_KHO"] = MA_KHO;
-                    plistData["MA_VITRI"] = ID;
+                    plistData["MA_VITRI"] = CODE_DAY;
                     plistData["MA_VT"] = container._mavt;
                     plistData["NAM"] = container._cuoiNgay.Year;
                     plistData["THANG"] = container._cuoiNgay.Month;
@@ -189,7 +197,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
                     plistData["FLAG"] = "DAY";
                     plistData["MA_KHO"] = MA_KHO;
                     //plistData["MA_VT"] = MA_VT;
-                    plistData["MA_VITRI"] = "__" + ID;
+                    plistData["MA_VITRI"] = "__" + CODE_DAY;
                     plistData["CUOI_NGAY"] = container._cuoiNgay;
                     plistData["VT_TONKHO"] = "1";
                     plistData["KIEU_IN"] = "1";

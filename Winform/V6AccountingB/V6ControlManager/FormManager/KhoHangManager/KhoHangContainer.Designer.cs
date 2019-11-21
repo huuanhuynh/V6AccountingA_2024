@@ -94,27 +94,27 @@
             // 
             // btnSuaTTMauBC
             // 
-            this.btnSuaTTMauBC.AccessibleDescription = "XULYL00192";
+            this.btnSuaTTMauBC.AccessibleDescription = ".";
             this.btnSuaTTMauBC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSuaTTMauBC.Location = new System.Drawing.Point(690, 4);
+            this.btnSuaTTMauBC.Image = global::V6ControlManager.Properties.Resources.Setting24;
+            this.btnSuaTTMauBC.Location = new System.Drawing.Point(690, 1);
             this.btnSuaTTMauBC.Name = "btnSuaTTMauBC";
-            this.btnSuaTTMauBC.Size = new System.Drawing.Size(43, 23);
+            this.btnSuaTTMauBC.Size = new System.Drawing.Size(30, 30);
             this.btnSuaTTMauBC.TabIndex = 5;
             this.btnSuaTTMauBC.TabStop = false;
-            this.btnSuaTTMauBC.Text = "Sửa tt";
             this.btnSuaTTMauBC.UseVisualStyleBackColor = true;
             this.btnSuaTTMauBC.Click += new System.EventHandler(this.btnSuaTTMauBC_Click);
             // 
             // btnThemMauBC
             // 
-            this.btnThemMauBC.AccessibleDescription = "XULYL00193";
+            this.btnThemMauBC.AccessibleDescription = ".";
             this.btnThemMauBC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnThemMauBC.Location = new System.Drawing.Point(735, 4);
+            this.btnThemMauBC.Image = global::V6ControlManager.Properties.Resources.SettingAdd24;
+            this.btnThemMauBC.Location = new System.Drawing.Point(720, 1);
             this.btnThemMauBC.Name = "btnThemMauBC";
-            this.btnThemMauBC.Size = new System.Drawing.Size(43, 23);
+            this.btnThemMauBC.Size = new System.Drawing.Size(30, 30);
             this.btnThemMauBC.TabIndex = 6;
             this.btnThemMauBC.TabStop = false;
-            this.btnThemMauBC.Text = "Thêm";
             this.btnThemMauBC.UseVisualStyleBackColor = true;
             this.btnThemMauBC.Click += new System.EventHandler(this.btnThemMauBC_Click);
             // 

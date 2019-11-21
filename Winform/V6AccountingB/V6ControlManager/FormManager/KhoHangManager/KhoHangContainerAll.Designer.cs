@@ -1,6 +1,6 @@
-﻿namespace V6ControlManager.FormManager.KhoHangManager.Draw
+﻿namespace V6ControlManager.FormManager.KhoHangManager
 {
-    partial class KhoHangContainerDraw
+    partial class KhoHangContainerAll
     {
         /// <summary>
         /// Required designer variable.
@@ -39,8 +39,6 @@
             this.lblTenHang = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.txtTime = new V6Controls.V6NumberTextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -51,7 +49,7 @@
             this.panel1.AutoScroll = true;
             this.panel1.Location = new System.Drawing.Point(0, 35);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(101, 527);
+            this.panel1.Size = new System.Drawing.Size(784, 527);
             this.panel1.TabIndex = 0;
             // 
             // label1
@@ -68,7 +66,6 @@
             // 
             this.txtMaKho.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaKho.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtMaKho.CheckNotEmpty = true;
             this.txtMaKho.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaKho.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMaKho.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -180,19 +177,10 @@
             0,
             196608});
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(107, 35);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(671, 527);
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
-            // 
-            // KhoHangContainerDraw
+            // KhoHangContainerAll
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtTime);
             this.Controls.Add(this.txtMavt);
             this.Controls.Add(this.btnSuaTTMauBC);
@@ -202,9 +190,8 @@
             this.Controls.Add(this.lblTenHang);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.Name = "KhoHangContainerDraw";
+            this.Name = "KhoHangContainerAll";
             this.Size = new System.Drawing.Size(784, 562);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,13 +202,12 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         public V6Controls.V6VvarTextBox txtMaKho;
-        private V6Controls.V6DateTimePicker dateCuoiNgay;
         private V6Controls.Controls.V6FormButton btnSuaTTMauBC;
         private V6Controls.Controls.V6FormButton btnThemMauBC;
-        private V6Controls.V6VvarTextBox txtMavt;
         private System.Windows.Forms.Label lblTenHang;
         private System.Windows.Forms.Timer timer1;
         private V6Controls.V6NumberTextBox txtTime;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        public V6Controls.V6DateTimePicker dateCuoiNgay;
+        public V6Controls.V6VvarTextBox txtMavt;
     }
 }

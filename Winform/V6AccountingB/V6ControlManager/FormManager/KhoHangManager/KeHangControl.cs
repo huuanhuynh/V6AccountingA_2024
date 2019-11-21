@@ -17,9 +17,9 @@ namespace V6ControlManager.FormManager.KhoHangManager
         private Point _p = new Point(0, 0);
         public KhoParams KhoParams { get; set; }
         /// <summary>
-        /// ABC
+        /// 2 KÝ TỰ ĐẦU CỦA CODE
         /// </summary>
-        public string ID { get; set; }
+        public string CODE_KE { get; set; }
         private Dictionary<string, ViTriControl> _listVitri;
 
         public event HandleData V6Click;
@@ -40,7 +40,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
             InitializeComponent();
             KhoParams = kparas;
             _listVitri = new Dictionary<string, ViTriControl>();
-            ID = row["CODE"].ToString().Substring(0, 2).ToUpper();
+            CODE_KE = row["CODE"].ToString().Substring(0, 2).ToUpper();
             AddViTri(row);
         }
 
@@ -76,7 +76,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
                 vitri.Text = vitri.Name;
                 vitri.Click += vitri_Click;
                 vitri.V6Click += vitri_V6Click;
-                _listVitri.Add(vitri.Name, vitri);
+                _listVitri.Add(vitri.MA_VITRI, vitri);
                 vitri.Location = new Point(_p.X, _p.Y);
                 _p = new Point(_p.X + vitri.Width, _p.Y);
                 Controls.Add(vitri);

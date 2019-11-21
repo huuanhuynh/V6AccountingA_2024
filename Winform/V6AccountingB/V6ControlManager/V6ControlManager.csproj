@@ -1724,6 +1724,12 @@
     <Compile Include="FormManager\KhoHangManager\Draw\KhoHangControlDraw.cs" />
     <Compile Include="FormManager\KhoHangManager\Draw\KhoHangObject.cs" />
     <Compile Include="FormManager\KhoHangManager\Draw\ViTriControlDraw.cs" />
+    <Compile Include="FormManager\KhoHangManager\KhoHangContainerAll.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\KhoHangManager\KhoHangContainerAll.Designer.cs">
+      <DependentUpon>KhoHangContainerAll.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\KhoHangManager\KhoHangContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -6529,6 +6535,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\KhoHangManager\Draw\KhoHangContainerDraw.resx">
       <DependentUpon>KhoHangContainerDraw.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\KhoHangManager\KhoHangContainerAll.resx">
+      <DependentUpon>KhoHangContainerAll.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\KhoHangManager\KhoHangContainer.resx">
       <DependentUpon>KhoHangContainer.cs</DependentUpon>
