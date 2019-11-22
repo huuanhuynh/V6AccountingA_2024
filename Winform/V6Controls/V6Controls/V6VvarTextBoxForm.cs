@@ -126,6 +126,7 @@ namespace V6Controls
             {
                 dataGridView1.DataSource = _standDao.LayTatCaDanhMuc();
                 ApplyF2Selected();
+                if (dataGridView1.RowCount > 0) dataGridView1.Focus();
             }
             catch (Exception ex)
             {
@@ -388,13 +389,10 @@ namespace V6Controls
                         if (dataGridView1.SelectedCells.Count > 0)
                         {
                             var currentRow = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
-                            string selectedValue = currentRow
-                                .Cells[_config.vValue].Value.ToString().Trim();
                             var g = currentRow.Cells["UID"].Value.ToString();
                             Guid uid = new Guid(g);
                             var keys = new SortedDictionary<string, object>
                             {
-                                {_config.vValue, selectedValue},
                                 {"UID", uid}
                             };
                             var f = _config.V6TableName == V6TableName.Notable
@@ -428,13 +426,10 @@ namespace V6Controls
                         if (dataGridView1.SelectedCells.Count > 0)
                         {
                             var currentRow = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
-                            string selectedValue = currentRow
-                                .Cells[_config.vValue].Value.ToString().Trim();
                             var g = currentRow.Cells["UID"].Value.ToString();
                             Guid uid = new Guid(g);
                             var keys = new SortedDictionary<string, object>
                             {
-                                {_config.vValue, selectedValue},
                                 {"UID", uid}
                             };
                             var f = _config.V6TableName == V6TableName.Notable
@@ -589,8 +584,7 @@ namespace V6Controls
                 dataGridView1.DataSource = _standDao.LayTatCaDanhMuc(_vSearchFilter);
                 ApplyF2Selected();
 
-                if(_standDao.tableRoot.Rows.Count>0)
-                    dataGridView1.Focus();
+                if (dataGridView1.RowCount > 0) dataGridView1.Focus();
             }
             catch (Exception ex)
             {
@@ -598,13 +592,6 @@ namespace V6Controls
             }
         }
 
-        private void Form_KeyDown(object sender, KeyEventArgs e)
-        {
-            //if (e.KeyCode == Keys.Escape)
-            //{
-            //    Close();
-            //}
-        }
         #endregion        
 
         private void Form_FormClosing(object sender, FormClosingEventArgs e)
@@ -642,6 +629,7 @@ namespace V6Controls
                 _vSearchFilter = GenVSearchFilter(vSearchFields);
                 dataGridView1.DataSource = _standDao.LayTatCaDanhMuc(_vSearchFilter);
                 ApplyF2Selected();
+                if (dataGridView1.RowCount > 0) dataGridView1.Focus();
             }
             catch (Exception ex)
             {

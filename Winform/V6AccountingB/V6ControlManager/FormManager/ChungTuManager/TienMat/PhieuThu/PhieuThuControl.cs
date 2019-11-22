@@ -3516,13 +3516,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     var cIndex = dataGridView1.CurrentRow.Index;
                     var currentRow = AD.Rows[cIndex];
                     
-                    if (this.ShowConfirmMessage(V6Text.DeleteConfirm)
-                        == DialogResult.Yes)
+                    if (this.ShowConfirmMessage(V6Text.DeleteConfirm) == DialogResult.Yes)
                     {
+                        var delete_data = currentRow.ToDataDictionary();
                         AD.Rows.Remove(currentRow);
                         dataGridView1.DataSource = AD;
                         detail1.SetData(dataGridView1.CurrentRow.ToDataDictionary());
                         TinhTongThanhToan("xu ly xoa detail");
+
+                        All_Objects["data"] = delete_data;
+                        InvokeFormEvent(FormDynamicEvent.AFTERDELETEDETAILSUCCESS);
                     }
                 }
                 else
@@ -4006,11 +4009,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
         private void txtLoaiPhieu_TextChanged(object sender, EventArgs e)
         {
-           XuLyKhoaThongTinTheoMaGD();
+            try
+            {
+                if (NotAddEdit) return;
+                txtLoaiPhieu.SetGotFocusText(null);
+                XuLyKhoaThongTinTheoMaGD();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException("txtLoaiPhieu_TextChanged", ex);
+            }
         }
-
         
-
         private void txtLoaiPhieu_V6LostFocus(object sender)
         {
            XuLyThayDoiLoaiPhieuThu();

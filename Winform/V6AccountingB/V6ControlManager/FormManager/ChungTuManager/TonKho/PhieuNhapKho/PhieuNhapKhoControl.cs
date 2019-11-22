@@ -3371,10 +3371,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                         if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details)
                             == DialogResult.Yes)
                         {
+                            var delete_data = currentRow.ToDataDictionary();
                             AD.Rows.Remove(currentRow);
                             dataGridView1.DataSource = AD;
                             detail1.SetData(dataGridView1.CurrentRow.ToDataDictionary());
                             TinhTongThanhToan("xu ly xoa detail");
+
+                            All_Objects["data"] = delete_data;
+                            InvokeFormEvent(FormDynamicEvent.AFTERDELETEDETAILSUCCESS);
                         }
                     }
                 }
@@ -4266,6 +4270,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             catch (Exception ex)
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        private void txtLoaiPhieu_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (NotAddEdit) return;
+                txtLoaiPhieu.SetGotFocusText(null);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException("txtLoaiPhieu_TextChanged", ex);
             }
         }
     }

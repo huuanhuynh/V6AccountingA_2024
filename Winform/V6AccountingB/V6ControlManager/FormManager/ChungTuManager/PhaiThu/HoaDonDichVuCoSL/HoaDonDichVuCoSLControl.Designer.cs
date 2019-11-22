@@ -2729,6 +2729,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             this.txtLoaiPhieu.TabIndex = 27;
             this.txtLoaiPhieu.TabStop = false;
             this.txtLoaiPhieu.VVar = "ma_gd";
+            this.txtLoaiPhieu.TextChanged += new System.EventHandler(this.txtLoaiPhieu_TextChanged);
             // 
             // v6ColorTextBox8
             // 
@@ -2837,7 +2838,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             this.txtDiaChiGiaoHang.TextChanged += new System.EventHandler(this.txtMadvcs_TextChanged);
             this.txtDiaChiGiaoHang.Enter += new System.EventHandler(this.txtDiaChiGiaoHang_Enter);
             // 
-            // txtMadvcs
+            // txtMaDVCS
             // 
             this.txtMaDVCS.AccessibleName = "MA_DVCS";
             this.txtMaDVCS.BackColor = System.Drawing.Color.White;

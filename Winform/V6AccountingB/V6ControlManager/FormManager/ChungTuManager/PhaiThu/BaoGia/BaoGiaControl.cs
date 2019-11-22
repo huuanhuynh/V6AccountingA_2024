@@ -4444,13 +4444,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     {
                         var currentRow = AD.Rows[cIndex];
                         var details = string.Format("{0}: {1}", V6Text.FieldCaption("MA_VT"), currentRow["Ma_vt"]);
-                        if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details)
-                            == DialogResult.Yes)
+                        if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details) == DialogResult.Yes)
                         {
+                            var delete_data = currentRow.ToDataDictionary();
                             AD.Rows.Remove(currentRow);
                             dataGridView1.DataSource = AD;
                             detail1.SetData(dataGridView1.CurrentRow.ToDataDictionary());
                             TinhTongThanhToan("xu ly xoa detail");
+
+                            All_Objects["data"] = delete_data;
+                            InvokeFormEvent(FormDynamicEvent.AFTERDELETEDETAILSUCCESS);
                         }
                     }
                 }

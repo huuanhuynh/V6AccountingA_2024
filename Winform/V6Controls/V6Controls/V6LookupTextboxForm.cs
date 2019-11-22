@@ -363,6 +363,7 @@ namespace V6Controls
             try
             {
                 dataGridView1.DataSource = LayTatCaDanhMuc();
+                if (dataGridView1.RowCount > 0) dataGridView1.Focus();
             }
             catch (Exception ex)
             {
@@ -604,13 +605,10 @@ namespace V6Controls
                         if (dataGridView1.SelectedCells.Count > 0)
                         {
                             var currentRow = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
-                            //string selectedValue = currentRow
-                            //    .Cells[LookupInfo_F_NAME].Value.ToString().Trim();
                             var g = currentRow.Cells["UID"].Value.ToString();
                             Guid uid = new Guid(g);
                             var keys = new SortedDictionary<string, object>
                             {
-                                //{LookupInfo_F_NAME, selectedValue},
                                 {"UID", uid}
                             };
                             var f = new FormAddEdit(LookupInfo.TABLE_NAME, V6Mode.Edit, keys, null);
@@ -759,8 +757,7 @@ namespace V6Controls
                 _vSearchFilter = GenVSearchFilter(vSearchFields);
                 dataGridView1.DataSource = LayTatCaDanhMuc(_vSearchFilter);
 
-                if(dataGridView1.RowCount > 0)
-                    dataGridView1.Focus();
+                if(dataGridView1.RowCount > 0) dataGridView1.Focus();
             }
             catch (Exception ex)
             {
@@ -768,36 +765,8 @@ namespace V6Controls
             }
         }
 
-        private void V6LookupTextboxForm_KeyDown(object sender, KeyEventArgs e)
-        {
-            //if (e.KeyCode == Keys.Escape)
-            //{
-            //    Close();
-            //}
-        }
         #endregion        
-
-        //private void V6LookupTextboxForm_FormClosing(object sender, FormClosingEventArgs e)
-        //{
-        //    if (_senderTextBox is V6LookupTextBox)
-        //    {
-        //        var txt = _senderTextBox as V6LookupTextBox;
-        //        //Kiem tra neu gia tri khong hop le thi xoa            
-        //        if (!_multiSelect && !txt.ExistRowInTable())
-        //        {
-        //            txt.Clear();
-        //            if (txt.CheckNotEmpty || txt.CheckOnLeave)
-        //                txt._lockFocus = true;
-        //            else txt._lockFocus = false;
-        //        }
-        //        else
-        //        {
-        //            txt._lockFocus = false;
-        //        }
-        //        txt.SetLooking(false);
-        //    }
-        //}
-
+        
         private void btnESC_Click(object sender, EventArgs e)
         {
             //Close();

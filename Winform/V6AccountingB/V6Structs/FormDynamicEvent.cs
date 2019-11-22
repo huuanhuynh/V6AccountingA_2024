@@ -23,6 +23,7 @@
         public const string AFTERADDFILTERCONTROL = "AFTERADDFILTERCONTROL";
         public const string AFTERADDDETAILSUCCESS = "AFTERADDDETAILSUCCESS";
         public const string AFTEREDITDETAILSUCCESS = "AFTEREDITDETAILSUCCESS";
+        public const string AFTERDELETEDETAILSUCCESS = "AFTERDELETEDETAILSUCCESS";
         public const string AFTERADDSUCCESS = "AFTERADDSUCCESS";
         public const string AFTEREDITSUCCESS = "AFTEREDITSUCCESS";
         public const string AFTERF9 = "AFTERF9";
@@ -77,6 +78,5 @@
         public static string TAOPACKING = "TAOPACKING";
         public static string TAOGRNO = "TAOGRNO";
         public static string TAORRNO = "TAORRNO";
-        
-    }
+        }
 }

@@ -5753,13 +5753,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     {
                         var currentRow = AD.Rows[cIndex];
                         var details = "Mã vật tư: " + currentRow["Ma_vt"];
-                        if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details)
-                            == DialogResult.Yes)
+                        if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details) == DialogResult.Yes)
                         {
+                            var delete_data = currentRow.ToDataDictionary();
                             AD.Rows.Remove(currentRow);
                             dataGridView1.DataSource = AD;
                             detail1.SetData(dataGridView1.CurrentRow.ToDataDictionary());
                             TinhTongThanhToan("xu ly xoa detail");
+
+                            All_Objects["data"] = delete_data;
+                            InvokeFormEvent(FormDynamicEvent.AFTERDELETEDETAILSUCCESS);
                             Luu(MA_KHOPH, MA_VITRIPH, false);
                         }
                     }
@@ -7138,6 +7141,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         private void txtMa_vitriPH_TextChanged(object sender, EventArgs e)
         {
             DoNothing();
+        }
+
+        private void txtLoaiPhieu_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (NotAddEdit) return;
+                txtLoaiPhieu.SetGotFocusText(null);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException("txtLoaiPhieu_TextChanged", ex);
+            }
         }
     }
 }

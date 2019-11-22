@@ -2299,6 +2299,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.txtLoaiPhieu.TabIndex = 27;
             this.txtLoaiPhieu.TabStop = false;
             this.txtLoaiPhieu.VVar = "ma_gd";
+            this.txtLoaiPhieu.TextChanged += new System.EventHandler(this.txtLoaiPhieu_TextChanged);
             // 
             // v6ColorTextBox8
             // 
@@ -2329,7 +2330,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             this.v6Label27.TabIndex = 29;
             this.v6Label27.Text = "Loại phiếu";
             // 
-            // txtMadvcs
+            // txtMaDVCS
             // 
             this.txtMaDVCS.AccessibleName = "MA_DVCS";
             this.txtMaDVCS.BackColor = System.Drawing.Color.White;

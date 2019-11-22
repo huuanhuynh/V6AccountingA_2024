@@ -169,6 +169,16 @@ namespace V6Controls
             }
         }
 
+        /// <summary>
+        /// Hàm sử dụng hạn chế để sửa lỗi. (Đổi giá trị ghi nhận khi vào control).
+        /// </summary>
+        /// <param name="text"></param>
+        public void SetGotFocusText(string text)
+        {
+            if (text == null) text = "";
+            gotfocustext = text;
+        }
+
         public int Int_Data(string field)
         {
             if (Data != null)

@@ -49,7 +49,7 @@
             this.v6ColorTextBox5 = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox13 = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox10 = new V6Controls.V6ColorTextBox();
-            this.v6ColorTextBox4 = new V6Controls.V6ColorTextBox();
+            this.txtDiaChi = new V6Controls.V6VvarTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label39 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
@@ -140,7 +140,7 @@
             this.tabPage1.Controls.Add(this.v6ColorTextBox5);
             this.tabPage1.Controls.Add(this.v6ColorTextBox13);
             this.tabPage1.Controls.Add(this.v6ColorTextBox10);
-            this.tabPage1.Controls.Add(this.v6ColorTextBox4);
+            this.tabPage1.Controls.Add(this.txtDiaChi);
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
@@ -401,21 +401,21 @@
             this.v6ColorTextBox10.Size = new System.Drawing.Size(198, 23);
             this.v6ColorTextBox10.TabIndex = 10;
             // 
-            // v6ColorTextBox4
+            // txtDiaChi
             // 
-            this.v6ColorTextBox4.AccessibleName = "dia_chi";
-            this.v6ColorTextBox4.BackColor = System.Drawing.SystemColors.Window;
-            this.v6ColorTextBox4.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox4.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox4.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox4.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox4.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox4.Location = new System.Drawing.Point(165, 7);
-            this.v6ColorTextBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.v6ColorTextBox4.Name = "v6ColorTextBox4";
-            this.v6ColorTextBox4.Size = new System.Drawing.Size(560, 23);
-            this.v6ColorTextBox4.TabIndex = 0;
+            this.txtDiaChi.AccessibleName = "dia_chi";
+            this.txtDiaChi.BackColor = System.Drawing.SystemColors.Window;
+            this.txtDiaChi.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtDiaChi.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtDiaChi.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtDiaChi.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtDiaChi.HoverColor = System.Drawing.Color.Yellow;
+            this.txtDiaChi.LeaveColor = System.Drawing.Color.White;
+            this.txtDiaChi.Location = new System.Drawing.Point(165, 7);
+            this.txtDiaChi.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDiaChi.Name = "txtDiaChi";
+            this.txtDiaChi.Size = new System.Drawing.Size(560, 23);
+            this.txtDiaChi.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -1123,7 +1123,7 @@
         private System.Windows.Forms.Label lblMaKH;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
-        private V6Controls.V6ColorTextBox v6ColorTextBox4;
+        private V6Controls.V6VvarTextBox txtDiaChi;
         private V6Controls.V6ColorTextBox v6ColorTextBox12;
         private V6Controls.V6ColorTextBox v6ColorTextBox14;
         private V6Controls.V6ColorTextBox v6ColorTextBox11;

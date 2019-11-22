@@ -3368,13 +3368,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                     {
                         var currentRow = AD.Rows[cIndex];
                         var details = V6Text.FieldCaption("TK_VT") + ": " + currentRow["TK_VT"];
-                        if (this.ShowConfirmMessage(V6Text.DeleteConfirm + details)
-                            == DialogResult.Yes)
+                        if (this.ShowConfirmMessage(V6Text.DeleteConfirm + details) == DialogResult.Yes)
                         {
+                            var delete_data = currentRow.ToDataDictionary();
                             AD.Rows.Remove(currentRow);
                             dataGridView1.DataSource = AD;
                             detail1.SetData(dataGridView1.CurrentRow.ToDataDictionary());
                             TinhTongThanhToan("xu ly xoa detail");
+
+                            All_Objects["data"] = delete_data;
+                            InvokeFormEvent(FormDynamicEvent.AFTERDELETEDETAILSUCCESS);
                         }
                     }
                 }

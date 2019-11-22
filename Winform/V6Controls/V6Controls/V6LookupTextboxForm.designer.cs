@@ -299,7 +299,6 @@ namespace V6Controls
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.V6LookupTextboxForm_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.V6LookupTextboxForm_KeyDown);
             this.pBar.ResumeLayout(false);
             this.pBar.PerformLayout();
             this.panel1.ResumeLayout(false);

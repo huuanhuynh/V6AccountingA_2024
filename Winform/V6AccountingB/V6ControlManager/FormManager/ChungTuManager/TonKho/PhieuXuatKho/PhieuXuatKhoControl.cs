@@ -4357,13 +4357,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     {
                         var currentRow = AD.Rows[cIndex];
                         var details = "Mã vật tư: " + currentRow["Ma_vt"];
-                        if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details)
-                            == DialogResult.Yes)
+                        if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details) == DialogResult.Yes)
                         {
+                            var delete_data = currentRow.ToDataDictionary();
                             AD.Rows.Remove(currentRow);
                             dataGridView1.DataSource = AD;
                             detail1.SetData(dataGridView1.CurrentRow.ToDataDictionary());
                             TinhTongThanhToan("xu ly xoa detail");
+
+                            All_Objects["data"] = delete_data;
+                            InvokeFormEvent(FormDynamicEvent.AFTERDELETEDETAILSUCCESS);
                         }
                     }
                 }
@@ -5647,14 +5650,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             else cboLoai_pb.SelectedIndex = -1;
         }
 
-        private void detail1_AddHandle()
+        private void txtLoaiPhieu_TextChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void detail1_EditHandle()
-        {
-
+            try
+            {
+                if (NotAddEdit) return;
+                txtLoaiPhieu.SetGotFocusText(null);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException("txtLoaiPhieu_TextChanged", ex);
+            }
         }
 
         

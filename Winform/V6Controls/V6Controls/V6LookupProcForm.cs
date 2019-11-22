@@ -385,6 +385,7 @@ namespace V6Controls
             try
             {
                 dataGridView1.DataSource = LayTatCaDanhMuc();
+                if (dataGridView1.RowCount > 0) dataGridView1.Focus();
             }
             catch (Exception ex)
             {
@@ -617,13 +618,10 @@ namespace V6Controls
                         if (dataGridView1.SelectedCells.Count > 0)
                         {
                             var currentRow = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
-                            //string selectedValue = currentRow
-                            //    .Cells[LookupInfo_F_NAME].Value.ToString().Trim();
                             var g = currentRow.Cells["UID"].Value.ToString();
                             Guid uid = new Guid(g);
                             var keys = new SortedDictionary<string, object>
                             {
-                                //{LookupInfo_F_NAME, selectedValue},
                                 {"UID", uid}
                             };
                             var f = new FormAddEdit(LookupInfo.TABLE_NAME, V6Mode.Edit, keys, null);
@@ -824,6 +822,7 @@ namespace V6Controls
                 string vSearchValue = LookupInfo.F_SEARCH;
                 _vSearchFilter = GenVSearchFilter(vSearchValue);
                 dataGridView1.DataSource = LayTatCaDanhMuc(_vSearchFilter);
+                if (dataGridView1.RowCount > 0) dataGridView1.Focus();
             }
             catch (Exception ex)
             {
