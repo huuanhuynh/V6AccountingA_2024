@@ -84,19 +84,36 @@ namespace V6Tools.V6Convert
                     int lastCol = workbook.LastCol; if (lastCol < 1)
                         return sheetTable;
 
+                    sheetTable = workbook.ExportDataTable(beginRow, 0, lastRow+1, lastCol+1, true, true);
+
+                    return sheetTable;
+
                     //Tao tieu de table tu row 0
                     for (int col = 0; col <= lastCol; col++)
                     {
                         text = workbook.getText(beginRow, col);
-                        var type = workbook.getType(1, col);
+                        var type = workbook.getType(beginRow + 1, col);
+                        Type dataType = typeof(string);
+                        if (type == 1)
+                        {
+                            string temp_value = workbook.getFormattedText(beginRow + 1, col);
+                            if (temp_value.Contains("/") || temp_value.Contains("-"))
+                            {
+                                dataType = typeof (DateTime);
+                            }
+                            else
+                            {
+                                dataType = typeof (decimal);
+                            }
+                        }
 
                         if (sheetTable.Columns.Contains(text))
-                        {
-                            sheetTable.Columns.Add(text + col);
+                        {                            
+                            sheetTable.Columns.Add(text + col, dataType);
                         }
                         else
                         {
-                            sheetTable.Columns.Add(text);
+                            sheetTable.Columns.Add(text, dataType);
                         }
                     }
 
@@ -108,9 +125,23 @@ namespace V6Tools.V6Convert
                         DataRow row = sheetTable.NewRow();
                         for (int colIndex = 0; colIndex <= lastColForRow; colIndex++)
                         {
-                            text = workbook.getText(rowIndex, colIndex);
-                            //num = workbook.getn
-                            row[colIndex] = text;
+                            var column = sheetTable.Columns[colIndex];
+                            if (column.DataType == typeof (DateTime))
+                            {
+                                text = workbook.getFormattedText(rowIndex, colIndex);
+                                text = text.Replace("-", "/");
+                                row[colIndex] = ObjectAndString.ObjectToFullDateTime(text);
+                            }
+                            else if (ObjectAndString.IsNumberType(column.DataType))
+                            {
+                                var number = workbook.getNumber(rowIndex, colIndex);
+                                row[colIndex] = ObjectAndString.ObjectTo(column.DataType, number);
+                            }
+                            else
+                            {
+                                text = workbook.getText(rowIndex, colIndex);
+                                row[colIndex] = text;
+                            }
                         }
                         sheetTable.Rows.Add(row);
                     }
@@ -192,6 +223,10 @@ namespace V6Tools.V6Convert
                     //0base
                     int lastRow = workbook.LastRow; if (lastRow < 1) continue;
                     int lastCol = workbook.LastCol; if (lastCol < 1) continue;
+
+                    sheetTable = workbook.ExportDataTable(0, 0, lastRow + 1, lastCol + 1, true, true);
+                    result.Tables.Add(sheetTable);
+                    continue;
 
                     //Tao tieu de table tu row 0
                     for (int col = 0; col <= lastCol; col++)

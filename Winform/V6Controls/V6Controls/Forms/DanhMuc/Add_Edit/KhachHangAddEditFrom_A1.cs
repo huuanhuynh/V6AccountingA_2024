@@ -188,7 +188,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             try
             {
                 CategoryView dmView = new CategoryView();
-                dmView.EnableF3F3F3 = false;
                 if (Mode == V6Mode.Add)
                 {
                     tabChiTiet.Enabled = false;

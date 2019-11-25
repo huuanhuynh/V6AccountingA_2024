@@ -400,8 +400,14 @@ namespace V6ThuePostThaiSonApi
             v6return.RESULT_STRING = download_link;
             v6return.RESULT_MESSAGE = path;
             v6return.PATH = path;
-            
-            return path;
+            if (File.Exists(path))
+            {
+                return path;
+            }
+            else
+            {
+                return null;
+            }
         }
         
         public string ViewInvoiceWeb(string maEinvoice, int option, string savefolder, out V6Return v6return)

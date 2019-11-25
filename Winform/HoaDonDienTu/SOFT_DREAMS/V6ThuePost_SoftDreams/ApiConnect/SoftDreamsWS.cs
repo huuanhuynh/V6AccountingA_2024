@@ -324,8 +324,16 @@ namespace V6ThuePostSoftDreamsApi
                 v6return.RESULT_MESSAGE = response.Message;
             }
 
-            v6return.PATH = path;
-            return path;
+            if (File.Exists(path))
+            {
+                v6return.PATH = path;
+                return path;
+            }
+            else
+            {
+                v6return.PATH = null;
+                return null;
+            }
         }
 
         /// <summary>

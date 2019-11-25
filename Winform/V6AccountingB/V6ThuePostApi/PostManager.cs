@@ -200,7 +200,7 @@ namespace V6ThuePostManager
         /// Hàm kiểm tra kết nối. Nếu thành công trả về rỗng hoặc null.
         /// </summary>
         /// <param name="paras"></param>
-        /// <param name="error"></param>
+        /// <param name="exception"></param>
         /// <returns></returns>
         public static string PowerCheckConnection(PostManagerParams paras, out string exception)
         {
@@ -230,15 +230,15 @@ namespace V6ThuePostManager
                     case "3":
                         BkavWS bkavWS = new BkavWS();
                 
-                ExecCommandFunc wsExecCommand = null;
-                var webservice = new V6ThuePostBkavApi.vn.ehoadon.wsdemo.WSPublicEHoaDon(_baseUrl);
-                wsExecCommand = webservice.ExecuteCommand;
-                uint Constants_Mode = RemoteCommand.DefaultMode;
-                var remoteCommand = new RemoteCommand(wsExecCommand, BkavPartnerGUID, BkavPartnerToken, Constants_Mode);
+                        ExecCommandFunc wsExecCommand = null;
+                        var webservice = new V6ThuePostBkavApi.vn.ehoadon.wsdemo.WSPublicEHoaDon(_baseUrl);
+                        wsExecCommand = webservice.ExecuteCommand;
+                        uint Constants_Mode = RemoteCommand.DefaultMode;
+                        var remoteCommand = new RemoteCommand(wsExecCommand, BkavPartnerGUID, BkavPartnerToken, Constants_Mode);
                         var jsonBody = "{}";
-                    int commandType = BkavCommandTypeNew;
-                    result = bkavWS.POST(remoteCommand, jsonBody, commandType, out paras.Result.V6ReturnValues);
-                        if (result.Contains(""))
+                        int commandType = BkavCommandTypeNew;
+                        result = bkavWS.POST(remoteCommand, jsonBody, commandType, out paras.Result.V6ReturnValues);
+                        if (result.Contains("ERR:Có lỗi xảy ra."))
                         {
                             result = null;
                         }
@@ -251,10 +251,18 @@ namespace V6ThuePostManager
                     case "5":
                         SoftDreamsWS softDreamsWs = new SoftDreamsWS(_baseUrl, _username, _password, _SERIAL_CERT);
                         result = softDreamsWs.GetInvoicePdf(paras.Fkey_hd, paras.Mode == "2" ? 2 : paras.Mode == "1" ? 1 : 0, paras.Pattern, paras.Serial, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        if (paras.Result.V6ReturnValues.RESULT_MESSAGE != null && paras.Result.V6ReturnValues.RESULT_MESSAGE.Contains("Có lỗi xả ra: {\"Status\":4,\"Message\":\"Ikey không được bỏ trống\"}"))
+                        {
+                            result = null;
+                        }
+                        else
+                        {
+                            result = "Kết nối lỗi.";
+                        }
                         break;
                     case "6":
                         ThaiSonWS thaiSonWS = new ThaiSonWS(_baseUrl, _link_Publish_vnpt_thaison, _username, _password, _SERIAL_CERT);
-                        result = thaiSonWS.GetInvoicePdf(paras.V6PartnerID, paras.Mode == "0" ? 0 : 1, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        result = thaiSonWS.ImportThongTinHoaDon(null, out paras.Result.V6ReturnValues);
                         break;
                     default:
                         paras.Result.ResultError = V6Text.NotSupported + paras.Branch;
