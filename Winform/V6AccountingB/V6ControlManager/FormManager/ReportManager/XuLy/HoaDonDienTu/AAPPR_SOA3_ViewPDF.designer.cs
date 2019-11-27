@@ -77,9 +77,10 @@
             // button1
             // 
             this.button1.AccessibleName = "";
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Image = global::V6ControlManager.Properties.Resources.Print;
             this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1.Location = new System.Drawing.Point(6, 12);
+            this.button1.Location = new System.Drawing.Point(809, 650);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(88, 40);
             this.button1.TabIndex = 3;
@@ -94,10 +95,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pdfViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pdfViewer1.Location = new System.Drawing.Point(206, 0);
+            this.pdfViewer1.Location = new System.Drawing.Point(1, 0);
             this.pdfViewer1.Name = "pdfViewer1";
             this.pdfViewer1.ShowToolbar = false;
-            this.pdfViewer1.Size = new System.Drawing.Size(657, 696);
+            this.pdfViewer1.Size = new System.Drawing.Size(906, 644);
             this.pdfViewer1.TabIndex = 10;
             this.pdfViewer1.ZoomMode = PdfiumViewer.PdfViewerZoomMode.FitWidth;
             this.pdfViewer1.Load += new System.EventHandler(this.pdfViewer1_Load);
@@ -106,7 +107,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(866, 696);
+            this.ClientSize = new System.Drawing.Size(909, 696);
             this.Controls.Add(this.pdfViewer1);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.button1);

@@ -59,6 +59,7 @@ namespace V6ThuePost.ViettelObjects
         public string description { get; set; }
         public string fileName { get; set; }
         public byte[] fileToBytes { get; set; }
+        public bool paymentStatus { get; set; }
     }
 
     public class TaxBreakdowns

@@ -76,46 +76,47 @@ namespace V6ThuePostViettelApi
 
         public string DownloadInvoiceZip(string codeTax, string uri, string savefolder)
         {
-            //try
+            if (uri.StartsWith("/")) uri = uri.Substring(1);
+            string apiLink = _baseurl + uri;
+
+            GetFileRequest objGetFile = new GetFileRequest();
+            objGetFile.fileType = "zip";
+            objGetFile.invoiceNo = "BR/18E0000014";
+            objGetFile.strIssueDate = "20180320152309";
+
+            string getData = "?supplierTaxCode=" + codeTax +
+                             "&invoiceNo=" + objGetFile.invoiceNo +
+                             "&fileType=" + objGetFile.fileType +
+                             "&strIssueDate=" + objGetFile.strIssueDate;
+            apiLink += getData;
+            //string autStr = CreateRequest.Base64Encode(userPass);
+            //string contentType = "application/x-www-form-urlencoded";
+            //string request = string.Empty;
+            //string result = CreateRequest.webRequest(apiLink, request, autStr, "GET", contentType);
+            string result = GET(apiLink);
+
+            ZipFileResponse objFile = JsonConvert.DeserializeObject<ZipFileResponse>(result);
+            string fileName = objFile.fileName;
+            if (string.IsNullOrEmpty(fileName) || objFile.fileToBytes == null)
             {
-                //string userPass = ConfigurationManager.AppSettings["UserPass"].ToString();
-                //string codeTax = ConfigurationManager.AppSettings["CodeTax"].ToString();
-                
-                if (uri.StartsWith("/")) uri = uri.Substring(1);
-                string apiLink = _baseurl + uri;
-
-                GetFileRequest objGetFile = new GetFileRequest();
-                objGetFile.fileType = "zip";
-                objGetFile.invoiceNo = "BR/18E0000014";
-                objGetFile.strIssueDate = "20180320152309";
-
-                string getData = "?supplierTaxCode=" + codeTax +
-                    "&invoiceNo=" + objGetFile.invoiceNo +
-                    "&fileType=" + objGetFile.fileType +
-                    "&strIssueDate=" + objGetFile.strIssueDate;
-                apiLink += getData;
-                //string autStr = CreateRequest.Base64Encode(userPass);
-                //string contentType = "application/x-www-form-urlencoded";
-
-                string request = string.Empty;
-                //string result = CreateRequest.webRequest(apiLink, request, autStr, "GET", contentType);
-                string result = GET(apiLink);
-                int startIndex = result.IndexOf(@"fileName"":""") + ((@"""fileName"":""").Length);
-                int length = result.IndexOf(@""",""fileToBytes") - startIndex;
-                string fileName = result.Substring(startIndex, length);
-
-                ZipFileResponse objFile = JsonConvert.DeserializeObject<ZipFileResponse>(result);
-                string path = Path.Combine(savefolder, fileName + ".zip");
-                File.WriteAllBytes(path, objFile.fileToBytes);
-
-                //MessageBox.Show("File in " + path);
-                return path;
+                throw new Exception("Download no file!");
             }
-            //catch (Exception ex)
+
+            string path = Path.Combine(savefolder, fileName + ".zip");
+            if (File.Exists(path))
             {
-                //MessageBox.Show("NOK " + ex.Message);
+                try
+                {
+                    File.Delete(path);
+                }
+                catch
+                {
+                    //
+                }
             }
-            return null;
+            File.WriteAllBytes(path, objFile.fileToBytes);
+
+            return path;
         }
 
         /// <summary>
@@ -129,24 +130,21 @@ namespace V6ThuePostViettelApi
         /// <returns>Trả về đường dẫn file pdf.</returns>
         public string DownloadInvoicePDFexchange(string codeTax, string methodlink, string invoiceNo, string strIssueDate, string savefolder)
         {
-            //try
-            {
-                //methodlink = "InvoiceAPI/InvoiceWS/createExchangeInvoiceFile";
+            //GetFileRequestE objGetFile = new GetFileRequestE()
+            //{
+            //    supplierTaxCode = codeTax,
+            //    invoiceNo = invoiceNo,
+            //    strIssueDate = strIssueDate,
+            //    exchangeUser = _username
+            //};
+            string parameters =
+                string.Format("?supplierTaxCode={0}&invoiceNo={1}&strIssueDate={2}&exchangeUser={3}", codeTax, invoiceNo,
+                    strIssueDate, _username);
+            //string q = objGetFile.ToJson();
 
-                //GetFileRequestE objGetFile = new GetFileRequestE()
-                //{
-                //    supplierTaxCode = codeTax,
-                //    invoiceNo = invoiceNo,
-                //    strIssueDate = strIssueDate,
-                //    exchangeUser = _username
-                //};
-                string parameters =
-                    string.Format("?supplierTaxCode={0}&invoiceNo={1}&strIssueDate={2}&exchangeUser={3}", codeTax, invoiceNo, strIssueDate, _username);
-                //string q = objGetFile.ToJson();
-                
-                //q = "{" + string.Format(
-                //        @"""supplierTaxCode"" : ""{0}"", ""invoiceNo"" : ""{1}"", ""strIssueDate"" : ""{2}"", ""exchangeUser"" : ""{3}""",
-                //        codeTax, invoiceNo, "20170907161438", "viettel") + "}";
+            //q = "{" + string.Format(
+            //        @"""supplierTaxCode"" : ""{0}"", ""invoiceNo"" : ""{1}"", ""strIssueDate"" : ""{2}"", ""exchangeUser"" : ""{3}""",
+            //        codeTax, invoiceNo, "20170907161438", "viettel") + "}";
 //                string request = @"{
 //                            ""supplierTaxCode"":""" + codeTax + @""",
 //                            ""invoiceNo"":""" + objGetFile.invoiceNo + @""",
@@ -155,37 +153,33 @@ namespace V6ThuePostViettelApi
 //                            ""fileType"":""" + objGetFile.fileType + @"""
 //                            }";
 
-                string result = GET(methodlink + parameters);
-                int startIndex = result.IndexOf(@"fileName"":""") + ((@"""fileName"":""").Length);
-                int length = result.IndexOf(@""",""fileToBytes") - startIndex;
-                string fileName = result.Substring(startIndex, length);
+            string result = GET(methodlink + parameters);
 
-                PDFFileResponse objFile = JsonConvert.DeserializeObject<PDFFileResponse>(result);
-                string path = Path.Combine(savefolder, fileName + ".pdf");
-
-                if (File.Exists(path))
-                {
-                    try
-                    {
-                        File.Delete(path);
-                    }
-                    catch
-                    {
-                        //
-                    }
-                }
-                if (!File.Exists(path))
-                {
-                    File.WriteAllBytes(path, objFile.fileToBytes);
-                }
-                //MessageBox.Show("File in " + path);
-                return path;
-            }
-            //catch (Exception ex)
+            PDFFileResponse objFile = JsonConvert.DeserializeObject<PDFFileResponse>(result);
+            string fileName = objFile.fileName;
+            if (string.IsNullOrEmpty(fileName) || objFile.fileToBytes == null)
             {
-                //MessageBox.Show("NOK " + ex.Message);
+                throw new Exception("Download no file!");
             }
-            return null;
+            string path = Path.Combine(savefolder, fileName + ".pdf");
+
+            if (File.Exists(path))
+            {
+                try
+                {
+                    File.Delete(path);
+                }
+                catch
+                {
+                    //
+                }
+            }
+            if (!File.Exists(path))
+            {
+                File.WriteAllBytes(path, objFile.fileToBytes);
+            }
+            
+            return path;
         }
 
         /// <summary>
@@ -199,55 +193,48 @@ namespace V6ThuePostViettelApi
         /// <returns>Trả về đường dẫn file pdf.</returns>
         public string DownloadInvoicePDF(string codeTax, string methodlink, string invoiceNo, string pattern, string savefolder)
         {
-            //try
-            {
-                //string apiLink = _baseurl + methodlink;
+            GetFileRequest objGetFile = new GetFileRequest();
+            objGetFile.invoiceNo = invoiceNo;
+            objGetFile.pattern = pattern;
+            objGetFile.fileType = "pdf";
+            objGetFile.transactionUuid = "";
 
-                GetFileRequest objGetFile = new GetFileRequest();
-                objGetFile.invoiceNo = invoiceNo;
-                objGetFile.pattern = pattern;
-                objGetFile.fileType = "pdf";
-                objGetFile.transactionUuid = "";
-
-                string request = @"{
+            string request = @"{
                             ""supplierTaxCode"":""" + codeTax + @""",
                             ""invoiceNo"":""" + objGetFile.invoiceNo + @""",
                             ""pattern"":""" + objGetFile.pattern + @""",
                             ""transactionUuid"":""" + objGetFile.transactionUuid + @""",
                             ""fileType"":""" + objGetFile.fileType + @"""
                             }";
-                
-                string result = POST(methodlink, request);
-                int startIndex = result.IndexOf(@"fileName"":""") + ((@"""fileName"":""").Length);
-                int length = result.IndexOf(@""",""fileToBytes") - startIndex;
-                string fileName = result.Substring(startIndex, length);
 
-                PDFFileResponse objFile = JsonConvert.DeserializeObject<PDFFileResponse>(result);
-                string path = Path.Combine(savefolder, fileName + ".pdf");
+            string result = POST(methodlink, request);
 
-                if (File.Exists(path))
-                {
-                    try
-                    {
-                        File.Delete(path);
-                    }
-                    catch
-                    {
-                        //
-                    }
-                }
-                if (!File.Exists(path))
-                {
-                    File.WriteAllBytes(path, objFile.fileToBytes);
-                }
-                //MessageBox.Show("File in " + path);
-                return path;
-            }
-            //catch (Exception ex)
+            PDFFileResponse objFile = JsonConvert.DeserializeObject<PDFFileResponse>(result);
+            string fileName = objFile.fileName;
+            if (string.IsNullOrEmpty(fileName) || objFile.fileToBytes == null)
             {
-                //MessageBox.Show("NOK " + ex.Message);
+                throw new Exception("Download no file!");
             }
-            return null;
+
+            string path = Path.Combine(savefolder, fileName + ".pdf");
+
+            if (File.Exists(path))
+            {
+                try
+                {
+                    File.Delete(path);
+                }
+                catch
+                {
+                    //
+                }
+            }
+            if (!File.Exists(path))
+            {
+                File.WriteAllBytes(path, objFile.fileToBytes);
+            }
+
+            return path;
         }
 
         public string CheckConnection(string create_link)

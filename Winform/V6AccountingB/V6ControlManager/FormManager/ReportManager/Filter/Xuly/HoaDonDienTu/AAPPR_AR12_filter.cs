@@ -1,9 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6ControlManager.FormManager.ReportManager.XuLy;
+using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6ThuePostManager;
 using V6Tools;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
@@ -213,6 +217,67 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         private void cboSendType_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             String1 = (cboSendType.SelectedIndex + 1).ToString();
+        }
+
+        private void btnCheckConnection_Click(object sender, System.EventArgs e)
+        {
+            try
+            {
+                AAPPR_AR12 parentForm = FindParent<AAPPR_AR12>() as AAPPR_AR12;
+                if (parentForm == null)
+                {
+                    this.ShowWarningMessage(V6Text.NotFound + " AAPPR_AR12.");
+                    return;
+                }
+                DataGridView dataGridView = parentForm.dataGridView1;
+                var row = dataGridView.CurrentRow;
+                if (row == null)
+                {
+                    this.ShowWarningMessage(V6Text.NoData);
+                    return;
+                }
+
+                SqlParameter[] plist0 =
+                {
+                    new SqlParameter("@Loai", "AAPPR_AR12"),
+                    new SqlParameter("@MA_TD1", String1),
+                    new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
+                    new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
+                    new SqlParameter("@Ma_dvcs", row.Cells["MA_DVCS"].Value.ToString()),
+                    new SqlParameter("@User_ID", V6Login.UserId),
+                    new SqlParameter("@Advance", ""),
+                };
+                var map_table = V6BusinessHelper.ExecuteProcedure("VPA_GET_V6MAPINFO", plist0).Tables[0];
+
+                var pmparams1 = new PostManagerParams
+                {
+                    DataSet = map_table.DataSet,
+                    Branch = String1,
+                    //InvoiceNo = invoiceNo,
+                    //Pattern = pattern,
+                    //Serial = serial,
+                    //strIssueDate = strIssueDate,
+                    Mode = "CheckConnection",
+                };
+                string exception;
+                var check = PostManager.PowerCheckConnection(pmparams1, out exception);
+                if (string.IsNullOrEmpty(check))
+                {
+                    this.ShowInfoMessage(V6Text.ConnectionOk);
+                }
+                else
+                {
+                    if (!string.IsNullOrEmpty(exception))
+                    {
+                        V6Message.ShowWarning(exception);
+                    }
+                    this.ShowInfoMessage(check);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + "btnCheckConnection", ex);
+            }
         }
 
         

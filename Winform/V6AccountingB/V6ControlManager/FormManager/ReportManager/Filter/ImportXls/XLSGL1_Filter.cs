@@ -17,6 +17,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             F3 = false;
             F5 = false;
             F9 = true;
+            txtMaCT.Upper();
             txtMaCT.Text = "GL1";
             txtMaCT.SetInitFilter("MA_CT='GL1' OR MA_CT='AR9' OR MA_CT='AP9'");
         }
@@ -109,7 +110,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         private void txtMaCT_TextChanged(object sender, EventArgs e)
         {
-            ObjectDictionary["MA_CT"] = txtMaCT.Text;
+            ObjectDictionary["MA_CT"] = txtMaCT.Text.ToUpper();
         }
     }
 }

@@ -138,7 +138,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
                             string serial = row.Cells["SO_SERI"].Value.ToString().Trim();
                             string invoiceNo = serial + row.Cells["SO_CT"].Value.ToString().Trim();
-                            
                             string strIssueDate = ObjectAndString.ObjectToString(row.Cells["NGAY_CT"].Value, "yyyyMMddHHmmss");
 
                             var pmparams1 = new PostManagerParams

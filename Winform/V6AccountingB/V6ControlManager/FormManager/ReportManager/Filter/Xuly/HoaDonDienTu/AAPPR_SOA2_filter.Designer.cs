@@ -669,7 +669,7 @@
             // 
             this.btnCheckConnection.AccessibleDescription = ".";
             this.btnCheckConnection.Image = global::V6ControlManager.Properties.Resources.Network24;
-            this.btnCheckConnection.Location = new System.Drawing.Point(261, 164);
+            this.btnCheckConnection.Location = new System.Drawing.Point(258, 164);
             this.btnCheckConnection.Name = "btnCheckConnection";
             this.btnCheckConnection.Size = new System.Drawing.Size(30, 30);
             this.btnCheckConnection.TabIndex = 24;

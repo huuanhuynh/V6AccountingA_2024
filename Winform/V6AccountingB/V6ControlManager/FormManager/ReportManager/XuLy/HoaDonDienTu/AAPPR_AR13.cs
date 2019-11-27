@@ -135,8 +135,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         // 1:VIETTEL 2:VNPT 3:BKAV
                         if (FilterControl.String1 == "1")
                         {
-                            string invoiceNo = row.Cells["SO_SERI"].Value.ToString().Trim() + row.Cells["SO_CT"].Value.ToString().Trim();
                             string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
+                            string serial = row.Cells["SO_SERI"].Value.ToString().Trim();
+                            string invoiceNo = serial + row.Cells["SO_CT"].Value.ToString().Trim();
                             string strIssueDate = ObjectAndString.ObjectToString(row.Cells["NGAY_CT"].Value, "yyyyMMddHHmmss");
 
                             var pmparams1 = new PostManagerParams
@@ -145,7 +146,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 Branch = FilterControl.String1,
                                 InvoiceNo = invoiceNo,
                                 Pattern = pattern,
+                                Serial = serial,
                                 strIssueDate = strIssueDate,
+                                Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
                             };
                             pdf_file = PostManager.PowerDownloadPDF(pmparams1, out error);
                             if (!string.IsNullOrEmpty(error))

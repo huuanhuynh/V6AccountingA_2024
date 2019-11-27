@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing.Drawing2D;
 using System.Drawing.Printing;
 using System.IO;
 using System.Windows.Forms;
@@ -32,7 +33,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
+                pdfViewer1.CreateGraphics().SmoothingMode = SmoothingMode.AntiAlias;
                 pdfViewer1.Document = PdfDocument.Load(this, _fileName);
+                pdfViewer1.ZoomMode = PdfViewerZoomMode.FitBest;
             }
             catch (Exception ex)
             {
