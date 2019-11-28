@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6ControlManager.FormManager.KhoHangManager.Report;
 using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6ControlManager.FormManager.ReportManager.XuLy;
 using V6Controls;
@@ -18,24 +19,14 @@ namespace V6ControlManager.FormManager.KhoHangManager
 {
     public partial class ViTriControl : V6Control
     {
-        /// <summary>
-        /// Dữ liệu tạo control
-        /// </summary>
-        private DataRow _rowData;
-        /// <summary>
-        /// Dữ liệu vật tư theo vị trí?
-        /// </summary>
-        private DataRow _rowDataVitriVattu;
-        //K5D509
-        public string MA_KHO = null;   //K5
-        public string CODE = null;  //K501
-        public string DAY = null;   //A
-        public string KE = null;    //A1
-        public string HANG = null;  //09
-        public string TYPE = null;  //
         
-        public string MA_VITRI { get { return Name; } set { Name = value; } }
-        public string MA_VT = null;   //K5
+        
+        /// <summary>
+        /// 1A1-14 của 1A1-14.01 (config 0,1;1,1;2,1;4,2)
+        /// </summary>
+        //public string maVitriShort { get { return Name; } set { Name = value; } }
+        public List<ViTriDetail> _listVitriDetail = new List<ViTriDetail>();
+        
 
         public event HandleData V6Click;
         protected virtual void OnV6Click(IDictionary<string, object> data)
@@ -57,27 +48,24 @@ namespace V6ControlManager.FormManager.KhoHangManager
             InitializeComponent();
             
             KhoParams = kparas;
-            _rowData = row;
+            //_rowData = row;
 
-            MyInit();
+            MyInit(row);
         }
 
-        private void MyInit()
+        private void MyInit(DataRow _rowData)
         {
             try
             {
                 if (KhoParams.CellWidth >= 40) Width = KhoParams.CellWidth;
                 if (KhoParams.CellHeight >= 20) Height = KhoParams.CellHeight;
+                
+                ViTriDetail vitri_detail = new ViTriDetail(_rowData);
+                label1.Text = vitri_detail.MA_VITRI_SHORT;
+                //label2.Text = ""; // ban đầu.
 
-                MA_VITRI = _rowData["MA_VITRI"].ToString().Trim().ToUpper();
-                label1.Text = Name;
-                label2.Text = "";
-                MA_KHO = _rowData["MA_KHO"].ToString().Trim();
-                CODE = _rowData["CODE"].ToString().Trim();
-                DAY = CODE.Substring(0, 1);
-                KE = CODE.Substring(0, 2);
-                HANG = CODE.Substring(2);
-                TYPE = _rowData["TYPE"].ToString().Trim();
+                _listVitriDetail.Add(vitri_detail);
+
                 var RGB = _rowData["MAU_RGB"].ToString().Trim();
                 var rgb = ObjectAndString.SplitString(RGB);
                 if (rgb.Length >= 3)
@@ -89,8 +77,12 @@ namespace V6ControlManager.FormManager.KhoHangManager
                 }
 
                 MouseClick += ViTriButton_Click;
-                label1.Click += ViTriButton_Click;
-                label2.Click += ViTriButton_Click;
+                label1.MouseClick += ViTriButton_Click;
+                label2.MouseClick += ViTriButton_Click;
+
+                MouseMove += ViTriControl_MouseMove;
+                label1.MouseMove += ViTriControl_MouseMove;
+                label2.MouseMove += ViTriControl_MouseMove;
             }
             catch (Exception ex)
             {
@@ -98,7 +90,20 @@ namespace V6ControlManager.FormManager.KhoHangManager
             }
         }
 
-        void ViTriButton_Click(object sender, EventArgs e)
+        void ViTriControl_MouseMove(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                V6ControlsHelper.FlyLabel_Form.TargetControl = this;
+                V6ControlsHelper.FlyLabel_Form.Message = label1.Text;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
+        }
+
+        void ViTriButton_Click(object sender, MouseEventArgs e)
         {
             try
             {
@@ -110,32 +115,56 @@ namespace V6ControlManager.FormManager.KhoHangManager
                     return;
                 }
 
+                if (_listVitriDetail.Count > 1 && (e.Button == MouseButtons.Right))
+                {
+                    // Xử lý nhiều;
+
+                    foreach (ViTriDetail detail in _listVitriDetail)
+                    {
+                        //detail._cuoiNgay = container._cuoiNgay;
+                    }
+
+                    VitriMultiForm form = new VitriMultiForm(KhoParams);
+                    form.container_cuoiNgay = container._cuoiNgay;
+                    form.container_Report_GRDSV1 = container.Report_GRDSV1;
+                    form.container_Report_GRDFV1 = container.Report_GRDFV1;
+                    form.container_Report_GRDHV_V1 = container.Report_GRDHV_V1;
+                    form.container_Report_GRDHE_V1 = container.Report_GRDHE_V1;
+
+                    form.AddVitriList(_listVitriDetail);
+                    form.ShowDialog(this);
+
+                    var data0 = new Dictionary<string, object>();
+                    data0.Add("LISTVITRIDETAIL", _listVitriDetail);
+                    OnV6Click(data0);
+                    return;
+                }
+
+                ViTriDetail vtd = _listVitriDetail[0];
+
                 if (KhoParams.Program == "AINVITRI03")
                 {
                     SortedDictionary<string, object> plistData = new SortedDictionary<string, object>();
-                    plistData["MA_KHO"] = MA_KHO;
+                    plistData["MA_KHO"] = vtd.MA_KHO;
                     plistData["MA_KH"] = container._mavt;//MA_KH
                     plistData["MA_VT"] = container._mavt;
-                    plistData["MA_VITRI"] = MA_VITRI;
+                    plistData["MA_VITRI"] = vtd.MA_VITRI_SHORT;   // List<vitri>
                     plistData["CUOI_NGAY"] = container._cuoiNgay;
                     plistData["VT_TONKHO"] = "1";
                     plistData["KIEU_IN"] = "1";
 
-                    plistData.AddRange(_rowDataVitriVattu.ToDataDictionary());
+                    plistData.AddRange(vtd._rowDataVitriVattu.ToDataDictionary());
 
                     AINVITRI03_REPORT c = new AINVITRI03_REPORT(KhoParams.ItemId, KhoParams.Program, "AINVITRI03B",
-                        KhoParams.ReportFile, MA_VITRI, MA_VITRI);
+                        KhoParams.ReportFile, vtd.MA_VITRI_SHORT, vtd.MA_VITRI_SHORT);
                     c.SetData(plistData);
                     c.Size = new Size(800, 600);
                     c.btnNhan_Click(null, null);
-                    c.ShowToForm(this, MA_VITRI);
+                    c.ShowToForm(this, vtd.MA_VITRI_SHORT);
                 }
-                else
-
-                if (TYPE == "0" || TYPE == "") // Hiển thị dữ liệu.
+                else if (vtd.TYPE == "0" || vtd.TYPE == "") // Hiển thị dữ liệu.
                 {
-                    var condition = string.Format("MA_KHO='{0}' and MA_VITRI='{1}'", MA_KHO.Replace("'", "''"),
-                        MA_VITRI.Replace("'", "''"));
+                    var condition = string.Format("MA_KHO='{0}' and MA_VITRI='{1}'", vtd.MA_KHO.Replace("'", "''"), vtd.MA_VITRI_SHORT.Replace("'", "''"));
                     SqlParameter[] plist =
                     {
                         new SqlParameter("@EndDate", container._cuoiNgay.ToString("yyyyMMdd")),
@@ -157,12 +186,12 @@ namespace V6ControlManager.FormManager.KhoHangManager
                     };
                     gv.ToFullForm("V6");
                 }
-                else if (TYPE == "1") // Hiển thị form báo cáo
+                else if (vtd.TYPE == "1") // Hiển thị form báo cáo
                 {
                     SortedDictionary<string, object> plistData = new SortedDictionary<string, object>();
-                    plistData["MA_KHO"] = MA_KHO;
-                    plistData["MA_VT"] = MA_VT;
-                    plistData["MA_VITRI"] = MA_VITRI;
+                    plistData["MA_KHO"] = vtd.MA_KHO;
+                    plistData["MA_VT"] = vtd.MA_VT;
+                    plistData["MA_VITRI"] = vtd.MA_VITRI_SHORT;   // List<vitri>
                     plistData["CUOI_NGAY"] = container._cuoiNgay;
                     plistData["VT_TONKHO"] = "1";
                     plistData["KIEU_IN"] = "1";
@@ -171,50 +200,76 @@ namespace V6ControlManager.FormManager.KhoHangManager
                         KhoParams.ReportFile,
                         "reportCaption", "caption2", "", "", "");
                     c.FilterControl.SetData(plistData);
-                    c.btnNhan_Click(null, null);
+                    c.AutoClickNhan = true;
                     c.ShowToForm(this, "Vitri");
                 }
 
-                container.SetColorMavt(MA_VT, Color.Blue);
+                container.SetColorMavt(vtd.MA_VT, Color.Blue);
             }
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
             }
             var data = new Dictionary<string, object>();
-            data.Add("MA_VITRI", MA_VITRI);
+            data.Add("LISTVITRIDETAIL", _listVitriDetail);
             OnV6Click(data);
         }
 
         public void ClearDataVitriVaTu()
         {
-            MA_VT = null;
-            if (KhoParams.ViewLable2)
+            //string MA_VT = "";
+
+            if (_listVitriDetail.Count > 0)
             {
-                label2.Visible = true;
-                label2.Text = MA_VT;
+                //MA_VT += string.Format("(+{0})", _listVitriDetail.Count - 1);
+                foreach (ViTriDetail detail in _listVitriDetail)
+                {
+                    detail.MA_VT = null;
+                    detail._rowDataVitriVattu = null;
+                }
             }
-            
-            if (KhoParams.ViewLable2)
+
+            if (_listVitriDetail.Count == 1)
             {
-                label2.ForeColor = Color.Black;
+                if (KhoParams.ViewLable2)
+                {
+                    label2.Visible = true;
+                    //label2.Text = "";
+                    label2.ForeColor = Color.Black;
+                }
+                else
+                {
+                    label1.ForeColor = Color.Black;
+                }
             }
-            else
-            {
-                label1.ForeColor = Color.Black;
-            }
-            
-            _rowDataVitriVattu = null;
         }
 
         public void SetDataVitriVatTu(DataRow row, string cVitri, string cMavt)
         {
-            MA_VT = cMavt;
-            if (KhoParams.ViewLable2)
+            if (_listVitriDetail.Count > 1)
+            {
+                DoNothing();
+            }
+
+            if (_listVitriDetail.Count > 0)
+            {
+                foreach (ViTriDetail detail in _listVitriDetail)
+                {
+                    if (detail.MA_VITRI == cVitri)
+                    {
+                        detail._rowDataVitriVattu = row;
+                        detail.MA_VT = row["MA_VT"].ToString().Trim();
+                        break;
+                    }
+                }
+            }
+
+            if (KhoParams.ViewLable2 && _listVitriDetail.Count == 1)
             {
                 label2.Visible = true;
-                label2.Text = MA_VT;
+                label2.Text = cMavt;
             }
+
             var RGB = row["RGB"].ToString().Trim();
             var rgb = ObjectAndString.SplitString(RGB);
             if (rgb.Length >= 3)
@@ -231,12 +286,22 @@ namespace V6ControlManager.FormManager.KhoHangManager
                     label1.ForeColor = Color.FromArgb(r, g, b);
                 }
             }
-            _rowDataVitriVattu = row;
+            //_rowDataVitriVattu = row;
         }
 
         public void SetColorMavt(string maVt, Color color)
         {
-            if (MA_VT != null && MA_VT == maVt)
+            bool have = false;
+            foreach (ViTriDetail detail in _listVitriDetail)
+            {
+                if (!string.IsNullOrEmpty(detail.MA_VT) && detail.MA_VT == maVt)
+                {
+                    have = true;
+                    break;
+                }
+            }
+
+            if (have)
             {
                 //label1.ForeColor = color;
                 //label2.Visible = true;
@@ -256,6 +321,14 @@ namespace V6ControlManager.FormManager.KhoHangManager
         }
 
 
-        
+        public void AddDetail(ViTriDetail vitriDetail)
+        {
+            _listVitriDetail.Add(vitriDetail);
+            
+            //var vtd0 = _listVitriDetail[0];
+            string showtext = string.Format("({0})", _listVitriDetail.Count);
+            label2.Visible = true;
+            label2.Text = showtext;
+        }
     }
 }

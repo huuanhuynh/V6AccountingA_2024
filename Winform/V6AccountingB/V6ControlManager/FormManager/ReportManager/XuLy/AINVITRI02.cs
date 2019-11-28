@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
 using System.Windows.Forms;
 using V6ControlManager.FormManager.KhoHangManager;
 using V6Controls;
@@ -8,12 +10,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
     public class AINVITRI02 : XuLyBase0
     {
-        public event HandleData V6Click;
-        protected virtual void OnV6Click(IDictionary<string, object> data)
-        {
-            var handler = V6Click;
-            if (handler != null) handler(data);
-        }
+        //public event HandleData V6Click;
+        //protected virtual void OnV6Click(IDictionary<string, object> data)
+        //{
+        //    var handler = V6Click;
+        //    if (handler != null) handler(data);
+        //}
 
         public KhoHangContainer khoHangContainer;
 
@@ -46,7 +48,22 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         void khoHangContainer_V6Click(IDictionary<string, object> data)
         {
-            OnV6Click(data);
+            //OnV6Click(data);
+            try
+            {
+                if (data != null && data.ContainsKey("LISTVITRIDETAIL"))
+                {
+                    List<ViTriDetail> listVitriDetai = data["LISTVITRIDETAIL"] as List<ViTriDetail>;
+                    if (listVitriDetai != null)
+                    {
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
         }
 
         public override void SetStatus2Text()

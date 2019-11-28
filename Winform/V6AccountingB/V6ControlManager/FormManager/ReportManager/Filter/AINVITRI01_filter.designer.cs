@@ -48,6 +48,7 @@
             // 
             this.lineMaDvcs.AccessibleDescription = "FILTERL00005";
             this.lineMaDvcs.AccessibleName2 = "MA_DVCS";
+            this.lineMaDvcs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.lineMaDvcs.Caption = "Mã đơn vị";
             this.lineMaDvcs.FieldName = "MA_DVCS";
             this.lineMaDvcs.Location = new System.Drawing.Point(6, 67);
@@ -80,6 +81,7 @@
             // 
             this.lineMakho.AccessibleDescription = "FILTERL00006";
             this.lineMakho.AccessibleName2 = "MA_KHO";
+            this.lineMakho.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.lineMakho.Caption = "Mã kho";
             this.lineMakho.FieldName = "MA_KHO";
             this.lineMakho.Location = new System.Drawing.Point(6, 39);
@@ -118,6 +120,7 @@
             // 
             this.filterLineVvarTextBox1.AccessibleDescription = "FILTERL00020";
             this.filterLineVvarTextBox1.AccessibleName2 = "MA_VT";
+            this.filterLineVvarTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.filterLineVvarTextBox1.Caption = "Mã vật tư";
             this.filterLineVvarTextBox1.FieldName = "MA_VT";
             this.filterLineVvarTextBox1.Location = new System.Drawing.Point(6, 123);
@@ -131,11 +134,11 @@
             // 
             this.lineMaVitri.AccessibleDescription = "FILTERL00160";
             this.lineMaVitri.AccessibleName2 = "MA_VITRI";
+            this.lineMaVitri.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.lineMaVitri.Caption = "Mã vị trí";
             this.lineMaVitri.FieldName = "MA_VITRI";
             this.lineMaVitri.Location = new System.Drawing.Point(6, 95);
             this.lineMaVitri.Name = "lineMaVitri";
-            this.lineMaVitri.Operator = "=";
             this.lineMaVitri.Size = new System.Drawing.Size(282, 22);
             this.lineMaVitri.TabIndex = 3;
             this.lineMaVitri.Vvar = "MA_VITRI";

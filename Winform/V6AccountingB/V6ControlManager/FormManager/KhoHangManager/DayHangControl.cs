@@ -53,7 +53,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
             KhoParams = kparas;
             _p = new Point(v6VeticalLable1.Right, v6VeticalLable1.Top);
             _listKeHang = new SortedList<string, KeHangControl>();
-            CODE_DAY = row["CODE"].ToString().Substring(0, 1);
+            CODE_DAY = KhoHangHelper.GetCodeDay_FromCode(row["CODE"].ToString());
             MA_KHO = row["MA_KHO"].ToString().Trim();
             TYPE = row["TYPE"].ToString().Trim();
             ID_DAY = MA_KHO + CODE_DAY;
@@ -67,7 +67,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
         {
             try
             {
-                var ID_KE = row["CODE"].ToString().Substring(0, 2);
+                var ID_KE = KhoHangHelper.GetCodeKe_FromCode(row["CODE"].ToString());
                 if (_listKeHang.ContainsKey(ID_KE))
                 {
                     var day = _listKeHang[ID_KE];
@@ -246,8 +246,15 @@ namespace V6ControlManager.FormManager.KhoHangManager
         {
             try
             {
-                var ma_ke = (cVitri == null || cVitri.Length < 4) ? "" : cVitri.Substring(2, 2);
-                _listKeHang[ma_ke].SetDataVitriVatTu(row, cVitri, cMavt);
+                var ma_ke = KhoHangHelper.GetCodeKe(cVitri);
+                if (_listKeHang.ContainsKey(ma_ke))
+                {
+                    _listKeHang[ma_ke].SetDataVitriVatTu(row, cVitri, cMavt);
+                }
+                else
+                {
+                    ; // error
+                }
             }
             catch (Exception ex)
             {

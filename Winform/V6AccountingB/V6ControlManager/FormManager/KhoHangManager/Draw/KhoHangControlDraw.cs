@@ -9,39 +9,32 @@ using System.Windows.Forms;
 using V6Controls.Forms;
 using Timer = System.Windows.Forms.Timer;
 
-namespace V6ControlManager.FormManager.KhoHangManager
+namespace V6ControlManager.FormManager.KhoHangManager.Draw
 {
     public class KhoHangControlDraw
     {
         private Point _p = new Point(0, 0);
         private DataTable _data;
-        private SortedList<string, DayHangControlDraw> _listDay;
+        private SortedList<string, DayHangControlDraw> _listDay = new SortedList<string, DayHangControlDraw>();
         public KhoParams KhoParams { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
+        /// <summary>
+        /// Độ cao cố định của mỗi dãy
+        /// </summary>
+        private int day_height = 150;
 
-        public KhoHangControlDraw()
-        {
-            
-        }
-
-        public KhoHangControlDraw(KhoParams kparas)
-        {
-            KhoParams = kparas;
-            lblKho_Text = KhoParams.MA_KHO;
-            SetData(KhoParams.Data);
-        }
-
+        
         /// <summary>
         /// Dùng data để tạo các dãy
         /// </summary>
         /// <param name="data"></param>
-        private void SetData(DataTable data)
+        public void SetData(DataTable data)
         {
             try
             {
                 _data = data;
-                _listDay = new SortedList<string, DayHangControlDraw>();
+                running = true;
                 Thread T = new Thread(SetDataThread);
                 Timer timer = new Timer();
                 timer.Tick += timer_Tick;
@@ -57,13 +50,14 @@ namespace V6ControlManager.FormManager.KhoHangManager
             }
         }
 
+        public int progressBar1_Value;
         void timer_Tick(object sender, EventArgs e)
         {
             try
             {
                 if (running)
                 {
-                    //progressBar1.Value = count*100/total;
+                    progressBar1_Value = count*100/total;
                 }
                 else
                 {
@@ -71,11 +65,11 @@ namespace V6ControlManager.FormManager.KhoHangManager
                     //progressBar1.Value = 100;
                     if (success)
                     {
-                        //progressBar1.Visible = false;
-                        foreach (KeyValuePair<string, DayHangControlDraw> item in _listDay)
-                        {
-                            //panel1.Controls.Add(item.Value);
-                        }
+                        progressBar1_Value = 100;
+                        //foreach (KeyValuePair<string, DayHangControlDraw> item in _listDay)
+                        //{
+                        //    //panel1.Controls.Add(item.Value);
+                        //}
                     }
                     else
                     {
@@ -122,11 +116,13 @@ namespace V6ControlManager.FormManager.KhoHangManager
         {
             try
             {
-                var ID = row["CODE"].ToString().Substring(0, 1);
-                if (_listDay.ContainsKey(ID))
+                var CODE_DAY = KhoHangHelper.GetCodeDay_FromCode(row["CODE"].ToString());
+                var MA_KHO = row["MA_KHO"].ToString().Trim();
+                string ID_DAY = MA_KHO + CODE_DAY;
+
+                if (_listDay.ContainsKey(ID_DAY))
                 {
-                    var kho = _listDay[ID];
-                    kho.AddRow(row);
+                    _listDay[ID_DAY].AddRow(row);
                 }
                 else
                 {
@@ -143,13 +139,20 @@ namespace V6ControlManager.FormManager.KhoHangManager
         {
             try
             {
-                DayHangControlDraw day = new DayHangControlDraw(KhoParams, row);
-                _listDay.Add(day.ID, day);
-                day.Location = new Point(_p.X, _p.Y);
-                _p = new Point(_p.X, _p.Y + day.Height);
-                //panel1.Controls.Add(kho);
-                //day.SizeChanged += day_SizeChanged;
-                Resort();
+                var CODE_DAY = KhoHangHelper.GetCodeDay_FromCode(row["CODE"].ToString());
+                var MA_KHO = row["MA_KHO"].ToString().Trim();
+                string ID_DAY = MA_KHO + CODE_DAY;
+
+                DayHangControlDraw day = _listDay.ContainsKey(CODE_DAY) ? _listDay[CODE_DAY] : new DayHangControlDraw(ID_DAY, KhoParams, row);
+                day.AddRow(row);
+                day.Height += 25;
+                day.Location = new Point(0, _listDay.Count * day_height);
+                if (!_listDay.ContainsKey(ID_DAY))
+                {
+                    _listDay[ID_DAY] = day;
+                }
+                
+                //Resort();
             }
             catch (Exception ex)
             {
@@ -175,22 +178,6 @@ namespace V6ControlManager.FormManager.KhoHangManager
             }
         }
 
-        //public override bool DoHotKey0(Keys keyData)
-        //{
-        //    try
-        //    {
-        //        if (keyData == Keys.Escape)
-        //        {
-        //            Dispose();
-        //            return true;
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        // ignored
-        //    }
-        //    return false;
-        //}
         public event Action AddControlsFinish;
 
         protected virtual void OnAddControlsFinish()
@@ -222,16 +209,19 @@ namespace V6ControlManager.FormManager.KhoHangManager
                 foreach (DataRow row in dataVitriVattu.Rows)
                 {
                     var cVitri = row["MA_VITRI"].ToString().Trim();
-                    var cMavt = row["MA_VT"].ToString().Trim();
-                    var ma_day = cVitri.Substring(2, 1);//////
-                    
-                    if (_listDay.ContainsKey(ma_day))
+                    var MA_KHO = row["MA_KHO"].ToString().Trim();
+                    //var cMavt = row["MA_VT"].ToString().Trim();
+                    var cMavt = cVitri;
+                    var CODE_DAY = (cVitri.Length < 3) ? "" : cVitri.Substring(2, 1);//////
+                    var ID_DAY = MA_KHO + CODE_DAY;
+                    if (_listDay.ContainsKey(ID_DAY))
                     {
-                        _listDay[ma_day].SetDataVitriVatTu(row, cVitri, cMavt);
+                        _listDay[ID_DAY].SetDataVitriVatTu(row, cVitri, cMavt);
                     }
                     else
                     {
-                        errors[ma_day] = "Khong co day: " + ma_day;
+                        AddDayHang(row);
+                        //errors[ID_DAY] = "Khong co day: " + ID_DAY;
                     }
                 }
 
@@ -272,11 +262,26 @@ namespace V6ControlManager.FormManager.KhoHangManager
             //panel1.Focus();
         }
 
+        /// <summary>
+        /// Vẽ các dãy hàng.
+        /// </summary>
+        /// <param name="graphics"></param>
+        /// <param name="basePoint"></param>
         public void DrawToGraphics(Graphics graphics, Point basePoint)
         {
+            if (running) return;
+
             Rectangle rec = new Rectangle(basePoint, new Size(Width, Height));
             Pen pen = new Pen(Color.Black);
             graphics.DrawRectangle(pen, rec);
+
+            //Point basePoint = new Point();
+            foreach (KeyValuePair<string, DayHangControlDraw> dayItem in _listDay)
+            {
+                var day = dayItem.Value;
+                day.DrawToGraphics(graphics, basePoint);
+                basePoint.Y += day.Height; // day.Height có thể bị thay đổi sau khi vẽ xong ở dòng trên.
+            }
         }
     }
 }

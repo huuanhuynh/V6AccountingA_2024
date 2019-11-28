@@ -1755,6 +1755,13 @@
       <DependentUpon>DayHangControl.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\KhoHangManager\KhoHangHelper.cs" />
+    <Compile Include="FormManager\KhoHangManager\Report\VitriMultiForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\KhoHangManager\Report\VitriMultiForm.Designer.cs">
+      <DependentUpon>VitriMultiForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\KhoHangManager\ViTriDetail.cs" />
     <Compile Include="FormManager\KhoHangManager\KhoParams.cs" />
     <Compile Include="FormManager\KhoHangManager\Report\VitriReportForm.cs">
       <SubType>Form</SubType>
@@ -6550,6 +6557,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\KhoHangManager\DayHangControl.resx">
       <DependentUpon>DayHangControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\KhoHangManager\Report\VitriMultiForm.resx">
+      <DependentUpon>VitriMultiForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\KhoHangManager\Report\VitriReportForm.resx">
       <DependentUpon>VitriReportForm.cs</DependentUpon>

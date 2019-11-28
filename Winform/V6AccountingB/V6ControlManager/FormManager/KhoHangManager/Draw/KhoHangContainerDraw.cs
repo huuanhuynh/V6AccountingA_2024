@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
+using HaUtility.Helper;
 using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
@@ -17,16 +18,44 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
 {
     public partial class KhoHangContainerDraw : V6FormControl
     {
+
+        public event HandleData V6Click;
+        protected virtual void OnV6Click(IDictionary<string, object> data)
+        {
+            var handler = V6Click;
+            if (handler != null) handler(data);
+        }
+
+        public KhoHangContainerDraw()
+        {
+            InitializeComponent();
+        }
+
+        public KhoHangContainerDraw(KhoParams kparas)
+        {
+            InitializeComponent();
+            _khoParams = kparas;
+            _khoHang = new KhoHangControlDraw();
+            _khoHang.AddControlsFinish += delegate
+            {
+                pictureBox1.Invalidate();
+            };
+            txtTime.Visible = kparas.RunTimer;
+            LoadComboboxSource();
+            LoadDefaultData(4, "", kparas.Program, _khoParams.ItemId);
+        }
+
         #region ==== Properties ====
         private Point _p = new Point(0, 0);
+        private DataTable _data;
         private DataTable MauInData;
         public DateTime _cuoiNgay { get; set; }
         public string _mavt { get; set; }
 
         private KhoHangControlDraw _khoHang;
 
-        public KhoParams KhoParams { get; set; }
-        
+        public KhoParams _khoParams { get; set; }
+
         public string Report_GRDSV1
         {
             get
@@ -34,7 +63,7 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
                 var result = "";
                 if (MauInData != null && MauInData.Rows.Count > 0)
                 {
-                    
+
                     result = MauInData.Rows[0]["GRDS_V1"].ToString().Trim();
                 }
                 return result;
@@ -47,7 +76,7 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
                 var result = "";
                 if (MauInData != null && MauInData.Rows.Count > 0)
                 {
-                    
+
                     result = MauInData.Rows[0]["GRDS_V2"].ToString().Trim();
                 }
                 return result;
@@ -60,7 +89,7 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
                 var result = "";
                 if (MauInData != null && MauInData.Rows.Count > 0)
                 {
-                    
+
                     result = MauInData.Rows[0]["GRDF_V1"].ToString().Trim();
                 }
                 return result;
@@ -73,7 +102,7 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
                 var result = "";
                 if (MauInData != null && MauInData.Rows.Count > 0)
                 {
-                    
+
                     result = MauInData.Rows[0]["GRDF_V2"].ToString().Trim();
                 }
                 return result;
@@ -86,7 +115,7 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
                 var result = "";
                 if (MauInData != null && MauInData.Rows.Count > 0)
                 {
-                    
+
                     result = MauInData.Rows[0]["GRDHV_V1"].ToString().Trim();
                 }
                 return result;
@@ -99,7 +128,7 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
                 var result = "";
                 if (MauInData != null && MauInData.Rows.Count > 0)
                 {
-                    
+
                     result = MauInData.Rows[0]["GRDHE_V1"].ToString().Trim();
                 }
                 return result;
@@ -112,7 +141,7 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
                 var result = "";
                 if (MauInData != null && MauInData.Rows.Count > 0)
                 {
-                    
+
                     result = MauInData.Rows[0]["GRDHV_V2"].ToString().Trim();
                 }
                 return result;
@@ -125,7 +154,7 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
                 var result = "";
                 if (MauInData != null && MauInData.Rows.Count > 0)
                 {
-                    
+
                     result = MauInData.Rows[0]["GRDHE_V2"].ToString().Trim();
                 }
                 return result;
@@ -133,25 +162,10 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
         }
 
         #endregion properties
-        
-
-        public KhoHangContainerDraw()
-        {
-            InitializeComponent();
-        }
-
-        public KhoHangContainerDraw(KhoParams kparas)
-        {
-            InitializeComponent();
-            KhoParams = kparas;
-            txtTime.Visible = kparas.RunTimer;
-            LoadComboboxSource();
-            LoadDefaultData(4, "", kparas.Program, KhoParams.ItemId);
-        }
 
         private void LoadComboboxSource()
         {
-            MauInData = Albc.GetMauInData(KhoParams.Program, "", "", "");
+            MauInData = Albc.GetMauInData(_khoParams.Program, "", "", "");
             //GetSumCondition();
         }
 
@@ -159,24 +173,21 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
         {
             try
             {
-                //MauInData = Albc.GetMauInData(_reportFile);
-
                 FormManagerHelper.HideMainMenu();
                 _cuoiNgay = dateCuoiNgay.Date;
                 _mavt = txtMavt.Text.Trim();
+
+                DataTable data;
                 if (txtMaKho.Text == "")
                 {
-                    this.ShowMessage(V6Text.SelectWarehouse);
-                    txtMaKho.Focus();
-                    return;
+                    data = V6BusinessHelper.Select("APALETT").Data;
                 }
-
-
-                var data = V6BusinessHelper.Select("APALETT", "*", "ma_kho=@ma_kho", "", "",
-                    new SqlParameter("@ma_kho", txtMaKho.Text)).Data;
-                SetData(data);
+                else
+                {
+                    data = V6BusinessHelper.Select("APALETT", "*", "ma_kho=@ma_kho", "", "", new SqlParameter("@ma_kho", txtMaKho.Text)).Data;
+                }
                 
-                panel1.Focus();
+                SetData(data);
             }
             catch (Exception ex)
             {
@@ -201,7 +212,7 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
                 }
                 else
                 {
-                    
+
                 }
             }
             catch (Exception ex)
@@ -214,25 +225,9 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
         {
             try
             {
-                //_data = data;
-                panel1.Controls.Clear();
-                KhoParams.Data = data;
-                KhoParams.MA_KHO = txtMaKho.Text;
-                _khoHang = new KhoHangControlDraw(KhoParams);
-                _khoHang.AddControlsFinish += delegate
-                {
-                    LoadSetDataViTriVatTu();
-                    //Lấy kích thước.
-                    int w = 10 + _khoHang.Width;
-                    int h = 10 + _khoHang.Height;
-                    pictureBox1.Image = new Bitmap(w, h);
-                    pictureBox1.Paint += pictureBox1_Paint;
-                    if (KhoParams.RunTimer) timer1.Start();
-                };
-                  
-                //_khoHang.Dock = DockStyle.Fill;
-                //panel1.Controls.Add(_khoHang);
-                listKho.Add(_khoHang);
+                _data = data;
+                CreatePicture();
+                CreateObjects();
             }
             catch (Exception ex)
             {
@@ -240,34 +235,33 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
             }
         }
 
-        void pictureBox1_Paint(object sender, PaintEventArgs e)
+        private void CreateObjects()
         {
-            DrawKhoHang(e.Graphics);
+            _khoHang.SetData(_data);
+            //_khoHang.SetDataViTriVatTu(_data);
         }
 
-        List<KhoHangControlDraw> listKho = new List<KhoHangControlDraw>(); 
-        private void DrawKhoHang(Graphics graphics)
+        private void CreatePicture()
         {
-            try
-            {
-                HaUtility.Helper.HDrawing.DrawLine(graphics, new Point(0, 0), new Point(100, 100));
-                foreach (KhoHangControlDraw kho in listKho)
-                {
-                    Point basePoint = new Point(1,1);
-                    kho.DrawToGraphics(graphics, basePoint);
-                }
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".DrawKhoHang", ex);
-            }
+            if (pictureBox1.Image != null) return;
+
+            int image_width = 800;
+            int image_height = 800;
+
+            //Image image = new Bitmap(image_width, image_height);
+            //pictureBox1.Image = image;
+        }
+
+        void _khoHang_V6Click(IDictionary<string, object> data)
+        {
+            OnV6Click(data);
         }
 
         private void ClearDataVitriVaTu()
         {
             try
             {
-                if(_khoHang == null) return;
+                if (_khoHang == null) return;
                 _khoHang.ClearDataVitriVaTu();
             }
             catch (Exception ex)
@@ -276,13 +270,13 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
             }
         }
 
-        private void LoadSetDataViTriVatTu()
+        private void SetDataViTriVatTu()
         {
             if (_khoHang == null) return;
             var condition = string.Format("MA_KHO='{0}'", txtMaKho.Text.Replace("'", "''"));
             //txtMavt.Text.Trim() == "" ? "" : string.Format("and MA_VT='{0}'", txtMavt.Text.Replace("'", "''")));
             //tuanmh 18/06/2017
-            if (KhoParams.Program == "AINVITRI03")
+            if (_khoParams.Program == "AINVITRI03")
             {
                 if (txtMavt.Text.Trim() != "")
                 {
@@ -294,12 +288,12 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
             {
                 new SqlParameter("@EndDate", _cuoiNgay.ToString("yyyyMMdd")),
                 new SqlParameter("@Condition", condition),
-                new SqlParameter("@Vttonkho", "*"),
-                new SqlParameter("@Kieu_in", "*"),
+                new SqlParameter("@Vttonkho", "1"),
+                new SqlParameter("@Kieu_in", "1"),
                 new SqlParameter("@Makho",  txtMaKho.Text.Trim()),
                 new SqlParameter("@Mavt", txtMavt.Text.Trim()),
             };
-            var data_vitri_vattu = V6BusinessHelper.ExecuteProcedure(KhoParams.Program, plist).Tables[0];
+            var data_vitri_vattu = V6BusinessHelper.ExecuteProcedure(_khoParams.Program, plist).Tables[0];
             _khoHang.SetDataViTriVatTu(data_vitri_vattu);
             //_khoHang.Focus();
 
@@ -310,7 +304,7 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
         private bool running, success;
         private int count, total;
 
-        
+
         public override bool DoHotKey0(Keys keyData)
         {
             try
@@ -351,7 +345,6 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
                 f2.InitFormControl();
                 f2.SetFather(this);
                 f2.ShowDialog(this);
-                SetStatus2Text();
                 if (f2.UpdateSuccess)
                 {
                     LoadComboboxSource();
@@ -395,18 +388,18 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
                     //viewt.RowFilter = "mau='" + MAU + "'" + " and lan='" + LAN + "'";
                     var keys = new SortedDictionary<string, object>
                     {
-                        {"MA_FILE", KhoParams.Program},
+                        {"MA_FILE", _khoParams.Program},
                         {"MAU", "VN"},
                         {"LAN", "V"},
-                        {"REPORT", KhoParams.Program}
+                        {"REPORT", _khoParams.Program}
                     };
                     if (MauInData == null || MauInData.Rows.Count == 0)
                     {
                         data0 = new SortedDictionary<string, object>();
                         data0.AddRange(keys);
-                        data0["CAPTION"] = KhoParams.Program;
-                        data0["CAPTION2"] = KhoParams.Program;
-                        data0["TITLE"] = KhoParams.Program;
+                        data0["CAPTION"] = _khoParams.Program;
+                        data0["CAPTION2"] = _khoParams.Program;
+                        data0["TITLE"] = _khoParams.Program;
                         data0["FirstAdd"] = "1";
                     }
 
@@ -415,7 +408,6 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
                     f2.InitFormControl();
                     f2.SetFather(this);
                     f2.ShowDialog(this);
-                    SetStatus2Text();
                     if (f2.InsertSuccess)
                     {
                         LoadComboboxSource();
@@ -439,12 +431,12 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
         private void timer1_Tick(object sender, EventArgs e)
         {
             timeCount++;
-            
+
             if (timeCount >= txtTime.Value)
             {
                 timeCount = 0;
                 ClearDataVitriVaTu();
-                LoadSetDataViTriVatTu();
+                SetDataViTriVatTu();
             }
         }
 
@@ -452,6 +444,30 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
         {
             //Tuanmh 17/06/2017
             _cuoiNgay = dateCuoiNgay.Date;
+        }
+
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+            //if (loaded)
+            {
+                e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                DrawOnPictureBoxPaint(e.Graphics);
+            }
+        }
+
+        private void DrawOnPictureBoxPaint(Graphics graphics)
+        {
+            //throw new NotImplementedException();
+            Point[] polygon =
+            {
+                new Point(1,1),
+                new Point(100,1),
+                new Point(100,100),
+            };
+            HDrawing.DrawPolygon(graphics, polygon, Color.Blue, 5);
+            // Nên làm danh sách objec chứa các thông tin sẵn để vẽ.
+            _khoHang.DrawToGraphics(graphics, new Point(0, 0));
+            // no // Mỗi lần load lại sẽ có ds object mới. so cái nào mới thì vẽ?
         }
     }
 }

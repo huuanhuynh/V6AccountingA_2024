@@ -8,6 +8,8 @@ using System.Threading;
 using System.Windows.Forms;
 using V6Controls;
 using V6Controls.Forms;
+using V6Init;
+using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.KhoHangManager
@@ -246,16 +248,17 @@ namespace V6ControlManager.FormManager.KhoHangManager
                 foreach (DataRow row in dataVitriVattu.Rows)
                 {
                     var cVitri = row["MA_VITRI"].ToString().Trim();
+                    var MA_KHO = row["MA_KHO"].ToString().Trim();
                     var cMavt = row["MA_VT"].ToString().Trim();
-                    var ma_day = (cVitri == null || cVitri.Length < 3) ? "" : cVitri.Substring(2, 1);//////
-                    
-                    if (_listDay.ContainsKey(ma_day))
+                    var CODE_DAY = KhoHangHelper.GetCodeDay(cVitri);
+                    var ID_DAY = MA_KHO + CODE_DAY;
+                    if (_listDay.ContainsKey(ID_DAY))
                     {
-                        _listDay[ma_day].SetDataVitriVatTu(row, cVitri, cMavt);
+                        _listDay[ID_DAY].SetDataVitriVatTu(row, cVitri, cMavt);
                     }
                     else
                     {
-                        errors[ma_day] = "Khong co day: " + ma_day;
+                        errors[ID_DAY] = "Khong co day: " + ID_DAY;
                     }
                 }
 

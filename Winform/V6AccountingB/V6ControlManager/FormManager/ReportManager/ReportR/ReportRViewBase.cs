@@ -1390,7 +1390,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             if (_ds == null) return;
             if (_ds.Tables[0].Rows.Count == 0)
             {
-                this.ShowInfoMessage(V6Text.NoData);
+                this.ShowInfoMessage(V6Text.NoData, 500);
                 return;
             }
             try

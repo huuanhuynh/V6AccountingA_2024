@@ -20,7 +20,7 @@ namespace V6ControlManager.FormManager.KhoHangManager
         /// 2 KÝ TỰ ĐẦU CỦA CODE
         /// </summary>
         public string CODE_KE { get; set; }
-        private Dictionary<string, ViTriControl> _listVitri;
+        private Dictionary<string, ViTriControl> _listVitri = new Dictionary<string, ViTriControl>();
 
         public event HandleData V6Click;
         protected virtual void OnV6Click(IDictionary<string, object> data)
@@ -32,15 +32,13 @@ namespace V6ControlManager.FormManager.KhoHangManager
         public KeHangControl()
         {
             InitializeComponent();
-            _listVitri = new Dictionary<string, ViTriControl>();
         }
 
         public KeHangControl(KhoParams kparas, DataRow row)
         {
             InitializeComponent();
             KhoParams = kparas;
-            _listVitri = new Dictionary<string, ViTriControl>();
-            CODE_KE = row["CODE"].ToString().Substring(0, 2).ToUpper();
+            CODE_KE = KhoHangHelper.GetCodeKe_FromCode(row["CODE"].ToString());
             AddViTri(row);
         }
 
@@ -49,10 +47,12 @@ namespace V6ControlManager.FormManager.KhoHangManager
             try
             {
                 var ma_vitri = row["MA_VITRI"].ToString().Trim().ToUpper();
-                if (_listVitri.ContainsKey(ma_vitri))
+                var maVitri_Short = KhoHangHelper.GetMaVitriShort(ma_vitri);
+                
+                if (_listVitri.ContainsKey(maVitri_Short))
                 {
-                    //var vitri = _listVitri[ID];
-                    //vitri.AddRow(row);
+                    var vitriDetail = new ViTriDetail(row);
+                    _listVitri[maVitri_Short].AddDetail(vitriDetail);
                 }
                 else
                 {
@@ -70,13 +70,14 @@ namespace V6ControlManager.FormManager.KhoHangManager
             try
             {
                 ViTriControl vitri = new ViTriControl(KhoParams, row);
+                var vtd = vitri._listVitriDetail[0];
 
-                var index = ObjectAndString.ObjectToInt(vitri.HANG);
+                var index = ObjectAndString.ObjectToInt(vtd.HANG);
                 vitri.Left = vitri.Width*index - vitri.Width;
                 vitri.Text = vitri.Name;
-                vitri.Click += vitri_Click;
+                //vitri.Click += vitri_Click;
                 vitri.V6Click += vitri_V6Click;
-                _listVitri.Add(vitri.MA_VITRI, vitri);
+                _listVitri.Add(vtd.MA_VITRI_SHORT, vitri);
                 vitri.Location = new Point(_p.X, _p.Y);
                 _p = new Point(_p.X + vitri.Width, _p.Y);
                 Controls.Add(vitri);
@@ -92,17 +93,17 @@ namespace V6ControlManager.FormManager.KhoHangManager
             OnV6Click(data);
         }
 
-        void vitri_Click(object sender, EventArgs e)
-        {
-            try
-            {
+        //void vitri_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
 
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".vitri_Click", ex);
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        this.WriteExLog(GetType() + ".vitri_Click", ex);
+        //    }
+        //}
 
         public void ClearDataVitriVaTu()
         {
@@ -123,7 +124,8 @@ namespace V6ControlManager.FormManager.KhoHangManager
         {
             try
             {
-                _listVitri[cVitri].SetDataVitriVatTu(row, cVitri, cMavt);
+                var ma_vitri_short = KhoHangHelper.GetMaVitriShort(cVitri);
+                _listVitri[ma_vitri_short].SetDataVitriVatTu(row, cVitri, cMavt);
             }
             catch (Exception ex)
             {

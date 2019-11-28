@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Reflection;
 using V6Controls.Forms;
 using V6Tools.V6Convert;
 
-namespace V6ControlManager.FormManager.KhoHangManager
+namespace V6ControlManager.FormManager.KhoHangManager.Draw
 {
     /// <summary>
     /// Kệ hàng
@@ -18,27 +18,24 @@ namespace V6ControlManager.FormManager.KhoHangManager
         /// <summary>
         /// ABC
         /// </summary>
-        public string ID { get; set; }
+        public string CODE_KE { get; set; }
 
         public int Top { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
 
-        private Dictionary<string, ViTriControl> _listVitri;
+        private Dictionary<string, ViTriControl> _listVitri = new Dictionary<string, ViTriControl>();
 
         public KeHangControlDraw()
         {
-            //InitializeComponent();
-            _listVitri = new Dictionary<string, ViTriControl>();
+            
         }
 
-        public KeHangControlDraw(KhoParams kparas, DataRow row)
+        public KeHangControlDraw(string code_ke, KhoParams kparas)
         {
-            //InitializeComponent();
             KhoParams = kparas;
-            _listVitri = new Dictionary<string, ViTriControl>();
-            ID = row["CODE"].ToString().Substring(0, 2).ToUpper();
-            AddViTri(row);
+            CODE_KE = code_ke;// KhoHangHelper.GetCodeKe_FromCode(row["CODE"].ToString());
+            //AddViTri(row);
         }
 
         public void AddRow(DataRow row)
@@ -67,8 +64,8 @@ namespace V6ControlManager.FormManager.KhoHangManager
             try
             {
                 ViTriControl vitri = new ViTriControl(KhoParams, row);
-
-                var index = ObjectAndString.ObjectToInt(vitri.HANG);
+                var vtd = vitri._listVitriDetail[0];
+                var index = ObjectAndString.ObjectToInt(vtd.HANG);
                 vitri.Left = vitri.Width*index - vitri.Width;
                 vitri.Text = vitri.Name;
                 vitri.Click += vitri_Click;
@@ -114,7 +111,15 @@ namespace V6ControlManager.FormManager.KhoHangManager
         {
             try
             {
-                _listVitri[cVitri].SetDataVitriVatTu(row, cVitri, cMavt);
+                if (_listVitri.ContainsKey(cVitri))
+                {
+                    _listVitri[cVitri].SetDataVitriVatTu(row, cVitri, cMavt);
+                }
+                else
+                {
+                    AddViTri(row);
+                }
+                
             }
             catch (Exception ex)
             {

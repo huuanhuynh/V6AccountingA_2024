@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Reflection;
+using V6ControlManager.FormManager.KhoHangManager;
 using V6Controls;
 using V6Init;
+using V6Tools;
 using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
@@ -50,13 +52,19 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             var condition = "";
             if (flag == "DAY")
             {
-                condition = string.Format("MA_KHO='{0}' and MA_VITRI like '__{1}%'", lineMakho.StringValue.Replace("'", "''"),
-                    lineMaVitri.StringValue.Substring(2).Replace("'", "''"));
+                KhoHangHelper.Get_M_VITRI_CODEDAY_INDEX_Config();
+                var __ = "";
+                for (int i = 0; i < KhoHangHelper.MaKho_Length; i++)
+                {
+                    __ += "_";
+                }
+                condition = string.Format("MA_KHO='{0}' and MA_VITRI like '{1}%'", lineMakho.StringValue.Replace("'", "''"),
+                    __ + lineMaVitri.StringValue.Substring(KhoHangHelper.MaKho_Length).Replace("'", "''"));
                 
             }
             else
             {
-                condition = string.Format("MA_KHO='{0}' and MA_VITRI='{1}'", lineMakho.StringValue.Replace("'", "''"),
+                condition = string.Format("MA_KHO='{0}' and MA_VITRI like '{1}%'", lineMakho.StringValue.Replace("'", "''"),
                     lineMaVitri.StringValue.Replace("'", "''"));
             }
 

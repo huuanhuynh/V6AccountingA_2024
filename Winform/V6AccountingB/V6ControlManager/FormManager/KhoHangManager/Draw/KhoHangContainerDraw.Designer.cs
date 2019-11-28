@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.txtMaKho = new V6Controls.V6VvarTextBox();
             this.dateCuoiNgay = new V6Controls.V6DateTimePicker();
@@ -42,17 +41,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.AutoScroll = true;
-            this.panel1.Location = new System.Drawing.Point(0, 35);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(101, 527);
-            this.panel1.TabIndex = 0;
             // 
             // label1
             // 
@@ -68,7 +56,6 @@
             // 
             this.txtMaKho.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaKho.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtMaKho.CheckNotEmpty = true;
             this.txtMaKho.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaKho.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMaKho.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -182,11 +169,12 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(107, 35);
+            this.pictureBox1.Location = new System.Drawing.Point(6, 35);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(671, 527);
+            this.pictureBox1.Size = new System.Drawing.Size(772, 527);
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             // 
             // KhoHangContainerDraw
             // 
@@ -201,7 +189,6 @@
             this.Controls.Add(this.txtMaKho);
             this.Controls.Add(this.lblTenHang);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.panel1);
             this.Name = "KhoHangContainerDraw";
             this.Size = new System.Drawing.Size(784, 562);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -212,7 +199,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         public V6Controls.V6VvarTextBox txtMaKho;
         private V6Controls.V6DateTimePicker dateCuoiNgay;

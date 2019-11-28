@@ -54,9 +54,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 12);
             this.label2.TabIndex = 1;
-            this.label2.Text = "label2";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label2.Visible = false;
             // 
             // label3
             // 
@@ -84,8 +82,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label label3;
     }
 }

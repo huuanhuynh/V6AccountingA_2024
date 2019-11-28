@@ -185,8 +185,6 @@ namespace V6Init
             }
         }
         private static string _k_tmp;
-        
-
 
         public static string M_MA_NT0
         {
@@ -239,6 +237,22 @@ namespace V6Init
         {
             get { return GetValue("M_QLY_MA_SO_THUE").Trim(); }
         }
+
+        /// <summary>
+        /// start,length MA_KHO;MA_DAY;MA_KE;VI_TRI => 0,1;1,2;4,2;7,2
+        /// </summary>
+        public static string M_VITRI_CODEDAY_INDEX
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_M_VITRI_CODEDAY_INDEX))
+                {
+                    _M_VITRI_CODEDAY_INDEX = GetValue("M_VITRI_CODEDAY_INDEX");
+                }
+                return _M_VITRI_CODEDAY_INDEX;
+            }
+        }
+        private static string _M_VITRI_CODEDAY_INDEX;
 
         /// <summary>
         /// Roun all-> Numeric 0,1,2...
