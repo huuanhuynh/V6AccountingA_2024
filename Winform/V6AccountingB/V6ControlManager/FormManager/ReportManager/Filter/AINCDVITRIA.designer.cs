@@ -117,7 +117,7 @@
             this.TxtMavitri.Name = "TxtMavitri";
             this.TxtMavitri.Size = new System.Drawing.Size(282, 22);
             this.TxtMavitri.TabIndex = 4;
-            this.TxtMavitri.Vvar = "MA_DVCS";
+            this.TxtMavitri.Vvar = "MA_VITRI";
             // 
             // Txtnh_vt6
             // 

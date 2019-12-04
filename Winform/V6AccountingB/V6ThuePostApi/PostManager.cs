@@ -261,8 +261,38 @@ namespace V6ThuePostManager
                         }
                         break;
                     case "6":
+                        map_table = paras.DataSet.Tables[0];
+                        ad_table = paras.DataSet.Tables[1];
+                        am_table = paras.DataSet.Tables[2];
+                        Fkey_hd_tt = paras.Fkey_hd_tt;
+                        DataRow row0 = am_table.Rows[0];
+                        ad2_table = paras.DataSet.Tables[3];
+                        if (paras.DataSet.Tables.Count > 4)
+                        {
+                            ad3_table = paras.DataSet.Tables[4];
+                        }
+                        else
+                        {
+                            ad3_table = null;
+                        }
+
+                        ReadConfigInfo(map_table);
+
                         ThaiSonWS thaiSonWS = new ThaiSonWS(_baseUrl, _link_Publish_vnpt_thaison, _username, _password, _SERIAL_CERT);
-                        result = thaiSonWS.ImportThongTinHoaDon(null, out paras.Result.V6ReturnValues);
+                        var hoadon_entity = (HoaDonEntity)ReadData_ThaiSon(paras.Mode.Substring(0, 1));
+                        hoadon_entity.SoHoaDon = "TEST";
+                        hoadon_entity.KyHieu = "TEST";
+                        hoadon_entity.MauSo = "TEST";
+                        //result = thaiSonWS.ImportThongTinHoaDon(hoadon_entity, out paras.Result.V6ReturnValues);
+                        result = thaiSonWS.XuatHoaDonDienTu(hoadon_entity, out paras.Result.V6ReturnValues);
+                        if (result.Contains("Hóa đơn mang ký hiệu TEST,") || paras.Result.V6ReturnValues.RESULT_ERROR.Contains("Nhập sai thông tin"))
+                        {
+                            result = null;
+                        }
+                        else
+                        {
+                            result = "Kết nối lỗi.";
+                        }
                         break;
                     default:
                         paras.Result.ResultError = V6Text.NotSupported + paras.Branch;

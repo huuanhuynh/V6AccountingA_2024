@@ -80,7 +80,7 @@
             this.TxtMavitri.Operator = "=";
             this.TxtMavitri.Size = new System.Drawing.Size(282, 22);
             this.TxtMavitri.TabIndex = 6;
-            this.TxtMavitri.Vvar = "MA_DVCS";
+            this.TxtMavitri.Vvar = "MA_VITRI";
             // 
             // radOr
             // 

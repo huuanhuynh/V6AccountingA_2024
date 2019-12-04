@@ -60,7 +60,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             DataGridView dataGridView1 = V6ControlFormHelper.GetControlByName(_grandFatherControl, "dataGridView1") as DataGridView;
             if (dataGridView1 == null)
             {
-                ShowTopLeftMessage("Không tìm thấy dataGridView1!");
+                //ShowTopLeftMessage("Không tìm thấy dataGridView1!");
                 return;
             }
             DataTable data1 = dataGridView1.DataSource as DataTable;
@@ -74,7 +74,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                 DataGridView dataGridView2 = V6ControlFormHelper.GetControlByName(_grandFatherControl, "dataGridView2") as DataGridView;
                 if (dataGridView2 == null)
                 {
-                    ShowTopLeftMessage("Không tìm thấy dataGridView2!");
+                    //ShowTopLeftMessage("Không tìm thấy dataGridView2!");
                     return;
                 }
                 DataTable data2 = dataGridView2.DataSource as DataTable;
@@ -612,7 +612,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                 DataGridView dataGridView1 = V6ControlFormHelper.GetControlByName(_grandFatherControl, dataGridViewName) as DataGridView;
                 if (dataGridView1 == null)
                 {
-                    ShowTopLeftMessage("Không tìm thấy " + dataGridViewName);
+                    //ShowTopLeftMessage("Không tìm thấy " + dataGridViewName);
                     return result;
                 }
                 DataTable data1 = dataGridView1.DataSource as DataTable;

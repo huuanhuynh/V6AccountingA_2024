@@ -238,10 +238,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
                             _maKhoI.V6LostFocus += MaKhoI_V6LostFocus;
 
-                            _maKhoI.V6LostFocusNoChange += delegate
-                            {
-                                XuLyChonMaKhoI();
-                            };
+                            //Tuanmh 02/12/2019
+                            //_maKhoI.V6LostFocusNoChange += delegate
+                            //{
+                            //    XuLyChonMaKhoI();
+                            //};
 
                             break;
                         case "SL_QD":
@@ -5360,12 +5361,34 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                             DataRow data_row = lodate_data.Rows[i];
                             decimal row_ton_dau = ObjectAndString.ObjectToDecimal(data_row["TON_DAU"]);
                             decimal row_ton_dau_qd = ObjectAndString.ObjectToDecimal(data_row["TON_DAU_QD"]);
-                            decimal insert = (total - sum) < row_ton_dau ? (total - sum) : row_ton_dau;
+                            decimal insert = (total - sum) < row_ton_dau ? (total - sum) : row_ton_dau; // Lấy đủ số cần lấy, không đủ thì lấy hết.
                             decimal insert_qd = (total_qd - sum_qd) < row_ton_dau_qd ? (total_qd - sum_qd) : row_ton_dau_qd;
+                            // Chỉ định lô
+                            string malo_chidinh = newData["MA_LO"].ToString().Trim();
+                            string malo_row = data_row["MA_LO"].ToString().Trim().ToUpper();
+                            
+                            if (!string.IsNullOrEmpty(malo_chidinh))
+                            {
+                                // Có lô chỉ định
+                                if (malo_chidinh == malo_row)
+                                {
+                                    newData["MA_LO"] = data_row["MA_LO"];
+                                    newData["HSD"] = data_row["HSD"];
+                                }
+                                else
+                                {
+                                    continue; // bỏ qua lodate_data
+                                }
+                            }
+                            else
+                            {
+                                // Không Có lô chỉ định
+                                newData["MA_LO"] = data_row["MA_LO"];
+                                newData["HSD"] = data_row["HSD"];
+                            }
                             newData["MA_KHO_I"] = data_row["MA_KHO"];
                             if (temp_vt.VITRI_YN) newData["MA_VITRI"] = data_row["MA_VITRI"];
-                            newData["MA_LO"] = data_row["MA_LO"];
-                            newData["HSD"] = data_row["HSD"];
+                            
                             newData["DVT"] = data_row["DVT"];
                             newData["DVT1"] = dvt1;
                             newData["HE_SO"] = heso;
@@ -5405,10 +5428,79 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                             else failCount++;
 
                             sum += insert;
+                            data_row["TON_DAU"] = row_ton_dau - insert;
                             sum_qd += insert_qd;
+                            data_row["TON_DAU_QD"] = row_ton_dau_qd - insert_qd;
                             if (sum == total)
                             {
                                 break;
+                            }
+                        }
+
+                        if (sum < total)
+                        {
+                            // Lấy thêm lô khác cho đủ số lượng trong lodate_data (đã - sl)
+                            for (int i = lodate_data.Rows.Count - 1; i >= 0; i--)
+                            {
+                                DataRow data_row = lodate_data.Rows[i];
+                                decimal row_ton_dau = ObjectAndString.ObjectToDecimal(data_row["TON_DAU"]);
+                                decimal row_ton_dau_qd = ObjectAndString.ObjectToDecimal(data_row["TON_DAU_QD"]);
+                                decimal insert = (total - sum) < row_ton_dau ? (total - sum) : row_ton_dau; // Lấy đủ số cần lấy, không đủ thì lấy hết.
+                                if (insert <= 0) continue;
+
+                                decimal insert_qd = (total_qd - sum_qd) < row_ton_dau_qd ? (total_qd - sum_qd) : row_ton_dau_qd;
+                                
+                                    // Không Có lô chỉ định
+                                    newData["MA_LO"] = data_row["MA_LO"];
+                                    newData["HSD"] = data_row["HSD"];
+                                
+                                newData["MA_KHO_I"] = data_row["MA_KHO"];
+                                if (temp_vt.VITRI_YN) newData["MA_VITRI"] = data_row["MA_VITRI"];
+
+                                newData["DVT"] = data_row["DVT"];
+                                newData["DVT1"] = dvt1;
+                                newData["HE_SO"] = heso;
+                                newData["SO_LUONG"] = insert;
+                                newData["SO_LUONG1"] = insert / heso;
+                                decimal gia2 = ObjectAndString.ObjectToDecimal(data["GIA2"]);
+                                decimal tien_nt2 = V6BusinessHelper.Vround(insert * gia2, M_ROUND_NT);
+                                newData["TIEN_NT2"] = tien_nt2;
+                                newData["TIEN2"] = V6BusinessHelper.Vround(tien_nt2 * txtTyGia.Value, M_ROUND);
+                                if (_maNt == _mMaNt0)
+                                {
+                                    newData["TIEN2"] = tien_nt2;
+                                }
+                                if (M_SOA_MULTI_VAT == "1")
+                                {
+                                    decimal thue_suat = ObjectAndString.ObjectToDecimal(data["THUE_SUAT_I"]);
+                                    decimal thue_nt = V6BusinessHelper.Vround(thue_suat * tien_nt2, M_ROUND_NT);
+                                    newData["THUE_NT"] = thue_nt;
+                                    newData["THUE"] = V6BusinessHelper.Vround(thue_nt * txtTyGia.Value, M_ROUND);
+                                    if (_maNt == _mMaNt0)
+                                    {
+                                        newData["THUE"] = thue_nt;
+                                    }
+                                }
+                                var HS_QD1 = ObjectAndString.ObjectToDecimal(temp_vt.Data["HS_QD1"]);
+
+                                if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E")
+                                {
+                                    newData["SL_QD"] = insert_qd;
+                                }
+                                else if (HS_QD1 != 0 && M_CAL_SL_QD_ALL == "1")
+                                {
+                                    newData["SL_QD"] = insert / HS_QD1;
+                                }
+
+                                if (XuLyThemDetail(newData)) addCount++;
+                                else failCount++;
+
+                                sum += insert;
+                                sum_qd += insert_qd;
+                                if (sum == total)
+                                {
+                                    break;
+                                }
                             }
                         }
                     }

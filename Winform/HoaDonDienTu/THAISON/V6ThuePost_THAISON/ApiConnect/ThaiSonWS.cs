@@ -51,8 +51,17 @@ namespace V6ThuePostThaiSonApi
 
                 v6return.RESULT_OBJECT = response;
                 v6return.RESULT_STRING = V6XmlConverter.ClassToXml(response);
-                v6return.RESULT_MESSAGE = response.MsgError.Message;
-                v6return.RESULT_ERROR_CODE = response.MsgError.Code;
+                if (response.MsgError == null)
+                {
+                    v6return.RESULT_MESSAGE = null;
+                    v6return.RESULT_ERROR_CODE = null;
+                }
+                else
+                {
+                    v6return.RESULT_MESSAGE = response.MsgError.Message;
+                    v6return.RESULT_ERROR_CODE = response.MsgError.Code;
+                }
+                
                 v6return.ID = response.MaEinvoice;
                 v6return.SECRET_CODE = response.MaEinvoice;
                 v6return.SO_HD = null;

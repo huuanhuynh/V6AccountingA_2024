@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -237,21 +238,42 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     return;
                 }
 
-                SqlParameter[] plist0 =
-                {
-                    new SqlParameter("@Loai", "AAPPR_SOA2"),
-                    new SqlParameter("@MA_TD1", String1),
-                    new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
-                    new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
-                    new SqlParameter("@Ma_dvcs", row.Cells["MA_DVCS"].Value.ToString()),
-                    new SqlParameter("@User_ID", V6Login.UserId),
-                    new SqlParameter("@Advance", ""),
-                };
-                var map_table = V6BusinessHelper.ExecuteProcedure("VPA_GET_V6MAPINFO", plist0).Tables[0];
+                string mode = row.Cells["Kieu_in"].Value.ToString();
+                string soct = row.Cells["So_ct"].Value.ToString().Trim();
+                string dir = row.Cells["Dir_in"].Value.ToString().Trim();
+                string file = row.Cells["File_in"].Value.ToString().Trim();
+                string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
+                string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
+                string serial = row.Cells["SO_SERI"].Value.ToString().Trim();
+
+                SqlParameter[] plist =
+                        {
+                            new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
+                            new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
+                            new SqlParameter("@HoaDonMau","0"),
+                            new SqlParameter("@isInvoice","1"),
+                            new SqlParameter("@ReportFile",""),
+                            new SqlParameter("@MA_TD1", this.String1),
+                            new SqlParameter("@UserID", V6Login.UserId)
+                        };
+
+                DataSet ds = V6BusinessHelper.ExecuteProcedure(_program + "F9", plist);
+
+                //SqlParameter[] plist0 =
+                //{
+                //    new SqlParameter("@Loai", "AAPPR_SOA2"),
+                //    new SqlParameter("@MA_TD1", String1),
+                //    new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
+                //    new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
+                //    new SqlParameter("@Ma_dvcs", row.Cells["MA_DVCS"].Value.ToString()),
+                //    new SqlParameter("@User_ID", V6Login.UserId),
+                //    new SqlParameter("@Advance", ""),
+                //};
+                //var map_table = V6BusinessHelper.ExecuteProcedure("VPA_GET_V6MAPINFO", plist0).Tables[0];
 
                 var pmparams1 = new PostManagerParams
                 {
-                    DataSet = map_table.DataSet,
+                    DataSet = ds,
                     Branch = String1,
                     //InvoiceNo = invoiceNo,
                     //Pattern = pattern,
