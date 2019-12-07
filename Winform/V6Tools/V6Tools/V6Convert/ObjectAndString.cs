@@ -79,9 +79,11 @@ namespace V6Tools.V6Convert
         /// <param name="decimals">Số chữ số phần thập phân</param>
         /// <param name="decimalSeparator">Dấu cách phần thập phân</param>
         /// <param name="thousandSeparator">Dấu cách phần nghìn</param>
+        /// <param name="show0">Mặc định không hiện số 0</param>
         /// <returns></returns>
-        public static string NumberToString(decimal number, int decimals, string decimalSeparator, string thousandSeparator = " ")
+        public static string NumberToString(decimal number, int decimals, string decimalSeparator, string thousandSeparator = " ", bool show0 = false)
         {
+            if (number == 0 && !show0) return "";
             if (string.IsNullOrEmpty(decimalSeparator))
             {
                 throw new Exception("DecimalSeparator empty.");
@@ -103,10 +105,11 @@ namespace V6Tools.V6Convert
         /// <param name="decimals">Số chữ số phần thập phân</param>
         /// <param name="decimalSeparator">Dấu cách phần thập phân</param>
         /// <param name="thousandSeparator">Dấu cách phần nghìn</param>
+        /// <param name="show0">Mặc định không hiện số 0</param>
         /// <returns></returns>
-        public static string NumberToString(object number, int decimals, string decimalSeparator,string thousandSeparator = " ")
+        public static string NumberToString(object number, int decimals, string decimalSeparator, string thousandSeparator = " ", bool show0 = false)
         {
-            return NumberToString(ObjectToDecimal(number), decimals, decimalSeparator, thousandSeparator);
+            return NumberToString(ObjectToDecimal(number), decimals, decimalSeparator, thousandSeparator, show0);
         }
 
         /// <summary>

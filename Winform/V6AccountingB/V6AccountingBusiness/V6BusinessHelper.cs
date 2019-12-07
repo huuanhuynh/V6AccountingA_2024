@@ -1665,6 +1665,22 @@ namespace V6AccountingBusiness
             return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_EdItems_DATE_STT_REC_Priority", plist).Tables[0];
         }
 
+        public static DataTable GetStockinVitriDatePriority(string mavt, string makho, string sttRec, DateTime ngayct)
+        {
+            mavt = mavt.Replace("'", "''");
+            SqlParameter[] plist = new[]
+            {
+                new SqlParameter("@cKey1", ""),
+                new SqlParameter("@cKey2", ""),
+                new SqlParameter("@cKey3", ""),
+                new SqlParameter("@cMa_kho", makho),
+                new SqlParameter("@cMa_vt", mavt),
+                new SqlParameter("@cStt_rec", sttRec),
+                new SqlParameter("@dBg", ngayct.Date)
+            };
+            return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_STOCKIN_VITRI_DATE_STT_REC_PRIORITY", plist).Tables[0];
+        }
+
         public static DataTable GetVitriLoDatePriority(string mavt, string sttRec, DateTime ngayct)
         {
             mavt = mavt.Replace("'", "''");

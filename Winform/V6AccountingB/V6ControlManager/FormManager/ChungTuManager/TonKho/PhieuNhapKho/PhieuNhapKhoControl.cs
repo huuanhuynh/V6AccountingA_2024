@@ -4128,40 +4128,182 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 {
                     var newData = new SortedDictionary<string, object>(data);
                     string ma_vt = newData["MA_VT"].ToString().Trim();
+                    string ma_kho = newData["MA_KHO_I"].ToString().Trim();
                     V6VvarTextBox temp_vt = new V6VvarTextBox()
                     {
                         VVar = "MA_VT",
                     };
                     temp_vt.Text = ma_vt;
                     temp_vt.RefreshLoDateYnValue();
+                    
+                    DataTable lodate_data = V6BusinessHelper.GetStockinVitriDatePriority(ma_vt, ma_kho, _sttRec, dateNgayCT.Date);
+                    // Loại trừ số lượng đã thêm vào AD trước đó. !!!!!!!!!
+                    // Mã vị trí đã chọn không được chọn lại. !!!!!!!!!!!!!
 
-                    if (newData.ContainsKey("SO_LUONG"))
+                    if (temp_vt.VITRI_YN && lodate_data != null && lodate_data.Rows.Count>0)
                     {
-                        decimal insert = ObjectAndString.ObjectToDecimal(newData["SO_LUONG"]);
+                        // Tách dòng nhiều lô cộng dồn cho đủ số lượng.
+                        decimal total = ObjectAndString.ObjectToDecimal(newData["SO_LUONG"]);
+                        decimal total_qd = ObjectAndString.ObjectToDecimal(newData["SL_QD"]);
                         decimal heso = 1;
                         string dvt1 = newData["DVT1"].ToString().Trim();
+                        string dvt = dvt1;
                         SqlParameter[] plist =
+                        {
+                            new SqlParameter("@p1", ma_vt),
+                            new SqlParameter("@p2", dvt1),
+                        };
+                        var dataHeso = V6BusinessHelper.Select("Alqddvt", "*", "ma_vt=@p1 and dvt=@p2", "", "", plist).Data;
+                        if (dataHeso.Rows.Count > 0)
+                        {
+                            heso = ObjectAndString.ObjectToDecimal(dataHeso.Rows[0]["HE_SO"]);
+                            dvt = dataHeso.Rows[0]["DVTQD"].ToString().Trim();
+                        }
+                        if (heso == 0) heso = 1;
+                        decimal sum = 0, sum_qd = 0;
+
+                        
+                        // Get Data
+
+                        for (int i = lodate_data.Rows.Count - 1; i >= 0; i--)
+                        {
+                            DataRow data_row = lodate_data.Rows[i];
+                            decimal row_SL_MAX = ObjectAndString.ObjectToDecimal(data_row["SL_VTMAX"]);
+                            decimal row_SL_MAX_qd = ObjectAndString.ObjectToDecimal(data_row["SL_VTMAX_QD"]);
+                            decimal insert = (total - sum) < row_SL_MAX ? (total - sum) : row_SL_MAX; // Lấy đủ số cần lấy, không đủ thì lấy hết.
+                            decimal insert_qd = (total_qd - sum_qd) < row_SL_MAX_qd ? (total_qd - sum_qd) : row_SL_MAX_qd;
+                            // Chỉ định lô
+                            string mavitri_chidinh = newData.ContainsKey("MA_VITRI") ? newData["MA_VITRI"].ToString().Trim() : "";
+                            string mavitri_row = data_row["MA_VITRI"].ToString().Trim().ToUpper();
+
+                            if (!string.IsNullOrEmpty(mavitri_chidinh))
+                            {
+                                // Có vị trí chỉ định
+                                if (mavitri_chidinh == mavitri_row)
+                                {
+                                    newData["MA_VITRI"] = data_row["MA_VITRI"];
+                                }
+                                else
+                                {
+                                    continue; // bỏ qua lodate_data
+                                }
+                            }
+                            else
+                            {
+                                // Không Có vị trí chỉ định
+                                newData["MA_VITRI"] = data_row["MA_VITRI"];
+                            }
+                            newData["MA_KHO_I"] = data_row["MA_KHO"];
+                            if (temp_vt.VITRI_YN) newData["MA_VITRI"] = data_row["MA_VITRI"];
+
+                            newData["DVT"] = dvt;
+                            newData["DVT1"] = dvt1;
+                            newData["HE_SO"] = heso;
+                            newData["SO_LUONG"] = insert;
+                            newData["SO_LUONG1"] = insert / heso;
+                            
+                            var HS_QD1 = ObjectAndString.ObjectToDecimal(temp_vt.Data["HS_QD1"]);
+
+                            if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E")
+                            {
+                                newData["SL_QD"] = insert_qd;
+                            }
+                            else if (HS_QD1 != 0 && M_CAL_SL_QD_ALL == "1")
+                            {
+                                newData["SL_QD"] = insert / HS_QD1;
+                            }
+
+                            if (XuLyThemDetail(newData)) addCount++;
+                            else failCount++;
+
+                            sum += insert;
+                            data_row["SL_VTMAX"] = row_SL_MAX - insert;
+                            sum_qd += insert_qd;
+                            data_row["SL_VTMAX_QD"] = row_SL_MAX_qd - insert_qd;
+                            if (sum == total)
+                            {
+                                break;
+                            }
+                        }
+
+                        if (sum < total)
+                        {
+                            // Lấy thêm lô khác cho đủ số lượng trong lodate_data (đã - sl)
+                            for (int i = lodate_data.Rows.Count - 1; i >= 0; i--)
+                            {
+                                DataRow data_row = lodate_data.Rows[i];
+                                decimal row_ton_dau = ObjectAndString.ObjectToDecimal(data_row["SL_VTMAX"]);
+                                decimal row_ton_dau_qd = ObjectAndString.ObjectToDecimal(data_row["SL_VTMAX_QD"]);
+                                decimal insert = (total - sum) < row_ton_dau ? (total - sum) : row_ton_dau; // Lấy đủ số cần lấy, không đủ thì lấy hết.
+                                if (insert <= 0) continue;
+
+                                decimal insert_qd = (total_qd - sum_qd) < row_ton_dau_qd ? (total_qd - sum_qd) : row_ton_dau_qd;
+
+                                // Không Có lô chỉ định
+                                newData["MA_VITRI"] = data_row["MA_VITRI"];
+                                
+                                newData["MA_KHO_I"] = data_row["MA_KHO"];
+                                if (temp_vt.VITRI_YN) newData["MA_VITRI"] = data_row["MA_VITRI"];
+
+                                newData["DVT"] = dvt;
+                                newData["DVT1"] = dvt1;
+                                newData["HE_SO"] = heso;
+                                newData["SO_LUONG"] = insert;
+                                newData["SO_LUONG1"] = insert / heso;
+                                
+                                var HS_QD1 = ObjectAndString.ObjectToDecimal(temp_vt.Data["HS_QD1"]);
+
+                                if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E")
+                                {
+                                    newData["SL_QD"] = insert_qd;
+                                }
+                                else if (HS_QD1 != 0 && M_CAL_SL_QD_ALL == "1")
+                                {
+                                    newData["SL_QD"] = insert / HS_QD1;
+                                }
+
+                                if (XuLyThemDetail(newData)) addCount++;
+                                else failCount++;
+
+                                sum += insert;
+                                sum_qd += insert_qd;
+                                if (sum == total)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (newData.ContainsKey("SO_LUONG"))
+                        {
+                            decimal insert = ObjectAndString.ObjectToDecimal(newData["SO_LUONG"]);
+                            decimal heso = 1;
+                            string dvt1 = newData["DVT1"].ToString().Trim();
+                            SqlParameter[] plist =
                             {
                                 new SqlParameter("@p1", ma_vt),
                                 new SqlParameter("@p2", dvt1),
                             };
-                        var dataHeso =
-                            V6BusinessHelper.Select("Alqddvt", "*", "ma_vt=@p1 and dvt=@p2", "", "", plist).Data;
-                        if (dataHeso.Rows.Count > 0)
-                        {
-                            heso = ObjectAndString.ObjectToDecimal(dataHeso.Rows[0]["HE_SO"]);
+                            var dataHeso =
+                                V6BusinessHelper.Select("Alqddvt", "*", "ma_vt=@p1 and dvt=@p2", "", "", plist).Data;
+                            if (dataHeso.Rows.Count > 0)
+                            {
+                                heso = ObjectAndString.ObjectToDecimal(dataHeso.Rows[0]["HE_SO"]);
+                            }
+                            if (heso == 0) heso = 1;
+                            newData["SO_LUONG1"] = insert/heso;
+                            var HS_QD1 = ObjectAndString.ObjectToDecimal(temp_vt.Data["HS_QD1"]);
+                            if (HS_QD1 != 0 && M_CAL_SL_QD_ALL == "1")
+                            {
+                                newData["SL_QD"] = insert/HS_QD1;
+                            }
                         }
-                        if (heso == 0) heso = 1;
-                        newData["SO_LUONG1"] = insert / heso;
-                        var HS_QD1 = ObjectAndString.ObjectToDecimal(temp_vt.Data["HS_QD1"]);
-                        if (HS_QD1 != 0 && M_CAL_SL_QD_ALL == "1")
-                        {
-                            newData["SL_QD"] = insert / HS_QD1;
-                        }
-                    }
 
-                    if (XuLyThemDetail(newData)) addCount++;
-                    else failCount++;
+                        if (XuLyThemDetail(newData)) addCount++;
+                        else failCount++;
+                    }                    
                 }
                 All_Objects["selectedDataList"] = selectedDataList;
                 InvokeFormEvent("AFTERCHON_" + _chon_px);
