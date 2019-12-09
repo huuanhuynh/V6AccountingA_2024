@@ -4078,10 +4078,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             try
             {
                 chon_accept_flag_add = add;
-                var ma_kh = txtMaKh.Text.Trim();
+                //var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
-                if (ma_kh != "" && ma_dvcs != "")
+                if (ma_dvcs != "")
                 {
                     CPX_PhieuNhapKhoForm chon = new CPX_PhieuNhapKhoForm(dateNgayCT.Date, txtMaDVCS.Text, txtMaKh.Text);
                     _chon_px = "PX";
@@ -4090,13 +4090,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 }
                 else
                 {
-                    if (ma_kh == "")
-                        message += V6Setting.IsVietnamese ? "Chưa chọn mã khách hàng!\n" : "Customers ID needs to enter!\n";
+                    //if (ma_kh == "")
+                    //    message += V6Setting.IsVietnamese ? "Chưa chọn mã khách hàng!\n" : "Customers ID needs to enter!\n";
                     if (ma_dvcs == "")
                         message += V6Text.NoInput + lblMaDVCS.Text;
                     this.ShowWarningMessage(message);
-                    if (ma_kh == "") txtMaKh.Focus();
-                    else if (ma_dvcs == "") txtMaDVCS.Focus();
+                    //if (ma_kh == "") txtMaKh.Focus();
+                    if (ma_dvcs == "") txtMaDVCS.Focus();
                 }
             }
             catch (Exception ex)
@@ -4115,17 +4115,28 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 bool flag_add = chon_accept_flag_add;
                 chon_accept_flag_add = false;
                 detail1.MODE = V6Mode.View;
-                if (flag_add)
-                {
-                    DoNothing();
-                }
-                else
+                if (!flag_add)
                 {
                     AD.Rows.Clear();
                 }
                 int addCount = 0, failCount = 0;
+                _message = "";
+
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {
+                    string c_makh = data.ContainsKey("MA_KH") ? data["MA_KH"].ToString().Trim().ToUpper() : "";
+                    if (c_makh != "" && txtMaKh.Text == "")
+                    {
+                        txtMaKh.ChangeText(c_makh);
+                    }
+
+                    if (c_makh != "" && c_makh != txtMaKh.Text.ToUpper())
+                    {
+                        failCount++;
+                        _message += ". " + failCount + ":" + c_makh;
+                        continue;
+                    }
+
                     var newData = new SortedDictionary<string, object>(data);
                     string ma_vt = newData["MA_VT"].ToString().Trim();
                     string ma_kho = newData["MA_KHO_I"].ToString().Trim();
@@ -4137,9 +4148,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                     temp_vt.RefreshLoDateYnValue();
                     
                     DataTable lodate_data = V6BusinessHelper.GetStockinVitriDatePriority(ma_vt, ma_kho, _sttRec, dateNgayCT.Date);
-                    // Loại trừ số lượng đã thêm vào AD trước đó. !!!!!!!!!
-                    // Mã vị trí đã chọn không được chọn lại. !!!!!!!!!!!!!
-
+                    
                     if (temp_vt.VITRI_YN && lodate_data != null && lodate_data.Rows.Count>0)
                     {
                         // Tách dòng nhiều lô cộng dồn cho đủ số lượng.
@@ -4168,9 +4177,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                         for (int i = lodate_data.Rows.Count - 1; i >= 0; i--)
                         {
                             DataRow data_row = lodate_data.Rows[i];
+                            // Loại trừ số lượng đã thêm vào AD trước đó. !!!!!!!!!
+                            // Mã vị trí đã chọn không được chọn lại. !!!!!!!!!!!!!
+                            foreach (DataRow AD_row in AD.Rows)
+                            {
+                                if (ma_vt == AD_row["MA_VT"].ToString().Trim() && data_row["MA_VITRI"].ToString().Trim() == AD_row["MA_VITRI"].ToString().Trim())
+                                {
+                                    data_row["SL_VTMAX"] = ObjectAndString.ObjectToDecimal(data_row["SL_VTMAX"])
+                                                           - ObjectAndString.ObjectToDecimal(AD_row["SO_LUONG"]);
+                                    data_row["SL_VTMAX_QD"] = ObjectAndString.ObjectToDecimal(data_row["SL_VTMAX_QD"])
+                                                           - ObjectAndString.ObjectToDecimal(AD_row["SL_QD"]);
+                                }
+                            }
+
                             decimal row_SL_MAX = ObjectAndString.ObjectToDecimal(data_row["SL_VTMAX"]);
                             decimal row_SL_MAX_qd = ObjectAndString.ObjectToDecimal(data_row["SL_VTMAX_QD"]);
                             decimal insert = (total - sum) < row_SL_MAX ? (total - sum) : row_SL_MAX; // Lấy đủ số cần lấy, không đủ thì lấy hết.
+                            if (insert <= 0) continue;
                             decimal insert_qd = (total_qd - sum_qd) < row_SL_MAX_qd ? (total_qd - sum_qd) : row_SL_MAX_qd;
                             // Chỉ định lô
                             string mavitri_chidinh = newData.ContainsKey("MA_VITRI") ? newData["MA_VITRI"].ToString().Trim() : "";
@@ -4307,7 +4330,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 }
                 All_Objects["selectedDataList"] = selectedDataList;
                 InvokeFormEvent("AFTERCHON_" + _chon_px);
-                V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed {1}.", addCount, failCount));
+                V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed: {1}{2}", addCount, failCount, _message));
                 //if (addCount > 0)
                 //{
                 //    co_chon_don_hang = true;
@@ -4393,10 +4416,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         {
             try
             {
-                var ma_kh = txtMaKh.Text.Trim();
+                //var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
-                if (ma_kh != "" && ma_dvcs != "")
+                if (ma_dvcs != "")
                 {
                     INY_PNKho_Form chon = new INY_PNKho_Form(dateNgayCT.Date.Date, txtMaDVCS.Text, txtMaKh.Text);
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
@@ -4404,7 +4427,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 }
                 else
                 {
-                    if (ma_kh == "") message += V6Text.NoInput + lblMaKH.Text;
+                    //if (ma_kh == "") message += V6Text.NoInput + lblMaKH.Text;
                     if (ma_dvcs == "") message += V6Text.NoInput + lblMaDVCS.Text;
                     this.ShowWarningMessage(message);
                 }

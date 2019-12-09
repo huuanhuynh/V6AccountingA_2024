@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CPN_PhieuNhapChiPhiMuaHangForm));
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
             this.lblDocSoTien = new V6Controls.V6Label();
@@ -71,6 +72,7 @@
             this.v6Label7 = new V6Controls.V6Label();
             this.v6Label8 = new V6Controls.V6Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbtMaKH = new V6Controls.Controls.LookupButton();
             this.locThoiGian1.SuspendLayout();
             this.locThongTin1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -190,6 +192,7 @@
             this.locThongTin1.AccessibleDescription = "SEARCHG00001";
             this.locThongTin1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.locThongTin1.Controls.Add(this.lbtMaKH);
             this.locThongTin1.Controls.Add(this.chkLike);
             this.locThongTin1.Controls.Add(this.maThanhToan);
             this.locThongTin1.Controls.Add(this.taiKhoanThue);
@@ -676,6 +679,29 @@
             this.panel1.Size = new System.Drawing.Size(775, 488);
             this.panel1.TabIndex = 17;
             // 
+            // lbtMaKH
+            // 
+            this.lbtMaKH.Image = ((System.Drawing.Image)(resources.GetObject("lbtMaKH.Image")));
+            this.lbtMaKH.Location = new System.Drawing.Point(219, 71);
+            this.lbtMaKH.M_DataType = null;
+            this.lbtMaKH.M_Ma_ct = null;
+            this.lbtMaKH.M_Stt_Rec = null;
+            this.lbtMaKH.M_Type = "4";
+            this.lbtMaKH.M_Value = null;
+            this.lbtMaKH.M_Vvar = null;
+            this.lbtMaKH.Name = "lbtMaKH";
+            this.lbtMaKH.R_DataType = null;
+            this.lbtMaKH.R_DataType2 = null;
+            this.lbtMaKH.R_Ma_ct = null;
+            this.lbtMaKH.R_Ma_ct2 = null;
+            this.lbtMaKH.R_Stt_rec = null;
+            this.lbtMaKH.R_Stt_rec2 = null;
+            this.lbtMaKH.R_Value2 = null;
+            this.lbtMaKH.R_Vvar2 = null;
+            this.lbtMaKH.ReferenceControl = this.maKhach;
+            this.lbtMaKH.Size = new System.Drawing.Size(21, 21);
+            this.lbtMaKH.TabIndex = 29;
+            // 
             // CPN_PhieuNhapChiPhiMuaHangForm
             // 
             this.AccessibleDescription = "SEARCHL00001";
@@ -751,5 +777,6 @@
         private V6Controls.V6Label v6Label7;
         private V6Controls.V6Label v6Label8;
         private System.Windows.Forms.Panel panel1;
+        private V6Controls.Controls.LookupButton lbtMaKH;
     }
 }

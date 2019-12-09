@@ -5273,10 +5273,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         {
             try
             {
-                var ma_kh = txtMaKh.Text.Trim();
+                //var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
-                if (ma_kh != "" && ma_dvcs != "")
+                if (ma_dvcs != "")
                 {
                     IXY_PXK_Form chon = new IXY_PXK_Form(dateNgayCT.Date.Date, txtMaDVCS.Text, txtMaKh.Text);
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
@@ -5284,7 +5284,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 }
                 else
                 {
-                    if (ma_kh == "") message += V6Text.NoInput + lblMaKH.Text;
+                    //if (ma_kh == "") message += V6Text.NoInput + lblMaKH.Text;
                     if (ma_dvcs == "") message += V6Text.NoInput + lblMaDVCS.Text;
                     this.ShowWarningMessage(message);
                 }
@@ -5311,12 +5311,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 {
                     AD.Rows.Clear();
                 }
-                int addCount = 0, failCount = 0;
+                int addCount = 0, failCount = 0; _message = "";
 
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {
+                    string c_makh = data.ContainsKey("MA_KH") ? data["MA_KH"].ToString().Trim().ToUpper() : "";
+                    if (c_makh != "" && txtMaKh.Text == "")
+                    {
+                        txtMaKh.ChangeText(c_makh);
+                    }
+
+                    if (c_makh != "" && c_makh != txtMaKh.Text.ToUpper())
+                    {
+                        failCount++;
+                        _message += ". " + failCount + ":" + c_makh;
+                        continue;
+                    }
+
                     var newData = new SortedDictionary<string, object>(data);
-                    
                     string ma_vt = newData["MA_VT"].ToString().Trim();
                     V6VvarTextBox temp_vt = new V6VvarTextBox()
                     {
@@ -5540,7 +5552,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                         else failCount++;
                     }
                 }
-                V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed {1}.", addCount, failCount));
+                V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed: {1}{2}", addCount, failCount, _message));
                 //if (addCount > 0)
                 //{
                 //    co_chon_don_hang = true;

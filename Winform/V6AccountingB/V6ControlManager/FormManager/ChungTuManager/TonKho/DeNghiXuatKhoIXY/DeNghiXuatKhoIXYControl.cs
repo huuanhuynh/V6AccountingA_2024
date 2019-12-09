@@ -5547,10 +5547,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             try
             {
                 chon_accept_flag_add = add;
-                var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
-                if (ma_kh != "" && ma_dvcs != "")
+                if (ma_dvcs != "")
                 {
                     CDHB_IXYForm chon = new CDHB_IXYForm(dateNgayCT.Date, txtMaDVCS.Text, txtMaKh.Text);
                     //_chon_px = "DH";
@@ -5559,11 +5558,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                 }
                 else
                 {
-                    if (ma_kh == "") message += V6Text.NoInput + lblMaKH.Text;
                     if (ma_dvcs == "") message += V6Text.NoInput + lblMaDVCS.Text;
                     this.ShowWarningMessage(message);
-                    if (ma_kh == "") txtMaKh.Focus();
-                    else if (ma_dvcs == "") txtMaDVCS.Focus();
+                    if (ma_dvcs == "") txtMaDVCS.Focus();
                 }
             }
             catch (Exception ex)
@@ -5579,10 +5576,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                 if (NotAddEdit) return;
 
                 chon_accept_flag_add = add;
-                var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
-                if (ma_kh != "" && ma_dvcs != "")
+                if (ma_dvcs != "")
                 {
                     CBG_HoaDonForm chon = new CBG_HoaDonForm(txtMaDVCS.Text, txtMaKh.Text);
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
@@ -5590,11 +5586,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                 }
                 else
                 {
-                    if (ma_kh == "") message += V6Text.NoInput + lblMaKH.Text;
                     if (ma_dvcs == "") message += V6Text.NoInput + lblMaDVCS.Text;
                     this.ShowWarningMessage(message);
-                    if (ma_kh == "") txtMaKh.Focus();
-                    else if (ma_dvcs == "") txtMaDVCS.Focus();
+                    if (ma_dvcs == "") txtMaDVCS.Focus();
                 }
             }
             catch (Exception ex)
@@ -5611,17 +5605,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                 bool flag_add = chon_accept_flag_add;
                 chon_accept_flag_add = false;
                 detail1.MODE = V6Mode.View;
-                if (flag_add)
-                {
-                    DoNothing();
-                }
-                else
+                if (!flag_add)
                 {
                     AD.Rows.Clear();
                 }
-                int addCount = 0, failCount = 0;
+                int addCount = 0, failCount = 0; _message = "";
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {
+                    string c_makh = data.ContainsKey("MA_KH") ? data["MA_KH"].ToString().Trim().ToUpper() : "";
+                    if (c_makh != "" && txtMaKh.Text == "")
+                    {
+                        txtMaKh.ChangeText(c_makh);
+                    }
+
+                    if (c_makh != "" && c_makh != txtMaKh.Text.ToUpper())
+                    {
+                        failCount++;
+                        _message += ". " + failCount + ":" + c_makh;
+                        continue;
+                    }
+
                     var newData = new SortedDictionary<string, object>(data);
                     if (_m_Ma_td == "1" && Txtma_td_ph.Text != "")
                     {
@@ -5631,7 +5634,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                     if (XuLyThemDetail(newData)) addCount++;
                     else failCount++;
                 }
-                V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed {1}.", addCount, failCount));
+                V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed: {1}{2}", addCount, failCount, _message));
                 //if (addCount > 0)
                 //{
                 //    co_chon_don_hang = true;

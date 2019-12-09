@@ -64,6 +64,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonD
             panelFilter1.AddMultiFilterLine(Invoice.AMStruct, Invoice.ADV_AM);
             panelFilter2.AddMultiFilterLine(Invoice.ADStruct, Invoice.ADV_AD);
             maKhach.Text = _ma_kh;
+            maKhach.ReadOnly = !string.IsNullOrEmpty(_ma_kh);
             txtMaDVCS.Text = _ma_dvcs;
             v6ColorDateTimePick1.SetValue(V6Setting.M_ngay_ct1);
             v6ColorDateTimePick2.SetValue(V6Setting.M_ngay_ct2);

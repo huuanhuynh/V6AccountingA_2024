@@ -59,6 +59,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonBaoGia
             panelFilter2.AddMultiFilterLine(Invoice.ADStruct, Invoice.ADV_AD);
 
             maKhach.Text = _ma_kh;
+            maKhach.ReadOnly = !string.IsNullOrEmpty(_ma_kh);
             txtMaDVCS.Text = _ma_dvcs;
 
             //_locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;

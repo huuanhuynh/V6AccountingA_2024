@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CPN_ThongTin_HoaDon));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtma_gd = new V6Controls.V6VvarTextBox();
             this.v6Label16 = new V6Controls.V6Label();
@@ -53,12 +54,14 @@
             this.v6Label22 = new V6Controls.V6Label();
             this.v6Label7 = new V6Controls.V6Label();
             this.v6Label8 = new V6Controls.V6Label();
+            this.lbtMaKH = new V6Controls.Controls.LookupButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.AccessibleDescription = "SEARCHG00001";
+            this.groupBox1.Controls.Add(this.lbtMaKH);
             this.groupBox1.Controls.Add(this.txtma_gd);
             this.groupBox1.Controls.Add(this.v6Label16);
             this.groupBox1.Controls.Add(this.panelFilter1);
@@ -261,7 +264,6 @@
             this.maKhach.AccessibleName = "ma_kh";
             this.maKhach.BackColor = System.Drawing.SystemColors.Window;
             this.maKhach.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.maKhach.Enabled = false;
             this.maKhach.EnterColor = System.Drawing.Color.PaleGreen;
             this.maKhach.ForeColor = System.Drawing.SystemColors.WindowText;
             this.maKhach.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -404,6 +406,29 @@
             this.v6Label8.TabIndex = 0;
             this.v6Label8.Text = "CT từ số";
             // 
+            // lbtMaKH
+            // 
+            this.lbtMaKH.Image = ((System.Drawing.Image)(resources.GetObject("lbtMaKH.Image")));
+            this.lbtMaKH.Location = new System.Drawing.Point(219, 45);
+            this.lbtMaKH.M_DataType = null;
+            this.lbtMaKH.M_Ma_ct = null;
+            this.lbtMaKH.M_Stt_Rec = null;
+            this.lbtMaKH.M_Type = "4";
+            this.lbtMaKH.M_Value = null;
+            this.lbtMaKH.M_Vvar = null;
+            this.lbtMaKH.Name = "lbtMaKH";
+            this.lbtMaKH.R_DataType = null;
+            this.lbtMaKH.R_DataType2 = null;
+            this.lbtMaKH.R_Ma_ct = null;
+            this.lbtMaKH.R_Ma_ct2 = null;
+            this.lbtMaKH.R_Stt_rec = null;
+            this.lbtMaKH.R_Stt_rec2 = null;
+            this.lbtMaKH.R_Value2 = null;
+            this.lbtMaKH.R_Vvar2 = null;
+            this.lbtMaKH.ReferenceControl = this.maKhach;
+            this.lbtMaKH.Size = new System.Drawing.Size(21, 21);
+            this.lbtMaKH.TabIndex = 29;
+            // 
             // CPN_ThongTin_HoaDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -444,5 +469,6 @@
         public V6Controls.V6VvarTextBox maKhach;
         private V6Controls.V6VvarTextBox txtma_gd;
         private V6Controls.V6Label v6Label16;
+        private V6Controls.Controls.LookupButton lbtMaKH;
     }
 }

@@ -1100,10 +1100,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         {
             try
             {
-                var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
-                if (ma_kh != "" && ma_dvcs != "")
+                if (ma_dvcs != "")
                 {
                     CPXHangTraLaiForm chonpx = new CPXHangTraLaiForm(this, txtMaDVCS.Text, txtMaKh.Text);
                     _chon_px = "PX";
@@ -1112,7 +1111,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 }
                 else
                 {
-                    if (ma_kh == "") message += V6Text.NoInput + lblMaKH.Text;
                     if (ma_dvcs == "") message += V6Text.NoInput + lblMaDVCS.Text;
                     this.ShowWarningMessage(message);
                 }
@@ -1137,6 +1135,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 int addCount = 0, failCount = 0;
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {
+                    string c_makh = data.ContainsKey("MA_KH") ? data["MA_KH"].ToString().Trim().ToUpper() : "";
+                    if (c_makh != "" && txtMaKh.Text == "")
+                    {
+                        txtMaKh.ChangeText(c_makh);
+                    }
+                    if (c_makh != "" && c_makh != txtMaKh.Text.ToUpper())
+                    {
+                        failCount++;
+                        _message += ". " + failCount + ":" + c_makh;
+                        continue;
+                    }
+
                     if (!theo_hoa_don)
                     {
                         data["STT_REC_PX"] = "";
@@ -1156,7 +1166,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 }
                 All_Objects["selectedDataList"] = selectedDataList;
                 InvokeFormEvent("AFTERCHON_" + _chon_px);
-                V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed {1}.", addCount, failCount));
+                V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed: {1}{2}", addCount, failCount, _message));
                 if (addCount > 0)
                 {
                     co_chon_phieu_xuat = true;

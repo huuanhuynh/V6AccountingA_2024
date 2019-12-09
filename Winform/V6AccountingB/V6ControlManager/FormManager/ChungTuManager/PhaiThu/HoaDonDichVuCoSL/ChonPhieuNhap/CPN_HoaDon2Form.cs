@@ -62,6 +62,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
             locThongTin1.CreateDynamicFilter(Invoice.AMStruct, Invoice.ADV_AM);
             locThongTinChiTiet1.CreateDynamicFilter2(Invoice.ADStruct, Invoice.ADV_AD);
             locThongTin1.maKhach.Text = _ma_kh;
+            locThongTin1.maKhach.ReadOnly = !string.IsNullOrEmpty(_ma_kh);
             txtMaDVCS.Text = _ma_dvcs;
             
             Ready();

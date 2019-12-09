@@ -6490,10 +6490,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             try
             {
                 chon_accept_flag_add = add;
-                var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
-                if (ma_kh != "" && ma_dvcs != "")
+                if (ma_dvcs != "")
                 {
                     CDH_HoaDonForm chon = new CDH_HoaDonForm(dateNgayCT.Date, txtMaDVCS.Text, txtMaKh.Text);
                     _chon_px = "DH";
@@ -6502,11 +6501,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 }
                 else
                 {
-                    if (ma_kh == "") message += V6Text.NoInput + lblMaKH.Text;
                     if (ma_dvcs == "") message += V6Text.NoInput + lblMaDVCS.Text;
                     this.ShowWarningMessage(message);
-                    if (ma_kh == "") txtMaKh.Focus();
-                    else if (ma_dvcs == "") txtMaDVCS.Focus();
+                    if (ma_dvcs == "") txtMaDVCS.Focus();
                 }
             }
             catch (Exception ex)
@@ -6520,10 +6517,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             try
             {
                 chon_accept_flag_add = add;
-                var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
-                if (ma_kh != "" && ma_dvcs != "")
+                if (ma_dvcs != "")
                 {
                     CBG_HoaDonForm chon = new CBG_HoaDonForm(txtMaDVCS.Text, txtMaKh.Text);
                     _chon_px = "BG";
@@ -6532,11 +6528,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 }
                 else
                 {
-                    if (ma_kh == "") message += V6Text.NoInput + lblMaKH.Text;
                     if (ma_dvcs == "") message += V6Text.NoInput + lblMaDVCS.Text;
                     this.ShowWarningMessage(message);
-                    if (ma_kh == "") txtMaKh.Focus();
-                    else if (ma_dvcs == "") txtMaDVCS.Focus();
+                    if (ma_dvcs == "") txtMaDVCS.Focus();
                 }
             }
             catch (Exception ex)
@@ -6554,17 +6548,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 bool flag_add = chon_accept_flag_add;
                 chon_accept_flag_add = false;
                 detail1.MODE = V6Mode.View;
-                if (flag_add)
-                {
-                    DoNothing();
-                }
-                else
+                if (!flag_add)
                 {
                     AD.Rows.Clear();
                 }
-                int addCount = 0, failCount = 0;
+                int addCount = 0, failCount = 0; _message = "";
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {
+                    string c_makh = data.ContainsKey("MA_KH") ? data["MA_KH"].ToString().Trim().ToUpper() : "";
+                    if (c_makh != "" && txtMaKh.Text == "")
+                    {
+                        txtMaKh.ChangeText(c_makh);
+                    }
+
+                    if (c_makh != "" && c_makh != txtMaKh.Text.ToUpper())
+                    {
+                        failCount++;
+                        _message += ". " + failCount + ":" + c_makh;
+                        continue;
+                    }
+
                     if (XuLyThemDetail(data)) // !!!!!!! Luu tam
                     {
                         addCount++;
@@ -6578,7 +6581,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 }
                 All_Objects["selectedDataList"] = selectedDataList;
                 InvokeFormEvent("AFTERCHON_" + _chon_px);
-                V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed {1}.", addCount, failCount));
+                V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed: {1}{2}", addCount, failCount, _message));
                 //if (addCount > 0)
                 //{
                 //    co_chon_don_hang = true;
@@ -6755,10 +6758,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             try
             {
                 chon_accept_flag_add = add;
-                var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
-                if (ma_kh != "" && ma_dvcs != "")
+                if (ma_dvcs != "")
                 {
                     CPX_HoaDonForm chon = new CPX_HoaDonForm(dateNgayCT.Date, txtMaDVCS.Text, txtMaKh.Text);
                     _chon_px = "PX";
@@ -6767,13 +6769,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 }
                 else
                 {
-                    if (ma_kh == "")
-                        message += V6Text.NoInput + lblMaKH.Text;
                     if (ma_dvcs == "")
                         message += V6Text.NoInput + lblMaDVCS.Text;
                     this.ShowWarningMessage(message);
-                    if (ma_kh == "") txtMaKh.Focus();
-                    else if (ma_dvcs == "") txtMaDVCS.Focus();
+                    if (ma_dvcs == "") txtMaDVCS.Focus();
                 }
             }
             catch (Exception ex)

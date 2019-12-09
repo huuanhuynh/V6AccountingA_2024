@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CBG_HoaDonForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.grbTuyChon = new System.Windows.Forms.GroupBox();
             this.txtNhomVT6 = new V6Controls.V6VvarTextBox();
@@ -120,6 +121,7 @@
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
             this.lblDocSoTien = new V6Controls.V6Label();
+            this.lbtMaKH = new V6Controls.Controls.LookupButton();
             this.panel1.SuspendLayout();
             this.grbTuyChon.SuspendLayout();
             this.grbThongTinChiTiet.SuspendLayout();
@@ -548,7 +550,7 @@
             this.v6ColorTextBox24.TabIndex = 25;
             this.v6ColorTextBox24.VVar = "MA_KU";
             // 
-            // v6ColorTextBox25
+            // txtMaVVi
             // 
             this.txtMaVVi.AccessibleName = "MA_VV_I";
             this.txtMaVVi.BackColor = System.Drawing.SystemColors.Window;
@@ -886,6 +888,7 @@
             this.grbThongTin.AccessibleDescription = "SEARCHG00001";
             this.grbThongTin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grbThongTin.Controls.Add(this.lbtMaKH);
             this.grbThongTin.Controls.Add(this.panelFilter1);
             this.grbThongTin.Controls.Add(this.chkLike);
             this.grbThongTin.Controls.Add(this.taiKhoanThue);
@@ -1079,7 +1082,6 @@
             this.maKhach.AccessibleName = "ma_kh";
             this.maKhach.BackColor = System.Drawing.SystemColors.Window;
             this.maKhach.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.maKhach.Enabled = false;
             this.maKhach.EnterColor = System.Drawing.Color.PaleGreen;
             this.maKhach.ForeColor = System.Drawing.SystemColors.WindowText;
             this.maKhach.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1394,6 +1396,29 @@
             this.lblDocSoTien.Text = "0";
             this.lblDocSoTien.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // lbtMaKH
+            // 
+            this.lbtMaKH.Image = ((System.Drawing.Image)(resources.GetObject("lbtMaKH.Image")));
+            this.lbtMaKH.Location = new System.Drawing.Point(219, 45);
+            this.lbtMaKH.M_DataType = null;
+            this.lbtMaKH.M_Ma_ct = null;
+            this.lbtMaKH.M_Stt_Rec = null;
+            this.lbtMaKH.M_Type = "4";
+            this.lbtMaKH.M_Value = null;
+            this.lbtMaKH.M_Vvar = null;
+            this.lbtMaKH.Name = "lbtMaKH";
+            this.lbtMaKH.R_DataType = null;
+            this.lbtMaKH.R_DataType2 = null;
+            this.lbtMaKH.R_Ma_ct = null;
+            this.lbtMaKH.R_Ma_ct2 = null;
+            this.lbtMaKH.R_Stt_rec = null;
+            this.lbtMaKH.R_Stt_rec2 = null;
+            this.lbtMaKH.R_Value2 = null;
+            this.lbtMaKH.R_Vvar2 = null;
+            this.lbtMaKH.ReferenceControl = this.maKhach;
+            this.lbtMaKH.Size = new System.Drawing.Size(21, 21);
+            this.lbtMaKH.TabIndex = 29;
+            // 
             // CBG_HoaDonForm
             // 
             this.AccessibleDescription = "SEARCHL00001";
@@ -1523,5 +1548,6 @@
         private V6Controls.V6Label v6Label16;
         private V6Controls.V6Label v6Label39;
         private V6Controls.V6Label v6Label40;
+        private V6Controls.Controls.LookupButton lbtMaKH;
     }
 }

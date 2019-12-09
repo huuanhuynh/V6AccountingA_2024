@@ -677,7 +677,6 @@
             this.maKhach.AccessibleName = "";
             this.maKhach.BackColor = System.Drawing.SystemColors.Window;
             this.maKhach.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.maKhach.Enabled = false;
             this.maKhach.EnterColor = System.Drawing.Color.PaleGreen;
             this.maKhach.ForeColor = System.Drawing.SystemColors.WindowText;
             this.maKhach.ForeColorDisabled = System.Drawing.SystemColors.WindowText;

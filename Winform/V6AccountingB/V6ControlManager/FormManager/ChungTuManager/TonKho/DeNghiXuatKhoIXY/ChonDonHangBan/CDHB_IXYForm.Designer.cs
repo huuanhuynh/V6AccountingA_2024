@@ -65,6 +65,8 @@
             this.v6Label36 = new V6Controls.V6Label();
             this.v6Label37 = new V6Controls.V6Label();
             this.grbThongTin = new System.Windows.Forms.GroupBox();
+            this.lbtMaKH = new V6Controls.Controls.LookupButton();
+            this.maKhach = new V6Controls.V6VvarTextBox();
             this.panelFilter1 = new V6ReportControls.PanelFilter();
             this.chkLike = new V6Controls.V6CheckBox();
             this.taiKhoanThue = new V6Controls.V6VvarTextBox();
@@ -75,7 +77,6 @@
             this.maNhanVien = new V6Controls.V6VvarTextBox();
             this.maBoPhan = new V6Controls.V6VvarTextBox();
             this.soTienTu = new V6Controls.V6NumberTextBox();
-            this.maKhach = new V6Controls.V6VvarTextBox();
             this.maThue = new V6Controls.V6VvarTextBox();
             this.ctTuSo = new V6Controls.V6VvarTextBox();
             this.v6Label25 = new V6Controls.V6Label();
@@ -121,7 +122,6 @@
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
             this.lblDocSoTien = new V6Controls.V6Label();
-            this.lbtMaKH = new V6Controls.Controls.LookupButton();
             this.panel1.SuspendLayout();
             this.grbThongTinChiTiet.SuspendLayout();
             this.grbThongTin.SuspendLayout();
@@ -648,6 +648,45 @@
             this.grbThongTin.TabStop = false;
             this.grbThongTin.Text = "Lọc thông tin";
             // 
+            // lbtMaKH
+            // 
+            this.lbtMaKH.Image = ((System.Drawing.Image)(resources.GetObject("lbtMaKH.Image")));
+            this.lbtMaKH.Location = new System.Drawing.Point(219, 45);
+            this.lbtMaKH.M_DataType = null;
+            this.lbtMaKH.M_Ma_ct = null;
+            this.lbtMaKH.M_Stt_Rec = null;
+            this.lbtMaKH.M_Type = "4";
+            this.lbtMaKH.M_Value = null;
+            this.lbtMaKH.M_Vvar = null;
+            this.lbtMaKH.Name = "lbtMaKH";
+            this.lbtMaKH.R_DataType = null;
+            this.lbtMaKH.R_DataType2 = null;
+            this.lbtMaKH.R_Ma_ct = null;
+            this.lbtMaKH.R_Ma_ct2 = null;
+            this.lbtMaKH.R_Stt_rec = null;
+            this.lbtMaKH.R_Stt_rec2 = null;
+            this.lbtMaKH.R_Value2 = null;
+            this.lbtMaKH.R_Vvar2 = null;
+            this.lbtMaKH.ReferenceControl = this.maKhach;
+            this.lbtMaKH.Size = new System.Drawing.Size(21, 21);
+            this.lbtMaKH.TabIndex = 29;
+            // 
+            // maKhach
+            // 
+            this.maKhach.AccessibleName = "";
+            this.maKhach.BackColor = System.Drawing.SystemColors.Window;
+            this.maKhach.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.maKhach.EnterColor = System.Drawing.Color.PaleGreen;
+            this.maKhach.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.maKhach.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.maKhach.HoverColor = System.Drawing.Color.Yellow;
+            this.maKhach.LeaveColor = System.Drawing.Color.White;
+            this.maKhach.Location = new System.Drawing.Point(87, 45);
+            this.maKhach.Name = "maKhach";
+            this.maKhach.Size = new System.Drawing.Size(132, 20);
+            this.maKhach.TabIndex = 3;
+            this.maKhach.VVar = "MA_KH";
+            // 
             // panelFilter1
             // 
             this.panelFilter1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -804,23 +843,6 @@
             0,
             0,
             0});
-            // 
-            // maKhach
-            // 
-            this.maKhach.AccessibleName = "";
-            this.maKhach.BackColor = System.Drawing.SystemColors.Window;
-            this.maKhach.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.maKhach.Enabled = false;
-            this.maKhach.EnterColor = System.Drawing.Color.PaleGreen;
-            this.maKhach.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.maKhach.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.maKhach.HoverColor = System.Drawing.Color.Yellow;
-            this.maKhach.LeaveColor = System.Drawing.Color.White;
-            this.maKhach.Location = new System.Drawing.Point(87, 45);
-            this.maKhach.Name = "maKhach";
-            this.maKhach.Size = new System.Drawing.Size(132, 20);
-            this.maKhach.TabIndex = 3;
-            this.maKhach.VVar = "MA_KH";
             // 
             // maThue
             // 
@@ -1397,29 +1419,6 @@
             this.lblDocSoTien.TabIndex = 14;
             this.lblDocSoTien.Text = "0";
             this.lblDocSoTien.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // lbtMaKH
-            // 
-            this.lbtMaKH.Image = ((System.Drawing.Image)(resources.GetObject("lbtMaKH.Image")));
-            this.lbtMaKH.Location = new System.Drawing.Point(219, 45);
-            this.lbtMaKH.M_DataType = null;
-            this.lbtMaKH.M_Ma_ct = null;
-            this.lbtMaKH.M_Stt_Rec = null;
-            this.lbtMaKH.M_Type = "4";
-            this.lbtMaKH.M_Value = null;
-            this.lbtMaKH.M_Vvar = null;
-            this.lbtMaKH.Name = "lbtMaKH";
-            this.lbtMaKH.R_DataType = null;
-            this.lbtMaKH.R_DataType2 = null;
-            this.lbtMaKH.R_Ma_ct = null;
-            this.lbtMaKH.R_Ma_ct2 = null;
-            this.lbtMaKH.R_Stt_rec = null;
-            this.lbtMaKH.R_Stt_rec2 = null;
-            this.lbtMaKH.R_Value2 = null;
-            this.lbtMaKH.R_Vvar2 = null;
-            this.lbtMaKH.ReferenceControl = this.maKhach;
-            this.lbtMaKH.Size = new System.Drawing.Size(21, 21);
-            this.lbtMaKH.TabIndex = 29;
             // 
             // CDHB_IXYForm
             // 
