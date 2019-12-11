@@ -376,6 +376,7 @@
             // 
             this.ctDenSo.BackColor = System.Drawing.SystemColors.Window;
             this.ctDenSo.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.ctDenSo.CheckOnLeave = false;
             this.ctDenSo.Enabled = false;
             this.ctDenSo.EnterColor = System.Drawing.Color.PaleGreen;
             this.ctDenSo.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -391,6 +392,7 @@
             // 
             this.dienGiai.BackColor = System.Drawing.SystemColors.Window;
             this.dienGiai.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.dienGiai.CheckOnLeave = false;
             this.dienGiai.EnterColor = System.Drawing.Color.PaleGreen;
             this.dienGiai.ForeColor = System.Drawing.SystemColors.WindowText;
             this.dienGiai.ForeColorDisabled = System.Drawing.SystemColors.WindowText;

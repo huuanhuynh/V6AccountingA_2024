@@ -103,6 +103,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu.Loc
             this.v6ColorTextBox4.AccessibleName = "MA_TD3";
             this.v6ColorTextBox4.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox4.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox4.CheckOnLeave = false;
             this.v6ColorTextBox4.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox4.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -203,6 +204,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu.Loc
             this.v6ColorTextBox26.AccessibleName = "dien_giaii";
             this.v6ColorTextBox26.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox26.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox26.CheckOnLeave = false;
             this.v6ColorTextBox26.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox26.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox26.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -210,7 +212,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu.Loc
             this.v6ColorTextBox26.LeaveColor = System.Drawing.Color.White;
             this.v6ColorTextBox26.Location = new System.Drawing.Point(87, 175);
             this.v6ColorTextBox26.Name = "v6ColorTextBox26";
-            this.v6ColorTextBox26.Size = new System.Drawing.Size(430, 20);
+            this.v6ColorTextBox26.Size = new System.Drawing.Size(514, 20);
             this.v6ColorTextBox26.TabIndex = 19;
             // 
             // v6ColorTextBox2
@@ -218,6 +220,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu.Loc
             this.v6ColorTextBox2.AccessibleName = "MA_TD2";
             this.v6ColorTextBox2.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox2.CheckOnLeave = false;
             this.v6ColorTextBox2.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox2.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -267,6 +270,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu.Loc
             this.v6ColorTextBox30.AccessibleName = "MA_TD1";
             this.v6ColorTextBox30.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox30.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox30.CheckOnLeave = false;
             this.v6ColorTextBox30.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox30.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox30.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -439,7 +443,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu.Loc
             // 
             this.panelFilter2.Location = new System.Drawing.Point(270, 11);
             this.panelFilter2.Name = "panelFilter2";
-            this.panelFilter2.Size = new System.Drawing.Size(247, 158);
+            this.panelFilter2.Size = new System.Drawing.Size(331, 158);
             this.panelFilter2.TabIndex = 33;
             this.panelFilter2.Tag = "canceldata";
             // 

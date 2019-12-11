@@ -138,6 +138,7 @@
             this.v6ColorTextBox4.AccessibleName = "MA_TD3";
             this.v6ColorTextBox4.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox4.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox4.CheckOnLeave = false;
             this.v6ColorTextBox4.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox4.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -153,6 +154,7 @@
             this.v6ColorTextBox5.AccessibleName = "MA_TD2";
             this.v6ColorTextBox5.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox5.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox5.CheckOnLeave = false;
             this.v6ColorTextBox5.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox5.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -185,6 +187,7 @@
             this.v6ColorTextBox24.AccessibleName = "MA_TD1";
             this.v6ColorTextBox24.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox24.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox24.CheckOnLeave = false;
             this.v6ColorTextBox24.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox24.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox24.ForeColorDisabled = System.Drawing.SystemColors.WindowText;

@@ -418,6 +418,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
             // 
             this.dienGiai.BackColor = System.Drawing.SystemColors.Window;
             this.dienGiai.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.dienGiai.CheckOnLeave = false;
             this.dienGiai.EnterColor = System.Drawing.Color.PaleGreen;
             this.dienGiai.ForeColor = System.Drawing.SystemColors.WindowText;
             this.dienGiai.ForeColorDisabled = System.Drawing.SystemColors.WindowText;

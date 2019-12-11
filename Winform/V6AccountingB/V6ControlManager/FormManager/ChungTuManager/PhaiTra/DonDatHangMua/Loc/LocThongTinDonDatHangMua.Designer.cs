@@ -341,6 +341,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.Loc
             this.maThanhToan.AccessibleName = "ma_tt";
             this.maThanhToan.BackColor = System.Drawing.SystemColors.Window;
             this.maThanhToan.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.maThanhToan.CheckOnLeave = false;
             this.maThanhToan.EnterColor = System.Drawing.Color.PaleGreen;
             this.maThanhToan.ForeColor = System.Drawing.SystemColors.WindowText;
             this.maThanhToan.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -444,6 +445,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.Loc
             // 
             this.ctDenSo.BackColor = System.Drawing.SystemColors.Window;
             this.ctDenSo.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.ctDenSo.CheckOnLeave = false;
             this.ctDenSo.Enabled = false;
             this.ctDenSo.EnterColor = System.Drawing.Color.PaleGreen;
             this.ctDenSo.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -459,6 +461,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.Loc
             // 
             this.dienGiai.BackColor = System.Drawing.SystemColors.Window;
             this.dienGiai.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.dienGiai.CheckOnLeave = false;
             this.dienGiai.EnterColor = System.Drawing.Color.PaleGreen;
             this.dienGiai.ForeColor = System.Drawing.SystemColors.WindowText;
             this.dienGiai.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -545,6 +548,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.Loc
             this.thueSuat.AccessibleName = "ma_thue";
             this.thueSuat.BackColor = System.Drawing.SystemColors.Window;
             this.thueSuat.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.thueSuat.CheckOnLeave = false;
             this.thueSuat.EnterColor = System.Drawing.Color.PaleGreen;
             this.thueSuat.ForeColor = System.Drawing.SystemColors.WindowText;
             this.thueSuat.ForeColorDisabled = System.Drawing.SystemColors.WindowText;

@@ -379,6 +379,7 @@
             // 
             this.ctDenSo.BackColor = System.Drawing.SystemColors.Window;
             this.ctDenSo.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.ctDenSo.CheckOnLeave = false;
             this.ctDenSo.Enabled = false;
             this.ctDenSo.EnterColor = System.Drawing.Color.PaleGreen;
             this.ctDenSo.ForeColor = System.Drawing.SystemColors.WindowText;

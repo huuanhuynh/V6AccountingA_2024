@@ -118,6 +118,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
             this.maThanhToan.AccessibleName = "ma_tt";
             this.maThanhToan.BackColor = System.Drawing.SystemColors.Window;
             this.maThanhToan.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.maThanhToan.CheckOnLeave = false;
             this.maThanhToan.EnterColor = System.Drawing.Color.PaleGreen;
             this.maThanhToan.ForeColor = System.Drawing.SystemColors.WindowText;
             this.maThanhToan.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -147,13 +148,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtMaDVCS
             // 
             this.txtMaDVCS.AccessibleName = "MA_DVCS";
             this.txtMaDVCS.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaDVCS.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaDVCS.CheckOnLeave = false;
             this.txtMaDVCS.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaDVCS.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMaDVCS.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -169,6 +171,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
             // 
             this.maBoPhan.BackColor = System.Drawing.SystemColors.Window;
             this.maBoPhan.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.maBoPhan.CheckOnLeave = false;
             this.maBoPhan.EnterColor = System.Drawing.Color.PaleGreen;
             this.maBoPhan.ForeColor = System.Drawing.SystemColors.WindowText;
             this.maBoPhan.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -184,6 +187,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
             // 
             this.ctDenSo.BackColor = System.Drawing.SystemColors.Window;
             this.ctDenSo.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.ctDenSo.CheckOnLeave = false;
             this.ctDenSo.Enabled = false;
             this.ctDenSo.EnterColor = System.Drawing.Color.PaleGreen;
             this.ctDenSo.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -199,6 +203,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
             // 
             this.dienGiai.BackColor = System.Drawing.SystemColors.Window;
             this.dienGiai.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.dienGiai.CheckOnLeave = false;
             this.dienGiai.EnterColor = System.Drawing.Color.PaleGreen;
             this.dienGiai.ForeColor = System.Drawing.SystemColors.WindowText;
             this.dienGiai.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -214,6 +219,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
             this.maNhanVienBH.AccessibleName = "MA_NVIEN";
             this.maNhanVienBH.BackColor = System.Drawing.SystemColors.Window;
             this.maNhanVienBH.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.maNhanVienBH.CheckOnLeave = false;
             this.maNhanVienBH.EnterColor = System.Drawing.Color.PaleGreen;
             this.maNhanVienBH.ForeColor = System.Drawing.SystemColors.WindowText;
             this.maNhanVienBH.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -244,13 +250,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // soHd
             // 
             this.soHd.AccessibleName = "ma_kh";
             this.soHd.BackColor = System.Drawing.SystemColors.Window;
             this.soHd.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.soHd.CheckOnLeave = false;
             this.soHd.EnterColor = System.Drawing.Color.PaleGreen;
             this.soHd.ForeColor = System.Drawing.SystemColors.WindowText;
             this.soHd.ForeColorDisabled = System.Drawing.SystemColors.WindowText;

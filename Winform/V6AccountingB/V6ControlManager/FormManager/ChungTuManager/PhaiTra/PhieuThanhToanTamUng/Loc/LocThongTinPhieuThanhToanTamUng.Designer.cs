@@ -341,6 +341,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.maThanhToan.AccessibleName = "ma_tt";
             this.maThanhToan.BackColor = System.Drawing.SystemColors.Window;
             this.maThanhToan.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.maThanhToan.CheckOnLeave = false;
             this.maThanhToan.EnterColor = System.Drawing.Color.PaleGreen;
             this.maThanhToan.ForeColor = System.Drawing.SystemColors.WindowText;
             this.maThanhToan.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -387,7 +388,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // txtMaDVCS
             // 
@@ -444,6 +445,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             // 
             this.ctDenSo.BackColor = System.Drawing.SystemColors.Window;
             this.ctDenSo.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.ctDenSo.CheckOnLeave = false;
             this.ctDenSo.Enabled = false;
             this.ctDenSo.EnterColor = System.Drawing.Color.PaleGreen;
             this.ctDenSo.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -459,6 +461,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             // 
             this.dienGiai.BackColor = System.Drawing.SystemColors.Window;
             this.dienGiai.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.dienGiai.CheckOnLeave = false;
             this.dienGiai.EnterColor = System.Drawing.Color.PaleGreen;
             this.dienGiai.ForeColor = System.Drawing.SystemColors.WindowText;
             this.dienGiai.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -522,13 +525,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // soHd
             // 
             this.soHd.AccessibleName = "so_ct0";
             this.soHd.BackColor = System.Drawing.SystemColors.Window;
             this.soHd.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.soHd.CheckOnLeave = false;
             this.soHd.EnterColor = System.Drawing.Color.PaleGreen;
             this.soHd.ForeColor = System.Drawing.SystemColors.WindowText;
             this.soHd.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -544,6 +548,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             this.thueSuat.AccessibleName = "thue_suat";
             this.thueSuat.BackColor = System.Drawing.SystemColors.Window;
             this.thueSuat.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.thueSuat.CheckOnLeave = false;
             this.thueSuat.EnterColor = System.Drawing.Color.PaleGreen;
             this.thueSuat.ForeColor = System.Drawing.SystemColors.WindowText;
             this.thueSuat.ForeColorDisabled = System.Drawing.SystemColors.WindowText;

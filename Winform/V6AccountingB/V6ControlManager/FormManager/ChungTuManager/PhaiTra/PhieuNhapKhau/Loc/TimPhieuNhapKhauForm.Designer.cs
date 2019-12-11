@@ -198,6 +198,7 @@
             this.txtMaDVCS.AccessibleName = "MA_DVCS";
             this.txtMaDVCS.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaDVCS.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaDVCS.CheckOnLeave = false;
             this.txtMaDVCS.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaDVCS.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMaDVCS.ForeColorDisabled = System.Drawing.SystemColors.WindowText;

@@ -325,6 +325,7 @@
             this.taiKhoanThue.AccessibleName = "TK_THUE";
             this.taiKhoanThue.BackColor = System.Drawing.SystemColors.Window;
             this.taiKhoanThue.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.taiKhoanThue.CheckOnLeave = false;
             this.taiKhoanThue.EnterColor = System.Drawing.Color.PaleGreen;
             this.taiKhoanThue.ForeColor = System.Drawing.SystemColors.WindowText;
             this.taiKhoanThue.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -362,6 +363,7 @@
             this.taiKhoanNo.AccessibleName = "MA_NX";
             this.taiKhoanNo.BackColor = System.Drawing.SystemColors.Window;
             this.taiKhoanNo.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.taiKhoanNo.CheckOnLeave = false;
             this.taiKhoanNo.EnterColor = System.Drawing.Color.PaleGreen;
             this.taiKhoanNo.ForeColor = System.Drawing.SystemColors.WindowText;
             this.taiKhoanNo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -377,6 +379,7 @@
             // 
             this.ctDenSo.BackColor = System.Drawing.SystemColors.Window;
             this.ctDenSo.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.ctDenSo.CheckOnLeave = false;
             this.ctDenSo.Enabled = false;
             this.ctDenSo.EnterColor = System.Drawing.Color.PaleGreen;
             this.ctDenSo.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -392,6 +395,7 @@
             // 
             this.dienGiai.BackColor = System.Drawing.SystemColors.Window;
             this.dienGiai.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.dienGiai.CheckOnLeave = false;
             this.dienGiai.EnterColor = System.Drawing.Color.PaleGreen;
             this.dienGiai.ForeColor = System.Drawing.SystemColors.WindowText;
             this.dienGiai.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -407,6 +411,7 @@
             this.maNhanVien.AccessibleName = "MA_NVIEN";
             this.maNhanVien.BackColor = System.Drawing.SystemColors.Window;
             this.maNhanVien.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.maNhanVien.CheckOnLeave = false;
             this.maNhanVien.EnterColor = System.Drawing.Color.PaleGreen;
             this.maNhanVien.ForeColor = System.Drawing.SystemColors.WindowText;
             this.maNhanVien.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -423,6 +428,7 @@
             this.maBoPhan.AccessibleName = "MA_BP";
             this.maBoPhan.BackColor = System.Drawing.SystemColors.Window;
             this.maBoPhan.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.maBoPhan.CheckOnLeave = false;
             this.maBoPhan.EnterColor = System.Drawing.Color.PaleGreen;
             this.maBoPhan.ForeColor = System.Drawing.SystemColors.WindowText;
             this.maBoPhan.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -460,6 +466,7 @@
             this.maKhach.AccessibleName = "ma_kh";
             this.maKhach.BackColor = System.Drawing.SystemColors.Window;
             this.maKhach.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.maKhach.CheckOnLeave = false;
             this.maKhach.EnterColor = System.Drawing.Color.PaleGreen;
             this.maKhach.ForeColor = System.Drawing.SystemColors.WindowText;
             this.maKhach.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -476,6 +483,7 @@
             this.maThue.AccessibleName = "ma_thue";
             this.maThue.BackColor = System.Drawing.SystemColors.Window;
             this.maThue.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.maThue.CheckOnLeave = false;
             this.maThue.EnterColor = System.Drawing.Color.PaleGreen;
             this.maThue.ForeColor = System.Drawing.SystemColors.WindowText;
             this.maThue.ForeColorDisabled = System.Drawing.SystemColors.WindowText;

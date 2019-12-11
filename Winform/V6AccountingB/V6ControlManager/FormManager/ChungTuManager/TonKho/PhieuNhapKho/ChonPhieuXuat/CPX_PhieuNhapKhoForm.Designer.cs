@@ -66,6 +66,8 @@
             this.v6Label36 = new V6Controls.V6Label();
             this.v6Label37 = new V6Controls.V6Label();
             this.grbThongTin = new System.Windows.Forms.GroupBox();
+            this.lbtMaKH = new V6Controls.Controls.LookupButton();
+            this.maKhach = new V6Controls.V6VvarTextBox();
             this.txtma_gd = new V6Controls.V6VvarTextBox();
             this.v6Label16 = new V6Controls.V6Label();
             this.panelFilter1 = new V6ReportControls.PanelFilter();
@@ -78,7 +80,6 @@
             this.maNhanVien = new V6Controls.V6VvarTextBox();
             this.maBoPhan = new V6Controls.V6VvarTextBox();
             this.soTienTu = new V6Controls.V6NumberTextBox();
-            this.maKhach = new V6Controls.V6VvarTextBox();
             this.maThue = new V6Controls.V6VvarTextBox();
             this.ctTuSo = new V6Controls.V6VvarTextBox();
             this.v6Label25 = new V6Controls.V6Label();
@@ -123,7 +124,6 @@
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
             this.lblDocSoTien = new V6Controls.V6Label();
-            this.lbtMaKH = new V6Controls.Controls.LookupButton();
             this.panel1.SuspendLayout();
             this.grbThongTinChiTiet.SuspendLayout();
             this.grbThongTin.SuspendLayout();
@@ -215,6 +215,7 @@
             this.v6ColorTextBox4.AccessibleName = "MA_TD3";
             this.v6ColorTextBox4.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox4.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox4.CheckOnLeave = false;
             this.v6ColorTextBox4.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox4.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -230,6 +231,7 @@
             this.v6ColorTextBox5.AccessibleName = "MA_VITRI";
             this.v6ColorTextBox5.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox5.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox5.CheckOnLeave = false;
             this.v6ColorTextBox5.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox5.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -246,6 +248,7 @@
             this.txtMaHD.AccessibleName = "MA_HD";
             this.txtMaHD.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaHD.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaHD.CheckOnLeave = false;
             this.txtMaHD.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaHD.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMaHD.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -262,6 +265,7 @@
             this.txtMaSP.AccessibleName = "MA_SP";
             this.txtMaSP.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaSP.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaSP.CheckOnLeave = false;
             this.txtMaSP.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaSP.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMaSP.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -278,6 +282,7 @@
             this.v6ColorTextBox24.AccessibleName = "MA_KU";
             this.v6ColorTextBox24.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox24.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox24.CheckOnLeave = false;
             this.v6ColorTextBox24.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox24.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox24.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -294,6 +299,7 @@
             this.txtMa_vv_i.AccessibleName = "MA_VV_I";
             this.txtMa_vv_i.BackColor = System.Drawing.SystemColors.Window;
             this.txtMa_vv_i.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMa_vv_i.CheckOnLeave = false;
             this.txtMa_vv_i.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMa_vv_i.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMa_vv_i.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -310,6 +316,7 @@
             this.v6ColorTextBox26.AccessibleName = "TK_GV";
             this.v6ColorTextBox26.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox26.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox26.CheckOnLeave = false;
             this.v6ColorTextBox26.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox26.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox26.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -326,6 +333,7 @@
             this.v6ColorTextBox27.AccessibleName = "MA_VT";
             this.v6ColorTextBox27.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox27.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox27.CheckOnLeave = false;
             this.v6ColorTextBox27.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox27.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox27.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -342,6 +350,7 @@
             this.v6VvarTextBox1.AccessibleName = "MA_TD2";
             this.v6VvarTextBox1.BackColor = System.Drawing.SystemColors.Window;
             this.v6VvarTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6VvarTextBox1.CheckOnLeave = false;
             this.v6VvarTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6VvarTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6VvarTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -357,6 +366,7 @@
             this.v6ColorTextBox28.AccessibleName = "MA_BPHT";
             this.v6ColorTextBox28.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox28.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox28.CheckOnLeave = false;
             this.v6ColorTextBox28.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox28.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox28.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -373,6 +383,7 @@
             this.v6ColorTextBox29.AccessibleName = "TK_VT";
             this.v6ColorTextBox29.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox29.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox29.CheckOnLeave = false;
             this.v6ColorTextBox29.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox29.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox29.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -389,6 +400,7 @@
             this.v6VvarTextBox2.AccessibleName = "MA_LO";
             this.v6VvarTextBox2.BackColor = System.Drawing.SystemColors.Window;
             this.v6VvarTextBox2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6VvarTextBox2.CheckOnLeave = false;
             this.v6VvarTextBox2.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6VvarTextBox2.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6VvarTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -405,6 +417,7 @@
             this.v6ColorTextBox30.AccessibleName = "MA_TD1";
             this.v6ColorTextBox30.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox30.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox30.CheckOnLeave = false;
             this.v6ColorTextBox30.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox30.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox30.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -420,6 +433,7 @@
             this.v6ColorTextBox31.AccessibleName = "TK_DT";
             this.v6ColorTextBox31.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox31.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox31.CheckOnLeave = false;
             this.v6ColorTextBox31.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox31.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox31.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -436,6 +450,7 @@
             this.v6ColorTextBox32.AccessibleName = "MA_PHI";
             this.v6ColorTextBox32.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox32.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox32.CheckOnLeave = false;
             this.v6ColorTextBox32.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox32.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox32.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -462,6 +477,7 @@
             this.v6ColorTextBox33.AccessibleName = "MA_KHO_I";
             this.v6ColorTextBox33.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox33.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox33.CheckOnLeave = false;
             this.v6ColorTextBox33.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox33.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox33.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -662,11 +678,52 @@
             this.grbThongTin.TabStop = false;
             this.grbThongTin.Text = "Lọc thông tin";
             // 
+            // lbtMaKH
+            // 
+            this.lbtMaKH.Image = ((System.Drawing.Image)(resources.GetObject("lbtMaKH.Image")));
+            this.lbtMaKH.Location = new System.Drawing.Point(219, 45);
+            this.lbtMaKH.M_DataType = null;
+            this.lbtMaKH.M_Ma_ct = null;
+            this.lbtMaKH.M_Stt_Rec = null;
+            this.lbtMaKH.M_Type = "4";
+            this.lbtMaKH.M_Value = null;
+            this.lbtMaKH.M_Vvar = null;
+            this.lbtMaKH.Name = "lbtMaKH";
+            this.lbtMaKH.R_DataType = null;
+            this.lbtMaKH.R_DataType2 = null;
+            this.lbtMaKH.R_Ma_ct = null;
+            this.lbtMaKH.R_Ma_ct2 = null;
+            this.lbtMaKH.R_Stt_rec = null;
+            this.lbtMaKH.R_Stt_rec2 = null;
+            this.lbtMaKH.R_Value2 = null;
+            this.lbtMaKH.R_Vvar2 = null;
+            this.lbtMaKH.ReferenceControl = this.maKhach;
+            this.lbtMaKH.Size = new System.Drawing.Size(21, 21);
+            this.lbtMaKH.TabIndex = 29;
+            // 
+            // maKhach
+            // 
+            this.maKhach.AccessibleName = "ma_kh";
+            this.maKhach.BackColor = System.Drawing.SystemColors.Window;
+            this.maKhach.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.maKhach.CheckOnLeave = false;
+            this.maKhach.EnterColor = System.Drawing.Color.PaleGreen;
+            this.maKhach.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.maKhach.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.maKhach.HoverColor = System.Drawing.Color.Yellow;
+            this.maKhach.LeaveColor = System.Drawing.Color.White;
+            this.maKhach.Location = new System.Drawing.Point(87, 45);
+            this.maKhach.Name = "maKhach";
+            this.maKhach.Size = new System.Drawing.Size(132, 20);
+            this.maKhach.TabIndex = 3;
+            this.maKhach.VVar = "MA_KH";
+            // 
             // txtma_gd
             // 
             this.txtma_gd.AccessibleName = "MA_GD";
             this.txtma_gd.BackColor = System.Drawing.SystemColors.Window;
             this.txtma_gd.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtma_gd.CheckOnLeave = false;
             this.txtma_gd.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtma_gd.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtma_gd.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -716,6 +773,7 @@
             this.taiKhoanThue.AccessibleName = "TK_THUE";
             this.taiKhoanThue.BackColor = System.Drawing.SystemColors.Window;
             this.taiKhoanThue.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.taiKhoanThue.CheckOnLeave = false;
             this.taiKhoanThue.EnterColor = System.Drawing.Color.PaleGreen;
             this.taiKhoanThue.ForeColor = System.Drawing.SystemColors.WindowText;
             this.taiKhoanThue.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -753,6 +811,7 @@
             this.txtMaNXi.AccessibleName = "MA_NX";
             this.txtMaNXi.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaNXi.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaNXi.CheckOnLeave = false;
             this.txtMaNXi.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaNXi.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMaNXi.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -768,6 +827,7 @@
             // 
             this.ctDenSo.BackColor = System.Drawing.SystemColors.Window;
             this.ctDenSo.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.ctDenSo.CheckOnLeave = false;
             this.ctDenSo.EnterColor = System.Drawing.Color.PaleGreen;
             this.ctDenSo.ForeColor = System.Drawing.SystemColors.WindowText;
             this.ctDenSo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -782,6 +842,7 @@
             // 
             this.dienGiai.BackColor = System.Drawing.SystemColors.Window;
             this.dienGiai.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.dienGiai.CheckOnLeave = false;
             this.dienGiai.EnterColor = System.Drawing.Color.PaleGreen;
             this.dienGiai.ForeColor = System.Drawing.SystemColors.WindowText;
             this.dienGiai.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -797,6 +858,7 @@
             this.maNhanVien.AccessibleName = "MA_NVIEN";
             this.maNhanVien.BackColor = System.Drawing.SystemColors.Window;
             this.maNhanVien.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.maNhanVien.CheckOnLeave = false;
             this.maNhanVien.EnterColor = System.Drawing.Color.PaleGreen;
             this.maNhanVien.ForeColor = System.Drawing.SystemColors.WindowText;
             this.maNhanVien.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -813,6 +875,7 @@
             this.maBoPhan.AccessibleName = "MA_BP";
             this.maBoPhan.BackColor = System.Drawing.SystemColors.Window;
             this.maBoPhan.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.maBoPhan.CheckOnLeave = false;
             this.maBoPhan.EnterColor = System.Drawing.Color.PaleGreen;
             this.maBoPhan.ForeColor = System.Drawing.SystemColors.WindowText;
             this.maBoPhan.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -845,27 +908,12 @@
             0,
             0});
             // 
-            // maKhach
-            // 
-            this.maKhach.AccessibleName = "ma_kh";
-            this.maKhach.BackColor = System.Drawing.SystemColors.Window;
-            this.maKhach.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.maKhach.EnterColor = System.Drawing.Color.PaleGreen;
-            this.maKhach.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.maKhach.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.maKhach.HoverColor = System.Drawing.Color.Yellow;
-            this.maKhach.LeaveColor = System.Drawing.Color.White;
-            this.maKhach.Location = new System.Drawing.Point(87, 45);
-            this.maKhach.Name = "maKhach";
-            this.maKhach.Size = new System.Drawing.Size(132, 20);
-            this.maKhach.TabIndex = 3;
-            this.maKhach.VVar = "MA_KH";
-            // 
             // maThue
             // 
             this.maThue.AccessibleName = "ma_thue";
             this.maThue.BackColor = System.Drawing.SystemColors.Window;
             this.maThue.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.maThue.CheckOnLeave = false;
             this.maThue.EnterColor = System.Drawing.Color.PaleGreen;
             this.maThue.ForeColor = System.Drawing.SystemColors.WindowText;
             this.maThue.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -1247,6 +1295,7 @@
             this.txtMaDVCS.AccessibleName = "MA_DVCS";
             this.txtMaDVCS.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaDVCS.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaDVCS.CheckOnLeave = false;
             this.txtMaDVCS.Enabled = false;
             this.txtMaDVCS.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaDVCS.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -1426,29 +1475,6 @@
             this.lblDocSoTien.TabIndex = 14;
             this.lblDocSoTien.Text = "0";
             this.lblDocSoTien.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // lbtMaKH
-            // 
-            this.lbtMaKH.Image = ((System.Drawing.Image)(resources.GetObject("lbtMaKH.Image")));
-            this.lbtMaKH.Location = new System.Drawing.Point(219, 45);
-            this.lbtMaKH.M_DataType = null;
-            this.lbtMaKH.M_Ma_ct = null;
-            this.lbtMaKH.M_Stt_Rec = null;
-            this.lbtMaKH.M_Type = "4";
-            this.lbtMaKH.M_Value = null;
-            this.lbtMaKH.M_Vvar = null;
-            this.lbtMaKH.Name = "lbtMaKH";
-            this.lbtMaKH.R_DataType = null;
-            this.lbtMaKH.R_DataType2 = null;
-            this.lbtMaKH.R_Ma_ct = null;
-            this.lbtMaKH.R_Ma_ct2 = null;
-            this.lbtMaKH.R_Stt_rec = null;
-            this.lbtMaKH.R_Stt_rec2 = null;
-            this.lbtMaKH.R_Value2 = null;
-            this.lbtMaKH.R_Vvar2 = null;
-            this.lbtMaKH.ReferenceControl = this.maKhach;
-            this.lbtMaKH.Size = new System.Drawing.Size(21, 21);
-            this.lbtMaKH.TabIndex = 29;
             // 
             // CPX_PhieuNhapKhoForm
             // 

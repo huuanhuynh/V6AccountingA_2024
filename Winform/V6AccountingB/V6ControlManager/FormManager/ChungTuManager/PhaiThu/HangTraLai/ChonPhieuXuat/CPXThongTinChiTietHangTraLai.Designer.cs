@@ -124,6 +124,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             this.v6ColorTextBox4.AccessibleName = "MA_TD3";
             this.v6ColorTextBox4.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox4.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox4.CheckOnLeave = false;
             this.v6ColorTextBox4.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox4.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -139,6 +140,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             this.v6ColorTextBox5.AccessibleName = "MA_VITRI";
             this.v6ColorTextBox5.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox5.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox5.CheckOnLeave = false;
             this.v6ColorTextBox5.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox5.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -155,6 +157,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             this.txtMaHD.AccessibleName = "MA_HD";
             this.txtMaHD.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaHD.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaHD.CheckOnLeave = false;
             this.txtMaHD.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaHD.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMaHD.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -171,6 +174,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             this.txtMaSP.AccessibleName = "MA_SP";
             this.txtMaSP.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaSP.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaSP.CheckOnLeave = false;
             this.txtMaSP.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaSP.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMaSP.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -187,6 +191,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             this.v6ColorTextBox24.AccessibleName = "MA_KU";
             this.v6ColorTextBox24.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox24.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox24.CheckOnLeave = false;
             this.v6ColorTextBox24.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox24.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox24.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -203,6 +208,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             this.v6ColorTextBox25.AccessibleName = "MA_VV_I";
             this.v6ColorTextBox25.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox25.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox25.CheckOnLeave = false;
             this.v6ColorTextBox25.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox25.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox25.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -219,6 +225,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             this.v6ColorTextBox26.AccessibleName = "TK_GV";
             this.v6ColorTextBox26.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox26.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox26.CheckOnLeave = false;
             this.v6ColorTextBox26.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox26.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox26.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -235,6 +242,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             this.v6ColorTextBox27.AccessibleName = "MA_VT";
             this.v6ColorTextBox27.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox27.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox27.CheckOnLeave = false;
             this.v6ColorTextBox27.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox27.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox27.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -251,6 +259,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             this.v6ColorTextBox2.AccessibleName = "MA_TD2";
             this.v6ColorTextBox2.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox2.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox2.CheckOnLeave = false;
             this.v6ColorTextBox2.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox2.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -266,6 +275,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             this.v6ColorTextBox28.AccessibleName = "MA_BPHT";
             this.v6ColorTextBox28.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox28.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox28.CheckOnLeave = false;
             this.v6ColorTextBox28.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox28.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox28.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -282,6 +292,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             this.v6ColorTextBox29.AccessibleName = "TK_VT";
             this.v6ColorTextBox29.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox29.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox29.CheckOnLeave = false;
             this.v6ColorTextBox29.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox29.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox29.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -298,6 +309,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             this.v6ColorTextBox1.AccessibleName = "ma_lo";
             this.v6ColorTextBox1.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox1.CheckOnLeave = false;
             this.v6ColorTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -314,6 +326,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             this.v6ColorTextBox30.AccessibleName = "MA_TD1";
             this.v6ColorTextBox30.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox30.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox30.CheckOnLeave = false;
             this.v6ColorTextBox30.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox30.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox30.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -329,6 +342,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             this.v6ColorTextBox31.AccessibleName = "TK_DT";
             this.v6ColorTextBox31.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox31.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox31.CheckOnLeave = false;
             this.v6ColorTextBox31.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox31.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox31.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -338,13 +352,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             this.v6ColorTextBox31.Name = "v6ColorTextBox31";
             this.v6ColorTextBox31.Size = new System.Drawing.Size(132, 20);
             this.v6ColorTextBox31.TabIndex = 3;
-            this.v6ColorTextBox29.VVar = "TK";
             // 
             // v6ColorTextBox32
             // 
             this.v6ColorTextBox32.AccessibleName = "MA_PHI";
             this.v6ColorTextBox32.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox32.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox32.CheckOnLeave = false;
             this.v6ColorTextBox32.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox32.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox32.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -371,6 +385,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             this.v6ColorTextBox33.AccessibleName = "MA_KHO_I";
             this.v6ColorTextBox33.BackColor = System.Drawing.SystemColors.Window;
             this.v6ColorTextBox33.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.v6ColorTextBox33.CheckOnLeave = false;
             this.v6ColorTextBox33.EnterColor = System.Drawing.Color.PaleGreen;
             this.v6ColorTextBox33.ForeColor = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox33.ForeColorDisabled = System.Drawing.SystemColors.WindowText;

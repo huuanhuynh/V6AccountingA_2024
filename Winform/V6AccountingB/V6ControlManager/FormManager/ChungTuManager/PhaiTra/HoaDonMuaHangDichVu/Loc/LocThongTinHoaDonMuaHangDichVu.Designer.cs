@@ -341,6 +341,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.maThanhToan.AccessibleName = "ma_tt";
             this.maThanhToan.BackColor = System.Drawing.SystemColors.Window;
             this.maThanhToan.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.maThanhToan.CheckOnLeave = false;
             this.maThanhToan.EnterColor = System.Drawing.Color.PaleGreen;
             this.maThanhToan.ForeColor = System.Drawing.SystemColors.WindowText;
             this.maThanhToan.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -445,6 +446,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             // 
             this.ctDenSo.BackColor = System.Drawing.SystemColors.Window;
             this.ctDenSo.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.ctDenSo.CheckOnLeave = false;
             this.ctDenSo.Enabled = false;
             this.ctDenSo.EnterColor = System.Drawing.Color.PaleGreen;
             this.ctDenSo.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -460,6 +462,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             // 
             this.dienGiai.BackColor = System.Drawing.SystemColors.Window;
             this.dienGiai.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.dienGiai.CheckOnLeave = false;
             this.dienGiai.EnterColor = System.Drawing.Color.PaleGreen;
             this.dienGiai.ForeColor = System.Drawing.SystemColors.WindowText;
             this.dienGiai.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -531,6 +534,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.soHd.AccessibleName = "so_ct0";
             this.soHd.BackColor = System.Drawing.SystemColors.Window;
             this.soHd.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.soHd.CheckOnLeave = false;
             this.soHd.EnterColor = System.Drawing.Color.PaleGreen;
             this.soHd.ForeColor = System.Drawing.SystemColors.WindowText;
             this.soHd.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -541,11 +545,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.soHd.Size = new System.Drawing.Size(132, 20);
             this.soHd.TabIndex = 6;
             // 
-            // thueSuat
+            // txtMaThue
             // 
             this.txtMaThue.AccessibleName = "ma_thue";
             this.txtMaThue.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaThue.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaThue.CheckOnLeave = false;
             this.txtMaThue.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaThue.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtMaThue.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
