@@ -2840,8 +2840,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
         #region ==== Add Thread ====
 
-        private IDictionary<string, object> addDataAM;
-        private List<IDictionary<string, object>> addDataADList, addDataAD2, addDataAD3;
+        public IDictionary<string, object> addDataAM;
+        public List<IDictionary<string, object>> addDataADList, addDataAD2, addDataAD3;
         private string addErrorMessage = "";
 
         private void DoAdd()
@@ -3267,6 +3267,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             try
             {
+                InvokeFormEvent(FormDynamicEvent.BEFORELUU);
+
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit ||
                     detail2.MODE == V6Mode.Add || detail2.MODE == V6Mode.Edit)
                 {

@@ -50,6 +50,8 @@
         public const string BEFORESAVE = "BEFORESAVE";
         public const string BEFOREDELETE = "BEFOREDELETE";
         public const string BEFORELOADDATA = "BEFORELOADDATA";
+        public const string BEFORELUU = "BEFORELUU";
+        public const string BEFOREVALIDATE = "BEFOREVALIDATE";
 
         public const string DYNAMICFIXEXCEL = "DYNAMICFIXEXCEL";
         
@@ -78,5 +80,6 @@
         public static string TAOPACKING = "TAOPACKING";
         public static string TAOGRNO = "TAOGRNO";
         public static string TAORRNO = "TAORRNO";
-        }
+        
+    }
 }

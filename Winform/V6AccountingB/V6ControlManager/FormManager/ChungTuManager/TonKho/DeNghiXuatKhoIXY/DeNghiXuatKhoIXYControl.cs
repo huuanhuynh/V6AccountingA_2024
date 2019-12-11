@@ -3021,8 +3021,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
         #endregion view invoice
 
         #region ==== Add Thread ====
-        private IDictionary<string, object> addDataAM;
-        private List<IDictionary<string, object>> addDataAD;
+        public IDictionary<string, object> addDataAM;
+        public List<IDictionary<string, object>> addDataAD;
         private string addErrorMessage = "";
 
         private void DoAddThread()
@@ -3391,6 +3391,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
         {
             try
             {
+                InvokeFormEvent(FormDynamicEvent.BEFORELUU);
+
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
                     this.ShowWarningMessage(V6Text.DetailNotComplete);
@@ -4483,6 +4485,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
         {
             try
             {
+                InvokeFormEvent(FormDynamicEvent.BEFOREVALIDATE);
+
                 // Check Master
                 if (!ValidateNgayCt(Invoice.Mact, dateNgayCT))
                 {

@@ -2522,8 +2522,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        private IDictionary<string, object> addDataAM;
-        private List<IDictionary<string, object>> addDataAD, addDataAD3;
+        public IDictionary<string, object> addDataAM;
+        public List<IDictionary<string, object>> addDataAD, addDataAD3;
         private string addErrorMessage = "";
 #endregion add
         
@@ -2784,6 +2784,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         {
             try
             {
+                InvokeFormEvent(FormDynamicEvent.BEFORELUU);
+
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
                     this.ShowWarningMessage(V6Text.DetailNotComplete);
@@ -3601,6 +3603,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         {
             try
             {
+                InvokeFormEvent(FormDynamicEvent.BEFOREVALIDATE);
+
                 // Check Master
                 if (!ValidateNgayCt(Invoice.Mact, dateNgayCT))
                 {

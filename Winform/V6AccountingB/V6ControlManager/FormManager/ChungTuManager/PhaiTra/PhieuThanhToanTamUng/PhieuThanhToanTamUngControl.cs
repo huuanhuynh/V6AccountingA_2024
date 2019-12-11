@@ -1658,8 +1658,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
         }
 
         #region ==== Add Thread ====
-        private IDictionary<string, object> addDataAM;
-        private List<IDictionary<string, object>> addDataAD, addDataAD2;
+        public IDictionary<string, object> addDataAM;
+        public List<IDictionary<string, object>> addDataAD, addDataAD2;
         private string addErrorMessage = "";
 
         /// <summary>
@@ -2039,6 +2039,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
         {
             try
             {
+                InvokeFormEvent(FormDynamicEvent.BEFORELUU);
+
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit ||
                     detail2.MODE == V6Mode.Add || detail2.MODE == V6Mode.Edit )
                 {
@@ -3419,6 +3421,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
         {
             try
             {
+                InvokeFormEvent(FormDynamicEvent.BEFOREVALIDATE);
+
                 // Check Master
                 if (!ValidateNgayCt(Invoice.Mact, dateNgayCT))
                 {

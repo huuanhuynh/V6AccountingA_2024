@@ -2173,8 +2173,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         }
 
         #region ==== Add Thread ====
-        private IDictionary<string, object> addDataAM;
-        private List<IDictionary<string, object>> addDataAD, addDataAD2;
+        public IDictionary<string, object> addDataAM;
+        public List<IDictionary<string, object>> addDataAD, addDataAD2;
         private string addErrorMessage = "";
 
         /// <summary>
@@ -2548,6 +2548,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         {
             try
             {
+                InvokeFormEvent(FormDynamicEvent.BEFORELUU);
+
                 if (//detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit ||
                     detail2.MODE == V6Mode.Add || detail2.MODE == V6Mode.Edit )
                 {

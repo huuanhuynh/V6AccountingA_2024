@@ -4296,8 +4296,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             }
         }
 
-        private IDictionary<string, object> addDataAM;
-        private List<IDictionary<string, object>> addDataAD, addDataAD3;
+        public IDictionary<string, object> addDataAM;
+        public List<IDictionary<string, object>> addDataAD, addDataAD3;
         private string addErrorMessage = "";
 
         private void DoAddThread()
@@ -6178,6 +6178,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         {
             try
             {
+                InvokeFormEvent(FormDynamicEvent.BEFOREVALIDATE);
+
                 // Check Master
                 if (!ValidateNgayCt(Invoice.Mact, dateNgayCT))
                 {
