@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
+using System.Globalization;
 using V6Controls;
+using V6Tools.V6Convert;
 
 namespace V6ReportControls
 {
@@ -78,7 +80,7 @@ namespace V6ReportControls
 
         public override object ObjectValue
         {
-            get { return StringValue; }
+            get { return lookupTextBox1.Value; }
         }
 
         private string FormatValue(string value)
@@ -143,7 +145,14 @@ namespace V6ReportControls
             }
             else
             {
-                result = string.Format("{3}{0} {1} {2}", FieldName, oper, FormatValue(StringValue), tL);
+                if (ObjectAndString.IsNumber(ObjectValue))
+                {
+                    result = string.Format("{3}{0} {1} {2}", FieldName, "=", ObjectAndString.ObjectToDecimal(ObjectValue).ToString(CultureInfo.InvariantCulture), tL);
+                }
+                else
+                {
+                    result = string.Format("{3}{0} {1} {2}", FieldName, oper, FormatValue(StringValue), tL);
+                }
             }
             return result;
         }

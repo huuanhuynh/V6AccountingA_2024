@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Data;
 using System.ComponentModel;
 using System.Data.SqlClient;
+using System.Globalization;
 using V6AccountingBusiness;
 using V6Controls.Forms;
 using V6Init;
@@ -803,7 +804,15 @@ namespace V6Controls
                 }
                 else
                 {
-                    result = string.Format("{0} {1} {2}", AccessibleName, oper, FormatStringValue(Text));
+                    if (ObjectAndString.IsNumber(Value))
+                    {
+                        result = string.Format("{0} {1} {2}", AccessibleName, "=",
+                            ObjectAndString.ObjectToDecimal(Value).ToString(CultureInfo.InvariantCulture));
+                    }
+                    else
+                    {
+                        result = string.Format("{0} {1} {2}", AccessibleName, oper, FormatStringValue(Text));
+                    }
                 }
                 return result;
             }

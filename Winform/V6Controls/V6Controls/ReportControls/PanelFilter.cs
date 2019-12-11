@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6Structs;
@@ -70,9 +71,19 @@ namespace V6ReportControls
                     if (",nchar,nvarchar,ntext,char,varchar,text,xml,"
                         .Contains("," + structTable[NAME].sql_data_type_string + ","))
                     {
-                        //lineControl.AddTextBox();
-                        lineControl.AddVvarTextBox(vvar, filter);
-                        if (lineControl._vtextBox != null) lineControl._vtextBox.F2 = true;
+                        if (vvar.StartsWith("MA_DM_"))
+                        {
+                            V6LookupTextBox luk =lineControl.AddLookupTextBox(vvar.Substring(6), filter, "", "", "", "");
+                            luk.AccessibleName = NAME;
+                            luk.ValueField = luk.LookupInfo.VALUE;
+                            luk.ShowTextField = luk.LookupInfo.F_NAME;
+                        }
+                        else
+                        {
+                            //lineControl.AddTextBox();
+                            lineControl.AddVvarTextBox(vvar, filter);
+                            if (lineControl._vtextBox != null) lineControl._vtextBox.F2 = true;
+                        }
                     }
                     else if (",date,smalldatetime,datetime,"
                         .Contains("," + structTable[NAME].sql_data_type_string + ","))
@@ -81,7 +92,17 @@ namespace V6ReportControls
                     }
                     else
                     {
-                        lineControl.AddNumberTextBox();
+                        if (vvar.StartsWith("MA_DM_"))
+                        {
+                            V6LookupTextBox luk = lineControl.AddLookupTextBox(vvar.Substring(6), filter, "", "", "", "");
+                            luk.AccessibleName = NAME;
+                            luk.ValueField = luk.LookupInfo.VALUE;
+                            luk.ShowTextField = luk.LookupInfo.F_NAME;
+                        }
+                        else
+                        {
+                            lineControl.AddNumberTextBox();
+                        }
                     }
                 }
                 if (!string.IsNullOrEmpty(tableLable))

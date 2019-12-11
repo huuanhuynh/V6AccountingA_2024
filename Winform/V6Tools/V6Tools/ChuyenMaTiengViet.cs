@@ -378,34 +378,36 @@ namespace V6Tools
             int charIndex = -1;
             for (int i = 0; i < VniString.Length; i++)
             {
-                if (strVNI3.IndexOf(VniString[i]) >= 0)//trường hợp 1 ký tự vni đặc biệt
+                if (VniString.Substring(i).Length >= 2)
+                {
+                    //Nếu chuỗi vẫn còn đủ 2 ký tự
+                    //Và hai ký tự liên tiếp hợp thành 1 ký tự VNI
+                    charIndex = strVNI.IndexOf("," + VniString.Substring(i, 2) + ",");
+                    //Neu co trong chuoi vni thi lay tuong ung trong chuoi unicode
+                    if (charIndex >= 0)
+                    {
+                        strReturn += strUNICODE2[charIndex + 1];//+1 cho dau ,
+                        i++;
+                    }
+                    else if (strVNI3.IndexOf(VniString[i]) >= 0)//trường hợp 1 ký tự vni đặc biệt
+                    {
+                        charIndex = strVNI.IndexOf("," + VniString[i] + ",") + 1;
+                        strReturn += strUNICODE2[charIndex];
+                    }
+                    else
+                    {
+                        strReturn += VniString[i];
+                    }
+                }
+                else if (strVNI3.IndexOf(VniString[i]) >= 0)//trường hợp 1 ký tự vni đặc biệt
                 {
                     charIndex = strVNI.IndexOf("," + VniString[i] + ",") + 1;
                     strReturn += strUNICODE2[charIndex];
                 }
-                //Nếu chuỗi vẫn còn đủ 2 ký tự
-                //Và hai ký tự liên tiếp hợp thành 1 ký tự VNI
                 else
-                    if (VniString.Substring(i).Length >= 2)
-                    {
-                        //Neu van con du 2 ky tu
-                        charIndex = strVNI.IndexOf("," + VniString.Substring(i, 2) + ",");
-                        //Neu co trong chuoi vni thi lay tuong ung trong chuoi unicode
-                        if (charIndex >= 0)
-                        {
-                            strReturn += strUNICODE2[charIndex + 1];//+1 cho dau ,
-                            i++;
-                        }
-                        else
-                        {
-                            strReturn += VniString[i];
-                        }
-
-                    }
-                    else
-                    {
-                        strReturn += VniString.Substring(i, 1);
-                    }
+                {
+                    strReturn += VniString.Substring(i, 1);
+                }
             }
             return strReturn;
         }

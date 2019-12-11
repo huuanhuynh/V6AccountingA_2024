@@ -198,6 +198,7 @@ namespace V6ReportControls
         {
             get
             {
+                var tL = string.IsNullOrEmpty(TableLabel) ? "" : TableLabel + ".";
                 var sValue = StringValue;
                 var result = "";
 
@@ -209,7 +210,7 @@ namespace V6ReportControls
                     string[] sss = sValue.Split(',');
                     foreach (string s in sss)
                     {
-                        result += string.Format(" or {0} {1} {2}", FieldName, oper, FormatValue(s.Trim(), ValueType));
+                        result += string.Format(" or {3}{0} {1} {2}", FieldName, oper, FormatValue(s.Trim(), ValueType), tL);
                     }
 
                     if (result.Length > 4)
@@ -220,7 +221,19 @@ namespace V6ReportControls
                 }
                 else
                 {
-                    result = string.Format("{0} {1} {2} ", FieldName, oper, FormatValue(StringValue, ValueType));
+                    //if (_lookupTextBox != null)
+                    //{
+                    //    result = _lookupTextBox.Query;
+                    //}
+                    if (ObjectAndString.IsNumber(ObjectValue))
+                    {
+                        result = string.Format("{3}{0} {1} {2}", FieldName, "=",
+                            ObjectAndString.ObjectToDecimal(ObjectValue).ToString(CultureInfo.InvariantCulture), tL);
+                    }
+                    else
+                    {
+                        result = string.Format("{3}{0} {1} {2} ", FieldName, oper, FormatValue(StringValue, ValueType), tL);
+                    }
                 }
                 return result;
             }
