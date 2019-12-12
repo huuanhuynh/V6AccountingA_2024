@@ -73,6 +73,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY.Ch
 
             v6ColorDateTimePick1.SetValue(V6Setting.M_ngay_ct1);
             v6ColorDateTimePick2.SetValue(V6Setting.M_ngay_ct2);
+
+            LoadDefaultData(4, "INY", "SEARCH_INY_SOH", ItemID);
         }
 
         private void InitLocKetQua()

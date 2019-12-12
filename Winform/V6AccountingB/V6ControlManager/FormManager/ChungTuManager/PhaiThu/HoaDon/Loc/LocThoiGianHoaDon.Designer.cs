@@ -53,7 +53,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
             this.groupBox1.Controls.Add(this.v6ColorDateTimePick2);
             this.groupBox1.Controls.Add(this.v6Label1);
             this.groupBox1.Controls.Add(this.v6ColorDateTimePick1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(759, 48);
@@ -133,7 +132,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
             this.v6ColorDateTimePick2.Name = "v6ColorDateTimePick2";
             this.v6ColorDateTimePick2.Size = new System.Drawing.Size(102, 20);
             this.v6ColorDateTimePick2.TabIndex = 3;
-            this.v6ColorDateTimePick2.TextTitle = null;
             // 
             // v6Label1
             // 
@@ -157,7 +155,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
             this.v6ColorDateTimePick1.Name = "v6ColorDateTimePick1";
             this.v6ColorDateTimePick1.Size = new System.Drawing.Size(102, 20);
             this.v6ColorDateTimePick1.TabIndex = 1;
-            this.v6ColorDateTimePick1.TextTitle = null;
             // 
             // LocThoiGianHoaDon
             // 

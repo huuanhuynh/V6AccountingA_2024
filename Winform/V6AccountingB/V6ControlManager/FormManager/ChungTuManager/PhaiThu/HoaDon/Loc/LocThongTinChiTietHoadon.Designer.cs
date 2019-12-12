@@ -103,7 +103,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
             this.groupBox1.Controls.Add(this.v6Label35);
             this.groupBox1.Controls.Add(this.v6Label36);
             this.groupBox1.Controls.Add(this.v6Label37);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(759, 234);

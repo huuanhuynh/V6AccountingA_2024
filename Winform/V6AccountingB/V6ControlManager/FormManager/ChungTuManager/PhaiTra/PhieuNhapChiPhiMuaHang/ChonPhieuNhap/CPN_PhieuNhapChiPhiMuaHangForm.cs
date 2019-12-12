@@ -65,6 +65,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
             v6ColorDateTimePick1.SetValue(V6Setting.M_ngay_ct1);
             v6ColorDateTimePick2.SetValue(V6Setting.M_ngay_ct2);
+
+            LoadDefaultData(4, "POC", "SEARCH_POC", ItemID);
         }
 
         private void InitLocKetQua()

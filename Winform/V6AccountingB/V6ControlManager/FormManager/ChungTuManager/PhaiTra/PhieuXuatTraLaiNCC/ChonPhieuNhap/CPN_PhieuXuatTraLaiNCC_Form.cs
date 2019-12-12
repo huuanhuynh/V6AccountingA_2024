@@ -64,6 +64,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             locThongTin1.maKhach.ReadOnly = !string.IsNullOrEmpty(_ma_kh);
             txtMaDVCS.Text = _ma_dvcs;
 
+            LoadDefaultData(4, "IXC", "SEARCH_IXC_POA", ItemID);
             
             Ready();
         }

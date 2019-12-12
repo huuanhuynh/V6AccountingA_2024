@@ -54,6 +54,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.Loc
             
             _locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
             _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
+
+            LoadDefaultData(4, "POH", "SEARCH_POH", ItemID);
             Ready();
         }
 

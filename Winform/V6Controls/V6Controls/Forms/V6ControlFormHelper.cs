@@ -2384,6 +2384,11 @@ namespace V6Controls.Forms
             }
         }
 
+        /// <summary>
+        /// Gán tagData lên form.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="tagData"></param>
         private static void SetFormTagDicRecursive(Control control, SortedDictionary<string, string> tagData)
         {
             try
@@ -7803,6 +7808,41 @@ namespace V6Controls.Forms
             {
                 control.WriteExLog(control.GetType() + ".ShowControlsProperties", ex);
             }
+        }
+
+        public static SortedDictionary<string, DefaultValueInfo> GetDefaultFormData(string lang, int loai, string mact, string madm, string itemId, string adv = "")
+        {
+            //if (defaultData != null && defaultData.Count > 0) return defaultData;
+            //if (alinitData == null || alinitData.Rows.Count == 0)
+            var    alinitData = V6BusinessHelper.GetDefaultValueData(loai, mact, madm, itemId, adv);
+            var result = new SortedDictionary<string, DefaultValueInfo>();
+            foreach (DataRow row in alinitData.Rows)
+            {
+                //Tuanmh 25/12/2017 - Bo sung theo kieu
+                string kieu = row["kieu"].ToString().Trim();
+                if (kieu == "") continue;
+
+                var cell = row["Default" + lang]; if (cell == null) continue;
+                var value = cell.ToString().Trim();
+                var ANAME = row["NameVal"].ToString().Trim().ToUpper();
+                var CNAME = row["NameTag"].ToString().Trim().ToUpper();
+                var tagString = row["Tag"].ToString().Trim();
+                var isHide = "1" == row["Hide"].ToString().Trim().ToUpper();
+                var isReadOnly = "1" == row["Readonly"].ToString().Trim().ToUpper();
+                DefaultValueInfo valueInfo = new DefaultValueInfo()
+                {
+                    AName = ANAME,
+                    CName = CNAME,
+                    Value = value,
+                    TagString = tagString,
+                    Type1 = kieu,
+                    IsHide = isHide,
+                    IsReadOnly = isReadOnly,
+                };
+                result[string.IsNullOrEmpty(ANAME) ? CNAME : ANAME] = valueInfo;
+            }
+            //defaultData = result;
+            return result;
         }
     }
 }

@@ -4,6 +4,9 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6Init;
+using V6Structs;
+using V6Tools.V6Convert;
 
 namespace V6Controls.Forms
 {
@@ -107,6 +110,61 @@ namespace V6Controls.Forms
                 this.WriteExLog(GetType() + ".ClearAll " + methodLog, ex);
             }
         }
+
+        /// <summary>
+        /// Gán dữ liệu mặc định lên form.
+        /// </summary>
+        /// <param name="loai">1ct 2danhmuc 4report 5filter</param>
+        /// <param name="mact"></param>
+        /// <param name="madm"></param>
+        /// <param name="itemId"></param>
+        /// <param name="adv"></param>
+        protected void LoadDefaultData(int loai, string mact, string madm, string itemId, string adv = "")
+        {
+            try
+            {
+                var data = V6ControlFormHelper.GetDefaultFormData(V6Setting.Language, loai, mact, madm, itemId, adv);
+                SetDefaultDataInfoToForm(data);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadDefaultData", ex);
+            }
+        }
+
+        protected void SetDefaultDataInfoToForm(SortedDictionary<string, DefaultValueInfo> data)
+        {
+            try
+            {
+                SortedDictionary<string, object> someData = new SortedDictionary<string, object>();
+                string log_key = "", errors = "";
+
+                foreach (KeyValuePair<string, DefaultValueInfo> item in data)
+                {
+                    log_key = item.Key;
+                    try
+                    {
+                        V6ControlFormHelper.SetFormDefaultValueInfo(this, item.Value);
+                        continue;
+                    }
+                    catch (Exception ex)
+                    {
+                        errors += string.Format("{0}: {1}\n", log_key, ex.Message);
+                    }
+                }
+
+                if (errors.Length > 0)
+                {
+                    this.WriteToLog(GetType() + ".SetDefaultDataInfoToForm", errors);
+                }
+                V6ControlFormHelper.SetSomeDataDictionary(this, someData);
+            }
+            catch (Exception ex0)
+            {
+                this.WriteExLog(GetType() + ".SetDefaultDataInfoToForm", ex0);
+            }
+        }
+
 
         protected virtual void LoadLanguage()
         {

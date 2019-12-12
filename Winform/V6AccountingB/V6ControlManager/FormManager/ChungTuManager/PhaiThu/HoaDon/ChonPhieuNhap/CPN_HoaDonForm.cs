@@ -67,6 +67,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuNh
             txtMaDVCS.Text = _ma_dvcs;
 
             _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
+            LoadDefaultData(4, Invoice.Mact, "SEARCH_SOA_" + Invoice.Mact, ItemID);
             Ready();
         }
 

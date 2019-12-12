@@ -54,6 +54,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY.Lo
             
             _locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
             _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
+
+            LoadDefaultData(4, "IXY", "SEARCH_IXY", ItemID);
         }
 
         private void InitLocKetQua()

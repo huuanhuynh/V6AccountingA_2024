@@ -1626,24 +1626,6 @@
     <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\Loc\LocKetQuaHoaDon.Designer.cs">
       <DependentUpon>LocKetQuaHoaDon.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\Loc\LocThoiGianHoaDon.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\Loc\LocThoiGianHoaDon.Designer.cs">
-      <DependentUpon>LocThoiGianHoaDon.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\Loc\LocThongTinHoaDon.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\Loc\LocThongTinHoaDon.Designer.cs">
-      <DependentUpon>LocThongTinHoaDon.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\Loc\LocThongTinChiTietHoadon.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\Loc\LocThongTinChiTietHoadon.Designer.cs">
-      <DependentUpon>LocThongTinChiTietHoadon.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\Loc\TimHoaDonForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5996,9 +5978,6 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonDonHang\CDH_HoaDonKetQua.resx">
       <DependentUpon>CDH_HoaDonKetQua.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDon\Loc\LocThoiGianHoaDon.resx">
-      <DependentUpon>LocThoiGianHoaDon.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapMua\ChonDeNghiNhap\INY_PNMua_Form.resx">
       <DependentUpon>INY_PNMua_Form.cs</DependentUpon>
     </EmbeddedResource>
@@ -6363,12 +6342,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDon\Loc\LocKetQuaHoaDon.resx">
       <DependentUpon>LocKetQuaHoaDon.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDon\Loc\LocThongTinChiTietHoadon.resx">
-      <DependentUpon>LocThongTinChiTietHoadon.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDon\Loc\LocThongTinHoaDon.resx">
-      <DependentUpon>LocThongTinHoaDon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\ACACTTA1.resx">
       <DependentUpon>ACACTTA1.cs</DependentUpon>

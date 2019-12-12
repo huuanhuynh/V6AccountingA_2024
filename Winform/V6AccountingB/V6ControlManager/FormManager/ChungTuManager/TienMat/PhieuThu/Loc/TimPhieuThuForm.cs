@@ -49,7 +49,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu.Loc
             
             locThongTin1.CreateDynamicFilter(_formChungTu.Invoice.AMStruct, _formChungTu.Invoice.ADV_AM);
             locThongTinChiTiet1.CreateDynamicFilter2(_formChungTu.Invoice.ADStruct, _formChungTu.Invoice.ADV_AD);
-            
+
+            LoadDefaultData(4, _formChungTu.Invoice.Mact, "SEARCH_" + _formChungTu.Invoice.Mact, ItemID);
             _ready = true;
         }
 

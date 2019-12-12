@@ -60,8 +60,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.L
 
                 _locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
                 _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
-
-                LoadLanguage();
+                
+                LoadDefaultData(4, "SOB", "SEARCH_SOB", ItemID);
             }
             catch (Exception ex)
             {

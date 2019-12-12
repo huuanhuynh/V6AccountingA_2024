@@ -68,6 +68,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonD
             txtMaDVCS.Text = _ma_dvcs;
             v6ColorDateTimePick1.SetValue(V6Setting.M_ngay_ct1);
             v6ColorDateTimePick2.SetValue(V6Setting.M_ngay_ct2);
+
+            LoadDefaultData(4, "POA", "SEARCH_POA_POH", ItemID);
             Ready();
         }
 

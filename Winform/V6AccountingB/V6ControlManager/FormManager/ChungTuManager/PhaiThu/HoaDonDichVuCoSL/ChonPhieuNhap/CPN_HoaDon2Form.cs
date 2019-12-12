@@ -64,7 +64,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
             locThongTin1.maKhach.Text = _ma_kh;
             locThongTin1.maKhach.ReadOnly = !string.IsNullOrEmpty(_ma_kh);
             txtMaDVCS.Text = _ma_dvcs;
-            
+
+            LoadDefaultData(4, "SOB", "SEARCH_SOB_IND", ItemID);
             Ready();
         }
 

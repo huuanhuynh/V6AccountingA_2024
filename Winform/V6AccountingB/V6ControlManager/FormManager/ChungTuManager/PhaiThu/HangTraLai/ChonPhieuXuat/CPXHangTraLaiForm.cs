@@ -61,6 +61,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             locThongTin1.maKhach.Text = _ma_kh;
             locThongTin1.maKhach.ReadOnly = !string.IsNullOrEmpty(_ma_kh);
             txtMaDVCS.Text = _ma_dvcs;
+
+            LoadDefaultData(4, "SOF", "SEARCH_SOF_SOA", ItemID);
         }
 
         private void InitLocKetQua()

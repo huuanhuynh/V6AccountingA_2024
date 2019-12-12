@@ -54,6 +54,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.Loc
             
             _locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
             _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
+
+            LoadDefaultData(4, _formChungTu.Invoice.Mact, "SEARCH_SOF", ItemID);
         }
 
         private void InitLocKetQua()

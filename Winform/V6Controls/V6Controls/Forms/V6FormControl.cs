@@ -313,6 +313,7 @@ namespace V6Controls.Forms
             try
             {
                 var data = GetDefaultData(V6Setting.Language, loai, mact, madm, itemId, adv);
+                //data = V6ControlFormHelper.GetDefaultFormData(V6Setting.Language, loai, mact, madm, itemId, adv);
                 SetDefaultDataInfoToForm(data);
             }
             catch (Exception ex)
@@ -434,7 +435,7 @@ namespace V6Controls.Forms
         /// <summary>
         /// Gán Tag được lưu lên form.
         /// </summary>
-        /// <param name="loai">1ct 4report</param>
+        /// <param name="loai">1ct 4report 5filter</param>
         /// <param name="mact"></param>
         /// <param name="madm"></param>
         /// <param name="itemId"></param>
