@@ -364,7 +364,7 @@
             this.Controls.Add(this.btnPrevious);
             this.Controls.Add(this.btnFirst);
             this.Controls.Add(this.dataGridView1);
-            this.EnableF3F3F3 = false;
+            this.EnableCtrlF12 = false;
             this.FilterType = "3";
             this.Name = "SoDuView";
             this.Size = new System.Drawing.Size(749, 373);

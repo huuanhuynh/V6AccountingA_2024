@@ -77,18 +77,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
         
-        public override void V6F3Execute()
+        public override void V6CtrlF12Execute()
         {
-            f3count = 0;
             if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
             {
                 V6ControlFormHelper.ShowMainMessage("V6 Confirm ......OK....");
                 FilterControl.Call1();
             }
-            //base.V6F3Execute(); // Không cần
+            //base.V6CtrlF12Execute(); // Không cần
         }
 
-        public override void V6F3ExecuteUndo()
+        public override void V6CtrlF12ExecuteUndo()
         {
             FilterControl.Call2();
         }

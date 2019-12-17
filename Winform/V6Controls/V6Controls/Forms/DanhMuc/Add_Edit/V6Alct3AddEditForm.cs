@@ -31,7 +31,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
            
         }
-        public override void V6F3Execute()
+        public override void V6CtrlF12Execute()
         {
             ChkVisible.Enabled = true; //ChkVisible.Visible = true;
             TxtForder.Enabled = true;
@@ -60,7 +60,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             //txtDmethod_M.Visible = true;
             //btnEditXmlM.Visible = true;
             txtLimits.Visible = true;
-            base.V6F3Execute();
+            base.V6CtrlF12Execute();
         }
     }
 }

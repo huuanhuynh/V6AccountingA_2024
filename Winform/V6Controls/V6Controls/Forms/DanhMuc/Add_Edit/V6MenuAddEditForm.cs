@@ -24,7 +24,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
            
         }
 
-        public override void V6F3Execute()
+        public override void V6CtrlF12Execute()
         {
             ShowTopLeftMessage("V6 Confirm ......OK....");
             txtVBAR.Enabled = true;
@@ -57,10 +57,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             btnMenuHide.Enabled = true;
             btnMenuHide.Visible = true;
-            base.V6F3Execute();
+            base.V6CtrlF12Execute();
         }
 
-        public override void V6F3ExecuteUndo()
+        public override void V6CtrlF12ExecuteUndo()
         {
             txtVBAR.Enabled = false;
             txtVBAR.ReadOnly = true;

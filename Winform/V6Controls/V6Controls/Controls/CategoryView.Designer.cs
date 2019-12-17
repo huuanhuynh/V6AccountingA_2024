@@ -334,7 +334,7 @@
             this.Controls.Add(this.btnCopy);
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.dataGridView1);
-            this.EnableF3F3F3 = false;
+            this.EnableCtrlF12 = false;
             this.FilterType = "2";
             this.Name = "CategoryView";
             this.Size = new System.Drawing.Size(794, 373);

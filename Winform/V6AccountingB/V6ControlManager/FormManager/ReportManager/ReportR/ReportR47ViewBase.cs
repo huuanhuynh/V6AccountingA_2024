@@ -1532,10 +1532,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             return true;
         }
 
-        public override void V6F3Execute()
+        public override void V6CtrlF12Execute()
         {
             ViewMauIn();
-            base.V6F3Execute();
+            base.V6CtrlF12Execute();
         }
 
         private void ViewMauIn()

@@ -40,9 +40,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
             }
         }
   
-        public override void V6F3Execute()
+        public override void V6CtrlF12Execute()
         {
-            base.V6F3Execute();
+            base.V6CtrlF12Execute();
         }
 
         public override void ValidateData()

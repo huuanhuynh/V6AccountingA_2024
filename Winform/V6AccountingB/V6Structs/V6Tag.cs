@@ -173,9 +173,9 @@ namespace V6Structs
 
         public bool Cancel { get; set; }
         /// <summary>
-        /// Cờ bật control khi nhập mật khẩu F3F3F3.
+        /// Cờ bật control khi nhập mật khẩu CtrlF12.
         /// </summary>
-        public string VisibleF3 { get; set; }
+        public string VisibleCtrlF12 { get; set; }
 
         public string DescriptionLang(bool isVN)
         {

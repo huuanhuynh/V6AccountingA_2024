@@ -49,13 +49,13 @@ namespace V6ControlManager.FormManager.ToolManager
             Ready();
         }
 
-        public override void V6F3Execute()
+        public override void V6CtrlF12Execute()
         {
             grbTools.Visible = true;
             chkAutoFixInvoiceVvar.Visible = true;
             chkWriteExtraLog.Visible = true;
             chkAllowAdd.Visible = true;
-            base.V6F3Execute();
+            base.V6CtrlF12Execute();
         }
 
         private void btnTestInvoice_Click(object sender, EventArgs e)

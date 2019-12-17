@@ -105,7 +105,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             }
         }
 
-        public override void V6F3Execute()
+        public override void V6CtrlF12Execute()
         {
             try
             {
@@ -114,9 +114,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".V6F3Execute", ex);
+                this.WriteExLog(GetType() + ".V6CtrlF12Execute", ex);
             }
-            base.V6F3Execute();
+            base.V6CtrlF12Execute();
         }
 
         public override void DoBeforeAdd()

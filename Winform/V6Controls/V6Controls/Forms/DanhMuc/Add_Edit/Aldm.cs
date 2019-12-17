@@ -71,12 +71,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             
         }
 
-        public override void V6F3Execute()
+        public override void V6CtrlF12Execute()
         {
             txtDmethod.Visible = true;
             lblXML.Visible = true;
             btnEditXml.Visible = true;
-            base.V6F3Execute();
+            base.V6CtrlF12Execute();
         }
 
         public override void ValidateData()

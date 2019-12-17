@@ -367,7 +367,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             new XmlEditorForm(txtExcel2View, file_xml2, "ExcelConfig", null).ShowDialog(this);
         }
 
-        public override void V6F3Execute()
+        public override void V6CtrlF12Execute()
         {
             _firstAddF3 = true;
             //Visible
@@ -394,10 +394,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             txtExcel2View.ReadOnly = false;
             txtMa_File.ReadOnly = false;
             txtReportFileNew.ReadOnly = false;
-            base.V6F3Execute();
+            base.V6CtrlF12Execute();
         }
 
-        public override void V6F3ExecuteUndo()
+        public override void V6CtrlF12ExecuteUndo()
         {
             //Visible
             txtMAU.Visible = false;

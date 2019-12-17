@@ -73,7 +73,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
-        public override void V6F3Execute()
+        public override void V6CtrlF12Execute()
         {
             //ShowTopLeftMessage("V6 Confirm ......OK....");
             txtDmethod.Visible = true;
@@ -88,7 +88,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             lblADSELECTMORE.Visible = true;
             txtAMSELECTMORE.Visible = true;
             lblAMSELECTMORE.Visible = true;
-            base.V6F3Execute();
+            base.V6CtrlF12Execute();
         }
 
         private void DoEditXml()

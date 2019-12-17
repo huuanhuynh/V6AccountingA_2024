@@ -39,12 +39,12 @@ namespace V6Controls.Forms
         public bool _executing, _executesuccess;
 
         /// <summary>
-        /// Cờ bật tắt chức năng F3 3 lần để thực hiện chức năng F3Execute gốc (mở tag VisibleF3:1)
+        /// Cờ bật tắt chức năng Ctrol+F12 để thực hiện chức năng V6CtrlF12Execute gốc (mở tag VisibleF3:1)
         /// </summary>
         [Category("V6")]
         [DefaultValue(true)]
-        public bool EnableF3F3F3 { get { return _enableF3F3F3; } set { _enableF3F3F3 = value; } }
-        protected bool _enableF3F3F3 = true;
+        public bool EnableCtrlF12 { get { return _enableCtrlF12; } set { _enableCtrlF12 = value; } }
+        protected bool _enableCtrlF12 = true;
         
         public V6FormControl()
         {
@@ -132,39 +132,36 @@ namespace V6Controls.Forms
         {
             try
             {
-                if (keyData == Keys.F12)
+                if (keyData == (Keys.Control | Keys.F12))
                 {
-                    if (keyData == (Keys.Control | Keys.F12))
+                    string type = this.GetType().ToString();
+                    //var method_info = GetType().GetMethod("V6CtrlF12Execute");
+                    //if (method_info != null && method_info.DeclaringType == GetType() && //Kiem tra co method override
+                    if (EnableCtrlF12 && !type.EndsWith("Container") &&
+                        new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
                     {
-                        string type = this.GetType().ToString();
-                        //var method_info = GetType().GetMethod("V6F3Execute");
-                        //if (method_info != null && method_info.DeclaringType == GetType() && //Kiem tra co method override
-                        if (EnableF3F3F3 && !type.EndsWith("Container") &&
-                            new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
+                        V6CtrlF12Execute();
+                    }
+                    else
+                    {
+                        V6CtrlF12ExecuteUndo();
+                    }
+                }
+                else if (keyData == Keys.F12)
+                {
+                    if (++f12count == 3)
+                    {
+                        if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
                         {
-                            V6F3Execute();
+                            V6F12Execute();
+                            f12count = 0;
+                            return true;
                         }
                         else
                         {
-                            V6F3ExecuteUndo();
-                        }
-                    }
-                    else if (keyData == Keys.F12)
-                    {
-                        if (++f12count == 3)
-                        {
-                            if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
-                            {
-                                V6F12Execute();
-                                f12count = 0;
-                                return true;
-                            }
-                            else
-                            {
-                                f12count = 0;
-                                //V6F12ExecuteUndo();
-                                return false;
-                            }
+                            f12count = 0;
+                            //V6F12ExecuteUndo();
+                            return false;
                         }
                     }
                 }
@@ -173,13 +170,13 @@ namespace V6Controls.Forms
                     f12count = 0;
                 }
 
+
                 if (do_hot_key)
                 {
                     do_hot_key = false;
                     //return false;
                     //return base.ProcessCmdKey(ref msg, keyData);
                 }
-
             }
             catch
             {
@@ -212,7 +209,7 @@ namespace V6Controls.Forms
         /// <summary>
         /// Hàm thực hiện sau khi xác nhận mật khẩu V6 thành công.
         /// </summary>
-        public virtual void V6F3Execute()
+        public virtual void V6CtrlF12Execute()
         {
             try
             {
@@ -220,7 +217,7 @@ namespace V6Controls.Forms
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".V6F3Execute", ex);
+                this.WriteExLog(GetType() + ".V6CtrlF12Execute", ex);
             }
         }
 
@@ -230,7 +227,7 @@ namespace V6Controls.Forms
             foreach (Control control in all_controls)
             {
                 V6Tag tag = new V6Tag(control.Tag);
-                if (tag.VisibleF3 == "1")
+                if (tag.VisibleCtrlF12 == "1")
                 {
                     control.Visible = true;
                     control.Enabled = true;
@@ -287,7 +284,7 @@ namespace V6Controls.Forms
         /// <summary>
         /// Hàm thực hiện sau khi xác nhận mật khẩu V6 sai.
         /// </summary>
-        public virtual void V6F3ExecuteUndo()
+        public virtual void V6CtrlF12ExecuteUndo()
         {
             
         }
