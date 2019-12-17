@@ -2,6 +2,8 @@
 using System.Data;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
+using System.Reflection;
 using System.Threading;
 using V6AccountingBusiness;
 using V6Controls;
@@ -42,6 +44,8 @@ namespace V6AccountingB
             cboDatabase.DisplayMember = DatabaseConfig.ConfigDataDisplayMember;
             cboDatabase.ValueMember = DatabaseConfig.ConfigDataValueMember;
             cboDatabase.SelectedIndex = DatabaseConfig.GetConfigDataRunIndex();
+
+            CheckCrystalReportInstaled();
         }
 
         protected override void LoadLanguage()
@@ -73,7 +77,37 @@ namespace V6AccountingB
             txtUserName.Text = V6Setting.LASTUSERW;
             //Khởi tạo với rad đang check. Mặc định local.
             //ResetInfos(radAPIDataMode.Checked ? GetDataMode.API : GetDataMode.Local);
+            
         }
+
+        private string lblStatusSuccess = "______________________________________________";
+        private string lblStatusFail = "___________ / _";
+        private void CheckCrystalReportInstaled()
+        {
+            try
+            {
+                if (Directory.Exists(@"C:\Windows\assembly\GAC_MSIL\CrystalDecisions.CrystalReports.Engine"))
+                {
+                    ;
+                }
+                else
+                {
+                    lblStatusSuccess =  "Connection OK! Check CrystalReports!";
+                    lblStatusFail =     "Connection Fail! Check CrystalReports!";
+                }
+                //13.0.2000.0 is Crystal Reports for VS 2010
+                //Assembly a = Assembly.Load("CrystalDecisions.CrystalReports.Engine");
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+                //Not Installed
+            }
+            catch
+            {
+                //Runtime is in GAC but something else prevents it from loading. (bad install?, etc)
+            }
+        }
+
         private void CheckConnectThread()
         {
             Timer checkConnect = new Timer();
@@ -119,14 +153,14 @@ namespace V6AccountingB
                 ((Timer)sender).Stop();
                 if (flagCheckConnectSuccess && _tblsLoaded)
                 {
-                    lblStatus.Text = "______________________________________________";
+                    lblStatus.Text = lblStatusSuccess;
                     panel1.Enabled = true;
                     txtUserName.Focus();
                     Ready();
                 }
                 else
                 {
-                    lblStatus.Text = "___________ / _";
+                    lblStatus.Text = lblStatusFail;
                     V6Message.Show("Kiểm tra lại kết nối và cấu hình!\n" + exMessage, 0, this);
                 }
 

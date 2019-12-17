@@ -5547,7 +5547,7 @@ namespace V6Controls.Forms
         }
 
         /// <summary>
-        /// Định dạng lại gridview theo điều kiện.
+        /// Định dạng lại màu gridview row theo RGB hoặc điều kiện.
         /// </summary>
         /// <param name="grid"></param>
         /// <param name="field">Trường giá trị điều kiện</param>
@@ -5569,19 +5569,7 @@ namespace V6Controls.Forms
                 {
                     var o1 = row.Cells[field].Value;
                     if (o1 is string) o1 = o1.ToString().Trim();
-
-                    if (ObjectAndString.CheckCondition(o1, oper, value))
-                    {
-                        if (bold)
-                        {
-                            row.DefaultCellStyle.Font = new Font(grid.Font, FontStyle.Bold);
-                        }
-                        if (back_color && color != Color.Empty)
-                        {
-                            row.DefaultCellStyle.BackColor = color;
-                        }
-                    }
-
+                    
                     if (grid.Columns.Contains("RGB") && field.ToUpper() == "RGB" && !bold && !back_color)
                     {
                         string colorRGB = row.Cells["RGB"].Value.ToString();
@@ -5595,6 +5583,17 @@ namespace V6Controls.Forms
                             {
                                 grid.WriteExLog(grid.Parent.GetType() + ".FormatGridView in V6ControlFormHelper colorRGB: " + colorRGB, ex2);
                             }
+                        }
+                    }
+                    else if (ObjectAndString.CheckCondition(o1, oper, value))
+                    {
+                        if (bold)
+                        {
+                            row.DefaultCellStyle.Font = new Font(grid.Font, FontStyle.Bold);
+                        }
+                        if (back_color && color != Color.Empty)
+                        {
+                            row.DefaultCellStyle.BackColor = color;
                         }
                     }
                 }//end for

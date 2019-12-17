@@ -93,12 +93,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
 
         private void SetValueAndShowLocKetQua()
         {
+            ShowLocKetQua();
             _locKetQua.SetAM(tempAM);
             ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _formChungTu.Invoice.Mact, _formChungTu.MA_NT);
-            //Refresh0();
-            //_locKetQua.SetAD(_formChungTu.AD, _formChungTu.AD2, _orderList2);
-            ShowLocKetQua();
         }
+
         private void ShowLocKetQua()
         {
             locThoiGian1.Visible = false;

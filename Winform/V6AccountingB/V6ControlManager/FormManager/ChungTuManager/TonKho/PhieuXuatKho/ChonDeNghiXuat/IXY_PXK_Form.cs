@@ -116,12 +116,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.ChonDe
         
         private void SetValueAndShowLocKetQua()
         {
+            ShowLocKetQua();
             _locKetQua.SetAM(tAM);
             Refresh0();
-            //_locKetQua.SetAD(_HangTraLaiForm.AD, _orderListAD);
-
-            ShowLocKetQua();
         }
+
         private void ShowLocKetQua()
         {
             grbThoiGian.Visible = false;

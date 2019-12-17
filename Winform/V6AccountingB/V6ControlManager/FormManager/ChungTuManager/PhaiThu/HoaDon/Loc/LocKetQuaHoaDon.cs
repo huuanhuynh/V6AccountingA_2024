@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using V6AccountingBusiness.Invoices;
+using V6Init;
 
 namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
 {
@@ -16,18 +17,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
         {
             InitializeComponent();
             _invoice = invoice;
+            _aldmConfig = ConfigManager.GetAldmConfig("SEARCH_" + _invoice.Mact);
             MyInitBase(dataGridView1, dataGridView2, AM, AD);
         }
         
-        public void SetAM(DataTable am)
-        {
-            dataGridView1.DataSource = am.Copy();
-        }
-
-        public void SetAD(DataTable ad)
-        {
-            dataGridView2.TableSource = ad.Copy();
-        }
+        
         
         private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {

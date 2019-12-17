@@ -40,18 +40,16 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 _grid1 = grid1 as V6ColorDataGridView;
                 _grid2 = grid2 as V6ColorDataGridView;
-                if (grid1 != null)
+                if (_grid1 != null)
                 {
-                    grid1.DataSource = AM;
-                    V6ControlFormHelper.FormatGridViewAndHeader(
-                        grid1, _invoice.AlctConfig.GRDS_AM, _invoice.AlctConfig.GRDF_AM,
-                        V6Setting.IsVietnamese ? _invoice.AlctConfig.GRDHV_AM : _invoice.AlctConfig.GRDHE_AM);
-                    if (_grid1 != null)
-                        V6ControlFormHelper.FormatGridViewHideColumns(_grid1, _invoice.Mact);
+                    _grid1.DataSourceChanged += _grid1_DataSourceChanged;
+                    SetAM(AM);
+                    
                 }
-                if (grid2 != null)
+                if (_grid2 != null)
                 {
-                    grid2.DataSource = AD;
+                    _grid2.DataSourceChanged += _grid2_DataSourceChanged;
+                    SetAD(AD);
                     V6ControlFormHelper.FormatGridViewAndHeader(
                         grid2, _invoice.AlctConfig.GRDS_AD, _invoice.AlctConfig.GRDF_AD,
                         V6Setting.IsVietnamese ? _invoice.AlctConfig.GRDHV_AD : _invoice.AlctConfig.GRDHE_AD);
@@ -61,7 +59,50 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".LocKetQuaBaseInit: " + ex.Message);
+                this.ShowErrorException(GetType() + ".LocKetQuaBaseInit", ex);
+            }
+        }
+
+        void _grid1_DataSourceChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!_grid1.IsFormated)
+                {
+                    V6ControlFormHelper.FormatGridViewAndHeader(_grid1, _invoice.AlctConfig.GRDS_AM,
+                        _invoice.AlctConfig.GRDF_AM,
+                        V6Setting.IsVietnamese ? _invoice.AlctConfig.GRDHV_AM : _invoice.AlctConfig.GRDHE_AM);
+                    V6ControlFormHelper.FormatGridViewHideColumns(_grid1, _invoice.Mact);
+                    _grid1.Formated();
+                }
+                //Đổi màu dữ liệu
+                if (_aldmConfig == null) _aldmConfig = ConfigManager.GetAldmConfig("SEARCH_" + _invoice.Mact);
+                if (_aldmConfig.HaveInfo)
+                    V6ControlFormHelper.FormatGridView(_grid1, _aldmConfig.FIELDV, _aldmConfig.OPERV, _aldmConfig.VALUEV, _aldmConfig.BOLD_YN, _aldmConfig.COLOR_YN,
+                        ObjectAndString.StringToColor(_aldmConfig.COLORV));
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "._grid1_DataSourceChanged", ex);
+            }
+        }
+        void _grid2_DataSourceChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                //if (!_grid2.IsFormated)
+                {
+                    V6ControlFormHelper.FormatGridViewAndHeader(
+                        _grid2, _invoice.AlctConfig.GRDS_AD, _invoice.AlctConfig.GRDF_AD,
+                        V6Setting.IsVietnamese ? _invoice.AlctConfig.GRDHV_AD : _invoice.AlctConfig.GRDHE_AD);
+
+                    V6ControlFormHelper.FormatGridViewHideColumns(_grid2, _invoice.Mact);
+                    _grid2.Formated();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "._grid2_DataSourceChanged", ex);
             }
         }
 
@@ -119,28 +160,18 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     CurrentSttRec = sttrec;
 
                     OnSelectAMRow(CurrentIndex, ma_ct, CurrentSttRec, ttt_nt, ttt, mant);
-
-                    if (_grid1 != null)
-                    {
-                        V6ControlFormHelper.FormatGridViewAndHeader(
-                            _grid1, _invoice.AlctConfig.GRDS_AM, _invoice.AlctConfig.GRDF_AM,
-                            V6Setting.IsVietnamese ? _invoice.AlctConfig.GRDHV_AM : _invoice.AlctConfig.GRDHE_AM);
-
-                        V6ControlFormHelper.FormatGridViewHideColumns(_grid1, _invoice.Mact);
-                    }
-                    if (_grid2 != null)
-                    {
-                        V6ControlFormHelper.FormatGridViewAndHeader(
-                            _grid2, _invoice.AlctConfig.GRDS_AD, _invoice.AlctConfig.GRDF_AD,
-                            V6Setting.IsVietnamese ? _invoice.AlctConfig.GRDHV_AD : _invoice.AlctConfig.GRDHE_AD);
-                        
-                        V6ControlFormHelper.FormatGridViewHideColumns(_grid2, _invoice.Mact);
-                    }
-                    
                 }
             }
         }
 
-        
+        public void SetAM(DataTable am)
+        {
+            if (_grid1 != null) _grid1.DataSource = am.Copy();
+        }
+
+        public void SetAD(DataTable ad)
+        {
+            if (_grid2 != null) _grid2.TableSource = ad.Copy();
+        }
     }//end class
 }

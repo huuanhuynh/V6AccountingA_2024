@@ -132,27 +132,21 @@ namespace V6Controls.Forms
         {
             try
             {
-                if (keyData == Keys.F3 || keyData == Keys.F12)
+                if (keyData == Keys.F12)
                 {
-                    if (keyData == Keys.F3)
+                    if (keyData == (Keys.Control | Keys.F12))
                     {
-                        if (++f3count == 3)
+                        string type = this.GetType().ToString();
+                        //var method_info = GetType().GetMethod("V6F3Execute");
+                        //if (method_info != null && method_info.DeclaringType == GetType() && //Kiem tra co method override
+                        if (EnableF3F3F3 && !type.EndsWith("Container") &&
+                            new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
                         {
-                            string type = this.GetType().ToString();
-                            
-                            //var method_info = GetType().GetMethod("V6F3Execute");
-                            //if (method_info != null && method_info.DeclaringType == GetType() && //Kiem tra co method override
-                            if (EnableF3F3F3 && !type.EndsWith("Container") &&
-                             new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
-                            {
-                                V6F3Execute();
-                                f3count = 0;
-                            }
-                            else
-                            {
-                                f3count = 0;
-                                V6F3ExecuteUndo();
-                            }
+                            V6F3Execute();
+                        }
+                        else
+                        {
+                            V6F3ExecuteUndo();
                         }
                     }
                     else if (keyData == Keys.F12)
@@ -176,7 +170,6 @@ namespace V6Controls.Forms
                 }
                 else
                 {
-                    f3count = 0;
                     f12count = 0;
                 }
 
@@ -215,7 +208,6 @@ namespace V6Controls.Forms
             }
         }
 
-        protected int f3count;
         protected int f12count;
         /// <summary>
         /// Hàm thực hiện sau khi xác nhận mật khẩu V6 thành công.

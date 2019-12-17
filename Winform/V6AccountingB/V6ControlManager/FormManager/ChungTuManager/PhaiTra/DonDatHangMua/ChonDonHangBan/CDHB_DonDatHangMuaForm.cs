@@ -113,12 +113,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua.Chon
         
         private void SetValueAndShowLocKetQua()
         {
+            ShowLocKetQua();
             _locKetQua.SetAM(tAM);
             Refresh0();
-            //_locKetQua.SetAD(_HangTraLaiForm.AD, _orderListAD);
-
-            ShowLocKetQua();
         }
+
         private void ShowLocKetQua()
         {
             grbThoiGian.Visible = false;

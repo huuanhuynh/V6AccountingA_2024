@@ -1045,6 +1045,13 @@ namespace V6Controls
         public bool IsFormated { get { return _formated; } }
         private bool _formated;
         /// <summary>
+        /// Chuyển trạng thái IsFormated thành true;
+        /// </summary>
+        public void Formated()
+        {
+            _formated = true;
+        }
+        /// <summary>
         /// Định dạng lại gridview theo cấu hình trong bảng Aldm.
         /// </summary>
         /// <param name="ma_dm">Mã danh mục [MA_DM] trong bảng Aldm.</param>
