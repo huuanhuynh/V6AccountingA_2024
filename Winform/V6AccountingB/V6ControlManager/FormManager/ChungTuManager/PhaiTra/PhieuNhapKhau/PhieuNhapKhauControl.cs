@@ -4045,7 +4045,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
                 txtT_nk_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Nk"]);
                 txtT_nk_nt_ao.Value = ObjectAndString.ObjectToDecimal(row["T_Nk_nt"]);
-                ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
+                ViewLblKieuPost(lblKieuPostColor, cboKieuPost, Invoice.Alct["M_MA_VV"].ToString().Trim() == "1");
 
                 XuLyThayDoiMaDVCS();
                 SetGridViewData();
@@ -7124,15 +7124,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
         private void cboKieuPost_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Invoice.Alct["M_MA_VV"].ToString().Trim() == "1")
-            {
-                lblKieuPostColor.Visible = true;
-                ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
-            }
-            else
-            {
-                lblKieuPostColor.Visible = false;
-            }
+            ViewLblKieuPost(lblKieuPostColor, cboKieuPost, Invoice.Alct["M_MA_VV"].ToString().Trim() == "1");
         }
 
         private void dataGridView3ChiPhi_CurrentCellChanged(object sender, EventArgs e)

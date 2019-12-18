@@ -632,15 +632,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
             e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
         }
-
-        private void detail1_AddHandle()
+        
+        private void txtMaCtMe_VisibleChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void detail1_EditHandle()
-        {
-
+            if (!txtMaCtMe.Visible) txtMaCtMe.Text = "";
         }
 
     }

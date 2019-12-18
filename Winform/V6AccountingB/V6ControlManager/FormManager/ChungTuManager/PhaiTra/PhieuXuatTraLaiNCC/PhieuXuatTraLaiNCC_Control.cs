@@ -2886,7 +2886,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                 V6ControlFormHelper.SetFormDataRow(this, AM.Rows[CurrentIndex]);
                 txtMaDVCS.ExistRowInTable();
                 txtMaKh.ExistRowInTable();
-                ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
+                ViewLblKieuPost(lblKieuPostColor, cboKieuPost, Invoice.Alct["M_MA_VV"].ToString().Trim() == "1");
 
                 XuLyThayDoiMaDVCS();
                 SetGridViewData();
@@ -4944,15 +4944,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
 
         private void cboKieuPost_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Invoice.Alct["M_MA_VV"].ToString().Trim() == "1")
-            {
-                lblKieuPostColor.Visible = true;
-                ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
-            }
-            else
-            {
-                lblKieuPostColor.Visible = false;
-            }
+            ViewLblKieuPost(lblKieuPostColor, cboKieuPost, Invoice.Alct["M_MA_VV"].ToString().Trim() == "1");
         }
 
         private void chkTempSuaCT_CheckedChanged(object sender, EventArgs e)

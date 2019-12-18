@@ -169,7 +169,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             this.chkSuaTien = new V6Controls.V6CheckBox();
             this.txtConLai = new V6Controls.V6NumberTextBox();
             this.txtTongSoLuong1 = new V6Controls.NumberSoluong();
-            this.cboKieuPost = new V6Controls.V6ComboBox();
+            this.cboKieuPost = new V6Controls.V6ColorComboBox();
             this.txtTkThueNo = new V6Controls.V6VvarTextBox();
             this.txtTkGt = new V6Controls.V6VvarTextBox();
             this.txtTkChietKhau = new V6Controls.V6VvarTextBox();
@@ -2368,6 +2368,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             // 
             this.cboKieuPost.AccessibleName = "kieu_post";
             this.cboKieuPost.BackColor = System.Drawing.SystemColors.Window;
+            this.cboKieuPost.ColorField = "ColorV";
+            this.cboKieuPost.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cboKieuPost.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboKieuPost.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cboKieuPost.FormattingEnabled = true;
@@ -3646,7 +3648,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         private V6Label lblTongSoDong;
         private V6Label v6Label19;
         private V6VvarTextBox txtMa_thue;
-        private V6Controls.V6ComboBox cboKieuPost;
+        private V6Controls.V6ColorComboBox cboKieuPost;
         private V6Label v6Label20;
         private V6Label v6Label24;
         private V6Label v6Label23;

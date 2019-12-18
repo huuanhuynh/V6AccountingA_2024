@@ -3624,12 +3624,15 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
-        public void ViewLblKieuPost(Label lblKieuPostColor, ComboBox cboKieuPost)
+        public void ViewLblKieuPost(Label lblKieuPostColor, ComboBox cboKieuPost, bool view)
         {
             try
             {
+                lblKieuPostColor.Visible = view;
                 lblKieuPostColor.Text = cboKieuPost.Text;
-                
+
+                if (!view) return;
+
                 TextBox maXuLy_TextBox = GetControlByAccessibleName("MA_XULY") as TextBox;
 
                 if (maXuLy_TextBox is V6LookupProc)
@@ -3655,19 +3658,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 //    var ten_xuly = " (" + (V6Setting.IsVietnamese ? txtMaXuLy_TextBox.Data["TEN_XULY"] : txtMaXuLy_TextBox.Data["TEN_XULY2"]) + ")";
                 //    lblKieuPostColor.Text += ten_xuly;
                 //}
-
-                if (cboKieuPost.SelectedValue == null) return;
-                var selectedRow = ((DataRowView) cboKieuPost.SelectedItem).Row;
-                var color_name = selectedRow["ColorV"].ToString().Trim();
-                if (color_name != "")
-                {
-                    var color = ObjectAndString.StringToColor(color_name);
-                    lblKieuPostColor.ForeColor = color;
-                }
-                else
-                {
-                    lblKieuPostColor.ForeColor = Color.Black;
-                }
+                
             }
             catch (Exception ex)
             {

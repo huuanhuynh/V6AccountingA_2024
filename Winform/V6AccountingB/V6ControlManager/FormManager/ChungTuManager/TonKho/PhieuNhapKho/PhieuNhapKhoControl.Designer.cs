@@ -97,7 +97,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.chkTempSuaCT = new V6Controls.V6CheckBox();
             this.chkSuaTien = new V6Controls.V6CheckBox();
             this.txtTongSoLuong1 = new V6Controls.NumberSoluong();
-            this.cboKieuPost = new V6Controls.V6ComboBox();
+            this.cboKieuPost = new V6Controls.V6ColorComboBox();
             this.btnChonPX = new V6Controls.Controls.V6FormButton();
             this.lblTongSoDong = new V6Controls.V6Label();
             this.v6Label20 = new V6Controls.V6Label();
@@ -1167,6 +1167,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             // 
             this.cboKieuPost.AccessibleName = "kieu_post";
             this.cboKieuPost.BackColor = System.Drawing.SystemColors.Window;
+            this.cboKieuPost.ColorField = "ColorV";
+            this.cboKieuPost.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cboKieuPost.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboKieuPost.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cboKieuPost.FormattingEnabled = true;
@@ -2168,7 +2170,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         private V6VvarTextBox txtMaKh;
         private V6FormButton btnChonPX;
         private V6Label lblTongSoDong;
-        private V6Controls.V6ComboBox cboKieuPost;
+        private V6Controls.V6ColorComboBox cboKieuPost;
         private V6Label v6Label20;
         private System.Windows.Forms.Panel panelVND;
         private V6NumberTextBox txtTongTien;

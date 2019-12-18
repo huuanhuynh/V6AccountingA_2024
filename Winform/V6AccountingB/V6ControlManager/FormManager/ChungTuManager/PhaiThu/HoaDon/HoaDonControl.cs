@@ -5072,7 +5072,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 txtMaDVCS.ExistRowInTable();
                 txtMaKh.ExistRowInTable();
                 txtLoaiPhieu.ExistRowInTable(true);
-                ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
+                ViewLblKieuPost(lblKieuPostColor, cboKieuPost, Invoice.Alct["M_MA_VV"].ToString().Trim() == "1");
 
                 XuLyThayDoiMaDVCS();
                 //{Tuanmh 20/02/2016
@@ -5987,6 +5987,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             try
             {
                 SetData(null);
+                if (txtCustomInfo != null) txtCustomInfo.Text = "";
                 detail1.SetData(null);
                 //detail2.SetData(null);
                 detail3.SetData(null);
@@ -8496,15 +8497,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         
         private void cboKieuPost_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Invoice.Alct["M_MA_VV"].ToString().Trim() == "1")
-            {
-                lblKieuPostColor.Visible = true;
-                ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
-            }
-            else
-            {
-                lblKieuPostColor.Visible = false;
-            }
+            ViewLblKieuPost(lblKieuPostColor, cboKieuPost, Invoice.Alct["M_MA_VV"].ToString().Trim() == "1");
         }
 
         private void chonBaoGiaMenu_MouseHover(object sender, EventArgs e)
@@ -8550,6 +8543,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 this.ShowErrorException("txtLoaiPhieu_TextChanged", ex);
             }
+        }
+
+        private void txtMaKh_TextChanged(object sender, EventArgs e)
+        {
+            DoNothing();
         }
 
         

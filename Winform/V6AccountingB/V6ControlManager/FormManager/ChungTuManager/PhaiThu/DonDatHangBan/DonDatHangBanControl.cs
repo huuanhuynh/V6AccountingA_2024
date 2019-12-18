@@ -3029,7 +3029,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 V6ControlFormHelper.SetFormDataRow(this, AM.Rows[CurrentIndex]);
                 txtMaDVCS.ExistRowInTable();
                 txtMaKh.ExistRowInTable();
-                ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
+                ViewLblKieuPost(lblKieuPostColor, cboKieuPost, Invoice.Alct["M_MA_VV"].ToString().Trim() == "1");
 
                 XuLyThayDoiMaDVCS();
                 SetGridViewData();
@@ -5666,15 +5666,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         private void cboKieuPost_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Invoice.Alct["M_MA_VV"].ToString().Trim() == "1")
-            {
-                lblKieuPostColor.Visible = true;
-                ViewLblKieuPost(lblKieuPostColor, cboKieuPost);
-            }
-            else
-            {
-                lblKieuPostColor.Visible = false;
-            }
+            ViewLblKieuPost(lblKieuPostColor, cboKieuPost, Invoice.Alct["M_MA_VV"].ToString().Trim() == "1");
         }
 
         private void txtDiaChi2_Enter(object sender, EventArgs e)

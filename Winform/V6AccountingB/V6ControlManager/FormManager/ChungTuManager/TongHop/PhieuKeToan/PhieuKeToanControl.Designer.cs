@@ -49,8 +49,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.STT_REC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.STT_REC0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabVAT = new System.Windows.Forms.TabPage();
-            this.detail2 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
+            this.gridViewSummary2 = new V6Controls.Controls.GridViewSummary();
             this.dataGridView2 = new V6Controls.V6ColorDataGridView();
+            this.detail2 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
             this.tabKhac = new System.Windows.Forms.TabPage();
             this.txtGhiChuChung = new V6Controls.V6VvarTextBox();
             this.txtSoCtKemt = new V6Controls.V6VvarTextBox();
@@ -100,7 +101,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.thayThe2Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.v6Label28 = new V6Controls.V6Label();
             this.chkSuaTien = new V6Controls.V6CheckBox();
-            this.cboKieuPost = new V6Controls.V6ComboBox();
+            this.cboKieuPost = new V6Controls.V6ColorComboBox();
             this.txtTkThueNo = new V6Controls.V6VvarTextBox();
             this.chkSuaTkThue = new V6Controls.V6CheckBox();
             this.btnChonPX = new V6Controls.Controls.V6FormButton();
@@ -160,7 +161,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.btnMoi = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnTim = new System.Windows.Forms.Button();
-            this.gridViewSummary2 = new V6Controls.Controls.GridViewSummary();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -324,27 +324,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.tabVAT.Tag = "cancelall";
             this.tabVAT.Text = "Thuế GTGT";
             // 
-            // detail2
+            // gridViewSummary2
             // 
-            this.detail2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.detail2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.detail2.Location = new System.Drawing.Point(2, 2);
-            this.detail2.MODE = V6Structs.V6Mode.Init;
-            this.detail2.Name = "detail2";
-            this.detail2.ShowLblName = false;
-            this.detail2.Size = new System.Drawing.Size(875, 50);
-            this.detail2.Sua_tien = false;
-            this.detail2.TabIndex = 4;
-            this.detail2.Tag = "cancelall";
-            this.detail2.Vtype = null;
-            this.detail2.ClickAdd += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail2_ClickAdd);
-            this.detail2.ClickEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail2_ClickEdit);
-            this.detail2.ClickCancelEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.Detail2_ClickCancelEdit);
-            this.detail2.AddHandle += new V6Controls.HandleData(this.Detail2_AddHandle);
-            this.detail2.EditHandle += new V6Controls.HandleData(this.Detail2_EditHandle);
-            this.detail2.DeleteHandle += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.Detail2_DeleteHandle);
-            this.detail2.Load += new System.EventHandler(this.Detail2_Load);
+            this.gridViewSummary2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridViewSummary2.DataGridView = this.dataGridView2;
+            this.gridViewSummary2.Location = new System.Drawing.Point(2, 236);
+            this.gridViewSummary2.Name = "gridViewSummary2";
+            this.gridViewSummary2.NoSumColumns = "MAU_BC;GIA;GIA_NT;TY_GIA;HAN_TT;THUE_SUAT";
+            this.gridViewSummary2.Size = new System.Drawing.Size(875, 23);
+            this.gridViewSummary2.SumCondition = null;
+            this.gridViewSummary2.TabIndex = 0;
             // 
             // dataGridView2
             // 
@@ -377,6 +366,28 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.dataGridView2.DataSourceChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             this.dataGridView2.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView2_ColumnAdded);
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
+            // 
+            // detail2
+            // 
+            this.detail2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.detail2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.detail2.Location = new System.Drawing.Point(2, 2);
+            this.detail2.MODE = V6Structs.V6Mode.Init;
+            this.detail2.Name = "detail2";
+            this.detail2.ShowLblName = false;
+            this.detail2.Size = new System.Drawing.Size(875, 50);
+            this.detail2.Sua_tien = false;
+            this.detail2.TabIndex = 4;
+            this.detail2.Tag = "cancelall";
+            this.detail2.Vtype = null;
+            this.detail2.ClickAdd += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail2_ClickAdd);
+            this.detail2.ClickEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail2_ClickEdit);
+            this.detail2.ClickCancelEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.Detail2_ClickCancelEdit);
+            this.detail2.AddHandle += new V6Controls.HandleData(this.Detail2_AddHandle);
+            this.detail2.EditHandle += new V6Controls.HandleData(this.Detail2_EditHandle);
+            this.detail2.DeleteHandle += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.Detail2_DeleteHandle);
+            this.detail2.Load += new System.EventHandler(this.Detail2_Load);
             // 
             // tabKhac
             // 
@@ -1159,7 +1170,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.xulyKhacMenu.Text = "Xử lý khác";
             this.xulyKhacMenu.Click += new System.EventHandler(this.inKhacToolStripMenuItem_Click);
             // 
-            // thayTheToolStripMenuItem
+            // thayTheMenu
             // 
             this.thayTheMenu.AccessibleDescription = "INVOICEM00008";
             this.thayTheMenu.Name = "thayTheMenu";
@@ -1167,7 +1178,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.thayTheMenu.Text = "Thay thế";
             this.thayTheMenu.Click += new System.EventHandler(this.thayTheToolStripMenuItem_Click);
             // 
-            // thayThe2toolStripMenuItem
+            // thayThe2Menu
             // 
             this.thayThe2Menu.AccessibleDescription = "INVOICEM00009";
             this.thayThe2Menu.Name = "thayThe2Menu";
@@ -1203,6 +1214,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             // 
             this.cboKieuPost.AccessibleName = "kieu_post";
             this.cboKieuPost.BackColor = System.Drawing.SystemColors.Window;
+            this.cboKieuPost.ColorField = "ColorV";
+            this.cboKieuPost.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cboKieuPost.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboKieuPost.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cboKieuPost.FormattingEnabled = true;
@@ -1303,7 +1316,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.group3.TabIndex = 2;
             this.group3.TabStop = false;
             // 
-            // txtMadvcs
+            // txtMaDVCS
             // 
             this.txtMaDVCS.AccessibleName = "MA_DVCS";
             this.txtMaDVCS.BackColor = System.Drawing.SystemColors.Window;
@@ -2059,17 +2072,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.btnTim.UseVisualStyleBackColor = true;
             this.btnTim.Click += new System.EventHandler(this.btnTim_Click);
             // 
-            // gridViewSummary2
-            // 
-            this.gridViewSummary2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.gridViewSummary2.DataGridView = this.dataGridView2;
-            this.gridViewSummary2.Location = new System.Drawing.Point(2, 236);
-            this.gridViewSummary2.Name = "gridViewSummary2";
-            this.gridViewSummary2.NoSumColumns = "MAU_BC;GIA;GIA_NT;TY_GIA;HAN_TT;THUE_SUAT";
-            this.gridViewSummary2.Size = new System.Drawing.Size(875, 23);
-            this.gridViewSummary2.SumCondition = null;
-            this.gridViewSummary2.TabIndex = 0;
-            // 
             // PhieuKeToanControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2162,7 +2164,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
         private V6Label v6Label17;
         private V6FormButton btnChonPX;
         private V6Label lblTongSoDong;
-        private V6Controls.V6ComboBox cboKieuPost;
+        private V6Controls.V6ColorComboBox cboKieuPost;
         private V6Label v6Label20;
         private V6Label v6Label23;
         private System.Windows.Forms.Panel panelVND;

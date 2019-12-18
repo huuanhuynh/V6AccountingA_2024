@@ -441,6 +441,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtMaCtMe.Size = new System.Drawing.Size(237, 23);
             this.txtMaCtMe.TabIndex = 7;
             this.txtMaCtMe.VVar = "MA_CT";
+            this.txtMaCtMe.VisibleChanged += new System.EventHandler(this.txtMaCtMe_VisibleChanged);
             // 
             // txtLoai
             // 

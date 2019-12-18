@@ -394,7 +394,7 @@ namespace V6AccountingBusiness.Invoices
         private DataTable GetAlPost()
         {
             return SqlConnect.Select("AlPost", "Kieu_post,Ten_post,Ten_post2,ColorV",
-                "Ma_ct=@mact", "", "Kieu_post", new SqlParameter("@mact", Mact)).Data;
+                "Ma_ct=@mact and [Status]='1'", "", "Kieu_post", new SqlParameter("@mact", Mact)).Data;
         }
 
         public DataTable GetDinhMucVatTu(string sttRec, string makh, string madvcs, string loai_pb)
