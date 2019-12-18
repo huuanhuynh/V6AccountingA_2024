@@ -92,6 +92,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         //public delegate void ChangeInvoice(string sttRec);
         public event Action<string> InvoiceChanged;
+        /// <summary>
+        /// Sự kiện để liên kết leftPanel.
+        /// </summary>
+        /// <param name="sttRec"></param>
         public virtual void OnInvoiceChanged(string sttRec)
         {
             var handler = InvoiceChanged;
@@ -524,6 +528,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
             _supper_access = "";
         }
 
+        /// <summary>
+        /// Cần viết OnAmChanged(AM); cuối hàm để dùng LeftPanel
+        /// </summary>
+        /// <param name="sttrec"></param>
+        /// <param name="mode"></param>
         public virtual void ViewInvoice(string sttrec, V6Mode mode)
         {
             throw new NotImplementedException();
@@ -3624,7 +3633,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
-        public void ViewLblKieuPost(Label lblKieuPostColor, ComboBox cboKieuPost, bool view)
+        public void ViewLblKieuPost(Label lblKieuPostColor, V6ColorComboBox cboKieuPost, bool view)
         {
             try
             {
@@ -3658,7 +3667,20 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 //    var ten_xuly = " (" + (V6Setting.IsVietnamese ? txtMaXuLy_TextBox.Data["TEN_XULY"] : txtMaXuLy_TextBox.Data["TEN_XULY2"]) + ")";
                 //    lblKieuPostColor.Text += ten_xuly;
                 //}
-                
+
+                lblKieuPostColor.ForeColor = cboKieuPost.SelectedItemTextColor;
+                //if (cboKieuPost.SelectedValue == null) return;
+                //var selectedRow = ((DataRowView)cboKieuPost.SelectedItem).Row;
+                //var color_name = selectedRow["ColorV"].ToString().Trim();
+                //if (color_name != "")
+                //{
+                //    var color = ObjectAndString.StringToColor(color_name);
+                //    lblKieuPostColor.ForeColor = color;
+                //}
+                //else
+                //{
+                //    lblKieuPostColor.ForeColor = Color.Black;
+                //}
             }
             catch (Exception ex)
             {

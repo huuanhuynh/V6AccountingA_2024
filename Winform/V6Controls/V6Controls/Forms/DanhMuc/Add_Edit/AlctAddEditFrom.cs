@@ -84,6 +84,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             lblThongTinThem.Visible = true;
             txtResetCopy.Visible = true;
             lblResetCopy.Visible = true;
+            txtTYPE_VIEW.Visible = true;
+            lblTYPE_VIEW.Visible = true;
             txtADSELECTMORE.Visible = true;
             lblADSELECTMORE.Visible = true;
             txtAMSELECTMORE.Visible = true;

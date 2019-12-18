@@ -2077,6 +2077,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                         ViewInvoice(CurrentIndex);
                     }
                 }
+                OnAmChanged(AM);
             }
             catch (Exception ex)
             {
@@ -2106,6 +2107,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                 //btnSua.Focus();
                 FormatNumberControl();
                 FormatNumberGridView();
+
+                OnInvoiceChanged(_sttRec);
             }
             catch (Exception ex)
             {

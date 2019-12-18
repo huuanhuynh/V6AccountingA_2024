@@ -2831,6 +2831,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                         ViewInvoice(CurrentIndex);
                     }
                 }
+                OnAmChanged(AM);
             }
             catch (Exception ex)
             {
@@ -2864,6 +2865,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                 //btnSua.Focus();
                 FormatNumberControl();
                 FormatNumberGridView();
+
+                OnInvoiceChanged(_sttRec);
             }
             catch (Exception ex)
             {

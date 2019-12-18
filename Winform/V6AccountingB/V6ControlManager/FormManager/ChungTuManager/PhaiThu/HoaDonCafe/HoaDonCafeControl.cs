@@ -4231,6 +4231,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 {
                     ResetForm();
                 }
+                //OnAmChanged(AM);
             }
             catch (Exception ex)
             {
@@ -4260,6 +4261,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 FormatNumberGridView();
                 FixValues();
                 EnableFunctionButtons();//Add hoadonCafe
+
+                //OnInvoiceChanged(_sttRec);
             }
             catch (Exception ex)
             {

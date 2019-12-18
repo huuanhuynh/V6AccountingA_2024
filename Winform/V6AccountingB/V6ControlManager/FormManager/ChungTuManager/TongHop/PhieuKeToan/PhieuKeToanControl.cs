@@ -1363,6 +1363,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                         ViewInvoice(CurrentIndex);
                     }
                 }
+                OnAmChanged(AM);
             }
             catch (Exception ex)
             {
@@ -1390,6 +1391,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                 //btnSua.Focus();
                 FormatNumberControl();
                 FormatNumberGridView();
+
+                OnInvoiceChanged(_sttRec);
             }
             catch (Exception ex)
             {

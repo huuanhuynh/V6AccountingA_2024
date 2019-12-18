@@ -4980,6 +4980,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 }
             }
         }
+
         public override void ViewInvoice(string sttrec, V6Mode mode)
         {
             try
@@ -5052,6 +5053,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         ViewInvoice(CurrentIndex);
                     }
                 }
+                OnAmChanged(AM);
             }
             catch (Exception ex)
             {
@@ -5086,6 +5088,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 FormatNumberGridView();
                 FixValues();
                 LoadCustomInfo();
+
+                OnInvoiceChanged(_sttRec);
             }
             catch (Exception ex)
             {

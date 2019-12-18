@@ -12,6 +12,7 @@
 	<TuKhoa TenTuKhoa='ObjectAndString' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6BusinessHelper' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Categories' 			MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='V6ColorComboBox ' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='V6ColorDataGridView' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='V6ColorTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Controls' 			  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
@@ -20,6 +21,7 @@
   <TuKhoa TenTuKhoa='V6DateTimeColor'	  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='V6DateTimePicker'	  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='V6FileIO' 					  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='V6Label' 					  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='V6Init' 					  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='V6InvoiceControl' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='V6NumberTextBox' 	MauSac = 'MediumTurquoise' 	AutoComplete = '1' />

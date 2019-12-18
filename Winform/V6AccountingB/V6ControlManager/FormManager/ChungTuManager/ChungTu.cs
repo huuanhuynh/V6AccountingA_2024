@@ -43,14 +43,14 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             view.Text = V6BusinessHelper.MoneyToWords(money, V6Setting.Language, ma_nt);
         }
-        public static V6Control GetChungTuContainer(string maCt, string itemId)
+        public static V6Control GetChungTuContainer(string maCt, string itemId) // ALCT.TYPE_VIEW 2 = showQuickView
         {
             if(maCt == "SOR")// Báo giá.
                 return new BaoGiaContainer(maCt, itemId, true);
             if(maCt == "SOC")
                 return new HoaDonCafeContainer(maCt, itemId, false);
 
-            return new ChungTuChungContainer(maCt, itemId, false);
+            return new ChungTuChungContainer(maCt, itemId);
             //switch (maCt)
             //{
             //    #region ==== Phải thu ====

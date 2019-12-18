@@ -19,11 +19,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
         private bool _showQuickViewControl;
         private V6InvoiceBase Invoice { get; set; }
 
-        public ChungTuChungContainer(string maCt, string itemId, bool showQuickView)
+        public ChungTuChungContainer(string maCt, string itemId)
         {
             MaCt = maCt;
             m_itemId = itemId;
-            _showQuickViewControl = showQuickView;
+            
             Invoice = V6BusinessHelper.CreateInvoice(MaCt);
             
             if (Invoice.Alct == null)
@@ -33,6 +33,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             else
             {
+                _showQuickViewControl = Invoice.AlctConfig.TYPE_VIEW == "2";
                 InitializeComponent();
                 MyInit();
                 AddTab();

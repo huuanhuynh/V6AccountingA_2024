@@ -4566,6 +4566,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                         ViewInvoice(CurrentIndex);
                     }
                 }
+                OnAmChanged(AM);
             }
             catch (Exception ex)
             {
@@ -4595,7 +4596,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 FormatNumberControl();
                 FormatNumberGridView();
                 FixValues();
-                
+
+                OnInvoiceChanged(_sttRec);
             }
             catch (Exception ex)
             {

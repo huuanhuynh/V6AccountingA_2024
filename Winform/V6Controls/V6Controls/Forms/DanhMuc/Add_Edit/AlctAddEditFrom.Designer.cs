@@ -174,6 +174,8 @@
             this.v6ColorTextBox13 = new V6Controls.V6ColorTextBox();
             this.label37 = new System.Windows.Forms.Label();
             this.v6ColorTextBox12 = new V6Controls.V6ColorTextBox();
+            this.txtTYPE_VIEW = new V6Controls.V6VvarTextBox();
+            this.lblTYPE_VIEW = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -848,6 +850,8 @@
             this.tabPage2.AccessibleDescription = "ADDEDITT00009";
             this.tabPage2.AutoScroll = true;
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage2.Controls.Add(this.txtTYPE_VIEW);
+            this.tabPage2.Controls.Add(this.lblTYPE_VIEW);
             this.tabPage2.Controls.Add(this.lblResetCopy);
             this.tabPage2.Controls.Add(this.txtResetCopy);
             this.tabPage2.Controls.Add(this.cboKieuPost);
@@ -889,7 +893,7 @@
             this.lblResetCopy.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblResetCopy.Name = "lblResetCopy";
             this.lblResetCopy.Size = new System.Drawing.Size(101, 17);
-            this.lblResetCopy.TabIndex = 18;
+            this.lblResetCopy.TabIndex = 20;
             this.lblResetCopy.Text = "Reset khi copy";
             this.lblResetCopy.Visible = false;
             // 
@@ -910,7 +914,7 @@
             this.txtResetCopy.Margin = new System.Windows.Forms.Padding(4);
             this.txtResetCopy.Name = "txtResetCopy";
             this.txtResetCopy.Size = new System.Drawing.Size(538, 23);
-            this.txtResetCopy.TabIndex = 19;
+            this.txtResetCopy.TabIndex = 21;
             this.toolTipV6FormControl.SetToolTip(this.txtResetCopy, "Các trường dữ liệu reset về rỗng khi copy.");
             this.txtResetCopy.Visible = false;
             // 
@@ -940,7 +944,7 @@
             this.lblAMSELECTMORE.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAMSELECTMORE.Name = "lblAMSELECTMORE";
             this.lblAMSELECTMORE.Size = new System.Drawing.Size(122, 17);
-            this.lblAMSELECTMORE.TabIndex = 16;
+            this.lblAMSELECTMORE.TabIndex = 24;
             this.lblAMSELECTMORE.Text = "AMSELECTMORE";
             this.lblAMSELECTMORE.Visible = false;
             // 
@@ -952,7 +956,7 @@
             this.lblADSELECTMORE.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblADSELECTMORE.Name = "lblADSELECTMORE";
             this.lblADSELECTMORE.Size = new System.Drawing.Size(121, 17);
-            this.lblADSELECTMORE.TabIndex = 16;
+            this.lblADSELECTMORE.TabIndex = 22;
             this.lblADSELECTMORE.Text = "ADSELECTMORE";
             this.lblADSELECTMORE.Visible = false;
             // 
@@ -964,7 +968,7 @@
             this.lblThongTinThem.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblThongTinThem.Name = "lblThongTinThem";
             this.lblThongTinThem.Size = new System.Drawing.Size(103, 17);
-            this.lblThongTinThem.TabIndex = 16;
+            this.lblThongTinThem.TabIndex = 18;
             this.lblThongTinThem.Text = "Thông tin thêm";
             this.lblThongTinThem.Visible = false;
             // 
@@ -1028,7 +1032,7 @@
             this.txtAMSELECTMORE.Margin = new System.Windows.Forms.Padding(4);
             this.txtAMSELECTMORE.Name = "txtAMSELECTMORE";
             this.txtAMSELECTMORE.Size = new System.Drawing.Size(538, 23);
-            this.txtAMSELECTMORE.TabIndex = 17;
+            this.txtAMSELECTMORE.TabIndex = 25;
             this.txtAMSELECTMORE.Visible = false;
             // 
             // txtADSELECTMORE
@@ -1048,7 +1052,7 @@
             this.txtADSELECTMORE.Margin = new System.Windows.Forms.Padding(4);
             this.txtADSELECTMORE.Name = "txtADSELECTMORE";
             this.txtADSELECTMORE.Size = new System.Drawing.Size(538, 23);
-            this.txtADSELECTMORE.TabIndex = 17;
+            this.txtADSELECTMORE.TabIndex = 23;
             this.txtADSELECTMORE.Visible = false;
             // 
             // txtExtraInfo
@@ -1067,7 +1071,7 @@
             this.txtExtraInfo.Margin = new System.Windows.Forms.Padding(4);
             this.txtExtraInfo.Name = "txtExtraInfo";
             this.txtExtraInfo.Size = new System.Drawing.Size(538, 23);
-            this.txtExtraInfo.TabIndex = 17;
+            this.txtExtraInfo.TabIndex = 19;
             this.txtExtraInfo.Visible = false;
             // 
             // label44
@@ -2465,6 +2469,36 @@
             this.v6ColorTextBox12.TabIndex = 1;
             this.v6ColorTextBox12.Visible = false;
             // 
+            // txtTYPE_VIEW
+            // 
+            this.txtTYPE_VIEW.AccessibleName = "TYPE_VIEW";
+            this.txtTYPE_VIEW.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTYPE_VIEW.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTYPE_VIEW.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtTYPE_VIEW.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTYPE_VIEW.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTYPE_VIEW.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTYPE_VIEW.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTYPE_VIEW.LeaveColor = System.Drawing.Color.White;
+            this.txtTYPE_VIEW.Location = new System.Drawing.Point(578, 183);
+            this.txtTYPE_VIEW.Name = "txtTYPE_VIEW";
+            this.txtTYPE_VIEW.Size = new System.Drawing.Size(126, 23);
+            this.txtTYPE_VIEW.TabIndex = 17;
+            this.toolTipV6FormControl.SetToolTip(this.txtTYPE_VIEW, "1 Thông thường. 2 Có LeftPanel");
+            this.txtTYPE_VIEW.Visible = false;
+            // 
+            // lblTYPE_VIEW
+            // 
+            this.lblTYPE_VIEW.AccessibleDescription = ".";
+            this.lblTYPE_VIEW.AutoSize = true;
+            this.lblTYPE_VIEW.Location = new System.Drawing.Point(396, 185);
+            this.lblTYPE_VIEW.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTYPE_VIEW.Name = "lblTYPE_VIEW";
+            this.lblTYPE_VIEW.Size = new System.Drawing.Size(86, 17);
+            this.lblTYPE_VIEW.TabIndex = 16;
+            this.lblTYPE_VIEW.Text = "TYPE_VIEW";
+            this.lblTYPE_VIEW.Visible = false;
+            // 
             // AlctAddEditFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2639,5 +2673,7 @@
         private V6ColorTextBox txtADSELECTMORE;
         private System.Windows.Forms.Label lblAMSELECTMORE;
         private V6ColorTextBox txtAMSELECTMORE;
+        private V6VvarTextBox txtTYPE_VIEW;
+        private System.Windows.Forms.Label lblTYPE_VIEW;
     }
 }

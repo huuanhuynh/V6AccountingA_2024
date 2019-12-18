@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using V6Tools.V6Convert;
 
@@ -34,7 +35,9 @@ namespace V6Controls
         [Description("Cột chỉ thị màu trong data source.")]
         public string ColorField { get; set; }
 
-		public V6ColorComboBox()
+	    public Color SelectedItemTextColor { get { return GetItemTextColor(SelectedItem); } }
+
+	    public V6ColorComboBox()
 		{
 			//
 			// TODO: Add constructor logic here
@@ -194,6 +197,7 @@ namespace V6Controls
 		private void OnDrawItem(object sender, DrawItemEventArgs e)
 		{
 		    Graphics graphics = e.Graphics;
+            graphics.SmoothingMode = SmoothingMode.HighQuality;
 		    if (e.Index >= 0 && this.Items.Count > e.Index)
 		    {
 		        object currentItem = Items[e.Index];
@@ -229,8 +233,8 @@ namespace V6Controls
                 //    graphics.DrawString(drawText, e.Font, blackBrush, e.Bounds);
                 //}
 
-		        this.SelectionStart = 0;
-		        this.SelectionLength = 0;
+		        //this.SelectionStart = 0;
+		        //this.SelectionLength = 0;
 		    }
 		}
 
@@ -259,7 +263,7 @@ namespace V6Controls
 	            var row = rowView.Row;
 	            if (row.Table.Columns.Contains(ColorField))
 	            {
-	                result = ObjectAndString.StringToColor(row[ColorField].ToString());
+	                result = ObjectAndString.StringToColor(row[ColorField].ToString().Trim());
 	            }
 	        }
             if (result.A < 255) result = Color.Black;

@@ -114,7 +114,7 @@
             this.txtcach_tinh2 = new V6Controls.V6ColorTextBox();
             this.txtcach_tinh1 = new V6Controls.V6ColorTextBox();
             this.label28 = new System.Windows.Forms.Label();
-            this.v6CheckBox3 = new V6Controls.V6CheckBox();
+            this.chkINCREASE_YN = new V6Controls.V6CheckBox();
             this.txtMau = new V6Controls.V6ColorTextBox();
             this.label35 = new System.Windows.Forms.Label();
             this.txtSTT13 = new V6Controls.V6NumberTextBox();
@@ -1026,7 +1026,7 @@
             this.tabPage3.Controls.Add(this.txtcach_tinh2);
             this.tabPage3.Controls.Add(this.txtcach_tinh1);
             this.tabPage3.Controls.Add(this.label28);
-            this.tabPage3.Controls.Add(this.v6CheckBox3);
+            this.tabPage3.Controls.Add(this.chkINCREASE_YN);
             this.tabPage3.Controls.Add(this.txtMau);
             this.tabPage3.Controls.Add(this.label35);
             this.tabPage3.Controls.Add(this.txtSTT13);
@@ -1483,18 +1483,18 @@
             this.label28.TabIndex = 153;
             this.label28.Text = "Cach_tinh1/2/3";
             // 
-            // v6CheckBox3
+            // chkINCREASE_YN
             // 
-            this.v6CheckBox3.AccessibleDescription = ".";
-            this.v6CheckBox3.AccessibleName = "INCREASE_YN";
-            this.v6CheckBox3.AutoSize = true;
-            this.v6CheckBox3.Location = new System.Drawing.Point(651, 10);
-            this.v6CheckBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.v6CheckBox3.Name = "v6CheckBox3";
-            this.v6CheckBox3.Size = new System.Drawing.Size(122, 21);
-            this.v6CheckBox3.TabIndex = 151;
-            this.v6CheckBox3.Text = "INCREASE_YN";
-            this.v6CheckBox3.UseVisualStyleBackColor = true;
+            this.chkINCREASE_YN.AccessibleDescription = ".";
+            this.chkINCREASE_YN.AccessibleName = "INCREASE_YN";
+            this.chkINCREASE_YN.AutoSize = true;
+            this.chkINCREASE_YN.Location = new System.Drawing.Point(651, 10);
+            this.chkINCREASE_YN.Margin = new System.Windows.Forms.Padding(4);
+            this.chkINCREASE_YN.Name = "chkINCREASE_YN";
+            this.chkINCREASE_YN.Size = new System.Drawing.Size(122, 21);
+            this.chkINCREASE_YN.TabIndex = 151;
+            this.chkINCREASE_YN.Text = "INCREASE_YN";
+            this.chkINCREASE_YN.UseVisualStyleBackColor = true;
             // 
             // txtMau
             // 
@@ -2029,7 +2029,7 @@
         private System.Windows.Forms.Label label27;
         private V6ColorTextBox txtMau;
         private System.Windows.Forms.Label label35;
-        private V6CheckBox v6CheckBox3;
+        private V6CheckBox chkINCREASE_YN;
         private V6ColorTextBox txtcach_tinh3;
         private V6ColorTextBox txtcach_tinh2;
         private V6ColorTextBox txtcach_tinh1;

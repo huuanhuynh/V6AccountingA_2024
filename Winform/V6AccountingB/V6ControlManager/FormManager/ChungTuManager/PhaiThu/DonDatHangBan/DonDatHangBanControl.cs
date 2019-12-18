@@ -3010,6 +3010,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         ViewInvoice(CurrentIndex);
                     }
                 }
+                OnAmChanged(AM);
             }
             catch (Exception ex)
             {
@@ -3039,6 +3040,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 FormatNumberControl();
                 FormatNumberGridView();
                 FixValues();
+
+                OnInvoiceChanged(_sttRec);
             }
             catch (Exception ex)
             {

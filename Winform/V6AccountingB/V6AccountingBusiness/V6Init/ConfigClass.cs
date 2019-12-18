@@ -189,6 +189,9 @@ namespace V6Init
         public string GRDHE_AD { get { return GetString("GRDHE_AD"); } }
         public string GRDT_AM { get { return GetString("GRDT_AM"); } }
         public string GRDT_AD { get { return GetString("GRDT_AD"); } }
+        /// <summary>
+        /// 1 Thông thường. 2 Có thêm LeftPanel
+        /// </summary>
         public string TYPE_VIEW { get { return GetString("TYPE_VIEW"); } }
         public string GRDS_Q1 { get { return GetString("GRDS_Q1"); } }
         public string GRDF_Q1 { get { return GetString("GRDF_Q1"); } }

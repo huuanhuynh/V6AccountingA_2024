@@ -105,6 +105,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void Make_Mau()
         {
+            if (!chkINCREASE_YN.Checked) return;
+
             var result = "";
             var result_mau = "";
             var _so_ct = Convert.ToString((int) txtSTT13.Value);

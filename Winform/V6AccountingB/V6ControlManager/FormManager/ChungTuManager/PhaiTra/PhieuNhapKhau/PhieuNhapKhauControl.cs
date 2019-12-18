@@ -4018,6 +4018,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         ViewInvoice(CurrentIndex);
                     }
                 }
+                OnAmChanged(AM);
             }
             catch (Exception ex)
             {
@@ -4056,6 +4057,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 FormatNumberGridView();
                 //Tinh toan rieng
                 TinhTongCong();
+
+                OnInvoiceChanged(_sttRec);
             }
             catch (Exception ex)
             {

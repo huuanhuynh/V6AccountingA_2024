@@ -3037,6 +3037,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                         ViewInvoice(CurrentIndex);
                     }
                 }
+                OnAmChanged(AM);
             }
             catch (Exception ex)
             {
@@ -3065,6 +3066,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
                 FormatNumberControl();
                 FormatNumberGridView();
+
+                OnInvoiceChanged(_sttRec);
             }
             catch (Exception ex)
             {

@@ -2325,6 +2325,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                         ViewInvoice(CurrentIndex);
                     }
                 }
+                OnAmChanged(AM);
             }
             catch (Exception ex)
             {
@@ -2393,6 +2394,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 //btnSua.Focus();
                 FormatNumberControl();
                 FormatNumberGridView();
+
+                OnInvoiceChanged(_sttRec);
             }
             catch (Exception ex)
             {

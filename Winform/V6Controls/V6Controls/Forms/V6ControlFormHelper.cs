@@ -5572,7 +5572,7 @@ namespace V6Controls.Forms
                     
                     if (grid.Columns.Contains("RGB") && field.ToUpper() == "RGB" && !bold && !back_color)
                     {
-                        string colorRGB = row.Cells["RGB"].Value.ToString();
+                        string colorRGB = row.Cells["RGB"].Value.ToString().Trim();
                         if (colorRGB != "")
                         {
                             try
