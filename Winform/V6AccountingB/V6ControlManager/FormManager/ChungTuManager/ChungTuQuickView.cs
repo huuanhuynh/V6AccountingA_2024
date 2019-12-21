@@ -19,6 +19,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         private readonly V6InvoiceBase Invoice;
         public event HandleData SelectedIndexChanged;
+        /// <summary>
+        /// Cờ tạm khóa ChangeViewInvoice khi thay đổi current_cell.
+        /// </summary>
         public bool EnableChangeInvoice { get; set; }
 
         protected virtual void OnSelectedIndexChanged(IDictionary<string, object> data)
@@ -75,17 +78,21 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 if (dataGridView1.DataSource != null && dataGridView1.Columns.Contains("STT_REC"))
                 {
-                    foreach (DataGridViewRow row in dataGridView1.SelectedRows)
-                    {
-                        row.Selected = false;
-                    }
+                    //foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+                    //{
+                    //    row.Selected = false;
+                    //}
+                    var oldCurrentCell = dataGridView1.CurrentCell;
                     foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
-                        if (row.Cells["STT_REC"].Value.ToString().Trim() == sttRec)
+                        var cell_for = row.Cells["STT_REC"];
+                        if (cell_for.Value.ToString().Trim() == sttRec)
                         {
-                            row.Selected = true;
+                            //row.Selected = true;
+                            //dataGridView1.CurrentCell = row.Cells["STT_REC"];
                             //Operation is not valid because it results in a reentrant call to the SetCurrentCellAddressCore function.
-                            //dataGridView1.CurrentCell = row.Cells["SO_CT"];
+                            if (oldCurrentCell != null) dataGridView1.CurrentCell = row.Cells[oldCurrentCell.ColumnIndex];
+                            else dataGridView1.CurrentCell = row.Cells["SO_CT"];
                             _oldIndex = row.Index;
                             break;
                         }

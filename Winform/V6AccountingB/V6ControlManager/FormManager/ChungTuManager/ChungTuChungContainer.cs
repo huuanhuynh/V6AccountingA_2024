@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -7,6 +9,7 @@ using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6Structs;
+using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ChungTuManager
 {
@@ -47,6 +50,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             _timerHideMessage.Tick += _timerHideMessage_Tick;
 
             currentTabIndex = tabControl1.SelectedIndex;
+            LoadColorList();
         }
 
         private void ChungTuChungContainer_Load(object sender, EventArgs e)
@@ -93,6 +97,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 if (_showQuickViewControl)
                 {
                     LeftControl.SetDataSource(ChungTu.AM);
+                    BaoGiaFormatQuickView(LeftControl);
                     LeftControl.SelectedIndexChanged += data =>
                     {
                         if (LeftControl.EnableChangeInvoice)
@@ -110,9 +115,14 @@ namespace V6ControlManager.FormManager.ChungTuManager
                             }
                         }
                     };
+                    LeftControl.dataGridView1.FilterChange += delegate
+                    {
+                        BaoGiaFormatQuickView(LeftControl);
+                    };
                     ChungTu.AmChanged += data =>
                     {
                         LeftControl.SetDataSource(data);
+                        BaoGiaFormatQuickView(LeftControl);
                     };
                     ChungTu.InvoiceChanged += sttRec =>
                     {
@@ -158,6 +168,55 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 this.ShowErrorException(GetType() + ".AddTab\nmethod log: " +method_log + "\n", ex);
                 //this.ShowErrorMessage(GetType() + ".AddTab: " + ex.Message, Invoice.Name);
+            }
+        }
+
+        private SortedDictionary<string, Color> colorList;
+
+        private void LoadColorList()
+        {
+            colorList = new SortedDictionary<string, Color>();
+            var alKieuPost = Invoice.AlPost;
+            foreach (DataRow row in alKieuPost.Rows)
+            {
+                try
+                {
+                    var kieu_post = row["Kieu_post"].ToString().Trim();
+                    var color_name = row["ColorV"].ToString().Trim();
+                    if (color_name != "")
+                    {
+                        var color = ObjectAndString.StringToColor(color_name);
+                        colorList[kieu_post] = color;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    this.WriteExLog(GetType() + ".LoadColorList", ex);
+                }
+            }
+        }
+        private void BaoGiaFormatQuickView(ChungTuQuickView quickView)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in quickView.dataGridView1.Rows)
+                {
+                    var kieu_post = row.Cells["Kieu_post"].Value.ToString().Trim();
+
+                    if (colorList.ContainsKey(kieu_post))
+                    {
+                        Color color = colorList[kieu_post];
+                        row.DefaultCellStyle.BackColor = color;
+                    }
+                    else
+                    {
+                        row.DefaultCellStyle.BackColor = Color.White;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".BaoGiaFormatQuickView", ex);
             }
         }
 

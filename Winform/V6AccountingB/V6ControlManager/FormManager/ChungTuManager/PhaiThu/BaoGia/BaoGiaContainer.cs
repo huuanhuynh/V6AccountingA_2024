@@ -63,7 +63,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 };
                 var ChungTu = ChungTuF3.GetChungTuControl(MaCt, ItemID, "");
                 
-                var quick_view = new ChungTuQuickView(Invoice)
+                var LeftControl = new ChungTuQuickView(Invoice)
                 {
                     Width = 200, Height = panel.Height,
                     Anchor = AnchorStyles.Top|AnchorStyles.Left|AnchorStyles.Bottom
@@ -73,12 +73,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
                 if (_showQuickViewControl)
                 {
-                    quick_view.SetDataSource(ChungTu.AM);
-                    BaoGiaFormatQuickView(quick_view);
+                    LeftControl.SetDataSource(ChungTu.AM);
+                    BaoGiaFormatQuickView(LeftControl);
 
-                    quick_view.SelectedIndexChanged += data =>
+                    LeftControl.SelectedIndexChanged += data =>
                     {
-                        if (quick_view.EnableChangeInvoice)
+                        if (LeftControl.EnableChangeInvoice)
                         {
                             if (ChungTu.Mode == V6Mode.View)
                             {
@@ -89,31 +89,31 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                             }
                             else
                             {
-                                quick_view.SetSelectedRow(ChungTu._sttRec);
+                                LeftControl.SetSelectedRow(ChungTu._sttRec);
                             }
                         }
                     };
-                    quick_view.dataGridView1.FilterChange += delegate
+                    LeftControl.dataGridView1.FilterChange += delegate
                     {
-                        BaoGiaFormatQuickView(quick_view);
+                        BaoGiaFormatQuickView(LeftControl);
                     };
 
                     ChungTu.AmChanged += data =>
                     {
-                        quick_view.SetDataSource(data);
-                        BaoGiaFormatQuickView(quick_view);
+                        LeftControl.SetDataSource(data);
+                        BaoGiaFormatQuickView(LeftControl);
                     };
                     ChungTu.InvoiceChanged += sttRec =>
                     {
-                        quick_view.SetSelectedRow(sttRec);
+                        LeftControl.SetSelectedRow(sttRec);
                     };
 
-                    panel.Controls.Add(quick_view);
+                    panel.Controls.Add(LeftControl);
                 }
 
                 
-                ChungTu.Left = _showQuickViewControl ? quick_view.Width + 3 : 3;
-                ChungTu.Width = panel.Width - (_showQuickViewControl ? quick_view.Width : 0) - 6;
+                ChungTu.Left = _showQuickViewControl ? LeftControl.Width + 3 : 3;
+                ChungTu.Width = panel.Width - (_showQuickViewControl ? LeftControl.Width : 0) - 6;
                 ChungTu.Height = panel.Height;
                 ChungTu.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
 
