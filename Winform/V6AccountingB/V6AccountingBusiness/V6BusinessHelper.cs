@@ -1987,11 +1987,11 @@ namespace V6AccountingBusiness
         /// <returns></returns>
         public static string ReadOldSelectPrinter()
         {
+            string path = Path.Combine(V6Setting.V6SoftLocalAppData_Directory, "oldPrinter");
             string s = "";
-            if (File.Exists("oldPrinter"))
+            if (File.Exists(path))
             {
-
-                FileStream fs = new FileStream("oldPrinter", FileMode.Open);
+                FileStream fs = new FileStream(path, FileMode.Open);
                 StreamReader sr = new StreamReader(fs);
                 try
                 {
@@ -2030,7 +2030,8 @@ namespace V6AccountingBusiness
         /// <param name="name"></param>
         public static void WriteOldSelectPrinter(string name)
         {
-            FileStream fs = new FileStream("oldPrinter", FileMode.Create);
+            string path = Path.Combine(V6Setting.V6SoftLocalAppData_Directory, "oldPrinter");
+            FileStream fs = new FileStream(path, FileMode.Create);
             StreamWriter sw = new StreamWriter(fs);
             try
             {

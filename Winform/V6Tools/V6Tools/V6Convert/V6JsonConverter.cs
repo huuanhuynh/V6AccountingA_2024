@@ -65,7 +65,10 @@ namespace V6Tools.V6Convert
             }
             else if (value is string)
             {
-                result = "\"" + value.ToString().Replace("\"", "\\\"") + "\"";
+                // chuyển dấu \ thành \\
+                string ss = value.ToString().Replace(@"\", @"\\");
+                // chuyển dấu " thành \"
+                result = "\"" + ss.Replace("\"", "\\\"") + "\"";
             }
             else if (value is DateTime)
             {

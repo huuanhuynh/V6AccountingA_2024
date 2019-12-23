@@ -27,6 +27,15 @@ namespace V6ThuePost
                 Field = "adjustmentType",
                 Value = "1",
             };
+
+            if (!string.IsNullOrEmpty(Program._SERIAL_CERT))
+            {
+                Program.generalInvoiceInfoConfig["certificateSerial"] = new ConfigLine
+                {
+                    Field = "certificateSerial",
+                    Value = Program._SERIAL_CERT,
+                };
+            }
             //Guid new_uid = Guid.NewGuid();
             //Program.generalInvoiceInfoConfig["transactionUuid"] = new ConfigLine
             //{
@@ -83,9 +92,19 @@ namespace V6ThuePost
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            //string result = Program.POST_NEW(richTextBox1.Text);
-            string result = Program._viettel_ws.POST(Program.createInvoiceUrl, richTextBox1.Text);
-            lblResult.Text = result;
+            string result = null;
+
+            if (string.IsNullOrEmpty(Program._SERIAL_CERT))
+            {
+                result = Program._viettel_ws.POST(Program.createInvoiceUrl, richTextBox1.Text);
+                lblResult.Text = result;
+            }
+            else
+            {
+                string templateCode = Program.generalInvoiceInfoConfig["templateCode"].Value;
+                result = Program._viettel_ws.CreateInvoiceUsbTokenGetHash(richTextBox1.Text, templateCode, Program._SERIAL_CERT);
+                lblResult.Text = result;
+            }
             
             string message = "";
             try

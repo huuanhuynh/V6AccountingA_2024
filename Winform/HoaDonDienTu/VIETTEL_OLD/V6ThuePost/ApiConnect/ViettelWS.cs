@@ -347,6 +347,7 @@ namespace V6ThuePostViettelApi
         public string CreateInvoiceUsbTokenGetHash(string json, string templateCode, string token_serial)
         {
             string result = null;
+            string result2 = null;
             //InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
             // response:
             //{
@@ -375,16 +376,16 @@ namespace V6ThuePostViettelApi
                 //    }
                 //}
 
-                string result2 = CreateInvoiceUsbTokenInsertSignature(_codetax, templateCode,
+                result2 = CreateInvoiceUsbTokenInsertSignature(_codetax, templateCode,
                     responseObject.result.hashString, sign);
-                CreateInvoiceResponse responseObject2 = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result2);
+                //CreateInvoiceResponse responseObject2 = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result2);
             }
             else
             {
                 
             }
 
-            return result;
+            return result + result2;
         }
 
         /// <summary>

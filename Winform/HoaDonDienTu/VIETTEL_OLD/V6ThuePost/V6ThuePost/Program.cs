@@ -51,6 +51,10 @@ namespace V6ThuePost
         /// </summary>
         public static string _codetax = "";
         /// <summary>
+        /// Seri usb token.
+        /// </summary>
+        public static string _SERIAL_CERT = "";
+        /// <summary>
         /// Cờ bắt đầu.
         /// </summary>
         static string flagFileName1 = ".flag1";
@@ -150,9 +154,25 @@ namespace V6ThuePost
                             sw.Close();
                             fs.Close();
                         }
-                        jsonBody = ReadData(dbfFile, "M");
-                        File.Create(flagFileName1).Close();
-                        result = POST_NEW(jsonBody);
+
+                        if (string.IsNullOrEmpty(_SERIAL_CERT))
+                        {
+                            jsonBody = ReadData(dbfFile, "M");
+                            File.Create(flagFileName1).Close();
+                            result = POST_NEW(jsonBody);
+                        }
+                        else // Ký số client. /InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
+                        {
+                            generalInvoiceInfoConfig["certificateSerial"] = new ConfigLine
+                            {
+                                Field = "certificateSerial",
+                                Value = _SERIAL_CERT,
+                            };
+                            jsonBody = ReadData(dbfFile, "M");
+                            string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
+                            _viettel_ws = new ViettelWS(baseUrl, username, password, _codetax);
+                            result = _viettel_ws.CreateInvoiceUsbTokenGetHash(jsonBody, templateCode, _SERIAL_CERT);
+                        }
                     }
                     else if (mode.StartsWith("S"))
                     {
@@ -756,6 +776,10 @@ namespace V6ThuePost
                                         break;
                                     case "codetax":
                                         _codetax = UtilityHelper.DeCrypt(line.Value);
+                                        break;
+                                    case "serialcert":
+                                    case "certificateserial":
+                                        _SERIAL_CERT = UtilityHelper.DeCrypt(line.Value);
                                         break;
                                     case "baselink":
                                         baseUrl = UtilityHelper.DeCrypt(line.Value);
