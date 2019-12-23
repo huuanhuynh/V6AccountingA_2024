@@ -94,6 +94,9 @@ namespace V6ThuePostManager
         /// </summary>
         private static string _account = null;
         private static string _accountpassword = null;
+        /// <summary>
+        /// Số seri của TOKEN USB
+        /// </summary>
         private static string _SERIAL_CERT = null;
         private static string _token_password_title = null;
         private static string _token_password = null;
@@ -220,7 +223,7 @@ namespace V6ThuePostManager
                 switch (paras.Branch)
                 {
                     case "1":
-                        ViettelWS viettel_ws = new ViettelWS(_baseUrl, _username, _password);
+                        ViettelWS viettel_ws = new ViettelWS(_baseUrl, _username, _password, _codetax);
                         result = viettel_ws.CheckConnection(_createInvoiceUrl);
                         break;
                     case "2":
@@ -2417,7 +2420,8 @@ namespace V6ThuePostManager
             try
             {
                 string jsonBody = "";
-                var _V6Http = new ViettelWS(_baseUrl, _username, _password);
+                //var _V6Http = new ViettelWS(_baseUrl, _username, _password);
+                ViettelWS viettel_ws = new ViettelWS(_baseUrl, _username, _password, _codetax);
 
                 if (paras.Mode == "TestView")
                 {
@@ -2431,19 +2435,19 @@ namespace V6ThuePostManager
                 }
                 else if (paras.Mode == "E_H1") // Hủy hóa đơn
                 {
-                    ViettelWS viettel_http = new ViettelWS(_baseUrl, _username, _password);
+                    
                     DataRow row0 = am_table.Rows[0];
                     var item = generalInvoiceInfoConfig["invoiceIssuedDate"];
                     string strIssueDate = ((DateTime)GetValue(row0, item)).ToString("yyyyMMddHHmmss");
                     string additionalReferenceDesc = paras.AM_new["STT_REC"].ToString();
                     paras.InvoiceNo = paras.AM_new["SO_SERI"].ToString().Trim() + paras.AM_new["SO_CT"].ToString().Trim();
-                    result = viettel_http.CancelTransactionInvoice(_codetax, paras.InvoiceNo, strIssueDate, additionalReferenceDesc, strIssueDate);
+                    result = viettel_ws.CancelTransactionInvoice(_codetax, paras.InvoiceNo, strIssueDate, additionalReferenceDesc, strIssueDate);
                     
                 }
                 else if (paras.Mode == "E_T1")
                 {
                     jsonBody = ReadData_Viettel(paras);
-                    result = POST_REPLACE(_V6Http, jsonBody);
+                    result = viettel_ws.POST_REPLACE(_createInvoiceUrl, jsonBody);
                 }
                 else if (paras.Mode.StartsWith("M"))
                 {
@@ -2461,9 +2465,23 @@ namespace V6ThuePostManager
                             Value = "" + new_uid,
                         };
                     }
-                    jsonBody = ReadData_Viettel(paras);
-                    //File.Create(flagFileName1).Close();
-                    result = POST_NEW(_V6Http, jsonBody);
+
+                    if (string.IsNullOrEmpty(_SERIAL_CERT))
+                    {
+                        jsonBody = ReadData_Viettel(paras);
+                        result = viettel_ws.POST_NEW(_createInvoiceUrl, jsonBody);
+                    }
+                    else // Ký số client. /InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
+                    {
+                        generalInvoiceInfoConfig["certificateSerial"] = new ConfigLine
+                        {
+                            Field = "certificateSerial",
+                            Value = _SERIAL_CERT,
+                        };
+                        jsonBody = ReadData_Viettel(paras);
+                        string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
+                        result = viettel_ws.CreateInvoiceUsbTokenGetHash(jsonBody, templateCode, _SERIAL_CERT);
+                    }
                 }
                 else if (paras.Mode.StartsWith("S"))
                 {
@@ -2494,7 +2512,7 @@ namespace V6ThuePostManager
 
                     jsonBody = ReadData_Viettel(paras);
                     //File.Create(flagFileName1).Close();
-                    result = POST_EDIT(_V6Http, jsonBody);
+                    result = viettel_ws.POST_EDIT(_modifylink, jsonBody);
                 }
 
                 //Phân tích result
@@ -2547,71 +2565,13 @@ namespace V6ThuePostManager
             return result;
         }
 
-        public static string POST_NEW(ViettelWS _V6Http, string jsonBody)
-        {
-            string result;
-            try
-            {
-                result = _V6Http.POST(_createInvoiceUrl, jsonBody);
-            }
-            catch (Exception ex)
-            {
-                result = ex.Message;
-            }
-            Logger.WriteToLog("Program.POST_NEW " + result);
-            return result;
-        }
+        
 
-        public static string POST_EDIT(ViettelWS _V6Http, string jsonBody)
-        {
-            string result;
-            try
-            {
-                result = _V6Http.POST(_modifylink, jsonBody);
-            }
-            catch (Exception ex)
-            {
-                result = ex.Message;
-            }
-            Logger.WriteToLog("Program.POST_EDIT " + result);
-            return result;
-        }
+        
 
-        /// <summary>
-        /// Hàm giống tạo mới nhưng có khác biệt trong dữ liệu.
-        /// </summary>
-        /// <param name="_V6Http"></param>
-        /// <param name="jsonBody"></param>
-        /// <returns></returns>
-        public static string POST_REPLACE(ViettelWS _V6Http, string jsonBody)
-        {
-            string result;
-            try
-            {
-                result = _V6Http.POST(_createInvoiceUrl, jsonBody);
-            }
-            catch (Exception ex)
-            {
-                result = ex.Message;
-            }
-            Logger.WriteToLog("Program.POST_NEW " + result);
-            return result;
-        }
+        
 
-        public static string POST_DRAFT(ViettelWS _V6Http, string jsonBody)
-        {
-            string result;
-            try
-            {
-                result = _V6Http.POST("InvoiceAPI/InvoiceWS/createOrUpdateInvoiceDraft/" + _codetax, jsonBody);
-            }
-            catch (Exception ex)
-            {
-                result = ex.Message;
-            }
-            Logger.WriteToLog("Program.POST_NEW " + result);
-            return result;
-        }
+        
 
         public static string ReadData_Viettel(PostManagerParams paras)
         {
@@ -2732,7 +2692,7 @@ namespace V6ThuePostManager
         /// <returns>Trả về đường dẫn file pdf.</returns>
         public static string ViettelDownloadInvoicePDF(PostManagerParams paras)
         {
-            ViettelWS viettel_ws = new ViettelWS(_baseUrl, _username, _password);
+            ViettelWS viettel_ws = new ViettelWS(_baseUrl, _username, _password, _codetax);
 
             if (paras.Mode == "1") // Mode Thể hiện
                 return viettel_ws.DownloadInvoicePDF(_codetax, _downloadlinkpdf, paras.InvoiceNo, paras.Pattern, V6Setting.V6SoftLocalAppData_Directory);
@@ -3441,6 +3401,7 @@ namespace V6ThuePostManager
                                     _accountpassword = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "serialcert":
+                                case "certificateserial":
                                     _SERIAL_CERT = UtilityHelper.DeCrypt(line.Value).ToUpper();
                                     break;
                                 case "token_password_title":

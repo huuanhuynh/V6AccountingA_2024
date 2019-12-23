@@ -1,26 +1,35 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using System.Net.Mime;
 using Newtonsoft.Json;
+using V6SignToken;
 using V6ThuePost.ViettelObjects;
+using V6Tools;
 
 namespace V6ThuePostViettelApi
 {
     public class ViettelWS
     {
         private string _baseurl = "";
+        /// <summary>
+        /// Tên người sử dụng trên hệ thống Sinvoice (Viettel), thường là codetax
+        /// </summary>
         private readonly string _username;
         private readonly string _password;
+        /// <summary>
+        /// Mã số thuế của doanh nghiệp.
+        /// </summary>
+        private string _codetax;
 
         private readonly RequestManager requestManager = new RequestManager();
 
-        public ViettelWS(string baseurl, string username, string password)
+        public ViettelWS(string baseurl, string username, string password, string codetax)
         {
             _baseurl = baseurl;
             if (!_baseurl.EndsWith("/")) _baseurl += "/";
             _username = username;
             _password = password;
+            _codetax = codetax;
         }
 
         /// <summary>
@@ -255,6 +264,151 @@ namespace V6ThuePostViettelApi
             }
 
             return message;
+        }
+
+        public string POST_DRAFT(ViettelWS _V6Http, string jsonBody)
+        {
+            string result;
+            try
+            {
+                result = _V6Http.POST("InvoiceAPI/InvoiceWS/createOrUpdateInvoiceDraft/" + _codetax, jsonBody);
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+            }
+            Logger.WriteToLog("Program.POST_NEW " + result);
+            return result;
+        }
+
+        /// <summary>
+        /// Gửi hóa đơn mới.
+        /// </summary>
+        /// <param name="_createInvoiceUrl">InvoiceAPI/InvoiceWS/createInvoice/0302375710</param>
+        /// <param name="jsonBody"></param>
+        /// <returns></returns>
+        public string POST_NEW(string _createInvoiceUrl, string jsonBody)
+        {
+            string result;
+            try
+            {
+                result = POST(_createInvoiceUrl, jsonBody);
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+            }
+            Logger.WriteToLog("ViettelWS.POST_NEW " + result);
+            return result;
+        }
+
+        /// <summary>
+        /// Hàm giống tạo mới nhưng có khác biệt trong dữ liệu.
+        /// </summary>
+        /// <param name="_createInvoiceUrl"></param>
+        /// <param name="jsonBody"></param>
+        /// <returns></returns>
+        public string POST_REPLACE(string _createInvoiceUrl, string jsonBody)
+        {
+            string result;
+            try
+            {
+                result = POST(_createInvoiceUrl, jsonBody);
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+            }
+            Logger.WriteToLog("ViettelWS.POST_REPLACE " + result);
+            return result;
+        }
+
+        /// <summary>
+        /// Gửi điều chỉnh hóa đơn.
+        /// </summary>
+        /// <param name="_modifylink"></param>
+        /// <param name="jsonBody"></param>
+        /// <returns></returns>
+        public string POST_EDIT(string _modifylink, string jsonBody)
+        {
+            string result;
+            try
+            {
+                result = POST(_modifylink, jsonBody);
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+            }
+            Logger.WriteToLog("ViettelWS.POST_EDIT " + result);
+            return result;
+        }
+
+        public string CreateInvoiceUsbTokenGetHash(string json, string templateCode, string token_serial)
+        {
+            string result = null;
+            //InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
+            // response:
+            //{
+            //"errorCode": "",
+            //"description": "",
+            //"result": {
+            //"hashString": 1258694363,  }
+            //}
+            result = POST("InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}", json);
+            CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
+
+            if (responseObject.result != null)
+            {
+                V6Sign v6sign = new V6Sign();
+                string sign = v6sign.Sign(responseObject.result.hashString, token_serial);
+                //: /InvoiceAPI/InvoiceWS/createInvoiceUsbTokenInsertSignature
+                // response:
+                //{
+                //"errorCode": "",
+                //"description": "",
+                //"result": {
+                //    "supplierTaxCode": 1258694363,
+                //    "invoiceNo": AA/16E0000001,
+                //    "transactionID": 12523522245,
+                //    "reservationCode": AXHBNK8I0H
+                //    }
+                //}
+
+                string result2 = CreateInvoiceUsbTokenInsertSignature(_codetax, templateCode,
+                    responseObject.result.hashString, sign);
+                CreateInvoiceResponse responseObject2 = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result2);
+            }
+            else
+            {
+                
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Gửi chữ ký số
+        /// </summary>
+        /// <param name="supplierTaxCode">Mã số thuế của doanh nghiệp/chi nhánh phát hành hóa đơn. Mẫu 1: 0312770607 Mẫu 2: 0312770607-001</param>
+        /// <param name="templateCode"></param>
+        /// <param name="hashString"></param>
+        /// <param name="signature"></param>
+        /// <returns></returns>
+        public string CreateInvoiceUsbTokenInsertSignature(string supplierTaxCode, string templateCode, string hashString, string signature)
+        {
+            string methodlink = "InvoiceAPI/InvoiceWS/createInvoiceUsbTokenInsertSignature";
+            string request = 
+@"{
+""supplierTaxCode"":""" + supplierTaxCode + @""",
+""templateCode"":""" + templateCode + @""",
+""hashString"":""" + hashString + @""",
+""signature"":""" + signature + @"""
+}";
+
+            string result = POST(methodlink, request);
+
+            return result;
         }
     }
 }

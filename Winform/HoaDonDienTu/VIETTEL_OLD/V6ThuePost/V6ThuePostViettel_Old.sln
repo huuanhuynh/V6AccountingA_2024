@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V6Tools", "..\..\..\V6Tools
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V6ThuePostObjects", "..\..\PostObjects\V6ThuePostObjects.csproj", "{14A2C520-1939-4B6A-B584-EE5797F26701}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V6SignToken", "..\..\V6SignToken\V6SignToken\V6SignToken.csproj", "{4BF58756-DB5E-4EEC-A711-2ED58B2FE3B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,12 @@ Global
 		{14A2C520-1939-4B6A-B584-EE5797F26701}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14A2C520-1939-4B6A-B584-EE5797F26701}.Release|Any CPU.Build.0 = Release|Any CPU
 		{14A2C520-1939-4B6A-B584-EE5797F26701}.Release|x86.ActiveCfg = Release|Any CPU
+		{4BF58756-DB5E-4EEC-A711-2ED58B2FE3B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BF58756-DB5E-4EEC-A711-2ED58B2FE3B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BF58756-DB5E-4EEC-A711-2ED58B2FE3B1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4BF58756-DB5E-4EEC-A711-2ED58B2FE3B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BF58756-DB5E-4EEC-A711-2ED58B2FE3B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BF58756-DB5E-4EEC-A711-2ED58B2FE3B1}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

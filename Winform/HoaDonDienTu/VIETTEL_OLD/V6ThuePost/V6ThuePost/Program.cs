@@ -113,7 +113,7 @@ namespace V6ThuePost
                     ReadXmlInfo(arg1_xmlFile);
                     string dbfFile = arg2;
 
-                    _viettel_ws = new ViettelWS(baseUrl, username, password);
+                    _viettel_ws = new ViettelWS(baseUrl, username, password, _codetax);
 
                     if (mode.ToUpper() == "MTEST")
                     {

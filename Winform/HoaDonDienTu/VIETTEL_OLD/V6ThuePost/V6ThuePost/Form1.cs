@@ -42,7 +42,7 @@ namespace V6ThuePost
             btnTest.Enabled = true;
             btnSend.Enabled = true;
 
-            Program._viettel_ws = new ViettelWS(txtURL.Text, txtUsername.Text, txtPassword.Text);
+            Program._viettel_ws = new ViettelWS(txtURL.Text, txtUsername.Text, txtPassword.Text, Program._codetax);
         }
 
         private void btnTest_Click(object sender, EventArgs e)
