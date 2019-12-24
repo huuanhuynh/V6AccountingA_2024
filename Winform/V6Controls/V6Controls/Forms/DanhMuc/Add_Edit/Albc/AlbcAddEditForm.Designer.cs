@@ -1193,7 +1193,7 @@
             // 
             // label7
             // 
-            this.label7.AccessibleDescription = "ADDEDITL00348";
+            this.label7.AccessibleDescription = "ADDEDITL00783";
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(6, 20);
             this.label7.Name = "label7";
@@ -1203,7 +1203,7 @@
             // 
             // label29
             // 
-            this.label29.AccessibleDescription = "ADDEDITL00350";
+            this.label29.AccessibleDescription = "ADDEDITL00785";
             this.label29.AutoSize = true;
             this.label29.Location = new System.Drawing.Point(6, 73);
             this.label29.Name = "label29";
@@ -1213,7 +1213,7 @@
             // 
             // label34
             // 
-            this.label34.AccessibleDescription = "ADDEDITL00349";
+            this.label34.AccessibleDescription = "ADDEDITL00784";
             this.label34.AutoSize = true;
             this.label34.Location = new System.Drawing.Point(6, 46);
             this.label34.Name = "label34";

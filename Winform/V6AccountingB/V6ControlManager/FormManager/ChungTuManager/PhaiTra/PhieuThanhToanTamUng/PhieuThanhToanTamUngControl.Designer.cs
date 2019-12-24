@@ -1425,7 +1425,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             // 
             // group3
             // 
-            this.group3.AccessibleDescription = "AAPCTAP2L00011";
+            this.group3.AccessibleDescription = ".";
             this.group3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.group3.Controls.Add(this.txtMaHttt);

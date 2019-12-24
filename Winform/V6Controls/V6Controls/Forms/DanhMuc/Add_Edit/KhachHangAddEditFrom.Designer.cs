@@ -438,7 +438,7 @@
             // 
             // label48
             // 
-            this.label48.AccessibleDescription = "ADDEDITL00016";
+            this.label48.AccessibleDescription = "ADDEDITL00782";
             this.label48.AutoSize = true;
             this.label48.Location = new System.Drawing.Point(378, 211);
             this.label48.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -449,7 +449,7 @@
             // 
             // label49
             // 
-            this.label49.AccessibleDescription = "ADDEDITL00014";
+            this.label49.AccessibleDescription = "ADDEDITL00780";
             this.label49.AutoSize = true;
             this.label49.Location = new System.Drawing.Point(378, 161);
             this.label49.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -460,7 +460,7 @@
             // 
             // label50
             // 
-            this.label50.AccessibleDescription = "ADDEDITL00015";
+            this.label50.AccessibleDescription = "ADDEDITL00781";
             this.label50.AutoSize = true;
             this.label50.Location = new System.Drawing.Point(378, 186);
             this.label50.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1914,7 +1914,7 @@
             // 
             // btnXoaHinhS
             // 
-            this.btnXoaHinhS.AccessibleDescription = "ADDEDITB00005";
+            this.btnXoaHinhS.AccessibleDescription = "ADDEDITB00025";
             this.btnXoaHinhS.AccessibleName = "";
             this.btnXoaHinhS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnXoaHinhS.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -2000,7 +2000,7 @@
             // 
             // btnChonHinhS
             // 
-            this.btnChonHinhS.AccessibleDescription = "ADDEDITB00004";
+            this.btnChonHinhS.AccessibleDescription = "ADDEDITB00024";
             this.btnChonHinhS.AccessibleName = "";
             this.btnChonHinhS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnChonHinhS.ImeMode = System.Windows.Forms.ImeMode.NoControl;

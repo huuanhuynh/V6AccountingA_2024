@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
@@ -20,9 +21,23 @@ namespace V6SignToken
 
             string certString = GetCertString(token_serial_hex, out signCert);
 
-            return certString;
+            string signHash = SignHash(signCert, hash);
+
+            return signHash;
         }
 
+        private static string SignHash(X509Certificate2 cert, string hash)
+        {
+            byte[] rgbHash = Convert.FromBase64String(hash);
+            return Convert.ToBase64String(((RSACryptoServiceProvider)cert.PrivateKey).SignHash(rgbHash, "SHA1"));
+        }
+
+        /// <summary>
+        /// Mã 64 của RawData.
+        /// </summary>
+        /// <param name="token_serial"></param>
+        /// <param name="signCert">Trả về cert được chọn.</param>
+        /// <returns></returns>
         private static string GetCertString(string token_serial, out X509Certificate2 signCert)
         {
             signCert = SelectCertificate(token_serial);

@@ -356,7 +356,8 @@ namespace V6ThuePostViettelApi
             //"result": {
             //"hashString": 1258694363,  }
             //}
-            result = POST("InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}", json);
+            result = POST("InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/" + _codetax, json);
+            result2 = result;
             CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
 
             if (responseObject.result != null)
@@ -385,7 +386,7 @@ namespace V6ThuePostViettelApi
                 
             }
 
-            return result + result2;
+            return result2;
         }
 
         /// <summary>

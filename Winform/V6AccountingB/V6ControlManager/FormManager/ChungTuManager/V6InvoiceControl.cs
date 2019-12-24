@@ -384,14 +384,15 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     if (container is HD_Detail)
                     {
                         string L_FIELD_N = "L_FIELDS" + container.Name.Right(1);
-                        if (data.Columns.Contains(L_FIELD_N))
+                        if (data.Columns.Contains(L_FIELD_N) && data.Rows.Count > 0)
                         {
                             edit_readonly.AddRange(ObjectAndString.SplitString(data.Rows[0][L_FIELD_N].ToString()));
                         }
                     }
                     else
                     {
-                        edit_readonly.AddRange(ObjectAndString.SplitString(data.Rows[0]["L_FIELDS0"].ToString()));
+                        if (data.Rows.Count > 0)
+                            edit_readonly.AddRange(ObjectAndString.SplitString(data.Rows[0]["L_FIELDS0"].ToString()));
                     }
                 }
                 catch (Exception ex2)

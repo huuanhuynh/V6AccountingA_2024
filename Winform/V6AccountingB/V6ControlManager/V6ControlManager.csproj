@@ -624,6 +624,18 @@
     <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonDonHang\CDH_HoaDonKetQua.Designer.cs">
       <DependentUpon>CDH_HoaDonKetQua.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapKhau\ChonDeNghiNhap\INY_PNKhau_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapKhau\ChonDeNghiNhap\INY_PNKhau_Form.Designer.cs">
+      <DependentUpon>INY_PNKhau_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapKhau\ChonDeNghiNhap\INY_PNKhau_KetQua.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapKhau\ChonDeNghiNhap\INY_PNKhau_KetQua.Designer.cs">
+      <DependentUpon>INY_PNKhau_KetQua.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapMua\ChonDeNghiNhap\INY_PNMua_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5977,6 +5989,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDon\ChonDonHang\CDH_HoaDonKetQua.resx">
       <DependentUpon>CDH_HoaDonKetQua.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapKhau\ChonDeNghiNhap\INY_PNKhau_Form.resx">
+      <DependentUpon>INY_PNKhau_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapKhau\ChonDeNghiNhap\INY_PNKhau_KetQua.resx">
+      <DependentUpon>INY_PNKhau_KetQua.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapMua\ChonDeNghiNhap\INY_PNMua_Form.resx">
       <DependentUpon>INY_PNMua_Form.cs</DependentUpon>

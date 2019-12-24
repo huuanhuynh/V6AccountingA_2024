@@ -61,6 +61,11 @@ namespace V6Init
             return null;
         }
 
+        private static SortedDictionary<string, string> ExceptID = new SortedDictionary<string, string>()
+        {
+            {"INVOICEM00020", "INVOICEM00020"},
+            {"", ""},
+        };
         public static SortedDictionary<string, string> GetTextDic(List<string> ids, string lang, string formName)
         {
             var result = new SortedDictionary<string, string>();
@@ -74,6 +79,7 @@ namespace V6Init
                 {
                     if (result.ContainsKey(COLUMN_NAME))
                     {
+                        if(COLUMN_NAME.StartsWith("REPORTM0") || !ExceptID.ContainsKey(COLUMN_NAME))
                         Logger.WriteToLog(string.Format("CorpLan.GetTexDic form: {0}, samekey: {1}", formName, COLUMN_NAME), "V6LangLog");
                     }
                     result[COLUMN_NAME] = dataDictionary[COLUMN_NAME];
