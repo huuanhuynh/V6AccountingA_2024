@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using V6ThuePostViettelApi;
 using V6Tools;
 using V6Tools.V6Convert;
 using Newtonsoft.Json;
+using Spy;
+using Spy.SpyObjects;
 using V6ThuePost.ViettelObjects;
 
 namespace V6ThuePost
@@ -54,6 +58,8 @@ namespace V6ThuePost
         /// Seri usb token.
         /// </summary>
         public static string _SERIAL_CERT = "";
+        private static string token_password_title = "";
+        private static string token_password = "";
         /// <summary>
         /// Cờ bắt đầu.
         /// </summary>
@@ -134,6 +140,7 @@ namespace V6ThuePost
                     }
                     else if (mode.StartsWith("M"))
                     {
+                        StartAutoInputTokenPassword();
                         generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
                         {
                             Field = "adjustmentType",
@@ -239,6 +246,7 @@ namespace V6ThuePost
                 }
                 catch (Exception ex)
                 {
+                    StopAutoInputTokenPassword();
                     File.Create(flagFileName3).Close();
                     //MessageBox.Show(ex.Message);
                     BaseMessage.Show(ex.Message, 500);
@@ -781,6 +789,12 @@ namespace V6ThuePost
                                     case "certificateserial":
                                         _SERIAL_CERT = UtilityHelper.DeCrypt(line.Value);
                                         break;
+                                    case "token_password_title":
+                                        token_password_title = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                        break;
+                                    case "token_password":
+                                        token_password = UtilityHelper.DeCrypt(line.Value);
+                                        break;
                                     case "baselink":
                                         baseUrl = UtilityHelper.DeCrypt(line.Value);
                                         break;
@@ -882,6 +896,79 @@ namespace V6ThuePost
             config.DataType = reader.GetAttribute("DataType");
             config.Format = reader.GetAttribute("Format");
             return config;
+        }
+
+
+        private static void AutoInputTokenPassword()
+        {
+            try
+            {
+                //Find input password windows.
+                Spy001 spy = new Spy001();
+                var thisProcessID = Process.GetCurrentProcess().Id;
+                SpyWindowHandle input_password_window = spy.FindWindow(token_password_title, thisProcessID);
+
+                while (input_password_window == null)
+                {
+                    input_password_window = spy.FindWindow(token_password_title, thisProcessID);
+                }
+                //Find input password textbox, ok button
+                //SpyWindowHandle input_handle = null;
+                //SpyWindowHandle chk_soft_handle = null;
+                //SpyWindowHandle ok_button_handle = null;
+                //SpyWindowHandle soft_keyboard = null;
+
+                //foreach (KeyValuePair<string, SpyWindowHandle> child_item in input_password_window.Childs)
+                //{
+                //    if (child_item.Value.Class.ClassName == "Edit")//Kích hoạt bàn phím ảo
+                //    {
+                //        input_handle = child_item.Value;
+                //    }
+                //    else if (child_item.Value.Text == "Đăng nhập")
+                //    {
+                //        ok_button_handle = child_item.Value;
+                //    }
+                //    else if (child_item.Value.Text.StartsWith("Kích hoạt"))
+                //    {
+                //        chk_soft_handle = child_item.Value;
+                //    }
+                //    else if (child_item.Value.Text == "soft keyboard")
+                //    {
+                //        soft_keyboard = child_item.Value;
+                //    }
+                //}
+
+                //Input password
+                {
+                    input_password_window.SetForegroundWindow();
+                    //if (input_handle != null) input_handle.SetFocus();
+                    foreach (char c in token_password)
+                    {
+                        spy.SendKeyPress(c);
+                    }
+                    spy.SendKeyPressEnter();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteToLog("Program.AutoInputTokenPassword " + ex.Message);
+            }
+        }
+
+        public static void StartAutoInputTokenPassword()
+        {
+            StopAutoInputTokenPassword();
+            if (string.IsNullOrEmpty(token_password)) return;
+            if (string.IsNullOrEmpty(token_password_title)) return;
+            autoToken = new Thread(AutoInputTokenPassword);
+            //autoToken.IsBackground = true;
+            autoToken.Start();
+        }
+
+        private static Thread autoToken = null;
+        public static void StopAutoInputTokenPassword()
+        {
+            if (autoToken != null && autoToken.IsAlive) autoToken.Abort();
         }
 
     }

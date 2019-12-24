@@ -42,6 +42,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Git\MicrosoftSource\Framework35\Lib\Winform\BkavCommand35\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Spy001">
+      <HintPath>..\..\..\..\..\Lib\Winform\V6ThuePost\VNPT_HCM\Spy001.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

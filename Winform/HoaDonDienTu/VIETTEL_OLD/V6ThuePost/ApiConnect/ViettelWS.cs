@@ -348,14 +348,6 @@ namespace V6ThuePostViettelApi
         {
             string result = null;
             string result2 = null;
-            //InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
-            // response:
-            //{
-            //"errorCode": "",
-            //"description": "",
-            //"result": {
-            //"hashString": 1258694363,  }
-            //}
             result = POST("InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/" + _codetax, json);
             result2 = result;
             CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
@@ -364,26 +356,12 @@ namespace V6ThuePostViettelApi
             {
                 V6Sign v6sign = new V6Sign();
                 string sign = v6sign.Sign(responseObject.result.hashString, token_serial);
-                //: /InvoiceAPI/InvoiceWS/createInvoiceUsbTokenInsertSignature
-                // response:
-                //{
-                //"errorCode": "",
-                //"description": "",
-                //"result": {
-                //    "supplierTaxCode": 1258694363,
-                //    "invoiceNo": AA/16E0000001,
-                //    "transactionID": 12523522245,
-                //    "reservationCode": AXHBNK8I0H
-                //    }
-                //}
-
-                result2 = CreateInvoiceUsbTokenInsertSignature(_codetax, templateCode,
-                    responseObject.result.hashString, sign);
-                //CreateInvoiceResponse responseObject2 = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result2);
+                result2 = CreateInvoiceUsbTokenInsertSignature(_codetax, templateCode, responseObject.result.hashString, sign);
             }
             else
             {
-                
+                Logger.WriteToLog("" + result);
+                return "{\"errorCode\": \"POST1_RESULT_NULL\",\"description\": \"Lấy hash null.\",\"result\": null}";
             }
 
             return result2;
