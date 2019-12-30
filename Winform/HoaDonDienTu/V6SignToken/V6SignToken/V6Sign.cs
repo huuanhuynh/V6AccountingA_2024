@@ -26,6 +26,12 @@ namespace V6SignToken
             return signHash;
         }
 
+        /// <summary>
+        /// Ký PrivateKey SHA1
+        /// </summary>
+        /// <param name="cert"></param>
+        /// <param name="hash"></param>
+        /// <returns></returns>
         private static string SignHash(X509Certificate2 cert, string hash)
         {
             byte[] rgbHash = Convert.FromBase64String(hash);

@@ -18,6 +18,8 @@ namespace V6ThuePost
 {
     static class Program
     {
+        public static bool _TEST_ = true;
+        private static DateTime _TEST_DATE_ = DateTime.Now;
         #region ===== VAR =====
         public static ViettelWS _viettel_ws = null;
         /// <summary>
@@ -101,6 +103,19 @@ namespace V6ThuePost
         [STAThread]
         static void Main(string[] args)
         {
+            var startupPath = Application.StartupPath;
+            var dir = new DirectoryInfo(startupPath);
+            var dir_name = dir.Name.ToLower();
+            if (dir_name == "debug")
+            {
+                _TEST_ = true;
+                MessageBox.Show("Test");
+            }
+            else
+            {
+                _TEST_ = false;
+            }
+
             if (args != null && args.Length > 0)
             {
                 string result = "";
@@ -178,7 +193,7 @@ namespace V6ThuePost
                             jsonBody = ReadData(dbfFile, "M");
                             string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
                             _viettel_ws = new ViettelWS(baseUrl, username, password, _codetax);
-                            result = _viettel_ws.CreateInvoiceUsbTokenGetHash(jsonBody, templateCode, _SERIAL_CERT);
+                            result = _viettel_ws.CreateInvoiceUsbTokenGetHash_Sign(jsonBody, templateCode, _SERIAL_CERT);
                         }
                     }
                     else if (mode.StartsWith("S"))
@@ -217,6 +232,15 @@ namespace V6ThuePost
                         jsonBody = ReadData(dbfFile, "T");
                         File.Create(flagFileName1).Close();
                         result = POST_NEW(jsonBody);
+                    }
+                    else if (mode == "H")
+                    {
+                        string soseri_soct = arg2;
+                        string ngay_ct = ObjectAndString.StringToDate(arg3).ToString("yyyyMMddHHmmss");
+                        string stt_rec = arg4;
+                        MakeFlagNames(stt_rec);
+                        File.Create(flagFileName1).Close();
+                        result = _viettel_ws.CancelTransactionInvoice(_codetax, soseri_soct, ngay_ct, stt_rec, ngay_ct);
                     }
 
                     //Phân tích result

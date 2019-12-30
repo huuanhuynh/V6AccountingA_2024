@@ -56,13 +56,13 @@ namespace V6ThuePostViettelApi
         private const string cancel_link = @"InvoiceAPI/InvoiceWS/cancelTransactionInvoice";
 
         /// <summary>
-        /// Chưa thành công!!!!!
+        /// Hủy hóa đơn.
         /// </summary>
-        /// <param name="codeTax"></param>
-        /// <param name="invoiceNo"></param>
-        /// <param name="strIssueDate"></param>
+        /// <param name="codeTax">Mã số thuế service.</param>
+        /// <param name="invoiceNo">AB/19E0000001</param>
+        /// <param name="strIssueDate">yyyyMMddHHmmss</param>
         /// <param name="additionalReferenceDesc"></param>
-        /// <param name="additionalReferenceDate"></param>
+        /// <param name="additionalReferenceDate">strIssueDate</param>
         /// <returns></returns>
         public string CancelTransactionInvoice(string codeTax, string invoiceNo, string strIssueDate, string additionalReferenceDesc, string additionalReferenceDate)
         {
@@ -277,7 +277,7 @@ namespace V6ThuePostViettelApi
             {
                 result = ex.Message;
             }
-            Logger.WriteToLog("Program.POST_NEW " + result);
+            Logger.WriteToLog("ViettelWS.POST_DRAFT " + result);
             return result;
         }
 
@@ -344,12 +344,32 @@ namespace V6ThuePostViettelApi
             return result;
         }
 
-        public string CreateInvoiceUsbTokenGetHash(string json, string templateCode, string token_serial)
+        public CreateInvoiceResponse POST_NEW_TOKEN(string json, string templateCode, string token_serial)
+        {
+            string result = null;
+            CreateInvoiceResponse responseObject = CreateInvoiceUsbTokenGetHash(json, out result);
+
+            if (responseObject.result != null)
+            {
+                V6Sign v6sign = new V6Sign();
+                string sign = v6sign.Sign(responseObject.result.hashString, token_serial);
+                string result2 = CreateInvoiceUsbTokenInsertSignature(_codetax, templateCode, responseObject.result.hashString, sign);
+                responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result2);
+                return responseObject;
+            }
+            else
+            {
+                Logger.WriteToLog("POST_NEW_TOKEN: " + result);
+                return responseObject;
+                //return "{\"errorCode\": \"POST1_RESULT_NULL\",\"description\": \"Lấy hash null.\",\"result\": null}";
+            }
+        }
+
+        public string CreateInvoiceUsbTokenGetHash_Sign(string json, string templateCode, string token_serial)
         {
             string result = null;
             string result2 = null;
             result = POST("InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/" + _codetax, json);
-            result2 = result;
             CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
 
             if (responseObject.result != null)
@@ -367,13 +387,21 @@ namespace V6ThuePostViettelApi
             return result2;
         }
 
+
+        public CreateInvoiceResponse CreateInvoiceUsbTokenGetHash(string json, out string result)
+        {
+            result = POST("InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/" + _codetax, json);
+            CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
+            return responseObject;
+        }
+
         /// <summary>
         /// Gửi chữ ký số
         /// </summary>
         /// <param name="supplierTaxCode">Mã số thuế của doanh nghiệp/chi nhánh phát hành hóa đơn. Mẫu 1: 0312770607 Mẫu 2: 0312770607-001</param>
-        /// <param name="templateCode"></param>
-        /// <param name="hashString"></param>
-        /// <param name="signature"></param>
+        /// <param name="templateCode">Mã mẫu hóa đơn: 01GTKT0/001</param>
+        /// <param name="hashString">Chuỗi hash trả về từ hàm CreateInvoiceUsbTokenGetHash.</param>
+        /// <param name="signature">Chuỗi đã ký.</param>
         /// <returns></returns>
         public string CreateInvoiceUsbTokenInsertSignature(string supplierTaxCode, string templateCode, string hashString, string signature)
         {

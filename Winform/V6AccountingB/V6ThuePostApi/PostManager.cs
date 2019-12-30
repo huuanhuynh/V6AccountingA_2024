@@ -2480,7 +2480,7 @@ namespace V6ThuePostManager
                         };
                         jsonBody = ReadData_Viettel(paras);
                         string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
-                        result = viettel_ws.CreateInvoiceUsbTokenGetHash(jsonBody, templateCode, _SERIAL_CERT);
+                        result = viettel_ws.CreateInvoiceUsbTokenGetHash_Sign(jsonBody, templateCode, _SERIAL_CERT);
                     }
                 }
                 else if (paras.Mode.StartsWith("S"))

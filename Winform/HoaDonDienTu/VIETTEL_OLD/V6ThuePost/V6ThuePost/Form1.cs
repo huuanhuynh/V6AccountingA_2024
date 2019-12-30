@@ -102,7 +102,7 @@ namespace V6ThuePost
             else
             {
                 string templateCode = Program.generalInvoiceInfoConfig["templateCode"].Value;
-                result = Program._viettel_ws.CreateInvoiceUsbTokenGetHash(richTextBox1.Text, templateCode, Program._SERIAL_CERT);
+                result = Program._viettel_ws.CreateInvoiceUsbTokenGetHash_Sign(richTextBox1.Text, templateCode, Program._SERIAL_CERT);
                 lblResult.Text = result;
             }
             
