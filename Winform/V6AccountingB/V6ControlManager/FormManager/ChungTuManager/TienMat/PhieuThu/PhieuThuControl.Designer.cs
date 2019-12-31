@@ -1254,7 +1254,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.thayThe2Menu,
             this.thuNoTaiKhoanMenu});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(165, 158);
+            this.menuChucNang.Size = new System.Drawing.Size(165, 180);
+            this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
             // 
             // ThuCongNoMenu
             // 

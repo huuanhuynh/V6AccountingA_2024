@@ -9,6 +9,7 @@ namespace V6Tools.V6Convert
 {
     public static class V6JsonConverter
     {
+        public static string DateTimeFormat = null;
         //JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
         /// <summary>
         /// <para>Chuyển 1 đối tượng dạng Class thành json.</para>
@@ -16,9 +17,12 @@ namespace V6Tools.V6Convert
         /// <para>"value" có thể là 1 "string" hoặc number hoặc {Class}</para>
         /// </summary>
         /// <param name="o"></param>
+        /// <param name="dateTimeFormat">null mặc định.</param>
         /// <returns></returns>
-        public static string ClassToJson(object o)
+        public static string ClassToJson(object o, string dateTimeFormat)
         {
+            var of = DateTimeFormat;
+            DateTimeFormat = dateTimeFormat;
             string result = "";
             foreach (PropertyInfo property in o.GetType().GetProperties())
             {
@@ -36,6 +40,7 @@ namespace V6Tools.V6Convert
             }
 
             if (result.Length > 0) result = result.Substring(1);
+            DateTimeFormat = of;
             return "{" + result + "\n}";
         }
 
@@ -44,12 +49,18 @@ namespace V6Tools.V6Convert
         {
             string result = "";
 
-            result = string.Format("\"{0}\":{1}", name, ObjectToJson(value));
+            result = string.Format("\"{0}\":{1}", name, ObjectToJson(value, DateTimeFormat));
 
             return result;
         }
 
-        private static string ObjectToJson(object value)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="dateTimeFormat"></param>
+        /// <returns></returns>
+        private static string ObjectToJson(object value, string dateTimeFormat)
         {
             if (value == null || value is DBNull) return "null";
 
@@ -75,7 +86,14 @@ namespace V6Tools.V6Convert
                 DateTime date = (DateTime)value;
                 //DateTime now = DateTime.Now;
                 //DateTime date_time = new DateTime(date.Year, date.Month, date.Day, now.Hour, now.Minute, now.Second);
-                result = "" + (long)(date - new DateTime(1970, 1, 1)).TotalMilliseconds;
+                if (string.IsNullOrEmpty(dateTimeFormat)) // Kiểu gửi lên hóa đơn điện tử Viettel
+                {
+                    result = "" + (long) (date - new DateTime(1970, 1, 1)).TotalMilliseconds;
+                }
+                else
+                {
+                    result = date.ToString(dateTimeFormat);
+                }
             }
             //else if (value is Boolean)
             //{
@@ -102,7 +120,7 @@ namespace V6Tools.V6Convert
             }
             else if (value.GetType().IsClass) // object
             {
-                result = ClassToJson(value);
+                result = ClassToJson(value, dateTimeFormat);
             }
             else
             {
@@ -121,7 +139,7 @@ namespace V6Tools.V6Convert
             string result = "";
             foreach (object o in value)
             {
-                result += "," + ObjectToJson(o);
+                result += "," + ObjectToJson(o, DateTimeFormat);
             }
             if (result.Length > 0) result = result.Substring(1);
             return "[" + result + "]";

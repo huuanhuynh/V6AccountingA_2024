@@ -710,29 +710,52 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                //Get aldm row
-                IDictionary<string, object> keys = new Dictionary<string, object>();
-                keys.Add("MA_DM", TableName.ToString());
-                var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
-                if (aldm.Rows.Count == 1)
+                _aldmConfig = ConfigManager.GetAldmConfig(TableName.ToString());
+                // Get new id proc 
+                if (_aldmConfig.HaveInfo)
                 {
-                    var _dataRow = aldm.Rows[0];
-                    var increase = _dataRow["increase_yn"].ToString().Trim();
-                    if (increase == "1")
+                    // Trường hợp mã có phân nhóm.
+                    // DataOld cần thêm dữ liệu AUTOID_LOAINH AUTOID_NHVALUE
+                    if (DataOld != null && DataOld.ContainsKey("AUTOID_LOAINH") && DataOld.ContainsKey("AUTOID_NHVALUE"))
                     {
-                        update_stt13 = true;
-                        var id_field = _dataRow["Value"].ToString().Trim().ToUpper();
-                        var stt13 = ObjectAndString.ObjectToInt(_dataRow["Stt13"]);
-                        var transform = _dataRow["transform"].ToString().Trim();
-                        var value = string.Format(transform, stt13 + 1);
-                        IDictionary<string, object> value_dic = new SortedDictionary<string, object>();
-                        value_dic.Add(id_field, value);
-                        V6ControlFormHelper.SetSomeDataDictionary(this, value_dic);
-                        //var control = V6ControlFormHelper.GetControlByAccesibleName(this, id_field);
-                        //if (control != null && control is TextBox)
-                        //{
-                        //    ((TextBox) control).Text = value;
-                        //}
+
+                        SqlParameter[] plist =
+                        {
+                            new SqlParameter("@MA_DM", TableName.ToString()),
+                            new SqlParameter("@Vvalue", DataOld.ContainsKey(_aldmConfig.VALUE.ToUpper()) ? DataOld[_aldmConfig.VALUE.ToUpper()].ToString().Trim() : ""),
+                            new SqlParameter("@Loai_nh", DataOld["AUTOID_LOAINH"]),
+                            new SqlParameter("@NhValue", DataOld["AUTOID_NHVALUE"]),
+                            new SqlParameter("@User_id", V6Login.UserId),
+                            
+                        };
+                        var data = V6BusinessHelper.ExecuteProcedure("VPA_GET_AUTOID_AL_ALL", plist).Tables[0];
+                        if (data.Rows.Count > 0)
+                        {
+                            string value = data.Rows[0]["Vvalue"].ToString();
+                            IDictionary<string, object> value_dic = new SortedDictionary<string, object>();
+                            value_dic.Add(_aldmConfig.VALUE.ToUpper(), value);
+                            V6ControlFormHelper.SetSomeDataDictionary(this, value_dic);
+                        }
+                    }
+                    else
+                    {
+                        //var _dataRow = aldm.Rows[0];
+                        if (_aldmConfig.INCREASE_YN)
+                        {
+                            update_stt13 = true;
+                            var id_field = _aldmConfig.VALUE.ToUpper();
+                            var stt13 = ObjectAndString.ObjectToInt(_aldmConfig.STT13);
+                            var transform = _aldmConfig.TRANSFORM;
+                            var value = string.Format(transform, stt13 + 1);
+                            IDictionary<string, object> value_dic = new SortedDictionary<string, object>();
+                            value_dic.Add(id_field, value);
+                            V6ControlFormHelper.SetSomeDataDictionary(this, value_dic);
+                            //var control = V6ControlFormHelper.GetControlByAccesibleName(this, id_field);
+                            //if (control != null && control is TextBox)
+                            //{
+                            //    ((TextBox) control).Text = value;
+                            //}
+                        }
                     }
                 }
             }

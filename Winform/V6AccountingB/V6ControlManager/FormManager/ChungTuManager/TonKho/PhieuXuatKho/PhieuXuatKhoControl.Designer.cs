@@ -210,7 +210,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.thayThe2Menu,
             this.chonDeNghiXuatMenu});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(195, 180);
+            this.menuChucNang.Size = new System.Drawing.Size(195, 202);
+            this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
             // 
             // XuatHetKhoMenu
             // 

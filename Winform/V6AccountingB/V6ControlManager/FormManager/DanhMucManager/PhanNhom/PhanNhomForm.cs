@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
+using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
 using V6Structs;
 using V6Tools;
@@ -40,13 +41,22 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
 
         private void MyInit()
         {
-            btnNhan.Enabled = false;
-            LoadDataThread();
+            try
+            {
+                btnNhan.Enabled = false;
+                _lookupConfig = V6Lookup.GetV6lookupConfigByTableName(_dataTableName);
+                LoadDataThread();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".MyInit", ex);
+            }
         }
 
         private string _groupTableNameName, _dataTableName;
+        private V6lookupConfig _lookupConfig;
         private string _field = "", _field0 = "", _idField, _idField0;
-        private DataTable _dataGroup = null, _data = null;
+        private DataTable _dataGroup = null, _dataSource = null;
         private DataView _viewGroup, _viewData;
 
         private void PhanNhomForm_Load(object sender, EventArgs e)
@@ -70,7 +80,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
         private void LoadData()
         {
             _dataGroup = V6BusinessHelper.SelectTable(_groupTableNameName);
-            _data = V6BusinessHelper.SelectTable(_dataTableName);
+            _dataSource = V6BusinessHelper.SelectTable(_dataTableName);
 
             //CheckChuaPhanNhom();
 
@@ -81,13 +91,13 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
         {
             try
             {
-                if (!_data.Columns.Contains(_field))
+                if (!_dataSource.Columns.Contains(_field))
                 {
                     this.ShowWarningMessage("Loại nhóm không tồn tại!");
                     return;
                 }
                 //Them Loai_nh chưa phân nhóm.
-                DataView tempView = new DataView(_data.Copy());
+                DataView tempView = new DataView(_dataSource.Copy());
                 tempView.RowFilter = string.Format("Isnull({0},'') = ''", _field);
                 if (tempView.Count > 0)
                 {
@@ -236,11 +246,11 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
                 _viewGroup.RowFilter = "Loai_nh = " + (comboBox1.SelectedIndex + 1);
                 _viewGroup.Sort = "Ma_nh";
 
-                listBox1.DisplayMember = V6Setting.IsVietnamese ? "Ten_nh" : "Ten_nh2";
-                listBox1.ValueMember = "Ma_nh";
-                listBox1.DataSource = _viewGroup;
-                listBox1.DisplayMember = V6Setting.IsVietnamese ? "Ten_nh" : "Ten_nh2";
-                listBox1.ValueMember = "Ma_nh";
+                listBoxMaNh.DisplayMember = V6Setting.IsVietnamese ? "Ten_nh" : "Ten_nh2";
+                listBoxMaNh.ValueMember = "Ma_nh";
+                listBoxMaNh.DataSource = _viewGroup;
+                listBoxMaNh.DisplayMember = V6Setting.IsVietnamese ? "Ten_nh" : "Ten_nh2";
+                listBoxMaNh.ValueMember = "Ma_nh";
 
                 var viewGroup2 = new DataView(_viewGroup.ToTable());
 
@@ -251,10 +261,10 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
                 cboToGroupList.ValueMember = "Ma_nh";
                 
 
-                if (listBox1.Items.Count > 0)
+                if (listBoxMaNh.Items.Count > 0)
                 {
-                    listBox1.SelectedIndex = 0;
-                    ViewData(listBox1.SelectedValue.ToString().Trim());
+                    listBoxMaNh.SelectedIndex = 0;
+                    ViewData(listBoxMaNh.SelectedValue.ToString().Trim());
                 }
                 else
                 {
@@ -272,7 +282,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
             try
             {
                 if (_viewData == null)
-                    _viewData = new DataView(_data);
+                    _viewData = new DataView(_dataSource);
 
                 if (string.IsNullOrEmpty(id))
                 {
@@ -287,15 +297,14 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
                 dataGridView1.DataSource = _viewData;
                 dataGridView1.Refresh();
 
-                V6lookupConfig config = V6Lookup.GetV6lookupConfigByTableName(_dataTableName);
-                string showFields = config.GRDS_V1;
-                string formatStrings =config.GRDF_V1;
-                string headerString = V6Setting.IsVietnamese ? config.GRDHV_V1 : config.GRDHE_V1;
-                V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
+                //string showFields = _lookupConfig.GRDS_V1;
+                //string formatStrings = _lookupConfig.GRDF_V1;
+                string headerString = V6Setting.IsVietnamese ? _lookupConfig.GRDHV_V1 : _lookupConfig.GRDHE_V1;
+                V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, _lookupConfig.GRDS_V1, _lookupConfig.GRDF_V1, headerString);
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".ViewData " + ex.Message);
+                this.ShowErrorException(GetType() + ".ViewData", ex);
             }
         }
 
@@ -303,7 +312,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
         {
             if (!IsReady) return;
             GetFieldNameInfo(comboBox1.SelectedIndex + 1);
-            if (!_data.Columns.Contains(_field))
+            if (!_dataSource.Columns.Contains(_field))
             {
                 this.ShowWarningMessage("Loại nhóm không tồn tại!");
                 return;
@@ -315,7 +324,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!IsReady) return;
-            ViewData(listBox1.SelectedValue.ToString().Trim());
+            ViewData(listBoxMaNh.SelectedValue.ToString().Trim());
         }
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
@@ -350,19 +359,19 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
         {
             try
             {
-                if (listBox1.Items.Count == 0)
+                if (listBoxMaNh.Items.Count == 0)
                 {
                     this.ShowWarningMessage("Chưa có nhóm!");
                     return;
                 }
-                var oldGroup = listBox1.SelectedValue.ToString().Trim();
+                var oldGroup = listBoxMaNh.SelectedValue.ToString().Trim();
                 var newGroup = cboToGroupList.SelectedValue.ToString().Trim();
                 V6TableName tableName = V6TableHelper.ToV6TableName(_dataTableName);
                 if (tableName == V6TableName.Alkh)
                 {
                     
                 }
-                if (!_data.Columns.Contains(_field))
+                if (!_dataSource.Columns.Contains(_field))
                 {
                     this.ShowWarningMessage("Loại nhóm không tồn tại!");
                     return;
@@ -395,7 +404,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
                 dataGridView1.Refresh();
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = _viewData;
-                listBox1_SelectedIndexChanged(listBox1, new EventArgs());
+                listBox1_SelectedIndexChanged(listBoxMaNh, new EventArgs());
             }
             catch (Exception ex)
             {
@@ -468,5 +477,115 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
                 progressBar1.Value = _updateCount*100/_totalListCount;
             }
         }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.F3)
+            {
+
+                if (V6Login.UserRight.AllowEdit("", _lookupConfig.vMa_file.ToUpper() + "6"))
+                {
+                    if (dataGridView1.SelectedCells.Count > 0)
+                    {
+                        var currentRow = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
+                        var g = currentRow.Cells["UID"].Value.ToString();
+                        Guid uid = new Guid(g);
+                        var keys = new SortedDictionary<string, object>
+                            {
+                                {"UID", uid}
+                            };
+                        
+                        var f = _lookupConfig.V6TableName == V6TableName.Notable
+                            ? new FormAddEdit(_lookupConfig.vMa_file, V6Mode.Edit, keys, null)          // Load data vs DataOld[]
+                            : new FormAddEdit(_lookupConfig.V6TableName, V6Mode.Edit, keys, null);      // DataOld cần thêm dữ liệu AUTOID_LOAINH AUTOID_NHVALUE
+                        f.AfterInitControl += f_AfterInitControl;
+                        f.InitFormControl();
+                        //f.ParentData = _senderTextBox.ParentData;
+                        f.UpdateSuccessEvent += f_UpdateSuccessEvent;
+                        f.ShowDialog(this);
+                    }
+                }
+                else
+                {
+                    V6ControlFormHelper.NoRightWarning();
+                }
+                return true;
+            }
+            else if (keyData == Keys.F4)
+            {
+                if (V6Login.UserRight.AllowAdd("", _lookupConfig.vMa_file.ToUpper() + "6"))
+                {
+                    DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
+                    var data = row != null ? row.ToDataDictionary() : null;
+                    if (data == null) data = new Dictionary<string, object>();
+                    data["AUTOID_LOAINH"] = comboBox1.SelectedIndex + 1;
+                    data["AUTOID_NHVALUE"] = listBoxMaNh.SelectedValue.ToString().Trim().ToUpper();
+
+                    var f = _lookupConfig.V6TableName == V6TableName.Notable
+                        ? new FormAddEdit(_lookupConfig.vMa_file, V6Mode.Add, null, data)
+                        : new FormAddEdit(_lookupConfig.V6TableName, V6Mode.Add, null, data);
+                    f.AfterInitControl += f_AfterInitControl;
+                    f.InitFormControl();
+                    //f.ParentData = _senderTextBox.ParentData;
+                    if (data == null) f.SetParentData();                        // Code lạ??????
+                    f.InsertSuccessEvent += f_InsertSuccessEvent;
+                    f.ShowDialog(this);
+                }
+                else
+                {
+                    V6ControlFormHelper.NoRightWarning();
+                }
+                return true;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        void f_AfterInitControl(object sender, EventArgs e)
+        {
+            LoadAdvanceControls((Control)sender, _lookupConfig.V6TableName == V6TableName.Notable ? _lookupConfig.vMa_file : _lookupConfig.V6TableName.ToString());
+        }
+        protected void LoadAdvanceControls(Control form, string ma_ct)
+        {
+            try
+            {
+                V6ControlFormHelper.CreateAdvanceFormControls(form, ma_ct, new Dictionary<string, object>());
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadAdvanceControls ", ex);
+            }
+        }
+
+        void f_InsertSuccessEvent(IDictionary<string, object> dataDic)
+        {
+            try
+            {
+                //_dataSource = V6BusinessHelper.SelectTable(_dataTableName);
+                //_dataSource.AddRow(dataDic);
+                _viewData.Table.AddRow(dataDic);
+                ViewData(listBoxMaNh.SelectedValue.ToString().Trim());
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".f_InsertSuccessEvent", ex);
+            }
+        }
+
+        void f_UpdateSuccessEvent(IDictionary<string, object> data)
+        {
+            try
+            {
+                if (data == null) return;
+                DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
+                V6ControlFormHelper.UpdateGridViewRow(row, data);
+                //_senderTextBox.Reset();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".a_UpdateSuccessEvent", ex);
+            }
+        }
+
     }
 }

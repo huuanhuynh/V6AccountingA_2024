@@ -4,6 +4,7 @@ using System.Net;
 using Newtonsoft.Json;
 using V6SignToken;
 using V6ThuePost.ViettelObjects;
+using V6ThuePost.ViettelObjects.GetInvoice;
 using V6Tools;
 
 namespace V6ThuePostViettelApi
@@ -264,6 +265,18 @@ namespace V6ThuePostViettelApi
             }
 
             return message;
+        }
+
+        /// <summary>
+        /// Lấy thông tin hóa đơn (tìm kiếm).
+        /// </summary>
+        /// <param name="input">Các thông tin cần thiết: startDate endDate invoiceType "02GTTT" rowPerPage pageNum templateCode "01GTKT0/001"</param>
+        /// <returns>GetInvoiceResponse json</returns>
+        public string GetInvoices(GetInvoiceInput input)
+        {
+            string json = input.ToJson();
+            string result = POST("InvoiceAPI/InvoiceUtilsWS/getInvoices/" + _codetax, json);
+            return result;
         }
 
         public string POST_DRAFT(ViettelWS _V6Http, string jsonBody)

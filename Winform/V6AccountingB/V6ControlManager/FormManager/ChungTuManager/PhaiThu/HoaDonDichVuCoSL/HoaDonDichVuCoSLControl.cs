@@ -6622,15 +6622,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
 
         private void chonTuExcelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ChucNang_ChonTuExcel();
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            ChucNang_ChonTuExcel(shift);
         }
 
-        private void ChucNang_ChonTuExcel()
+        private void ChucNang_ChonTuExcel(bool add)
         {
             try
             {
                 if (NotAddEdit) return;
 
+                chon_accept_flag_add = add;
                 var chonExcel = new LoadExcelDataForm();
                 chonExcel.Program = Event_program;
                 chonExcel.All_Objects = All_Objects;
@@ -6657,6 +6659,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             {
                 if (table.Rows.Count > 0)
                 {
+                    bool flag_add = chon_accept_flag_add;
+                    chon_accept_flag_add = false;
+                    if (!flag_add)
+                    {
+                        AD.Rows.Clear();
+                    }
+
                     if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                     {
                         detail1.MODE = V6Mode.Init;
@@ -7793,6 +7802,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             {
                 this.ShowErrorException("txtLoaiPhieu_TextChanged", ex);
             }
+        }
+
+        private void menuChucNang_Paint(object sender, PaintEventArgs e)
+        {
+            FixMenuChucNangItemShiftText(ChonDonHangBanMenu, chonBaoGiaMenu, chonTuExcelMenu);
         }
 
     }

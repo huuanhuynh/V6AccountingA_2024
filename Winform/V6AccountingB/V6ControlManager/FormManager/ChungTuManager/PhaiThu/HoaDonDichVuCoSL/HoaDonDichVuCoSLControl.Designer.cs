@@ -309,7 +309,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             this.thayTheMenu,
             this.thayThe2Menu});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(181, 202);
+            this.menuChucNang.Size = new System.Drawing.Size(181, 224);
+            this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
             // 
             // ChonDonHangBanMenu
             // 

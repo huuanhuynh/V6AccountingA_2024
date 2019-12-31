@@ -36,7 +36,7 @@
             this.btnNhan = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxMaNh = new System.Windows.Forms.ListBox();
             this.cboToGroupList = new V6Controls.Controls.V6IndexComboBox();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.btnChuyenNhom = new System.Windows.Forms.Button();
@@ -103,7 +103,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.listBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.listBoxMaNh);
             // 
             // splitContainer1.Panel2
             // 
@@ -114,15 +114,15 @@
             this.splitContainer1.SplitterDistance = 260;
             this.splitContainer1.TabIndex = 0;
             // 
-            // listBox1
+            // listBoxMaNh
             // 
-            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(0, 0);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(260, 511);
-            this.listBox1.TabIndex = 0;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.listBoxMaNh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxMaNh.FormattingEnabled = true;
+            this.listBoxMaNh.Location = new System.Drawing.Point(0, 0);
+            this.listBoxMaNh.Name = "listBoxMaNh";
+            this.listBoxMaNh.Size = new System.Drawing.Size(260, 511);
+            this.listBoxMaNh.TabIndex = 0;
+            this.listBoxMaNh.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // cboToGroupList
             // 
@@ -268,7 +268,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Panel panel2;
         private V6Controls.Controls.V6IndexComboBox comboBox1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxMaNh;
         private V6Controls.V6ColorDataGridView dataGridView1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnChuyenNhom;

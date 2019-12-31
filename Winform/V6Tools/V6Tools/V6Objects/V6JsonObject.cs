@@ -1,12 +1,19 @@
-﻿using V6Tools.V6Convert;
+﻿using System;
+using V6Tools.V6Convert;
 
 namespace V6Tools.V6Objects
 {
     public class V6JsonObject
     {
+        protected string DateTimeFormat = null;
+        public V6JsonObject(string dateTimeFormat = null)
+        {
+            DateTimeFormat = dateTimeFormat;
+        }
+
         public virtual string ToJson()
         {
-            return V6JsonConverter.ClassToJson(this);
+            return V6JsonConverter.ClassToJson(this, DateTimeFormat);
         }
         
         public string ToXml()

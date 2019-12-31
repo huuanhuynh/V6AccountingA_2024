@@ -7297,15 +7297,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private void chonTuExcelMenu_Click(object sender, EventArgs e)
         {
-            ChucNang_ChonTuExcel();
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            ChucNang_ChonTuExcel(shift);
         }
 
-        private void ChucNang_ChonTuExcel()
+        private void ChucNang_ChonTuExcel(bool add = false)
         {
             try
             {
                 if (NotAddEdit) return;
 
+                chon_accept_flag_add = add;
                 var chonExcel = new LoadExcelDataForm();
                 chonExcel.Program = Event_program;
                 chonExcel.All_Objects = All_Objects;
@@ -7332,6 +7334,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 if (table.Rows.Count > 0)
                 {
+                    bool flag_add = chon_accept_flag_add;
+                    chon_accept_flag_add = false;
+                    if (!flag_add)
+                    {
+                        AD.Rows.Clear();
+                    }
+
                     if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                     {
                         detail1.MODE = V6Mode.Init;
@@ -8506,17 +8515,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private void chonBaoGiaMenu_MouseHover(object sender, EventArgs e)
         {
-            FixMenuChucNangItemShiftText(chonBaoGiaMenu);
+            FixMenuChucNangItemShiftText(chonBaoGiaMenu, chonTuExcelMenu);
         }
 
         private void menuChucNang_MouseMove(object sender, MouseEventArgs e)
         {
-            FixMenuChucNangItemShiftText(chonBaoGiaMenu);
+            FixMenuChucNangItemShiftText(chonBaoGiaMenu, chonTuExcelMenu);
         }
 
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
-            FixMenuChucNangItemShiftText(chonBaoGiaMenu);
+            FixMenuChucNangItemShiftText(chonBaoGiaMenu, chonTuExcelMenu);
         }
 
         private void txtMa_sonb_TextChanged(object sender, EventArgs e)
