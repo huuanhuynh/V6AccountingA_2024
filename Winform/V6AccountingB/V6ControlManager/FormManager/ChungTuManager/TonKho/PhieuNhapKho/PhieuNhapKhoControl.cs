@@ -3726,7 +3726,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                     return false;
                 }
 
-                ValidateMasterData(Invoice);
+                if (!ValidateMasterData(Invoice)) return false;
 
                 // Check Detail
                 if (AD.Rows.Count == 0)

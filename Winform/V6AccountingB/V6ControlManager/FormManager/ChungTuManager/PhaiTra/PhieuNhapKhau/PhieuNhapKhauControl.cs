@@ -6418,7 +6418,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     return false;
                 }
 
-                ValidateMasterData(Invoice);
+                if (!ValidateMasterData(Invoice)) return false;
 
 
                 // Check Detail

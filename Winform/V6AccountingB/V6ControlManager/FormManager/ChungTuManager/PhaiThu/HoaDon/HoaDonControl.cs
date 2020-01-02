@@ -6787,7 +6787,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     return false;
                 }
 
-                ValidateMasterData(Invoice);
+                if (!ValidateMasterData(Invoice)) return false;
 
 
                 // Check Detail

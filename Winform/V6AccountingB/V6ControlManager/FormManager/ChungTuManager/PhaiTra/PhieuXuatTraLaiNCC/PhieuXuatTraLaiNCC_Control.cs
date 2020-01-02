@@ -4384,7 +4384,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                     return false;
                 }
 
-                ValidateMasterData(Invoice);
+                if (!ValidateMasterData(Invoice)) return false;
 
 
                 // Check Detail

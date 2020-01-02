@@ -731,13 +731,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         var data = V6BusinessHelper.ExecuteProcedure("VPA_GET_AUTOID_AL_ALL", plist).Tables[0];
                         if (data.Rows.Count > 0)
                         {
-                            string value = data.Rows[0]["Vvalue"].ToString();
-                            IDictionary<string, object> value_dic = new SortedDictionary<string, object>();
-                            value_dic.Add(_aldmConfig.VALUE.ToUpper(), value);
-                            V6ControlFormHelper.SetSomeDataDictionary(this, value_dic);
+                            string value = data.Rows[0]["Vvalue"].ToString().Trim();
+                            if (value != "")
+                            {
+                                IDictionary<string, object> value_dic = new SortedDictionary<string, object>();
+                                value_dic.Add(_aldmConfig.VALUE.ToUpper(), value);
+                                V6ControlFormHelper.SetSomeDataDictionary(this, value_dic);
+                                return;
+                            }
                         }
                     }
-                    else
+                    
+                    
                     {
                         //var _dataRow = aldm.Rows[0];
                         if (_aldmConfig.INCREASE_YN)

@@ -52,8 +52,13 @@ namespace V6Controls
         {
             try
             {
-                DirectoryInfo di = new DirectoryInfo(V6Setting.V6SoftLocalAppData_Directory);
+                if (!Directory.Exists(V6Setting.V6SoftLocalAppData_Directory))
+                {
+                    Directory.CreateDirectory(V6Setting.V6SoftLocalAppData_Directory);
+                    return;
+                }
 
+                DirectoryInfo di = new DirectoryInfo(V6Setting.V6SoftLocalAppData_Directory);
                 foreach (FileInfo file in di.GetFiles())
                 {
                     file.Delete();

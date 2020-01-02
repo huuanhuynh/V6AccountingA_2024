@@ -290,12 +290,14 @@
             this.txtAfield.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtAfield.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtAfield.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtAfield.GrayText = "FIELD1,FIELD2...";
             this.txtAfield.HoverColor = System.Drawing.Color.Yellow;
             this.txtAfield.LeaveColor = System.Drawing.Color.White;
             this.txtAfield.Location = new System.Drawing.Point(171, 217);
             this.txtAfield.Name = "txtAfield";
             this.txtAfield.Size = new System.Drawing.Size(517, 23);
             this.txtAfield.TabIndex = 17;
+            this.toolTipV6FormControl.SetToolTip(this.txtAfield, "Các trường bắc buộc nhập cách nhau bằng dấu phẩy (,)");
             // 
             // txtViewName
             // 

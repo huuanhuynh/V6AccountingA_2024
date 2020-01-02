@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data.SqlClient;
+using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Init;
@@ -24,6 +26,24 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private void AlsonbAddEditForm_Load(object sender, EventArgs e)
         {
             Make_Mau();
+        }
+
+        public override void AfterInsert()
+        {
+            try
+            {
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@cMa_sonb_old", DataOld["MA_SONB"]),
+                    new SqlParameter("@cMa_sonb_new", DataDic["MA_SONB"]),
+                    new SqlParameter("@user_id", V6Login.UserId),
+                };
+                V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_UPDATE_RIGHTS_ALSONB", plist);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
         }
 
         public override void DoBeforeEdit()

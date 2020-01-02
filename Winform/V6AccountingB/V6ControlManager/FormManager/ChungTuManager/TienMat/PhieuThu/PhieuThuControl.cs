@@ -3646,7 +3646,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     return false;
                 }
 
-                ValidateMasterData(Invoice);
+                if (!ValidateMasterData(Invoice)) return false;
 
 
                 // Check Detail
