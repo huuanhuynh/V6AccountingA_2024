@@ -1148,6 +1148,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtDiaChi2.LeaveColor = System.Drawing.Color.White;
             this.txtDiaChi2.Location = new System.Drawing.Point(181, 4);
             this.txtDiaChi2.Name = "txtDiaChi2";
+            this.txtDiaChi2.ShiftF3 = true;
             this.txtDiaChi2.Size = new System.Drawing.Size(692, 20);
             this.txtDiaChi2.TabIndex = 1;
             this.txtDiaChi2.VVar = "DIA_CHI2";
@@ -1782,7 +1783,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.thayTheMenu,
             this.thayThe2Menu});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(185, 180);
+            this.menuChucNang.Size = new System.Drawing.Size(185, 158);
             this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
             // 
             // ChonDonHangMuaMenu

@@ -1784,6 +1784,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             this.txtDiaChi2.LeaveColor = System.Drawing.Color.White;
             this.txtDiaChi2.Location = new System.Drawing.Point(134, 32);
             this.txtDiaChi2.Name = "txtDiaChi2";
+            this.txtDiaChi2.ShiftF3 = true;
             this.txtDiaChi2.Size = new System.Drawing.Size(738, 20);
             this.txtDiaChi2.TabIndex = 1;
             this.txtDiaChi2.VVar = "DIA_CHI2";

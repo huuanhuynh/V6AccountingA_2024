@@ -363,6 +363,7 @@
             this.chonNganHang.LeaveColor = System.Drawing.Color.White;
             this.chonNganHang.Location = new System.Drawing.Point(131, 209);
             this.chonNganHang.Name = "chonNganHang";
+            this.chonNganHang.ShiftF3 = true;
             this.chonNganHang.Size = new System.Drawing.Size(358, 20);
             this.chonNganHang.TabIndex = 18;
             this.chonNganHang.VVar = "DIA_CHI";

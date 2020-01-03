@@ -66,7 +66,7 @@ namespace V6Controls
 
         protected bool _enableColorEffect = true;
         protected bool _enableColorEffectOnMouseEnter;
-        protected bool _upper, _lower;
+        public bool _upper, _lower;
 
         public bool LO_YN = false;
         public bool DATE_YN = false;
@@ -731,6 +731,7 @@ namespace V6Controls
 
         protected void DoCharacterCasing()
         {
+            if (_shift_f3) return;
             if (_upper) Text = Text.ToUpper();
             else if (_lower) Text = Text.ToLower();
         }
@@ -815,7 +816,7 @@ namespace V6Controls
 
         [Category("V6")]
         [DefaultValue(false)]
-        [Description("Bật tắt chức năng UPPER bằng phím bấm.")]
+        [Description("Bật tắt chức năng UPPER bằng phím bấm. (Nếu được bật sẽ tắt tính năng auto cast UPPER hoặc lower của VvarTextBox)")]
         public bool ShiftF3 { get { return _shift_f3; } set { _shift_f3 = value; } }
         protected bool _shift_f3 = false;
 

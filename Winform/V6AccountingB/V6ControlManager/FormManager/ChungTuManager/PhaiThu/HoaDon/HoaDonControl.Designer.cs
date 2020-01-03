@@ -2662,6 +2662,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.txtDiaChiGiaoHang.LeaveColor = System.Drawing.Color.White;
             this.txtDiaChiGiaoHang.Location = new System.Drawing.Point(92, 93);
             this.txtDiaChiGiaoHang.Name = "txtDiaChiGiaoHang";
+            this.txtDiaChiGiaoHang.ShiftF3 = true;
             this.txtDiaChiGiaoHang.Size = new System.Drawing.Size(332, 20);
             this.txtDiaChiGiaoHang.TabIndex = 12;
             this.txtDiaChiGiaoHang.VVar = "DIA_CHI";
