@@ -470,7 +470,8 @@ namespace V6Controls
         {
             if (true || StringValue.Length < MaxLength || (MaxLength==1 && !string.IsNullOrEmpty(LimitCharacters)))
             {
-                int dotIndex = StringValue.IndexOf(_system_decimal_symbol, StringComparison.Ordinal);
+                int sv_dotIndex = StringValue.IndexOf(_system_decimal_symbol, StringComparison.Ordinal);
+                RemoveHiddenTail(sv_dotIndex);
                 //int sls = SelectionStart;
                 int right = TextLength - SelectionStart;
                 int i = GetRealSelectionIndex();
@@ -480,7 +481,7 @@ namespace V6Controls
                 {
                     StringValue = "";
                 }
-                else if (TextLength >= MaxLength && dotIndex<0)
+                else if (TextLength >= MaxLength && sv_dotIndex<0)
                 {
                     if (i <= StringValue.Length)
                     {
@@ -499,14 +500,14 @@ namespace V6Controls
                                 StringValue = StringValue.Insert(i, s.ToString());
                             }
 
-                            var sls = TextLength - right + ((dotIndex > 0 && i > dotIndex) ? 1 : 0);
+                            var sls = TextLength - right + ((sv_dotIndex > 0 && i > sv_dotIndex) ? 1 : 0);
                             if (sls <= 0) sls = 1;
                             SelectionStart = sls;    
                         }                       
                     }                    
                     return;
                 }
-                else if ((dotIndex > 0 && DecimalPlaces > 0) && ((TextLength >= MaxLength && i<=dotIndex) || SelectionStart == TextLength))
+                else if ((sv_dotIndex > 0 && DecimalPlaces > 0) && ((TextLength >= MaxLength && i<=sv_dotIndex) || SelectionStart == TextLength))
                 {
                     return;
                 }
@@ -533,11 +534,32 @@ namespace V6Controls
                         }
                     }
                     
-                    var sls =TextLength - right + ((dotIndex>0&& i > dotIndex) ? 1 : 0);
+                    var sls =TextLength - right + ((sv_dotIndex>0&& i > sv_dotIndex) ? 1 : 0);
                     if (sls <= 0) sls = 1;
                     SelectionStart = sls;                    
                 }
                 catch { } 
+            }
+        }
+
+        /// <summary>
+        /// Loại bỏ phần thập phân vượt quá Decimals
+        /// </summary>
+        /// <param name="stringvalue_dotindex"></param>
+        private void RemoveHiddenTail(int stringvalue_dotindex)
+        {
+            try
+            {
+                if (stringvalue_dotindex < 0) return;
+                string full_tail = _stringValue.Substring(stringvalue_dotindex + 1);
+                if (_decimals < full_tail.Length)
+                {
+                    _stringValue = _stringValue.Substring(0, stringvalue_dotindex + 1 + _decimals);
+                }
+            }
+            catch
+            {
+                //
             }
         }
 

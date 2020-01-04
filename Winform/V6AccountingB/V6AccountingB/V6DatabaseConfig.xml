@@ -21,22 +21,22 @@
   </DatabaseList>
   <DatabaseList>
     <Stt>2</Stt>
-    <Server>192.168.1.99\SQLSERVER2K8,7979</Server>
-    <Server2>192.168.1.99\SQLSERVER2K8,7979</Server2>
-    <Database>VIETHA16_CUST</Database>
-    <Database2>VIETHA16_CUST</Database2>
+    <Server>192.168.1.39\SQL2K8,3979</Server>
+    <Server2>192.168.1.39\SQL2K8,3979</Server2>
+    <Database>V6B_2016</Database>
+    <Database2>V6B_2016</Database2>
     <UserId>v6admsa</UserId>
     <UserId2>v6admsa</UserId2>
-    <Epassword>l3q0CpB7reTyiOANz2nQMA==</Epassword>
-    <Epassword2>l3q0CpB7reTyiOANz2nQMA==</Epassword2>
+    <Epassword>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</Epassword>
+    <Epassword2>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</Epassword2>
     <Api>api</Api>
     <Api2>api</Api2>
     <TimeOut>120</TimeOut>
-    <Note>Dữ liệu TEST</Note>
+    <Note>Dữ liệu TEST - V6B_2016</Note>
     <UseIsolation>1</UseIsolation>
     <Run>1</Run>
     <Type>0</Type>
-    <Key>TDGEME1hgGcg0njmmdo/yUZAoF2wV8KJLv7MWuB2aPjvJlb6IiNqYLg98+MJKXom</Key>
+    <Key>TDGEME1hgGeCrLVu/Gxhr1e/WljDfyEG6r+sK9jftgu4nCmk2hivDw==</Key>
   </DatabaseList>
   <DatabaseList>
     <Stt>3</Stt>
