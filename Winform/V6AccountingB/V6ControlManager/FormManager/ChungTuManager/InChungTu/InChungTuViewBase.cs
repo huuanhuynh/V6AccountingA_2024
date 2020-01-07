@@ -1144,11 +1144,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                                        + (int)numCrossAdd.Value;
                 if (ROW_MAX > 0 && crossLineNum > ROW_MAX * 2)
                 {
-                    print_overflow = true;
+                    data_overflow = true;
                 }
                 else
                 {
-                    print_overflow = false;
+                    data_overflow = false;
                 }
                 var top = boxTop + (halfLineHeight * crossLineNum); //3840/20=192
                 var height = boxHeight - (top - boxTop);
@@ -2149,12 +2149,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         }
         
         private string _oldDefaultPrinter;
-        private bool print_overflow = false;
+        private bool data_overflow = false;
         private void btnIn_Click(object sender, EventArgs e)
         {
             try
             {
-                if (print_overflow)
+                if (data_overflow)
                 {
                     this.ShowWarningMessage(V6Text.OverFlow);
                     return;
