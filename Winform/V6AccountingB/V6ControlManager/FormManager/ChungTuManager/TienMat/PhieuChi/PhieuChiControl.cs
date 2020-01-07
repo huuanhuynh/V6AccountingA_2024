@@ -4537,6 +4537,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
+                //Tuanmh 04/01/2020 Round lai tien_nt(_maNt) theo round cua tien (_mMaNt0) khi _maNt=_mMaNt0
+                XuLyThayDoiMaNt(txtTyGia, chkSuaTien, _maNt, _mMaNt0);
+
                 XuLyThayDoiTyGia(txtTyGia, chkSuaTien);
                 foreach (DataRow row in AD.Rows)
                 {

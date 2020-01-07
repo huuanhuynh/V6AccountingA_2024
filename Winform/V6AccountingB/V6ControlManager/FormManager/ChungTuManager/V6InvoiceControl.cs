@@ -2569,7 +2569,32 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 }
             }
         }
+        private void FixMaNt(DataTable detailData, DataRow row, string fieldTienNt, int round)
+        {
+            if (detailData.Columns.Contains(fieldTienNt))
+            {
+                decimal temp = ObjectAndString.ObjectToDecimal(row[fieldTienNt]);
+                if (temp != 0)
+                    row[fieldTienNt] = V6BusinessHelper.Vround(temp, round);
+            }
+        }
+        private void FixMaNtDetail(DataTable detailData, HD_Detail detailControl,string fieldTienNt, int round)
+        {
+            if ( detailData.Columns.Contains(fieldTienNt))
+            {
+                
+                Control controlNT = detailControl.GetControlByAccessibleName(fieldTienNt);
 
+                if (controlNT != null)
+                {
+                    decimal valueNT = ObjectAndString.ObjectToDecimal(V6ControlFormHelper.GetControlValue(controlNT));
+                    if (valueNT != 0)
+                    {
+                        V6ControlFormHelper.SetControlValue(controlNT, V6BusinessHelper.Vround(valueNT, round));
+                    }
+                }
+            }
+        }
         public void XuLyThayDoiTyGia(V6NumberTextBox txtTyGia, CheckBox chkSuaTien)
         {
             try
@@ -2659,6 +2684,108 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     {
                         FixTyGiaDetail(AD3, detailControl, ty_gia, "PS_NO", "PS_NO_NT", M_ROUND);
                         FixTyGiaDetail(AD3, detailControl, ty_gia, "PS_CO", "PS_CO_NT", M_ROUND);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+        public void XuLyThayDoiMaNt(V6NumberTextBox txtTyGia, CheckBox chkSuaTien, string MaNt, string MaNt0)
+        {
+            try
+            {
+
+                // Tuanmh 04/01/2020 - xu ly khi (MaNt= MaNt0) 
+                var ty_gia = txtTyGia.Value;
+
+                if (MaNt != MaNt0) return;
+                if (ty_gia == 0 || chkSuaTien.Checked) return;
+
+                {
+
+                    foreach (DataRow row in AD.Rows)
+                    {
+                        FixMaNt(AD, row, "Tien_nt", M_ROUND);
+                        FixMaNt(AD, row, "Tien_nt2", M_ROUND);
+                        FixMaNt(AD, row, "Tien1_nt", M_ROUND);
+                        FixMaNt(AD, row, "Tien_vc_nt", M_ROUND);
+                        FixMaNt(AD, row, "TIEN_NT0", M_ROUND);
+                        FixMaNt(AD, row, "Thue_nt", M_ROUND);
+                        FixMaNt(AD, row, "CP_NT", M_ROUND);
+                        FixMaNt(AD, row, "GIA_NT", M_ROUND_GIA);
+                        FixMaNt(AD, row, "GIA_NT01", M_ROUND_GIA);
+                        FixMaNt(AD, row, "GIA_NT1", M_ROUND_GIA);
+                        FixMaNt(AD, row, "GIA_NT2", M_ROUND_GIA);
+                        FixMaNt(AD, row, "GIA_NT21", M_ROUND_GIA);
+
+                        FixMaNt(AD, row, "GIA_NT0", M_ROUND_GIA);
+                        FixMaNt(AD, row, "NK_NT", M_ROUND);
+                        FixMaNt(AD, row, "CK_NT", M_ROUND);
+                        FixMaNt(AD, row, "GG_NT", M_ROUND);
+
+                        FixMaNt(AD, row, "PS_NO_NT", M_ROUND);
+                        FixMaNt(AD, row, "PS_CO_NT", M_ROUND);
+                    }
+                    HD_Detail detailControl = GetControlByName("detail1") as HD_Detail;
+                    if (detailControl != null &&
+                        (detailControl.MODE == V6Mode.Add || detailControl.MODE == V6Mode.Edit))
+                    {
+                        //...
+                        FixMaNtDetail(AD, detailControl, "Tien_nt", M_ROUND);
+                        FixMaNtDetail(AD, detailControl, "Tien_nt2", M_ROUND);
+                        FixMaNtDetail(AD, detailControl, "Tien1_nt", M_ROUND);
+                        FixMaNtDetail(AD, detailControl, "Tien_vc_nt", M_ROUND);
+                        FixMaNtDetail(AD, detailControl, "TIEN_NT0", M_ROUND);
+                        FixMaNtDetail(AD, detailControl, "Thue_nt", M_ROUND);
+                        FixMaNtDetail(AD, detailControl, "CP_NT", M_ROUND);
+                        FixMaNtDetail(AD, detailControl, "GIA_NT", M_ROUND_GIA);
+                        FixMaNtDetail(AD, detailControl, "GIA_NT01", M_ROUND_GIA);
+                        FixMaNtDetail(AD, detailControl, "GIA_NT1", M_ROUND_GIA);
+                        FixMaNtDetail(AD, detailControl, "GIA_NT2", M_ROUND_GIA);
+                        FixMaNtDetail(AD, detailControl, "GIA_NT21", M_ROUND_GIA);
+
+                        FixMaNtDetail(AD, detailControl, "GIA_NT0", M_ROUND_GIA);
+                        FixMaNtDetail(AD, detailControl, "NK_NT", M_ROUND);
+                        FixMaNtDetail(AD, detailControl, "CK_NT", M_ROUND);
+                        FixMaNtDetail(AD, detailControl, "GG_NT", M_ROUND);
+
+                        FixMaNtDetail(AD, detailControl, "PS_NO_NT", M_ROUND);
+                        FixMaNtDetail(AD, detailControl, "PS_CO_NT", M_ROUND);
+                    }
+
+                }
+
+                if (AD2 != null)
+                {
+                    foreach (DataRow row in AD2.Rows)
+                    {
+                        FixMaNt(AD2, row, "t_tien_nt", M_ROUND);
+                        FixMaNt(AD2, row, "t_thue_nt", M_ROUND);
+                        FixMaNt(AD2, row, "t_tt_nt", M_ROUND);
+                    }
+                    HD_Detail detailControl = GetControlByName("detail2") as HD_Detail;
+                    if (detailControl != null && (detailControl.MODE == V6Mode.Add || detailControl.MODE == V6Mode.Edit))
+                    {
+                        FixMaNtDetail(AD2, detailControl,  "t_tien_nt", M_ROUND);
+                        FixMaNtDetail(AD2, detailControl,  "t_thue_nt", M_ROUND);
+                        FixMaNtDetail(AD2, detailControl,  "t_tt_nt", M_ROUND);
+                    }
+                }
+
+                if (AD3 != null)
+                {
+                    foreach (DataRow row in AD3.Rows)
+                    {
+                        FixMaNt(AD3, row,  "PS_NO_NT", M_ROUND);
+                        FixMaNt(AD3, row,  "PS_CO_NT", M_ROUND);
+                    }
+                    HD_Detail detailControl = GetControlByName("detail3") as HD_Detail;
+                    if (detailControl != null && (detailControl.MODE == V6Mode.Add || detailControl.MODE == V6Mode.Edit))
+                    {
+                        FixMaNtDetail(AD3, detailControl, "PS_NO_NT", M_ROUND);
+                        FixMaNtDetail(AD3, detailControl, "PS_CO_NT", M_ROUND);
                     }
                 }
             }

@@ -77,6 +77,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
 
         public bool IsViewOrLock { get { return MODE == V6Mode.View || MODE == V6Mode.Lock || MODE == V6Mode.Init; } }
+        public bool IsAddOrEdit { get { return MODE == V6Mode.Add || MODE == V6Mode.Edit; } }
 
         private void ChangeModeHandle()
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -1631,7 +1632,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
+                //Tuanmh 04/01/2020 Round lai tien_nt(_maNt) theo round cua tien (_mMaNt0) khi _maNt=_mMaNt0
+                XuLyThayDoiMaNt(txtTyGia, chkSuaTien,_maNt,_mMaNt0);
+
                 XuLyThayDoiTyGia(txtTyGia, chkSuaTien);
+                
+
                 foreach (DataRow row in AD.Rows)
                 {
                     row["TIEN_TT"] = row["PS_CO"];
@@ -2024,6 +2030,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 //detail1.FixControlsLocation();
                 //detail2.FixControlsLocation();
                 //detail3.FixControlsLocation();
+
+                //// Update values sửa số lẻ 20200104
+                //foreach (DataRow row in AD.Rows)
+                //{
+                //    //var rowData = row.ToDataDictionary();
+                //    if (txtTyGia.Value != 0 && ObjectAndString.ObjectToDecimal(row["Tien_Nt"]) != 0)
+                //    {
+                //        row["Tien"] = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row["Tien_Nt"])*txtTyGia.Value, M_ROUND);
+                //    }
+                //}
+                //if (detail1.IsAddOrEdit)
+                //{
+                //    if (_tienNt.Value*txtTyGia.Value != 0)
+                //    {
+                //        _tien.Value = V6BusinessHelper.Vround(_tienNt.Value * txtTyGia.Value, M_ROUND);
+                //    }
+                //}
 
                 TinhTongThanhToan(GetType() + "." + MethodBase.GetCurrentMethod().Name);
             }
