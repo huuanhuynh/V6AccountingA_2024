@@ -736,6 +736,11 @@ namespace V6Controls
             else if (_lower) Text = Text.ToLower();
         }
 
+        public void CallLostFocus()
+        {
+            OnLostFocus(new EventArgs());
+        }
+
         public void CallDoV6LostFocus()
         {
             if (V6LostFocus != null) V6LostFocus(this);

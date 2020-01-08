@@ -5539,15 +5539,31 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                     AD.Rows.Clear();
                 }
                 int addCount = 0, failCount = 0;
+                string ma_kh_soh = null;
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {
+                    // Lấy ma_kh_soh đầu tiên.
+                    if (ma_kh_soh == null && data.ContainsKey("MA_KH_SOH"))
+                    {
+                        ma_kh_soh = data["MA_KH_SOH"].ToString().Trim();
+                    }
                     var newData = new SortedDictionary<string, object>(data);
                     All_Objects["data"] = newData;
                     InvokeFormEvent("DONDATHANGMUA_CDHB");
                     if (XuLyThemDetail(newData)) addCount++;
                     else failCount++;
                 }
-                V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed {1}.", addCount, failCount));
+
+                if (!string.IsNullOrEmpty(ma_kh_soh))
+                {
+                    if (txtMaKh.Text == "")
+                    {
+                        txtMaKh.ChangeText(ma_kh_soh);
+                        txtMaKh.CallLostFocus();
+                    }
+                }
+
+                V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed: {1}{2}", addCount, failCount, _message));
                 
             }
             catch (Exception ex)

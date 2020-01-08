@@ -5914,8 +5914,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     AD.Rows.Clear();
                 }
                 int addCount = 0, failCount = 0; _message = "";
+                string ma_kh_soh = null;
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {
+                    // Lấy ma_kh_soh đầu tiên.
+                    if (ma_kh_soh == null && data.ContainsKey("MA_KH_SOH"))
+                    {
+                        ma_kh_soh = data["MA_KH_SOH"].ToString().Trim();
+                    }
                     string c_makh = data.ContainsKey("MA_KH") ? data["MA_KH"].ToString().Trim().ToUpper() : "";
                     if (c_makh != "" && txtMaKh.Text == "")
                     {
@@ -5965,6 +5971,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
                     if (XuLyThemDetail(newData)) addCount++;
                     else failCount++;
+                }
+
+                if (!string.IsNullOrEmpty(ma_kh_soh))
+                {
+                    if (txtMaKh.Text == "")
+                    {
+                        txtMaKh.ChangeText(ma_kh_soh);
+                        txtMaKh.CallLostFocus();
+                    }
                 }
 
                 All_Objects["selectedDataList"] = selectedDataList;

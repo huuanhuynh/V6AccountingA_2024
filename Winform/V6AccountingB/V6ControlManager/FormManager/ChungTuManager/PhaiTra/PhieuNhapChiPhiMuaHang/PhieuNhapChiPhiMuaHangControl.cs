@@ -4424,8 +4424,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 }
 
                 int addCount = 0, failCount = 0;
+                string ma_kh_soh = null;
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {
+                    // Lấy ma_kh_soh đầu tiên.
+                    if (ma_kh_soh == null && data.ContainsKey("MA_KH_SOH"))
+                    {
+                        ma_kh_soh = data["MA_KH_SOH"].ToString().Trim();
+                    }
                     if (XuLyThemDetail(data))
                     {
                         addCount++;
@@ -4437,10 +4443,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                         failCount++;
                     }
                 }
+
+                if (!string.IsNullOrEmpty(ma_kh_soh))
+                {
+                    if (txtMaKh.Text == "")
+                    {
+                        txtMaKh.ChangeText(ma_kh_soh);
+                        txtMaKh.CallLostFocus();
+                    }
+                }
+
                 All_Objects["selectedDataList"] = selectedDataList;
                 InvokeFormEvent("AFTERCHON_" + _chon_px);
 
-                V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed {1}.", addCount, failCount));
+                V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed: {1}{2}", addCount, failCount, _message));
+                
                 if (addCount > 0)
                 {
                     co_chon_phieu_nhap = true;

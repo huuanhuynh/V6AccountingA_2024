@@ -617,7 +617,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                         };
                         _maLo.GotFocus += (s, e) =>
                         {
-                            _maLo.CheckNotEmpty = _maVt.LO_YN && _maKhoI.LO_YN;
                             _maLo.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
                         };
                         break;
