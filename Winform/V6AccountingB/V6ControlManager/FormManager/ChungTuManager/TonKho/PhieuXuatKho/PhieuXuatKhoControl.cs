@@ -549,9 +549,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                             _maLo.GotFocus += (s, e) =>
                             {
                                 _maLo.CheckNotEmpty = _maVt.LO_YN && _maKhoI.LO_YN;
-
-                                _dataViTri = Invoice.GetLoDate(_maVt.Text, _maKhoI.Text, _sttRec, dateNgayCT.Date);
                                 var filter = "Ma_vt='" + _maVt.Text.Trim() + "'";
+                                
+                                _dataViTri = Invoice.GetLoDate(_maVt.Text, _maKhoI.Text, _sttRec, dateNgayCT.Date);
                                 var getFilter = GetFilterMaLo(_dataViTri, _sttRec0, _maVt.Text, _maKhoI.Text);
                                 if (getFilter != "") filter += " and " + getFilter;
                                 _maLo.SetInitFilter(filter);
@@ -621,7 +621,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             try
             {
                 Invoice.GetAlLoTon(dateNgayCT.Date, _sttRec, _maVt.Text, _maKhoI.Text);
-                FixAlLoTon(Invoice.AlLoTon, AD);
+                FixAlLoTon(Invoice.AlLoTon);
 
                 var inputUpper = _maLo.Text.Trim().ToUpper();
                 if (Invoice.AlLoTon != null && Invoice.AlLoTon.Rows.Count > 0)
@@ -694,7 +694,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             }
         }
 
-        private void FixAlLoTon(DataTable alLoTon, DataTable ad)
+        /// <summary>
+        /// Trừ số lượng các dòng đã chọn trong AD
+        /// </summary>
+        /// <param name="alLoTon"></param>
+        /// <param name="ad"></param>
+        private void FixAlLoTon(DataTable alLoTon)
         {
             try
             {

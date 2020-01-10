@@ -2769,7 +2769,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
                 if (_soLuong1.Value != 0)
                 {
+                    if (_giaNt21.Value == 0)
                     _giaNt21.Value = V6BusinessHelper.Vround((_tienNt2.Value / _soLuong1.Value), M_ROUND_GIA_NT);
+                    if (_gia21.Value == 0)
+                    _gia21.Value = V6BusinessHelper.Vround((_tien2.Value / _soLuong1.Value), M_ROUND_GIA);
                     if (_maNt == _mMaNt0)
                     {
                         _gia21.Value = _giaNt21.Value;

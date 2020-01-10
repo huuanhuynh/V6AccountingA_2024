@@ -8,6 +8,7 @@ using V6AccountingBusiness;
 using V6ControlManager.FormManager.ChungTuManager;
 using V6Controls;
 using V6Controls.Forms;
+using V6Controls.Structs;
 using V6Init;
 using V6SqlConnect;
 using V6Structs;
@@ -69,112 +70,148 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
             //Tạo trước control phòng khi alct1 không có
 
-            _ma_vt = new V6VvarTextBox
-            {
-                AccessibleName = "ma_vt",
-                VVar = "ma_vt",
-                GrayText = "Mã vật tư",
-                BrotherFields = "TEN_VT"
-            };
-            _ma_vt.V6LostFocus += delegate(object sender)
-            {
-                XuLyDonViTinhKhiChonMaVt(_ma_vt.Text);
-            };
-            _ma_vt.Upper();
-            _ma_vt.FilterStart = true;
-            _dvt = new V6VvarTextBox
-            {
-                AccessibleName = "dvt",
-                VVar = "dvt1",
-                GrayText = "Đơn vị tính",
-                CheckNotEmpty = true,
-                CheckOnLeave = true,
-            };
-            _dvt.GotFocus += (s, e) =>
-            {
-                _dvt.SetInitFilter("ma_vt='" + _ma_vt.Text.Trim() + "'");
-                _dvt.ExistRowInTable(true);
-            };
-            //_dvt.V6LostFocus += sender =>
+            //_ma_vt = new V6VvarTextBox
             //{
-            //    XuLyThayDoiDvt1();
+            //    AccessibleName = "ma_vt",
+            //    VVar = "ma_vt",
+            //    GrayText = "Mã vật tư",
+            //    BrotherFields = "TEN_VT"
             //};
-            //_dvt.V6LostFocusNoChange += sender =>
+            //_ma_vt.V6LostFocus += delegate(object sender)
             //{
+            //    XuLyDonViTinhKhiChonMaVt(_ma_vt.Text);
+            //};
+            //_ma_vt.Upper();
+            //_ma_vt.FilterStart = true;
+
+            //_dvt = new V6VvarTextBox
+            //{
+            //    AccessibleName = "dvt",
+            //    VVar = "dvt1",
+            //    GrayText = "Đơn vị tính",
+            //    CheckNotEmpty = true,
+            //    CheckOnLeave = true,
+            //};
+            //_dvt.GotFocus += (s, e) =>
+            //{
+            //    _dvt.SetInitFilter("ma_vt='" + _ma_vt.Text.Trim() + "'");
             //    _dvt.ExistRowInTable(true);
-            //    if (_dvt.Data != null)
-            //    {
-            //        var he_so = ObjectAndString.ObjectToDecimal(_dvt.Data["he_so"]);
-            //        if (he_so == 0) he_so = 1;
-            //        if (_heSo1.Value != he_so) _heSo1.Value = he_so;
-            //    }
-            //    else
-            //    {
-            //        _heSo1.Value = 1;
-            //    }
             //};
-            _dvt.Upper();
+            //_dvt.Upper();
 
-            _t_sl1 = new NumberSoluong()
-            {
-                AccessibleName = "t_sl1",
-                GrayText = V6Text.Text("SLTRUNGTHAU")
-            };
-            _t_sl2 = new NumberSoluong()
-            {
-                AccessibleName = "t_sl2",
-                GrayText = V6Text.Text("SLDAXUAT")
-            };
-            _gia2 = new NumberGia()
-            {
-                AccessibleName = "gia2",
-                GrayText = V6Text.Text("DONGIA")
-            };
-            _gia_km = new NumberGia()
-            {
-                AccessibleName = "gia_km",
-                GrayText = V6Text.Text("DONGIATHAU")
-            };
-            _sl_km = new NumberSoluong()
-            {
-                AccessibleName = "sl_km",
-                GrayText = V6Text.Text("SLDUTHAU")
-            };
-            _Ghi_chukm = new V6ColorTextBox
-            {
-                AccessibleName = "ghi_chukm",
-                GrayText = V6Text.Text("GCDUTHAU"),
-                Width = 200
-            };
-            _Ghi_chuck = new V6ColorTextBox
-            {
-                AccessibleName = "ghi_chuck",
-                GrayText = V6Text.Text("GCTRUNGTHAU"),
-                Width = 200
-            };
+            //_t_sl1 = new NumberSoluong()
+            //{
+            //    AccessibleName = "t_sl1",
+            //    GrayText = V6Text.Text("SLTRUNGTHAU")
+            //};
+            //_t_sl2 = new NumberSoluong()
+            //{
+            //    AccessibleName = "t_sl2",
+            //    GrayText = V6Text.Text("SLDAXUAT")
+            //};
+            //_gia2 = new NumberGia()
+            //{
+            //    AccessibleName = "gia2",
+            //    GrayText = V6Text.Text("DONGIA")
+            //};
+            //_gia_km = new NumberGia()
+            //{
+            //    AccessibleName = "gia_km",
+            //    GrayText = V6Text.Text("DONGIATHAU")
+            //};
+            //_sl_km = new NumberSoluong()
+            //{
+            //    AccessibleName = "sl_km",
+            //    GrayText = V6Text.Text("SLDUTHAU")
+            //};
+            //_Ghi_chukm = new V6ColorTextBox
+            //{
+            //    AccessibleName = "ghi_chukm",
+            //    GrayText = V6Text.Text("GCDUTHAU"),
+            //    Width = 200
+            //};
+            //_Ghi_chuck = new V6ColorTextBox
+            //{
+            //    AccessibleName = "ghi_chuck",
+            //    GrayText = V6Text.Text("GCTRUNGTHAU"),
+            //    Width = 200
+            //};
 
 
-            var dynamicControlList = new SortedDictionary<int, Control>();
+            var dynamicControlList0 = new SortedDictionary<int, Control>();
             //t_sl1, t_sl2, t_tien1, t_tien2, sl_km, tien_km, Ghi_chukm, Ghi_chuck, T_SLKM;
             int stt = 0;
-            dynamicControlList.Add(stt++, _ma_vt);
-            dynamicControlList.Add(stt++, _dvt);
-            dynamicControlList.Add(stt++, _sl_km);
-            dynamicControlList.Add(stt++, _gia_km);
-            dynamicControlList.Add(stt++, _t_sl1);
-            dynamicControlList.Add(stt++, _t_sl2);
-            dynamicControlList.Add(stt++, _gia2);
-            dynamicControlList.Add(stt++, _Ghi_chukm);
-            dynamicControlList.Add(stt++, _Ghi_chuck);
+            dynamicControlList0.Add(stt++, _ma_vt);
+            dynamicControlList0.Add(stt++, _dvt);
+            dynamicControlList0.Add(stt++, _sl_km);
+            dynamicControlList0.Add(stt++, _gia_km);
+            dynamicControlList0.Add(stt++, _t_sl1);
+            dynamicControlList0.Add(stt++, _t_sl2);
+            dynamicControlList0.Add(stt++, _gia2);
+            dynamicControlList0.Add(stt++, _Ghi_chukm);
+            dynamicControlList0.Add(stt++, _Ghi_chuck);
+
+            List<string> _orderList;
+            SortedDictionary<string, DataRow> _alct1Dic;
+            SortedDictionary<int, AlctControls> dynamicControlList_New = V6ControlFormHelper.GetDynamicControlStructsAlct(GetAlct1(_maCt), out _orderList, out _alct1Dic);
             
-            foreach (KeyValuePair<int, Control> item in dynamicControlList)
+            foreach (KeyValuePair<int, AlctControls> item in dynamicControlList_New)
             {
-                var control = item.Value;
+                var control = item.Value.DetailControl;
+
                 ApplyControlEnterStatus(control);
+
+                var NAME = control.AccessibleName.ToUpper();
+                All_Objects[NAME] = control;
+                //V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
+
+                switch (NAME)
+                {
+                    case "MA_VT":
+                        _ma_vt = (V6VvarTextBox) control;
+                        _ma_vt.V6LostFocus += delegate(object sender)
+                        {
+                            XuLyDonViTinhKhiChonMaVt(_ma_vt.Text);
+                        };
+                        _ma_vt.Upper();
+                        //_ma_vt.FilterStart = true; // Đã có trong config alct1???
+                        break;
+                    case "DVT":
+                        _dvt = (V6VvarTextBox) control;
+                        _dvt.GotFocus += (s, e) =>
+                        {
+                            _dvt.SetInitFilter("ma_vt='" + _ma_vt.Text.Trim() + "'");
+                            _dvt.ExistRowInTable(true);
+                        };
+                        _dvt.Upper();
+                        break;
+                    case "T_SL1":
+                        _t_sl1 = (V6NumberTextBox) control;
+                        break;
+                    case "T_SL2":
+                        _t_sl2 = (V6NumberTextBox) control;
+                        break;
+                    case "GIA2":
+                        _gia2 = (V6NumberTextBox) control;
+                        break;
+                    case "GIA_KM":
+                        _gia_km = (V6NumberTextBox) control;
+                        break;
+                    case "SL_KM":
+                        _sl_km = (V6NumberTextBox) control;
+                        break;
+                    case "GHI_CHUKM":
+                        _Ghi_chukm = (V6ColorTextBox) control;
+                        break;
+                    case "GHI_CHUCK":
+                        _Ghi_chuck = (V6ColorTextBox) control;
+                        break;
+                    
+                }
             }
             
             //Add detail controls
-            foreach (Control control in dynamicControlList.Values)
+            foreach (AlctControls control in dynamicControlList_New.Values)
             {
                 detail1.AddControl(control);
             }
@@ -182,6 +219,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             V6ControlFormHelper.SetFormStruct(detail1, _table2Struct);
         }
 
+        
         private void XuLyDonViTinhKhiChonMaVt(string mavt, bool changeMavt = true)
         {
             try

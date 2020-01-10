@@ -9,6 +9,7 @@ using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
+using V6ControlManager.FormManager.ChungTuManager.Filter;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY.Loc;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonBaoGia;
@@ -278,6 +279,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                         {
                             
                         };
+                        //_soLuong1.LostFocus += delegate
+                        //{
+                        //    SetControlValue(_sl_td1, _soLuong1.Value, Invoice.GetTemplateSettingAD("SL_TD1"));
+                        //};
                         if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
                         {
                             _soLuong1.ReadOnlyTag();
@@ -508,16 +513,34 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                     case "MA_LO":
 
                         _maLo = (V6VvarTextBox)control;
-                        _maLo.V6LostFocus += _maLo_V6LostFocus;
-
-                        _maLo.V6LostFocusNoChange += delegate
-                        {
-                            XuLyLayThongTinKhiChonMaLo();
+                        //_maLo.V6LostFocus += _maLo_V6LostFocus;
+                        //_maLo.V6LostFocusNoChange += delegate
+                        //{
+                        //    XuLyLayThongTinKhiChonMaLo();
                        
-                        };
+                        //};
                         _maLo.GotFocus += (s, e) =>
                         {
-                            _maLo.SetInitFilter("ma_vt='" + _maVt.Text.Trim() + "'");
+                            var filter = "Ma_vt='" + _maVt.Text.Trim() + "'";
+                            if (V6Options.GetValue("M_IXY_CHECK_TON") == "1")
+                            {
+                                _maLo.CheckNotEmpty = _maVt.LO_YN && _maKhoI.LO_YN;
+                                var _dataViTri = Invoice.GetLoDate_IXY(_maVt.Text, _maKhoI.Text, _sttRec,
+                                    dateNgayCT.Date);
+                                var getFilter = GetFilterMaLo(_dataViTri, _sttRec0, _maVt.Text, _maKhoI.Text);
+                                if (getFilter != "") filter += " and " + getFilter;
+                            }
+                            _maLo.SetInitFilter(filter);
+                        };
+
+                        _maLo.LostFocus += (sender, args) =>
+                        {
+                            CheckMaLo();
+                            if (!_maLo.ReadOnly)
+                            {
+                                if (V6Options.GetValue("M_IXY_CHECK_TON") == "1")
+                                    CheckMaLoTon(_maLo.HaveValueChanged);
+                            }
                         };
                         break;
                     case "HSD":
@@ -627,6 +650,71 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             V6ControlFormHelper.RecaptionDataGridViewColumns(dataGridView1, _alct1Dic, _maNt, _mMaNt0);
         }
 
+        private string GetFilterMaLo(DataTable dataLoDate, string sttRec0, string maVt, string maKhoI)
+        {
+            try
+            {
+                var list_maLo = "";
+                if (maVt == "" || maKhoI == "") return list_maLo;
+
+
+                for (int i = dataLoDate.Rows.Count - 1; i >= 0; i--)
+                {
+                    DataRow data_row = dataLoDate.Rows[i];
+                    string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
+                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
+                    string data_maLo = data_row["Ma_lo"].ToString().Trim().ToUpper();
+                    if (data_maLo == "") continue;
+
+                    //Neu dung maVt va maKhoI
+                    if (maVt == data_maVt && maKhoI == data_maKhoI)
+                    {
+                        //- so luong
+                        decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
+                        decimal new_soLuong = data_soLuong;
+
+                        foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
+                        {
+
+                            string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
+                            string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
+                            string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
+                            string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
+
+                            //Add 31-07-2016
+                            //Nếu khi sửa chỉ trừ dần những dòng trên dòng đang đứng thì dùng dòng if sau:
+                            //if (detail1.MODE == V6Mode.Edit && c_sttRec0 == sttRec0) break;
+
+                            decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+                            if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
+                            {
+                                if (maVt == c_maVt && maKhoI == c_maKhoI && data_maLo == c_maLo)
+                                {
+                                    new_soLuong -= c_soLuong;
+                                }
+                            }
+                        }
+
+                        if (new_soLuong > 0)
+                        {
+                            list_maLo += string.Format(" or Ma_lo='{0}'", data_maLo);
+                        }
+                    }
+                }
+
+                if (list_maLo.Length > 3)
+                {
+                    list_maLo = list_maLo.Substring(3);
+                    return "(" + list_maLo + ")";
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+            return "(1=0)";
+        }
+
         void _maLo_V6LostFocus(object sender)
         {
             CheckMaLo();
@@ -634,12 +722,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
 
         private void CheckMaLo()
         {
-            if (_maVt.Text != "")
-            {
-                _maLo.SetInitFilter("Ma_vt='" + _maVt.Text.Trim()+"'");
-            }
+            //if (_maVt.Text != "")
+            //{
+            //    _maLo.SetInitFilter("Ma_vt='" + _maVt.Text.Trim()+"'");
+            //}
             XuLyLayThongTinKhiChonMaLo();
-            
         }
 
         void _tang_V6LostFocus(object sender)
@@ -880,6 +967,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
 
         void SoLuong1_V6LostFocus(object sender)
         {
+            if (V6Options.GetValue("M_IXY_CHECK_TON") == "1")
+                CheckSoLuong1(_soLuong1);
+
             TinhTienNt2(_soLuong1);
             Tinh_thue_ct();
         }
@@ -1010,6 +1100,249 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
         {
             _maKhoI.RefreshLoDateYnValue();
         }
+
+        private void CheckMaLoTon(bool isChanged)
+        {
+            if (NotAddEdit) return;
+            if (detail1.MODE != V6Mode.Add && detail1.MODE != V6Mode.Edit) return;
+            if (!_maVt.LO_YN) return;
+            //Fix Tuanmh 15/11/2017
+            if (!_maKhoI.LO_YN) return;
+
+
+            try
+            {
+                Invoice.GetAlLoTon_IXY(dateNgayCT.Date, _sttRec, _maVt.Text, _maKhoI.Text);
+                FixAlLoTon(Invoice.AlLoTon);
+
+                var inputUpper = _maLo.Text.Trim().ToUpper();
+                if (Invoice.AlLoTon != null && Invoice.AlLoTon.Rows.Count > 0)
+                {
+                    var check = false;
+                    foreach (DataRow row in Invoice.AlLoTon.Rows)
+                    {
+                        if (row["Ma_lo"].ToString().Trim().ToUpper() == inputUpper)
+                        {
+                            check = true;
+                        }
+
+                        if (check)
+                        {
+                            //
+                            _maLo.Tag = row;
+                            XuLyKhiNhanMaLo(row.ToDataDictionary(), isChanged);
+                            break;
+                        }
+                    }
+
+                    if (!check)
+                    {
+                        var initFilter = GetAlLoTonInitFilter();
+                        var f = new FilterView(Invoice.AlLoTon, "Ma_lo", "ALLOTON", _maLo, initFilter);
+                        if (f.ViewData != null && f.ViewData.Count > 0)
+                        {
+                            var d = f.ShowDialog(this);
+
+                            //xu ly data
+                            if (d == DialogResult.OK)
+                            {
+                                if (_maLo.Tag is DataRow)
+                                    XuLyKhiNhanMaLo(((DataRow)_maLo.Tag).ToDataDictionary(), isChanged);
+                                else if (_maLo.Tag is DataGridViewRow)
+                                    XuLyKhiNhanMaLo(((DataGridViewRow)_maLo.Tag).ToDataDictionary(), isChanged);
+                            }
+                            else
+                            {
+                                _maLo.Text = _maLo.GotFocusText;
+                            }
+                        }
+                        else
+                        {
+                            ShowParentMessage("AlLoTon" + V6Text.NoData);
+                        }
+                    }
+
+                    GetLoDate13();
+
+                    if (_maLo.GotFocusText == _maLo.LostFocusText
+                        && (V6Options.M_CHK_XUAT == "0" && (_maVt.LO_YN || _maVt.VT_TON_KHO)))
+                    {
+                        if (_soLuong1.Value > _ton13.Value)
+                        {
+                            _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
+                            //TinhTienNt2();
+                            //TinhTienVon1(); // Bỏ khi ở Đề nghị
+                        }
+                    }
+                }
+                else
+                {
+                    ShowMainMessage("AlLoTon null");
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        private void XuLyKhiNhanMaLo(IDictionary<string, object> row, bool isChanged)
+        {
+            try
+            {
+                //_maLo.Text = row["MA_LO"].ToString().Trim();
+                _hanSd.Value = ObjectAndString.ObjectToDate(row["HSD"]);
+                _ton13.Value = ObjectAndString.ObjectToDecimal(row["TON_DAU"]);
+                if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E") _ton13Qd.Value = ObjectAndString.ObjectToDecimal(row["TON_DAU_QD"]);
+                _maLo.Enabled = true;
+                //_maLo.ReadOnlyTag();
+
+                if (isChanged) CheckSoLuong1();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        public void CheckSoLuong1(Control actionControl = null)
+        {
+            try
+            {
+                if (!(IsReady && (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+                    && (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit))) return;
+
+                _maVt.RefreshLoDateYnValue();
+                if (V6Options.M_CHK_XUAT == "0" && (_maVt.LO_YN || _maVt.VT_TON_KHO))
+                {
+                    if (_soLuong1.Value > _ton13.Value)
+                    {
+                        ShowParentMessage(V6Text.StockoutWarning);
+                        _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
+                        if (M_CAL_SL_QD_ALL == "1")
+                        {
+                            if (M_TYPE_SL_QD_ALL == "1E")
+                            {
+                                _sl_qd.Value = _ton13Qd.Value < 0 ? 0 : _ton13Qd.Value;
+                            }
+                            else if (_hs_qd1.Value != 0)
+                            {
+                                _sl_qd.Value = _soLuong1.Value / _hs_qd1.Value;
+                            }
+
+                            //if (_hs_qd1.Value != 0)
+                            //    _sl_qd.Value = _soLuong1.Value / _hs_qd1.Value;
+                        }
+                        _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
+                        //TinhTienNt2(null);
+                        //TinhTienVon1(null);   // Bỏ khi ở Đề nghị
+                        //TinhTienVon();        // Bỏ khi ở Đề nghị
+                    }
+                    //if (_soLuong1.Value > _ton13.Value)
+                    //{
+                    //    ShowParentMessage(V6Text.StockoutWarning);
+                    //    _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
+                    //    //if (M_CAL_SL_QD_ALL == "1")
+                    //    //{
+                    //    //    if (_hs_qd1.Value != 0)
+                    //    //        _sl_qd.Value = _soLuong1.Value / _hs_qd1.Value;
+                    //    //}
+                    //}
+                }
+                //TinhTienVon1(actionControl); // bỏ khi ở đề nghị
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        /// <summary>
+        /// Trừ số lượng các dòng đã chọn trong AD
+        /// </summary>
+        /// <param name="alLoTon"></param>
+        private void FixAlLoTon(DataTable alLoTon)
+        {
+            try
+            {
+
+                string sttRec0 = _sttRec0;
+                //string maVt = _maVt.Text.Trim().ToUpper();
+                //string maKhoI = _maKhoI.Text.Trim().ToUpper();
+                //string maLo = _maLo.Text.Trim().ToUpper();
+                // string maLo = _maLo.Text.Trim().ToUpper();
+
+                // Theo doi lo moi check
+                if (!_maVt.LO_YN || !_maVt.DATE_YN || !_maKhoI.LO_YN || !_maKhoI.DATE_YN)
+                    return;
+
+                //if (maVt == "" || maKhoI == "" || maLo == "") return;
+
+                //Xử lý - tồn
+                //, Ma_kho, Ma_vt, Ma_vi_tri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
+                //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
+
+                List<DataRow> empty_rows = new List<DataRow>();
+
+                for (int i = alLoTon.Rows.Count - 1; i >= 0; i--)
+                {
+                    DataRow data_row = alLoTon.Rows[i];
+                    string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
+                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
+                    string data_maLo = data_row["Ma_lo"].ToString().Trim().ToUpper();
+                    //string data_maVi_Tri = data_row["Ma_vi_tri"].ToString().Trim().ToUpper();
+
+                    //Neu dung maVt, maKhoI, maLo, maVi_Tri
+                    //- so luong
+                    decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
+                    decimal data_soLuong_qd = ObjectAndString.ObjectToDecimal(data_row["Ton_dau_qd"]);
+                    decimal new_soLuong = data_soLuong;
+                    decimal new_soLuong_qd = data_soLuong_qd;
+
+                    foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
+                    {
+                        string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
+                        string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
+                        string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
+                        string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
+                        //string c_maVi_Tri = row["Ma_vi_tri"].ToString().Trim().ToUpper();
+
+                        decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]); //???
+                        decimal c_soLuong_qd = ObjectAndString.ObjectToDecimal(row["SL_QD"]); //???
+                        if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
+                        {
+                            if (data_maVt == c_maVt && data_maKhoI == c_maKhoI && data_maLo == c_maLo)
+                            {
+                                new_soLuong -= c_soLuong;
+                                new_soLuong_qd -= c_soLuong_qd;
+                            }
+                        }
+                    }
+
+                    if (new_soLuong > 0)
+                    {
+                        data_row["Ton_dau"] = new_soLuong;
+                        data_row["Ton_dau_qd"] = new_soLuong_qd;
+                    }
+                    else
+                    {
+                        empty_rows.Add(data_row);
+
+                    }
+                }
+
+                //remove all empty_rows
+                foreach (DataRow row in empty_rows)
+                {
+                    alLoTon.Rows.Remove(row);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
 
         private void XuLyLayThongTinKhiChonMaLo()
         {

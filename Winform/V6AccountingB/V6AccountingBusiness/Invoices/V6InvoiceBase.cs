@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
 using V6Init;
 using V6SqlConnect;
 using V6Structs;
@@ -869,6 +870,10 @@ namespace V6AccountingBusiness.Invoices
         {
             return V6BusinessHelper.GetLoDate(mavt, makho, sttRec, ngayct);
         }
+        public DataTable GetLoDate_IXY(string mavt, string makho, string sttRec, DateTime ngayct)
+        {
+            return V6BusinessHelper.GetLoDate_IXY(mavt, makho, sttRec, ngayct);
+        }
         
         public DataTable GetViTri(string mavt, string makho, string sttRec, DateTime ngayct)
         {
@@ -1041,6 +1046,23 @@ namespace V6AccountingBusiness.Invoices
                 new SqlParameter("@dBg", ngay_ct.Date)
             };
             var result = V6BusinessHelper.ExecuteProcedure("VPA_EdItems_LOT_DATE_STT_REC", plist).Tables[0];
+            AlLoTon = result;
+            return AlLoTon;
+        }
+        
+        public DataTable GetAlLoTon_IXY(DateTime ngay_ct, string sttRec, string mavt, string makho)// string makh, string madvcs)
+        {
+            mavt = mavt.Replace("'", "''");
+            makho = makho.Replace("'", "''");
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@cKey1", string.Format("Ma_vt='{0}' and Ma_kho='{1}'", mavt, makho)), 
+                new SqlParameter("@cKey2", ""), 
+                new SqlParameter("@cKey3", ""), 
+                new SqlParameter("@cStt_rec", sttRec), 
+                new SqlParameter("@dBg", ngay_ct.Date)
+            };
+            var result = V6BusinessHelper.ExecuteProcedure("VPA_EdItems_LOT_DATE_STT_REC_IXY", plist).Tables[0];
             AlLoTon = result;
             return AlLoTon;
         }

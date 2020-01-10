@@ -62,6 +62,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 }
 
                 txtMaCtProc.SetInitFilter("M_MA_VV='1'");
+                txtMaCtProc.Upper();
 
                 LoadComboboxSource(txtMaCtProc.Text);
 

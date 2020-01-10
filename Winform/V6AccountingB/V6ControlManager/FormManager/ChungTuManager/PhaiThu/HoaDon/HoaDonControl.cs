@@ -3273,8 +3273,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                 if (_soLuong1.Value != 0)
                 {
-                    _giaNt21.Value = V6BusinessHelper.Vround((_tienNt2.Value / _soLuong1.Value), M_ROUND_GIA_NT);
-                    _gia21.Value = V6BusinessHelper.Vround((_tien2.Value / _soLuong1.Value), M_ROUND_GIA);
+                    if (_giaNt21.Value == 0)
+                        _giaNt21.Value = V6BusinessHelper.Vround((_tienNt2.Value / _soLuong1.Value), M_ROUND_GIA_NT);
+                    if (_gia21.Value == 0)
+                        _gia21.Value = V6BusinessHelper.Vround((_tien2.Value / _soLuong1.Value), M_ROUND_GIA);
 
                     if (_maNt == _mMaNt0)
                     {

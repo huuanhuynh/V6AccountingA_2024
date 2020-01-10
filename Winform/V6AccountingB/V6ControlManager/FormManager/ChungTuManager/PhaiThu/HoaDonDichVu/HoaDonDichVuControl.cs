@@ -231,6 +231,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                             _tienNt2.V6LostFocus += delegate
                             {
                                 _tien2.Value = V6BusinessHelper.Vround((_tienNt2.Value * txtTyGia.Value), M_ROUND);
+                                if (_soLuong.Value != 0)
+                                {
+                                    if (_giaNt2.Value == 0)
+                                        _giaNt2.Value = V6BusinessHelper.Vround((_tienNt2.Value / _soLuong.Value), M_ROUND_GIA_NT);
+                                    if (_gia2.Value == 0)
+                                        _gia2.Value = V6BusinessHelper.Vround((_tien2.Value / _soLuong.Value), M_ROUND_GIA);
+
+                                    if (_maNt == _mMaNt0)
+                                    {
+                                        _gia2.Value = _giaNt2.Value;
+                                    }
+                                }
                                 TinhThueChiTiet();
                             };
                         }

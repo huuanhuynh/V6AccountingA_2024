@@ -1153,7 +1153,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 var datavt = _maVt.Data;
                 if (datavt == null) return;
                 var packs1 = ObjectAndString.ObjectToDecimal(datavt["Packs1"]);
-                if (packs1 > 0)
+                if (packs1 > 0 && _soLuong1.Value == 0)
                 {
                     _soLuong1.Value = packs1;
                     if (_he_so1T.Value == 0)
@@ -4141,6 +4141,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 _message = "";
 
                 string ma_kh_soh = null;
+                List<string> inserted_mavitri = new List<string>();
+                
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {
                     // Lấy ma_kh_soh đầu tiên.
@@ -4240,8 +4242,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                                 // Không Có vị trí chỉ định
                                 newData["MA_VITRI"] = data_row["MA_VITRI"];
                             }
+
                             newData["MA_KHO_I"] = data_row["MA_KHO"];
                             if (temp_vt.VITRI_YN) newData["MA_VITRI"] = data_row["MA_VITRI"];
+
+                            string c_MA_VITRI = newData["MA_VITRI"].ToString().ToUpper();
+                            if (c_MA_VITRI != "" && inserted_mavitri.Contains(c_MA_VITRI)) continue;
+                            inserted_mavitri.Add(c_MA_VITRI);
 
                             newData["DVT"] = dvt;
                             newData["DVT1"] = dvt1;
@@ -4292,6 +4299,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                                 newData["MA_KHO_I"] = data_row["MA_KHO"];
                                 if (temp_vt.VITRI_YN) newData["MA_VITRI"] = data_row["MA_VITRI"];
 
+                                string c_MA_VITRI = newData["MA_VITRI"].ToString().ToUpper();
+                                if (c_MA_VITRI != "" && inserted_mavitri.Contains(c_MA_VITRI)) continue;
+                                inserted_mavitri.Add(c_MA_VITRI);
+
                                 newData["DVT"] = dvt;
                                 newData["DVT1"] = dvt1;
                                 newData["HE_SO"] = heso;
@@ -4307,7 +4318,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                                 else if (HS_QD1 != 0 && M_CAL_SL_QD_ALL == "1")
                                 {
                                     newData["SL_QD"] = insert / HS_QD1;
-                                }
+                                }                                
 
                                 if (XuLyThemDetail(newData)) addCount++;
                                 else failCount++;
@@ -4323,6 +4334,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                     }
                     else
                     {
+                        string c_MA_VITRI = newData["MA_VITRI"].ToString().ToUpper();
+                        if (c_MA_VITRI != "" && inserted_mavitri.Contains(c_MA_VITRI)) continue;
+                        inserted_mavitri.Add(c_MA_VITRI);
+
                         if (newData.ContainsKey("SO_LUONG"))
                         {
                             decimal insert = ObjectAndString.ObjectToDecimal(newData["SO_LUONG"]);

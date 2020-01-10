@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -114,6 +115,24 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             if(Mode == V6Mode.View)  V6ControlFormHelper.SetFormControlsReadOnly(this, true);
             LoadAll();
             
+        }
+
+        public DataTable GetAlct1(string mact)
+        {
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@ma_ct", mact),
+                new SqlParameter("@list_fix", ""),
+                new SqlParameter("@order_fix", ""),
+                new SqlParameter("@vvar_fix", ""),
+                new SqlParameter("@type_fix", ""),
+                new SqlParameter("@checkvvar_fix", ""),
+                new SqlParameter("@notempty_fix", ""),
+                new SqlParameter("@fdecimal_fix", "")
+            };
+
+            return SqlConnect.ExecuteDataset(CommandType.StoredProcedure,
+                    "VPA_GET_AUTO_COLULMN", plist).Tables[0];
         }
 
         #region ===== LoadAdvanceControls =====
