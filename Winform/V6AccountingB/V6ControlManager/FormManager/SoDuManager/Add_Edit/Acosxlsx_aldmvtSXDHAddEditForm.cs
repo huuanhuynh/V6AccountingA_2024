@@ -29,10 +29,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         private void MyInit()
         {
-            _maCt = "S11";
+            Mact = "S11";
             _table2Name = "acosxlsx_aldmvtct";
-            
-            txtMaCt.Text = _maCt;
+
+            txtMaCt.Text = Mact;
 
             //TxtTk.SetInitFilter("loai_tk=1 and tk_cn=1");
             txtMaSP.SetInitFilter("loai_vt='55'");
@@ -50,7 +50,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             try
             {
                 dateNgayHL.Value = DateTime.Now.Date;
-                txtSttRec.Text = V6BusinessHelper.GetNewSttRec(_maCt);
+                txtSttRec.Text = V6BusinessHelper.GetNewSttRec(Mact);
             }
             catch (Exception ex)
             {
@@ -343,7 +343,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 errors += V6Text.DetailNotComplete;
             }
 
-            errors += ValidateMasterData(_maCt);
+            errors += ValidateMasterData(Mact);
 
             if (errors.Length > 0) throw new Exception(errors);
 

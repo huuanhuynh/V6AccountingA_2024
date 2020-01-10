@@ -32,7 +32,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private void MyInit()
         {
 
-            _maCt = "S0N";
+            Mact = "S0N";
             _table2Name = "Akhungckct";
             txtLNH_KH1.SetInitFilter("loai_nh=1");
             txtLNH_KH2.SetInitFilter("loai_nh=2");
@@ -42,7 +42,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             txtLNH_KH6.SetInitFilter("loai_nh=6");
             try
             {
-                txtMaCt.Text = _maCt;
+                txtMaCt.Text = Mact;
 
                 //txt.SetInitFilter("");
 
@@ -63,7 +63,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         public override void DoBeforeAdd()
         {
-            txtSttRec.Text = V6BusinessHelper.GetNewSttRec(_maCt);
+            txtSttRec.Text = V6BusinessHelper.GetNewSttRec(Mact);
             //  int decimalSL = V6Options.M_ROUND_SL;
             int decimalSL = 3;
             int decimal0 = V6Options.M_ROUND;

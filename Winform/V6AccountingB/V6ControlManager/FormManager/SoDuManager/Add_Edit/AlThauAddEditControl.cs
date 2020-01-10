@@ -31,23 +31,32 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         private void MyInit()
         {
-            _maCt = "S01";
+            Mact = "S01";
             _sttRec0 = "";
             _table2Name = "Althauct";
-            txtMaCt.Text = _maCt;
+            txtMaCt.Text = Mact;
 
             //TxtTk.SetInitFilter("loai_tk=1 and tk_cn=1");
             _table2Struct = V6BusinessHelper.GetTableStruct(_table2Name);
             
-            LoadDetailControls();
+            //LoadDetailControls();
+            //detail1.MODE = V6Mode.View;
+            //detail1.lblName.AccessibleName = "TEN_VT";
+            
+            
+        }
 
+        private void SoDu2AddEditControl0_Load(object sender, EventArgs e)
+        {
+            LoadDetailControls();
             detail1.MODE = V6Mode.View;
             detail1.lblName.AccessibleName = "TEN_VT";
+            SetDataToGrid(dataGridView1, AD, txtMaCt.Text);
         }
 
         public override void DoBeforeAdd()
         {
-            txtSttRec.Text = V6BusinessHelper.GetNewSttRec(_maCt);
+            txtSttRec.Text = V6BusinessHelper.GetNewSttRec(Mact);
         }
 
         public override void DoBeforeEdit()
@@ -63,7 +72,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         }
 
         private V6VvarTextBox _ma_vt, _dvt;
-        private V6NumberTextBox _t_sl1, _gia2, _t_sl2,_gia_km,_sl_km;
+        private V6NumberTextBox _t_sl1, _gia2, _t_sl2, _gia_km, _sl_km, _tien_km;
         private V6ColorTextBox _Ghi_chukm, _Ghi_chuck ;
 
         private void LoadDetailControls()
@@ -153,7 +162,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
             List<string> _orderList;
             SortedDictionary<string, DataRow> _alct1Dic;
-            SortedDictionary<int, AlctControls> dynamicControlList_New = V6ControlFormHelper.GetDynamicControlStructsAlct(GetAlct1(_maCt), out _orderList, out _alct1Dic);
+            SortedDictionary<int, AlctControls> dynamicControlList_New = V6ControlFormHelper.GetDynamicControlStructsAlct(Alct1Data, out _orderList, out _alct1Dic);
             
             foreach (KeyValuePair<int, AlctControls> item in dynamicControlList_New)
             {
@@ -163,8 +172,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
                 var NAME = control.AccessibleName.ToUpper();
                 All_Objects[NAME] = control;
-                //V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
-
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
+                
                 switch (NAME)
                 {
                     case "MA_VT":
@@ -180,19 +189,30 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         _dvt = (V6VvarTextBox) control;
                         _dvt.GotFocus += (s, e) =>
                         {
-                            _dvt.SetInitFilter("ma_vt='" + _ma_vt.Text.Trim() + "'");
-                            _dvt.ExistRowInTable(true);
+                            if (detail1.IsAddOrEdit)
+                            {
+                                _dvt.SetInitFilter("ma_vt='" + _ma_vt.Text.Trim() + "'");
+                                _dvt.ExistRowInTable(true);
+                            }
                         };
                         _dvt.Upper();
                         break;
                     case "T_SL1":
                         _t_sl1 = (V6NumberTextBox) control;
+                        _t_sl1.V6LostFocus += sender =>
+                        {
+                            _tien_km.Value = V6BusinessHelper.Vround(_t_sl1.Value * _gia2.Value, V6Options.M_ROUND);
+                        };
                         break;
                     case "T_SL2":
                         _t_sl2 = (V6NumberTextBox) control;
                         break;
                     case "GIA2":
                         _gia2 = (V6NumberTextBox) control;
+                        _gia2.V6LostFocus += sender =>
+                        {
+                            _tien_km.Value = V6BusinessHelper.Vround(_t_sl1.Value * _gia2.Value, V6Options.M_ROUND);
+                        };
                         break;
                     case "GIA_KM":
                         _gia_km = (V6NumberTextBox) control;
@@ -200,14 +220,19 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     case "SL_KM":
                         _sl_km = (V6NumberTextBox) control;
                         break;
+                    case "TIEN_KM":
+                        _tien_km = (V6NumberTextBox) control;
+                        break;
                     case "GHI_CHUKM":
                         _Ghi_chukm = (V6ColorTextBox) control;
                         break;
                     case "GHI_CHUCK":
                         _Ghi_chuck = (V6ColorTextBox) control;
                         break;
+                        //TIEN_KM = T_SL1*GIA2 M_ROUND0
                     
                 }
+                V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
             }
             
             //Add detail controls
@@ -677,11 +702,6 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             throw new Exception(V6Text.ValidateFail);
         }
         
-        private void SoDu2AddEditControl0_Load(object sender, EventArgs e)
-        {
-            SetDataToGrid(dataGridView1, AD, txtMaCt.Text);
-        }
-
         private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
             if (detail1.IsViewOrLock)

@@ -30,7 +30,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         private void MyInit()
         {
-            _maCt = "S03";
+            Mact = "S03";
             _table2Name = "ADALCC";
             _table3Name = "ADCTCC";
             _table4Name = "ADCTCCBP";
@@ -50,7 +50,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
             txtLyDoTang.SetInitFilter("loai_tg_cc ='T'");
 
-            txtMaCt.Text = _maCt;
+            txtMaCt.Text = Mact;
 
             LoadComboBoxValue();
             
@@ -655,7 +655,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         public override void DoBeforeAdd()
         {
-            txtSttRec.Text = V6BusinessHelper.GetNewSttRec(_maCt);
+            txtSttRec.Text = V6BusinessHelper.GetNewSttRec(Mact);
             if (V6Login.MadvcsCount == 1)
             {
                 txtMaDVCS.Text = V6Login.Madvcs;

@@ -20,8 +20,25 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 {
     public partial class SoDuAddEditControlVirtual : V6FormControl
     {
+        public AldmConfig _aldmConfig;
+        public DataTable Alct1Data;
         protected V6Categories Categories;
-        protected string _maCt;
+        
+        /// <summary>
+        /// Khi set Mact thì Alct1Data sẽ được tải.
+        /// </summary>
+        protected string Mact
+        {
+            get { return _maCt; }
+            set
+            {
+                _maCt = value;
+                Alct1Data = GetAlct1(_maCt);
+            }
+        }
+
+        private string _maCt;
+
         public V6TableName TableName { get; set; }
         protected string _table2Name, _table3Name, _table4Name, _table5Name;
         protected V6TableStruct _TableStruct;
@@ -48,6 +65,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         /// Dùng khi gọi form update, chứa giá trị cũ trước khi update.
         /// </summary>
         private IDictionary<string, object> _keys = new SortedDictionary<string, object>();
+        protected Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
+        /// <summary>
+        /// Code động từ aldmConfig.
+        /// </summary>
+        protected Type Event_program;
         /// <summary>
         /// Chứa data dùng để insert hoặc edit.
         /// </summary>
@@ -95,6 +117,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 DoBeforeView();
             }
             _ready0 = true;
+            InvokeFormEvent(FormDynamicEvent.INIT2);
         }
 
         /// <summary>
@@ -108,16 +131,110 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             IDictionary<string, object> keys, IDictionary<string, object> data)
         {
             TableName = tableName;
+            _aldmConfig = ConfigManager.GetAldmConfig(TableName.ToString());
             Mode = mode;
             _keys = keys;
             DataOld = data;
             LoadAdvanceControls(TableName);
             if(Mode == V6Mode.View)  V6ControlFormHelper.SetFormControlsReadOnly(this, true);
+
+            All_Objects["thisForm"] = this;
+            CreateFormProgram();
+            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
+            InvokeFormEvent(FormDynamicEvent.INIT);
             LoadAll();
-            
         }
 
-        public DataTable GetAlct1(string mact)
+        protected void CreateFormProgram()
+        {
+            try
+            {
+                string using_text = "";
+                string method_text = "";
+
+                //aldm.DMETHOD
+                if (_aldmConfig.NoInfo || string.IsNullOrEmpty(_aldmConfig.DMETHOD))
+                {
+                    goto Alct1_DMETHOD;
+                }
+                
+                //foreach (DataRow dataRow in Invoice.Alct1.Rows)
+                {
+                    var xml = _aldmConfig.DMETHOD;
+                    if (xml == "") goto Alct1_DMETHOD;
+                    DataSet ds = new DataSet();
+                    ds.ReadXml(new StringReader(xml));
+                    if (ds.Tables.Count <= 0) goto Alct1_DMETHOD;
+                    var data = ds.Tables[0];
+                    foreach (DataRow event_row in data.Rows)
+                    {
+                        var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
+                        var method_name = event_row["method"].ToString().Trim();
+                        Event_Methods[EVENT_NAME] = method_name;
+
+                        using_text += data.Columns.Contains("using") ? event_row["using"] : "";
+                        method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
+                    }
+                }
+
+                Alct1_DMETHOD:
+                if (!Alct1Data.Columns.Contains("DMETHOD"))
+                {
+                    this.ShowWarningMessage("No column name [DMETHOD] in [Alct1]");
+                    goto Build;
+                }
+
+                foreach (DataRow dataRow in Alct1Data.Rows)
+                {
+                    var xml = dataRow["DMETHOD"].ToString().Trim();
+                    if (xml == "") goto Build;
+                    DataSet ds = ObjectAndString.XmlStringToDataSet(xml);
+                    if (ds == null || ds.Tables.Count <= 0) goto Build;
+
+                    var data = ds.Tables[0];
+                    foreach (DataRow event_row in data.Rows)
+                    {
+                        var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
+                        var method_name = event_row["method"].ToString().Trim();
+                        Event_Methods[EVENT_NAME] = method_name;
+
+                        using_text += data.Columns.Contains("using") ? event_row["using"] : "";
+                        method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
+                    }
+                }
+
+            Build:
+                Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + _aldmConfig.MA_DM, using_text, method_text);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CreateProgram0", ex);
+            }
+        }
+
+        /// <summary>
+        /// Gọi hàm động theo tên event đã định nghĩa.
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <returns></returns>
+        public object InvokeFormEvent(string eventName)
+        {
+            try // Dynamic invoke
+            {
+                if (Event_Methods.ContainsKey(eventName))
+                {
+                    var method_name = Event_Methods[eventName];
+                    return V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                }
+            }
+            catch (Exception ex1)
+            {
+                this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
+            }
+            return null;
+        }
+
+        protected DataTable GetAlct1(string mact)
         {
             SqlParameter[] plist =
             {
@@ -324,8 +441,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 All_Objects["data"] = DataDic;
                 All_Objects["dataOld"] = DataOld;
                 ValidateData();
-                //InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
-                //InvokeFormEvent("BEFOREINSERTORUPDATE");
+                InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
+                
                 //string checkV6Valid = CheckV6Valid(DataDic, TableName.ToString());
                 //if (!string.IsNullOrEmpty(checkV6Valid))
                 //{
@@ -349,6 +466,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     if (b > 0)
                     {
                         AfterUpdate();
+                        InvokeFormEvent(FormDynamicEvent.AFTERUPDATE);
                         return true;
                     }
                     
@@ -368,6 +486,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     if (b)
                     {
                         AfterInsert();
+                        InvokeFormEvent(FormDynamicEvent.AFTERINSERT);
                     }
                     else
                     {

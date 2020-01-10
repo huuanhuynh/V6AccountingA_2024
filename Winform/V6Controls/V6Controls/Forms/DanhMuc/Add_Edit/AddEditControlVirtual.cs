@@ -20,7 +20,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public V6TableStruct _structTable;
         public V6Mode Mode = V6Mode.Add;
         public Control _grandFatherControl;
-        public IDictionary<string, object> _parentData; 
+        public IDictionary<string, object> _parentData;
+        public AldmConfig _aldmConfig;
 
         /// <summary>
         /// Bật tắt tính năng gọi hàm Reload sau khi insert hoặc update thành công.
@@ -771,8 +772,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         }
 
         protected bool update_stt13;
-        public AldmConfig _aldmConfig;
-
         protected virtual void AddStt13()
         {
             try

@@ -31,9 +31,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         private void MyInit()
         {
-            _maCt = "S06";
+            Mact = "S06";
             _table2Name = "Alinit1";
-            txtMaCt.Text = _maCt;
+            txtMaCt.Text = Mact;
 
             _table2Struct = V6BusinessHelper.GetTableStruct(_table2Name);
             
@@ -46,7 +46,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         public override void DoBeforeAdd()
         {
-            txtSttRec.Text = V6BusinessHelper.GetNewSttRec(_maCt);
+            txtSttRec.Text = V6BusinessHelper.GetNewSttRec(Mact);
         }
 
 

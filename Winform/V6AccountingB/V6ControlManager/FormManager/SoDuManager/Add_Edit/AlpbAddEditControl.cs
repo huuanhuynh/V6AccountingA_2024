@@ -29,9 +29,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         private void MyInit()
         {
-            _maCt = "S04";
+            Mact = "S04";
             _table2Name = "ALPB1";
-            txtMaCt.Text = _maCt;
+            txtMaCt.Text = Mact;
 
             //TxtTk.SetInitFilter("loai_tk=1 and tk_cn=1");
 
@@ -46,7 +46,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         public override void DoBeforeAdd()
         {
             TxtNam.Value = V6Setting.YearFilter;
-            txtSttRec.Text = V6BusinessHelper.GetNewSttRec(_maCt);
+            txtSttRec.Text = V6BusinessHelper.GetNewSttRec(Mact);
         }
 
 

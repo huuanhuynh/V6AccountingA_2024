@@ -619,6 +619,9 @@ namespace V6Controls
             }
         }
 
+        //private int _exisRowInTable_ContinuousErrorCount;
+        //private DateTime _erit_LastErrorTime = DateTime.Now;
+
         /// <summary>
         /// Kiểm tra, lấy lại data, gán brothers
         /// </summary>
@@ -673,7 +676,32 @@ namespace V6Controls
             }
             catch (Exception ex)
             {
-                V6ControlFormHelper.ShowErrorMessage(ex.Message);
+                //if (DateTime.Now - _erit_LastErrorTime < TimeSpan.FromSeconds(1.2))
+                //{
+                //    _exisRowInTable_ContinuousErrorCount++;
+                //}
+                //else
+                //{
+                //    _exisRowInTable_ContinuousErrorCount = 0;
+                //}
+
+                //if (_exisRowInTable_ContinuousErrorCount >= 5)
+                //{
+                //    if (V6Setting.IsVietnamese)
+                //        V6ControlFormHelper.ShowErrorMessage(ex.Message
+                //            + string.Format("\n Lỗi đã xảy ra {0} lần.\n From này sẽ đóng lại!", _exisRowInTable_ContinuousErrorCount));
+                //    else
+                //        V6ControlFormHelper.ShowErrorMessage(ex.Message
+                //            + string.Format("\nThe error has occurred {0} times. Current from will close!", _exisRowInTable_ContinuousErrorCount));
+
+                //    // Close form!
+                //    Form f = FindForm();
+                //    if (f!= null) f.Dispose();
+                //}
+                //else
+                {
+                    V6ControlFormHelper.ShowErrorMessage(ex.Message);
+                }
                 return false;
             }
             return false;

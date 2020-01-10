@@ -30,7 +30,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         private void MyInit()
         {
-            _maCt = "S02";
+            Mact = "S02";
             _table2Name = "ADALTS";
             _table3Name = "ADCTTS";
             _table4Name = "ADCTTSBP";
@@ -50,7 +50,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
             txtLyDoTang.SetInitFilter("loai_tg_ts ='T'");
 
-            txtMaCt.Text = _maCt;
+            txtMaCt.Text = Mact;
 
             _table2Struct = V6BusinessHelper.GetTableStruct(_table2Name);
             _table3Struct = V6BusinessHelper.GetTableStruct(_table3Name);
@@ -72,7 +72,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 txtMaDVCS.Text = V6Login.Madvcs;
             }
-            txtSttRec.Text = V6BusinessHelper.GetNewSttRec(_maCt);
+            txtSttRec.Text = V6BusinessHelper.GetNewSttRec(Mact);
         }
 
         public override void DoBeforeEdit()

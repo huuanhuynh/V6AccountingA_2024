@@ -36,6 +36,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.txtFvvar = new V6Controls.V6ColorTextBox();
+            this.lblFvvar = new System.Windows.Forms.Label();
             this.btnEditXmlM = new System.Windows.Forms.Button();
             this.btnEditFilterM = new System.Windows.Forms.Button();
             this.txtDmethod_M = new V6Controls.V6ColorTextBox();
@@ -200,6 +202,8 @@
             this.tabPage3.AccessibleDescription = "ADDEDITT00010";
             this.tabPage3.AutoScroll = true;
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabPage3.Controls.Add(this.txtFvvar);
+            this.tabPage3.Controls.Add(this.lblFvvar);
             this.tabPage3.Controls.Add(this.btnEditXmlM);
             this.tabPage3.Controls.Add(this.btnEditFilterM);
             this.tabPage3.Controls.Add(this.txtDmethod_M);
@@ -230,6 +234,38 @@
             this.tabPage3.Size = new System.Drawing.Size(742, 408);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Các tùy chọn";
+            // 
+            // txtFvvar
+            // 
+            this.txtFvvar.AccessibleName = "FVVAR";
+            this.txtFvvar.BackColor = System.Drawing.Color.White;
+            this.txtFvvar.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtFvvar.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtFvvar.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtFvvar.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtFvvar.HoverColor = System.Drawing.Color.Yellow;
+            this.txtFvvar.LeaveColor = System.Drawing.Color.White;
+            this.txtFvvar.Location = new System.Drawing.Point(111, 10);
+            this.txtFvvar.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFvvar.Name = "txtFvvar";
+            this.txtFvvar.Size = new System.Drawing.Size(103, 23);
+            this.txtFvvar.TabIndex = 24;
+            this.toolTipV6FormControl.SetToolTip(this.txtFvvar, "A0 tặng, A1, C0 vvar,\r\nN9, N0 tiền, N1 ngoại tệ, N2 số lượng, N3 giá. N4 giá NT, " +
+        "N5 tỷ giá.\r\nD0 date null, D1 date pick.");
+            this.txtFvvar.Visible = false;
+            // 
+            // lblFvvar
+            // 
+            this.lblFvvar.AccessibleDescription = ".";
+            this.lblFvvar.AccessibleName = "";
+            this.lblFvvar.AutoSize = true;
+            this.lblFvvar.Location = new System.Drawing.Point(9, 11);
+            this.lblFvvar.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFvvar.Name = "lblFvvar";
+            this.lblFvvar.Size = new System.Drawing.Size(43, 17);
+            this.lblFvvar.TabIndex = 23;
+            this.lblFvvar.Text = "Fvvar";
+            this.lblFvvar.Visible = false;
             // 
             // btnEditXmlM
             // 
@@ -330,7 +366,7 @@
             // 
             this.lblXML.AccessibleDescription = ".";
             this.lblXML.AutoSize = true;
-            this.lblXML.Location = new System.Drawing.Point(231, 8);
+            this.lblXML.Location = new System.Drawing.Point(232, 11);
             this.lblXML.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblXML.Name = "lblXML";
             this.lblXML.Size = new System.Drawing.Size(36, 17);
@@ -387,7 +423,7 @@
             this.v6ColorTextBox9.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox9.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox9.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox9.Location = new System.Drawing.Point(111, 194);
+            this.v6ColorTextBox9.Location = new System.Drawing.Point(111, 237);
             this.v6ColorTextBox9.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox9.Name = "v6ColorTextBox9";
             this.v6ColorTextBox9.Size = new System.Drawing.Size(103, 23);
@@ -399,7 +435,7 @@
             this.label11.AccessibleDescription = ".";
             this.label11.AccessibleName = "";
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(5, 198);
+            this.label11.Location = new System.Drawing.Point(5, 241);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(72, 17);
@@ -420,7 +456,7 @@
             this.v6ColorTextBox8.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox8.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox8.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox8.Location = new System.Drawing.Point(111, 163);
+            this.v6ColorTextBox8.Location = new System.Drawing.Point(111, 213);
             this.v6ColorTextBox8.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox8.Name = "v6ColorTextBox8";
             this.v6ColorTextBox8.Size = new System.Drawing.Size(103, 23);
@@ -432,7 +468,7 @@
             this.label10.AccessibleDescription = ".";
             this.label10.AccessibleName = "";
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(5, 167);
+            this.label10.Location = new System.Drawing.Point(5, 216);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(75, 17);
@@ -453,7 +489,7 @@
             this.v6ColorTextBox7.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox7.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox7.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox7.Location = new System.Drawing.Point(111, 132);
+            this.v6ColorTextBox7.Location = new System.Drawing.Point(111, 189);
             this.v6ColorTextBox7.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox7.Name = "v6ColorTextBox7";
             this.v6ColorTextBox7.Size = new System.Drawing.Size(103, 23);
@@ -465,7 +501,7 @@
             this.label9.AccessibleDescription = ".";
             this.label9.AccessibleName = "";
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(5, 136);
+            this.label9.Location = new System.Drawing.Point(5, 191);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(47, 17);
@@ -486,7 +522,7 @@
             this.v6ColorTextBox6.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox6.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox6.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox6.Location = new System.Drawing.Point(111, 101);
+            this.v6ColorTextBox6.Location = new System.Drawing.Point(111, 165);
             this.v6ColorTextBox6.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox6.Name = "v6ColorTextBox6";
             this.v6ColorTextBox6.Size = new System.Drawing.Size(103, 23);
@@ -498,7 +534,7 @@
             this.label8.AccessibleDescription = ".";
             this.label8.AccessibleName = "";
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(5, 105);
+            this.label8.Location = new System.Drawing.Point(5, 166);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(35, 17);
@@ -519,7 +555,7 @@
             this.v6ColorTextBox5.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox5.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox5.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox5.Location = new System.Drawing.Point(111, 70);
+            this.v6ColorTextBox5.Location = new System.Drawing.Point(111, 141);
             this.v6ColorTextBox5.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox5.Name = "v6ColorTextBox5";
             this.v6ColorTextBox5.Size = new System.Drawing.Size(103, 23);
@@ -531,7 +567,7 @@
             this.label7.AccessibleDescription = ".";
             this.label7.AccessibleName = "";
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(5, 74);
+            this.label7.Location = new System.Drawing.Point(5, 141);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(60, 17);
@@ -552,7 +588,7 @@
             this.v6ColorTextBox4.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox4.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox4.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox4.Location = new System.Drawing.Point(111, 39);
+            this.v6ColorTextBox4.Location = new System.Drawing.Point(111, 117);
             this.v6ColorTextBox4.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox4.Name = "v6ColorTextBox4";
             this.v6ColorTextBox4.Size = new System.Drawing.Size(103, 23);
@@ -564,7 +600,7 @@
             this.label5.AccessibleDescription = ".";
             this.label5.AccessibleName = "";
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(5, 43);
+            this.label5.Location = new System.Drawing.Point(5, 116);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(23, 17);
@@ -585,7 +621,7 @@
             this.v6ColorTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox1.Location = new System.Drawing.Point(111, 8);
+            this.v6ColorTextBox1.Location = new System.Drawing.Point(111, 93);
             this.v6ColorTextBox1.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox1.Name = "v6ColorTextBox1";
             this.v6ColorTextBox1.Size = new System.Drawing.Size(103, 23);
@@ -597,7 +633,7 @@
             this.label4.AccessibleDescription = ".";
             this.label4.AccessibleName = "";
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(5, 12);
+            this.label4.Location = new System.Drawing.Point(5, 91);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(91, 17);
@@ -1058,5 +1094,7 @@
         private V6ColorTextBox txtFilter_M;
         private System.Windows.Forms.Label lblFilterM;
         private V6ColorTextBox txtLimits;
+        private V6ColorTextBox txtFvvar;
+        private System.Windows.Forms.Label lblFvvar;
     }
 }

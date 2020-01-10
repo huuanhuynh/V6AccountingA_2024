@@ -30,9 +30,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         private void MyInit()
         {
-            _maCt = "S12";
+            Mact = "S12";
             _table2Name = "acosxlt_alpbct";
-            txtMaCt.Text = _maCt;
+            txtMaCt.Text = Mact;
 
             
             _table2Struct = V6BusinessHelper.GetTableStruct(_table2Name);
@@ -49,7 +49,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             try
             {
                 dateNgayHL.Value = DateTime.Now.Date;
-                txtSttRec.Text = V6BusinessHelper.GetNewSttRec(_maCt);
+                txtSttRec.Text = V6BusinessHelper.GetNewSttRec(Mact);
             }
             catch (Exception ex)
             {
@@ -326,7 +326,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 errors += V6Text.DetailNotComplete;
             }
 
-            errors += ValidateMasterData(_maCt);
+            errors += ValidateMasterData(Mact);
 
             if (errors.Length > 0) throw new Exception(errors);
 
@@ -504,7 +504,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             try
             {
                 if (data == null) return false;
-                string errors = ValidateDetailData(_maCt, _table2Struct, data);
+                string errors = ValidateDetailData(Mact, _table2Struct, data);
                 if (!string.IsNullOrEmpty(errors))
                 {
                     this.ShowWarningMessage(errors);

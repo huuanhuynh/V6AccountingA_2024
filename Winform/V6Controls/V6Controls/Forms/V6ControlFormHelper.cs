@@ -7282,6 +7282,12 @@ namespace V6Controls.Forms
             };
         }
 
+        /// <summary>
+        /// Gán code động sự kiện co các control trên form theo Aname.
+        /// </summary>
+        /// <param name="thisForm"></param>
+        /// <param name="eventProgram"></param>
+        /// <param name="allObjects"></param>
         public static void ApplyDynamicFormControlEvents(Control thisForm, Type eventProgram, Dictionary<string, object> allObjects)
         {
             if (eventProgram == null) return;

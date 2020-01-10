@@ -41,7 +41,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         private void MyInit()
         {
-            _maCt = "S0M";
+            Mact = "S0M";
             _table2Name = "Alkmbct";
             _table3Name = "Alkmbct2";
             _table4Name = "Alkmbct3";
@@ -57,7 +57,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
             try
             {
-                txtMaCt.Text = _maCt;
+                txtMaCt.Text = Mact;
 
                 //txt.SetInitFilter("");
 
@@ -86,7 +86,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         public override void DoBeforeAdd()
         {
-            txtSttRec.Text = V6BusinessHelper.GetNewSttRec(_maCt);
+            txtSttRec.Text = V6BusinessHelper.GetNewSttRec(Mact);
         }
 
 
