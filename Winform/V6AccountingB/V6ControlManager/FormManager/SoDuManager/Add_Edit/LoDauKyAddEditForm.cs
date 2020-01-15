@@ -53,38 +53,43 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         public override void ValidateData()
         {
-            if ((TxtMa_kho.Text.Trim() == "") 
+            if ((TxtMa_kho.Text.Trim() == "")
                 || (TxtMa_vt.Text.Trim() == "")
                 || (TxtMa_lo.Text.Trim() == ""))
             {
                 throw new Exception(V6Text.Text("LACKINFO"));
             }
-           else
+            else
             {
-                // Check data 
-                if (Mode == V6Mode.Edit)
+                AldmConfig config = ConfigManager.GetAldmConfig(TableName.ToString());
+                string errors = "";
+                if (config != null && config.HaveInfo && !string.IsNullOrEmpty(config.KEY))
                 {
-                    bool b = V6BusinessHelper.IsValidThreeCode_OneNumeric(TableName.ToString(), 0,
-                            "MA_KHO", TxtMa_kho.Text.Trim(), DataOld["MA_KHO"].ToString(),
-                            "MA_VT", TxtMa_vt.Text.Trim(), DataOld["MA_VT"].ToString(),
-                            "MA_LO",TxtMa_lo.Text.Trim(), DataOld["MA_LO"].ToString(),
-                            "NAM", Convert.ToInt32(TxtNam.Value), Convert.ToInt32(TxtNam.Value));
-
-                    if (!b)
-                        throw new Exception(V6Text.Exist + V6Text.EditDenied);
+                    var key_list = ObjectAndString.SplitString(config.KEY);
+                    errors += CheckValid(TableName.ToString(), key_list);
                 }
-                else if (Mode == V6Mode.Add)
-                {
-                    bool b = V6BusinessHelper.IsValidThreeCode_OneNumeric(TableName.ToString(), 1,
-                            "MA_KHO", TxtMa_kho.Text.Trim(), TxtMa_kho.Text.Trim(),
-                            "MA_VT", TxtMa_vt.Text.Trim(), TxtMa_vt.Text.Trim(),
-                            "MA_LO", TxtMa_lo.Text.Trim(), TxtMa_lo.Text.Trim(),
-                           "NAM", Convert.ToInt32(TxtNam.Value), Convert.ToInt32(TxtNam.Value));
-
-                    if (!b)
-                        throw new Exception(V6Text.Exist + V6Text.AddDenied);
-
-                }
+                if (errors.Length > 0) throw new Exception(errors);
+                //// Check data 
+                //if (Mode == V6Mode.Edit)
+                //{
+                //    bool b = V6BusinessHelper.IsValidThreeCode_OneNumeric(TableName.ToString(), 0,
+                //            "MA_KHO", TxtMa_kho.Text.Trim(), DataOld["MA_KHO"].ToString(),
+                //            "MA_VT", TxtMa_vt.Text.Trim(), DataOld["MA_VT"].ToString(),
+                //            "MA_LO", TxtMa_lo.Text.Trim(), DataOld["MA_LO"].ToString(),
+                //            "NAM", Convert.ToInt32(TxtNam.Value), Convert.ToInt32(TxtNam.Value));
+                //    if (!b)
+                //        throw new Exception(V6Text.Exist + V6Text.EditDenied);
+                //}
+                //else if (Mode == V6Mode.Add)
+                //{
+                //    bool b = V6BusinessHelper.IsValidThreeCode_OneNumeric(TableName.ToString(), 1,
+                //            "MA_KHO", TxtMa_kho.Text.Trim(), TxtMa_kho.Text.Trim(),
+                //            "MA_VT", TxtMa_vt.Text.Trim(), TxtMa_vt.Text.Trim(),
+                //            "MA_LO", TxtMa_lo.Text.Trim(), TxtMa_lo.Text.Trim(),
+                //           "NAM", Convert.ToInt32(TxtNam.Value), Convert.ToInt32(TxtNam.Value));
+                //    if (!b)
+                //        throw new Exception(V6Text.Exist + V6Text.AddDenied);
+                //}
             }
         }
 

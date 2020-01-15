@@ -22,6 +22,7 @@ namespace V6Controls
         {
             InitializeComponent();
             //_upper = true;
+            //AutoCompleteSource = AutoCompleteSource.CustomSource;
         }
 
         private void InitializeComponent()
@@ -577,9 +578,10 @@ namespace V6Controls
                         }
                         V6ControlsHelper.DisableLookup = true;
                         AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                        //AutoCompleteMode = AutoCompleteMode.Suggest;
+                        
                         AutoCompleteCustomSource = auto1;
                         AutoCompleteSource = AutoCompleteSource.CustomSource;
+                        
                         V6ControlsHelper.DisableLookup = false;
                     }
                 }

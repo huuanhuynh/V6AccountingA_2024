@@ -45,7 +45,7 @@ namespace V6ControlManager.FormManager.NhanSu
             //CurrentTable = V6TableHelper.ToV6TableName(tableName);
             //CurrentTable = V6TableName.HRPERSONAL
             _tableName = "HRPERSONAL";
-            _config = V6Lookup.GetV6lookupConfigByTableName(_tableName);
+            _v6LookupConfig = V6Lookup.GetV6lookupConfigByTableName(_tableName);
             InitializeComponent();
             MyInit();
             
@@ -67,7 +67,7 @@ namespace V6ControlManager.FormManager.NhanSu
         private string _procedure;
         private string _tableName;
         private string _viewName = "VPRDMNS";
-        private V6lookupConfig _config;
+        private V6lookupConfig _v6LookupConfig;
         [DefaultValue(V6TableName.None)]
         //public V6TableName CurrentTable { get; set; }
         public V6SelectResult SelectResult { get; set; }
@@ -1086,8 +1086,13 @@ namespace V6ControlManager.FormManager.NhanSu
             try
             {
                 V6TableStruct structTable = V6BusinessHelper.GetTableStruct(_tableName);
-                //var keys = new SortedDictionary<string, object>();
-                string[] fields = _config.GetDefaultLookupFields;
+
+                if (!_v6LookupConfig.HaveInfo)
+                {
+                    this.ShowWarningMessage(V6Text.NoDefine, 500);
+                    return;
+                }
+                string[] fields = _v6LookupConfig.GetDefaultLookupFields;
                 _filterForm = new FilterForm(structTable, fields);
                 _filterForm.FilterApplyEvent += FilterFilterApplyEvent;
                 _filterForm.Opacity = 0.9;

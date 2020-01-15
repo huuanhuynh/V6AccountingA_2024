@@ -7300,6 +7300,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         txtMaKh.ChangeText(ma_kh_soh);
                     }
                     // Hóa đơn hơi khác khi luôn gọi lostfocus dù không gán giá trị khác.
+                    All_Objects["txtMaKh.CallLostFocus"] = 1;
                     txtMaKh.CallLostFocus();
                 }
 
@@ -7605,13 +7606,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             _sttRec0 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow);
         }
 
+        /// <summary>
+        /// Áp giá bán.
+        /// </summary>
+        /// <param name="auto">Dùng khi gọi trong code động.</param>
         public void ApGiaBan(bool auto = false)
         {
             try
             {
+                if (AD == null || AD.Rows.Count == 0) return;
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
-                    this.ShowWarningMessage(V6Text.DetailNotComplete);
+                    if (!auto) this.ShowWarningMessage(V6Text.DetailNotComplete);
                     return;
                 }
                 if (txtMaGia.Text.Trim() == "")
@@ -7623,10 +7629,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 {
                     return;
                 }
+                if (auto)
+                {
+                    if (All_Objects.ContainsKey("txtMaKh.CallLostFocus") && ObjectAndString.ObjectToBool(All_Objects["txtMaKh.CallLostFocus"]))
+                    {
+                        All_Objects["txtMaKh.CallLostFocus"] = 0;
+                    }
+                    else
+                    {
+                        if (this.ShowConfirmMessage(V6Text.Text("ASKAPGIABANALL")) != DialogResult.Yes)
+                        {
+                            return;
+                        }
+                    }
+                }
+                
 
                 foreach (DataRow row in AD.Rows)
                 {
                     var maVatTu = row["MA_VT"].ToString().Trim();
+                    var tang = row["TANG"].ToString().Trim().ToLower();
+                    if (tang == "a") continue;
                     var dvt = row["DVT"].ToString().Trim();
                     var dvt1 = row["DVT1"].ToString().Trim();
                     var pt_cki = ObjectAndString.ObjectToDecimal(row["PT_CKI"]);

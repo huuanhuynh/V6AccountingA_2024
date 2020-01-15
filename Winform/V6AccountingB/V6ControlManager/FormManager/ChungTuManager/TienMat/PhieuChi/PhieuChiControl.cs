@@ -311,7 +311,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                             {
                                 _thue_nt.V6LostFocus += delegate
                                 {
-
                                     //10/08/2017 Tinh thue 1 chi tiet dang dung
                                     _thue.Value = V6BusinessHelper.Vround(_thue_nt.Value*txtTyGia.Value, M_ROUND);
                                     if (_maNt == _mMaNt0)
@@ -1253,9 +1252,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     if (_psno != null && _psnoNt != null)
                         _psno.Value = _psnoNt.Value;
                 }
-                // Tuanmh 09/02/2016
-                if (_tien != null)
-                    _tientt.Value = _tien.Value;
+                
+                _tientt.Value = _tien.Value;
 
                 if (_ttqd != null && _tienNt != null && _maNtI.Text == _maNt)
                 {
@@ -1276,20 +1274,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
                 _psno.Value = V6BusinessHelper.Vround(_psnoNt.Value*txtTyGia.Value, M_ROUND);
                 _tien.Value = _psno.Value;
-                if (_tienNt != null)
-
-                    _tienNt.Value = _psnoNt.Value;
+                _tienNt.Value = _psnoNt.Value;
 
                 if (cboMaNt.SelectedValue.ToString() == _mMaNt0)
                 {
-                    if (_tien != null && _tienNt != null)
-                        _tien.Value = _tienNt.Value;
-
+                    _tien.Value = _tienNt.Value;
                     _psno.Value = _psnoNt.Value;
                 }
-                // Tuanmh 09/02/2016
-                if (_tien != null)
-                    _tientt.Value = _tien.Value;
+                
+                _tientt.Value = _tien.Value;
 
                 //10/08/2017 Tinh thue 1 chi tiet dang dung
                 _thue_nt.Value = V6BusinessHelper.Vround(_thue_suat.Value*_tienNt.Value/100, M_ROUND);

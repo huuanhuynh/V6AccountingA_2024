@@ -111,7 +111,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             get
             {
-                var result = _aldmConfig.IS_ALDM ? _aldmConfig.FILTER_FIELD : _v6lookupConfig.FILTER_FIELD;
+                var result = _aldmConfig.IS_ALDM ? _aldmConfig.FILTER_FIELD : _v6LookupConfig.FILTER_FIELD;
 
                 if (string.IsNullOrEmpty(result) && CurrentTable == V6TableName.CorpLan)
                 {
@@ -197,9 +197,9 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             else
             {
-                _v6lookupConfig = V6Lookup.GetV6lookupConfigByTableName(_tableName);
-                if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(_v6lookupConfig.vOrder))
-                    SelectResult.SortField = _v6lookupConfig.vOrder;
+                _v6LookupConfig = V6Lookup.GetV6lookupConfigByTableName(_tableName);
+                if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(_v6LookupConfig.vOrder))
+                    SelectResult.SortField = _v6LookupConfig.vOrder;
             }
 
             GetExtraInitFilter();
@@ -453,15 +453,15 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 }
                 else
                 {
-                    string showFields = _v6lookupConfig.GRDS_V1;
-                    string formatStrings = _v6lookupConfig.GRDF_V1;
-                    string headerString = V6Setting.IsVietnamese ? _v6lookupConfig.GRDHV_V1 : _v6lookupConfig.GRDHE_V1;
+                    string showFields = _v6LookupConfig.GRDS_V1;
+                    string formatStrings = _v6LookupConfig.GRDF_V1;
+                    string headerString = V6Setting.IsVietnamese ? _v6LookupConfig.GRDHV_V1 : _v6LookupConfig.GRDHE_V1;
                     V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
-                    var conditionColor = ObjectAndString.StringToColor(_v6lookupConfig.COLORV);
-                    V6ControlFormHelper.FormatGridView(dataGridView1, _v6lookupConfig.FIELDV, _v6lookupConfig.OPERV, _v6lookupConfig.VALUEV,
-                        _v6lookupConfig.BOLD_YN, _v6lookupConfig.COLOR_YN, conditionColor);
+                    var conditionColor = ObjectAndString.StringToColor(_v6LookupConfig.COLORV);
+                    V6ControlFormHelper.FormatGridView(dataGridView1, _v6LookupConfig.FIELDV, _v6LookupConfig.OPERV, _v6LookupConfig.VALUEV,
+                        _v6LookupConfig.BOLD_YN, _v6LookupConfig.COLOR_YN, conditionColor);
 
-                    int frozen = ObjectAndString.ObjectToInt(_v6lookupConfig.FROZENV);
+                    int frozen = ObjectAndString.ObjectToInt(_v6LookupConfig.FROZENV);
                     dataGridView1.SetFrozen(frozen);
                 }
             }
@@ -473,7 +473,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         }
 
         private AldmConfig _aldmConfig;
-        private V6lookupConfig _v6lookupConfig;
+        private V6lookupConfig _v6LookupConfig;
         #region ==== Do method ====
 
         public override void DoHotKey(Keys keyData)
@@ -936,11 +936,11 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     {
                         // Tuanmh 23/08/2017
                         //id = _aldm ? aldm_config.KEY:
-                        var id = _aldmConfig.IS_ALDM ? _aldmConfig.TABLE_KEY: _v6lookupConfig.vValue;
+                        var id = _aldmConfig.IS_ALDM ? _aldmConfig.TABLE_KEY: _v6LookupConfig.vValue;
 
-                        var id_check = _aldmConfig.IS_ALDM ? _aldmConfig.DOI_MA : _v6lookupConfig.vValue;
+                        var id_check = _aldmConfig.IS_ALDM ? _aldmConfig.DOI_MA : _v6LookupConfig.vValue;
 
-                        var listTable = _aldmConfig.IS_ALDM ? _aldmConfig.F8_TABLE : _v6lookupConfig.ListTable;
+                        var listTable = _aldmConfig.IS_ALDM ? _aldmConfig.F8_TABLE : _v6LookupConfig.ListTable;
                         var value = "";
                         var value_show = "";
 
@@ -1777,9 +1777,15 @@ namespace V6ControlManager.FormManager.DanhMucManager
             try
             {
                 V6TableStruct structTable = V6BusinessHelper.GetTableStruct(_tableName);
-                //var keys = new SortedDictionary<string, object>();
+
+                if (_aldmConfig.IS_ALDM ? (!_aldmConfig.HaveInfo) : (!_v6LookupConfig.HaveInfo))
+                {
+                    this.ShowWarningMessage(V6Text.NoDefine, 500);
+                    return;
+                }
+                
                 string[] fields = _aldmConfig.IS_ALDM ? ObjectAndString.SplitString(_aldmConfig.F_SEARCH) :
-                     ObjectAndString.SplitString(V6Setting.IsVietnamese ? _v6lookupConfig.vFields : _v6lookupConfig.eFields);
+                     ObjectAndString.SplitString(V6Setting.IsVietnamese ? _v6LookupConfig.vFields : _v6LookupConfig.eFields);
                 if (fields.Length == 0 && CurrentTable == V6TableName.CorpLan)
                 {
                     // Hỗ trợ cho CorpLan

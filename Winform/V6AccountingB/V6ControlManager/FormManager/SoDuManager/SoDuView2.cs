@@ -1139,7 +1139,12 @@ namespace V6ControlManager.FormManager.SoDuManager
             try
             {
                 V6TableStruct structTable = V6BusinessHelper.GetTableStruct(CurrentTable.ToString());
-                //var keys = new SortedDictionary<string, object>();
+
+                if (!_v6LookupConfig.HaveInfo)
+                {
+                    this.ShowWarningMessage(V6Text.NoDefine, 500);
+                    return;
+                }
                 string[] fields = _v6LookupConfig.GetDefaultLookupFields;
                 _filterForm = new SoDuFilterForm(structTable, fields);
                 _filterForm.FilterOkClick += filter_FilterOkClick;

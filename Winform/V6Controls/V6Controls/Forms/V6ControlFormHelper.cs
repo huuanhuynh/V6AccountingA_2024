@@ -6173,7 +6173,7 @@ namespace V6Controls.Forms
             //    }
             };
 
-            //control.LostFocus += (sender, e) =>
+            //control.Leave += (sender, e) =>
             //{
             //    control.Text = control.Text.Replace(" ", "");
             //};
@@ -7268,7 +7268,7 @@ namespace V6Controls.Forms
                 All_Objects["e"] = e;
                 V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_GOTFOCUS" + before, All_Objects);
             };
-            control.LostFocus += (sender, e) =>
+            control.Leave += (sender, e) =>
             {
                 All_Objects["sender"] = sender;
                 All_Objects["e"] = e;
@@ -7661,7 +7661,7 @@ namespace V6Controls.Forms
                                         break;
 
                                     case "LOSTFOCUS":
-                                        input.LostFocus += (s, e) =>
+                                        input.Leave += (s, e) =>
                                         {
                                             if (Event_program2 == null) return;
 

@@ -29,8 +29,8 @@ namespace V6ControlManager.FormManager.NhanSu
             try
             {
                 //vTitle, eTitle
-                var groupFields = ObjectAndString.SplitString(_config.vTitle);
-                var groupNameFields = ObjectAndString.SplitString(_config.eTitle);
+                var groupFields = ObjectAndString.SplitString(_v6LookupConfig.vTitle);
+                var groupNameFields = ObjectAndString.SplitString(_v6LookupConfig.eTitle);
                 
                 //LoadListMenu();
             }
@@ -45,7 +45,7 @@ namespace V6ControlManager.FormManager.NhanSu
             m_itemId = itemId;
             Title = title;
             _tableName = tableName;
-            _config = V6Lookup.GetV6lookupConfigByTableName(_tableName);
+            _v6LookupConfig = V6Lookup.GetV6lookupConfigByTableName(_tableName);
             CurrentTable = V6TableHelper.ToV6TableName(tableName);
 
             InitializeComponent();
@@ -83,7 +83,7 @@ namespace V6ControlManager.FormManager.NhanSu
         private SortedDictionary<string, string> _hideColumnDic; 
         private string _tableName;
         private string _viewName = "VPRDMNSTREE";
-        private V6lookupConfig _config;
+        private V6lookupConfig _v6LookupConfig;
         [DefaultValue(V6TableName.None)]
         public V6TableName CurrentTable { get; set; }
         public V6SelectResult SelectResult { get; set; }
@@ -496,8 +496,8 @@ namespace V6ControlManager.FormManager.NhanSu
                         var selected_item = treeListViewAuto1.SelectedItems[0];
                         var data = treeListViewAuto1.SelectedItemData;
                         object UID = data["UID"];
-                        var id = _config.vValue;
-                        var listTable = _config.ListTable;
+                        var id = _v6LookupConfig.vValue;
+                        var listTable = _v6LookupConfig.ListTable;
                         var value = selected_item.Name;
 
                         if (!string.IsNullOrEmpty(listTable) && !string.IsNullOrEmpty(id))
@@ -714,9 +714,9 @@ namespace V6ControlManager.FormManager.NhanSu
             //nhanSuTreeView1.DataSource = SelectResult.Data;
             //LoadSelectedCellLocation(dataGridView1);
 
-            string showFields = _config.GRDS_V1;
-            string headerString = V6Setting.IsVietnamese ? _config.GRDHV_V1 : _config.GRDHE_V1;
-            string formatStrings = _config.GRDF_V1;
+            string showFields = _v6LookupConfig.GRDS_V1;
+            string headerString = V6Setting.IsVietnamese ? _v6LookupConfig.GRDHV_V1 : _v6LookupConfig.GRDHE_V1;
+            string formatStrings = _v6LookupConfig.GRDF_V1;
             
             treeListViewAuto1.SetData(SelectResult.Data, showFields, headerString, formatStrings);
             #endregion nhansutreeview
@@ -906,8 +906,13 @@ namespace V6ControlManager.FormManager.NhanSu
             try
             {
                 V6TableStruct structTable = V6BusinessHelper.GetTableStruct(CurrentTable.ToString());
-                //var keys = new SortedDictionary<string, object>();
-                string[] fields = _config.GetDefaultLookupFields;
+
+                if (!_v6LookupConfig.HaveInfo)
+                {
+                    this.ShowWarningMessage(V6Text.NoDefine, 500);
+                    return;
+                }
+                string[] fields = _v6LookupConfig.GetDefaultLookupFields;
                 _filterForm = new FilterForm(structTable, fields);
                 _filterForm.FilterApplyEvent += FilterFilterApplyEvent;
                 _filterForm.Opacity = 0.9;

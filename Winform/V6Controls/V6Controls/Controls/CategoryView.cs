@@ -68,9 +68,9 @@ namespace V6Controls.Controls
             }
             else
             {
-                _v6lookupConfig = V6Lookup.GetV6lookupConfigByTableName(_tableName);
-                if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(_v6lookupConfig.vOrder))
-                    SelectResult.SortField = _v6lookupConfig.vOrder;
+                _v6LookupConfig = V6Lookup.GetV6lookupConfigByTableName(_tableName);
+                if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(_v6LookupConfig.vOrder))
+                    SelectResult.SortField = _v6LookupConfig.vOrder;
             }
             
             if (CurrentTable == V6TableName.V_alts || CurrentTable == V6TableName.V_alcc
@@ -208,14 +208,14 @@ namespace V6Controls.Controls
                 }
                 else
                 {
-                    string showFields = _v6lookupConfig.GRDS_V1;
-                    string formatStrings = _v6lookupConfig.GRDF_V1;
-                    string headerString = V6Setting.IsVietnamese ? _v6lookupConfig.GRDHV_V1 : _v6lookupConfig.GRDHE_V1;
+                    string showFields = _v6LookupConfig.GRDS_V1;
+                    string formatStrings = _v6LookupConfig.GRDF_V1;
+                    string headerString = V6Setting.IsVietnamese ? _v6LookupConfig.GRDHV_V1 : _v6LookupConfig.GRDHE_V1;
                     V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
-                    var conditionColor = ObjectAndString.StringToColor(_v6lookupConfig.COLORV);
-                    V6ControlFormHelper.FormatGridView(dataGridView1, _v6lookupConfig.FIELDV, _v6lookupConfig.OPERV, _v6lookupConfig.VALUEV,
-                        _v6lookupConfig.BOLD_YN, _v6lookupConfig.COLOR_YN, conditionColor);
-                    int frozen = ObjectAndString.ObjectToInt(_v6lookupConfig.FROZENV);
+                    var conditionColor = ObjectAndString.StringToColor(_v6LookupConfig.COLORV);
+                    V6ControlFormHelper.FormatGridView(dataGridView1, _v6LookupConfig.FIELDV, _v6LookupConfig.OPERV, _v6LookupConfig.VALUEV,
+                        _v6LookupConfig.BOLD_YN, _v6LookupConfig.COLOR_YN, conditionColor);
+                    int frozen = ObjectAndString.ObjectToInt(_v6LookupConfig.FROZENV);
                     dataGridView1.SetFrozen(frozen);
                 }
             }
@@ -227,7 +227,7 @@ namespace V6Controls.Controls
         }
 
         private AldmConfig _aldmConfig;
-        private V6lookupConfig _v6lookupConfig;
+        private V6lookupConfig _v6LookupConfig;
 
         #region ==== Do method ====
 
@@ -680,8 +680,8 @@ namespace V6Controls.Controls
                     else
                     {
 
-                        var id = _aldmConfig.IS_ALDM ? _aldmConfig.TABLE_KEY : _v6lookupConfig.vValue;
-                        var listTable = _aldmConfig.IS_ALDM ? _aldmConfig.F8_TABLE : _v6lookupConfig.ListTable;
+                        var id = _aldmConfig.IS_ALDM ? _aldmConfig.TABLE_KEY : _v6LookupConfig.vValue;
+                        var listTable = _aldmConfig.IS_ALDM ? _aldmConfig.F8_TABLE : _v6LookupConfig.ListTable;
                         var value = "";
                         
                         if (String.IsNullOrEmpty(listTable) == false)
@@ -1269,9 +1269,14 @@ namespace V6Controls.Controls
             try
             {
                 V6TableStruct structTable = V6BusinessHelper.GetTableStruct(_tableName);
-                //var keys = new SortedDictionary<string, object>();
+
+                if (!_v6LookupConfig.HaveInfo)
+                {
+                    this.ShowWarningMessage(V6Text.NoDefine, 500);
+                    return;
+                }
                 string[] fields = _aldmConfig.IS_ALDM ? ObjectAndString.SplitString(_aldmConfig.F_SEARCH) :
-                    ObjectAndString.SplitString(V6Setting.IsVietnamese ? _v6lookupConfig.vFields : _v6lookupConfig.eFields);
+                    ObjectAndString.SplitString(V6Setting.IsVietnamese ? _v6LookupConfig.vFields : _v6LookupConfig.eFields);
                 _filterForm = new FilterForm(structTable, fields);
                 _filterForm.FilterApplyEvent += FilterFilterApplyEvent;
                 _filterForm.Opacity = 0.9;

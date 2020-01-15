@@ -203,6 +203,7 @@ namespace V6Tools.V6Convert
         {
             if (o is DBNull) return false;
             if (o == null) return false;
+            if (ObjectToDecimal(o) == 1m) return true;
             string s = o.ToString().Trim().ToLower();
             return s == "1" || s == "true" || s == "yes";
         }
