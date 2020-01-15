@@ -68,7 +68,7 @@ namespace V6Controls
 					this.MouseUp +=new MouseEventHandler(VistaButton_MouseUp);
 					this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.VistaButton_MouseDown);
 					this.GotFocus +=new EventHandler(VistaButton_MouseEnter);
-					this.LostFocus +=new EventHandler(VistaButton_MouseLeave);
+                    this.Leave += new EventHandler(VistaButton_MouseLeave);
 					this.mFadeIn.Tick += new EventHandler(mFadeIn_Tick);
 					this.mFadeOut.Tick += new EventHandler(mFadeOut_Tick);
 					this.Resize +=new EventHandler(VistaButton_Resize);

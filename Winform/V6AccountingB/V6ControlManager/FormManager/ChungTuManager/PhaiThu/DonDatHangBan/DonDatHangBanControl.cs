@@ -5680,7 +5680,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     if (txtMaKh.Text == "")
                     {
                         txtMaKh.ChangeText(ma_kh_soh);
-                        txtMaKh.CallLostFocus();
+                        txtMaKh.CallLeave();
                     }
                 }
 

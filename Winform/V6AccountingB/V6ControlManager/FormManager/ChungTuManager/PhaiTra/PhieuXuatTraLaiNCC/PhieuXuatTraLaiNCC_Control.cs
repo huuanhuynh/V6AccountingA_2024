@@ -518,7 +518,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                             if (getFilter != "") filter += " and " + getFilter;
                             _maLo.SetInitFilter(filter);
                         };
-                        _maLo.LostFocus += (sender, args) =>
+                        _maLo.Leave += (sender, args) =>
                         {
                             if (!_maLo.ReadOnly)
                             {
@@ -4638,7 +4638,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                     if (txtMaKh.Text == "")
                     {
                         txtMaKh.ChangeText(ma_kh_soh);
-                        txtMaKh.CallLostFocus();
+                        txtMaKh.CallLeave();
                     }
                 }
 

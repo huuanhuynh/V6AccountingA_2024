@@ -194,7 +194,7 @@ namespace V6ControlManager.FormManager.ReportManager
                                                 break;
 
                                             case ControlDynamicEvent.LOSTFOCUS:
-                                                lineControl.LostFocus += (s, e) =>
+                                                lineControl.Leave += (s, e) =>
                                                 {
                                                     if (Event_program == null) return;
 

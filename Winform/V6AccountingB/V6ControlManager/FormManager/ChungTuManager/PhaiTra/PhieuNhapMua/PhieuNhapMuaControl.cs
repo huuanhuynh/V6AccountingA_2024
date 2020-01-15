@@ -5978,7 +5978,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     if (txtMaKh.Text == "")
                     {
                         txtMaKh.ChangeText(ma_kh_soh);
-                        txtMaKh.CallLostFocus();
+                        txtMaKh.CallLeave();
                     }
                 }
 

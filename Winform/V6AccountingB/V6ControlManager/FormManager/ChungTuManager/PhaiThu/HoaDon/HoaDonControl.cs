@@ -191,7 +191,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 {
                     txtCustomInfo.Height = cboChuyenData.Bottom - txtTongSoLuong1.Top;
                 };
-                txtCustomInfo.LostFocus += (sender, args) =>
+                txtCustomInfo.Leave += (sender, args) =>
                 {
                     txtCustomInfo.Height = 23;
                 };
@@ -460,7 +460,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                                 Tinh_thue_ct();
                             };
 
-                            //_soLuong1.LostFocus += delegate
+                            //_soLuong1.Leave += delegate
                             //{
                             //    CheckSoLuong1(_soLuong1);
                             //};
@@ -776,7 +776,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             if (getFilter != "") filter += " and " + getFilter;
                             _maLo.SetInitFilter(filter);
                         };
-                        _maLo.LostFocus += (sender, args) =>
+                        _maLo.Leave += (sender, args) =>
                         {
                             if (!_maLo.ReadOnly)
                             {
@@ -7300,8 +7300,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         txtMaKh.ChangeText(ma_kh_soh);
                     }
                     // Hóa đơn hơi khác khi luôn gọi lostfocus dù không gán giá trị khác.
-                    All_Objects["txtMaKh.CallLostFocus"] = 1;
-                    txtMaKh.CallLostFocus();
+                    All_Objects["txtMaKh.CallLeave"] = 1;
+                    txtMaKh.CallLeave();
                 }
 
                 V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed: {1}{2}", addCount, failCount, _message));
@@ -7631,9 +7631,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 }
                 if (auto)
                 {
-                    if (All_Objects.ContainsKey("txtMaKh.CallLostFocus") && ObjectAndString.ObjectToBool(All_Objects["txtMaKh.CallLostFocus"]))
+                    if (All_Objects.ContainsKey("txtMaKh.CallLeave") && ObjectAndString.ObjectToBool(All_Objects["txtMaKh.CallLeave"]))
                     {
-                        All_Objects["txtMaKh.CallLostFocus"] = 0;
+                        All_Objects["txtMaKh.CallLeave"] = 0;
                     }
                     else
                     {
@@ -8051,7 +8051,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         txtMaKh.ChangeText(ma_kh_soh);
                     }
                     // ...
-                    txtMaKh.CallLostFocus();
+                    txtMaKh.CallLeave();
                 }
 
                 V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed: {1}{2}", addCount, failCount, _message));

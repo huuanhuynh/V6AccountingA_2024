@@ -736,9 +736,12 @@ namespace V6Controls
             else if (_lower) Text = Text.ToLower();
         }
 
-        public void CallLostFocus()
+        /// <summary>
+        /// Gọi sự kiện Leave. Các code .Levae += của textbox được gọi sẽ được kích hoạt.
+        /// </summary>
+        public void CallLeave()
         {
-            OnLostFocus(new EventArgs());
+            OnLeave(new EventArgs());
         }
 
         public void CallDoV6LostFocus()

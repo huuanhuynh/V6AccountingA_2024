@@ -672,7 +672,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                             if (getFilter != "") filter += " and " + getFilter;
                             _maLo.SetInitFilter(filter);
                         };
-                        _maLo.LostFocus += (sender, args) =>
+                        _maLo.Leave += (sender, args) =>
                         {
                             if (!_maLo.ReadOnly)
                             {
@@ -6599,7 +6599,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     if (txtMaKh.Text == "")
                     {
                         txtMaKh.ChangeText(ma_kh_soh);
-                        txtMaKh.CallLostFocus();
+                        txtMaKh.CallLeave();
                     }
                 }
 

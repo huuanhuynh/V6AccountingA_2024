@@ -5559,7 +5559,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                     if (txtMaKh.Text == "")
                     {
                         txtMaKh.ChangeText(ma_kh_soh);
-                        txtMaKh.CallLostFocus();
+                        txtMaKh.CallLeave();
                     }
                 }
 

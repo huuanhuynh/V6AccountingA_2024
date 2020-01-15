@@ -279,7 +279,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                         {
                             
                         };
-                        //_soLuong1.LostFocus += delegate
+                        //_soLuong1.Leave += delegate
                         //{
                         //    SetControlValue(_sl_td1, _soLuong1.Value, Invoice.GetTemplateSettingAD("SL_TD1"));
                         //};
@@ -533,7 +533,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                             _maLo.SetInitFilter(filter);
                         };
 
-                        _maLo.LostFocus += (sender, args) =>
+                        _maLo.Leave += (sender, args) =>
                         {
                             CheckMaLo();
                             if (!_maLo.ReadOnly)
@@ -5999,7 +5999,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                     if (txtMaKh.Text == "")
                     {
                         txtMaKh.ChangeText(ma_kh_soh);
-                        txtMaKh.CallLostFocus();
+                        txtMaKh.CallLeave();
                     }
                 }
 

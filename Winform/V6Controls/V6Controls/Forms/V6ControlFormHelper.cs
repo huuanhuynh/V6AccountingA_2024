@@ -6082,7 +6082,7 @@ namespace V6Controls.Forms
 
             //txt.GotFocus += ApplyLookup_GotFocus;
             txtApplyLookup.KeyDown += ApplyLookup_KeyDown;
-            txtApplyLookup.LostFocus += ApplyLookup_LostFocus;
+            txtApplyLookup.Leave += ApplyLookup_LostFocus;
             txtApplyLookup.Disposed += ApplyLookup_Disposed;
         }
 

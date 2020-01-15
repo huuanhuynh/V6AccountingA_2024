@@ -468,7 +468,7 @@ namespace V6ControlManager.FormManager
                                         break;
 
                                     case "LOSTFOCUS":
-                                        input.LostFocus += (s, e) =>
+                                        input.Leave += (s, e) =>
                                         {
                                             if (Event_program2 == null) return;
 

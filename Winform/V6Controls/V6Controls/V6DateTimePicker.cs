@@ -217,7 +217,7 @@ namespace V6Controls
             this.Leave += new System.EventHandler(this.V6ColorTextBox_Leave);
             this.MouseLeave += new System.EventHandler(this.V6ColorTextBox_MouseLeave);
             this.ValueChanged += V6DateTimePick_ValueChanged;
-            this.LostFocus += V6DateTimePick_LostFocus;
+            this.Leave += V6DateTimePick_LostFocus;
 
             this.ResumeLayout(false);
 

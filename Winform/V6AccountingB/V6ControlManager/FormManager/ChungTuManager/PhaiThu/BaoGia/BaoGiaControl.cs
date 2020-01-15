@@ -355,7 +355,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     //_ton13.V6LostFocus += Ton13_V6LostFocus;
                     case "SO_LUONG1":
                         _soLuong1 = (V6NumberTextBox)control;
-                        //_soLuong1.LostFocus += delegate
+                        //_soLuong1.Leave += delegate
                         //{
                         //    CheckSoLuong1(_soLuong1);
                         //};

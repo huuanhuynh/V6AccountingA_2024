@@ -379,7 +379,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                             break;
 
                                         case "LOSTFOCUS":
-                                            input.LostFocus += (s, e) =>
+                                            input.Leave += (s, e) =>
                                             {
                                                 if (Form_program == null) return;
 
