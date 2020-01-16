@@ -660,6 +660,51 @@ namespace V6AccountingBusiness.Invoices
             }
         }
 
+        /// <summary>
+        /// //Tuanmh 30/08/2018 // Chuyển xuống từ Invoice71 16/01/2020
+        /// </summary>
+        /// <param name="field"></param>
+        /// <param name="mact"></param>
+        /// <param name="ngayct"></param>
+        /// <param name="mant"></param>
+        /// <param name="mavt"></param>
+        /// <param name="dvt1"></param>
+        /// <param name="makh"></param>
+        /// <param name="magia"></param>
+        /// <returns></returns>
+        public DataRow GetGiaMua(string field, string mact, DateTime ngayct,
+            string mant, string mavt, string dvt1, string makh, string magia)
+        {
+            try
+            {
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@cField", field),
+                    new SqlParameter("@cVCID", mact),
+                    new SqlParameter("@dPrice", ngayct),
+                    new SqlParameter("@cFC", mant),
+                    new SqlParameter("@cItem", mavt),
+                    new SqlParameter("@cUOM", dvt1),
+                    new SqlParameter("@cCust", makh),
+                    new SqlParameter("@cMaGia", magia)
+                };
+
+                var resultData = SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_GetPOIDPrice", plist).Tables[0];
+                if (resultData != null && resultData.Rows.Count >= 1)
+                {
+                    return resultData.Rows[0];
+                }
+                else
+                {
+                    throw new Exception("GetGiaMua return null.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("V6Invoice71 GetGiaMua " + ex.Message);
+            }
+        }
+
         public string PrintMode
         {
             get

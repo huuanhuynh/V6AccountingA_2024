@@ -144,6 +144,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
                 {
                     timer1.Stop();
                     progressBar1.Value = 100;
+                    progressBar1.Visible = false;
                     btnNhan.Enabled = true;
                     comboBox1.SelectedIndex = 0;
                     var loai = comboBox1.SelectedIndex + 1;
@@ -348,6 +349,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
         {
             if (IsReady)
             {
+                progressBar1.Visible = true;
                 ChangeSelectedToNewGroup();
                 CheckChuaPhanNhom();
                 NhanThread();
@@ -425,6 +427,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
         private void NhanThread()
         {
             progressBar1.Value = 0;
+            progressBar1.Visible = true;
             _totalListCount = _changedList.Count;
             _updateCount = 0;
             _updateFinish = false;
@@ -464,7 +467,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
             {
                 timer2.Stop();
                 progressBar1.Value = 100;
-
+                progressBar1.Visible = false;
                 string message = string.Format("Đã chuyển {0}.", _updateCount);
                 if (_updateCount == 0) message += " Chọn dòng cần chuyển bằng SpaceBar hoặc Ctrl+A.";
                 ShowTopLeftMessage(message);

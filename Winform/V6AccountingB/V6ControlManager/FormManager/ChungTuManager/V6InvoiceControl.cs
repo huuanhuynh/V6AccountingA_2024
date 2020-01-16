@@ -306,6 +306,15 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             get { return _AED_Running || _executing; }
         }
+
+        public virtual void ApGiaBan(bool auto = false)
+        {
+            ShowMainMessage("Cần override hàm ApGiaBan().");
+        }
+        public virtual void ApGiaMua(bool auto = false)
+        {
+            ShowMainMessage("Cần override hàm ApGiaMua().");
+        }
         
         public void HuyBase()
         {
@@ -3924,5 +3933,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         
         }
+
+        
     }
 }

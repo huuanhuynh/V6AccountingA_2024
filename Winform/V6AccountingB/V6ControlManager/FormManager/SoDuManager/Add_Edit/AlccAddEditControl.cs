@@ -1354,7 +1354,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 if (AD != null && AD.Rows.Count > 0 && dataGridView1.DataSource != null)
                 {
                     detail1.ChangeToEditMode();
-                    _sttRec0_22 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow);
+                    ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow, out _sttRec0_22);
 
                     ma_nv.Focus();
                 }
@@ -1371,7 +1371,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 if (data3 != null && data3.Rows.Count > 0 && gView3.DataSource != null)
                 {
                     detail3.ChangeToEditMode();
-                    _sttRec0_33 = ChungTu.ViewSelectedDetailToDetailForm(gView3, detail3, out _gv3EditingRow);
+                    ChungTu.ViewSelectedDetailToDetailForm(gView3, detail3, out _gv3EditingRow, out _sttRec0_33);
                     ten_ptkt.Focus();
                 }
             }
@@ -1387,7 +1387,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 if (data4 != null && data4.Rows.Count > 0 && gView4.DataSource != null)
                 {
                     detail4.ChangeToEditMode();
-                    _sttRec0_44 = ChungTu.ViewSelectedDetailToDetailForm(gView4, detail4, out _gv4EditingRow);
+                    ChungTu.ViewSelectedDetailToDetailForm(gView4, detail4, out _gv4EditingRow, out _sttRec0_44);
                     ma_bp_i.Focus();
                 }
             }

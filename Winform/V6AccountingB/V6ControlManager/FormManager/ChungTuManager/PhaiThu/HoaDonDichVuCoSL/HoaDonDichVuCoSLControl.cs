@@ -1221,7 +1221,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 {
                     detail3.ChangeToEditMode();
 
-                    _sttRec03 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView3, detail3, out _gv3EditingRow);
+                    ChungTu.ViewSelectedDetailToDetailForm(dataGridView3, detail3, out _gv3EditingRow, out _sttRec03);
                     if (!string.IsNullOrEmpty(_sttRec03))
                     {
                         var readonly_list = SetControlReadOnlyHide(detail3, Invoice, Mode, V6Mode.Edit);
@@ -6172,7 +6172,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             {
                 if (AD != null && AD.Rows.Count > 0 && dataGridView1.DataSource != null)
                 {
-                    _sttRec0 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow);
+                    ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow, out _sttRec0);
                     if (_gv1EditingRow == null)
                     {
                         this.ShowWarningMessage(V6Text.NoSelection);
@@ -6929,7 +6929,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             ApGiaBan();
         }
 
-        private void ApGiaBan()
+        public override void ApGiaBan(bool auto = false)
         {
             try
             {

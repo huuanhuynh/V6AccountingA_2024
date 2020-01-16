@@ -4787,7 +4787,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             {
                 if (AD != null && AD.Rows.Count > 0 && dataGridView1.DataSource != null)
                 {
-                    _sttRec0 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow);
+                    ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow, out _sttRec0);
                     if (_gv1EditingRow == null)
                     {
                         this.ShowWarningMessage(V6Text.NoSelection);
@@ -5179,10 +5179,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
         private void btnApGia_Click(object sender, EventArgs e)
         {
             ApGiaBan();
-            _sttRec0 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow);
+            ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow, out _sttRec0);
         }
 
-        private void ApGiaBan()
+        public override void ApGiaBan(bool auto = false)
         {
             try
             {

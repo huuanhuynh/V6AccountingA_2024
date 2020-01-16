@@ -1395,8 +1395,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 if (AD3 != null && AD3.Rows.Count > 0 && dataGridView3.DataSource != null)
                 {
                     detail3.ChangeToEditMode();
-
-                    _sttRec03 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView3, detail3, out _gv3EditingRow);
+                    ChungTu.ViewSelectedDetailToDetailForm(dataGridView3, detail3, out _gv3EditingRow, out _sttRec03);
                     if (!string.IsNullOrEmpty(_sttRec03))
                     {
                         var readonly_list = SetControlReadOnlyHide(detail3, Invoice, Mode, V6Mode.Edit);
@@ -5549,7 +5548,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             {
                 if (AD != null && AD.Rows.Count > 0 && dataGridView1.DataSource != null)
                 {
-                    _sttRec0 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow);
+                    ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow, out _sttRec0);
                     if (_gv1EditingRow == null)
                     {
                         this.ShowWarningMessage(V6Text.NoSelection);
@@ -5588,7 +5587,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 if (AD2 != null && AD2.Rows.Count > 0 && dataGridView2.DataSource != null)
                 {
                     detail2.ChangeToEditMode();
-                    _sttRec02 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView2, detail2, out _gv2EditingRow);
+                    ChungTu.ViewSelectedDetailToDetailForm(dataGridView2, detail2, out _gv2EditingRow, out _sttRec02);
                     if (!string.IsNullOrEmpty(_sttRec02))
                     {
                         if (_ma_kh22.Text.Trim() == "")
@@ -6800,8 +6799,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     if (txtMaKh.Text == "")
                     {
                         txtMaKh.ChangeText(ma_kh_soh);
-                        txtMaKh.CallLeave();
                     }
+                    // Làm theo hoadon
+                    All_Objects["txtMaKh.CallLeave"] = 1;
+                    txtMaKh.CallLeave();
                 }
 
                 All_Objects["selectedDataList"] = selectedDataList;
@@ -7264,6 +7265,165 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
             FixMenuChucNangItemShiftText(chonTuExcelMenu);
+        }
+
+        private void btnApGia_Click(object sender, EventArgs e)
+        {
+            ApGiaMua();
+            ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow, out _sttRec0);
+        }
+
+        /// <summary>
+        /// Áp giá mua.
+        /// </summary>
+        /// <param name="auto">Dùng khi gọi trong code động.</param>
+        public override void ApGiaMua(bool auto = false)
+        {
+            try
+            {
+                if (AD == null || AD.Rows.Count == 0) return;
+                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                {
+                    if (!auto) this.ShowWarningMessage(V6Text.DetailNotComplete);
+                    return;
+                }
+                if (txtMaGia.Text.Trim() == "")
+                {
+                    ShowParentMessage(V6Text.NoInput + btnApGia.Text);
+                    return;
+                }
+                if (!auto && this.ShowConfirmMessage(V6Text.Text("ASKAPGIAMUAALL")) != DialogResult.Yes)
+                {
+                    return;
+                }
+                if (auto)
+                {
+                    if (All_Objects.ContainsKey("txtMaKh.CallLeave") && ObjectAndString.ObjectToBool(All_Objects["txtMaKh.CallLeave"]))
+                    {
+                        All_Objects["txtMaKh.CallLeave"] = 0;
+                    }
+                    else
+                    {
+                        if (this.ShowConfirmMessage(V6Text.Text("ASKAPGIABANALL")) != DialogResult.Yes)
+                        {
+                            return;
+                        }
+                    }
+                }
+
+                foreach (DataRow row in AD.Rows)
+                {
+                    var maVatTu = row["MA_VT"].ToString().Trim();
+                    var dvt = row["DVT"].ToString().Trim();
+                    var dvt1 = row["DVT1"].ToString().Trim();
+                    var pt_cki = ObjectAndString.ObjectToDecimal(row["PT_CKI"]);
+                    var soLuong = ObjectAndString.ObjectToDecimal(row["SO_LUONG"]);
+                    var soLuong1 = ObjectAndString.ObjectToDecimal(row["SO_LUONG1"]);
+                    var tienNt0 = ObjectAndString.ObjectToDecimal(row["TIEN_NT0"]);
+                    var tien0 = ObjectAndString.ObjectToDecimal(row["TIEN0"]);
+
+                    var tienNt = ObjectAndString.ObjectToDecimal(row["TIEN_NT"]);
+                    var tien = ObjectAndString.ObjectToDecimal(row["TIEN"]);
+                    var giaNt = ObjectAndString.ObjectToDecimal(row["GIA_NT"]);
+                    var gia = ObjectAndString.ObjectToDecimal(row["GIA"]);
+
+                    var dataGia = Invoice.GetGiaMua("MA_VT", Invoice.Mact, dateNgayCT.Date,
+                        cboMaNt.SelectedValue.ToString().Trim(), maVatTu, dvt1, txtMaKh.Text, txtMaGia.Text);
+
+                    var giaNt01 = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT0"]);
+                    row["GIA_NT01"] = giaNt01;
+                    //_soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
+                    tienNt0 = V6BusinessHelper.Vround((soLuong1 * giaNt01), M_ROUND_NT);
+                    tien0 = V6BusinessHelper.Vround((tienNt0 * txtTyGia.Value), M_ROUND);
+
+                    row["tien_Nt0"] = tienNt0;
+                    row["tien0"] = tien0;
+
+                    //_tien2.Value = V6BusinessHelper.Vround((_tienNt2.Value * txtTyGia.Value), M_ROUND);
+
+                    if (_maNt == _mMaNt0)
+                    {
+                        row["tien0"] = tienNt0;
+                    }
+
+                    //TinhChietKhauChiTiet(false, _ck, _ckNt, txtTyGia, _tienNt2, _pt_cki);
+                    var ck_nt = V6BusinessHelper.Vround(tienNt0 * pt_cki / 100, M_ROUND_NT);
+                    row["ck_nt"] = ck_nt;
+                    row["ck"] = V6BusinessHelper.Vround(ck_nt * txtTyGia.Value, M_ROUND);
+
+                    if (_maNt == _mMaNt0)
+                    {
+                        row["ck"] = row["ck_nt"];
+                    }
+                    //End TinhChietKhauChiTiet
+
+                    //TinhGiaNt0();
+                    row["Gia01"] = V6BusinessHelper.Vround((giaNt01 * txtTyGia.Value), M_ROUND_GIA_NT);
+                    if (_maNt == _mMaNt0)
+                    {
+                        row["Gia01"] = row["Gia_nt01"];
+                    }
+
+                    if (soLuong != 0)
+                    {
+                        row["gia_nt0"] = V6BusinessHelper.Vround((tienNt0 / soLuong), M_ROUND_GIA_NT);
+                        row["gia0"] = V6BusinessHelper.Vround((tien0 / soLuong), M_ROUND_GIA);
+
+                        if (_maNt == _mMaNt0)
+                        {
+                            row["gia0"] = row["gia_nt01"];
+                            row["gia_nt0"] = row["gia_nt01"];
+                        }
+                    }
+                    //End TinhGiaNt2
+
+                    //====================
+
+                    if (dvt.ToUpper().Trim() == dvt1.ToUpper().Trim())
+                    {
+                        row["GIA_NT0"] = row["GIA_NT01"];
+                    }
+                    else
+                    {
+                        if (soLuong != 0)
+                        {
+                            row["GIA_NT0"] = tienNt0 / soLuong;
+                        }
+                    }
+
+                    // TinhTien va Gia
+                    tienNt = tienNt0 + ObjectAndString.ObjectToDecimal(row["CP_NT"]) + ObjectAndString.ObjectToDecimal(row["CK_NT"]) +
+                        ObjectAndString.ObjectToDecimal(row["GG_NT"]) + ObjectAndString.ObjectToDecimal(row["TIEN_VC_NT"]);
+                    tien = tien0 + ObjectAndString.ObjectToDecimal(row["CP"]) + ObjectAndString.ObjectToDecimal(row["CK"]) +
+                        ObjectAndString.ObjectToDecimal(row["GG"]) + ObjectAndString.ObjectToDecimal(row["TIEN_VC"]);
+
+                    if (soLuong != 0)
+                    {
+                        giaNt = V6BusinessHelper.Vround((tienNt / soLuong), M_ROUND_GIA_NT);
+                        gia = V6BusinessHelper.Vround((tien / soLuong), M_ROUND_GIA);
+                    }
+
+                    if (_maNt == _mMaNt0)
+                    {
+                        tien = tienNt;
+                        gia = giaNt;
+                    }
+
+                    row["GIA_NT"] = giaNt;
+                    row["GIA"] = gia;
+                    row["TIEN_NT"] = tienNt;
+                    row["TIEN"] = tien;
+
+                }
+
+                dataGridView1.DataSource = AD;
+
+                TinhTongThanhToan("ApGiaMua");
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
         }
 
         

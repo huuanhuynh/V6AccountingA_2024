@@ -730,7 +730,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 {
                     detail3.ChangeToEditMode();
 
-                    _sttRec03 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView3, detail3, out _gv3EditingRow);
+                    ChungTu.ViewSelectedDetailToDetailForm(dataGridView3, detail3, out _gv3EditingRow, out _sttRec03);
                     if (!string.IsNullOrEmpty(_sttRec03))
                     {
                         var readonly_list = SetControlReadOnlyHide(detail3, Invoice, Mode, V6Mode.Edit);
@@ -1837,7 +1837,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     dataGridView1.CurrentCell
                         = dataGridView1.Rows[0].Cells[(_MA_GD == "1" || _MA_GD == "A") ? "SO_CT0" : "TK_I"];
                     
-                    ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow);
+                    ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow, out _sttRec0);
                 }
             }
             catch (Exception ex)
@@ -4086,7 +4086,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             {
                 if (AD != null && AD.Rows.Count > 0 && dataGridView1.DataSource != null)
                 {
-                    _sttRec0 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow);
+                    ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow, out _sttRec0);
                     if (_gv1EditingRow == null)
                     {
                         this.ShowWarningMessage(V6Text.NoSelection);

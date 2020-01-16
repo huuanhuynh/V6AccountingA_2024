@@ -671,7 +671,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 if (AD != null && AD.Rows.Count > 0 && dataGridView1.DataSource != null)
                 {
                     detail1.ChangeToEditMode();
-                    _sttRec0 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow);
+                    ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow, out _sttRec0);
 
                     _ma_vt.Focus();
                 }

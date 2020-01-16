@@ -1130,7 +1130,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             {
                 if (AD3 != null && AD3.Rows.Count > 0 && dataGridView3.DataSource != null)
                 {
-                    _sttRec03 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView3, detail3, out _gv3EditingRow);
+                    ChungTu.ViewSelectedDetailToDetailForm(dataGridView3, detail3, out _gv3EditingRow, out _sttRec03);
                     detail3.ChangeToEditMode();
 
                     if (!string.IsNullOrEmpty(_sttRec03))
@@ -2184,7 +2184,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     dataGridView1.CurrentCell
                         = dataGridView1.Rows[0].Cells[_MA_GD == "1" ? "SO_CT0" : "TK_I"];
 
-                    ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow);
+                    ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow, out _sttRec0);
                 }
             }
             catch (Exception ex)
@@ -4673,7 +4673,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             {
                 if (AD != null && AD.Rows.Count > 0 && dataGridView1.DataSource != null)
                 {
-                    _sttRec0 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow);
+                    ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow, out _sttRec0);
                     if (_gv1EditingRow == null)
                     {
                         this.ShowWarningMessage(V6Text.NoSelection);
@@ -5364,7 +5364,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 {
                     if (AD2 != null && AD2.Rows.Count > 0 && dataGridView2.DataSource != null)
                     {
-                        _sttRec02 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView2, detail2, out _gv2EditingRow);
+                        ChungTu.ViewSelectedDetailToDetailForm(dataGridView2, detail2, out _gv2EditingRow, out _sttRec02);
                         detail2.ChangeToEditMode();
 
                         if (!string.IsNullOrEmpty(_sttRec02))

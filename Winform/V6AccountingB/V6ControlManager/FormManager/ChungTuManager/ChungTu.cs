@@ -92,15 +92,16 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
 
         /// <summary>
-        /// Hiển thị dữ liệu dòng đang chọn của GridView lên Detail control.
+        /// Hiển thị dữ liệu dòng đang chọn của GridView lên Detail control, gán stt_rec0.
         /// </summary>
         /// <param name="dataGridView1">GridView lấy dữ liệu</param>
         /// <param name="detail1">Detail control</param>
         /// <param name="outGridViewRow">Lấy ra dòng đang chọn để xử lý sau này.</param>
-        /// <returns>Stt_Rec0</returns>
-        public static string ViewSelectedDetailToDetailForm(DataGridView dataGridView1, HD_Detail detail1, out DataGridViewRow outGridViewRow)
+        /// <param name="stt_rec0">Gán stt_rec dòng hiện tại.</param>
+        public static void ViewSelectedDetailToDetailForm(DataGridView dataGridView1, HD_Detail detail1, out DataGridViewRow outGridViewRow, out string stt_rec0)
         {
             outGridViewRow = null;
+            stt_rec0 = "";
             try
             {
                 if (dataGridView1.CurrentRow != null)
@@ -109,14 +110,13 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     var values = outGridViewRow.ToDataDictionary();
                     var rec0 = values["STT_REC0"].ToString();
                     detail1.SetData(values);
-                    return rec0;
+                    stt_rec0 = rec0;
                 }
             }
             catch (Exception ex)
             {
                 detail1.ShowErrorMessage(ex.Message, "ViewSelectedDetailToDetailForm");
             }
-            return "";
         }
 
         public static void ViewSearchSumary(V6Form searchForm, DataTable am, Label lbl, string mact, string mant)

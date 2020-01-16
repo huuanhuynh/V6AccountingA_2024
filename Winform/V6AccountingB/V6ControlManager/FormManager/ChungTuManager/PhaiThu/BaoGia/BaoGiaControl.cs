@@ -1473,7 +1473,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     _tkGv.Text = (data["tk_gv"] ?? "").ToString().Trim();
                     _tkCkI.Text = (data["tk_ck"] ?? "").ToString().Trim();
                     _tkVt.Text = (data["tk_vt"] ?? "").ToString().Trim();
-                    txtPMA_KHC.ChangeText(data["PMA_KHC"].ToString());
+                    txtPMA_KHC.ChangeText(("" + data["PMA_KHC"]).Trim());
 
                     if (M_SOA_MULTI_VAT == "1")
                     {
@@ -4572,7 +4572,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             {
                 if (AD != null && AD.Rows.Count > 0 && dataGridView1.DataSource != null)
                 {
-                    _sttRec0 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow);
+                    ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow, out _sttRec0);
                     if (_gv1EditingRow == null)
                     {
                         this.ShowWarningMessage(V6Text.NoSelection);
@@ -4869,7 +4869,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 V6ControlFormHelper.UpdateDKlist(AD, "MA_VV_I", txtvBienSo.Text);
                 if (detail1.MODE == V6Mode.View)
                 {
-                    ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow);
+                    ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow, out _sttRec0);
                 }
             }
             catch (Exception ex)

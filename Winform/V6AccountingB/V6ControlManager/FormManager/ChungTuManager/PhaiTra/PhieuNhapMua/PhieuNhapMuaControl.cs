@@ -1399,7 +1399,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 {
                     detail3.ChangeToEditMode();
 
-                    _sttRec03 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView3, detail3, out _gv3EditingRow);
+                    ChungTu.ViewSelectedDetailToDetailForm(dataGridView3, detail3, out _gv3EditingRow, out _sttRec03);
                     if (!string.IsNullOrEmpty(_sttRec03))
                     {
                         var readonly_list = SetControlReadOnlyHide(detail3, Invoice, Mode, V6Mode.Edit);
@@ -5678,7 +5678,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             {
                 if (AD != null && AD.Rows.Count > 0 && dataGridView1.DataSource != null)
                 {
-                    _sttRec0 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow);
+                    ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow, out _sttRec0);
                     if (_gv1EditingRow == null)
                     {
                         this.ShowWarningMessage(V6Text.NoSelection);
@@ -5717,7 +5717,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 if (AD2 != null && AD2.Rows.Count > 0 && dataGridView2.DataSource != null)
                 {
                     detail2.ChangeToEditMode();
-                    _sttRec02 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView2, detail2, out _gv2EditingRow);
+                    ChungTu.ViewSelectedDetailToDetailForm(dataGridView2, detail2, out _gv2EditingRow, out _sttRec02);
                     if (!string.IsNullOrEmpty(_sttRec02))
                     {
                         if (_ma_kh22.Text.Trim() == "")
@@ -5978,8 +5978,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     if (txtMaKh.Text == "")
                     {
                         txtMaKh.ChangeText(ma_kh_soh);
-                        txtMaKh.CallLeave();
                     }
+                    // Làm theo hóa đơn, luôn gọi sự kiện.
+                    All_Objects["txtMaKh.CallLeave"] = 1;
+                    txtMaKh.CallLeave();
                 }
 
                 All_Objects["selectedDataList"] = selectedDataList;
@@ -7208,16 +7210,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private void btnApGia_Click(object sender, EventArgs e)
         {
             ApGiaMua();
-            _sttRec0 = ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow);
+            ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow, out _sttRec0);
         }
 
-        private void ApGiaMua()
+        /// <summary>
+        /// Áp giá mua.
+        /// </summary>
+        /// <param name="auto">Dùng khi gọi trong code động.</param>
+        public override void ApGiaMua(bool auto = false)
         {
             try
             {
+                if (AD == null || AD.Rows.Count == 0) return;
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
-                    this.ShowWarningMessage(V6Text.DetailNotComplete);
+                    if (!auto) this.ShowWarningMessage(V6Text.DetailNotComplete);
                     return;
                 }
                 if (txtMaGia.Text.Trim() == "")
@@ -7225,9 +7232,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     ShowParentMessage(V6Text.NoInput + btnApGia.Text);
                     return;
                 }
-                if (this.ShowConfirmMessage(V6Text.Text("ASKAPGIAMUAALL")) != DialogResult.Yes)
+                if (!auto && this.ShowConfirmMessage(V6Text.Text("ASKAPGIAMUAALL")) != DialogResult.Yes)
                 {
                     return;
+                }
+                if (auto)
+                {
+                    if (All_Objects.ContainsKey("txtMaKh.CallLeave") && ObjectAndString.ObjectToBool(All_Objects["txtMaKh.CallLeave"]))
+                    {
+                        All_Objects["txtMaKh.CallLeave"] = 0;
+                    }
+                    else
+                    {
+                        if (this.ShowConfirmMessage(V6Text.Text("ASKAPGIABANALL")) != DialogResult.Yes)
+                        {
+                            return;
+                        }
+                    }
                 }
 
                 foreach (DataRow row in AD.Rows)
