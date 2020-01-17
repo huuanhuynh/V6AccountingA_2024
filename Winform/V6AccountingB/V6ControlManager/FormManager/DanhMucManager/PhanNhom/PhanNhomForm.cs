@@ -11,6 +11,7 @@ using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
 using V6Structs;
 using V6Tools;
+using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
 {
@@ -45,6 +46,9 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
             {
                 btnNhan.Enabled = false;
                 _lookupConfig = V6Lookup.GetV6lookupConfigByTableName(_dataTableName);
+                M_OPTIONS = ObjectAndString.StringToDictionary(V6Options.GetValue("M_V6_ADV_GROUP_F3F4"));
+                LoadDefaultData(2, "", _groupTableNameName, "itemid", "");
+                
                 LoadDataThread();
             }
             catch (Exception ex)
@@ -58,6 +62,10 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
         private string _field = "", _field0 = "", _idField, _idField0;
         private DataTable _dataGroup = null, _dataSource = null;
         private DataView _viewGroup, _viewData;
+        /// <summary>
+        /// {TABLENAMEF3:1} {TABLENAMEF4:0}...
+        /// </summary>
+        private IDictionary<string, object> M_OPTIONS = new Dictionary<string, object>();
 
         private void PhanNhomForm_Load(object sender, EventArgs e)
         {
@@ -146,7 +154,14 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
                     progressBar1.Value = 100;
                     progressBar1.Visible = false;
                     btnNhan.Enabled = true;
-                    comboBox1.SelectedIndex = 0;
+                    if (comboBox1.SelectedIndex == -1)
+                    {
+                        comboBox1.SelectedIndex = 0;
+                    }
+                    else
+                    {
+                        comboBox1.CallSelectedIndexChanged(new EventArgs());
+                    }
                     var loai = comboBox1.SelectedIndex + 1;
                     GetFieldNameInfo(loai);
                     CheckChuaPhanNhom();
@@ -485,7 +500,11 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
         {
             if (keyData == Keys.F3)
             {
-
+                string OPTION_KEY = _dataTableName.ToUpper() + "F3";
+                if (!M_OPTIONS.ContainsKey(OPTION_KEY) || M_OPTIONS[OPTION_KEY].ToString() != "1")
+                {
+                    goto End;
+                }
                 if (V6Login.UserRight.AllowEdit("", _lookupConfig.vMa_file.ToUpper() + "6"))
                 {
                     if (dataGridView1.SelectedCells.Count > 0)
@@ -516,6 +535,11 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
             }
             else if (keyData == Keys.F4)
             {
+                string OPTION_KEY = _dataTableName.ToUpper() + "F4";
+                if (!M_OPTIONS.ContainsKey(OPTION_KEY) || M_OPTIONS[OPTION_KEY].ToString() != "1")
+                {
+                    goto End;
+                }
                 if (V6Login.UserRight.AllowAdd("", _lookupConfig.vMa_file.ToUpper() + "6"))
                 {
                     DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
@@ -540,7 +564,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
                 }
                 return true;
             }
-
+            End:
             return base.ProcessCmdKey(ref msg, keyData);
         }
 

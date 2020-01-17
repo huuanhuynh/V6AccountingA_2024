@@ -21,5 +21,10 @@ namespace V6Controls.Controls
                 SendKeys.Send("{TAB}");
             }
         }
+
+        public void CallSelectedIndexChanged(EventArgs e)
+        {
+            OnSelectedIndexChanged(e);
+        }
     }
 }

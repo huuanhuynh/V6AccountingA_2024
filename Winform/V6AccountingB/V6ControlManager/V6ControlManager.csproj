@@ -4705,9 +4705,6 @@
     <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSSOH2_GenData_Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\ImportXls\XLSSOH2_Control.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\NhanSu\StickNoteCellView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -8037,9 +8034,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSSOH2_GenData_Control.resx">
       <DependentUpon>XLSSOH2_GenData_Control.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\ImportXls\XLSSOH2_Control.resx">
-      <DependentUpon>XLSSOH2_Control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\NhanSu\StickNoteCellView.resx">
       <DependentUpon>StickNoteCellView.cs</DependentUpon>
