@@ -7614,6 +7614,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
+                if (NotAddEdit) return;
                 if (AD == null || AD.Rows.Count == 0) return;
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {

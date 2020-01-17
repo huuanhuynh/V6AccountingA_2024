@@ -6933,6 +6933,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         {
             try
             {
+                if (NotAddEdit) return;
+                if (AD == null || AD.Rows.Count == 0) return;
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
                     this.ShowWarningMessage(V6Text.DetailNotComplete);
