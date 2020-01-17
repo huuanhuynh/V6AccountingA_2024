@@ -2776,9 +2776,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     {
                         if(row["AUTO_YN"].ToString().Trim() == "1") removeList.Add(row);
                     }
-                    while (removeList.Count>0)
+                    while (removeList.Count > 0)
                     {
-                        AD.Rows.Remove(removeList[0]);
+                        AD2.Rows.Remove(removeList[0]);
                         removeList.RemoveAt(0);
                     }
                     //Them AD2 theo AD
