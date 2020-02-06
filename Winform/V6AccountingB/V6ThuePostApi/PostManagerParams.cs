@@ -59,6 +59,7 @@ namespace V6ThuePostManager
         public string Pattern { get; set; }
 
         public string Serial { get; set; }
+        public DateTime InvoiceDate { get; set; }
 
         public string strIssueDate = null;
         public PM_Result Result = null;

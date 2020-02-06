@@ -11,6 +11,8 @@ using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6ThuePostManager;
+using V6Tools;
+using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
@@ -198,6 +200,56 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
         #endregion xulyF9
 
+        protected override void XuLyF10()
+        {
+            try
+            {
+                // Test search thong tin.
+                var row = dataGridView1.CurrentRow;
+                if (row == null) return;
+
+                SqlParameter[] plist =
+                        {
+                            new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
+                            new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
+                            new SqlParameter("@HoaDonMau","0"),
+                            new SqlParameter("@isInvoice","1"),
+                            new SqlParameter("@ReportFile",""),
+                            new SqlParameter("@MA_TD1", FilterControl.String1),
+                            new SqlParameter("@UserID", V6Login.UserId)
+                        };
+
+                DataSet ds = V6BusinessHelper.ExecuteProcedure(_program + "F9", plist);
+
+                string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
+                string serial = row.Cells["SO_SERI"].Value.ToString().Trim();
+                string invoiceNo = serial + row.Cells["SO_CT"].Value.ToString().Trim();
+                DateTime ngayCt = ObjectAndString.ObjectToFullDateTime(row.Cells["NGAY_CT"].Value);
+                string strIssueDate = ObjectAndString.ObjectToString(row.Cells["NGAY_CT"].Value, "yyyyMMddHHmmss");
+
+                var paras = new PostManagerParams
+                {
+                    DataSet = ds,
+                    Mode = "TestView",
+                    Branch = FilterControl.String1,
+                    //Dir = dir,
+                    //FileName = file,
+                    //Key_Down = "TestView",
+                    //RptFileFull = ReportFileFull,
+                    //Fkey_hd = fkey_hd,
+                    Pattern = pattern,
+                    InvoiceNo = invoiceNo,
+                    InvoiceDate = ngayCt,
+                    strIssueDate = strIssueDate,
+                };
+                var result = PostManager.SearchInvoice(paras);
+                this.ShowInfoMessage(result.Left(200));
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".XuLyF10", ex);
+            }
+        }
 
         private void btnTestView_Click(object sender, EventArgs e)
         {

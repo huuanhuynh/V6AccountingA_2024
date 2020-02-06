@@ -28,6 +28,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             F4 = true;
             F6 = true;
             F9 = true;
+            F10 = true; // Test search
             
             dateNgay_ct1.SetValue(V6Setting.M_SV_DATE);
             dateNgay_ct2.SetValue(V6Setting.M_SV_DATE);

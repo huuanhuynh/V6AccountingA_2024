@@ -84,6 +84,61 @@ namespace V6ThuePostViettelApi
             return result;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="codeTax"></param>
+        /// <param name="invoiceNo">AA/17E0037914</param>
+        /// <param name="fileType">xml zip</param>
+        /// <param name="issueDate">20180320152309</param>
+        /// <param name="savefolder"></param>
+        /// <returns></returns>
+        public string DownloadInvoice(string codeTax, string invoiceNo, string fileType, string issueDate, string savefolder)
+        {
+            //if (uri.StartsWith("/")) uri = uri.Substring(1);
+            string apiLink = _baseurl + "InvoiceAPI/InvoiceUtilsWS/getInvoiceFile";
+
+            GetFileRequest objGetFile = new GetFileRequest();
+            
+            objGetFile.invoiceNo = invoiceNo;// "BR/18E0000014";
+            objGetFile.fileType = fileType;
+            objGetFile.strIssueDate = issueDate;
+
+            string getData = "?supplierTaxCode=" + codeTax +
+                             "&invoiceNo=" + objGetFile.invoiceNo +
+                             "&fileType=" + objGetFile.fileType +
+                             "&strIssueDate=" + objGetFile.strIssueDate;
+            apiLink += getData;
+            //string autStr = CreateRequest.Base64Encode(userPass);
+            //string contentType = "application/x-www-form-urlencoded";
+            //string request = string.Empty;
+            //string result = CreateRequest.webRequest(apiLink, request, autStr, "GET", contentType);
+            string result = GET(apiLink);
+
+            ZipFileResponse objFile = JsonConvert.DeserializeObject<ZipFileResponse>(result);
+            string fileName = objFile.fileName;
+            if (string.IsNullOrEmpty(fileName) || objFile.fileToBytes == null)
+            {
+                throw new Exception("Download no file!");
+            }
+
+            string path = Path.Combine(savefolder, fileName + ".zip");
+            if (File.Exists(path))
+            {
+                try
+                {
+                    File.Delete(path);
+                }
+                catch
+                {
+                    //
+                }
+            }
+            File.WriteAllBytes(path, objFile.fileToBytes);
+
+            return path;
+        }
+
         public string DownloadInvoiceZip(string codeTax, string uri, string savefolder)
         {
             if (uri.StartsWith("/")) uri = uri.Substring(1);
@@ -265,6 +320,25 @@ namespace V6ThuePostViettelApi
             }
 
             return message;
+        }
+
+        /// <summary>
+        /// cung cấp danh sách hóa đơn theo khoảng thời gian
+        /// </summary>
+        /// <param name="from"></param>
+        /// <param name="to"></param>
+        /// <returns></returns>
+        public string GetListInvoiceDataControl(DateTime from, DateTime to)
+        {
+            GetListInvoiceDataControlParams input = new GetListInvoiceDataControlParams()
+            {
+                supplierTaxCode = _codetax,
+                fromDate = from.ToString("dd/MM/yyyy"),
+                toDate = from.ToString("dd/MM/yyyy"),
+            };
+            string json = input.ToJson();
+            string result = POST("InvoiceAPI/InvoiceUtilsWS/getListInvoiceDataControl", json);
+            return result;
         }
 
         /// <summary>

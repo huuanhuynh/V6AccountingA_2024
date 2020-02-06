@@ -50,6 +50,7 @@
     <Compile Include="ViettelObjects\CreateInvoiceResponse.cs" />
     <Compile Include="ViettelObjects\CreateInvoiceResponse_Result.cs" />
     <Compile Include="ViettelObjects\GeneralInvoiceInfo.cs" />
+    <Compile Include="ViettelObjects\GetInvoice\GetListInvoiceDataControlParams.cs" />
     <Compile Include="ViettelObjects\GetInvoice\GetInvoiceRepresentationFileParameters.cs" />
     <Compile Include="ViettelObjects\GetInvoice\GetInvoiceInput.cs" />
     <Compile Include="ViettelObjects\GetInvoice\GetInvoiceResponse.cs" />

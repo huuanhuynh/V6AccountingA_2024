@@ -2664,7 +2664,7 @@ namespace V6ThuePostManager
             }
             catch (Exception ex)
             {
-                V6ControlFormHelper.WriteExLog("RequestManager.ReadData", ex);
+                V6ControlFormHelper.WriteExLog("PostManager.ReadData", ex);
             }
             return result;
         }
@@ -3533,6 +3533,7 @@ namespace V6ThuePostManager
             }
             catch (Exception ex)
             {
+                V6ControlFormHelper.WriteExLog("PostManager.ReadConfigInfo", ex);
                 throw;
             }
         }
@@ -3548,6 +3549,42 @@ namespace V6ThuePostManager
             //config.Format = reader["Format"].ToString().Trim();
             return config;
         }
-        
+
+        public static string SearchInvoice(PostManagerParams paras)
+        {
+            try
+            {
+                map_table = paras.DataSet.Tables[0];
+                //ad_table = paras.DataSet.Tables[1];
+                //am_table = paras.DataSet.Tables[2];
+                //Fkey_hd_tt = paras.Fkey_hd_tt;
+                //DataRow row0 = am_table.Rows[0];
+                //ad2_table = paras.DataSet.Tables[3];
+                //if (paras.DataSet.Tables.Count > 4)
+                //{
+                //    ad3_table = paras.DataSet.Tables[4];
+                //}
+                //else
+                //{
+                //    ad3_table = null;
+                //}
+
+                ReadConfigInfo(map_table);
+
+                switch (paras.Branch)
+                {
+                    case "1":
+                        ViettelWS viettel_ws = new ViettelWS(_baseUrl, _username, _password, _codetax);
+                        return viettel_ws.GetListInvoiceDataControl(paras.InvoiceDate, paras.InvoiceDate);
+                        return viettel_ws.DownloadInvoice(_codetax, paras.InvoiceNo, "xml", paras.strIssueDate, V6Setting.V6SoftLocalAppData_Directory);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                V6ControlFormHelper.WriteExLog("PostManager.SearchInvoice", ex);
+            }
+            return null;
+        }
     }
 }

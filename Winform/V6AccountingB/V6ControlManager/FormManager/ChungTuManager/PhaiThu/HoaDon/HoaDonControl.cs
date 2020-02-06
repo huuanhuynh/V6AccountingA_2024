@@ -1599,6 +1599,90 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
 
+        private void FixAlLoDateTon_Chon(DataTable alLoTon)
+        {
+            try
+            {
+                //string sttRec0 = _sttRec0;
+                //string maVt = _maVt.Text.Trim().ToUpper();
+                //string maKhoI = _maKhoI.Text.Trim().ToUpper();
+                //string maLo = _maLo.Text.Trim().ToUpper();
+                // string maLo = _maLo.Text.Trim().ToUpper();
+
+                //if (maVt == "" || maKhoI == "" || maLo == "") return;
+
+                //Xử lý - tồn
+                //, Ma_kho, Ma_vt, Ma_vi_tri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
+                //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
+
+                List<DataRow> empty_rows = new List<DataRow>();
+
+                for (int i = alLoTon.Rows.Count - 1; i >= 0; i--)
+                {
+                    DataRow data_row = alLoTon.Rows[i];
+                    string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
+                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
+                    string data_maLo = data_row["Ma_lo"].ToString().Trim().ToUpper();
+                    //string data_maVi_Tri = data_row["Ma_vi_tri"].ToString().Trim().ToUpper();
+
+                    //Neu dung maVt, maKhoI, maLo, maVi_Tri
+                    //- so luong
+                    decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
+                    decimal data_soLuong_qd = ObjectAndString.ObjectToDecimal(data_row["Ton_dau_qd"]);
+                    decimal new_soLuong = data_soLuong;
+                    decimal new_soLuong_qd = data_soLuong_qd;
+
+                    foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
+                    {
+                        //string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
+                        string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
+                        string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
+                        string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
+                        //string c_maVi_Tri = row["Ma_vi_tri"].ToString().Trim().ToUpper();
+
+                        var tempMA_VT = new V6VvarTextBox() {VVar = "MA_VT", Text = c_maVt};
+                        tempMA_VT.RefreshLoDateYnValue();
+                        var tempMA_KHOI = new V6VvarTextBox() {VVar = "MA_KHO", Text = c_maKhoI};
+                        tempMA_KHOI.RefreshLoDateYnValue();
+                        // Theo doi lo moi check
+                        if (!tempMA_VT.LO_YN || !tempMA_VT.DATE_YN || !tempMA_KHOI.LO_YN || !tempMA_KHOI.DATE_YN)
+                            continue;
+
+                        decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+                        decimal c_soLuong_qd = ObjectAndString.ObjectToDecimal(row["SL_QD"]);
+                        
+                        if (data_maVt == c_maVt && data_maKhoI == c_maKhoI && data_maLo == c_maLo)
+                        {
+                            new_soLuong -= c_soLuong;
+                            new_soLuong_qd -= c_soLuong_qd;
+                        }
+
+                    }
+
+                    if (new_soLuong > 0)
+                    {
+                        data_row["Ton_dau"] = new_soLuong;
+                        data_row["Ton_dau_qd"] = new_soLuong_qd;
+                    }
+                    else
+                    {
+                        empty_rows.Add(data_row);
+
+                    }
+                }
+
+                //remove all empty_rows
+                foreach (DataRow row in empty_rows)
+                {
+                    alLoTon.Rows.Remove(row);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
         private void XuLyKhiNhanMaLo(IDictionary<string, object> row, bool isChanged)
         {
             try
@@ -7198,6 +7282,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         if (heso == 0) heso = 1;
                         decimal sum = 0, sum_qd = 0;
                         var lodate_data = V6BusinessHelper.GetLoDatePriority(ma_vt, _sttRec, dateNgayCT.Date);
+                        FixAlLoDateTon_Chon(lodate_data);
                         // Get Data
                         
                         for (int i = lodate_data.Rows.Count - 1; i >= 0; i--)

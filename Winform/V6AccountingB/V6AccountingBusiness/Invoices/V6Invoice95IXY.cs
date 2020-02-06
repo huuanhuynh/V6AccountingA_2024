@@ -380,6 +380,61 @@ namespace V6AccountingBusiness.Invoices
             return tbl;
         }
         
+        public DataTable SearchDeNghiXuat_PXDC(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, string advance, out string loai_ct_chon)
+        {
+            if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
+            if (where1AM.Length > 0) where1AM = "And " + where1AM;
+
+            var whereAD_Nhvt_Dvcs = "";
+            if (where2AD.Length > 0 || where3NhVt.Length > 0 || where4Dvcs.Length > 0)
+            {
+                if (where2AD.Length > 0) where2AD = "And " + where2AD;
+                if (where3NhVt.Length > 0) where3NhVt = "And " + where3NhVt;
+                if (where4Dvcs.Length > 0)
+                    where4Dvcs
+                        = string.Format(" And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
+
+
+                whereAD_Nhvt_Dvcs = string.Format("\n Where d.Stt_rec in (SELECT Stt_rec FROM AD95 WHERE Ma_ct = 'IXY' {0} {2}"
+                                     + (where3NhVt.Length == 0 ? "{3}" : "\n	And Ma_vt IN (SELECT Ma_vt FROM Alvt WHERE 1 = 1 {3})")
+                                     + "\n		{4})"
+                    , where0Ngay, "1", where2AD, where3NhVt, where4Dvcs);
+            }
+            else
+            {
+                whereAD_Nhvt_Dvcs = "";
+            }
+
+            if (!string.IsNullOrEmpty(where3NhVt))
+            {
+                if (string.IsNullOrEmpty(advance))
+                {
+                    advance = "Ma_vt IN (Select ma_vt from Alvt where 1=1 " + where3NhVt + ")";
+                }
+                else
+                {
+                    advance += " And Ma_vt IN (Select ma_vt from Alvt where 1=1 " + where3NhVt + ")";
+                }
+            }
+
+            loai_ct_chon = "I";
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@sType",  "I"),
+	            new SqlParameter("@dFrom",  ngayCt.ToString("yyyyMMdd")),
+	            new SqlParameter("@cTableAM", "AM95"), 
+	            new SqlParameter("@cTableAD", "AD95"), 
+	            new SqlParameter("@cKey1AM", where0Ngay),
+	            new SqlParameter("@cKey2AM", where1AM),
+	            new SqlParameter("@cKey1AD", whereAD_Nhvt_Dvcs),
+	            new SqlParameter("@cKey2AD", ""),
+	            new SqlParameter("@Advance", advance),
+	            new SqlParameter("@Advance2", "")
+            };
+            var tbl = V6BusinessHelper.ExecuteProcedure("VPA_GET_STOCK_IXB_IXY", plist).Tables[0];
+            return tbl;
+        }
+        
         public DataTable SearchPhieuXuatAll(string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)
         {
             if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
