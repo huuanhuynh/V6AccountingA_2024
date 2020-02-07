@@ -7147,6 +7147,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             ChucNang_ThayThe(Invoice);
         }
 
+        private void thayTheNhieuMenu_Click(object sender, EventArgs e)
+        {
+            ChucNang_ThayThe(Invoice, true);
+        }
+
         private void thayThe2Menu_Click(object sender, EventArgs e)
         {
             ChucNang_SuaNhieuDong(Invoice);

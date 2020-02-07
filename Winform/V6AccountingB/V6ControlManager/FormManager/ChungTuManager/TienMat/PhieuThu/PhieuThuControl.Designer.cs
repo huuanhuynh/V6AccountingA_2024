@@ -176,6 +176,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.btnTim = new System.Windows.Forms.Button();
             this.btnViewInfoData = new System.Windows.Forms.Button();
             this.lblNameT = new V6Controls.V6Label();
+            this.thayTheNhieuMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -1251,10 +1252,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.chonTuExcelMenu,
             this.xuLyKhacMenu,
             this.thayTheMenu,
+            this.thayTheNhieuMenu,
             this.thayThe2Menu,
             this.thuNoTaiKhoanMenu});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(165, 180);
+            this.menuChucNang.Size = new System.Drawing.Size(165, 202);
             this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
             // 
             // ThuCongNoMenu
@@ -1296,7 +1298,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.thayTheMenu.Name = "thayTheMenu";
             this.thayTheMenu.Size = new System.Drawing.Size(164, 22);
             this.thayTheMenu.Text = "Thay thế";
-            this.thayTheMenu.Click += new System.EventHandler(this.thayTheToolStripMenuItem_Click);
+            this.thayTheMenu.Click += new System.EventHandler(this.thayTheMenu_Click);
             // 
             // thayThe2Menu
             // 
@@ -2261,6 +2263,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             this.lblNameT.TabIndex = 22;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // thayTheNhieuMenu
+            // 
+            this.thayTheNhieuMenu.AccessibleDescription = "INVOICEM00027";
+            this.thayTheNhieuMenu.Name = "thayTheNhieuMenu";
+            this.thayTheNhieuMenu.Size = new System.Drawing.Size(164, 22);
+            this.thayTheNhieuMenu.Text = "Thay thế nhiều";
+            this.thayTheNhieuMenu.Click += new System.EventHandler(this.thayTheNhieuMenu_Click);
+            // 
             // PhieuThuControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2460,5 +2470,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         private GridViewSummary gridViewSummary3;
         private V6FormButton btnChonHD;
         private V6VvarTextBox txtSoct_tt;
+        private ToolStripMenuItem thayTheNhieuMenu;
     }
 }

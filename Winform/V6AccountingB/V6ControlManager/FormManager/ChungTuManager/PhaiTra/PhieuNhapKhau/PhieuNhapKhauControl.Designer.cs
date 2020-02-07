@@ -292,6 +292,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.taoPackingListMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.taoGRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.taoRRMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.thayTheNhieuMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -2448,10 +2449,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.chonTuExcelMenu,
             this.xuLyKhacMenu,
             this.thayTheMenu,
+            this.thayTheNhieuMenu,
             this.thayThe2Menu,
             this.chonDeNghiNhapMenu});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(200, 158);
+            this.menuChucNang.Size = new System.Drawing.Size(200, 202);
             this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
             // 
             // ChonDonHangMuaMenu
@@ -4198,6 +4200,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.taoRRMenu.Text = "Tạo RR";
             this.taoRRMenu.Click += new System.EventHandler(this.taoRRMenu_Click);
             // 
+            // thayTheNhieuMenu
+            // 
+            this.thayTheNhieuMenu.AccessibleDescription = "INVOICEM00027";
+            this.thayTheNhieuMenu.Name = "thayTheNhieuMenu";
+            this.thayTheNhieuMenu.Size = new System.Drawing.Size(199, 22);
+            this.thayTheNhieuMenu.Text = "Thay thế nhiều";
+            this.thayTheNhieuMenu.Click += new System.EventHandler(this.thayTheNhieuMenu_Click);
+            // 
             // PhieuNhapKhauControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4517,5 +4527,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         private System.Windows.Forms.ToolStripMenuItem chonDeNghiNhapMenu;
         private V6FormButton btnApGia;
         private V6VvarTextBox txtMaGia;
+        private System.Windows.Forms.ToolStripMenuItem thayTheNhieuMenu;
     }
 }

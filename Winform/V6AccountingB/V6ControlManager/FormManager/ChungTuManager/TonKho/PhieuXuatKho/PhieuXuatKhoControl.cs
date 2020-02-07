@@ -5382,9 +5382,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             InvokeFormEvent(FormDynamicEvent.INKHAC);
         }
 
-        private void thayTheToolStripMenuItem_Click(object sender, EventArgs e)
+        private void thayTheMenu_Click(object sender, EventArgs e)
         {
             ChucNang_ThayThe(Invoice);
+        }
+
+        private void thayTheNhieuMenu_Click(object sender, EventArgs e)
+        {
+            ChucNang_ThayThe(Invoice, true);
         }
 
         private void tabControl1_SizeChanged(object sender, EventArgs e)

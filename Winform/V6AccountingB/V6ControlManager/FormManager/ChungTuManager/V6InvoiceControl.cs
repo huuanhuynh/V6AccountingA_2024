@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -3536,7 +3537,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// Chức năng sửa hàng loạt một cột dữ liệu.
         /// </summary>
         /// <param name="invoice"></param>
-        public void ChucNang_ThayThe(V6InvoiceBase invoice)
+        /// <param name="many">Thanh thế hết giá trị cho các cột được cấu hình Alct.Extra_info.CT_REPLACE bằng giá trị của dòng đang đứng.</param>
+        public void ChucNang_ThayThe(V6InvoiceBase invoice, bool many = false)
         {
             try
             {
@@ -3562,61 +3564,91 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     return;
                 }
 
-                int field_index = dataGridView1.CurrentCell.ColumnIndex;
-                string FIELD = dataGridView1.CurrentCell.OwningColumn.DataPropertyName.ToUpper();
-                V6ColorTextBox textBox = detail1.GetControlByAccessibleName(FIELD) as V6ColorTextBox;
-                Type valueType = dataGridView1.CurrentCell.OwningColumn.ValueType;
-
-                //Check
-                if (textBox == null)
+                if (!invoice.EXTRA_INFOR.ContainsKey("CT_REPLACE"))
                 {
-                    ShowParentMessage(V6Text.Text("UNKNOWNOBJECT"));
+                    ShowParentMessage(V6Text.NoDefine + "EXTRA_INFOR[CT_REPLACE]");
                     return;
                 }
-                        
-                ChucNangThayTheForm f = new ChucNangThayTheForm(ObjectAndString.IsNumberType(dataGridView1.CurrentCell.OwningColumn.ValueType), textBox);
-                if (f.ShowDialog(this) == DialogResult.OK)
+                var listFieldCanReplace = ObjectAndString.SplitString(invoice.EXTRA_INFOR["CT_REPLACE"]);
+
+                if (many)
                 {
-                    if (f.ChucNangDaChon == f._ThayThe)
+                    IDictionary<string, object> data = new Dictionary<string, object>();
+                    if (dataGridView1.CurrentRow != null)
+                    foreach (string field in listFieldCanReplace)
                     {
-                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        data[field.ToUpper()] = dataGridView1.CurrentRow.Cells[field].Value;
+                    }
+                    V6ControlFormHelper.UpdateDKlistAll(data, listFieldCanReplace, AD);
+                }
+                else // Thay thế tất cả giá trị của cột đang đứng bằng giá trị mới.
+                {
+                    int field_index = dataGridView1.CurrentCell.ColumnIndex;
+                    string FIELD = dataGridView1.CurrentCell.OwningColumn.DataPropertyName.ToUpper();
+                    
+                    
+                    if (!listFieldCanReplace.Contains(FIELD))
+                    {
+                        ShowParentMessage(V6Text.NoDefine + " CT_REPLACE:" + FIELD);
+                        return;
+                    }
+
+                    V6ColorTextBox textBox = detail1.GetControlByAccessibleName(FIELD) as V6ColorTextBox;
+                    Type valueType = dataGridView1.CurrentCell.OwningColumn.ValueType;
+
+                    //Check
+                    if (textBox == null)
+                    {
+                        ShowParentMessage(V6Text.Text("UNKNOWNOBJECT"));
+                        return;
+                    }
+
+                    ChucNangThayTheForm f =
+                        new ChucNangThayTheForm(
+                            ObjectAndString.IsNumberType(dataGridView1.CurrentCell.OwningColumn.ValueType), textBox);
+                    if (f.ShowDialog(this) == DialogResult.OK)
+                    {
+                        if (f.ChucNangDaChon == f._ThayThe)
                         {
-                            object newValue = ObjectAndString.ObjectTo(valueType, f.Value);
-                            if (ObjectAndString.IsDateTimeType(valueType) && newValue != null)
+                            foreach (DataGridViewRow row in dataGridView1.Rows)
                             {
-                                DateTime newDate = (DateTime) newValue;
-                                if (newDate < new DateTime(1700, 1, 1))
+                                object newValue = ObjectAndString.ObjectTo(valueType, f.Value);
+                                if (ObjectAndString.IsDateTimeType(valueType) && newValue != null)
                                 {
-                                    newValue = null;
+                                    DateTime newDate = (DateTime) newValue;
+                                    if (newDate < new DateTime(1700, 1, 1))
+                                    {
+                                        newValue = null;
+                                    }
                                 }
+
+                                SortedDictionary<string, object> newData = new SortedDictionary<string, object>();
+                                newData.Add(FIELD, newValue);
+                                V6ControlFormHelper.UpdateGridViewRow(row, newData);
                             }
-
-                            SortedDictionary<string, object> newData = new SortedDictionary<string, object>();
-                            newData.Add(FIELD, newValue);
-                            V6ControlFormHelper.UpdateGridViewRow(row, newData);
                         }
-                    }
-                    else // Đảo ngược
-                    {
-                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        else // Đảo ngược
                         {
-                            var newValue = ObjectAndString.ObjectToDecimal(row.Cells[field_index].Value) * -1;
-                            SortedDictionary<string, object> newData = new SortedDictionary<string, object>();
-                            newData.Add(FIELD, newValue);
-                            V6ControlFormHelper.UpdateGridViewRow(row, newData);
+                            foreach (DataGridViewRow row in dataGridView1.Rows)
+                            {
+                                var newValue = ObjectAndString.ObjectToDecimal(row.Cells[field_index].Value)*-1;
+                                SortedDictionary<string, object> newData = new SortedDictionary<string, object>();
+                                newData.Add(FIELD, newValue);
+                                V6ControlFormHelper.UpdateGridViewRow(row, newData);
+                            }
                         }
-                    }
 
-                    All_Objects["replaceField"] = FIELD;
-                    All_Objects["dataGridView1"] = dataGridView1;
-                    All_Objects["detail1"] = detail1;
-                    if (Event_Methods.ContainsKey(FormDynamicEvent.AFTERREPLACE))
-                    {
-                        InvokeFormEvent(FormDynamicEvent.AFTERREPLACE);
-                    }
-                    else
-                    {
-                        AfterReplace(All_Objects);
+                        All_Objects["replaceField"] = FIELD;
+                        All_Objects["dataGridView1"] = dataGridView1;
+                        All_Objects["detail1"] = detail1;
+                        if (Event_Methods.ContainsKey(FormDynamicEvent.AFTERREPLACE))
+                        {
+                            InvokeFormEvent(FormDynamicEvent.AFTERREPLACE);
+                        }
+                        else
+                        {
+                            AfterReplace(All_Objects);
+                        }
                     }
                 }
             }
