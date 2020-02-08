@@ -7140,11 +7140,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         #region ==== Chức năng ====
         private void chonDonHangBanMenu_Click(object sender, EventArgs e)
         {
-            ChucNang_ChonDonHang( );
+            if (NotAddEdit) return;
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            ChucNang_ChonDonHang(shift);
         }
 
-        private void ChonDonHangBanThemMenu_Click(object sender, EventArgs e)
+        private void chonDonHangBanThemMenu_Click(object sender, EventArgs e)
         {
+            //if (NotAddEdit) return;
+            //bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            //chon_accept_flag_add = shift;
             ChucNang_ChonDonHang(true);
         }
         
@@ -7438,6 +7443,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 && table.Columns.Contains("TIEN_NT2") && table.Columns.Contains("SO_LUONG1")
                 && table.Columns.Contains("GIA_NT21"))
             {
+                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                {
+                    detail1.MODE = V6Mode.View;
+                }
                 if (table.Rows.Count > 0)
                 {
                     bool flag_add = chon_accept_flag_add;
@@ -7445,11 +7454,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     if (!flag_add)
                     {
                         AD.Rows.Clear();
-                    }
-
-                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
-                    {
-                        detail1.MODE = V6Mode.Init;
                     }
                 }
 
@@ -8010,6 +8014,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
+                if (NotAddEdit) return;
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                chon_accept_flag_add = shift;
                 var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
                 if (ma_dvcs != "")
@@ -8036,7 +8043,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 txtLoaiCt.Text = e.Loai_ct;
                 detail1.MODE = V6Mode.View;
-                AD.Rows.Clear();
+                bool flag_add = chon_accept_flag_add;
+                chon_accept_flag_add = false;
+                if (!flag_add)
+                {
+                    AD.Rows.Clear();
+                }
                 int addCount = 0, failCount = 0; _message = "";
 
                 string ma_kh_soh = null;
@@ -8161,6 +8173,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
+                if (NotAddEdit) return;
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                chon_accept_flag_add = shift;
                 var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
                 if (ma_dvcs != "")
@@ -8668,19 +8683,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             ViewLblKieuPost(lblKieuPostColor, cboKieuPost, Invoice.Alct["M_MA_VV"].ToString().Trim() == "1");
         }
 
-        private void chonBaoGiaMenu_MouseHover(object sender, EventArgs e)
-        {
-            FixMenuChucNangItemShiftText(chonBaoGiaMenu, chonTuExcelMenu);
-        }
-
-        private void menuChucNang_MouseMove(object sender, MouseEventArgs e)
-        {
-            FixMenuChucNangItemShiftText(chonBaoGiaMenu, chonTuExcelMenu);
-        }
-
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
-            FixMenuChucNangItemShiftText(chonBaoGiaMenu, chonTuExcelMenu);
+            FixMenuChucNangItemShiftText(chonBaoGiaMenu, chonTuExcelMenu, chonDeNghiXuatMenu, chonPhieuNhapMenu);
         }
 
         private void txtMa_sonb_TextChanged(object sender, EventArgs e)

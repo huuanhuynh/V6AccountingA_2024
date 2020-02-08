@@ -4404,15 +4404,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             try
             {
                 txtLoaiCt.Text = e.Loai_ct;
+                detail1.MODE = V6Mode.View;
                 bool flag_add = chon_accept_flag_add;
                 chon_accept_flag_add = false;
-                detail1.MODE = V6Mode.View;
-
-                if (flag_add)
-                {
-                    DoNothing();
-                }
-                else
+                if (!flag_add)
                 {
                     AD.Rows.Clear();
                 }
@@ -4785,6 +4780,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         private void btnXoaPB_Click(object sender, EventArgs e)
         {
             XoaPhanBoChiPhi();
+        }
+
+        private void menuChucNang_Paint(object sender, PaintEventArgs e)
+        {
+            FixMenuChucNangItemShiftText();
         }
 
     }

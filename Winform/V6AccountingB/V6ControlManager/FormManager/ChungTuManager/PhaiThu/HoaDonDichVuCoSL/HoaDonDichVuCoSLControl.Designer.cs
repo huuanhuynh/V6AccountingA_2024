@@ -45,7 +45,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuChucNang = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ChonDonHangBanMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.chonDonHangBanMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chonBaoGiaMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.TroGiupMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chonTuExcelMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -300,7 +300,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             // menuChucNang
             // 
             this.menuChucNang.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ChonDonHangBanMenu,
+            this.chonDonHangBanMenu,
             this.chonBaoGiaMenu,
             this.TroGiupMenu,
             this.chonTuExcelMenu,
@@ -314,13 +314,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             this.menuChucNang.Size = new System.Drawing.Size(181, 246);
             this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
             // 
-            // ChonDonHangBanMenu
+            // chonDonHangBanMenu
             // 
-            this.ChonDonHangBanMenu.AccessibleDescription = "INVOICEM00001";
-            this.ChonDonHangBanMenu.Name = "ChonDonHangBanMenu";
-            this.ChonDonHangBanMenu.Size = new System.Drawing.Size(180, 22);
-            this.ChonDonHangBanMenu.Text = "Chọn đơn hàng bán";
-            this.ChonDonHangBanMenu.Click += new System.EventHandler(this.chonDonHangBanMenu_Click);
+            this.chonDonHangBanMenu.AccessibleDescription = "INVOICEM00001";
+            this.chonDonHangBanMenu.Name = "chonDonHangBanMenu";
+            this.chonDonHangBanMenu.Size = new System.Drawing.Size(180, 22);
+            this.chonDonHangBanMenu.Text = "Chọn đơn hàng bán";
+            this.chonDonHangBanMenu.Click += new System.EventHandler(this.chonDonHangBanMenu_Click);
             // 
             // chonBaoGiaMenu
             // 
@@ -3765,7 +3765,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         private V6Label v6Label37;
         private V6Label lblNameT;
         private System.Windows.Forms.ContextMenuStrip menuChucNang;
-        private System.Windows.Forms.ToolStripMenuItem ChonDonHangBanMenu;
+        private System.Windows.Forms.ToolStripMenuItem chonDonHangBanMenu;
         private System.Windows.Forms.ToolStripMenuItem TroGiupMenu;
         private System.Windows.Forms.TabPage tabChiTietBoSung;
         private HD_Detail detail3;

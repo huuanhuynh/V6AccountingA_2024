@@ -4787,6 +4787,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 && table.Columns.Contains("TIEN_NT0") && table.Columns.Contains("SO_LUONG1")
                 && table.Columns.Contains("GIA_NT01"))
             {
+                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                {
+                    detail1.MODE = V6Mode.View;
+                }
                 if (table.Rows.Count > 0)
                 {
                     bool flag_add = chon_accept_flag_add;
@@ -4794,11 +4798,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                     if (!flag_add)
                     {
                         AD.Rows.Clear();
-                    }
-
-                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
-                    {
-                        detail1.MODE = V6Mode.Init;
                     }
                 }
 
@@ -5642,10 +5641,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         {
             try
             {
+                detail1.MODE = V6Mode.View;
                 txtLoaiCt.Text = e.Loai_ct;
                 bool flag_add = chon_accept_flag_add;
                 chon_accept_flag_add = false;
-                detail1.MODE = V6Mode.View;
                 if (!flag_add)
                 {
                     AD.Rows.Clear();
@@ -5738,7 +5737,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
 
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
-            FixMenuChucNangItemShiftText(chonBaoGiaMenu, chonTuExcelMenu);
+            FixMenuChucNangItemShiftText(chonBaoGiaMenu, chonDonHangMuaMenu, chonTuExcelMenu);
         }
 
 

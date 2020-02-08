@@ -5298,6 +5298,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 && table.Columns.Contains("TIEN_NT0") && table.Columns.Contains("SO_LUONG1")
                 && table.Columns.Contains("GIA_NT01"))
             {
+                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                {
+                    detail1.MODE = V6Mode.View;
+                }
                 if (table.Rows.Count > 0)
                 {
                     bool flag_add = chon_accept_flag_add;
@@ -5305,11 +5309,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                     if (!flag_add)
                     {
                         AD.Rows.Clear();
-                    }
-
-                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
-                    {
-                        detail1.MODE = V6Mode.Init;
                     }
                 }
 
@@ -5492,7 +5491,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             }
         }
 
-        private void ChonDonHangMuaMenu_Click(object sender, EventArgs e)
+        private void chonDonHangMuaMenu_Click(object sender, EventArgs e)
         {
             bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
             ChucNang_ChonDonHang(shift);
@@ -5532,14 +5531,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             try
             {
                 txtLoaiCt.Text = e.Loai_ct;
+                detail1.MODE = V6Mode.View;
                 bool flag_add = chon_accept_flag_add;
                 chon_accept_flag_add = false;
-                detail1.MODE = V6Mode.View;
-                if (flag_add)
-                {
-                    DoNothing();
-                }
-                else
+                if (!flag_add)
                 {
                     AD.Rows.Clear();
                 }
@@ -5801,7 +5796,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
 
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
-            FixMenuChucNangItemShiftText(ChonDonHangMuaMenu, chonTuExcelMenu);
+            FixMenuChucNangItemShiftText(chonDonHangMuaMenu, chonTuExcelMenu);
         }
 
     }

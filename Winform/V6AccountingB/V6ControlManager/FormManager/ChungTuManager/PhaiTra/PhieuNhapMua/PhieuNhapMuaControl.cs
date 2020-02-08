@@ -6047,6 +6047,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 && table.Columns.Contains("TIEN_NT0") && table.Columns.Contains("SO_LUONG1")
                 && table.Columns.Contains("GIA_NT01"))
             {
+                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                {
+                    detail1.MODE = V6Mode.View;
+                }
                 if (table.Rows.Count > 0)
                 {
                     bool flag_add = chon_accept_flag_add;
@@ -6054,11 +6058,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     if (!flag_add)
                     {
                         AD.Rows.Clear();
-                    }
-
-                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
-                    {
-                        detail1.MODE = V6Mode.Init;
                     }
                 }
 
@@ -6903,7 +6902,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
         }
 
-        private void ChonDonHangMuaMenu_Click(object sender, EventArgs e)
+        private void chonDonHangMuaMenu_Click(object sender, EventArgs e)
         {
             bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
             ChucNang_ChonDonHangMua(shift);
@@ -7445,7 +7444,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
-            FixMenuChucNangItemShiftText(ChonDonHangMuaMenu, chonTuExcelMenu);
+            FixMenuChucNangItemShiftText(chonDonHangMuaMenu, chonTuExcelMenu, chonDeNghiNhapMenu);
         }
 
         private void chkTempSuaCT_CheckedChanged(object sender, EventArgs e)
@@ -7464,6 +7463,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         {
             try
             {
+                if (NotAddEdit) return;
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                chon_accept_flag_add = shift;
                 var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
                 if (ma_dvcs != "")

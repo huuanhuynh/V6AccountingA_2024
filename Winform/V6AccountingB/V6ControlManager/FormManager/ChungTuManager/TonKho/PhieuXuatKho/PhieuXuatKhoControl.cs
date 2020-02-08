@@ -5463,6 +5463,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         {
             try
             {
+                if (NotAddEdit) return;
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                chon_accept_flag_add = shift;
                 //var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
@@ -5490,14 +5493,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             try
             {
                 txtLoaiCt.Text = e.Loai_ct;
+                detail1.MODE = V6Mode.View;
                 bool flag_add = chon_accept_flag_add;
                 chon_accept_flag_add = false;
-                detail1.MODE = V6Mode.View;
-                if (flag_add)
-                {
-                    DoNothing();
-                }
-                else
+                if (!flag_add)
                 {
                     AD.Rows.Clear();
                 }
@@ -5969,7 +5968,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
-            FixMenuChucNangItemShiftText(chonTuExcelMenu);
+            FixMenuChucNangItemShiftText(chonTuExcelMenu, chonDeNghiXuatMenu);
         }
 
         

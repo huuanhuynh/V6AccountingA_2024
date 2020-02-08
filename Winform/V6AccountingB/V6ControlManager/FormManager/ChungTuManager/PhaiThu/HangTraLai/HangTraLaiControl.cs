@@ -1132,7 +1132,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             {
                 txtLoaiCt.Text = e.Loai_ct;
                 detail1.MODE = V6Mode.View;
-                AD.Rows.Clear();
+                bool flag_add = chon_accept_flag_add;
+                chon_accept_flag_add = false;
+                if (!flag_add)
+                {
+                    AD.Rows.Clear();
+                }
                 int addCount = 0, failCount = 0;
                 string ma_kh_soh = null;
                 foreach (IDictionary<string, object> data in selectedDataList)
@@ -4989,6 +4994,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         {
             try
             {
+                if (NotAddEdit) return;
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                chon_accept_flag_add = shift;
                 //var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
@@ -5458,6 +5466,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             {
                 this.ShowErrorException(GetType() + ".ApGiaBan " + _sttRec, ex);
             }
+        }
+
+        private void menuChucNang_Paint(object sender, PaintEventArgs e)
+        {
+            FixMenuChucNangItemShiftText(chonDeNghiNhapMenu);
         }
 
 

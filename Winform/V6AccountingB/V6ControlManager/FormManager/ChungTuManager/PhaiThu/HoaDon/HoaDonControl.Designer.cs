@@ -281,7 +281,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.menuChucNang.Name = "menuChucNang";
             this.menuChucNang.Size = new System.Drawing.Size(220, 290);
             this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
-            this.menuChucNang.MouseMove += new System.Windows.Forms.MouseEventHandler(this.menuChucNang_MouseMove);
             // 
             // ChonDonHangBanMenu
             // 
@@ -297,7 +296,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.ChonDonHangBanThemMenu.Name = "ChonDonHangBanThemMenu";
             this.ChonDonHangBanThemMenu.Size = new System.Drawing.Size(219, 22);
             this.ChonDonHangBanThemMenu.Text = "Chọn đơn hàng bán (thêm)";
-            this.ChonDonHangBanThemMenu.Click += new System.EventHandler(this.ChonDonHangBanThemMenu_Click);
+            this.ChonDonHangBanThemMenu.Click += new System.EventHandler(this.chonDonHangBanThemMenu_Click);
             // 
             // chonBaoGiaMenu
             // 
@@ -306,7 +305,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.chonBaoGiaMenu.Size = new System.Drawing.Size(219, 22);
             this.chonBaoGiaMenu.Text = "Chọn báo giá";
             this.chonBaoGiaMenu.Click += new System.EventHandler(this.chonBaoGiaMenu_Click);
-            this.chonBaoGiaMenu.MouseHover += new System.EventHandler(this.chonBaoGiaMenu_MouseHover);
             // 
             // TroGiupMenu
             // 

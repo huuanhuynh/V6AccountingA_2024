@@ -6674,6 +6674,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 && table.Columns.Contains("TIEN_NT2") && table.Columns.Contains("SO_LUONG1")
                 && table.Columns.Contains("GIA_NT21"))
             {
+                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                {
+                    detail1.MODE = V6Mode.View;
+                }
                 if (table.Rows.Count > 0)
                 {
                     bool flag_add = chon_accept_flag_add;
@@ -6681,11 +6685,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     if (!flag_add)
                     {
                         AD.Rows.Clear();
-                    }
-
-                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
-                    {
-                        detail1.MODE = V6Mode.Init;
                     }
                 }
 
@@ -7205,6 +7204,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         {
             try
             {
+                if (NotAddEdit) return;
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                chon_accept_flag_add = shift;
                 var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
                 if (ma_dvcs != "")
@@ -7231,7 +7233,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             {
                 txtLoaiCt.Text = e.Loai_ct;
                 detail1.MODE = V6Mode.View;
-                AD.Rows.Clear();
+                bool flag_add = chon_accept_flag_add;
+                chon_accept_flag_add = false;
+                if (!flag_add)
+                {
+                    AD.Rows.Clear();
+                }
                 int addCount = 0, failCount = 0; _message = "";
                 string ma_kh_soh = null;
                 foreach (IDictionary<string, object> data in selectedDataList)
@@ -7849,7 +7856,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
 
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
-            FixMenuChucNangItemShiftText(ChonDonHangBanMenu, chonBaoGiaMenu, chonTuExcelMenu);
+            FixMenuChucNangItemShiftText(chonDonHangBanMenu, chonBaoGiaMenu, chonTuExcelMenu, chonPhieuNhapMenu);
         }
 
     }

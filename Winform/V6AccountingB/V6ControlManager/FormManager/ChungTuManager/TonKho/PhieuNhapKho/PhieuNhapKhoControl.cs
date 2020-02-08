@@ -4095,6 +4095,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         {
             try
             {
+                if (NotAddEdit) return;
                 chon_accept_flag_add = add;
                 //var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMaDVCS.Text.Trim();
@@ -4462,6 +4463,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         {
             try
             {
+                if (NotAddEdit) return;
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                chon_accept_flag_add = shift;
                 //var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
@@ -4499,7 +4503,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
 
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
-            FixMenuChucNangItemShiftText(chonTuExcelMenu);
+            FixMenuChucNangItemShiftText(chonTuExcelMenu, chonDeNghiNhapMenu, chonDonHangMuaMenu);
         }
     }
 }

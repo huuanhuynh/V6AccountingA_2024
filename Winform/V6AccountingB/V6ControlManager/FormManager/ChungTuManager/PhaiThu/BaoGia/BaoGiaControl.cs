@@ -5153,6 +5153,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 && table.Columns.Contains("TIEN_NT0") && table.Columns.Contains("SO_LUONG1")
                 && table.Columns.Contains("GIA_NT01"))
             {
+                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                {
+                    detail1.MODE = V6Mode.View;
+                }
                 if (table.Rows.Count > 0)
                 {
                     bool flag_add = chon_accept_flag_add;
@@ -5160,11 +5164,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     if (!flag_add)
                     {
                         AD.Rows.Clear();
-                    }
-
-                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
-                    {
-                        detail1.MODE = V6Mode.Init;
                     }
                 }
 
@@ -5235,7 +5234,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
         #endregion chức năng
 
-        private void ChonDonHangMuaMenu_Click(object sender, EventArgs e)
+        private void chonDonHangMuaMenu_Click(object sender, EventArgs e)
         {
 
         }
@@ -5266,7 +5265,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             {
                 this.WriteExLog(GetType() + ".txtvMaNhomVv_TextChanged " + _sttRec, ex);
             }
-            
         }
         
         private void FixBPNV_Name()
@@ -5411,7 +5409,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
-            FixMenuChucNangItemShiftText(chonTuExcelMenu);
+            FixMenuChucNangItemShiftText(chonTuExcelMenu, chonDonHangMuaMenu);
         }
 
     }

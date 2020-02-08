@@ -5235,6 +5235,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                 && table.Columns.Contains("TIEN_NT0") && table.Columns.Contains("SO_LUONG1")
                 && table.Columns.Contains("GIA_NT01"))
             {
+                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                {
+                    detail1.MODE = V6Mode.Init;
+                }
                 if (table.Rows.Count > 0)
                 {
                     bool flag_add = chon_accept_flag_add;
@@ -5242,11 +5246,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                     if (!flag_add)
                     {
                         AD.Rows.Clear();
-                    }
-
-                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
-                    {
-                        detail1.MODE = V6Mode.Init;
                     }
                 }
 
@@ -5429,13 +5428,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             }
         }
 
-        private void ChonDonHangMuaMenu_Click(object sender, EventArgs e)
+        private void chonDonHangMuaMenu_Click(object sender, EventArgs e)
         {
             bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
             ChucNang_ChonDonHangMua(shift);
         }
         
-        private void ChonDonHangBanMenu_Click(object sender, EventArgs e)
+        private void chonDonHangBanMenu_Click(object sender, EventArgs e)
         {
             bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
             ChucNang_ChonDonHangBan(shift);
@@ -5579,19 +5578,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             }
         }
 
-        private void ChonDonHangMuaMenu_MouseHover(object sender, EventArgs e)
-        {
-            //FixMenuChucNangItemShiftText(ChonDonHangBanMenu, ChonDonHangMuaMenu);
-        }
-
-        private void menuChucNang_MouseMove(object sender, MouseEventArgs e)
-        {
-            //FixMenuChucNangItemShiftText(ChonDonHangBanMenu, ChonDonHangMuaMenu);
-        }
-
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
-            FixMenuChucNangItemShiftText(ChonDonHangBanMenu, ChonDonHangMuaMenu, chonTuExcelMenu);
+            FixMenuChucNangItemShiftText(chonDonHangBanMenu, chonDonHangMuaMenu, chonTuExcelMenu);
         }
     }
 }

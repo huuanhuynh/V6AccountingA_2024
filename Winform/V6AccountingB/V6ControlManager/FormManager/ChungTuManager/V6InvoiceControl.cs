@@ -162,7 +162,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         public ChungTuChungContainer ChungTuContainer { get; set; }
         public TabPage ParentTabPage { get; set; }
-        
+        /// <summary>
+        /// Cờ thêm khi nhấn Shift trong chức năng chọn.
+        /// </summary>
         public bool chon_accept_flag_add;
 
         //public string MaCt { get; set; }

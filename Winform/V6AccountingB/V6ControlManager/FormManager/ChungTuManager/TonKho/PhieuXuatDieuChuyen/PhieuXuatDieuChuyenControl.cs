@@ -2708,7 +2708,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 {
                     detail1.MODE = V6Mode.Lock;
                     dataGridView1.ReadOnly = true;
-                    ChonDonHangMuaMenu.Enabled = false;
+                    chonDonHangMuaMenu.Enabled = false;
                     TroGiupMenu.Enabled = false;
                     chonTuExcelMenu.Enabled = false;
                 }
@@ -5410,13 +5410,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
-            FixMenuChucNangItemShiftText(chonTuExcelMenu);
+            FixMenuChucNangItemShiftText(chonTuExcelMenu, chonDeNghiXuatMenu, chonDonHangMuaMenu);
         }
 
         private void chonDeNghiXuatMenu_Click(object sender, EventArgs e)
         {
             try
             {
+                if (NotAddEdit) return;
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                chon_accept_flag_add = shift;
                 //var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
@@ -5444,14 +5447,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             try
             {
                 txtLoaiCt.Text = e.Loai_ct;
+                detail1.MODE = V6Mode.View;
                 bool flag_add = chon_accept_flag_add;
                 chon_accept_flag_add = false;
-                detail1.MODE = V6Mode.View;
-                if (flag_add)
-                {
-                    DoNothing();
-                }
-                else
+                if (!flag_add)
                 {
                     AD.Rows.Clear();
                 }

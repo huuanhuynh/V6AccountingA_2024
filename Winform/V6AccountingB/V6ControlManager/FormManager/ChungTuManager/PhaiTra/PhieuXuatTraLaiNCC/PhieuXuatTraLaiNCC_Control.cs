@@ -4594,10 +4594,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
         {
             try
             {
+                detail1.MODE = V6Mode.View;
                 txtLoaiCt.Text = e.Loai_ct;
                 bool flag_add = chon_accept_flag_add;
                 chon_accept_flag_add = false;
-                detail1.MODE = V6Mode.View;
                 if (!flag_add)
                 {
                     AD.Rows.Clear();
@@ -4667,18 +4667,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
         {
             try
             {
+                detail1.MODE = V6Mode.View;
                 txtLoaiCt.Text = e.Loai_ct;
                 bool flag_add = chon_accept_flag_add;
                 chon_accept_flag_add = false;
-                detail1.MODE = V6Mode.View;
-                if (flag_add)
-                {
-                    DoNothing();
-                }
-                else
+                if (!flag_add)
                 {
                     AD.Rows.Clear();
                 }
+
                 int addCount = 0, failCount = 0; _message = "";
 
                 string ma_kh_soh = null;
@@ -5188,6 +5185,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                 && table.Columns.Contains("TIEN_NT0") && table.Columns.Contains("SO_LUONG1")
                 && table.Columns.Contains("GIA_NT01"))
             {
+                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                {
+                    detail1.MODE = V6Mode.View;
+                }
                 if (table.Rows.Count > 0)
                 {
                     bool flag_add = chon_accept_flag_add;
@@ -5195,11 +5196,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                     if (!flag_add)
                     {
                         AD.Rows.Clear();
-                    }
-
-                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
-                    {
-                        detail1.MODE = V6Mode.Init;
                     }
                 }
 
@@ -5457,13 +5453,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
 
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
-            FixMenuChucNangItemShiftText(chonTuExcelMenu);
+            FixMenuChucNangItemShiftText(chonDeNghiXuatMenu, chonTuExcelMenu);
         }
 
         private void chonDeNghiXuatMenu_Click(object sender, EventArgs e)
         {
             try
             {
+                if (NotAddEdit) return;
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                chon_accept_flag_add = shift;
                 //var ma_kh = txtMaKh.Text.Trim();
                 var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";

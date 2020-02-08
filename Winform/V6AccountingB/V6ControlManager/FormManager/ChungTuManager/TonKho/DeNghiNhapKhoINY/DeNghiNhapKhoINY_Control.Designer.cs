@@ -42,8 +42,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuChucNang = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ChonDonHangMuaMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.ChonDonHangBanMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.chonDonHangMuaMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.chonDonHangBanMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.TroGiupMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chonTuExcelMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.xuLyKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -269,8 +269,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             // menuChucNang
             // 
             this.menuChucNang.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ChonDonHangMuaMenu,
-            this.ChonDonHangBanMenu,
+            this.chonDonHangMuaMenu,
+            this.chonDonHangBanMenu,
             this.TroGiupMenu,
             this.chonTuExcelMenu,
             this.xuLyKhacMenu,
@@ -280,27 +280,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.menuChucNang.Name = "menuChucNang";
             this.menuChucNang.Size = new System.Drawing.Size(185, 202);
             this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
-            this.menuChucNang.MouseMove += new System.Windows.Forms.MouseEventHandler(this.menuChucNang_MouseMove);
             // 
-            // ChonDonHangMuaMenu
+            // chonDonHangMuaMenu
             // 
-            this.ChonDonHangMuaMenu.AccessibleDescription = "INVOICEM00013";
-            this.ChonDonHangMuaMenu.Enabled = false;
-            this.ChonDonHangMuaMenu.Name = "ChonDonHangMuaMenu";
-            this.ChonDonHangMuaMenu.Size = new System.Drawing.Size(184, 22);
-            this.ChonDonHangMuaMenu.Text = "Chọn đơn hàng mua";
-            this.ChonDonHangMuaMenu.Click += new System.EventHandler(this.ChonDonHangMuaMenu_Click);
-            this.ChonDonHangMuaMenu.MouseHover += new System.EventHandler(this.ChonDonHangMuaMenu_MouseHover);
+            this.chonDonHangMuaMenu.AccessibleDescription = "INVOICEM00013";
+            this.chonDonHangMuaMenu.Enabled = false;
+            this.chonDonHangMuaMenu.Name = "chonDonHangMuaMenu";
+            this.chonDonHangMuaMenu.Size = new System.Drawing.Size(184, 22);
+            this.chonDonHangMuaMenu.Text = "Chọn đơn hàng mua";
+            this.chonDonHangMuaMenu.Click += new System.EventHandler(this.chonDonHangMuaMenu_Click);
             // 
-            // ChonDonHangBanMenu
+            // chonDonHangBanMenu
             // 
-            this.ChonDonHangBanMenu.AccessibleDescription = "INVOICEM00001";
-            this.ChonDonHangBanMenu.Enabled = false;
-            this.ChonDonHangBanMenu.Name = "ChonDonHangBanMenu";
-            this.ChonDonHangBanMenu.Size = new System.Drawing.Size(184, 22);
-            this.ChonDonHangBanMenu.Text = "Chọn đơn hàng bán";
-            this.ChonDonHangBanMenu.Click += new System.EventHandler(this.ChonDonHangBanMenu_Click);
-            this.ChonDonHangBanMenu.MouseHover += new System.EventHandler(this.ChonDonHangMuaMenu_MouseHover);
+            this.chonDonHangBanMenu.AccessibleDescription = "INVOICEM00001";
+            this.chonDonHangBanMenu.Enabled = false;
+            this.chonDonHangBanMenu.Name = "chonDonHangBanMenu";
+            this.chonDonHangBanMenu.Size = new System.Drawing.Size(184, 22);
+            this.chonDonHangBanMenu.Text = "Chọn đơn hàng bán";
+            this.chonDonHangBanMenu.Click += new System.EventHandler(this.chonDonHangBanMenu_Click);
             // 
             // TroGiupMenu
             // 
@@ -3787,7 +3784,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
         private V6DateTimeColor txtNGAY_UD1;
         private V6Label lblNameT;
         private System.Windows.Forms.ContextMenuStrip menuChucNang;
-        private System.Windows.Forms.ToolStripMenuItem ChonDonHangBanMenu;
+        private System.Windows.Forms.ToolStripMenuItem chonDonHangBanMenu;
         private System.Windows.Forms.ToolStripMenuItem TroGiupMenu;
         private System.Windows.Forms.ToolStripMenuItem chonTuExcelMenu;
         private DropDownButton btnChucNang;
@@ -3822,7 +3819,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
         private V6FormButton btnTinhPB;
         private V6CheckBox chkTempSuaCT;
         private GridViewSummary gridViewSummary2;
-        private System.Windows.Forms.ToolStripMenuItem ChonDonHangMuaMenu;
+        private System.Windows.Forms.ToolStripMenuItem chonDonHangMuaMenu;
         private System.Windows.Forms.ToolStripMenuItem thayTheNhieuMenu;
     }
 }

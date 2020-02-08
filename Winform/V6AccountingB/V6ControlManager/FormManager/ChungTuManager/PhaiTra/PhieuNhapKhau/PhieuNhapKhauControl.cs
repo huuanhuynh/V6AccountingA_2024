@@ -6866,6 +6866,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 && table.Columns.Contains("TIEN_NT0") && table.Columns.Contains("SO_LUONG1")
                 && table.Columns.Contains("GIA_NT01"))
             {
+                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                {
+                    detail1.MODE = V6Mode.View;
+                }
                 if (table.Rows.Count > 0)
                 {
                     bool flag_add = chon_accept_flag_add;
@@ -6873,11 +6877,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     if (!flag_add)
                     {
                         AD.Rows.Clear();
-                    }
-
-                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
-                    {
-                        detail1.MODE = V6Mode.Init;
                     }
                 }
 
@@ -6953,7 +6952,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
         #endregion chức năng
 
-        private void ChonDonHangMuaMenu_Click(object sender, EventArgs e)
+        private void chonDonHangMuaMenu_Click(object sender, EventArgs e)
         {
             bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
             ChucNang_ChonDonHangMua(shift);
@@ -7247,6 +7246,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             try
             {
+                if (NotAddEdit) return;
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                chon_accept_flag_add = shift;
                 var ma_dvcs = txtMaDVCS.Text.Trim();
                 var message = "";
                 if (ma_dvcs != "")
@@ -7270,7 +7272,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
-            FixMenuChucNangItemShiftText(chonTuExcelMenu);
+            FixMenuChucNangItemShiftText(chonTuExcelMenu, chonDonHangMuaMenu, chonDeNghiNhapMenu);
         }
 
         private void btnApGia_Click(object sender, EventArgs e)

@@ -5084,7 +5084,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
 
                     if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                     {
-                        detail1.MODE = V6Mode.Init;
+                        detail1.MODE = V6Mode.View;
                     }
                 }
 
@@ -6055,19 +6055,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             }
         }
 
-        private void chonDonHangBanToolStripMenuItem_MouseHover(object sender, EventArgs e)
-        {
-            //FixMenuChucNangItemShiftText(chonDonHangBanMenu);
-        }
-
-        private void menuChucNang_MouseMove(object sender, MouseEventArgs e)
-        {
-            //FixMenuChucNangItemShiftText(chonDonHangBanMenu);
-        }
-
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
-            FixMenuChucNangItemShiftText(chonDonHangBanMenu, chonBaoGiaMenu, chonTuExcelMenu);
+            FixMenuChucNangItemShiftText(chonDonHangBanMenu, chonBaoGiaMenu, chonTuExcelMenu, chonDonHangMuaMenu);
         }
         
     }
