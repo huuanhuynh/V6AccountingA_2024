@@ -2226,13 +2226,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.chkT_THUE_NT.AccessibleDescription = "APOCTPOBH00062";
             this.chkT_THUE_NT.AccessibleName = "sua_thue";
             this.chkT_THUE_NT.AutoSize = true;
-            this.chkT_THUE_NT.Enabled = false;
             this.chkT_THUE_NT.Location = new System.Drawing.Point(71, 113);
             this.chkT_THUE_NT.Name = "chkT_THUE_NT";
             this.chkT_THUE_NT.Size = new System.Drawing.Size(43, 17);
             this.chkT_THUE_NT.TabIndex = 10;
             this.chkT_THUE_NT.TabStop = false;
-            this.chkT_THUE_NT.Tag = "disable";
             this.chkT_THUE_NT.Text = "sửa";
             this.chkT_THUE_NT.UseVisualStyleBackColor = true;
             this.chkT_THUE_NT.CheckedChanged += new System.EventHandler(this.chkSuaTienThue_CheckedChanged);

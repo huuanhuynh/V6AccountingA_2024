@@ -2766,8 +2766,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             {
                 if ((Mode == V6Mode.Add || Mode == V6Mode.Edit)
                     //&& _MA_GD != "A" && _MA_GD != "1"
-                    && M_POA_MULTI_VAT == "1"
-                    && !chkT_THUE_NT.Checked)
+                    && M_POA_MULTI_VAT == "1")
+                    //&& !chkT_THUE_NT.Checked)
                 {
                     //Xoa AD2
                     //AD2.Rows.Clear();
@@ -2802,8 +2802,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             // Cộng dồn giá trị.
                             newRow = groupSumData[KEY];
                             //++
-                            newRow["T_TIEN_NT"] = ObjectAndString.ObjectToDecimal(newRow["T_TIEN_NT"]) + ObjectAndString.ObjectToDecimal(adRow["TIEN_NT0"]);
-                            newRow["T_TIEN"] = ObjectAndString.ObjectToDecimal(newRow["T_TIEN"]) + ObjectAndString.ObjectToDecimal(adRow["TIEN0"]);
+                            newRow["T_TIEN_NT"] = ObjectAndString.ObjectToDecimal(newRow["T_TIEN_NT"])
+                                + ObjectAndString.ObjectToDecimal(adRow["TIEN_NT0"])
+                                + ObjectAndString.ObjectToDecimal(adRow["TIEN_VC_NT"])
+                                //+ ObjectAndString.ObjectToDecimal(adRow["NK_NT"])
+                                - ObjectAndString.ObjectToDecimal(adRow["CK_NT"])
+                                - ObjectAndString.ObjectToDecimal(adRow["GG_NT"]);
+                            newRow["T_TIEN"] = ObjectAndString.ObjectToDecimal(newRow["T_TIEN"])
+                                + ObjectAndString.ObjectToDecimal(adRow["TIEN0"])
+                                + ObjectAndString.ObjectToDecimal(adRow["TIEN_VC"])
+                                //+ ObjectAndString.ObjectToDecimal(adRow["NK"])
+                                - ObjectAndString.ObjectToDecimal(adRow["CK"])
+                                - ObjectAndString.ObjectToDecimal(adRow["GG"]);
                             newRow["T_THUE_NT"] = ObjectAndString.ObjectToDecimal(newRow["T_THUE_NT"]) + ObjectAndString.ObjectToDecimal(adRow["THUE_NT"]);
                             newRow["T_THUE"] = ObjectAndString.ObjectToDecimal(newRow["T_THUE"]) + ObjectAndString.ObjectToDecimal(adRow["THUE_NT"]);
                         }
@@ -2857,8 +2867,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                                 newRow["AUTO_YN"] = "1";
                                 newRow["THUE_SUAT"] = adRow["THUE_SUAT_I"];
 
-                                newRow["T_TIEN_NT"] = adRow["TIEN_NT0"];
-                                newRow["T_TIEN"] = adRow["TIEN0"];
+                                newRow["T_TIEN_NT"] = ObjectAndString.ObjectToDecimal(adRow["TIEN_NT0"])
+                                    + ObjectAndString.ObjectToDecimal(adRow["TIEN_VC_NT"])
+                                    //+ ObjectAndString.ObjectToDecimal(adRow["NK_NT"])
+                                    - ObjectAndString.ObjectToDecimal(adRow["CK_NT"])
+                                    - ObjectAndString.ObjectToDecimal(adRow["GG_NT"]);
+                                newRow["T_TIEN"] = ObjectAndString.ObjectToDecimal(adRow["TIEN0"])
+                                    + ObjectAndString.ObjectToDecimal(adRow["TIEN_VC"])
+                                    //+ ObjectAndString.ObjectToDecimal(adRow["NK"])
+                                    - ObjectAndString.ObjectToDecimal(adRow["CK"])
+                                    - ObjectAndString.ObjectToDecimal(adRow["GG"]);
                                 newRow["T_THUE_NT"] = adRow["thue_nt"];
                                 newRow["T_THUE"] = adRow["thue"];
                             }
@@ -2879,58 +2897,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 return false;
             }
             return true;
-        }
-
-        private bool NhapThueTuDong0()
-        {
-            try
-            {
-                if ((Mode == V6Mode.Add || Mode == V6Mode.Edit)
-                    && !chkT_THUE_NT.Checked)
-                {
-                    AD2.Rows.Clear();
-
-                    var newRow = AD2.NewRow();
-                    newRow["so_ct"] = txtSoPhieu.Text;
-                    newRow["ngay_ct"] = dateNgayCT.Date;
-                    newRow["ngay_lct"] = dateNgayLCT.Date;
-                    newRow["so_ct0"] = txtSoCt0.Text;
-                    if (txtNgayCt0.Value == null) newRow["ngay_ct0"] = DBNull.Value;
-                    else newRow["ngay_ct0"] = txtNgayCt0.Value;
-                    newRow["so_seri0"] = txtSoSeri0.Text;
-                    newRow["ma_kh"] = txtMaKh.Text;
-                    newRow["ten_kh"] = txtTenKh.Text;
-                    newRow["dia_chi"] = txtDiaChi.Text;
-                    newRow["ma_so_thue"] = txtMaSoThue.Text;
-                    newRow["ten_vt"] = txtDienGiai.Text;
-                    //Ten_vt,so_luong,gia,t_tien
-                    if (TxtMa_kh_i_ao.Text.Trim() == txtMaKh.Text.Trim())
-                    {
-                        newRow["t_tien"] = txtTongTien0.Value - txtTongGiam.Value - txtTongCk.Value + TxtT_cp.Value + TxtT_TIENVC.Value;
-                        newRow["t_tien_nt"] = txtTongTienNt0.Value - txtTongGiamNt.Value - txtTongCkNt.Value + TxtT_cp_nt.Value + TxtT_TIENVCNT.Value;
-                    }
-                    else
-                    {
-                        newRow["t_tien"] = txtTongTien0.Value - txtTongGiam.Value - txtTongCk.Value;
-                        newRow["t_tien_nt"] = txtTongTienNt0.Value - txtTongGiamNt.Value - txtTongCkNt.Value;
-                    }
-                    newRow["thue_suat"] = txtThueSuat.Value;
-                    newRow["tk_thue_no"] = txtTkThueNo.Text.Trim();
-                    newRow["tk_du"] = txtManx.Text.Trim();
-                    newRow["mau_bc"] = 1;
-
-                    _sttRec02 = V6BusinessHelper.GetNewSttRec0(AD2);
-                    newRow["STT_REC0"] = _sttRec02;
-                    AD2.Rows.Add(newRow);
-                    dataGridView2.DataSource = AD2;
-                    return true;
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(GetType() + ".NhapThueTuDong " + _sttRec, ex);
-            }
-            return false;
         }
 
         public void TinhTongValues()
@@ -7436,6 +7402,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (NotAddEdit) return;
             if (tabControl1.SelectedTab == tabThue)
             {
                 NhapThueTuDong();

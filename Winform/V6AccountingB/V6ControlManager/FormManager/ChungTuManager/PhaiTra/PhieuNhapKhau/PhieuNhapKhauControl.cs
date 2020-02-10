@@ -2134,7 +2134,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             {
                 //Tuanmh 19/12/2016 Chua Kiem tra Null
                 //Tuanmh 25/05/2017 Bo sung-> + Thue_nk
-                _tienNt.Value = _tienNt0.Value + _cpNt.Value - _ckNt.Value - _ggNt.Value+_nkNt.Value;
+                _tienNt.Value = _tienNt0.Value + _cpNt.Value - _ckNt.Value - _ggNt.Value + _nkNt.Value;
                 _tien.Value = _tien0.Value + _cp.Value - _ck.Value - _gg.Value + _nk.Value;
                 
                 if (_maNt == _mMaNt0)
@@ -2226,13 +2226,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     XuLyKhoaThongTinKhachHang();
                     SetGridViewChiPhiEditAble(txtLoai_pb.Text, chkSuaTien.Checked, dataGridView3ChiPhi, "CP,CP_NT,NK,NK_NT", "CP_NT,NK_NT");
 
-                    txtTyGia.Enabled = _maNt != _mMaNt0;
-
-                    _tienNt0.Enabled = chkSuaTien.Checked;
-                    _dvt1.Enabled = true;
-                
                     dateNgayLCT.Enabled = Invoice.M_NGAY_CT;
-
+                    txtTyGia.Enabled = _maNt != _mMaNt0;
+                    _dvt1.EnableTag();
+                    _tienNt0.EnableTag(chkSuaTien.Checked);
+                    chkT_THUE_NT.Enabled = M_POA_MULTI_VAT == "1";
+                    
                     XuLyHienThiChietKhau_PhieuNhap(chkLoaiChietKhau.Checked, chkSuaTienCk.Checked, _pt_cki, _ckNt, txtTongCkNt, chkSuaPtck);
                     txtPtCk.ReadOnly = !chkSuaPtck.Checked;
                 }
@@ -2710,8 +2709,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             {
                 if ((Mode == V6Mode.Add || Mode == V6Mode.Edit)
                     //&& _MA_GD != "A" && _MA_GD != "1"
-                    && M_POA_MULTI_VAT == "1"
-                    && !chkT_THUE_NT.Checked)
+                    && M_POA_MULTI_VAT == "1")
+                    //&& !chkT_THUE_NT.Checked)
                 {
                     //Xoa AD2
                     //AD2.Rows.Clear();
@@ -2746,8 +2745,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                             // Cộng dồn giá trị.
                             newRow = groupSumData[KEY];
                             //++
-                            newRow["T_TIEN_NT"] = ObjectAndString.ObjectToDecimal(newRow["T_TIEN_NT"]) + ObjectAndString.ObjectToDecimal(adRow["TIEN_NT0"]);
-                            newRow["T_TIEN"] = ObjectAndString.ObjectToDecimal(newRow["T_TIEN"]) + ObjectAndString.ObjectToDecimal(adRow["TIEN0"]);
+                            newRow["T_TIEN_NT"] = ObjectAndString.ObjectToDecimal(newRow["T_TIEN_NT"])
+                                + ObjectAndString.ObjectToDecimal(adRow["TIEN_NT0"])
+                                + ObjectAndString.ObjectToDecimal(adRow["TIEN_VC_NT"])
+                                + ObjectAndString.ObjectToDecimal(adRow["NK_NT"])
+                                - ObjectAndString.ObjectToDecimal(adRow["CK_NT"])
+                                - ObjectAndString.ObjectToDecimal(adRow["GG_NT"]);
+                            newRow["T_TIEN"] = ObjectAndString.ObjectToDecimal(newRow["T_TIEN"])
+                                + ObjectAndString.ObjectToDecimal(adRow["TIEN0"])
+                                + ObjectAndString.ObjectToDecimal(adRow["TIEN_VC"])
+                                + ObjectAndString.ObjectToDecimal(adRow["NK"])
+                                - ObjectAndString.ObjectToDecimal(adRow["CK"])
+                                - ObjectAndString.ObjectToDecimal(adRow["GG"]);
                             newRow["T_THUE_NT"] = ObjectAndString.ObjectToDecimal(newRow["T_THUE_NT"]) + ObjectAndString.ObjectToDecimal(adRow["THUE_NT"]);
                             newRow["T_THUE"] = ObjectAndString.ObjectToDecimal(newRow["T_THUE"]) + ObjectAndString.ObjectToDecimal(adRow["THUE"]);
                         }
@@ -2805,8 +2814,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                                 newRow["AUTO_YN"] = "1";
                                 newRow["THUE_SUAT"] = adRow["THUE_SUAT_I"];
 
-                                newRow["T_TIEN_NT"] = adRow["TIEN_NT0"];
-                                newRow["T_TIEN"] = adRow["TIEN0"];
+                                newRow["T_TIEN_NT"] = ObjectAndString.ObjectToDecimal(adRow["TIEN_NT0"])
+                                     + ObjectAndString.ObjectToDecimal(adRow["TIEN_VC_NT"])
+                                     + ObjectAndString.ObjectToDecimal(adRow["NK_NT"])
+                                     - ObjectAndString.ObjectToDecimal(adRow["CK_NT"])
+                                     - ObjectAndString.ObjectToDecimal(adRow["GG_NT"]);
+                                newRow["T_TIEN"] = ObjectAndString.ObjectToDecimal(adRow["TIEN0"])
+                                     + ObjectAndString.ObjectToDecimal(adRow["TIEN_VC"])
+                                     + ObjectAndString.ObjectToDecimal(adRow["NK"])
+                                     - ObjectAndString.ObjectToDecimal(adRow["CK"])
+                                     - ObjectAndString.ObjectToDecimal(adRow["GG"]);
                                 newRow["T_THUE_NT"] = adRow["thue_nt"];
                                 newRow["T_THUE"] = adRow["thue"];
                             }
@@ -3267,6 +3284,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
                 tien_truocthue_nti = ObjectAndString.ObjectToDecimal(row["TIEN_NT0"])
                                      + ObjectAndString.ObjectToDecimal(row["TIEN_VC_NT"])
+                                     + ObjectAndString.ObjectToDecimal(row["NK_NT"])
                                      - ObjectAndString.ObjectToDecimal(row["CK_NT"])
                                      - ObjectAndString.ObjectToDecimal(row["GG_NT"]);
 
@@ -3349,7 +3367,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - M_POA_MULTI_VAT = " + M_POA_MULTI_VAT);
             if (M_POA_MULTI_VAT == "1")
             {
-                Tinh_TienThueNtVaTienThue_TheoThueSuat(_thue_suat_i.Value, _tienNt0.Value - _ckNt.Value - _ggNt.Value, _tien0.Value - _ck.Value - _gg.Value, _thue_nt, _thue);
+                Tinh_TienThueNtVaTienThue_TheoThueSuat(_thue_suat_i.Value, _tienNt0.Value + _nkNt.Value - _ckNt.Value - _ggNt.Value, _tien0.Value + _nk.Value - _ck.Value - _gg.Value, _thue_nt, _thue);
                 V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - Tinh thue ct M_POA_MULTY_VAT = 1.");
             }
         }
@@ -7224,6 +7242,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (NotAddEdit) return;
             if (tabControl1.SelectedTab == tabThue)
             {
                 NhapThueTuDong();
@@ -7335,6 +7354,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     var tien = ObjectAndString.ObjectToDecimal(row["TIEN"]);
                     var giaNt = ObjectAndString.ObjectToDecimal(row["GIA_NT"]);
                     var gia = ObjectAndString.ObjectToDecimal(row["GIA"]);
+                    var ts_nk = ObjectAndString.ObjectToDecimal(row["TS_NK"]);
 
                     var dataGia = Invoice.GetGiaMua("MA_VT", Invoice.Mact, dateNgayCT.Date,
                         cboMaNt.SelectedValue.ToString().Trim(), maVatTu, dvt1, txtMaKh.Text, txtMaGia.Text);
@@ -7399,12 +7419,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                             row["GIA_NT0"] = tienNt0 / soLuong;
                         }
                     }
-
+                    
+                    var nk_nt = V6BusinessHelper.Vround(tienNt0 * ts_nk / 100, M_ROUND_NT);
+                    var nk = V6BusinessHelper.Vround(nk_nt * txtTyGia.Value, M_ROUND);
+                    if (_maNt == _mMaNt0)
+                    {
+                        nk = nk_nt;
+                    }
+                    
                     // TinhTien va Gia
                     tienNt = tienNt0 + ObjectAndString.ObjectToDecimal(row["CP_NT"]) + ObjectAndString.ObjectToDecimal(row["CK_NT"]) +
-                        ObjectAndString.ObjectToDecimal(row["GG_NT"]) + ObjectAndString.ObjectToDecimal(row["TIEN_VC_NT"]);
+                        ObjectAndString.ObjectToDecimal(row["GG_NT"]) + ObjectAndString.ObjectToDecimal(row["TIEN_VC_NT"]) + nk_nt;
                     tien = tien0 + ObjectAndString.ObjectToDecimal(row["CP"]) + ObjectAndString.ObjectToDecimal(row["CK"]) +
-                        ObjectAndString.ObjectToDecimal(row["GG"]) + ObjectAndString.ObjectToDecimal(row["TIEN_VC"]);
+                        ObjectAndString.ObjectToDecimal(row["GG"]) + ObjectAndString.ObjectToDecimal(row["TIEN_VC"]) + nk;
 
                     if (soLuong != 0)
                     {
@@ -7422,11 +7449,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     row["GIA"] = gia;
                     row["TIEN_NT"] = tienNt;
                     row["TIEN"] = tien;
-
+                    row["NK_NT"] = nk_nt;
+                    row["NK"] = nk;
                 }
 
                 dataGridView1.DataSource = AD;
-
                 TinhTongThanhToan("ApGiaMua");
             }
             catch (Exception ex)

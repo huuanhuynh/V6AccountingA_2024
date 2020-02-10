@@ -5767,6 +5767,46 @@ namespace V6Controls.Forms
         }
 
         /// <summary>
+        /// Cập nhập các giá trị từ AM vào các dòng trong AD theo fields.
+        /// </summary>
+        /// <param name="dataAM">Thông tin đầu vào</param>
+        /// <param name="fields">Các trường cần update thông</param>
+        /// <param name="AD">Bảng cần update</param>
+        /// <param name="startIndex">Dòng bắt đầu, những dòng bên trên sẽ không bị thay đổi, bắt đầu từ 0.</param>
+        public static void UpdateDKlistAll(IDictionary<string, object> dataAM, string[] fields, DataTable AD, int startIndex)
+        {
+            if (AD == null) return;
+            try
+            {
+                var use_data = new SortedDictionary<string, object>();
+
+                foreach (string field in fields)
+                {
+                    var FIELD = field.ToUpper();
+                    if (dataAM.ContainsKey(FIELD) && AD.Columns.Contains(FIELD))
+                    {
+                        use_data.Add(FIELD, dataAM[FIELD]);
+                    }
+                }
+
+                if (startIndex < 0) startIndex = 0;
+                for (int i = startIndex; i < AD.Rows.Count; i++)
+                {
+                    var row = AD.Rows[i];
+                    if (row.RowState == DataRowState.Deleted) continue;
+                    foreach (KeyValuePair<string, object> item in use_data)
+                    {
+                        row[item.Key] = ObjectAndString.ObjectTo(AD.Columns[item.Key].DataType, item.Value);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage("UpdateDKlistAll: " + ex.Message, "FormManagerHelper");
+            }
+        }
+
+        /// <summary>
         /// Copy đè dữ liệu từ cột này qua cột kia.
         /// </summary>
         /// <param name="data">Bảng dữ liệu.</param>

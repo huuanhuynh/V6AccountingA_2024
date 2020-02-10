@@ -3732,6 +3732,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (NotAddEdit) return;
             if (tabControl1.SelectedTab == tabVAT)
             {
                 NhapThueTuDong();

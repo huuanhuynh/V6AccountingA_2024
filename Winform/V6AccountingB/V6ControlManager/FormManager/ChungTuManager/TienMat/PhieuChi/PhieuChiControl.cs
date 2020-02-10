@@ -5416,6 +5416,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (NotAddEdit) return;
             if (tabControl1.SelectedTab == tabThue)
             {
                 NhapThueTuDong();

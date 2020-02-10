@@ -3545,7 +3545,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             try
             {
                 //Hien form chuc nang co options *-1 or input
-                if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
+                if (NotAddEdit) return;
 
                 var detail1 = GetControlByName("detail1") as HD_Detail;
                 if (detail1 == null)
@@ -3577,11 +3577,14 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 {
                     IDictionary<string, object> data = new Dictionary<string, object>();
                     if (dataGridView1.CurrentRow != null)
-                    foreach (string field in listFieldCanReplace)
                     {
-                        data[field.ToUpper()] = dataGridView1.CurrentRow.Cells[field].Value;
+                        foreach (string field in listFieldCanReplace)
+                        {
+                            data[field.ToUpper()] = dataGridView1.CurrentRow.Cells[field].Value;
+                        }
+
+                        V6ControlFormHelper.UpdateDKlistAll(data, listFieldCanReplace, AD, dataGridView1.CurrentRow.Index);
                     }
-                    V6ControlFormHelper.UpdateDKlistAll(data, listFieldCanReplace, AD);
                 }
                 else // Thay thế tất cả giá trị của cột đang đứng bằng giá trị mới.
                 {
