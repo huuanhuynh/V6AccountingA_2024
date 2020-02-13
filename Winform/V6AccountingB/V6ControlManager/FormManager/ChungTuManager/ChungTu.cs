@@ -23,6 +23,7 @@ using V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi;
 using V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu;
 using V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY;
+using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIXP;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho;
@@ -245,6 +246,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     return new DeNghiNhapKhoINY_Control(maCt, itemId, sttRec) { Name = itemId };
                 case "IXY":
                     return new DeNghiXuatKhoIXYControl(maCt, itemId, sttRec) { Name = itemId };
+                case "IXP":
+                    return new PhieuDuyetXuatBanIXPControl(maCt, itemId, sttRec) { Name = itemId };
+
                 #endregion tồn kho
 
                 #region ==== Tiền mặt ====

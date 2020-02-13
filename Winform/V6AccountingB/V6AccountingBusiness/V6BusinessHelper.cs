@@ -1723,6 +1723,20 @@ namespace V6AccountingBusiness
             };
             return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_EdItems_DATE_STT_REC_IXY", plist).Tables[0];
         }
+        public static DataTable GetLoDate_IXP(string mavt, string makho, string sttRec, DateTime ngayct)
+        {
+            mavt = mavt.Replace("'", "''");
+            makho = makho.Replace("'", "''");
+            SqlParameter[] plist = new[]
+            {
+                new SqlParameter("@cKey1", String.Format("Ma_vt = '"+mavt+"' and Ma_kho = '"+makho+"'")),
+                new SqlParameter("@cKey2", ""),
+                new SqlParameter("@cKey3", ""),
+                new SqlParameter("@cStt_rec", sttRec),
+                new SqlParameter("@dBg", ngayct.Date)
+            };
+            return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_EdItems_DATE_STT_REC_IXP", plist).Tables[0];
+        }
         
         public static DataTable GetViTri(string mavt, string makho, string sttRec, DateTime ngayct)
         {

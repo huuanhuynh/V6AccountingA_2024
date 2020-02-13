@@ -791,6 +791,26 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 }
                 else
                 {
+                    if (!_aldmConfig.F6)
+                    {
+                        this.ShowWarningMessage(V6Text.NotAllow);
+                        return;
+                    }
+
+                    var alctct = V6BusinessHelper.GetAlctCt_TableName(_tableName);
+                    if (!V6Login.IsAdmin)
+                    {
+                        if (alctct != null && alctct.Rows.Count > 0)
+                        {
+                            var R_F6 = ObjectAndString.ObjectToBool(alctct.Rows[0]["R_F6"]);
+                            if (!R_F6)
+                            {
+                                this.ShowWarningMessage(V6Text.NoRight);
+                                return;
+                            }
+                        }
+                    }
+
                     DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
 
                     if (row != null)

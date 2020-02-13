@@ -1152,6 +1152,54 @@
     <Compile Include="FormManager\ChungTuManager\TongHop\PhieuKeToan\Loc\TimPhieuKeToanForm.Designer.cs">
       <DependentUpon>TimPhieuKeToanForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\ChonDonHangBan\CDHB_IXPForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\ChonDonHangBan\CDHB_IXPForm.Designer.cs">
+      <DependentUpon>CDHB_IXPForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\ChonDonHangBan\CDHB_IXPKetQua.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\ChonDonHangBan\CDHB_IXPKetQua.Designer.cs">
+      <DependentUpon>CDHB_IXPKetQua.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\PhieuDuyetXuatBanIXPControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\PhieuDuyetXuatBanIXPControl.Designer.cs">
+      <DependentUpon>PhieuDuyetXuatBanIXPControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\Loc\LocKetQuaPhieuDuyetXuatBanIXP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\Loc\LocKetQuaPhieuDuyetXuatBanIXP.Designer.cs">
+      <DependentUpon>LocKetQuaPhieuDuyetXuatBanIXP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\Loc\LocThoiGianPhieuDuyetXuatBanIXP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\Loc\LocThoiGianPhieuDuyetXuatBanIXP.Designer.cs">
+      <DependentUpon>LocThoiGianPhieuDuyetXuatBanIXP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\Loc\LocThongTinChiTietPhieuDuyetXuatBanIXP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\Loc\LocThongTinChiTietPhieuDuyetXuatBanIXP.Designer.cs">
+      <DependentUpon>LocThongTinChiTietPhieuDuyetXuatBanIXP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\Loc\LocThongTinPhieuDuyetXuatBanIXP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\Loc\LocThongTinPhieuDuyetXuatBanIXP.Designer.cs">
+      <DependentUpon>LocThongTinPhieuDuyetXuatBanIXP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\Loc\TimPhieuDuyetXuatBanIXPForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\Loc\TimPhieuDuyetXuatBanIXPForm.Designer.cs">
+      <DependentUpon>TimPhieuDuyetXuatBanIXPForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\TonKho\DeNghiXuatKhoIXY\ChonDonHangBan\CDHB_IXYForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -6278,6 +6326,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TongHop\PhieuKeToan\Loc\TimPhieuKeToanForm.resx">
       <DependentUpon>TimPhieuKeToanForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\ChonDonHangBan\CDHB_IXPForm.resx">
+      <DependentUpon>CDHB_IXPForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\ChonDonHangBan\CDHB_IXPKetQua.resx">
+      <DependentUpon>CDHB_IXPKetQua.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\PhieuDuyetXuatBanIXPControl.resx">
+      <DependentUpon>PhieuDuyetXuatBanIXPControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\Loc\LocKetQuaPhieuDuyetXuatBanIXP.resx">
+      <DependentUpon>LocKetQuaPhieuDuyetXuatBanIXP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\Loc\LocThoiGianPhieuDuyetXuatBanIXP.resx">
+      <DependentUpon>LocThoiGianPhieuDuyetXuatBanIXP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\Loc\LocThongTinChiTietPhieuDuyetXuatBanIXP.resx">
+      <DependentUpon>LocThongTinChiTietPhieuDuyetXuatBanIXP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\Loc\LocThongTinPhieuDuyetXuatBanIXP.resx">
+      <DependentUpon>LocThongTinPhieuDuyetXuatBanIXP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\Loc\TimPhieuDuyetXuatBanIXPForm.resx">
+      <DependentUpon>TimPhieuDuyetXuatBanIXPForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\DeNghiXuatKhoIXY\ChonDonHangBan\CDHB_IXYForm.resx">
       <DependentUpon>CDHB_IXYForm.cs</DependentUpon>

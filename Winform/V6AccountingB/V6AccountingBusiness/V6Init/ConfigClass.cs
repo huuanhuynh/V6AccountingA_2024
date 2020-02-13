@@ -297,6 +297,10 @@ namespace V6Init
         /// Cấu hình có sử dụng F4 để thêm khi đang chọn lookup.
         /// </summary>
         public bool F4 { get { return GetString("F4") == "1"; } }
+        /// <summary>
+        ///Cho phép bấm  F6
+        /// </summary>
+        public bool F6 { get { return GetString("F6") == "1"; } }
         public bool CHECK_ADMIN { get { return GetString("CHECK_ADMIN") == "1"; } }
         public bool CHECK_LONG { get { return GetString("CHECK_LONG") == "1"; } }
         public bool CHECK_V6 { get { return GetString("CHECK_V6") == "1"; } }
@@ -352,6 +356,7 @@ namespace V6Init
         /// Code form tùy chỉnh cho từng khách hàng của V6 (Dùng form khác cho cùng 1 danh mục).
         /// </summary>
         public string FormCode { get { return GetString("FORMCODE"); } }
+        
     }
 
     public class AlreportConfig : Config

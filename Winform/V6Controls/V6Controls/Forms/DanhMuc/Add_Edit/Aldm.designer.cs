@@ -79,7 +79,9 @@
             this.lblGRDHE_V1 = new System.Windows.Forms.Label();
             this.lblGRDHV_V1 = new System.Windows.Forms.Label();
             this.txtGRDF_V1 = new V6Controls.V6ColorTextBox();
+            this.txtGRDT_V1 = new V6Controls.V6ColorTextBox();
             this.txtGRDS_V1 = new V6Controls.V6ColorTextBox();
+            this.lblGRDT_V1 = new System.Windows.Forms.Label();
             this.lblGRDF_V1 = new System.Windows.Forms.Label();
             this.lblGRDS_V1 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -141,8 +143,7 @@
             this.lblMaDM = new System.Windows.Forms.Label();
             this.TxtForder = new V6Controls.V6NumberTextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.lblGRDT_V1 = new System.Windows.Forms.Label();
-            this.txtGRDT_V1 = new V6Controls.V6ColorTextBox();
+            this.v6CheckBox3 = new V6Controls.V6CheckBox();
             this.v6TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -956,6 +957,24 @@
             this.txtGRDF_V1.Size = new System.Drawing.Size(613, 23);
             this.txtGRDF_V1.TabIndex = 3;
             // 
+            // txtGRDT_V1
+            // 
+            this.txtGRDT_V1.AccessibleName = "GRDT_V1";
+            this.txtGRDT_V1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtGRDT_V1.BackColor = System.Drawing.Color.White;
+            this.txtGRDT_V1.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtGRDT_V1.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtGRDT_V1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtGRDT_V1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtGRDT_V1.HoverColor = System.Drawing.Color.Yellow;
+            this.txtGRDT_V1.LeaveColor = System.Drawing.Color.White;
+            this.txtGRDT_V1.Location = new System.Drawing.Point(171, 122);
+            this.txtGRDT_V1.Margin = new System.Windows.Forms.Padding(4);
+            this.txtGRDT_V1.Name = "txtGRDT_V1";
+            this.txtGRDT_V1.Size = new System.Drawing.Size(613, 23);
+            this.txtGRDT_V1.TabIndex = 9;
+            // 
             // txtGRDS_V1
             // 
             this.txtGRDS_V1.AccessibleName = "GRDS_V1";
@@ -973,6 +992,17 @@
             this.txtGRDS_V1.Name = "txtGRDS_V1";
             this.txtGRDS_V1.Size = new System.Drawing.Size(613, 23);
             this.txtGRDS_V1.TabIndex = 1;
+            // 
+            // lblGRDT_V1
+            // 
+            this.lblGRDT_V1.AccessibleDescription = "ADDEDITL00779";
+            this.lblGRDT_V1.AutoSize = true;
+            this.lblGRDT_V1.Location = new System.Drawing.Point(9, 125);
+            this.lblGRDT_V1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblGRDT_V1.Name = "lblGRDT_V1";
+            this.lblGRDT_V1.Size = new System.Drawing.Size(127, 17);
+            this.lblGRDT_V1.TabIndex = 8;
+            this.lblGRDT_V1.Text = "Trường không sum";
             // 
             // lblGRDF_V1
             // 
@@ -1016,6 +1046,7 @@
             this.tabPage3.Controls.Add(this.txtFilterField);
             this.tabPage3.Controls.Add(this.label33);
             this.tabPage3.Controls.Add(this.label36);
+            this.tabPage3.Controls.Add(this.v6CheckBox3);
             this.tabPage3.Controls.Add(this.chkFormF4);
             this.tabPage3.Controls.Add(this.chkFormF3);
             this.tabPage3.Controls.Add(this.v6ColorTextBox8);
@@ -1900,34 +1931,17 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Sắp xếp";
             // 
-            // lblGRDT_V1
+            // v6CheckBox3
             // 
-            this.lblGRDT_V1.AccessibleDescription = "ADDEDITL00779";
-            this.lblGRDT_V1.AutoSize = true;
-            this.lblGRDT_V1.Location = new System.Drawing.Point(9, 125);
-            this.lblGRDT_V1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblGRDT_V1.Name = "lblGRDT_V1";
-            this.lblGRDT_V1.Size = new System.Drawing.Size(127, 17);
-            this.lblGRDT_V1.TabIndex = 8;
-            this.lblGRDT_V1.Text = "Trường không sum";
-            // 
-            // txtGRDT_V1
-            // 
-            this.txtGRDT_V1.AccessibleName = "GRDT_V1";
-            this.txtGRDT_V1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGRDT_V1.BackColor = System.Drawing.Color.White;
-            this.txtGRDT_V1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtGRDT_V1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtGRDT_V1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtGRDT_V1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtGRDT_V1.HoverColor = System.Drawing.Color.Yellow;
-            this.txtGRDT_V1.LeaveColor = System.Drawing.Color.White;
-            this.txtGRDT_V1.Location = new System.Drawing.Point(171, 122);
-            this.txtGRDT_V1.Margin = new System.Windows.Forms.Padding(4);
-            this.txtGRDT_V1.Name = "txtGRDT_V1";
-            this.txtGRDT_V1.Size = new System.Drawing.Size(613, 23);
-            this.txtGRDT_V1.TabIndex = 9;
+            this.v6CheckBox3.AccessibleName = "F6";
+            this.v6CheckBox3.AutoSize = true;
+            this.v6CheckBox3.Location = new System.Drawing.Point(613, 176);
+            this.v6CheckBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.v6CheckBox3.Name = "v6CheckBox3";
+            this.v6CheckBox3.Size = new System.Drawing.Size(152, 21);
+            this.v6CheckBox3.TabIndex = 158;
+            this.v6CheckBox3.Text = "F6 cho phép đổi mã";
+            this.v6CheckBox3.UseVisualStyleBackColor = true;
             // 
             // Aldm
             // 
@@ -2072,5 +2086,6 @@
         private System.Windows.Forms.Label lblFormCode;
         private V6ColorTextBox txtGRDT_V1;
         private System.Windows.Forms.Label lblGRDT_V1;
+        private V6CheckBox v6CheckBox3;
     }
 }
