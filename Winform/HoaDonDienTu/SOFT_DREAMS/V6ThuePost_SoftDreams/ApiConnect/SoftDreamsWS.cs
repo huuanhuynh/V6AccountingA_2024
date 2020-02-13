@@ -111,6 +111,136 @@ namespace V6ThuePostSoftDreamsApi
         }
         
         /// <summary>
+        /// Phát hành hóa đơn có số chưa phát hành.
+        /// </summary>
+        /// <param name="invoices"></param>
+        /// <param name="pattern"></param>
+        /// <param name="serial"></param>
+        /// <param name="signmode">Kiểu ký 1 client, mặc định server.</param>
+        /// <param name="v6return">Các giá trị trả về.</param>
+        /// <returns>Thông báo phát hành hd.</returns>
+        public string ImportInvoicesNoIssue(Invoices invoices, string pattern, string serial, string signmode, out V6Return v6return)
+        {
+            string result = null;
+            v6return = new V6Return();
+            try
+            {
+                var xml = V6XmlConverter.ClassToXml(invoices);
+                var request = new Request()
+                {
+                    XmlData = xml,
+                    Pattern = pattern,
+                    Serial = serial,
+                    CertString = null,
+                };
+                var response = signmode == "1" 
+                    ? _easyService.ClientImportInvoices(request, _token_serial, false, _host, _id, _pass)
+                    : _easyService.ServerImportInvoices(request, false, _host, _id, _pass);
+                v6return.RESULT_OBJECT = response;
+                v6return.RESULT_STRING = V6XmlConverter.ClassToXml(response);
+                v6return.RESULT_MESSAGE = response.Message;
+                v6return.RESULT_ERROR_CODE = response.Status.ToString();
+
+                if (response.Status == 2)
+                {
+                    var ikey = response.Data.Ikeys[0]; // inv.Invoice["Ikey"].ToString().Trim();
+
+                    if (response.Data.Invoices != null)
+                    {
+                        string sohd = "" + response.Data.Invoices[0].No;
+                        v6return.SO_HD = sohd;
+                        try
+                        {
+                            v6return.SECRET_CODE = response.Data.Invoices[0].LookupCode;
+                        }
+                        catch (Exception)
+                        {
+                        }
+                        result += "OK:" + string.Format("Ikey:{0}, InvoiceNo:{1}", ikey, sohd);
+                    }
+                    else
+                        result += "OK:" + string.Format("Ikey:{0}, InvoiceNo:{1}", ikey, "null");
+                }
+                else
+                {
+                    result += "ERR:" + response.Status + " " + response.Message + " ";
+                    if (response.Data != null)
+                    foreach (Inv inv in invoices.Inv)
+                    {
+                        var ikey = inv.Invoice["Ikey"].ToString().Trim();
+                        result += ikey + " " + response.Data.KeyInvoiceMsg[ikey];
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result = "ERR:EX\r\n" + ex.Message;
+            }
+
+            Logger.WriteToLog("Program.ImportAndPublishInv " + result);
+            return result;
+        }
+
+        /// <summary>
+        /// <para>Tạo dải hoá đơn trống (ImportInvoices?). Không có ikey => V6 không thể áp dụng.</para>
+        /// <para>Trả về số hóa đơn.</para>
+        /// </summary>
+        /// <param name="ikey">ikey chơi chơi.</param>
+        /// <param name="pattern"></param>
+        /// <param name="serial"></param>
+        /// <param name="soluong">V6 đang ghi đè là 1.</param>
+        /// <param name="v6return"></param>
+        /// <returns></returns>
+        public string CreateInvoiceStrip(string ikey, string pattern, string serial, int soluong, out V6Return v6return)
+        {
+            string result = null;
+            soluong = 1;
+            v6return = new V6Return();
+            try
+            {
+                string data = "{“Pattern”:”Mẫu hóa đơn”,”Serial”:”Ký hiệu hóa đơn”, “Quantity”: “Số lượng” }";
+                var request = new Request()
+                {
+                    Pattern = pattern,
+                    Serial = serial,
+                    Quantity = soluong,
+                };
+                var response = _easyService.CreateReservedInvoices(request, _host, _id, _pass);
+
+                v6return.RESULT_OBJECT = response;
+                v6return.RESULT_STRING = V6XmlConverter.ClassToXml(response);
+                v6return.RESULT_MESSAGE = response.Message;
+                v6return.RESULT_ERROR_CODE = response.Status.ToString();
+
+                if (response.Status == 2)
+                {
+                    //                “Data”: {
+                    //“Pattern”: “Tên mẫu”,
+                    //“Serial”: “Ký hiệu”,
+                    //“InvoiceNo”: [
+                    // “số hoá đơn chờ ký 1”,
+                    // “số hoá đơn chờ ký 2”
+                    //]
+                    v6return.SO_HD = response.Data.InvoiceNo[0].ToString();
+                    result += "OK:" + string.Format("Ikey:{0}, InvoiceNo:{1}", ikey, response.Data.InvoiceNo[0]);
+                }
+                else
+                {
+                    result += "ERR:" + response.Status + " " + response.Message + " ";
+                    if (response.Data != null)
+                    {
+                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result = "ERR:EX\r\n" + ex.Message;
+            }
+            return result;
+        }
+        
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="inv"></param>

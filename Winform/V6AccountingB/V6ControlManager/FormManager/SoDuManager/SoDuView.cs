@@ -111,6 +111,17 @@ namespace V6ControlManager.FormManager.SoDuManager
             InitFilter = initFilter;
             SelectResult = new V6SelectResult();
             SelectResult.SortField = sort;
+            //if (_aldmConfig.IS_ALDM)
+            //{
+            //    if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(_aldmConfig.ORDER))
+            //        SelectResult.SortField = _aldmConfig.ORDER;
+            //}
+            //else
+            {
+                _v6LookupConfig = V6Lookup.GetV6lookupConfigByTableName(_tableName);
+                if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(_v6LookupConfig.vOrder))
+                    SelectResult.SortField = _v6LookupConfig.vOrder;
+            }
         }
 
         private void SoDuView_Load(object sender, EventArgs e)

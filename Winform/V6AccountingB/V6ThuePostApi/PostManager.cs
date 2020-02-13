@@ -2770,10 +2770,16 @@ namespace V6ThuePostManager
                 {
                     Invoices invoices = ReadData_SoftDreams(paras.Mode.Substring(0, 1));
                     bool issue = true;
-                    if (paras.Key_Down == "F4" || paras.Key_Down == "F6") issue = false;
-
-                    StartAutoInputTokenPassword();
-                    result = softDreamsWS.ImportInvoices(invoices, __pattern, __serial, issue, _signmode, out paras.Result.V6ReturnValues);
+                    if (paras.Key_Down == "F4" || paras.Key_Down == "F6")
+                    {
+                        issue = false;
+                        result = softDreamsWS.ImportInvoicesNoIssue(invoices, __pattern, __serial, _signmode, out paras.Result.V6ReturnValues);
+                    }
+                    else
+                    {
+                        StartAutoInputTokenPassword();
+                        result = softDreamsWS.ImportInvoices(invoices, __pattern, __serial, issue, _signmode, out paras.Result.V6ReturnValues);
+                    }
                 }
                 else if (paras.Mode.ToLower() == "DownloadInvFkeyNoPay".ToLower())
                 {

@@ -167,6 +167,17 @@ namespace V6ControlManager.FormManager.SoDuManager
                 _aldmConfig = ConfigManager.GetAldmConfigByTableName(_alctConfig.TableNameAM);
                 _aldmConfig2 = ConfigManager.GetAldmConfigByTableName(_alctConfig.TableNameAD);
                 _v6LookupConfig = V6Lookup.GetV6lookupConfigByTableName(_alctConfig.TableNameAM);
+                if (_aldmConfig.IS_ALDM)
+                {
+                    if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(_aldmConfig.ORDER))
+                        SelectResult.SortField = _aldmConfig.ORDER;
+                }
+                else
+                {
+                    //_v6LookupConfig = V6Lookup.GetV6lookupConfigByTableName(_tableName);
+                    if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(_v6LookupConfig.vOrder))
+                        SelectResult.SortField = _v6LookupConfig.vOrder;
+                }
                 CurrentTable = V6TableHelper.ToV6TableName(_alctConfig.TableNameAM);
 
                 GetADnameList();

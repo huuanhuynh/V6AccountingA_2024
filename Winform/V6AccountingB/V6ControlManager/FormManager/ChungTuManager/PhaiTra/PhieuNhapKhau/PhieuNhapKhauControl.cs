@@ -2759,6 +2759,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                                 - ObjectAndString.ObjectToDecimal(adRow["GG"]);
                             newRow["T_THUE_NT"] = ObjectAndString.ObjectToDecimal(newRow["T_THUE_NT"]) + ObjectAndString.ObjectToDecimal(adRow["THUE_NT"]);
                             newRow["T_THUE"] = ObjectAndString.ObjectToDecimal(newRow["T_THUE"]) + ObjectAndString.ObjectToDecimal(adRow["THUE"]);
+                            newRow["TIEN_CN_NT"] = ObjectAndString.ObjectToDecimal(newRow["TIEN_CN_NT"])
+                                + ObjectAndString.ObjectToDecimal(adRow["TIEN_NT0"])
+                                + ObjectAndString.ObjectToDecimal(adRow["TIEN_VC_NT"])
+                                - ObjectAndString.ObjectToDecimal(adRow["CK_NT"])
+                                - ObjectAndString.ObjectToDecimal(adRow["GG_NT"]);
+                            newRow["TIEN_CN"] = ObjectAndString.ObjectToDecimal(newRow["TIEN_CN"])
+                                + ObjectAndString.ObjectToDecimal(adRow["TIEN0"])
+                                + ObjectAndString.ObjectToDecimal(adRow["TIEN_VC"])
+                                - ObjectAndString.ObjectToDecimal(adRow["CK"])
+                                - ObjectAndString.ObjectToDecimal(adRow["GG"]);
                         }
                         else
                         {
@@ -2826,6 +2836,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                                      - ObjectAndString.ObjectToDecimal(adRow["GG"]);
                                 newRow["T_THUE_NT"] = adRow["thue_nt"];
                                 newRow["T_THUE"] = adRow["thue"];
+                                newRow["TIEN_CN_NT"] = ObjectAndString.ObjectToDecimal(adRow["TIEN_NT0"])
+                                     + ObjectAndString.ObjectToDecimal(adRow["TIEN_VC_NT"])
+                                     - ObjectAndString.ObjectToDecimal(adRow["CK_NT"])
+                                     - ObjectAndString.ObjectToDecimal(adRow["GG_NT"]);
+                                newRow["TIEN_CN"] = ObjectAndString.ObjectToDecimal(adRow["TIEN0"])
+                                     + ObjectAndString.ObjectToDecimal(adRow["TIEN_VC"])
+                                     - ObjectAndString.ObjectToDecimal(adRow["CK"])
+                                     - ObjectAndString.ObjectToDecimal(adRow["GG"]);
                             }
                         }
                     }
@@ -3226,7 +3244,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             try
             {
                 _nkNt.Value = V6BusinessHelper.Vround(_tienNt0.Value * _ts_nk.Value / 100, M_ROUND_NT);
-                _nk.Value = V6BusinessHelper.Vround(_nkNt.Value * txtTyGia.Value, M_ROUND);
+                //_nk.Value = V6BusinessHelper.Vround(_nkNt.Value * txtTyGia.Value, M_ROUND);
+                _nk.Value = V6BusinessHelper.Vround(_tien0.Value * _ts_nk.Value / 100, M_ROUND);
                 if (_maNt == _mMaNt0)
                 {
                     _nk.Value = _nkNt.Value;
@@ -3272,6 +3291,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             decimal thue_nti;
             decimal thuei;
             decimal tien_truocthue_nti;
+            decimal tien_truocthuei;
 
             var ty_gia = txtTyGia.Value;
             //var temp_maVt0 = new V6VvarTextBox { VVar = "MA_VT" };
@@ -3287,6 +3307,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                                      + ObjectAndString.ObjectToDecimal(row["NK_NT"])
                                      - ObjectAndString.ObjectToDecimal(row["CK_NT"])
                                      - ObjectAndString.ObjectToDecimal(row["GG_NT"]);
+                tien_truocthuei = ObjectAndString.ObjectToDecimal(row["TIEN0"])
+                                     + ObjectAndString.ObjectToDecimal(row["TIEN_VC"])
+                                     + ObjectAndString.ObjectToDecimal(row["NK"])
+                                     - ObjectAndString.ObjectToDecimal(row["CK"])
+                                     - ObjectAndString.ObjectToDecimal(row["GG"]);
 
                 //// Tuanmh 25/12/2018
                 //string mathuei = row["MA_THUE_I"].ToString().Trim();
@@ -3307,23 +3332,33 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 if (tien_truocthue_nti != 0)
                 {
                     thue_nti = V6BusinessHelper.Vround(tien_truocthue_nti * thue_suati / 100, M_ROUND_NT);
-                    thuei = V6BusinessHelper.Vround(thue_nti * ty_gia, M_ROUND);
+                    //thuei = V6BusinessHelper.Vround(thue_nti * ty_gia, M_ROUND);
+                    //thuei = V6BusinessHelper.Vround(tien_truocthuei * thue_suati / 100, M_ROUND);
 
-                    if (_maNt == _mMaNt0)
-                        thuei = thue_nti;
-
+                    //if (_maNt == _mMaNt0)
+                    //    thuei = thue_nti;
 
                     if (!AD.Columns.Contains("Thue_nt")) AD.Columns.Add("Thue_nt", typeof(decimal));
-                    if (!AD.Columns.Contains("Thue")) AD.Columns.Add("Thue", typeof(decimal));
 
                     row["Thue_nt"] = thue_nti;
-                    row["Thue"] = thuei;
                 }
                 else
                 {
                     row["Thue_nt"] = 0m;
+                }
+
+                if (tien_truocthuei != 0)
+                {
+                    thuei = V6BusinessHelper.Vround(tien_truocthuei * thue_suati / 100, M_ROUND);
+                    if (!AD.Columns.Contains("Thue")) AD.Columns.Add("Thue", typeof(decimal));
+
+                    row["Thue"] = thuei;
+                }
+                else
+                {
                     row["Thue"] = 0m;
                 }
+
             }
         }
 
@@ -5053,6 +5088,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     _tk_du22.Text = txtTkThueCo.Text.Trim();
                     _han_tt22.Value = txtHanTT.Value;
                     _mau_bc22.Value = 1;
+                    _tien_cn_nt22.Value = txtTongThanhToanNt.Value;
+                    _tien_cn22.Value = txtTongThanhToan.Value;
                     if (_ma_kh22.Text.Trim() == "")
                     {
                         //enable
@@ -7421,7 +7458,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     }
                     
                     var nk_nt = V6BusinessHelper.Vround(tienNt0 * ts_nk / 100, M_ROUND_NT);
-                    var nk = V6BusinessHelper.Vround(nk_nt * txtTyGia.Value, M_ROUND);
+                    //var nk = V6BusinessHelper.Vround(nk_nt * txtTyGia.Value, M_ROUND);
+                    var nk = V6BusinessHelper.Vround(tien0 * ts_nk / 100, M_ROUND);
                     if (_maNt == _mMaNt0)
                     {
                         nk = nk_nt;

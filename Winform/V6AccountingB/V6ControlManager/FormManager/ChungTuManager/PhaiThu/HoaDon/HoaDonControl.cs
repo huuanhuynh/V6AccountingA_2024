@@ -2134,6 +2134,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 _gia21.Value = 0;
                 _gg.Value = 0;
                 _ggNt.Value = 0;
+                var tk_gv_tang = V6Options.GetValue("M_TK_CL_VT").Trim();
+                if (tk_gv_tang != "")
+                {
+                    _tkGv.Text = tk_gv_tang;
+                }
             }
             catch (Exception ex)
             {
