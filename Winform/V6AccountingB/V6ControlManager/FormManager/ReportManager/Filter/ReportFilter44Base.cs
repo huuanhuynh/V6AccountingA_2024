@@ -223,6 +223,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 List<string> in_fieldList_Alsonb = new List<string>();
                 List<string> in_fieldList_Aldvcs = new List<string>();
                 List<string> in_fieldList_Alkho = new List<string>();
+                List<string> in_fieldList_Alvitri = new List<string>();
 
                 string last_key = "";
                 foreach (Control control in groupBox1.Controls)
@@ -349,6 +350,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                                 if (line.IsSelected)
                                     in_fieldList_Alkho.Add(line.FieldName);
                                 break;
+                            case "2H": //in alvitri
+                                if (line.IsSelected)
+                                    in_fieldList_Alvitri.Add(line.FieldName);
+                                break;
 
                             case "30"://advance, cộng dồn
                                 if (line.IsSelected)
@@ -386,12 +391,14 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     case "2E": //in alsonb
                     case "2F": //in aldvcs
                     case "2G": //in alkho
+                    case "2H": //in alvitri
                         
                     case "30": //advance
                         var advance_key_string = GenAdvanceKeyString(and, string_value, in_fieldList_Alkh, in_fieldList_Alvt, in_fieldList_Altk, in_fieldList_Alvv,
                             in_fieldList_Alphi, in_fieldList_Alhd, in_fieldList_Alku, in_fieldList_Alsp,
                             in_fieldList_Allo, in_fieldList_Albp, in_fieldList_Alnvien, in_fieldList_Albpht,
-                            in_fieldList_Althau, in_fieldList_Alsonb, in_fieldList_Aldvcs, in_fieldList_Alkho
+                            in_fieldList_Althau, in_fieldList_Alsonb, in_fieldList_Aldvcs, in_fieldList_Alkho,
+                            in_fieldList_Alvitri
                             );
                         result.Add(new SqlParameter(item.Key, advance_key_string));
                         break;
@@ -421,6 +428,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 List<string> in_fieldList_Alsonb = new List<string>();
                 List<string> in_fieldList_Aldvcs = new List<string>();
                 List<string> in_fieldList_Alkho = new List<string>();
+                List<string> in_fieldList_Alvitri = new List<string>();
                 
                 string last_key = "";
                 foreach (Control control in groupBox1.Controls)
@@ -548,6 +556,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                                 if (line.IsSelected)
                                     in_fieldList_Alkho.Add(line.FieldName);
                                 break;
+                            case "2H": //in alvitri
+                                if (line.IsSelected)
+                                    in_fieldList_Alvitri.Add(line.FieldName);
+                                break;
 
                             case "30"://advance, cộng dồn
                                 if (line.IsSelected)
@@ -589,12 +601,14 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     case "2E": //in alsonb
                     case "2F": //in aldvcs
                     case "2G": //in alkho
+                    case "2H": //in alvitri
 
                     case "30": //advance
                         var advance_key_string = GenAdvanceKeyString(and, string_value, in_fieldList_Alkh, in_fieldList_Alvt, in_fieldList_Altk, in_fieldList_Alvv,
                             in_fieldList_Alphi, in_fieldList_Alhd, in_fieldList_Alku, in_fieldList_Alsp,
                             in_fieldList_Allo, in_fieldList_Albp, in_fieldList_Alnvien, in_fieldList_Albpht,
-                            in_fieldList_Althau, in_fieldList_Alsonb, in_fieldList_Aldvcs, in_fieldList_Alkho
+                            in_fieldList_Althau, in_fieldList_Alsonb, in_fieldList_Aldvcs, in_fieldList_Alkho,
+                            in_fieldList_Alvitri
                             );
                         result.Add(new SqlParameter(item.Key, advance_key_string));
                         break;

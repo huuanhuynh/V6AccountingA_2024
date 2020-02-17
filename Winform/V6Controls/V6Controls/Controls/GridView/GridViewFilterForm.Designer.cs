@@ -94,6 +94,7 @@
             this.btnNhan.Name = "btnNhan";
             this.btnNhan.Size = new System.Drawing.Size(90, 40);
             this.btnNhan.TabIndex = 9;
+            this.btnNhan.Tag = "Return, Control";
             this.btnNhan.Text = "&Nhận";
             this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNhan.UseVisualStyleBackColor = true;

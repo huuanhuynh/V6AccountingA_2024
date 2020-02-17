@@ -959,11 +959,28 @@ namespace V6Controls
         /// <summary>
         /// Sự kiện thay đổi trạng thái select khi dùng hàm Select mở rộng.
         /// </summary>
+        [Description("Sự kiện thay đổi trạng thái select khi dùng hàm Select mở rộng.")]
         public event RowSelectEventHandler RowSelectChanged;
+
+        private bool RowSelectChanged_running = false;
         public virtual void OnRowSelectChanged(DataGridViewRow row)
         {
+            if (RowSelectChanged_running) return;
             var handler = RowSelectChanged;
-            if (handler != null) handler(this, row);
+            if (handler != null)
+            {
+                try
+                {
+                    RowSelectChanged_running = true;
+                    handler(this, row);
+                    RowSelectChanged_running = false;
+                }
+                catch
+                {
+                    RowSelectChanged_running = false;
+                    throw;
+                }
+            }
         }
 
         public event EventHandler V6Changed;
@@ -1611,6 +1628,7 @@ namespace V6Controls
                 if(!_filter_column.HeaderText.StartsWith("["))
                 _filter_column.HeaderText = string.Format("[{0}]", _filter_column.HeaderText);
 
+                RecheckColor();
                 OnFilterChange();
             }
         }
@@ -1641,7 +1659,32 @@ namespace V6Controls
                         .Substring(1, _filter_column.HeaderText.Length - 2);
                 
                 Refresh();
+                RecheckColor();
                 OnFilterChange();
+            }
+        }
+
+        public void RecheckColor()
+        {
+            try
+            {
+                foreach (DataGridViewRow row in Rows)
+                {
+                    if (row.IsSelect())
+                    {
+                        row.DefaultCellStyle.BackColor = Color. FromArgb(247, 192, 91);
+
+                        if (row.DataGridView.CurrentRow == row)
+                        {
+                            row.DataGridView.DefaultCellStyle.SelectionBackColor = Color.Brown;
+                            row.DataGridView.DefaultCellStyle.SelectionForeColor = Color.White;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ;
             }
         }
 

@@ -1797,13 +1797,13 @@ namespace V6ControlManager.FormManager.DanhMucManager
             try
             {
                 V6TableStruct structTable = V6BusinessHelper.GetTableStruct(_tableName);
-
+                if (CurrentTable == V6TableName.CorpLan || CurrentTable == V6TableName.CorpLan1 || CurrentTable == V6TableName.CorpLan2) goto next1;
                 if (_aldmConfig.IS_ALDM ? (!_aldmConfig.HaveInfo) : (!_v6LookupConfig.HaveInfo))
                 {
                     this.ShowWarningMessage(V6Text.NoDefine, 500);
                     return;
                 }
-                
+                next1:
                 string[] fields = _aldmConfig.IS_ALDM ? ObjectAndString.SplitString(_aldmConfig.F_SEARCH) :
                      ObjectAndString.SplitString(V6Setting.IsVietnamese ? _v6LookupConfig.vFields : _v6LookupConfig.eFields);
                 if (fields.Length == 0 && CurrentTable == V6TableName.CorpLan)

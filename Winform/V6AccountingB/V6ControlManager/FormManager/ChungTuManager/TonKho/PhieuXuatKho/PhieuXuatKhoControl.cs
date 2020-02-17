@@ -5094,6 +5094,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         {
             try
             {
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                chon_accept_flag_add = shift;
                 var xuatHetKho = new XuatHetKhoDataForm();
                 xuatHetKho.CheckFields = "MA_VT,MA_KHO_I,TIEN_NT0,SO_LUONG1,GIA_NT01";
                 xuatHetKho.AcceptData += xuatHetKho_AcceptData;
@@ -5220,12 +5222,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
             if (table.Columns.Contains("MA_VT") && table.Columns.Contains("MA_KHO"))
             {
-                if (table.Rows.Count > 0)
+                detail1.MODE = V6Mode.View;
+                bool flag_add = chon_accept_flag_add;
+                chon_accept_flag_add = false;
+                if (!flag_add)
                 {
-                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
-                    {
-                        detail1.MODE = V6Mode.Init;
-                    }
+                    AD.Rows.Clear();
                 }
 
                 foreach (DataRow row in table.Rows)
@@ -5968,7 +5970,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
-            FixMenuChucNangItemShiftText(chonTuExcelMenu, chonDeNghiXuatMenu);
+            FixMenuChucNangItemShiftText(chonTuExcelMenu, chonDeNghiXuatMenu, XuatHetKhoMenu);
         }
 
         

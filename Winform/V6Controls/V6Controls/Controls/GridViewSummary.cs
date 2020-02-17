@@ -42,6 +42,9 @@ namespace V6Controls.Controls
         }
         private string _sumText = "Sum:";
 
+        /// <summary>
+        /// Những cột không tính tổng, cách nhau bởi dấu chấm phẩy(;).
+        /// </summary>
         [DefaultValue(null)]
         [Description("Những cột không tính tổng, cách nhau bởi dấu chấm phẩy(;).")]
         public string NoSumColumns { get { return _noSumColumns; }

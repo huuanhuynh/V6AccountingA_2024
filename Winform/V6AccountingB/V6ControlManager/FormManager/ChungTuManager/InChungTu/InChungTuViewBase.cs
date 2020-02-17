@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter;
@@ -1790,10 +1791,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             
             CleanUp();
             ReportDocument rpDoc = null, rpDoc2 = null, rpDoc3 = null, rpDoc4 = null;
-            crystalReportViewer1.DisplayToolbar = false;
-            crystalReportViewer2.DisplayToolbar = false;
-            crystalReportViewer3.DisplayToolbar = false;
-            crystalReportViewer4.DisplayToolbar = false;
+            FixReportViewerToolbarButton(true);
             
             if (MauTuIn == 1)
             {
@@ -1881,7 +1879,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 }
 
                 crystalReportViewer1.Show();
-                crystalReportViewer1.Zoom(1);
+                crystalReportViewer1.Zoom(2);
                 crystalReportViewer1.Visible = true;
                 crystalReportViewer2.Visible = false;
                 crystalReportViewer3.Visible = false;
@@ -1892,10 +1890,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             {
                 if (!IsInvoice)
                 {
-                    crystalReportViewer1.DisplayToolbar = true;
-                    crystalReportViewer2.DisplayToolbar = true;
-                    crystalReportViewer3.DisplayToolbar = true;
-                    crystalReportViewer4.DisplayToolbar = true;
+                    FixReportViewerToolbarButton(false);
                 }
                 
                 rpDoc = new ReportDocument();
@@ -1910,13 +1905,49 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 crystalReportViewer1.ReportSource = rpDoc;
                 _rpDoc0 = rpDoc;
                 crystalReportViewer1.Show();
-                crystalReportViewer1.Zoom(1);
+                crystalReportViewer1.Zoom(2);
                 crystalReportViewer1.Visible = true;
                 crystalReportViewer2.Visible = false;
                 crystalReportViewer3.Visible = false;
                 crystalReportViewer4.Visible = false;
             }
             //btnIn.Focus();
+        }
+
+        private void FixReportViewerToolbarButton(bool isLock)
+        {
+            if (isLock)
+            {
+                Lock(crystalReportViewer1, crystalReportViewer2, crystalReportViewer3, crystalReportViewer4);
+            }
+            else
+            {
+                Open(crystalReportViewer1, crystalReportViewer2, crystalReportViewer3, crystalReportViewer4);
+            }
+        }
+
+        private void Lock(params CrystalReportViewer[] crViewers)
+        {
+            foreach (CrystalReportViewer crViewer in crViewers)
+            {
+                if (crViewer != null)
+                {
+                    crViewer.ShowExportButton = false;
+                    crViewer.ShowPrintButton = false;
+                }
+            }
+        }
+
+        private void Open(params CrystalReportViewer[] crViewers)
+        {
+            foreach (CrystalReportViewer crViewer in crViewers)
+            {
+                if (crViewer != null)
+                {
+                    crViewer.ShowExportButton = true;
+                    crViewer.ShowPrintButton = true;
+                }
+            }
         }
 
         private void Print(string printerName, ReportDocument rpDoc, ReportDocument rpDoc2, ReportDocument rpDoc3, ReportDocument rpDoc4)

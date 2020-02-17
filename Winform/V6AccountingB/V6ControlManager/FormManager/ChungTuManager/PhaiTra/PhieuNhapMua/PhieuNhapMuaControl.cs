@@ -6945,6 +6945,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             try
             {
                 // Cập nhập cột cp (hoặc cp_nt)
+                var crow = dataGridView3ChiPhi.EditingRow;
                 if (dataGridView3ChiPhi.EditingColumn.DataPropertyName.ToUpper() == "CP_NT")
                 {
                     var cp_nt = ObjectAndString.ObjectToDecimal(dataGridView3ChiPhi.EditingCell.Value);
@@ -6976,6 +6977,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     //    var cp_nt = cp / txtTyGia.Value;
                     //    dataGridView3ChiPhi.EditingRow.Cells["CP_NT"].Value = cp_nt;
                     //}
+                }
+
+                if (TxtMa_kh_i_ao.Text.Trim() == txtMaKh.Text.Trim())
+                {
+                    crow.Cells["Tien_nt"].Value = ObjectAndString.ObjectToDecimal(crow.Cells["Tien_nt0"].Value)
+                        + ObjectAndString.ObjectToDecimal(crow.Cells["Cp_nt"].Value)
+                        + ObjectAndString.ObjectToDecimal(crow.Cells["Tien_vc_nt"].Value)
+                        - ObjectAndString.ObjectToDecimal(crow.Cells["Ck_nt"].Value)
+                        - ObjectAndString.ObjectToDecimal(crow.Cells["Gg_nt"].Value);
+
+                    crow.Cells["Tien"].Value = ObjectAndString.ObjectToDecimal(crow.Cells["Tien0"].Value)
+                        + ObjectAndString.ObjectToDecimal(crow.Cells["Cp"].Value)
+                        + ObjectAndString.ObjectToDecimal(crow.Cells["Tien_vc"].Value)
+                        - ObjectAndString.ObjectToDecimal(crow.Cells["Ck"].Value)
+                        - ObjectAndString.ObjectToDecimal(crow.Cells["Gg"].Value);
                 }
             }
             catch (Exception ex)
@@ -7383,15 +7399,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     }
 
                     ccell.Value = num;
-                    //if (num == 0)
-                    //{
-                    //    crow.Cells["CP_NT"].Value = num;
-                    //}
-                    //else
-                    //{
-                    //    var cp_nt = num / txtTyGia.Value;
-                    //    crow.Cells["CP_NT"].Value = cp_nt;
-                    //}
+                }
+
+                if (TxtMa_kh_i_ao.Text.Trim() == txtMaKh.Text.Trim())
+                {
+                    crow.Cells["Tien_nt"].Value = ObjectAndString.ObjectToDecimal(crow.Cells["Tien_nt0"].Value)
+                        + ObjectAndString.ObjectToDecimal(crow.Cells["Cp_nt"].Value)
+                        + ObjectAndString.ObjectToDecimal(crow.Cells["Tien_vc_nt"].Value)
+                        - ObjectAndString.ObjectToDecimal(crow.Cells["Ck_nt"].Value)
+                        - ObjectAndString.ObjectToDecimal(crow.Cells["Gg_nt"].Value);
+
+                    crow.Cells["Tien"].Value = ObjectAndString.ObjectToDecimal(crow.Cells["Tien0"].Value)
+                        + ObjectAndString.ObjectToDecimal(crow.Cells["Cp"].Value)
+                        + ObjectAndString.ObjectToDecimal(crow.Cells["Tien_vc"].Value)
+                        - ObjectAndString.ObjectToDecimal(crow.Cells["Ck"].Value)
+                        - ObjectAndString.ObjectToDecimal(crow.Cells["Gg"].Value);
                 }
             }
             catch (Exception ex)
