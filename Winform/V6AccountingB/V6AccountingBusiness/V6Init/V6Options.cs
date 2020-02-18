@@ -465,7 +465,18 @@ namespace V6Init
                 return GetValue("M_SOA_TINH_CK_KM");
             }
         }
-        
+
+        /// <summary>
+        /// Số ký hiệu phiên bản trong SQL
+        /// </summary>
+        public static string CurrentVersion
+        {
+            get
+            {
+                return GetValue("M_V6SOFT_VER");
+            }
+        }
+
     }
 
     public enum GetDataMode

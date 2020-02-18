@@ -33,6 +33,7 @@ namespace V6AccountingB
 
         private void MyInit()
         {
+            this.Text = "LOGIN - Version " + Application.ProductVersion;
             //Phần này có thể đọc setting
             radLocalDataMode.Checked = true;
 
@@ -253,6 +254,19 @@ namespace V6AccountingB
             return result;
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.Control | Keys.F12))
+            {
+                if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
+                {
+                    this.ShowInfoMessage("SQL version: " + V6Options.CurrentVersion, 1000);
+                }
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
             try
@@ -267,6 +281,24 @@ namespace V6AccountingB
                     if (V6Login.Login(txtUserName.Text.Trim(), txtPassword.Text.Trim(), dvcs))
                     {
                         V6ControlsHelper.CreateKtmpDirectory();
+                        //Khởi tạo giá trị ban đầu
+                        V6Setting.M_SV_DATE = V6BusinessHelper.GetServerDateTime();
+                        V6Setting.M_ngay_ct1 = V6Setting.M_SV_DATE;
+                        V6Setting.M_ngay_ct2 = V6Setting.M_SV_DATE;
+                        V6Options.MODULE_ID = V6Login.SelectedModule;
+                        V6Setting.GetDataMode = V6Login.GetDataMode;
+
+                        
+                        if (!V6Login.CheckAllowVersion(Application.ProductVersion))
+                        {
+                            var message = V6Login.SelectedLanguage == "V"
+                                ? V6Login.ClientName + " Phiên bản chương trình không phù hợp."
+                                : V6Login.ClientName + " CHECK PROGRAM VERSION.";
+                            this.ShowInfoMessage(message);
+                            Logger.WriteToLog(V6Login.ClientName + " " + GetType() + " " + message);
+                            DialogResult = DialogResult.No;
+                            return;
+                        }
 
                         _allowClient = V6Login.CheckAllowClient(Application.StartupPath);
                         if (!_allowClient)
@@ -302,14 +334,6 @@ namespace V6AccountingB
                                 }
                             }
                         }
-
-                        //Khởi tạo giá trị ban đầu
-                        V6Setting.M_SV_DATE = V6BusinessHelper.GetServerDateTime();
-                        V6Setting.M_ngay_ct1 = V6Setting.M_SV_DATE;
-                        V6Setting.M_ngay_ct2 = V6Setting.M_SV_DATE;
-
-                        V6Options.MODULE_ID = V6Login.SelectedModule;
-                        V6Setting.GetDataMode = V6Login.GetDataMode;
 
                         DialogResult = DialogResult.OK;
                     }

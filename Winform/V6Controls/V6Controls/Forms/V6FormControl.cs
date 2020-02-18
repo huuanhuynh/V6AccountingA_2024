@@ -39,7 +39,7 @@ namespace V6Controls.Forms
         public bool _executing, _executesuccess;
 
         /// <summary>
-        /// Cờ bật tắt chức năng Ctrol+F12 để thực hiện chức năng V6CtrlF12Execute gốc (mở tag VisibleF3:1)
+        /// Cờ bật tắt chức năng Ctrol+F12 để thực hiện chức năng V6CtrlF12Execute gốc (mở tag VisibleCtrlF12:1)
         /// </summary>
         [Category("V6")]
         [DefaultValue(true)]

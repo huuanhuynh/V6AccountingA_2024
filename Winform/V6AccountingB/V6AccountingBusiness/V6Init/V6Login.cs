@@ -724,6 +724,11 @@ namespace V6Init
             return is_allow;
         }
 
+        public static bool CheckAllowVersion(string version)
+        {
+            return V6Options.CurrentVersion == version;
+        }
+
         /// <summary>
         /// Nếu M_COMPANY_BY_MA_DVCS = 1 và CountDVCS = 1 thay thế các M_TEN... = DataDVCS
         /// </summary>

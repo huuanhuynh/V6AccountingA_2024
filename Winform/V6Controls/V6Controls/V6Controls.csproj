@@ -89,6 +89,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm_A2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm_A2.Designer.cs">
+      <DependentUpon>VatTuAddEditForm_A2.cs</DependentUpon>
+    </Compile>
     <Compile Include="V6ColorComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1560,6 +1566,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Albc\FieldSelectorForm.resx">
       <DependentUpon>FieldSelectorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm_A2.resx">
+      <DependentUpon>VatTuAddEditForm_A2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\StringInput.resx">
       <DependentUpon>StringInput.cs</DependentUpon>
