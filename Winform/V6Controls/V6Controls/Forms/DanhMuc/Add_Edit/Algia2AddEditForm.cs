@@ -18,7 +18,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             txtDVT.Upper();
             txtDVT.SetInitFilter("");
 
-            txtDVT.GotFocus += (s, ee) =>
+            txtDVT.Enter += (s, ee) =>
             {
                 txtDVT.SetInitFilter("ma_vt='" + txtMaVt.Text.Trim() + "'");
             };

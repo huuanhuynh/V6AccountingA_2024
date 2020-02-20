@@ -67,7 +67,7 @@ namespace V6Controls
 					this.MouseLeave += new System.EventHandler(this.VistaButton_MouseLeave);
 					this.MouseUp +=new MouseEventHandler(VistaButton_MouseUp);
 					this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.VistaButton_MouseDown);
-					this.GotFocus +=new EventHandler(VistaButton_MouseEnter);
+                    this.Enter += new EventHandler(VistaButton_MouseEnter);
                     this.Leave += new EventHandler(VistaButton_MouseLeave);
 					this.mFadeIn.Tick += new EventHandler(mFadeIn_Tick);
 					this.mFadeOut.Tick += new EventHandler(mFadeOut_Tick);

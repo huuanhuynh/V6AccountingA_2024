@@ -265,7 +265,7 @@ namespace V6ReportControls
             Operator = "start";
             _textBox.Click += FilterLineDynamic_Click;
             _textBox.TextChanged += FilterLineDynamic_TextChanged;
-            _textBox.GotFocus += FilterLineDynamic_GotFocus;
+            _textBox.Enter += FilterLineDynamic_GotFocus;
             _textBox.Leave += FilterLineDynamic_LostFocus;
             _textBox.V6LostFocus += FilterLineDynamic_V6LostFocus;
             _textBox.KeyDown += FilterLineDynamic_KeyDown;
@@ -295,7 +295,7 @@ namespace V6ReportControls
             Operator = "start";
             _vtextBox.Click += FilterLineDynamic_Click;
             _vtextBox.TextChanged += FilterLineDynamic_TextChanged;
-            _vtextBox.GotFocus += FilterLineDynamic_GotFocus;
+            _vtextBox.Enter += FilterLineDynamic_GotFocus;
             _vtextBox.Leave += FilterLineDynamic_LostFocus;
             _vtextBox.V6LostFocus += FilterLineDynamic_V6LostFocus;
             _vtextBox.KeyDown += FilterLineDynamic_KeyDown;
@@ -335,7 +335,7 @@ namespace V6ReportControls
             Operator = "start";
             _lookupTextBox.Click += FilterLineDynamic_Click;
             _lookupTextBox.TextChanged += FilterLineDynamic_TextChanged;
-            _lookupTextBox.GotFocus += FilterLineDynamic_GotFocus;
+            _lookupTextBox.Enter += FilterLineDynamic_GotFocus;
             _lookupTextBox.Leave += FilterLineDynamic_LostFocus;
             _lookupTextBox.V6LostFocus += FilterLineDynamic_V6LostFocus;
             _lookupTextBox.KeyDown += FilterLineDynamic_KeyDown;
@@ -375,7 +375,7 @@ namespace V6ReportControls
             Operator = "start";
             _lookupProc.Click += FilterLineDynamic_Click;
             _lookupProc.TextChanged += FilterLineDynamic_TextChanged;
-            _lookupProc.GotFocus += FilterLineDynamic_GotFocus;
+            _lookupProc.Enter += FilterLineDynamic_GotFocus;
             _lookupProc.Leave += FilterLineDynamic_LostFocus;
             _lookupProc.V6LostFocus += FilterLineDynamic_V6LostFocus;
             _lookupProc.KeyDown += FilterLineDynamic_KeyDown;
@@ -403,7 +403,7 @@ namespace V6ReportControls
             {
                 OnValueChanged(this, _numberTextBox);
             };
-            _numberTextBox.GotFocus += FilterLineDynamic_GotFocus;
+            _numberTextBox.Enter += FilterLineDynamic_GotFocus;
             _numberTextBox.Leave += FilterLineDynamic_LostFocus;
             _numberTextBox.V6LostFocus += FilterLineDynamic_V6LostFocus;
             _numberTextBox.KeyDown += FilterLineDynamic_KeyDown;
@@ -430,7 +430,7 @@ namespace V6ReportControls
             {
                 OnValueChanged(this, _numberTextBox);
             };
-            _numberTextBox.GotFocus += FilterLineDynamic_GotFocus;
+            _numberTextBox.Enter += FilterLineDynamic_GotFocus;
             _numberTextBox.Leave += FilterLineDynamic_LostFocus;
             _numberTextBox.V6LostFocus += FilterLineDynamic_V6LostFocus;
             _numberTextBox.KeyDown += FilterLineDynamic_KeyDown;
@@ -457,7 +457,7 @@ namespace V6ReportControls
             {
                 OnValueChanged(this, _numberTextBox);
             };
-            _numberTextBox.GotFocus += FilterLineDynamic_GotFocus;
+            _numberTextBox.Enter += FilterLineDynamic_GotFocus;
             _numberTextBox.Leave += FilterLineDynamic_LostFocus;
             _numberTextBox.V6LostFocus += FilterLineDynamic_V6LostFocus;
             _numberTextBox.KeyDown += FilterLineDynamic_KeyDown;
@@ -483,7 +483,7 @@ namespace V6ReportControls
             {
                 OnValueChanged(this, _dateTimePick);
             };
-            _dateTimePick.GotFocus += FilterLineDynamic_GotFocus;
+            _dateTimePick.Enter += FilterLineDynamic_GotFocus;
             _dateTimePick.Leave += FilterLineDynamic_LostFocus;
             _dateTimePick.V6LostFocus += FilterLineDynamic_V6LostFocus;
             _dateTimePick.KeyDown += FilterLineDynamic_KeyDown;
@@ -509,7 +509,7 @@ namespace V6ReportControls
             //{
             //    OnValueChanged(this, _dateTimeColor);
             //};
-            _dateTimeColor.GotFocus += FilterLineDynamic_GotFocus;
+            _dateTimeColor.Enter += FilterLineDynamic_GotFocus;
             _dateTimeColor.Leave += FilterLineDynamic_LostFocus;
             _dateTimeColor.V6LostFocus += FilterLineDynamic_V6LostFocus;
             _dateTimeColor.KeyDown += FilterLineDynamic_KeyDown;
@@ -535,7 +535,7 @@ namespace V6ReportControls
             {
                 OnValueChanged(this, _checkBox);
             };
-            _checkBox.GotFocus += FilterLineDynamic_GotFocus;
+            _checkBox.Enter += FilterLineDynamic_GotFocus;
             _checkBox.Leave += FilterLineDynamic_LostFocus;
             _checkBox.KeyDown += FilterLineDynamic_KeyDown;
         }
@@ -560,7 +560,7 @@ namespace V6ReportControls
             //{
             //    OnValueChanged(this, _button);
             //};
-            //_button.GotFocus += FilterLineDynamic_GotFocus;
+            //_button.Enter += FilterLineDynamic_GotFocus;
             //_button.Leave += FilterLineDynamic_LostFocus;
             //_button.KeyDown += FilterLineDynamic_KeyDown;
             return _button;

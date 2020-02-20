@@ -18,8 +18,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             txtSoCt.Upper();
             txtMaGiamTS.SetInitFilter("Loai_tg_ts='G'");
             TxtTang_giam.Value  = 2;
- 
-            txtSoCt.GotFocus += (s, ee) =>
+
+            txtSoCt.Enter += (s, ee) =>
             {
                 //txtSoCt.SetInitFilter("ma_vt='" + txtMaVt.Text.Trim() + "'");
             };

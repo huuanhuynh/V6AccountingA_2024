@@ -5204,8 +5204,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         #endregion view invoice
 
         #region ==== Add Thread ====
-        public IDictionary<string, object> addDataAM;
-        public List<IDictionary<string, object>> addDataAD, addDataAD3;
+        public IDictionary<string, object> readyDataAM;
+        public List<IDictionary<string, object>> readyDataAD, readyDataAD3;
         private string addErrorMessage = "";
 
         private void DoAddThread()
@@ -5296,8 +5296,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
-                addDataAD = dataGridView1.GetData(_sttRec);
-                addDataAD3 = dataGridView3.GetData(_sttRec);
+                readyDataAD = dataGridView1.GetData(_sttRec);
+                readyDataAD3 = dataGridView3.GetData(_sttRec);
             }
             catch (Exception ex)
             {
@@ -5311,7 +5311,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 CheckForIllegalCrossThreadCalls = false;
 
-                if (Invoice.InsertInvoice(addDataAM, addDataAD, addDataAD3))
+                if (Invoice.InsertInvoice(readyDataAM, readyDataAD, readyDataAD3))
                 {
                     _AED_Success = true;
                 }
@@ -5337,7 +5337,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 #endregion add
 
         #region ==== Edit Thread ====
-        private List<IDictionary<string, object>> editDataAD, editDataAD3;
         private string editErrorMessage = "";
 
         private void DoEditThread()
@@ -5381,20 +5380,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 var am_TIME0 = AM.Rows[CurrentIndex]["Time0"];
                 var am_U_ID0 = AM.Rows[CurrentIndex]["User_id0"];
 
-                editDataAD = dataGridView1.GetData(_sttRec);
-                foreach (IDictionary<string, object> adRow in editDataAD)
+                readyDataAD = dataGridView1.GetData(_sttRec);
+                foreach (IDictionary<string, object> adRow in readyDataAD)
                 {
                     adRow["DATE0"] = am_DATE0;
                     adRow["TIME0"] = am_TIME0;
                     adRow["USER_ID0"] = am_U_ID0;
                 }
-                editDataAD3 = dataGridView3.GetData(_sttRec);
-                foreach (IDictionary<string, object> adRow in editDataAD3)
+                readyDataAD3 = dataGridView3.GetData(_sttRec);
+                foreach (IDictionary<string, object> adRow in readyDataAD3)
                 {
                     adRow["DATE0"] = am_DATE0;
                     adRow["TIME0"] = am_TIME0;
                     adRow["USER_ID0"] = am_U_ID0;
                 }
+                All_Objects["readyDataAD"] = readyDataAD;
+                All_Objects["readyDataAD3"] = readyDataAD3;
             }
             catch (Exception ex)
             {
@@ -5454,7 +5455,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 CheckForIllegalCrossThreadCalls = false;
                 var keys = new SortedDictionary<string, object> { { "STT_REC", _sttRec } };
-                if (Invoice.UpdateInvoice(addDataAM, editDataAD, editDataAD3, keys))
+                if (Invoice.UpdateInvoice(readyDataAM, readyDataAD, readyDataAD3, keys))
                 {
                     _AED_Success = true;
                     ADTables.Remove(_sttRec);
@@ -5614,11 +5615,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                     V6ControlFormHelper.RemoveRunningList(_sttRec);
 
-                    addDataAM = PreparingDataAM(Invoice);
-                    V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD);
-                    V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD2);
-                    V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD3);
-                    //V6ControlFormHelper.UpdateDKlistAll(GetData(), new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD);
+                    readyDataAM = PreparingDataAM(Invoice);
+                    All_Objects["readyDataAM"] = readyDataAM;
+                    V6ControlFormHelper.UpdateDKlistAll(readyDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD);
+                    V6ControlFormHelper.UpdateDKlistAll(readyDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD2);
+                    V6ControlFormHelper.UpdateDKlistAll(readyDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD3);
+                    
                     if (Mode == V6Mode.Add)
                     {
                         V6ControlFormHelper.DisableControls(btnLuu, btnHuy, btnQuayRa);
@@ -7703,6 +7705,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow, out _sttRec0);
         }
 
+        private bool _flag_next = false;
         /// <summary>
         /// Áp giá bán.
         /// </summary>
@@ -7712,6 +7715,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             try
             {
                 if (NotAddEdit) return;
+                if (_flag_next)
+                {
+                    _flag_next = false;
+                    return;
+                }
                 if (AD == null || AD.Rows.Count == 0) return;
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
@@ -7737,6 +7745,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     {
                         if (this.ShowConfirmMessage(V6Text.Text("ASKAPGIABANALL")) != DialogResult.Yes)
                         {
+                            if (ActiveControl == txtMaKh)
+                            {
+                                _flag_next = true;
+                                SelectNextControl(ActiveControl, true, true, true, true);
+                                _flag_next = false;
+                            }
                             return;
                         }
                     }

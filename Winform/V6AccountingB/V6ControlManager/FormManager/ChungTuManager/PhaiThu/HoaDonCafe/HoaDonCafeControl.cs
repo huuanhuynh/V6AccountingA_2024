@@ -4730,7 +4730,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 addDataAM["MA_KHOPH"] = ma_khoPH;
                 addDataAM["MA_VITRIPH"] = ma_vitriPH;
                 
-                //addDataAM["STATUS"] = _post ? "3" : Status;
+                //readyDataAM["STATUS"] = _post ? "3" : Status;
                 addDataAM["STATUS"] = Status;
                 //Update to AM
                 V6BusinessHelper.UpdateRowToDataTable(AM, "Stt_rec", _sttRec, addDataAM);
@@ -6826,11 +6826,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow, out _sttRec0);
         }
 
+        private bool _flag_next = false;
         public override void ApGiaBan(bool auto = false)
         {
             try
             {
                 if (NotAddEdit) return;
+                if (_flag_next)
+                {
+                    _flag_next = false;
+                    return;
+                }
                 if (AD == null || AD.Rows.Count == 0) return;
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
@@ -6844,6 +6850,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 }
                 if (this.ShowConfirmMessage(V6Text.Text("ASKAPGIABANALL")) != DialogResult.Yes)
                 {
+                    if (ActiveControl == txtMaKh)
+                    {
+                        _flag_next = true;
+                        SelectNextControl(ActiveControl, true, true, true, true);
+                        _flag_next = false;
+                    }
                     return;
                 }
 

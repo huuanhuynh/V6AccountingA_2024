@@ -17,8 +17,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             txtSoCt.Upper();
             txtMaGiamCC.SetInitFilter("Loai_tg_cc='G'");
-            
-            txtSoCt.GotFocus += (s, ee) =>
+
+            txtSoCt.Enter += (s, ee) =>
             {
                 //txtSoCt.SetInitFilter("ma_vt='" + txtMaVt.Text.Trim() + "'");
             };

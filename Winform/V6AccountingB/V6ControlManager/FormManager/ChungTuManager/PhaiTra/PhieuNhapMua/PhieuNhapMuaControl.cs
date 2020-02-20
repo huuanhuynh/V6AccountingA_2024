@@ -5880,13 +5880,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     AD.Rows.Clear();
                 }
                 int addCount = 0, failCount = 0; _message = "";
-                string ma_kh_soh = null;
+                decimal ty_gia_soh = 0;
+                string ma_kh_soh = null, ma_nt_soh = null;
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {
                     // Lấy ma_kh_soh đầu tiên.
                     if (ma_kh_soh == null && data.ContainsKey("MA_KH_SOH"))
                     {
                         ma_kh_soh = data["MA_KH_SOH"].ToString().Trim();
+                    }
+                    if (ma_nt_soh == null && data.ContainsKey("MA_NT_SOH"))
+                    {
+                        ma_nt_soh = data["MA_NT_SOH"].ToString().Trim();
+                    }
+                    if (ty_gia_soh == 0 && data.ContainsKey("TY_GIA_SOH"))
+                    {
+                        ty_gia_soh = ObjectAndString.ObjectToDecimal(data["TY_GIA_SOH"]);
                     }
                     string c_makh = data.ContainsKey("MA_KH") ? data["MA_KH"].ToString().Trim().ToUpper() : "";
                     if (c_makh != "" && txtMaKh.Text == "")
@@ -5939,6 +5948,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     else failCount++;
                 }
 
+
+                if (!string.IsNullOrEmpty(ma_nt_soh))
+                {
+                    SetControlValue(cboMaNt, ma_nt_soh);
+                    cboMaNt_SelectedValueChanged(cboMaNt, null);
+                }
+                if (ty_gia_soh != 0)
+                {
+                    txtTyGia.Value = ty_gia_soh;
+                    txtTyGia_V6LostFocus(txtTyGia);
+                }
                 if (!string.IsNullOrEmpty(ma_kh_soh))
                 {
                     if (txtMaKh.Text == "")
@@ -7199,6 +7219,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow, out _sttRec0);
         }
 
+        private bool _flag_next = false;
         /// <summary>
         /// Áp giá mua.
         /// </summary>
@@ -7208,6 +7229,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             try
             {
                 if (NotAddEdit) return;
+                if (_flag_next)
+                {
+                    _flag_next = false;
+                    return;
+                }
                 if (AD == null || AD.Rows.Count == 0) return;
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
@@ -7233,6 +7259,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     {
                         if (this.ShowConfirmMessage(V6Text.Text("ASKAPGIABANALL")) != DialogResult.Yes)
                         {
+                            if (ActiveControl == txtMaKh)
+                            {
+                                _flag_next = true;
+                                SelectNextControl(ActiveControl, true, true, true, true);
+                                _flag_next = false;
+                            }
                             return;
                         }
                     }

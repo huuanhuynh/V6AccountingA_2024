@@ -292,9 +292,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 {
                     if (!string.IsNullOrEmpty(exception))
                     {
-                        V6Message.ShowWarning(exception);
+                        this.ShowErrorMessage(exception);
                     }
-                    this.ShowInfoMessage(check);
+                    this.ShowErrorMessage(check);
                 }
             }
             catch (Exception ex)

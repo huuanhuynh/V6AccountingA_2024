@@ -6120,7 +6120,7 @@ namespace V6Controls.Forms
             if (!string.IsNullOrEmpty(fieldvalue)) LookupInfo_F_NAME = fieldvalue;
             else LookupInfo_F_NAME = Aldm_config == null ? null : Aldm_config.F_NAME;
 
-            //txt.GotFocus += ApplyLookup_GotFocus;
+            //txt.Enter += ApplyLookup_GotFocus;
             txtApplyLookup.KeyDown += ApplyLookup_KeyDown;
             txtApplyLookup.Leave += ApplyLookup_LostFocus;
             txtApplyLookup.Disposed += ApplyLookup_Disposed;
@@ -7302,7 +7302,7 @@ namespace V6Controls.Forms
                 };
             }
 
-            control.GotFocus += (sender, e) =>
+            control.Enter += (sender, e) =>
             {
                 All_Objects["sender"] = sender;
                 All_Objects["e"] = e;
@@ -7689,7 +7689,8 @@ namespace V6Controls.Forms
                                         break;
 
                                     case "GOTFOCUS":
-                                        input.GotFocus += (s, e) =>
+                                    case "ENTER":
+                                        input.Enter += (s, e) =>
                                         {
                                             if (Event_program2 == null) return;
 
@@ -7701,6 +7702,7 @@ namespace V6Controls.Forms
                                         break;
 
                                     case "LOSTFOCUS":
+                                    case "LEAVE":
                                         input.Leave += (s, e) =>
                                         {
                                             if (Event_program2 == null) return;

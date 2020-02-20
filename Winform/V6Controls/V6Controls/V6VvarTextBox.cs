@@ -33,24 +33,21 @@ namespace V6Controls
             // 
             this.TextChanged += new System.EventHandler(this.V6VvarTextBox_TextChanged);
             this.Enter += new System.EventHandler(this.V6VvarTextBox_Enter);
-            this.GotFocus += new System.EventHandler(this.V6VvarTextBox_GotFocus);
+            //this. GotFocus += new System.EventHandler(this.V6VvarTextBox_GotFocus);
             this.ResumeLayout(false);
         }
 
-        void V6VvarTextBox_GotFocus(object sender, EventArgs e)
-        {
-            try
-            {
-                if (LookupInfo.LOAD_AUTO)
-                {
-                    LoadAutoCompleteSource();
-                }
-            }
-            catch (Exception ex)
-            {
-                V6ControlFormHelper.ShowErrorMessage("V6VvarTextBox_GotFocus: " + ex.Message);
-            }
-        }
+        //void V6VvarTextBox_GotFocus(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+                
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        V6ControlFormHelper.ShowErrorMessage("V6VvarTextBox_GotFocus: " + ex.Message);
+        //    }
+        //}
 
         private bool _showName = false;
         /// <summary>
@@ -62,11 +59,23 @@ namespace V6Controls
         public bool ShowName { get { return _showName; } set { _showName = value; } }
         private void V6VvarTextBox_Enter(object sender, EventArgs e)
         {
-            //SelectionStart = TextLength;    //  Bỏ bôi xanh.
-            if (_showName || _checkOnLeave)
+            try
             {
-                V6ControlsHelper.ShowVvarName(this);
+                //SelectionStart = TextLength;    //  Bỏ bôi xanh.
+                if (_showName || _checkOnLeave)
+                {
+                    V6ControlsHelper.ShowVvarName(this);
+                }
+                if (LookupInfo.LOAD_AUTO)
+                {
+                    LoadAutoCompleteSource();
+                }
             }
+            catch (Exception)
+            {
+                
+            }
+            
         }
 
         private string _vVar = "";

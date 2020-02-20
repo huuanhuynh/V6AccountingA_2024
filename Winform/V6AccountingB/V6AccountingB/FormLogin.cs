@@ -157,6 +157,8 @@ namespace V6AccountingB
                     lblStatus.Text = lblStatusSuccess;
                     panel1.Enabled = true;
                     txtUserName.Focus();
+                    V6Options.LoadValue();
+                    this.Text = "LOGIN - Version " + Application.ProductVersion;
                     Ready();
                 }
                 else

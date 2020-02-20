@@ -368,7 +368,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                             break;
 
                                         case "GOTFOCUS":
-                                            input.GotFocus += (s, e) =>
+                                        case "ENTER":
+                                            input.Enter += (s, e) =>
                                             {
                                                 if (Form_program == null) return;
 
@@ -379,6 +380,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                             break;
 
                                         case "LOSTFOCUS":
+                                        case "LEAVE":
                                             input.Leave += (s, e) =>
                                             {
                                                 if (Form_program == null) return;

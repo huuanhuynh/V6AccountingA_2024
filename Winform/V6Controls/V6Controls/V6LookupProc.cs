@@ -56,6 +56,10 @@ namespace V6Controls
             }
         }
 
+        /// <summary>
+        /// Giá trị tham số Proc 1.
+        /// </summary>
+        [Description("Giá trị tham số Proc 1.")]
         public string MA_CT { get; set; }
         private bool _showName = false;
         /// <summary>

@@ -4895,11 +4895,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             ChungTu.ViewSelectedDetailToDetailForm(dataGridView1, detail1, out _gv1EditingRow, out _sttRec0);
         }
 
+        private bool _flag_next = false;
         public override void ApGiaBan(bool auto = false)
         {
             try
             {
                 if (NotAddEdit) return;
+                if (_flag_next)
+                {
+                    _flag_next = false;
+                    return;
+                }
                 if (AD == null || AD.Rows.Count == 0) return;
                 if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
@@ -4913,6 +4919,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 }
                 if (this.ShowConfirmMessage(V6Text.Text("ASKAPGIABANALL")) != DialogResult.Yes)
                 {
+                    if (ActiveControl == txtMaKh)
+                    {
+                        _flag_next = true;
+                        SelectNextControl(ActiveControl, true, true, true, true);
+                        _flag_next = false;
+                    }
                     return;
                 }
 

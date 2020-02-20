@@ -12,7 +12,7 @@ namespace V6Init
         /// <summary>
         /// Lấy lên tất cả value
         /// </summary>
-        private static void LoadValue()
+        public static void LoadValue()
         {
             try
             {
