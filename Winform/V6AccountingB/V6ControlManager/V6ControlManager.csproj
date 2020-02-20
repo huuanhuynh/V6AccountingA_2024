@@ -2123,6 +2123,12 @@
     <Compile Include="FormManager\ReportManager\Filter\Sms\XASENDSMSALL.Designer.cs">
       <DependentUpon>XASENDSMSALL.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_XL_LIST_ALL_Filter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\Filter\Xuly\AAPPR_XL_LIST_ALL_Filter.Designer.cs">
+      <DependentUpon>AAPPR_XL_LIST_ALL_Filter.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\Filter\Xuly\HoaDonDienTu\AAPPR_AR12_filter.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -4561,6 +4567,9 @@
     <Compile Include="FormManager\ReportManager\XuLy\AAPPR_EINVOICE1_F9.designer.cs">
       <DependentUpon>AAPPR_EINVOICE1_F9.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_XL_LIST_ALL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\HoaDonDienTu\AAPPR_AR12.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -6817,6 +6826,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Sms\XASENDSMSALL.resx">
       <DependentUpon>XASENDSMSALL.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\AAPPR_XL_LIST_ALL_Filter.resx">
+      <DependentUpon>AAPPR_XL_LIST_ALL_Filter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\Filter\Xuly\HoaDonDienTu\AAPPR_AR12_filter.resx">
       <DependentUpon>AAPPR_AR12_filter.cs</DependentUpon>
     </EmbeddedResource>
@@ -8013,6 +8025,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_EINVOICE1_F9.resx">
       <DependentUpon>AAPPR_EINVOICE1_F9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_XL_LIST_ALL.resx">
+      <DependentUpon>AAPPR_XL_LIST_ALL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\HoaDonDienTu\AAPPR_AR12.resx">
       <DependentUpon>AAPPR_AR12.cs</DependentUpon>

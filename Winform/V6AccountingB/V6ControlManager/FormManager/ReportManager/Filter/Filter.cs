@@ -1108,6 +1108,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     break;
                 case "AAPPR_XULY_ALL":
                     result = new AAPPR_XULY_ALL_Filter();
+                    break;
+                case "AAPPR_XL_LIST_ALL":
+                    result = new AAPPR_XL_LIST_ALL_Filter();
+                    break;
 
                     #endregion he thong
 
@@ -1115,7 +1119,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
                     #region ---- Cập nhật số liệu ----
 
-                    break;
                 case "AGLCTKC":
                     result = new AGLCTKC();
                     break;
