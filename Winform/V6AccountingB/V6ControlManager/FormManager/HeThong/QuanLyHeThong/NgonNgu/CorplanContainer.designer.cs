@@ -33,9 +33,9 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu
             this.components = new System.ComponentModel.Container();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabLanguage0 = new System.Windows.Forms.TabPage();
+            this.tabLanguage1 = new System.Windows.Forms.TabPage();
+            this.tabLanguage2 = new System.Windows.Forms.TabPage();
             this.btnQuayRa = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -45,9 +45,9 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabLanguage0);
+            this.tabControl1.Controls.Add(this.tabLanguage1);
+            this.tabControl1.Controls.Add(this.tabLanguage2);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -55,38 +55,38 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu
             this.tabControl1.TabIndex = 15;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
-            // tabPage1
+            // tabLanguage0
             // 
-            this.tabPage1.AccessibleDescription = "CORPMODUT00001";
-            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(779, 453);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Language";
+            this.tabLanguage0.AccessibleDescription = "CORPMODUT00001";
+            this.tabLanguage0.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabLanguage0.Location = new System.Drawing.Point(4, 25);
+            this.tabLanguage0.Name = "tabLanguage0";
+            this.tabLanguage0.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLanguage0.Size = new System.Drawing.Size(779, 453);
+            this.tabLanguage0.TabIndex = 0;
+            this.tabLanguage0.Text = "Language";
             // 
-            // tabPage2
+            // tabLanguage1
             // 
-            this.tabPage2.AccessibleDescription = "CORPMODUT00002";
-            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(779, 453);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Language1";
+            this.tabLanguage1.AccessibleDescription = "CORPMODUT00002";
+            this.tabLanguage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabLanguage1.Location = new System.Drawing.Point(4, 25);
+            this.tabLanguage1.Name = "tabLanguage1";
+            this.tabLanguage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLanguage1.Size = new System.Drawing.Size(779, 453);
+            this.tabLanguage1.TabIndex = 1;
+            this.tabLanguage1.Text = "Language1";
             // 
-            // tabPage3
+            // tabLanguage2
             // 
-            this.tabPage3.AccessibleDescription = "CORPMODUT00003";
-            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(779, 453);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Language2";
+            this.tabLanguage2.AccessibleDescription = "CORPMODUT00003";
+            this.tabLanguage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabLanguage2.Location = new System.Drawing.Point(4, 25);
+            this.tabLanguage2.Name = "tabLanguage2";
+            this.tabLanguage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLanguage2.Size = new System.Drawing.Size(779, 453);
+            this.tabLanguage2.TabIndex = 2;
+            this.tabLanguage2.Text = "Language2";
             // 
             // btnQuayRa
             // 
@@ -121,9 +121,9 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu
 
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabLanguage0;
+        private System.Windows.Forms.TabPage tabLanguage1;
         private System.Windows.Forms.Button btnQuayRa;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabLanguage2;
     }
 }

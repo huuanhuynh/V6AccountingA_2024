@@ -24,7 +24,7 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu
         {
             try
             {
-                tabPage1.Controls.Add(new CorplanControl(m_itemId) {Dock = DockStyle.Fill});
+                tabLanguage0.Controls.Add(new CorplanControl(m_itemId) {Dock = DockStyle.Fill});
             }
             catch (Exception ex)
             {
@@ -57,14 +57,14 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong.NgonNgu
         {
             try
             {
-                if (tabControl1.SelectedTab == tabPage2 && !loadTab2)
+                if (tabControl1.SelectedTab == tabLanguage1 && !loadTab2)
                 {
-                    tabPage2.Controls.Add(new CorplanControl1(m_itemId) { Dock = DockStyle.Fill });
+                    tabLanguage1.Controls.Add(new CorplanControl1(m_itemId) { Dock = DockStyle.Fill });
                     loadTab2 = true;
                 }
-                else if (tabControl1.SelectedTab == tabPage3 && !loadTab3)
+                else if (tabControl1.SelectedTab == tabLanguage2 && !loadTab3)
                 {
-                    tabPage3.Controls.Add(new CorplanControl2(m_itemId) { Dock = DockStyle.Fill });
+                    tabLanguage2.Controls.Add(new CorplanControl2(m_itemId) { Dock = DockStyle.Fill });
                     loadTab3 = true;
                 }
             }

@@ -139,7 +139,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.ThongTinDinhNghia
             if (DoUpdate())
             {
                 DoUpdateSuccess(DataDic);
-                Close();
+                DialogResult = DialogResult.OK;
+                //Close();
+            }
+            else
+            {
+                DialogResult = DialogResult.Abort;
             }
         }
 
@@ -197,7 +202,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.ThongTinDinhNghia
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
-            Close();
+            //Close();
+            DialogResult = DialogResult.Cancel;
         }
         
     }

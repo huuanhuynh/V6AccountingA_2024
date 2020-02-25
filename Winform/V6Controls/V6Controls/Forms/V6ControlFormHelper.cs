@@ -2482,7 +2482,14 @@ namespace V6Controls.Forms
                     {
                         LoadAndSetFormInfoDefine(ma_dm, control, parent);
                     };
-                    f.ShowDialog(control);
+                    if (f.ShowDialog(control) == DialogResult.OK)
+                    {
+                        // Viết lại phần UpdateSuccessEvent.
+                    }                    
+                }
+                else // ẩn tab tự định nghĩa tabname tabTuDinhNghia hoặc tabText Tự định nghĩa.
+                {
+
                 }
             }
             catch (Exception ex)
@@ -2503,7 +2510,30 @@ namespace V6Controls.Forms
             {
                 var key = new SortedDictionary<string, object> { { "ma_dm", ma_dm } };
                 var selectResult = V6BusinessHelper.Select(V6TableName.Altt, key, "", "", "");
-                SetFormInfoDefine(control, selectResult.Data, V6Setting.Language);
+                if (selectResult.Data.Rows.Count > 0)
+                {
+                    SetFormInfoDefine(control, selectResult.Data, V6Setting.Language);
+                }
+                else // ẩn tab tự định nghĩa tabname tabTuDinhNghia hoặc tabText Tự định nghĩa.
+                {
+                    //V6Form v6form = FindParent<V6Form>(control) as V6Form;
+                    //if (v6form != null)
+                    //{
+                    //    Button button = v6form.GetControlByName("btnInfos") as Button;
+                    //    if (button != null) button.Visible = false;
+                    //}
+
+                    Control tabTuDinhNghia = GetControlByName(control, "tabTuDinhNghia");
+                    if (tabTuDinhNghia != null)
+                    {
+                        //tabTuDinhNghia.Visible = false;
+                        //tabTuDinhNghia.Enabled = false;
+                        foreach (Control c in tabTuDinhNghia.Controls)
+                        {
+                            c.Visible = false;
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -5925,6 +5955,7 @@ namespace V6Controls.Forms
             Control c = child;
             for (int i = 0; i < maxLevel; i++)
             {
+                if (c == null) return null;
                 c = c.Parent;
                 if (c is T)
                 {

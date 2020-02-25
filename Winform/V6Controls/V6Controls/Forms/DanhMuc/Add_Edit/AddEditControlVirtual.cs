@@ -211,6 +211,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     if (_keys != null) LoadData();
                 }
             }
+
+            LoadTag(2, "", TableName.ToString(), m_itemId);
         }
 
         /// <summary>

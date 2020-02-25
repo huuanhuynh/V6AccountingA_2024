@@ -73,7 +73,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy.NhanSu
             try
             {
                 LoadAdvanceControls(_tableName);
-                V6ControlFormHelper.LoadAndSetFormInfoDefine(_tableName, tabPage3, this);
+                V6ControlFormHelper.LoadAndSetFormInfoDefine(_tableName, tabTuDinhNghia, this);
                 LoadStruct(_tableName);
                 V6ControlFormHelper.SetFormDataDictionary(this, _dataOld);
                 dateNgay.DisableTag();
