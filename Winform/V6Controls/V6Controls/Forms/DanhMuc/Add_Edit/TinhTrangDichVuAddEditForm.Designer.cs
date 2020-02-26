@@ -41,7 +41,7 @@
             this.v6ColorTextBox5 = new V6Controls.V6ColorTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabTuDinhNghia = new System.Windows.Forms.TabPage();
             this.txtGC_TD3 = new V6Controls.V6VvarTextBox();
             this.txtGC_TD2 = new V6Controls.V6VvarTextBox();
             this.txtGC_TD1 = new V6Controls.V6VvarTextBox();
@@ -66,7 +66,7 @@
             this.v6ColorDateTimePick3 = new V6Controls.V6DateTimeColor();
             this.v6ColorDateTimePick2 = new V6Controls.V6DateTimeColor();
             this.v6ColorDateTimePick1 = new V6Controls.V6DateTimeColor();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabThongTinKhac = new System.Windows.Forms.TabPage();
             this.txtMaS3 = new V6Controls.V6ColorTextBox();
             this.txtMaS2 = new V6Controls.V6ColorTextBox();
             this.txtMaS1 = new V6Controls.V6ColorTextBox();
@@ -88,7 +88,7 @@
             this.groupBox1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabTuDinhNghia.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -202,8 +202,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.v6TabControl1.Controls.Add(this.tabThongTinChinh);
-            this.v6TabControl1.Controls.Add(this.tabPage2);
-            this.v6TabControl1.Controls.Add(this.tabPage3);
+            this.v6TabControl1.Controls.Add(this.tabTuDinhNghia);
+            this.v6TabControl1.Controls.Add(this.tabThongTinKhac);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
             this.v6TabControl1.Location = new System.Drawing.Point(3, 136);
@@ -283,58 +283,58 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Ghi chú";
             // 
-            // tabPage2
+            // tabTuDinhNghia
             // 
-            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage2.Controls.Add(this.txtMaS3);
-            this.tabPage2.Controls.Add(this.txtMaS2);
-            this.tabPage2.Controls.Add(this.txtMaS1);
-            this.tabPage2.Controls.Add(this.txtSLS6);
-            this.tabPage2.Controls.Add(this.txtSLS5);
-            this.tabPage2.Controls.Add(this.txtSLS4);
-            this.tabPage2.Controls.Add(this.lblSLS6);
-            this.tabPage2.Controls.Add(this.lblSLS5);
-            this.tabPage2.Controls.Add(this.lblSLS4);
-            this.tabPage2.Controls.Add(this.lblNgayS9);
-            this.tabPage2.Controls.Add(this.lblNgayS8);
-            this.tabPage2.Controls.Add(this.lblNgayS7);
-            this.tabPage2.Controls.Add(this.lblMaS3);
-            this.tabPage2.Controls.Add(this.lblMaS2);
-            this.tabPage2.Controls.Add(this.lblMaS1);
-            this.tabPage2.Controls.Add(this.dateNgayS9);
-            this.tabPage2.Controls.Add(this.dateNgayS8);
-            this.tabPage2.Controls.Add(this.dateNgayS7);
-            this.tabPage2.Controls.Add(this.txtGC_TD3);
-            this.tabPage2.Controls.Add(this.txtGC_TD2);
-            this.tabPage2.Controls.Add(this.txtGC_TD1);
-            this.tabPage2.Controls.Add(this.label29);
-            this.tabPage2.Controls.Add(this.label28);
-            this.tabPage2.Controls.Add(this.label27);
-            this.tabPage2.Controls.Add(this.txtMA_TD3);
-            this.tabPage2.Controls.Add(this.txtMA_TD2);
-            this.tabPage2.Controls.Add(this.txtMA_TD1);
-            this.tabPage2.Controls.Add(this.v6NumberTextBox3);
-            this.tabPage2.Controls.Add(this.v6NumberTextBox2);
-            this.tabPage2.Controls.Add(this.v6NumberTextBox1);
-            this.tabPage2.Controls.Add(this.label16);
-            this.tabPage2.Controls.Add(this.label17);
-            this.tabPage2.Controls.Add(this.label6);
-            this.tabPage2.Controls.Add(this.label10);
-            this.tabPage2.Controls.Add(this.label11);
-            this.tabPage2.Controls.Add(this.label32);
-            this.tabPage2.Controls.Add(this.label33);
-            this.tabPage2.Controls.Add(this.label34);
-            this.tabPage2.Controls.Add(this.label35);
-            this.tabPage2.Controls.Add(this.v6ColorDateTimePick3);
-            this.tabPage2.Controls.Add(this.v6ColorDateTimePick2);
-            this.tabPage2.Controls.Add(this.v6ColorDateTimePick1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(5);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage2.Size = new System.Drawing.Size(742, 332);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Tự định nghĩa";
+            this.tabTuDinhNghia.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabTuDinhNghia.Controls.Add(this.txtMaS3);
+            this.tabTuDinhNghia.Controls.Add(this.txtMaS2);
+            this.tabTuDinhNghia.Controls.Add(this.txtMaS1);
+            this.tabTuDinhNghia.Controls.Add(this.txtSLS6);
+            this.tabTuDinhNghia.Controls.Add(this.txtSLS5);
+            this.tabTuDinhNghia.Controls.Add(this.txtSLS4);
+            this.tabTuDinhNghia.Controls.Add(this.lblSLS6);
+            this.tabTuDinhNghia.Controls.Add(this.lblSLS5);
+            this.tabTuDinhNghia.Controls.Add(this.lblSLS4);
+            this.tabTuDinhNghia.Controls.Add(this.lblNgayS9);
+            this.tabTuDinhNghia.Controls.Add(this.lblNgayS8);
+            this.tabTuDinhNghia.Controls.Add(this.lblNgayS7);
+            this.tabTuDinhNghia.Controls.Add(this.lblMaS3);
+            this.tabTuDinhNghia.Controls.Add(this.lblMaS2);
+            this.tabTuDinhNghia.Controls.Add(this.lblMaS1);
+            this.tabTuDinhNghia.Controls.Add(this.dateNgayS9);
+            this.tabTuDinhNghia.Controls.Add(this.dateNgayS8);
+            this.tabTuDinhNghia.Controls.Add(this.dateNgayS7);
+            this.tabTuDinhNghia.Controls.Add(this.txtGC_TD3);
+            this.tabTuDinhNghia.Controls.Add(this.txtGC_TD2);
+            this.tabTuDinhNghia.Controls.Add(this.txtGC_TD1);
+            this.tabTuDinhNghia.Controls.Add(this.label29);
+            this.tabTuDinhNghia.Controls.Add(this.label28);
+            this.tabTuDinhNghia.Controls.Add(this.label27);
+            this.tabTuDinhNghia.Controls.Add(this.txtMA_TD3);
+            this.tabTuDinhNghia.Controls.Add(this.txtMA_TD2);
+            this.tabTuDinhNghia.Controls.Add(this.txtMA_TD1);
+            this.tabTuDinhNghia.Controls.Add(this.v6NumberTextBox3);
+            this.tabTuDinhNghia.Controls.Add(this.v6NumberTextBox2);
+            this.tabTuDinhNghia.Controls.Add(this.v6NumberTextBox1);
+            this.tabTuDinhNghia.Controls.Add(this.label16);
+            this.tabTuDinhNghia.Controls.Add(this.label17);
+            this.tabTuDinhNghia.Controls.Add(this.label6);
+            this.tabTuDinhNghia.Controls.Add(this.label10);
+            this.tabTuDinhNghia.Controls.Add(this.label11);
+            this.tabTuDinhNghia.Controls.Add(this.label32);
+            this.tabTuDinhNghia.Controls.Add(this.label33);
+            this.tabTuDinhNghia.Controls.Add(this.label34);
+            this.tabTuDinhNghia.Controls.Add(this.label35);
+            this.tabTuDinhNghia.Controls.Add(this.v6ColorDateTimePick3);
+            this.tabTuDinhNghia.Controls.Add(this.v6ColorDateTimePick2);
+            this.tabTuDinhNghia.Controls.Add(this.v6ColorDateTimePick1);
+            this.tabTuDinhNghia.Location = new System.Drawing.Point(4, 28);
+            this.tabTuDinhNghia.Margin = new System.Windows.Forms.Padding(5);
+            this.tabTuDinhNghia.Name = "tabTuDinhNghia";
+            this.tabTuDinhNghia.Padding = new System.Windows.Forms.Padding(5);
+            this.tabTuDinhNghia.Size = new System.Drawing.Size(742, 332);
+            this.tabTuDinhNghia.TabIndex = 1;
+            this.tabTuDinhNghia.Text = "Tự định nghĩa";
             // 
             // txtGC_TD3
             // 
@@ -756,17 +756,17 @@
             this.v6ColorDateTimePick1.TabIndex = 145;
             this.v6ColorDateTimePick1.Text = "__/__/____";
             // 
-            // tabPage3
+            // tabThongTinKhac
             // 
-            this.tabPage3.AccessibleDescription = "ADDEDITT00004";
-            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage3.Location = new System.Drawing.Point(4, 28);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(5);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage3.Size = new System.Drawing.Size(742, 332);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Thông tin khác";
+            this.tabThongTinKhac.AccessibleDescription = "ADDEDITT00004";
+            this.tabThongTinKhac.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinKhac.Location = new System.Drawing.Point(4, 28);
+            this.tabThongTinKhac.Margin = new System.Windows.Forms.Padding(5);
+            this.tabThongTinKhac.Name = "tabThongTinKhac";
+            this.tabThongTinKhac.Padding = new System.Windows.Forms.Padding(5);
+            this.tabThongTinKhac.Size = new System.Drawing.Size(742, 332);
+            this.tabThongTinKhac.TabIndex = 2;
+            this.tabThongTinKhac.Text = "Thông tin khác";
             // 
             // txtMaS3
             // 
@@ -1104,8 +1104,8 @@
             this.v6TabControl1.ResumeLayout(false);
             this.tabThongTinChinh.ResumeLayout(false);
             this.tabThongTinChinh.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.tabTuDinhNghia.ResumeLayout(false);
+            this.tabTuDinhNghia.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1124,8 +1124,8 @@
         private V6ColorTextBox v6ColorTextBox5;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabTuDinhNghia;
+        private System.Windows.Forms.TabPage tabThongTinKhac;
         private V6VvarTextBox txtTT_VT;
         private V6Controls.V6VvarTextBox txtGC_TD3;
         private V6Controls.V6VvarTextBox txtGC_TD2;

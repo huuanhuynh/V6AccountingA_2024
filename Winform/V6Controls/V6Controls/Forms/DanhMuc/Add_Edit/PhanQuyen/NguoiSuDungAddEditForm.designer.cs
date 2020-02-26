@@ -42,8 +42,8 @@
             this.chkIs_admin = new V6Controls.V6CheckBox();
             this.chkIsVadmin = new V6Controls.V6CheckBox();
             this.txtInherit_type = new V6Controls.V6ColorTextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabThongTinNgamDinh = new System.Windows.Forms.TabPage();
+            this.tabCacTuyChon = new System.Windows.Forms.TabPage();
             this.btnEditXml = new System.Windows.Forms.Button();
             this.txtXmlInfor = new V6Controls.V6ColorTextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -84,7 +84,7 @@
             this.lblUserName = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.tabCacTuyChon.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,8 +94,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.v6TabControl1.Controls.Add(this.tabThongTinChinh);
-            this.v6TabControl1.Controls.Add(this.tabPage2);
-            this.v6TabControl1.Controls.Add(this.tabPage3);
+            this.v6TabControl1.Controls.Add(this.tabThongTinNgamDinh);
+            this.v6TabControl1.Controls.Add(this.tabCacTuyChon);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
             this.v6TabControl1.Location = new System.Drawing.Point(4, 239);
@@ -291,34 +291,34 @@
             this.txtInherit_type.Size = new System.Drawing.Size(120, 23);
             this.txtInherit_type.TabIndex = 1;
             // 
-            // tabPage2
+            // tabThongTinNgamDinh
             // 
-            this.tabPage2.AccessibleDescription = "ADDEDITT00009";
-            this.tabPage2.AutoScroll = true;
-            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(747, 290);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Thông tin ngầm định";
+            this.tabThongTinNgamDinh.AccessibleDescription = "ADDEDITT00009";
+            this.tabThongTinNgamDinh.AutoScroll = true;
+            this.tabThongTinNgamDinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinNgamDinh.Location = new System.Drawing.Point(4, 28);
+            this.tabThongTinNgamDinh.Margin = new System.Windows.Forms.Padding(4);
+            this.tabThongTinNgamDinh.Name = "tabThongTinNgamDinh";
+            this.tabThongTinNgamDinh.Padding = new System.Windows.Forms.Padding(4);
+            this.tabThongTinNgamDinh.Size = new System.Drawing.Size(747, 290);
+            this.tabThongTinNgamDinh.TabIndex = 1;
+            this.tabThongTinNgamDinh.Text = "Thông tin ngầm định";
             // 
-            // tabPage3
+            // tabCacTuyChon
             // 
-            this.tabPage3.AccessibleDescription = "ADDEDITT00010";
-            this.tabPage3.AutoScroll = true;
-            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage3.Controls.Add(this.btnEditXml);
-            this.tabPage3.Controls.Add(this.txtXmlInfor);
-            this.tabPage3.Controls.Add(this.label10);
-            this.tabPage3.Location = new System.Drawing.Point(4, 28);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage3.Size = new System.Drawing.Size(747, 290);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Các tùy chọn";
+            this.tabCacTuyChon.AccessibleDescription = "ADDEDITT00010";
+            this.tabCacTuyChon.AutoScroll = true;
+            this.tabCacTuyChon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabCacTuyChon.Controls.Add(this.btnEditXml);
+            this.tabCacTuyChon.Controls.Add(this.txtXmlInfor);
+            this.tabCacTuyChon.Controls.Add(this.label10);
+            this.tabCacTuyChon.Location = new System.Drawing.Point(4, 28);
+            this.tabCacTuyChon.Margin = new System.Windows.Forms.Padding(4);
+            this.tabCacTuyChon.Name = "tabCacTuyChon";
+            this.tabCacTuyChon.Padding = new System.Windows.Forms.Padding(4);
+            this.tabCacTuyChon.Size = new System.Drawing.Size(747, 290);
+            this.tabCacTuyChon.TabIndex = 2;
+            this.tabCacTuyChon.Text = "Các tùy chọn";
             // 
             // btnEditXml
             // 
@@ -883,8 +883,8 @@
             this.v6TabControl1.ResumeLayout(false);
             this.tabThongTinChinh.ResumeLayout(false);
             this.tabThongTinChinh.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.tabCacTuyChon.ResumeLayout(false);
+            this.tabCacTuyChon.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -897,10 +897,10 @@
         private System.Windows.Forms.Label lblPassword2;
         private System.Windows.Forms.Label lblPassword1;
         private System.Windows.Forms.Label lblUserName;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabCacTuyChon;
         private System.Windows.Forms.TabPage tabThongTinChinh;
         private V6Controls.V6TabControl v6TabControl1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabThongTinNgamDinh;
         private System.Windows.Forms.Label label4;
         private V6NumberTextBox TxtUser_id;
         private V6ColorTextBox txtComment;

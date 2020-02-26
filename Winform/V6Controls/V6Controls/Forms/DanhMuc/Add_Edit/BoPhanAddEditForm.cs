@@ -63,9 +63,5 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             if (errors.Length > 0) throw new Exception(errors);
         }
 
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-            
-        }
     }
 }

@@ -72,7 +72,7 @@
             this.v6ColorDateTimePick3 = new V6Controls.V6DateTimeColor();
             this.v6ColorDateTimePick2 = new V6Controls.V6DateTimeColor();
             this.v6ColorDateTimePick1 = new V6Controls.V6DateTimeColor();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabThongTinKhac = new System.Windows.Forms.TabPage();
             this.txtTen2 = new V6Controls.V6ColorTextBox();
             this.lblTen2 = new V6Controls.V6Label();
             this.txtTenLoaiTN = new V6Controls.V6ColorTextBox();
@@ -92,7 +92,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.v6TabControl1.Controls.Add(this.tabLoaiDinhMuc);
             this.v6TabControl1.Controls.Add(this.tabTuDinhNghia);
-            this.v6TabControl1.Controls.Add(this.tabPage3);
+            this.v6TabControl1.Controls.Add(this.tabThongTinKhac);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
             this.v6TabControl1.Location = new System.Drawing.Point(0, 105);
@@ -837,17 +837,17 @@
             this.v6ColorDateTimePick1.TabIndex = 145;
             this.v6ColorDateTimePick1.Text = "__/__/____";
             // 
-            // tabPage3
+            // tabThongTinKhac
             // 
-            this.tabPage3.AccessibleDescription = "ADDEDITT00004";
-            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage3.Location = new System.Drawing.Point(4, 28);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.tabPage3.Size = new System.Drawing.Size(729, 393);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Thông tin khác";
+            this.tabThongTinKhac.AccessibleDescription = "ADDEDITT00004";
+            this.tabThongTinKhac.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinKhac.Location = new System.Drawing.Point(4, 28);
+            this.tabThongTinKhac.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.tabThongTinKhac.Name = "tabThongTinKhac";
+            this.tabThongTinKhac.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.tabThongTinKhac.Size = new System.Drawing.Size(729, 393);
+            this.tabThongTinKhac.TabIndex = 2;
+            this.tabThongTinKhac.Text = "Thông tin khác";
             // 
             // txtTen2
             // 
@@ -995,7 +995,7 @@
         private V6DateTimeColor v6ColorDateTimePick3;
         private V6DateTimeColor v6ColorDateTimePick2;
         private V6DateTimeColor v6ColorDateTimePick1;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabThongTinKhac;
         private V6Label v6Label3;
         private V6Label v6Label1;
         private System.Windows.Forms.Label lblMaLoai;

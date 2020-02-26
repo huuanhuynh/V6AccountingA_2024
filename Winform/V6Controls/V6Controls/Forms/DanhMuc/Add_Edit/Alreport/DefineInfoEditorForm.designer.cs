@@ -88,7 +88,7 @@
             this.v6ColorTextBox1 = new V6Controls.V6ColorTextBox();
             this.txtLimitChars0 = new V6Controls.V6ColorTextBox();
             this.label72 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabThongTinThem = new System.Windows.Forms.TabPage();
             this.label69 = new System.Windows.Forms.Label();
             this.label67 = new System.Windows.Forms.Label();
             this.label65 = new System.Windows.Forms.Label();
@@ -144,7 +144,7 @@
             this.txtDefaultValue = new V6Controls.V6ColorTextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabThongTinKhac = new System.Windows.Forms.TabPage();
             this.txtF2 = new V6Controls.V6ColorTextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -170,8 +170,8 @@
             this.label73 = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.tabThongTinThem.SuspendLayout();
+            this.tabThongTinKhac.SuspendLayout();
             this.tabLookupButton.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -685,8 +685,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.v6TabControl1.Controls.Add(this.tabThongTinChinh);
-            this.v6TabControl1.Controls.Add(this.tabPage2);
-            this.v6TabControl1.Controls.Add(this.tabPage3);
+            this.v6TabControl1.Controls.Add(this.tabThongTinThem);
+            this.v6TabControl1.Controls.Add(this.tabThongTinKhac);
             this.v6TabControl1.Controls.Add(this.tabLookupButton);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
@@ -1063,72 +1063,72 @@
             this.label72.TabIndex = 21;
             this.label72.Text = "Neighbor Fields";
             // 
-            // tabPage2
+            // tabThongTinThem
             // 
-            this.tabPage2.AccessibleDescription = "ADDEDITT00010";
-            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage2.Controls.Add(this.label69);
-            this.tabPage2.Controls.Add(this.label67);
-            this.tabPage2.Controls.Add(this.label65);
-            this.tabPage2.Controls.Add(this.label63);
-            this.tabPage2.Controls.Add(this.label61);
-            this.tabPage2.Controls.Add(this.label59);
-            this.tabPage2.Controls.Add(this.label71);
-            this.tabPage2.Controls.Add(this.label57);
-            this.tabPage2.Controls.Add(this.label55);
-            this.tabPage2.Controls.Add(this.label53);
-            this.tabPage2.Controls.Add(this.txtFieldOrder);
-            this.tabPage2.Controls.Add(this.label68);
-            this.tabPage2.Controls.Add(this.txtFieldOrderCt);
-            this.tabPage2.Controls.Add(this.label66);
-            this.tabPage2.Controls.Add(this.txtFieldDisplayCt);
-            this.tabPage2.Controls.Add(this.label64);
-            this.tabPage2.Controls.Add(this.txtFieldValueCt);
-            this.tabPage2.Controls.Add(this.label62);
-            this.tabPage2.Controls.Add(this.txtTableNameCt);
-            this.tabPage2.Controls.Add(this.label60);
-            this.tabPage2.Controls.Add(this.txtFieldDisplay);
-            this.tabPage2.Controls.Add(this.label58);
-            this.tabPage2.Controls.Add(this.txtFieldMa);
-            this.tabPage2.Controls.Add(this.label70);
-            this.tabPage2.Controls.Add(this.txtFieldValue);
-            this.tabPage2.Controls.Add(this.label56);
-            this.tabPage2.Controls.Add(this.txtTableName);
-            this.tabPage2.Controls.Add(this.label43);
-            this.tabPage2.Controls.Add(this.txtMa_dm);
-            this.tabPage2.Controls.Add(this.label54);
-            this.tabPage2.Controls.Add(this.label31);
-            this.tabPage2.Controls.Add(this.txtWidth);
-            this.tabPage2.Controls.Add(this.label32);
-            this.tabPage2.Controls.Add(this.label50);
-            this.tabPage2.Controls.Add(this.label41);
-            this.tabPage2.Controls.Add(this.txtFilterStart);
-            this.tabPage2.Controls.Add(this.label49);
-            this.tabPage2.Controls.Add(this.txtDescriptionE);
-            this.tabPage2.Controls.Add(this.label47);
-            this.tabPage2.Controls.Add(this.txtDescriptionV);
-            this.tabPage2.Controls.Add(this.label45);
-            this.tabPage2.Controls.Add(this.txtmaxlength);
-            this.tabPage2.Controls.Add(this.label42);
-            this.tabPage2.Controls.Add(this.label27);
-            this.tabPage2.Controls.Add(this.label28);
-            this.tabPage2.Controls.Add(this.txtFparent);
-            this.tabPage2.Controls.Add(this.txtVisible);
-            this.tabPage2.Controls.Add(this.txtEnabled);
-            this.tabPage2.Controls.Add(this.label18);
-            this.tabPage2.Controls.Add(this.label16);
-            this.tabPage2.Controls.Add(this.label17);
-            this.tabPage2.Controls.Add(this.label15);
-            this.tabPage2.Controls.Add(this.txtDefaultValue);
-            this.tabPage2.Controls.Add(this.label12);
-            this.tabPage2.Controls.Add(this.label11);
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(5);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage2.Size = new System.Drawing.Size(769, 475);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Thông tin thêm";
+            this.tabThongTinThem.AccessibleDescription = "ADDEDITT00010";
+            this.tabThongTinThem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinThem.Controls.Add(this.label69);
+            this.tabThongTinThem.Controls.Add(this.label67);
+            this.tabThongTinThem.Controls.Add(this.label65);
+            this.tabThongTinThem.Controls.Add(this.label63);
+            this.tabThongTinThem.Controls.Add(this.label61);
+            this.tabThongTinThem.Controls.Add(this.label59);
+            this.tabThongTinThem.Controls.Add(this.label71);
+            this.tabThongTinThem.Controls.Add(this.label57);
+            this.tabThongTinThem.Controls.Add(this.label55);
+            this.tabThongTinThem.Controls.Add(this.label53);
+            this.tabThongTinThem.Controls.Add(this.txtFieldOrder);
+            this.tabThongTinThem.Controls.Add(this.label68);
+            this.tabThongTinThem.Controls.Add(this.txtFieldOrderCt);
+            this.tabThongTinThem.Controls.Add(this.label66);
+            this.tabThongTinThem.Controls.Add(this.txtFieldDisplayCt);
+            this.tabThongTinThem.Controls.Add(this.label64);
+            this.tabThongTinThem.Controls.Add(this.txtFieldValueCt);
+            this.tabThongTinThem.Controls.Add(this.label62);
+            this.tabThongTinThem.Controls.Add(this.txtTableNameCt);
+            this.tabThongTinThem.Controls.Add(this.label60);
+            this.tabThongTinThem.Controls.Add(this.txtFieldDisplay);
+            this.tabThongTinThem.Controls.Add(this.label58);
+            this.tabThongTinThem.Controls.Add(this.txtFieldMa);
+            this.tabThongTinThem.Controls.Add(this.label70);
+            this.tabThongTinThem.Controls.Add(this.txtFieldValue);
+            this.tabThongTinThem.Controls.Add(this.label56);
+            this.tabThongTinThem.Controls.Add(this.txtTableName);
+            this.tabThongTinThem.Controls.Add(this.label43);
+            this.tabThongTinThem.Controls.Add(this.txtMa_dm);
+            this.tabThongTinThem.Controls.Add(this.label54);
+            this.tabThongTinThem.Controls.Add(this.label31);
+            this.tabThongTinThem.Controls.Add(this.txtWidth);
+            this.tabThongTinThem.Controls.Add(this.label32);
+            this.tabThongTinThem.Controls.Add(this.label50);
+            this.tabThongTinThem.Controls.Add(this.label41);
+            this.tabThongTinThem.Controls.Add(this.txtFilterStart);
+            this.tabThongTinThem.Controls.Add(this.label49);
+            this.tabThongTinThem.Controls.Add(this.txtDescriptionE);
+            this.tabThongTinThem.Controls.Add(this.label47);
+            this.tabThongTinThem.Controls.Add(this.txtDescriptionV);
+            this.tabThongTinThem.Controls.Add(this.label45);
+            this.tabThongTinThem.Controls.Add(this.txtmaxlength);
+            this.tabThongTinThem.Controls.Add(this.label42);
+            this.tabThongTinThem.Controls.Add(this.label27);
+            this.tabThongTinThem.Controls.Add(this.label28);
+            this.tabThongTinThem.Controls.Add(this.txtFparent);
+            this.tabThongTinThem.Controls.Add(this.txtVisible);
+            this.tabThongTinThem.Controls.Add(this.txtEnabled);
+            this.tabThongTinThem.Controls.Add(this.label18);
+            this.tabThongTinThem.Controls.Add(this.label16);
+            this.tabThongTinThem.Controls.Add(this.label17);
+            this.tabThongTinThem.Controls.Add(this.label15);
+            this.tabThongTinThem.Controls.Add(this.txtDefaultValue);
+            this.tabThongTinThem.Controls.Add(this.label12);
+            this.tabThongTinThem.Controls.Add(this.label11);
+            this.tabThongTinThem.Location = new System.Drawing.Point(4, 28);
+            this.tabThongTinThem.Margin = new System.Windows.Forms.Padding(5);
+            this.tabThongTinThem.Name = "tabThongTinThem";
+            this.tabThongTinThem.Padding = new System.Windows.Forms.Padding(5);
+            this.tabThongTinThem.Size = new System.Drawing.Size(769, 475);
+            this.tabThongTinThem.TabIndex = 1;
+            this.tabThongTinThem.Text = "Thông tin thêm";
             // 
             // label69
             // 
@@ -1839,23 +1839,23 @@
             this.label11.TabIndex = 2;
             this.label11.Text = "Giá trị mặc định";
             // 
-            // tabPage3
+            // tabThongTinKhac
             // 
-            this.tabPage3.AccessibleDescription = "ADDEDITT00004";
-            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage3.Controls.Add(this.txtF2);
-            this.tabPage3.Controls.Add(this.label20);
-            this.tabPage3.Controls.Add(this.label19);
-            this.tabPage3.Controls.Add(this.label40);
-            this.tabPage3.Controls.Add(this.txtToUpper);
-            this.tabPage3.Controls.Add(this.label39);
-            this.tabPage3.Location = new System.Drawing.Point(4, 28);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(5);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage3.Size = new System.Drawing.Size(769, 475);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Thông tin khác";
+            this.tabThongTinKhac.AccessibleDescription = "ADDEDITT00004";
+            this.tabThongTinKhac.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinKhac.Controls.Add(this.txtF2);
+            this.tabThongTinKhac.Controls.Add(this.label20);
+            this.tabThongTinKhac.Controls.Add(this.label19);
+            this.tabThongTinKhac.Controls.Add(this.label40);
+            this.tabThongTinKhac.Controls.Add(this.txtToUpper);
+            this.tabThongTinKhac.Controls.Add(this.label39);
+            this.tabThongTinKhac.Location = new System.Drawing.Point(4, 28);
+            this.tabThongTinKhac.Margin = new System.Windows.Forms.Padding(5);
+            this.tabThongTinKhac.Name = "tabThongTinKhac";
+            this.tabThongTinKhac.Padding = new System.Windows.Forms.Padding(5);
+            this.tabThongTinKhac.Size = new System.Drawing.Size(769, 475);
+            this.tabThongTinKhac.TabIndex = 2;
+            this.tabThongTinKhac.Text = "Thông tin khác";
             // 
             // txtF2
             // 
@@ -2198,10 +2198,10 @@
             this.v6TabControl1.ResumeLayout(false);
             this.tabThongTinChinh.ResumeLayout(false);
             this.tabThongTinChinh.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.tabThongTinThem.ResumeLayout(false);
+            this.tabThongTinThem.PerformLayout();
+            this.tabThongTinKhac.ResumeLayout(false);
+            this.tabThongTinKhac.PerformLayout();
             this.tabLookupButton.ResumeLayout(false);
             this.tabLookupButton.PerformLayout();
             this.ResumeLayout(false);
@@ -2250,7 +2250,7 @@
         private System.Windows.Forms.Label label37;
         private V6TabControl v6TabControl1;
         private System.Windows.Forms.TabPage tabThongTinChinh;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabThongTinThem;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label28;
         private V6ColorTextBox txtFparent;
@@ -2263,7 +2263,7 @@
         private V6ColorTextBox txtDefaultValue;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabThongTinKhac;
         private System.Windows.Forms.Label label41;
         private V6ColorTextBox txtmaxlength;
         private System.Windows.Forms.Label label42;

@@ -107,7 +107,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtHonNhan = new V6Controls.V6LookupTextBox();
             this.v6Label8 = new V6Controls.V6Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabThongTinBPCV_TTP = new System.Windows.Forms.TabPage();
             this.btnBoSung = new System.Windows.Forms.Button();
             this.tabTuDinhNghia = new System.Windows.Forms.TabPage();
             this.txtGC_TD3 = new V6Controls.V6VvarTextBox();
@@ -157,7 +157,7 @@
             this.panelGioiTinh.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabThongTinBPCV_TTP.SuspendLayout();
             this.tabTuDinhNghia.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -461,7 +461,7 @@
             // v6TabControl1
             // 
             this.v6TabControl1.Controls.Add(this.tabThongTinChinh);
-            this.v6TabControl1.Controls.Add(this.tabPage2);
+            this.v6TabControl1.Controls.Add(this.tabThongTinBPCV_TTP);
             this.v6TabControl1.Controls.Add(this.tabTuDinhNghia);
             this.v6TabControl1.Controls.Add(this.tabThongTinKhac);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
@@ -1452,17 +1452,17 @@
             this.v6Label8.TabIndex = 130;
             this.v6Label8.Text = "Hôn nhân";
             // 
-            // tabPage2
+            // tabThongTinBPCV_TTP
             // 
-            this.tabPage2.AccessibleDescription = "ADDEDITT00012";
-            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage2.Controls.Add(this.btnBoSung);
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(718, 446);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Thông tin bộ phận chức vụ, thông tin phụ";
+            this.tabThongTinBPCV_TTP.AccessibleDescription = "ADDEDITT00012";
+            this.tabThongTinBPCV_TTP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinBPCV_TTP.Controls.Add(this.btnBoSung);
+            this.tabThongTinBPCV_TTP.Location = new System.Drawing.Point(4, 28);
+            this.tabThongTinBPCV_TTP.Name = "tabThongTinBPCV_TTP";
+            this.tabThongTinBPCV_TTP.Padding = new System.Windows.Forms.Padding(3);
+            this.tabThongTinBPCV_TTP.Size = new System.Drawing.Size(718, 446);
+            this.tabThongTinBPCV_TTP.TabIndex = 1;
+            this.tabThongTinBPCV_TTP.Text = "Thông tin bộ phận chức vụ, thông tin phụ";
             // 
             // btnBoSung
             // 
@@ -2192,7 +2192,7 @@
             this.v6TabControl1.ResumeLayout(false);
             this.tabThongTinChinh.ResumeLayout(false);
             this.tabThongTinChinh.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
+            this.tabThongTinBPCV_TTP.ResumeLayout(false);
             this.tabTuDinhNghia.ResumeLayout(false);
             this.tabTuDinhNghia.PerformLayout();
             this.ResumeLayout(false);
@@ -2273,7 +2273,7 @@
         private System.Windows.Forms.Label label4;
         private V6LookupTextBox txtHonNhan;
         private V6Label v6Label8;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabThongTinBPCV_TTP;
         private System.Windows.Forms.TabPage tabTuDinhNghia;
         private System.Windows.Forms.TabPage tabThongTinKhac;
         private V6Controls.V6VvarTextBox txtGC_TD3;

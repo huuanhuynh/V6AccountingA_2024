@@ -88,7 +88,7 @@
             this.v6ColorDateTimePick3 = new V6Controls.V6DateTimeColor();
             this.v6ColorDateTimePick2 = new V6Controls.V6DateTimeColor();
             this.v6ColorDateTimePick1 = new V6Controls.V6DateTimeColor();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabThongTinKhac = new System.Windows.Forms.TabPage();
             this.ptbPHOTOGRAPH = new System.Windows.Forms.PictureBox();
             this.btnXoahinh = new System.Windows.Forms.Button();
             this.btnChonhinh = new System.Windows.Forms.Button();
@@ -114,7 +114,7 @@
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabTuDinhNghia.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.tabThongTinKhac.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbPHOTOGRAPH)).BeginInit();
             this.SuspendLayout();
             // 
@@ -294,7 +294,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.v6TabControl1.Controls.Add(this.tabThongTinChinh);
             this.v6TabControl1.Controls.Add(this.tabTuDinhNghia);
-            this.v6TabControl1.Controls.Add(this.tabPage3);
+            this.v6TabControl1.Controls.Add(this.tabThongTinKhac);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
             this.v6TabControl1.Location = new System.Drawing.Point(0, 150);
@@ -1110,20 +1110,20 @@
             this.v6ColorDateTimePick1.TabIndex = 145;
             this.v6ColorDateTimePick1.Text = "__/__/____";
             // 
-            // tabPage3
+            // tabThongTinKhac
             // 
-            this.tabPage3.AccessibleDescription = "ADDEDITT00004";
-            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage3.Controls.Add(this.ptbPHOTOGRAPH);
-            this.tabPage3.Controls.Add(this.btnXoahinh);
-            this.tabPage3.Controls.Add(this.btnChonhinh);
-            this.tabPage3.Location = new System.Drawing.Point(4, 28);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.tabPage3.Size = new System.Drawing.Size(684, 405);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Thông tin khác";
+            this.tabThongTinKhac.AccessibleDescription = "ADDEDITT00004";
+            this.tabThongTinKhac.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinKhac.Controls.Add(this.ptbPHOTOGRAPH);
+            this.tabThongTinKhac.Controls.Add(this.btnXoahinh);
+            this.tabThongTinKhac.Controls.Add(this.btnChonhinh);
+            this.tabThongTinKhac.Location = new System.Drawing.Point(4, 28);
+            this.tabThongTinKhac.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.tabThongTinKhac.Name = "tabThongTinKhac";
+            this.tabThongTinKhac.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.tabThongTinKhac.Size = new System.Drawing.Size(684, 405);
+            this.tabThongTinKhac.TabIndex = 2;
+            this.tabThongTinKhac.Text = "Thông tin khác";
             // 
             // ptbPHOTOGRAPH
             // 
@@ -1504,7 +1504,7 @@
             this.tabThongTinChinh.PerformLayout();
             this.tabTuDinhNghia.ResumeLayout(false);
             this.tabTuDinhNghia.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
+            this.tabThongTinKhac.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ptbPHOTOGRAPH)).EndInit();
             this.ResumeLayout(false);
 
@@ -1529,7 +1529,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TabPage tabTuDinhNghia;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabThongTinKhac;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;

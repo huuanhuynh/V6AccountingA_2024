@@ -78,12 +78,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             if (errors.Length > 0) throw new Exception(errors);
         }
-
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-            
-        }
-
+        
         private void btnMa_ctnb_Click(object sender, EventArgs e)
         {
             using (PhanQuyen.DanhSachChungTu chungtu = new PhanQuyen.DanhSachChungTu

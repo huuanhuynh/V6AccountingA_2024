@@ -164,7 +164,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label21 = new System.Windows.Forms.Label();
             this.txtMaKH = new V6Controls.V6VvarTextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabDoiTuongKhongApDung = new System.Windows.Forms.TabPage();
             this.btnChonKH5 = new V6Controls.Controls.V6FormButton();
             this.gView5 = new V6Controls.V6ColorDataGridView();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -200,7 +200,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabTuDinhNghia.SuspendLayout();
             this.tabDoiTuongApDung.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gView4)).BeginInit();
-            this.tabPage4.SuspendLayout();
+            this.tabDoiTuongKhongApDung.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gView5)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
@@ -217,7 +217,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6TabControl1.Controls.Add(this.tabThongTinChinh);
             this.v6TabControl1.Controls.Add(this.tabTuDinhNghia);
             this.v6TabControl1.Controls.Add(this.tabDoiTuongApDung);
-            this.v6TabControl1.Controls.Add(this.tabPage4);
+            this.v6TabControl1.Controls.Add(this.tabDoiTuongKhongApDung);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
             this.v6TabControl1.Location = new System.Drawing.Point(3, 3);
@@ -2279,18 +2279,18 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label17.TabIndex = 9;
             this.label17.Text = "Mã khách hàng";
             // 
-            // tabPage4
+            // tabDoiTuongKhongApDung
             // 
-            this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage4.Controls.Add(this.btnChonKH5);
-            this.tabPage4.Controls.Add(this.gView5);
-            this.tabPage4.Controls.Add(this.BtchonExcel5);
-            this.tabPage4.Location = new System.Drawing.Point(4, 28);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(814, 298);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Đối tượng không áp dụng";
+            this.tabDoiTuongKhongApDung.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabDoiTuongKhongApDung.Controls.Add(this.btnChonKH5);
+            this.tabDoiTuongKhongApDung.Controls.Add(this.gView5);
+            this.tabDoiTuongKhongApDung.Controls.Add(this.BtchonExcel5);
+            this.tabDoiTuongKhongApDung.Location = new System.Drawing.Point(4, 28);
+            this.tabDoiTuongKhongApDung.Name = "tabDoiTuongKhongApDung";
+            this.tabDoiTuongKhongApDung.Padding = new System.Windows.Forms.Padding(3);
+            this.tabDoiTuongKhongApDung.Size = new System.Drawing.Size(814, 298);
+            this.tabDoiTuongKhongApDung.TabIndex = 3;
+            this.tabDoiTuongKhongApDung.Text = "Đối tượng không áp dụng";
             // 
             // btnChonKH5
             // 
@@ -2730,7 +2730,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabDoiTuongApDung.ResumeLayout(false);
             this.tabDoiTuongApDung.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gView4)).EndInit();
-            this.tabPage4.ResumeLayout(false);
+            this.tabDoiTuongKhongApDung.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gView5)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabChiTiet.ResumeLayout(false);
@@ -2846,7 +2846,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private System.Windows.Forms.Label label43;
         private V6VvarTextBox TxtLma_kh;
         private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tabDoiTuongKhongApDung;
         private V6ColorDataGridView gView5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;

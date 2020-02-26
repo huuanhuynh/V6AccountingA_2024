@@ -40,7 +40,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblMa_bc = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabCacTuyChon = new System.Windows.Forms.TabPage();
             this.txtEBROWSE1 = new V6Controls.V6ColorTextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.txtVBROWSE1 = new V6Controls.V6ColorTextBox();
@@ -77,11 +77,11 @@
             this.label47 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabThongTinNgamDinh = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             this.txtF_KEYS = new V6Controls.V6ColorTextBox();
             this.groupBox1.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.tabCacTuyChon.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -248,25 +248,25 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Loại BC";
             // 
-            // tabPage3
+            // tabCacTuyChon
             // 
-            this.tabPage3.AccessibleDescription = "ADDEDITT00010";
-            this.tabPage3.AutoScroll = true;
-            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage3.Controls.Add(this.txtEBROWSE1);
-            this.tabPage3.Controls.Add(this.label12);
-            this.tabPage3.Controls.Add(this.txtVBROWSE1);
-            this.tabPage3.Controls.Add(this.label13);
-            this.tabPage3.Controls.Add(this.label11);
-            this.tabPage3.Controls.Add(this.btnNhapXML);
-            this.tabPage3.Controls.Add(this.btnXuatXML);
-            this.tabPage3.Location = new System.Drawing.Point(4, 28);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage3.Size = new System.Drawing.Size(796, 328);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Các tùy chọn";
+            this.tabCacTuyChon.AccessibleDescription = "ADDEDITT00010";
+            this.tabCacTuyChon.AutoScroll = true;
+            this.tabCacTuyChon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabCacTuyChon.Controls.Add(this.txtEBROWSE1);
+            this.tabCacTuyChon.Controls.Add(this.label12);
+            this.tabCacTuyChon.Controls.Add(this.txtVBROWSE1);
+            this.tabCacTuyChon.Controls.Add(this.label13);
+            this.tabCacTuyChon.Controls.Add(this.label11);
+            this.tabCacTuyChon.Controls.Add(this.btnNhapXML);
+            this.tabCacTuyChon.Controls.Add(this.btnXuatXML);
+            this.tabCacTuyChon.Location = new System.Drawing.Point(4, 28);
+            this.tabCacTuyChon.Margin = new System.Windows.Forms.Padding(4);
+            this.tabCacTuyChon.Name = "tabCacTuyChon";
+            this.tabCacTuyChon.Padding = new System.Windows.Forms.Padding(4);
+            this.tabCacTuyChon.Size = new System.Drawing.Size(796, 328);
+            this.tabCacTuyChon.TabIndex = 2;
+            this.tabCacTuyChon.Text = "Các tùy chọn";
             // 
             // txtEBROWSE1
             // 
@@ -807,8 +807,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.v6TabControl1.Controls.Add(this.tabThongTinChinh);
-            this.v6TabControl1.Controls.Add(this.tabPage2);
-            this.v6TabControl1.Controls.Add(this.tabPage3);
+            this.v6TabControl1.Controls.Add(this.tabThongTinNgamDinh);
+            this.v6TabControl1.Controls.Add(this.tabCacTuyChon);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
             this.v6TabControl1.Location = new System.Drawing.Point(0, 110);
@@ -818,18 +818,18 @@
             this.v6TabControl1.Size = new System.Drawing.Size(804, 360);
             this.v6TabControl1.TabIndex = 1;
             // 
-            // tabPage2
+            // tabThongTinNgamDinh
             // 
-            this.tabPage2.AccessibleDescription = "ADDEDITT00009";
-            this.tabPage2.AutoScroll = true;
-            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(796, 328);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Thông tin ngầm định";
+            this.tabThongTinNgamDinh.AccessibleDescription = "ADDEDITT00009";
+            this.tabThongTinNgamDinh.AutoScroll = true;
+            this.tabThongTinNgamDinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinNgamDinh.Location = new System.Drawing.Point(4, 28);
+            this.tabThongTinNgamDinh.Margin = new System.Windows.Forms.Padding(4);
+            this.tabThongTinNgamDinh.Name = "tabThongTinNgamDinh";
+            this.tabThongTinNgamDinh.Padding = new System.Windows.Forms.Padding(4);
+            this.tabThongTinNgamDinh.Size = new System.Drawing.Size(796, 328);
+            this.tabThongTinNgamDinh.TabIndex = 1;
+            this.tabThongTinNgamDinh.Text = "Thông tin ngầm định";
             // 
             // label1
             // 
@@ -874,8 +874,8 @@
             this.Load += new System.EventHandler(this.KhachHangFrom_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.tabCacTuyChon.ResumeLayout(false);
+            this.tabCacTuyChon.PerformLayout();
             this.tabThongTinChinh.ResumeLayout(false);
             this.tabThongTinChinh.PerformLayout();
             this.v6TabControl1.ResumeLayout(false);
@@ -892,10 +892,10 @@
         private V6Controls.V6ColorTextBox Txtten2;
         private V6Controls.V6ColorTextBox TXTTEN;
         private V6VvarTextBox txtMa_bc;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabCacTuyChon;
         private System.Windows.Forms.TabPage tabThongTinChinh;
         private V6Controls.V6TabControl v6TabControl1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabThongTinNgamDinh;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private V6ColorTextBox v6ColorTextBox2;
