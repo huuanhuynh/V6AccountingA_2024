@@ -34,7 +34,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.v6TabControl1 = new V6Controls.V6TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabThongTinChinh = new System.Windows.Forms.TabPage();
             this.txtMaCt = new V6Controls.V6ColorTextBox();
             this.txtSttRec = new V6Controls.V6ColorTextBox();
             this.dateNgayHL = new V6Controls.V6DateTimeColor();
@@ -98,7 +98,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.STT_REC0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabKhac = new System.Windows.Forms.TabPage();
             this.v6TabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tabThongTinChinh.SuspendLayout();
             this.tabTuDinhNghia.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
@@ -109,7 +109,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             this.v6TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6TabControl1.Controls.Add(this.tabPage1);
+            this.v6TabControl1.Controls.Add(this.tabThongTinChinh);
             this.v6TabControl1.Controls.Add(this.tabTuDinhNghia);
             this.v6TabControl1.Controls.Add(this.tabThongTinKhac);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
@@ -121,25 +121,25 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6TabControl1.Size = new System.Drawing.Size(897, 330);
             this.v6TabControl1.TabIndex = 0;
             // 
-            // tabPage1
+            // tabThongTinChinh
             // 
-            this.tabPage1.AccessibleDescription = "ADDEDITT00001";
-            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage1.Controls.Add(this.txtMaCt);
-            this.tabPage1.Controls.Add(this.txtSttRec);
-            this.tabPage1.Controls.Add(this.dateNgayHL);
-            this.tabPage1.Controls.Add(this.lblMaBPHT);
-            this.tabPage1.Controls.Add(this.txtMaBpht);
-            this.tabPage1.Controls.Add(this.lblMaSP);
-            this.tabPage1.Controls.Add(this.lblNgayHieuLuc);
-            this.tabPage1.Controls.Add(this.txtMaSP);
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(5);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage1.Size = new System.Drawing.Size(889, 298);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Thông tin chính";
+            this.tabThongTinChinh.AccessibleDescription = "ADDEDITT00001";
+            this.tabThongTinChinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinChinh.Controls.Add(this.txtMaCt);
+            this.tabThongTinChinh.Controls.Add(this.txtSttRec);
+            this.tabThongTinChinh.Controls.Add(this.dateNgayHL);
+            this.tabThongTinChinh.Controls.Add(this.lblMaBPHT);
+            this.tabThongTinChinh.Controls.Add(this.txtMaBpht);
+            this.tabThongTinChinh.Controls.Add(this.lblMaSP);
+            this.tabThongTinChinh.Controls.Add(this.lblNgayHieuLuc);
+            this.tabThongTinChinh.Controls.Add(this.txtMaSP);
+            this.tabThongTinChinh.Location = new System.Drawing.Point(4, 28);
+            this.tabThongTinChinh.Margin = new System.Windows.Forms.Padding(5);
+            this.tabThongTinChinh.Name = "tabThongTinChinh";
+            this.tabThongTinChinh.Padding = new System.Windows.Forms.Padding(5);
+            this.tabThongTinChinh.Size = new System.Drawing.Size(889, 298);
+            this.tabThongTinChinh.TabIndex = 0;
+            this.tabThongTinChinh.Text = "Thông tin chính";
             // 
             // txtMaCt
             // 
@@ -1235,8 +1235,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.Size = new System.Drawing.Size(904, 568);
             this.Load += new System.EventHandler(this.SoDu2AddEditControl0_Load);
             this.v6TabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.tabThongTinChinh.ResumeLayout(false);
+            this.tabThongTinChinh.PerformLayout();
             this.tabTuDinhNghia.ResumeLayout(false);
             this.tabTuDinhNghia.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -1253,7 +1253,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private System.Windows.Forms.TabPage tabThongTinKhac;
         private V6VvarTextBox txtMaBpht;
         private System.Windows.Forms.Label lblMaBPHT;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabThongTinChinh;
         private V6VvarTextBox txtMaSP;
         private System.Windows.Forms.Label lblMaSP;
         private System.Windows.Forms.Label lblNgayHieuLuc;

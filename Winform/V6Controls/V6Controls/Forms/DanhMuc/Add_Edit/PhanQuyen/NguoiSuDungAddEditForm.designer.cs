@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.v6TabControl1 = new V6Controls.V6TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabThongTinChinh = new System.Windows.Forms.TabPage();
             this.txtUser_pre = new V6Controls.V6VvarTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.cboInherit = new V6Controls.V6ComboBox();
@@ -83,7 +83,7 @@
             this.lblPassword1 = new System.Windows.Forms.Label();
             this.lblUserName = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tabThongTinChinh.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -93,7 +93,7 @@
             this.v6TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6TabControl1.Controls.Add(this.tabPage1);
+            this.v6TabControl1.Controls.Add(this.tabThongTinChinh);
             this.v6TabControl1.Controls.Add(this.tabPage2);
             this.v6TabControl1.Controls.Add(this.tabPage3);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
@@ -105,30 +105,30 @@
             this.v6TabControl1.Size = new System.Drawing.Size(755, 322);
             this.v6TabControl1.TabIndex = 1;
             // 
-            // tabPage1
+            // tabThongTinChinh
             // 
-            this.tabPage1.AccessibleDescription = "ADDEDITT00001";
-            this.tabPage1.AutoScroll = true;
-            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage1.Controls.Add(this.txtUser_pre);
-            this.tabPage1.Controls.Add(this.label7);
-            this.tabPage1.Controls.Add(this.cboInherit);
-            this.tabPage1.Controls.Add(this.chkUser_sale);
-            this.tabPage1.Controls.Add(this.chkUser_acc);
-            this.tabPage1.Controls.Add(this.chkUser_inv);
-            this.tabPage1.Controls.Add(this.label11);
-            this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.cboLevel);
-            this.tabPage1.Controls.Add(this.chkIs_admin);
-            this.tabPage1.Controls.Add(this.chkIsVadmin);
-            this.tabPage1.Controls.Add(this.txtInherit_type);
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(747, 290);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Thông tin chính";
+            this.tabThongTinChinh.AccessibleDescription = "ADDEDITT00001";
+            this.tabThongTinChinh.AutoScroll = true;
+            this.tabThongTinChinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinChinh.Controls.Add(this.txtUser_pre);
+            this.tabThongTinChinh.Controls.Add(this.label7);
+            this.tabThongTinChinh.Controls.Add(this.cboInherit);
+            this.tabThongTinChinh.Controls.Add(this.chkUser_sale);
+            this.tabThongTinChinh.Controls.Add(this.chkUser_acc);
+            this.tabThongTinChinh.Controls.Add(this.chkUser_inv);
+            this.tabThongTinChinh.Controls.Add(this.label11);
+            this.tabThongTinChinh.Controls.Add(this.label6);
+            this.tabThongTinChinh.Controls.Add(this.cboLevel);
+            this.tabThongTinChinh.Controls.Add(this.chkIs_admin);
+            this.tabThongTinChinh.Controls.Add(this.chkIsVadmin);
+            this.tabThongTinChinh.Controls.Add(this.txtInherit_type);
+            this.tabThongTinChinh.Location = new System.Drawing.Point(4, 28);
+            this.tabThongTinChinh.Margin = new System.Windows.Forms.Padding(4);
+            this.tabThongTinChinh.Name = "tabThongTinChinh";
+            this.tabThongTinChinh.Padding = new System.Windows.Forms.Padding(4);
+            this.tabThongTinChinh.Size = new System.Drawing.Size(747, 290);
+            this.tabThongTinChinh.TabIndex = 0;
+            this.tabThongTinChinh.Text = "Thông tin chính";
             // 
             // txtUser_pre
             // 
@@ -881,8 +881,8 @@
             this.Size = new System.Drawing.Size(763, 564);
             this.Load += new System.EventHandler(this.Form_Load);
             this.v6TabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.tabThongTinChinh.ResumeLayout(false);
+            this.tabThongTinChinh.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -898,7 +898,7 @@
         private System.Windows.Forms.Label lblPassword1;
         private System.Windows.Forms.Label lblUserName;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabThongTinChinh;
         private V6Controls.V6TabControl v6TabControl1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label4;

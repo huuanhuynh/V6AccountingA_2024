@@ -94,8 +94,8 @@
             this.matd1e = new V6Controls.V6ColorTextBox();
             this.matd1v = new V6Controls.V6ColorTextBox();
             this.v6TabControl1 = new V6Controls.V6TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabThongTinDinhNghia = new System.Windows.Forms.TabPage();
+            this.tabThongTinDinhNghiaMoRong = new System.Windows.Forms.TabPage();
             this.ms6u = new V6Controls.V6CheckBox();
             this.ms9u = new V6Controls.V6CheckBox();
             this.ms3u = new V6Controls.V6CheckBox();
@@ -148,8 +148,8 @@
             this.btnHuy = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.v6TabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabThongTinDinhNghia.SuspendLayout();
+            this.tabThongTinDinhNghiaMoRong.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -1111,8 +1111,8 @@
             // 
             // v6TabControl1
             // 
-            this.v6TabControl1.Controls.Add(this.tabPage1);
-            this.v6TabControl1.Controls.Add(this.tabPage2);
+            this.v6TabControl1.Controls.Add(this.tabThongTinDinhNghia);
+            this.v6TabControl1.Controls.Add(this.tabThongTinDinhNghiaMoRong);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
             this.v6TabControl1.Location = new System.Drawing.Point(1, 0);
@@ -1121,76 +1121,76 @@
             this.v6TabControl1.Size = new System.Drawing.Size(675, 365);
             this.v6TabControl1.TabIndex = 0;
             // 
-            // tabPage1
+            // tabThongTinDinhNghia
             // 
-            this.tabPage1.AccessibleDescription = "ADDEDITT00016";
-            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage1.Controls.Add(this.panel1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(667, 333);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Thông tin định nghĩa";
+            this.tabThongTinDinhNghia.AccessibleDescription = "ADDEDITT00016";
+            this.tabThongTinDinhNghia.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinDinhNghia.Controls.Add(this.panel1);
+            this.tabThongTinDinhNghia.Location = new System.Drawing.Point(4, 28);
+            this.tabThongTinDinhNghia.Name = "tabThongTinDinhNghia";
+            this.tabThongTinDinhNghia.Padding = new System.Windows.Forms.Padding(3);
+            this.tabThongTinDinhNghia.Size = new System.Drawing.Size(667, 333);
+            this.tabThongTinDinhNghia.TabIndex = 0;
+            this.tabThongTinDinhNghia.Text = "Thông tin định nghĩa";
             // 
-            // tabPage2
+            // tabThongTinDinhNghiaMoRong
             // 
-            this.tabPage2.AccessibleDescription = "ADDEDITT00017";
-            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage2.Controls.Add(this.ms6u);
-            this.tabPage2.Controls.Add(this.ms9u);
-            this.tabPage2.Controls.Add(this.ms3u);
-            this.tabPage2.Controls.Add(this.ms5u);
-            this.tabPage2.Controls.Add(this.ms8u);
-            this.tabPage2.Controls.Add(this.ms2u);
-            this.tabPage2.Controls.Add(this.ms4u);
-            this.tabPage2.Controls.Add(this.ms7u);
-            this.tabPage2.Controls.Add(this.ms1u);
-            this.tabPage2.Controls.Add(this.label16);
-            this.tabPage2.Controls.Add(this.label17);
-            this.tabPage2.Controls.Add(this.label18);
-            this.tabPage2.Controls.Add(this.label19);
-            this.tabPage2.Controls.Add(this.label20);
-            this.tabPage2.Controls.Add(this.label21);
-            this.tabPage2.Controls.Add(this.label22);
-            this.tabPage2.Controls.Add(this.label23);
-            this.tabPage2.Controls.Add(this.label24);
-            this.tabPage2.Controls.Add(this.label25);
-            this.tabPage2.Controls.Add(this.label26);
-            this.tabPage2.Controls.Add(this.label27);
-            this.tabPage2.Controls.Add(this.ms6e);
-            this.tabPage2.Controls.Add(this.ms9e);
-            this.tabPage2.Controls.Add(this.ms3e);
-            this.tabPage2.Controls.Add(this.ms6v);
-            this.tabPage2.Controls.Add(this.ms9v);
-            this.tabPage2.Controls.Add(this.ms3v);
-            this.tabPage2.Controls.Add(this.ms5e);
-            this.tabPage2.Controls.Add(this.ms8e);
-            this.tabPage2.Controls.Add(this.ms2e);
-            this.tabPage2.Controls.Add(this.ms5v);
-            this.tabPage2.Controls.Add(this.ms8v);
-            this.tabPage2.Controls.Add(this.ms2v);
-            this.tabPage2.Controls.Add(this.ms4e);
-            this.tabPage2.Controls.Add(this.ms4v);
-            this.tabPage2.Controls.Add(this.ms7e);
-            this.tabPage2.Controls.Add(this.ms7v);
-            this.tabPage2.Controls.Add(this.ms5f);
-            this.tabPage2.Controls.Add(this.ms7f);
-            this.tabPage2.Controls.Add(this.ms9f);
-            this.tabPage2.Controls.Add(this.ms2f);
-            this.tabPage2.Controls.Add(this.ms4f);
-            this.tabPage2.Controls.Add(this.ms3f);
-            this.tabPage2.Controls.Add(this.ms6f);
-            this.tabPage2.Controls.Add(this.ms8f);
-            this.tabPage2.Controls.Add(this.ms1f);
-            this.tabPage2.Controls.Add(this.ms1e);
-            this.tabPage2.Controls.Add(this.ms1v);
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(667, 333);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Thông tin định nghĩa mở rộng";
+            this.tabThongTinDinhNghiaMoRong.AccessibleDescription = "ADDEDITT00017";
+            this.tabThongTinDinhNghiaMoRong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms6u);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms9u);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms3u);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms5u);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms8u);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms2u);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms4u);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms7u);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms1u);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.label16);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.label17);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.label18);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.label19);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.label20);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.label21);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.label22);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.label23);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.label24);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.label25);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.label26);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.label27);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms6e);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms9e);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms3e);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms6v);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms9v);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms3v);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms5e);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms8e);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms2e);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms5v);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms8v);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms2v);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms4e);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms4v);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms7e);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms7v);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms5f);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms7f);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms9f);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms2f);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms4f);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms3f);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms6f);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms8f);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms1f);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms1e);
+            this.tabThongTinDinhNghiaMoRong.Controls.Add(this.ms1v);
+            this.tabThongTinDinhNghiaMoRong.Location = new System.Drawing.Point(4, 28);
+            this.tabThongTinDinhNghiaMoRong.Name = "tabThongTinDinhNghiaMoRong";
+            this.tabThongTinDinhNghiaMoRong.Padding = new System.Windows.Forms.Padding(3);
+            this.tabThongTinDinhNghiaMoRong.Size = new System.Drawing.Size(667, 333);
+            this.tabThongTinDinhNghiaMoRong.TabIndex = 1;
+            this.tabThongTinDinhNghiaMoRong.Text = "Thông tin định nghĩa mở rộng";
             // 
             // ms6u
             // 
@@ -1905,10 +1905,10 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.v6TabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.tabThongTinDinhNghia.ResumeLayout(false);
+            this.tabThongTinDinhNghia.PerformLayout();
+            this.tabThongTinDinhNghiaMoRong.ResumeLayout(false);
+            this.tabThongTinDinhNghiaMoRong.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1980,8 +1980,8 @@
         private V6ColorTextBox ngaytd2f;
         private V6ColorTextBox matd1f;
         private V6Controls.V6TabControl v6TabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabThongTinDinhNghia;
+        private System.Windows.Forms.TabPage tabThongTinDinhNghiaMoRong;
         private V6CheckBox ms6u;
         private V6CheckBox ms9u;
         private V6CheckBox ms3u;

@@ -1,15 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V6ThuePostVNPT_HCM", "V6ThuePost\V6ThuePostVNPT_HCM.csproj", "{0EB14E7F-1568-40B0-BF3D-6611870C31C3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V6ThuePostXmlApi", "ApiConnect\V6ThuePostXmlApi.csproj", "{ABC35001-3755-4AFF-88D6-B48598BBC651}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V6Tools", "..\..\..\..\..\Git\MicrosoftSource\Framework35\Winform\V6Tools\V6Tools\V6Tools.csproj", "{4F797E67-948D-4EEC-ACD7-758028E9166F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spy001", "..\..\..\UltrasoundM1SetupSolution\spy001\Spy001.csproj", "{12E9180D-A454-4F5B-B95A-A8AE495A33B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,20 +27,6 @@ Global
 		{ABC35001-3755-4AFF-88D6-B48598BBC651}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABC35001-3755-4AFF-88D6-B48598BBC651}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ABC35001-3755-4AFF-88D6-B48598BBC651}.Release|x86.ActiveCfg = Release|Any CPU
-		{4F797E67-948D-4EEC-ACD7-758028E9166F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F797E67-948D-4EEC-ACD7-758028E9166F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F797E67-948D-4EEC-ACD7-758028E9166F}.Debug|x86.ActiveCfg = Debug|x86
-		{4F797E67-948D-4EEC-ACD7-758028E9166F}.Debug|x86.Build.0 = Debug|x86
-		{4F797E67-948D-4EEC-ACD7-758028E9166F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F797E67-948D-4EEC-ACD7-758028E9166F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4F797E67-948D-4EEC-ACD7-758028E9166F}.Release|x86.ActiveCfg = Release|x86
-		{4F797E67-948D-4EEC-ACD7-758028E9166F}.Release|x86.Build.0 = Release|x86
-		{12E9180D-A454-4F5B-B95A-A8AE495A33B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{12E9180D-A454-4F5B-B95A-A8AE495A33B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{12E9180D-A454-4F5B-B95A-A8AE495A33B5}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{12E9180D-A454-4F5B-B95A-A8AE495A33B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{12E9180D-A454-4F5B-B95A-A8AE495A33B5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{12E9180D-A454-4F5B-B95A-A8AE495A33B5}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

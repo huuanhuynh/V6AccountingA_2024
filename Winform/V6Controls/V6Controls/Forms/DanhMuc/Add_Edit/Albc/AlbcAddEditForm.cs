@@ -444,7 +444,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
 
                 DataSet exportDataSet = new DataSet("ALBCEXCELFORMAT");
                 DataTable dataTable = new DataTable("ExcelConfig");
-                IDictionary<string, object> data = V6ControlFormHelper.GetFormDataDictionary(tabPage1);
+                IDictionary<string, object> data = V6ControlFormHelper.GetFormDataDictionary(tabDinhDangXemVaExcel);
                 //Bỏ qua một số dữ liệu
                 if (data.ContainsKey("EXTRA_PARA")) data.Remove("EXTRA_PARA");
                 if (data.ContainsKey("MMETHOD")) data.Remove("MMETHOD");
@@ -478,7 +478,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                     if (data.ContainsKey("EXTRA_PARA")) data.Remove("EXTRA_PARA");
                     if (data.ContainsKey("MMETHOD")) data.Remove("MMETHOD");
                     //Gán lên form.
-                    V6ControlFormHelper.SetSomeDataDictionary(tabPage1, data);
+                    V6ControlFormHelper.SetSomeDataDictionary(tabDinhDangXemVaExcel, data);
                 }
             }
             catch (Exception ex)

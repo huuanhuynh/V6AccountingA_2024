@@ -314,7 +314,7 @@
             // 
             // label15
             // 
-            this.label15.AccessibleDescription = "status";
+            this.label15.AccessibleDescription = "ADDEDITL00022";
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(5, 300);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -325,7 +325,7 @@
             // 
             // label12
             // 
-            this.label12.AccessibleDescription = "email";
+            this.label12.AccessibleDescription = "ADDEDITL00018";
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(5, 219);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -336,7 +336,7 @@
             // 
             // label14
             // 
-            this.label14.AccessibleDescription = "ngan_hang";
+            this.label14.AccessibleDescription = "ADDEDITL00020";
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(5, 271);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -347,7 +347,7 @@
             // 
             // label11
             // 
-            this.label11.AccessibleDescription = "fax";
+            this.label11.AccessibleDescription = "ADDEDITL00017";
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(5, 193);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -358,7 +358,7 @@
             // 
             // label9
             // 
-            this.label9.AccessibleDescription = "nh_kh3";
+            this.label9.AccessibleDescription = "ADDEDITL00013";
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(5, 141);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -369,7 +369,7 @@
             // 
             // label7
             // 
-            this.label7.AccessibleDescription = "nh_kh1";
+            this.label7.AccessibleDescription = "ADDEDITL00011";
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(5, 89);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -380,7 +380,7 @@
             // 
             // label5
             // 
-            this.label5.AccessibleDescription = "doi_tac";
+            this.label5.AccessibleDescription = "ADDEDITL00007";
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(5, 37);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -391,7 +391,7 @@
             // 
             // label13
             // 
-            this.label13.AccessibleDescription = "tknh";
+            this.label13.AccessibleDescription = "ADDEDITL00019";
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(5, 245);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -402,7 +402,7 @@
             // 
             // label10
             // 
-            this.label10.AccessibleDescription = "so_dien_thoai";
+            this.label10.AccessibleDescription = "ADDEDITL00010";
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(5, 167);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -413,7 +413,7 @@
             // 
             // label8
             // 
-            this.label8.AccessibleDescription = "nh_kh2";
+            this.label8.AccessibleDescription = "ADDEDITL00012";
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(5, 115);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -424,7 +424,7 @@
             // 
             // label6
             // 
-            this.label6.AccessibleDescription = "ma_so_thue";
+            this.label6.AccessibleDescription = "ADDEDITL00008";
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(5, 63);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -435,7 +435,7 @@
             // 
             // label4
             // 
-            this.label4.AccessibleDescription = "dia_chi";
+            this.label4.AccessibleDescription = "ADDEDITL00006";
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(5, 11);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1562,7 +1562,7 @@
             // 
             // lblTenKH2
             // 
-            this.lblTenKH2.AccessibleDescription = "ten_kh2";
+            this.lblTenKH2.AccessibleDescription = "ADDEDITL00039";
             this.lblTenKH2.AutoSize = true;
             this.lblTenKH2.Location = new System.Drawing.Point(11, 72);
             this.lblTenKH2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1573,7 +1573,7 @@
             // 
             // lblTenKH
             // 
-            this.lblTenKH.AccessibleDescription = "ten_kh";
+            this.lblTenKH.AccessibleDescription = "ADDEDITL00003";
             this.lblTenKH.AutoSize = true;
             this.lblTenKH.Location = new System.Drawing.Point(11, 46);
             this.lblTenKH.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -1584,7 +1584,7 @@
             // 
             // lblMaKH
             // 
-            this.lblMaKH.AccessibleDescription = "ma_kh";
+            this.lblMaKH.AccessibleDescription = "ADDEDITL00002";
             this.lblMaKH.AutoSize = true;
             this.lblMaKH.Location = new System.Drawing.Point(11, 20);
             this.lblMaKH.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);

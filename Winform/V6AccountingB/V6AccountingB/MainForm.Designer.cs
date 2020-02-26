@@ -135,7 +135,6 @@ namespace V6AccountingB
             // 
             this.menuMain.BackColor = System.Drawing.SystemColors.Highlight;
             this.menuMain.ButtonHeight = 30;
-            menuButton1.AccessibleDescription = "tien_mat";
             menuButton1.CodeForm = "";
             menuButton1.Enabled = true;
             menuButton1.Exe = "";

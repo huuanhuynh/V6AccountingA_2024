@@ -81,7 +81,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabDinhDangXemVaExcel = new System.Windows.Forms.TabPage();
             this.btnGRDS_V2 = new System.Windows.Forms.Button();
             this.btnGRDS_V1 = new System.Windows.Forms.Button();
             this.btnNoSum2 = new System.Windows.Forms.Button();
@@ -94,7 +94,7 @@
             this.lblXml = new System.Windows.Forms.Label();
             this.v6ColorTextBox16 = new V6Controls.V6ColorTextBox();
             this.label47 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabDinhDangMauVaMoRong = new System.Windows.Forms.TabPage();
             this.TxtSTT13 = new V6Controls.V6NumberTextBox();
             this.lblFrozen = new System.Windows.Forms.Label();
             this.lblThongTinThem = new System.Windows.Forms.Label();
@@ -144,8 +144,8 @@
             this.txtRPT_DIR = new V6Controls.V6ColorTextBox();
             this.lblRPT_DIR = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabDinhDangXemVaExcel.SuspendLayout();
+            this.tabDinhDangMauVaMoRong.SuspendLayout();
             this.grbSum.SuspendLayout();
             this.grbBold.SuspendLayout();
             this.SuspendLayout();
@@ -831,8 +831,8 @@
             // 
             // v6TabControl1
             // 
-            this.v6TabControl1.Controls.Add(this.tabPage1);
-            this.v6TabControl1.Controls.Add(this.tabPage2);
+            this.v6TabControl1.Controls.Add(this.tabDinhDangXemVaExcel);
+            this.v6TabControl1.Controls.Add(this.tabDinhDangMauVaMoRong);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
             this.v6TabControl1.Location = new System.Drawing.Point(3, 184);
@@ -841,50 +841,50 @@
             this.v6TabControl1.Size = new System.Drawing.Size(755, 416);
             this.v6TabControl1.TabIndex = 37;
             // 
-            // tabPage1
+            // tabDinhDangXemVaExcel
             // 
-            this.tabPage1.AccessibleDescription = "ADDEDITT00019";
-            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage1.Controls.Add(this.btnGRDS_V2);
-            this.tabPage1.Controls.Add(this.btnGRDS_V1);
-            this.tabPage1.Controls.Add(this.btnNoSum2);
-            this.tabPage1.Controls.Add(this.btnNoSum1);
-            this.tabPage1.Controls.Add(this.btnEXCEL1);
-            this.tabPage1.Controls.Add(this.btnNhapXML);
-            this.tabPage1.Controls.Add(this.btnXuatXML);
-            this.tabPage1.Controls.Add(this.btnEditXml);
-            this.tabPage1.Controls.Add(this.txtDmethod);
-            this.tabPage1.Controls.Add(this.lblXml);
-            this.tabPage1.Controls.Add(this.v6ColorTextBox16);
-            this.tabPage1.Controls.Add(this.label47);
-            this.tabPage1.Controls.Add(this.txtExcel1);
-            this.tabPage1.Controls.Add(this.txtShowFields1);
-            this.tabPage1.Controls.Add(this.txtFormats1);
-            this.tabPage1.Controls.Add(this.txtHeaderV1);
-            this.tabPage1.Controls.Add(this.txtHeaderE1);
-            this.tabPage1.Controls.Add(this.txtNoSum1);
-            this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.label9);
-            this.tabPage1.Controls.Add(this.label10);
-            this.tabPage1.Controls.Add(this.label11);
-            this.tabPage1.Controls.Add(this.label12);
-            this.tabPage1.Controls.Add(this.label18);
-            this.tabPage1.Controls.Add(this.txtShowFields2);
-            this.tabPage1.Controls.Add(this.txtFormats2);
-            this.tabPage1.Controls.Add(this.txtHeaderV2);
-            this.tabPage1.Controls.Add(this.txtNoSum2);
-            this.tabPage1.Controls.Add(this.txtHeaderE2);
-            this.tabPage1.Controls.Add(this.label17);
-            this.tabPage1.Controls.Add(this.label14);
-            this.tabPage1.Controls.Add(this.label13);
-            this.tabPage1.Controls.Add(this.label15);
-            this.tabPage1.Controls.Add(this.label16);
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(747, 384);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Định dạng xem và Excel";
+            this.tabDinhDangXemVaExcel.AccessibleDescription = "ADDEDITT00019";
+            this.tabDinhDangXemVaExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabDinhDangXemVaExcel.Controls.Add(this.btnGRDS_V2);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.btnGRDS_V1);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.btnNoSum2);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.btnNoSum1);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.btnEXCEL1);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.btnNhapXML);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.btnXuatXML);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.btnEditXml);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.txtDmethod);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.lblXml);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.v6ColorTextBox16);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.label47);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.txtExcel1);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.txtShowFields1);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.txtFormats1);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.txtHeaderV1);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.txtHeaderE1);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.txtNoSum1);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.label6);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.label9);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.label10);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.label11);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.label12);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.label18);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.txtShowFields2);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.txtFormats2);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.txtHeaderV2);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.txtNoSum2);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.txtHeaderE2);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.label17);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.label14);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.label13);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.label15);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.label16);
+            this.tabDinhDangXemVaExcel.Location = new System.Drawing.Point(4, 28);
+            this.tabDinhDangXemVaExcel.Name = "tabDinhDangXemVaExcel";
+            this.tabDinhDangXemVaExcel.Padding = new System.Windows.Forms.Padding(3);
+            this.tabDinhDangXemVaExcel.Size = new System.Drawing.Size(747, 384);
+            this.tabDinhDangXemVaExcel.TabIndex = 0;
+            this.tabDinhDangXemVaExcel.Text = "Định dạng xem và Excel";
             // 
             // btnGRDS_V2
             // 
@@ -1069,45 +1069,45 @@
             this.label47.TabIndex = 29;
             this.label47.Text = "EXTRA_PARA";
             // 
-            // tabPage2
+            // tabDinhDangMauVaMoRong
             // 
-            this.tabPage2.AccessibleDescription = "ADDEDITT00020";
-            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage2.Controls.Add(this.TxtSTT13);
-            this.tabPage2.Controls.Add(this.lblFrozen);
-            this.tabPage2.Controls.Add(this.lblThongTinThem);
-            this.tabPage2.Controls.Add(this.txtExtraInfo);
-            this.tabPage2.Controls.Add(this.grbSum);
-            this.tabPage2.Controls.Add(this.grbBold);
-            this.tabPage2.Controls.Add(this.txtSoLien);
-            this.tabPage2.Controls.Add(this.label32);
-            this.tabPage2.Controls.Add(this.numRowMax);
-            this.tabPage2.Controls.Add(this.lblRowMax);
-            this.tabPage2.Controls.Add(this.numDropMax);
-            this.tabPage2.Controls.Add(this.label30);
-            this.tabPage2.Controls.Add(this.v6NumberTextBox1);
-            this.tabPage2.Controls.Add(this.label28);
-            this.tabPage2.Controls.Add(this.txtFfixColumn);
-            this.tabPage2.Controls.Add(this.txtFstart);
-            this.tabPage2.Controls.Add(this.cboColorList);
-            this.tabPage2.Controls.Add(this.txtFieldMax);
-            this.tabPage2.Controls.Add(this.txtFilter);
-            this.tabPage2.Controls.Add(this.cboColor);
-            this.tabPage2.Controls.Add(this.label31);
-            this.tabPage2.Controls.Add(this.chkBold);
-            this.tabPage2.Controls.Add(this.label27);
-            this.tabPage2.Controls.Add(this.label25);
-            this.tabPage2.Controls.Add(this.label21);
-            this.tabPage2.Controls.Add(this.label26);
-            this.tabPage2.Controls.Add(this.label24);
-            this.tabPage2.Controls.Add(this.label22);
-            this.tabPage2.Controls.Add(this.lblTenMau);
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(747, 384);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Định dạng màu và mở rộng";
+            this.tabDinhDangMauVaMoRong.AccessibleDescription = "ADDEDITT00020";
+            this.tabDinhDangMauVaMoRong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.TxtSTT13);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.lblFrozen);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.lblThongTinThem);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.txtExtraInfo);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.grbSum);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.grbBold);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.txtSoLien);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.label32);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.numRowMax);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.lblRowMax);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.numDropMax);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.label30);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.v6NumberTextBox1);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.label28);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.txtFfixColumn);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.txtFstart);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.cboColorList);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.txtFieldMax);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.txtFilter);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.cboColor);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.label31);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.chkBold);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.label27);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.label25);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.label21);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.label26);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.label24);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.label22);
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.lblTenMau);
+            this.tabDinhDangMauVaMoRong.Location = new System.Drawing.Point(4, 28);
+            this.tabDinhDangMauVaMoRong.Name = "tabDinhDangMauVaMoRong";
+            this.tabDinhDangMauVaMoRong.Padding = new System.Windows.Forms.Padding(3);
+            this.tabDinhDangMauVaMoRong.Size = new System.Drawing.Size(747, 384);
+            this.tabDinhDangMauVaMoRong.TabIndex = 1;
+            this.tabDinhDangMauVaMoRong.Text = "Định dạng màu và mở rộng";
             // 
             // TxtSTT13
             // 
@@ -1841,10 +1841,10 @@
             this.Size = new System.Drawing.Size(762, 603);
             this.Load += new System.EventHandler(this.AlbcAddEditForm_Load);
             this.v6TabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.tabDinhDangXemVaExcel.ResumeLayout(false);
+            this.tabDinhDangXemVaExcel.PerformLayout();
+            this.tabDinhDangMauVaMoRong.ResumeLayout(false);
+            this.tabDinhDangMauVaMoRong.PerformLayout();
             this.grbSum.ResumeLayout(false);
             this.grbSum.PerformLayout();
             this.grbBold.ResumeLayout(false);
@@ -1908,8 +1908,8 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label18;
         private V6Controls.V6TabControl v6TabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabDinhDangXemVaExcel;
+        private System.Windows.Forms.TabPage tabDinhDangMauVaMoRong;
         private V6ColorTextBox txtFieldV;
         private V6ColorTextBox txtValueV;
         private System.Windows.Forms.Label label19;

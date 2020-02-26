@@ -34,7 +34,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.v6TabControl1 = new V6Controls.V6TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabThongTinChinh = new System.Windows.Forms.TabPage();
             this.chkInherit_ch = new V6Controls.V6CheckBox();
             this.txtRightUser = new System.Windows.Forms.RichTextBox();
             this.btnPhanQuyenUser = new System.Windows.Forms.Button();
@@ -119,7 +119,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.STT_REC0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabKhac = new System.Windows.Forms.TabPage();
             this.v6TabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tabThongTinChinh.SuspendLayout();
             this.tabTuDinhNghia.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
@@ -130,7 +130,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             this.v6TabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6TabControl1.Controls.Add(this.tabPage1);
+            this.v6TabControl1.Controls.Add(this.tabThongTinChinh);
             this.v6TabControl1.Controls.Add(this.tabTuDinhNghia);
             this.v6TabControl1.Controls.Add(this.tabThongTinKhac);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
@@ -142,46 +142,46 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6TabControl1.Size = new System.Drawing.Size(889, 330);
             this.v6TabControl1.TabIndex = 0;
             // 
-            // tabPage1
+            // tabThongTinChinh
             // 
-            this.tabPage1.AccessibleDescription = "ADDEDITT00001";
-            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage1.Controls.Add(this.chkInherit_ch);
-            this.tabPage1.Controls.Add(this.txtRightUser);
-            this.tabPage1.Controls.Add(this.btnPhanQuyenUser);
-            this.tabPage1.Controls.Add(this.txtDefaultE);
-            this.tabPage1.Controls.Add(this.txtDefaultV);
-            this.tabPage1.Controls.Add(this.txtTag);
-            this.tabPage1.Controls.Add(this.txtValueName);
-            this.tabPage1.Controls.Add(this.txtMaDm);
-            this.tabPage1.Controls.Add(this.txtMaCt);
-            this.tabPage1.Controls.Add(this.txtSttRec);
-            this.tabPage1.Controls.Add(this.txtNhom);
-            this.tabPage1.Controls.Add(this.dateNgayHL);
-            this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.lblLoai);
-            this.tabPage1.Controls.Add(this.v6VvarTextBox1);
-            this.tabPage1.Controls.Add(this.txtMaCtMe);
-            this.tabPage1.Controls.Add(this.txtLoai);
-            this.tabPage1.Controls.Add(this.lblNhom);
-            this.tabPage1.Controls.Add(this.label7);
-            this.tabPage1.Controls.Add(this.txtTagName);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.label9);
-            this.tabPage1.Controls.Add(this.label8);
-            this.tabPage1.Controls.Add(this.TxtDu_co00);
-            this.tabPage1.Controls.Add(this.lblMaCtMe);
-            this.tabPage1.Controls.Add(this.label10);
-            this.tabPage1.Controls.Add(this.label11);
-            this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(5);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(5);
-            this.tabPage1.Size = new System.Drawing.Size(881, 298);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Thông tin chính";
+            this.tabThongTinChinh.AccessibleDescription = "ADDEDITT00001";
+            this.tabThongTinChinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinChinh.Controls.Add(this.chkInherit_ch);
+            this.tabThongTinChinh.Controls.Add(this.txtRightUser);
+            this.tabThongTinChinh.Controls.Add(this.btnPhanQuyenUser);
+            this.tabThongTinChinh.Controls.Add(this.txtDefaultE);
+            this.tabThongTinChinh.Controls.Add(this.txtDefaultV);
+            this.tabThongTinChinh.Controls.Add(this.txtTag);
+            this.tabThongTinChinh.Controls.Add(this.txtValueName);
+            this.tabThongTinChinh.Controls.Add(this.txtMaDm);
+            this.tabThongTinChinh.Controls.Add(this.txtMaCt);
+            this.tabThongTinChinh.Controls.Add(this.txtSttRec);
+            this.tabThongTinChinh.Controls.Add(this.txtNhom);
+            this.tabThongTinChinh.Controls.Add(this.dateNgayHL);
+            this.tabThongTinChinh.Controls.Add(this.label4);
+            this.tabThongTinChinh.Controls.Add(this.lblLoai);
+            this.tabThongTinChinh.Controls.Add(this.v6VvarTextBox1);
+            this.tabThongTinChinh.Controls.Add(this.txtMaCtMe);
+            this.tabThongTinChinh.Controls.Add(this.txtLoai);
+            this.tabThongTinChinh.Controls.Add(this.lblNhom);
+            this.tabThongTinChinh.Controls.Add(this.label7);
+            this.tabThongTinChinh.Controls.Add(this.txtTagName);
+            this.tabThongTinChinh.Controls.Add(this.label2);
+            this.tabThongTinChinh.Controls.Add(this.label5);
+            this.tabThongTinChinh.Controls.Add(this.label9);
+            this.tabThongTinChinh.Controls.Add(this.label8);
+            this.tabThongTinChinh.Controls.Add(this.TxtDu_co00);
+            this.tabThongTinChinh.Controls.Add(this.lblMaCtMe);
+            this.tabThongTinChinh.Controls.Add(this.label10);
+            this.tabThongTinChinh.Controls.Add(this.label11);
+            this.tabThongTinChinh.Controls.Add(this.label6);
+            this.tabThongTinChinh.Location = new System.Drawing.Point(4, 28);
+            this.tabThongTinChinh.Margin = new System.Windows.Forms.Padding(5);
+            this.tabThongTinChinh.Name = "tabThongTinChinh";
+            this.tabThongTinChinh.Padding = new System.Windows.Forms.Padding(5);
+            this.tabThongTinChinh.Size = new System.Drawing.Size(881, 298);
+            this.tabThongTinChinh.TabIndex = 0;
+            this.tabThongTinChinh.Text = "Thông tin chính";
             // 
             // chkInherit_ch
             // 
@@ -1585,8 +1585,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.Size = new System.Drawing.Size(904, 568);
             this.Load += new System.EventHandler(this.SoDu2AddEditControl0_Load);
             this.v6TabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.tabThongTinChinh.ResumeLayout(false);
+            this.tabThongTinChinh.PerformLayout();
             this.tabTuDinhNghia.ResumeLayout(false);
             this.tabTuDinhNghia.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -1603,7 +1603,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private System.Windows.Forms.TabPage tabThongTinKhac;
         private V6VvarTextBox txtLoai;
         private System.Windows.Forms.Label lblLoai;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabThongTinChinh;
         private V6VvarTextBox txtTagName;
         private System.Windows.Forms.Label lblNhom;
         private System.Windows.Forms.Label label2;

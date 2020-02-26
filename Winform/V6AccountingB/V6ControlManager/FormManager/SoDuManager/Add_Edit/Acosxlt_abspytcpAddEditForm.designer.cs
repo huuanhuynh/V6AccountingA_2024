@@ -48,7 +48,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtMa_bpht = new V6Controls.V6VvarTextBox();
             this.lblMaBPHT = new System.Windows.Forms.Label();
             this.v6TabControl1 = new V6Controls.V6TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabThongTinChinh = new System.Windows.Forms.TabPage();
             this.tabTuDinhNghia = new System.Windows.Forms.TabPage();
             this.txtMaS3 = new V6Controls.V6ColorTextBox();
             this.txtMaS2 = new V6Controls.V6ColorTextBox();
@@ -93,7 +93,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tabThongTinChinh.SuspendLayout();
             this.tabTuDinhNghia.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -369,7 +369,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             // 
             // v6TabControl1
             // 
-            this.v6TabControl1.Controls.Add(this.tabPage1);
+            this.v6TabControl1.Controls.Add(this.tabThongTinChinh);
             this.v6TabControl1.Controls.Add(this.tabTuDinhNghia);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
@@ -380,35 +380,35 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6TabControl1.Size = new System.Drawing.Size(757, 406);
             this.v6TabControl1.TabIndex = 3;
             // 
-            // tabPage1
+            // tabThongTinChinh
             // 
-            this.tabPage1.AccessibleDescription = "ADDEDITT00001";
-            this.tabPage1.AutoScroll = true;
-            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.v6LabelTextBox2);
-            this.tabPage1.Controls.Add(this.Txtthang);
-            this.tabPage1.Controls.Add(this.TxtMa_bpht);
-            this.tabPage1.Controls.Add(this.label8);
-            this.tabPage1.Controls.Add(this.txtma_ytcp);
-            this.tabPage1.Controls.Add(this.TxtNam);
-            this.tabPage1.Controls.Add(this.lblMaBPHT);
-            this.tabPage1.Controls.Add(this.lblMaYTCP);
-            this.tabPage1.Controls.Add(this.lblMaSP);
-            this.tabPage1.Controls.Add(this.v6LabelTextBox1);
-            this.tabPage1.Controls.Add(this.TxtMa_sp);
-            this.tabPage1.Controls.Add(this.txtten_bpht);
-            this.tabPage1.Controls.Add(this.lblDuDau);
-            this.tabPage1.Controls.Add(this.txttien_dd);
-            this.tabPage1.Controls.Add(this.lblDuDauNT);
-            this.tabPage1.Controls.Add(this.txttien_dd_nt);
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(749, 374);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Thông tin chính";
+            this.tabThongTinChinh.AccessibleDescription = "ADDEDITT00001";
+            this.tabThongTinChinh.AutoScroll = true;
+            this.tabThongTinChinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinChinh.Controls.Add(this.label5);
+            this.tabThongTinChinh.Controls.Add(this.v6LabelTextBox2);
+            this.tabThongTinChinh.Controls.Add(this.Txtthang);
+            this.tabThongTinChinh.Controls.Add(this.TxtMa_bpht);
+            this.tabThongTinChinh.Controls.Add(this.label8);
+            this.tabThongTinChinh.Controls.Add(this.txtma_ytcp);
+            this.tabThongTinChinh.Controls.Add(this.TxtNam);
+            this.tabThongTinChinh.Controls.Add(this.lblMaBPHT);
+            this.tabThongTinChinh.Controls.Add(this.lblMaYTCP);
+            this.tabThongTinChinh.Controls.Add(this.lblMaSP);
+            this.tabThongTinChinh.Controls.Add(this.v6LabelTextBox1);
+            this.tabThongTinChinh.Controls.Add(this.TxtMa_sp);
+            this.tabThongTinChinh.Controls.Add(this.txtten_bpht);
+            this.tabThongTinChinh.Controls.Add(this.lblDuDau);
+            this.tabThongTinChinh.Controls.Add(this.txttien_dd);
+            this.tabThongTinChinh.Controls.Add(this.lblDuDauNT);
+            this.tabThongTinChinh.Controls.Add(this.txttien_dd_nt);
+            this.tabThongTinChinh.Location = new System.Drawing.Point(4, 28);
+            this.tabThongTinChinh.Margin = new System.Windows.Forms.Padding(4);
+            this.tabThongTinChinh.Name = "tabThongTinChinh";
+            this.tabThongTinChinh.Padding = new System.Windows.Forms.Padding(4);
+            this.tabThongTinChinh.Size = new System.Drawing.Size(749, 374);
+            this.tabThongTinChinh.TabIndex = 0;
+            this.tabThongTinChinh.Text = "Thông tin chính";
             // 
             // tabTuDinhNghia
             // 
@@ -1216,8 +1216,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.Name = "Acosxlt_abspytcpAddEditForm";
             this.Size = new System.Drawing.Size(757, 411);
             this.v6TabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.tabThongTinChinh.ResumeLayout(false);
+            this.tabThongTinChinh.PerformLayout();
             this.tabTuDinhNghia.ResumeLayout(false);
             this.tabTuDinhNghia.PerformLayout();
             this.ResumeLayout(false);
@@ -1244,7 +1244,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         private V6VvarTextBox txtma_ytcp;
         private System.Windows.Forms.Label lblMaYTCP;
         private V6TabControl v6TabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabThongTinChinh;
         private System.Windows.Forms.TabPage tabTuDinhNghia;
         private V6ColorTextBox txtMaS3;
         private V6ColorTextBox txtMaS2;
