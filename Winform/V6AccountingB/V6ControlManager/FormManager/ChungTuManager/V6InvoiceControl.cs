@@ -468,6 +468,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
             return mode == V6Mode.Edit ? edit_readonly : add_readonly;
         }
 
+        public override void SetStatus2Text()
+        {
+            V6ControlFormHelper.SetStatusText2(V6Text.Text("STATUS2" + _invoice.Mact));
+        }
+
         public void CallViewInvoice(string sttrec, V6Mode mode)
         {
             ViewInvoice(sttrec, mode);

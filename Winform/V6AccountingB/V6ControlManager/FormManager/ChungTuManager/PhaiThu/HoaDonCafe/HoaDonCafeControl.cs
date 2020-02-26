@@ -1551,13 +1551,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
         #region ==== Override Methods ====
 
-        public override void SetStatus2Text()
-        {
-            V6ControlFormHelper.SetStatusText2(V6Setting.IsVietnamese ?
-                "F3-Sửa số lượng, F4-Thêm chi tiết, F6-Chuyển vị trí, F7-Lưu và in, F8-Dọn dẹp." :
-                "F3-Edit quantity, F4-Add details, F6-Move location, F7-Save and print, F8-Reset.");
-        }
-        
         private int _shift_count = 0;
         public override bool DoHotKey0(Keys keyData)
         {
@@ -1646,7 +1639,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     _soLuong1.Focus();
                 }
             }
-            else if (keyData == Keys.F3) // Copy detail
+            else if (keyData == Keys.F5) // Copy detail
             {
                 if (NotAddEdit)
                 {
@@ -1673,33 +1666,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     {
                         if (XuLySuaDetail(detailData))
                         {
-                            // Chuyển detail1 từ mode Edit qua mod Add không thay đổi data.
-                            detail1._mode = V6Mode.Add;
-                            detail1.btnSua.Image = Properties.Resources.Pencil16;
-                            detail1.btnMoi.Image = Properties.Resources.Cancel16;
-                            detail1.toolTip1.SetToolTip(btnMoi, V6Text.Cancel);
-                            detail1.btnMoi.Enabled = true;
-                            detail1.btnSua.Enabled = false;
-                            detail1.btnXoa.Enabled = false;
-                            detail1.btnNhan.Enabled = true;
-                            detail1.btnChucNang.Enabled = true;
-
+                            detail1.ChangeToAddMode_KeepData();
                             ShowParentMessage(V6Text.InvoiceF3EditDetailSuccess);
                         }
                     }
                 }
                 else
                 {
-                    detail1._mode = V6Mode.Add;
-                    detail1.AutoFocus();
-                    detail1.SetFormControlsReadOnly(false);
-                    detail1.btnMoi.Image = Properties.Resources.Cancel16;
-                    detail1.toolTip1.SetToolTip(btnMoi, V6Text.Cancel);
-                    detail1.btnMoi.Enabled = true;
-                    detail1.btnSua.Enabled = false;
-                    detail1.btnXoa.Enabled = false;
-                    detail1.btnNhan.Enabled = true;
-                    detail1.btnChucNang.Enabled = true;
+                    detail1.ChangeToAddMode_KeepData();
                 }
             }
             else if (keyData == Keys.F4)
@@ -4372,13 +4346,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
                 End:
                 ((Timer)sender).Dispose();
-                //if (_post && _print_flag != V6PrintMode.DoNoThing)
-                //{
-                //    var temp = _print_flag;
-                //    _print_flag = V6PrintMode.DoNoThing;
-                //    BasePrint(Invoice, _sttRec_In, temp, TongThanhToan, TongThanhToanNT, true);
-                //    SetStatus2Text();
-                //}
             }
         }
 
@@ -4536,12 +4503,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     BasePrint(Invoice, _sttRec_In, temp, TongThanhToan, TongThanhToanNT, true);
                     SetStatus2Text();
                 }
-                //if (_post && _print_flag)
-                //{
-                //    _print_flag = false;
-                //    In(_sttRec_In, V6PrintMode.AutoPrint, 3);
-                //    SetStatus2Text();
-                //}
             }
         }
 

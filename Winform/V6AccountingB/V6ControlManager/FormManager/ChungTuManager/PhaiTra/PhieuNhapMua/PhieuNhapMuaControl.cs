@@ -1572,11 +1572,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
         #region ==== Override Methods ====
 
-        public override void SetStatus2Text()
-        {
-            V6ControlFormHelper.SetStatusText2(V6Setting.IsVietnamese ? "F4-Nhận/thêm chi tiết, F7-Lưu và in, F8-Xóa chi tiết" : "F4-Add detail, F7-Save and print, F8-Delete detail");
-        }
-
         public override bool DoHotKey0(Keys keyData)
         {
             if (keyData == (Keys.LButton | Keys.Space))//pageUp
@@ -1637,7 +1632,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     }
                 }
             }
-            else if (keyData == Keys.F3) // Copy detail
+            else if (keyData == Keys.F5) // Copy detail
             {
                 if (NotAddEdit)
                 {
@@ -1664,33 +1659,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     {
                         if (XuLySuaDetail(detailData))
                         {
-                            // Chuyển detail1 từ mode Edit qua mod Add không thay đổi data.
-                            detail1._mode = V6Mode.Add;
-                            detail1.btnSua.Image = Properties.Resources.Pencil16;
-                            detail1.btnMoi.Image = Properties.Resources.Cancel16;
-                            detail1.toolTip1.SetToolTip(btnMoi, V6Text.Cancel);
-                            detail1.btnMoi.Enabled = true;
-                            detail1.btnSua.Enabled = false;
-                            detail1.btnXoa.Enabled = false;
-                            detail1.btnNhan.Enabled = true;
-                            detail1.btnChucNang.Enabled = true;
-
+                            detail1.ChangeToAddMode_KeepData();
                             ShowParentMessage(V6Text.InvoiceF3EditDetailSuccess);
                         }
                     }
                 }
                 else
                 {
-                    detail1._mode = V6Mode.Add;
-                    detail1.AutoFocus();
-                    detail1.SetFormControlsReadOnly(false);
-                    detail1.btnMoi.Image = Properties.Resources.Cancel16;
-                    detail1.toolTip1.SetToolTip(btnMoi, V6Text.Cancel);
-                    detail1.btnMoi.Enabled = true;
-                    detail1.btnSua.Enabled = false;
-                    detail1.btnXoa.Enabled = false;
-                    detail1.btnNhan.Enabled = true;
-                    detail1.btnChucNang.Enabled = true;
+                    detail1.ChangeToAddMode_KeepData();
                 }
             }
             else if (keyData == Keys.F4)

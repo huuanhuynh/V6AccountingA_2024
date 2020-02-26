@@ -105,7 +105,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.groupBox1.Size = new System.Drawing.Size(698, 245);
+            this.groupBox1.Size = new System.Drawing.Size(1186, 358);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -119,9 +119,9 @@
             this.txtK.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtK.HoverColor = System.Drawing.Color.Yellow;
             this.txtK.LeaveColor = System.Drawing.Color.White;
-            this.txtK.Location = new System.Drawing.Point(514, 211);
+            this.txtK.Location = new System.Drawing.Point(497, 324);
             this.txtK.Name = "txtK";
-            this.txtK.Size = new System.Drawing.Size(174, 23);
+            this.txtK.Size = new System.Drawing.Size(566, 23);
             this.txtK.TabIndex = 31;
             // 
             // txtJ
@@ -134,15 +134,15 @@
             this.txtJ.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtJ.HoverColor = System.Drawing.Color.Yellow;
             this.txtJ.LeaveColor = System.Drawing.Color.White;
-            this.txtJ.Location = new System.Drawing.Point(514, 187);
+            this.txtJ.Location = new System.Drawing.Point(497, 300);
             this.txtJ.Name = "txtJ";
-            this.txtJ.Size = new System.Drawing.Size(174, 23);
+            this.txtJ.Size = new System.Drawing.Size(566, 23);
             this.txtJ.TabIndex = 29;
             // 
             // lblK
             // 
             this.lblK.AutoSize = true;
-            this.lblK.Location = new System.Drawing.Point(456, 214);
+            this.lblK.Location = new System.Drawing.Point(439, 327);
             this.lblK.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblK.Name = "lblK";
             this.lblK.Size = new System.Drawing.Size(48, 17);
@@ -159,15 +159,15 @@
             this.txtC.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtC.HoverColor = System.Drawing.Color.Yellow;
             this.txtC.LeaveColor = System.Drawing.Color.White;
-            this.txtC.Location = new System.Drawing.Point(514, 139);
+            this.txtC.Location = new System.Drawing.Point(497, 252);
             this.txtC.Name = "txtC";
-            this.txtC.Size = new System.Drawing.Size(174, 23);
+            this.txtC.Size = new System.Drawing.Size(566, 23);
             this.txtC.TabIndex = 25;
             // 
             // lblJ
             // 
             this.lblJ.AutoSize = true;
-            this.lblJ.Location = new System.Drawing.Point(456, 190);
+            this.lblJ.Location = new System.Drawing.Point(439, 303);
             this.lblJ.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblJ.Name = "lblJ";
             this.lblJ.Size = new System.Drawing.Size(46, 17);
@@ -177,7 +177,7 @@
             // lblC
             // 
             this.lblC.AutoSize = true;
-            this.lblC.Location = new System.Drawing.Point(456, 142);
+            this.lblC.Location = new System.Drawing.Point(439, 255);
             this.lblC.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblC.Name = "lblC";
             this.lblC.Size = new System.Drawing.Size(48, 17);
@@ -194,15 +194,15 @@
             this.txtR.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtR.HoverColor = System.Drawing.Color.Yellow;
             this.txtR.LeaveColor = System.Drawing.Color.White;
-            this.txtR.Location = new System.Drawing.Point(514, 163);
+            this.txtR.Location = new System.Drawing.Point(497, 276);
             this.txtR.Name = "txtR";
-            this.txtR.Size = new System.Drawing.Size(174, 23);
+            this.txtR.Size = new System.Drawing.Size(566, 23);
             this.txtR.TabIndex = 27;
             // 
             // lblR
             // 
             this.lblR.AutoSize = true;
-            this.lblR.Location = new System.Drawing.Point(456, 166);
+            this.lblR.Location = new System.Drawing.Point(439, 279);
             this.lblR.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblR.Name = "lblR";
             this.lblR.Size = new System.Drawing.Size(49, 17);
@@ -219,15 +219,15 @@
             this.txtF.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtF.HoverColor = System.Drawing.Color.Yellow;
             this.txtF.LeaveColor = System.Drawing.Color.White;
-            this.txtF.Location = new System.Drawing.Point(514, 115);
+            this.txtF.Location = new System.Drawing.Point(497, 228);
             this.txtF.Name = "txtF";
-            this.txtF.Size = new System.Drawing.Size(174, 23);
+            this.txtF.Size = new System.Drawing.Size(566, 23);
             this.txtF.TabIndex = 23;
             // 
             // lblF
             // 
             this.lblF.AutoSize = true;
-            this.lblF.Location = new System.Drawing.Point(456, 118);
+            this.lblF.Location = new System.Drawing.Point(439, 231);
             this.lblF.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblF.Name = "lblF";
             this.lblF.Size = new System.Drawing.Size(47, 17);
@@ -237,7 +237,7 @@
             // btnKhongDau
             // 
             this.btnKhongDau.AccessibleDescription = "AECORPLANB00001";
-            this.btnKhongDau.Location = new System.Drawing.Point(312, 139);
+            this.btnKhongDau.Location = new System.Drawing.Point(1066, 139);
             this.btnKhongDau.Name = "btnKhongDau";
             this.btnKhongDau.Size = new System.Drawing.Size(115, 27);
             this.btnKhongDau.TabIndex = 11;
@@ -250,7 +250,7 @@
             this.chkAutoCopyID.AccessibleDescription = "AECORPLANC00001";
             this.chkAutoCopyID.AccessibleName = "CHANGE_V";
             this.chkAutoCopyID.AutoSize = true;
-            this.chkAutoCopyID.Location = new System.Drawing.Point(320, 114);
+            this.chkAutoCopyID.Location = new System.Drawing.Point(1074, 114);
             this.chkAutoCopyID.Name = "chkAutoCopyID";
             this.chkAutoCopyID.Size = new System.Drawing.Size(102, 21);
             this.chkAutoCopyID.TabIndex = 8;
@@ -271,7 +271,7 @@
             this.txtTen.LeaveColor = System.Drawing.Color.White;
             this.txtTen.Location = new System.Drawing.Point(132, 170);
             this.txtTen.Name = "txtTen";
-            this.txtTen.Size = new System.Drawing.Size(174, 23);
+            this.txtTen.Size = new System.Drawing.Size(931, 23);
             this.txtTen.TabIndex = 13;
             // 
             // v6ColorTextBox1
@@ -285,7 +285,7 @@
             this.v6ColorTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox1.Location = new System.Drawing.Point(526, 80);
+            this.v6ColorTextBox1.Location = new System.Drawing.Point(132, 307);
             this.v6ColorTextBox1.Name = "v6ColorTextBox1";
             this.v6ColorTextBox1.Size = new System.Drawing.Size(135, 23);
             this.v6ColorTextBox1.TabIndex = 21;
@@ -302,7 +302,7 @@
             this.txtCtype.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtCtype.HoverColor = System.Drawing.Color.Yellow;
             this.txtCtype.LeaveColor = System.Drawing.Color.White;
-            this.txtCtype.Location = new System.Drawing.Point(526, 54);
+            this.txtCtype.Location = new System.Drawing.Point(132, 281);
             this.txtCtype.Name = "txtCtype";
             this.txtCtype.Size = new System.Drawing.Size(135, 23);
             this.txtCtype.TabIndex = 19;
@@ -321,7 +321,7 @@
             this.txtSname.LeaveColor = System.Drawing.Color.White;
             this.txtSname.Location = new System.Drawing.Point(132, 54);
             this.txtSname.Name = "txtSname";
-            this.txtSname.Size = new System.Drawing.Size(174, 23);
+            this.txtSname.Size = new System.Drawing.Size(931, 23);
             this.txtSname.TabIndex = 3;
             // 
             // txtSfile
@@ -335,7 +335,7 @@
             this.txtSfile.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtSfile.HoverColor = System.Drawing.Color.Yellow;
             this.txtSfile.LeaveColor = System.Drawing.Color.White;
-            this.txtSfile.Location = new System.Drawing.Point(526, 25);
+            this.txtSfile.Location = new System.Drawing.Point(132, 252);
             this.txtSfile.Name = "txtSfile";
             this.txtSfile.ReadOnly = true;
             this.txtSfile.Size = new System.Drawing.Size(135, 23);
@@ -357,7 +357,7 @@
             this.txtTen2.LeaveColor = System.Drawing.Color.White;
             this.txtTen2.Location = new System.Drawing.Point(132, 199);
             this.txtTen2.Name = "txtTen2";
-            this.txtTen2.Size = new System.Drawing.Size(174, 23);
+            this.txtTen2.Size = new System.Drawing.Size(931, 23);
             this.txtTen2.TabIndex = 15;
             // 
             // txtTextE
@@ -372,7 +372,7 @@
             this.txtTextE.LeaveColor = System.Drawing.Color.White;
             this.txtTextE.Location = new System.Drawing.Point(132, 141);
             this.txtTextE.Name = "txtTextE";
-            this.txtTextE.Size = new System.Drawing.Size(174, 23);
+            this.txtTextE.Size = new System.Drawing.Size(931, 23);
             this.txtTextE.TabIndex = 10;
             // 
             // txtTextV
@@ -387,7 +387,7 @@
             this.txtTextV.LeaveColor = System.Drawing.Color.White;
             this.txtTextV.Location = new System.Drawing.Point(132, 112);
             this.txtTextV.Name = "txtTextV";
-            this.txtTextV.Size = new System.Drawing.Size(174, 23);
+            this.txtTextV.Size = new System.Drawing.Size(931, 23);
             this.txtTextV.TabIndex = 7;
             // 
             // txtTextD
@@ -402,7 +402,7 @@
             this.txtTextD.LeaveColor = System.Drawing.Color.White;
             this.txtTextD.Location = new System.Drawing.Point(132, 83);
             this.txtTextD.Name = "txtTextD";
-            this.txtTextD.Size = new System.Drawing.Size(174, 23);
+            this.txtTextD.Size = new System.Drawing.Size(931, 23);
             this.txtTextD.TabIndex = 5;
             // 
             // txtID
@@ -418,14 +418,14 @@
             this.txtID.LeaveColor = System.Drawing.Color.White;
             this.txtID.Location = new System.Drawing.Point(132, 25);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(174, 23);
+            this.txtID.Size = new System.Drawing.Size(931, 23);
             this.txtID.TabIndex = 1;
             // 
             // lblMaCt
             // 
             this.lblMaCt.AccessibleDescription = "AECORPLANL00010";
             this.lblMaCt.AutoSize = true;
-            this.lblMaCt.Location = new System.Drawing.Point(378, 83);
+            this.lblMaCt.Location = new System.Drawing.Point(5, 307);
             this.lblMaCt.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblMaCt.Name = "lblMaCt";
             this.lblMaCt.Size = new System.Drawing.Size(54, 17);
@@ -437,7 +437,7 @@
             this.lblMacDinh.AccessibleDescription = "AECORPLANL00003";
             this.lblMacDinh.AccessibleName = "";
             this.lblMacDinh.AutoSize = true;
-            this.lblMacDinh.Location = new System.Drawing.Point(25, 86);
+            this.lblMacDinh.Location = new System.Drawing.Point(5, 86);
             this.lblMacDinh.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblMacDinh.Name = "lblMacDinh";
             this.lblMacDinh.Size = new System.Drawing.Size(65, 17);
@@ -448,7 +448,7 @@
             // 
             this.lblCtype.AccessibleDescription = "AECORPLANL00009";
             this.lblCtype.AutoSize = true;
-            this.lblCtype.Location = new System.Drawing.Point(378, 57);
+            this.lblCtype.Location = new System.Drawing.Point(5, 281);
             this.lblCtype.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblCtype.Name = "lblCtype";
             this.lblCtype.Size = new System.Drawing.Size(49, 17);
@@ -459,7 +459,7 @@
             // 
             this.lblSFile.AccessibleDescription = "AECORPLANL00008";
             this.lblSFile.AutoSize = true;
-            this.lblSFile.Location = new System.Drawing.Point(378, 28);
+            this.lblSFile.Location = new System.Drawing.Point(5, 252);
             this.lblSFile.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblSFile.Name = "lblSFile";
             this.lblSFile.Size = new System.Drawing.Size(39, 17);
@@ -470,7 +470,7 @@
             // 
             this.lblSName.AccessibleDescription = "AECORPLANL00002";
             this.lblSName.AutoSize = true;
-            this.lblSName.Location = new System.Drawing.Point(25, 57);
+            this.lblSName.Location = new System.Drawing.Point(5, 57);
             this.lblSName.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblSName.Name = "lblSName";
             this.lblSName.Size = new System.Drawing.Size(54, 17);
@@ -481,7 +481,7 @@
             // 
             this.lblTen2.AccessibleDescription = "AECORPLANL00007";
             this.lblTen2.AutoSize = true;
-            this.lblTen2.Location = new System.Drawing.Point(25, 202);
+            this.lblTen2.Location = new System.Drawing.Point(5, 202);
             this.lblTen2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblTen2.Name = "lblTen2";
             this.lblTen2.Size = new System.Drawing.Size(45, 17);
@@ -492,7 +492,7 @@
             // 
             this.lblTen.AccessibleDescription = "AECORPLANL00006";
             this.lblTen.AutoSize = true;
-            this.lblTen.Location = new System.Drawing.Point(25, 175);
+            this.lblTen.Location = new System.Drawing.Point(5, 175);
             this.lblTen.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblTen.Name = "lblTen";
             this.lblTen.Size = new System.Drawing.Size(33, 17);
@@ -503,7 +503,7 @@
             // 
             this.lblTextE.AccessibleDescription = "AECORPLANL00005";
             this.lblTextE.AutoSize = true;
-            this.lblTextE.Location = new System.Drawing.Point(25, 144);
+            this.lblTextE.Location = new System.Drawing.Point(5, 144);
             this.lblTextE.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblTextE.Name = "lblTextE";
             this.lblTextE.Size = new System.Drawing.Size(48, 17);
@@ -514,7 +514,7 @@
             // 
             this.lblTextV.AccessibleDescription = "AECORPLANL00004";
             this.lblTextV.AutoSize = true;
-            this.lblTextV.Location = new System.Drawing.Point(25, 115);
+            this.lblTextV.Location = new System.Drawing.Point(5, 115);
             this.lblTextV.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblTextV.Name = "lblTextV";
             this.lblTextV.Size = new System.Drawing.Size(48, 17);
@@ -526,7 +526,7 @@
             this.lblID.AccessibleDescription = "AECORPLANL00001";
             this.lblID.AccessibleName = "";
             this.lblID.AutoSize = true;
-            this.lblID.Location = new System.Drawing.Point(25, 28);
+            this.lblID.Location = new System.Drawing.Point(5, 28);
             this.lblID.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(21, 17);
@@ -541,7 +541,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CorpLanAddEditForm";
-            this.Size = new System.Drawing.Size(712, 257);
+            this.Size = new System.Drawing.Size(1200, 370);
             this.Load += new System.EventHandler(this.Form_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

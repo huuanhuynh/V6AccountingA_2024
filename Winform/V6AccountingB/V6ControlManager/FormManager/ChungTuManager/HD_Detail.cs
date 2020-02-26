@@ -201,7 +201,42 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 //V6ControlFormHelper.UseCarryValues(this);
             }
         }
-        
+
+        /// <summary>
+        /// Chuyển detail từ mode Edit/View/Init qua mod Add không thay đổi data.
+        /// </summary>
+        public void ChangeToAddMode_KeepData()
+        {
+            if (_mode == V6Mode.Add)
+            {
+                
+            }
+            else if (_mode == V6Mode.Edit)
+            {
+                _mode = V6Mode.Add;
+                btnSua.Image = Properties.Resources.Pencil16;
+                btnMoi.Image = Properties.Resources.Cancel16;
+                toolTip1.SetToolTip(btnMoi, V6Text.Cancel);
+                btnMoi.Enabled = true;
+                btnSua.Enabled = false;
+                btnXoa.Enabled = false;
+                btnNhan.Enabled = true;
+                btnChucNang.Enabled = true;
+            }
+            else
+            {
+                _mode = V6Mode.Add;
+                AutoFocus();
+                SetFormControlsReadOnly(false);
+                btnMoi.Image = Properties.Resources.Cancel16;
+                toolTip1.SetToolTip(btnMoi, V6Text.Cancel);
+                btnMoi.Enabled = true;
+                btnSua.Enabled = false;
+                btnXoa.Enabled = false;
+                btnNhan.Enabled = true;
+                btnChucNang.Enabled = true;
+            }
+        }
 
         /// <summary>
         /// Ngoai form goi khi da chac chan chuyen mod sua
