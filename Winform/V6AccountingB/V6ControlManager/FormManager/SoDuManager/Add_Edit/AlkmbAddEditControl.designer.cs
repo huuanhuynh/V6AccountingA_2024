@@ -2439,7 +2439,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.detail1.ClickCancelEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail1_ClickCancelEdit);
             this.detail1.AddHandle += new V6Controls.HandleData(this.detail1_AddHandle);
             this.detail1.EditHandle += new V6Controls.HandleData(this.detail1_EditHandle);
-            this.detail1.DeleteHandle += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail1_DeleteHandle);
+            this.detail1.ClickDelete += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail1_ClickDelete);
             // 
             // dataGridView1
             // 
@@ -2553,7 +2553,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.detail3.ClickCancelEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail3_ClickCancelEdit);
             this.detail3.AddHandle += new V6Controls.HandleData(this.detail3_AddHandle);
             this.detail3.EditHandle += new V6Controls.HandleData(this.detail3_EditHandle);
-            this.detail3.DeleteHandle += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail3_DeleteHandle);
+            this.detail3.ClickDelete += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail3_ClickDelete);
             // 
             // gView3
             // 

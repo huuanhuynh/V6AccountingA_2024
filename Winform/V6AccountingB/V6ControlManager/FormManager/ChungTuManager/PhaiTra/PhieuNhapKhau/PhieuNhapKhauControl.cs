@@ -179,6 +179,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
                 var NAME = control.AccessibleName.ToUpper();
                 All_Objects[NAME] = control;
+                if (control is V6ColorTextBox && item.Value.IsCarry)
+                {
+                    detail1.CarryFields.Add(NAME);
+                }
                 V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
 
                 switch (NAME)
@@ -1150,7 +1154,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             V6ControlFormHelper.RecaptionDataGridViewColumns(dataGridView3ChiPhi, _alct3Dic, _maNt, _mMaNt0);
         }
         
-        private void Detail3_ClickAdd(object sender)
+        private void Detail3_ClickAdd(object sender, HD_Detail_Eventargs e)
         {
             XuLyDetail3ClickAdd(sender);
         }
@@ -1388,7 +1392,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             return true;
         }
         
-        private void Detail3_ClickEdit (object sender)
+        private void Detail3_ClickEdit(object sender, HD_Detail_Eventargs e)
         {
             try
             {
@@ -1416,7 +1420,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             }
         }
 
-        private void Detail3_DeleteHandle(object sender)
+        private void Detail3_ClickDelete(object sender, HD_Detail_Eventargs e)
         {
             XuLyXoaDetail3();
         }
@@ -1465,7 +1469,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             }
         }
 
-        private void Detail3_ClickCancelEdit(object sender)
+        private void Detail3_ClickCancelEdit(object sender, HD_Detail_Eventargs e)
         {
             detail3.SetData(_gv3EditingRow.ToDataDictionary());
         }
@@ -1656,6 +1660,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         if (XuLySuaDetail(detailData))
                         {
                             detail1.ChangeToAddMode_KeepData();
+                            dataGridView1.Lock();
                             ShowParentMessage(V6Text.InvoiceF3EditDetailSuccess);
                         }
                     }
@@ -1663,6 +1668,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 else
                 {
                     detail1.ChangeToAddMode_KeepData();
+                    dataGridView1.Lock();
                 }
             }
             else if (keyData == Keys.F4)
@@ -4571,9 +4577,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     if (readonly_list.Contains(detail1.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))
                     {
                         detail1.ChangeToViewMode();
+                        dataGridView1.UnLock();
                     }
                     else
                     {
+                        dataGridView1.Lock();
                         SetDefaultDetail();
                     }
                     detail2.MODE = V6Mode.Init;
@@ -5032,9 +5040,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 if (readonly_list.Contains(detail1.btnMoi.Name, StringComparer.InvariantCultureIgnoreCase))
                 {
                     detail1.ChangeToViewMode();
+                    dataGridView1.UnLock();
                 }
                 else
                 {
+                    dataGridView1.Lock();
                     _maVt.Focus();
                 }
             }
@@ -5539,11 +5549,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         }
 
         
-        private void hoaDonDetail1_ClickAdd(object sender)
+        private void hoaDonDetail1_ClickAdd(object sender, HD_Detail_Eventargs e)
         {
             XuLyDetailClickAdd(sender);
         }
-        private void detail2_ClickAdd(object sender)
+        private void detail2_ClickAdd(object sender, HD_Detail_Eventargs e)
         {
             XuLyDetail2ClickAdd(sender);
         }
@@ -5554,6 +5564,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             {
                 if (XuLyThemDetail(data))
                 {
+                    dataGridView1.UnLock();
                     All_Objects["data"] = data;
                     InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
                     return;
@@ -5573,7 +5584,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         }
         
 
-        private void hoaDonDetail1_ClickEdit(object sender)
+        private void hoaDonDetail1_ClickEdit(object sender, HD_Detail_Eventargs e)
         {
             try
             {
@@ -5591,6 +5602,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     if (readonly_list.Contains(detail1.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))
                     {
                         detail1.ChangeToViewMode();
+                        dataGridView1.UnLock();
                     }
                     else
                     {
@@ -5611,7 +5623,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             }
         }
 
-        private void detail2_ClickEdit(object sender)
+        private void detail2_ClickEdit(object sender, HD_Detail_Eventargs e)
         {
             try
             {
@@ -5651,11 +5663,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         }
         private void hoaDonDetail1_EditHandle(IDictionary<string, object> data)
         {
-            dataGridView1.UnLock();
             if (ValidateData_Detail(data))
             {
                 if (XuLySuaDetail(data))
                 {
+                    dataGridView1.UnLock();
                     All_Objects["data"] = data;
                     InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
                     return;
@@ -5673,20 +5685,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             }
             throw new Exception(V6Text.ValidateFail);
         }
-        private void hoaDonDetail1_DeleteHandle(object sender)
+        private void hoaDonDetail1_ClickDelete(object sender, HD_Detail_Eventargs e)
         {
             XuLyXoaDetail();
         }
-        private void hoaDonDetail2_DeleteHandle(object sender)
+        private void hoaDonDetail2_ClickDelete(object sender, HD_Detail_Eventargs e)
         {
             XuLyXoaDetail2();
         }
-        private void hoaDonDetail1_ClickCancelEdit(object sender)
+        private void hoaDonDetail1_ClickCancelEdit(object sender, HD_Detail_Eventargs e)
         {
             dataGridView1.UnLock();
             detail1.SetData(_gv1EditingRow.ToDataDictionary());
         }
-        private void hoaDonDetail2_ClickCancelEdit(object sender)
+        private void hoaDonDetail2_ClickCancelEdit(object sender, HD_Detail_Eventargs e)
         {
             detail2.SetData(_gv2EditingRow.ToDataDictionary());
         }

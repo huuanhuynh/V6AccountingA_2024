@@ -267,12 +267,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             this.detail1.TabIndex = 0;
             this.detail1.Tag = "cancelall";
             this.detail1.Vtype = null;
-            this.detail1.ClickAdd += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.hoaDonDetail1_ClickAdd);
+            this.detail1.ClickAdd += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.Detail1_ClickAdd);
             this.detail1.ClickEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.hoaDonDetail1_ClickEdit);
             this.detail1.ClickCancelEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.hoaDonDetail1_ClickCancelEdit);
             this.detail1.AddHandle += new V6Controls.HandleData(this.hoaDonDetail1_AddHandle);
             this.detail1.EditHandle += new V6Controls.HandleData(this.hoaDonDetail1_EditHandle);
-            this.detail1.DeleteHandle += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.hoaDonDetail1_ClickDelete);
+            this.detail1.ClickDelete += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.detail1_ClickDelete);
             this.detail1.LabelNameTextChanged += new System.EventHandler(this.detail1_LabelNameTextChanged);
             this.detail1.Load += new System.EventHandler(this.hoaDonDetail1_Load);
             // 

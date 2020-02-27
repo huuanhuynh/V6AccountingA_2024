@@ -285,8 +285,6 @@ namespace V6AccountingB
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            //??Gửi tín hiệu bàn phím. Nếu bỏ dòng này không gõ text được??
-            
             try
             {
                 DoHotKey(keyData);
@@ -298,7 +296,6 @@ namespace V6AccountingB
             if (string.IsNullOrEmpty(_dohotkey))
                 return base.ProcessCmdKey(ref msg, keyData);
             else return true;
-            //return a;// base.ProcessCmdKey(ref msg, keyData);
         }
 
         //Remove mainform_keydown
@@ -729,6 +726,14 @@ namespace V6AccountingB
         {
             // Navigate to a URL.
             System.Diagnostics.Process.Start("http://www.v6soft.com.vn");
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F10)
+            {
+                e.SuppressKeyPress = true;
+            }
         }
         
 

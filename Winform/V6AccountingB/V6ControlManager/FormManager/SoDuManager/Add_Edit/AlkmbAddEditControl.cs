@@ -1187,9 +1187,16 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         #endregion details
         
-        private void detail1_ClickAdd(object sender)
+        private void detail1_ClickAdd(object sender, HD_Detail_Eventargs e)
         {
-            XuLyDetailClickAdd();
+            if (e.Mode == V6Mode.Add)
+            {
+                XuLyDetailClickAdd();
+            }
+            else
+            {
+                dataGridView1.UnLock();
+            }
         }
 
         private void detail1_AddHandle(IDictionary<string, object> data)
@@ -1203,7 +1210,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             throw new Exception(V6Text.ValidateFail);
         }
 
-        private void detail1_ClickEdit(object sender)
+        private void detail1_ClickEdit(object sender, HD_Detail_Eventargs e)
         {
             try
             {
@@ -1221,12 +1228,12 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
         }
 
-        private void detail1_ClickCancelEdit(object sender)
+        private void detail1_ClickCancelEdit(object sender, HD_Detail_Eventargs e)
         {
             detail1.SetData(_gv1EditingRow.ToDataDictionary());
         }
 
-        private void detail1_DeleteHandle(object sender)
+        private void detail1_ClickDelete(object sender, HD_Detail_Eventargs e)
         {
             XuLyXoaDetail();
         }
@@ -1544,11 +1551,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             throw new Exception(V6Text.ValidateFail);
         }
 
-        private void detail3_ClickAdd(object sender)
+        private void detail3_ClickAdd(object sender, HD_Detail_Eventargs e)
         {
             XuLyDetail3ClickAdd();
         }
-        private void detail3_ClickEdit(object sender)
+        private void detail3_ClickEdit(object sender, HD_Detail_Eventargs e)
         {
             try
             {
@@ -1564,12 +1571,12 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        private void detail3_ClickCancelEdit(object sender)
+        private void detail3_ClickCancelEdit(object sender, HD_Detail_Eventargs e)
         {
             detail3.SetData(_gv4EditingRow.ToDataDictionary());
         }
 
-        private void detail3_DeleteHandle(object sender)
+        private void detail3_ClickDelete(object sender, HD_Detail_Eventargs e)
         {
             XuLyXoaDetail3();
         }

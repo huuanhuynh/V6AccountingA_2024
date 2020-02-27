@@ -264,7 +264,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.detail1.ClickCancelEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.hoaDonDetail1_ClickCancelEdit);
             this.detail1.AddHandle += new V6Controls.HandleData(this.hoaDonDetail1_AddHandle);
             this.detail1.EditHandle += new V6Controls.HandleData(this.hoaDonDetail1_EditHandle);
-            this.detail1.DeleteHandle += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.hoaDonDetail1_DeleteHandle);
+            this.detail1.ClickDelete += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.hoaDonDetail1_ClickDelete);
             this.detail1.LabelNameTextChanged += new System.EventHandler(this.detail1_LabelNameTextChanged);
             this.detail1.Load += new System.EventHandler(this.hoaDonDetail1_Load);
             // 
@@ -424,7 +424,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.detail2.ClickCancelEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.hoaDonDetail2_ClickCancelEdit);
             this.detail2.AddHandle += new V6Controls.HandleData(this.hoaDonDetail2_AddHandle);
             this.detail2.EditHandle += new V6Controls.HandleData(this.hoaDonDetail2_EditHandle);
-            this.detail2.DeleteHandle += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.hoaDonDetail2_DeleteHandle);
+            this.detail2.ClickDelete += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.hoaDonDetail2_ClickDelete);
             this.detail2.Load += new System.EventHandler(this.hoaDonDetail2_Load);
             // 
             // tabKhac
@@ -1086,7 +1086,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.detail3.ClickCancelEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.Detail3_ClickCancelEdit);
             this.detail3.AddHandle += new V6Controls.HandleData(this.Detail3_AddHandle);
             this.detail3.EditHandle += new V6Controls.HandleData(this.Detail3_EditHandle);
-            this.detail3.DeleteHandle += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.Detail3_DeleteHandle);
+            this.detail3.ClickDelete += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.Detail3_ClickDelete);
             this.detail3.LabelNameTextChanged += new System.EventHandler(this.detail3_LabelNameTextChanged);
             // 
             // group5

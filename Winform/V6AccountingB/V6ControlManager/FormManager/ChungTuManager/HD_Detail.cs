@@ -26,7 +26,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// Khi viết hàm cần quăng lỗi nếu không thành công (nhận biết false thay bool)
         /// </summary>
         public event HandleData EditHandle;
-        public event ClickHandle DeleteHandle;
+        public event ClickHandle ClickDelete;
+
+        public List<string> CarryFields = new List<string>();
+        public Dictionary<string, object> CarryData { get; set; }
 
         public bool Loai_ck;
 
@@ -88,7 +91,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 {
                     case V6Mode.Add:
                         SetFormControlsReadOnly(false);
-                        SetData(null);
+                        SetData(new Dictionary<string, object>());
                         btnMoi.Image = Properties.Resources.Cancel16;
                         //btnMoi.Text = V6Text.Cancel;
                         toolTip1.SetToolTip(btnMoi, V6Text.Cancel);
@@ -144,7 +147,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         break;
                     case V6Mode.Init:
                         SetFormControlsReadOnly(true);
-                        SetData(null);
+                        SetData(new Dictionary<string, object>());
                         btnMoi.Image = Properties.Resources.Add16;
                         //btnMoi.Text = V6Text.New;
                         btnSua.Image = Properties.Resources.Pencil16;
@@ -166,18 +169,19 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
 
         /// <summary>
-        /// Giống như bấm nút mới, có sự kiện ClickAdd sảy ra khi mode là Add chứ không phải hủy.
+        /// Sự kiện ClickAdd gom chung cho bắt đầu thêm mới chi tiết và hủy thêm mới chi tiết. Kiểm tra trong e.Mode của sự kiện.
         /// </summary>
         public void OnMoiClick()
         {
             DoAddButtonClick();
+            
+            ClickHandle handler = ClickAdd;
+            if (handler != null) handler(this, new HD_Detail_Eventargs {Mode = MODE});
             if (MODE == V6Mode.Add)
             {
-                ClickHandle handler = ClickAdd;
-                if (handler != null) handler(this, new HD_Detail_Eventargs {Mode = MODE});
-
                 //Set Carry
-                V6ControlFormHelper.UseCarryValues(this);
+                //V6ControlFormHelper.UseCarryValues(this);
+                if (CarryData != null) SetSomeData(CarryData);
             }
         }
 
@@ -197,9 +201,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 //Bấm mới
                 MODE = V6Mode.Add;
-                
-                //Set Carry
-                //V6ControlFormHelper.UseCarryValues(this);
             }
         }
 
@@ -333,8 +334,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
             if (ok)
             {
-                //Carry values
-                //V6ControlFormHelper.SetCarryValues(this);
                 MODE = V6Mode.View;
                 btnMoi.Focus();
             }
@@ -344,7 +343,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 _mode = Old_mode;
                 lblMode.Text = _mode.ToString();
                 SetFormControlsReadOnly(false);
-                //SetData(null);
+                
                 btnMoi.Image = Properties.Resources.Cancel16;
                 //btnMoi.Text = V6Text.Cancel;
                 toolTip1.SetToolTip(btnMoi, V6Text.Cancel);
@@ -370,13 +369,14 @@ namespace V6ControlManager.FormManager.ChungTuManager
             return d;
         }
 
-        public void SetData(IDictionary<string, object> d)
+        public void SetData(IDictionary<string, object> data)
         {
             try
             {
                 var t = Tag;
                 Tag = null;
-                V6ControlFormHelper.SetFormDataDictionary(this, d);
+                V6ControlFormHelper.SetFormDataDictionary(this, data);
+                SetCarryData(data);
                 Tag = t;
             }
             catch (Exception ex)
@@ -385,10 +385,36 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
+        public void SetSomeData(IDictionary<string, object> data)
+        {
+            try
+            {
+                var t = Tag;
+                Tag = null;
+                V6ControlFormHelper.SetSomeDataDictionary(this, data);
+                Tag = t;
+            }
+            catch (Exception ex)
+            {
+                //
+            }
+        }
+
+        public void SetCarryData(IDictionary<string, object> data)
+        {
+            if (data == null) return;
+            if (data.Count > 0) CarryData = new Dictionary<string, object>();
+            foreach (string field in CarryFields)
+            {
+                string CARRY_FIELD = field.ToUpper().Trim();
+                if (data.ContainsKey(CARRY_FIELD)) CarryData[CARRY_FIELD] = data[CARRY_FIELD];
+            }
+        }
+
         public virtual void OnXoaClick()
         {
             if (!btnXoa.Focused) btnXoa.Focus();
-            ClickHandle handler = DeleteHandle;
+            ClickHandle handler = ClickDelete;
             if (handler != null) handler(this, new HD_Detail_Eventargs { Mode = MODE });
         }
 

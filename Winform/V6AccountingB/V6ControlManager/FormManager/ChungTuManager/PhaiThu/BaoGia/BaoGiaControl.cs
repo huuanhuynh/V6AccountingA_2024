@@ -138,6 +138,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
                 var NAME = control.AccessibleName.ToUpper();
                 All_Objects[NAME] = control;
+                if (control is V6ColorTextBox && item.Value.IsCarry)
+                {
+                    detail1.CarryFields.Add(NAME);
+                }
                 V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
 
                 switch (NAME)
@@ -886,6 +890,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                         if (XuLySuaDetail(detailData))
                         {
                             detail1.ChangeToAddMode_KeepData();
+                            dataGridView1.Lock();
                             ShowParentMessage(V6Text.InvoiceF3EditDetailSuccess);
                         }
                     }
@@ -893,6 +898,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 else
                 {
                     detail1.ChangeToAddMode_KeepData();
+                    dataGridView1.Lock();
                 }
             }
             else if (keyData == Keys.F4)
@@ -3789,9 +3795,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     if (readonly_list.Contains(detail1.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))
                     {
                         detail1.ChangeToViewMode();
+                        dataGridView1.UnLock();
                     }
                     else
                     {
+                        dataGridView1.Lock();
                         SetDefaultDetail();
                     }
                     
@@ -4264,9 +4272,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 if (readonly_list.Contains(detail1.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))
                 {
                     detail1.ChangeToViewMode();
+                    dataGridView1.UnLock();
                 }
                 else
                 {
+                    dataGridView1.Lock();
                     _mavvi.Text = txtvBienSo.Text;
                     _maVt.Focus();
                 }
@@ -4521,9 +4531,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         #endregion navi
 
         #region ==== BaoGiaDetail Event ====
-        private void BaoGiaDetail1_ClickAdd(object sender)
+        private void Detail1_ClickAdd(object sender, HD_Detail_Eventargs e)
         {
-            XuLyDetailClickAdd();
+            if (e.Mode == V6Mode.Add)
+            {
+                XuLyDetailClickAdd();
+            }
+            else
+            {
+                dataGridView1.UnLock();
+            }
         }
         private void BaoGiaDetail1_AddHandle(IDictionary<string,object> data)
         {
@@ -4531,6 +4548,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             {
                 if (XuLyThemDetail(data))
                 {
+                    dataGridView1.UnLock();
                     All_Objects["data"] = data;
                     InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
                     return;
@@ -4539,7 +4557,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             }
             throw new Exception(V6Text.ValidateFail);
         }
-        private void BaoGiaDetail1_ClickEdit(object sender)
+        private void BaoGiaDetail1_ClickEdit(object sender, HD_Detail_Eventargs e)
         {
             try
             {
@@ -4557,6 +4575,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     if (readonly_list.Contains(detail1.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))
                     {
                         detail1.ChangeToViewMode();
+                        dataGridView1.UnLock();
                     }
                     else
                     {
@@ -4575,11 +4594,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         }
         private void BaoGiaDetail1_EditHandle(IDictionary<string,object> data)
         {
-            dataGridView1.UnLock();
             if (ValidateData_Detail(data))
             {
                 if (XuLySuaDetail(data))
                 {
+                    dataGridView1.UnLock();
                     All_Objects["data"] = data;
                     InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
                     return;
@@ -4588,11 +4607,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             }
             throw new Exception(V6Text.ValidateFail);
         }
-        private void BaoGiaDetail1_ClickDelete(object sender)
+        private void BaoGiaDetail1_ClickDelete(object sender, HD_Detail_Eventargs e)
         {
             XuLyXoaDetail();
         }
-        private void BaoGiaDetail1_ClickCancelEdit(object sender)
+        private void BaoGiaDetail1_ClickCancelEdit(object sender, HD_Detail_Eventargs e)
         {
             dataGridView1.UnLock();
             detail1.SetData(_gv1EditingRow.ToDataDictionary());

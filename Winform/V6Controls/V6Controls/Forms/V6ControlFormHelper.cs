@@ -1016,7 +1016,7 @@ namespace V6Controls.Forms
                         lButton.Visible = defineInfo_M.Visible;
                     }
 
-                    result.Add(fOrder, new AlctControls {DetailControl = c, LookupButton = lButton});
+                    result.Add(fOrder, new AlctControls { DetailControl = c, LookupButton = lButton, IsCarry = carry });
                     if (carry)
                     {
                         _carryList.Add(c);

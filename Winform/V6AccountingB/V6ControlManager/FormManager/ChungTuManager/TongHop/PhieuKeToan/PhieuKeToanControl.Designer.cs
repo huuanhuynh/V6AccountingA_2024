@@ -228,7 +228,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.detail1.ClickCancelEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.Detail1_ClickCancelEdit);
             this.detail1.AddHandle += new V6Controls.HandleData(this.Detail1_AddHandle);
             this.detail1.EditHandle += new V6Controls.HandleData(this.Detail1_EditHandle);
-            this.detail1.DeleteHandle += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.Detail1_DeleteHandle);
+            this.detail1.ClickDelete += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.Detail1_ClickDelete);
             this.detail1.LabelNameTextChanged += new System.EventHandler(this.detail1_LabelNameTextChanged);
             // 
             // dataGridView1
@@ -387,7 +387,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             this.detail2.ClickCancelEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.Detail2_ClickCancelEdit);
             this.detail2.AddHandle += new V6Controls.HandleData(this.Detail2_AddHandle);
             this.detail2.EditHandle += new V6Controls.HandleData(this.Detail2_EditHandle);
-            this.detail2.DeleteHandle += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.Detail2_DeleteHandle);
+            this.detail2.ClickDelete += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.Detail2_ClickDelete);
             this.detail2.Load += new System.EventHandler(this.Detail2_Load);
             // 
             // tabKhac

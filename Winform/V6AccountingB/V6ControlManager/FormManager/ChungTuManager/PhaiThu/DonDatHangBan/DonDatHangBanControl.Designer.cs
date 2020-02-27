@@ -292,7 +292,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.detail1.ClickCancelEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.DonDatHangBanDetail1_ClickCancelEdit);
             this.detail1.AddHandle += new V6Controls.HandleData(this.DonDatHangBanDetail1_AddHandle);
             this.detail1.EditHandle += new V6Controls.HandleData(this.DonDatHangBanDetail1_EditHandle);
-            this.detail1.DeleteHandle += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.DonDatHangBanDetail1_ClickDelete);
+            this.detail1.ClickDelete += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.DonDatHangBanDetail1_ClickDelete);
             this.detail1.LabelNameTextChanged += new System.EventHandler(this.detail1_LabelNameTextChanged);
             this.detail1.Load += new System.EventHandler(this.DonDatHangBanDetail1_Load);
             // 

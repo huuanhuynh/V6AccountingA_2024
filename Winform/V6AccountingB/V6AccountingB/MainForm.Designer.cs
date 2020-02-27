@@ -55,6 +55,7 @@ namespace V6AccountingB
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.changeDVCSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stickNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.picLOGO = new System.Windows.Forms.PictureBox();
             this.lblDVCS = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblHotLine = new System.Windows.Forms.Label();
@@ -70,15 +71,14 @@ namespace V6AccountingB
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.lblV6Message = new System.Windows.Forms.Label();
-            this.picLOGO = new System.Windows.Forms.PictureBox();
             this.statusStrip1.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panelLogin.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLOGO)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMenuShow.SuspendLayout();
             this.panelView.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picLOGO)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -135,6 +135,7 @@ namespace V6AccountingB
             // 
             this.menuMain.BackColor = System.Drawing.SystemColors.Highlight;
             this.menuMain.ButtonHeight = 30;
+            menuButton1.AccessibleDescription = "";
             menuButton1.CodeForm = "";
             menuButton1.Enabled = true;
             menuButton1.Exe = "";
@@ -462,6 +463,17 @@ namespace V6AccountingB
             this.stickNoteToolStripMenuItem.Text = "Stick note";
             this.stickNoteToolStripMenuItem.Click += new System.EventHandler(this.stickNoteToolStripMenuItem_Click);
             // 
+            // picLOGO
+            // 
+            this.picLOGO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.picLOGO.BackColor = System.Drawing.Color.AliceBlue;
+            this.picLOGO.Location = new System.Drawing.Point(11, 3);
+            this.picLOGO.Name = "picLOGO";
+            this.picLOGO.Size = new System.Drawing.Size(122, 61);
+            this.picLOGO.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picLOGO.TabIndex = 46;
+            this.picLOGO.TabStop = false;
+            // 
             // lblDVCS
             // 
             this.lblDVCS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -637,17 +649,6 @@ namespace V6AccountingB
             this.lblV6Message.Text = ".....";
             this.lblV6Message.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // picLOGO
-            // 
-            this.picLOGO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.picLOGO.BackColor = System.Drawing.Color.AliceBlue;
-            this.picLOGO.Location = new System.Drawing.Point(11, 3);
-            this.picLOGO.Name = "picLOGO";
-            this.picLOGO.Size = new System.Drawing.Size(122, 61);
-            this.picLOGO.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picLOGO.TabIndex = 46;
-            this.picLOGO.TabStop = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -669,6 +670,7 @@ namespace V6AccountingB
     "V6 (V6Business Software)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.Controls.SetChildIndex(this.lblV6Message, 0);
             this.Controls.SetChildIndex(this.panelView, 0);
             this.Controls.SetChildIndex(this.panelMenuShow, 0);
@@ -682,10 +684,10 @@ namespace V6AccountingB
             this.panelLogin.ResumeLayout(false);
             this.panelLogin.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picLOGO)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelMenuShow.ResumeLayout(false);
             this.panelView.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picLOGO)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
