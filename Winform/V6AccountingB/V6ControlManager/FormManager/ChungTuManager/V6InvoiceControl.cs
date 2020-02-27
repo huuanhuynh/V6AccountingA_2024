@@ -199,7 +199,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// <para>2I->Nhập SLQD</para>
         /// <para>20(M_CAL_SL_QD_ALL=2)</para>
         /// </summary>
-        public string M_TYPE_SL_QD_ALL;
+        public string M_TYPE_SL_QD_ALL = null;
 
         /// <summary>
         /// List thứ tự field chi tiết.
@@ -470,6 +470,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         public override void SetStatus2Text()
         {
+            if (V6Setting.IsDesignTime || M_TYPE_SL_QD_ALL == null) return;
             V6ControlFormHelper.SetStatusText2(V6Text.Text("STATUS2" + _invoice.Mact));
         }
 

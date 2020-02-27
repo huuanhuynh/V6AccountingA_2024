@@ -13,7 +13,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 {
     public partial class HD_Detail : V6Control
     {
-        public delegate void ClickHandle(object sender);
+        public delegate void ClickHandle(object sender, HD_Detail_Eventargs e);
 
         public event ClickHandle ClickAdd;
         public event ClickHandle ClickEdit;
@@ -71,6 +71,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             set
             {
                 _mode = value;
+                lblMode.Text = _mode.ToString();
                 ChangeModeHandle();
                 FixControlsLocation();
             }
@@ -173,7 +174,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             if (MODE == V6Mode.Add)
             {
                 ClickHandle handler = ClickAdd;
-                if (handler != null) handler(this);
+                if (handler != null) handler(this, new HD_Detail_Eventargs {Mode = MODE});
 
                 //Set Carry
                 V6ControlFormHelper.UseCarryValues(this);
@@ -190,7 +191,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 //Bấm hủy
                 //Đổi mode thành init
-                MODE = V6Mode.Init;
+                MODE = V6Mode.View;
             }
             else
             {
@@ -214,6 +215,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             else if (_mode == V6Mode.Edit)
             {
                 _mode = V6Mode.Add;
+                lblMode.Text = _mode.ToString();
                 btnSua.Image = Properties.Resources.Pencil16;
                 btnMoi.Image = Properties.Resources.Cancel16;
                 toolTip1.SetToolTip(btnMoi, V6Text.Cancel);
@@ -226,6 +228,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             else
             {
                 _mode = V6Mode.Add;
+                lblMode.Text = _mode.ToString();
                 AutoFocus();
                 SetFormControlsReadOnly(false);
                 btnMoi.Image = Properties.Resources.Cancel16;
@@ -260,13 +263,13 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 //Bấm hủy, gọi sự kiện, đổi mode
                 ClickHandle handler = ClickCancelEdit;
-                if (handler != null) handler(this);
+                if (handler != null) handler(this, new HD_Detail_Eventargs { Mode = MODE });
                 MODE = V6Mode.View;
             }
             else
             {
                 ClickHandle handler2 = ClickEdit;
-                if (handler2 != null) handler2(this);
+                if (handler2 != null) handler2(this, new HD_Detail_Eventargs { Mode = MODE });
             }
         }
 
@@ -339,6 +342,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 //MODE = Old_mode;
                 _mode = Old_mode;
+                lblMode.Text = _mode.ToString();
                 SetFormControlsReadOnly(false);
                 //SetData(null);
                 btnMoi.Image = Properties.Resources.Cancel16;
@@ -385,7 +389,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             if (!btnXoa.Focused) btnXoa.Focus();
             ClickHandle handler = DeleteHandle;
-            if (handler != null) handler(this);
+            if (handler != null) handler(this, new HD_Detail_Eventargs { Mode = MODE });
         }
 
         public HD_Detail()
@@ -404,7 +408,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         public string Vtype { get; set; }
 
         private Point _p, _p0;
-        private int _fixControl = 2;
+        private int _fixControl = 3;
 
         [DefaultValue(2)]
         [Description("Các control đứng trước, đứng im, không mất đi khi kéo thanh trượt.")]
@@ -1033,5 +1037,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.WriteExLog(GetType() + ".SetStruct " + Name, ex);
             }
         }
+    }
+
+    public class HD_Detail_Eventargs : EventArgs
+    {
+        public V6Mode Mode { get;set; }
     }
 }

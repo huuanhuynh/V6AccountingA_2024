@@ -812,7 +812,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                     }
                 }
             }
-            else if (keyData == Keys.F5) // Copy detail
+            else if (keyData == Keys.F10) // Copy detail
             {
                 if (NotAddEdit)
                 {

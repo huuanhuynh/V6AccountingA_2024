@@ -44,6 +44,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblMode = new V6Controls.V6Label();
             this.panel0.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -64,6 +65,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.panel0.AutoSize = true;
             this.panel0.Controls.Add(this.btnChucNang);
             this.panel0.Controls.Add(this.lblName);
+            this.panel0.Controls.Add(this.lblMode);
             this.panel0.Location = new System.Drawing.Point(77, 0);
             this.panel0.Name = "panel0";
             this.panel0.Size = new System.Drawing.Size(69, 52);
@@ -88,9 +90,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
             // 
             this.lblName.AccessibleDescription = ".";
             this.lblName.AccessibleName = "ten_vt";
-            this.lblName.Location = new System.Drawing.Point(0, 33);
+            this.lblName.Location = new System.Drawing.Point(29, 7);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(66, 14);
+            this.lblName.Size = new System.Drawing.Size(34, 14);
             this.lblName.TabIndex = 0;
             this.lblName.Tag = "hide";
             this.lblName.Text = "Tên";
@@ -192,6 +194,18 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.panel2.TabIndex = 3;
             this.panel2.SizeChanged += new System.EventHandler(this.panel1and2_SizeChanged);
             // 
+            // lblMode
+            // 
+            this.lblMode.AccessibleDescription = ".";
+            this.lblMode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMode.Location = new System.Drawing.Point(3, 33);
+            this.lblMode.Name = "lblMode";
+            this.lblMode.Size = new System.Drawing.Size(34, 14);
+            this.lblMode.TabIndex = 39;
+            this.lblMode.Text = "Mode";
+            this.lblMode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // HD_Detail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -234,5 +248,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
         public System.Windows.Forms.Panel panel2;
 
         public DropDownButton btnChucNang;
+        public V6Label lblMode;
     }
 }

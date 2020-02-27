@@ -1,4 +1,6 @@
-﻿namespace V6Init
+﻿using System;
+
+namespace V6Init
 {
     public static class V6Text
     {
@@ -14,7 +16,14 @@
 
         public static string Text(string ID)
         {
-            return CorpLan1.GetText(ID);
+            try
+            {
+                return CorpLan1.GetText(ID);
+            }
+            catch (Exception)
+            {
+                return ID;
+            }
         }
 
         public static bool LoadText(string s)

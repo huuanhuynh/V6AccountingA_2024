@@ -2212,7 +2212,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     }
                 }
             }
-            else if (keyData == Keys.F5) // Copy detail
+            else if (keyData == Keys.F10) // Copy detail
             {
                 if (NotAddEdit)
                 {
@@ -5656,6 +5656,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     if (readonly_list.Contains(detail1.btnMoi.Name, StringComparer.InvariantCultureIgnoreCase))
                     {
                         detail1.ChangeToViewMode();
+                        dataGridView1.UnLock();
                     }
                     else
                     {
@@ -6192,6 +6193,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 if (readonly_list.Contains(detail1.btnMoi.Name, StringComparer.InvariantCultureIgnoreCase))
                 {
                     detail1.ChangeToViewMode();
+                    dataGridView1.UnLock();
                 }
                 else
                 {
@@ -6498,9 +6500,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         #endregion navi
 
         #region ==== hoadonDetail Event ====
-        private void hoaDonDetail1_ClickAdd(object sender)
+        private void hoaDonDetail1_ClickAdd(object sender, HD_Detail_Eventargs e)
         {
-            XuLyDetailClickAdd();
+            if (e.Mode == V6Mode.Add)
+            {
+                XuLyDetailClickAdd();
+            }
+            else
+            {
+                dataGridView1.UnLock();
+            }
         }
         private void hoaDonDetail1_AddHandle(IDictionary<string,object> data)
         {
@@ -6793,6 +6802,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     if (readonly_list.Contains(detail1.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))
                     {
                         detail1.ChangeToViewMode();
+                        dataGridView1.UnLock();
                     }
                     else
                     {
