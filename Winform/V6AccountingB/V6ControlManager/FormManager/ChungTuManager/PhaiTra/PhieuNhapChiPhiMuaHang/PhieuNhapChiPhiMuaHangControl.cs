@@ -3677,10 +3677,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
 #endregion hoadoen detail event
 
-        /// <summary>
-        /// Thêm chi tiết hóa đơn
-        /// </summary>
-        
 
         private void dateNgayCT_ValueChanged(object sender, EventArgs e)
         {

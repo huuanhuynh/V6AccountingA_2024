@@ -3913,11 +3913,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             ViewCurrentRowToDetail(dataGridView1, detail1);
         }
 
-        /// <summary>
-        /// Thêm chi tiết hóa đơn
-        /// </summary>
-        
-
         private void dateNgayCT_ValueChanged(object sender, EventArgs e)
         {
             if (!Invoice.M_NGAY_CT) dateNgayLCT.SetValue(dateNgayCT.Date);

@@ -3391,8 +3391,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - M_POA_MULTI_VAT = " + M_POA_MULTI_VAT);
             if (M_POA_MULTI_VAT == "1")
             {
-                Tinh_TienThueNtVaTienThue_TheoThueSuat(_thue_suat_i.Value, _tienNt0.Value + _nkNt.Value - _ckNt.Value - _ggNt.Value, _tien0.Value + _nk.Value - _ck.Value - _gg.Value, _thue_nt, _thue);
-                V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - Tinh thue ct M_POA_MULTY_VAT = 1.");
+                decimal cknt_value = 0, ck_value = 0, ggnt_value = 0, gg_value = 0;
+                string M_POA_VAT_WITH_CK_GG = V6Options.GetValue("M_POA_VAT_WITH_CK_GG");
+                if (M_POA_VAT_WITH_CK_GG.Length > 0 && M_POA_VAT_WITH_CK_GG[0] == '1')
+                {
+                    ck_value = _ck.Value;
+                    cknt_value = _ckNt.Value;
+                }
+                if (M_POA_VAT_WITH_CK_GG.Length > 1 && M_POA_VAT_WITH_CK_GG[1] == '1')
+                {
+                    gg_value = _gg.Value;
+                    ggnt_value = _ggNt.Value;
+                }
+                Tinh_TienThueNtVaTienThue_TheoThueSuat(_thue_suat_i.Value,
+                    _tienNt0.Value + _nkNt.Value - cknt_value - ggnt_value,
+                    _tien0.Value + _nk.Value - ck_value - gg_value, _thue_nt, _thue);
+                V6ControlFormHelper.AddLastAction("\n - Tinh thue ct M_POA_MULTY_VAT = 1. M_POA_VAT_WITH_CK_GG = " + M_POA_VAT_WITH_CK_GG);
             }
         }
 

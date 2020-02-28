@@ -3531,11 +3531,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
 
 #endregion hoadoen detail event
 
-        /// <summary>
-        /// Thêm chi tiết hóa đơn
-        /// </summary>
-        
-
         private void dateNgayCT_ValueChanged(object sender, EventArgs e)
         {
             if (!Invoice.M_NGAY_CT) dateNgayLCT.SetValue(dateNgayCT.Date);
