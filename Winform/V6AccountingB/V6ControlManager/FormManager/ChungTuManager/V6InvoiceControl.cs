@@ -3974,9 +3974,20 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
-        
         }
 
+        /// <summary>
+        /// Hiển thị dữ liệu lên control chi tiết. (Chỉ có hiệu lực khi control chi tiết đang ở mode view or lock.
+        /// </summary>
+        /// <param name="dataGridView1"></param>
+        /// <param name="detail1"></param>
+        public void ViewCurrentRowToDetail(V6ColorDataGridView dataGridView1, HD_Detail detail1)
+        {
+            if (detail1. IsViewOrLock)
+            {
+                detail1.SetData( dataGridView1.CurrentRow.ToDataDictionary());
+            }
+        }
         
     }
 }

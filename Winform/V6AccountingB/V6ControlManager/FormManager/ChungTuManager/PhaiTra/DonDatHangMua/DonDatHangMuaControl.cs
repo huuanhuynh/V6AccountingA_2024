@@ -4272,13 +4272,29 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
         }
 
         
-        private void hoaDonDetail1_ClickAdd(object sender, HD_Detail_Eventargs e)
+        private void Detail1_ClickAdd(object sender, HD_Detail_Eventargs e)
         {
-            XuLyDetailClickAdd(sender);
+            if (e.Mode == V6Mode.Add)
+            {
+                XuLyDetailClickAdd(sender);
+            }
+            else
+            {
+                dataGridView1.UnLock();
+                ViewCurrentRowToDetail(dataGridView1, detail1);
+            }
         }
         private void detail2_ClickAdd(object sender, HD_Detail_Eventargs e)
         {
-            XuLyDetail2ClickAdd(sender);
+            if (e.Mode == V6Mode.Add)
+            {
+                XuLyDetail2ClickAdd(sender);
+            }
+            else
+            {
+                dataGridView2.UnLock();
+                ViewCurrentRowToDetail(dataGridView2, detail2);
+            }
         }
 
         private void hoaDonDetail1_AddHandle(IDictionary<string,object> data)
@@ -4419,7 +4435,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
         private void hoaDonDetail1_ClickCancelEdit(object sender, HD_Detail_Eventargs e)
         {
             dataGridView1.UnLock();
-            detail1.SetData(_gv1EditingRow.ToDataDictionary());
+            ViewCurrentRowToDetail(dataGridView1, detail1);
         }
         private void hoaDonDetail2_ClickCancelEdit(object sender, HD_Detail_Eventargs e)
         {
@@ -4440,10 +4456,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
 
         private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
-            if (detail1.IsViewOrLock)
-            {
-                detail1.SetData(dataGridView1.CurrentRow.ToDataDictionary());
-            }
+            ViewCurrentRowToDetail(dataGridView1, detail1);
         }
         private void dataGridView2_SelectionChanged(object sender, EventArgs e)
         {

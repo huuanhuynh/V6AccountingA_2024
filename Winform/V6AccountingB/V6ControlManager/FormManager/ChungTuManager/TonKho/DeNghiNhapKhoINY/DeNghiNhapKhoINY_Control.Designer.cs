@@ -744,7 +744,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.detail1.TabIndex = 2;
             this.detail1.Tag = "cancelall";
             this.detail1.Vtype = null;
-            this.detail1.ClickAdd += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.hoaDonDetail1_ClickAdd);
+            this.detail1.ClickAdd += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.Detail1_ClickAdd);
             this.detail1.ClickEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.hoaDonDetail1_ClickEdit);
             this.detail1.ClickCancelEdit += new V6ControlManager.FormManager.ChungTuManager.HD_Detail.ClickHandle(this.hoaDonDetail1_ClickCancelEdit);
             this.detail1.AddHandle += new V6Controls.HandleData(this.hoaDonDetail1_AddHandle);

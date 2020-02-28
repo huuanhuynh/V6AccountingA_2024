@@ -262,10 +262,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
             if (!btnSua.Focused) btnSua.Focus();
             if (MODE == V6Mode.Edit)
             {
-                //Bấm hủy, gọi sự kiện, đổi mode
+                //Bấm hủy, đổi mode, gọi sự kiện
+                MODE = V6Mode.View;
+
                 ClickHandle handler = ClickCancelEdit;
                 if (handler != null) handler(this, new HD_Detail_Eventargs { Mode = MODE });
-                MODE = V6Mode.View;
             }
             else
             {
@@ -304,7 +305,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             if(!btnNhan.Focused) btnNhan.Focus();
             //Carry values
-            V6ControlFormHelper.SetCarryValues(this);
+            //V6ControlFormHelper.SetCarryValues(this);
+            SetCarryData(GetData());
 
             bool ok = false;
             Old_mode = MODE;

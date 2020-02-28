@@ -538,6 +538,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             else
             {
                 dataGridView1.UnLock();
+                detail1.SetData(dataGridView1.CurrentRow.ToDataDictionary());
             }
         }
 
