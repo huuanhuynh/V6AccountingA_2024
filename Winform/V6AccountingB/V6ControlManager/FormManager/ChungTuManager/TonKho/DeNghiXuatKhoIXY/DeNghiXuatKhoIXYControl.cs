@@ -839,6 +839,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                         if (XuLyThemDetail(detailData))
                         {
                             ShowParentMessage(V6Text.InvoiceF3AddDetailSuccess);
+                            All_Objects["data"] = detailData;
+                            InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
                         }
                     }
                 }
@@ -852,6 +854,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                             detail1.ChangeToAddMode_KeepData();
                             dataGridView1.Lock();
                             ShowParentMessage(V6Text.InvoiceF3EditDetailSuccess);
+                            All_Objects["data"] = detailData;
+                            InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
                         }
                     }
                 }
@@ -6003,7 +6007,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                         newData["MA_TD_I"] = Txtma_td_ph.Text;
                     }
 
-                    if (XuLyThemDetail(newData)) addCount++;
+                    if (XuLyThemDetail(newData))
+                    {
+                        addCount++;
+                        All_Objects["data"] = newData;
+                        InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                    }
                     else failCount++;
                 }
 

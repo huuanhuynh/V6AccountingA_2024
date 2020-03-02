@@ -1508,6 +1508,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                             detail1.ChangeToAddMode_KeepData();
                             dataGridView1.Lock();
                             ShowParentMessage(V6Text.InvoiceF3EditDetailSuccess);
+                            All_Objects["data"] = detailData;
+                            InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
                         }
                     }
                 }

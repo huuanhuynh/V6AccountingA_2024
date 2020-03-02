@@ -917,6 +917,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                         if (XuLyThemDetail(detailData))
                         {
                             ShowParentMessage(V6Text.InvoiceF3AddDetailSuccess);
+                            All_Objects["data"] = detailData;
+                            InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
                         }
                     }
                 }
@@ -930,6 +932,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                             detail1.ChangeToAddMode_KeepData();
                             dataGridView1.Lock();
                             ShowParentMessage(V6Text.InvoiceF3EditDetailSuccess);
+                            All_Objects["data"] = detailData;
+                            InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
                         }
                     }
                 }
@@ -5551,7 +5555,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                     var newData = new SortedDictionary<string, object>(data);
                     All_Objects["data"] = newData;
                     InvokeFormEvent("DONDATHANGMUA_CDHB");
-                    if (XuLyThemDetail(newData)) addCount++;
+                    if (XuLyThemDetail(newData))
+                    {
+                        addCount++;
+                        All_Objects["data"] = newData;
+                        InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                    }
                     else failCount++;
                 }
 

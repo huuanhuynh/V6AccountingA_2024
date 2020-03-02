@@ -1659,9 +1659,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     {
                         if (XuLyThemDetail(detailData))
                         {
+                            ShowParentMessage(V6Text.InvoiceF3AddDetailSuccess);
                             All_Objects["data"] = detailData;
                             InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
-                            ShowParentMessage(V6Text.InvoiceF3AddDetailSuccess);
                         }
                     }
                 }
@@ -1672,11 +1672,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     {
                         if (XuLySuaDetail(detailData))
                         {
-                            All_Objects["data"] = detailData;
-                            InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
+                            ShowParentMessage(V6Text.InvoiceF3EditDetailSuccess);
                             detail1.ChangeToAddMode_KeepData();
                             dataGridView1.Lock();
-                            ShowParentMessage(V6Text.InvoiceF3EditDetailSuccess);
+                            All_Objects["data"] = detailData;
+                            InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
                         }
                     }
                 }

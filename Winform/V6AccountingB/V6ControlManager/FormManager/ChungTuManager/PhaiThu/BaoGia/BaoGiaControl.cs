@@ -879,6 +879,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                         if (XuLyThemDetail(detailData))
                         {
                             ShowParentMessage(V6Text.InvoiceF3AddDetailSuccess);
+                            All_Objects["data"] = detailData;
+                            InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
                         }
                     }
                 }
@@ -892,6 +894,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                             detail1.ChangeToAddMode_KeepData();
                             dataGridView1.Lock();
                             ShowParentMessage(V6Text.InvoiceF3EditDetailSuccess);
+                            All_Objects["data"] = detailData;
+                            InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
                         }
                     }
                 }

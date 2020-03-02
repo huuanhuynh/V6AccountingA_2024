@@ -832,6 +832,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                         if (XuLyThemDetail(detailData))
                         {
                             ShowParentMessage(V6Text.InvoiceF3AddDetailSuccess);
+                            All_Objects["data"] = detailData;
+                            InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
                         }
                     }
                 }
@@ -845,6 +847,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                             detail1.ChangeToAddMode_KeepData();
                             dataGridView1.Lock();
                             ShowParentMessage(V6Text.InvoiceF3EditDetailSuccess);
+                            All_Objects["data"] = detailData;
+                            InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAILSUCCESS);
                         }
                     }
                 }
@@ -4255,7 +4259,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                                 newData["SL_QD"] = insert / HS_QD1;
                             }
 
-                            if (XuLyThemDetail(newData)) addCount++;
+                            if (XuLyThemDetail(newData))
+                            {
+                                addCount++;
+                                All_Objects["data"] = newData;
+                                InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                            }
                             else failCount++;
 
                             sum += insert;
@@ -4306,9 +4315,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                                 else if (HS_QD1 != 0 && M_CAL_SL_QD_ALL == "1")
                                 {
                                     newData["SL_QD"] = insert / HS_QD1;
-                                }                                
+                                }
 
-                                if (XuLyThemDetail(newData)) addCount++;
+                                if (XuLyThemDetail(newData))
+                                {
+                                    addCount++;
+                                    All_Objects["data"] = newData;
+                                    InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                                }
                                 else failCount++;
 
                                 sum += insert;
@@ -4351,7 +4365,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                             }
                         }
 
-                        if (XuLyThemDetail(newData)) addCount++;
+                        if (XuLyThemDetail(newData))
+                        {
+                            addCount++;
+                            All_Objects["data"] = newData;
+                            InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                        }
                         else failCount++;
                     }                    
                 }
