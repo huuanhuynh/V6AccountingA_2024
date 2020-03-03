@@ -67,8 +67,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (V6Login.MadvcsCount <= 1){
                     txtMaDvcs.Enabled = false;
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -93,6 +91,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
             try
             {
+                int check = V6BusinessHelper.CheckDataLocked("2", V6Setting.M_SV_DATE, (int)txtKy2.Value, (int)txtNam.Value);
+                if (check == 1)
+                {
+                    this.ShowWarningMessage(V6Text.CheckLock);
+                    return;
+                }
                 _executing = true;
                 _executing_success = false;
                 CheckForIllegalCrossThreadCalls = false;

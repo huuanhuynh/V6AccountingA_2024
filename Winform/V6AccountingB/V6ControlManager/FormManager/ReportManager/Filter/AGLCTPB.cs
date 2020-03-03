@@ -37,7 +37,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             //@Stt_recs VARCHAR(MAX) = '', 
             //@User_id INT = 1, 
             //@Ma_dvcs VARCHAR(50) = ''
-
+            Number3 = txtNam.Value;
             var result = new List<SqlParameter>();
             int zero = 0;
             result.Add(new SqlParameter("@Type","VIEW"));
@@ -54,39 +54,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             
         }
 
-        private void txtThang12_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                var txt = (V6NumberTextBox) sender;
-                if (txt.Value < 1) txt.Value = 0;
-                if (txt.Value > 12) txt.Value = 12;
-                
-            }
-            catch (Exception)
-            {
-                
-            }
-        }
-
-        private void txtKy2_V6LostFocus(object sender)
-        {
-            try
-            {
-                var txt = (V6NumberTextBox)sender;
-                if (txt.Value < 1) txt.Value = 1;
-                if (txt.Value > 12) txt.Value = 12;
-
-                
-
-            }
-            catch (Exception)
-            {
-
-            }
-        }
-
-       private void txtNam_TextChanged(object sender, EventArgs e)
+        private void txtNam_TextChanged(object sender, EventArgs e)
         {
             try
             {

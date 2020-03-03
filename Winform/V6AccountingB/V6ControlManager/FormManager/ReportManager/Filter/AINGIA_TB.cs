@@ -6,7 +6,7 @@ using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class AINGIA_TB: FilterBase
+    public partial class AINGIA_TB : FilterBase
     {
         public AINGIA_TB()
         {
@@ -45,6 +45,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             //@Dk_cl int,
             //@Tinh_giatb int,
             //@Advance VARCHAR(255) = ''
+
+            Number1 = txtThang1.Value;
+            Number2 = txtThang2.Value;
+            Number3 = txtNam.Value;
 
             var result = new List<SqlParameter>();
             result.Add(new SqlParameter("@Period1", (int)txtThang1.Value));

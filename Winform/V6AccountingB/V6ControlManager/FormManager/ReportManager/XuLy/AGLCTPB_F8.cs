@@ -85,7 +85,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             
             try
             {
-
+                int check = V6BusinessHelper.CheckDataLocked("2", V6Setting.M_SV_DATE, (int)txtKy2.Value, (int)txtNam.Value);
+                if (check == 1)
+                {
+                    this.ShowWarningMessage(V6Text.CheckLock);
+                    return;
+                }
                 //@Type AS VARCHAR(8),
                 //@Year AS INT,
                 //@Period1 AS INT = 0,
@@ -108,10 +113,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         new SqlParameter("@Ma_dvcs", "")
 
                     };
-
                     V6BusinessHelper.ExecuteProcedureNoneQuery(_program, plist);
-
-
+                    
                     OnUpdateSuccessEvent();
                     Dispose();
                     V6ControlFormHelper.ShowMainMessage(V6Text.Finish);

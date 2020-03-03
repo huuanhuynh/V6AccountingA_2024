@@ -53,9 +53,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         : "";
                     string ma_nv = currentRowData.ContainsKey("MA_NV") ? currentRowData["MA_NV"].ToString() : "";
 
-                    if (V6Login.UserRight.AllowDelete("", ma_ct)
-                        && this.ShowConfirmMessage("Xóa " + so_the_ts) == DialogResult.Yes)
+                    int check = V6BusinessHelper.CheckDataLocked("2", V6Setting.M_SV_DATE, ky, nam);
+                    if (check == 1)
                     {
+                        this.ShowWarningMessage(V6Text.CheckLock);
+                        return;
+                    }
+
+                    if (V6Login.UserRight.AllowDelete("", ma_ct))
+                    {
+                        if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " " + so_the_ts) != DialogResult.Yes) return;
 
                         SqlParameter[] plist =
                         {

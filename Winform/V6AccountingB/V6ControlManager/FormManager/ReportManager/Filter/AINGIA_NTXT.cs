@@ -6,7 +6,7 @@ using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class AINGIA_NTXT: FilterBase
+    public partial class AINGIA_NTXT : FilterBase
     {
         public AINGIA_NTXT()
         {
@@ -43,6 +43,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             //@Warning int,
             //@Tinh_giatb int,
             //@Advance VARCHAR(255) = ''
+            Number1 = txtThang1.Value;
+            Number2 = txtThang2.Value;
+            Number3 = txtNam.Value;
 
             var result = new List<SqlParameter>();
             int warning = 0;

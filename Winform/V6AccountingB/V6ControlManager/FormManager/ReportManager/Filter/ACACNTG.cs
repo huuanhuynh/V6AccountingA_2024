@@ -43,6 +43,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             //@Ty_gia NUMERIC(16, 2),
             //@Kieu_tg_gs Int,
             //@Loai_cl CHAR(1)
+            Number1 = txtThang1.Value;
+            Number2 = txtThang2.Value;
+            Number3 = txtNam.Value;
 
             var result = new List<SqlParameter>();
             result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));

@@ -604,6 +604,14 @@ namespace V6AccountingBusiness
             }
         }
 
+        /// <summary>
+        /// Kiểm tra khóa số liệu. Nếu có khóa trả về 1, nếu không khóa trả về 0
+        /// </summary>
+        /// <param name="type">1: dùng tham số date. 2: dùng month year. 3: year</param>
+        /// <param name="date"></param>
+        /// <param name="month"></param>
+        /// <param name="year"></param>
+        /// <returns></returns>
         public static int CheckDataLocked(string type, DateTime date, int month, int year)
         {
             SqlParameter[] plist =

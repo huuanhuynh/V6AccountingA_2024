@@ -143,7 +143,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-    protected override void XuLyBoSungThongTinChungTuF4()
+        protected override void XuLyBoSungThongTinChungTuF4()
         {
             try
             {

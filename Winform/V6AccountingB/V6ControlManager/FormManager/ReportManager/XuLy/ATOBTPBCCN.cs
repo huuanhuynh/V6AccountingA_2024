@@ -74,32 +74,30 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (dataGridView1.CurrentRow != null)
                 {
 
-                    if (V6Login.UserRight.AllowDelete("", "S03")
-                        && this.ShowConfirmMessage("Xóa bút toán phân bổ công cụ" ) == DialogResult.Yes)
+                    if (V6Login.UserRight.AllowDelete("", "S03"))
                     {
-
-
+                        if (this.ShowConfirmMessage(V6Text.DeleteConfirm) != DialogResult.Yes) return;
 
                         var currentRowData = dataGridView1.CurrentRow.ToDataDictionary();
 
                         int nam = currentRowData.ContainsKey("RNAM")
-                       ? ObjectAndString.ObjectToInt(currentRowData["RNAM"])
-                       : 1900;
+                            ? ObjectAndString.ObjectToInt(currentRowData["RNAM"])
+                            : 1900;
                         int ky1 = currentRowData.ContainsKey("RKY1")
                             ? ObjectAndString.ObjectToInt(currentRowData["RKY1"])
                             : 0;
                         int ky2 = currentRowData.ContainsKey("RKY2")
-                           ? ObjectAndString.ObjectToInt(currentRowData["RKY2"])
-                           : 0;
+                            ? ObjectAndString.ObjectToInt(currentRowData["RKY2"])
+                            : 0;
                         string Diengiai = currentRowData.ContainsKey("RDIEN_GIAI")
-                          ? ObjectAndString.ObjectToString(currentRowData["RDIEN_GIAI"])
-                          : "";
+                            ? ObjectAndString.ObjectToString(currentRowData["RDIEN_GIAI"])
+                            : "";
                         string Madvcs = currentRowData.ContainsKey("MA_DVCS")
-                         ? ObjectAndString.ObjectToString(currentRowData["MA_DVCS"])
-                          : "";
+                            ? ObjectAndString.ObjectToString(currentRowData["MA_DVCS"])
+                            : "";
                         string Madvcs0 = currentRowData.ContainsKey("MA_DVCS0")
-                         ? ObjectAndString.ObjectToString(currentRowData["MA_DVCS0"])
-                         : "";
+                            ? ObjectAndString.ObjectToString(currentRowData["MA_DVCS0"])
+                            : "";
 
                         SqlParameter[] plist =
                         {
@@ -107,13 +105,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             new SqlParameter("@ky1", ky1),
                             new SqlParameter("@ky2", ky2),
                             new SqlParameter("@User_id", V6Login.UserId),
-                            new SqlParameter("@Dien_giai",Diengiai),
+                            new SqlParameter("@Dien_giai", Diengiai),
                             new SqlParameter("@Ma_dvcs", Madvcs),
                             new SqlParameter("@Ma_dvcs0", Madvcs0),
                             new SqlParameter("@Action", "F8"),
-
-
-
                         };
                         var result = V6BusinessHelper.ExecuteProcedureNoneQuery(_program, plist);
                         if (result > 0)
@@ -180,10 +175,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                     if (this.ShowConfirmMessage("Tạo bút toán phân bổ công cụ") == DialogResult.Yes)
                     {
-                        
-
-                       // var currentRow = dataGridView1.CurrentRow;
-                        
                         //@Nam INT, 
                         //@Ky1 INT,
                         //@Ky2 INT,
@@ -224,9 +215,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             new SqlParameter("@Ma_dvcs", Madvcs),
                             new SqlParameter("@Ma_dvcs0", Madvcs0),
                             new SqlParameter("@Action", "F4"),
-
-
-
                         };
                         var result = V6BusinessHelper.ExecuteProcedureNoneQuery(_program, plist);
                         if (result > 0)

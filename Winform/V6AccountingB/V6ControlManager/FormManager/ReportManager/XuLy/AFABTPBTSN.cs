@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6ControlManager.FormManager.ReportManager.ReportR;
@@ -27,7 +28,23 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected override void MakeReport2()
         {
             Load_Data = true;//Thay đổi cờ.
-            base.MakeReport2();
+            try
+            {
+                FilterControl.GetFilterParameters();
+                int check = V6BusinessHelper.CheckDataLocked("2", V6Setting.M_SV_DATE, (int)FilterControl.Number2, (int)FilterControl.Number3);
+                if (check == 1)
+                {
+                    this.ShowWarningMessage(V6Text.CheckLock);
+                    return;
+                }
+
+                base.MakeReport2();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
+            
         }
 
         protected override void XuLyF7()

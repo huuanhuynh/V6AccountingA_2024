@@ -45,6 +45,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             //@Ma_dvcs VARCHAR(50),
             //@Ma_dvcs0 VARCHAR(50),
             //@Action VARCHAR(50)
+            Number1 = txtKy1.Value;
+            Number2 = txtKy2.Value;
+            Number3 = txtNam.Value;
             V6Setting.M_NAM = (int)txtNam.Value;
             V6Setting.M_KY1 = (int)txtKy1.Value;
             V6Setting.M_KY2 = (int)txtKy2.Value;

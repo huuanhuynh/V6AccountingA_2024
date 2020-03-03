@@ -70,6 +70,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
+                int check = V6BusinessHelper.CheckDataLocked("2", V6Setting.M_SV_DATE, (int)txtKy.Value, (int)txtnam.Value);
+                if (check == 1)
+                {
+                    this.ShowWarningMessage(V6Text.CheckLock);
+                    return;
+                }
                 //@nam int,
                 //@ky int,
                 //@so_the_ts varchar(50),

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
 using System.Threading;
 using V6AccountingBusiness;
+using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6Tools;
@@ -41,34 +43,46 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected override void ExecuteProcedure()
         {
             _message = "";
-            //_pList:
-            //0 @Period1 int,
-            //1 @Year1 int,
-            //2 @Period2 int,
-            //3 @Year2 int,
-            //4 @Ma_kho VARCHAR(50),
-            //5 @Ma_vt VARCHAR(50),
-            //6 @Dk_cl int,
-            //7 @Tinh_giatb int,
-            //8 @Advance VARCHAR(255) = ''
-            if (GenerateProcedureParameters())
+            try
             {
-
-                var m_BigData = ObjectAndString.ObjectToString(V6Options.GetValue("M_BIG_DATA"));
-
-                if  (m_BigData == "1")
+                //_pList:
+                //0 @Period1 int,
+                //1 @Year1 int,
+                //2 @Period2 int,
+                //3 @Year2 int,
+                //4 @Ma_kho VARCHAR(50),
+                //5 @Ma_vt VARCHAR(50),
+                //6 @Dk_cl int,
+                //7 @Tinh_giatb int,
+                //8 @Advance VARCHAR(255) = ''
+                if (GenerateProcedureParameters())
                 {
-                    var tTinhToan = new Thread(TinhGia_TB);
-                    tTinhToan.Start();
-                }
-                else
-                {
-                    var tTinhToan_All = new Thread(TinhGia_TB_All);
-                     tTinhToan_All.Start();    
-                }
-                
+                    int check = V6BusinessHelper.CheckDataLocked("2", V6Setting.M_SV_DATE, (int)FilterControl.Number2, (int)FilterControl.Number3);
+                    if (check == 1)
+                    {
+                        this.ShowWarningMessage(V6Text.CheckLock);
+                        return;
+                    }
 
-                timerViewReport.Start();
+                    var m_BigData = ObjectAndString.ObjectToString(V6Options.GetValue("M_BIG_DATA"));
+
+                    if (m_BigData == "1")
+                    {
+                        var tTinhToan = new Thread(TinhGia_TB);
+                        tTinhToan.Start();
+                    }
+                    else
+                    {
+                        var tTinhToan_All = new Thread(TinhGia_TB_All);
+                        tTinhToan_All.Start();
+                    }
+
+                    timerViewReport.Start();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
             }
         }
 

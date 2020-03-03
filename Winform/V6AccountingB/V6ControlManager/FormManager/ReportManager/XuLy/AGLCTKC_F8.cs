@@ -62,9 +62,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 txtNam.Value = _year;
                 txtKy1.Value = V6Setting.M_SV_DATE.Month;
                 txtKy2.Value = V6Setting.M_SV_DATE.Month;
-               
-
-
             }
             catch (Exception ex)
             {
@@ -81,7 +78,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-               
+                int check = V6BusinessHelper.CheckDataLocked("2", V6Setting.M_SV_DATE, (int)txtKy2.Value, (int)txtNam.Value);
+                if (check == 1)
+                {
+                    this.ShowWarningMessage(V6Text.CheckLock);
+                    return;
+                }
                 //@Type AS VARCHAR(8),
                 //@Year AS INT,
                 //@Period1 AS INT,

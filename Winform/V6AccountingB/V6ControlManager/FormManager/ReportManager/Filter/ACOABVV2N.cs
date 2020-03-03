@@ -6,7 +6,7 @@ using V6Init;
 
 namespace V6ControlManager.FormManager.ReportManager.Filter
 {
-    public partial class ACOABVV2N: FilterBase
+    public partial class ACOABVV2N : FilterBase
     {
         public ACOABVV2N()
         {
@@ -23,6 +23,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// <returns>cKey</returns>
         public override List<SqlParameter> GetFilterParameters()
         {
+            //Number1 = txtThang1.Value;
+            //Number2 = txtThang2.Value;
+            Number3 = txtDenNam.Value;
             var result = new List<SqlParameter>
             {
                 new SqlParameter("@nYear", (int) txtTuNam.Value),
@@ -37,7 +40,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         private void txtTuNam_TextChanged(object sender, EventArgs e)
         {
             txtDenNam.Value = txtTuNam.Value + 1;
-            Number2 = txtDenNam.Value;
+            Number3 = txtDenNam.Value;
         }
     }
 }

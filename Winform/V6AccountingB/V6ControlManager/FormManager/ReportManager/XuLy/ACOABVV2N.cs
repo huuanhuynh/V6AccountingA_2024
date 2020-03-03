@@ -1,5 +1,8 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
+using System.Reflection;
 using System.Windows.Forms;
+using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
@@ -23,13 +26,28 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected override void Nhan()
         {
-            var sql = "select count(1) from ABVV where Nam = " + FilterControl.Number2;
-            var check = ObjectAndString.ObjectToInt(SqlConnect.ExecuteScalar(CommandType.Text, sql)) > 0;
-            if (check && this.ShowConfirmMessage("Năm đã có. Có chắc chắn chuyển sang không?") != DialogResult.Yes)
+            try
             {
-                return;
+                FilterControl.GetFilterParameters();
+                int check = V6BusinessHelper.CheckDataLocked("3", V6Setting.M_SV_DATE, (int)FilterControl.Number2, (int)FilterControl.Number3);
+                if (check == 1)
+                {
+                    this.ShowWarningMessage(V6Text.CheckLock);
+                    return;
+                }
+
+                var sql = "select count(1) from ABVV where Nam = " + FilterControl.Number2;
+                var check1 = ObjectAndString.ObjectToInt(SqlConnect.ExecuteScalar(CommandType.Text, sql)) > 0;
+                if (check1 && this.ShowConfirmMessage("Năm đã có. Có chắc chắn chuyển sang không?") != DialogResult.Yes)
+                {
+                    return;
+                }
+                base.Nhan();
             }
-            base.Nhan();
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
         }
 
         //protected override void ExecuteProcedure()

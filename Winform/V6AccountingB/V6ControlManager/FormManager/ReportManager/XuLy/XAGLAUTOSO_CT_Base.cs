@@ -1,4 +1,7 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Reflection;
+using System.Windows.Forms;
+using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
@@ -20,11 +23,26 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected override void Nhan()
         {
-            if (this.ShowConfirmMessage(V6Text.ExecuteConfirm) != DialogResult.Yes)
+            try
             {
-                return;
+                FilterControl.GetFilterParameters();
+                int check = V6BusinessHelper.CheckDataLocked("1", FilterControl.Date1.Date, (int)FilterControl.Number2, (int)FilterControl.Number3);
+                if (check == 1)
+                {
+                    this.ShowWarningMessage(V6Text.CheckLock);
+                    return;
+                }
+
+                if (this.ShowConfirmMessage(V6Text.ExecuteConfirm) != DialogResult.Yes)
+                {
+                    return;
+                }
+                base.Nhan();
             }
-            base.Nhan();
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
         }
 
         //protected override void ExecuteProcedure()

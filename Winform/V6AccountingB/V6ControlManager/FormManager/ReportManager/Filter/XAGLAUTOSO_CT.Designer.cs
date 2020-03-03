@@ -45,9 +45,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtMaSoNB = new V6Controls.V6VvarTextBox();
             this.v6Label2 = new V6Controls.V6Label();
-            this.v6ColorDateTimePick2 = new V6Controls.V6DateTimePicker();
+            this.dateDenNgay = new V6Controls.V6DateTimePicker();
             this.v6Label1 = new V6Controls.V6Label();
-            this.v6ColorDateTimePick1 = new V6Controls.V6DateTimePicker();
+            this.dateTuNgay = new V6Controls.V6DateTimePicker();
             this.filterMaDvcs = new V6ReportControls.FilterLineVvarTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radOr = new System.Windows.Forms.RadioButton();
@@ -313,18 +313,18 @@
             this.v6Label2.TabIndex = 4;
             this.v6Label2.Text = "Đến ngày";
             // 
-            // v6ColorDateTimePick2
+            // dateDenNgay
             // 
-            this.v6ColorDateTimePick2.CustomFormat = "dd/MM/yyyy";
-            this.v6ColorDateTimePick2.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorDateTimePick2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.v6ColorDateTimePick2.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorDateTimePick2.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.v6ColorDateTimePick2.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorDateTimePick2.Location = new System.Drawing.Point(342, 35);
-            this.v6ColorDateTimePick2.Name = "v6ColorDateTimePick2";
-            this.v6ColorDateTimePick2.Size = new System.Drawing.Size(102, 20);
-            this.v6ColorDateTimePick2.TabIndex = 5;
+            this.dateDenNgay.CustomFormat = "dd/MM/yyyy";
+            this.dateDenNgay.EnterColor = System.Drawing.Color.PaleGreen;
+            this.dateDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateDenNgay.HoverColor = System.Drawing.Color.Yellow;
+            this.dateDenNgay.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.dateDenNgay.LeaveColor = System.Drawing.Color.White;
+            this.dateDenNgay.Location = new System.Drawing.Point(342, 35);
+            this.dateDenNgay.Name = "dateDenNgay";
+            this.dateDenNgay.Size = new System.Drawing.Size(102, 20);
+            this.dateDenNgay.TabIndex = 5;
             // 
             // v6Label1
             // 
@@ -336,23 +336,24 @@
             this.v6Label1.TabIndex = 2;
             this.v6Label1.Text = "Từ ngày";
             // 
-            // v6ColorDateTimePick1
+            // dateTuNgay
             // 
-            this.v6ColorDateTimePick1.CustomFormat = "dd/MM/yyyy";
-            this.v6ColorDateTimePick1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorDateTimePick1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.v6ColorDateTimePick1.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorDateTimePick1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.v6ColorDateTimePick1.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorDateTimePick1.Location = new System.Drawing.Point(171, 35);
-            this.v6ColorDateTimePick1.Name = "v6ColorDateTimePick1";
-            this.v6ColorDateTimePick1.Size = new System.Drawing.Size(102, 20);
-            this.v6ColorDateTimePick1.TabIndex = 3;
+            this.dateTuNgay.CustomFormat = "dd/MM/yyyy";
+            this.dateTuNgay.EnterColor = System.Drawing.Color.PaleGreen;
+            this.dateTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTuNgay.HoverColor = System.Drawing.Color.Yellow;
+            this.dateTuNgay.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.dateTuNgay.LeaveColor = System.Drawing.Color.White;
+            this.dateTuNgay.Location = new System.Drawing.Point(171, 35);
+            this.dateTuNgay.Name = "dateTuNgay";
+            this.dateTuNgay.Size = new System.Drawing.Size(102, 20);
+            this.dateTuNgay.TabIndex = 3;
             // 
             // filterMaDvcs
             // 
             this.filterMaDvcs.AccessibleDescription = "FILTERL00005";
             this.filterMaDvcs.AccessibleName2 = "MA_DVCS";
+            this.filterMaDvcs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.filterMaDvcs.Caption = "Mã DVCS";
             this.filterMaDvcs.FieldName = "MA_DVCS";
             this.filterMaDvcs.Location = new System.Drawing.Point(6, 42);
@@ -408,9 +409,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.v6Label2);
-            this.Controls.Add(this.v6ColorDateTimePick2);
+            this.Controls.Add(this.dateDenNgay);
             this.Controls.Add(this.v6Label1);
-            this.Controls.Add(this.v6ColorDateTimePick1);
+            this.Controls.Add(this.dateTuNgay);
             this.Controls.Add(this.txtMaSoNB);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.TxtTransform);
@@ -456,9 +457,9 @@
         private System.Windows.Forms.Label label8;
         private V6Controls.V6VvarTextBox txtMaSoNB;
         private V6Controls.V6Label v6Label2;
-        private V6Controls.V6DateTimePicker v6ColorDateTimePick2;
+        private V6Controls.V6DateTimePicker dateDenNgay;
         private V6Controls.V6Label v6Label1;
-        private V6Controls.V6DateTimePicker v6ColorDateTimePick1;
+        private V6Controls.V6DateTimePicker dateTuNgay;
         private V6ReportControls.FilterLineVvarTextBox filterMaDvcs;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radOr;

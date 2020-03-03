@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using V6AccountingBusiness;
 using V6Controls;
 using V6Init;
 
@@ -28,6 +29,14 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             //@nCycle NUMERIC(2), 
             //@nYear NUMERIC(4), 
             //@nUserID INT
+            Number2 = txtKy.Value;
+            Number3 = txtNam.Value;
+            int check = V6BusinessHelper.CheckDataLocked("2", V6Setting.M_SV_DATE, (int)txtKy.Value, (int)txtNam.Value);
+            if (check == 1)
+            {
+                this.ShowWarningMessage(V6Text.CheckLock);
+                throw new Exception(V6Text.CheckLock);
+            }
             V6Setting.M_NAM = (int)txtNam.Value;
             V6Setting.M_KY2 = (int)txtKy.Value;
             var result = new List<SqlParameter>();

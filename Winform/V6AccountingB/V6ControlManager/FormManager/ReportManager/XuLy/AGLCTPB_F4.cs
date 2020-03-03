@@ -87,6 +87,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
+                int check = V6BusinessHelper.CheckDataLocked("2", V6Setting.M_SV_DATE, dateThang2.Value.Month, dateNam.Value.Year);
+                if (check == 1)
+                {
+                    this.ShowWarningMessage(V6Text.CheckLock);
+                    return;
+                }
                 //@Type AS VARCHAR(8),
                 //@Year AS INT,
                 //@Period1 AS INT = 0,

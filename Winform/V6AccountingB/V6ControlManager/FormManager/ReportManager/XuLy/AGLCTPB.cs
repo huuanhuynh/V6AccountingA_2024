@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
 using System.Windows.Forms;
+using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
@@ -27,8 +29,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected override void MakeReport2()
         {
             Load_Data = true;//Thay đổi cờ.
-            base.MakeReport2();
-           
+            try
+            {
+                base.MakeReport2();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
         }
 
         public override void FormatGridViewExtern()
