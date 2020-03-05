@@ -1397,6 +1397,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     ShowParentMessage(V6Text.PreviewingMode);
                     return false;
                 }
+                if (!Invoice.CheckRightKey("F10"))
+                {
+                    ShowParentMessage(V6Text.NoRight + " F10");
+                    return false;
+                }
 
                 detail1.btnNhan.Focus();
                 if (detail1.MODE == V6Mode.Add)
@@ -5730,7 +5735,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     if (txtMaKh.Text == "")
                     {
                         txtMaKh.ChangeText(ma_kh_soh);
-                        txtMaKh.CallLeave();
+                        txtMaKh.CallDoV6LostFocus();
                     }
                 }
 
@@ -5960,9 +5965,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
             else
             {
-                string c_MA_VITRI = newData["MA_VITRI"].ToString().ToUpper();
-                if (c_MA_VITRI != "" && inserted_mavitri.Contains(c_MA_VITRI)) return; // continue
-                inserted_mavitri.Add(c_MA_VITRI);
+                //string c_MA_VITRI = newData["MA_VITRI"].ToString().ToUpper();
+                //if (c_MA_VITRI != "" && inserted_mavitri.Contains(c_MA_VITRI)) return; // continue
+                //inserted_mavitri.Add(c_MA_VITRI);
 
                 if (newData.ContainsKey("SO_LUONG"))
                 {

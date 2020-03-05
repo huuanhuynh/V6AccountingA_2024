@@ -63,6 +63,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 errors += V6Text.Text("CHUANHAP") + " " + lblMaDVCS.Text;
             if (TxtPhandau.Text.Trim() == "" && TxtPhancuoi.Text.Trim() == "" && TxtDinhdang.Text.Trim() == "")
                 errors += string.Format("{0} {1}, {2}, {3}", V6Text.Text("CHUANHAP"), lblDauNgu.Text, lblViNgu.Text, lblDinhDangSo.Text);
+            if (lblWarning.Visible)
+                errors += lblWarning.Text;
 
             if (Mode == V6Mode.Edit)
             {
@@ -196,12 +198,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             TxtMau.Text = result_mau;
             if (TxtMau.Text.Trim().Length > V6Setting.M_Size_ct)
             {
-                TxtPhancuoi.Text = "";
-                TxtPhandau.Text = "";
-                TxtDinhdang.Text = "";
-                this.ShowWarningMessage("Quá giới hạn số chứng từ !");
+                //TxtPhancuoi.Text = "";
+                //TxtPhandau.Text = "";
+                //TxtDinhdang.Text = "";
+                lblWarning.Text = V6Setting.IsVietnamese ? "Quá giới hạn độ dài !" : "Over length limit !";
+                lblWarning.Visible = true;
+                //this.ShowWarningMessage("Quá giới hạn số chứng từ !");
+            }
+            else
+            {
+                lblWarning.Visible = false;
             }
         }
-
+        
     }
 }

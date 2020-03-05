@@ -862,6 +862,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                     ShowParentMessage(V6Text.PreviewingMode);
                     return false;
                 }
+                if (!Invoice.CheckRightKey("F10"))
+                {
+                    ShowParentMessage(V6Text.NoRight + " F10");
+                    return false;
+                }
 
                 detail1.btnNhan.Focus();
                 if (detail1.MODE == V6Mode.Add)
@@ -1128,6 +1133,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                 }
                 else
                 {
+                    detail3.MODE = V6Mode.View;
                     XuLyKhoaThongTinKhachHang();
 
                     txtTyGia.Enabled = _maNt != _mMaNt0;

@@ -1461,5 +1461,10 @@ namespace V6AccountingBusiness.Invoices
                     return null;
             }
         }
+
+        public bool CheckRightKey(string key)
+        {
+            return V6BusinessHelper.CheckRightKey(Mact, key, "");
+        }
     }
 }

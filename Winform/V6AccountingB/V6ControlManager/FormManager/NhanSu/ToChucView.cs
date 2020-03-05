@@ -136,6 +136,7 @@ namespace V6ControlManager.FormManager.NhanSu
                 }
                 else if (keyData == Keys.F9)
                 {
+                    //if (!V6BusinessHelper.CheckRightKey("", "F9", _tableName)) return;
                     //All_Objects["dataGridView1"] = dataGridView1;
                     //InvokeFormEvent(FormDynamicEvent.F9);
                 }

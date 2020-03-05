@@ -692,6 +692,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                     ShowParentMessage(V6Text.PreviewingMode);
                     return false;
                 }
+                if (!Invoice.CheckRightKey("F10"))
+                {
+                    ShowParentMessage(V6Text.NoRight + " F10");
+                    return false;
+                }
 
                 detail1.btnNhan.Focus();
                 if (detail1.MODE == V6Mode.Add)

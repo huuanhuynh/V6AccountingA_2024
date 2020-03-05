@@ -490,6 +490,11 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 }
                 else if (keyData == Keys.F9)
                 {
+                    if (!V6BusinessHelper.CheckRightKey("", "F9", _tableName))
+                    {
+                        this.ShowWarningMessage(V6Text.NoRight + " F9");
+                        return;
+                    }
                     All_Objects["dataGridView1"] = dataGridView1;
                     InvokeFormEvent(FormDynamicEvent.F9);
                 }

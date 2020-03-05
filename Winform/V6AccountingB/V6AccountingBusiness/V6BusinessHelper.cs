@@ -682,6 +682,26 @@ namespace V6AccountingBusiness
         }
 
         /// <summary>
+        /// Kiểm tra quyền nhấn phím.
+        /// </summary>
+        /// <param name="ma_ct"></param>
+        /// <param name="key"></param>
+        /// <param name="ma_dm"></param>
+        /// <returns></returns>
+        public static bool CheckRightKey(string ma_ct, string key, string ma_dm)
+        {
+            SqlParameter[] plist = new[]
+            {
+                new SqlParameter("@ma_ct", ma_ct),
+                new SqlParameter("@key", key),
+                new SqlParameter("@ma_dm", ma_dm),
+                new SqlParameter("@user_id", V6Login.UserId),
+            };
+            object result = ExecuteProcedureScalar("VPA_Check_Right_KEY_ALCTCT", plist);
+            return ObjectAndString.ObjectToBool(result);
+        }
+
+        /// <summary>
         /// Kiểm tra công thức hợp lệ.
         /// </summary>
         /// <param name="tableName"></param>
@@ -2218,5 +2238,6 @@ namespace V6AccountingBusiness
             }
             return false;
         }
+
     }
 }

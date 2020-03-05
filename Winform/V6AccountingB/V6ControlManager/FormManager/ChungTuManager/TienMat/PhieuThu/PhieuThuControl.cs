@@ -1036,6 +1036,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     ShowParentMessage(V6Text.PreviewingMode);
                     return false;
                 }
+                if (!Invoice.CheckRightKey("F10"))
+                {
+                    ShowParentMessage(V6Text.NoRight + " F10");
+                    return false;
+                }
 
                 detail1.btnNhan.Focus();
                 if (detail1.MODE == V6Mode.Add)
@@ -1456,6 +1461,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 }
                 else //Cac truong hop khac
                 {
+                    detail3.MODE = V6Mode.View;
                     XuLyKhoaThongTinKhachHang();
                     txtTyGia.Enabled = _maNt != _mMaNt0;
                     //chkSuaPtck.Enabled = chkLoaiChietKhau.Checked;

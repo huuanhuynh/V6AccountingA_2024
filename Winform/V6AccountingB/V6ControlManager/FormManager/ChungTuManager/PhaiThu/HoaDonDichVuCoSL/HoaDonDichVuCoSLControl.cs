@@ -2034,6 +2034,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     ShowParentMessage(V6Text.PreviewingMode);
                     return false;
                 }
+                if (!Invoice.CheckRightKey("F10"))
+                {
+                    ShowParentMessage(V6Text.NoRight + " F10");
+                    return false;
+                }
 
                 detail1.btnNhan.Focus();
                 if (detail1.MODE == V6Mode.Add)
@@ -3166,7 +3171,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 else
                 {
                     XuLyKhoaThongTinKhachHang();
-
+                    detail3.MODE = V6Mode.View;
                     txtTyGia.Enabled = _maNt != _mMaNt0;
 
                     _tienNt2.Enabled = chkSuaTien.Checked;
@@ -6633,7 +6638,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     if (txtMaKh.Text == "")
                     {
                         txtMaKh.ChangeText(ma_kh_soh);
-                        txtMaKh.CallLeave();
+                        txtMaKh.CallDoV6LostFocus();
                     }
                 }
 
@@ -7367,7 +7372,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     if (txtMaKh.Text == "")
                     {
                         txtMaKh.ChangeText(ma_kh_soh);
-                        txtMaKh.CallLeave();
+                        txtMaKh.CallDoV6LostFocus();
                     }
                 }
 

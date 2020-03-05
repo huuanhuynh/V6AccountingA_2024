@@ -1646,6 +1646,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     ShowParentMessage(V6Text.PreviewingMode);
                     return false;
                 }
+                if (!Invoice.CheckRightKey("F10"))
+                {
+                    ShowParentMessage(V6Text.NoRight + " F10");
+                    return false;
+                }
 
                 detail1.btnNhan.Focus();
                 if (detail1.MODE == V6Mode.Add)
@@ -2216,6 +2221,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 }
                 else //Cac truong hop khac
                 {
+                    detail2.MODE = V6Mode.View;
+                    detail3.MODE = V6Mode.View;
                     XuLyKhoaThongTinKhachHang();
                     SetGridViewChiPhiEditAble(txtLoai_pb.Text, chkSuaTien.Checked, dataGridView3ChiPhi, "CP,CP_NT,NK,NK_NT", "CP_NT,NK_NT");
 
@@ -6901,13 +6908,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 }
                 if (!string.IsNullOrEmpty(ma_kh_soh))
                 {
+                    // Làm theo hoadon
+                    All_Objects["txtMaKh.CallDoV6LostFocus"] = 1;
                     if (txtMaKh.Text == "")
                     {
                         txtMaKh.ChangeText(ma_kh_soh);
                     }
-                    // Làm theo hoadon
-                    All_Objects["txtMaKh.CallLeave"] = 1;
-                    txtMaKh.CallLeave();
+                    txtMaKh.CallDoV6LostFocus();
                 }
 
                 All_Objects["selectedDataList"] = selectedDataList;
@@ -7418,9 +7425,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 }
                 if (auto)
                 {
-                    if (All_Objects.ContainsKey("txtMaKh.CallLeave") && ObjectAndString.ObjectToBool(All_Objects["txtMaKh.CallLeave"]))
+                    if (All_Objects.ContainsKey("txtMaKh.CallDoV6LostFocus") && ObjectAndString.ObjectToBool(All_Objects["txtMaKh.CallDoV6LostFocus"]))
                     {
-                        All_Objects["txtMaKh.CallLeave"] = 0;
+                        All_Objects["txtMaKh.CallDoV6LostFocus"] = 0;
                     }
                     else
                     {
