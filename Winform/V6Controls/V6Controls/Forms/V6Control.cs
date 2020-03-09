@@ -171,7 +171,7 @@ namespace V6Controls.Forms
 
         public void LoadLanguage()
         {
-            if (V6Setting.IsDesignTime) return;
+            if (V6Setting.NotLoggedIn) return;
             
             V6ControlFormHelper.SetFormText(this);
             if (!ApplyControlTripleClick)

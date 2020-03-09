@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -6626,7 +6626,7 @@ namespace V6Controls.Forms
         /// <returns></returns>
         public static string ChooseExcelFile(IWin32Window owner)
         {
-            if (V6Setting.IsDesignTime) return "";
+            if (V6Setting.NotLoggedIn) return "";
             if (excelOpenFileDialog.ShowDialog(owner) == DialogResult.OK)
             {
                 return excelOpenFileDialog.FileName;
@@ -6649,7 +6649,7 @@ namespace V6Controls.Forms
         /// <returns></returns>
         public static string ChooseSaveFile(IWin32Window owner, string filter, string fileName = null)
         {
-            if (V6Setting.IsDesignTime) return "";
+            if (V6Setting.NotLoggedIn) return "";
             if (string.IsNullOrEmpty(filter)) filter = "All file|*.*";
             else if (!filter.Contains("All file|*.*".ToUpper())) filter += "|All file|*.*";
             if (!string.IsNullOrEmpty(fileName))
@@ -6693,7 +6693,7 @@ namespace V6Controls.Forms
         /// <returns></returns>
         public static string ChooseOpenFile(IWin32Window owner, string filter)
         {
-            if (V6Setting.IsDesignTime) return "";
+            if (V6Setting.NotLoggedIn) return "";
             if (string.IsNullOrEmpty(filter)) filter = "All file|*.*";
             else if (!filter.Contains("All file|*.*".ToUpper())) filter += "|All file|*.*";
             openFileDialog.Filter = filter;

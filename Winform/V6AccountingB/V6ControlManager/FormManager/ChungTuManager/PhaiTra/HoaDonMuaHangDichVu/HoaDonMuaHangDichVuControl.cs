@@ -610,6 +610,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                 if (readonly_list.Contains(detail3.btnMoi.Name, StringComparer.InvariantCultureIgnoreCase))
                 {
                     detail3.ChangeToViewMode();
+                    dataGridView3.UnLock();
                 }
                 else
                 {
@@ -681,7 +682,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
         {
             if (ValidateData_Detail3(data))
             {
-                if (XuLyThemDetail3(data)) return;
+                if (XuLyThemDetail3(data))
+                {
+                    dataGridView3.UnLock();
+                    return;
+                }
                 throw new Exception(V6Text.AddFail);
             }
             throw new Exception(V6Text.ValidateFail);
@@ -691,7 +696,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
         {
             if (ValidateData_Detail3(data))
             {
-                if (XuLySuaDetail3(data)) return;
+                if (XuLySuaDetail3(data))
+                {
+                    dataGridView3.UnLock();
+                    return;
+                }
                 throw new Exception(V6Text.EditFail);
             }
             throw new Exception(V6Text.ValidateFail);
@@ -848,6 +857,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                         if (readonly_list.Contains(detail3.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))
                         {
                             detail3.ChangeToViewMode();
+                            dataGridView3.UnLock();
                         }
                         else
                         {
@@ -913,6 +923,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
 
         private void Detail3_ClickCancelEdit(object sender, HD_Detail_Eventargs e)
         {
+            dataGridView3.UnLock();
             detail3.SetData(_gv3EditingRow.ToDataDictionary());
         }
 
@@ -1022,6 +1033,50 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                     return false;
                 }
 
+                if (tabControl1.SelectedTab == tabChiTietBoSung)
+                {
+                    detail3.btnNhan.Focus();
+                    if (detail3.MODE == V6Mode.Add)
+                    {
+                        var detail3Data = detail3.GetData();
+                        if (ValidateData_Detail3(detail3Data))
+                        {
+                            if (XuLyThemDetail3(detail3Data))
+                            {
+                                ShowParentMessage(V6Text.InvoiceF3AddDetailSuccess);
+                                All_Objects["data"] = detail3Data;
+                                InvokeFormEvent(FormDynamicEvent.AFTERADDDETAIL3SUCCESS);
+                            }
+                        }
+                    }
+                    else if (detail3.MODE == V6Mode.Edit)
+                    {
+                        var detail3Data = detail3.GetData();
+                        if (ValidateData_Detail3(detail3Data))
+                        {
+                            if (XuLySuaDetail3(detail3Data))
+                            {
+                                detail3.ChangeToAddMode_KeepData();
+                                dataGridView3.Lock();
+                                ShowParentMessage(V6Text.InvoiceF3EditDetailSuccess);
+                                All_Objects["data"] = detail3Data;
+                                InvokeFormEvent(FormDynamicEvent.AFTEREDITDETAIL3SUCCESS);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        detail3.ChangeToAddMode_KeepData();
+                        dataGridView3.Lock();
+                    }
+                    goto End_F10;
+                }
+
+                if (tabControl1.SelectedTab != tabChiTiet)
+                {
+                    tabControl1.SelectedTab = tabChiTiet;
+                }
+
                 detail1.btnNhan.Focus();
                 if (detail1.MODE == V6Mode.Add)
                 {
@@ -1056,6 +1111,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                     detail1.ChangeToAddMode_KeepData();
                     dataGridView1.Lock();
                 }
+            End_F10:
+                DoNothing();
             }
             else if (keyData == Keys.F4)
             {
@@ -2509,10 +2566,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             {
                 InvokeFormEvent(FormDynamicEvent.BEFORELUU);
 
-                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit ||
-                    detail2.MODE == V6Mode.Add || detail2.MODE == V6Mode.Edit )
+                if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                 {
                     this.ShowWarningMessage(V6Text.DetailNotComplete);
+                    tabControl1.SelectedTab = tabChiTiet;
+                    EnableFunctionButtons();
+                }
+                else if (detail2.MODE == V6Mode.Add || detail2.MODE == V6Mode.Edit)
+                {
+                    this.ShowWarningMessage(V6Text.DetailNotComplete);
+                    tabControl1.SelectedTab = tabThue;
+                    EnableFunctionButtons();
+                }
+                else if (detail3.MODE == V6Mode.Add || detail3.MODE == V6Mode.Edit)
+                {
+                    this.ShowWarningMessage(V6Text.DetailNotComplete);
+                    tabControl1.SelectedTab = tabChiTietBoSung;
                     EnableFunctionButtons();
                 }
                 else
@@ -2946,6 +3015,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             try
             {
                 dataGridView1.UnLock();
+                dataGridView2.UnLock();
+                dataGridView3.UnLock();
                 if (Mode == V6Mode.Edit)
                 {
                     if (this.ShowConfirmMessage(V6Text.DiscardConfirm) == DialogResult.Yes)
@@ -3080,6 +3151,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                 if (readonly_list.Contains(detail2.btnMoi.Name, StringComparer.InvariantCultureIgnoreCase))
                 {
                     detail2.ChangeToViewMode();
+                    dataGridView2.UnLock();
                 }
                 else
                 {
@@ -3571,7 +3643,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
         {
             if (ValidateData_Detail2(data))
             {
-                if (XuLyThemDetail2(data)) return;
+                if (XuLyThemDetail2(data))
+                {
+                    dataGridView2.UnLock();
+                    return;
+                }
                 throw new Exception(V6Text.AddFail);
             }
             throw new Exception(V6Text.ValidateFail);
@@ -3639,6 +3715,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
                         if (readonly_list.Contains(detail2.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))
                         {
                             detail2.ChangeToViewMode();
+                            dataGridView2.UnLock();
                         }
                         else
                         {
@@ -3671,7 +3748,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
         {
             if (ValidateData_Detail2(data))
             {
-                if (XuLySuaDetail2(data)) return;
+                if (XuLySuaDetail2(data))
+                {
+                    dataGridView2.UnLock();
+                    return;
+                }
                 throw new Exception(V6Text.EditFail);
             }
             throw new Exception(V6Text.ValidateFail);
@@ -3691,6 +3772,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
         }
         private void hoaDonDetail2_ClickCancelEdit(object sender, HD_Detail_Eventargs e)
         {
+            dataGridView2.UnLock();
             detail2.SetData(_gv2EditingRow.ToDataDictionary());
         }
 
@@ -4153,7 +4235,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             {
                 detail1.AutoFocus();
             }
-            else if (tabControl1.SelectedTab == tabVAT)
+            else if (tabControl1.SelectedTab == tabThue)
             {
                 detail2.AutoFocus();
             }

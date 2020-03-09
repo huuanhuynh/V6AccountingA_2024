@@ -1427,7 +1427,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
             if (ValidateData_Detail3(data))
             {
-                if (XuLySuaDetail3(data)) return;
+                if (XuLySuaDetail3(data))
+                {
+                    gView3.UnLock();
+                    return;
+                }
                 throw new Exception(V6Text.EditFail);
             }
             throw new Exception(V6Text.ValidateFail);
@@ -1508,7 +1512,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         {
             if (ValidateData_Detail3(data))
             {
-                if (XuLyThemDetail3(data)) return;
+                if (XuLyThemDetail3(data))
+                {
+                    gView3.UnLock();
+                    return;
+                }
                 throw new Exception(V6Text.AddFail);
             }
             throw new Exception(V6Text.ValidateFail);
@@ -1530,6 +1538,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         private void detail3_ClickCancelEdit(object sender, HD_Detail_Eventargs e)
         {
+            gView3.UnLock();
             detail3.SetData(_gv3EditingRow.ToDataDictionary());
         }
 

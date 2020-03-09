@@ -37,6 +37,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.panel0 = new System.Windows.Forms.Panel();
             this.btnChucNang = new V6Controls.Controls.DropDownButton();
             this.lblName = new V6Controls.V6Label();
+            this.lblMode = new V6Controls.V6Label();
             this.btnSua = new V6Controls.Controls.V6FormButton();
             this.btnXoa = new V6Controls.Controls.V6FormButton();
             this.btnMoi = new V6Controls.Controls.V6FormButton();
@@ -44,7 +45,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.lblMode = new V6Controls.V6Label();
             this.panel0.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -99,6 +99,18 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblName.Visible = false;
             this.lblName.TextChanged += new System.EventHandler(this.lblName_TextChanged);
+            // 
+            // lblMode
+            // 
+            this.lblMode.AccessibleDescription = ".";
+            this.lblMode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMode.Location = new System.Drawing.Point(3, 33);
+            this.lblMode.Name = "lblMode";
+            this.lblMode.Size = new System.Drawing.Size(34, 14);
+            this.lblMode.TabIndex = 39;
+            this.lblMode.Text = "Mode";
+            this.lblMode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnSua
             // 
@@ -193,18 +205,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.panel2.Size = new System.Drawing.Size(732, 50);
             this.panel2.TabIndex = 3;
             this.panel2.SizeChanged += new System.EventHandler(this.panel1and2_SizeChanged);
-            // 
-            // lblMode
-            // 
-            this.lblMode.AccessibleDescription = ".";
-            this.lblMode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblMode.Location = new System.Drawing.Point(3, 33);
-            this.lblMode.Name = "lblMode";
-            this.lblMode.Size = new System.Drawing.Size(34, 14);
-            this.lblMode.TabIndex = 39;
-            this.lblMode.Text = "Mode";
-            this.lblMode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // HD_Detail
             // 

@@ -470,7 +470,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         public override void SetStatus2Text()
         {
-            if (V6Setting.IsDesignTime || M_TYPE_SL_QD_ALL == null) return;
+            if (V6Setting.NotLoggedIn || M_TYPE_SL_QD_ALL == null) return;
             V6ControlFormHelper.SetStatusText2(V6Text.Text("STATUS2" + _invoice.Mact));
         }
 
@@ -1427,7 +1427,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// </summary>
         public void SetInitFilterAll()
         {
-            if (V6Setting.IsDesignTime) return;
+            if (V6Setting.NotLoggedIn) return;
             try
             {
                 string M_V6_ADV_FILTER = V6Options.GetValue("M_V6_ADV_FILTER");

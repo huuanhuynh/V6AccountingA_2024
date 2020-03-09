@@ -850,7 +850,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 for (int i = panel0.Controls.Count - 1; i >= 0; i--)
                 {
                     var c = panel0.Controls[i];
-                    if (c != lblName)
+                    if (c != lblName && c!= lblMode && c != btnChucNang)
                     {
                         panel0.Controls.RemoveAt(i);
                     }
@@ -1065,6 +1065,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.WriteExLog(GetType() + ".SetStruct " + Name, ex);
             }
         }
+
     }
 
     public class HD_Detail_Eventargs : EventArgs

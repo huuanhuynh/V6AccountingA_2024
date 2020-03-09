@@ -476,7 +476,7 @@ namespace V6Controls
 
         public void LoadAutoCompleteSource()
         {
-            if (V6Setting.IsDesignTime) return;
+            if (V6Setting.NotLoggedIn) return;
             if (auto1 != null) return;
             if (LookupInfo.NoInfo) return;
 
@@ -561,7 +561,7 @@ namespace V6Controls
         /// <returns></returns>
         public bool ExistRowInTable(string text)
         {
-            if (V6Setting.IsDesignTime) return false;
+            if (V6Setting.NotLoggedIn) return false;
             try
             {
                 _text_data = text;
@@ -603,7 +603,7 @@ namespace V6Controls
         
         private bool ExistRowInTableID(object id_s)
         {
-            if (V6Setting.IsDesignTime) return false;
+            if (V6Setting.NotLoggedIn) return false;
             try
             {
                 if (!string.IsNullOrEmpty(LookupInfo_F_NAME))
@@ -856,7 +856,7 @@ namespace V6Controls
 
         protected void DoLookup(LookupMode lookupMode = LookupMode.Single)
         {
-            if (V6Setting.IsDesignTime) return;
+            if (V6Setting.NotLoggedIn) return;
 
             try
             {

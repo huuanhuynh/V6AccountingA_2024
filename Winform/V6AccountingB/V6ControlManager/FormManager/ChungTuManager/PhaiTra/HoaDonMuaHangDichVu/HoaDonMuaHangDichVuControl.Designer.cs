@@ -50,7 +50,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.UID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.STT_REC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.STT_REC0 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabVAT = new System.Windows.Forms.TabPage();
+            this.tabThue = new System.Windows.Forms.TabPage();
             this.gridViewSummary2 = new V6Controls.Controls.GridViewSummary();
             this.dataGridView2 = new V6Controls.V6ColorDataGridView();
             this.detail2 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
@@ -115,6 +115,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.menuChucNang = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.xulyKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.thayTheMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.thayTheNhieuMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.thayThe2Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.v6Label28 = new V6Controls.V6Label();
             this.chkSuaTien = new V6Controls.V6CheckBox();
@@ -194,11 +195,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.Txtma_nk = new V6Controls.V6VvarTextBox();
             this.btnViewInfoData = new System.Windows.Forms.Button();
             this.lblNameT = new V6Controls.V6Label();
-            this.thayTheNhieuMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.tabVAT.SuspendLayout();
+            this.tabThue.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabKhac.SuspendLayout();
             this.tabChiTietBoSung.SuspendLayout();
@@ -219,7 +219,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabChiTiet);
-            this.tabControl1.Controls.Add(this.tabVAT);
+            this.tabControl1.Controls.Add(this.tabThue);
             this.tabControl1.Controls.Add(this.tabKhac);
             this.tabControl1.Controls.Add(this.tabChiTietBoSung);
             this.tabControl1.Location = new System.Drawing.Point(8, 160);
@@ -250,6 +250,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.detail1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.detail1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.detail1.CarryData = null;
+            this.detail1.FixControl = 3;
             this.detail1.Location = new System.Drawing.Point(2, 2);
             this.detail1.MODE = V6Structs.V6Mode.Init;
             this.detail1.Name = "detail1";
@@ -347,20 +349,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.STT_REC0.ReadOnly = true;
             this.STT_REC0.Visible = false;
             // 
-            // tabVAT
+            // tabThue
             // 
-            this.tabVAT.AccessibleDescription = "AAPCTAP1P00003";
-            this.tabVAT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
-            this.tabVAT.Controls.Add(this.gridViewSummary2);
-            this.tabVAT.Controls.Add(this.detail2);
-            this.tabVAT.Controls.Add(this.dataGridView2);
-            this.tabVAT.Location = new System.Drawing.Point(4, 22);
-            this.tabVAT.Name = "tabVAT";
-            this.tabVAT.Padding = new System.Windows.Forms.Padding(3);
-            this.tabVAT.Size = new System.Drawing.Size(879, 230);
-            this.tabVAT.TabIndex = 1;
-            this.tabVAT.Tag = "cancelall";
-            this.tabVAT.Text = "Thuế GTGT";
+            this.tabThue.AccessibleDescription = "AAPCTAP1P00003";
+            this.tabThue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThue.Controls.Add(this.gridViewSummary2);
+            this.tabThue.Controls.Add(this.detail2);
+            this.tabThue.Controls.Add(this.dataGridView2);
+            this.tabThue.Location = new System.Drawing.Point(4, 22);
+            this.tabThue.Name = "tabThue";
+            this.tabThue.Padding = new System.Windows.Forms.Padding(3);
+            this.tabThue.Size = new System.Drawing.Size(879, 230);
+            this.tabThue.TabIndex = 1;
+            this.tabThue.Tag = "cancelall";
+            this.tabThue.Text = "Thuế GTGT";
             // 
             // gridViewSummary2
             // 
@@ -410,6 +412,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.detail2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.detail2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.detail2.CarryData = null;
+            this.detail2.FixControl = 3;
             this.detail2.Location = new System.Drawing.Point(2, 2);
             this.detail2.MODE = V6Structs.V6Mode.Init;
             this.detail2.Name = "detail2";
@@ -1072,6 +1076,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.detail3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.detail3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.detail3.CarryData = null;
+            this.detail3.FixControl = 3;
             this.detail3.Location = new System.Drawing.Point(2, 2);
             this.detail3.MODE = V6Structs.V6Mode.Init;
             this.detail3.Name = "detail3";
@@ -1459,7 +1465,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.thayTheNhieuMenu,
             this.thayThe2Menu});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(158, 114);
+            this.menuChucNang.Size = new System.Drawing.Size(158, 92);
             // 
             // xulyKhacMenu
             // 
@@ -1476,6 +1482,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.thayTheMenu.Size = new System.Drawing.Size(157, 22);
             this.thayTheMenu.Text = "Thay thế";
             this.thayTheMenu.Click += new System.EventHandler(this.thayTheMenu_Click);
+            // 
+            // thayTheNhieuMenu
+            // 
+            this.thayTheNhieuMenu.AccessibleDescription = "INVOICEM00027";
+            this.thayTheNhieuMenu.Name = "thayTheNhieuMenu";
+            this.thayTheNhieuMenu.Size = new System.Drawing.Size(157, 22);
+            this.thayTheNhieuMenu.Text = "Thay thế nhiều";
+            this.thayTheNhieuMenu.Click += new System.EventHandler(this.thayTheNhieuMenu_Click);
             // 
             // thayThe2Menu
             // 
@@ -2610,14 +2624,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.lblNameT.TabIndex = 29;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // thayTheNhieuMenu
-            // 
-            this.thayTheNhieuMenu.AccessibleDescription = "INVOICEM00027";
-            this.thayTheNhieuMenu.Name = "thayTheNhieuMenu";
-            this.thayTheNhieuMenu.Size = new System.Drawing.Size(157, 22);
-            this.thayTheNhieuMenu.Text = "Thay thế nhiều";
-            this.thayTheNhieuMenu.Click += new System.EventHandler(this.thayTheNhieuMenu_Click);
-            // 
             // HoaDonMuaHangDichVuControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2658,7 +2664,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.tabControl1.ResumeLayout(false);
             this.tabChiTiet.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.tabVAT.ResumeLayout(false);
+            this.tabThue.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tabKhac.ResumeLayout(false);
             this.tabKhac.PerformLayout();
@@ -2695,7 +2701,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
         private System.Windows.Forms.GroupBox group5;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabChiTiet;
-        private System.Windows.Forms.TabPage tabVAT;
+        private System.Windows.Forms.TabPage tabThue;
         private V6DateTimePicker dateNgayCT;
         private V6Controls.V6ColorDataGridView dataGridView1;
         private V6Label v6Label4;

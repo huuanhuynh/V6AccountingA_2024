@@ -643,7 +643,7 @@
             this.v6ColorTextBox2.Name = "v6ColorTextBox2";
             this.v6ColorTextBox2.ReadOnly = true;
             this.v6ColorTextBox2.Size = new System.Drawing.Size(455, 23);
-            this.v6ColorTextBox2.TabIndex = 19;
+            this.v6ColorTextBox2.TabIndex = 5;
             this.v6ColorTextBox2.TabStop = false;
             // 
             // TxtMa_kh
@@ -660,7 +660,7 @@
             this.TxtMa_kh.Location = new System.Drawing.Point(135, 43);
             this.TxtMa_kh.Name = "TxtMa_kh";
             this.TxtMa_kh.Size = new System.Drawing.Size(136, 23);
-            this.TxtMa_kh.TabIndex = 18;
+            this.TxtMa_kh.TabIndex = 4;
             this.TxtMa_kh.VVar = "ma_kh";
             // 
             // label25
@@ -670,7 +670,7 @@
             this.label25.Location = new System.Drawing.Point(306, 14);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(163, 17);
-            this.label25.TabIndex = 11;
+            this.label25.TabIndex = 2;
             this.label25.Text = "1 - Phải thu , 2 - Phải trả\r\n";
             // 
             // v6ColorTextBox17
@@ -688,7 +688,7 @@
             this.v6ColorTextBox17.Location = new System.Drawing.Point(135, 81);
             this.v6ColorTextBox17.Name = "v6ColorTextBox17";
             this.v6ColorTextBox17.Size = new System.Drawing.Size(597, 23);
-            this.v6ColorTextBox17.TabIndex = 15;
+            this.v6ColorTextBox17.TabIndex = 7;
             // 
             // v6ColorTextBox12
             // 
@@ -708,7 +708,7 @@
             this.v6ColorTextBox12.Multiline = true;
             this.v6ColorTextBox12.Name = "v6ColorTextBox12";
             this.v6ColorTextBox12.Size = new System.Drawing.Size(597, 48);
-            this.v6ColorTextBox12.TabIndex = 17;
+            this.v6ColorTextBox12.TabIndex = 9;
             // 
             // label23
             // 
@@ -718,7 +718,7 @@
             this.label23.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(57, 17);
-            this.label23.TabIndex = 16;
+            this.label23.TabIndex = 8;
             this.label23.Text = "Ghi chú";
             // 
             // v6NumberTextBox4
@@ -735,7 +735,7 @@
             this.v6NumberTextBox4.Location = new System.Drawing.Point(135, 11);
             this.v6NumberTextBox4.Name = "v6NumberTextBox4";
             this.v6NumberTextBox4.Size = new System.Drawing.Size(134, 23);
-            this.v6NumberTextBox4.TabIndex = 10;
+            this.v6NumberTextBox4.TabIndex = 1;
             this.v6NumberTextBox4.Text = "0";
             this.v6NumberTextBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.v6NumberTextBox4.Value = new decimal(new int[] {
@@ -751,7 +751,7 @@
             this.label24.Location = new System.Drawing.Point(8, 49);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(84, 17);
-            this.label24.TabIndex = 12;
+            this.label24.TabIndex = 3;
             this.label24.Text = "Khách hàng";
             // 
             // label22
@@ -761,7 +761,7 @@
             this.label22.Location = new System.Drawing.Point(8, 84);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(98, 17);
-            this.label22.TabIndex = 14;
+            this.label22.TabIndex = 6;
             this.label22.Text = "Danh sách TK";
             // 
             // label21
@@ -771,7 +771,7 @@
             this.label21.Location = new System.Drawing.Point(8, 14);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(81, 17);
-            this.label21.TabIndex = 9;
+            this.label21.TabIndex = 0;
             this.label21.Text = "TK công nợ";
             // 
             // tabTuDinhNghia

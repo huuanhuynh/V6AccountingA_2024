@@ -102,7 +102,7 @@ namespace V6ControlManager.FormManager.VitriManager
             // Hiển thị danh sách kho để chọn, trừ kho đã có. (kho = khu)
             try
             {
-                if (V6Setting.IsDesignTime) return;
+                if (V6Setting.NotLoggedIn) return;
                 IDictionary<string, object> keys = new SortedDictionary<string, object>();
                 keys.Add("LOAI_KHO", "1");
                 var kho_data = V6BusinessHelper.Select(V6TableName.Alkho, keys, "top 1 *").Data;

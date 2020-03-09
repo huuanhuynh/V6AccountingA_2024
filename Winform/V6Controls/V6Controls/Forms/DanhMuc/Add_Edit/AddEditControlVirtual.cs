@@ -99,7 +99,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void AddEditControlVirtual_Load(object sender, EventArgs e)
         {
-            if (V6Setting.IsDesignTime) return;
+            if (V6Setting.NotLoggedIn) return;
 
             _ready0 = true;
             //load truoc lop ke thua

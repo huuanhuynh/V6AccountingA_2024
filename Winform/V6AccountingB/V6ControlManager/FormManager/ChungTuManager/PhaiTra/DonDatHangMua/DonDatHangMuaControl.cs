@@ -1536,6 +1536,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 else //Cac truong hop khac
                 {
                     detail2.MODE = V6Mode.View;
+                    dataGridView2.UnLock();
                     XuLyKhoaThongTinKhachHang();
 
                     txtTyGia.Enabled = _maNt != _mMaNt0;
@@ -3840,6 +3841,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 if (readonly_list.Contains(detail2.btnMoi.Name, StringComparer.InvariantCultureIgnoreCase))
                 {
                     detail2.ChangeToViewMode();
+                    dataGridView2.UnLock();
                 }
                 else
                 {
@@ -4326,7 +4328,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
         {
             if (ValidateData_Detail2(data))
             {
-                if (XuLyThemDetail2(data)) return;
+                if (XuLyThemDetail2(data))
+                {
+                    dataGridView2.UnLock();
+                    return;
+                }
                 throw new Exception(V6Text.AddFail);
             }
             throw new Exception(V6Text.ValidateFail);
@@ -4397,6 +4403,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                         if (readonly_list.Contains(detail2.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))
                         {
                             detail2.ChangeToViewMode();
+                            dataGridView2.UnLock();
                         }
                         else
                         {
@@ -4429,7 +4436,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
         {
             if (ValidateData_Detail2(data))
             {
-                if (XuLySuaDetail2(data)) return;
+                if (XuLySuaDetail2(data))
+                {
+                    dataGridView2.UnLock();
+                    return;
+                }
                 throw new Exception(V6Text.EditFail);
             }
             throw new Exception(V6Text.ValidateFail);
@@ -4449,6 +4460,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
         }
         private void hoaDonDetail2_ClickCancelEdit(object sender, HD_Detail_Eventargs e)
         {
+            dataGridView2.UnLock();
             detail2.SetData(_gv2EditingRow.ToDataDictionary());
         }
 

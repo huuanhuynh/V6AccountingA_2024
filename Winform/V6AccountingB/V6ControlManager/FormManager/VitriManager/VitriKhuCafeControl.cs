@@ -36,7 +36,7 @@ namespace V6ControlManager.FormManager.VitriManager
         {
             try
             {
-                if (V6Setting.IsDesignTime) return;
+                if (V6Setting.NotLoggedIn) return;
                 if (string.IsNullOrEmpty(Ma_kho))
                 {
                     this.ShowWarningMessage("No kho");

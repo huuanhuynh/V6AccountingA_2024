@@ -104,14 +104,12 @@ namespace V6Init
 
         public static string M_Ma_kho_default { get; private set; }
 
-        public static bool IsDesignTime
+        public static bool NotLoggedIn
         {
-            get { return LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
+            get { return !IsLoggedIn; }
         }
-        public static bool IsRunTime
-        {
-            get { return LicenseManager.UsageMode != LicenseUsageMode.Designtime; }
-        }
+        [DefaultValue(false)]
+        public static bool IsLoggedIn { get; set; }
 
         public static bool IsWordInstalled()
         {

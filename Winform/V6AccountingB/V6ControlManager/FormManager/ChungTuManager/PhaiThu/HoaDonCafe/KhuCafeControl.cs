@@ -35,7 +35,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         {
             try
             {
-                if (V6Setting.IsDesignTime) return;
+                if (V6Setting.NotLoggedIn) return;
                 if (string.IsNullOrEmpty(Ma_kho))
                 {
                     this.ShowWarningMessage("No kho");

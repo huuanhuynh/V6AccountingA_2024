@@ -282,6 +282,7 @@ namespace V6AccountingB
 
                     if (V6Login.Login(txtUserName.Text.Trim(), txtPassword.Text.Trim(), dvcs))
                     {
+                        V6Setting.IsLoggedIn = true;
                         V6ControlsHelper.CreateKtmpDirectory();
                         //Khởi tạo giá trị ban đầu
                         V6Setting.M_SV_DATE = V6BusinessHelper.GetServerDateTime();

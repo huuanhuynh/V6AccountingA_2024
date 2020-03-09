@@ -720,7 +720,7 @@ namespace V6Controls
 
         private bool ExistRowInTableID(object id)
         {
-            if (V6Setting.IsDesignTime) return false;
+            if (V6Setting.NotLoggedIn) return false;
             try
             {
                 if (!string.IsNullOrEmpty(LookupInfo.vValue))

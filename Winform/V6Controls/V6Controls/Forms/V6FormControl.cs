@@ -117,7 +117,7 @@ namespace V6Controls.Forms
 
         private void V6FormControl_Load(object sender, EventArgs e)
         {
-            if (V6Setting.IsDesignTime) return;
+            if (V6Setting.NotLoggedIn) return;
             SetStatus2Text();
             LoadLanguage();
         }
