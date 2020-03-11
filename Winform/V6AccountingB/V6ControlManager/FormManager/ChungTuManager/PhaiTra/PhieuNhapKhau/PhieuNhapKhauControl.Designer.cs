@@ -832,7 +832,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             this.dataGridView3ChiPhi.Tag = "cancelall";
             this.dataGridView3ChiPhi.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridView3ChiPhi_CellBeginEdit);
             this.dataGridView3ChiPhi.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3ChiPhi_CellEndEdit);
-            this.dataGridView3ChiPhi.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView3ChiPhi_ColumnAdded);
             this.dataGridView3ChiPhi.CurrentCellChanged += new System.EventHandler(this.dataGridView3ChiPhi_CurrentCellChanged);
             this.dataGridView3ChiPhi.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView3ChiPhi_EditingControlShowing);
             // 

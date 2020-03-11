@@ -2647,9 +2647,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                         V6Setting.IsVietnamese ? Invoice.GRDHV_AD : Invoice.GRDHE_AD);
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, Invoice.Config2.GRDS_V1, Invoice.Config2.GRDF_V1, V6Setting.IsVietnamese ? Invoice.Config2.GRDHV_V1 : Invoice.Config2.GRDHE_V1);
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView3, Invoice.Config3.GRDS_V1, Invoice.Config3.GRDF_V1, V6Setting.IsVietnamese ? Invoice.Config3.GRDHV_V1 : Invoice.Config3.GRDHE_V1);
+            string gv3cpS_V1 = Invoice.Config3ChiPhi.GRDS_V1;
+            if (string.IsNullOrEmpty(gv3cpS_V1)) gv3cpS_V1 = "MA_VT,TEN_VT,DVT1,SO_LUONG1,CP_NT,CP,NK_NT,NK,TIEN_NT0,TIEN0";
+            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView3ChiPhi, gv3cpS_V1, Invoice.Config3ChiPhi.GRDF_V1,
+                V6Setting.IsVietnamese ? Invoice.Config3ChiPhi.GRDHV_V1 : Invoice.Config3ChiPhi.GRDHE_V1);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView1, Invoice.Mact);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView2, Invoice.Mact);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView3, Invoice.Mact);
+            V6ControlFormHelper.FormatGridViewHideColumns(dataGridView3ChiPhi, Invoice.Mact);
         }
 #endregion datagridview
 
@@ -6269,6 +6274,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                                                 - ObjectAndString.ObjectToDecimal(AD.Rows[i]["Ck"])
                                                 - ObjectAndString.ObjectToDecimal(AD.Rows[i]["Gg"]);
                         }
+                        var crow = AD.Rows[i];
+                        decimal temp_soluong = ObjectAndString.ObjectToDecimal(crow["SO_LUONG"]);
+                        if (temp_soluong != 0)
+                        {
+                            crow["TIEN_HG_NT"] = (ObjectAndString.ObjectToDecimal(crow["Tien_nt0"]) + ObjectAndString.ObjectToDecimal(crow["Cp_nt"]) + ObjectAndString.ObjectToDecimal(crow["Nk_nt"]))
+                                  / temp_soluong;
+                            crow["TIEN_HG"] = (ObjectAndString.ObjectToDecimal(crow["Tien0"]) + ObjectAndString.ObjectToDecimal(crow["Cp"]) + ObjectAndString.ObjectToDecimal(crow["Nk"]))
+                                  / temp_soluong;
+                        }
                     }
                 }
 
@@ -6459,27 +6473,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         //    }
         //}
 
-        List<string> gridView3ChiPhiFields = new List<string>() { "MA_VT", "TEN_VT", "DVT1", "SO_LUONG1", "CP_NT", "CP", "NK_NT", "NK", "TIEN_NT0", "TIEN0" };
-        private void dataGridView3ChiPhi_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
-        {
-            e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
-            try
-            {
-                if (gridView3ChiPhiFields.Contains(e.Column.DataPropertyName.ToUpper()))
-                {
-                    e.Column.HeaderText = CorpLan2.GetFieldHeader(e.Column.DataPropertyName);
-                    e.Column.Visible = true;
-                }
-                else
-                {
-                    e.Column.Visible = false;
-                }
-            }
-            catch (Exception)
-            {
-                // ignored
-            }
-        }
+        //List<string> gridView3ChiPhiFields = new List<string>() { "MA_VT", "TEN_VT", "DVT1", "SO_LUONG1", "CP_NT", "CP", "NK_NT", "NK", "TIEN_NT0", "TIEN0" };
+        //private void dataGridView3ChiPhi_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
+        //{
+        //    e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        //    try
+        //    {
+        //        if (gridView3ChiPhiFields.Contains(e.Column.DataPropertyName.ToUpper()))
+        //        {
+        //            e.Column.HeaderText = CorpLan2.GetFieldHeader(e.Column.DataPropertyName);
+        //            e.Column.Visible = true;
+        //        }
+        //        else
+        //        {
+        //            e.Column.Visible = false;
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        // ignored
+        //    }
+        //}
 
         private void TxtT_cp_nt_ao_V6LostFocus(object sender)
         {
@@ -7409,6 +7423,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 //    }
                 //    ccell.Value = num;
                 //}
+                decimal temp_soluong = ObjectAndString.ObjectToDecimal(crow.Cells["SO_LUONG"].Value);
+                if (temp_soluong != 0)
+                {
+                    crow.Cells["TIEN_HG_NT"].Value
+                        = (ObjectAndString.ObjectToDecimal(crow.Cells["Tien_nt0"].Value)
+                           + ObjectAndString.ObjectToDecimal(crow.Cells["Cp_nt"].Value)
+                           + ObjectAndString.ObjectToDecimal(crow.Cells["Nk_nt"].Value))
+                          / temp_soluong;
+                    crow.Cells["TIEN_HG"].Value
+                        = (ObjectAndString.ObjectToDecimal(crow.Cells["Tien0"].Value)
+                           + ObjectAndString.ObjectToDecimal(crow.Cells["Cp"].Value)
+                           + ObjectAndString.ObjectToDecimal(crow.Cells["Nk"].Value))
+                          / temp_soluong;
+                }
             }
             catch (Exception ex)
             {

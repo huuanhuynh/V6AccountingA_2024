@@ -2810,10 +2810,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         V6Setting.IsVietnamese ? Invoice.GRDHV_AD : Invoice.GRDHE_AD);
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, Invoice.Config2.GRDS_V1, Invoice.Config2.GRDF_V1, V6Setting.IsVietnamese ? Invoice.Config2.GRDHV_V1 : Invoice.Config2.GRDHE_V1);
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView3, Invoice.Config3.GRDS_V1, Invoice.Config3.GRDF_V1, V6Setting.IsVietnamese ? Invoice.Config3.GRDHV_V1 : Invoice.Config3.GRDHE_V1);
+            string gv3cpS_V1 = Invoice.Config3ChiPhi.GRDS_V1;
+            if (string.IsNullOrEmpty(gv3cpS_V1)) gv3cpS_V1 = "MA_VT,TEN_VT,DVT1,SO_LUONG1,CP_NT,CP,TIEN_NT0,TIEN0";
+            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView3ChiPhi, gv3cpS_V1, Invoice.Config3ChiPhi.GRDF_V1,
+                V6Setting.IsVietnamese ? Invoice.Config3ChiPhi.GRDHV_V1 : Invoice.Config3ChiPhi.GRDHE_V1);
             
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView1, Invoice.Mact);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView2, Invoice.Mact);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView3, Invoice.Mact);
+            V6ControlFormHelper.FormatGridViewHideColumns(dataGridView3ChiPhi, Invoice.Mact);
         }
         #endregion datagridview
 
@@ -2828,8 +2833,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     && M_POA_MULTI_VAT == "1")
                     //&& !chkT_THUE_NT.Checked)
                 {
-                    //Xoa AD2
-                    //AD2.Rows.Clear();
+                    //Xoa AD2_TableName
+                    //AD2_TableName.Rows.Clear();
                     List<DataRow> removeList = new List<DataRow>();
                     foreach (DataRow row in AD2.Rows)
                     {
@@ -2840,7 +2845,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         AD2.Rows.Remove(removeList[0]);
                         removeList.RemoveAt(0);
                     }
-                    //Them AD2 theo AD
+                    //Them AD2_TableName theo AD
                     //ma_thue_i / ngay_cti0 so_cti0 so_serii0 AD nhóm lại sum chuyển qua -> ADGT
                     Dictionary<string, Dictionary<string, object>> groupSumData = new Dictionary<string, Dictionary<string, object>>();
 
@@ -2942,7 +2947,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         }
                     }
 
-                    // Insert groupData vào AD2
+                    // Insert groupData vào AD2_TableName
                     foreach (KeyValuePair<string, Dictionary<string, object>> item in groupSumData)
                     {
                         AD2.AddRow(item.Value);
@@ -3433,7 +3438,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 if (_maNt == _mMaNt0)
                     t_thue = t_thue_nt;
             }
-            else                   //Tiền thuế cộng dồn AD2
+            else                   //Tiền thuế cộng dồn AD2_TableName
             {
                 t_thue_nt = V6BusinessHelper.TinhTong(AD2, "T_THUE_NT");
                 t_thue = V6BusinessHelper.TinhTong(AD2, "T_THUE");
@@ -4077,7 +4082,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         }
         
         /// <summary>
-        /// Lấy dữ liệu AD va AD2 dựa vào rec, tạo 1 copy gán vào AD
+        /// Lấy dữ liệu AD va AD2_TableName dựa vào rec, tạo 1 copy gán vào AD
         /// </summary>
         /// <param name="sttRec"></param>
         public void LoadAD(string sttRec)
@@ -4090,7 +4095,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 AD = ADTables[sttRec].Copy();
             }
 
-            //Load AD2
+            //Load AD2_TableName
             if (AD2Tables == null) AD2Tables = new SortedDictionary<string, DataTable>();
             if (AD2Tables.ContainsKey(sttRec)) AD2 = AD2Tables[sttRec].Copy();
             else
@@ -6471,7 +6476,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
                     for (var i = 0; i < AD.Rows.Count; i++)
                     {
-                        var heso_01 = ObjectAndString.ObjectToDecimal(AD.Rows[i][loai_pb == "1" ? "TIEN_NT0" : "SO_LUONG1"]);
+                        var crow = AD.Rows[i];
+                        var heso_01 = ObjectAndString.ObjectToDecimal(crow[loai_pb == "1" ? "TIEN_NT0" : "SO_LUONG1"]);
 
                         var cp_nt = V6BusinessHelper.Vround((heso_01 / t_he_so) * TxtT_cp_nt.Value, M_ROUND_NT);
 
@@ -6487,22 +6493,31 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         if (cp_nt != 0 && index == -1)
                             index = i;
 
-                        AD.Rows[i]["Cp_nt"] = cp_nt;
-                        AD.Rows[i]["Cp"] = cp;
+                        crow["Cp_nt"] = cp_nt;
+                        crow["Cp"] = cp;
                         //tuanmh 14/10/2016
                         if (TxtMa_kh_i_ao.Text.Trim() == txtMaKh.Text.Trim())
                         {
-                            AD.Rows[i]["Tien_nt"] = ObjectAndString.ObjectToDecimal(AD.Rows[i]["Tien_nt0"])
-                                + ObjectAndString.ObjectToDecimal(AD.Rows[i]["Cp_nt"])
-                                + ObjectAndString.ObjectToDecimal(AD.Rows[i]["Tien_vc_nt"])
-                                - ObjectAndString.ObjectToDecimal(AD.Rows[i]["Ck_nt"])
-                                - ObjectAndString.ObjectToDecimal(AD.Rows[i]["Gg_nt"]);
+                            crow["Tien_nt"] = ObjectAndString.ObjectToDecimal(crow["Tien_nt0"])
+                                + ObjectAndString.ObjectToDecimal(crow["Cp_nt"])
+                                + ObjectAndString.ObjectToDecimal(crow["Tien_vc_nt"])
+                                - ObjectAndString.ObjectToDecimal(crow["Ck_nt"])
+                                - ObjectAndString.ObjectToDecimal(crow["Gg_nt"]);
 
-                            AD.Rows[i]["Tien"] = ObjectAndString.ObjectToDecimal(AD.Rows[i]["Tien0"])
-                                + ObjectAndString.ObjectToDecimal(AD.Rows[i]["Cp"])
-                                + ObjectAndString.ObjectToDecimal(AD.Rows[i]["Tien_vc"])
-                                - ObjectAndString.ObjectToDecimal(AD.Rows[i]["Ck"])
-                                - ObjectAndString.ObjectToDecimal(AD.Rows[i]["Gg"]);
+                            crow["Tien"] = ObjectAndString.ObjectToDecimal(crow["Tien0"])
+                                + ObjectAndString.ObjectToDecimal(crow["Cp"])
+                                + ObjectAndString.ObjectToDecimal(crow["Tien_vc"])
+                                - ObjectAndString.ObjectToDecimal(crow["Ck"])
+                                - ObjectAndString.ObjectToDecimal(crow["Gg"]);
+                        }
+
+                        decimal temp_soluong = ObjectAndString.ObjectToDecimal(crow["SO_LUONG"]);
+                        if (temp_soluong != 0)
+                        {
+                            crow["TIEN_HG_NT"] = (ObjectAndString.ObjectToDecimal(crow["Tien_nt0"]) + ObjectAndString.ObjectToDecimal(crow["Cp_nt"]))
+                                  /temp_soluong;
+                            crow["TIEN_HG"] = (ObjectAndString.ObjectToDecimal(crow["Tien0"]) + ObjectAndString.ObjectToDecimal(crow["Cp"]))
+                                  /temp_soluong;
                         }
                     }
                 }
@@ -6579,27 +6594,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         //    }
         //}
 
-        List<string> gridView3Fields = new List<string>() { "MA_VT", "TEN_VT", "DVT1", "SO_LUONG1", "CP_NT", "CP", "TIEN_NT0", "TIEN0" };
-        private void dataGridView3ChiPhi_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
-        {
-            e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
-            try
-            {
-                if (gridView3Fields.Contains(e.Column.DataPropertyName.ToUpper()))
-                {
-                    e.Column.HeaderText = CorpLan2.GetFieldHeader(e.Column.DataPropertyName);
-                    e.Column.Visible = true;
-                }
-                else
-                {
-                    e.Column.Visible = false;
-                }
-            }
-            catch (Exception)
-            {
-                // ignored
-            }
-        }
+        //List<string> gridView3ChiPhiFields = new List<string>() { "MA_VT", "TEN_VT", "DVT1", "SO_LUONG1", "CP_NT", "CP", "TIEN_NT0", "TIEN0" };
+        //private void dataGridView3ChiPhi_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
+        //{
+        //    e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        //    try
+        //    {
+        //        if (gridView3ChiPhiFields.Contains(e.Column.DataPropertyName.ToUpper()))
+        //        {
+        //            e.Column.HeaderText = CorpLan2.GetFieldHeader(e.Column.DataPropertyName);
+        //            e.Column.Visible = true;
+        //        }
+        //        else
+        //        {
+        //            e.Column.Visible = false;
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        // ignored
+        //    }
+        //}
 
         private void TxtT_cp_nt_ao_V6LostFocus(object sender)
         {
@@ -7560,6 +7575,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         + ObjectAndString.ObjectToDecimal(crow.Cells["Tien_vc"].Value)
                         - ObjectAndString.ObjectToDecimal(crow.Cells["Ck"].Value)
                         - ObjectAndString.ObjectToDecimal(crow.Cells["Gg"].Value);
+                }
+
+                decimal temp_soluong = ObjectAndString.ObjectToDecimal(crow.Cells["SO_LUONG"].Value);
+                if (temp_soluong != 0)
+                {
+                    crow.Cells["TIEN_HG_NT"].Value
+                        = (ObjectAndString.ObjectToDecimal(crow.Cells["Tien_nt0"].Value)
+                           + ObjectAndString.ObjectToDecimal(crow.Cells["Cp_nt"].Value))
+                          /temp_soluong;
+                    crow.Cells["TIEN_HG"].Value
+                        = (ObjectAndString.ObjectToDecimal(crow.Cells["Tien0"].Value)
+                           + ObjectAndString.ObjectToDecimal(crow.Cells["Cp"].Value))
+                          /temp_soluong;
                 }
             }
             catch (Exception ex)
