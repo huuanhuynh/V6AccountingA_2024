@@ -985,7 +985,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         }
 
         /// <summary>
-        /// Tính toán đường chéo sẽ hiện trên report
+        /// Tính toán đường chéo sẽ hiện trên report 10x2=20
         /// </summary>
         /// <param name="t">Bảng dữ liệu</param>
         /// <param name="field">Trường tính toán ký tự</param>
@@ -2180,15 +2180,30 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         }
         
         private string _oldDefaultPrinter;
+        /// <summary>
+        /// Cờ tràn dữ liệu cho mẫu hóa đơn khi tính toán vượt ROW_MAX.
+        /// </summary>
         private bool data_overflow = false;
         private void btnIn_Click(object sender, EventArgs e)
         {
             try
             {
-                if (data_overflow)
+                if (IsInvoice && data_overflow)
                 {
                     this.ShowWarningMessage(V6Text.OverFlow);
                     return;
+                }
+
+                // Kiểm tra pagecount > 1 trường hợp dùng ROW_MAX
+                if (IsInvoice && ROW_MAX > 0)
+                {
+                    var pv = (PageView)crystalReportViewer1.Controls[0];
+                    var pagecount = pv.GetLastPageNumber();
+                    if (pagecount > 1)
+                    {
+                        this.ShowWarningMessage(V6Text.OverFlow);
+                        return;
+                    }
                 }
 
                 _soLienIn = (int) numSoLien.Value;

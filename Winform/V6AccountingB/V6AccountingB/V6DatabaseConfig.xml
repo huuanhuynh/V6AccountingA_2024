@@ -355,6 +355,25 @@
     <Type>0</Type>
     <Key>4bqTMbiOxP5vKQxMZ3qAnGnidOYkYfySiCVy9tVdE0w=</Key>
   </DatabaseList>
+  <DatabaseList>
+    <Stt>20</Stt>
+    <Server>14.241.244.124,7172</Server>
+    <Server2>14.241.244.124,7172</Server2>
+    <Database>BESTMIX19</Database>
+    <Database2>BESTMIX19</Database2>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
+    <Epassword>wYAdj4ZYWkLuBA96g8cds5QDKAhleqLi</Epassword>
+    <Epassword2>wYAdj4ZYWkLuBA96g8cds5QDKAhleqLi</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <Note>Dữ liệu BESTMIX 2019 ONLINE</Note>
+    <UseIsolation>1</UseIsolation>
+    <TimeOut>360</TimeOut>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>l0XtcwU4waNps9of/sNn1Q36g8AUoRWsfUXBFGe0+VY=</Key>
+  </DatabaseList>
   <ServerConfig>
     <ServerName>HUUANV6</ServerName>
     <ServerIP>192.168.1.141</ServerIP>

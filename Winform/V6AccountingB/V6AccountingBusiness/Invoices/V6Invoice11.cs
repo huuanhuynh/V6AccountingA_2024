@@ -301,7 +301,7 @@ namespace V6AccountingBusiness.Invoices
         public DataTable LoadAd2(string sttRec)
         {
             //c=AD, d=Alvt, e=ABVT13
-            string sql = "SELECT * FROM " + AD2 + " c ";
+            string sql = "SELECT * FROM " + AD2_TableName + " c ";
             sql += string.IsNullOrEmpty(sttRec) ? " Where 1=0" : " Where c.stt_rec=@rec";
             sql += " Order by c.stt_rec0";
             var listParameters = new SqlParameter("@rec", sttRec);

@@ -78,7 +78,7 @@ namespace V6AccountingBusiness.Invoices
                 };
                 var deleteAdSql = SqlGenerator.GenDeleteSql(ADStruct, keys);
                 SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAdSql);
-                //Delete AD2
+                //Delete AD2_TableName
                 var deleteAd2Sql = SqlGenerator.GenDeleteSql(AD2Struct, keys);
                 SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAd2Sql);
                 //Delete AD3
@@ -184,7 +184,7 @@ namespace V6AccountingBusiness.Invoices
                 //Delete AD
                 var deleteAdSql = SqlGenerator.GenDeleteSql(ADStruct, keys);
                 SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAdSql);
-                //Delete AD2
+                //Delete AD2_TableName
                 var deleteAd2Sql = SqlGenerator.GenDeleteSql(AD2Struct, keys);
                 SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAd2Sql);
                 //Delete AD3
@@ -320,7 +320,7 @@ namespace V6AccountingBusiness.Invoices
         public DataTable LoadAd2(string sttRec)
         {
             //c=AD, d=Alvt, e=ABVT13
-            string sql = "SELECT * FROM " + AD2 + " c ";
+            string sql = "SELECT * FROM " + AD2_TableName + " c ";
             sql += string.IsNullOrEmpty(sttRec) ? " Where 1=0" : " Where c.stt_rec=@rec";
             sql += " Order by c.stt_rec0";
             var listParameters = new SqlParameter("@rec", sttRec);

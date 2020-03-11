@@ -59,7 +59,7 @@ namespace V6AccountingBusiness.Invoices
             }
         }
 
-        public string AD2
+        public string AD2_TableName
         {
             get
             {
@@ -78,7 +78,7 @@ namespace V6AccountingBusiness.Invoices
 
         private void GetConfig2()
         {
-            _config2 = ConfigManager.GetAldmConfig(AD2);
+            _config2 = ConfigManager.GetAldmConfig(AD2_TableName);
         }
 
         private AldmConfig _config2;
@@ -98,6 +98,22 @@ namespace V6AccountingBusiness.Invoices
         }
 
         private AldmConfig _config3;
+
+        public AldmConfig Config3ChiPhi
+        {
+            get
+            {
+                if (_config3ChiPhi == null) GetConfig3ChiPhi();
+                return _config3ChiPhi;
+            }
+        }
+
+        private void GetConfig3ChiPhi()
+        {
+            _config3ChiPhi = ConfigManager.GetAldmConfig(AD_TableName + "CP");
+        }
+
+        private AldmConfig _config3ChiPhi;
 
         /// <summary>
         /// m_ktdbf
@@ -208,7 +224,7 @@ namespace V6AccountingBusiness.Invoices
 
         public V6TableStruct AD2Struct
         {
-            get { return _ad2Struct ?? (_ad2Struct = V6BusinessHelper.GetTableStruct(AD2)); }
+            get { return _ad2Struct ?? (_ad2Struct = V6BusinessHelper.GetTableStruct(AD2_TableName)); }
         }
 
         public V6TableStruct AD3Struct
@@ -1281,7 +1297,7 @@ namespace V6AccountingBusiness.Invoices
             return j;
         }
         /// <summary>
-        /// Thêm dữ liệu vào bảng AD2
+        /// Thêm dữ liệu vào bảng AD2_TableName
         /// </summary>
         /// <param name="name">Tên hàm đang chạy.</param>
         /// <param name="transaction"></param>
@@ -1351,7 +1367,7 @@ namespace V6AccountingBusiness.Invoices
         /// </summary>
         /// <param name="amData">Dữ liệu thông tin chính.</param>
         /// <param name="ad1List">Dữ liệu thông tin chi tiết</param>
-        /// <param name="ad2List">Tùy vào thể hiện mà đây có thể là dữ liệu của AD2 (gt) hoặc AD3(kt)</param>
+        /// <param name="ad2List">Tùy vào thể hiện mà đây có thể là dữ liệu của AD2_TableName (gt) hoặc AD3(kt)</param>
         /// <returns></returns>
         public virtual bool InsertInvoice(IDictionary<string, object> amData, List<IDictionary<string, object>> ad1List, List<IDictionary<string, object>> ad2List)
         {

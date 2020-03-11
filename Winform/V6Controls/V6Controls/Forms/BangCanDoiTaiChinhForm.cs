@@ -28,11 +28,17 @@ namespace V6Controls.Forms
                 //view.EnableFullScreen = false;
                 view.Dock = DockStyle.Fill;
                 Controls.Add(view);
+                view.Disposed += view_Disposed;
             }
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".MyInit", ex);
             }
+        }
+
+        void view_Disposed(object sender, EventArgs e)
+        {
+            Dispose(true);
         }
     }
 }
