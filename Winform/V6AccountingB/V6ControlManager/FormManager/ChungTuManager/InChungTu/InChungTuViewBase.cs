@@ -1092,6 +1092,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             int flag = 0;
             var checkField = "TEN_VT";
+            data_overflow = false;
             try
             {
                 if (!IsInvoice) return;
@@ -2320,6 +2321,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                             break;
                         }
                     }
+                    V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
                 };
             }
             catch (Exception ex)
@@ -2386,6 +2388,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                             break;
                         }
                     }
+                    V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
                 };
                 f2.ShowDialog(this);
             }

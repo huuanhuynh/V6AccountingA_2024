@@ -1458,20 +1458,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     SetStatus2Text();
                     if (f2.InsertSuccess)
                     {
-                        //var data = f2.FormControl.DataDic;
                         //cap nhap thong tin
                         LoadComboboxSource();
-                        //Chọn cái mới.
-                        //var reportFileNew = data["REPORT"].ToString().Trim();
-                        //var dataV = MauInView.ToTable();
-                        //for (int i = 0; i < dataV.Rows.Count; i++)
-                        //{
-                        //    if (dataV.Rows[i]["Report"].ToString().Trim().ToUpper() == reportFileNew.ToUpper())
-                        //    {
-                        //        cboMauIn.SelectedIndex = i;
-                        //        break;
-                        //    }
-                        //}
                     };
                 }
             }
@@ -1524,17 +1512,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     //cap nhap thong tin
                     LoadComboboxSource();
-                    //Chọn cái mới.
-                    //var reportFileNew = data["REPORT"].ToString().Trim();
-                    //var dataV = MauInView.ToTable();
-                    //for (int i = 0; i < dataV.Rows.Count; i++)
-                    //{
-                    //    if (dataV.Rows[i]["Report"].ToString().Trim().ToUpper() == reportFileNew.ToUpper())
-                    //    {
-                    //        cboMauIn.SelectedIndex = i;
-                    //        break;
-                    //    }
-                    //}
                 };
                 f.ShowDialog(this);
                 SetStatus2Text();

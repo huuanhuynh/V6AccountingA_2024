@@ -4365,7 +4365,7 @@ namespace V6Controls.Forms
                                 // Add parameter for Excel Columns Name
                                 var firstCellRowIndex = Excel_File.GetExcelRow(firstCell);
                                 var firstCellColIndex = Excel_File.GetExcelColumn(firstCell);
-                                var headers = ExportExcelTemplateD_excelHeaders.Split(ExportExcelTemplateD_excelHeaders.Contains(";") ? ';' : ',');
+                                var headers = ObjectAndString.SplitString(ExportExcelTemplateD_excelHeaders);
                                 for (int i = 0; i < headers.Length; i++)
                                 {
                                     var key = "" + Excel_File.ToExcelColumnString(firstCellColIndex + i + 1) + firstCellRowIndex;
@@ -4380,7 +4380,7 @@ namespace V6Controls.Forms
 
                             if (ExportData.ToExcelTemplate(
                                 ExportExcelTemplateD_ExcelTemplateFileFull, ExportExcelTemplateD_data, save.FileName, firstCell,
-                                ExportExcelTemplateD_excelColumns.Replace("[", "").Replace("]", "").Split(ExportExcelTemplateD_excelColumns.Contains(";") ? ';' : ','),
+                                ObjectAndString.SplitString(ExportExcelTemplateD_excelColumns.Replace("[", "").Replace("]", "")),
                                 parameters, V6Setting.V6_number_format_info,
                                 insertRow, drawLine))
                             {
@@ -4966,7 +4966,7 @@ namespace V6Controls.Forms
 
 
                             if (ExportData.ToExcelTemplateHTKK(
-                                ExportExcelTemplateHTKK_excelTemplateFile, parameters, datas, excelColumnsHTKK.Split(','),
+                                ExportExcelTemplateHTKK_excelTemplateFile, parameters, datas, ObjectAndString.SplitString(excelColumnsHTKK),
                                 ExportExcelTemplateHTKK_saveFileName, V6Setting.V6_number_format_info, insertRow, drawLine))
                             {
                                 if (V6Options.AutoOpenExcel)
@@ -5212,7 +5212,7 @@ namespace V6Controls.Forms
                             }
 
                             if (ExportData.ToExcelTemplateHTKK(
-                                ExportExcelTemplateONLINE_excelTemplateFile, parameters, datas, excelColumnsONLINE.Split(','),
+                                ExportExcelTemplateONLINE_excelTemplateFile, parameters, datas, ObjectAndString.SplitString(excelColumnsONLINE),
                                 ExportExcelTemplateONLINE_saveFileName, V6Setting.V6_number_format_info, insertRow, drawLine))
                             {
                                 if (V6Options.AutoOpenExcel)
@@ -5550,15 +5550,15 @@ namespace V6Controls.Forms
                 return;
             }
             
-            var fieldList0 = showFields.Replace("[", "").Replace("]", "").Split(showFields.Contains(";") ? ';' : ',');
+            var fieldList0 = ObjectAndString.SplitString(showFields.Replace("[", "").Replace("]", ""));
             List<string> fieldList = new List<string>();
             foreach (string sss in fieldList0)
             {
                 var ss = sss.Split(':');
                 fieldList.Add(ss[0]);
             }
-            var formatList = formatStrings.Split(formatStrings.Contains(";") ? ';' : ',');
-            var headerList = headerString.Split(headerString.Contains(";") ? ';' : ',');
+            var formatList = ObjectAndString.SplitString(formatStrings);
+            var headerList = ObjectAndString.SplitString(headerString);
 
             FormatGridViewColumnsShowOrder(dgv, fieldList.ToArray(), formatList, headerList);
 

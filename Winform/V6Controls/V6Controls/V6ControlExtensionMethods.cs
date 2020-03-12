@@ -582,6 +582,11 @@ namespace V6Controls
             else control.AddTagString("disable");
         }
 
+        /// <summary>
+        /// Set readonly và gán tag đánh dấu cho control.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="read_only"></param>
         public static void ReadOnlyTag(this TextBox control, bool read_only = true)
         {
             if (read_only)

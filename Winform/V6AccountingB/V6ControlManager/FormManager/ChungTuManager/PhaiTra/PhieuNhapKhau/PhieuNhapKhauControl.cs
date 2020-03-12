@@ -3265,7 +3265,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 if (t_tien_nt2 != 0)
                 {
                     var tien_nt2 = ObjectAndString.ObjectToDecimal(AD.Rows[i]["TIEN_NT0"]);
-                    var thue_nt = V6BusinessHelper.Vround(tien_nt2 * t_thue_nt / t_tien_nt2, M_ROUND);
+                    var thue_nt = V6BusinessHelper.Vround(tien_nt2 * t_thue_nt / t_tien_nt2, M_ROUND_NT);
                     t_thue_nt_check = t_thue_nt_check + thue_nt;
 
                     //var thue = V6BusinessHelper.Vround(thue_nt * ty_gia, M_ROUND);
@@ -5926,17 +5926,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             if (chkSuaTkThue.Checked)
             {
-                txtTkThueCo.ReadOnly = false;
-                txtTkThueNo.ReadOnly = false;
-                txtTkThueCo.Tag = null;
-                txtTkThueNo.Tag = null;
+                txtTkThueCo.ReadOnlyTag(false);
+                txtTkThueNo.ReadOnlyTag(false);
             }
             else
             {
-                txtTkThueCo.ReadOnly = true;
-                txtTkThueNo.ReadOnly = true;
-                txtTkThueCo.Tag = "readonly";
-                txtTkThueNo.Tag = "readonly";
+                txtTkThueCo.ReadOnlyTag();
+                txtTkThueNo.ReadOnlyTag();
             }
         }
 
@@ -6072,18 +6068,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         private void chkSuaTien_CheckedChanged(object sender, EventArgs e)
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+            {
                 _tienNt0.Enabled = chkSuaTien.Checked;
+                _thue_nt.Enabled = chkSuaTien.Checked;
+            }
             if (chkSuaTien.Checked)
             {
                 _tienNt0.EnableTag();
                 _tien0.EnableTag();
                 _gia01.EnableTag();
+                _thue_nt.EnableTag();
             }
             else
             {
                 _tienNt0.DisableTag();
                 _tien0.DisableTag();
                 _gia01.DisableTag();
+                _thue_nt.DisableTag();
             }
 
             if (!dataGridView3ChiPhi.ReadOnly)

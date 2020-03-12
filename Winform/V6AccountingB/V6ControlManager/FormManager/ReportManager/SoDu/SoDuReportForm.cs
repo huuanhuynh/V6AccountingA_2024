@@ -960,7 +960,8 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                             break;
                         }
                     }
-                };
+                    V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
+                }
             }
             catch (Exception ex)
             {
@@ -1017,7 +1018,8 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                             break;
                         }
                     }
-                };
+                    V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
+                }
             }
             catch (Exception ex)
             {

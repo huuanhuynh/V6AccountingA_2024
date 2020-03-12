@@ -2035,7 +2035,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 var thue = row.Cells["THUE"];
 
                 thue_nt.Value = V6BusinessHelper.Vround(tienNt * thueSuat / 100, M_ROUND_NT);
-                thue.Value = _maNt == _mMaNt0 ? thue_nt.Value : V6BusinessHelper.Vround(tien * thueSuat / 100, M_ROUND_NT);
+                thue.Value = _maNt == _mMaNt0 ? thue_nt.Value : V6BusinessHelper.Vround(tien * thueSuat / 100, M_ROUND);
             }
             catch (Exception ex)
             {

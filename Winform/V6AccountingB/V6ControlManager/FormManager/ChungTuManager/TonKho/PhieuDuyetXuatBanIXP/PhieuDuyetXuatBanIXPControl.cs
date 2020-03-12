@@ -2673,7 +2673,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
                 if (t_tien_nt2 != 0)
                 {
                     var tien_nt2 = ObjectAndString.ObjectToDecimal(AD.Rows[i]["TIEN_NT2"]);
-                    var thue_nt = V6BusinessHelper.Vround(tien_nt2 * t_thue_nt / t_tien_nt2, M_ROUND);
+                    var thue_nt = V6BusinessHelper.Vround(tien_nt2 * t_thue_nt / t_tien_nt2, M_ROUND_NT);
                     t_thue_nt_check = t_thue_nt_check + thue_nt;
 
                     var thue = V6BusinessHelper.Vround(thue_nt * ty_gia, M_ROUND);
