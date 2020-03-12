@@ -1785,10 +1785,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             return true;
         }
 
+        private bool _updateDataRow = false;
         private void cboMauIn_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!IsReady) return;
-            if (_radioRunning) return;
+            if (_radioRunning || _updateDataRow) return;
 
             GetSumCondition();
 
@@ -1809,23 +1810,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 f2.SetFather(this);
                 f2.ShowDialog(this);
                 SetStatus2Text();
-                if (f2.InsertSuccess)
+                if (f2.UpdateSuccess)
                 {
-                    var data = f2.FormControl.DataDic;
+                    _updateDataRow = true;
                     //cap nhap thong tin
-                    LoadComboboxSource();
-                    //Chọn cái mới.
-                    var reportFileNew = data["REPORT"].ToString().Trim();
-                    var dataV = MauInView.ToTable();
-                    for (int i = 0; i < dataV.Rows.Count; i++)
-                    {
-                        if (dataV.Rows[i]["Report"].ToString().Trim().ToUpper() == reportFileNew.ToUpper())
-                        {
-                            cboMauIn.SelectedIndex = i;
-                            break;
-                        }
-                    }
+                    var data = f2.FormControl.DataDic;
                     V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
+                    _updateDataRow = false;
                 }
             }
             catch (Exception ex)
@@ -1889,7 +1880,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                             break;
                         }
                     }
-                    V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
                 }
             }
             catch (Exception ex)

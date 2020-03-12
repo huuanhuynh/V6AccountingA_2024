@@ -944,23 +944,13 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 f.InitFormControl();
                 f.SetFather(this);
                 f.ShowDialog(this);
-                if (f.InsertSuccess)
+                if (f.UpdateSuccess)
                 {
-                    var data = f.FormControl.DataDic;
+                    _updateDataRow = true;
                     //cap nhap thong tin
-                    LoadComboboxSource();
-                    //Chọn cái mới.
-                    var reportFileNew = data["REPORT"].ToString().Trim();
-                    var dataV = MauInView.ToTable();
-                    for (int i = 0; i < dataV.Rows.Count; i++)
-                    {
-                        if (dataV.Rows[i]["Report"].ToString().Trim().ToUpper() == reportFileNew.ToUpper())
-                        {
-                            cboMauIn.SelectedIndex = i;
-                            break;
-                        }
-                    }
+                    var data = f.FormControl.DataDic;
                     V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
+                    _updateDataRow = false;
                 }
             }
             catch (Exception ex)
@@ -1018,7 +1008,6 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                             break;
                         }
                     }
-                    V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
                 }
             }
             catch (Exception ex)
@@ -1045,10 +1034,11 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             LoadComboboxSource();
         }
 
+        private bool _updateDataRow = false;
         private void cboMauIn_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!IsReady) return;
-            if (_radioRunning) return;
+            if (_radioRunning || _updateDataRow) return;
 
             txtReportTitle.Text = ReportTitle;
             ViewReport();

@@ -2263,10 +2263,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
         }
 
+        private bool _updateDataRow = false;
         private void cboMauIn_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!IsReady || string.IsNullOrEmpty(MA_NT)) return;
-            if (_radioRunning) return;
+            if (_radioRunning || _updateDataRow) return;
 
             GetSumCondition();
 
@@ -2321,8 +2322,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                             break;
                         }
                     }
-                    V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
-                };
+                }
             }
             catch (Exception ex)
             {
@@ -2372,30 +2372,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 f2.InitFormControl();
                 f2.SetFather(this);
                 SetStatus2Text();
+                f2.ShowDialog(this);
+
                 if (f2.UpdateSuccess)
                 {
-                    var data = f2.FormControl.DataDic;
+                    _updateDataRow = true;
                     //cap nhap thong tin
-                    LoadComboboxSource();
-                    //Chọn cái mới.
-                    var reportFileNew = data["REPORT"].ToString().Trim();
-                    var dataV = MauInView.ToTable();
-                    for (int i = 0; i < dataV.Rows.Count; i++)
-                    {
-                        if (dataV.Rows[i]["Report"].ToString().Trim().ToUpper() == reportFileNew.ToUpper())
-                        {
-                            cboMauIn.SelectedIndex = i;
-                            break;
-                        }
-                    }
+                    var data = f2.FormControl.DataDic;
                     V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
-                };
-                f2.ShowDialog(this);
+                    _updateDataRow = false;
+                }
             }
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".btnSuaTTMauBC_Click: " + ex.Message);
             }
+            _updateDataRow = false;
         }
 
         private void chkHienTatCa_CheckedChanged(object sender, EventArgs e)

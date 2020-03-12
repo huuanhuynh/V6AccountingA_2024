@@ -1303,13 +1303,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
-        private bool _radioChange = false;
-
+        private bool _radioChange;
+        private bool _radioRunning;
         private void rbtLanguage_CheckedChanged(object sender, EventArgs e)
         {
             if (!IsReady) return;
             if (((RadioButton)sender).Checked)
             {
+                _radioRunning = true;
                 _radioChange = true;
                 txtReportTitle.Text = rTiengViet.Checked ? _reportTitle : rEnglish.Checked ? _reportTitle2 : _reportTitle + "/" + _reportTitle2;
                 SetFormReportFilter();
@@ -1322,10 +1323,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 //else
                 //    ViewReport();
             }
+            _radioRunning = false;
         }
-
-        
-        
 
         private bool SetupThePrinting()
         {
@@ -1598,9 +1597,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
         }
 
+        private bool _updateDataRow = false;
         private void cboMauIn_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!IsReady) return;
+            if (_radioRunning || _updateDataRow) return;
 
             GetSumCondition();
 
@@ -1623,21 +1624,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 SetStatus2Text();
                 if (f2.UpdateSuccess)
                 {
-                    var data = f2.FormControl.DataDic;
+                    _updateDataRow = true;
                     //cap nhap thong tin
-                    LoadComboboxSource();
-                    //Chọn cái mới.
-                    var reportFileNew = data["REPORT"].ToString().Trim();
-                    var dataV = MauInView.ToTable();
-                    for (int i = 0; i < dataV.Rows.Count; i++)
-                    {
-                        if (dataV.Rows[i]["Report"].ToString().Trim().ToUpper() == reportFileNew.ToUpper())
-                        {
-                            cboMauIn.SelectedIndex = i;
-                            break;
-                        }
-                    }
+                    var data = f2.FormControl.DataDic;
                     V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
+                    _updateDataRow = false;
                 }
             }
             catch (Exception ex)
@@ -1702,7 +1693,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                             break;
                         }
                     }
-                    V6ControlFormHelper.UpdateDataRow(MauInSelectedRow, data);
                 }
             }
             catch (Exception ex)
