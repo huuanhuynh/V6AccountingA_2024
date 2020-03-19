@@ -17,7 +17,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
     {
         protected V6Categories Categories;
         public V6TableName TableName { get; set; }
-        public V6TableStruct _structTable;
+        public V6TableStruct _TableStruct;
         public V6Mode Mode = V6Mode.Add;
         public Control _grandFatherControl;
         public IDictionary<string, object> _parentData;
@@ -228,8 +228,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {   
-                _structTable = V6BusinessHelper.GetTableStruct(TableName.ToString());
-                V6ControlFormHelper.SetFormStruct(this, _structTable);
+                _TableStruct = V6BusinessHelper.GetTableStruct(TableName.ToString());
+                V6ControlFormHelper.SetFormStruct(this, _TableStruct);
             }
             catch (Exception ex)
             {
@@ -476,6 +476,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     int b = UpdateData();
                     if (b > 0)
                     {
+                        AfterSaveBase();
                         AfterSave();
                         AfterUpdate();
                         InvokeFormEvent(FormDynamicEvent.AFTERUPDATE);
@@ -544,6 +545,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     bool b = InsertNew();
                     if (b)
                     {
+                        AfterSaveBase();
                         AfterSave();
                         AfterInsert();
                         InvokeFormEvent(FormDynamicEvent.AFTERINSERT);
@@ -631,10 +633,48 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
+        public void AfterSaveBase()
+        {
+            try
+            {
+                if (_aldmConfig == null || _aldmConfig.NoInfo) return;
+
+                var KEYS = ObjectAndString.SplitString(_aldmConfig.KEY.ToUpper());
+                var data_new = "";
+                var data_old = "";
+                foreach (string KEY in KEYS)
+                {
+                    if (!_TableStruct.ContainsKey(KEY)) continue;
+                    var sct = _TableStruct[KEY];
+                    var o_new = DataDic[KEY];
+                    data_new += "|" + SqlGenerator.GenSqlStringValue(o_new, sct.sql_data_type_string, sct.ColumnDefault, false, sct.MaxLength);
+                    var o_old = Mode == V6Mode.Edit ? DataOld[KEY] : o_new;
+                    data_old += "|" + SqlGenerator.GenSqlStringValue(o_old, sct.sql_data_type_string, sct.ColumnDefault, false, sct.MaxLength);
+                }
+                
+                if (data_new.Length > 1) data_new = data_new.Substring(1);
+                if (data_old.Length > 1) data_old = data_old.Substring(1);
+                
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@TableName", _aldmConfig.TABLE_NAME),
+                    new SqlParameter("@Fields", _aldmConfig.KEY),
+                    new SqlParameter("@datas_old", data_old),
+                    new SqlParameter("@datas_new", data_new),
+                    new SqlParameter("@User_id", V6Login.UserId),
+                };
+                V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_UPDATE_AL_ALL", plist);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".UpdateAlqddvt", ex);
+            }
+        }
+
         /// <summary>
         /// Được gọi sau khi thêm hoặc sửa thành công.
         /// </summary>
-        public virtual void AfterSave()
+        public virtual void AfterSave() 
         {
             try // Dynamic invoke
             {
@@ -651,7 +691,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         }
 
         /// <summary>
-        /// Được gọi sau khi thêm thành công.
+        /// Được gọi sau khi thêm thành công. (hàm ảo).
         /// </summary>
         public virtual void AfterInsert()
         {
@@ -667,7 +707,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 {
                     _keys["UID"] = DataOld["UID"];
                 }
-                if (_structTable.TableName.ToUpper() == "CORPLAN")
+                if (_TableStruct.TableName.ToUpper() == "CORPLAN")
                 {
                     _keys["ID"] = DataOld["ID"];
                 }

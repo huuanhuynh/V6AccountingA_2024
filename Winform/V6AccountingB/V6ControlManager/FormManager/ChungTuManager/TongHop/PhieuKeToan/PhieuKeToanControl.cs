@@ -8,6 +8,7 @@ using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
+using V6ControlManager.FormManager.ChungTuManager.Filter;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc;
 using V6Controls;
@@ -3546,6 +3547,119 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
 
             hoaDonForm.ShowToForm(this, title, true, true, true);
         }
+
+        private void thuNoTaiKhoanMenu_Click(object sender, EventArgs e)
+        {
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            ThuNo131(shift);
+        }
+
+        public void ThuNo131(bool add)
+        {
+            try
+            {
+                if (NotAddEdit) return;
+                chon_accept_flag_add = add;
+                //if (_MA_GD == "3")
+                {
+                    detail1.MODE = V6Mode.View;
+                    dataGridView1.UnLock();
+
+                    var initFilter = GetThuNo131InitFilter();
+                    var f = new FilterView_ARSODU0TK_LE(Invoice, new V6ColorTextBox(), _sttRec, txtMaDVCS.Text, initFilter);
+                    f.MultiSeletion = true;
+                    //f.ChoseEvent += data =>
+                    //{
+                        
+                    //};
+                    f.ShowDialog(this);
+                    if (f.DialogResult == DialogResult.OK)
+                    {
+                        bool flag_add = chon_accept_flag_add;
+                        chon_accept_flag_add = false;
+                        if (!flag_add)
+                        {
+                            AD.Rows.Clear();
+                        }
+
+                        IDictionary<string, object> sumdic = new Dictionary<string, object>();
+                        decimal sum_ps_no_nt = 0m;
+                        decimal sum_ps_no = 0m;
+
+                        // Các dòng chọn
+                        foreach (IDictionary<string, object> dic0 in f.SelectedDataList)
+                        {
+                            var dic = detail1.GetData();
+                            sumdic = new Dictionary<string, object>(dic);
+                            string type = dic0["NO_CO"].ToString();
+
+                            dic["TK_I"] = dic0["TK"];
+                            sumdic["NO_CO"] = type;
+                            sumdic["TK_I"] = dic0["TK_DU"];
+
+                            if (type == "1")
+                            {
+                                decimal ps_no_nt = Math.Abs(ObjectAndString.ObjectToDecimal(dic0["DU_NO"]));
+                                decimal ps_no = Math.Abs(ObjectAndString.ObjectToDecimal(dic0["DU_NO"]));
+                                dic["PS_NO_NT"] = ps_no_nt;
+                                dic["PS_NO"] = ps_no;
+                                sum_ps_no_nt += ps_no_nt;
+                                sum_ps_no += ps_no;
+
+                                dic["PS_CO"] = 0m;
+                                dic["PS_CO_NT"] = 0m;
+                            }
+                            else
+                            {
+                                decimal ps_no_nt = Math.Abs(ObjectAndString.ObjectToDecimal(dic0["DU_NO"]));
+                                decimal ps_no = Math.Abs(ObjectAndString.ObjectToDecimal(dic0["DU_NO"]));
+                                dic["PS_NO_NT"] = 0m;
+                                dic["PS_NO"] = 0m;
+                                dic["PS_CO_NT"] = ps_no_nt;
+                                dic["PS_CO"] = ps_no;
+                                sum_ps_no_nt += ps_no_nt;
+                                sum_ps_no += ps_no;
+                            }
+
+                            dic["MA_KH_I"] = dic0["MA_KH"];
+                            dic["TEN_KH_I"] = dic0["TEN_KH"];
+
+                            XuLyThemDetail(dic);
+                        }
+
+                        // Dòng tổng.
+                        string type2 = sumdic["NO_CO"].ToString();
+                        if (type2 == "1")
+                        {
+                            sumdic["PS_CO_NT"] = sum_ps_no_nt;
+                            sumdic["PS_CO"] = sum_ps_no;
+                            sumdic["PS_NO"] = 0m;
+                            sumdic["PS_NO_NT"] = 0m;
+                        }
+                        else
+                        {
+                            sumdic["PS_CO_NT"] = 0m;
+                            sumdic["PS_CO"] = 0m;
+                            sumdic["PS_NO_NT"] = sum_ps_no_nt;
+                            sumdic["PS_NO"] = sum_ps_no;
+                        }
+                        sumdic["MA_KH_I"] = "";
+                        sumdic["TEN_KH_I"] = "";
+                        XuLyThemDetail(sumdic);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ThuNo131 " + _sttRec, ex);
+            }
+        }
+
+        private void menuChucNang_Paint(object sender, PaintEventArgs e)
+        {
+            FixMenuChucNangItemShiftText(thuNoTaiKhoanLeMenu);
+        }
+
 
     }
 }

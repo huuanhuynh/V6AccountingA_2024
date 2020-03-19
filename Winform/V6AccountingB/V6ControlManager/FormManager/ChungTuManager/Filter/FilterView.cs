@@ -151,12 +151,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             }
         }
 
+        public List<IDictionary<string, object>> SelectedDataList;
         public override bool DoHotKey0(Keys keyData)
         {
             try
             {
                 if (keyData == Keys.Enter)
                 {
+                    SelectedDataList = new List<IDictionary<string, object>>();
                     if (txtV_Search.Focused && dataGridView1.Rows.Count != 1)
                     {
                         if (txtV_Search.Text.Trim() == "")
@@ -176,7 +178,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
                         foreach (DataGridViewRow row in dataGridView1.Rows)
                         {
                             if (row.IsSelect())
+                            {
+                                SelectedDataList.Add(row.ToDataDictionary());
                                 OnChoseEvent(row);
+                            }
                         }
 
                         if (dataGridView1.CurrentRow != null)
@@ -188,6 +193,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
                     else if (dataGridView1.SelectedCells.Count > 0)
                     {
                         var currentRow = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
+                        SelectedDataList.Add(currentRow.ToDataDictionary());
                         object selectedValue = currentRow.Cells[DataField].Value;
                         if (_senderTextBox != null)
                         {

@@ -1772,17 +1772,31 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 result = InitFilter;
             }
 
-            //Thêm lọc Filter_Field
+            // Thêm lọc Filter_Field
             if (cboFilter.Visible && cboFilter.SelectedIndex > 0)
             {
                 string filter = string.Format("{0}='{1}'", FILTER_FIELD, cboFilter.SelectedValue);
                 result += string.Format("{0}{1}", result.Length > 0 ? " and " : "", filter);
             }
 
-            //Thêm lọc where
+            // Thêm lọc where
             if (!string.IsNullOrEmpty(_search))
             {
                 result += string.Format("{0}({1})", result.Length > 0 ? " and " : "", _search);
+            }
+
+            // Lọc quyền proc
+            try
+            {
+                string right_proc = V6BusinessHelper.GetWhereAl(_tableName);
+                if (!string.IsNullOrEmpty(right_proc))
+                {
+                    result += string.Format("{0}({1})", result.Length > 0 ? " and " : "", right_proc);
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowMainMessage("DanhMucView GetWhereAl " + ex.Message);
             }
 
             return result;

@@ -136,6 +136,7 @@ namespace V6Controls
         public void SetDataRow(DataRow data)
         {
             Data = data;
+            //_data = data;
         }
 
         /// <summary>
@@ -651,6 +652,7 @@ namespace V6Controls
         /// <returns></returns>
         public bool ExistRowInTable(string text, bool use_InitFilter = false)
         {
+            if (V6Setting.NotLoggedIn) return false;
             try
             {
                 if (!use_InitFilter && _data != null && _text_data == Text) return true;
@@ -847,6 +849,7 @@ namespace V6Controls
                 if (Data == null)
                 {
                     LO_YN = false;
+                    SKSM_YN = false;
                     DATE_YN = false;
                     VITRI_YN = false;
                     VT_TON_KHO = false;
@@ -855,6 +858,8 @@ namespace V6Controls
                 }
                 if (Data.Table.Columns.Contains("LO_YN"))
                     LO_YN = ObjectAndString.ObjectToInt(Data["LO_YN"]) == 1;
+                if (Data.Table.Columns.Contains("SKSM_YN"))
+                    SKSM_YN = ObjectAndString.ObjectToInt(Data["SKSM_YN"]) == 1;
                 if (Data.Table.Columns.Contains("DATE_YN"))
                     DATE_YN = ObjectAndString.ObjectToInt(Data["DATE_YN"]) == 1;
                 if (Data.Table.Columns.Contains("VITRI_YN"))

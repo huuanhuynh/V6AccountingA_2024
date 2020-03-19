@@ -55,7 +55,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtma_dvcs = new V6Controls.V6VvarTextBox();
             this.txtso_ct = new V6Controls.V6VvarTextBox();
             this.lbT_Tt_NT0 = new V6Controls.V6Label();
-            this.txtt_tien_nt = new V6Controls.NumberTienNt();
+            this.txtT_tien_nt = new V6Controls.NumberTienNt();
             this.txtthue_suat = new V6Controls.NumberTienNt();
             this.txtngay_ct0 = new V6Controls.V6DateTimePicker();
             this.v6Label10 = new V6Controls.V6Label();
@@ -63,7 +63,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtso_ct0 = new V6Controls.V6VvarTextBox();
             this.txtso_seri0 = new V6Controls.V6VvarTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtma_hd = new V6Controls.V6VvarTextBox();
+            this.txtma_mauhd = new V6Controls.V6VvarTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtmau_bc = new V6Controls.V6VvarTextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -74,13 +74,22 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.v6Label14 = new V6Controls.V6Label();
             this.txtten_vt = new V6Controls.V6VvarTextBox();
             this.v6Label15 = new V6Controls.V6Label();
-            this.txtgia = new V6Controls.NumberTienNt();
+            this.txtGia_NT = new V6Controls.NumberGia();
             this.v6Label18 = new V6Controls.V6Label();
             this.v6Label19 = new V6Controls.V6Label();
             this.txtghi_chu = new V6Controls.V6VvarTextBox();
             this.v6Label12 = new V6Controls.V6Label();
             this.txttk_thue_no = new V6Controls.V6VvarTextBox();
             this.txttk_du = new V6Controls.V6VvarTextBox();
+            this.v6Label16 = new V6Controls.V6Label();
+            this.txtTyGia = new V6Controls.V6NumberTextBox();
+            this.v6Label17 = new V6Controls.V6Label();
+            this.txtma_thue = new V6Controls.V6VvarTextBox();
+            this.v6Label21 = new V6Controls.V6Label();
+            this.txtT_tien = new V6Controls.NumberTien();
+            this.txtT_thue_nt = new V6Controls.NumberTienNt();
+            this.cboMaNt = new V6Controls.V6ComboBox();
+            this.txtGia = new V6Controls.NumberGia();
             this.SuspendLayout();
             // 
             // lbTxtT_CL_NT
@@ -90,7 +99,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.lbTxtT_CL_NT.Location = new System.Drawing.Point(26, 364);
             this.lbTxtT_CL_NT.Name = "lbTxtT_CL_NT";
             this.lbTxtT_CL_NT.Size = new System.Drawing.Size(94, 13);
-            this.lbTxtT_CL_NT.TabIndex = 28;
+            this.lbTxtT_CL_NT.TabIndex = 53;
             this.lbTxtT_CL_NT.Text = "Tài khoản đối ứng";
             // 
             // lbTxtT_tt_qd
@@ -100,7 +109,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.lbTxtT_tt_qd.Location = new System.Drawing.Point(26, 232);
             this.lbTxtT_tt_qd.Name = "lbTxtT_tt_qd";
             this.lbTxtT_tt_qd.Size = new System.Drawing.Size(49, 13);
-            this.lbTxtT_tt_qd.TabIndex = 26;
+            this.lbTxtT_tt_qd.TabIndex = 32;
             this.lbTxtT_tt_qd.Text = "Số lượng";
             // 
             // txtso_luong
@@ -119,7 +128,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtso_luong.Location = new System.Drawing.Point(175, 228);
             this.txtso_luong.Name = "txtso_luong";
             this.txtso_luong.Size = new System.Drawing.Size(146, 20);
-            this.txtso_luong.TabIndex = 15;
+            this.txtso_luong.TabIndex = 33;
             this.txtso_luong.Text = "0";
             this.txtso_luong.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtso_luong.Value = new decimal(new int[] {
@@ -136,7 +145,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.v6Label8.Location = new System.Drawing.Point(26, 320);
             this.v6Label8.Name = "v6Label8";
             this.v6Label8.Size = new System.Drawing.Size(76, 13);
-            this.v6Label8.TabIndex = 22;
+            this.v6Label8.TabIndex = 48;
             this.v6Label8.Text = "Tiền thuế VAT";
             // 
             // txtt_thue
@@ -152,10 +161,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtt_thue.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtt_thue.HoverColor = System.Drawing.Color.Yellow;
             this.txtt_thue.LeaveColor = System.Drawing.Color.White;
-            this.txtt_thue.Location = new System.Drawing.Point(175, 316);
+            this.txtt_thue.Location = new System.Drawing.Point(445, 317);
             this.txtt_thue.Name = "txtt_thue";
             this.txtt_thue.Size = new System.Drawing.Size(146, 20);
-            this.txtt_thue.TabIndex = 19;
+            this.txtt_thue.TabIndex = 50;
             this.txtt_thue.Text = "0";
             this.txtt_thue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtt_thue.Value = new decimal(new int[] {
@@ -168,10 +177,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             // 
             this.v6Label6.AccessibleDescription = "XULYL00083";
             this.v6Label6.AutoSize = true;
-            this.v6Label6.Location = new System.Drawing.Point(26, 298);
+            this.v6Label6.Location = new System.Drawing.Point(337, 296);
             this.v6Label6.Name = "v6Label6";
             this.v6Label6.Size = new System.Drawing.Size(55, 13);
-            this.v6Label6.TabIndex = 20;
+            this.v6Label6.TabIndex = 45;
             this.v6Label6.Text = "Thuế suất";
             // 
             // v6Label5
@@ -181,7 +190,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.v6Label5.Location = new System.Drawing.Point(26, 144);
             this.v6Label5.Name = "v6Label5";
             this.v6Label5.Size = new System.Drawing.Size(40, 13);
-            this.v6Label5.TabIndex = 13;
+            this.v6Label5.TabIndex = 22;
             this.v6Label5.Text = "Địa chỉ";
             // 
             // v6Label4
@@ -191,7 +200,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.v6Label4.Location = new System.Drawing.Point(26, 122);
             this.v6Label4.Name = "v6Label4";
             this.v6Label4.Size = new System.Drawing.Size(62, 13);
-            this.v6Label4.TabIndex = 10;
+            this.v6Label4.TabIndex = 20;
             this.v6Label4.Text = "Khách VAT";
             // 
             // txtten_kh
@@ -201,7 +210,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtten_kh.BackColor = System.Drawing.SystemColors.Window;
             this.txtten_kh.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtten_kh.BrotherFields = "Ten_Tk";
             this.txtten_kh.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtten_kh.CheckNotEmpty = true;
             this.txtten_kh.EnterColor = System.Drawing.Color.PaleGreen;
@@ -212,7 +220,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtten_kh.Location = new System.Drawing.Point(175, 118);
             this.txtten_kh.Name = "txtten_kh";
             this.txtten_kh.Size = new System.Drawing.Size(419, 20);
-            this.txtten_kh.TabIndex = 9;
+            this.txtten_kh.TabIndex = 21;
             // 
             // lblMaKH
             // 
@@ -221,7 +229,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.lblMaKH.Location = new System.Drawing.Point(26, 100);
             this.lblMaKH.Name = "lblMaKH";
             this.lblMaKH.Size = new System.Drawing.Size(55, 13);
-            this.lblMaKH.TabIndex = 7;
+            this.lblMaKH.TabIndex = 10;
             this.lblMaKH.Text = "Mã khách";
             // 
             // txtma_kh
@@ -239,7 +247,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtma_kh.Location = new System.Drawing.Point(175, 96);
             this.txtma_kh.Name = "txtma_kh";
             this.txtma_kh.Size = new System.Drawing.Size(146, 20);
-            this.txtma_kh.TabIndex = 7;
+            this.txtma_kh.TabIndex = 11;
             this.txtma_kh.VVar = "ma_kh";
             // 
             // v6Label9
@@ -259,7 +267,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.lblSoCT.Location = new System.Drawing.Point(332, 34);
             this.lblSoCT.Name = "lblSoCT";
             this.lblSoCT.Size = new System.Drawing.Size(65, 13);
-            this.lblSoCT.TabIndex = 5;
+            this.lblSoCT.TabIndex = 12;
             this.lblSoCT.Text = "Số chứng từ";
             // 
             // v6Label3
@@ -269,7 +277,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.v6Label3.Location = new System.Drawing.Point(26, 166);
             this.v6Label3.Name = "v6Label3";
             this.v6Label3.Size = new System.Drawing.Size(60, 13);
-            this.v6Label3.TabIndex = 15;
+            this.v6Label3.TabIndex = 24;
             this.v6Label3.Text = "Mã số thuế";
             // 
             // v6Label7
@@ -279,7 +287,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.v6Label7.Location = new System.Drawing.Point(26, 276);
             this.v6Label7.Name = "v6Label7";
             this.v6Label7.Size = new System.Drawing.Size(128, 13);
-            this.v6Label7.TabIndex = 18;
+            this.v6Label7.TabIndex = 40;
             this.v6Label7.Text = "Tổng tiền nt trên hóa đơn";
             // 
             // v6Label1
@@ -303,7 +311,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.btnThoat.Location = new System.Drawing.Point(114, 423);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(88, 40);
-            this.btnThoat.TabIndex = 24;
+            this.btnThoat.TabIndex = 58;
             this.btnThoat.Text = "&Hủy";
             this.btnThoat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnThoat.UseVisualStyleBackColor = true;
@@ -318,7 +326,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.btnNhan.Location = new System.Drawing.Point(26, 423);
             this.btnNhan.Name = "btnNhan";
             this.btnNhan.Size = new System.Drawing.Size(88, 40);
-            this.btnNhan.TabIndex = 23;
+            this.btnNhan.TabIndex = 57;
             this.btnNhan.Text = "&Nhận";
             this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNhan.UseVisualStyleBackColor = true;
@@ -336,7 +344,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtngay_ct.Location = new System.Drawing.Point(175, 30);
             this.txtngay_ct.Name = "txtngay_ct";
             this.txtngay_ct.Size = new System.Drawing.Size(146, 20);
-            this.txtngay_ct.TabIndex = 1;
+            this.txtngay_ct.TabIndex = 4;
             // 
             // txtdia_chi
             // 
@@ -345,7 +353,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtdia_chi.BackColor = System.Drawing.SystemColors.Window;
             this.txtdia_chi.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtdia_chi.BrotherFields = "";
             this.txtdia_chi.CheckNotEmpty = true;
             this.txtdia_chi.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtdia_chi.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -355,7 +362,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtdia_chi.Location = new System.Drawing.Point(175, 140);
             this.txtdia_chi.Name = "txtdia_chi";
             this.txtdia_chi.Size = new System.Drawing.Size(419, 20);
-            this.txtdia_chi.TabIndex = 10;
+            this.txtdia_chi.TabIndex = 23;
             // 
             // txtma_so_thue
             // 
@@ -364,7 +371,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtma_so_thue.BackColor = System.Drawing.SystemColors.Window;
             this.txtma_so_thue.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtma_so_thue.BrotherFields = "";
             this.txtma_so_thue.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtma_so_thue.CheckNotEmpty = true;
             this.txtma_so_thue.EnterColor = System.Drawing.Color.PaleGreen;
@@ -375,7 +381,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtma_so_thue.Location = new System.Drawing.Point(175, 162);
             this.txtma_so_thue.Name = "txtma_so_thue";
             this.txtma_so_thue.Size = new System.Drawing.Size(144, 20);
-            this.txtma_so_thue.TabIndex = 11;
+            this.txtma_so_thue.TabIndex = 25;
             // 
             // txtten_dvcs
             // 
@@ -405,7 +411,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtma_dvcs.Location = new System.Drawing.Point(175, 8);
             this.txtma_dvcs.Name = "txtma_dvcs";
             this.txtma_dvcs.Size = new System.Drawing.Size(146, 20);
-            this.txtma_dvcs.TabIndex = 0;
+            this.txtma_dvcs.TabIndex = 1;
             this.txtma_dvcs.VVar = "ma_dvcs";
             // 
             // txtso_ct
@@ -413,7 +419,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtso_ct.AccessibleName = "so_ct";
             this.txtso_ct.BackColor = System.Drawing.SystemColors.Window;
             this.txtso_ct.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtso_ct.BrotherFields = "Ten_Kh";
             this.txtso_ct.CheckNotEmpty = true;
             this.txtso_ct.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtso_ct.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -423,7 +428,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtso_ct.Location = new System.Drawing.Point(445, 30);
             this.txtso_ct.Name = "txtso_ct";
             this.txtso_ct.Size = new System.Drawing.Size(149, 20);
-            this.txtso_ct.TabIndex = 2;
+            this.txtso_ct.TabIndex = 13;
             // 
             // lbT_Tt_NT0
             // 
@@ -433,37 +438,37 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.lbT_Tt_NT0.Location = new System.Drawing.Point(26, 342);
             this.lbT_Tt_NT0.Name = "lbT_Tt_NT0";
             this.lbT_Tt_NT0.Size = new System.Drawing.Size(55, 13);
-            this.lbT_Tt_NT0.TabIndex = 24;
+            this.lbT_Tt_NT0.TabIndex = 51;
             this.lbT_Tt_NT0.Text = "Tài khoản";
             // 
-            // txtt_tien_nt
+            // txtT_tien_nt
             // 
-            this.txtt_tien_nt.AccessibleName = "t_tien_nt";
-            this.txtt_tien_nt.BackColor = System.Drawing.SystemColors.Window;
-            this.txtt_tien_nt.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtt_tien_nt.DecimalPlaces = 0;
-            this.txtt_tien_nt.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtt_tien_nt.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtt_tien_nt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtt_tien_nt.HoverColor = System.Drawing.Color.Yellow;
-            this.txtt_tien_nt.LeaveColor = System.Drawing.Color.White;
-            this.txtt_tien_nt.Location = new System.Drawing.Point(175, 272);
-            this.txtt_tien_nt.Name = "txtt_tien_nt";
-            this.txtt_tien_nt.Size = new System.Drawing.Size(146, 20);
-            this.txtt_tien_nt.TabIndex = 17;
-            this.txtt_tien_nt.Text = "0";
-            this.txtt_tien_nt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtt_tien_nt.Value = new decimal(new int[] {
+            this.txtT_tien_nt.AccessibleName = "t_tien_nt";
+            this.txtT_tien_nt.BackColor = System.Drawing.SystemColors.Window;
+            this.txtT_tien_nt.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtT_tien_nt.DecimalPlaces = 2;
+            this.txtT_tien_nt.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtT_tien_nt.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtT_tien_nt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtT_tien_nt.HoverColor = System.Drawing.Color.Yellow;
+            this.txtT_tien_nt.LeaveColor = System.Drawing.Color.White;
+            this.txtT_tien_nt.Location = new System.Drawing.Point(175, 272);
+            this.txtT_tien_nt.Name = "txtT_tien_nt";
+            this.txtT_tien_nt.Size = new System.Drawing.Size(146, 20);
+            this.txtT_tien_nt.TabIndex = 41;
+            this.txtT_tien_nt.Text = "0,00";
+            this.txtT_tien_nt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtT_tien_nt.Value = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.txtt_tien_nt.V6LostFocus += new V6Controls.ControlEventHandle(this.txtso_luongV6LostFocus);
+            this.txtT_tien_nt.V6LostFocus += new V6Controls.ControlEventHandle(this.txtso_luongV6LostFocus);
             // 
             // txtthue_suat
             // 
             this.txtthue_suat.AccessibleName = "thue_suat";
-            this.txtthue_suat.BackColor = System.Drawing.SystemColors.Window;
+            this.txtthue_suat.BackColor = System.Drawing.Color.AntiqueWhite;
             this.txtthue_suat.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtthue_suat.DecimalPlaces = 0;
             this.txtthue_suat.EnterColor = System.Drawing.Color.PaleGreen;
@@ -471,10 +476,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtthue_suat.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtthue_suat.HoverColor = System.Drawing.Color.Yellow;
             this.txtthue_suat.LeaveColor = System.Drawing.Color.White;
-            this.txtthue_suat.Location = new System.Drawing.Point(175, 294);
+            this.txtthue_suat.Location = new System.Drawing.Point(445, 293);
             this.txtthue_suat.Name = "txtthue_suat";
+            this.txtthue_suat.ReadOnly = true;
             this.txtthue_suat.Size = new System.Drawing.Size(56, 20);
-            this.txtthue_suat.TabIndex = 18;
+            this.txtthue_suat.TabIndex = 46;
+            this.txtthue_suat.TabStop = false;
             this.txtthue_suat.Text = "0";
             this.txtthue_suat.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtthue_suat.Value = new decimal(new int[] {
@@ -496,7 +503,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtngay_ct0.Location = new System.Drawing.Point(175, 52);
             this.txtngay_ct0.Name = "txtngay_ct0";
             this.txtngay_ct0.Size = new System.Drawing.Size(146, 20);
-            this.txtngay_ct0.TabIndex = 3;
+            this.txtngay_ct0.TabIndex = 6;
             // 
             // v6Label10
             // 
@@ -504,9 +511,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.v6Label10.AutoSize = true;
             this.v6Label10.Location = new System.Drawing.Point(26, 56);
             this.v6Label10.Name = "v6Label10";
-            this.v6Label10.Size = new System.Drawing.Size(86, 13);
-            this.v6Label10.TabIndex = 39;
-            this.v6Label10.Text = "Ngày chứng từ 0";
+            this.v6Label10.Size = new System.Drawing.Size(75, 13);
+            this.v6Label10.TabIndex = 5;
+            this.v6Label10.Text = "Ngày hóa đơn";
             // 
             // v6Label13
             // 
@@ -514,16 +521,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.v6Label13.AutoSize = true;
             this.v6Label13.Location = new System.Drawing.Point(332, 57);
             this.v6Label13.Name = "v6Label13";
-            this.v6Label13.Size = new System.Drawing.Size(74, 13);
-            this.v6Label13.TabIndex = 42;
-            this.v6Label13.Text = "Số chứng từ 0";
+            this.v6Label13.Size = new System.Drawing.Size(63, 13);
+            this.v6Label13.TabIndex = 14;
+            this.v6Label13.Text = "Số hóa đơn";
             // 
             // txtso_ct0
             // 
             this.txtso_ct0.AccessibleName = "so_ct0";
             this.txtso_ct0.BackColor = System.Drawing.SystemColors.Window;
             this.txtso_ct0.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtso_ct0.BrotherFields = "Ten_Kh";
             this.txtso_ct0.CheckNotEmpty = true;
             this.txtso_ct0.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtso_ct0.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -533,14 +539,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtso_ct0.Location = new System.Drawing.Point(445, 52);
             this.txtso_ct0.Name = "txtso_ct0";
             this.txtso_ct0.Size = new System.Drawing.Size(149, 20);
-            this.txtso_ct0.TabIndex = 4;
+            this.txtso_ct0.TabIndex = 15;
             // 
             // txtso_seri0
             // 
             this.txtso_seri0.AccessibleName = "so_seri0";
             this.txtso_seri0.BackColor = System.Drawing.SystemColors.Window;
             this.txtso_seri0.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtso_seri0.BrotherFields = "Ten_Kh";
+            this.txtso_seri0.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtso_seri0.CheckNotEmpty = true;
             this.txtso_seri0.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtso_seri0.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -550,7 +556,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtso_seri0.Location = new System.Drawing.Point(445, 96);
             this.txtso_seri0.Name = "txtso_seri0";
             this.txtso_seri0.Size = new System.Drawing.Size(149, 20);
-            this.txtso_seri0.TabIndex = 8;
+            this.txtso_seri0.TabIndex = 19;
             // 
             // label2
             // 
@@ -559,26 +565,24 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.label2.Location = new System.Drawing.Point(332, 99);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(39, 13);
-            this.label2.TabIndex = 44;
+            this.label2.TabIndex = 18;
             this.label2.Text = "Số seri";
             // 
-            // txtma_hd
+            // txtma_mauhd
             // 
-            this.txtma_hd.AccessibleName = "ma_hd";
-            this.txtma_hd.BackColor = System.Drawing.SystemColors.Window;
-            this.txtma_hd.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtma_hd.BrotherFields = "Ten_Kh";
-            this.txtma_hd.CheckNotEmpty = true;
-            this.txtma_hd.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtma_hd.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtma_hd.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtma_hd.HoverColor = System.Drawing.Color.Yellow;
-            this.txtma_hd.LeaveColor = System.Drawing.Color.White;
-            this.txtma_hd.Location = new System.Drawing.Point(445, 74);
-            this.txtma_hd.Name = "txtma_hd";
-            this.txtma_hd.Size = new System.Drawing.Size(149, 20);
-            this.txtma_hd.TabIndex = 6;
-            this.txtma_hd.VVar = "ma_hd";
+            this.txtma_mauhd.AccessibleName = "ma_mauhd";
+            this.txtma_mauhd.BackColor = System.Drawing.SystemColors.Window;
+            this.txtma_mauhd.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtma_mauhd.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtma_mauhd.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtma_mauhd.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtma_mauhd.HoverColor = System.Drawing.Color.Yellow;
+            this.txtma_mauhd.LeaveColor = System.Drawing.Color.White;
+            this.txtma_mauhd.Location = new System.Drawing.Point(445, 74);
+            this.txtma_mauhd.Name = "txtma_mauhd";
+            this.txtma_mauhd.Size = new System.Drawing.Size(149, 20);
+            this.txtma_mauhd.TabIndex = 17;
+            this.txtma_mauhd.VVar = "ma_mauhd";
             // 
             // label3
             // 
@@ -587,7 +591,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.label3.Location = new System.Drawing.Point(332, 79);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 13);
-            this.label3.TabIndex = 46;
+            this.label3.TabIndex = 16;
             this.label3.Text = "Mẫu hóa đơn";
             // 
             // txtmau_bc
@@ -595,7 +599,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtmau_bc.AccessibleName = "mau_bc";
             this.txtmau_bc.BackColor = System.Drawing.SystemColors.Window;
             this.txtmau_bc.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtmau_bc.BrotherFields = "Ten_Kh";
             this.txtmau_bc.CheckNotEmpty = true;
             this.txtmau_bc.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtmau_bc.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -607,7 +610,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtmau_bc.MaxLength = 1;
             this.txtmau_bc.Name = "txtmau_bc";
             this.txtmau_bc.Size = new System.Drawing.Size(56, 20);
-            this.txtmau_bc.TabIndex = 5;
+            this.txtmau_bc.TabIndex = 8;
             // 
             // label4
             // 
@@ -616,7 +619,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.label4.Location = new System.Drawing.Point(26, 78);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(70, 13);
-            this.label4.TabIndex = 48;
+            this.label4.TabIndex = 7;
             this.label4.Text = "Mẫu báo cáo";
             // 
             // label5
@@ -625,7 +628,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.label5.Location = new System.Drawing.Point(237, 77);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 13);
-            this.label5.TabIndex = 50;
+            this.label5.TabIndex = 9;
             this.label5.Text = "1,2,3,4,5,8";
             // 
             // txtma_kho
@@ -635,7 +638,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtma_kho.BackColor = System.Drawing.SystemColors.Window;
             this.txtma_kho.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtma_kho.BrotherFields = "ma_kho";
             this.txtma_kho.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtma_kho.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtma_kho.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -645,7 +647,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtma_kho.Location = new System.Drawing.Point(175, 184);
             this.txtma_kho.Name = "txtma_kho";
             this.txtma_kho.Size = new System.Drawing.Size(144, 20);
-            this.txtma_kho.TabIndex = 12;
+            this.txtma_kho.TabIndex = 27;
             this.txtma_kho.VVar = "ma_kho";
             // 
             // v6Label11
@@ -655,7 +657,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.v6Label11.Location = new System.Drawing.Point(26, 188);
             this.v6Label11.Name = "v6Label11";
             this.v6Label11.Size = new System.Drawing.Size(43, 13);
-            this.v6Label11.TabIndex = 51;
+            this.v6Label11.TabIndex = 26;
             this.v6Label11.Text = "Mã kho";
             // 
             // txtma_vv
@@ -665,7 +667,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtma_vv.BackColor = System.Drawing.SystemColors.Window;
             this.txtma_vv.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtma_vv.BrotherFields = "";
             this.txtma_vv.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtma_vv.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtma_vv.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -675,7 +676,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtma_vv.Location = new System.Drawing.Point(445, 184);
             this.txtma_vv.Name = "txtma_vv";
             this.txtma_vv.Size = new System.Drawing.Size(148, 20);
-            this.txtma_vv.TabIndex = 13;
+            this.txtma_vv.TabIndex = 29;
             this.txtma_vv.VVar = "ma_vv";
             // 
             // v6Label14
@@ -685,7 +686,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.v6Label14.Location = new System.Drawing.Point(332, 188);
             this.v6Label14.Name = "v6Label14";
             this.v6Label14.Size = new System.Drawing.Size(60, 13);
-            this.v6Label14.TabIndex = 53;
+            this.v6Label14.TabIndex = 28;
             this.v6Label14.Text = "Mã vụ việc";
             // 
             // txtten_vt
@@ -695,7 +696,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtten_vt.BackColor = System.Drawing.SystemColors.Window;
             this.txtten_vt.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtten_vt.BrotherFields = "ten_nt";
             this.txtten_vt.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtten_vt.CheckNotEmpty = true;
             this.txtten_vt.EnterColor = System.Drawing.Color.PaleGreen;
@@ -706,7 +706,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtten_vt.Location = new System.Drawing.Point(175, 206);
             this.txtten_vt.Name = "txtten_vt";
             this.txtten_vt.Size = new System.Drawing.Size(418, 20);
-            this.txtten_vt.TabIndex = 14;
+            this.txtten_vt.TabIndex = 31;
             // 
             // v6Label15
             // 
@@ -715,32 +715,32 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.v6Label15.Location = new System.Drawing.Point(26, 210);
             this.v6Label15.Name = "v6Label15";
             this.v6Label15.Size = new System.Drawing.Size(115, 13);
-            this.v6Label15.TabIndex = 55;
+            this.v6Label15.TabIndex = 30;
             this.v6Label15.Text = "Tên hàng hóa, dịch vụ";
             // 
-            // txtgia
+            // txtGia_NT
             // 
-            this.txtgia.AccessibleName = "gia";
-            this.txtgia.BackColor = System.Drawing.SystemColors.Window;
-            this.txtgia.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtgia.DecimalPlaces = 0;
-            this.txtgia.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtgia.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtgia.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtgia.HoverColor = System.Drawing.Color.Yellow;
-            this.txtgia.LeaveColor = System.Drawing.Color.White;
-            this.txtgia.Location = new System.Drawing.Point(175, 250);
-            this.txtgia.Name = "txtgia";
-            this.txtgia.Size = new System.Drawing.Size(146, 20);
-            this.txtgia.TabIndex = 16;
-            this.txtgia.Text = "0";
-            this.txtgia.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtgia.Value = new decimal(new int[] {
+            this.txtGia_NT.AccessibleName = "GIA_NT";
+            this.txtGia_NT.BackColor = System.Drawing.SystemColors.Window;
+            this.txtGia_NT.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtGia_NT.DecimalPlaces = 2;
+            this.txtGia_NT.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtGia_NT.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtGia_NT.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtGia_NT.HoverColor = System.Drawing.Color.Yellow;
+            this.txtGia_NT.LeaveColor = System.Drawing.Color.White;
+            this.txtGia_NT.Location = new System.Drawing.Point(175, 250);
+            this.txtGia_NT.Name = "txtGia_NT";
+            this.txtGia_NT.Size = new System.Drawing.Size(146, 20);
+            this.txtGia_NT.TabIndex = 37;
+            this.txtGia_NT.Text = "0,00";
+            this.txtGia_NT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtGia_NT.Value = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.txtgia.V6LostFocus += new V6Controls.ControlEventHandle(this.txtso_luongV6LostFocus);
+            this.txtGia_NT.V6LostFocus += new V6Controls.ControlEventHandle(this.txtso_luongV6LostFocus);
             // 
             // v6Label18
             // 
@@ -749,16 +749,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.v6Label18.Location = new System.Drawing.Point(26, 254);
             this.v6Label18.Name = "v6Label18";
             this.v6Label18.Size = new System.Drawing.Size(44, 13);
-            this.v6Label18.TabIndex = 57;
+            this.v6Label18.TabIndex = 36;
             this.v6Label18.Text = "Đơn giá";
             // 
             // v6Label19
             // 
             this.v6Label19.AutoSize = true;
-            this.v6Label19.Location = new System.Drawing.Point(235, 298);
+            this.v6Label19.Location = new System.Drawing.Point(518, 296);
             this.v6Label19.Name = "v6Label19";
             this.v6Label19.Size = new System.Drawing.Size(15, 13);
-            this.v6Label19.TabIndex = 59;
+            this.v6Label19.TabIndex = 47;
             this.v6Label19.Text = "%";
             // 
             // txtghi_chu
@@ -768,7 +768,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtghi_chu.BackColor = System.Drawing.SystemColors.Window;
             this.txtghi_chu.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtghi_chu.BrotherFields = "";
             this.txtghi_chu.CheckNotEmpty = true;
             this.txtghi_chu.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtghi_chu.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -778,7 +777,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtghi_chu.Location = new System.Drawing.Point(175, 382);
             this.txtghi_chu.Name = "txtghi_chu";
             this.txtghi_chu.Size = new System.Drawing.Size(419, 20);
-            this.txtghi_chu.TabIndex = 22;
+            this.txtghi_chu.TabIndex = 56;
             // 
             // v6Label12
             // 
@@ -787,7 +786,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.v6Label12.Location = new System.Drawing.Point(26, 386);
             this.v6Label12.Name = "v6Label12";
             this.v6Label12.Size = new System.Drawing.Size(44, 13);
-            this.v6Label12.TabIndex = 60;
+            this.v6Label12.TabIndex = 55;
             this.v6Label12.Text = "Ghi chú";
             // 
             // txttk_thue_no
@@ -795,7 +794,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txttk_thue_no.AccessibleName = "tk_thue_no";
             this.txttk_thue_no.BackColor = System.Drawing.SystemColors.Window;
             this.txttk_thue_no.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txttk_thue_no.BrotherFields = "";
             this.txttk_thue_no.CheckNotEmpty = true;
             this.txttk_thue_no.EnterColor = System.Drawing.Color.PaleGreen;
             this.txttk_thue_no.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -805,7 +803,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txttk_thue_no.Location = new System.Drawing.Point(175, 338);
             this.txttk_thue_no.Name = "txttk_thue_no";
             this.txttk_thue_no.Size = new System.Drawing.Size(146, 20);
-            this.txttk_thue_no.TabIndex = 20;
+            this.txttk_thue_no.TabIndex = 52;
             this.txttk_thue_no.VVar = "tk";
             // 
             // txttk_du
@@ -813,7 +811,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txttk_du.AccessibleName = "tk_du";
             this.txttk_du.BackColor = System.Drawing.SystemColors.Window;
             this.txttk_du.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txttk_du.BrotherFields = "";
             this.txttk_du.CheckNotEmpty = true;
             this.txttk_du.EnterColor = System.Drawing.Color.PaleGreen;
             this.txttk_du.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -823,19 +820,196 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txttk_du.Location = new System.Drawing.Point(175, 360);
             this.txttk_du.Name = "txttk_du";
             this.txttk_du.Size = new System.Drawing.Size(146, 20);
-            this.txttk_du.TabIndex = 21;
+            this.txttk_du.TabIndex = 54;
             this.txttk_du.VVar = "tk";
+            // 
+            // v6Label16
+            // 
+            this.v6Label16.AccessibleDescription = "XULYL00086";
+            this.v6Label16.AutoSize = true;
+            this.v6Label16.Location = new System.Drawing.Point(332, 232);
+            this.v6Label16.Name = "v6Label16";
+            this.v6Label16.Size = new System.Drawing.Size(47, 13);
+            this.v6Label16.TabIndex = 34;
+            this.v6Label16.Text = "Loại tiền";
+            // 
+            // txtTyGia
+            // 
+            this.txtTyGia.AccessibleName = "ty_gia";
+            this.txtTyGia.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTyGia.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTyGia.DecimalPlaces = 2;
+            this.txtTyGia.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTyGia.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTyGia.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTyGia.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTyGia.LeaveColor = System.Drawing.Color.White;
+            this.txtTyGia.Location = new System.Drawing.Point(502, 229);
+            this.txtTyGia.Name = "txtTyGia";
+            this.txtTyGia.Size = new System.Drawing.Size(89, 20);
+            this.txtTyGia.TabIndex = 39;
+            this.txtTyGia.Text = "0,00";
+            this.txtTyGia.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTyGia.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // v6Label17
+            // 
+            this.v6Label17.AccessibleDescription = "XULYL00091";
+            this.v6Label17.AutoSize = true;
+            this.v6Label17.Location = new System.Drawing.Point(598, 232);
+            this.v6Label17.Name = "v6Label17";
+            this.v6Label17.Size = new System.Drawing.Size(36, 13);
+            this.v6Label17.TabIndex = 38;
+            this.v6Label17.Text = "Tỷ giá";
+            // 
+            // txtma_thue
+            // 
+            this.txtma_thue.AccessibleName = "MA_THUE";
+            this.txtma_thue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtma_thue.BackColor = System.Drawing.SystemColors.Window;
+            this.txtma_thue.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtma_thue.BrotherFields = "thue_suat";
+            this.txtma_thue.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtma_thue.CheckNotEmpty = true;
+            this.txtma_thue.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtma_thue.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtma_thue.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtma_thue.HoverColor = System.Drawing.Color.Yellow;
+            this.txtma_thue.LeaveColor = System.Drawing.Color.White;
+            this.txtma_thue.Location = new System.Drawing.Point(175, 293);
+            this.txtma_thue.Name = "txtma_thue";
+            this.txtma_thue.Size = new System.Drawing.Size(146, 20);
+            this.txtma_thue.TabIndex = 44;
+            this.txtma_thue.VVar = "ma_thue";
+            this.txtma_thue.V6LostFocus += new V6Controls.ControlEventHandle(this.txtso_luongV6LostFocus);
+            // 
+            // v6Label21
+            // 
+            this.v6Label21.AccessibleDescription = "XULYL00088";
+            this.v6Label21.AutoSize = true;
+            this.v6Label21.Location = new System.Drawing.Point(26, 298);
+            this.v6Label21.Name = "v6Label21";
+            this.v6Label21.Size = new System.Drawing.Size(46, 13);
+            this.v6Label21.TabIndex = 43;
+            this.v6Label21.Text = "Mã thuế";
+            // 
+            // txtT_tien
+            // 
+            this.txtT_tien.AccessibleDescription = "";
+            this.txtT_tien.AccessibleName = "T_TIEN";
+            this.txtT_tien.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtT_tien.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtT_tien.DecimalPlaces = 0;
+            this.txtT_tien.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtT_tien.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtT_tien.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtT_tien.HoverColor = System.Drawing.Color.Yellow;
+            this.txtT_tien.LeaveColor = System.Drawing.Color.White;
+            this.txtT_tien.Location = new System.Drawing.Point(445, 272);
+            this.txtT_tien.Name = "txtT_tien";
+            this.txtT_tien.ReadOnly = true;
+            this.txtT_tien.Size = new System.Drawing.Size(146, 20);
+            this.txtT_tien.TabIndex = 42;
+            this.txtT_tien.TabStop = false;
+            this.txtT_tien.Text = "0";
+            this.txtT_tien.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtT_tien.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // txtT_thue_nt
+            // 
+            this.txtT_thue_nt.AccessibleName = "t_thue_nt";
+            this.txtT_thue_nt.BackColor = System.Drawing.SystemColors.Window;
+            this.txtT_thue_nt.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtT_thue_nt.DecimalPlaces = 2;
+            this.txtT_thue_nt.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtT_thue_nt.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtT_thue_nt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtT_thue_nt.HoverColor = System.Drawing.Color.Yellow;
+            this.txtT_thue_nt.LeaveColor = System.Drawing.Color.White;
+            this.txtT_thue_nt.Location = new System.Drawing.Point(175, 317);
+            this.txtT_thue_nt.Name = "txtT_thue_nt";
+            this.txtT_thue_nt.Size = new System.Drawing.Size(146, 20);
+            this.txtT_thue_nt.TabIndex = 49;
+            this.txtT_thue_nt.Text = "0,00";
+            this.txtT_thue_nt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtT_thue_nt.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            // 
+            // cboMaNt
+            // 
+            this.cboMaNt.AccessibleName = "ma_nt";
+            this.cboMaNt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboMaNt.BackColor = System.Drawing.SystemColors.Window;
+            this.cboMaNt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboMaNt.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.cboMaNt.FormattingEnabled = true;
+            this.cboMaNt.Items.AddRange(new object[] {
+            "0 - Chưa cập nhập",
+            "1 - Cập nhập tất cả",
+            "2 - Chỉ cập nhập vào kho"});
+            this.cboMaNt.Location = new System.Drawing.Point(403, 228);
+            this.cboMaNt.Name = "cboMaNt";
+            this.cboMaNt.Size = new System.Drawing.Size(98, 21);
+            this.cboMaNt.TabIndex = 35;
+            this.cboMaNt.TabStop = false;
+            this.cboMaNt.SelectedIndexChanged += new System.EventHandler(this.cboMaNt_SelectedIndexChanged);
+            // 
+            // txtGia
+            // 
+            this.txtGia.AccessibleName = "GIA";
+            this.txtGia.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtGia.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtGia.DecimalPlaces = 0;
+            this.txtGia.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtGia.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtGia.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtGia.HoverColor = System.Drawing.Color.Yellow;
+            this.txtGia.LeaveColor = System.Drawing.Color.White;
+            this.txtGia.Location = new System.Drawing.Point(445, 250);
+            this.txtGia.Name = "txtGia";
+            this.txtGia.ReadOnly = true;
+            this.txtGia.Size = new System.Drawing.Size(146, 20);
+            this.txtGia.TabIndex = 59;
+            this.txtGia.TabStop = false;
+            this.txtGia.Text = "0";
+            this.txtGia.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtGia.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
             // AGLTHUE30_F4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.txtGia);
+            this.Controls.Add(this.cboMaNt);
+            this.Controls.Add(this.txtT_thue_nt);
+            this.Controls.Add(this.txtT_tien);
+            this.Controls.Add(this.txtma_thue);
+            this.Controls.Add(this.v6Label21);
+            this.Controls.Add(this.txtTyGia);
+            this.Controls.Add(this.v6Label17);
+            this.Controls.Add(this.v6Label16);
             this.Controls.Add(this.txttk_du);
             this.Controls.Add(this.txttk_thue_no);
             this.Controls.Add(this.txtghi_chu);
             this.Controls.Add(this.v6Label12);
             this.Controls.Add(this.v6Label19);
-            this.Controls.Add(this.txtgia);
+            this.Controls.Add(this.txtGia_NT);
             this.Controls.Add(this.v6Label18);
             this.Controls.Add(this.txtten_vt);
             this.Controls.Add(this.v6Label15);
@@ -846,7 +1020,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtmau_bc);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtma_hd);
+            this.Controls.Add(this.txtma_mauhd);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtso_seri0);
             this.Controls.Add(this.label2);
@@ -855,7 +1029,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.Controls.Add(this.txtngay_ct0);
             this.Controls.Add(this.v6Label10);
             this.Controls.Add(this.txtthue_suat);
-            this.Controls.Add(this.txtt_tien_nt);
+            this.Controls.Add(this.txtT_tien_nt);
             this.Controls.Add(this.txtso_ct);
             this.Controls.Add(this.txtma_dvcs);
             this.Controls.Add(this.txtten_dvcs);
@@ -915,7 +1089,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private V6Controls.V6VvarTextBox txtma_dvcs;
         private V6Controls.V6VvarTextBox txtso_ct;
         private V6Controls.V6Label lbT_Tt_NT0;
-        private V6Controls.NumberTienNt txtt_tien_nt;
+        private V6Controls.NumberTienNt txtT_tien_nt;
         private V6Controls.NumberTienNt txtthue_suat;
         private V6Controls.V6DateTimePicker txtngay_ct0;
         private V6Controls.V6Label v6Label10;
@@ -923,7 +1097,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private V6Controls.V6VvarTextBox txtso_ct0;
         private V6Controls.V6VvarTextBox txtso_seri0;
         private Label label2;
-        private V6Controls.V6VvarTextBox txtma_hd;
+        private V6Controls.V6VvarTextBox txtma_mauhd;
         private Label label3;
         private V6Controls.V6VvarTextBox txtmau_bc;
         private Label label4;
@@ -934,12 +1108,21 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private V6Controls.V6Label v6Label14;
         private V6Controls.V6VvarTextBox txtten_vt;
         private V6Controls.V6Label v6Label15;
-        private V6Controls.NumberTienNt txtgia;
+        private V6Controls.NumberGia txtGia_NT;
         private V6Controls.V6Label v6Label18;
         private V6Controls.V6Label v6Label19;
         private V6Controls.V6VvarTextBox txtghi_chu;
         private V6Controls.V6Label v6Label12;
         private V6Controls.V6VvarTextBox txttk_thue_no;
         private V6Controls.V6VvarTextBox txttk_du;
+        private V6Controls.V6Label v6Label16;
+        private V6Controls.V6NumberTextBox txtTyGia;
+        private V6Controls.V6Label v6Label17;
+        private V6Controls.V6VvarTextBox txtma_thue;
+        private V6Controls.V6Label v6Label21;
+        private V6Controls.NumberTienNt txtT_thue_nt;
+        private V6Controls.V6ComboBox cboMaNt;
+        private V6Controls.NumberTien txtT_tien;
+        private V6Controls.NumberGia txtGia;
     }
 }

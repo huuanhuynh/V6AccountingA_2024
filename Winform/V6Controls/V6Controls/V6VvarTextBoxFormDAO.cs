@@ -70,15 +70,31 @@ namespace V6Controls
                         //Cần sửa lại config vField/eField...
                     }
 
+                    var where = initFilter;
+                    // Lọc quyền proc
+                    try
+                    {
+                        string right_proc = V6BusinessHelper.GetWhereAl(tableName);
+                        if (!string.IsNullOrEmpty(right_proc))
+                        {
+                            where += string.Format("{0}({1})", where.Length > 0 ? " and " : "", right_proc);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                        //ShowMainMessage("DanhMucView GetWhereAl " + ex.Message);
+                    }
+
                     if ((_lookupForm._lookupMode == LookupMode.Multi || _lookupForm._lookupMode == LookupMode.Data)
                         && vSearchFilter.Contains(","))
                     {
-                        var tbl = V6BusinessHelper.Select(tableName, "*", initFilter, "", _config.vOrder).Data;
+                        var tbl = V6BusinessHelper.Select(tableName, "*", where, "", _config.vOrder).Data;
                         return tbl;
                     }
                     else
                     {
-                        var where = initFilter;
+                        
                         if (!string.IsNullOrEmpty(vSearchFilter))
                         {
                             if (string.IsNullOrEmpty(where))
@@ -90,6 +106,7 @@ namespace V6Controls
                                 where += " AND (" + vSearchFilter + ")";
                             }                            
                         }
+
                         var tbl = V6BusinessHelper.Select(tableName, "*", where, "", _config.vOrder).Data;
                         return tbl;
                     }

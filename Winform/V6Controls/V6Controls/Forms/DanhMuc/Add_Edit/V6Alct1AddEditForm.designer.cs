@@ -60,6 +60,7 @@
             this.v6ColorTextBox4 = new V6Controls.V6ColorTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.v6ColorTextBox1 = new V6Controls.V6ColorTextBox();
+            this.lblFvvarDescription = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tabThongTinChinh = new System.Windows.Forms.TabPage();
             this.txtFdecimal = new V6Controls.V6ColorTextBox();
@@ -270,6 +271,7 @@
             this.tabCacTuyChon.Controls.Add(this.v6ColorTextBox4);
             this.tabCacTuyChon.Controls.Add(this.label5);
             this.tabCacTuyChon.Controls.Add(this.v6ColorTextBox1);
+            this.tabCacTuyChon.Controls.Add(this.lblFvvarDescription);
             this.tabCacTuyChon.Controls.Add(this.label4);
             this.tabCacTuyChon.Location = new System.Drawing.Point(4, 28);
             this.tabCacTuyChon.Margin = new System.Windows.Forms.Padding(4);
@@ -292,10 +294,11 @@
             this.txtFvvar.Location = new System.Drawing.Point(111, 10);
             this.txtFvvar.Margin = new System.Windows.Forms.Padding(4);
             this.txtFvvar.Name = "txtFvvar";
-            this.txtFvvar.Size = new System.Drawing.Size(103, 23);
+            this.txtFvvar.Size = new System.Drawing.Size(621, 23);
             this.txtFvvar.TabIndex = 24;
-            this.toolTipV6FormControl.SetToolTip(this.txtFvvar, "A0 tặng, A1, C0 vvar,\r\nN9, N0 tiền, N1 ngoại tệ, N2 số lượng, N3 giá. N4 giá NT, " +
-        "N5 tỷ giá.\r\nD0 date null, D1 date pick.");
+            this.toolTipV6FormControl.SetToolTip(this.txtFvvar, "A0 tặng, A1, C0 vvar,\r\nC1-C2 valuefield : textfield : bfield1,bfield2 : nfield1, " +
+        "nfield2,\r\nN9, N0 tiền, N1 ngoại tệ, N2 số lượng, N3 giá. N4 giá NT, N5 tỷ giá.\r\n" +
+        "D0 date null, D1 date pick.");
             this.txtFvvar.Visible = false;
             // 
             // lblFvvar
@@ -410,7 +413,7 @@
             // 
             this.lblXML.AccessibleDescription = ".";
             this.lblXML.AutoSize = true;
-            this.lblXML.Location = new System.Drawing.Point(232, 11);
+            this.lblXML.Location = new System.Drawing.Point(225, 93);
             this.lblXML.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblXML.Name = "lblXML";
             this.lblXML.Size = new System.Drawing.Size(36, 17);
@@ -423,7 +426,7 @@
             this.btnEditXml.AccessibleName = "";
             this.btnEditXml.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditXml.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEditXml.Location = new System.Drawing.Point(694, 8);
+            this.btnEditXml.Location = new System.Drawing.Point(692, 174);
             this.btnEditXml.Name = "btnEditXml";
             this.btnEditXml.Size = new System.Drawing.Size(40, 25);
             this.btnEditXml.TabIndex = 16;
@@ -445,7 +448,7 @@
             this.txtDmethod.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtDmethod.HoverColor = System.Drawing.Color.Yellow;
             this.txtDmethod.LeaveColor = System.Drawing.Color.White;
-            this.txtDmethod.Location = new System.Drawing.Point(276, 8);
+            this.txtDmethod.Location = new System.Drawing.Point(274, 174);
             this.txtDmethod.Margin = new System.Windows.Forms.Padding(4);
             this.txtDmethod.Multiline = true;
             this.txtDmethod.Name = "txtDmethod";
@@ -671,6 +674,21 @@
             this.v6ColorTextBox1.Size = new System.Drawing.Size(103, 23);
             this.v6ColorTextBox1.TabIndex = 1;
             this.v6ColorTextBox1.Visible = false;
+            // 
+            // lblFvvarDescription
+            // 
+            this.lblFvvarDescription.AccessibleDescription = ".";
+            this.lblFvvarDescription.AccessibleName = "";
+            this.lblFvvarDescription.AutoSize = true;
+            this.lblFvvarDescription.Location = new System.Drawing.Point(299, 42);
+            this.lblFvvarDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFvvarDescription.Name = "lblFvvarDescription";
+            this.lblFvvarDescription.Size = new System.Drawing.Size(433, 68);
+            this.lblFvvarDescription.TabIndex = 0;
+            this.lblFvvarDescription.Text = "A0 tặng, A1, C0 vvar,\r\nC1-C2 valuefield : textfield : bfield1,bfield2 : nfield1, " +
+    "nfield2,\r\nN9, N0 tiền, N1 ngoại tệ, N2 số lượng, N3 giá. N4 giá NT, N5 tỷ giá.\r\n" +
+    "D0 date null, D1 date pick.";
+            this.lblFvvarDescription.Visible = false;
             // 
             // label4
             // 
@@ -1873,5 +1891,6 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label lblFvvarDescription;
     }
 }

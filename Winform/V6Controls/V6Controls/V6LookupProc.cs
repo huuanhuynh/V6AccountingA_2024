@@ -546,7 +546,7 @@ namespace V6Controls
         }
 
         /// <summary>
-        /// Kiểm tra, lấy lại data, gán brothers
+        /// Kiểm tra, lấy lại data, gán brothers, luôn dùng InitFilter.
         /// </summary>
         /// <returns></returns>
         public bool ExistRowInTable()
@@ -555,7 +555,7 @@ namespace V6Controls
         }
 
         /// <summary>
-        /// Kiểm tra giá trị có tồn tại trong csdl hay không. Đồng thời gán dữ liệu liên quan (Brothers, Neighbor).
+        /// Kiểm tra giá trị có tồn tại trong csdl hay không. Đồng thời gán dữ liệu liên quan (Brothers, Neighbor). luôn dùng InitFilter.
         /// </summary>
         /// <param name="text">Giá trị cần kiểm tra</param>
         /// <returns></returns>
@@ -567,7 +567,6 @@ namespace V6Controls
                 _text_data = text;
                 if (!string.IsNullOrEmpty(LookupInfo_F_NAME))
                 {
-                    //string tableName = LookupInfo.TABLE_NAME;
                     var filter = InitFilter;
                     if (!string.IsNullOrEmpty(filter)) filter = " and (" + filter + ")";
 
@@ -747,6 +746,7 @@ namespace V6Controls
                 if (Data == null)
                 {
                     LO_YN = false;
+                    SKSM_YN = false;
                     DATE_YN = false;
                     VITRI_YN = false;
                     VT_TON_KHO = false;
@@ -755,6 +755,8 @@ namespace V6Controls
                 }
                 if (Data.ContainsKey("LO_YN"))
                     LO_YN = ObjectAndString.ObjectToInt(Data["LO_YN"]) == 1;
+                if (Data.ContainsKey("SKSM_YN"))
+                    SKSM_YN = ObjectAndString.ObjectToInt(Data["SKSM_YN"]) == 1;
                 if (Data.ContainsKey("DATE_YN"))
                     DATE_YN = ObjectAndString.ObjectToInt(Data["DATE_YN"]) == 1;
                 if (Data.ContainsKey("VITRI_YN"))

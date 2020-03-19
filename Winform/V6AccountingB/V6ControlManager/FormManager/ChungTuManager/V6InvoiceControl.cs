@@ -688,6 +688,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         public string GetSoCt0InitFilter()
         {
             var result = "";
+            if (!chon_accept_flag_add) return result;
             try
             {
                 foreach (DataRow row in AD.Rows)
@@ -706,6 +707,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         public string GetThuNo131InitFilter()
         {
             var result = "";
+            if (!chon_accept_flag_add) return result;
             try
             {
                 foreach (DataRow row in AD.Rows)

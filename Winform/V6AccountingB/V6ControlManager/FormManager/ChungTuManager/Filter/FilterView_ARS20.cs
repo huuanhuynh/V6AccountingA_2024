@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -8,6 +9,7 @@ using V6AccountingBusiness.Invoices;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6Tools;
 
 namespace V6ControlManager.FormManager.ChungTuManager.Filter
 {
@@ -109,7 +111,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             }
         }
 
-        
+        public List<IDictionary<string, object>> SelectedDataList;
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -117,18 +119,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
                 if (e.KeyCode == Keys.Enter)
                 {
                     e.Handled = true;
+                    SelectedDataList = new List<IDictionary<string, object>>();
                     if (MultiSeletion)
                     {
                         foreach (DataGridViewRow row in dataGridView1.Rows)
                         {
-                            if(row.IsSelect())
+                            if (row.IsSelect())
+                            {
+                                SelectedDataList.Add(row.ToDataDictionary());
                                 OnChoseEvent(row);
+                            }
                         }
                         DialogResult = DialogResult.OK;
                     }
                     else if (dataGridView1.SelectedCells.Count > 0)
                     {
                         var currentRow = dataGridView1.Rows[dataGridView1.SelectedCells[0].RowIndex];
+                        SelectedDataList.Add(currentRow.ToDataDictionary());
                         string selectedValue = currentRow.Cells[_senderTextBox.AccessibleName].Value.ToString().Trim();
                         _senderTextBox.Text = selectedValue;
                         _senderTextBox.Tag = currentRow;

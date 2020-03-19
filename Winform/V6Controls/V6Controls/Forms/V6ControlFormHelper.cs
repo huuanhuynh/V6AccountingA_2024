@@ -756,6 +756,42 @@ namespace V6Controls.Forms
                             c = CreateColorTextBox(fcolumn, fcaption, limits, width, fstatus, carry);
                         }
                         break;
+                    case "C1":  // LookupTextBox
+                        if (fvvar != "")
+                        {
+                            var checkvvar = Convert.ToBoolean(row["checkvvar"]);
+                            var notempty = Convert.ToBoolean(row["notempty"]);
+                            string ma_dm = row["MA_DM"].ToString().Trim();
+                            string[] ss = ObjectAndString.SplitStringBy(fvvar, ':');
+                            string value_field = ss[0];
+                            string text_field = ss[1];
+                            string bfields = ss[2];
+                            string nfields = ss[3];
+                            c = CreateLookupTextBox(fcolumn, ma_dm, value_field, text_field, bfields, nfields, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
+                        }
+                        else
+                        {
+                            c = CreateColorTextBox(fcolumn, fcaption, limits, width, fstatus, carry);
+                        }
+                        break;
+                    case "C2":  // LookupProc
+                        if (fvvar != "")
+                        {
+                            var checkvvar = Convert.ToBoolean(row["checkvvar"]);
+                            var notempty = Convert.ToBoolean(row["notempty"]);
+                            string ma_dm = row["MA_DM"].ToString().Trim();
+                            string[] ss = ObjectAndString.SplitStringBy(fvvar, ':');
+                            string value_field = ss[0];
+                            string text_field = ss[1];
+                            string bfields = ss[2];
+                            string nfields = ss[3];
+                            c = CreateLookupProcTextBox(fcolumn, ma_dm, value_field, text_field, bfields, nfields, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
+                        }
+                        else
+                        {
+                            c = CreateColorTextBox(fcolumn, fcaption, limits, width, fstatus, carry);
+                        }
+                        break;
                     case "N9"://Kieu so bat ky
                         decimals = row["fdecimal"] == null ? V6Setting.DecimalsNumber : ObjectAndString.ObjectToInt(row["fdecimal"]);
                         c = CreateNumberTextBox(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
@@ -909,6 +945,42 @@ namespace V6Controls.Forms
                             var checkvvar = Convert.ToBoolean(row["checkvvar"]);
                             var notempty = Convert.ToBoolean(row["notempty"]);
                             c = CreateVvarTextBox(fcolumn, fvvar, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
+                        }
+                        else
+                        {
+                            c = CreateColorTextBox(fcolumn, fcaption, limits, width, fstatus, carry);
+                        }
+                        break;
+                    case "C1":  // LookupTextBox
+                        if (fvvar != "")
+                        {
+                            var checkvvar = Convert.ToBoolean(row["checkvvar"]);
+                            var notempty = Convert.ToBoolean(row["notempty"]);
+                            string ma_dm = row["MA_DM"].ToString().Trim();
+                            string[] ss = ObjectAndString.SplitStringBy(fvvar, ':');
+                            string value_field = ss[0];
+                            string text_field = ss[1];
+                            string bfields = ss[2];
+                            string nfields = ss[3];
+                            c = CreateLookupTextBox(fcolumn, ma_dm, value_field, text_field, bfields, nfields, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
+                        }
+                        else
+                        {
+                            c = CreateColorTextBox(fcolumn, fcaption, limits, width, fstatus, carry);
+                        }
+                        break;
+                    case "C2":  // LookupProc
+                        if (fvvar != "")
+                        {
+                            var checkvvar = Convert.ToBoolean(row["checkvvar"]);
+                            var notempty = Convert.ToBoolean(row["notempty"]);
+                            string ma_dm = row["MA_DM"].ToString().Trim();
+                            string[] ss = ObjectAndString.SplitStringBy(fvvar, ':');
+                            string value_field = ss[0];
+                            string text_field = ss[1];
+                            string bfields = ss[2];
+                            string nfields = ss[3];
+                            c = CreateLookupProcTextBox(fcolumn, ma_dm, value_field, text_field, bfields, nfields, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
                         }
                         else
                         {
@@ -3098,6 +3170,34 @@ namespace V6Controls.Forms
             bool checkOnLeave, bool checkNotEmpty, bool carry = false)
         {
             return new V6LookupTextBox
+            {
+                Name = accessibleName,
+                AccessibleName = accessibleName,
+                BorderStyle = BorderStyle.FixedSingle,
+                AccessibleName2 = accessibleName + "2",
+                Carry = carry,
+                Ma_dm = ma_dm,
+                ValueField = value_field,
+                ShowTextField = text_field,
+                BrotherFields = brother,
+                NeighborFields = neighbor,
+
+                CheckOnLeave = checkOnLeave,
+                CheckNotEmpty = checkNotEmpty,
+                GrayText = caption,
+                LimitCharacters = limits,
+                Width = width,
+                Visible = visible,
+                Tag = visible ? null : "hide"
+            };
+        }
+
+        public static V6LookupProc CreateLookupProcTextBox(string accessibleName,
+            string ma_dm, string value_field, string text_field, string brother, string neighbor,
+            string caption, string limits, int width, bool visible,
+            bool checkOnLeave, bool checkNotEmpty, bool carry = false)
+        {
+            return new V6LookupProc
             {
                 Name = accessibleName,
                 AccessibleName = accessibleName,
@@ -7337,12 +7437,14 @@ namespace V6Controls.Forms
             {
                 All_Objects["sender"] = sender;
                 All_Objects["e"] = e;
+                V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_ENTER" + before, All_Objects);
                 V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_GOTFOCUS" + before, All_Objects);
             };
             control.Leave += (sender, e) =>
             {
                 All_Objects["sender"] = sender;
                 All_Objects["e"] = e;
+                V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_LEAVE" + before, All_Objects);
                 V6ControlsHelper.InvokeMethodDynamic(eventProgram, NAME + "_LOSTFOCUS" + before, All_Objects);
             };
             control.TextChanged += (sender, e) =>
@@ -7354,7 +7456,7 @@ namespace V6Controls.Forms
         }
 
         /// <summary>
-        /// Gán code động sự kiện co các control trên form theo Aname.
+        /// Gán code động sự kiện cho các control trên form theo Aname.
         /// </summary>
         /// <param name="thisForm"></param>
         /// <param name="eventProgram"></param>

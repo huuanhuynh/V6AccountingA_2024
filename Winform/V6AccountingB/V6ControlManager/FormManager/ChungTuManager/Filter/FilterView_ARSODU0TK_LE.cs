@@ -18,7 +18,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
     /// Nếu còn 1 dòng thì bấm enter ở vsearch là chọn luôn.
     /// Có thể cần nâng cấp phần phân trang giống danh mục view
     /// </summary>
-    public partial class FilterView_ARSODU0 : Form
+    public partial class FilterView_ARSODU0TK_LE : Form
     {
         private V6InvoiceBase Invoice;
         internal string InitStrFilter;
@@ -34,7 +34,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
         public string Report_GRDFV1 = "";
         public string Report_GRDHV_V1 = "";
         public string Report_GRDHE_V1 = "";
-        public FilterView_ARSODU0(V6InvoiceBase invoice, V6ColorTextBox sender, string sttRec, string maDvcs, string initStrFilter)
+        public FilterView_ARSODU0TK_LE(V6InvoiceBase invoice, V6ColorTextBox sender, string sttRec, string maDvcs, string initStrFilter)
         {
             InitializeComponent();
 
@@ -50,7 +50,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
         {
             try
             {
-                var aldm_data = V6BusinessHelper.Select("aldm", "GRDS_V1,GRDF_V1,GRDHV_V1,GRDHE_V1,Title,Title2", "ma_dm='" + "ARS20" + "'").Data;
+                var aldm_data = V6BusinessHelper.Select("aldm", "GRDS_V1,GRDF_V1,GRDHV_V1,GRDHE_V1,Title,Title2", "ma_dm='" + "ARSODU0TK" + "'").Data;
                 if (aldm_data != null && aldm_data.Rows.Count > 0)
                 {
                     Text = aldm_data.Rows[0][V6Setting.IsVietnamese ? "Title" : "Title2"].ToString().Trim();
@@ -64,7 +64,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(GetType() + ".Init : " + ex.Message, "ChungTuManager FilterView_ARSODU0");
+                this.ShowErrorMessage(GetType() + ".Init : " + ex.Message, "ChungTuManager FilterView_ARSODU0TK_LE");
             }
         }
 
@@ -99,7 +99,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             _filterString = GenFilterString();
             try
             {
-                var alct0 = Invoice.GetSoct0_All_Cust(_sttRec, txtMaDVCS.Text.Trim(), _filterString);
+                DateTime ngay_ct = v6ColorDateTimePick2.Date;
+                var alct0 = Invoice.GetSoDu0TK_TienLe(_sttRec, txtMaDVCS.Text.Trim(), ngay_ct, lineSoDu.Value, txtType.Text, lineTK_DU.StringValue, _filterString);
                 dataGridView1.DataSource = alct0;
                 FormatDataGridView();
 
@@ -197,14 +198,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             var result = "";
             try
             {
-                StringBuilder sb = new StringBuilder();
-                sb.AppendFormat("Ngay_ct BETWEEN '{0}' AND '{1}'",
-                    v6ColorDateTimePick1.YYYYMMDD,
-                    v6ColorDateTimePick2.YYYYMMDD);
-
-                result = string.Format("Ngay_ct BETWEEN '{0}' AND '{1}'",
-                    v6ColorDateTimePick1.YYYYMMDD,
-                    v6ColorDateTimePick2.YYYYMMDD);
+                // không dùng v6ColorDateTimePick1, v6ColorDateTimePick2 cho vào tham số ngay_ct
+                //result = string.Format("Ngay_ct BETWEEN '{0}' AND '{1}'",
+                //    v6ColorDateTimePick1.YYYYMMDD,
+                //    v6ColorDateTimePick2.YYYYMMDD);
 
                 if (TxtMa_bp.Text.Trim() != "")
                 {
@@ -222,6 +219,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
                 {
                     result += string.Format(" and {0}", Txtma_nvien.Query);
                 }
+                //if (lineSoDu.Value != 0)
+                //{
+                //    result += string.Format(" and {0}", lineSoDu.Query);
+                //}
 
                 var cacNhomKhachQuery = "";
                 if (nhomKhach1.QueryCheck != "")
@@ -264,8 +265,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
             {
                 // ignored
             }
-            if (result.Length>0)
-            {                
+            if (result.Length>4)
+            {
+                result = result.Substring(4); // Bỏ " and"
                 if (!string.IsNullOrEmpty(InitStrFilter))
                     result = string.Format("{0} And ({1})", InitStrFilter, result);
             }

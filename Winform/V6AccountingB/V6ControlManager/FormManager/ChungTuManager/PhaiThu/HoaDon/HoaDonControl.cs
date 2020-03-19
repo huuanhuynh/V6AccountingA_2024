@@ -264,6 +264,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private V6ColorTextBox _dvt;
         private V6CheckTextBox _tang, _xuat_dd;
         private V6VvarTextBox _maVt, _dvt1, _maKhoI, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo, _maViTri,_maTdi, _ma_thue_i, _tk_thue_i;
+        private V6ColorTextBox _soKhung, _soMay;
         private V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _giaNt2, _giaNt21,_tien2, _tienNt2, _ck, _ckNt,_gia2,_gia21;
         private V6NumberTextBox _ton13, _ton13Qd, _gia, _gia_nt, _tien, _tienNt, _pt_cki, _thue_suat_i, _thue_nt, _thue;
         private V6NumberTextBox _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4, _ggNt, _gg, _tien_vcNt, _tien_vc;
@@ -773,7 +774,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         _maLo.GotFocus += (s, e) =>
                         {
                             _maLo.CheckNotEmpty = _maVt.LO_YN && _maKhoI.LO_YN;
-
                             _dataLoDate = V6BusinessHelper.GetLoDate(_maVt.Text, _maKhoI.Text, _sttRec, dateNgayCT.Date);
                             var filter = "Ma_vt='" + _maVt.Text.Trim() + "'";
                             var getFilter = GetFilterMaLo(_dataLoDate, _sttRec0, _maVt.Text, _maKhoI.Text);
@@ -925,6 +925,75 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         _maTdi.EnableTag(_m_Ma_td == "0");
                         break;
 
+                    case "SO_KHUNG":
+                        if (control is V6VvarTextBox)
+                        {
+                            var soKhung_vvar = (V6VvarTextBox)control;
+                            soKhung_vvar.Enter += (s, e) =>
+                            {
+                                soKhung_vvar.CheckNotEmpty = _maVt.SKSM_YN;
+                                var dataSKSM = V6BusinessHelper.GetSKSM(_maVt.Text, _maKhoI.Text, _sttRec, dateNgayCT.Date);
+                                var filter = "Ma_vt='" + _maVt.Text.Trim() + "'";
+                                var getFilter = GetFilterSKSM(dataSKSM, _sttRec0, _maVt.Text, _maKhoI.Text);
+                                if (getFilter != "") filter += " and " + getFilter;
+                                soKhung_vvar.SetInitFilter(filter);
+
+                                soKhung_vvar.ExistRowInTable(true);
+                            };
+                            soKhung_vvar.V6LostFocus += delegate(object sender)
+                            {
+                                _soMay.Text = soKhung_vvar.Data["SO_MAY"].ToString().Trim();
+                                if (_maVt.GIA_TON == 2 || _xuat_dd.Checked)
+                                {
+                                    var ton_dau = ObjectAndString.ObjectToDecimal(soKhung_vvar.Data["TON_DAU"]);
+                                    if (ton_dau != 0)
+                                    {
+                                        _gia_nt.Value = ObjectAndString.ObjectToDecimal(soKhung_vvar.Data["DU_DAU"])/ton_dau;
+                                        //_gia_nt.CallDoV6LostFocus();
+                                        TinhTienVon();
+                                    }
+                                }
+                            };
+                        }
+                        else if (control is V6LookupProc)
+                        {
+                            var soKhung_proc = (V6LookupProc)control;
+                            soKhung_proc.MA_CT = Invoice.Mact;
+                            soKhung_proc.Enter += (s, e) =>
+                            {
+                                soKhung_proc.CheckNotEmpty = _maVt.SKSM_YN;
+                                var dataSKSM = V6BusinessHelper.GetSKSM(_maVt.Text, _maKhoI.Text, _sttRec, dateNgayCT.Date);
+                                var filter = "Ma_vt='" + _maVt.Text.Trim() + "'";
+                                var getFilter = GetFilterSKSM(dataSKSM, _sttRec0, _maVt.Text, _maKhoI.Text);
+                                if (getFilter != "") filter += " and " + getFilter;
+                                soKhung_proc.SetInitFilter(filter);
+
+                                soKhung_proc.ExistRowInTable();
+                            };
+                            soKhung_proc.V6LostFocus += delegate(object sender)
+                            {
+                                _soMay.Text = soKhung_proc.Data["SO_MAY"].ToString().Trim();
+                                if (_maVt.GIA_TON == 2 || _xuat_dd.Checked)
+                                {
+                                    var ton_dau = ObjectAndString.ObjectToDecimal(soKhung_proc.Data["TON_DAU"]);
+                                    if (ton_dau != 0)
+                                    {
+                                        _gia_nt.Value = ObjectAndString.ObjectToDecimal(soKhung_proc.Data["DU_DAU"])/ton_dau;
+                                        //_gia_nt.CallDoV6LostFocus();
+                                        TinhTienVon();
+                                    }
+                                }
+                            };
+                        }
+                        else
+                        {
+                            
+                        }
+                        
+                        break;
+                    case "SO_MAY":
+                        _soMay = (V6ColorTextBox)control;
+                        break;
                 }
                 V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
             }
@@ -2812,6 +2881,72 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 {
                     list_maLo = list_maLo.Substring(3);
                     return "(" + list_maLo + ")";
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+            return "(1=0)";
+        }
+
+        private string GetFilterSKSM(DataTable dataSKSM, string sttRec0, string maVt, string maKhoI)
+        {
+            try
+            {
+                var list_SKSM ="";
+                if (maVt == "" || maKhoI == "") return list_SKSM;
+                
+
+                for (int i = dataSKSM.Rows.Count - 1; i >= 0; i--)
+                {
+                    DataRow data_row = dataSKSM.Rows[i];
+                    string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
+                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
+                    string data_sk = data_row["SO_KHUNG"].ToString().Trim().ToUpper();
+                    string data_sm = data_row["SO_MAY"].ToString().Trim().ToUpper();
+                    if (data_sk == "") continue;
+
+                    //Neu dung maVt va maKhoI
+                    if (maVt == data_maVt && maKhoI == data_maKhoI)
+                    {
+                        //- so luong
+                        decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
+                        decimal new_soLuong = data_soLuong;
+                        
+                        foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
+                        {
+
+                            string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
+                            string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
+                            string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
+                            string c_sk = row["SO_KHUNG"].ToString().Trim().ToUpper();
+                            string c_sm = row["SO_MAY"].ToString().Trim().ToUpper();
+
+                            //Nếu khi sửa chỉ trừ dần những dòng trên dòng đang đứng thì dùng dòng if sau:
+                            //if (detail1.MODE == V6Mode.Edit && c_sttRec0 == sttRec0) break;
+
+                            decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+                            if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
+                            {
+                                if (maVt == c_maVt && maKhoI == c_maKhoI && data_sk == c_sk && data_sm == c_sm)
+                                {
+                                    new_soLuong -= c_soLuong;
+                                }
+                            }
+                        }
+
+                        if (new_soLuong > 0)
+                        {
+                            list_SKSM += string.Format(" or (SO_KHUNG={0} and SO_MAY='{1}')", data_sk, data_sm);
+                        }
+                    }
+                }
+
+                if (list_SKSM.Length > 3)
+                {
+                    list_SKSM = list_SKSM.Substring(3);
+                    return "(" + list_SKSM + ")";
                 }
             }
             catch (Exception ex)

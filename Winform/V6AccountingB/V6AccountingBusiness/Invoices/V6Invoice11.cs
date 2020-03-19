@@ -56,6 +56,24 @@ namespace V6AccountingBusiness.Invoices
                     "VPA_GET_AUTO_COLUMN_GT", pList).Tables[0];
         }
 
+        public DataTable Alct0;
+        public override DataTable GetSoDu0TK_TienLe(string sttRec, string madvcs, DateTime ngay_ct, decimal soTienLe, string type, string tk_du, string filterString)
+        {
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@stt_rec", sttRec), 
+                new SqlParameter("@ma_dvcs", madvcs),
+                new SqlParameter("@ngay_ct", ngay_ct.ToString("yyyyMMdd")),
+                new SqlParameter("@SoTienLe", soTienLe),
+                new SqlParameter("@Type", type),
+                new SqlParameter("@TK_DU", tk_du),
+                new SqlParameter("@advance", filterString)
+            };
+            var result = V6BusinessHelper.ExecuteProcedure("AGLCTGL1_CUSTS_InitSd_TK_TIENLE", plist).Tables[0];
+            Alct0 = result;
+            return Alct0;
+        }
+
         public override bool InsertInvoice(IDictionary<string, object> amData,
             List<IDictionary<string, object>> adList, List<IDictionary<string, object>> adList2)
         {

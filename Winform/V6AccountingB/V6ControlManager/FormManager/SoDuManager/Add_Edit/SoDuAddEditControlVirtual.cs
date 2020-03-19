@@ -465,6 +465,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     int b = UpdateData();
                     if (b > 0)
                     {
+                        AfterSaveBase();
+                        AfterSave();
                         AfterUpdate();
                         InvokeFormEvent(FormDynamicEvent.AFTERUPDATE);
                         return true;
@@ -485,6 +487,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     bool b = InsertNew();
                     if (b)
                     {
+                        AfterSaveBase();
+                        AfterSave();
                         AfterInsert();
                         InvokeFormEvent(FormDynamicEvent.AFTERINSERT);
                     }
@@ -688,6 +692,63 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 this.WriteExLog(GetType() + ".ValidateData_Detail " + _sttRec, ex);
             }
             return error;
+        }
+
+        public void AfterSaveBase()
+        {
+            try
+            {
+                if (_aldmConfig == null || _aldmConfig.NoInfo) return;
+
+                var KEYS = ObjectAndString.SplitString(_aldmConfig.KEY.ToUpper());
+                var data_new = "";
+                var data_old = "";
+                foreach (string KEY in KEYS)
+                {
+                    if (!_TableStruct.ContainsKey(KEY)) continue;
+                    var sct = _TableStruct[KEY];
+                    var o_new = DataDic[KEY];
+                    data_new += "|" + SqlGenerator.GenSqlStringValue(o_new, sct.sql_data_type_string, sct.ColumnDefault, false, sct.MaxLength);
+                    var o_old = Mode == V6Mode.Edit ? DataOld[KEY] : o_new;
+                    data_old += "|" + SqlGenerator.GenSqlStringValue(o_old, sct.sql_data_type_string, sct.ColumnDefault, false, sct.MaxLength);
+                }
+
+                if (data_new.Length > 1) data_new = data_new.Substring(1);
+                if (data_old.Length > 1) data_old = data_old.Substring(1);
+
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@TableName", _aldmConfig.TABLE_NAME),
+                    new SqlParameter("@Fields", _aldmConfig.KEY),
+                    new SqlParameter("@datas_old", data_old),
+                    new SqlParameter("@datas_new", data_new),
+                    new SqlParameter("@User_id", V6Login.UserId),
+                };
+                V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_UPDATE_AL_ALL", plist);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".UpdateAlqddvt", ex);
+            }
+        }
+
+        /// <summary>
+        /// Được gọi sau khi thêm hoặc sửa thành công.
+        /// </summary>
+        public virtual void AfterSave()
+        {
+            try // Dynamic invoke
+            {
+                if (Event_Methods.ContainsKey(FormDynamicEvent.AFTERSAVE))
+                {
+                    var method_name = Event_Methods[FormDynamicEvent.AFTERSAVE];
+                    V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                }
+            }
+            catch (Exception ex1)
+            {
+                this.WriteExLog(GetType() + ".Dynamic invoke AFTERSAVE", ex1);
+            }
         }
 
         /// <summary>

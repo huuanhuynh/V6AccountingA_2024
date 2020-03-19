@@ -4194,73 +4194,82 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         
         private void btnChonNhieuHD_Click(object sender, EventArgs e)
         {
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
             try
             {
                 if (_MA_GD == "1")
                 {
                     detail1.MODE = V6Mode.View;
-
+                    dataGridView1.UnLock();
+                    chon_accept_flag_add = shift;
                     Invoice.GetSoct0(_sttRec, txtMaKh.Text, txtMaDVCS.Text);
 
                     var initFilter = GetSoCt0InitFilter();
                     var f = new FilterView(Invoice.Alct0, "So_ct", "ARS20", _soCt0, initFilter);
                     f.MultiSeletion = true;
-                    f.ChoseEvent += data =>
-                    {
-                        var dic = detail1.GetData();
-                        
-                        dic["SO_CT0"] = data.Cells["SO_CT"].Value;
-                        dic["TK_I"] = data.Cells["TK"].Value;
-                        dic["T_TT_NT0"] = data.Cells["TC_TT"].Value;
-                        dic["T_TT_QD"] = data.Cells["T_TT_QD"].Value;
-                        dic["PHAI_TT_NT"] = data.Cells["CL_TT"].Value;
-                        dic["TIEN"] = data.Cells["CL_TT"].Value;
-                        dic["TIEN_NT"] = data.Cells["CL_TT"].Value;
-                        dic["TIEN_TT"] = data.Cells["CL_TT"].Value;
-
-                        dic["TT_QD"] = data.Cells["CL_TT"].Value;
-                        dic["PS_CO"] = data.Cells["CL_TT"].Value;
-                        dic["PS_CO_NT"] = data.Cells["CL_TT"].Value;
-
-                        dic["MA_NT_I"] = data.Cells["MA_NT"].Value;
-                        dic["STT_REC_TT"] = data.Cells["STT_REC"].Value;
-                        dic["NGAY_CT0"] = data.Cells["NGAY_CT"].Value;
-                        dic["SO_SERI0"] = data.Cells["SO_SERI"].Value;
-
-                        var ty_gia_ht2_Value = ObjectAndString.ObjectToDecimal(data.Cells["ty_gia"]);
-                        dic["TY_GIA_HT2"] = ty_gia_ht2_Value;
-                        if (dic["MA_NT_I"].ToString().Trim() != _mMaNt0)
-                        {
-                            var tientt_Value = V6BusinessHelper.Vround(
-                                ObjectAndString.ObjectToDecimal(dic["PHAI_TT_NT"]) * ty_gia_ht2_Value, M_ROUND);
-                            dic["TIEN_TT"] = tientt_Value;
-                            dic["TIEN"] = tientt_Value;
-                            dic["PS_CO"] = tientt_Value;
-                        }
-
-                        //{Tuanmh 21/08/2016
-                        if (Txtdien_giai.Text != "")
-                        {
-                            dic["DIEN_GIAII"] = Txtdien_giai.Text.Trim() + " số " + data.Cells["SO_CT"].Value.ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)data.Cells["NGAY_CT"].Value);
-                        }
-                        else
-                        {
-                            dic["DIEN_GIAII"] = " Thu tiền bán hàng theo CT số " + data.Cells["SO_CT"].Value.ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)data.Cells["NGAY_CT"].Value);
-                        }
-                        //}
-
-
-                        if (XuLyThemDetail(dic))
-                        {
-                            All_Objects["data"] = dic;
-                            InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
-                            return;
-                        }
-                    };
-
                     if (f.ViewData.Count > 0)
                     {
                         f.ShowDialog(this);
+                        if (f.DialogResult == DialogResult.OK)
+                        {
+                            bool flag_add = chon_accept_flag_add;
+                            chon_accept_flag_add = false;
+                            if (!flag_add)
+                            {
+                                AD.Rows.Clear();
+                            }
+                            foreach (IDictionary<string, object> dic0 in f.SelectedDataList)
+                            {
+                                var dic = detail1.GetData();
+
+                                dic["SO_CT0"] = dic0["SO_CT"];
+                                dic["TK_I"] = dic0["TK"];
+                                dic["T_TT_NT0"] = dic0["TC_TT"];
+                                dic["T_TT_QD"] = dic0["T_TT_QD"];
+                                dic["PHAI_TT_NT"] = dic0["CL_TT"];
+                                dic["TIEN"] = dic0["CL_TT"];
+                                dic["TIEN_NT"] = dic0["CL_TT"];
+                                dic["TIEN_TT"] = dic0["CL_TT"];
+
+                                dic["TT_QD"] = dic0["CL_TT"];
+                                dic["PS_CO"] = dic0["CL_TT"];
+                                dic["PS_CO_NT"] = dic0["CL_TT"];
+
+                                dic["MA_NT_I"] = dic0["MA_NT"];
+                                dic["STT_REC_TT"] = dic0["STT_REC"];
+                                dic["NGAY_CT0"] = dic0["NGAY_CT"];
+                                dic["SO_SERI0"] = dic0["SO_SERI"];
+
+                                var ty_gia_ht2_Value = ObjectAndString.ObjectToDecimal(dic0["ty_gia"]);
+                                dic["TY_GIA_HT2"] = ty_gia_ht2_Value;
+                                if (dic["MA_NT_I"].ToString().Trim() != _mMaNt0)
+                                {
+                                    var tientt_Value = V6BusinessHelper.Vround(
+                                        ObjectAndString.ObjectToDecimal(dic["PHAI_TT_NT"]) * ty_gia_ht2_Value, M_ROUND);
+                                    dic["TIEN_TT"] = tientt_Value;
+                                    dic["TIEN"] = tientt_Value;
+                                    dic["PS_CO"] = tientt_Value;
+                                }
+
+                                //{Tuanmh 21/08/2016
+                                if (Txtdien_giai.Text != "")
+                                {
+                                    dic["DIEN_GIAII"] = Txtdien_giai.Text.Trim() + " số " + dic0["SO_CT"].ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)dic0["NGAY_CT"]);
+                                }
+                                else
+                                {
+                                    dic["DIEN_GIAII"] = " Thu tiền bán hàng theo CT số " + dic0["SO_CT"].ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)dic0["NGAY_CT"]);
+                                }
+                                //}
+
+
+                                if (XuLyThemDetail(dic))
+                                {
+                                    All_Objects["data"] = dic;
+                                    InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                                }
+                            }
+                        }
                     }
                     else
                     {
@@ -4269,66 +4278,72 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 }
                 else if (_MA_GD == "A")
                 {
-                    detail1.MODE = V6Mode.View;
-                    
-
                     var initFilter = GetSoCt0InitFilter();
                     var f = new FilterView_ARS20(Invoice, _soCt0, _sttRec, txtMaDVCS.Text, initFilter);
                     f.MultiSeletion = true;
-                    f.ChoseEvent += data =>
-                    {
-                        var dic = detail1.GetData();
-                        
-                        dic["SO_CT0"] = data.Cells["SO_CT"].Value;
-                        dic["TK_I"] = data.Cells["TK"].Value;
-                        if (data.Cells["MA_NT"].ToString().Trim() == _mMaNt0)
-                        {
-                            dic["T_TT_NT0"] = data.Cells["TC_TT"].Value;
-                            dic["T_TT_QD"] = data.Cells["T_TT_QD"].Value;
-                            dic["PHAI_TT_NT"] = data.Cells["CL_TT"].Value;
-                            dic["TIEN"] = data.Cells["CL_TT"].Value;
-                            dic["TIEN_NT"] = data.Cells["CL_TT"].Value;
-                            dic["TIEN_TT"] = data.Cells["CL_TT"].Value;
-                            dic["TT_QD"] = data.Cells["CL_TT"].Value;
-                            dic["PS_CO"] = data.Cells["CL_TT"].Value;
-                            dic["PS_CO_NT"] = data.Cells["CL_TT"].Value;
-                        }
-                        else
-                        {
-                            dic["T_TT_NT0"] = data.Cells["TC_TT"].Value;
-                            dic["T_TT_QD"] = data.Cells["T_TT_QD"].Value;
-                            dic["PHAI_TT_NT"] = data.Cells["CL_TT"].Value;
-                            dic["TIEN"] = data.Cells["CL_TT"].Value;
-                            dic["TIEN_NT"] = data.Cells["CL_TT"].Value;
-                            dic["TIEN_TT"] = data.Cells["CL_TT"].Value;
-                            dic["TT_QD"] = data.Cells["CL_TT"].Value;
-                            dic["PS_CO"] = data.Cells["CL_TT"].Value;
-                            dic["PS_CO_NT"] = data.Cells["CL_TT"].Value;
-                        }
-                        
-
-                        dic["MA_NT_I"] = data.Cells["MA_NT"].Value;
-                        dic["STT_REC_TT"] = data.Cells["STT_REC"].Value;
-                        dic["NGAY_CT0"] = data.Cells["NGAY_CT"].Value;
-                        dic["SO_SERI0"] = data.Cells["SO_SERI"].Value;
-
-                        dic["MA_KH_I"] = data.Cells["MA_KH"].Value;
-                        dic["TEN_KH_I"] = data.Cells["TEN_KH"].Value;
-
-                        //{Tuanmh 21/08/2016
-                        if (Txtdien_giai.Text != "")
-                        {
-                            dic["DIEN_GIAII"] = Txtdien_giai.Text.Trim() + " số " + data.Cells["SO_CT"].Value.ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)data.Cells["NGAY_CT"].Value);
-                        }
-                        else
-                        {
-                            dic["DIEN_GIAII"] = " Thu tiền bán hàng theo CT số " + data.Cells["SO_CT"].Value.ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)data.Cells["NGAY_CT"].Value);
-                        }
-                        //}
-
-                        XuLyThemDetail(dic);
-                    };
                     f.ShowDialog(this);
+                    if (f.DialogResult == DialogResult.OK)
+                    {
+                        bool flag_add = chon_accept_flag_add;
+                        chon_accept_flag_add = false;
+                        if (!flag_add)
+                        {
+                            AD.Rows.Clear();
+                        }
+                        foreach (IDictionary<string, object> dic0 in f.SelectedDataList)
+                        {
+                            var dic = detail1.GetData();
+
+                            dic["SO_CT0"] = dic0["SO_CT"];
+                            dic["TK_I"] = dic0["TK"];
+                            if (dic0["MA_NT"].ToString().Trim() == _mMaNt0)
+                            {
+                                dic["T_TT_NT0"] = dic0["TC_TT"];
+                                dic["T_TT_QD"] = dic0["T_TT_QD"];
+                                dic["PHAI_TT_NT"] = dic0["CL_TT"];
+                                dic["TIEN"] = dic0["CL_TT"];
+                                dic["TIEN_NT"] = dic0["CL_TT"];
+                                dic["TIEN_TT"] = dic0["CL_TT"];
+                                dic["TT_QD"] = dic0["CL_TT"];
+                                dic["PS_CO"] = dic0["CL_TT"];
+                                dic["PS_CO_NT"] = dic0["CL_TT"];
+                            }
+                            else
+                            {
+                                dic["T_TT_NT0"] = dic0["TC_TT"];
+                                dic["T_TT_QD"] = dic0["T_TT_QD"];
+                                dic["PHAI_TT_NT"] = dic0["CL_TT"];
+                                dic["TIEN"] = dic0["CL_TT"];
+                                dic["TIEN_NT"] = dic0["CL_TT"];
+                                dic["TIEN_TT"] = dic0["CL_TT"];
+                                dic["TT_QD"] = dic0["CL_TT"];
+                                dic["PS_CO"] = dic0["CL_TT"];
+                                dic["PS_CO_NT"] = dic0["CL_TT"];
+                            }
+
+
+                            dic["MA_NT_I"] = dic0["MA_NT"];
+                            dic["STT_REC_TT"] = dic0["STT_REC"];
+                            dic["NGAY_CT0"] = dic0["NGAY_CT"];
+                            dic["SO_SERI0"] = dic0["SO_SERI"];
+
+                            dic["MA_KH_I"] = dic0["MA_KH"];
+                            dic["TEN_KH_I"] = dic0["TEN_KH"];
+
+                            //{Tuanmh 21/08/2016
+                            if (Txtdien_giai.Text != "")
+                            {
+                                dic["DIEN_GIAII"] = Txtdien_giai.Text.Trim() + " số " + dic0["SO_CT"].ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)dic0["NGAY_CT"]);
+                            }
+                            else
+                            {
+                                dic["DIEN_GIAII"] = " Thu tiền bán hàng theo CT số " + dic0["SO_CT"].ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)dic0["NGAY_CT"]);
+                            }
+                            //}
+
+                            XuLyThemDetail(dic);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -4448,73 +4463,84 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             
         }
 
-        private void ChucNang_ThuCongNo()
+        private void ChucNang_ThuCongNo(bool add)
         {
             try
             {
                 if (NotAddEdit) return;
+                chon_accept_flag_add = add;
+
                 if (_MA_GD == "3")
                 {
                     detail1.MODE = V6Mode.View;
-
+                    dataGridView1.UnLock();
 
                     var initFilter = GetSoCt0InitFilter();
                     var f = new FilterView_ARSODU0(Invoice, new V6ColorTextBox(), _sttRec, txtMaDVCS.Text, initFilter);
                     f.MultiSeletion = true;
-                    f.ChoseEvent += data =>
-                    {
-                        var dic = detail1.GetData();
-
-                        dic["SO_CT0"] = data.Cells["SO_CT"].Value;
-                        dic["TK_I"] = data.Cells["TK"].Value;
-                        if (data.Cells["MA_NT"].ToString().Trim() == _mMaNt0)
-                        {
-                            dic["T_TT_NT0"] = data.Cells["TC_TT"].Value;
-                            dic["T_TT_QD"] = data.Cells["T_TT_QD"].Value;
-                            dic["PHAI_TT_NT"] = data.Cells["CL_TT"].Value;
-                            dic["TIEN"] = data.Cells["CL_TT"].Value;
-                            dic["TIEN_NT"] = data.Cells["CL_TT"].Value;
-                            dic["TIEN_TT"] = data.Cells["CL_TT"].Value;
-                            dic["TT_QD"] = data.Cells["CL_TT"].Value;
-                            dic["PS_CO"] = data.Cells["CL_TT"].Value;
-                            dic["PS_CO_NT"] = data.Cells["CL_TT"].Value;
-                        }
-                        else
-                        {
-                            dic["T_TT_NT0"] = data.Cells["TC_TT"].Value;
-                            dic["T_TT_QD"] = data.Cells["T_TT_QD"].Value;
-                            dic["PHAI_TT_NT"] = data.Cells["CL_TT"].Value;
-                            dic["TIEN"] = data.Cells["CL_TT"].Value;
-                            dic["TIEN_NT"] = data.Cells["CL_TT"].Value;
-                            dic["TIEN_TT"] = data.Cells["CL_TT"].Value;
-                            dic["TT_QD"] = data.Cells["CL_TT"].Value;
-                            dic["PS_CO"] = data.Cells["CL_TT"].Value;
-                            dic["PS_CO_NT"] = data.Cells["CL_TT"].Value;
-                        }
-
-
-                        dic["MA_NT_I"] = data.Cells["MA_NT"].Value;
-                        dic["STT_REC_TT"] = data.Cells["STT_REC"].Value;
-                        dic["NGAY_CT0"] = data.Cells["NGAY_CT"].Value;
-                        dic["SO_SERI0"] = data.Cells["SO_SERI"].Value;
-
-                        dic["MA_KH_I"] = data.Cells["MA_KH"].Value;
-                        dic["TEN_KH_I"] = data.Cells["TEN_KH"].Value;
-
-                        //{Tuanmh 21/08/2016
-                        if (Txtdien_giai.Text != "")
-                        {
-                            dic["DIEN_GIAII"] = Txtdien_giai.Text.Trim() + " số " + data.Cells["SO_CT"].Value.ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)data.Cells["NGAY_CT"].Value);
-                        }
-                        else
-                        {
-                            dic["DIEN_GIAII"] = " Thu tiền bán hàng theo CT số " + data.Cells["SO_CT"].Value.ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)data.Cells["NGAY_CT"].Value);
-                        }
-                        //}
-
-                        XuLyThemDetail(dic);
-                    };
                     f.ShowDialog(this);
+                    if (f.DialogResult == DialogResult.OK)
+                    {
+                        bool flag_add = chon_accept_flag_add;
+                        chon_accept_flag_add = false;
+                        if (!flag_add)
+                        {
+                            AD.Rows.Clear();
+                        }
+                        foreach (IDictionary<string, object> dic0 in f.SelectedDataList)
+                        {
+                            var dic = detail1.GetData();
+
+                            dic["SO_CT0"] = dic0["SO_CT"];
+                            dic["TK_I"] = dic0["TK"];
+                            if (dic0["MA_NT"].ToString().Trim() == _mMaNt0)
+                            {
+                                dic["T_TT_NT0"] = dic0["TC_TT"];
+                                dic["T_TT_QD"] = dic0["T_TT_QD"];
+                                dic["PHAI_TT_NT"] = dic0["CL_TT"];
+                                dic["TIEN"] = dic0["CL_TT"];
+                                dic["TIEN_NT"] = dic0["CL_TT"];
+                                dic["TIEN_TT"] = dic0["CL_TT"];
+                                dic["TT_QD"] = dic0["CL_TT"];
+                                dic["PS_CO"] = dic0["CL_TT"];
+                                dic["PS_CO_NT"] = dic0["CL_TT"];
+                            }
+                            else
+                            {
+                                dic["T_TT_NT0"] = dic0["TC_TT"];
+                                dic["T_TT_QD"] = dic0["T_TT_QD"];
+                                dic["PHAI_TT_NT"] = dic0["CL_TT"];
+                                dic["TIEN"] = dic0["CL_TT"];
+                                dic["TIEN_NT"] = dic0["CL_TT"];
+                                dic["TIEN_TT"] = dic0["CL_TT"];
+                                dic["TT_QD"] = dic0["CL_TT"];
+                                dic["PS_CO"] = dic0["CL_TT"];
+                                dic["PS_CO_NT"] = dic0["CL_TT"];
+                            }
+
+
+                            dic["MA_NT_I"] = dic0["MA_NT"];
+                            dic["STT_REC_TT"] = dic0["STT_REC"];
+                            dic["NGAY_CT0"] = dic0["NGAY_CT"];
+                            dic["SO_SERI0"] = dic0["SO_SERI"];
+
+                            dic["MA_KH_I"] = dic0["MA_KH"];
+                            dic["TEN_KH_I"] = dic0["TEN_KH"];
+
+                            //{Tuanmh 21/08/2016
+                            if (Txtdien_giai.Text != "")
+                            {
+                                dic["DIEN_GIAII"] = Txtdien_giai.Text.Trim() + " số " + dic0["SO_CT"].ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)dic0["NGAY_CT"]);
+                            }
+                            else
+                            {
+                                dic["DIEN_GIAII"] = " Thu tiền bán hàng theo CT số " + dic0["SO_CT"].ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)dic0["NGAY_CT"]);
+                            }
+                            //}
+
+                            XuLyThemDetail(dic);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -4536,7 +4562,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
         private void ThuCongNo_Click(object sender, EventArgs e)
         {
-            ChucNang_ThuCongNo();
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            ChucNang_ThuCongNo(shift);
         }
 
         private void xuLyKhacToolStripMenuItem_Click(object sender, EventArgs e)
@@ -4574,40 +4601,50 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
         private void thuNoTaiKhoanToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ThuNo131();
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            ThuNo131(shift);
         }
 
-        public void ThuNo131()
+        public void ThuNo131(bool add)
         {
             try
             {
                 if (NotAddEdit) return;
+                chon_accept_flag_add = add;
                 if (_MA_GD == "3")
                 {
                     detail1.MODE = V6Mode.View;
+                    dataGridView1.UnLock();
                     
                     var initFilter = GetThuNo131InitFilter();
                     var f = new FilterView_ARSODU0TK(Invoice, new V6ColorTextBox(), _sttRec, txtMaDVCS.Text, initFilter);
                     f.MultiSeletion = true;
-                    f.ChoseEvent += data =>
-                    {
-                        var dic = detail1.GetData();
-
-                        dic["TK_I"] = data.Cells["TK"].Value;
-
-                        dic["TIEN"] = data.Cells["DU_NO"].Value;
-                        dic["TIEN_NT"] = data.Cells["DU_NO"].Value;
-                        dic["TIEN_TT"] = data.Cells["DU_NO"].Value;
-                        dic["PS_CO"] = data.Cells["DU_NO"].Value;
-                        dic["PS_CO_NT"] = data.Cells["DU_NO"].Value;
-
-
-                        dic["MA_KH_I"] = data.Cells["MA_KH"].Value;
-                        dic["TEN_KH_I"] = data.Cells["TEN_KH"].Value;
-
-                        XuLyThemDetail(dic);
-                    };
                     f.ShowDialog(this);
+                    if (f.DialogResult == DialogResult.OK)
+                    {
+                        bool flag_add = chon_accept_flag_add;
+                        chon_accept_flag_add = false;
+                        if (!flag_add)
+                        {
+                            AD.Rows.Clear();
+                        }
+                        foreach (IDictionary<string, object> dic0 in f.SelectedDataList)
+                        {
+                            var dic = detail1.GetData();
+
+                            dic["TK_I"] = dic0["TK"];
+
+                            dic["TIEN"] = dic0["DU_NO"];
+                            dic["TIEN_NT"] = dic0["DU_NO"];
+                            dic["TIEN_TT"] = dic0["DU_NO"];
+                            dic["PS_CO"] = dic0["DU_NO"];
+                            dic["PS_CO_NT"] = dic0["DU_NO"];
+                            dic["MA_KH_I"] = dic0["MA_KH"];
+                            dic["TEN_KH_I"] = dic0["TEN_KH"];
+
+                            XuLyThemDetail(dic);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -4658,7 +4695,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
-            FixMenuChucNangItemShiftText(chonTuExcelMenu);
+            FixMenuChucNangItemShiftText(chonTuExcelMenu, ThuCongNoMenu, thuNoTaiKhoanMenu);
         }
     }
 }

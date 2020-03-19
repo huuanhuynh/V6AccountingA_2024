@@ -20,7 +20,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F3: Sửa,F4:Thêm hóa đơn bán ra, F8: Xóa");
+            V6ControlFormHelper.SetStatusText2("F3: Sửa,F4:Thêm hóa đơn mua vào, F8: Xóa");
         }
 
         protected override void MakeReport2()
@@ -44,100 +44,70 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected override void XuLyF8()
         {
-            try
             {
-                if (dataGridView1.CurrentRow != null)
+                try
                 {
-
-                    if (V6Login.UserRight.AllowDelete("", "AR0"))
-
+                    if (dataGridView1.CurrentRow != null)
                     {
-                        var currentRowData = dataGridView1.CurrentRow.ToDataDictionary();
 
-                        int TS0 = currentRowData.ContainsKey("TS0")
-                            ? ObjectAndString.ObjectToInt(currentRowData["TS0"])
-                            : 1;
+                        if (V6Login.UserRight.AllowDelete("", "APV"))
 
-                        if (TS0 == 1)
                         {
-                            this.ShowWarningMessage("Không được xóa phần này!");
 
-                        }
-                        else
-                        {
-                            if (this.ShowConfirmMessage("Có chắc chắn xóa tăng giá trị ?") == DialogResult.Yes)
+                            var currentRow = dataGridView1.CurrentRow;
+
+                            var selectedMaCt = currentRow.Cells
+                                ["Ma_ct"].Value.ToString().Trim();
+                            var selectedSttRec = currentRow.Cells
+                                ["Stt_rec"].Value.ToString().Trim();
+
+
+                            if (!string.IsNullOrEmpty(selectedSttRec) && !string.IsNullOrEmpty(selectedMaCt)
+                                && selectedMaCt == "APV")
                             {
 
-
-                                int nam = currentRowData.ContainsKey("RNAM")
-                                    ? ObjectAndString.ObjectToInt(currentRowData["RNAM"])
-                                    : 1900;
-                                int ky1 = currentRowData.ContainsKey("RKY1")
-                                    ? ObjectAndString.ObjectToInt(currentRowData["RKY1"])
-                                    : 0;
-                                int ky2 = currentRowData.ContainsKey("RKY2")
-                                    ? ObjectAndString.ObjectToInt(currentRowData["RKY2"])
-                                    : 0;
-                                string Diengiai = currentRowData.ContainsKey("RDIEN_GIAI")
-                                    ? ObjectAndString.ObjectToString(currentRowData["RDIEN_GIAI"])
-                                    : "";
-                                string Madvcs = currentRowData.ContainsKey("MA_DVCS")
-                                    ? ObjectAndString.ObjectToString(currentRowData["MA_DVCS"])
-                                    : "";
-                                string Madvcs0 = currentRowData.ContainsKey("MA_DVCS0")
-                                    ? ObjectAndString.ObjectToString(currentRowData["MA_DVCS0"])
-                                    : "";
-                                string Sothets = currentRowData.ContainsKey("SO_THE_TS")
-                                    ? ObjectAndString.ObjectToString(currentRowData["SO_THE_TS"])
-                                    : "";
-
-
-                                var uid = currentRowData.ContainsKey("UID")
-                                    ? ObjectAndString.ObjectToString(currentRowData["UID"])
-                                    : "";
-
-                                SqlParameter[] plist =
+                                if (dataGridView1.Columns.Contains("UID"))
                                 {
-                                        new SqlParameter("@nam", nam),
-                                        new SqlParameter("@ky1", ky1),
-                                        new SqlParameter("@ky2", ky2),
-                                        new SqlParameter("@User_id", V6Login.UserId),
-                                        new SqlParameter("@So_the_ts", Sothets),
-                                        new SqlParameter("@Ma_dvcs", Madvcs),
-                                        new SqlParameter("@Ma_dvcs0", Madvcs0),
-                                        new SqlParameter("@uid", uid)
-
-
-
+                                    var keys = new SortedDictionary<string, object>
+                                    {
+                                        {"UID", currentRow.Cells["UID"].Value}
                                     };
-                                var result = V6BusinessHelper.ExecuteProcedureNoneQuery(_program + "_F8",
-                                    plist);
-                                if (result > 0)
-                                {
-                                    V6ControlFormHelper.ShowMainMessage(V6Text.Deleted);
-                                    btnNhan.PerformClick();
+
+                                    if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " ", V6Text.DeleteConfirm)
+                                        == DialogResult.Yes)
+                                    {
+                                        var t = V6BusinessHelper.Delete("ARV30", keys);
+
+                                        if (t > 0)
+                                        {
+                                            V6ControlFormHelper.ShowMainMessage(V6Text.Deleted);
+                                        }
+                                        else
+                                        {
+                                            V6ControlFormHelper.ShowMessage(V6Text.DeleteFail);
+                                        }
+                                    }
                                 }
-                                else
-                                {
-                                    V6ControlFormHelper.ShowMainMessage(V6Text.DeleteFail);
-                                }
+
                             }
+
+                        }
+
+                        else
+                        {
+                            V6ControlFormHelper.NoRightWarning();
                         }
 
                     }
-
-                    else
-                    {
-                        V6ControlFormHelper.NoRightWarning();
-                    }
-
+                }
+                catch (Exception ex)
+                {
+                    this.ShowErrorMessage(GetType() + ".XuLyF8: " + ex.Message);
                 }
             }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(GetType() + ".XuLyF8: " + ex.Message);
-            }
         }
+    
+
 
         #endregion xử lý F8
 

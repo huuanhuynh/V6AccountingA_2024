@@ -645,8 +645,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                _structTable = V6BusinessHelper.GetTableStruct(TableName.ToString());
-                V6ControlFormHelper.SetFormStruct(this, _structTable);
+                _TableStruct = V6BusinessHelper.GetTableStruct(TableName.ToString());
+                V6ControlFormHelper.SetFormStruct(this, _TableStruct);
             }
             catch (Exception ex)
             {

@@ -1295,6 +1295,44 @@ namespace V6AccountingBusiness
         {
             return SqlConnect.GetServerDateTime();
         }
+
+        public static decimal GetTyGia(string mant, DateTime ngayct)
+        {
+            try
+            {
+                SqlParameter[] pList =
+                {
+                    new SqlParameter("@ma_nt", mant),
+                    new SqlParameter("@ngay_ct", ngayct.ToString("yyyyMMdd"))
+                };
+
+                var resultValue = Convert.ToDecimal(
+                    SqlConnect.ExecuteScalar(CommandType.Text, "Select dbo.VFA_GetRates(@ma_nt, @ngay_ct)", pList));
+                return resultValue;
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// Lấy chuỗi where theo phân quyền bằng proc.
+        /// </summary>
+        /// <returns></returns>
+        public static string GetWhereAl(string tableName)
+        {
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@tableName", tableName),
+                new SqlParameter("@Ma_dvcs", V6Login.Madvcs),
+                new SqlParameter("@user_id", V6Login.UserId),
+                new SqlParameter("@Lan", V6Login.SelectedLanguage),
+            };
+            var o = ExecuteProcedureScalar("VPA_GET_WHERE_AL_ALL", plist);
+            return o.ToString();
+        }
         
         /// <summary>
         /// Select
@@ -1737,6 +1775,21 @@ namespace V6AccountingBusiness
             };
             return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_EdItems_DATE_STT_REC", plist).Tables[0];
         }
+        public static DataTable GetSKSM(string mavt, string makho, string sttRec, DateTime ngayct)
+        {
+            mavt = mavt.Replace("'", "''");
+            makho = makho.Replace("'", "''");
+            SqlParameter[] plist = new[]
+            {
+                new SqlParameter("@cKey1", String.Format("Ma_vt = '"+mavt+"' and Ma_kho = '"+makho+"'")),
+                new SqlParameter("@cKey2", ""),
+                new SqlParameter("@cKey3", ""),
+                new SqlParameter("@cStt_rec", sttRec),
+                new SqlParameter("@dBg", ngayct.Date)
+            };
+            return SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_EdItems_SKSM_STT_REC", plist).Tables[0];
+        }
+
         public static DataTable GetLoDate_IXY(string mavt, string makho, string sttRec, DateTime ngayct)
         {
             mavt = mavt.Replace("'", "''");
@@ -2238,6 +2291,7 @@ namespace V6AccountingBusiness
             }
             return false;
         }
+
 
     }
 }
