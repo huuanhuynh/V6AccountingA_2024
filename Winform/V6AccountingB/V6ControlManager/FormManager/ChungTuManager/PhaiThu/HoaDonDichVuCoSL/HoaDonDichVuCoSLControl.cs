@@ -6658,6 +6658,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 bool flag_add = chon_accept_flag_add;
                 chon_accept_flag_add = false;
                 detail1.MODE = V6Mode.View;
+                dataGridView1.UnLock();
                 if (!flag_add)
                 {
                     AD.Rows.Clear();
@@ -7327,6 +7328,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             {
                 txtLoaiCt.Text = e.Loai_ct;
                 detail1.MODE = V6Mode.View;
+                dataGridView1.UnLock();
                 bool flag_add = chon_accept_flag_add;
                 chon_accept_flag_add = false;
                 if (!flag_add)

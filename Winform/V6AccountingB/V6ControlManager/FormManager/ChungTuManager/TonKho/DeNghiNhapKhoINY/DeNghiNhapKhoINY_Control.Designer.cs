@@ -48,6 +48,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.chonTuExcelMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.xuLyKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.thayTheMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.thayTheNhieuMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.thayThe2Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -203,6 +204,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.v6Label19 = new V6Controls.V6Label();
             this.lblDocSoTien = new V6Controls.V6Label();
             this.group3 = new System.Windows.Forms.GroupBox();
+            this.btnApGia = new V6Controls.Controls.V6FormButton();
+            this.txtMaGia = new V6Controls.V6VvarTextBox();
             this.txtSoDH = new V6Controls.V6VvarTextBox();
             this.lblSoDH = new V6Controls.V6Label();
             this.txtMaDVCS = new V6Controls.V6VvarTextBox();
@@ -246,7 +249,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label1 = new V6Controls.V6Label();
             this.txtSoPhieu = new V6Controls.V6VvarTextBox();
-            this.thayTheNhieuMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuChucNang.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
@@ -278,7 +280,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.thayTheNhieuMenu,
             this.thayThe2Menu});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(185, 202);
+            this.menuChucNang.Size = new System.Drawing.Size(185, 180);
             this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
             // 
             // chonDonHangMuaMenu
@@ -330,6 +332,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.thayTheMenu.Size = new System.Drawing.Size(184, 22);
             this.thayTheMenu.Text = "Thay thế";
             this.thayTheMenu.Click += new System.EventHandler(this.thayTheMenu_Click);
+            // 
+            // thayTheNhieuMenu
+            // 
+            this.thayTheNhieuMenu.AccessibleDescription = "INVOICEM00027";
+            this.thayTheNhieuMenu.Name = "thayTheNhieuMenu";
+            this.thayTheNhieuMenu.Size = new System.Drawing.Size(184, 22);
+            this.thayTheNhieuMenu.Text = "Thay thế nhiều";
+            this.thayTheNhieuMenu.Click += new System.EventHandler(this.thayTheNhieuMenu_Click);
             // 
             // thayThe2Menu
             // 
@@ -735,6 +745,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.detail1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.detail1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.detail1.CarryData = null;
+            this.detail1.FixControl = 3;
             this.detail1.Location = new System.Drawing.Point(2, 2);
             this.detail1.MODE = V6Structs.V6Mode.Init;
             this.detail1.Name = "detail1";
@@ -895,6 +907,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.detail2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.detail2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.detail2.CarryData = null;
+            this.detail2.FixControl = 3;
             this.detail2.Location = new System.Drawing.Point(2, 2);
             this.detail2.MODE = V6Structs.V6Mode.Init;
             this.detail2.Name = "detail2";
@@ -2856,6 +2870,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             // 
             this.group3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.group3.Controls.Add(this.btnApGia);
+            this.group3.Controls.Add(this.txtMaGia);
             this.group3.Controls.Add(this.txtSoDH);
             this.group3.Controls.Add(this.lblSoDH);
             this.group3.Controls.Add(this.txtMaDVCS);
@@ -2884,6 +2900,40 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.group3.Size = new System.Drawing.Size(894, 100);
             this.group3.TabIndex = 1;
             this.group3.TabStop = false;
+            // 
+            // btnApGia
+            // 
+            this.btnApGia.AccessibleDescription = "ASOCTSOAH00051";
+            this.btnApGia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnApGia.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnApGia.Location = new System.Drawing.Point(764, 52);
+            this.btnApGia.Name = "btnApGia";
+            this.btnApGia.Size = new System.Drawing.Size(60, 22);
+            this.btnApGia.TabIndex = 20;
+            this.btnApGia.TabStop = false;
+            this.btnApGia.Text = "Mã giá";
+            this.toolTipV6FormControl.SetToolTip(this.btnApGia, "Áp giá bán");
+            this.btnApGia.UseVisualStyleBackColor = true;
+            this.btnApGia.Click += new System.EventHandler(this.btnApGia_Click);
+            // 
+            // txtMaGia
+            // 
+            this.txtMaGia.AccessibleName = "ma_gia";
+            this.txtMaGia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMaGia.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaGia.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaGia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMaGia.BrotherFields = "ten_gia";
+            this.txtMaGia.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaGia.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaGia.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaGia.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaGia.LeaveColor = System.Drawing.Color.White;
+            this.txtMaGia.Location = new System.Drawing.Point(830, 53);
+            this.txtMaGia.Name = "txtMaGia";
+            this.txtMaGia.Size = new System.Drawing.Size(56, 20);
+            this.txtMaGia.TabIndex = 21;
+            this.txtMaGia.VVar = "ma_gia";
             // 
             // txtSoDH
             // 
@@ -2978,9 +3028,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.v6NumberTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6NumberTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6NumberTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6NumberTextBox1.Location = new System.Drawing.Point(802, 54);
+            this.v6NumberTextBox1.Location = new System.Drawing.Point(682, 54);
             this.v6NumberTextBox1.Name = "v6NumberTextBox1";
-            this.v6NumberTextBox1.Size = new System.Drawing.Size(82, 20);
+            this.v6NumberTextBox1.Size = new System.Drawing.Size(75, 20);
             this.v6NumberTextBox1.TabIndex = 19;
             this.v6NumberTextBox1.Text = "0";
             this.v6NumberTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -3002,10 +3052,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.v6VvarTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6VvarTextBox2.HoverColor = System.Drawing.Color.Yellow;
             this.v6VvarTextBox2.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox2.Location = new System.Drawing.Point(802, 76);
+            this.v6VvarTextBox2.Location = new System.Drawing.Point(764, 76);
             this.v6VvarTextBox2.Name = "v6VvarTextBox2";
             this.v6VvarTextBox2.Size = new System.Drawing.Size(82, 20);
-            this.v6VvarTextBox2.TabIndex = 22;
+            this.v6VvarTextBox2.TabIndex = 24;
             this.v6VvarTextBox2.VVar = "ma_nvien";
             // 
             // txtTyGia
@@ -3046,10 +3096,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.v6VvarTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6VvarTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6VvarTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox1.Location = new System.Drawing.Point(698, 76);
+            this.v6VvarTextBox1.Location = new System.Drawing.Point(682, 76);
             this.v6VvarTextBox1.Name = "v6VvarTextBox1";
-            this.v6VvarTextBox1.Size = new System.Drawing.Size(94, 20);
-            this.v6VvarTextBox1.TabIndex = 21;
+            this.v6VvarTextBox1.Size = new System.Drawing.Size(75, 20);
+            this.v6VvarTextBox1.TabIndex = 23;
             this.v6VvarTextBox1.VVar = "ma_bp";
             // 
             // cboMaNt
@@ -3099,7 +3149,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.v6Label8.Location = new System.Drawing.Point(627, 79);
             this.v6Label8.Name = "v6Label8";
             this.v6Label8.Size = new System.Drawing.Size(41, 13);
-            this.v6Label8.TabIndex = 20;
+            this.v6Label8.TabIndex = 22;
             this.v6Label8.Text = "BP/NV";
             // 
             // v6Label17
@@ -3129,7 +3179,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.v6Label15.AccessibleDescription = "APOCTPOAL00020";
             this.v6Label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.v6Label15.AutoSize = true;
-            this.v6Label15.Location = new System.Drawing.Point(739, 54);
+            this.v6Label15.Location = new System.Drawing.Point(627, 54);
             this.v6Label15.Name = "v6Label15";
             this.v6Label15.Size = new System.Drawing.Size(44, 13);
             this.v6Label15.TabIndex = 18;
@@ -3536,14 +3586,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.txtSoPhieu.TabIndex = 1;
             this.txtSoPhieu.TextChanged += new System.EventHandler(this.txtSoPhieu_TextChanged);
             // 
-            // thayTheNhieuMenu
-            // 
-            this.thayTheNhieuMenu.AccessibleDescription = "INVOICEM00027";
-            this.thayTheNhieuMenu.Name = "thayTheNhieuMenu";
-            this.thayTheNhieuMenu.Size = new System.Drawing.Size(184, 22);
-            this.thayTheNhieuMenu.Text = "Thay thế nhiều";
-            this.thayTheNhieuMenu.Click += new System.EventHandler(this.thayTheNhieuMenu_Click);
-            // 
             // DeNghiNhapKhoINY_Control
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3821,5 +3863,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
         private GridViewSummary gridViewSummary2;
         private System.Windows.Forms.ToolStripMenuItem chonDonHangMuaMenu;
         private System.Windows.Forms.ToolStripMenuItem thayTheNhieuMenu;
+        private V6FormButton btnApGia;
+        private V6VvarTextBox txtMaGia;
     }
 }

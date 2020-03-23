@@ -5656,6 +5656,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             try
             {
                 detail1.MODE = V6Mode.View;
+                dataGridView1.UnLock();
                 txtLoaiCt.Text = e.Loai_ct;
                 bool flag_add = chon_accept_flag_add;
                 chon_accept_flag_add = false;

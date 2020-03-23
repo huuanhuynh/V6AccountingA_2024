@@ -4423,6 +4423,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             {
                 txtLoaiCt.Text = e.Loai_ct;
                 detail1.MODE = V6Mode.View;
+                dataGridView1.UnLock();
                 bool flag_add = chon_accept_flag_add;
                 chon_accept_flag_add = false;
                 if (!flag_add)

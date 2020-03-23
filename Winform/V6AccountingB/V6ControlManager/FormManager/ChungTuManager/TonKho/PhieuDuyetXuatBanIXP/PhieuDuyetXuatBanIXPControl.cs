@@ -5979,6 +5979,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
                 bool flag_add = chon_accept_flag_add;
                 chon_accept_flag_add = false;
                 detail1.MODE = V6Mode.View;
+                dataGridView1.UnLock();
                 if (!flag_add)
                 {
                     AD.Rows.Clear();
@@ -6105,19 +6106,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
             //if (dataList.Columns.Contains("MA_VT") && dataList.Columns.Contains("MA_KHO"))
             {
                 detail1.MODE = V6Mode.View;
+                dataGridView1.UnLock();
                 bool flag_add = chon_accept_flag_add;
                 chon_accept_flag_add = false;
                 if (!flag_add)
                 {
                     AD.Rows.Clear();
                 }
-                if (dataList.Count > 0)
-                {
-                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
-                    {
-                        detail1.MODE = V6Mode.Init;
-                    }
-                }
+                //if (dataList.Count > 0)
+                //{
+                //    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                //    {
+                //        detail1.MODE = V6Mode.Init;
+                //    }
+                //}
 
                 foreach (IDictionary<string, object> row in dataList)
                 {

@@ -5989,6 +5989,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 bool flag_add = chon_accept_flag_add;
                 chon_accept_flag_add = false;
                 detail1.MODE = V6Mode.View;
+                dataGridView1.UnLock();
                 if (!flag_add)
                 {
                     AD.Rows.Clear();
