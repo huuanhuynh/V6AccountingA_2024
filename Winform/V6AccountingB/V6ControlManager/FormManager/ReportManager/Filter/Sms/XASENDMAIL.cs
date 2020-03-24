@@ -652,7 +652,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter.Sms
                 }
                 else if (type == "excel")
                 {
-                    result = V6Tools.V6Convert.Excel_File.Sheet1ToDataTable(file);
+                    result = V6Tools.V6Convert.Excel_File.Sheet1ToDataTable(file, 0, V6Options.M_MAXROWS_EXCEL);
                     if (!string.IsNullOrEmpty(from_where) && !string.IsNullOrEmpty(to_con))
                         V6Tools.V6Convert.Data_Table.ChuyenMaTiengViet(result, from_where, to_con);
                 }

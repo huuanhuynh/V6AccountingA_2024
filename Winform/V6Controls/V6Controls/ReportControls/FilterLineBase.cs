@@ -18,7 +18,10 @@ namespace V6ReportControls
         public virtual bool IsSelected
         {
             get { return checkBox1.Checked; }
-            set { checkBox1.Checked = value; }
+            set
+            {
+                if (checkBox1.Enabled) checkBox1.Checked = value;
+            }
         }
 
         public ComboBox.ObjectCollection Operators

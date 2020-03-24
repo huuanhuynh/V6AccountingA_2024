@@ -212,6 +212,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             LoadDetailControls();
             LoadDetail3Controls();
             LoadAdvanceControls(Invoice.Mact);
+            CreateCustomInfoTextBox(group4, txtTongSoLuong1, cboChuyenData);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             ResetForm();
             
@@ -1792,6 +1793,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             {
                 if (detail1.MODE == V6Mode.View && detail1.btnXoa.Enabled && detail1.btnXoa.Visible)
                     detail1.btnXoa.PerformClick();
+            }
+            else if (keyData == Keys.F9)
+            {
+                XuLyF9Base();
+                return true;
             }
             else if (keyData == (Keys.F10))
             {
@@ -3793,7 +3799,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                         {
                             txtMaKh.Text = alvitri.Data.Rows[0]["MA_KH"].ToString().Trim();
                             XuLyChonMaKhachHang();
-
+                            LoadCustomInfo(dateNgayCT.Value, txtMaKh.Text);
                         }
                     }
                 }
@@ -4318,6 +4324,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 FormatNumberGridView();
                 FixValues();
                 EnableFunctionButtons();//Add hoadonCafe
+                LoadCustomInfo(dateNgayCT.Value, txtMaKh.Text);
 
                 //OnInvoiceChanged(_sttRec);
             }
@@ -6483,6 +6490,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         private void txtMaKh_V6LostFocus(object sender)
         {
             XuLyChonMaKhachHang();
+            LoadCustomInfo(dateNgayCT.Value, txtMaKh.Text);
         }
         private void txtMaHttt_V6LostFocus(object sender)
         {
@@ -7268,6 +7276,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
             FixMenuChucNangItemShiftText(chonBaoGiaMenu, chonTuExcelMenu, chonDonHangBanMenu);
+        }
+
+        private void inPhieuHachToanMenu_Click(object sender, EventArgs e)
+        {
+            InPhieuHachToan(Invoice, _sttRec, TongThanhToan, TongThanhToanNT);
         }
     }
 }

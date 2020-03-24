@@ -174,7 +174,6 @@ namespace V6ControlManager.FormManager.SoDuManager
                 }
                 else
                 {
-                    //_v6LookupConfig = V6Lookup.GetV6lookupConfigByTableName(_tableName);
                     if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(_v6LookupConfig.vOrder))
                         SelectResult.SortField = _v6LookupConfig.vOrder;
                 }
@@ -562,11 +561,44 @@ namespace V6ControlManager.FormManager.SoDuManager
 
                             //Xoa bang chinh
                             var t = _categories.Delete(TRANSACTION, CurrentTable, keys);
-                            InvokeFormEvent(FormDynamicEvent.AFTERDELETESUCCESS);
+                            
                             if (t > 0)
                             {
                                 TRANSACTION.Commit();
                                 ADTables.Remove(stt_rec);
+                                //AfterDeleteBase
+                                if (_aldmConfig != null && _aldmConfig.HaveInfo)
+                                {
+                                    var _TableStruct = V6BusinessHelper.GetTableStruct(_aldmConfig.TABLE_NAME);
+                                    var KEYS = ObjectAndString.SplitString(_aldmConfig.KEY.ToUpper());
+                                    var datas = "";
+                                    var data_old = "";
+                                    foreach (string KEY in KEYS)
+                                    {
+                                        if (!_TableStruct.ContainsKey(KEY)) continue;
+                                        var sct = _TableStruct[KEY];
+                                        if (!_data.ContainsKey(KEY)) return;
+                                        var o_new = _data[KEY];
+                                        datas += "|" + SqlGenerator.GenSqlStringValue(o_new, sct.sql_data_type_string, sct.ColumnDefault, false, sct.MaxLength);
+
+                                    }
+                                    if (datas.Length > 1) datas = datas.Substring(1);
+
+                                    SqlParameter[] plist =
+                                        {
+                                            new SqlParameter("@TableName", _aldmConfig.TABLE_NAME),
+                                            new SqlParameter("@Fields", _aldmConfig.KEY),
+                                            new SqlParameter("@datas", datas),
+                                            new SqlParameter("@UID", _data["UID"]),
+                                            new SqlParameter("@user_id", V6Login.UserId),
+                                        };
+                                    V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_DELE_AL_ALL", plist);
+                                }
+                                //AfterDelete
+                                {
+                                    All_Objects["data"] = _data;
+                                    InvokeFormEvent(FormDynamicEvent.AFTERDELETESUCCESS);
+                                }
                                 ReLoad();
                                 V6ControlFormHelper.ShowMainMessage(V6Text.Deleted);
                             }

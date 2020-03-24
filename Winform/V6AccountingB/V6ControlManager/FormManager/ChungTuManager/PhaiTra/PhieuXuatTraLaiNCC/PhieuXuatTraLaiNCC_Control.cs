@@ -113,6 +113,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             LoadDetailControls();
             detail1.AddContexMenu(menuDetail1);
             LoadAdvanceControls(Invoice.Mact);
+            CreateCustomInfoTextBox(group4, txtTongSoLuong1, cboChuyenData);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             LoadTag(Invoice, detail1.Controls);
             ResetForm();
@@ -931,6 +932,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             {
                 if (detail1.MODE == V6Mode.View && detail1.btnXoa.Enabled && detail1.btnXoa.Visible)
                     detail1.btnXoa.PerformClick();
+            }
+            else if (keyData == Keys.F9)
+            {
+                XuLyF9Base();
+                return true;
             }
             else
             {
@@ -2890,6 +2896,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
 
                 FormatNumberControl();
                 FormatNumberGridView();
+                LoadCustomInfo(dateNgayCT.Value, txtMaKh.Text);
 
                 OnInvoiceChanged(_sttRec);
             }
@@ -4543,6 +4550,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
         private void txtMaKh_V6LostFocus(object sender)
         {
             XuLyChonMaKhachHang();
+            LoadCustomInfo(dateNgayCT.Value, txtMaKh.Text);
         }
         
         private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -5500,6 +5508,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
+        }
+
+        private void inPhieuHachToanMenu_Click(object sender, EventArgs e)
+        {
+            InPhieuHachToan(Invoice, _sttRec, TongThanhToan, TongThanhToanNT);
         }
     }
 }

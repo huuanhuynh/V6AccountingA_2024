@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
@@ -14,6 +15,7 @@ using V6ControlManager.FormManager.SoDuManager.Add_Edit;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
+using V6SqlConnect;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
@@ -24,6 +26,14 @@ namespace V6ControlManager.FormManager.SoDuManager
 {
     public partial class SoDuView : V6FormControl
     {
+        private AldmConfig _aldmConfig;
+        protected Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
+        /// <summary>
+        /// Code động từ aldmConfig.
+        /// </summary>
+        protected Type Event_program;
+        public Dictionary<string, object> All_Objects = new Dictionary<string, object>();
+
         public SoDuView()
         {
             InitializeComponent();
@@ -87,7 +97,7 @@ namespace V6ControlManager.FormManager.SoDuManager
             Title = title;
             _tableName = tableName;
             _v6LookupConfig = V6Lookup.GetV6lookupConfigByTableName(_tableName);
-            CurrentTable = V6TableHelper.ToV6TableName(tableName);
+            CurrentTable = V6TableHelper.ToV6TableName(_tableName);
             if (CurrentTable == V6TableName.Abtk)
             {
                 btnThem.Visible = false;
@@ -107,29 +117,119 @@ namespace V6ControlManager.FormManager.SoDuManager
                     // ignored
                 }
             }
-            _hideColumnDic = _categories.GetHideColumns(tableName);
+            
             InitFilter = initFilter;
             SelectResult = new V6SelectResult();
             SelectResult.SortField = sort;
-            //if (_aldmConfig.IS_ALDM)
-            //{
-            //    if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(_aldmConfig.ORDER))
-            //        SelectResult.SortField = _aldmConfig.ORDER;
-            //}
-            //else
+            MyInit();
+        }
+
+        private void MyInit()
+        {
+            try
             {
+                _aldmConfig = ConfigManager.GetAldmConfigByTableName(_tableName);
                 _v6LookupConfig = V6Lookup.GetV6lookupConfigByTableName(_tableName);
-                if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(_v6LookupConfig.vOrder))
-                    SelectResult.SortField = _v6LookupConfig.vOrder;
+                if (_aldmConfig.IS_ALDM)
+                {
+                    if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(_aldmConfig.ORDER))
+                        SelectResult.SortField = _aldmConfig.ORDER;
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(_v6LookupConfig.vOrder))
+                        SelectResult.SortField = _v6LookupConfig.vOrder;
+                }
+                _hideColumnDic = _categories.GetHideColumns(_tableName);
+
+                All_Objects["thisForm"] = this;
+                CreateFormProgram();
+                V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
+                InvokeFormEvent(FormDynamicEvent.INIT);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".Init", ex);
             }
         }
 
         private void SoDuView_Load(object sender, EventArgs e)
         {
-            LoadTable(CurrentTable, SelectResult.SortField);
-            FormManagerHelper.HideMainMenu();
-            dataGridView1.Focus();
-            MakeStatus2Text();
+            try
+            {
+                LoadTable(CurrentTable, SelectResult.SortField);
+                FormManagerHelper.HideMainMenu();
+                dataGridView1.Focus();
+                MakeStatus2Text();
+                InvokeFormEvent(ControlDynamicEvent.INIT2);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".Init2", ex);
+            }
+            
+        }
+
+        protected void CreateFormProgram()
+        {
+            try
+            {
+                //DMETHOD
+                if (_aldmConfig.NoInfo || string.IsNullOrEmpty(_aldmConfig.DMETHOD))
+                {
+                    return;
+                }
+
+                string using_text = "";
+                string method_text = "";
+                //foreach (DataRow dataRow in Invoice.Alct1.Rows)
+                {
+                    var xml = _aldmConfig.DMETHOD;
+                    if (xml == "") return;
+                    DataSet ds = new DataSet();
+                    ds.ReadXml(new StringReader(xml));
+                    if (ds.Tables.Count <= 0) return;
+                    var data = ds.Tables[0];
+                    foreach (DataRow event_row in data.Rows)
+                    {
+                        var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
+                        var method_name = event_row["method"].ToString().Trim();
+                        Event_Methods[EVENT_NAME] = method_name;
+
+                        using_text += data.Columns.Contains("using") ? event_row["using"] : "";
+                        method_text += data.Columns.Contains("content") ? event_row["content"] + "\n" : "";
+                    }
+                }
+
+            Build:
+                Event_program = V6ControlsHelper.CreateProgram("DynamicFormNameSpace", "DynamicFormClass", "D" + _aldmConfig.MA_DM, using_text, method_text);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".CreateProgram0", ex);
+            }
+        }
+
+        /// <summary>
+        /// Gọi hàm động theo tên event đã định nghĩa.
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <returns></returns>
+        public object InvokeFormEvent(string eventName)
+        {
+            try // Dynamic invoke
+            {
+                if (Event_Methods.ContainsKey(eventName))
+                {
+                    var method_name = Event_Methods[eventName];
+                    return V6ControlsHelper.InvokeMethodDynamic(Event_program, method_name, All_Objects);
+                }
+            }
+            catch (Exception ex1)
+            {
+                this.WriteExLog(GetType() + ".Dynamic invoke " + eventName, ex1);
+            }
+            return null;
         }
 
         private readonly V6Categories _categories = new V6Categories();
@@ -390,7 +490,6 @@ namespace V6ControlManager.FormManager.SoDuManager
                 }
 
 
-
                 if (dataGridView1.Columns.Contains("UID"))
                 {
                     var keys = new SortedDictionary<string, object> {{"UID", row.Cells["UID"].Value}};
@@ -399,9 +498,42 @@ namespace V6ControlManager.FormManager.SoDuManager
                         == DialogResult.Yes)
                     {
                         var t = _categories.Delete(CurrentTable, keys);
-
+                        
                         if (t > 0)
                         {
+                            //AfterDeleteBase
+                            if (_aldmConfig != null && _aldmConfig.HaveInfo)
+                            {
+                                var _TableStruct = V6BusinessHelper.GetTableStruct(_aldmConfig.TABLE_NAME);
+                                var KEYS = ObjectAndString.SplitString(_aldmConfig.KEY.ToUpper());
+                                var datas = "";
+                                var data_old = "";
+                                foreach (string KEY in KEYS)
+                                {
+                                    if (!_TableStruct.ContainsKey(KEY)) continue;
+                                    var sct = _TableStruct[KEY];
+                                    if (!_data.ContainsKey(KEY)) return;
+                                    var o_new = _data[KEY];
+                                    datas += "|" + SqlGenerator.GenSqlStringValue(o_new, sct.sql_data_type_string, sct.ColumnDefault, false, sct.MaxLength);
+
+                                }
+                                if (datas.Length > 1) datas = datas.Substring(1);
+
+                                SqlParameter[] plist =
+                                        {
+                                            new SqlParameter("@TableName", _aldmConfig.TABLE_NAME),
+                                            new SqlParameter("@Fields", _aldmConfig.KEY),
+                                            new SqlParameter("@datas", datas),
+                                            new SqlParameter("@UID", _data["UID"]),
+                                            new SqlParameter("@user_id", V6Login.UserId),
+                                        };
+                                V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_DELE_AL_ALL", plist);
+                            }
+                            //AfterDelete
+                            {
+                                All_Objects["data"] = _data;
+                                InvokeFormEvent(FormDynamicEvent.AFTERDELETESUCCESS);
+                            }
                             ReLoad();
                             V6ControlFormHelper.ShowMainMessage(V6Text.Deleted);
                         }
@@ -481,6 +613,30 @@ namespace V6ControlManager.FormManager.SoDuManager
 
         #endregion do method
 
+        private string LOAD_TABLE
+        {
+            get
+            {
+                string load_table = _tableName;// CurrentTable.ToString();
+                // Tuanmh 01/07/2019 set TABLE_VIEW
+                //if (CurrentTable == V6TableName.Notable && _aldmConfig != null)
+                if (_aldmConfig != null)
+                {
+                    if (!string.IsNullOrEmpty(_aldmConfig.TABLE_VIEW)
+                        && V6BusinessHelper.IsExistDatabaseTable(_aldmConfig.TABLE_VIEW))
+                    {
+                        load_table = _aldmConfig.TABLE_VIEW;
+                    }
+                    else
+                    {
+                        load_table = _tableName;
+                    }
+
+                    //if (string.IsNullOrEmpty(sortField)) sortField = aldm_config.ORDER;
+                }
+                return load_table;
+            }
+        }
 
         /// <summary>
         /// Được gọi từ DanhMucControl
@@ -507,9 +663,13 @@ namespace V6ControlManager.FormManager.SoDuManager
                 SaveSelectedCellLocation(dataGridView1);
                 if (page < 1) page = 1;
                 CurrentTable = tableName;
+                if (_aldmConfig != null && CurrentTable == V6TableName.Notable)
+                {
+                    if (string.IsNullOrEmpty(sortField)) sortField = _aldmConfig.ORDER;
+                }
 
                 _last_filter = GetWhere();
-                var sr = _categories.SelectPaging(tableName, "*", page, size, _last_filter, sortField, @ascending);
+                var sr = _categories.SelectPaging(LOAD_TABLE, "*", page, size, _last_filter, sortField, @ascending);
                 
                 SelectResult.Data = sr.Data;
                 SelectResult.Page = sr.Page;

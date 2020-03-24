@@ -131,6 +131,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             LoadDetail2Controls();
             LoadDetail3Controls();
             LoadAdvanceControls(Invoice.Mact);
+            CreateCustomInfoTextBox(group4, txtSoct_tt, cboChuyenData);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             LoadTag(Invoice, detail1.Controls);
             ResetForm();
@@ -1612,6 +1613,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 if (detail1.MODE == V6Mode.View && detail1.btnXoa.Enabled && detail1.btnXoa.Visible)
                     detail1.btnXoa.PerformClick();
             }
+            else if (keyData == Keys.F9)
+            {
+                XuLyF9Base();
+                return true;
+            }
             else
             {
                 return base.DoHotKey0(keyData);
@@ -2879,6 +2885,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 //btnSua.Focus();
                 FormatNumberControl();
                 FormatNumberGridView();
+                LoadCustomInfo(dateNgayCT.Value, txtMaKh.Text);
 
                 OnInvoiceChanged(_sttRec);
             }
@@ -5607,6 +5614,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         private void txtMaKh_V6LostFocus(object sender)
         {
             XuLyChonMaKhachHang();
+            LoadCustomInfo(dateNgayCT.Value, txtMaKh.Text);
         }
 
         private void btnInfos_Click(object sender, EventArgs e)

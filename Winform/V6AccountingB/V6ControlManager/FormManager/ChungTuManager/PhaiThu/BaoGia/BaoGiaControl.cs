@@ -105,6 +105,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             
             LoadDetailControls();
             LoadAdvanceControls(Invoice.Mact);
+            CreateCustomInfoTextBox(group4, txtTongSoLuong1, cboChuyenData);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             LoadTag(Invoice, detail1.Controls);
             ResetForm();
@@ -759,7 +760,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
         #region ==== Override Methods ====
 
-        private void XuLyF9()
+        public override void XuLyF9()
         {
             try
             {
@@ -940,7 +941,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                 if (detail1.MODE == V6Mode.View && detail1.btnXoa.Enabled && detail1.btnXoa.Visible)
                     detail1.btnXoa.PerformClick();
             }
-            else if (keyData == Keys. F9)
+            else if (keyData == Keys.F9)
             {
                 var row = AM.Rows[CurrentIndex];
 
@@ -958,7 +959,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
                         if (V6Rights.CheckLevel(V6Login.Level, Convert.ToInt32(row["User_id2"]), (row["Xtag"]??"").ToString().Trim()))
                         {
-                            XuLyF9();
+                            XuLyF9Base();
+                            //XuLyF9();
                             return true;
                         }
                         else
@@ -3337,6 +3339,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
                 FormatNumberControl();
                 FormatNumberGridView();
+                LoadCustomInfo(dateNgayCT.Value, txtMaKh.Text);
 
                 OnInvoiceChanged(_sttRec);
             }
@@ -5076,6 +5079,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         private void txtMaKh_V6LostFocus(object sender)
         {
             XuLyChonMaKhachHang();
+            LoadCustomInfo(dateNgayCT.Value, txtMaKh.Text);
         }
         
         private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -5409,6 +5413,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
             FixMenuChucNangItemShiftText(chonTuExcelMenu, chonDonHangMuaMenu);
+        }
+
+        private void inPhieuHachToanMenu_Click(object sender, EventArgs e)
+        {
+            InPhieuHachToan(Invoice, _sttRec, TongThanhToan, TongThanhToanNT);
         }
 
     }

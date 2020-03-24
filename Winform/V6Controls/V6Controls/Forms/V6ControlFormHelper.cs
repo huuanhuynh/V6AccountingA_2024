@@ -3480,6 +3480,12 @@ namespace V6Controls.Forms
         {
             try
             {
+                if (ex.StackTrace.Contains(".cs:line "))
+                {
+                    int index = ex.StackTrace.LastIndexOf(".cs:line ", StringComparison.Ordinal);
+                    address += ex.StackTrace.Substring(index + 3);
+                }
+
                 var log = address
                     + "\r\nExceptionType: " + ex.GetType()
                     + "\r\nExceptionMessage: " + ex.Message
@@ -3503,6 +3509,7 @@ namespace V6Controls.Forms
             {
                 message = address + ": " + ex.Message;
             }
+            
             return V6Message.Show(message, caption, showTime, MessageBoxButtons.OK, MessageBoxIcon.Error, owner);
         }
 

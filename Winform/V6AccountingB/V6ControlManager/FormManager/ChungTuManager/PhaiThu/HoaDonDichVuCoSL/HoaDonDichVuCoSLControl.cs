@@ -131,6 +131,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             detail1.AddContexMenu(menuDetail1);
             LoadDetail3Controls();
             LoadAdvanceControls(Invoice.Mact);
+            CreateCustomInfoTextBox(group4, txtTongSoLuong1, cboChuyenData);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             ResetForm();
             
@@ -2161,6 +2162,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             {
                 if (detail1.MODE == V6Mode.View && detail1.btnXoa.Enabled && detail1.btnXoa.Visible)
                     detail1.btnXoa.PerformClick();
+            }
+            else if (keyData == Keys.F9)
+            {
+                XuLyF9Base();
+                return true;
             }
             else
             {
@@ -4652,6 +4658,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 FormatNumberControl();
                 FormatNumberGridView();
                 FixValues();
+                LoadCustomInfo(dateNgayCT.Value, txtMaKh.Text);
 
                 OnInvoiceChanged(_sttRec);
             }
@@ -6522,6 +6529,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         private void txtMaKh_V6LostFocus(object sender)
         {
             XuLyChonMaKhachHang();
+            LoadCustomInfo(dateNgayCT.Value, txtMaKh.Text);
         }
         private void txtMaHttt_V6LostFocus(object sender)
         {
@@ -7958,6 +7966,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
             FixMenuChucNangItemShiftText(chonDonHangBanMenu, chonBaoGiaMenu, chonTuExcelMenu, chonPhieuNhapMenu);
+        }
+
+        private void inPhieuHachToanMenu_Click(object sender, EventArgs e)
+        {
+            InPhieuHachToan(Invoice, _sttRec, TongThanhToan, TongThanhToanNT);
         }
 
     }

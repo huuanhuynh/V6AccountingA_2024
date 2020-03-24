@@ -140,7 +140,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             detail1.AddContexMenu(menuDetail1);
             LoadDetail3Controls();
             LoadAdvanceControls(Invoice.Mact);
-            CreateCustomInfoTextBox();
+            CreateCustomInfoTextBox(group4, txtTongSoLuong1, cboChuyenData);
             lblNameT.Left  = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             LoadTag(Invoice, detail1.Controls);
             ResetForm();
@@ -151,93 +151,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             InvokeFormEvent(FormDynamicEvent.INIT);
             V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
         }
+        
 
-        private V6ColorTextBox txtCustomInfo;
-        private void CreateCustomInfoTextBox()
-        {
-            try
-            {
-                txtCustomInfo = new V6ColorTextBox()
-                {
-                    Name = "txtCustomeInfo",
-                    Width = 100,
-                    Height = 23,
-                    Left = txtTongSoLuong1.Right + 5,
-                    Top = txtTongSoLuong1.Top,
-                    ReadOnly = true,
-                    Multiline = true,
-                    Visible = false,
-                    Tag = "readonly",
-                };
-                txtCustomInfo.TextChanged += delegate
-                {
-                    txtCustomInfo.Visible = txtCustomInfo.Text != "";
-                    txtCustomInfo.Height = 23;
-                };
-                txtCustomInfo.BorderStyle = BorderStyle.FixedSingle;
-                txtCustomInfo.Font = new Font(txtCustomInfo.Font, FontStyle.Bold);
-                //txtCustomInfo.Text = "V6Soft";
-                group4.Controls.Add(txtCustomInfo);
-                group4.SizeChanged += (sender, args) =>
-                {
-                    if (group4.Width > txtCustomInfo.Left + 100) txtCustomInfo.Width = group4.Width - txtCustomInfo.Left - 10;
-                };
-                txtCustomInfo.BringToFront();
-                txtCustomInfo.GotFocus += (sender, args) =>
-                {
-                    txtCustomInfo.Height = cboChuyenData.Bottom - txtTongSoLuong1.Top;
-                };
-                txtCustomInfo.MouseMove += delegate
-                {
-                    txtCustomInfo.Height = cboChuyenData.Bottom - txtTongSoLuong1.Top;
-                };
-                txtCustomInfo.Leave += (sender, args) =>
-                {
-                    txtCustomInfo.Height = 23;
-                };
-                txtCustomInfo.MouseLeave += delegate
-                {
-                    if (!txtCustomInfo.Focused) txtCustomInfo.Height = 23;
-                };
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + "CreateCustomeInfoTextBox", ex);
-            }
-        }
-
-        /// <summary>
-        /// Tải thông tin.
-        /// </summary>
-        public void LoadCustomInfo()
-        {
-            string text = "";
-            try
-            {
-                //txtCustomInfo.Text = "";
-                //VPA_GET_SOA_MA_KH_INFOR
-                SqlParameter[] plist =
-                {
-                    new SqlParameter("@Ngay_ct", dateNgayCT.Value.Date),
-                    new SqlParameter("@Ma_kh", txtMaKh.Text),
-                    new SqlParameter("@Ma_ct", Invoice.Mact),
-                    new SqlParameter("@Stt_rec", _sttRec),
-                    new SqlParameter("@Lan", V6Setting.Language),
-                    new SqlParameter("@User_id", V6Login.UserId),
-                    new SqlParameter("@Advance", ""),
-                };
-                var data = V6BusinessHelper.ExecuteProcedure("VPA_GET_SOA_MA_KH_INFOR", plist).Tables[0];
-                if (data.Rows.Count > 0)
-                {
-                    text = data.Rows[0]["Mess1"].ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".LoadCustomInfo", ex);
-            }
-            txtCustomInfo.Text = text;
-        }
+        
 
         private void InitDebug()
         {
@@ -2426,6 +2342,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 if (detail1.MODE == V6Mode.View && detail1.btnXoa.Enabled && detail1.btnXoa.Visible)
                     detail1.btnXoa.PerformClick();
+            }
+            else if (keyData == Keys.F9)
+            {
+                XuLyF9Base();
+                return true;
             }
             else
             {
@@ -5367,7 +5288,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 FormatNumberControl();
                 FormatNumberGridView();
                 FixValues();
-                LoadCustomInfo();
+                LoadCustomInfo(dateNgayCT.Value, txtMaKh.Text);
 
                 OnInvoiceChanged(_sttRec);
             }
@@ -7296,7 +7217,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private void txtMaKh_V6LostFocus(object sender)
         {
             XuLyChonMaKhachHang();
-            LoadCustomInfo();
+            LoadCustomInfo(dateNgayCT.Value, txtMaKh.Text);
         }
         private void txtMaHttt_V6LostFocus(object sender)
         {
@@ -8967,6 +8888,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private void txtMaKh_TextChanged(object sender, EventArgs e)
         {
             DoNothing();
+        }
+
+        private void inPhieuHachToanMenu_Click(object sender, EventArgs e)
+        {
+            InPhieuHachToan(Invoice, _sttRec, TongThanhToan, TongThanhToanNT);
         }
 
         

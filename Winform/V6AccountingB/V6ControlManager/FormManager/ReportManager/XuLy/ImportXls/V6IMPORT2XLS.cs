@@ -208,7 +208,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                _tbl = Excel_File.Sheet1ToDataTable(txtFile.Text);
+                _tbl = Excel_File.Sheet1ToDataTable(txtFile.Text, 0, V6Options.M_MAXROWS_EXCEL);
                 //Check1: chuyen ma, String12 A to U
                 string from0 = comboBox1.Text, to0 = comboBox2.Text;
                 if (chkChuyenMa.Checked)

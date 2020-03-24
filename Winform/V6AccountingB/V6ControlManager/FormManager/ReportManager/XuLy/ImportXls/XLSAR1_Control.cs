@@ -61,7 +61,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return;
                 }
 
-                _tbl = Excel_File.Sheet1ToDataTable(FilterControl.String1);
+                _tbl = Excel_File.Sheet1ToDataTable(FilterControl.String1, 0, V6Options.M_MAXROWS_EXCEL);
                 check = null;
 
                 //Check1: chuyen ma, String12 A to U

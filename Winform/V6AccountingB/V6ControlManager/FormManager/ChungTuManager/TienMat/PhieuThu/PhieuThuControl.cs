@@ -120,6 +120,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             LoadDetailControls("2");
             LoadDetail3Controls();
             LoadAdvanceControls(Invoice.Mact);
+            CreateCustomInfoTextBox(group4, txtSoct_tt, cboChuyenData);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             LoadTag(Invoice, detail1.Controls);
             ResetForm();
@@ -1163,6 +1164,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             {
                 if (detail1.MODE == V6Mode.View && detail1.btnXoa.Enabled && detail1.btnXoa.Visible)
                     detail1.btnXoa.PerformClick();
+            }
+            else if (keyData == Keys.F9)
+            {
+                XuLyF9Base();
+                return true;
             }
             else if (keyData == Keys.Escape)
             {
@@ -2472,6 +2478,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 //btnSua.Focus();
                 FormatNumberControl();
                 FormatNumberGridView();
+                LoadCustomInfo(dateNgayCT.Value, txtMaKh.Text);
 
                 OnInvoiceChanged(_sttRec);
             }
@@ -4382,6 +4389,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         private void txtMaKh_V6LostFocus(object sender)
         {
             XuLyChonMaKhachHang();
+            LoadCustomInfo(dateNgayCT.Value, txtMaKh.Text);
         }
 
         private void btnInfos_Click(object sender, EventArgs e)
@@ -4696,6 +4704,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
             FixMenuChucNangItemShiftText(chonTuExcelMenu, ThuCongNoMenu, thuNoTaiKhoanMenu);
+        }
+
+        private void inPhieuHachToanMenu_Click(object sender, EventArgs e)
+        {
+            InPhieuHachToan(Invoice, _sttRec, TongThanhToan, TongThanhToanNT);
         }
     }
 }

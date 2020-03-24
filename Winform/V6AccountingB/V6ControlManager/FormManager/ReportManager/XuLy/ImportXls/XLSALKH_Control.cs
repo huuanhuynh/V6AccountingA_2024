@@ -41,8 +41,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 FilterControl.UpdateValues();
 
-                _tbl = V6Tools.V6Convert.Excel_File
-                    .Sheet1ToDataTable(FilterControl.String1);
+                _tbl = Excel_File.Sheet1ToDataTable(FilterControl.String1, 0, V6Options.M_MAXROWS_EXCEL);
                 //Check1: chuyen ma, String12 A to U
                 if (FilterControl.Check1)
                 {

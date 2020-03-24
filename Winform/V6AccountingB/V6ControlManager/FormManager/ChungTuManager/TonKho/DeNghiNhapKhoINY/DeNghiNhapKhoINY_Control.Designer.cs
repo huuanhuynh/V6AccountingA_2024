@@ -73,6 +73,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.btnIn = new wyDay.Controls.SplitButton();
+            this.menuBtnIn = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.inPhieuHachToanMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.btnCopy = new System.Windows.Forms.Button();
             this.btnMoi = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
@@ -250,6 +252,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.v6Label1 = new V6Controls.V6Label();
             this.txtSoPhieu = new V6Controls.V6VvarTextBox();
             this.menuChucNang.SuspendLayout();
+            this.menuBtnIn.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -635,16 +638,34 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             // 
             this.btnIn.AccessibleDescription = "APOCTPOAR00035";
             this.btnIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnIn.AutoSize = true;
+            this.btnIn.ContextMenuStrip = this.menuBtnIn;
             this.btnIn.Enabled = false;
             this.btnIn.Image = global::V6ControlManager.Properties.Resources.Print24;
             this.btnIn.Location = new System.Drawing.Point(217, 547);
             this.btnIn.Name = "btnIn";
             this.btnIn.Size = new System.Drawing.Size(70, 32);
+            this.btnIn.SplitMenuStrip = this.menuBtnIn;
             this.btnIn.TabIndex = 9;
             this.btnIn.Text = "&In";
             this.btnIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnIn.UseVisualStyleBackColor = true;
             this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
+            // 
+            // menuBtnIn
+            // 
+            this.menuBtnIn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.inPhieuHachToanMenu});
+            this.menuBtnIn.Name = "menuBtnIn";
+            this.menuBtnIn.Size = new System.Drawing.Size(174, 48);
+            // 
+            // inPhieuHachToanMenu
+            // 
+            this.inPhieuHachToanMenu.AccessibleDescription = "INVOICEM00029";
+            this.inPhieuHachToanMenu.Name = "inPhieuHachToanMenu";
+            this.inPhieuHachToanMenu.Size = new System.Drawing.Size(173, 22);
+            this.inPhieuHachToanMenu.Text = "In phiếu hạch toán";
+            this.inPhieuHachToanMenu.Click += new System.EventHandler(this.inPhieuHachToanMenu_Click);
             // 
             // btnCopy
             // 
@@ -3625,6 +3646,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.Load += new System.EventHandler(this.Form_Load);
             this.VisibleChanged += new System.EventHandler(this.HoaDonBanHangKiemPhieuXuat_VisibleChanged);
             this.menuChucNang.ResumeLayout(false);
+            this.menuBtnIn.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabChiTiet.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -3865,5 +3887,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
         private System.Windows.Forms.ToolStripMenuItem thayTheNhieuMenu;
         private V6FormButton btnApGia;
         private V6VvarTextBox txtMaGia;
+        private System.Windows.Forms.ContextMenuStrip menuBtnIn;
+        private System.Windows.Forms.ToolStripMenuItem inPhieuHachToanMenu;
     }
 }

@@ -722,6 +722,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     new SqlParameter("@Fields", _aldmConfig.KEY),
                     new SqlParameter("@datas_old", data_old),
                     new SqlParameter("@datas_new", data_new),
+                    new SqlParameter("@uid", Mode == V6Mode.Edit ? DataOld["UID"] : ""),
+                    new SqlParameter("@mode", Mode == V6Mode.Add ? "M" : "S"),
                     new SqlParameter("@User_id", V6Login.UserId),
                 };
                 V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_UPDATE_AL_ALL", plist);

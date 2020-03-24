@@ -37,8 +37,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 FilterControl.UpdateValues();
 
-                _tbl = V6Tools.V6Convert.Excel_File
-                    .Sheet1ToDataTable(FilterControl.String1);
+                _tbl = Excel_File.Sheet1ToDataTable(FilterControl.String1, 0, V6Options.M_MAXROWS_EXCEL);
                 if (FilterControl.Check1)
                 {
                     if (!string.IsNullOrEmpty(FilterControl.String2) && !string.IsNullOrEmpty(FilterControl.String3))
@@ -49,7 +48,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var to = "U";
                         if (FilterControl.String3.StartsWith("TCVN3")) to = "A";
                         if (FilterControl.String3.StartsWith("VNI")) to = "V";
-                        _tbl = V6Tools.V6Convert.Data_Table.ChuyenMaTiengViet(_tbl, from, to);
+                        _tbl = Data_Table.ChuyenMaTiengViet(_tbl, from, to);
                     }
                     else
                     {

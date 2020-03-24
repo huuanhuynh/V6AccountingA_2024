@@ -12,6 +12,7 @@ using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.Filter;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
+using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Controls;
 using V6Controls.Controls;
 using V6Controls.Controls.GridView;
@@ -3267,6 +3268,43 @@ namespace V6ControlManager.FormManager.ChungTuManager
             SetStatus2Text();
         }
 
+        public void InPhieuHachToan(V6InvoiceBase Invoice, string sttRec_In, decimal tongThanhToan_Value, decimal tongThanhToanNT_Value)
+        {
+            try
+            {
+                string program = "APRINT_HACHTOAN";
+                string repFile = "APRINT_HACHTOAN";
+                var repTitle = "PHIẾU HẠCH TOÁN";
+                var repTitle2 = "GENERAL VOUCHER";
+
+                var c = new ReportRViewBase(Invoice.Mact, program, program, repFile,
+                    repTitle, repTitle2, "", "", "");
+
+                List<SqlParameter> plist = new List<SqlParameter>();
+                plist.Add(new SqlParameter("@STT_REC", sttRec_In));
+                plist.Add(new SqlParameter("@isInvoice", "0"));
+                plist.Add(new SqlParameter("@ReportFile", repFile));
+                plist.Add(new SqlParameter("@user_id", V6Login.UserId));
+                c.FilterControl.InitFilters = plist;
+
+                //Tạo Extra parameters.
+                SortedDictionary<string, object> parameterData = new SortedDictionary<string, object>();
+                decimal TTT = tongThanhToan_Value;
+                decimal TTT_NT = tongThanhToanNT_Value;
+                string LAN = c.LAN;
+                //string MA_NT = _maNt;
+                parameterData.Add("SOTIENVIETBANGCHU", V6BusinessHelper.MoneyToWords(TTT, LAN, V6Options.M_MA_NT0));
+                parameterData.Add("SOTIENVIETBANGCHUNT", V6BusinessHelper.MoneyToWords(TTT_NT, LAN, MA_NT));
+                c.FilterControl.RptExtraParameters = parameterData;
+                c.AutoClickNhan = true;
+                c.ShowToForm(this, V6Setting.IsVietnamese ? repTitle : repTitle2, true);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, sttRec_In, ex.Message));
+            }
+        }
+
         public bool CheckEditAll(V6InvoiceBase Invoice, string status, string kieupost, string soct_sophieu, string ma_sonb,
             string ma_dvcs, string makh, string manx, DateTime ngayct_date, decimal tongThanhToan_Value, string mode_E_D)
         {
@@ -3990,6 +4028,114 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 detail1.SetData( dataGridView1.CurrentRow.ToDataDictionary());
             }
         }
-        
+
+        public V6ColorTextBox txtCustomInfo;
+        public void CreateCustomInfoTextBox(GroupBox group4, TextBox topLeftBase, Control bottomLeftBase)
+        {
+            try
+            {
+                txtCustomInfo = new V6ColorTextBox()
+                {
+                    Name = "txtCustomeInfo",
+                    Width = 100,
+                    Height = 23,
+                    Left = topLeftBase.Right + 5,
+                    Top = topLeftBase.Top,
+                    ReadOnly = true,
+                    Multiline = true,
+                    Visible = false,
+                    Tag = "readonly",
+                };
+                txtCustomInfo.TextChanged += delegate
+                {
+                    txtCustomInfo.Visible = txtCustomInfo.Text != "";
+                    txtCustomInfo.Height = 23;
+                };
+                txtCustomInfo.BorderStyle = BorderStyle.FixedSingle;
+                txtCustomInfo.Font = new Font(txtCustomInfo.Font, FontStyle.Bold);
+                //txtCustomInfo.Text = "V6Soft";
+                group4.Controls.Add(txtCustomInfo);
+                group4.SizeChanged += (sender, args) =>
+                {
+                    if (group4.Width > txtCustomInfo.Left + 100) txtCustomInfo.Width = group4.Width - txtCustomInfo.Left - 10;
+                };
+                txtCustomInfo.BringToFront();
+                txtCustomInfo.GotFocus += (sender, args) =>
+                {
+                    txtCustomInfo.Height = bottomLeftBase.Bottom - topLeftBase.Top;
+                };
+                txtCustomInfo.MouseMove += delegate
+                {
+                    txtCustomInfo.Height = bottomLeftBase.Bottom - topLeftBase.Top;
+                };
+                txtCustomInfo.Leave += (sender, args) =>
+                {
+                    txtCustomInfo.Height = 23;
+                };
+                txtCustomInfo.MouseLeave += delegate
+                {
+                    if (!txtCustomInfo.Focused) txtCustomInfo.Height = 23;
+                };
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "CreateCustomeInfoTextBox", ex);
+            }
+        }
+
+        /// <summary>
+        /// Tải thông tin.
+        /// </summary>
+        public void LoadCustomInfo(DateTime ngayCT, string ma_kh)
+        {
+            string text = "";
+            try
+            {
+                //txtCustomInfo.Text = "";
+                //VPA_GET_SOA_MA_KH_INFOR
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@Ngay_ct", ngayCT.Date),
+                    new SqlParameter("@Ma_kh", ma_kh),
+                    new SqlParameter("@Ma_ct", _invoice.Mact),
+                    new SqlParameter("@Stt_rec", _sttRec),
+                    new SqlParameter("@Lan", V6Setting.Language),
+                    new SqlParameter("@User_id", V6Login.UserId),
+                    new SqlParameter("@Advance", ""),
+                };
+                var data = V6BusinessHelper.ExecuteProcedure("VPA_GET_VC_MA_KH_INFOR", plist).Tables[0];
+                if (data.Rows.Count > 0)
+                {
+                    text = data.Rows[0]["Mess1"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".LoadCustomInfo", ex);
+            }
+            txtCustomInfo.Text = text;
+        }
+
+        /// <summary>
+        /// <para>Gọi hàm động Event F9. Nếu ko có định nghĩa Event động sẽ gọi hàm cứng XulyF9 (override).</para>
+        /// <para>Trong code động vẫ ncó thể gọi thisForm.XuLyF9 để gọi hàm cứng.</para>
+        /// </summary>
+        protected void XuLyF9Base()
+        {
+            if (Event_Methods.ContainsKey(FormDynamicEvent.F9))
+            {
+                AM
+                InvokeFormEvent(FormDynamicEvent.F9);
+            }
+            else
+            {
+                XuLyF9();
+            }
+        }
+
+        public virtual void XuLyF9()
+        {
+            DoNothing();
+        }
     }
 }

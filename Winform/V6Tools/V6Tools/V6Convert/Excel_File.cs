@@ -22,10 +22,92 @@ namespace V6Tools.V6Convert
         }
 
         /// <summary>
+        /// Đọc sheet1 của file excel vào bảng dữ liệu.
+        /// </summary>
+        /// <param name="fileName">Đường dẫn file excel xls xlsx.</param>
+        /// <param name="beginRow">Dòng bắt đầu, bắt đầu là 0.</param>
+        /// <param name="maxRowCountLimit">Số dòng dữ liệu giới hạn.</param>
+        /// <returns></returns>
+        public static DataTable Sheet1ToDataTable(string fileName, int beginRow, int maxRowCountLimit)
+        {
+            if (beginRow < 0) beginRow = 0;
+            DataTable sheetTable = new DataTable();
+            try
+            {
+                string ext = Path.GetExtension(fileName).ToLower();
+                SmartXLS.WorkBook workbook = new SmartXLS.WorkBook();
+
+                #region ==== workbook try to read file ====
+
+                try
+                {
+                    try
+                    {
+                        try
+                        {
+                            if (ext == ".xls")
+                                workbook.read(fileName);
+                            else if (ext == ".xlsx")
+                                workbook.readXLSX(fileName);
+                            else if (ext == ".xml")
+                                workbook.readXML(fileName);
+                        }
+                        catch
+                        {
+                            workbook.readXLSX(fileName);
+                        }
+                    }
+                    catch
+                    {
+                        workbook.readXML(fileName);
+                    }
+                }
+                catch
+                {
+                    workbook.read(fileName);
+                }
+
+                #endregion
+
+                //int sheetCount = workbook.NumSheets;
+                //string text;
+
+                int sheetIndex = 0;
+
+                //select sheet
+                workbook.Sheet = sheetIndex;
+
+                string sheetName = workbook.getSheetName(sheetIndex);
+                sheetTable = new DataTable(sheetName);
+
+                int lastRow = workbook.LastRow;
+                if (lastRow < 1)
+                    return sheetTable;
+                int getRowCount = lastRow - beginRow + 1;
+                if (maxRowCountLimit > 0 && getRowCount > maxRowCountLimit)
+                {
+                    getRowCount = maxRowCountLimit;
+                }
+                int lastCol = workbook.LastCol;
+                if (lastCol < 1)
+                    return sheetTable;
+
+                sheetTable = workbook.ExportDataTable(beginRow, 0, getRowCount, lastCol + 1, true, true);
+
+                return sheetTable;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Sheet1ToDataTable " + ex.Message);
+            }
+            return sheetTable;
+        }
+
+        /// <summary>
         /// Đọc dữ liệu trong Sheet1
         /// </summary>
         /// <param name="fileName">Tên file Excel.</param>
-        /// <param name="beginRow">Dòng bắt đầu (Column name).</param>
+        /// <param name="beginRow">Dòng bắt đầu, 0 base.</param>
         /// <returns></returns>
         public static DataTable Sheet1ToDataTable(string fileName, int beginRow = 0)
         {
@@ -67,8 +149,8 @@ namespace V6Tools.V6Convert
                 }
                 #endregion
 
-                int sheetCount = workbook.NumSheets;
-                string text;
+                //int sheetCount = workbook.NumSheets;
+                //string text;
 
                 int sheetIndex = 0;
                 {
@@ -81,70 +163,13 @@ namespace V6Tools.V6Convert
 
                     int lastRow = workbook.LastRow; if (lastRow < 1)
                         return sheetTable;
+                    int getRowCount = lastRow - beginRow + 1;
                     int lastCol = workbook.LastCol; if (lastCol < 1)
                         return sheetTable;
 
-                    sheetTable = workbook.ExportDataTable(beginRow, 0, lastRow+1, lastCol+1, true, true);
+                    sheetTable = workbook.ExportDataTable(beginRow, 0, getRowCount, lastCol + 1, true, true);
 
                     return sheetTable;
-
-                    //Tao tieu de table tu row 0
-                    for (int col = 0; col <= lastCol; col++)
-                    {
-                        text = workbook.getText(beginRow, col);
-                        var type = workbook.getType(beginRow + 1, col);
-                        Type dataType = typeof(string);
-                        if (type == 1)
-                        {
-                            string temp_value = workbook.getFormattedText(beginRow + 1, col);
-                            if (temp_value.Contains("/") || temp_value.Contains("-"))
-                            {
-                                dataType = typeof (DateTime);
-                            }
-                            else
-                            {
-                                dataType = typeof (decimal);
-                            }
-                        }
-
-                        if (sheetTable.Columns.Contains(text))
-                        {                            
-                            sheetTable.Columns.Add(text + col, dataType);
-                        }
-                        else
-                        {
-                            sheetTable.Columns.Add(text, dataType);
-                        }
-                    }
-
-                    //Lay du lieu tu row 1
-                    for (int rowIndex = beginRow + 1; rowIndex <= lastRow; rowIndex++)
-                    {
-                        //get the last column of this row.
-                        int lastColForRow = workbook.getLastColForRow(rowIndex);
-                        DataRow row = sheetTable.NewRow();
-                        for (int colIndex = 0; colIndex <= lastColForRow; colIndex++)
-                        {
-                            var column = sheetTable.Columns[colIndex];
-                            if (column.DataType == typeof (DateTime))
-                            {
-                                text = workbook.getFormattedText(rowIndex, colIndex);
-                                text = text.Replace("-", "/");
-                                row[colIndex] = ObjectAndString.ObjectToFullDateTime(text);
-                            }
-                            else if (ObjectAndString.IsNumberType(column.DataType))
-                            {
-                                var number = workbook.getNumber(rowIndex, colIndex);
-                                row[colIndex] = ObjectAndString.ObjectTo(column.DataType, number);
-                            }
-                            else
-                            {
-                                text = workbook.getText(rowIndex, colIndex);
-                                row[colIndex] = text;
-                            }
-                        }
-                        sheetTable.Rows.Add(row);
-                    }
                 }
 
             }

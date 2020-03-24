@@ -14,6 +14,7 @@ using V6Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
+using V6SqlConnect;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
@@ -1121,8 +1122,37 @@ namespace V6ControlManager.FormManager.DanhMucManager
                                         }
                                     }
                                     
+                                    //AfterDeleteBase
+                                    if (_aldmConfig != null && _aldmConfig.HaveInfo)
+                                    {
+                                        var _TableStruct = V6BusinessHelper.GetTableStruct(_tableName);
+                                        var KEYS = ObjectAndString.SplitString(_aldmConfig.KEY.ToUpper());
+                                        var datas = "";
+                                        var data_old = "";
+                                        foreach (string KEY in KEYS)
+                                        {
+                                            if (!_TableStruct.ContainsKey(KEY)) continue;
+                                            var sct = _TableStruct[KEY];
+                                            if (!_data.ContainsKey(KEY)) return;
+                                            var o_new = _data[KEY];
+                                            datas += "|" + SqlGenerator.GenSqlStringValue(o_new, sct.sql_data_type_string, sct.ColumnDefault, false, sct.MaxLength);
+                                            
+                                        }
+                                        if (datas.Length > 1) datas = datas.Substring(1);
+
+                                        SqlParameter[] plist =
+                                        {
+                                            new SqlParameter("@TableName", _tableName),
+                                            new SqlParameter("@Fields", _aldmConfig.KEY),
+                                            new SqlParameter("@datas", datas),
+                                            new SqlParameter("@UID", _data["UID"]),
+                                            new SqlParameter("@user_id", V6Login.UserId),
+                                        };
+                                        V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_DELE_AL_ALL", plist);
+                                    }
                                     //AfterDelete
                                     {
+                                        All_Objects["data"] = _data;
                                         InvokeFormEvent(FormDynamicEvent.AFTERDELETESUCCESS);
                                     }
                                 }
@@ -1132,7 +1162,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         {
                             this.ShowWarningMessage(V6Text.NoUID);
 
-                            _categories.Delete(_tableName, _data);
+                            //_categories.Delete(_tableName, _data);
                         }
                     }
 

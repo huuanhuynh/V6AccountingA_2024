@@ -646,6 +646,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 {
                     if (!_TableStruct.ContainsKey(KEY)) continue;
                     var sct = _TableStruct[KEY];
+                    if (!DataDic.ContainsKey(KEY)) return;
                     var o_new = DataDic[KEY];
                     data_new += "|" + SqlGenerator.GenSqlStringValue(o_new, sct.sql_data_type_string, sct.ColumnDefault, false, sct.MaxLength);
                     var o_old = Mode == V6Mode.Edit ? DataOld[KEY] : o_new;
@@ -661,13 +662,15 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     new SqlParameter("@Fields", _aldmConfig.KEY),
                     new SqlParameter("@datas_old", data_old),
                     new SqlParameter("@datas_new", data_new),
+                    new SqlParameter("@uid", Mode == V6Mode.Edit ? DataOld["UID"] : ""),
+                    new SqlParameter("@mode", Mode == V6Mode.Add ? "M" : "S"),
                     new SqlParameter("@User_id", V6Login.UserId),
                 };
                 V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_UPDATE_AL_ALL", plist);
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".UpdateAlqddvt", ex);
+                this.ShowErrorException(GetType() + ".AfterSaveBase", ex);
             }
         }
 
