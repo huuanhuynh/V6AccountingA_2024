@@ -3193,7 +3193,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         private System.Windows.Forms.Button btnLuu;
         private System.Windows.Forms.Button btnMoi;
         private System.Windows.Forms.Button btnCopy;
-        private System.Windows.Forms.Button btnIn;
+        private wyDay.Controls.SplitButton btnIn;
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.Button btnXem;

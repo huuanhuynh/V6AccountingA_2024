@@ -142,6 +142,14 @@ namespace V6Init
             }
         }
 
+        /// <summary>
+        /// Giới hạn số dòng dữ liệu đọc từ Excel.
+        /// </summary>
+        public static int M_MAXROWS_EXCEL
+        {
+            get { return Convert.ToInt32(GetValueNull("M_MAXROWS_EXCEL")??"0"); }
+        }
+
         private static string m_num_point;
         /// <summary>
         /// Dấu cách phần thập phân (lẻ) (,)
@@ -253,7 +261,7 @@ namespace V6Init
             }
         }
         private static string _M_VITRI_CODEDAY_INDEX;
-
+        
         /// <summary>
         /// Roun all-> Numeric 0,1,2...
         /// </summary>

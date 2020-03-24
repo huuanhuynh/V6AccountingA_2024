@@ -4240,7 +4240,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                                 dic["NGAY_CT0"] = dic0["NGAY_CT"];
                                 dic["SO_SERI0"] = dic0["SO_SERI"];
 
-                                var ty_gia_ht2_Value = ObjectAndString.ObjectToDecimal(dic0["ty_gia"]);
+                                var ty_gia_ht2_Value = ObjectAndString.ObjectToDecimal(dic0["TY_GIA"]);
                                 dic["TY_GIA_HT2"] = ty_gia_ht2_Value;
                                 if (dic["MA_NT_I"].ToString().Trim() != _mMaNt0)
                                 {

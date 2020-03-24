@@ -63,7 +63,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             this.btnXoa = new System.Windows.Forms.Button();
             this.txtLoaiCt = new V6Controls.V6VvarTextBox();
             this.btnSua = new System.Windows.Forms.Button();
-            this.btnIn = new System.Windows.Forms.Button();
+            this.btnIn = new wyDay.Controls.SplitButton();
             this.btnCopy = new System.Windows.Forms.Button();
             this.btnMoi = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
@@ -3400,7 +3400,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
         private System.Windows.Forms.Button btnLuu;
         private System.Windows.Forms.Button btnMoi;
         private System.Windows.Forms.Button btnCopy;
-        private System.Windows.Forms.Button btnIn;
+        private wyDay.Controls.SplitButton btnIn;
         private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.Button btnXem;
