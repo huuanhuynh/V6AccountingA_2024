@@ -28,30 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
             this.btnLogin = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
             this.label0 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.cboLang = new System.Windows.Forms.ComboBox();
+            this.cboLang = new V6Controls.V6ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radLocalDataMode = new System.Windows.Forms.RadioButton();
             this.radAPIDataMode = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
-            this.cboModule = new System.Windows.Forms.ComboBox();
+            this.cboModule = new V6Controls.V6ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.cboAgent = new System.Windows.Forms.ComboBox();
+            this.cboAgent = new V6Controls.V6ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnEdit = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.cboDatabase = new System.Windows.Forms.ComboBox();
+            this.cboDatabase = new V6Controls.V6ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -63,7 +63,7 @@
             this.btnLogin.Location = new System.Drawing.Point(70, 136);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(86, 23);
-            this.btnLogin.TabIndex = 5;
+            this.btnLogin.TabIndex = 10;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -75,7 +75,7 @@
             this.label1.Location = new System.Drawing.Point(12, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
-            this.label1.TabIndex = 1;
+            this.label1.TabIndex = 0;
             this.label1.Text = "User name";
             // 
             // txtUserName
@@ -84,7 +84,7 @@
             this.txtUserName.Location = new System.Drawing.Point(70, 3);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(215, 20);
-            this.txtUserName.TabIndex = 0;
+            this.txtUserName.TabIndex = 1;
             this.txtUserName.Text = "V6";
             this.txtUserName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUserName_KeyDown);
             this.txtUserName.Leave += new System.EventHandler(this.txtUserName_Leave);
@@ -99,7 +99,7 @@
             this.btnCancel.Location = new System.Drawing.Point(163, 136);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(86, 23);
-            this.btnCancel.TabIndex = 6;
+            this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.button2_Click);
@@ -121,7 +121,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '#';
             this.txtPassword.Size = new System.Drawing.Size(215, 20);
-            this.txtPassword.TabIndex = 1;
+            this.txtPassword.TabIndex = 3;
             this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
             // 
             // label2
@@ -131,7 +131,7 @@
             this.label2.Location = new System.Drawing.Point(12, 32);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
-            this.label2.TabIndex = 3;
+            this.label2.TabIndex = 2;
             this.label2.Text = "Password";
             // 
             // cboLang
@@ -141,7 +141,7 @@
             this.cboLang.Location = new System.Drawing.Point(70, 109);
             this.cboLang.Name = "cboLang";
             this.cboLang.Size = new System.Drawing.Size(215, 21);
-            this.cboLang.TabIndex = 4;
+            this.cboLang.TabIndex = 9;
             this.cboLang.SelectedIndexChanged += new System.EventHandler(this.cboLang_SelectedIndexChanged);
             this.cboLang.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
             // 
@@ -152,7 +152,7 @@
             this.label3.Location = new System.Drawing.Point(12, 85);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 13);
-            this.label3.TabIndex = 5;
+            this.label3.TabIndex = 6;
             this.label3.Text = "Module";
             // 
             // groupBox1
@@ -197,7 +197,7 @@
             this.label4.Location = new System.Drawing.Point(12, 112);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 13);
-            this.label4.TabIndex = 7;
+            this.label4.TabIndex = 8;
             this.label4.Text = "Language";
             // 
             // cboModule
@@ -207,7 +207,7 @@
             this.cboModule.Location = new System.Drawing.Point(70, 82);
             this.cboModule.Name = "cboModule";
             this.cboModule.Size = new System.Drawing.Size(215, 21);
-            this.cboModule.TabIndex = 3;
+            this.cboModule.TabIndex = 7;
             this.cboModule.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
             // 
             // label5
@@ -217,7 +217,7 @@
             this.label5.Location = new System.Drawing.Point(12, 58);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 13);
-            this.label5.TabIndex = 5;
+            this.label5.TabIndex = 4;
             this.label5.Text = "Agent";
             // 
             // cboAgent
@@ -230,7 +230,8 @@
             this.cboAgent.Name = "cboAgent";
             this.cboAgent.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.cboAgent.Size = new System.Drawing.Size(215, 21);
-            this.cboAgent.TabIndex = 2;
+            this.cboAgent.TabIndex = 5;
+            this.cboAgent.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
             // 
             // label6
             // 
@@ -255,7 +256,6 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.cboLang);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.btnEdit);
             this.panel1.Controls.Add(this.txtPassword);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.txtUserName);
@@ -265,17 +265,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(290, 163);
             this.panel1.TabIndex = 3;
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Location = new System.Drawing.Point(19, 136);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(40, 23);
-            this.btnEdit.TabIndex = 5;
-            this.btnEdit.Text = "...";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Visible = false;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // lblStatus
             // 
@@ -370,21 +359,20 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cboLang;
+        private V6Controls.V6ComboBox cboLang;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radLocalDataMode;
         private System.Windows.Forms.RadioButton radAPIDataMode;
-        private System.Windows.Forms.ComboBox cboModule;
+        private V6Controls.V6ComboBox cboModule;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cboAgent;
+        private V6Controls.V6ComboBox cboAgent;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.ComboBox cboDatabase;
+        private V6Controls.V6ComboBox cboDatabase;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Label label8;
     }
 }

@@ -861,38 +861,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             {
                                 if (!soKhung_vvar.ReadOnly)
                                 {
-                                    CheckSoKhungTon(soKhung_vvar.HaveValueChanged);
-                                }
-                            };
-
-                            break;
-                            soKhung_vvar.Enter += (s, e) =>
-                            {
-                                
-                                
-                                
-                                
-                                
-                                
-
-                                //soKhung_vvar.ExistRowInTable(true);
-                                
-                            };
-                            soKhung_vvar.V6LostFocus += delegate(object sender)
-                            {
-                                _soMay.Text = soKhung_vvar.Data == null ? ""
-                                    : soKhung_vvar.Data["SO_MAY"].ToString().Trim();
-                                if (_maVt.GIA_TON == 2 || _xuat_dd.Checked)
-                                {
-                                    var ton_dau = ObjectAndString.ObjectToDecimal(soKhung_vvar.Data == null ? 0 : soKhung_vvar.Data["TON_DAU"]);
-                                    if (ton_dau != 0)
+                                    if (soKhung_vvar.Data != null)
                                     {
-                                        _gia_nt.Value = ObjectAndString.ObjectToDecimal(soKhung_vvar.Data == null ? 0 : soKhung_vvar.Data["DU_DAU"]) / ton_dau;
-                                        //_gia_nt.CallDoV6LostFocus();
-                                        TinhTienVon();
+                                        _soMay.Text = soKhung_vvar.Data["SO_MAY"].ToString().Trim();
                                     }
+                                    //CheckSoKhungTon(soKhung_vvar.HaveValueChanged);
                                 }
                             };
+
                         }
                         else if (control is V6LookupProc)
                         {
@@ -945,7 +921,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             {
                                 if (!soKhung_vvar.ReadOnly)
                                 {
-                                    CheckSoKhungTon(soKhung_vvar.HaveValueChanged);
+                                    if (soKhung_vvar.Data != null)
+                                    {
+                                        _soMay.Text = soKhung_vvar.Data["SO_MAY"].ToString().Trim();
+                                    }
+                                    //CheckSoKhungTon(soKhung_vvar.HaveValueChanged);
                                 }
                             };
                         }
@@ -3010,7 +2990,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                         if (or_sksm > 0)
                         {
-                            list_SKSM += string.Format(" or (SO_KHUNG='{0}' and SO_MAY='{1}')", data_sk, data_sm);
+                            list_SKSM += string.Format(" or (SO_KHUNG='{0}' or SO_MAY='{1}')", data_sk, data_sm);
                         }
                     }
                 }
@@ -3025,7 +3005,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
-            return "(1=0)";
+            return "(1=1)";
         }
 
 

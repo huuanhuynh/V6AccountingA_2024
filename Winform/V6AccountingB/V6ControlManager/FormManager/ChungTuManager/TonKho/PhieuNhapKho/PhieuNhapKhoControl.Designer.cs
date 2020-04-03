@@ -95,6 +95,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.thayTheNhieuMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.thayThe2Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.chonDeNghiNhapMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.chonPhieuXuatKhoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chkTempSuaCT = new V6Controls.V6CheckBox();
             this.chkSuaTien = new V6Controls.V6CheckBox();
             this.txtTongSoLuong1 = new V6Controls.NumberSoluong();
@@ -1055,9 +1056,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.thayTheMenu,
             this.thayTheNhieuMenu,
             this.thayThe2Menu,
-            this.chonDeNghiNhapMenu});
+            this.chonDeNghiNhapMenu,
+            this.chonPhieuXuatKhoMenu});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(200, 180);
+            this.menuChucNang.Size = new System.Drawing.Size(200, 224);
             this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
             // 
             // chonDonHangMuaMenu
@@ -1123,6 +1125,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.chonDeNghiNhapMenu.Size = new System.Drawing.Size(199, 22);
             this.chonDeNghiNhapMenu.Text = "Chọn đề nghị nhập kho";
             this.chonDeNghiNhapMenu.Click += new System.EventHandler(this.chonDeNghiNhapMenu_Click);
+            // 
+            // chonPhieuXuatKhoMenu
+            // 
+            this.chonPhieuXuatKhoMenu.AccessibleDescription = "INVOICEM00037";
+            this.chonPhieuXuatKhoMenu.Name = "chonPhieuXuatKhoMenu";
+            this.chonPhieuXuatKhoMenu.Size = new System.Drawing.Size(199, 22);
+            this.chonPhieuXuatKhoMenu.Text = "Chọn phiếu xuất kho";
+            this.chonPhieuXuatKhoMenu.Click += new System.EventHandler(this.chonPhieuXuatKhoMenu_Click);
             // 
             // chkTempSuaCT
             // 
@@ -2090,7 +2100,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.xemVitriMenu,
             this.xemVitri2Menu});
             this.menuDetail1.Name = "menuChucNang";
-            this.menuDetail1.Size = new System.Drawing.Size(172, 114);
+            this.menuDetail1.Size = new System.Drawing.Size(172, 92);
             // 
             // XemPhieuNhapMenu
             // 
@@ -2320,5 +2330,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         private System.Windows.Forms.ContextMenuStrip menuBtnIn;
         private System.Windows.Forms.ToolStripMenuItem inPhieuHachToanMenu;
         private System.Windows.Forms.ToolStripMenuItem xemVitri2Menu;
+        private System.Windows.Forms.ToolStripMenuItem chonPhieuXuatKhoMenu;
     }
 }

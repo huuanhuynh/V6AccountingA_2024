@@ -25,18 +25,14 @@ namespace V6Controls
         //public V6VvarTextBoxFormDAO_0(V6VvarTextBoxForm form, TextBox sender, string vSearchFilter)
         //{
         //    _lookupForm = form;
-        //    textSender = sender;
-            
+        //    textSender = sender;            
         //    _config = form._config;
         //    _initStrFilter = form.InitStrFilter;
         //    _vSearchFilter = vSearchFilter;
-
         //    try
         //    {                   
         //        tableRoot = ThemDuLieuVaoBangChinh(
-        //            _config.TableName, _initStrFilter, _vSearchFilter);
-
-                
+        //            _config.TableName, _initStrFilter, _vSearchFilter);                
         //    }
         //    catch (Exception e)
         //    {

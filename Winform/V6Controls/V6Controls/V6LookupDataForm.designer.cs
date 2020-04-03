@@ -39,15 +39,6 @@ namespace V6Controls
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(V6LookupDataForm));
-            this.pBar = new System.Windows.Forms.Panel();
-            this.rbtTimKiem = new System.Windows.Forms.RadioButton();
-            this.rbtLocTuDau = new System.Windows.Forms.RadioButton();
-            this.cbbGoiY = new System.Windows.Forms.ComboBox();
-            this.rbtLocTiep = new System.Windows.Forms.RadioButton();
-            this.cbbDieuKien = new System.Windows.Forms.ComboBox();
-            this.btnTatCa = new System.Windows.Forms.Button();
-            this.cbbKyHieu = new System.Windows.Forms.ComboBox();
-            this.btnTimKiem = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnTimAll = new System.Windows.Forms.Button();
             this.txtV_Search = new System.Windows.Forms.TextBox();
@@ -57,121 +48,10 @@ namespace V6Controls
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
-            this.pBar.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pBar
-            // 
-            this.pBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pBar.Controls.Add(this.rbtTimKiem);
-            this.pBar.Controls.Add(this.rbtLocTuDau);
-            this.pBar.Controls.Add(this.cbbGoiY);
-            this.pBar.Controls.Add(this.rbtLocTiep);
-            this.pBar.Controls.Add(this.cbbDieuKien);
-            this.pBar.Controls.Add(this.btnTatCa);
-            this.pBar.Controls.Add(this.cbbKyHieu);
-            this.pBar.Controls.Add(this.btnTimKiem);
-            this.pBar.Location = new System.Drawing.Point(0, 30);
-            this.pBar.Name = "pBar";
-            this.pBar.Size = new System.Drawing.Size(734, 24);
-            this.pBar.TabIndex = 1;
-            // 
-            // rbtTimKiem
-            // 
-            this.rbtTimKiem.AccessibleDescription = "V6LOOKUPACCO00017";
-            this.rbtTimKiem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtTimKiem.AutoSize = true;
-            this.rbtTimKiem.Location = new System.Drawing.Point(656, 5);
-            this.rbtTimKiem.Name = "rbtTimKiem";
-            this.rbtTimKiem.Size = new System.Drawing.Size(67, 17);
-            this.rbtTimKiem.TabIndex = 7;
-            this.rbtTimKiem.Text = "Tìm kiếm";
-            this.rbtTimKiem.UseVisualStyleBackColor = true;
-            // 
-            // rbtLocTuDau
-            // 
-            this.rbtLocTuDau.AccessibleDescription = "V6LOOKUPACCO00016";
-            this.rbtLocTuDau.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtLocTuDau.AutoSize = true;
-            this.rbtLocTuDau.Checked = true;
-            this.rbtLocTuDau.Location = new System.Drawing.Point(575, 5);
-            this.rbtLocTuDau.Name = "rbtLocTuDau";
-            this.rbtLocTuDau.Size = new System.Drawing.Size(77, 17);
-            this.rbtLocTuDau.TabIndex = 6;
-            this.rbtLocTuDau.TabStop = true;
-            this.rbtLocTuDau.Text = "Lọc từ đầu";
-            this.rbtLocTuDau.UseVisualStyleBackColor = true;
-            // 
-            // cbbGoiY
-            // 
-            this.cbbGoiY.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbbGoiY.FormattingEnabled = true;
-            this.cbbGoiY.Location = new System.Drawing.Point(217, 3);
-            this.cbbGoiY.Name = "cbbGoiY";
-            this.cbbGoiY.Size = new System.Drawing.Size(123, 21);
-            this.cbbGoiY.TabIndex = 2;
-            this.cbbGoiY.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbbGoiY_KeyUp);
-            this.cbbGoiY.Leave += new System.EventHandler(this.cbbGoiY_Leave);
-            // 
-            // rbtLocTiep
-            // 
-            this.rbtLocTiep.AccessibleDescription = "V6LOOKUPACCO00015";
-            this.rbtLocTiep.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rbtLocTiep.AutoSize = true;
-            this.rbtLocTiep.Location = new System.Drawing.Point(506, 5);
-            this.rbtLocTiep.Name = "rbtLocTiep";
-            this.rbtLocTiep.Size = new System.Drawing.Size(63, 17);
-            this.rbtLocTiep.TabIndex = 5;
-            this.rbtLocTiep.Text = "Lọc tiếp";
-            this.rbtLocTiep.UseVisualStyleBackColor = true;
-            // 
-            // cbbDieuKien
-            // 
-            this.cbbDieuKien.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbbDieuKien.FormattingEnabled = true;
-            this.cbbDieuKien.Location = new System.Drawing.Point(3, 3);
-            this.cbbDieuKien.Name = "cbbDieuKien";
-            this.cbbDieuKien.Size = new System.Drawing.Size(148, 21);
-            this.cbbDieuKien.TabIndex = 0;
-            this.cbbDieuKien.TextChanged += new System.EventHandler(this.cbbDieuKien_TextChanged);
-            // 
-            // btnTatCa
-            // 
-            this.btnTatCa.AccessibleDescription = "V6LOOKUPACCB00004";
-            this.btnTatCa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTatCa.Location = new System.Drawing.Point(402, 2);
-            this.btnTatCa.Name = "btnTatCa";
-            this.btnTatCa.Size = new System.Drawing.Size(98, 22);
-            this.btnTatCa.TabIndex = 4;
-            this.btnTatCa.Text = "Hiện tất cả";
-            this.btnTatCa.UseVisualStyleBackColor = true;
-            this.btnTatCa.Click += new System.EventHandler(this.btnTatCa_Click);
-            // 
-            // cbbKyHieu
-            // 
-            this.cbbKyHieu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbbKyHieu.FormattingEnabled = true;
-            this.cbbKyHieu.Location = new System.Drawing.Point(154, 3);
-            this.cbbKyHieu.Name = "cbbKyHieu";
-            this.cbbKyHieu.Size = new System.Drawing.Size(58, 21);
-            this.cbbKyHieu.TabIndex = 1;
-            // 
-            // btnTimKiem
-            // 
-            this.btnTimKiem.AccessibleDescription = "V6LOOKUPACCB00002";
-            this.btnTimKiem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTimKiem.Location = new System.Drawing.Point(345, 2);
-            this.btnTimKiem.Name = "btnTimKiem";
-            this.btnTimKiem.Size = new System.Drawing.Size(55, 22);
-            this.btnTimKiem.TabIndex = 3;
-            this.btnTimKiem.Text = "Tìm";
-            this.btnTimKiem.UseVisualStyleBackColor = true;
-            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
             // panel1
             // 
@@ -279,14 +159,14 @@ namespace V6Controls
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Control_S = true;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 60);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 32);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(732, 441);
+            this.dataGridView1.Size = new System.Drawing.Size(732, 469);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.RowSelectChanged += new V6Controls.V6ColorDataGridView.RowSelectEventHandler(this.dataGridView1_RowSelectChanged);
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
@@ -299,7 +179,6 @@ namespace V6Controls
             this.ClientSize = new System.Drawing.Size(732, 526);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.pBar);
             this.Controls.Add(this.panel1);
             this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -314,11 +193,8 @@ namespace V6Controls
             this.Load += new System.EventHandler(this.Form_Load);
             this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
-            this.Controls.SetChildIndex(this.pBar, 0);
             this.Controls.SetChildIndex(this.dataGridView1, 0);
             this.Controls.SetChildIndex(this.statusStrip1, 0);
-            this.pBar.ResumeLayout(false);
-            this.pBar.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -331,15 +207,6 @@ namespace V6Controls
 
         #endregion
 
-        internal Panel pBar;
-        internal ComboBox cbbDieuKien;
-        internal RadioButton rbtTimKiem;
-        internal RadioButton rbtLocTuDau;
-        internal ComboBox cbbGoiY;
-        internal RadioButton rbtLocTiep;
-        internal Button btnTatCa;
-        internal ComboBox cbbKyHieu;
-        internal Button btnTimKiem;
         internal V6ColorDataGridView dataGridView1;
         private Panel panel1;
         internal Button btnVSearch;

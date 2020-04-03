@@ -63,9 +63,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         }
 
         private void MyInit()
-        {   
-            ReorderGroup1TabIndex();
+        {
+            if (V6Setting.NotLoggedIn) return;
 
+            ReorderGroup1TabIndex();
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
             txtMaKh.Upper();
             txtMa_sonb.Upper();

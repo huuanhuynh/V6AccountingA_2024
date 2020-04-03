@@ -1264,6 +1264,18 @@
     <Compile Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\ChonVitriDuyetForm.Designer.cs">
       <DependentUpon>ChonVitriDuyetForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuNhapKho\ChonPhieuXuatKho\IXA_PNKho_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuNhapKho\ChonPhieuXuatKho\IXA_PNKho_Form.Designer.cs">
+      <DependentUpon>IXA_PNKho_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuNhapKho\ChonPhieuXuatKho\IXA_PNKho_KetQua.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\TonKho\PhieuNhapKho\ChonPhieuXuatKho\IXA_PNKho_KetQua.Designer.cs">
+      <DependentUpon>IXA_PNKho_KetQua.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\TonKho\PhieuNhapKho\ChonDeNghiNhap\INY_PNKho_Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -6406,6 +6418,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuDuyetXuatBanIXP\ChonVitriDuyetForm.resx">
       <DependentUpon>ChonVitriDuyetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuNhapKho\ChonPhieuXuatKho\IXA_PNKho_Form.resx">
+      <DependentUpon>IXA_PNKho_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuNhapKho\ChonPhieuXuatKho\IXA_PNKho_KetQua.resx">
+      <DependentUpon>IXA_PNKho_KetQua.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TonKho\PhieuNhapKho\ChonDeNghiNhap\INY_PNKho_Form.resx">
       <DependentUpon>INY_PNKho_Form.cs</DependentUpon>

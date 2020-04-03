@@ -64,7 +64,7 @@ namespace V6Controls
                 _vSearchFilter = GenVSearchFilter(_config.V_Search);
                 //vMaFile = LstConfig[1];
                 //_standDao = new V6VvarTextBoxFormDAO(this, _senderTextBox, _vSearchFilter);
-                ThemDuLieuVaoBangChinh(_config.TableName, InitStrFilter, _vSearchFilter);
+                tableRoot = ThemDuLieuVaoBangChinh(_config.TableName, InitStrFilter, _vSearchFilter);
                 NapCacFieldDKLoc();
                 cbbDieuKien.SelectedIndex = 0;
                 //_standDao.LayThongTinTieuDe();

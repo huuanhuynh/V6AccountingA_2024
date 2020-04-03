@@ -11,6 +11,7 @@ using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.ChonDeNghiNhap;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.ChonPhieuXuat;
+using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.ChonPhieuXuatKho;
 using V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.Loc;
 using V6ControlManager.FormManager.KhoHangManager;
 using V6ControlManager.FormManager.ReportManager.XuLy;
@@ -4584,6 +4585,35 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 if (ma_dvcs != "")
                 {
                     INY_PNKho_Form chon = new INY_PNKho_Form(dateNgayCT.Date.Date, txtMaDVCS.Text, txtMaKh.Text);
+                    chon.AcceptSelectEvent += chon_AcceptSelectEvent;
+                    chon.ShowDialog(this);
+                }
+                else
+                {
+                    //if (ma_kh == "") message += V6Text.NoInput + lblMaKH.Text;
+                    if (ma_dvcs == "") message += V6Text.NoInput + lblMaDVCS.Text;
+                    this.ShowWarningMessage(message);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+        
+        private void chonPhieuXuatKhoMenu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (NotAddEdit) return;
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                chon_accept_flag_add = shift;
+                //var ma_kh = txtMaKh.Text.Trim();
+                var ma_dvcs = txtMaDVCS.Text.Trim();
+                var message = "";
+                if (ma_dvcs != "")
+                {
+                    IXA_PNKho_Form chon = new IXA_PNKho_Form(dateNgayCT.Date.Date, txtMaDVCS.Text, txtMaKh.Text);
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                     chon.ShowDialog(this);
                 }
