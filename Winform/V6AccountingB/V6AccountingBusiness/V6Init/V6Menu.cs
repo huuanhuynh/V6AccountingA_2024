@@ -160,7 +160,6 @@ namespace V6Init
 
         public static DataTable GetKey2Hm2()
         {
-            int type = 1;
             var sql = "Select * from V6Menu Where Key2 = @Key2";
             sql += "\n AND V2ID+JOBID+ItemID IN ";
             sql += "\n    (SELECT V2ID+JOBid+ItemID FROM V6MENU WHERE (((1=@isAdmin or dbo.VFA_Inlist_MEMO(ITEMID,@mrights)=1)) AND hide_yn<>1 AND Module_id=@moduleID )";
@@ -202,7 +201,6 @@ namespace V6Init
 
         public static DataTable GetKey2Pr2()
         {
-            int type = 1;
             var sql = "Select * from V6Menu Where Key2 = @Key2";
             sql += "\n AND V2ID+JOBID+ItemID IN ";
             sql += "\n    (SELECT V2ID+JOBid+ItemID FROM V6MENU WHERE (((1=@isAdmin or dbo.VFA_Inlist_MEMO(ITEMID,@mrights)=1)) AND hide_yn<>1 AND Module_id=@moduleID )";

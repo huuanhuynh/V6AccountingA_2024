@@ -5112,17 +5112,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         private void txtMaKH2_TextChanged(object sender)
         {
             return;
-            if (IsReady)
-            {
-                if (txtMaKH2.Data != null)
-                {
-                    txtTenKH2.Text = txtMaKH2.Data["TEN_KH"].ToString();
-                }
-                else
-                {
-                    txtTenKH2.Clear();
-                }
-            }
+            //if (IsReady)
+            //{
+            //    if (txtMaKH2.Data != null)
+            //    {
+            //        txtTenKH2.Text = txtMaKH2.Data["TEN_KH"].ToString();
+            //    }
+            //    else
+            //    {
+            //        txtTenKH2.Clear();
+            //    }
+            //}
         }
 
         private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)

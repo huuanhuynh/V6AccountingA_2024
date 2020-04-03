@@ -76,7 +76,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             // 
             this.btnChucNang.AccessibleDescription = ".";
             this.btnChucNang.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnChucNang.Location = new System.Drawing.Point(35, 24);
+            this.btnChucNang.Location = new System.Drawing.Point(35, 27);
             this.btnChucNang.Name = "btnChucNang";
             this.btnChucNang.Size = new System.Drawing.Size(31, 23);
             this.btnChucNang.TabIndex = 38;

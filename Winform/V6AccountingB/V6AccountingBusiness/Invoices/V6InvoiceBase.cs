@@ -651,6 +651,20 @@ namespace V6AccountingBusiness.Invoices
             }
         }
 
+        /// <summary>
+        /// Zoom mặc định cho crystalreport khi in chứng từ.
+        /// <para>1 PageWidth, 2 AllPage, 50 is 50%</para>
+        /// </summary>
+        public int ExtraInfo_PrintVCzoom
+        {
+            get
+            {
+                int result = 2;
+                if (EXTRA_INFOR.ContainsKey("PRINTVCZOOM")) result = ObjectAndString.ObjectToInt(EXTRA_INFOR["PRINTVCZOOM"]);
+                return result;
+            }
+        }
+
         private SortedDictionary<string, string> _extraInfor = null;
 
         private void GetExtraInfor()
@@ -776,15 +790,6 @@ namespace V6AccountingBusiness.Invoices
             try
             {
                 return V6BusinessHelper.GetTyGia(mant, ngayct);
-                SqlParameter[] pList =
-                {
-                    new SqlParameter("@ma_nt", mant),
-                    new SqlParameter("@ngay_ct", ngayct.ToString("yyyyMMdd"))
-                };
-
-                var resultValue = Convert.ToDecimal(
-                    SqlConnect.ExecuteScalar(CommandType.Text, "Select dbo.VFA_GetRates(@ma_nt, @ngay_ct)", pList));
-                return resultValue;
             }
             catch (Exception)
             {

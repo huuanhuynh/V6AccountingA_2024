@@ -110,39 +110,19 @@ namespace V6Controls.Controls
 
         void dgv_DataSourceChanged(object sender, EventArgs e)
         {
-            try
-            {
-                CaculateSumValues();
-            }
-            catch (Exception ex)
-            {
-
-            }            
+            CaculateSumValues();     
         }
 
         void dgv_SelectionChanged_row(object sender, DataGridViewRow row)
         {
-            try
-            {
-                if (_dgv.RowCount > 1) CaculateSumValues();
-            }
-            catch (Exception ex)
-            {
-
-            }
+            if (_dgv.RowCount > 1) CaculateSumValues();
         }
+
         void dgv_SelectionChanged(object sender, EventArgs e)
         {
-            try
-            {
-                if(_dgv.RowCount > 1) CaculateSumValues();
-            }
-            catch (Exception ex)
-            {
-                
-            }
+            if (_dgv.RowCount > 1) CaculateSumValues();
         }
-        
+
         private void DeConnectGridView()
         {
             if (_dgv != null)
@@ -174,36 +154,43 @@ namespace V6Controls.Controls
 
         private void DrawSummary()
         {
-            Graphics g = CreateGraphics();
-            g.FillRectangle(bBackGround, g.VisibleClipBounds);
-            if (SumCondition != null && string.IsNullOrEmpty(SumCondition.OPER)) SumCondition.OPER = "=";
-            //CaculateSumValues();
-
-            foreach (DataGridViewColumn col in _dgv.Columns)
+            try
             {
-                if (!col.Visible) continue;
-                //var rec0 = _dgv.GetCellDisplayRectangle(col.Index, 1, false);
-                var rec = _dgv.GetColumnDisplayRectangle(col.Index, false);
-                var newRec = new Rectangle(new Point(rec.Location.X - 2, -1), new Size(rec.Width, 22));
-                var text = "";
-                var dataType = col.ValueType;
-                if (ObjectAndString.IsNumberType(dataType) && !_NO_SUM_COLUMNS_FOR_CHECK.Contains(";" + col.DataPropertyName.ToUpper() + ";"))
-                {
-                    text = SumOfSelectedRowsByColumn(_dgv, col).ToString(col.DefaultCellStyle.Format);
-                    text = text.Replace(V6Setting.SystemDecimalSeparator, "#");
-                    text = text.Replace(",", ".");
-                    text = text.Replace(" ", ".");
-                    text = text.Replace("#", V6Options.M_NUM_POINT);
-                }
+                Graphics g = CreateGraphics();
+                g.FillRectangle(bBackGround, g.VisibleClipBounds);
+                if (SumCondition != null && string.IsNullOrEmpty(SumCondition.OPER)) SumCondition.OPER = "=";
+                //CaculateSumValues();
 
-                if (rec.Right > 0)
+                foreach (DataGridViewColumn col in _dgv.Columns)
                 {
-                    g.DrawRectangle(pBoder, newRec);
-                    g.DrawString(text, textFont, bTextColor, newRec, stringFormat);
+                    if (!col.Visible) continue;
+                    //var rec0 = _dgv.GetCellDisplayRectangle(col.Index, 1, false);
+                    var rec = _dgv.GetColumnDisplayRectangle(col.Index, false);
+                    var newRec = new Rectangle(new Point(rec.Location.X - 2, -1), new Size(rec.Width, 22));
+                    var text = "";
+                    var dataType = col.ValueType;
+                    if (ObjectAndString.IsNumberType(dataType) && !_NO_SUM_COLUMNS_FOR_CHECK.Contains(";" + col.DataPropertyName.ToUpper() + ";"))
+                    {
+                        text = SumOfSelectedRowsByColumn(_dgv, col).ToString(col.DefaultCellStyle.Format);
+                        text = text.Replace(V6Setting.SystemDecimalSeparator, "#");
+                        text = text.Replace(",", ".");
+                        text = text.Replace(" ", ".");
+                        text = text.Replace("#", V6Options.M_NUM_POINT);
+                    }
+
+                    if (rec.Right > 0)
+                    {
+                        g.DrawRectangle(pBoder, newRec);
+                        g.DrawString(text, textFont, bTextColor, newRec, stringFormat);
+                    }
                 }
+                // Draw header
+                g.DrawString(_sumText, textFont, bTextColor, g.VisibleClipBounds, new StringFormat() { LineAlignment = StringAlignment.Center });
             }
-            // Draw header
-            g.DrawString(_sumText, textFont, bTextColor, g.VisibleClipBounds, new StringFormat() { LineAlignment = StringAlignment.Center });
+            catch
+            {
+                //
+            }
         }
 
         public override void Refresh()
@@ -245,44 +232,61 @@ namespace V6Controls.Controls
             };
         }
 
-        private SortedDictionary<string, decimal> _sumValues = null; 
+        private SortedDictionary<string, decimal> _sumValues; 
         private void CaculateSumValues()
         {
-            if (_dgv == null) return;
-            // Khởi tạo danh sách kết quả
-            _sumValues = new SortedDictionary<string, decimal>();
-            foreach (DataGridViewColumn column in _dgv.Columns)
+            try
             {
-                if (ObjectAndString.IsNumberType(column.ValueType))
+                if (_dgv == null) return;
+                // Khởi tạo danh sách kết quả
+                _sumValues = new SortedDictionary<string, decimal>();
+                foreach (DataGridViewColumn column in _dgv.Columns)
                 {
-                    _sumValues[column.DataPropertyName] = 0;
+                    if (ObjectAndString.IsNumberType(column.ValueType))
+                    {
+                        _sumValues[column.DataPropertyName] = 0;
+                    }
                 }
-            }
 
 
-            //if ((_dgv.SelectionMode == DataGridViewSelectionMode.FullRowSelect && _dgv.SelectedRows.Count > 1)
-            //    || (_dgv.SelectionMode != DataGridViewSelectionMode.FullRowSelect && _dgv.SelectedCells.Count > 1))
-            {
-                // Lấy những dòng được chọn để tính tổng
-                var rows = new SortedDictionary<int, DataGridViewRow>();
+                //if ((_dgv.SelectionMode == DataGridViewSelectionMode.FullRowSelect && _dgv.SelectedRows.Count > 1)
+                //    || (_dgv.SelectionMode != DataGridViewSelectionMode.FullRowSelect && _dgv.SelectedCells.Count > 1))
+                {
+                    // Lấy những dòng được chọn để tính tổng
+                    var rows = new SortedDictionary<int, DataGridViewRow>();
+
+                    foreach (DataGridViewRow row in _dgv.Rows)
+                    {
+                        if (row.IsSelect()) rows[row.Index] = row;
+                    }
+
+                    if (rows.Count == 0)
+                        foreach (DataGridViewCell cell in _dgv.SelectedCells)
+                        {
+                            rows[cell.RowIndex] = cell.OwningRow;
+                        }
+
+                    // Trường hợp chọn từ 2 dòng trở lên
+                    if (rows.Count > 1)
+                    {
+                        foreach (DataGridViewRow row in rows.Values)
+                        {
+                            if (CheckSumCondition(row))
+                                foreach (DataGridViewCell cell in row.Cells)
+                                {
+                                    if (ObjectAndString.IsNumberType(cell.ValueType))
+                                    {
+                                        _sumValues[cell.OwningColumn.DataPropertyName] += ObjectAndString.ObjectToDecimal(cell.Value);
+                                    }
+                                }
+                        }
+                        return;
+                    }
+                }
 
                 foreach (DataGridViewRow row in _dgv.Rows)
                 {
-                    if (row.IsSelect()) rows[row.Index] = row;
-                }
-
-                if(rows.Count == 0)
-                foreach (DataGridViewCell cell in _dgv.SelectedCells)
-                {
-                    rows[cell.RowIndex] = cell.OwningRow;
-                }
-
-                // Trường hợp chọn từ 2 dòng trở lên
-                if (rows.Count > 1)
-                {
-                    foreach (DataGridViewRow row in rows.Values)
-                    {
-                        if (CheckSumCondition(row))
+                    if (CheckSumCondition(row))
                         foreach (DataGridViewCell cell in row.Cells)
                         {
                             if (ObjectAndString.IsNumberType(cell.ValueType))
@@ -290,24 +294,13 @@ namespace V6Controls.Controls
                                 _sumValues[cell.OwningColumn.DataPropertyName] += ObjectAndString.ObjectToDecimal(cell.Value);
                             }
                         }
-                    }
-                    return;
                 }
             }
-
-            SumAll:
-            foreach (DataGridViewRow row in _dgv.Rows)
+            catch
             {
-                if (CheckSumCondition(row))
-                foreach (DataGridViewCell cell in row.Cells)
-                {
-                    if (ObjectAndString.IsNumberType(cell.ValueType))
-                    {
-                        _sumValues[cell.OwningColumn.DataPropertyName] += ObjectAndString.ObjectToDecimal(cell.Value);
-                    }
-                }
+                //
             }
-            return;
+            
         }
 
         /// <summary>

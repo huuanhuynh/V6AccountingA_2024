@@ -647,10 +647,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     if (!_TableStruct.ContainsKey(KEY)) continue;
                     var sct = _TableStruct[KEY];
                     if (!DataDic.ContainsKey(KEY)) return;
-                    var o_new = DataDic[KEY];
-                    data_new += "|" + SqlGenerator.GenSqlStringValue(o_new, sct.sql_data_type_string, sct.ColumnDefault, false, sct.MaxLength);
-                    var o_old = Mode == V6Mode.Edit ? DataOld[KEY] : o_new;
-                    data_old += "|" + SqlGenerator.GenSqlStringValue(o_old, sct.sql_data_type_string, sct.ColumnDefault, false, sct.MaxLength);
+                    var s_new = SqlGenerator.GenSqlStringValue(DataDic[KEY], sct.sql_data_type_string, sct.ColumnDefault, false, sct.MaxLength);
+                    if (s_new.ToUpper().StartsWith("N'")) s_new = s_new.Substring(1);
+                    data_new += "|" + s_new;
+                    var s_old = Mode == V6Mode.Edit ? SqlGenerator.GenSqlStringValue(DataOld[KEY], sct.sql_data_type_string, sct.ColumnDefault, false, sct.MaxLength) : s_new;
+                    if (s_old.ToUpper().StartsWith("N'")) s_old = s_old.Substring(1);
+                    data_old += "|" + s_old;
                 }
                 
                 if (data_new.Length > 1) data_new = data_new.Substring(1);
@@ -662,7 +664,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     new SqlParameter("@Fields", _aldmConfig.KEY),
                     new SqlParameter("@datas_old", data_old),
                     new SqlParameter("@datas_new", data_new),
-                    new SqlParameter("@uid", Mode == V6Mode.Edit ? DataOld["UID"] : ""),
+                    new SqlParameter("@uid", Mode == V6Mode.Edit ? DataOld["UID"].ToString() : ""),
                     new SqlParameter("@mode", Mode == V6Mode.Add ? "M" : "S"),
                     new SqlParameter("@User_id", V6Login.UserId),
                 };

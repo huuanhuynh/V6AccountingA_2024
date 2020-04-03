@@ -13,12 +13,12 @@ using V6Tools.V6Convert;
 namespace V6Controls
 {
     /// <summary>
-    /// Lookup textBox
+    /// Lookup textBox copy từ Vvar
     /// </summary>
-    public class V6VvarTextBox : V6ColorTextBox
+    public class V6LookupData : V6ColorTextBox
     {
         //constructor
-        public V6VvarTextBox()
+        public V6LookupData()
         {
             InitializeComponent();
             //_upper = true;
@@ -29,26 +29,14 @@ namespace V6Controls
         {
             this.SuspendLayout();
             // 
-            // V6VvarTextBox
+            // V6LookupData
             // 
-            this.TextChanged += new System.EventHandler(this.V6VvarTextBox_TextChanged);
-            this.Enter += new System.EventHandler(this.V6VvarTextBox_Enter);
-            //this. GotFocus += new System.EventHandler(this.V6VvarTextBox_GotFocus);
+            this.TextChanged += new System.EventHandler(this.V6LookupData_TextChanged);
+            this.Enter += new System.EventHandler(this.V6LookupData_Enter);
+            //this. GotFocus += new System.EventHandler(this.V6LookupData_GotFocus);
             this.ResumeLayout(false);
         }
-
-        //void V6VvarTextBox_GotFocus(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-                
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        V6ControlFormHelper.ShowErrorMessage("V6VvarTextBox_GotFocus: " + ex.Message);
-        //    }
-        //}
-
+        
         private bool _showName = false;
         /// <summary>
         /// Hiển thị tên khi nhảy vào.
@@ -57,7 +45,7 @@ namespace V6Controls
         [DefaultValue(false)]
         [Description("Bật hiển thị tên khi vào.")]
         public bool ShowName { get { return _showName; } set { _showName = value; } }
-        private void V6VvarTextBox_Enter(object sender, EventArgs e)
+        private void V6LookupData_Enter(object sender, EventArgs e)
         {
             try
             {
@@ -68,7 +56,7 @@ namespace V6Controls
                 }
                 if (LookupInfo.LOAD_AUTO)
                 {
-                    LoadAutoCompleteSource();
+                    //LoadAutoCompleteSource();
                 }
             }
             catch (Exception)
@@ -85,6 +73,8 @@ namespace V6Controls
         /// Data_ID
         /// </summary>
         private string _text_data = "";
+
+        public DataTable _rootData;
         private DataRow _data;
         //private Form _frm;
 
@@ -343,7 +333,7 @@ namespace V6Controls
                 }
                 else if (F5 && !ReadOnly && e.KeyCode == Keys.F5 && !string.IsNullOrEmpty(LookupInfo.vValue))
                 {
-                    LoadAutoCompleteSource();
+                    //LoadAutoCompleteSource();
                     DoLookup(LookupMode.Single);
                 }
                 else if (!ReadOnly && e.KeyCode == Keys.F2)
@@ -559,28 +549,20 @@ namespace V6Controls
         protected AutoCompleteStringCollection auto1;
         public bool _lockFocus;
 
-        public void LoadAutoCompleteSource()
+        public void LoadAutoCompleteSource(DataTable data)
         {
+            if (data == null) return;
             if (auto1 != null) return;
-
+            _rootData = data;
             if (!string.IsNullOrEmpty(_vVar) && !string.IsNullOrEmpty(LookupInfo.vValue) && auto1 == null)
             {
                 try
                 {
                     auto1 = new AutoCompleteStringCollection();
 
-                    var selectTop = LookupInfo.Large_yn ? "top 10000" : "";
-                    
                     if (!string.IsNullOrEmpty(LookupInfo.vValue))
                     {
-                        var tableName = LookupInfo.vMa_file;
-                        var filter = InitFilter;
-                        if (!string.IsNullOrEmpty(InitFilter)) filter = "and " + filter;
-                        var where = " 1=1 " + filter;
-                            
-                        var tbl1 = V6BusinessHelper.Select(tableName,
-                            selectTop + " [" + LookupInfo.vValue + "]",
-                            where, "", "", null).Data;
+                        var tbl1 = data;
 
                         for (int i = 0; i < tbl1.Rows.Count; i++)
                         {
@@ -627,7 +609,7 @@ namespace V6Controls
             }
             catch (Exception ex)
             {
-                Logger.WriteToLog("V6VvarTextBox ChangeAutoCompleteMode " + ex.Message, Application.ProductName);
+                Logger.WriteToLog("V6LookupData ChangeAutoCompleteMode " + ex.Message, Application.ProductName);
             }
         }
 
@@ -643,7 +625,49 @@ namespace V6Controls
         {
             return ExistRowInTable(Text.Trim(), use_InitFilter);
         }
-        
+
+        /// <summary>
+        /// Kiểm tra, lấy lại data, gán brothers
+        /// </summary>
+        /// <param name="use_InitFilter">Luôn dùng InitFilter khi load dữ liệu. (Trường hợp nhảy ra nhảy vào không dùng)</param>
+        /// <param name="data">Dữ liệu lọc sẵn.</param>
+        /// <returns></returns>
+        public bool ExistRowInData(DataTable data)//, bool use_InitFilter = true)
+        {
+            if (V6Setting.NotLoggedIn) return false;
+            _rootData = data;
+            try
+            {
+                _text_data = Text.Trim();
+                //if (!string.IsNullOrEmpty(LookupInfo.vValue))
+                {
+                    DataView view = new DataView(data);
+                    view.RowFilter = string.Format("{0} = '{1}'", LookupInfo.vValue, _text_data);
+                    var tbl = view.ToTable();
+
+                    if (tbl != null && tbl.Rows.Count >= 1)
+                    {
+                        var oneRow = tbl.Rows[0];
+                        _data = oneRow;
+                        V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields, BrotherFields2);
+                        SetNeighborValues();
+                        return true;
+                    }
+                    else
+                    {
+                        _data = null;
+                        V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields, BrotherFields2);
+                        SetNeighborValues();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                V6ControlFormHelper.ShowErrorException(GetType() + ".ExistRowInData", ex);
+            }
+            return false;
+        }
+
         /// <summary>
         /// Kiểm tra giá trị có tồn tại trong csdl hay không. Đồng thời gán dữ liệu liên quan (Brothers, Neighbor).
         /// </summary>
@@ -660,19 +684,16 @@ namespace V6Controls
                 _text_data = text;
                 if (!string.IsNullOrEmpty(LookupInfo.vValue))
                 {
-                    string tableName = LookupInfo.vMa_file;
                     string filter = HaveValueChanged ? InitFilter : null;
                     if (use_InitFilter) filter = InitFilter;
                     if (!string.IsNullOrEmpty(filter)) filter = " and (" + filter + ")";
+                    
+                    var dv = new DataView(_rootData);
+                    dv.RowFilter = LookupInfo.vValue + "='"+text+"' " + filter;
 
-                    SqlParameter[] plist =
+                    if (dv.Count >= 1)
                     {
-                        new SqlParameter("@text", text.Trim())
-                    };
-                    var tbl = V6BusinessHelper.Select(tableName, "*", LookupInfo.vValue + "=@text " + filter, "", "", plist).Data;
-
-                    if (tbl != null && tbl.Rows.Count >= 1)
-                    {
+                        var tbl = dv.ToTable();
                         var oneRow = tbl.Rows[0];
                         _data = oneRow;
                         V6ControlFormHelper.SetBrotherData(this, _data, BrotherFields, BrotherFields2);
@@ -754,7 +775,7 @@ namespace V6Controls
                     //{
                     //    new SqlParameter("@id", id)
                     //};
-                    var tbl = V6BusinessHelper.Select(tableName, "*", where, "", "").Data;
+                    var tbl = _rootData;
 
                     if (tbl != null && tbl.Rows.Count == 1)
                     {
@@ -966,7 +987,7 @@ namespace V6Controls
         {
             var filter = InitFilter;
             if (!string.IsNullOrEmpty(InitFilter)) filter = "and " + filter;
-            var lookup = new V6VvarTextBoxForm(this, LookupInfo, " 1=1 " + filter, lookupMode, FilterStart);
+            var lookup = new V6LookupDataForm(this, LookupInfo, " 1=1 " + filter, lookupMode, FilterStart);
             Looking = true;
             lookup.ShowDialog(this);
         }
@@ -976,7 +997,7 @@ namespace V6Controls
             DoLookup(lookupMode);
         }
         
-        private void V6VvarTextBox_TextChanged(object sender, EventArgs e)
+        private void V6LookupData_TextChanged(object sender, EventArgs e)
         {
             if (Focused && (_showName||_checkOnLeave))
             {

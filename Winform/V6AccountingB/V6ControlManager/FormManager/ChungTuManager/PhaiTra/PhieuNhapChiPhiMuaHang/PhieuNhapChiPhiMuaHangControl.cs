@@ -4423,7 +4423,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             }
         }
 
-        private bool co_chon_phieu_nhap = false;
         private string _chon_px = "";
         void chonpx_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList, ChonEventArgs e)
         {
@@ -4480,14 +4479,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
                 V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed: {1}{2}", addCount, failCount, _message));
                 
-                if (addCount > 0)
-                {
-                    co_chon_phieu_nhap = true;
-                }
-                else
-                {
-                    co_chon_phieu_nhap = false;
-                }
             }
             catch (Exception ex)
             {
@@ -4742,55 +4733,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     //    var cp_nt = num / txtTyGia.Value;
                     //    crow.Cells["CP_NT"].Value = cp_nt;
                     //}
-                }
-                return;
-                var currentCell = dataGridView3ChiPhi.CurrentCell;
-                if (currentCell == null) return;
-                var COLUMN_NAME = currentCell.OwningColumn.DataPropertyName.ToUpper();
-                
-                if ((COLUMN_NAME == "CP_NT" ||
-                     COLUMN_NAME == "CP")
-                    && ObjectAndString.ObjectToDecimal(currentCell.Value) == 0)
-                {
-                    // Tính số cần nhập dựa theo TxtT_cp_nt_ao
-                    decimal num0;
-                    if (COLUMN_NAME == "CP_NT")
-                    {
-                        num0 = TxtT_cp_nt_ao.Value;
-                        foreach (DataGridViewRow row in dataGridView3ChiPhi.Rows)
-                        {
-                            if (row != currentCell.OwningRow)
-                            {
-                                num0 -= ObjectAndString.ObjectToDecimal(row.Cells["CP_NT"].Value);
-                            }
-                        }
-
-                        currentCell.Value = num0;
-                        var cp = num0 * txtTyGia.Value;
-                        currentCell.OwningRow.Cells["CP"].Value = cp;
-                    }
-                    else // (COLUMN_NAME == "CP")
-                    {
-                        num0 = TxtT_cp_ao.Value;
-                        foreach (DataGridViewRow row in dataGridView3ChiPhi.Rows)
-                        {
-                            if (row != currentCell.OwningRow)
-                            {
-                                num0 -= ObjectAndString.ObjectToDecimal(row.Cells["CP"].Value);
-                            }
-                        }
-
-                        currentCell.Value = num0;
-                        if (num0 == 0)
-                        {
-                            currentCell.OwningRow.Cells["CP_NT"].Value = num0;
-                        }
-                        else
-                        {
-                            var cp_nt = num0 / txtTyGia.Value;
-                            currentCell.OwningRow.Cells["CP_NT"].Value = cp_nt;
-                        }
-                    }
                 }
             }
             catch (Exception ex)

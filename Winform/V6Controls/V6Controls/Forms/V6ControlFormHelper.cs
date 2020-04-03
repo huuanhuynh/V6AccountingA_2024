@@ -792,6 +792,18 @@ namespace V6Controls.Forms
                             c = CreateColorTextBox(fcolumn, fcaption, limits, width, fstatus, carry);
                         }
                         break;
+                    case "C3":  // LookupData
+                        if (fvvar != "")
+                        {
+                            var checkvvar = Convert.ToBoolean(row["checkvvar"]);
+                            var notempty = Convert.ToBoolean(row["notempty"]);
+                            c = CreateLookupDataTextBox(fcolumn, fvvar, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
+                        }
+                        else
+                        {
+                            c = CreateColorTextBox(fcolumn, fcaption, limits, width, fstatus, carry);
+                        }
+                        break;
                     case "N9"://Kieu so bat ky
                         decimals = row["fdecimal"] == null ? V6Setting.DecimalsNumber : ObjectAndString.ObjectToInt(row["fdecimal"]);
                         c = CreateNumberTextBox(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
@@ -981,6 +993,18 @@ namespace V6Controls.Forms
                             string bfields = ss[2];
                             string nfields = ss[3];
                             c = CreateLookupProcTextBox(fcolumn, ma_dm, value_field, text_field, bfields, nfields, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
+                        }
+                        else
+                        {
+                            c = CreateColorTextBox(fcolumn, fcaption, limits, width, fstatus, carry);
+                        }
+                        break;
+                    case "C3":  // LookupData
+                        if (fvvar != "")
+                        {
+                            var checkvvar = Convert.ToBoolean(row["checkvvar"]);
+                            var notempty = Convert.ToBoolean(row["notempty"]);
+                            c = CreateLookupDataTextBox(fcolumn, fvvar, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
                         }
                         else
                         {
@@ -3212,6 +3236,28 @@ namespace V6Controls.Forms
 
                 CheckOnLeave = checkOnLeave,
                 CheckNotEmpty = checkNotEmpty,
+                GrayText = caption,
+                LimitCharacters = limits,
+                Width = width,
+                Visible = visible,
+                Tag = visible ? null : "hide"
+            };
+        }
+
+        public static V6LookupData CreateLookupDataTextBox(string accessibleName, string vvar, string caption, string limits, int width, bool visible,
+            bool checkOnLeave, bool checkNotEmpty, bool carry = false)
+        {
+            return new V6LookupData
+            {
+                Name = accessibleName,
+                AccessibleName = accessibleName,
+                BorderStyle = BorderStyle.FixedSingle,
+                Carry = carry,
+                VVar = vvar,
+                CheckOnLeave = checkOnLeave,
+                CheckNotEmpty = checkNotEmpty,
+                F5 = checkOnLeave, // F5 = false => chạy v6lostfocus (checkton)
+                F2 = false,
                 GrayText = caption,
                 LimitCharacters = limits,
                 Width = width,

@@ -112,7 +112,7 @@ namespace V6AccountingBusiness.Invoices
         {
             object stt_rec = amData["STT_REC"];
             bool insert_success = false;
-            int j = 0, j2 = 0, j3 = 0;
+            int j = 0;
             var amSql = SqlGenerator.GenUpdateAMSql(V6Login.UserId, AM_TableName, AMStruct, amData, keys);
             SqlTransaction TRANSACTION = SqlConnect.CreateSqlTransaction("AM81Update");
 

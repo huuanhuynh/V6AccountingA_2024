@@ -30,12 +30,14 @@
 	<TuKhoa TenTuKhoa='V6Setting' 				MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6TableName' 		  MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6TableStruct' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='V6ToolExtensionMethods' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6VvarTextBox' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Mode' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='V6Message' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	
   <TuKhoa TenTuKhoa='ContainsKey'   MauSac = 'Chocolate' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='CopyToVPN'   MauSac = 'Chocolate' 	AutoComplete = '1' />
+  <TuKhoa TenTuKhoa='DataGridViewRowToDataDictionary(row)'   MauSac = 'Chocolate' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='ExecuteFunctionScalar(funcName, plist);' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='ExecuteProcedure' 		MauSac = 'Chocolate' 	AutoComplete = '1' />
   <TuKhoa TenTuKhoa='ExecuteProcedureNoneQuery' 		MauSac = 'Chocolate' 	AutoComplete = '1' />

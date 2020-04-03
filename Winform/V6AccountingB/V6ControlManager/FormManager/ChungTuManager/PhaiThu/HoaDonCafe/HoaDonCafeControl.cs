@@ -4767,7 +4767,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                         ShowMainMessage(V6Text.DetailNotComplete);
                         tabControl1.SelectedTab = tabChiTiet;
                         return false;                 // Tránh lặp vô tận.
-                        detail1.OnNhanClick();  // AutoClick
+                        //detail1.OnNhanClick();  // AutoClick
                     }
                 if (Mode == V6Mode.Edit)
                     if (detail3.MODE == V6Mode.Add || detail3.MODE == V6Mode.Edit)
@@ -5169,16 +5169,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         private void QuayRa()
         {
             return;
-            if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
-            {
-                if (this.ShowConfirmMessage(V6Text.DiscardConfirm) != DialogResult.Yes)
-                {
-                    return;
-                }
-            }
-            //Parent.Dispose();
-            ResetForm();
-            Mode = V6Mode.Init;
+            //if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+            //{
+            //    if (this.ShowConfirmMessage(V6Text.DiscardConfirm) != DialogResult.Yes)
+            //    {
+            //        return;
+            //    }
+            //}
+            ////Parent.Dispose();
+            //ResetForm();
+            //Mode = V6Mode.Init;
         }
         
         /// <summary>
@@ -6154,7 +6154,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
                     V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + MA_VITRIPH);
                 return; // Có thay đổi so với các chứng từ khác
-                SetTabPageText(txtSoPhieu.Text);
+                //SetTabPageText(txtSoPhieu.Text);
             }
             catch (Exception ex)
             {

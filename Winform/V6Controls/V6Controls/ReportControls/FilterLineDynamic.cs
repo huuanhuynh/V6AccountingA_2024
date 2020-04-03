@@ -225,12 +225,12 @@ namespace V6ReportControls
                     //{
                     //    result = _lookupTextBox.Query;
                     //}
-                    if (ObjectAndString.IsNumber(ObjectValue))
-                    {
-                        result = string.Format("{3}{0} {1} {2}", FieldName, "=",
-                            ObjectAndString.ObjectToDecimal(ObjectValue).ToString(CultureInfo.InvariantCulture), tL);
-                    }
-                    else
+                    //if (ObjectAndString.IsNumber(ObjectValue))
+                    //{
+                    //    result = string.Format("{3}{0} {1} {2}", FieldName, "=",
+                    //        ObjectAndString.ObjectToDecimal(ObjectValue).ToString(CultureInfo.InvariantCulture), tL);
+                    //}
+                    //else
                     {
                         result = string.Format("{3}{0} {1} {2} ", FieldName, oper, FormatValue(StringValue, ValueType), tL);
                     }

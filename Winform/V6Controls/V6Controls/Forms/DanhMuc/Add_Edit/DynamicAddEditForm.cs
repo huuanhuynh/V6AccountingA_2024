@@ -22,8 +22,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             InitializeComponent();
         }
 
-        private string TableName;//Đè kiểu cũ. Các hàm cũ đã override.
-        private AldmConfig _aldmConfig;
+        private new string TableName;//Đè kiểu cũ. Các hàm cũ đã override.
+        private new AldmConfig _aldmConfig;
         private DataTable AlreportData = null;
         private DataTable Alreport1Data = null;
         private Dictionary<V6NumberTextBox, int> NumberTextBox_Decimals = new Dictionary<V6NumberTextBox, int>();

@@ -4122,9 +4122,14 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// </summary>
         protected void XuLyF9Base()
         {
+            if (!IsHaveInvoice) return;
+            if (!V6Login.IsAdmin && !ObjectAndString.ObjectToBool(_invoice.Alctct["R_F9"]))
+            {
+                this.ShowWarningMessage(V6Text.NoRight);
+                return;
+            }
             if (Event_Methods.ContainsKey(FormDynamicEvent.F9))
             {
-                AM
                 InvokeFormEvent(FormDynamicEvent.F9);
             }
             else
@@ -4135,7 +4140,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         public virtual void XuLyF9()
         {
-            DoNothing();
+            ShowMainMessage(V6Text.NoDefine + FormDynamicEvent.F9);
         }
     }
 }

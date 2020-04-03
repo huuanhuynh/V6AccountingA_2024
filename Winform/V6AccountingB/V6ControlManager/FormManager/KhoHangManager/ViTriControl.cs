@@ -115,6 +115,10 @@ namespace V6ControlManager.FormManager.KhoHangManager
                     return;
                 }
 
+                ViTriDetail vtd = _listVitriDetail[0];
+                bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                if (shift_is_down) goto Shift;
+
                 if (_listVitriDetail.Count > 1 && (e.Button == MouseButtons.Right))
                 {
                     // Xử lý nhiều;
@@ -139,8 +143,6 @@ namespace V6ControlManager.FormManager.KhoHangManager
                     OnV6Click(data0);
                     return;
                 }
-
-                ViTriDetail vtd = _listVitriDetail[0];
 
                 if (KhoParams.Program == "AINVITRI03")
                 {
@@ -203,6 +205,8 @@ namespace V6ControlManager.FormManager.KhoHangManager
                     c.AutoClickNhan = true;
                     c.ShowToForm(this, "Vitri");
                 }
+
+            Shift:
 
                 container.SetColorMavt(vtd.MA_VT, Color.Blue);
             }

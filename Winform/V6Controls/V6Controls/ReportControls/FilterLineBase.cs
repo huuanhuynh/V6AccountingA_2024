@@ -20,7 +20,10 @@ namespace V6ReportControls
             get { return checkBox1.Checked; }
             set
             {
-                if (checkBox1.Enabled) checkBox1.Checked = value;
+                if (checkBox1.Enabled || value)
+                {
+                    checkBox1.Checked = value;
+                }
             }
         }
 
@@ -155,7 +158,7 @@ namespace V6ReportControls
         }
 
         /// <summary>
-        /// [Field] = value. Tự kiểm tra check để lấy. Phần này luôn trả về chuỗi dù có check hay không.
+        /// [Field] =(oper) value. Tự kiểm tra check để lấy. Phần này luôn trả về chuỗi dù có check hay không.
         /// </summary>
         public virtual string Query
         {

@@ -687,7 +687,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                     case "MA_LO":
                         _maLo = (V6VvarTextBox)control;
-                        _maLo.GotFocus += (s, e) =>
+                        _maLo.Enter += (s, e) =>
                         {
                             _maLo.CheckNotEmpty = _maVt.LO_YN && _maKhoI.LO_YN;
                             _dataLoDate = V6BusinessHelper.GetLoDate(_maVt.Text, _maKhoI.Text, _sttRec, dateNgayCT.Date);
@@ -845,6 +845,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         if (control is V6VvarTextBox)
                         {
                             var soKhung_vvar = (V6VvarTextBox)control;
+                            _soKhung = soKhung_vvar;
                             soKhung_vvar.Enter += (s, e) =>
                             {
                                 soKhung_vvar.CheckNotEmpty = _maVt.SKSM_YN;
@@ -856,15 +857,37 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                                 soKhung_vvar.ExistRowInTable(true);
                             };
+                            soKhung_vvar.Leave += (sender, args) =>
+                            {
+                                if (!soKhung_vvar.ReadOnly)
+                                {
+                                    CheckSoKhungTon(soKhung_vvar.HaveValueChanged);
+                                }
+                            };
+
+                            break;
+                            soKhung_vvar.Enter += (s, e) =>
+                            {
+                                
+                                
+                                
+                                
+                                
+                                
+
+                                //soKhung_vvar.ExistRowInTable(true);
+                                
+                            };
                             soKhung_vvar.V6LostFocus += delegate(object sender)
                             {
-                                _soMay.Text = soKhung_vvar.Data["SO_MAY"].ToString().Trim();
+                                _soMay.Text = soKhung_vvar.Data == null ? ""
+                                    : soKhung_vvar.Data["SO_MAY"].ToString().Trim();
                                 if (_maVt.GIA_TON == 2 || _xuat_dd.Checked)
                                 {
-                                    var ton_dau = ObjectAndString.ObjectToDecimal(soKhung_vvar.Data["TON_DAU"]);
+                                    var ton_dau = ObjectAndString.ObjectToDecimal(soKhung_vvar.Data == null ? 0 : soKhung_vvar.Data["TON_DAU"]);
                                     if (ton_dau != 0)
                                     {
-                                        _gia_nt.Value = ObjectAndString.ObjectToDecimal(soKhung_vvar.Data["DU_DAU"])/ton_dau;
+                                        _gia_nt.Value = ObjectAndString.ObjectToDecimal(soKhung_vvar.Data == null ? 0 : soKhung_vvar.Data["DU_DAU"]) / ton_dau;
                                         //_gia_nt.CallDoV6LostFocus();
                                         TinhTienVon();
                                     }
@@ -874,6 +897,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         else if (control is V6LookupProc)
                         {
                             var soKhung_proc = (V6LookupProc)control;
+                            _soKhung = soKhung_proc;
                             soKhung_proc.MA_CT = Invoice.Mact;
                             soKhung_proc.Enter += (s, e) =>
                             {
@@ -888,22 +912,42 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             };
                             soKhung_proc.V6LostFocus += delegate(object sender)
                             {
-                                _soMay.Text = soKhung_proc.Data["SO_MAY"].ToString().Trim();
+                                _soMay.Text = soKhung_proc.Data == null ? "" : soKhung_proc.Data["SO_MAY"].ToString().Trim();
                                 if (_maVt.GIA_TON == 2 || _xuat_dd.Checked)
                                 {
-                                    var ton_dau = ObjectAndString.ObjectToDecimal(soKhung_proc.Data["TON_DAU"]);
+                                    var ton_dau = ObjectAndString.ObjectToDecimal(soKhung_proc.Data == null ? 0 : soKhung_proc.Data["TON_DAU"]);
                                     if (ton_dau != 0)
                                     {
-                                        _gia_nt.Value = ObjectAndString.ObjectToDecimal(soKhung_proc.Data["DU_DAU"])/ton_dau;
+                                        _gia_nt.Value = ObjectAndString.ObjectToDecimal(soKhung_proc.Data == null ? 0 : soKhung_proc.Data["DU_DAU"]) / ton_dau;
                                         //_gia_nt.CallDoV6LostFocus();
                                         TinhTienVon();
                                     }
                                 }
                             };
                         }
-                        else
+                        else if (control is V6LookupData)
                         {
-                            
+                            var soKhung_vvar = (V6LookupData)control;
+                            _soKhung = soKhung_vvar;
+                            soKhung_vvar.Enter += (s, e) =>
+                            {
+                                soKhung_vvar.CheckNotEmpty = _maVt.SKSM_YN;
+                                var dataSKSM = V6BusinessHelper.GetSKSM(_maVt.Text, _maKhoI.Text, _sttRec, dateNgayCT.Date);
+                                var filter = "Ma_vt='" + _maVt.Text.Trim() + "'";
+                                var getFilter = GetFilterSKSM(dataSKSM, _sttRec0, _maVt.Text, _maKhoI.Text);
+                                if (getFilter != "") filter += " and " + getFilter;
+                                soKhung_vvar.SetInitFilter(filter);
+
+                                soKhung_vvar.LoadAutoCompleteSource(dataSKSM);
+                                soKhung_vvar.ExistRowInData(dataSKSM);
+                            };
+                            soKhung_vvar.Leave += (sender, args) =>
+                            {
+                                if (!soKhung_vvar.ReadOnly)
+                                {
+                                    CheckSoKhungTon(soKhung_vvar.HaveValueChanged);
+                                }
+                            };
                         }
                         
                         break;
@@ -1443,6 +1487,89 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         }
         
         private void CheckMaLoTon(bool isChanged)
+        {
+            if (NotAddEdit) return;
+            if (detail1.MODE != V6Mode.Add && detail1.MODE != V6Mode.Edit) return;
+            if (!_maVt.LO_YN) return;
+            //Fix Tuanmh 15/11/2017
+            if (!_maKhoI.LO_YN) return;
+
+            try
+            {
+                Invoice.GetAlLoTon(dateNgayCT.Date, _sttRec, _maVt.Text, _maKhoI.Text);
+                FixAlLoTon(Invoice.AlLoTon, AD);
+
+                var inputUpper = _maLo.Text.Trim().ToUpper();
+                if (Invoice.AlLoTon != null && Invoice.AlLoTon.Rows.Count > 0)
+                {
+                    var check = false;
+                    foreach (DataRow row in Invoice.AlLoTon.Rows)
+                    {
+                        if (row["Ma_lo"].ToString().Trim().ToUpper() == inputUpper)
+                        {
+                            check = true;
+                        }
+
+                        if (check)
+                        {
+                            //
+                            _maLo.Tag = row;
+                            XuLyKhiNhanMaLo(row.ToDataDictionary(), isChanged);
+                            break;
+                        }
+                    }
+
+                    if (!check)
+                    {
+                        var initFilter = GetAlLoTonInitFilter();
+                        var f = new FilterView(Invoice.AlLoTon, "Ma_lo", "ALLOTON", _maLo, initFilter);
+                        if (f.ViewData != null && f.ViewData.Count > 0)
+                        {
+                            var d = f.ShowDialog(this);
+
+                            //xu ly data
+                            if (d == DialogResult.OK)
+                            {
+                                if (_maLo.Tag is DataRow)
+                                    XuLyKhiNhanMaLo(((DataRow)_maLo.Tag).ToDataDictionary(), isChanged);
+                                else if (_maLo.Tag is DataGridViewRow)
+                                    XuLyKhiNhanMaLo(((DataGridViewRow)_maLo.Tag).ToDataDictionary(), isChanged);
+                            }
+                            else
+                            {
+                                _maLo.Text = _maLo.GotFocusText;
+                            }
+                        }
+                        else
+                        {
+                            ShowParentMessage("AlLoTon" + V6Text.NoData);
+                        }
+                    }
+
+                    GetLoDate13();
+
+                    if (_maLo.GotFocusText == _maLo.LostFocusText
+                        && (V6Options.M_CHK_XUAT == "0" && (_maVt.LO_YN || _maVt.VT_TON_KHO)))
+                    {
+                        if (_soLuong1.Value > _ton13.Value)
+                        {
+                            _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
+                            TinhTienNt2(null);
+                        }
+                    }
+                }
+                else
+                {
+                    ShowMainMessage("AlLoTon null");
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        private void CheckSoKhungTon(bool isChanged)
         {
             if (NotAddEdit) return;
             if (detail1.MODE != V6Mode.Add && detail1.MODE != V6Mode.Edit) return;
@@ -2817,7 +2944,31 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 var list_SKSM ="";
                 if (maVt == "" || maKhoI == "") return list_SKSM;
-                
+
+                foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
+                {
+
+                    string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
+                    string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
+                    string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
+                    string c_sk = row["SO_KHUNG"].ToString().Trim().ToUpper();
+                    string c_sm = row["SO_MAY"].ToString().Trim().ToUpper();
+
+                    //Nếu khi sửa chỉ trừ dần những dòng trên dòng đang đứng thì dùng dòng if sau:
+                    //if (detail1.MODE == V6Mode.Edit && c_sttRec0 == sttRec0) break;
+
+                    //decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+                    if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
+                    {
+                        if (maVt == c_maVt && maKhoI == c_maKhoI)
+                        {
+                            //or_sksm = 0;
+                            list_SKSM += string.Format(" and (SO_KHUNG<>'{0}' and SO_MAY<>'{1}')", c_sk, c_sm);
+                        }
+                    }
+                }
+
+                goto end_1;
 
                 for (int i = dataSKSM.Rows.Count - 1; i >= 0; i--)
                 {
@@ -2832,8 +2983,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     if (maVt == data_maVt && maKhoI == data_maKhoI)
                     {
                         //- so luong
-                        decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
-                        decimal new_soLuong = data_soLuong;
+                        //decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
+                        decimal or_sksm = 1;
                         
                         foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
                         {
@@ -2847,26 +2998,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             //Nếu khi sửa chỉ trừ dần những dòng trên dòng đang đứng thì dùng dòng if sau:
                             //if (detail1.MODE == V6Mode.Edit && c_sttRec0 == sttRec0) break;
 
-                            decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+                            //decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
                             if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
                             {
                                 if (maVt == c_maVt && maKhoI == c_maKhoI && data_sk == c_sk && data_sm == c_sm)
                                 {
-                                    new_soLuong -= c_soLuong;
+                                    or_sksm = 0;
                                 }
                             }
                         }
 
-                        if (new_soLuong > 0)
+                        if (or_sksm > 0)
                         {
-                            list_SKSM += string.Format(" or (SO_KHUNG={0} and SO_MAY='{1}')", data_sk, data_sm);
+                            list_SKSM += string.Format(" or (SO_KHUNG='{0}' and SO_MAY='{1}')", data_sk, data_sm);
                         }
                     }
                 }
-
-                if (list_SKSM.Length > 3)
+            end_1:
+                if (list_SKSM.Length > 4)
                 {
-                    list_SKSM = list_SKSM.Substring(3);
+                    list_SKSM = list_SKSM.Substring(4);
                     return "(" + list_SKSM + ")";
                 }
             }

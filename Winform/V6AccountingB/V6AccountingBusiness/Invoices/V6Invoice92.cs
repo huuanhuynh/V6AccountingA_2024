@@ -506,7 +506,7 @@ namespace V6AccountingBusiness.Invoices
             return tbl;
         }
 
-        public DataRow GetGiaMua(string field, string mact, DateTime ngayct,
+        public new DataRow GetGiaMua(string field, string mact, DateTime ngayct,
             string mant, string mavt, string dvt1, string makh, string magia)
         {
             try

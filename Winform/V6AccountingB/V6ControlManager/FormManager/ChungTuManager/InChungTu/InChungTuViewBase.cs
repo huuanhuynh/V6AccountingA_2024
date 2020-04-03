@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Windows.Forms;
@@ -1793,6 +1794,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             CleanUp();
             ReportDocument rpDoc = null, rpDoc2 = null, rpDoc3 = null, rpDoc4 = null;
             FixReportViewerToolbarButton(true);
+
+            if ((MauTuIn == 1 && V6Login.IsAdmin) || (MauTuIn == 1 && ObjectAndString.ObjectToBool(Invoice.Alctct["R_INLIEN"])))
+            {
+                btnIn.ContextMenuStrip = menuBtnIn;
+                inLien1Menu.Visible = (_soLienIn >= 1);
+                inLien2Menu.Visible = (_soLienIn >= 2);
+                inLien3Menu.Visible = (_soLienIn >= 3);
+                inLien4Menu.Visible = (_soLienIn >= 4);
+            }
+            else
+            {
+                btnIn.ContextMenuStrip = null;
+            }
             
             if (MauTuIn == 1)
             {
@@ -1862,25 +1876,28 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 SetCrossLineAll(rpDoc, rpDoc2, rpDoc3, rpDoc4);
 
                 crystalReportViewer1.ReportSource = rpDoc;
+                crystalReportViewer1.Zoom(Invoice.ExtraInfo_PrintVCzoom);
                 _rpDoc0 = rpDoc;
                 if (_soLienIn >= 2 && rpDoc2 != null)
                 {
                     crystalReportViewer2.ReportSource = rpDoc2;
+                    crystalReportViewer2.Zoom(Invoice.ExtraInfo_PrintVCzoom);
                     _rpDoc20 = rpDoc2;
                 }
                 if (_soLienIn >= 3 && rpDoc3 != null)
                 {
                     crystalReportViewer3.ReportSource = rpDoc3;
+                    crystalReportViewer3.Zoom(Invoice.ExtraInfo_PrintVCzoom);
                     _rpDoc30 = rpDoc3;
                 }
                 if (_soLienIn >= 4 && rpDoc4 != null)
                 {
                     crystalReportViewer4.ReportSource = rpDoc4;
+                    crystalReportViewer4.Zoom(Invoice.ExtraInfo_PrintVCzoom);
                     _rpDoc40 = rpDoc4;
                 }
 
                 crystalReportViewer1.Show();
-                crystalReportViewer1.Zoom(2);
                 crystalReportViewer1.Visible = true;
                 crystalReportViewer2.Visible = false;
                 crystalReportViewer3.Visible = false;
@@ -1904,9 +1921,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 SetCrossLineAll(rpDoc, rpDoc2, rpDoc3, rpDoc4);
 
                 crystalReportViewer1.ReportSource = rpDoc;
+                crystalReportViewer1.Zoom(Invoice.ExtraInfo_PrintVCzoom);
                 _rpDoc0 = rpDoc;
                 crystalReportViewer1.Show();
-                crystalReportViewer1.Zoom(2);
                 crystalReportViewer1.Visible = true;
                 crystalReportViewer2.Visible = false;
                 crystalReportViewer3.Visible = false;
@@ -2260,6 +2277,82 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             {
                 PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
                 this.ShowErrorException(GetType() + ".Print_Click", ex);
+            }
+        }
+
+        private void btnInLien_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (IsInvoice && data_overflow)
+                {
+                    this.ShowWarningMessage(V6Text.OverFlow);
+                    return;
+                }
+
+                // Kiểm tra pagecount > 1 trường hợp dùng ROW_MAX
+                if (IsInvoice && ROW_MAX > 0)
+                {
+                    var pv = (PageView)crystalReportViewer1.Controls[0];
+                    var pagecount = pv.GetLastPageNumber();
+                    if (pagecount > 1)
+                    {
+                        this.ShowWarningMessage(V6Text.OverFlow);
+                        return;
+                    }
+                }
+
+                var dfp = DefaultPrinter;
+                
+                _oldDefaultPrinter = PrinterStatus.GetDefaultPrinterName();
+
+                PrintDialog p = new PrintDialog();
+                p.PrinterSettings.PrinterName = dfp;
+                p.AllowCurrentPage = false;
+                p.AllowPrintToFile = false;
+                p.AllowSelection = false;
+                p.AllowSomePages = false;
+                p.PrintToFile = false;
+                p.UseEXDialog = true; //Fix win7
+
+                DialogResult dr = p.ShowDialog(this);
+                if (dr == DialogResult.OK)
+                {
+                    var selectedPrinter = p.PrinterSettings.PrinterName;
+                    _printCopy = p.PrinterSettings.Copies;
+                    var setPrinterOk = PrinterStatus.SetDefaultPrinter(selectedPrinter);
+
+                    V6BusinessHelper.WriteOldSelectPrinter(selectedPrinter);
+
+                    var rpDoc = _rpDoc0;
+                    if (sender == inLien1Menu) rpDoc = _rpDoc0;
+                    if (sender == inLien2Menu) rpDoc = _rpDoc20;
+                    if (sender == inLien3Menu) rpDoc = _rpDoc30;
+                    if (sender == inLien4Menu) rpDoc = _rpDoc40;
+                    
+                    if (IsInvoice)
+                    {
+                        rpDoc.PrintToPrinter(_printCopy, false, 1, 1);
+                    }
+                    else
+                    {
+                        rpDoc.PrintToPrinter(_printCopy, false, 0, 0);
+                    }
+
+                    PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
+
+                    if (!string.IsNullOrEmpty(selectedPrinter) && selectedPrinter != dfp)
+                    {
+                        print_one = true;
+                        DefaultPrinter = selectedPrinter;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                PrinterStatus.SetDefaultPrinter(_oldDefaultPrinter);
+                
+                this.ShowErrorException(GetType() + "." + MethodBase.GetCurrentMethod().Name + ((ToolStripMenuItem)sender).Name, ex);
             }
         }
 

@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using V6AccountingBusiness;
 using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
 using V6Controls.Forms.DanhMuc.Add_Edit.Alreport;
 using V6Controls.Forms.DanhMuc.Add_Edit.NhanSu;
@@ -266,7 +264,15 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     FormControl = new AlsonbAddEditForm();
                     break;
                 case V6TableName.Albc:
-                    if (V6Login.IsAdmin) FormControl = new AlbcAddEditForm();
+                    if (V6Login.IsAdmin)
+                    {
+                        FormControl = new AlbcAddEditForm();
+                    }
+                    else if ((Control.ModifierKeys & Keys.Control) == Keys.Control
+                        && (new ConfirmPasswordV6{TopMost = true}.ShowDialog() == DialogResult.OK))
+                    {
+                        FormControl = new AlbcAddEditForm();
+                    }
                     else
                     {
                         FormControl = new NoRightAddEdit(V6Text.NotAnAdmin);

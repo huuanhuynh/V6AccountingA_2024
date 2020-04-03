@@ -69,7 +69,7 @@ namespace V6ReportControls
         /// Là AccessibleName của control chứa value.
         /// </summary>
         [DefaultValue(null)]
-        public string AccessibleName2
+        public new string AccessibleName2
         {
             get
             {

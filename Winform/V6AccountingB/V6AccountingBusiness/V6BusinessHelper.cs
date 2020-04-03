@@ -1182,13 +1182,13 @@ namespace V6AccountingBusiness
         public static decimal GetMaxValueTable(string pTablename, string pFieldname, string pKey)
         {
 
-            SqlParameter[] prlist =
+            SqlParameter[] plist =
             {
                 new SqlParameter("@table_name", pTablename),
                 new SqlParameter("@field_name", pFieldname),
                 new SqlParameter("@key", pKey)
             };
-            var maxvalue = SqlConnect.ExecuteScalar(CommandType.StoredProcedure, "VPA_GetMaxValue", prlist);
+            var maxvalue = SqlConnect.ExecuteScalar(CommandType.StoredProcedure, "VPA_GetMaxValue", plist);
             return ObjectAndString.ObjectToDecimal(maxvalue);
         }
 
@@ -1203,7 +1203,7 @@ namespace V6AccountingBusiness
         /// <returns></returns>
         public static string GetSoCt(string mode, string voucherNo, string mact, string maDvcs, int userId)
         {
-            SqlParameter[] prlist =
+            SqlParameter[] plist =
             {
                 new SqlParameter("@Mode_VC", mode),
                 new SqlParameter("@cVoucherNo", voucherNo),
@@ -1214,19 +1214,19 @@ namespace V6AccountingBusiness
             var result = SqlConnect.ExecuteScalar(
                 CommandType.StoredProcedure,
                 "VPA_GET_VoucherNo_Format",
-                prlist)
+                plist)
                 .ToString().Trim();
             return result;
         }
 
         public static string GetNewSoCt(string masonb, DateTime ngayct)
         {
-            SqlParameter[] prlist =
+            SqlParameter[] plist =
             {
                 new SqlParameter("@Ma_sonb", masonb),
                 new SqlParameter("@ngay_ct", ngayct.ToString("yyyyMMdd")),
             };
-            var result = SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_GetNewSoct", prlist);
+            var result = SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_GetNewSoct", plist);
             if (result.Tables.Count == 0) return "";
             var data = result.Tables[0];
             if (data.Rows.Count == 0) return "";
@@ -1240,7 +1240,7 @@ namespace V6AccountingBusiness
         public static string GetNewSoCt_date(string maCt, DateTime date, string type, string maDvcs, string makho, string sttrec, int userId, out string ma_sonb)
         {
             ma_sonb = "";
-            SqlParameter[] prlist =
+            SqlParameter[] plist =
             {
                 new SqlParameter("@Ma_ct", maCt),
                 new SqlParameter("@Ngay_ct", date.Date),
@@ -1250,7 +1250,7 @@ namespace V6AccountingBusiness
                 new SqlParameter("@Stt_rec", sttrec),
                 new SqlParameter("@User_id", userId)
             };
-            var result = SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_GetNewSoct_Date", prlist);
+            var result = SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_GetNewSoct_Date", plist);
             if (result.Tables.Count == 0) return "";
             var data = result.Tables[0];
             if (data.Rows.Count == 0) return "";
@@ -1342,40 +1342,40 @@ namespace V6AccountingBusiness
         /// <param name="fields">các trường dữ liệu, để trống lấy hết</param>
         /// <param name="groupby"></param>
         /// <param name="orderby"></param>
-        /// <param name="prList"></param>
+        /// <param name="pList"></param>
         /// <returns></returns>
         public static V6SelectResult Select(V6TableName name, IDictionary<string, object> keys, string fields,
-            string groupby = "", string orderby = "", params SqlParameter[] prList)
+            string groupby = "", string orderby = "", params SqlParameter[] pList)
         {
             if (!V6Login.UserRight.AllowSelect(name)) return new V6SelectResult();
 
             string where = SqlGenerator.GenSqlWhere(keys);
-            return Select(name.ToString(), fields, @where, groupby, @orderby, prList);
+            return Select(name.ToString(), fields, @where, groupby, @orderby, pList);
         }
 
         public static V6SelectResult Select(string tableName, IDictionary<string, object> keys, string fields,
-            string groupby = "", string orderby = "", params SqlParameter[] prList)
+            string groupby = "", string orderby = "", params SqlParameter[] pList)
         {
             if (!V6Login.UserRight.AllowSelect(tableName)) return new V6SelectResult();
 
             var tableStruct = GetTableStruct(tableName);
             string where = SqlGenerator.GenWhere2(tableStruct, keys);//.GenSqlWhere(keys);
-            return Select(tableName, fields, @where, groupby, @orderby, prList);
+            return Select(tableName, fields, @where, groupby, @orderby, pList);
         }
 
         public static V6SelectResult Select(string tableName, string fields = "*",
-            string where = "", string groupby = "", string orderby = "", params SqlParameter[] prList)
+            string where = "", string groupby = "", string orderby = "", params SqlParameter[] pList)
         {
             if (!V6Login.UserRight.AllowSelect(V6TableHelper.ToV6TableName(tableName))) return new V6SelectResult();
-            return SqlConnect.Select(tableName, fields, @where, groupby, @orderby, prList);
+            return SqlConnect.Select(tableName, fields, @where, groupby, @orderby, pList);
         }
 
         public static int SelectCount(string tableName, string field = "*",
-            string where = "", params SqlParameter[] prList)
+            string where = "", params SqlParameter[] pList)
         {
             var whereClause = String.IsNullOrEmpty(@where) ? "" : "where " + @where;
             var sql = "Select Count("+field+") as Count from ["+tableName+"] " + whereClause;
-            var count = ObjectAndString.ObjectToInt(SqlConnect.ExecuteScalar(CommandType.Text, sql, prList));
+            var count = ObjectAndString.ObjectToInt(SqlConnect.ExecuteScalar(CommandType.Text, sql, pList));
             return count;
         }
 
@@ -1674,7 +1674,7 @@ namespace V6AccountingBusiness
 
         public static void GetFormatGridView(string codeform, string type, out string fieldv, out string operv, out object value, out string boldYn, out string colorYn, out string colorv)
         {
-            SqlParameter[] prlist =
+            SqlParameter[] plist =
             {
                 new SqlParameter("@Codeform", codeform),
                 new SqlParameter("@Type", type)
@@ -1684,7 +1684,7 @@ namespace V6AccountingBusiness
             var result = SqlConnect.ExecuteDataset(
                 CommandType.StoredProcedure,
                 "VPA_GetFormatGridView",
-                prlist)
+                plist)
                 .Tables[0].Rows[0];
 
             fieldv = result["FIELDV"].ToString().Trim();
@@ -2285,11 +2285,10 @@ namespace V6AccountingBusiness
                 var result = ExecuteProcedureScalar("V6TOOLS_ISEXISTTABLE", new[] {new SqlParameter("@cInputTable_View", tableView)});
                 return ObjectAndString.ObjectToBool(result);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
-            return false;
         }
 
 

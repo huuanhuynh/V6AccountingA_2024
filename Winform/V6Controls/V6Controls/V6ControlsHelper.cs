@@ -275,29 +275,29 @@ namespace V6Controls
             }
         }
 
-        /// <summary>
-        /// Hàm cổ trong Standar DAO
-        /// </summary>
-        /// <param name="tableName"></param>
-        /// <param name="lstTable"></param>
-        /// <returns></returns>
-        public static DataTable KiemTraBangTonTai(string tableName, List<MyDataTable> lstTable)
-        {
-            if (tableName != "" && lstTable != null)
-            {
-                if (tableName.IndexOf("@", StringComparison.Ordinal) == -1)
-                {
-                    tableName = "@" + tableName;
-                }
-                if (lstTable.All(item => item.TableName != tableName)) return null;
-                var result = lstTable.Find(tbl => tbl.TableName == tableName);
-                return result.ObjTable;
-            }
-            else
-            {
-                throw new ArgumentException("KiemTraBangTonTai : tham số không hợp lệ");
-            }
-        }
+        ///// <summary>
+        ///// Hàm cổ trong Standar DAO
+        ///// </summary>
+        ///// <param name="tableName"></param>
+        ///// <param name="lstTable"></param>
+        ///// <returns></returns>
+        //public static DataTable KiemTraBangTonTai(string tableName, List<MyDataTable> lstTable)
+        //{
+        //    if (tableName != "" && lstTable != null)
+        //    {
+        //        if (tableName.IndexOf("@", StringComparison.Ordinal) == -1)
+        //        {
+        //            tableName = "@" + tableName;
+        //        }
+        //        if (lstTable.All(item => item.TableName != tableName)) return null;
+        //        var result = lstTable.Find(tbl => tbl.TableName == tableName);
+        //        return result.ObjTable;
+        //    }
+        //    else
+        //    {
+        //        throw new ArgumentException("KiemTraBangTonTai : tham số không hợp lệ");
+        //    }
+        //}
         
         public static SortedDictionary<string, object> DataGridViewRowToDataDictionary(DataGridViewRow row)
         {
@@ -346,6 +346,31 @@ namespace V6Controls
                 }
             }
         }
+        
+        /// <summary>
+        /// Hiển thị một form TopMost chứa thông báo, (Không ảnh hưởng đến focus đang làm việc).
+        /// </summary>
+        /// <param name="owner">Form chủ.</param>
+        public static void ShowVvarName(V6LookupData owner)
+        {
+            if (FlyLabel_Form == null) return;
+            //CreateVvarNameForm();
+            FlyLabel_Form.TargetControl = owner;
+            string nfield = V6Setting.IsVietnamese ? owner.LookupInfo.VName : owner.LookupInfo.VName2;
+            if (!string.IsNullOrEmpty(nfield))
+            {
+                var sss = ObjectAndString.SplitString(nfield);
+                if (owner.Data == null)
+                {
+                    FlyLabel_Form.StopShow();
+                }
+                else if (owner.Data.Table.Columns.Contains(sss[0]))
+                {
+                    FlyLabel_Form.Message = ObjectAndString.ObjectToString(owner.Data[sss[0]]);
+                }
+            }
+        }
+
         public static void ShowLookupTextBoxName(V6LookupTextBox owner)
         {
             if (FlyLabel_Form == null) return;

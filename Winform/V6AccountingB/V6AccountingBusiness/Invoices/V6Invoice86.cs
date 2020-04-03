@@ -379,7 +379,7 @@ namespace V6AccountingBusiness.Invoices
         }
 
         //Tuanmh 30/08/2018 copy from 71 PO->IXC 20190502
-        public DataRow GetGiaMua(string field, string mact, DateTime ngayct,
+        public new DataRow GetGiaMua(string field, string mact, DateTime ngayct,
             string mant, string mavt, string dvt1, string makh, string magia)
         {
             try

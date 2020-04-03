@@ -21,7 +21,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 IDictionary<string, object> keys = new Dictionary<string, object>();
                 keys.Add("MA_DM", TableName);
                 var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
-                string F8_table = "", code_field = "";
+                string F8_table = "";
 
                 if (aldm.Rows.Count == 1)
                 {

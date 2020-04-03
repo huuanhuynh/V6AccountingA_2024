@@ -807,8 +807,8 @@
             this.txtFtype.Name = "txtFtype";
             this.txtFtype.Size = new System.Drawing.Size(126, 23);
             this.txtFtype.TabIndex = 1;
-            this.toolTipV6FormControl.SetToolTip(this.txtFtype, "A0 tặng, A1, C0 vvar,\r\nN9, N0 tiền, N1 ngoại tệ, N2 số lượng, N3 giá. N4 giá NT, " +
-        "N5 tỷ giá.\r\nD0 date null, D1 date pick.");
+            this.toolTipV6FormControl.SetToolTip(this.txtFtype, "A0 tặng, A1, C0 vvar, C1 lookuptextbox, C2 lookupproc\r\nN9, N0 tiền, N1 ngoại tệ, " +
+        "N2 số lượng, N3 giá. N4 giá NT, N5 tỷ giá.\r\nD0 date null, D1 date pick.");
             this.txtFtype.Visible = false;
             // 
             // lblFtype

@@ -48,7 +48,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.grbCrossLine = new System.Windows.Forms.GroupBox();
             this.chkCrossModify = new V6Controls.V6CheckBox();
             this.numCrossAdd = new System.Windows.Forms.NumericUpDown();
-            this.btnIn = new System.Windows.Forms.Button();
+            this.btnIn = new wyDay.Controls.SplitButton();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
             this.panel0 = new System.Windows.Forms.Panel();
@@ -80,6 +80,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.btnSuaMau = new V6Controls.Controls.V6FormButton();
             this.btnSuaTTMauBC = new V6Controls.Controls.V6FormButton();
             this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
+            this.menuBtnIn = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.inLien1Menu = new System.Windows.Forms.ToolStripMenuItem();
+            this.inLien2Menu = new System.Windows.Forms.ToolStripMenuItem();
+            this.inLien3Menu = new System.Windows.Forms.ToolStripMenuItem();
+            this.inLien4Menu = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
@@ -91,6 +96,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.grbNgonNgu.SuspendLayout();
             this.grbTienTe.SuspendLayout();
             this.panelCRview.SuspendLayout();
+            this.menuBtnIn.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -283,6 +289,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             // btnIn
             // 
             this.btnIn.AccessibleDescription = "ASOCTSOA-INB00004";
+            this.btnIn.AutoSize = true;
             this.btnIn.Image = global::V6ControlManager.Properties.Resources.Print24;
             this.btnIn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnIn.Location = new System.Drawing.Point(94, 100);
@@ -716,6 +723,48 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.btnThemMauBC.UseVisualStyleBackColor = true;
             this.btnThemMauBC.Click += new System.EventHandler(this.btnThemMauBC_Click);
             // 
+            // menuBtnIn
+            // 
+            this.menuBtnIn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.inLien1Menu,
+            this.inLien2Menu,
+            this.inLien3Menu,
+            this.inLien4Menu});
+            this.menuBtnIn.Name = "menuBtnIn";
+            this.menuBtnIn.Size = new System.Drawing.Size(116, 92);
+            // 
+            // inLien1Menu
+            // 
+            this.inLien1Menu.AccessibleDescription = "INVOICEM00031";
+            this.inLien1Menu.Name = "inLien1Menu";
+            this.inLien1Menu.Size = new System.Drawing.Size(115, 22);
+            this.inLien1Menu.Text = "In liên 1";
+            this.inLien1Menu.Click += new System.EventHandler(this.btnInLien_Click);
+            // 
+            // inLien2Menu
+            // 
+            this.inLien2Menu.AccessibleDescription = "INVOICEM00032";
+            this.inLien2Menu.Name = "inLien2Menu";
+            this.inLien2Menu.Size = new System.Drawing.Size(115, 22);
+            this.inLien2Menu.Text = "In liên 2";
+            this.inLien2Menu.Click += new System.EventHandler(this.btnInLien_Click);
+            // 
+            // inLien3Menu
+            // 
+            this.inLien3Menu.AccessibleDescription = "INVOICEM00033";
+            this.inLien3Menu.Name = "inLien3Menu";
+            this.inLien3Menu.Size = new System.Drawing.Size(115, 22);
+            this.inLien3Menu.Text = "In liên 3";
+            this.inLien3Menu.Click += new System.EventHandler(this.btnInLien_Click);
+            // 
+            // inLien4Menu
+            // 
+            this.inLien4Menu.AccessibleDescription = "INVOICEM00034";
+            this.inLien4Menu.Name = "inLien4Menu";
+            this.inLien4Menu.Size = new System.Drawing.Size(115, 22);
+            this.inLien4Menu.Text = "In liên 4";
+            this.inLien4Menu.Click += new System.EventHandler(this.btnInLien_Click);
+            // 
             // InChungTuViewBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -741,6 +790,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.grbDieuKienLoc.ResumeLayout(false);
+            this.grbDieuKienLoc.PerformLayout();
             this.grbSoLien.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numSoLien)).EndInit();
             this.grbCrossLine.ResumeLayout(false);
@@ -752,6 +802,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.grbTienTe.ResumeLayout(false);
             this.grbTienTe.PerformLayout();
             this.panelCRview.ResumeLayout(false);
+            this.menuBtnIn.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -783,7 +834,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         private System.Windows.Forms.GroupBox grbCrossLine;
         private V6Controls.V6CheckBox chkCrossModify;
         private System.Windows.Forms.NumericUpDown numCrossAdd;
-        private System.Windows.Forms.Button btnIn;
+        private wyDay.Controls.SplitButton btnIn;
         private V6Controls.V6ComboBox cboMauIn;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtM_TEN_NLB2;
@@ -805,5 +856,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         private System.Windows.Forms.ToolStripMenuItem exportToPdfMenu;
         private System.Windows.Forms.RadioButton rCurrent;
         private DropDownButton btnExport2;
+        private System.Windows.Forms.ContextMenuStrip menuBtnIn;
+        private System.Windows.Forms.ToolStripMenuItem inLien1Menu;
+        private System.Windows.Forms.ToolStripMenuItem inLien2Menu;
+        private System.Windows.Forms.ToolStripMenuItem inLien3Menu;
+        private System.Windows.Forms.ToolStripMenuItem inLien4Menu;
     }
 }

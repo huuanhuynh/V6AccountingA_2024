@@ -45,11 +45,11 @@ namespace V6Controls.Forms.Viewer
                 if (dot_index > 0 && dot_index < 25)
                 {
                     txtScreen.Text = comma_monitor.Substring(0, 25);
-                    return;
+                    //return;
                     //Có thể làm thêm màn hình phụ.
-                    string new_text = comma_monitor.Replace(",", "");
-                    new_text = new_text[0] + "," + new_text.Substring(1);
-                    txtScreen.Text = new_text.Substring(0, 25) + "E+" + (dot_index - 1);
+                    //string new_text = comma_monitor.Replace(",", "");
+                    //new_text = new_text[0] + "," + new_text.Substring(1);
+                    //txtScreen.Text = new_text.Substring(0, 25) + "E+" + (dot_index - 1);
                 }
                 else if (dot_index >= 25)
                 {
@@ -58,10 +58,10 @@ namespace V6Controls.Forms.Viewer
                 else
                 {
                     txtScreen.Text = comma_monitor;
-                    return;
-                    string new_text = comma_monitor;
-                    new_text = new_text[0] + "," + new_text.Substring(1);
-                    txtScreen.Text = new_text.Substring(0, 25) + "E+" + (comma_monitor.Length - 1);
+                    //return;
+                    //string new_text = comma_monitor;
+                    //new_text = new_text[0] + "," + new_text.Substring(1);
+                    //txtScreen.Text = new_text.Substring(0, 25) + "E+" + (comma_monitor.Length - 1);
                 }
             }
             else

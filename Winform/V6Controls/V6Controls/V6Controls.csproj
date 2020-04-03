@@ -53,6 +53,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
@@ -95,6 +96,7 @@
     <Compile Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm_A2.Designer.cs">
       <DependentUpon>VatTuAddEditForm_A2.cs</DependentUpon>
     </Compile>
+    <Compile Include="LookupMode.cs" />
     <Compile Include="V6ColorComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1230,6 +1232,15 @@
     <Compile Include="V6LookupProc.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="V6LookupData.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="V6LookupDataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="V6LookupDataForm.designer.cs">
+      <DependentUpon>V6LookupDataForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Win32.cs" />
     <Compile Include="Controls\ToChucTree\ToChucTreeControl.cs">
       <SubType>Component</SubType>
@@ -1503,7 +1514,6 @@
     <Compile Include="V6VvarTextBoxForm.designer.cs">
       <DependentUpon>V6VvarTextBoxForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="V6VvarTextBoxFormDAO.cs" />
     <Compile Include="VistaButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -2200,11 +2210,17 @@
     <EmbeddedResource Include="V6LookupTextBox.resx">
       <DependentUpon>V6LookupTextBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="V6LookupData.resx">
+      <DependentUpon>V6LookupData.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="V6VvarTextBox.resx">
       <DependentUpon>V6VvarTextBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormChangeVvar.resx">
       <DependentUpon>FormChangeVvar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="V6LookupDataForm.resx">
+      <DependentUpon>V6LookupDataForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="V6VvarTextBoxForm.resx">
       <DependentUpon>V6VvarTextBoxForm.cs</DependentUpon>

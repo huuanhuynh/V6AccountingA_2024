@@ -166,6 +166,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.XemPhieuNhapMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.taoMaLoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.xemVitriMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.xemVitri2Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -1999,7 +2000,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.menuBtnIn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.inPhieuHachToanMenu});
             this.menuBtnIn.Name = "menuBtnIn";
-            this.menuBtnIn.Size = new System.Drawing.Size(174, 48);
+            this.menuBtnIn.Size = new System.Drawing.Size(174, 26);
             // 
             // inPhieuHachToanMenu
             // 
@@ -2086,15 +2087,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.menuDetail1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.XemPhieuNhapMenu,
             this.taoMaLoMenu,
-            this.xemVitriMenu});
+            this.xemVitriMenu,
+            this.xemVitri2Menu});
             this.menuDetail1.Name = "menuChucNang";
-            this.menuDetail1.Size = new System.Drawing.Size(162, 70);
+            this.menuDetail1.Size = new System.Drawing.Size(172, 114);
             // 
             // XemPhieuNhapMenu
             // 
             this.XemPhieuNhapMenu.AccessibleDescription = "INVOICEM00018";
             this.XemPhieuNhapMenu.Name = "XemPhieuNhapMenu";
-            this.XemPhieuNhapMenu.Size = new System.Drawing.Size(161, 22);
+            this.XemPhieuNhapMenu.Size = new System.Drawing.Size(171, 22);
             this.XemPhieuNhapMenu.Text = "Xem phiếu nhập";
             this.XemPhieuNhapMenu.Click += new System.EventHandler(this.menuXemPhieuNhap_Click);
             // 
@@ -2102,7 +2104,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             // 
             this.taoMaLoMenu.AccessibleDescription = "INVOICEM00019";
             this.taoMaLoMenu.Name = "taoMaLoMenu";
-            this.taoMaLoMenu.Size = new System.Drawing.Size(161, 22);
+            this.taoMaLoMenu.Size = new System.Drawing.Size(171, 22);
             this.taoMaLoMenu.Text = "Tạo mã lô";
             this.taoMaLoMenu.Click += new System.EventHandler(this.taoMaLoMenu_Click);
             // 
@@ -2110,9 +2112,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             // 
             this.xemVitriMenu.AccessibleDescription = "INVOICEM00026";
             this.xemVitriMenu.Name = "xemVitriMenu";
-            this.xemVitriMenu.Size = new System.Drawing.Size(161, 22);
+            this.xemVitriMenu.Size = new System.Drawing.Size(171, 22);
             this.xemVitriMenu.Text = "Xem vị trí";
+            this.xemVitriMenu.ToolTipText = "Nhấn giữ Shift khi Click chuột trên vị trí để chọn mà không xem báo cáo.";
             this.xemVitriMenu.Click += new System.EventHandler(this.XemVitriMenu_Click);
+            // 
+            // xemVitri2Menu
+            // 
+            this.xemVitri2Menu.AccessibleDescription = "INVOICEM00035";
+            this.xemVitri2Menu.Name = "xemVitri2Menu";
+            this.xemVitri2Menu.Size = new System.Drawing.Size(171, 22);
+            this.xemVitri2Menu.Text = "Xem vị trí hàng hư";
+            this.xemVitri2Menu.Click += new System.EventHandler(this.xemVitri2Menu_Click);
             // 
             // PhieuNhapKhoControl
             // 
@@ -2308,5 +2319,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         private System.Windows.Forms.ToolStripMenuItem thayTheNhieuMenu;
         private System.Windows.Forms.ContextMenuStrip menuBtnIn;
         private System.Windows.Forms.ToolStripMenuItem inPhieuHachToanMenu;
+        private System.Windows.Forms.ToolStripMenuItem xemVitri2Menu;
     }
 }
