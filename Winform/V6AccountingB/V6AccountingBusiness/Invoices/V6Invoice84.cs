@@ -426,7 +426,7 @@ namespace V6AccountingBusiness.Invoices
             return tbl;
         }
 
-        public DataTable SearchDeNghiNhap_PNKho(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, string advance, out string loai_ct_chon)
+        public DataTable SearchPhieuXuatKho_PNKho(DateTime ngayCt, string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, string advance, out string loai_ct_chon)
         {
             if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
             if (where1AM.Length > 0) where1AM = "And " + where1AM;
@@ -463,10 +463,10 @@ namespace V6AccountingBusiness.Invoices
                 }
             }
 
-            loai_ct_chon = "Y";
+            loai_ct_chon = "O";
             SqlParameter[] plist =
             {
-                new SqlParameter("@sType",  "Y"),
+                new SqlParameter("@sType",  "O"),
 	            new SqlParameter("@dFrom",  ngayCt.ToString("yyyyMMdd")),
 	            new SqlParameter("@cTableAM", "AM84"), 
 	            new SqlParameter("@cTableAD", "AD84"), 

@@ -252,7 +252,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.ChonPh
         {
             try
             {
-                tAM = Invoice.SearchDeNghiNhap_PNKho(_ngayCt, _where0Time, _where1AM, _where2AD, _w3NhomVt, _w4Dvcs, _advance, out _loai_ct_chon);
+                tAM = Invoice.SearchPhieuXuatKho_PNKho(_ngayCt, _where0Time, _where1AM, _where2AD, _w3NhomVt, _w4Dvcs, _advance, out _loai_ct_chon);
                 if (tAM != null && tAM.Rows.Count > 0)
                 {
                     flagSearchSuccess = true;

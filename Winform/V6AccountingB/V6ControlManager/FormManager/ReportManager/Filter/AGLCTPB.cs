@@ -17,10 +17,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             F8 = true;
             F9 = true;
             
-            
-            txtNam.Value = V6Setting.M_Nam_bd;
-           
-
+            txtNam.Value = V6Setting.M_SV_DATE.Year;
         }
 
         

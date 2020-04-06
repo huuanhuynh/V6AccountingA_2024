@@ -4285,6 +4285,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 }
                 else if (_MA_GD == "A")
                 {
+                    detail1.MODE = V6Mode.View;
+                    dataGridView1.UnLock();
+                    chon_accept_flag_add = shift;
                     var initFilter = GetSoCt0InitFilter();
                     var f = new FilterView_ARS20(Invoice, _soCt0, _sttRec, txtMaDVCS.Text, initFilter);
                     f.MultiSeletion = true;
@@ -4710,5 +4713,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         {
             InPhieuHachToan(Invoice, _sttRec, TongThanhToan, TongThanhToanNT);
         }
+
     }
 }
