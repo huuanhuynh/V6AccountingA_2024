@@ -30,8 +30,11 @@
         {
             this.txtMaDvcs = new V6ReportControls.FilterLineVvarTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lineXemBacTk = new V6ReportControls.FilterLineNumberTextBox();
             this.radOr = new System.Windows.Forms.RadioButton();
             this.radAnd = new System.Windows.Forms.RadioButton();
+            this.lineXemChoTk = new V6ReportControls.FilterLineVvarTextBox();
+            this.lineXemCacTkSoCai = new V6ReportControls.FilterLineVvarTextBox();
             this.dateNgay_ct1 = new V6Controls.V6DateTimePicker();
             this.dateNgay_ct2 = new V6Controls.V6DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
@@ -50,6 +53,7 @@
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
             this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
+            this.txtMaDvcs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtMaDvcs.Caption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(6, 39);
@@ -64,15 +68,29 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.lineXemBacTk);
             this.groupBox1.Controls.Add(this.radOr);
             this.groupBox1.Controls.Add(this.radAnd);
+            this.groupBox1.Controls.Add(this.lineXemChoTk);
+            this.groupBox1.Controls.Add(this.lineXemCacTkSoCai);
             this.groupBox1.Controls.Add(this.txtMaDvcs);
             this.groupBox1.Location = new System.Drawing.Point(0, 132);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(289, 79);
+            this.groupBox1.Size = new System.Drawing.Size(289, 229);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
+            // 
+            // lineXemBacTk
+            // 
+            this.lineXemBacTk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.lineXemBacTk.Caption = "Xem bậc Tk";
+            this.lineXemBacTk.FieldName = null;
+            this.lineXemBacTk.Location = new System.Drawing.Point(6, 123);
+            this.lineXemBacTk.Name = "lineXemBacTk";
+            this.lineXemBacTk.Operator = "<=";
+            this.lineXemBacTk.Size = new System.Drawing.Size(282, 22);
+            this.lineXemBacTk.TabIndex = 4;
             // 
             // radOr
             // 
@@ -98,6 +116,28 @@
             this.radAnd.TabStop = true;
             this.radAnd.Text = "Điều kiện (AND)";
             this.radAnd.UseVisualStyleBackColor = true;
+            // 
+            // lineXemChoTk
+            // 
+            this.lineXemChoTk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.lineXemChoTk.Caption = "Xem cho Tk";
+            this.lineXemChoTk.FieldName = "";
+            this.lineXemChoTk.Location = new System.Drawing.Point(6, 95);
+            this.lineXemChoTk.Name = "lineXemChoTk";
+            this.lineXemChoTk.Size = new System.Drawing.Size(282, 22);
+            this.lineXemChoTk.TabIndex = 3;
+            this.lineXemChoTk.Vvar = "TK";
+            // 
+            // lineXemCacTkSoCai
+            // 
+            this.lineXemCacTkSoCai.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.lineXemCacTkSoCai.Caption = "Xem các Tk sổ cái";
+            this.lineXemCacTkSoCai.FieldName = "";
+            this.lineXemCacTkSoCai.Location = new System.Drawing.Point(6, 67);
+            this.lineXemCacTkSoCai.Name = "lineXemCacTkSoCai";
+            this.lineXemCacTkSoCai.Size = new System.Drawing.Size(282, 22);
+            this.lineXemCacTkSoCai.TabIndex = 3;
+            this.lineXemCacTkSoCai.Vvar = "";
             // 
             // dateNgay_ct1
             // 
@@ -242,7 +282,7 @@
             this.Controls.Add(this.dateNgay_ct1);
             this.Controls.Add(this.groupBox1);
             this.Name = "AGLCD1";
-            this.Size = new System.Drawing.Size(295, 214);
+            this.Size = new System.Drawing.Size(295, 364);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -267,5 +307,8 @@
         private V6Controls.V6Label v6Label3;
         private V6Controls.V6Label v6Label4;
         private V6Controls.V6CheckBox chkKieu_f5;
+        private V6ReportControls.FilterLineVvarTextBox lineXemChoTk;
+        private V6ReportControls.FilterLineVvarTextBox lineXemCacTkSoCai;
+        private V6ReportControls.FilterLineNumberTextBox lineXemBacTk;
     }
 }

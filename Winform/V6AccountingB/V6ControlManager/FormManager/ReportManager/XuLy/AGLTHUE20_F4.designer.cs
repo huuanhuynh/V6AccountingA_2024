@@ -31,7 +31,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private void InitializeComponent()
         {
             this.cboMaNt = new V6Controls.V6ComboBox();
-            this.txtten_kh = new V6Controls.V6VvarTextBox();
+            this.txtTenKh = new V6Controls.V6VvarTextBox();
             this.txtma_mauhd = new V6Controls.V6VvarTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtt_thue = new V6Controls.NumberTien();
@@ -67,15 +67,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtso_ct = new V6Controls.V6VvarTextBox();
             this.txtma_dvcs = new V6Controls.V6VvarTextBox();
             this.txtten_dvcs = new V6Controls.V6LabelTextBox();
-            this.txtma_so_thue = new V6Controls.V6VvarTextBox();
-            this.txtdia_chi = new V6Controls.V6VvarTextBox();
+            this.txtMaSoThue = new V6Controls.V6VvarTextBox();
+            this.txtDiaChi = new V6Controls.V6VvarTextBox();
             this.txtngay_ct = new V6Controls.V6DateTimePicker();
             this.lbTxtT_CL_NT = new V6Controls.V6Label();
             this.lbT_Tt_NT0 = new V6Controls.V6Label();
             this.v6Label5 = new V6Controls.V6Label();
             this.v6Label4 = new V6Controls.V6Label();
             this.lblMaKH = new V6Controls.V6Label();
-            this.txtma_kh = new V6Controls.V6VvarTextBox();
+            this.txtMaKh = new V6Controls.V6VvarTextBox();
             this.v6Label9 = new V6Controls.V6Label();
             this.lblSoCT = new System.Windows.Forms.Label();
             this.v6Label3 = new V6Controls.V6Label();
@@ -103,23 +103,23 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.cboMaNt.TabStop = false;
             this.cboMaNt.SelectedIndexChanged += new System.EventHandler(this.cboMaNt_SelectedIndexChanged);
             // 
-            // txtten_kh
+            // txtTenKh
             // 
-            this.txtten_kh.AccessibleName = "ten_kh";
-            this.txtten_kh.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtTenKh.AccessibleName = "ten_kh";
+            this.txtTenKh.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtten_kh.BackColor = System.Drawing.SystemColors.Window;
-            this.txtten_kh.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtten_kh.CheckNotEmpty = true;
-            this.txtten_kh.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtten_kh.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtten_kh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtten_kh.HoverColor = System.Drawing.Color.Yellow;
-            this.txtten_kh.LeaveColor = System.Drawing.Color.White;
-            this.txtten_kh.Location = new System.Drawing.Point(175, 101);
-            this.txtten_kh.Name = "txtten_kh";
-            this.txtten_kh.Size = new System.Drawing.Size(419, 20);
-            this.txtten_kh.TabIndex = 16;
+            this.txtTenKh.BackColor = System.Drawing.SystemColors.Window;
+            this.txtTenKh.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtTenKh.CheckNotEmpty = true;
+            this.txtTenKh.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtTenKh.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtTenKh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtTenKh.HoverColor = System.Drawing.Color.Yellow;
+            this.txtTenKh.LeaveColor = System.Drawing.Color.White;
+            this.txtTenKh.Location = new System.Drawing.Point(175, 101);
+            this.txtTenKh.Name = "txtTenKh";
+            this.txtTenKh.Size = new System.Drawing.Size(419, 20);
+            this.txtTenKh.TabIndex = 16;
             // 
             // txtma_mauhd
             // 
@@ -667,42 +667,42 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.txtten_dvcs.TabStop = false;
             this.txtten_dvcs.Tag = "readonly";
             // 
-            // txtma_so_thue
+            // txtMaSoThue
             // 
-            this.txtma_so_thue.AccessibleName = "ma_so_thue";
-            this.txtma_so_thue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtMaSoThue.AccessibleName = "ma_so_thue";
+            this.txtMaSoThue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtma_so_thue.BackColor = System.Drawing.SystemColors.Window;
-            this.txtma_so_thue.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtma_so_thue.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtma_so_thue.CheckNotEmpty = true;
-            this.txtma_so_thue.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtma_so_thue.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtma_so_thue.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtma_so_thue.HoverColor = System.Drawing.Color.Yellow;
-            this.txtma_so_thue.LeaveColor = System.Drawing.Color.White;
-            this.txtma_so_thue.Location = new System.Drawing.Point(175, 149);
-            this.txtma_so_thue.Name = "txtma_so_thue";
-            this.txtma_so_thue.Size = new System.Drawing.Size(144, 20);
-            this.txtma_so_thue.TabIndex = 20;
+            this.txtMaSoThue.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaSoThue.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaSoThue.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMaSoThue.CheckNotEmpty = true;
+            this.txtMaSoThue.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaSoThue.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaSoThue.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaSoThue.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaSoThue.LeaveColor = System.Drawing.Color.White;
+            this.txtMaSoThue.Location = new System.Drawing.Point(175, 149);
+            this.txtMaSoThue.Name = "txtMaSoThue";
+            this.txtMaSoThue.Size = new System.Drawing.Size(144, 20);
+            this.txtMaSoThue.TabIndex = 20;
             // 
-            // txtdia_chi
+            // txtDiaChi
             // 
-            this.txtdia_chi.AccessibleName = "dia_chi";
-            this.txtdia_chi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtDiaChi.AccessibleName = "dia_chi";
+            this.txtDiaChi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtdia_chi.BackColor = System.Drawing.SystemColors.Window;
-            this.txtdia_chi.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtdia_chi.CheckNotEmpty = true;
-            this.txtdia_chi.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtdia_chi.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtdia_chi.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtdia_chi.HoverColor = System.Drawing.Color.Yellow;
-            this.txtdia_chi.LeaveColor = System.Drawing.Color.White;
-            this.txtdia_chi.Location = new System.Drawing.Point(175, 125);
-            this.txtdia_chi.Name = "txtdia_chi";
-            this.txtdia_chi.Size = new System.Drawing.Size(419, 20);
-            this.txtdia_chi.TabIndex = 18;
+            this.txtDiaChi.BackColor = System.Drawing.SystemColors.Window;
+            this.txtDiaChi.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtDiaChi.CheckNotEmpty = true;
+            this.txtDiaChi.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtDiaChi.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtDiaChi.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtDiaChi.HoverColor = System.Drawing.Color.Yellow;
+            this.txtDiaChi.LeaveColor = System.Drawing.Color.White;
+            this.txtDiaChi.Location = new System.Drawing.Point(175, 125);
+            this.txtDiaChi.Name = "txtDiaChi";
+            this.txtDiaChi.Size = new System.Drawing.Size(419, 20);
+            this.txtDiaChi.TabIndex = 18;
             // 
             // txtngay_ct
             // 
@@ -769,23 +769,23 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.lblMaKH.TabIndex = 11;
             this.lblMaKH.Text = "Mã khách";
             // 
-            // txtma_kh
+            // txtMaKh
             // 
-            this.txtma_kh.AccessibleName = "ma_kh";
-            this.txtma_kh.BackColor = System.Drawing.SystemColors.Window;
-            this.txtma_kh.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtma_kh.BrotherFields = "Ten_Kh,dia_chi,ma_so_thue";
-            this.txtma_kh.CheckNotEmpty = true;
-            this.txtma_kh.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtma_kh.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtma_kh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtma_kh.HoverColor = System.Drawing.Color.Yellow;
-            this.txtma_kh.LeaveColor = System.Drawing.Color.White;
-            this.txtma_kh.Location = new System.Drawing.Point(175, 77);
-            this.txtma_kh.Name = "txtma_kh";
-            this.txtma_kh.Size = new System.Drawing.Size(146, 20);
-            this.txtma_kh.TabIndex = 12;
-            this.txtma_kh.VVar = "ma_kh";
+            this.txtMaKh.AccessibleName = "ma_kh";
+            this.txtMaKh.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaKh.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaKh.CheckNotEmpty = true;
+            this.txtMaKh.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaKh.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaKh.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaKh.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaKh.LeaveColor = System.Drawing.Color.White;
+            this.txtMaKh.Location = new System.Drawing.Point(175, 77);
+            this.txtMaKh.Name = "txtMaKh";
+            this.txtMaKh.Size = new System.Drawing.Size(146, 20);
+            this.txtMaKh.TabIndex = 12;
+            this.txtMaKh.VVar = "ma_kh";
+            this.txtMaKh.V6LostFocus += new V6Controls.ControlEventHandle(this.txtma_kh_V6LostFocus);
             // 
             // v6Label9
             // 
@@ -865,7 +865,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.cboMaNt);
-            this.Controls.Add(this.txtten_kh);
+            this.Controls.Add(this.txtTenKh);
             this.Controls.Add(this.txtma_mauhd);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtt_thue);
@@ -901,15 +901,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.Controls.Add(this.txtso_ct);
             this.Controls.Add(this.txtma_dvcs);
             this.Controls.Add(this.txtten_dvcs);
-            this.Controls.Add(this.txtma_so_thue);
-            this.Controls.Add(this.txtdia_chi);
+            this.Controls.Add(this.txtMaSoThue);
+            this.Controls.Add(this.txtDiaChi);
             this.Controls.Add(this.txtngay_ct);
             this.Controls.Add(this.lbTxtT_CL_NT);
             this.Controls.Add(this.lbT_Tt_NT0);
             this.Controls.Add(this.v6Label5);
             this.Controls.Add(this.v6Label4);
             this.Controls.Add(this.lblMaKH);
-            this.Controls.Add(this.txtma_kh);
+            this.Controls.Add(this.txtMaKh);
             this.Controls.Add(this.v6Label9);
             this.Controls.Add(this.lblSoCT);
             this.Controls.Add(this.v6Label3);
@@ -929,7 +929,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private V6Controls.V6Label v6Label5;
         private V6Controls.V6Label v6Label4;
         private V6Controls.V6Label lblMaKH;
-        private V6Controls.V6VvarTextBox txtma_kh;
+        private V6Controls.V6VvarTextBox txtMaKh;
         private V6Controls.V6Label v6Label9;
         private System.Windows.Forms.Label lblSoCT;
         private V6Controls.V6Label v6Label3;
@@ -937,8 +937,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         protected System.Windows.Forms.Button btnHuy;
         protected System.Windows.Forms.Button btnNhan;
         private V6Controls.V6DateTimePicker txtngay_ct;
-        private V6Controls.V6VvarTextBox txtdia_chi;
-        private V6Controls.V6VvarTextBox txtma_so_thue;
+        private V6Controls.V6VvarTextBox txtDiaChi;
+        private V6Controls.V6VvarTextBox txtMaSoThue;
         private V6Controls.V6LabelTextBox txtten_dvcs;
         private V6Controls.V6VvarTextBox txtma_dvcs;
         private V6Controls.V6VvarTextBox txtso_ct;
@@ -974,7 +974,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private V6Controls.NumberTien txtt_thue;
         private V6Controls.V6VvarTextBox txtma_mauhd;
         private Label label3;
-        private V6Controls.V6VvarTextBox txtten_kh;
+        private V6Controls.V6VvarTextBox txtTenKh;
         private V6Controls.V6VvarTextBox txtso_seri;
         private V6Controls.V6ComboBox cboMaNt;
     }

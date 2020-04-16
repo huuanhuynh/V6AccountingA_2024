@@ -66,7 +66,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 V6ControlFormHelper.SetFormDataRow(this, _am);
-            
+                XuLyKhoaThongTinKhachHang();
+
                 txttk_thue_no.SetInitFilter("loai_tk =1");
                 txttk_du.SetInitFilter("loai_tk =1");
 
@@ -268,6 +269,80 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 txtGia_NT.DecimalPlaces = V6Options.M_IP_GIA_NT;
                 txtT_tien_nt.DecimalPlaces = V6Options.M_IP_TIEN_NT;
                 txtT_thue_nt.DecimalPlaces = V6Options.M_IP_TIEN_NT;
+            }
+        }
+
+        private void txtma_kh_V6LostFocus(object sender)
+        {
+            XuLyChonMaKhach22();
+        }
+
+        private void XuLyChonMaKhach22()
+        {
+            try
+            {
+                if (txtma_kh.Text != "")
+                {
+                    var data = txtma_kh.Data;
+                    if (data != null)
+                    {
+                        txtten_kh.Text = (data["TEN_KH"] ?? "").ToString().Trim();
+                        txtdia_chi.Text = (data["DIA_CHI"] ?? "").ToString().Trim();
+                        txtma_so_thue.Text = (data["MA_SO_THUE"] ?? "").ToString().Trim();
+
+                        txtten_kh.ReadOnly = txtten_kh.Text != "";
+                        txtdia_chi.ReadOnly = txtdia_chi.Text != "";
+                        txtma_so_thue.ReadOnly = txtma_so_thue.Text != "";
+                    }
+                }
+                else
+                {
+                    txtten_kh.ReadOnly = false;
+                    txtdia_chi.ReadOnly = false;
+                    txtma_so_thue.ReadOnly = false;
+                    txtma_kh.Focus();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        private void XuLyKhoaThongTinKhachHang()
+        {
+            try
+            {
+                if (txtma_kh.Text != "")
+                {
+                    var data = txtma_kh.Data;
+                    if (data != null)
+                    {
+                        txtten_kh.ReadOnly = txtten_kh.Text != "";
+                        txtdia_chi.ReadOnly = txtdia_chi.Text != "";
+                        txtma_so_thue.ReadOnly = txtma_so_thue.Text != "";
+                    }
+                    else
+                    {
+                        txtten_kh.ReadOnly = false;
+                        txtdia_chi.ReadOnly = false;
+                        txtma_so_thue.ReadOnly = false;
+                    }
+                }
+                else
+                {
+                    txtten_kh.ReadOnly = false;
+                    txtdia_chi.ReadOnly = false;
+                    txtma_so_thue.ReadOnly = false;
+                    txtma_kh.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
     }

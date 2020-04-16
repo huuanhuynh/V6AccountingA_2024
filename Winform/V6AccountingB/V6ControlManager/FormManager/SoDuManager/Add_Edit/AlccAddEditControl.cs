@@ -1225,7 +1225,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     if (cIndex >= 0 && cIndex < data3.Rows.Count)
                     {
                         var currentRow = data3.Rows[cIndex];
-                        var details = "Mã nguồn vốn: " + currentRow["Ma_nv"];
+                        var details = string.Format("{0}: {1}", CorpLan2.GetFieldHeader("Ten_ptkt"), currentRow["Ten_ptkt"]);
                         if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details)
                             == DialogResult.Yes)
                         {
@@ -1260,7 +1260,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     if (cIndex >= 0 && cIndex < data4.Rows.Count)
                     {
                         var currentRow = data4.Rows[cIndex];
-                        var details = "Mã nguồn vốn: " + currentRow["Ma_nv"];
+                        var details = string.Format("{0}: {1}", CorpLan2.GetFieldHeader("MA_BP_I"), currentRow["MA_BP_I"]);
                         if (this.ShowConfirmMessage(V6Text.DeleteRowConfirm + "\n" + details)
                             == DialogResult.Yes)
                         {

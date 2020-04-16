@@ -98,10 +98,6 @@
             this.cboMa_xuly.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboMa_xuly.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cboMa_xuly.FormattingEnabled = true;
-            this.cboMa_xuly.Items.AddRange(new object[] {
-            "0 - Chưa cập nhập",
-            "1 - Cập nhập tất cả",
-            "2 - Chỉ cập nhập vào kho"});
             this.cboMa_xuly.Location = new System.Drawing.Point(112, 161);
             this.cboMa_xuly.Name = "cboMa_xuly";
             this.cboMa_xuly.Size = new System.Drawing.Size(170, 21);
@@ -109,14 +105,13 @@
             // 
             // v6Label1
             // 
-            this.v6Label1.AccessibleDescription = "FILTERL00010";
             this.v6Label1.AutoSize = true;
             this.v6Label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.v6Label1.Location = new System.Drawing.Point(9, 163);
             this.v6Label1.Name = "v6Label1";
-            this.v6Label1.Size = new System.Drawing.Size(89, 13);
+            this.v6Label1.Size = new System.Drawing.Size(94, 13);
             this.v6Label1.TabIndex = 10;
-            this.v6Label1.Text = "Xử lý chứng từ";
+            this.v6Label1.Text = "Xử lý danh mục";
             // 
             // lblMaDanhMuc
             // 
@@ -215,7 +210,7 @@
             this.txtMaDMProc.Size = new System.Drawing.Size(100, 20);
             this.txtMaDMProc.TabIndex = 2;
             this.txtMaDMProc.ValueField = "MA_DM";
-            this.txtMaDMProc.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMa_ct_V6LostFocus);
+            this.txtMaDMProc.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMa_dm_V6LostFocus);
             // 
             // AAPPR_XL_LIST_ALL_Filter
             // 

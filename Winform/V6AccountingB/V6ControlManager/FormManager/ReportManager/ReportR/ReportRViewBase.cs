@@ -1401,6 +1401,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 rpDoc.SetDataSource(_ds);
 
                 SetAllReportParams(rpDoc);
+                var infos = EXTRA_INFOR;
+                if (infos.ContainsKey("RPTHIDE"))
+                {
+                    var names = ObjectAndString.SplitString(infos["RPTHIDE"]);
+                    RPTHIDE(rpDoc, names);
+                }
 
                 crystalReportViewer1.ReportSource = rpDoc;
                 _rpDoc0 = rpDoc;
@@ -1410,6 +1416,32 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".ViewReport " + ReportFileFull, ex);
+            }
+        }
+
+        private void RPTHIDE(ReportDocument rpDoc, IList<string> names)
+        {
+            try
+            {
+                if (rpDoc == null) return;
+                var all_objects = new SortedDictionary<string, ReportObject>();
+                foreach (ReportObject o in rpDoc.ReportDefinition.ReportObjects)
+                {
+                    all_objects[o.Name.ToUpper()] = o;
+                }
+
+                foreach (string name in names)
+                {
+                    string NAME = name.ToUpper();
+                    if (all_objects.ContainsKey(NAME))
+                    {
+                        all_objects[NAME].ObjectFormat.EnableSuppress = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".RPTHIDE", ex);
             }
         }
 

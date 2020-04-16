@@ -90,6 +90,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\GridView\GridViewRowEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\GridView\GridViewRowEditorForm.Designer.cs">
+      <DependentUpon>GridViewRowEditorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm_A2.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1498,12 +1504,6 @@
     <Compile Include="V6VvarTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="FormChangeVvar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormChangeVvar.Designer.cs">
-      <DependentUpon>FormChangeVvar.cs</DependentUpon>
-    </Compile>
     <Compile Include="MyDataTable.cs" />
     <Compile Include="V6ControlsHelper.cs" />
     <Compile Include="ControlFunction.cs" />
@@ -1521,6 +1521,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Controls\FileButton.resx">
       <DependentUpon>FileButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\GridView\GridViewRowEditorForm.resx">
+      <DependentUpon>GridViewRowEditorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Lookup\LookupButton.resx">
       <DependentUpon>LookupButton.cs</DependentUpon>
@@ -2215,9 +2218,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="V6VvarTextBox.resx">
       <DependentUpon>V6VvarTextBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormChangeVvar.resx">
-      <DependentUpon>FormChangeVvar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="V6LookupDataForm.resx">
       <DependentUpon>V6LookupDataForm.cs</DependentUpon>

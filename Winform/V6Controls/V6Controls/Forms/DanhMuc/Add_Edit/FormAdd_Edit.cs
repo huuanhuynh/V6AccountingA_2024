@@ -147,14 +147,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                 FormControl = AddEditManager.Init_Control(_tableName, _tableNameString);
                 _aldmConfig = FormControl._aldmConfig;
-                if (_aldmConfig.HaveInfo)
-                {
-                    if (_aldmConfig.IS_ALDM)
-                    {
-                        Text = FormControl.Mode + " - " + (V6Setting.IsVietnamese ? _aldmConfig.TITLE : _aldmConfig.TITLE2);
-                    }
-                }
-
+                Text = _mode + " - " + V6TableHelper.V6TableCaption(_tableName, V6Setting.Language);
+                
                 if (FormControl is NoRightAddEdit)
                 {
                     string keys_string = "";
@@ -210,7 +204,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                Text = FormControl.Mode + " - " + V6TableHelper.V6TableCaption(_tableName, V6Setting.Language);
+                if (_aldmConfig.HaveInfo)
+                {
+                    if (_aldmConfig.IS_ALDM)
+                    {
+                        Text = _mode + " - " + (V6Setting.IsVietnamese ? _aldmConfig.TITLE : _aldmConfig.TITLE2);
+                    }
+                }
             }
             catch (Exception ex)
             {

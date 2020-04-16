@@ -123,6 +123,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             CreateCustomInfoTextBox(group4, txtSoct_tt, cboChuyenData);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             LoadTag(Invoice, detail1.Controls);
+            HideControlByGRD_HIDE();
             ResetForm();
 
             _MA_GD = (Invoice.Alct["M_MA_GD"] ?? "2").ToString().Trim().ToUpper();
@@ -185,7 +186,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 dynamicControlList.Add(9999, new AlctControls {DetailControl = _sttRecTt});
                 dynamicControlList.Add(9998, new AlctControls {DetailControl = _soSeri0});
 
-                #region ----//Thêm các control động vào danh sách, thêm sự kiện cho control động
+                
                 foreach (KeyValuePair<int, AlctControls> item in dynamicControlList)
                 {
                     var control = item.Value.DetailControl;
@@ -197,8 +198,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     {
                         detail1.CarryFields.Add(NAME);
                     }
+                    // Gán tag hide và readonly theo GRD_xxxx
+                    if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":"))
+                    {
+                        control.InvisibleTag();
+                    }
+                    if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
+                    {
+                        control.ReadOnlyTag();
+                    }
                     V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
-
+                    #region ---- Hứng control ----
                     switch (NAME)
                     {
                         case "SO_CT0":
@@ -303,9 +313,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                             break;
 
                     }
+                    #endregion ---- Hứng control ----
                     V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
                 }
-                #endregion ----//Thêm các control động vào danh sách, thêm sự kiện cho control động
+                
 
                 //Bo sung cac f cung
                 if (_check_f_tien_nt == false)
@@ -370,7 +381,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
-
+                // Gán tag hide và readonly theo GRD_xxxx
+                if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":"))
+                {
+                    control.InvisibleTag();
+                }
+                if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
+                {
+                    control.ReadOnlyTag();
+                }
                 #region ==== Hứng control ====
                 if (NAME == "TK_I")
                 {
@@ -2260,6 +2279,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             //V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, Invoice.Config2.GRDS_V1, Invoice.Config2.GRDF_V1, V6Setting.IsVietnamese ? Invoice.Config2.GRDHV_V1 : Invoice.Config2.GRDHE_V1);
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView3, Invoice.Config3.GRDS_V1, Invoice.Config3.GRDF_V1, V6Setting.IsVietnamese ? Invoice.Config3.GRDHV_V1 : Invoice.Config3.GRDHE_V1);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView1, Invoice.Mact);
+            //V6ControlFormHelper.FormatGridViewHideColumns(dataGridView2, Invoice.Mact);
+            V6ControlFormHelper.FormatGridViewHideColumns(dataGridView3, Invoice.Mact);
+            //V6ControlFormHelper.FormatGridViewHideColumns(dataGridView3ChiPhi, Invoice.Mact);
+            //V6ControlFormHelper.FormatGridViewHideColumns(dataGridView4, Invoice.Mact);
             V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView3, _orderList3);
         }
         

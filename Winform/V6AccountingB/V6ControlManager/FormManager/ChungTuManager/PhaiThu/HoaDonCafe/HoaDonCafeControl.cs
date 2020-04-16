@@ -151,7 +151,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
         private void MyInit()
         {
-            LoadTag(Invoice, detail1.Controls);
             ReorderGroup1TabIndex();
 
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
@@ -214,6 +213,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             LoadAdvanceControls(Invoice.Mact);
             CreateCustomInfoTextBox(group4, txtTongSoLuong1, cboChuyenData);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
+            LoadTag(Invoice, detail1.Controls);
+            HideControlByGRD_HIDE();
             ResetForm();
             
             _maGd = (Invoice.Alct["M_MA_GD"] ?? "1").ToString().Trim();
@@ -251,6 +252,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 if (control is V6ColorTextBox && item.Value.IsCarry)
                 {
                     detail1.CarryFields.Add(NAME);
+                }
+                // Gán tag hide và readonly theo GRD_xxxx
+                if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":"))
+                {
+                    control.InvisibleTag();
+                }
+                if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
+                {
+                    control.ReadOnlyTag();
                 }
                 V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
 
@@ -796,7 +806,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
-
+                // Gán tag hide và readonly theo GRD_xxxx
+                if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":"))
+                {
+                    control.InvisibleTag();
+                }
+                if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
+                {
+                    control.ReadOnlyTag();
+                }
                 #region ==== Hứng control ====
                 if (NAME == "TK_I")
                 {
@@ -3300,7 +3318,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             //V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, Invoice.Config2.GRDS_V1, Invoice.Config2.GRDF_V1, V6Setting.IsVietnamese ? Invoice.Config2.GRDHV_V1 : Invoice.Config2.GRDHE_V1);
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView3, Invoice.Config3.GRDS_V1, Invoice.Config3.GRDF_V1, V6Setting.IsVietnamese ? Invoice.Config3.GRDHV_V1 : Invoice.Config3.GRDHE_V1);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView1, Invoice.Mact);
-            
+            //V6ControlFormHelper.FormatGridViewHideColumns(dataGridView2, Invoice.Mact);
+            V6ControlFormHelper.FormatGridViewHideColumns(dataGridView3, Invoice.Mact);
+            //V6ControlFormHelper.FormatGridViewHideColumns(dataGridView3ChiPhi, Invoice.Mact);
+            //V6ControlFormHelper.FormatGridViewHideColumns(dataGridView4, Invoice.Mact);
         }
 
         #endregion datagridview
@@ -4787,7 +4808,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 addDataAM["MA_VITRIPH"] = ma_vitriPH;
                 
                 //readyDataAM["STATUS"] = _post ? "3" : Status;
-                addDataAM["STATUS"] = Status;
+                string save_status = _post ? "3" : Status;
+                if(AM_current != null) AM_current["STATUS"] = save_status;
+                addDataAM["STATUS"] = save_status;
                 //Update to AM
                 V6BusinessHelper.UpdateRowToDataTable(AM, "Stt_rec", _sttRec, addDataAM);
 
@@ -4936,7 +4959,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 if (V6Login.UserRight.AllowEdit("", Invoice.CodeMact)
                     && V6Login.UserRight.AllowEditDeleteMact(Invoice.Mact, _sttRec, "S"))
                 {
-                    if (Mode == V6Mode.View)
+                    if (Mode == V6Mode.View || Mode == V6Mode.Init)
                     {
                         // Tuanmh 16/02/2016 Check level
                         var row = AM.Rows[CurrentIndex];
@@ -4955,7 +4978,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                                 detail1.MODE = V6Mode.View;
                                 detail3.MODE = V6Mode.View;
                                 GoToFirstFocus(txtMa_sonb);
-                                Luu(MA_KHOPH, MA_VITRIPH, false);
+                                // Không đổi trạng thái khi chỉ bấm sửa nên bỏ lưu tạm.
+                                //Luu(MA_KHOPH, MA_VITRIPH, false);
                             }
                         }
                         else
@@ -5487,6 +5511,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         {
             try
             {
+                //ShowParentMessage("Hãy bấm lưu!");
+                //ShowMainMessage("Hãy bấm lưu!");
+
                 dataGridView1.UnLock();
                 dataGridView3.UnLock();
                 if (Mode == V6Mode.Edit)
@@ -5495,6 +5522,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     {
                         V6ControlFormHelper.RemoveRunningList(_sttRec);
                         ViewInvoice(CurrentIndex);
+                        FixStatusByData();
                         btnMoi.Focus();
                     }
                 }
@@ -5507,6 +5535,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                         if (AM != null && AM.Rows.Count > 0)
                         {
                             ViewInvoice(CurrentIndex);
+                            FixStatusByData();
                             btnMoi.Focus();
                         }
                         else
@@ -6164,7 +6193,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         
         private void btnIn_Click(object sender, EventArgs e)
         {
-            In(_sttRec, V6PrintMode.DoNoThing);
+            V6PrintMode printMode = V6PrintMode.DoNoThing;
+            if (Invoice.PrintMode == "1") printMode = V6PrintMode.AutoPrint;
+            if (Invoice.PrintMode == "2") printMode = V6PrintMode.AutoClickPrint;
+            In(_sttRec, printMode);
             SetStatus2Text();
         }
 

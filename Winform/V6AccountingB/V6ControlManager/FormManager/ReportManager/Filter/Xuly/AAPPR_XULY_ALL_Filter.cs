@@ -146,11 +146,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             var and = radAnd.Checked;
             
             var cKey = "";
-            
+
 
             var key0 = GetFilterStringByFields(new List<string>()
             {
-                "MA_DVCS","MA_BP", "MA_KH", "MA_NX", "MA_TD_PH", "MA_NVIEN", "MA_XULY"
+                "MA_DVCS", "MA_SONB", "MA_BP", "MA_KH", "MA_NX", "MA_TD_PH", "MA_NVIEN", "MA_XULY"
             }, and);
             var key1 = GetFilterStringByFields(new List<string>()
             {

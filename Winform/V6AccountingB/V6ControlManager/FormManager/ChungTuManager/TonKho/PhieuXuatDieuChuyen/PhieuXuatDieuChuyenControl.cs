@@ -103,6 +103,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             CreateCustomInfoTextBox(group4, txtTongSoLuong1, cboChuyenData);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             LoadTag(Invoice, detail1.Controls);
+            HideControlByGRD_HIDE();
             ResetForm();
 
             LoadAll();
@@ -136,6 +137,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 if (control is V6ColorTextBox && item.Value.IsCarry)
                 {
                     detail1.CarryFields.Add(NAME);
+                }
+                // Gán tag hide và readonly theo GRD_xxxx
+                if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":"))
+                {
+                    control.InvisibleTag();
+                }
+                if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
+                {
+                    control.ReadOnlyTag();
                 }
                 V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
 
@@ -3090,6 +3100,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             //V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, Invoice.Config2.GRDS_V1, Invoice.Config2.GRDF_V1, V6Setting.IsVietnamese ? Invoice.Config2.GRDHV_V1 : Invoice.Config2.GRDHE_V1);
             //V6ControlFormHelper.FormatGridViewAndHeader(dataGridView3, Invoice.Config3.GRDS_V1, Invoice.Config3.GRDF_V1, V6Setting.IsVietnamese ? Invoice.Config3.GRDHV_V1 : Invoice.Config3.GRDHE_V1);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView1, Invoice.Mact);
+            //V6ControlFormHelper.FormatGridViewHideColumns(dataGridView2, Invoice.Mact);
+            //V6ControlFormHelper.FormatGridViewHideColumns(dataGridView3, Invoice.Mact);
+            //V6ControlFormHelper.FormatGridViewHideColumns(dataGridView3ChiPhi, Invoice.Mact);
+            //V6ControlFormHelper.FormatGridViewHideColumns(dataGridView4, Invoice.Mact);
         }
         #endregion datagridview
 
@@ -4487,6 +4501,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 //Thêm thông tin...
                 data["MA_CT"] = Invoice.Mact;
                 data["NGAY_CT"] = dateNgayCT.Date;
+                if (txtMaKhoN.Data != null)
+                {
+                    var tk_dl = txtMaKhoN.Data["TK_DL"].ToString().Trim();
+                    if (!string.IsNullOrEmpty(tk_dl))
+                    {
+                        _Ma_nx_i.Text = tk_dl;
+                        data["MA_NX_I"] = tk_dl;
+                    }
+                }
+                if (txtMaKhoX.Data != null)
+                {
+                    var tk_dl = txtMaKhoX.Data["TK_DL"].ToString().Trim();
+                    if (!string.IsNullOrEmpty(tk_dl))
+                    {
+                        _tkVt.Text = tk_dl;
+                        data["TK_VT"] = tk_dl;
+                    }
+                }
+                
 
                 //Kiem tra du lieu truoc khi them sua
                 var error = "";
@@ -5478,12 +5511,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                         txtMaKhoX.Text = ma_kho_s0;
                         txtMaKhoX.RefreshLoDateYnValue();
                     }
-                    if (ma_kho_n_s0 == null && data.ContainsKey("MA_KH_N"))
+                    if (ma_kho_n_s0 == null && data.ContainsKey("MA_KHO_N"))
                     {
-                        ma_kho_n_s0 = data["MA_KH_N"].ToString().Trim();
+                        ma_kho_n_s0 = data["MA_KHO_N"].ToString().Trim();
                         txtMaKhoN.Text = ma_kho_n_s0;
                         txtMaKhoN.RefreshLoDateYnValue();
                     }
+                    if (ma_kho_n_s0 == null && txtMaKhoN.Text != "")
+                    {
+                        ma_kho_n_s0 = txtMaKhoN.Text.Trim();
+                        txtMaKhoN.RefreshLoDateYnValue();
+                    }
+                    
                     string c_makh = data.ContainsKey("MA_KH") ? data["MA_KH"].ToString().Trim().ToUpper() : "";
                     if (c_makh != "" && txtMaKh.Text == "")
                     {
@@ -5607,12 +5646,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                                 newData_X["SL_QD"] = insert / HS_QD1;
                             }
 
-                            XuLyNhap(newData_X, ma_kho_n_s0, ref inserted_mavitri, ref addCount, ref failCount);
-
-                            //if (XuLyThemDetail(newData_X)) addCount++;
-                            //All_Objects["data"] = data;
-                            //InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
-                            //else failCount++;
+                            if (temp_vt.VITRI_YN)
+                            {
+                                XuLyNhap(newData_X, ma_kho_n_s0, ref inserted_mavitri, ref addCount, ref failCount);
+                            }
+                            else
+                            {
+                                if (XuLyThemDetail(newData_X))
+                                {
+                                    addCount++;
+                                    All_Objects["data"] = data;
+                                    InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                                }
+                                else
+                                {
+                                    failCount++;
+                                }
+                            }
 
                             sum += insert;
                             data_row["TON_DAU"] = row_ton_dau - insert;
@@ -5679,12 +5729,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                                     newData_X["SL_QD"] = insert / HS_QD1;
                                 }
 
-                                XuLyNhap(newData_X, ma_kho_n_s0, ref inserted_mavitri, ref addCount, ref failCount);
-
-                                //if (XuLyThemDetail(newData_X)) addCount++;
-                                //All_Objects["data"] = data;
-                                //InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
-                                //else failCount++;
+                                if (temp_vt.VITRI_YN)
+                                {
+                                    XuLyNhap(newData_X, ma_kho_n_s0, ref inserted_mavitri, ref addCount, ref failCount);
+                                }
+                                else
+                                {
+                                    if (XuLyThemDetail(newData_X))
+                                    {
+                                        addCount++;
+                                        All_Objects["data"] = data;
+                                        InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                                    }
+                                    else
+                                    {
+                                        failCount++;
+                                    }
+                                }
 
                                 sum += insert;
                                 sum_qd += insert_qd;
@@ -5728,11 +5789,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                             }
                         }
 
-                        XuLyNhap(newData_X, ma_kho_n_s0, ref inserted_mavitri, ref addCount, ref failCount);
-                        //if (XuLyThemDetail(newData_X)) addCount++;
-                        //All_Objects["data"] = data;
-                        //InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
-                        //else failCount++;
+                        if (temp_vt.VITRI_YN)
+                        {
+                            XuLyNhap(newData_X, ma_kho_n_s0, ref inserted_mavitri, ref addCount, ref failCount);
+                        }
+                        else
+                        {
+                            if (XuLyThemDetail(newData_X))
+                            {
+                                addCount++;
+                                All_Objects["data"] = data;
+                                InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                            }
+                            else
+                            {
+                                failCount++;
+                            }
+                        }
                     }
                 } // end for
 
@@ -5770,6 +5843,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         /// <param name="failCount"></param>
         private void XuLyNhap(IDictionary<string, object> data, string ma_kho_n, ref List<string> inserted_mavitri, ref int addCount, ref int failCount)
         {
+            //if (string.IsNullOrEmpty(ma_kho_n)) ma_kho_n = txtMaKhoN.Text.Trim();
+            //if (string.IsNullOrEmpty(ma_kho_n))
+            //{
+            //    failCount++;
+            //    return;
+            //}
             //// Lấy ma_kh_soh đầu tiên.
             //if (ma_kh_soh == null && data.ContainsKey("MA_KH_SOH"))
             //{
@@ -5833,7 +5912,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     foreach (DataRow AD_row in AD.Rows)
                     {
                         if (ma_vt == AD_row["MA_VT"].ToString().Trim() &&
-                            data_row["MA_VITRI"].ToString().Trim() == AD_row["MA_VITRI"].ToString().Trim())
+                            data_row["MA_VITRI"].ToString().Trim() == AD_row["MA_VITRIN"].ToString().Trim())
                         {
                             data_row["SL_VTMAX"] = ObjectAndString.ObjectToDecimal(data_row["SL_VTMAX"])
                                                    - ObjectAndString.ObjectToDecimal(AD_row["SO_LUONG"]);
@@ -5849,33 +5928,33 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     if (insert <= 0) continue;
                     decimal insert_qd = (total_qd - sum_qd) < row_SL_MAX_qd ? (total_qd - sum_qd) : row_SL_MAX_qd;
                     // Chỉ định lô
-                    string mavitri_chidinh = newData.ContainsKey("MA_VITRI")
-                        ? newData["MA_VITRI"].ToString().Trim()
-                        : "";
+                    //string mavitri_chidinh = newData.ContainsKey("MA_VITRI")
+                    //    ? newData["MA_VITRI"].ToString().Trim()
+                    //    : "";
                     string mavitri_row = data_row["MA_VITRI"].ToString().Trim().ToUpper();
 
-                    if (!string.IsNullOrEmpty(mavitri_chidinh))
-                    {
-                        // Có vị trí chỉ định
-                        if (mavitri_chidinh == mavitri_row)
-                        {
-                            newData["MA_VITRI"] = data_row["MA_VITRI"];
-                        }
-                        else
-                        {
-                            continue; // bỏ qua lodate_data
-                        }
-                    }
-                    else
+                    //if (!string.IsNullOrEmpty(mavitri_chidinh))
+                    //{
+                    //    // Có vị trí chỉ định
+                    //    if (mavitri_chidinh == mavitri_row)
+                    //    {
+                    //        newData["MA_VITRI"] = data_row["MA_VITRI"];
+                    //    }
+                    //    else
+                    //    {
+                    //        continue; // bỏ qua lodate_data
+                    //    }
+                    //}
+                    //else
                     {
                         // Không Có vị trí chỉ định
-                        newData["MA_VITRI"] = data_row["MA_VITRI"];
+                        newData["MA_VITRIN"] = mavitri_row;
                     }
 
                     //newData["MA_KHO_I"] = data_row["MA_KHO"]; // khong chuyen truong
-                    if (temp_vt.VITRI_YN) newData["MA_VITRI"] = data_row["MA_VITRI"];
+                    //if (temp_vt.VITRI_YN) newData["MA_VITRI"] = mavitri_row;
 
-                    string c_MA_VITRI = newData["MA_VITRI"].ToString().ToUpper();
+                    string c_MA_VITRI = newData["MA_VITRIN"].ToString().ToUpper();
                     if (c_MA_VITRI != "" && inserted_mavitri.Contains(c_MA_VITRI)) continue;
                     inserted_mavitri.Add(c_MA_VITRI);
 
@@ -5929,12 +6008,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                         decimal insert_qd = (total_qd - sum_qd) < row_ton_dau_qd ? (total_qd - sum_qd) : row_ton_dau_qd;
 
                         // Không Có lô chỉ định
-                        newData["MA_VITRI"] = data_row["MA_VITRI"];
+                        newData["MA_VITRIN"] = data_row["MA_VITRI"];
 
                         //newData["MA_KHO_I"] = data_row["MA_KHO"]; // khong chuyen truong
-                        if (temp_vt.VITRI_YN) newData["MA_VITRI"] = data_row["MA_VITRI"];
+                        //if (temp_vt.VITRI_YN) newData["MA_VITRIN"] = data_row["MA_VITRI"];
 
-                        string c_MA_VITRI = newData["MA_VITRI"].ToString().ToUpper();
+                        string c_MA_VITRI = newData["MA_VITRIN"].ToString().ToUpper();
                         if (c_MA_VITRI != "" && inserted_mavitri.Contains(c_MA_VITRI)) continue;
                         inserted_mavitri.Add(c_MA_VITRI);
 

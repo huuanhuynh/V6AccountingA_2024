@@ -73,7 +73,7 @@ namespace V6Controls
         protected override void OnDataError(bool displayErrorDialogIfNoHandler, DataGridViewDataErrorEventArgs e)
         {
             //this.WriteExLog(GetType() + ".OnDataError", e.Exception);
-            V6ControlFormHelper.AddLastError(GetType() + ".OnDataError " + e.Exception.Message);
+            V6ControlFormHelper.WriteExLog(GetType() + ".OnDataError ", e.Exception);
         }
 
         /// <summary>
@@ -759,7 +759,7 @@ namespace V6Controls
         /// </summary>
         /// <param name="columnName">Tên cột.</param>
         /// <param name="columnType">typeof(DataGridViewColumn)</param>
-        /// <param name="newFormat">bỏ qua hoặc mặc định nếu null.</param>
+        /// <param name="newFormat">bỏ qua hoặc mặc định nếu null. Cvvar-N2</param>
         /// <returns></returns>
         public DataGridViewColumn ChangeColumnType(string columnName, Type columnType, string newFormat)
         {
@@ -793,7 +793,14 @@ namespace V6Controls
             newTypeColumn.DataPropertyName = columnName;
             if (!string.IsNullOrEmpty(newFormat))
             {
-                newTypeColumn.DefaultCellStyle.Format = newFormat;
+                if (columnType == typeof (V6VvarDataGridViewColumn) && newFormat.StartsWith("C"))
+                {
+                    ((V6VvarDataGridViewColumn) newTypeColumn).Vvar = newFormat.Substring(1);
+                }
+                else
+                {
+                    newTypeColumn.DefaultCellStyle.Format = newFormat;
+                }
             }
             else
             {
@@ -809,6 +816,9 @@ namespace V6Controls
                     }
                 }
             }
+
+            // Get old column properties
+            newTypeColumn.HeaderText = oldTypeColumn.HeaderText;
 
             Columns.Remove(oldTypeColumn);
             Columns.Add(newTypeColumn);
@@ -1691,7 +1701,7 @@ namespace V6Controls
         /// <summary>
         /// Cho phép sửa trên những cột truyền vào.
         /// </summary>
-        /// <param name="columns"></param>
+        /// <param name="columns">Field:CVvar:InitFilter; Field:CVvar - Field:N2</param>
         public void SetEditColumn(IList<string> columns)
         {
             ReadOnly = false;
@@ -1701,10 +1711,39 @@ namespace V6Controls
             }
             foreach (string column in columns)
             {
-                var c = Columns[column];
+                var sss = column.Split(new[] { ':' }, 5);
+                var key = sss[0];
+                string cVvar_N2 = "", filter = null, tableLabel = null, oper = null;
+
+                if (sss.Length >= 2)
+                {
+                    cVvar_N2 = sss[1].Trim();
+                }
+                if (sss.Length >= 3)
+                {
+                    filter = sss[2].Replace("''", "'");
+                }
+
+                var c = Columns[key];
                 if (c != null)
                 {
-                    c.ReadOnly = false;
+                    if (cVvar_N2.StartsWith("C"))
+                    {
+                        var newTypeColumn = ChangeColumnType(key, typeof(V6VvarDataGridViewColumn), cVvar_N2);
+                        newTypeColumn.ReadOnly = false;
+                        ((V6VvarDataGridViewColumn)newTypeColumn).InitFilter = filter;
+                    }
+                    else if (cVvar_N2.StartsWith("N"))
+                    {
+                        var newTypeColumn = ChangeColumnType(key, typeof(V6NumberDataGridViewColumn), cVvar_N2);
+                        newTypeColumn.ReadOnly = false;
+                    }
+                    else
+                    {
+                        c.ReadOnly = false;
+                    }
+                    
+                    
                 }
             }
         }
@@ -1712,7 +1751,7 @@ namespace V6Controls
         /// <summary>
         /// Cho phép sửa trên những cột truyền vào.
         /// </summary>
-        /// <param name="columns">Nhiều cột trong 1 mảng hoặc trong các biến khác nhau.</param>
+        /// <param name="columns">Nhiều cột trong 1 mảng hoặc trong các biến khác nhau. Field:CVvar - Field:N2</param>
         public void SetEditColumnParams(params string[] columns)
         {
             SetEditColumn(columns);
@@ -1811,6 +1850,29 @@ namespace V6Controls
             Space_Bar = true;
             Control_Space = true;
             Control_A = true;
+        }
+
+        /// <summary>
+        /// Hiển thị form chỉnh sửa dữ liệu dòng đang đứng.
+        /// </summary>
+        /// <param name="columnsInfo"></param>
+        public void ShowRowEditor(string[] columnsInfo)
+        {
+            if (CurrentRow == null) return;
+            try
+            {
+                GridViewRowEditorForm form = new GridViewRowEditorForm(this, columnsInfo);
+                form.ShowDialog(this);
+                if (form.DialogResult == DialogResult.OK)
+                {
+                    var data = form.GetData();
+                    V6ControlFormHelper.UpdateGridViewRow(CurrentRow, data);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoCodeEditor", ex);
+            }
         }
     }
 }

@@ -213,11 +213,10 @@ namespace V6Controls
             this.Click += new System.EventHandler(this.V6ColorTextBox_Click);
             this.Enter += new System.EventHandler(this.V6ColorTextBox_Enter);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SendTab_KeyDown);
-            this.KeyUp += V6DateTimePick_KeyUp;
-            this.Leave += new System.EventHandler(this.V6ColorTextBox_Leave);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(V6DateTimePick_KeyUp);
+            this.Leave += new System.EventHandler(V6DateTimePick_LostFocus);
             this.MouseLeave += new System.EventHandler(this.V6ColorTextBox_MouseLeave);
             this.ValueChanged += V6DateTimePick_ValueChanged;
-            this.Leave += V6DateTimePick_LostFocus;
 
             this.ResumeLayout(false);
 
@@ -333,16 +332,16 @@ namespace V6Controls
             this._gotfocustext = this.Text;
 
             DoVirtualMouseClick(new Point(9, 9));
-
+            _selectDatePartIndex = -1;
             //SendKeys.Send("{RIGHT 2}");
         }
 
-        private void V6ColorTextBox_Leave(object sender, EventArgs e)
-        {
-            this.BackColor = _leaveColor;
-            this._previousColor = BackColor;
-            this._lostfocustext = this.Text;
-        }        
+        //private void V6ColorTextBox_Leave(object sender, EventArgs e)
+        //{
+        //    this.BackColor = _leaveColor;
+        //    this._previousColor = BackColor;
+        //    this._lostfocustext = this.Text;
+        //}        
 
         private void V6ColorTextBox_Click(object sender, EventArgs e)
         {
@@ -360,7 +359,6 @@ namespace V6Controls
             {
                 e.Handled = true;
                 SelectDatePart(0);
-                Reset_InputHistory();
             }
 
             if (!_detroysenkey && e.KeyCode == Keys.Enter)
@@ -380,23 +378,30 @@ namespace V6Controls
         {
             try
             {
-                if (ReadOnly || _input_history.Length > 1)
+                if (ReadOnly)
                 {
                     return;
                 }
 
-                if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Right)
+                if (e.KeyCode == Keys.Left)// || e.KeyCode == Keys.Right)
                 {
-                    _input_history += "99";
+                    _selectDatePartIndex--;
+                    _input_history = "";
+                    return;
+                }
+                else if (e.KeyCode == Keys.Right)
+                {
+                    _selectDatePartIndex++;
+                    _input_history = "";
                     return;
                 }
 
                 KeysConverter kc = new KeysConverter();
                 string now_digit = kc.ConvertToString(e.KeyData).Right(1);
-
-                if (_input_history.Length == 1)
+                //int c_selectDatePartIndex = _selectDatePartIndex;
+                if ((_selectDatePartIndex <= 0) && _input_history.EndsWith("3"))// == 1)
                 {
-                    var num = ObjectAndString.ObjectToInt(_input_history + now_digit);
+                    var num = ObjectAndString.ObjectToInt(_input_history.Right(1) + now_digit);
                     if (num > DateTime.DaysInMonth(Value.Year, Value.Month))
                     {
                         if (num > 31) num = 31;
@@ -405,10 +410,11 @@ namespace V6Controls
                     }
                 }
 
-                //if (char.IsDigit(Convert.ToChar(now_digit)))
-                if (char.IsDigit((char)e.KeyCode))
+                if (char.IsDigit(now_digit[0]))
                 {
                     _input_history += now_digit;
+                    if (_input_history.Length > 10) _input_history = _input_history.Right(10);
+                    //V6ControlFormHelper.ShowMainMessage(_input_history + " - " + c_selectDatePartIndex);
                 }
             }
             catch (Exception)
@@ -429,6 +435,7 @@ namespace V6Controls
         /// <param name="i">index</param>
         public void SelectDatePart(int i)
         {
+            if (i == 0) Reset_InputHistory();
             DoVirtualMouseClick(new Point(9, 9));
             if(i>0) SendKeys.Send("{/}");
             if(i>1) SendKeys.Send("{/}");

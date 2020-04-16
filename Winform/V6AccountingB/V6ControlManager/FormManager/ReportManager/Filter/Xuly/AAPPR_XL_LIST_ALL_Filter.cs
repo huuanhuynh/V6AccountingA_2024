@@ -36,7 +36,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 
                 SqlParameter[] plist =
                 {
-                    new SqlParameter("@Ma_ct", ""),
+                    new SqlParameter("@Ma_dm", ""),
                     new SqlParameter("@User_id", V6Login.UserId),
                     new SqlParameter("@Advance", "APPR_YN='1'"),
                 };
@@ -62,7 +62,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         private void AAPPR_XL_LIST_ALL_Filter_Load(object sender, EventArgs e)
         {
-            txtMa_ct_V6LostFocus(null);
+            txtMa_dm_V6LostFocus(null);
         }
 
         private void LoadComboboxSource(string maCt)
@@ -77,17 +77,17 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 };
                 var data = V6BusinessHelper.ExecuteProcedure("VPA_GET_ALXULY_DM", plist).Tables[0];
 
-                cboMa_xuly.ValueMember = "MA_XULY";
-                cboMa_xuly.DisplayMember = V6Setting.IsVietnamese ? "Ten_xuly" : "Ten_xuly2";
+                cboMa_xuly.ValueMember = "MA_XULY2";
+                cboMa_xuly.DisplayMember = V6Setting.IsVietnamese ? "Ten_xuly2" : "Ten_xuly22";
                 cboMa_xuly.DataSource = data;
-                cboMa_xuly.ValueMember = "MA_XULY";
-                cboMa_xuly.DisplayMember = V6Setting.IsVietnamese ? "Ten_xuly" : "Ten_xuly2";
+                cboMa_xuly.ValueMember = "MA_XULY2";
+                cboMa_xuly.DisplayMember = V6Setting.IsVietnamese ? "Ten_xuly2" : "Ten_xuly22";
 
                 var viewXuly = new DataView(data);
                 viewXuly.RowFilter = "Ma_dm='"+ maCt+ "' and Status='1' And SL_TD2=1";
                 if (viewXuly.Count == 1)
                 {
-                    string selectValue = viewXuly.ToTable().Rows[0]["MA_XULY"].ToString().Trim();
+                    string selectValue = viewXuly.ToTable().Rows[0]["MA_XULY2"].ToString().Trim();
                     if (!string.IsNullOrEmpty(selectValue)) cboMa_xuly.SelectedValue = selectValue;
                 }
             }
@@ -111,8 +111,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// <returns>cKey</returns>
         public override List<SqlParameter> GetFilterParameters()
         {
+            String1 = txtMaDMProc.Text.Trim();
             var result = new List<SqlParameter>();
-            result.Add(new SqlParameter("@ma_ct", txtMaDMProc.Text.Trim()));
+            result.Add(new SqlParameter("@ma_dm", txtMaDMProc.Text.Trim()));
             result.Add(new SqlParameter("@user_id", V6Login.UserId));
 
             var and = radAnd.Checked;
@@ -122,7 +123,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             var key0 = GetFilterStringByFields(new List<string>()
             {
-                "MA_XULY"
+                "MA_XULY2"
             }, and);
             
             if (!string.IsNullOrEmpty(key0))
@@ -244,7 +245,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 Button b = (Button) sender;
                 DataRow row = (DataRow) b.Tag;
 
-                _gridView1.Filter("ma_xuly", "=", row["ma_xuly"], "value2", false, false);
+                _gridView1.Filter("ma_xuly2", "=", row["ma_xuly2"], "value2", false, false);
                 _xulyBase.FormatGridViewExtern();
                 _xulyBase.UpdateGridView2(_gridView1.CurrentRow);
             }
@@ -254,16 +255,16 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
         }
 
-        private void txtMa_ct_V6LostFocus(object sender)
+        private void txtMa_dm_V6LostFocus(object sender)
         {
             try
             {
                 LoadComboboxSource(txtMaDMProc.Text);
-                lineMa_xuly.VvarTextBox.SetInitFilter(string.Format("Ma_ct='{0}'", txtMaDMProc.Text.Trim()));
+                lineMa_xuly.VvarTextBox.SetInitFilter(string.Format("Ma_dm='{0}'", txtMaDMProc.Text.Trim()));
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".txtMa_ct_V6LostFocus", ex);
+                this.WriteExLog(GetType() + ".txtMa_dm_V6LostFocus", ex);
             }
         }
 
@@ -274,7 +275,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
                 if (chkView_all.Checked)
                 {
-                    _gridView1.Filter("ma_ct", "=",txtMaDMProc.Text.Trim(), "value2", false, false);
+                    _gridView1.Filter("ma_dm", "=",txtMaDMProc.Text.Trim(), "value2", false, false);
                     _xulyBase.FormatGridViewExtern();
                     _xulyBase.UpdateGridView2(_gridView1.CurrentRow);
                 }

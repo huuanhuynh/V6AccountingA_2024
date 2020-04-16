@@ -221,7 +221,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu.Filter
                         {
                             var dataTable2 = _ds.Tables[1];
                             var _tbl2Row = dataTable2.Rows[0];
-                            if (di.Name.ToUpper() == "SOTIENVIETBANGCHU_TIENBANNT")
+                            if (di.Name.ToUpper() == "SOTIENVIETBANGCHU_TIENBANNT") // ~Name:SOTIENVIETBANGCHU_TIENBANNT;Ptype:TABLE2;Field:FIELD
                             {
                                 var t_tien_nt2_in = ObjectAndString.ObjectToDecimal(_tbl2Row[di.Field]);// "T_TIEN_NT2_IN"]);
                                 var ma_nt = _tbl2Row["MA_NT"].ToString().Trim();

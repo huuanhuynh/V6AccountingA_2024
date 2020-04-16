@@ -268,13 +268,31 @@ namespace V6Controls.Controls.GridView
             get
             {
                 IDictionary<string,object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
-                if (tagDic.ContainsKey("VVAR")) return tagDic["VVAR"].ToString();
+                if (tagDic.ContainsKey("VVAR")) return "" + tagDic["VVAR"];
                 return null;
             }
             set
             {
                 IDictionary<string, object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
                 tagDic["VVAR"] = value;
+                Tag = tagDic;
+            }
+        }
+
+        public string InitFilter
+        {
+            // Thuộc tính kiểu mới lưu trong Tag.
+            get
+            {
+                IDictionary<string,object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
+                if (tagDic.ContainsKey("INITFILTER")) return "" + tagDic["INITFILTER"];
+                return null;
+            }
+            set
+            {
+                if (value == null) return;
+                IDictionary<string, object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
+                tagDic["INITFILTER"] = value;
                 Tag = tagDic;
             }
         }
@@ -369,6 +387,7 @@ namespace V6Controls.Controls.GridView
             {
                 //txt.VVar = ((V6VvarDataGridViewColumn)DataGridView.CurrentCell.OwningColumn).Tag.ToString();
                 txt.VVar = ((V6VvarDataGridViewColumn)DataGridView.CurrentCell.OwningColumn).Vvar;
+                txt.SetInitFilter(((V6VvarDataGridViewColumn)DataGridView.CurrentCell.OwningColumn).InitFilter);
                 txt.CharacterCasing = CharacterCasing.Upper;
                 txt.BorderStyle = BorderStyle.None;
                 //if (dataGridViewCellStyle.Format != null && dataGridViewCellStyle.Format.StartsWith("N"))

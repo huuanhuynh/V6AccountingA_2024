@@ -262,11 +262,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //VPA_GetFormatGridView]@Codeform VARCHAR(50),@Type VARCHAR(20)
                 string FIELDV, OPERV, BOLD_YN, COLOR_YN, COLORV;
                 object VALUEV;
-                V6BusinessHelper.GetFormatGridView(_program, "REPORT", out FIELDV, out OPERV, out VALUEV, out BOLD_YN,
+                V6BusinessHelper.GetFormatGridView(FilterControl.String1, "LIST", out FIELDV, out OPERV, out VALUEV, out BOLD_YN,
                     out COLOR_YN, out COLORV);
                 //Color.MediumAquamarine
                 V6ControlFormHelper.FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1",
                     ObjectAndString.StringToColor(COLORV));
+
+                AldmConfig aldmConfig = ConfigManager.GetAldmConfig(FilterControl.String1);
+                if (aldmConfig.HaveInfo)
+                {
+                    V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, aldmConfig.GRDS_V1, aldmConfig.GRDF_V1, aldmConfig.GRDH_LANG_V1);
+                }
 
                 DataGridViewCell cell = null;
                 if (dataGridView1.RowCount > 0)

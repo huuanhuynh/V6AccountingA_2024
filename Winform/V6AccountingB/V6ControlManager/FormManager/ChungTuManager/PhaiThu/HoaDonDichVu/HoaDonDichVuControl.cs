@@ -121,6 +121,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             CreateCustomInfoTextBox(group4, txtTongSoLuong, cboChuyenData);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             LoadTag(Invoice, detail1.Controls);
+            HideControlByGRD_HIDE();
             ResetForm();
 
             LoadAll();
@@ -151,6 +152,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                 if (control is V6ColorTextBox && item.Value.IsCarry)
                 {
                     detail1.CarryFields.Add(NAME);
+                }
+                // Gán tag hide và readonly theo GRD_xxxx
+                if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":"))
+                {
+                    control.InvisibleTag();
+                }
+                if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
+                {
+                    control.ReadOnlyTag();
                 }
                 V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
 
@@ -324,7 +334,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                 ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
-
+                // Gán tag hide và readonly theo GRD_xxxx
+                if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":"))
+                {
+                    control.InvisibleTag();
+                }
+                if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
+                {
+                    control.ReadOnlyTag();
+                }
                 #region ==== Hứng control ====
                 if (NAME == "TK_I")
                 {
@@ -1347,6 +1365,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             //V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, Invoice.Config2.GRDS_V1, Invoice.Config2.GRDF_V1, V6Setting.IsVietnamese ? Invoice.Config2.GRDHV_V1 : Invoice.Config2.GRDHE_V1);
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView3, Invoice.Config3.GRDS_V1, Invoice.Config3.GRDF_V1, V6Setting.IsVietnamese ? Invoice.Config3.GRDHV_V1 : Invoice.Config3.GRDHE_V1);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView1, Invoice.Mact);
+            //V6ControlFormHelper.FormatGridViewHideColumns(dataGridView2, Invoice.Mact);
+            V6ControlFormHelper.FormatGridViewHideColumns(dataGridView3, Invoice.Mact);
+            //V6ControlFormHelper.FormatGridViewHideColumns(dataGridView3ChiPhi, Invoice.Mact);
+            //V6ControlFormHelper.FormatGridViewHideColumns(dataGridView4, Invoice.Mact);
         }
         #endregion datagridview
 

@@ -2047,6 +2047,50 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
 
         /// <summary>
+        /// Tính Gia_nt và Gia theo Tien_nt và Tien chia So_luong.
+        /// </summary>
+        /// <param name="row"></param>
+        public void TinhGia_TheoTienSoLuong(DataRow row)
+        {
+            var so_luong = ObjectAndString.ObjectToDecimal(row["SO_LUONG"]);
+            if (so_luong != 0)
+            {
+                decimal tien_nt = ObjectAndString.ObjectToDecimal(row["TIEN_NT"]);
+                decimal tien = ObjectAndString.ObjectToDecimal(row["TIEN"]);
+                if (AD.Columns.Contains("GIA_NT"))
+                    row["GIA_NT"] = V6BusinessHelper.Vround((tien_nt / so_luong), M_ROUND_GIA_NT);
+                if (AD.Columns.Contains("GIA"))
+                    row["GIA"] = V6BusinessHelper.Vround((tien / so_luong), M_ROUND_GIA);
+                if (_maNt == _mMaNt0)
+                {
+                    row["GIA"] = row["GIA_NT"];
+                }
+            }
+        }
+
+        /// <summary>
+        /// Tính Gia_nt1 và Gia1 theo Tien_nt và Tien chia So_luong1.
+        /// </summary>
+        /// <param name="row"></param>
+        public void TinhGia1_TheoTienSoLuong1(DataRow row)
+        {
+            var so_luong1 = ObjectAndString.ObjectToDecimal(row["SO_LUONG1"]);
+            if (so_luong1 != 0)
+            {
+                decimal tien_nt = ObjectAndString.ObjectToDecimal(row["TIEN_NT"]);
+                decimal tien = ObjectAndString.ObjectToDecimal(row["TIEN"]);
+                if (AD.Columns.Contains("GIA_NT1"))
+                    row["GIA_NT1"] = V6BusinessHelper.Vround((tien_nt / so_luong1), M_ROUND_GIA_NT);
+                if (AD.Columns.Contains("GIA1"))
+                    row["GIA1"] = V6BusinessHelper.Vround((tien / so_luong1), M_ROUND_GIA);
+                if (_maNt == _mMaNt0)
+                {
+                    row["GIA1"] = row["GIA_NT1"];
+                }
+            }
+        }
+
+        /// <summary>
         /// Xử lý khi thay đổi giá trị tienNt (trong chi tiết).
         /// </summary>
         /// <param name="tienNt">giá trị tienNt sau khi thay đổi.</param>
@@ -4141,6 +4185,23 @@ namespace V6ControlManager.FormManager.ChungTuManager
         public virtual void XuLyF9()
         {
             ShowMainMessage(V6Text.NoDefine + FormDynamicEvent.F9);
+        }
+
+        protected void HideControlByGRD_HIDE()
+        {
+            try
+            {
+                if (_invoice.Alctct == null) return;
+                foreach (string field in _invoice.GRD_HIDE)
+                {
+                    Control c = GetControlByAccessibleName(field);
+                    if (c != null) c.InvisibleTag();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".HideControlByGRD_HIDE", ex);
+            }
         }
     }
 }

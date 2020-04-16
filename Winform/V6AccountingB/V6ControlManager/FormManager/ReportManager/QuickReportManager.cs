@@ -719,8 +719,7 @@ namespace V6ControlManager.FormManager.ReportManager
 
             if (errors != "")
             {
-                V6ControlFormHelper.AddLastError("QuickReportManager" + ".SetAllReportParams\r\nFile: "
-                    + "ReportFileFull" + "\r\nError: " + errors);
+                V6ControlFormHelper.WriteToLog("QuickReportManager" + ".SetAllReportParams:", errors);
             }
         }
 

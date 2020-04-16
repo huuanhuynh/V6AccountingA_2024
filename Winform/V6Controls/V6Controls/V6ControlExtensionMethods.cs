@@ -583,6 +583,17 @@ namespace V6Controls
         }
 
         /// <summary>
+        /// Gán Readonly và tag.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="read_only"></param>
+        public static void ReadOnlyTag(this Control control, bool read_only = true)
+        {
+            if (control is TextBox) ((TextBox)control).ReadOnlyTag(read_only);
+            else if (control is DataGridView) ((DataGridView)control).ReadOnlyTag(read_only);
+        }
+
+        /// <summary>
         /// Set readonly và gán tag đánh dấu cho control.
         /// </summary>
         /// <param name="control"></param>

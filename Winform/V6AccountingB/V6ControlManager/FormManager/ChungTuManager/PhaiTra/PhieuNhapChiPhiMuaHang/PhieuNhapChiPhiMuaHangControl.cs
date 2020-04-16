@@ -76,7 +76,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 txtMa_sonb.SetInitFilter("dbo.VFV_InList0('" + Invoice.Mact + "',MA_CTNB,'" + ",')=1");
             }
 
-            //V6ControlFormHelper.CreateGridViewStruct(dataGridView1, adStruct);
+            txtTkThueCo.FilterStart = true;
+            txtTkThueNo.FilterStart = true;
+
+            txtTkThueCo.SetInitFilter("Loai_tk = 1");
+            txtTkThueNo.SetInitFilter("Loai_tk = 1");
             
             var dataGridViewColumn = dataGridView1.Columns["UID"];
             if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (Guid);
@@ -111,6 +115,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             CreateCustomInfoTextBox(group4, txtTongSoLuong1, cboChuyenData);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             LoadTag(Invoice, detail1.Controls);
+            HideControlByGRD_HIDE();
             ResetForm();
 
             LoadAll();
@@ -149,6 +154,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 if (control is V6ColorTextBox && item.Value.IsCarry)
                 {
                     detail1.CarryFields.Add(NAME);
+                }
+                // Gán tag hide và readonly theo GRD_xxxx
+                if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":"))
+                {
+                    control.InvisibleTag();
+                }
+                if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
+                {
+                    control.ReadOnlyTag();
                 }
                 V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
 
@@ -486,6 +500,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
+                // Gán tag hide và readonly theo GRD_xxxx
+                if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":"))
+                {
+                    control.InvisibleTag();
+                }
+                if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
+                {
+                    control.ReadOnlyTag();
+                }
                 switch (NAME)
                 {
                     case "SO_CT0":
@@ -1448,7 +1471,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                        V6Setting.IsVietnamese ? Invoice.GRDHV_AD : Invoice.GRDHE_AD);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView1, Invoice.Mact);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView2, Invoice.Mact);
+            //V6ControlFormHelper.FormatGridViewHideColumns(dataGridView3, Invoice.Mact);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView3ChiPhi, Invoice.Mact);
+            //V6ControlFormHelper.FormatGridViewHideColumns(dataGridView4, Invoice.Mact);
 
         }
         #endregion datagridview

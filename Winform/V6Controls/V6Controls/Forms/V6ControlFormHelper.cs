@@ -61,7 +61,7 @@ namespace V6Controls.Forms
             }
         }
         
-        public static void AddLastError(string s)
+        static void AddLastError(string s)
         {
             LastErrorList.Add(s);
             while (LastErrorList.Count > MaxErrorListCount)
@@ -5783,6 +5783,11 @@ namespace V6Controls.Forms
             }
         }
 
+        /// <summary>
+        /// Ẩn cột trong datagridview GRD_HIDE.
+        /// </summary>
+        /// <param name="dgv"></param>
+        /// <param name="Mact"></param>
         public static void FormatGridViewHideColumns(V6ColorDataGridView dgv, string Mact)
         {
             if (!V6Login.IsAdmin)
@@ -7464,7 +7469,7 @@ namespace V6Controls.Forms
         /// <param name="control"></param>
         /// <param name="eventProgram"></param>
         /// <param name="All_Objects">Các đối tượng control</param>
-        /// <param name="before">Phần cộng thêm cho tên hàm Event</param>
+        /// <param name="before">Phần cộng thêm cho tên hàm Event ví dụ NAME_V6LOSTFOCUS2 </param>
         public static void ApplyControlEventByAccessibleName(Control control, Type eventProgram, Dictionary<string, object> All_Objects, string before = "")
         {
             string NAME = control.AccessibleName;

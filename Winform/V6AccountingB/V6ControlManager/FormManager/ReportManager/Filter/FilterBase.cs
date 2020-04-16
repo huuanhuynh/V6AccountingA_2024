@@ -1274,7 +1274,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             var result = "";
             var line = control as FilterLineBase;
-            if (line != null && line.IsSelected && fields.Contains(line.FieldName.ToUpper()))
+            if (line != null && line.IsSelected && !string.IsNullOrEmpty(line.FieldName) && fields.Contains(line.FieldName.ToUpper()))
             {
                 result += (and ? "\nand " : "\nor  ") + line.GetQuery(table);
             }

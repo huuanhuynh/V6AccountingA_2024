@@ -11,6 +11,8 @@ using V6Controls.Forms;
 using V6Init;
 using V6SqlConnect;
 using V6Structs;
+using V6Tools;
+using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
@@ -66,7 +68,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             try
             {
                 V6ControlFormHelper.SetFormDataRow(this, _am);
-            
+                XuLyKhoaThongTinKhachHang();
                 
                 txttk_thue_co.SetInitFilter("loai_tk =1");
                 txttk_du.SetInitFilter("loai_tk =1");
@@ -77,7 +79,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 length = V6BusinessHelper.VFV_iFsize("ARV20", "dien_giai");
                 if (length == 0) length = 128;
-                txtdia_chi.MaxLength = length;
+                txtDiaChi.MaxLength = length;
 
                 LoadAlnt();
                 cboMaNt.SelectedValue = V6Options.M_MA_NT0;
@@ -115,7 +117,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (_stt_rec != "" && _stt_rec != null) // EDIT
                 {
                     am["STT_REC"] = _am["STT_REC"];
-                    am["DIEN_GIAI"] = txtdia_chi.Text;
+                    am["DIEN_GIAI"] = txtDiaChi.Text;
 
                     var keys = new SortedDictionary<string, object>
                         {
@@ -189,7 +191,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             var errors = "";
             if (txtso_ct.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblSoCT.Text + "!\r\n";
-            if (txtma_kh.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblMaKH.Text + "!\r\n";
+            if (txtMaKh.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblMaKH.Text + "!\r\n";
             if (errors.Length > 0) throw new Exception(errors);
         }
         public void TinhTongTien2()
@@ -265,6 +267,81 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 //txtGia.DecimalPlaces = V6Options.M_IP_TIEN_NT;
                 txtT_tien_nt2.DecimalPlaces = V6Options.M_IP_TIEN_NT;
                 txtT_thue_nt.DecimalPlaces = V6Options.M_IP_TIEN_NT;
+            }
+        }
+
+        private void txtma_kh_V6LostFocus(object sender)
+        {
+            XuLyChonMaKhachHang();
+        }
+
+        private void XuLyKhoaThongTinKhachHang()
+        {
+            try
+            {
+                var data = txtMaKh.Data;
+                if (data != null)
+                {
+                    var mst = (data["ma_so_thue"] ?? "").ToString().Trim();
+
+                    if (mst != "")
+                    {
+                        txtTenKh.ReadOnlyTag();
+                        txtTenKh.TabStop = false;
+                        txtDiaChi.ReadOnlyTag();
+                        txtDiaChi.TabStop = false;
+                        txtMaSoThue.ReadOnlyTag();
+                        txtMaSoThue.TabStop = false;
+                    }
+                    else
+                    {
+                        txtTenKh.ReadOnlyTag(false);
+                        txtTenKh.TabStop = true;
+                        txtDiaChi.ReadOnlyTag(false);
+                        txtDiaChi.TabStop = true;
+                        txtMaSoThue.ReadOnlyTag(false);
+                        txtMaSoThue.TabStop = true;
+                    }
+                }
+                else
+                {
+                    txtTenKh.ReadOnlyTag(false);
+                    txtTenKh.TabStop = true;
+                    txtDiaChi.ReadOnlyTag(false);
+                    txtDiaChi.TabStop = true;
+                    txtMaSoThue.ReadOnlyTag(false);
+                    txtMaSoThue.TabStop = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        private void XuLyChonMaKhachHang()
+        {
+            try
+            {
+                XuLyKhoaThongTinKhachHang();
+
+                var data = txtMaKh.Data;
+                if (data == null)
+                {
+                    txtMaSoThue.Text = "";
+                    txtTenKh.Text = "";
+                    txtDiaChi.Text = "";
+                    return;
+                }
+
+                var mst = (data["ma_so_thue"] ?? "").ToString().Trim();
+                txtMaSoThue.Text = mst;
+                txtTenKh.Text = (data["ten_kh"] ?? "").ToString().Trim();
+                txtDiaChi.Text = (data["dia_chi"] ?? "").ToString().Trim();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
     }

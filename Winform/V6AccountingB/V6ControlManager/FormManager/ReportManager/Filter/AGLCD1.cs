@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using V6Init;
 
@@ -9,7 +10,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         public AGLCD1()
         {
             InitializeComponent();
-           
+            lineXemBacTk.NumberTextBox.DecimalPlaces = 0;
+            lineXemBacTk.IsSelected = false;
+
             F3 = false;
             F5 = true;
             Advance = chkKieu_f5.Checked ? "Filter='1'" : "1=1";
@@ -64,7 +67,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));
             result.Add(new SqlParameter("@Ngay_ct2", dateNgay_ct2.YYYYMMDD));
             result.Add(new SqlParameter("@Bu_tru", TxtGroupby.Text.Trim()));
-          
             
             var and = radAnd.Checked;
             
@@ -94,6 +96,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             result.Add(new SqlParameter("@Advance", cKey));
             result.Add(new SqlParameter("@Kieu_F5", Kieu_F5));
+            result.Add(new SqlParameter("@Vtk_sc", lineXemCacTkSoCai.IsSelected ? lineXemCacTkSoCai.StringValue : ""));
+            result.Add(new SqlParameter("@Vtk", lineXemChoTk.IsSelected ? lineXemChoTk.StringValue : ""));
+            int vbac_tk = lineXemBacTk.IsSelected ? (int) Math.Abs(lineXemBacTk.Value) : 0;
+            result.Add(new SqlParameter("@Vbac_tk", vbac_tk));
             return result;
         }
 

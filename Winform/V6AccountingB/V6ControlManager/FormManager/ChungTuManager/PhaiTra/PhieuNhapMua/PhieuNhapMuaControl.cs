@@ -61,80 +61,101 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         }
 
         private void MyInit()
-        {   
-            ReorderGroup1TabIndex();
-
-            V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
-            txtMaKh.Upper();
-            txtManx.Upper();
-            txtManx.FilterStart = true;
-            
-            txtMa_sonb.Upper();
-            if (V6Login.MadvcsCount == 1)
+        {
+            try
             {
-                txtMa_sonb.SetInitFilter("MA_DVCS='"+V6Login.Madvcs+ "' AND dbo.VFV_InList0('" + Invoice.Mact + "',MA_CTNB,'" + ",')=1");
+                ReorderGroup1TabIndex();
+
+                V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
+                txtMaKh.Upper();
+                txtManx.Upper();
+                txtManx.FilterStart = true;
+
+                txtMa_sonb.Upper();
+                if (V6Login.MadvcsCount == 1)
+                {
+                    txtMa_sonb.SetInitFilter("MA_DVCS='" + V6Login.Madvcs + "' AND dbo.VFV_InList0('" + Invoice.Mact +
+                                             "',MA_CTNB,'" + ",')=1");
+                }
+                else
+                {
+                    txtMa_sonb.SetInitFilter("dbo.VFV_InList0('" + Invoice.Mact + "',MA_CTNB,'" + ",')=1");
+                }
+
+                txtTkThueCo.FilterStart = true;
+                txtTkChietKhau.FilterStart = true;
+                txtTkGt.FilterStart = true;
+                txtTkThueNo.FilterStart = true;
+
+                txtTkThueCo.SetInitFilter("Loai_tk = 1");
+                txtTkChietKhau.SetInitFilter("Loai_tk = 1");
+                txtTkGt.SetInitFilter("Loai_tk = 1");
+                txtTkThueNo.SetInitFilter("Loai_tk = 1");
+
+                //V6ControlFormHelper.CreateGridViewStruct(dataGridView1, adStruct);
+                //GridView1
+                var dataGridViewColumn = dataGridView1.Columns["UID"];
+                if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (Guid);
+                //,,,
+                dataGridViewColumn = dataGridView1.Columns["MA_VT"];
+                if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (string);
+                dataGridViewColumn = dataGridView1.Columns["TEN_VT"];
+                if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (string);
+                dataGridViewColumn = dataGridView1.Columns["STT_REC"];
+                if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (string);
+                dataGridViewColumn = dataGridView1.Columns["STT_REC0"];
+                if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (string);
+
+                //GridView3
+                dataGridViewColumn = dataGridView3.Columns["UID"];
+                if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (Guid);
+                //,,,
+                dataGridViewColumn = dataGridView3.Columns["TK_I"];
+                if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (string);
+                dataGridViewColumn = dataGridView3.Columns["TEN_TK"];
+                if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (string);
+                dataGridViewColumn = dataGridView3.Columns["STT_REC"];
+                if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (string);
+                dataGridViewColumn = dataGridView3.Columns["STT_REC0"];
+                if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (string);
+
+                SetGridViewFomular();
+                SetGridViewEvent();
+
+                cboKieuPost.SelectedIndex = 0;
+                if (!V6Setting.IsVietnamese)
+                {
+                    cboLoai_pb.Items.AddRange(new object[]
+                    {
+                        "0 - Enter directly",
+                        "1 - Allocated by value",
+                        "2 - Allocated by quantity"
+                    });
+                }
+                cboLoai_pb.SelectedIndex = 0;
+
+                All_Objects["thisForm"] = this;
+                CreateFormProgram(Invoice);
+
+                LoadDetailControls();
+                detail1.AddContexMenu(menuDetail1);
+                LoadDetail2Controls();
+                LoadDetail3Controls();
+                LoadAdvanceControls(Invoice.Mact);
+                CreateCustomInfoTextBox(group4, txtTongSoLuong1, cboChuyenData);
+                lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
+                LoadTag(Invoice, detail1.Controls);
+                HideControlByGRD_HIDE();
+                ResetForm();
+
+                LoadAll();
+                InvokeFormEvent(FormDynamicEvent.INIT);
+                V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
             }
-            else
+            catch (Exception ex)
             {
-                txtMa_sonb.SetInitFilter("dbo.VFV_InList0('" + Invoice.Mact + "',MA_CTNB,'" + ",')=1");
+                this.ShowErrorException(GetType() + ".MyInit " + _sttRec, ex);
             }
-
-            //V6ControlFormHelper.CreateGridViewStruct(dataGridView1, adStruct);
-            //GridView1
-            var dataGridViewColumn = dataGridView1.Columns["UID"];
-            if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (Guid);
-            //,,,
-            dataGridViewColumn = dataGridView1.Columns["MA_VT"];
-            if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (string);
-            dataGridViewColumn = dataGridView1.Columns["TEN_VT"];
-            if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (string);
-            dataGridViewColumn = dataGridView1.Columns["STT_REC"];
-            if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (string);
-            dataGridViewColumn = dataGridView1.Columns["STT_REC0"];
-            if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (string);
-
-            //GridView3
-            dataGridViewColumn = dataGridView3.Columns["UID"];
-            if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof(Guid);
-            //,,,
-            dataGridViewColumn = dataGridView3.Columns["TK_I"];
-            if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof(string);
-            dataGridViewColumn = dataGridView3.Columns["TEN_TK"];
-            if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof(string);
-            dataGridViewColumn = dataGridView3.Columns["STT_REC"];
-            if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof(string);
-            dataGridViewColumn = dataGridView3.Columns["STT_REC0"];
-            if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof(string);
-
-            SetGridViewFomular();
-            SetGridViewEvent();
-
-            cboKieuPost.SelectedIndex = 0;
-            if (!V6Setting.IsVietnamese)
-            {
-                cboLoai_pb.Items.AddRange(new object[] {
-                "0 - Enter directly",
-                "1 - Allocated by value",
-                "2 - Allocated by quantity"});
-            }
-            cboLoai_pb.SelectedIndex = 0;
-
-            All_Objects["thisForm"] = this;
-            CreateFormProgram(Invoice);
-            
-            LoadDetailControls();
-            detail1.AddContexMenu(menuDetail1);
-            LoadDetail2Controls();
-            LoadDetail3Controls();
-            LoadAdvanceControls(Invoice.Mact);
-            CreateCustomInfoTextBox(group4, txtTongSoLuong1, cboChuyenData);
-            lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
-            LoadTag(Invoice, detail1.Controls);
-            ResetForm();
-
-            LoadAll();
-            InvokeFormEvent(FormDynamicEvent.INIT);
-            V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
         }
         
         #endregion contructor
@@ -169,6 +190,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 if (control is V6ColorTextBox && item.Value.IsCarry)
                 {
                     detail1.CarryFields.Add(NAME);
+                }
+                // Gán tag hide và readonly theo GRD_xxxx
+                if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":"))
+                {
+                    control.InvisibleTag();
+                }
+                if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
+                {
+                    control.ReadOnlyTag();
                 }
                 V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
 
@@ -752,6 +782,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 ApplyControlEnterStatus(control);
                 
                 var NAME = control.AccessibleName.ToUpper();
+                // Gán tag hide và readonly theo GRD_xxxx
+                if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":"))
+                {
+                    control.InvisibleTag();
+                }
+                if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
+                {
+                    control.ReadOnlyTag();
+                }
                 switch (NAME)
                 {
                     case "SO_CT0":
@@ -1038,7 +1077,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
-
+                // Gán tag hide và readonly theo GRD_xxxx
+                if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":"))
+                {
+                    control.InvisibleTag();
+                }
+                if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
+                {
+                    control.ReadOnlyTag();
+                }
                 #region ==== Hứng control ====
                 if (NAME == "TK_I")
                 {
@@ -2218,8 +2265,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 TinhVanChuyen();
                 TinhGiamGiaCt();
                 TinhTienNt();
-
-                
             }
             catch (Exception ex)
             {
@@ -2825,6 +2870,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView2, Invoice.Mact);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView3, Invoice.Mact);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView3ChiPhi, Invoice.Mact);
+            //dataGridView4
         }
         #endregion datagridview
 
@@ -3238,15 +3284,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 //tính gg cho mỗi chi tiết
                 for (var i = 0; i < AD.Rows.Count; i++)
                 {
-                    var tien_nt0 = ObjectAndString.ObjectToDecimal(AD.Rows[i]["Tien_nt0"]);
-                    var tien0 = ObjectAndString.ObjectToDecimal(AD.Rows[i]["Tien0"]);
+                    var row_i = AD.Rows[i];
+                    var tien_nt0 = ObjectAndString.ObjectToDecimal(row_i["Tien_nt0"]);
+                    var tien0 = ObjectAndString.ObjectToDecimal(row_i["Tien0"]);
 
-                    var cp_nt = ObjectAndString.ObjectToDecimal(AD.Rows[i]["CP_NT"]);
-                    var cp = ObjectAndString.ObjectToDecimal(AD.Rows[i]["CP"]);
-                    var tien_vc_nt = ObjectAndString.ObjectToDecimal(AD.Rows[i]["TIEN_VC_NT"]);
-                    var tien_vc = ObjectAndString.ObjectToDecimal(AD.Rows[i]["TIEN_VC"]);
-                    var ck_nt = ObjectAndString.ObjectToDecimal(AD.Rows[i]["CK_NT"]);
-                    var ck = ObjectAndString.ObjectToDecimal(AD.Rows[i]["CK"]);
+                    var cp_nt = ObjectAndString.ObjectToDecimal(row_i["CP_NT"]);
+                    var cp = ObjectAndString.ObjectToDecimal(row_i["CP"]);
+                    var tien_vc_nt = ObjectAndString.ObjectToDecimal(row_i["TIEN_VC_NT"]);
+                    var tien_vc = ObjectAndString.ObjectToDecimal(row_i["TIEN_VC"]);
+                    var ck_nt = ObjectAndString.ObjectToDecimal(row_i["CK_NT"]);
+                    var ck = ObjectAndString.ObjectToDecimal(row_i["CK"]);
 
                     if (t_tien_nt0 != 0)
                     {
@@ -3267,14 +3314,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             index_gg = i;
 
                         // gán lại chiết khấu
-                        if (AD.Columns.Contains("GG_NT")) AD.Rows[i]["GG_NT"] = gg_nt;
-                        if (AD.Columns.Contains("GG")) AD.Rows[i]["GG"] = gg;
+                        if (AD.Columns.Contains("GG_NT")) row_i["GG_NT"] = gg_nt;
+                        if (AD.Columns.Contains("GG")) row_i["GG"] = gg;
 
                         // gán lại tiền
-                        if (AD.Columns.Contains("TIEN_NT"))
-                            AD.Rows[i]["TIEN_NT"] = tien_nt0 + cp_nt - ck_nt - gg_nt + tien_vc_nt;
-                        if (AD.Columns.Contains("TIEN")) AD.Rows[i]["TIEN"] = tien0 + cp - ck - gg + tien_vc;
+                        decimal tien_nt = tien_nt0 + cp_nt - ck_nt - gg_nt + tien_vc_nt;
+                        if (AD.Columns.Contains("TIEN_NT")) row_i["TIEN_NT"] = tien_nt;
+                        decimal tien = tien0 + cp - ck - gg + tien_vc;
+                        if (AD.Columns.Contains("TIEN")) row_i["TIEN"] = tien;
 
+                        // tính lại giá
+                        TinhGia_TheoTienSoLuong(row_i);
+                        TinhGia1_TheoTienSoLuong1(row_i);
                     }
                     else
                     {
@@ -3287,41 +3338,48 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         if (gg_nt != 0 && index_gg == -1)
                             index_gg = i;
 
-
                         //gán lại gg_nt
                         if (AD.Columns.Contains("GG_NT")) AD.Rows[i]["GG_NT"] = gg_nt;
                         if (AD.Columns.Contains("GG")) AD.Rows[i]["GG"] = gg;
                         
                         // gán lại tiền
-                        if (AD.Columns.Contains("TIEN_NT"))
-                            AD.Rows[i]["TIEN_NT"] = tien_nt0 + cp_nt - ck_nt - gg_nt + tien_vc_nt;
-                        if (AD.Columns.Contains("TIEN")) AD.Rows[i]["TIEN"] = tien0 + cp - ck - gg + tien_vc;
+                        decimal tien_nt = tien_nt0 + cp_nt - ck_nt - gg_nt + tien_vc_nt;
+                        if (AD.Columns.Contains("TIEN_NT")) AD.Rows[i]["TIEN_NT"] = tien_nt;
+                        decimal tien = tien0 + cp - ck - gg + tien_vc;
+                        if (AD.Columns.Contains("TIEN")) AD.Rows[i]["TIEN"] = tien;
 
+                        // tính lại giá
+                        TinhGia_TheoTienSoLuong(row_i);
+                        TinhGia1_TheoTienSoLuong1(row_i);
                     }
                 }
                 // Xu ly chenh lech
                 // Tìm dòng có số tiền
                 if (index_gg != -1)
                 {
-                    decimal gg_nt = ObjectAndString.ObjectToDecimal(AD.Rows[index_gg]["GG_NT"]) +
-                                    (t_gg_nt - t_gg_nt_check);
-                    AD.Rows[index_gg]["GG_NT"] = gg_nt;
-                    decimal gg = ObjectAndString.ObjectToDecimal(AD.Rows[index_gg]["GG"]) + (t_gg - t_gg_check);
-                    AD.Rows[index_gg]["GG"] = gg;
+                    var row_gg = AD.Rows[index_gg];
+                    decimal gg_nt = ObjectAndString.ObjectToDecimal(row_gg["GG_NT"]) + (t_gg_nt - t_gg_nt_check);
+                    row_gg["GG_NT"] = gg_nt;
+                    decimal gg = ObjectAndString.ObjectToDecimal(row_gg["GG"]) + (t_gg - t_gg_check);
+                    row_gg["GG"] = gg;
 
-                    var tien_nt0 = ObjectAndString.ObjectToDecimal(AD.Rows[index_gg]["Tien_nt0"]);
-                    var tien0 = ObjectAndString.ObjectToDecimal(AD.Rows[index_gg]["Tien0"]);
-                    var cp_nt = ObjectAndString.ObjectToDecimal(AD.Rows[index_gg]["CP_NT"]);
-                    var cp = ObjectAndString.ObjectToDecimal(AD.Rows[index_gg]["CP"]);
-                    var tien_vc_nt = ObjectAndString.ObjectToDecimal(AD.Rows[index_gg]["TIEN_VC_NT"]);
-                    var tien_vc = ObjectAndString.ObjectToDecimal(AD.Rows[index_gg]["TIEN_VC"]);
-                    var ck_nt = ObjectAndString.ObjectToDecimal(AD.Rows[index_gg]["CK_NT"]);
-                    var ck = ObjectAndString.ObjectToDecimal(AD.Rows[index_gg]["CK"]);
+                    var tien_nt0 = ObjectAndString.ObjectToDecimal(row_gg["Tien_nt0"]);
+                    var tien0 = ObjectAndString.ObjectToDecimal(row_gg["Tien0"]);
+                    var cp_nt = ObjectAndString.ObjectToDecimal(row_gg["CP_NT"]);
+                    var cp = ObjectAndString.ObjectToDecimal(row_gg["CP"]);
+                    var tien_vc_nt = ObjectAndString.ObjectToDecimal(row_gg["TIEN_VC_NT"]);
+                    var tien_vc = ObjectAndString.ObjectToDecimal(row_gg["TIEN_VC"]);
+                    var ck_nt = ObjectAndString.ObjectToDecimal(row_gg["CK_NT"]);
+                    var ck = ObjectAndString.ObjectToDecimal(row_gg["CK"]);
 
                     decimal tien_nt = tien_nt0 + cp_nt - ck_nt - gg_nt + tien_vc_nt;
-                    AD.Rows[index_gg]["TIEN_NT"] = tien_nt;
+                    row_gg["TIEN_NT"] = tien_nt;
                     decimal tien = tien0 + cp - ck - gg + tien_vc;
-                    AD.Rows[index_gg]["TIEN"] = tien;
+                    row_gg["TIEN"] = tien;
+
+                    // tính lại giá
+                    TinhGia_TheoTienSoLuong(row_gg);
+                    TinhGia1_TheoTienSoLuong1(row_gg);
                 }
             }
 

@@ -134,6 +134,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             CreateCustomInfoTextBox(group4, txtSoct_tt, cboChuyenData);
             lblNameT.Left = V6ControlFormHelper.GetAllTabTitleWidth(tabControl1) + 12;
             LoadTag(Invoice, detail1.Controls);
+            HideControlByGRD_HIDE();
             ResetForm();
 
             _MA_GD = (Invoice.Alct["M_MA_GD"] ?? "2").ToString().Trim();
@@ -234,6 +235,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     if (control is V6ColorTextBox && item.Value.IsCarry)
                     {
                         detail1.CarryFields.Add(NAME);
+                    }
+                    // Gán tag hide và readonly theo GRD_xxxx
+                    if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":"))
+                    {
+                        control.InvisibleTag();
+                    }
+                    if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
+                    {
+                        control.ReadOnlyTag();
                     }
                     V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
 
@@ -527,7 +537,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     ApplyControlEnterStatus(control);
 
                     var NAME = control.AccessibleName.ToUpper();
-
+                    // Gán tag hide và readonly theo GRD_xxxx
+                    if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":"))
+                    {
+                        control.InvisibleTag();
+                    }
+                    if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
+                    {
+                        control.ReadOnlyTag();
+                    }
                     switch (NAME)
                     {
                         case "SO_CT0":
@@ -721,50 +739,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             {
                 var control = item.Value;
                 ApplyControlEnterStatus(control);
-                //#region ---- Set Event ----
-                //if (control is V6NumberTextBox)
-                //{
-                //    //toolTip1.SetToolTip(control, ((V6NumberTextBox)control).TextTitle);
-                //    control.Enter += delegate(object sender, EventArgs e)
-                //    {
-                //        var s = ((V6NumberTextBox)sender).AccessibleName + ": " + ((V6NumberTextBox)sender).GrayText;
-                //        V6ControlFormHelper.SetStatusText(s);
-
-                //        var location = control.Location;
-                //        location.Y -= 22;
-                //        //toolTip1.Show(((V6NumberTextBox)sender).TextTitle, ((V6NumberTextBox)sender).Parent, location);
-                //    };
-                //}
-                //else if (control is V6ColorTextBox)
-                //{
-                //    //toolTip1.SetToolTip(control,((V6ColorTextBox)control).TextTitle);
-                //    control.Enter += delegate(object sender, EventArgs e)
-                //    {
-                //        var s = ((V6ColorTextBox)sender).AccessibleName + ": " + ((V6ColorTextBox)sender).GrayText;
-                //        V6ControlFormHelper.SetStatusText(s);
-
-                //        var location = control.Location;
-                //        location.Y -= 22;
-                //        //toolTip1.Show(((V6ColorTextBox)sender).TextTitle, ((V6ColorTextBox)sender).Parent, location);
-                //    };
-                //}
-                //else if (control is V6DateTimePick)
-                //{
-                //    //toolTip1.SetToolTip(control, ((V6ColorDateTimePick)control).TextTitle);
-                //    control.Enter += delegate(object sender, EventArgs e)
-                //    {
-                //        var s = ((V6DateTimePick)sender).AccessibleName + ": " + ((V6DateTimePick)sender).TextTitle;
-                //        V6ControlFormHelper.SetStatusText(s);
-
-                //        var location = control.Location;
-                //        location.Y -= 22;
-                //        //toolTip1.Show(((V6DateTimePick)sender).TextTitle, ((V6DateTimePick)sender).Parent, location);
-                //    };
-                //}
-                //#endregion set event
-
                 var NAME = control.AccessibleName.ToUpper();
-
+                // Gán tag hide và readonly theo GRD_xxxx
+                if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":"))
+                {
+                    control.InvisibleTag();
+                }
+                if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
+                {
+                    control.ReadOnlyTag();
+                }
                 #region ==== Hứng control ====
 
                 if (NAME == "TK_I")
@@ -2661,6 +2645,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             V6ControlFormHelper.FormatGridViewAndHeader(dataGridView3, Invoice.Config3.GRDS_V1, Invoice.Config3.GRDF_V1,
                 V6Setting.IsVietnamese ? Invoice.Config3.GRDHV_V1 : Invoice.Config3.GRDHE_V1);
             V6ControlFormHelper.FormatGridViewHideColumns(dataGridView1, Invoice.Mact);
+            V6ControlFormHelper.FormatGridViewHideColumns(dataGridView2, Invoice.Mact);
+            V6ControlFormHelper.FormatGridViewHideColumns(dataGridView3, Invoice.Mact);
+            //V6ControlFormHelper.FormatGridViewHideColumns(dataGridView3ChiPhi, Invoice.Mact);
+            //V6ControlFormHelper.FormatGridViewHideColumns(dataGridView4, Invoice.Mact);
             //V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView1, _orderList, i);
             V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView2, _orderList2);
             V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView3, _orderList3);

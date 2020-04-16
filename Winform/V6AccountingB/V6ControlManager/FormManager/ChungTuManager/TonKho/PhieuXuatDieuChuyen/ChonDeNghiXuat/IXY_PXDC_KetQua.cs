@@ -28,7 +28,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         {
             try
             {
-                _aldmConfig = ConfigManager.GetAldmConfig("AMAD91A");
+                _aldmConfig = ConfigManager.GetAldmConfig("AMAD85A");
                 if(_aldmConfig.HaveInfo) gridViewSummary1.NoSumColumns = _aldmConfig.GRDT_V1;
             }
             catch (Exception ex)
@@ -55,7 +55,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 {
                     var field_valid = ObjectAndString.SplitString(_aldmConfig.FIELD);
 
-                    dataGridView1.SetEditColumnParams(field_valid[0]);
+                    dataGridView1.SetEditColumnParams(field_valid);
                     dataGridView1.CongThuc_CellEndEdit_ApplyAllRow = false;
                     dataGridView1.ChangeColumnType(field_valid[0], typeof (V6NumberDataGridViewColumn), null);
                     if (!string.IsNullOrEmpty(_aldmConfig.CACH_TINH1))
@@ -104,6 +104,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             else if (e.KeyData == (Keys.Control | Keys.U))
             {
                 dataGridView1.UnSelectAllRow();
+            }
+            else if (e.KeyCode == Keys.F4)
+            {
+                dataGridView1.ShowRowEditor(ObjectAndString.SplitString(_aldmConfig.FIELD));
             }
         }
         /// <summary>

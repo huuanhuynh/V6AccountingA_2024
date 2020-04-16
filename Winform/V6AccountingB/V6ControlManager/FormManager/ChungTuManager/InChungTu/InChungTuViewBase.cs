@@ -818,13 +818,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             CreateFormProgram();
             CreateFormControls();
             InvokeFormEvent(FormDynamicEvent.INIT);
-            crystalReportViewer1.ViewChanged += crystalReportViewer1_ViewChanged;
             Disposed += InChungTuViewBase_Disposed;
-        }
-
-        void crystalReportViewer1_ViewChanged(object sender, EventArgs e)
-        {
-            DoNothing();
         }
 
         private int _viewer_focus_count = 0;
@@ -977,8 +971,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             panel1.Controls.Add(FilterControl);
         }
 
-        
-        
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                if (ActiveControl == crystalReportViewer1
+                    || ActiveControl == crystalReportViewer2
+                    || ActiveControl == crystalReportViewer3
+                    || ActiveControl == crystalReportViewer4
+                    || ActiveControl == btnIn)
+                {
+                    btnIn_Click(btnIn, null);
+                    return true;
+                }
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
         public void btnNhan_Click(object sender, EventArgs e)
         {
             btnNhanImage = btnNhan.Image;
@@ -1357,8 +1366,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
             if (errors != "")
             {
-                V6ControlFormHelper.AddLastError(GetType() + ".SetAllReportParams\r\nFile: "
-                    + ReportFileFull + "\r\nError: " + errors);
+                V6ControlFormHelper.WriteToLog(GetType() + ".SetAllReportParams\r\nFile: " + ReportFileFull, errors);
             }
 
         }
@@ -1874,9 +1882,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
                 SetAllReportParams(rpDoc, rpDoc2, rpDoc3, rpDoc4);
                 SetCrossLineAll(rpDoc, rpDoc2, rpDoc3, rpDoc4);
+                var infos = EXTRA_INFOR;
+                if (infos.ContainsKey("RPTHIDE"))
+                {
+                    var names = ObjectAndString.SplitString(infos["RPTHIDE"]);
+                    RPTHIDE(rpDoc, names);
+                    RPTHIDE(rpDoc2, names);
+                    RPTHIDE(rpDoc3, names);
+                    RPTHIDE(rpDoc4, names);
+                }
 
                 crystalReportViewer1.ReportSource = rpDoc;
                 crystalReportViewer1.Zoom(Invoice.ExtraInfo_PrintVCzoom);
+                
                 _rpDoc0 = rpDoc;
                 if (_soLienIn >= 2 && rpDoc2 != null)
                 {
@@ -1897,7 +1915,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     _rpDoc40 = rpDoc4;
                 }
 
-                crystalReportViewer1.Show();
+                //crystalReportViewer1.Show();
+                //crystalReportViewer1.Zoom(Invoice.ExtraInfo_PrintVCzoom);
+                //crystalReportViewer1.Zoom(2);
                 crystalReportViewer1.Visible = true;
                 crystalReportViewer2.Visible = false;
                 crystalReportViewer3.Visible = false;
@@ -1919,17 +1939,55 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
                 SetAllReportParams(rpDoc, rpDoc2, rpDoc3, rpDoc4);
                 SetCrossLineAll(rpDoc, rpDoc2, rpDoc3, rpDoc4);
+                var infos = EXTRA_INFOR;
+                if (infos.ContainsKey("RPTHIDE"))
+                {
+                    var names = ObjectAndString.SplitString(infos["RPTHIDE"]);
+                    RPTHIDE(rpDoc, names);
+                    RPTHIDE(rpDoc2, names);
+                    RPTHIDE(rpDoc3, names);
+                    RPTHIDE(rpDoc4, names);
+                }
 
                 crystalReportViewer1.ReportSource = rpDoc;
                 crystalReportViewer1.Zoom(Invoice.ExtraInfo_PrintVCzoom);
+                
                 _rpDoc0 = rpDoc;
-                crystalReportViewer1.Show();
+                //crystalReportViewer1.Show();
+                //crystalReportViewer1.Zoom(Invoice.ExtraInfo_PrintVCzoom);
+                //crystalReportViewer1.Zoom(2);
                 crystalReportViewer1.Visible = true;
                 crystalReportViewer2.Visible = false;
                 crystalReportViewer3.Visible = false;
                 crystalReportViewer4.Visible = false;
             }
             //btnIn.Focus();
+        }
+
+        private void RPTHIDE(ReportDocument rpDoc, IList<string> names)
+        {
+            try
+            {
+                if (rpDoc == null) return;
+                var all_objects = new SortedDictionary<string, ReportObject>();
+                foreach (ReportObject o in rpDoc.ReportDefinition.ReportObjects)
+                {
+                    all_objects[o.Name.ToUpper()] = o;
+                }
+                
+                foreach (string name in names)
+                {
+                    string NAME = name.ToUpper();
+                    if (all_objects.ContainsKey(NAME))
+                    {
+                        all_objects[NAME].ObjectFormat.EnableSuppress = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".RPTHIDE", ex);
+            }
         }
 
         private void FixReportViewerToolbarButton(bool isLock)
