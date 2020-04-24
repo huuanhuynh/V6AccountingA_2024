@@ -101,7 +101,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             string tableName = "V6MAPINFO";
             
             string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
-            //var map_table = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='" + FilterControl.String1 + "' or ma_td1='0' or ma_td1='') order by date0,time0").Data;
+            //var map_table = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='" + FilterControl.String1 + "' or ma_td1='0' or ma_td1='') order by GROUPNAME,GC_TD1").Data;
 
             int i = 0;
             while(i<dataGridView1.Rows.Count)
@@ -283,7 +283,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 new SqlParameter("@User_ID", V6Login.UserId)
                         };
 
-                        V6BusinessHelper.ExecuteProcedureNoneQuery(_program + "_UPDATE", plist);
+                        V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure + "_UPDATE", plist);
                         
                         remove_list_g.Add(row);
                     }
@@ -345,7 +345,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 string pdf_file = "";
                 string tableName = "V6MAPINFO";
                 string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
-                //var map_table = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='" + FilterControl.String1 + "' or ma_td1='0' or ma_td1='') order by date0,time0").Data;
+                //var map_table = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='" + FilterControl.String1 + "' or ma_td1='0' or ma_td1='') order by GROUPNAME,GC_TD1").Data;
                 SqlParameter[] plist0 =
                 {
                     new SqlParameter("@Loai", "AAPPR_SOA2"),

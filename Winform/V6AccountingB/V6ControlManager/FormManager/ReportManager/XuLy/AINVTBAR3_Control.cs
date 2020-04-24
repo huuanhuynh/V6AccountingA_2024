@@ -537,7 +537,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     plist.Add(new SqlParameter("@cMa_lo", ma_lo));
                     plist.Add(new SqlParameter("@cMa_dvcs", V6Login.Madvcs));
                     plist.Add(new SqlParameter("@user_id", V6Login.UserId));
-                    V6BusinessHelper.ExecuteProcedure(_program + "F9", plist.ToArray());
+                    V6BusinessHelper.ExecuteProcedure(_reportProcedure + "F9", plist.ToArray());
                     FilterControl.Call1();
                 }
             }

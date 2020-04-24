@@ -327,7 +327,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             new SqlParameter("@cNewMa_Vitri", cMa_vitri),
                             new SqlParameter("@cType", cType),
                         };
-                        V6BusinessHelper.ExecuteProcedure(_program, plist);
+                        V6BusinessHelper.ExecuteProcedure(_reportProcedure, plist);
                     }
                 }
 

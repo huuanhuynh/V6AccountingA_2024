@@ -15,7 +15,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         #region Biến toàn cục
 
         protected DataRow _am;
-        protected string _sttreclist, _text, _program;
+        protected string _sttreclist, _text, _reportProcedure;
         protected int _year;
 
         //protected string _reportFileF5, _reportTitleF5, _reportTitle2F5;
@@ -45,11 +45,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             InitializeComponent();
         }
 
-        public AGLCTPB_F4(string sttreclist, int year, string program)
+        public AGLCTPB_F4(string sttreclist, int year, string reportProcedure)
         {
             _sttreclist = sttreclist;
             _year = year;
-            _program = program;
+            _reportProcedure = reportProcedure;
 
             InitializeComponent();
             MyInit();
@@ -111,7 +111,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     new SqlParameter("@User_id", V6Login.UserId),
                     new SqlParameter("@Ma_dvcs", txtMaDvcs.StringValue)
                 };
-                V6BusinessHelper.ExecuteProcedureNoneQuery(_program, plist);
+                V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure, plist);
 
                 OnUpdateSuccessEvent();
                 Dispose();

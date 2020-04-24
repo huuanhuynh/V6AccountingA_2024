@@ -110,7 +110,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             new SqlParameter("@Ma_dvcs0", Madvcs0),
                             new SqlParameter("@Action", "F8"),
                         };
-                        var result = V6BusinessHelper.ExecuteProcedureNoneQuery(_program, plist);
+                        var result = V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure, plist);
                         if (result > 0)
                         {
                             V6ControlFormHelper.ShowMainMessage(V6Text.Deleted);
@@ -216,7 +216,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             new SqlParameter("@Ma_dvcs0", Madvcs0),
                             new SqlParameter("@Action", "F4"),
                         };
-                        var result = V6BusinessHelper.ExecuteProcedureNoneQuery(_program, plist);
+                        var result = V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure, plist);
                         if (result > 0)
                         {
                             V6ControlFormHelper.ShowMainMessage("Đã tạo!");

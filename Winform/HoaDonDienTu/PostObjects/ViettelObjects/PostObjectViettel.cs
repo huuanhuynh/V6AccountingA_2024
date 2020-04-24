@@ -8,6 +8,7 @@ namespace V6ThuePost.ViettelObjects
         public Dictionary<string, object> generalInvoiceInfo = new Dictionary<string, object>();
         public Dictionary<string, object> buyerInfo = new Dictionary<string, object>();
         public Dictionary<string, object> sellerInfo = new Dictionary<string, object>();
+        public List<Dictionary<string, object>> metadata = new List<Dictionary<string, object>>();
         public List<Dictionary<string, object>> extAttribute = new List<Dictionary<string, object>>();
 
         public List<Dictionary<string, object>> payments = new List<Dictionary<string, object>>();

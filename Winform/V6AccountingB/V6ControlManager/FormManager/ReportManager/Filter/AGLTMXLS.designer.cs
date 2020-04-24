@@ -57,6 +57,7 @@
             this.txtMauExport = new V6Controls.V6VvarTextBox();
             this.v6Label3 = new V6Controls.V6Label();
             this.btnExport = new V6Controls.Controls.V6FormButton();
+            this.chkHienTatCa = new V6Controls.V6CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,6 +81,7 @@
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
             this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
+            this.txtMaDvcs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtMaDvcs.Caption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(3, 53);
@@ -144,11 +146,12 @@
             this.cboMaubc_X.AccessibleName = "MAU_BC";
             this.cboMaubc_X.BackColor = System.Drawing.SystemColors.Window;
             this.cboMaubc_X.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboMaubc_X.DropDownWidth = 300;
             this.cboMaubc_X.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cboMaubc_X.FormattingEnabled = true;
             this.cboMaubc_X.Location = new System.Drawing.Point(61, 147);
             this.cboMaubc_X.Name = "cboMaubc_X";
-            this.cboMaubc_X.Size = new System.Drawing.Size(231, 21);
+            this.cboMaubc_X.Size = new System.Drawing.Size(196, 21);
             this.cboMaubc_X.TabIndex = 18;
             this.cboMaubc_X.TabStop = false;
             // 
@@ -423,10 +426,24 @@
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
+            // chkHienTatCa
+            // 
+            this.chkHienTatCa.AccessibleDescription = "REPORTC00001";
+            this.chkHienTatCa.AutoSize = true;
+            this.chkHienTatCa.Enabled = false;
+            this.chkHienTatCa.Location = new System.Drawing.Point(258, 151);
+            this.chkHienTatCa.Name = "chkHienTatCa";
+            this.chkHienTatCa.Size = new System.Drawing.Size(37, 17);
+            this.chkHienTatCa.TabIndex = 41;
+            this.chkHienTatCa.Text = "All";
+            this.chkHienTatCa.UseVisualStyleBackColor = true;
+            this.chkHienTatCa.CheckedChanged += new System.EventHandler(this.chkHienTatCa_CheckedChanged);
+            // 
             // AGLTMXLS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkHienTatCa);
             this.Controls.Add(this.btnSuaCTMau);
             this.Controls.Add(this.btnSuaTTMau);
             this.Controls.Add(this.btnExport);
@@ -493,5 +510,6 @@
         private V6Controls.V6VvarTextBox txtMauExport;
         private V6Controls.V6Label v6Label3;
         private V6Controls.Controls.V6FormButton btnExport;
+        private V6Controls.V6CheckBox chkHienTatCa;
     }
 }

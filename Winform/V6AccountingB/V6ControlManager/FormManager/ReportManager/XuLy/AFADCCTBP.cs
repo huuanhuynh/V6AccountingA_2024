@@ -123,7 +123,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
 
                                     };
-                                    var result = V6BusinessHelper.ExecuteProcedureNoneQuery(_program + "_F8",
+                                    var result = V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure + "_F8",
                                         plist);
                                     if (result > 0)
                                     {

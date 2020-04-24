@@ -48,6 +48,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         private void AGLTMXLS_Load(object sender, EventArgs e)
         {
             LoadAlmaubc();
+            if (V6Login.IsAdmin) chkHienTatCa.Enabled = true;
         }
 
         public void SetHideFields(string lang)
@@ -70,7 +71,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             try
             {
                 maubcDataX = V6BusinessHelper.Select("ALMAUBC",
-                    "ma_maubc,ten_maubc,ten_maubc2,file_maubc,UID", "ma_maubc='" + txtma_maubcX.Text.ToUpper() + "'",
+                    "*", (chkHienTatCa.Checked ? "" : "[status]='1' and ") + "ma_maubc='" + txtma_maubcX.Text.ToUpper() + "'",
                     "", "[ORDER]").Data;
 
                 cboMaubc_X.ValueMember = "file_maubc";
@@ -80,7 +81,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 cboMaubc_X.DisplayMember = V6Setting.IsVietnamese ? "ten_maubc" : "ten_maubc2";
 
                 maubcDataB = V6BusinessHelper.Select("ALMAUBC",
-                    "ma_maubc,ten_maubc,ten_maubc2,file_maubc,UID", "ma_maubc='" + txtma_maubcB.Text.ToUpper() + "'",
+                    "*", "ma_maubc='" + txtma_maubcB.Text.ToUpper() + "'",
                     "", "[ORDER]").Data;
 
                 cboMauCdkt_B.ValueMember = "file_maubc";
@@ -90,7 +91,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 cboMauCdkt_B.DisplayMember = V6Setting.IsVietnamese ? "ten_maubc" : "ten_maubc2";
 
                 maubcDataBB = V6BusinessHelper.Select("ALMAUBC",
-                    "ma_maubc,ten_maubc,ten_maubc2,file_maubc,UID", "ma_maubc='" + txtma_maubcC.Text.ToUpper() + "'",
+                    "*", "ma_maubc='" + txtma_maubcC.Text.ToUpper() + "'",
                     "", "[ORDER]").Data;
 
                 cboMauKqkd_C.ValueMember = "file_maubc";
@@ -437,6 +438,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 this.ShowErrorException(GetType() + ".btnExport_Click", ex);
             }
+        }
+
+        private void chkHienTatCa_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadAlmaubc();
         }
 
     }

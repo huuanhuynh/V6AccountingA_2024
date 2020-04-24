@@ -52,6 +52,10 @@
                     return new ASOCTSOA();
                 case "AAPPR_SOA_IN1F9":
                     return new AAPPR_SOA_IN1F9();
+                case "ASOCTSOB"://82
+                    return new ASOCTSOB();
+                case "ASOCTSOC"://83
+                    return new ASOCTSOC();
                 case "AAPPR_SOC_IN1F9":
                     return new AAPPR_SOC_IN1F9();
                 case "AAPPR_SOA_IN2F9":
@@ -70,9 +74,6 @@
                     return new AAPCTAP2();
                 case "AGLCTGL1"://11
                     return new AGLCTGL1();
-
-                case "ASOCTSOC"://83
-                    return new ASOCTSOC();
 
                 case "PRINT_AMAD":
                     return new PRINT_AMAD();

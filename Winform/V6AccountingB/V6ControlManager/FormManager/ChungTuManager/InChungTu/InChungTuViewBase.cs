@@ -812,13 +812,44 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
         private void MyInit()
         {
-            if (V6Login.IsAdmin) chkHienTatCa.Enabled = true;
-            rCurrent.Text = V6Login.SelectedLanguageName;
-            if (V6Login.SelectedLanguage == "V" || V6Login.SelectedLanguage == "E") rCurrent.Visible = false;
-            CreateFormProgram();
-            CreateFormControls();
-            InvokeFormEvent(FormDynamicEvent.INIT);
-            Disposed += InChungTuViewBase_Disposed;
+            try
+            {
+                if (V6Login.IsAdmin) chkHienTatCa.Enabled = true;
+                rCurrent.Text = V6Login.SelectedLanguageName;
+                if (V6Login.SelectedLanguage == "V" || V6Login.SelectedLanguage == "E") rCurrent.Visible = false;
+                CreateFormProgram();
+                CreateFormControls();
+                CheckRightReport();
+                InvokeFormEvent(FormDynamicEvent.INIT);
+                Disposed += InChungTuViewBase_Disposed;
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".Init", ex);
+            }
+        }
+
+        private void CheckRightReport()
+        {
+            bool no_print = false;
+            if (!V6Login.UserRight.AllowPrint(ItemID, ItemID))
+            {
+                no_print = true;
+                crystalReportViewer1.ShowPrintButton = false;
+                crystalReportViewer1.ShowExportButton = false;
+                contextMenuStrip1.Items.Remove(exportToPdfMenu);
+            }
+            if (!V6Login.UserRight.AllowView(ItemID, ItemID))
+            {
+                crystalReportViewer1.InvisibleTag();
+                if (no_print)
+                {
+                    while (contextMenuStrip1.Items.Count > 0)
+                    {
+                        contextMenuStrip1.Items.RemoveAt(0);
+                    }
+                }
+            }
         }
 
         private int _viewer_focus_count = 0;

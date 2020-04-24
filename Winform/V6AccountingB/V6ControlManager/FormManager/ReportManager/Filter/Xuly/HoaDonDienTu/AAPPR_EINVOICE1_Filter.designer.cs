@@ -298,6 +298,7 @@
             this.btnChuyenExcelHTKK.TabIndex = 14;
             this.btnChuyenExcelHTKK.Text = "Chuyển Excel HTKK";
             this.btnChuyenExcelHTKK.UseVisualStyleBackColor = true;
+            this.btnChuyenExcelHTKK.Visible = false;
             this.btnChuyenExcelHTKK.Click += new System.EventHandler(this.btnChuyenExcelHTKK_Click);
             // 
             // btnChuyenExcelTaxOnline
@@ -309,6 +310,7 @@
             this.btnChuyenExcelTaxOnline.TabIndex = 15;
             this.btnChuyenExcelTaxOnline.Text = "Chuyển Excel Tax online";
             this.btnChuyenExcelTaxOnline.UseVisualStyleBackColor = true;
+            this.btnChuyenExcelTaxOnline.Visible = false;
             this.btnChuyenExcelTaxOnline.Click += new System.EventHandler(this.btnChuyenExcelTaxOnline_Click);
             // 
             // txtFileName
@@ -327,6 +329,7 @@
             this.txtFileName.Size = new System.Drawing.Size(246, 20);
             this.txtFileName.TabIndex = 12;
             this.txtFileName.TabStop = false;
+            this.txtFileName.Visible = false;
             // 
             // btnChon
             // 
@@ -336,6 +339,7 @@
             this.btnChon.TabIndex = 13;
             this.btnChon.Text = "...";
             this.btnChon.UseVisualStyleBackColor = true;
+            this.btnChon.Visible = false;
             this.btnChon.Click += new System.EventHandler(this.btnChon_Click);
             // 
             // chkNhomCt

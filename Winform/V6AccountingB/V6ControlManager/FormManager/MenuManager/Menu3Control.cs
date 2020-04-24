@@ -87,6 +87,7 @@ namespace V6ControlManager.FormManager.MenuManager
                     ? v6MenuDataRow["vbar"].ToString().Trim()
                     : v6MenuDataRow["vbar2"].ToString().Trim()),
                 CodeForm = v6MenuDataRow["codeform"].ToString().Trim(),
+                Pro_old = v6MenuDataRow["pro_old"] == null ? null : v6MenuDataRow["pro_old"].ToString().Trim(),
                 Exe = v6MenuDataRow["program"].ToString().Trim(),
                 MaChungTu = v6MenuDataRow["ma_ct"].ToString().Trim(),
                 NhatKy = v6MenuDataRow["nhat_ky"].ToString().Trim(),

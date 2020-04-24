@@ -7416,11 +7416,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private void txtMa_sonb_V6LostFocusNoChange(object sender)
         {
             if (NotAddEdit) return;
-
-            var data = txtMa_sonb.Data;
-            if (data != null)
+            if (txtSoPhieu.Text.Trim() == "")
             {
-                if (txtSoPhieu.Text.Trim() == "")
+                var data = txtMa_sonb.Data;
+                if (data != null)
                 {
                     GetSoPhieu();
                 }

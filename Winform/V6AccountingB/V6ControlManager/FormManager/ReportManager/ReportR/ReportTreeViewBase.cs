@@ -682,12 +682,43 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void MyInit()
         {
-            if (V6Login.IsAdmin) chkHienTatCa.Enabled = true;
-            rCurrent.Text = V6Login.SelectedLanguageName;
-            if (V6Login.SelectedLanguage == "V" || V6Login.SelectedLanguage == "E") rCurrent.Visible = false;
-            CreateFormProgram();
-            CreateFormControls();
-            InvokeFormEvent(FormDynamicEvent.INIT);
+            try
+            {
+                if (V6Login.IsAdmin) chkHienTatCa.Enabled = true;
+                rCurrent.Text = V6Login.SelectedLanguageName;
+                if (V6Login.SelectedLanguage == "V" || V6Login.SelectedLanguage == "E") rCurrent.Visible = false;
+                CreateFormProgram();
+                CreateFormControls();
+                CheckRightReport();
+                InvokeFormEvent(FormDynamicEvent.INIT);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".Init", ex);
+            }
+        }
+
+        private void CheckRightReport()
+        {
+            bool no_print = false;
+            if (!V6Login.UserRight.AllowPrint(ItemID, ItemID))
+            {
+                no_print = true;
+                crystalReportViewer1.ShowPrintButton = false;
+                crystalReportViewer1.ShowExportButton = false;
+                contextMenuStrip1.Items.Remove(exportToPdfMenu);
+            }
+            if (!V6Login.UserRight.AllowView(ItemID, ItemID))
+            {
+                crystalReportViewer1.InvisibleTag();
+                if (no_print)
+                {
+                    while (contextMenuStrip1.Items.Count > 0)
+                    {
+                        contextMenuStrip1.Items.RemoveAt(0);
+                    }
+                }
+            }
         }
 
         private void MyInit2()
@@ -809,7 +840,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         public FilterBase FilterControl { get; set; }
         private void AddFilterControl(string program)
         {
-            FilterControl = Filter.Filter.GetFilterControl(program);
+            FilterControl = Filter.Filter.GetFilterControl(program, _reportProcedure);
             panel1.Controls.Add(FilterControl);
             FilterControl.String1ValueChanged += FilterControl_String1ValueChanged;
             FilterControl.Check1ValueChanged += FilterControl_Check1ValueChanged;
@@ -1301,9 +1332,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         void ViewReport()
         {
-            if (_ds == null) return;
             try
             {
+                if (!V6Login.UserRight.AllowPrint(ItemID, ItemID))
+                {
+                    V6ControlFormHelper.NoRightWarning();
+                    return;
+                }
+                if (_ds == null) return;
                 CleanUp();
                 var rpDoc = new ReportDocument();
                 rpDoc.Load(ReportFileFull);
@@ -1313,7 +1349,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
                 crystalReportViewer1.ReportSource = rpDoc;
                 _rpDoc0 = rpDoc;
-                crystalReportViewer1.Show();
+                //crystalReportViewer1.Show();
                 crystalReportViewer1.Zoom(1);
             }
             catch (Exception ex)
@@ -1534,6 +1570,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             try
             {
+                if (!V6Login.UserRight.AllowPrint(ItemID, ItemID))
+                {
+                    V6ControlFormHelper.NoRightWarning();
+                    return;
+                }
                 if (_ds == null)
                 {
                     this.ShowErrorMessage(V6Text.NoData);

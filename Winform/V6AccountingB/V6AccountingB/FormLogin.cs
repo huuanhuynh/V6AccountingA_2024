@@ -273,6 +273,9 @@ namespace V6AccountingB
         {
             try
             {
+                bool _ctr_is_down = (ModifierKeys & Keys.Control) == Keys.Control;
+                bool _alt_is_down = (ModifierKeys & Keys.Alt) == Keys.Alt;
+
                 if (V6Login.IsNetwork || License.CheckLicenseV6Online(License.Seri, License.Key))
                 {
                     V6Login.SelectedLanguage = cboLang.SelectedValue.ToString().Trim().ToUpper();
@@ -304,6 +307,14 @@ namespace V6AccountingB
                         }
 
                         _allowClient = V6Login.CheckAllowClient(Application.StartupPath);
+                        if (!_allowClient && _ctr_is_down && _alt_is_down)
+                        {
+                            if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
+                            {
+                                V6Login.AllowClient();
+                                _allowClient = true;
+                            }
+                        }
                         if (!_allowClient)
                         {
                             var message = V6Login.SelectedLanguage == "V"

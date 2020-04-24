@@ -795,6 +795,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.txtLoaiVt.Name = "txtLoaiVt";
             this.txtLoaiVt.Size = new System.Drawing.Size(184, 23);
             this.txtLoaiVt.TabIndex = 13;
+            this.txtLoaiVt.VVar = "LOAI_VT";
             // 
             // label15
             // 

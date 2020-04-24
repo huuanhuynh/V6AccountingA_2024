@@ -88,7 +88,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     FormBorderStyle = FormBorderStyle.FixedSingle
                                 };
 
-                                var ketchuyenForm = new AGSCTGS02_F8(_numlist, selectedNam,selectedthang,selectedthang, _program);
+                                var ketchuyenForm = new AGSCTGS02_F8(_numlist, selectedNam, selectedthang, selectedthang, _reportProcedure);
 
 
                                 ketchuyenForm.UpdateSuccessEvent += delegate
@@ -262,7 +262,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             
                             try
                             {
-                                V6BusinessHelper.ExecuteProcedureNoneQuery(_program + "_A", plist);
+                                V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure + "_A", plist);
                                 update_count++;
                                 _message = string.Format("Updated {0}/{1}-->{2}", update_count, dataGridView1.Rows.Count, so_lo);
                             }

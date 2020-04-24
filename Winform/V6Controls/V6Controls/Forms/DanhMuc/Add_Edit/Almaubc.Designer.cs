@@ -83,6 +83,8 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
+            this.checkBox1 = new V6Controls.V6CheckBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabTuDinhNghia.SuspendLayout();
@@ -97,7 +99,7 @@
             this.lblSTT.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.lblSTT.Name = "lblSTT";
             this.lblSTT.Size = new System.Drawing.Size(65, 17);
-            this.lblSTT.TabIndex = 109;
+            this.lblSTT.TabIndex = 8;
             this.lblSTT.Text = "Số thứ tự";
             // 
             // txtstt
@@ -115,7 +117,7 @@
             this.txtstt.Location = new System.Drawing.Point(134, 123);
             this.txtstt.Name = "txtstt";
             this.txtstt.Size = new System.Drawing.Size(134, 23);
-            this.txtstt.TabIndex = 108;
+            this.txtstt.TabIndex = 9;
             this.txtstt.Text = "0";
             this.txtstt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtstt.Value = new decimal(new int[] {
@@ -138,7 +140,7 @@
             this.txtMaMauBc.Location = new System.Drawing.Point(134, 7);
             this.txtMaMauBc.Name = "txtMaMauBc";
             this.txtMaMauBc.Size = new System.Drawing.Size(202, 23);
-            this.txtMaMauBc.TabIndex = 0;
+            this.txtMaMauBc.TabIndex = 1;
             // 
             // lblFileMauBC
             // 
@@ -148,7 +150,7 @@
             this.lblFileMauBC.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblFileMauBC.Name = "lblFileMauBC";
             this.lblFileMauBC.Size = new System.Drawing.Size(80, 17);
-            this.lblFileMauBC.TabIndex = 12;
+            this.lblFileMauBC.TabIndex = 6;
             this.lblFileMauBC.Text = "File mẫu bc";
             // 
             // txtFileMauBc
@@ -158,6 +160,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFileMauBc.BackColor = System.Drawing.SystemColors.Window;
             this.txtFileMauBc.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtFileMauBc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtFileMauBc.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtFileMauBc.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtFileMauBc.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -166,7 +169,7 @@
             this.txtFileMauBc.Location = new System.Drawing.Point(134, 94);
             this.txtFileMauBc.Name = "txtFileMauBc";
             this.txtFileMauBc.Size = new System.Drawing.Size(356, 23);
-            this.txtFileMauBc.TabIndex = 2;
+            this.txtFileMauBc.TabIndex = 7;
             // 
             // txtTenMauBc2
             // 
@@ -183,7 +186,7 @@
             this.txtTenMauBc2.Location = new System.Drawing.Point(134, 65);
             this.txtTenMauBc2.Name = "txtTenMauBc2";
             this.txtTenMauBc2.Size = new System.Drawing.Size(356, 23);
-            this.txtTenMauBc2.TabIndex = 2;
+            this.txtTenMauBc2.TabIndex = 5;
             // 
             // txtTenMauBc
             // 
@@ -200,7 +203,7 @@
             this.txtTenMauBc.Location = new System.Drawing.Point(134, 36);
             this.txtTenMauBc.Name = "txtTenMauBc";
             this.txtTenMauBc.Size = new System.Drawing.Size(356, 23);
-            this.txtTenMauBc.TabIndex = 1;
+            this.txtTenMauBc.TabIndex = 3;
             // 
             // lblName2
             // 
@@ -210,7 +213,7 @@
             this.lblName2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblName2.Name = "lblName2";
             this.lblName2.Size = new System.Drawing.Size(49, 17);
-            this.lblName2.TabIndex = 6;
+            this.lblName2.TabIndex = 4;
             this.lblName2.Text = "Tên 2 ";
             // 
             // lblMaMauBC
@@ -233,7 +236,7 @@
             this.lblTenMauBC.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblTenMauBC.Name = "lblTenMauBC";
             this.lblTenMauBC.Size = new System.Drawing.Size(83, 17);
-            this.lblTenMauBC.TabIndex = 4;
+            this.lblTenMauBC.TabIndex = 2;
             this.lblTenMauBC.Text = "Tên mẫu bc";
             // 
             // v6TabControl1
@@ -254,6 +257,8 @@
             this.tabThongTinChinh.AccessibleDescription = "ADDEDITT00001";
             this.tabThongTinChinh.AutoScroll = true;
             this.tabThongTinChinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinChinh.Controls.Add(this.checkBox1);
+            this.tabThongTinChinh.Controls.Add(this.label15);
             this.tabThongTinChinh.Controls.Add(this.lblSTT);
             this.tabThongTinChinh.Controls.Add(this.txtMaMauBc);
             this.tabThongTinChinh.Controls.Add(this.txtstt);
@@ -960,6 +965,30 @@
             this.label35.TabIndex = 90;
             this.label35.Text = "Mã ĐN 1";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AccessibleDescription = "ADDEDITC00001";
+            this.checkBox1.AccessibleName = "status";
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(134, 168);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(107, 21);
+            this.checkBox1.TabIndex = 11;
+            this.checkBox1.Text = "Có sử dụng?";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // label15
+            // 
+            this.label15.AccessibleDescription = "ADDEDITL00022";
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(10, 168);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(73, 17);
+            this.label15.TabIndex = 10;
+            this.label15.Text = "Trạng thái";
+            // 
             // Almaubc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1035,5 +1064,7 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label35;
+        private V6CheckBox checkBox1;
+        private System.Windows.Forms.Label label15;
     }
 }

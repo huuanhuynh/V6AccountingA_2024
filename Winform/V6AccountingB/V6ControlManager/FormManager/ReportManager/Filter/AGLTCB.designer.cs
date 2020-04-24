@@ -44,6 +44,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             this.chk_Bu_tru = new V6Controls.V6CheckBox();
             this.dateNgay_ct = new V6Controls.V6DateTimePicker();
             this.dateNgay_ct1 = new V6Controls.V6DateTimePicker();
+            this.chkHienTatCa = new V6Controls.V6CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,6 +78,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
             this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
+            this.txtMaDvcs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtMaDvcs.Caption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(3, 53);
@@ -165,11 +167,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             this.cboMaubc.AccessibleName = "MAU_BC";
             this.cboMaubc.BackColor = System.Drawing.SystemColors.Window;
             this.cboMaubc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboMaubc.DropDownWidth = 300;
             this.cboMaubc.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cboMaubc.FormattingEnabled = true;
             this.cboMaubc.Location = new System.Drawing.Point(52, 69);
             this.cboMaubc.Name = "cboMaubc";
-            this.cboMaubc.Size = new System.Drawing.Size(234, 21);
+            this.cboMaubc.Size = new System.Drawing.Size(196, 21);
             this.cboMaubc.TabIndex = 18;
             this.cboMaubc.TabStop = false;
             // 
@@ -222,10 +225,24 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             this.dateNgay_ct1.Size = new System.Drawing.Size(100, 20);
             this.dateNgay_ct1.TabIndex = 1;
             // 
+            // chkHienTatCa
+            // 
+            this.chkHienTatCa.AccessibleDescription = "REPORTC00001";
+            this.chkHienTatCa.AutoSize = true;
+            this.chkHienTatCa.Enabled = false;
+            this.chkHienTatCa.Location = new System.Drawing.Point(254, 71);
+            this.chkHienTatCa.Name = "chkHienTatCa";
+            this.chkHienTatCa.Size = new System.Drawing.Size(37, 17);
+            this.chkHienTatCa.TabIndex = 39;
+            this.chkHienTatCa.Text = "All";
+            this.chkHienTatCa.UseVisualStyleBackColor = true;
+            this.chkHienTatCa.CheckedChanged += new System.EventHandler(this.chkHienTatCa_CheckedChanged);
+            // 
             // AGLTCB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkHienTatCa);
             this.Controls.Add(this.btnSuaCTMau);
             this.Controls.Add(this.btnSuaTTMau);
             this.Controls.Add(this.btnThemMau);
@@ -261,5 +278,6 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         private V6FormButton btnSuaCTMau;
         private V6FormButton btnSuaTTMau;
         private V6FormButton btnThemMau;
+        private V6Controls.V6CheckBox chkHienTatCa;
     }
 }

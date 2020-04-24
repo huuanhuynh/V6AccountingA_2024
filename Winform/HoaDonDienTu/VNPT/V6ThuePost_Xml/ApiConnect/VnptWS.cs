@@ -191,7 +191,17 @@ namespace V6ThuePostXmlApi
 
         public static string CheckConnection()
         {
-            throw new NotImplementedException();
+            return "false";
+            //string result = Program.ImportAndPublishInv("<V6test>Test</V6test>");
+            //lblResult.Text = result;
+            //if (result != null && result.Contains("Dữ liệu xml đầu vào không đúng quy định"))
+            //{
+            //    BaseMessage.Show("Kết nối ổn!", 500, this);
+            //}
+            //else
+            //{
+            //    BaseMessage.Show(result);
+            //}
         }
     }
 }

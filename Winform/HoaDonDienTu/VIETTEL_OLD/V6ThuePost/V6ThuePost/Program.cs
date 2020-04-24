@@ -347,7 +347,6 @@ namespace V6ThuePost
                 {
                     postObject.buyerInfo[item.Key] = GetValue(row0, item.Value);
                 }
-                //private static Dictionary<string, XmlLine> sellerInfoConfig = null;
                 foreach (KeyValuePair<string, ConfigLine> item in sellerInfoConfig)
                 {
                     postObject.sellerInfo[item.Key] = GetValue(row0, item.Value);
@@ -772,6 +771,7 @@ namespace V6ThuePost
         internal static Dictionary<string, ConfigLine> generalInvoiceInfoConfig = null;
         internal static Dictionary<string, ConfigLine> buyerInfoConfig = null;
         internal static Dictionary<string, ConfigLine> sellerInfoConfig = null;
+        internal static Dictionary<string, ConfigLine> metaDataConfig = null;
         internal static Dictionary<string, ConfigLine> paymentsConfig = null;
         internal static Dictionary<string, ConfigLine> itemInfoConfig = null;
         internal static Dictionary<string, ConfigLine> summarizeInfoConfig = null;
@@ -783,6 +783,7 @@ namespace V6ThuePost
             generalInvoiceInfoConfig = new Dictionary<string, ConfigLine>();
             buyerInfoConfig = new Dictionary<string, ConfigLine>();
             sellerInfoConfig = new Dictionary<string, ConfigLine>();
+            metaDataConfig = new Dictionary<string, ConfigLine>();
             paymentsConfig = new Dictionary<string, ConfigLine>();
             itemInfoConfig = new Dictionary<string, ConfigLine>();
             summarizeInfoConfig = new Dictionary<string, ConfigLine>();
@@ -855,6 +856,15 @@ namespace V6ThuePost
                                 if (!string.IsNullOrEmpty(key))
                                 {
                                     sellerInfoConfig.Add(key, ReadXmlLine(reader));
+                                }
+                                break;
+                            }
+                        case "MetaData":
+                            {
+                                string key = reader.GetAttribute("Field");
+                                if (!string.IsNullOrEmpty(key))
+                                {
+                                    metaDataConfig.Add(key, ReadXmlLine(reader));
                                 }
                                 break;
                             }

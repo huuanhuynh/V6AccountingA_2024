@@ -25,11 +25,11 @@ namespace V6ControlManager.FormManager.ReportManager
 {
     public static class QuickReportManager
     {
-        public static ReportFilter44Base AddFilterControl44Base(string program, Panel panel1)
+        public static ReportFilter44Base AddFilterControl44Base(string program, string reportProcedure, Panel panel1)
         {
             panel1.Controls.Clear();
 
-            var FilterControl = Filter.Filter.GetFilterControl44(program);
+            var FilterControl = Filter.Filter.GetFilterControl44(program, reportProcedure);
             panel1.Controls.Add(FilterControl);
             FilterControl.LoadLanguage();
             FilterControl.Focus();
@@ -317,6 +317,7 @@ namespace V6ControlManager.FormManager.ReportManager
                         ? row["vbar"].ToString().Trim()
                         : row["vbar2"].ToString().Trim(),
                     CodeForm = row["codeform"].ToString().Trim(),
+                    Pro_old = row["pro_old"] == null ? null : row["pro_old"].ToString().Trim(),
                     Exe = row["program"].ToString().Trim(),
                     MaChungTu = row["ma_ct"].ToString().Trim(),
                     NhatKy = row["nhat_ky"].ToString().Trim(),

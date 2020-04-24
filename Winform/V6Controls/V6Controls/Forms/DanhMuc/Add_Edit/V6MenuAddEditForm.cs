@@ -46,6 +46,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             chkQuickRun.Enabled = true;
             txtcodeform.Enabled = true;
             txtcodeform.ReadOnly = false;
+            txtPRO_OLD.Enabled = true;
+            txtPRO_OLD.ReadOnly = false;
 
             txtSttBox.Enabled = true;
             txtMaCt.Enabled = true;
@@ -81,6 +83,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             chkQuickRun.Enabled = false;
             txtcodeform.Enabled = false;
             txtcodeform.ReadOnly = true;
+            txtPRO_OLD.Enabled = false;
+            txtPRO_OLD.ReadOnly = true;
 
             txtSttBox.Enabled = false;
             txtMaCt.Enabled = false;

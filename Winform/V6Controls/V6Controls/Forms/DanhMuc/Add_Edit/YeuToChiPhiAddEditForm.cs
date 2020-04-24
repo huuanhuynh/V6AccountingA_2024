@@ -37,5 +37,18 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             if (errors.Length > 0) throw new Exception(errors);
         }
 
+        private void txtloai_pb_TextChanged(object sender, EventArgs e)
+        {
+            if (txtloai_pb.Text == "3")
+            {
+                txtDS_YTCP.ReadOnly = false;
+            }
+            else
+            {
+                txtDS_YTCP.ReadOnly = true;
+                txtDS_YTCP.Text = "";
+            }
+        }
+
     }
 }

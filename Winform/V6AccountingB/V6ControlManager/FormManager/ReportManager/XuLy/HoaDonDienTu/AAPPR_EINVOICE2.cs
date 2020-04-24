@@ -16,9 +16,9 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
-    public class AAPPR_EINVOICE1 : XuLyBase
+    public class AAPPR_EINVOICE2 : XuLyBase
     {
-        public AAPPR_EINVOICE1(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
+        public AAPPR_EINVOICE2(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, false)
         {
             dataGridView1.Control_S = true;
@@ -47,7 +47,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                //AAPPR_EINVOICE1_F9 form = new AAPPR_EINVOICE1_F9();
+                //AAPPR_EINVOICE2_F9 form = new AAPPR_EINVOICE2_F9();
                 //if (form.ShowDialog(this) != DialogResult.OK)
                 //{
                 //    return;
@@ -81,7 +81,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             f9ErrorAll = "";
             f9MessageAll = "";
 
-            var form = new AAPPR_EINVOICE1_F9();
+            var form = new AAPPR_EINVOICE1_F9(); // Xài chung.
             if (form.ShowDialog(this) != DialogResult.OK || form.SelectedMode == "E_T1") // thay thế dùng F6
             {
                 return;
@@ -113,7 +113,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             new SqlParameter("@UserID", V6Login.UserId)
                         };
 
-                        DataSet ds = V6BusinessHelper.ExecuteProcedure(_program + "F9", plist);
+                        DataSet ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure + "F9", plist);
                         //DataTable data0 = ds.Tables[0];
                         string result = "";//, error = "", sohoadon = "", id = "";
                         var paras = new PostManagerParams
@@ -144,7 +144,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 new SqlParameter("@MA_TD1", FilterControl.String1),
                                 new SqlParameter("@User_ID", V6Login.UserId)
                             };
-                            V6BusinessHelper.ExecuteProcedureNoneQuery(_program + "_UPDATE", plist2);
+                            V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure + "_UPDATE", plist2);
                         }
                         else
                         {
@@ -196,7 +196,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 f9MessageAll = "";
                 if (dataGridView1.CurrentRow == null) return;
 
-                var form = new AAPPR_EINVOICE1_F6();
+                var form = new AAPPR_EINVOICE1_F6(); // Xài chung.
                 if (form.ShowDialog(this) != DialogResult.OK || form.SelectedGridViewRow == null)
                 {
                     return;
@@ -234,7 +234,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         new SqlParameter("@UserID", V6Login.UserId)
                     };
 
-                    DataSet ds = V6BusinessHelper.ExecuteProcedure(_program + "F9", plist);
+                    DataSet ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure + "F9", plist);
                     //DataTable data0 = ds.Tables[0];
                     string result = ""; //, error = "", sohoadon = "", id = "";
                     var paras = new PostManagerParams
@@ -278,7 +278,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             new SqlParameter("@MA_TD1", FilterControl.String1),
                             new SqlParameter("@User_ID", V6Login.UserId)
                         };
-                        V6BusinessHelper.ExecuteProcedureNoneQuery(_program + "_UPDATE", plist2);
+                        V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure + "_UPDATE", plist2);
                     }
                     else
                     {

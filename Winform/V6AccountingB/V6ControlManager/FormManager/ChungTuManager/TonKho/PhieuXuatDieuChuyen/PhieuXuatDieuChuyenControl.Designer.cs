@@ -105,6 +105,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.lblTongSoDong = new V6Controls.V6Label();
             this.v6Label20 = new V6Controls.V6Label();
             this.group3 = new System.Windows.Forms.GroupBox();
+            this.lblMauKyHieu = new V6Controls.V6Label();
+            this.txtMaMauHD = new V6Controls.V6VvarTextBox();
+            this.txtso_seri = new V6Controls.V6VvarTextBox();
             this.Txtten_vtthue = new V6Controls.V6VvarTextBox();
             this.v6Label34 = new V6Controls.V6Label();
             this.txtMaDVCS = new V6Controls.V6VvarTextBox();
@@ -1250,6 +1253,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             // 
             this.group3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.group3.Controls.Add(this.lblMauKyHieu);
+            this.group3.Controls.Add(this.txtMaMauHD);
+            this.group3.Controls.Add(this.txtso_seri);
             this.group3.Controls.Add(this.Txtten_vtthue);
             this.group3.Controls.Add(this.v6Label34);
             this.group3.Controls.Add(this.txtMaDVCS);
@@ -1288,6 +1294,53 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.group3.TabIndex = 2;
             this.group3.TabStop = false;
             // 
+            // lblMauKyHieu
+            // 
+            this.lblMauKyHieu.AccessibleDescription = "ASOCTSOAL00125";
+            this.lblMauKyHieu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMauKyHieu.AutoSize = true;
+            this.lblMauKyHieu.Location = new System.Drawing.Point(634, 123);
+            this.lblMauKyHieu.Name = "lblMauKyHieu";
+            this.lblMauKyHieu.Size = new System.Drawing.Size(68, 13);
+            this.lblMauKyHieu.TabIndex = 29;
+            this.lblMauKyHieu.Text = "Mẫu/Ký hiệu";
+            // 
+            // txtMaMauHD
+            // 
+            this.txtMaMauHD.AccessibleName = "MA_MAUHD";
+            this.txtMaMauHD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMaMauHD.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaMauHD.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaMauHD.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMaMauHD.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMaMauHD.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaMauHD.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaMauHD.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaMauHD.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaMauHD.LeaveColor = System.Drawing.Color.White;
+            this.txtMaMauHD.Location = new System.Drawing.Point(722, 119);
+            this.txtMaMauHD.Name = "txtMaMauHD";
+            this.txtMaMauHD.Size = new System.Drawing.Size(98, 20);
+            this.txtMaMauHD.TabIndex = 30;
+            // 
+            // txtso_seri
+            // 
+            this.txtso_seri.AccessibleName = "so_seri";
+            this.txtso_seri.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtso_seri.BackColor = System.Drawing.SystemColors.Window;
+            this.txtso_seri.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtso_seri.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtso_seri.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtso_seri.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtso_seri.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtso_seri.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtso_seri.HoverColor = System.Drawing.Color.Yellow;
+            this.txtso_seri.LeaveColor = System.Drawing.Color.White;
+            this.txtso_seri.Location = new System.Drawing.Point(826, 119);
+            this.txtso_seri.Name = "txtso_seri";
+            this.txtso_seri.Size = new System.Drawing.Size(57, 20);
+            this.txtso_seri.TabIndex = 31;
+            // 
             // Txtten_vtthue
             // 
             this.Txtten_vtthue.AccessibleName = "TT_PTVC";
@@ -1304,7 +1357,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.Txtten_vtthue.Location = new System.Drawing.Point(92, 141);
             this.Txtten_vtthue.Name = "Txtten_vtthue";
             this.Txtten_vtthue.Size = new System.Drawing.Size(527, 20);
-            this.Txtten_vtthue.TabIndex = 11;
+            this.Txtten_vtthue.TabIndex = 18;
             // 
             // v6Label34
             // 
@@ -1313,7 +1366,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6Label34.Location = new System.Drawing.Point(3, 144);
             this.v6Label34.Name = "v6Label34";
             this.v6Label34.Size = new System.Drawing.Size(81, 13);
-            this.v6Label34.TabIndex = 22;
+            this.v6Label34.TabIndex = 17;
             this.v6Label34.Text = "Phương tiện VC";
             // 
             // txtMaDVCS
@@ -1332,7 +1385,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtMaDVCS.Location = new System.Drawing.Point(92, 9);
             this.txtMaDVCS.Name = "txtMaDVCS";
             this.txtMaDVCS.Size = new System.Drawing.Size(100, 20);
-            this.txtMaDVCS.TabIndex = 5;
+            this.txtMaDVCS.TabIndex = 1;
             this.txtMaDVCS.VVar = "ma_dvcs";
             this.txtMaDVCS.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMadvcs_V6LostFocus);
             this.txtMaDVCS.TextChanged += new System.EventHandler(this.txtMadvcs_TextChanged);
@@ -1352,7 +1405,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6ColorDateTimePick1.Location = new System.Drawing.Point(722, 74);
             this.v6ColorDateTimePick1.Name = "v6ColorDateTimePick1";
             this.v6ColorDateTimePick1.Size = new System.Drawing.Size(96, 20);
-            this.v6ColorDateTimePick1.TabIndex = 15;
+            this.v6ColorDateTimePick1.TabIndex = 26;
             // 
             // TxtTen_khoN
             // 
@@ -1370,7 +1423,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.TxtTen_khoN.Location = new System.Drawing.Point(199, 97);
             this.TxtTen_khoN.Name = "TxtTen_khoN";
             this.TxtTen_khoN.Size = new System.Drawing.Size(420, 20);
-            this.TxtTen_khoN.TabIndex = 21;
+            this.TxtTen_khoN.TabIndex = 14;
             this.TxtTen_khoN.Tag = "disable";
             // 
             // TxtTen_kho
@@ -1389,7 +1442,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.TxtTen_kho.Location = new System.Drawing.Point(199, 75);
             this.TxtTen_kho.Name = "TxtTen_kho";
             this.TxtTen_kho.Size = new System.Drawing.Size(420, 20);
-            this.TxtTen_kho.TabIndex = 21;
+            this.TxtTen_kho.TabIndex = 11;
             this.TxtTen_kho.Tag = "disable";
             // 
             // v6ColorTextBox3
@@ -1408,7 +1461,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6ColorTextBox3.Location = new System.Drawing.Point(198, 9);
             this.v6ColorTextBox3.Name = "v6ColorTextBox3";
             this.v6ColorTextBox3.Size = new System.Drawing.Size(420, 20);
-            this.v6ColorTextBox3.TabIndex = 21;
+            this.v6ColorTextBox3.TabIndex = 2;
             this.v6ColorTextBox3.Tag = "disable";
             // 
             // lblMaDVCS
@@ -1418,7 +1471,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.lblMaDVCS.Location = new System.Drawing.Point(3, 12);
             this.lblMaDVCS.Name = "lblMaDVCS";
             this.lblMaDVCS.Size = new System.Drawing.Size(58, 13);
-            this.lblMaDVCS.TabIndex = 20;
+            this.lblMaDVCS.TabIndex = 0;
             this.lblMaDVCS.Text = "Mã đơn vị ";
             // 
             // txtTyGia
@@ -1437,7 +1490,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtTyGia.Location = new System.Drawing.Point(786, 140);
             this.txtTyGia.Name = "txtTyGia";
             this.txtTyGia.Size = new System.Drawing.Size(100, 20);
-            this.txtTyGia.TabIndex = 17;
+            this.txtTyGia.TabIndex = 34;
             this.txtTyGia.Text = "0,000";
             this.txtTyGia.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTyGia.Value = new decimal(new int[] {
@@ -1459,10 +1512,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             "0 - Chưa cập nhập",
             "1 - Cập nhập tất cả",
             "2 - Chỉ cập nhập vào kho"});
-            this.cboMaNt.Location = new System.Drawing.Point(682, 139);
+            this.cboMaNt.Location = new System.Drawing.Point(682, 141);
             this.cboMaNt.Name = "cboMaNt";
             this.cboMaNt.Size = new System.Drawing.Size(98, 21);
-            this.cboMaNt.TabIndex = 10;
+            this.cboMaNt.TabIndex = 33;
             this.cboMaNt.TabStop = false;
             this.cboMaNt.SelectedValueChanged += new System.EventHandler(this.cboMaNt_SelectedValueChanged);
             // 
@@ -1483,7 +1536,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtMaKhoN.Name = "txtMaKhoN";
             this.txtMaKhoN.NeighborFields = "TEN_KHON";
             this.txtMaKhoN.Size = new System.Drawing.Size(100, 20);
-            this.txtMaKhoN.TabIndex = 9;
+            this.txtMaKhoN.TabIndex = 13;
             this.txtMaKhoN.VVar = "ma_kho";
             this.txtMaKhoN.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMaKhoN_V6LostFocus);
             this.txtMaKhoN.V6LostFocusNoChange += new V6Controls.ControlEventHandle(this.txtMaKhoN_V6LostFocusNoChange);
@@ -1505,7 +1558,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtMaKhoX.Name = "txtMaKhoX";
             this.txtMaKhoX.NeighborFields = "TEN_KHOX";
             this.txtMaKhoX.Size = new System.Drawing.Size(100, 20);
-            this.txtMaKhoX.TabIndex = 8;
+            this.txtMaKhoX.TabIndex = 10;
             this.txtMaKhoX.VVar = "ma_kho";
             this.txtMaKhoX.V6LostFocus += new V6Controls.ControlEventHandle(this.MaKhoX_V6LostFocus);
             this.txtMaKhoX.V6LostFocusNoChange += new V6Controls.ControlEventHandle(this.txtMaKhoX_V6LostFocusNoChange);
@@ -1525,7 +1578,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtMaKh.Location = new System.Drawing.Point(92, 31);
             this.txtMaKh.Name = "txtMaKh";
             this.txtMaKh.Size = new System.Drawing.Size(100, 20);
-            this.txtMaKh.TabIndex = 6;
+            this.txtMaKh.TabIndex = 4;
             this.txtMaKh.VVar = "ma_kh";
             this.txtMaKh.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMaKh_V6LostFocus);
             this.txtMaKh.Leave += new System.EventHandler(this.txtMaKh_Leave);
@@ -1538,7 +1591,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6Label17.Location = new System.Drawing.Point(634, 142);
             this.v6Label17.Name = "v6Label17";
             this.v6Label17.Size = new System.Drawing.Size(36, 13);
-            this.v6Label17.TabIndex = 14;
+            this.v6Label17.TabIndex = 32;
             this.v6Label17.Text = "Tỷ giá";
             // 
             // v6ColorTextBox6
@@ -1556,7 +1609,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6ColorTextBox6.Location = new System.Drawing.Point(722, 97);
             this.v6ColorTextBox6.Name = "v6ColorTextBox6";
             this.v6ColorTextBox6.Size = new System.Drawing.Size(161, 20);
-            this.v6ColorTextBox6.TabIndex = 16;
+            this.v6ColorTextBox6.TabIndex = 28;
             // 
             // v6ColorTextBox5
             // 
@@ -1573,7 +1626,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6ColorTextBox5.Location = new System.Drawing.Point(722, 53);
             this.v6ColorTextBox5.Name = "v6ColorTextBox5";
             this.v6ColorTextBox5.Size = new System.Drawing.Size(161, 20);
-            this.v6ColorTextBox5.TabIndex = 14;
+            this.v6ColorTextBox5.TabIndex = 24;
             // 
             // v6ColorTextBox4
             // 
@@ -1590,7 +1643,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6ColorTextBox4.Location = new System.Drawing.Point(722, 31);
             this.v6ColorTextBox4.Name = "v6ColorTextBox4";
             this.v6ColorTextBox4.Size = new System.Drawing.Size(161, 20);
-            this.v6ColorTextBox4.TabIndex = 13;
+            this.v6ColorTextBox4.TabIndex = 22;
             // 
             // v6Label36
             // 
@@ -1600,7 +1653,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6Label36.Location = new System.Drawing.Point(634, 100);
             this.v6Label36.Name = "v6Label36";
             this.v6Label36.Size = new System.Drawing.Size(69, 13);
-            this.v6Label36.TabIndex = 4;
+            this.v6Label36.TabIndex = 27;
             this.v6Label36.Text = "Số hợp đồng";
             // 
             // v6Label16
@@ -1611,7 +1664,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6Label16.Location = new System.Drawing.Point(633, 76);
             this.v6Label16.Name = "v6Label16";
             this.v6Label16.Size = new System.Drawing.Size(51, 13);
-            this.v6Label16.TabIndex = 4;
+            this.v6Label16.TabIndex = 25;
             this.v6Label16.Text = "Ngày ĐĐ";
             // 
             // v6Label15
@@ -1622,7 +1675,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6Label15.Location = new System.Drawing.Point(633, 56);
             this.v6Label15.Name = "v6Label15";
             this.v6Label15.Size = new System.Drawing.Size(43, 13);
-            this.v6Label15.TabIndex = 4;
+            this.v6Label15.TabIndex = 23;
             this.v6Label15.Text = "Về việc";
             // 
             // v6ColorTextBox7
@@ -1641,7 +1694,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6ColorTextBox7.Location = new System.Drawing.Point(92, 119);
             this.v6ColorTextBox7.Name = "v6ColorTextBox7";
             this.v6ColorTextBox7.Size = new System.Drawing.Size(527, 20);
-            this.v6ColorTextBox7.TabIndex = 10;
+            this.v6ColorTextBox7.TabIndex = 16;
             // 
             // txtGC_UD1
             // 
@@ -1658,7 +1711,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtGC_UD1.Location = new System.Drawing.Point(722, 9);
             this.txtGC_UD1.Name = "txtGC_UD1";
             this.txtGC_UD1.Size = new System.Drawing.Size(161, 20);
-            this.txtGC_UD1.TabIndex = 12;
+            this.txtGC_UD1.TabIndex = 20;
             // 
             // v6Label37
             // 
@@ -1667,7 +1720,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6Label37.Location = new System.Drawing.Point(3, 122);
             this.v6Label37.Name = "v6Label37";
             this.v6Label37.Size = new System.Drawing.Size(48, 13);
-            this.v6Label37.TabIndex = 4;
+            this.v6Label37.TabIndex = 15;
             this.v6Label37.Text = "Diễn giải";
             // 
             // v6Label14
@@ -1678,7 +1731,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6Label14.Location = new System.Drawing.Point(633, 33);
             this.v6Label14.Name = "v6Label14";
             this.v6Label14.Size = new System.Drawing.Size(50, 13);
-            this.v6Label14.TabIndex = 4;
+            this.v6Label14.TabIndex = 21;
             this.v6Label14.Text = "LĐĐ của";
             // 
             // v6Label12
@@ -1689,7 +1742,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6Label12.Location = new System.Drawing.Point(633, 12);
             this.v6Label12.Name = "v6Label12";
             this.v6Label12.Size = new System.Drawing.Size(83, 13);
-            this.v6Label12.TabIndex = 4;
+            this.v6Label12.TabIndex = 19;
             this.v6Label12.Text = "Lệnh điều động";
             // 
             // txtMaSoThue
@@ -1707,7 +1760,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtMaSoThue.Location = new System.Drawing.Point(515, 53);
             this.txtMaSoThue.Name = "txtMaSoThue";
             this.txtMaSoThue.Size = new System.Drawing.Size(103, 20);
-            this.txtMaSoThue.TabIndex = 9;
+            this.txtMaSoThue.TabIndex = 8;
             this.txtMaSoThue.Tag = "";
             // 
             // txtTenKh
@@ -1726,7 +1779,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtTenKh.Location = new System.Drawing.Point(198, 31);
             this.txtTenKh.Name = "txtTenKh";
             this.txtTenKh.Size = new System.Drawing.Size(420, 20);
-            this.txtTenKh.TabIndex = 7;
+            this.txtTenKh.TabIndex = 5;
             this.txtTenKh.Tag = "";
             // 
             // v6Label13
@@ -1736,7 +1789,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6Label13.Location = new System.Drawing.Point(3, 100);
             this.v6Label13.Name = "v6Label13";
             this.v6Label13.Size = new System.Drawing.Size(70, 13);
-            this.v6Label13.TabIndex = 0;
+            this.v6Label13.TabIndex = 12;
             this.v6Label13.Text = "Mã kho nhập";
             // 
             // txtDiaChi
@@ -1764,7 +1817,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6Label6.Location = new System.Drawing.Point(3, 78);
             this.v6Label6.Name = "v6Label6";
             this.v6Label6.Size = new System.Drawing.Size(66, 13);
-            this.v6Label6.TabIndex = 0;
+            this.v6Label6.TabIndex = 9;
             this.v6Label6.Text = "Mã kho xuất";
             // 
             // v6Label11
@@ -1774,7 +1827,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.v6Label11.Location = new System.Drawing.Point(3, 56);
             this.v6Label11.Name = "v6Label11";
             this.v6Label11.Size = new System.Drawing.Size(40, 13);
-            this.v6Label11.TabIndex = 2;
+            this.v6Label11.TabIndex = 6;
             this.v6Label11.Text = "Địa chỉ";
             // 
             // lblMaKH
@@ -1784,7 +1837,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.lblMaKH.Location = new System.Drawing.Point(3, 34);
             this.lblMaKH.Name = "lblMaKH";
             this.lblMaKH.Size = new System.Drawing.Size(63, 13);
-            this.lblMaKH.TabIndex = 0;
+            this.lblMaKH.TabIndex = 3;
             this.lblMaKH.Text = "Mã KH xuất";
             // 
             // group2
@@ -1960,6 +2013,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.txtMa_sonb.TabIndex = 1;
             this.txtMa_sonb.VVar = "ma_sonb";
             this.txtMa_sonb.V6LostFocus += new V6Controls.ControlEventHandle(this.txtMa_sonb_V6LostFocus);
+            this.txtMa_sonb.V6LostFocusNoChange += new V6Controls.ControlEventHandle(this.txtMa_sonb_V6LostFocusNoChange);
             // 
             // v6Label2
             // 
@@ -2266,7 +2320,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.menuBtnIn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.inPhieuHachToanMenu});
             this.menuBtnIn.Name = "menuBtnIn";
-            this.menuBtnIn.Size = new System.Drawing.Size(174, 48);
+            this.menuBtnIn.Size = new System.Drawing.Size(174, 26);
             // 
             // inPhieuHachToanMenu
             // 
@@ -2628,5 +2682,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         private System.Windows.Forms.ToolStripMenuItem thayTheNhieuMenu;
         private System.Windows.Forms.ContextMenuStrip menuBtnIn;
         private System.Windows.Forms.ToolStripMenuItem inPhieuHachToanMenu;
+        private V6Label lblMauKyHieu;
+        private V6VvarTextBox txtMaMauHD;
+        private V6VvarTextBox txtso_seri;
     }
 }

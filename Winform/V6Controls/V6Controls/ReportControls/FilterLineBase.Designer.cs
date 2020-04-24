@@ -97,8 +97,8 @@ namespace V6ReportControls
 
         #endregion
 
-        protected V6Controls.V6ComboBox comboBox1;
-        protected V6Controls.V6CheckBox checkBox1;
-        protected Label label1;
+        public V6Controls.V6CheckBox checkBox1;
+        public V6Controls.V6ComboBox comboBox1;
+        public Label label1;
     }
 }

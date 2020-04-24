@@ -4187,6 +4187,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
             ShowMainMessage(V6Text.NoDefine + FormDynamicEvent.F9);
         }
 
+        /// <summary>
+        /// Ẩn control AM theo Alctct.GRD_HIDE
+        /// </summary>
         protected void HideControlByGRD_HIDE()
         {
             try

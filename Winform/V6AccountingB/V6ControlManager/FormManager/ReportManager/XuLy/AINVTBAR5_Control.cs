@@ -568,7 +568,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     plist.Add(new SqlParameter("@cMa_dvcs", V6Login.Madvcs));
                     plist.Add(new SqlParameter("@cgc_td3", _gc_td3));
                     plist.Add(new SqlParameter("@user_id", V6Login.UserId));
-                    V6BusinessHelper.ExecuteProcedure(_program + "F9", plist.ToArray());
+                    V6BusinessHelper.ExecuteProcedure(_reportProcedure + "F9", plist.ToArray());
                     FilterControl.Call1();//ClearAll();
                 }
             }
@@ -716,7 +716,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     plist.Add(new SqlParameter("@ctype", ctype));
                     plist.Add(new SqlParameter("@dngay_ct", ((AINVTBAR5)FilterControl).dateNgay_ct.Date.ToString("yyyyMMdd")));
                     plist.Add(new SqlParameter("@user_id", V6Login.UserId));
-                    V6BusinessHelper.ExecuteProcedure(_program + "F10", plist.ToArray());
+                    V6BusinessHelper.ExecuteProcedure(_reportProcedure + "F10", plist.ToArray());
                     //FilterControl.Call1();
                 }
             }

@@ -79,6 +79,19 @@ namespace V6Controls
         //}
 
         /// <summary>
+        /// Cho phép ký tự xuống dòng.
+        /// </summary>
+        [DefaultValue(false)]
+        [Description("Cho phép ký tự xuống dòng trong trường không không dùng multiline.")]
+        public bool AllowMultiLine
+        {
+            get { return _allowMultiLine; }
+            set { _allowMultiLine = value; }
+        }
+
+        protected bool _allowMultiLine = false;
+
+        /// <summary>
         /// Bật chức năng mang theo giá trị được gán cuối cùng
         /// </summary>
         [DefaultValue(false)]
@@ -737,6 +750,15 @@ namespace V6Controls
             else if (_lower) Text = Text.ToLower();
         }
 
+        protected void DoRemoveMultiLine()
+        {
+            if (!Text.Contains("\n")) return;
+            if (!Multiline && !_allowMultiLine)
+            {
+                Text = Text.Replace("\r\n", "").Replace("\n", "");
+            }
+        }
+
         /// <summary>
         /// Gọi sự kiện Leave. Các code .Levae += của textbox được gọi sẽ được kích hoạt.
         /// </summary>
@@ -762,6 +784,7 @@ namespace V6Controls
 
         protected virtual void V6ColorTextBox_LostFocus(object sender, EventArgs e)
         {
+            DoRemoveMultiLine();
             DoCharacterCasing();
             Do_LostFocus_ColorEffect();
 

@@ -34,6 +34,7 @@
             this.txtma_maubc = new V6Controls.V6VvarTextBox();
             this.cboMaubc = new V6Controls.V6ComboBox();
             this.lblMau = new V6Controls.V6Label();
+            this.chkHienTatCa = new V6Controls.V6CheckBox();
             this.SuspendLayout();
             // 
             // checkBox1
@@ -103,7 +104,7 @@
             this.cboMaubc.FormattingEnabled = true;
             this.cboMaubc.Location = new System.Drawing.Point(65, 0);
             this.cboMaubc.Name = "cboMaubc";
-            this.cboMaubc.Size = new System.Drawing.Size(231, 21);
+            this.cboMaubc.Size = new System.Drawing.Size(198, 21);
             this.cboMaubc.TabIndex = 32;
             this.cboMaubc.TabStop = false;
             // 
@@ -117,10 +118,24 @@
             this.lblMau.TabIndex = 31;
             this.lblMau.Text = "Mẫu";
             // 
+            // chkHienTatCa
+            // 
+            this.chkHienTatCa.AccessibleDescription = "REPORTC00001";
+            this.chkHienTatCa.AutoSize = true;
+            this.chkHienTatCa.Enabled = false;
+            this.chkHienTatCa.Location = new System.Drawing.Point(268, 2);
+            this.chkHienTatCa.Name = "chkHienTatCa";
+            this.chkHienTatCa.Size = new System.Drawing.Size(37, 17);
+            this.chkHienTatCa.TabIndex = 38;
+            this.chkHienTatCa.Text = "All";
+            this.chkHienTatCa.UseVisualStyleBackColor = true;
+            this.chkHienTatCa.CheckedChanged += new System.EventHandler(this.chkHienTatCa_CheckedChanged);
+            // 
             // FilterLineMauBC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkHienTatCa);
             this.Controls.Add(this.btnSuaCTMau);
             this.Controls.Add(this.btnSuaTTMau);
             this.Controls.Add(this.btnThemMau);
@@ -138,6 +153,7 @@
             this.Controls.SetChildIndex(this.btnThemMau, 0);
             this.Controls.SetChildIndex(this.btnSuaTTMau, 0);
             this.Controls.SetChildIndex(this.btnSuaCTMau, 0);
+            this.Controls.SetChildIndex(this.chkHienTatCa, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -151,6 +167,7 @@
         private V6Controls.V6VvarTextBox txtma_maubc;
         private V6Controls.V6ComboBox cboMaubc;
         private V6Controls.V6Label lblMau;
+        private V6Controls.V6CheckBox chkHienTatCa;
 
     }
 }

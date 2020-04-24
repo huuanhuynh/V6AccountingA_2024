@@ -25,6 +25,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         #region ==== FIELDS and PROPERTIES ====
         protected DataSet _ds = null;
         protected string _program;
+        protected string _reportProcedure;
         protected string MAU = "", LAN = "";
 
         //{tuanmh 11/09/2016
@@ -200,11 +201,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             InitializeComponent();
         }
-        
-        public FilterBase(string program)
+
+        public FilterBase(string program, string reportProcedure)
         {
             InitializeComponent();
             _program = program;
+            _reportProcedure = reportProcedure;
         }
 
         private void FilterBase_Load(object sender, EventArgs e)
@@ -212,9 +214,10 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             FixFilterLineSize();
         }
 
-        public void MyInitDynamic(string program)
+        public void MyInitDynamic(string program, string reportProcedure)
         {
             _program = program;
+            _reportProcedure = reportProcedure;
             //return;//Chưa hoàn thành
             try
             {

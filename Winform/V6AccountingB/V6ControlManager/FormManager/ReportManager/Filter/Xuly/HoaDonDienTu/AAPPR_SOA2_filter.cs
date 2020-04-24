@@ -210,7 +210,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             string tableName = "V6MAPINFO";
             if (shift_is_down) tableName = "V6MAPINFO1";
             string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
-            var data = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='"+String1+"' or ma_td1='0' or ma_td1='') order by date0,time0").Data;
+            var data = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='" + String1 + "' or ma_td1='0' or ma_td1='') order by GROUPNAME,GC_TD1").Data;
             IDictionary<string, object> defaultData = new Dictionary<string, object>();
             defaultData.Add("LOAI", "AAPPR_SOA2");
             V6ControlFormHelper.ShowDataEditorForm(this, data, tableName, null, keys, false, false, true, true, defaultData);
@@ -258,7 +258,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                             new SqlParameter("@UserID", V6Login.UserId)
                         };
 
-                DataSet ds = V6BusinessHelper.ExecuteProcedure(_program + "F9", plist);
+                DataSet ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure + "F9", plist);
 
                 //SqlParameter[] plist0 =
                 //{

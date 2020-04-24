@@ -7,11 +7,22 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
     public static class XuLy
     {
+        public static XuLyBase GetXuLyControl0(string itemId, string program, string procedure, string reportFile,
+            string reportCaption, string reportCaption2, string repFileF5, string repTitleF5, string repTitle2F5)
+        {
+            return GetXuLyControl(itemId, program, procedure, reportFile, reportCaption, reportCaption2, repFileF5,
+                    repTitleF5, repTitle2F5, null);
+        }
+
         public static XuLyBase GetXuLyControl(string itemId, string program, string procedure, string reportFile, string reportCaption, string reportCaption2,
-            string repFileF5, string repTitleF5, string repTitle2F5)
+            string repFileF5, string repTitleF5, string repTitle2F5, string pro_old)
         {
             switch (program)
             {
+                case "AAPPR_IXB2":
+                    return new AAPPR_IXB2(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                case "AAPPR_IXB3":
+                    return new AAPPR_IXB3(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AAPPR_SOA":
                     return new AAPPR_SOA(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AAPPR_SOA2":
@@ -220,13 +231,27 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 case "AAPPR_EINVOICE1": // Xử lý hóa đơn điện tử.
                     return new AAPPR_EINVOICE1(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                case "AAPPR_EINVOICE2": // Xử lý hóa đơn điện tử.
+                    return new AAPPR_EINVOICE2(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
 
 
             }
+
+            // Đổi program thành pro_old
+            if (pro_old != null && pro_old.Trim() != "")
+                return GetXuLyControl(itemId, pro_old, procedure, reportFile, reportCaption, reportCaption2, repFileF5,
+                    repTitleF5, repTitle2F5, null);
             return new XuLyBase(itemId, program, procedure, reportFile, reportCaption, reportCaption2, false);
         }
 
-        public static XuLyBase0 GetXuLyControlX(string itemId, string program, string procedure, string reportFile, string reportCaption, string reportCaption2)
+        public static XuLyBase0 GetXuLyControlX0(string itemId, string program, string procedure, string reportFile,
+            string reportCaption, string reportCaption2)
+        {
+            return GetXuLyControlX(itemId, program, procedure, reportFile, reportCaption, reportCaption2, null);
+        }
+
+        public static XuLyBase0 GetXuLyControlX(string itemId, string program, string procedure,
+            string reportFile, string reportCaption, string reportCaption2, string pro_old)
         {
             // Các control là kế thừa của XuLyBase0. Có thể không dùng filter.
             switch (program)
@@ -314,6 +339,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     //return new V6IMPORT2XLS(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                     return new V6IMPORT2XLS_Container(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
             }
+
+            // Đổi program thành pro_old
+            if (pro_old != null && pro_old.Trim() != "")
+                return GetXuLyControlX(itemId, pro_old, procedure, reportFile, reportCaption, reportCaption2, null);
             return new XuLyBase0(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
         }
     }

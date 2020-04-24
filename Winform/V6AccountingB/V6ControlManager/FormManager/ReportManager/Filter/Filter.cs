@@ -6,7 +6,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 {
     public static class Filter
     {
-        public static FilterBase GetFilterControl(string program)
+        public static FilterBase GetFilterControl(string program, string reportProcedure)
         {
             program = program.Trim().ToUpper();
             V6ControlFormHelper.AddLastAction("GetFilterControl " + program);
@@ -986,6 +986,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     #region ==== Hệ thống ====
 
                     break;
+                case "AAPPR_IXB2": //Hệ thống/Quản lý người sử dụng/K.Chuyển sang hóa đơn điện tử.
+                    result = new AAPPR_IXB2_filter();
+                    break;
+                case "AAPPR_IXB3": //Hệ thống/Quản lý người sử dụng/ In hóa đơn điện tử liên tục.
+                    result = new AAPPR_IXB3_filter();
+                    break;
                 case "AAPPR_SOA": //Hệ thống/Quản lý người sử dụng/C.Duyệt, xử lý hóa đơn bán hàng.
                     result = new AAPPR_SOA();
                     break;
@@ -1494,6 +1500,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 case "AAPPR_EINVOICE1":
                     result = new AAPPR_EINVOICE1_Filter();
                     break;
+                case "AAPPR_EINVOICE2":
+                    result = new AAPPR_EINVOICE2_Filter();
+                    break;
                     #endregion In liên tục
 
                     
@@ -1585,14 +1594,14 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             if (result == null) result = new FilterBase() { Visible = false };
 
-            result.MyInitDynamic(program);
+            result.MyInitDynamic(program, reportProcedure);
 
             return result;
         }
 
-        public static ReportFilter44Base GetFilterControl44(string program)
+        public static ReportFilter44Base GetFilterControl44(string program, string reportProcedure)
         {
-            return new ReportFilter44Base(program);
+            return new ReportFilter44Base(program, reportProcedure);
         }
     }
 }

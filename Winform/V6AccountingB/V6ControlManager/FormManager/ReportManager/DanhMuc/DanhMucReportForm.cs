@@ -447,10 +447,35 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
 
                 var fields_vvar_filter = V6Lookup.GetValueByTableName(_tableName, "vLfScatter");
                 MadeControls(_tableName, fields_vvar_filter);
+                CheckRightReport();
+                //InvokeFormEvent(FormDynamicEvent.INIT);
             }
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".Init2", ex);
+            }
+        }
+
+        private void CheckRightReport()
+        {
+            bool no_print = false;
+            if (!V6Login.UserRight.AllowPrint(ItemID, ItemID))
+            {
+                no_print = true;
+                crystalReportViewer1.ShowPrintButton = false;
+                crystalReportViewer1.ShowExportButton = false;
+                contextMenuStrip1.Items.Remove(exportToPdfMenu);
+            }
+            if (!V6Login.UserRight.AllowView(ItemID, ItemID))
+            {
+                crystalReportViewer1.InvisibleTag();
+                if (no_print)
+                {
+                    while (contextMenuStrip1.Items.Count > 0)
+                    {
+                        contextMenuStrip1.Items.RemoveAt(0);
+                    }
+                }
             }
         }
 
@@ -1315,7 +1340,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
 
                 crystalReportViewer1.ReportSource = rpDoc;
                 _rpDoc0 = rpDoc;
-                crystalReportViewer1.Show();
+                //crystalReportViewer1.Show();
                 crystalReportViewer1.Zoom(1);
             }
             catch (Exception ex)
@@ -1339,7 +1364,24 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         
         private void btnIn_Click(object sender, EventArgs e)
         {
-            crystalReportViewer1.PrintReport();
+            try
+            {
+                if (!V6Login.UserRight.AllowPrint(ItemID, ItemID))
+                {
+                    V6ControlFormHelper.NoRightWarning();
+                    return;
+                }
+                if (_ds == null)
+                {
+                    this.ShowErrorMessage(V6Text.NoData);
+                    return;
+                }
+                crystalReportViewer1.PrintReport();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".btnIn_Click " + V6Text.Text("LOIIN"), ex);
+            }
         }
 
         protected override void ClearMyVars()

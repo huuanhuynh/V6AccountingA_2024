@@ -30,6 +30,7 @@ namespace V6ReportControls
                 IsSelected = true;
                 label1.Visible = false;
                 comboBox1.Visible = false;
+                if (V6Login.IsAdmin) chkHienTatCa.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -42,7 +43,9 @@ namespace V6ReportControls
         {
             try
             {
-                cboData = V6BusinessHelper.Select(TableName, "*", FieldMa+"='" + txtMa.Text.ToUpper() + "'", "", "["+ FieldOrder +"]").Data;
+                cboData = V6BusinessHelper.Select(TableName, "*",
+                    (chkHienTatCa.Checked ? "" : "[status]='1' and ") + FieldMa + "='" + txtMa.Text.ToUpper() + "'",
+                    "", "["+ FieldOrder +"]").Data;
 
                 cboMau.ValueMember = FieldValue;
                 cboMau.DisplayMember = FieldDisplay;
@@ -374,6 +377,11 @@ namespace V6ReportControls
             {
                 V6ControlFormHelper.NoRightWarning();
             }
+        }
+
+        private void chkHienTatCa_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadDanhSach();
         }
     }
 }

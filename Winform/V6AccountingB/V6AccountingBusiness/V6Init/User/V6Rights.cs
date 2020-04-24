@@ -175,6 +175,12 @@ namespace V6Init
             }
         }
 
+        /// <summary>
+        /// Kiểm tra cho phép in. Dùng code, itemid hiện không có tác dụng.
+        /// </summary>
+        /// <param name="itemid">Dùng code.</param>
+        /// <param name="code">Mã check.</param>
+        /// <returns></returns>
         public bool AllowPrint(string itemid, string code)
         {
             try

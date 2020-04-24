@@ -117,7 +117,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             new SqlParameter("@UserID", V6Login.UserId)
                         };
 
-                        DataSet ds = V6BusinessHelper.ExecuteProcedure(_program + "F9", plist);
+                        DataSet ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure + "F9", plist);
                         //DataTable data0 = ds.Tables[0];
                         string result = "";//, error = "", sohoadon = "", id = "";
                         var paras = new PostManagerParams
@@ -148,7 +148,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 new SqlParameter("@Key_down", paras.Key_Down),
                                 new SqlParameter("@User_ID", V6Login.UserId)
                             };
-                            V6BusinessHelper.ExecuteProcedureNoneQuery(_program + "_UPDATE", plist2);
+                            V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure + "_UPDATE", plist2);
                             //row[]
                         }
                         else
@@ -223,7 +223,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             new SqlParameter("@UserID", V6Login.UserId)
                         };
 
-                DataSet ds = V6BusinessHelper.ExecuteProcedure(_program + "F9", plist);
+                DataSet ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure + "F9", plist);
                 //DataTable data0 = ds.Tables[0];
                 string result = "";//, error = "", sohoadon = "", id = "";
                 var paras = new PostManagerParams

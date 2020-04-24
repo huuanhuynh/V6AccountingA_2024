@@ -91,7 +91,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 FormBorderStyle = FormBorderStyle.FixedSingle
                             };
 
-                            var ketchuyenForm = new AGLCTPB_F9(_stt_recs, selectedNam, _program);
+                            var ketchuyenForm = new AGLCTPB_F9(_stt_recs, selectedNam, _reportProcedure);
 
 
                             f.Controls.Add(ketchuyenForm);
@@ -225,7 +225,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     FormBorderStyle = FormBorderStyle.FixedSingle
                                 };
 
-                                var ketchuyenForm = new AGLCTPB_F8(_stt_recs, selectedNam, _program);
+                                var ketchuyenForm = new AGLCTPB_F8(_stt_recs, selectedNam, _reportProcedure);
 
 
                                 ketchuyenForm.UpdateSuccessEvent += delegate
@@ -308,7 +308,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     FormBorderStyle = FormBorderStyle.FixedSingle
                                 };
 
-                                var ketchuyenForm = new AGLCTPB_F4(_stt_recs, selectedNam, _program);
+                                var ketchuyenForm = new AGLCTPB_F4(_stt_recs, selectedNam, _reportProcedure);
 
 
                                 ketchuyenForm.UpdateSuccessEvent += delegate

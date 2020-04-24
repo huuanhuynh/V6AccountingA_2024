@@ -160,6 +160,25 @@ namespace V6ReportControls
             }
         }
 
+        /// <summary>
+        /// Control chứa giá trị.
+        /// </summary>
+        public Control ValueControl
+        {
+            get
+            {
+                if (_textBox != null) return _textBox;
+                if (_vtextBox != null) return _vtextBox;
+                if (_lookupTextBox != null) return _lookupTextBox;
+                if (_lookupProc != null) return _lookupProc;
+                if (_numberTextBox != null) return _numberTextBox;
+                if (_dateTimePick != null) return _dateTimePick;
+                if (_dateTimeColor != null) return _dateTimeColor;
+                if (_checkBox != null) return _checkBox;
+                return null;
+            }
+        }
+
         public Type ValueType
         {
             get

@@ -560,7 +560,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 try
                 {
-                    V6BusinessHelper.ExecuteProcedureNoneQuery(_program + "UPDATEF9", view.FilterControl.GetFilterParameters().ToArray());
+                    V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure + "UPDATEF9", view.FilterControl.GetFilterParameters().ToArray());
                 }
                 catch (Exception ex)
                 {

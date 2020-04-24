@@ -157,7 +157,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             new SqlParameter("@UserID", V6Login.UserId)
                         };
 
-                        V6BusinessHelper.ExecuteProcedureNoneQuery(_program + "F8", plist);
+                        V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure + "F8", plist);
                         remove_list_g.Add(row);
                     }
                 }
@@ -245,7 +245,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             new SqlParameter("@UserID", V6Login.UserId)
                         };
 
-                        V6BusinessHelper.ExecuteProcedureNoneQuery(_program + "F9", plist);
+                        V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure + "F9", plist);
                         remove_list_g.Add(row);
                     }
                 }

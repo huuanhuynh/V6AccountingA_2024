@@ -23,6 +23,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
     public partial class ReportFilter44Base : FilterBase
     {
         private string _program;
+        private string _reportProcedure;
         
         public ReportFilter44Base()
         {
@@ -36,11 +37,12 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             SetHideFields(RTien);
             Ready();
         }
-        
-        public ReportFilter44Base(string program)
+
+        public ReportFilter44Base(string program, string reportProcedure)
         {
             InitializeComponent();
             _program = program;
+            _reportProcedure = reportProcedure;
             if (V6Login.MadvcsCount <= 1)
             {
                 //txtMaDvcs.Enabled = false;

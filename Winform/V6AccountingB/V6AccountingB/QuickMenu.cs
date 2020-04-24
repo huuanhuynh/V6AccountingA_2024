@@ -56,6 +56,7 @@ namespace V6AccountingB
                         ? rowView["vbar"].ToString().Trim()
                         : rowView["vbar2"].ToString().Trim(),
                     CodeForm = rowView["codeform"].ToString().Trim(),
+                    Pro_old = rowView["pro_old"] == null ? null : rowView["pro_old"].ToString().Trim(),
                     Exe = rowView["program"].ToString().Trim(),
                     MaChungTu = rowView["ma_ct"].ToString().Trim(),
                     NhatKy = rowView["nhat_ky"].ToString().Trim(),

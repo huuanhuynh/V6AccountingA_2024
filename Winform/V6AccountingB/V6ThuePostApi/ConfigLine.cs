@@ -2,6 +2,12 @@
 {
     internal class ConfigLine
     {
+        public string MA_TD2;
+        public string MA_TD3;
+        public decimal SL_TD1;
+        public decimal SL_TD2;
+        public decimal SL_TD3;
+
         /// <summary>
         /// Trường dữ liệu post
         /// </summary>

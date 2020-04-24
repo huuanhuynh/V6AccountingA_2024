@@ -49,7 +49,7 @@
             this.txtNhatKy = new V6Controls.V6ColorTextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.txtProgram = new V6Controls.V6ColorTextBox();
-            this.label20 = new System.Windows.Forms.Label();
+            this.lblProgram = new System.Windows.Forms.Label();
             this.txtcodeform = new V6Controls.V6ColorTextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.chkhide_yn = new V6Controls.V6CheckBox();
@@ -123,6 +123,8 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
+            this.lblPRO_OLD = new System.Windows.Forms.Label();
+            this.txtPRO_OLD = new V6Controls.V6ColorTextBox();
             this.groupBox1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabCacTuyChon.SuspendLayout();
@@ -323,8 +325,10 @@
             this.tabThongTinChinh.Controls.Add(this.label15);
             this.tabThongTinChinh.Controls.Add(this.txtNhatKy);
             this.tabThongTinChinh.Controls.Add(this.label21);
+            this.tabThongTinChinh.Controls.Add(this.txtPRO_OLD);
             this.tabThongTinChinh.Controls.Add(this.txtProgram);
-            this.tabThongTinChinh.Controls.Add(this.label20);
+            this.tabThongTinChinh.Controls.Add(this.lblPRO_OLD);
+            this.tabThongTinChinh.Controls.Add(this.lblProgram);
             this.tabThongTinChinh.Controls.Add(this.txtcodeform);
             this.tabThongTinChinh.Controls.Add(this.label14);
             this.tabThongTinChinh.Controls.Add(this.chkhide_yn);
@@ -458,7 +462,7 @@
             this.txtNhatKy.Margin = new System.Windows.Forms.Padding(4);
             this.txtNhatKy.Name = "txtNhatKy";
             this.txtNhatKy.Size = new System.Drawing.Size(541, 23);
-            this.txtNhatKy.TabIndex = 27;
+            this.txtNhatKy.TabIndex = 29;
             // 
             // label21
             // 
@@ -469,7 +473,7 @@
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(71, 17);
-            this.label21.TabIndex = 26;
+            this.label21.TabIndex = 28;
             this.label21.Text = "Nhật ký ct";
             // 
             // txtProgram
@@ -483,23 +487,23 @@
             this.txtProgram.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtProgram.HoverColor = System.Drawing.Color.Yellow;
             this.txtProgram.LeaveColor = System.Drawing.Color.White;
-            this.txtProgram.Location = new System.Drawing.Point(180, 278);
+            this.txtProgram.Location = new System.Drawing.Point(596, 278);
             this.txtProgram.Margin = new System.Windows.Forms.Padding(4);
             this.txtProgram.Name = "txtProgram";
-            this.txtProgram.Size = new System.Drawing.Size(541, 23);
-            this.txtProgram.TabIndex = 25;
+            this.txtProgram.Size = new System.Drawing.Size(125, 23);
+            this.txtProgram.TabIndex = 27;
             // 
-            // label20
+            // lblProgram
             // 
-            this.label20.AccessibleDescription = "";
-            this.label20.AccessibleName = "";
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(7, 281);
-            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(79, 17);
-            this.label20.TabIndex = 24;
-            this.label20.Text = "PROGRAM";
+            this.lblProgram.AccessibleDescription = "";
+            this.lblProgram.AccessibleName = "";
+            this.lblProgram.AutoSize = true;
+            this.lblProgram.Location = new System.Drawing.Point(491, 281);
+            this.lblProgram.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblProgram.Name = "lblProgram";
+            this.lblProgram.Size = new System.Drawing.Size(79, 17);
+            this.lblProgram.TabIndex = 26;
+            this.lblProgram.Text = "PROGRAM";
             // 
             // txtcodeform
             // 
@@ -1612,6 +1616,35 @@
             this.label35.TabIndex = 90;
             this.label35.Text = "Mã ĐN 1";
             // 
+            // lblPRO_OLD
+            // 
+            this.lblPRO_OLD.AccessibleDescription = "";
+            this.lblPRO_OLD.AccessibleName = "";
+            this.lblPRO_OLD.AutoSize = true;
+            this.lblPRO_OLD.Location = new System.Drawing.Point(8, 278);
+            this.lblPRO_OLD.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPRO_OLD.Name = "lblPRO_OLD";
+            this.lblPRO_OLD.Size = new System.Drawing.Size(75, 17);
+            this.lblPRO_OLD.TabIndex = 24;
+            this.lblPRO_OLD.Text = "PRO_OLD";
+            // 
+            // txtPRO_OLD
+            // 
+            this.txtPRO_OLD.AccessibleName = "PRO_OLD";
+            this.txtPRO_OLD.BackColor = System.Drawing.SystemColors.Window;
+            this.txtPRO_OLD.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtPRO_OLD.Enabled = false;
+            this.txtPRO_OLD.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtPRO_OLD.ForeColor = System.Drawing.Color.Red;
+            this.txtPRO_OLD.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtPRO_OLD.HoverColor = System.Drawing.Color.Yellow;
+            this.txtPRO_OLD.LeaveColor = System.Drawing.Color.White;
+            this.txtPRO_OLD.Location = new System.Drawing.Point(180, 278);
+            this.txtPRO_OLD.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPRO_OLD.Name = "txtPRO_OLD";
+            this.txtPRO_OLD.Size = new System.Drawing.Size(256, 23);
+            this.txtPRO_OLD.TabIndex = 25;
+            // 
             // V6MenuAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1682,7 +1715,7 @@
         private V6ColorTextBox txtKey1;
         private System.Windows.Forms.Label label18;
         private V6ColorTextBox txtProgram;
-        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label lblProgram;
         private V6ColorTextBox txtNhatKy;
         private System.Windows.Forms.Label label21;
         private V6ColorTextBox txtPicture;
@@ -1733,6 +1766,8 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label35;
+        private V6ColorTextBox txtPRO_OLD;
+        private System.Windows.Forms.Label lblPRO_OLD;
 
     }
 }

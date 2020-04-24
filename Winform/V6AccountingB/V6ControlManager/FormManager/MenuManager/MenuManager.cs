@@ -62,6 +62,7 @@ namespace V6ControlManager.FormManager.MenuManager
             {
                 string item_id = mButton.ItemID;
                 string codeform = mButton.CodeForm;
+                string pro_old = mButton.Pro_old;
                 var repFile = mButton.ReportFile;
                 var repTitle = mButton.ReportTitle;
                 var repTitle2 = mButton.ReportTitle2;
@@ -243,27 +244,51 @@ namespace V6ControlManager.FormManager.MenuManager
                             if (codeform.StartsWith("44"))
                             {
                                 program = codeform.Substring(2);
-                                c = new ReportR44ViewBase(item_id, program, program, repFile, repTitle, repTitle2,
-                                    repFileF5, repTitleF5, repTitle2F5);
+                                if (string.IsNullOrEmpty(pro_old))
+                                    c = new ReportR44ViewBase(item_id, program, program, repFile, repTitle, repTitle2,
+                                        repFileF5, repTitleF5, repTitle2F5);
+                                else
+                                    c = new ReportR44ViewBase(item_id, pro_old, program, repFile, repTitle, repTitle2,
+                                        repFileF5, repTitleF5, repTitle2F5);
                             }
                             else if (codeform.StartsWith("45")) // Không hiển thị report.
                             {
                                 program = codeform.Substring(2);
-                                c = new ReportR45ViewBase(item_id, program, program, repFile, repTitle, repTitle2,
+                                if (string.IsNullOrEmpty(pro_old))
+                                {
+                                    c = new ReportR45ViewBase(item_id, program, program, repFile, repTitle, repTitle2,
+                                        repFileF5, repTitleF5, repTitle2F5);
+                                }
+                                else
+                                {
+                                    c = new ReportR45ViewBase(item_id, pro_old, program, repFile, repTitle, repTitle2,
                                     repFileF5, repTitleF5, repTitle2F5);
+                                }
                             }
                             else if (codeform.StartsWith("47")) // Không hiển thị report.
                             {
                                 // Hai bộ report trên dưới
                                 // 1 form cha chứa 2 form report viewbase 47 bên trong.
                                 program = codeform.Substring(2);
-                                c = new ReportR47Container(item_id, program, program, repFile, repTitle, repTitle2,
-                                    repFileF5, repTitleF5, repTitle2F5);
+                                if (string.IsNullOrEmpty(pro_old))
+                                {
+                                    c = new ReportR47Container(item_id, program, program, repFile, repTitle, repTitle2,
+                                        repFileF5, repTitleF5, repTitle2F5);
+                                }
+                                else
+                                {
+                                    c = new ReportR47Container(item_id, pro_old, program, repFile, repTitle, repTitle2,
+                                        repFileF5, repTitleF5, repTitle2F5);
+                                }
                             }
                             else
                             {
-                                c = new ReportRViewBase(item_id, program, program, repFile, repTitle, repTitle2,
-                                    repFileF5, repTitleF5, repTitle2F5);
+                                if (string.IsNullOrEmpty(pro_old))
+                                    c = new ReportRViewBase(item_id, program, program, repFile, repTitle, repTitle2,
+                                        repFileF5, repTitleF5, repTitle2F5);
+                                else
+                                    c = new ReportRViewBase(item_id, pro_old, program, repFile, repTitle, repTitle2,
+                                        repFileF5, repTitleF5, repTitle2F5);
                             }
 
                             End_case_4:
@@ -277,13 +302,29 @@ namespace V6ControlManager.FormManager.MenuManager
                                 if (codeform.StartsWith("99"))
                                 {
                                     program = codeform.Substring(2);
-                                    c = new ReportD99ViewBase(item_id, program, program, repFile, repTitle, repTitle2,
-                                        repFileF5, repTitleF5, repTitle2F5);
+                                    if (string.IsNullOrEmpty(pro_old))
+                                    {
+                                        c = new ReportD99ViewBase(item_id, program, program, repFile, repTitle,
+                                            repTitle2, repFileF5, repTitleF5, repTitle2F5);
+                                    }
+                                    else
+                                    {
+                                        c = new ReportD99ViewBase(item_id, pro_old, program, repFile, repTitle,
+                                            repTitle2, repFileF5, repTitleF5, repTitle2F5);
+                                    }
                                 }
                                 else
                                 {
-                                    c = new ReportDViewBase(item_id, program1, program1, repFile, repTitle, repTitle2,
-                                        repFileF5, repTitleF5, repTitle2F5);
+                                    if (string.IsNullOrEmpty(pro_old))
+                                    {
+                                        c = new ReportDViewBase(item_id, program1, program1, repFile, repTitle, repTitle2,
+                                            repFileF5, repTitleF5, repTitle2F5);
+                                    }
+                                    else
+                                    {
+                                        c = new ReportDViewBase(item_id, pro_old, program1, repFile, repTitle, repTitle2,
+                                            repFileF5, repTitleF5, repTitle2F5);
+                                    }
                                 }
                             }
                             else
@@ -463,7 +504,7 @@ namespace V6ControlManager.FormManager.MenuManager
                                     check = CheckPasswordV6(owner);
                                 }
                                 if (!check) return null;
-                                c = XuLy.GetXuLyControlX(item_id, programX, programX, repFile, mButton.ReportTitle, mButton.ReportTitle2);
+                                c = XuLy.GetXuLyControlX(item_id, programX, programX, repFile, mButton.ReportTitle, mButton.ReportTitle2, pro_old);
                             }
                             break;
                         case "Z":
@@ -482,7 +523,17 @@ namespace V6ControlManager.FormManager.MenuManager
                                         check = CheckPasswordV6(owner);
                                     }
                                     if (!check) return null;
-                                    c = new XuLy44Base(item_id, programZ, programZ, repFile, mButton.ReportTitle, mButton.ReportTitle2, true, repFileF5, repTitleF5, repTitle2F5);
+
+                                    if (string.IsNullOrEmpty(pro_old))
+                                    {
+                                        c = new XuLy44Base(item_id, programZ, programZ, repFile, mButton.ReportTitle,
+                                            mButton.ReportTitle2, true, repFileF5, repTitleF5, repTitle2F5);
+                                    }
+                                    else
+                                    {
+                                        c = new XuLy44Base(item_id, pro_old, programZ, repFile, mButton.ReportTitle,
+                                            mButton.ReportTitle2, true, repFileF5, repTitleF5, repTitle2F5);
+                                    }
                                 }
                                 else if (codeform.StartsWith("Z45")) // Không hiện chi tiết
                                 {
@@ -497,7 +548,15 @@ namespace V6ControlManager.FormManager.MenuManager
                                         check = CheckPasswordV6(owner);
                                     }
                                     if (!check) return null;
-                                    c = new XuLy44Base(item_id, programZ, programZ, repFile, mButton.ReportTitle, mButton.ReportTitle2, false, repFileF5, repTitleF5, repTitle2F5);
+
+                                    if (string.IsNullOrEmpty(pro_old))
+                                    {
+                                        c = new XuLy44Base(item_id, programZ, programZ, repFile, mButton.ReportTitle, mButton.ReportTitle2, false, repFileF5, repTitleF5, repTitle2F5);
+                                    }
+                                    else
+                                    {
+                                        c = new XuLy44Base(item_id, pro_old, programZ, repFile, mButton.ReportTitle, mButton.ReportTitle2, false, repFileF5, repTitleF5, repTitle2F5);
+                                    }
                                 }
                                 else
                                 {
@@ -513,8 +572,7 @@ namespace V6ControlManager.FormManager.MenuManager
                                     }
                                     if (!check) return null;
                                     c = XuLy.GetXuLyControl(item_id, programZ, programZ, repFile, mButton.ReportTitle,
-                                        mButton.ReportTitle2,
-                                        repFileF5, repTitleF5, repTitle2F5);
+                                        mButton.ReportTitle2, repFileF5, repTitleF5, repTitle2F5, pro_old);
                                 }
                             }
                             break;
@@ -673,8 +731,16 @@ namespace V6ControlManager.FormManager.MenuManager
                             var programT = codeform.Substring(1);
                             if (V6Login.UserRight.AllowRun(item_id, codeform))
                             {
-                                c = new ReportTreeViewBase(item_id, programT, programT, repFile, repTitle, repTitle2,
-                                    repFileF5, repTitleF5, repTitle2F5);
+                                if (string.IsNullOrEmpty(pro_old))
+                                {
+                                    c = new ReportTreeViewBase(item_id, programT, programT, repFile, repTitle, repTitle2,
+                                        repFileF5, repTitleF5, repTitle2F5);
+                                }
+                                else
+                                {
+                                    c = new ReportTreeViewBase(item_id, pro_old, programT, repFile, repTitle, repTitle2,
+                                        repFileF5, repTitleF5, repTitle2F5);
+                                }
                             }
                             else
                             {

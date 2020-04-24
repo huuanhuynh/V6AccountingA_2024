@@ -488,7 +488,7 @@ namespace V6Controls
 
     /// <summary>
     /// OutlookbarButton represents a button on the Outlookbar
-    /// ItemID; CodeForm; ReportFile; ReportTitle; eportTitle2;
+    /// ItemID; CodeForm; Pro_old; ReportFile; ReportTitle; eportTitle2;
     /// ReportFileF5; ReportTitleF5; ReportTitle2F5;
     /// </summary>
     #region MenuButton
@@ -542,6 +542,15 @@ namespace V6Controls
         {
             get { return codeform; }
             set { codeform = value; }
+        }
+
+        protected string pro_old = "";
+        [Description("control"), Category("Appearance")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public string Pro_old
+        {
+            get { return pro_old; }
+            set { pro_old = value; }
         }
 
         /// <summary>

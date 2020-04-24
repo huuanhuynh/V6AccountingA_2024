@@ -3226,10 +3226,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
                 if (AM_old != null)
                 {
-                    txtMa_sonb.Text = AM_old["Ma_sonb"].ToString().Trim();
-                    if (txtSoPhieu.Text.Trim() == "")
-                        txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
-
+                    var txtt = new V6VvarTextBox();
+                    txtt.VVar = txtMa_sonb.VVar;
+                    var old_masonb = AM_old["Ma_sonb"].ToString().Trim();
+                    txtt.Text = old_masonb;
+                    if (txtt.Data != null && txtt.Data["Status"].ToString().Trim() == "1")
+                    {
+                        txtMa_sonb.Text = old_masonb;
+                        if (txtSoPhieu.Text.Trim() == "")
+                        {
+                            txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(old_masonb, dateNgayCT.Date);
+                        }
+                        if (txtMaMauHD.Text.Trim() == "")
+                        {
+                            txtMaMauHD.Text = AM_old["MA_MAUHD"].ToString().Trim();
+                        }
+                        if (txtso_seri.Text.Trim() == "")
+                        {
+                            txtso_seri.Text = AM_old["SO_SERI"].ToString().Trim();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -5133,7 +5149,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         
         private void txtMa_sonb_V6LostFocus(object sender)
         {
+            if (NotAddEdit) return;
             GetSoPhieu();
+            var data = txtMa_sonb.Data;
+            if (data != null)
+            {
+                txtMaMauHD.Text = (data["MA_MAUHD"] ?? "").ToString().Trim();
+                txtso_seri.Text = (data["SO_SERI"] ?? "").ToString().Trim();
+            }
+        }
+
+        private void txtMa_sonb_V6LostFocusNoChange(object sender)
+        {
+            if (NotAddEdit) return;
+            if (txtSoPhieu.Text.Trim() == "")
+            {
+                var data = txtMa_sonb.Data;
+                if (data != null)
+                {
+                    GetSoPhieu();
+                }
+            }
         }
 
         private void txtMaKh_V6LostFocus(object sender)
@@ -6096,6 +6132,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         {
             InPhieuHachToan(Invoice, _sttRec, TongThanhToan, TongThanhToanNT);
         }
-
+        
     }
 }

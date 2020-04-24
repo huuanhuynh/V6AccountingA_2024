@@ -71,7 +71,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             new SqlParameter("@so_the_cc", so_the_cc),
                             new SqlParameter("@ma_nv", ma_nv)
                         };
-                        var result = V6BusinessHelper.ExecuteProcedureNoneQuery(_program + "_F8", plist);
+                        var result = V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure + "_F8", plist);
                         if (result > 0)
                         {
                             dataGridView1.Rows.Remove(dataGridView1.CurrentRow);

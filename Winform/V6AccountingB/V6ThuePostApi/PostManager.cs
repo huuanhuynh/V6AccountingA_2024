@@ -109,6 +109,7 @@ namespace V6ThuePostManager
         private static Dictionary<string, ConfigLine> generalInvoiceInfoConfig = null;
         private static Dictionary<string, ConfigLine> buyerInfoConfig = null;
         private static Dictionary<string, ConfigLine> sellerInfoConfig = null;
+        private static Dictionary<string, ConfigLine> metadataConfig = null;
         private static Dictionary<string, ConfigLine> paymentsConfig = null;
         private static Dictionary<string, ConfigLine> itemInfoConfig = null;
         private static Dictionary<string, ConfigLine> summarizeInfoConfig = null;
@@ -213,6 +214,7 @@ namespace V6ThuePostManager
             try
             {
                 map_table = paras.DataSet.Tables[0];
+                
                 //ad_table = pmparams.DataSet.Tables[1];
                 //am_table = pmparams.DataSet.Tables[2];
                 //DataRow row0 = am_table.Rows[0];
@@ -228,7 +230,7 @@ namespace V6ThuePostManager
                         break;
                     case "2":
                     case "4":
-                        result = VnptWS.CheckConnection();
+                        result = CheckConnectionVNPT();
                         break;
                     case "3":
                         BkavWS bkavWS = new BkavWS();
@@ -304,11 +306,37 @@ namespace V6ThuePostManager
             }
             catch (Exception ex)
             {
+                result += "Ex: " + ex.Message;
                 paras.Result.ExceptionMessage = ex.Message;
                 exception = ex.Message;
                 V6ControlFormHelper.WriteExLog("PostManager.PowerDownloadPDF", ex);
             }
             return result;
+        }
+
+        /// <summary>
+        /// Kiểm tra kết nối lên server.
+        /// </summary>
+        /// <returns></returns>
+        public static string CheckConnectionVNPT()
+        {
+            try
+            {
+                string result = ImportAndPublishInv("<V6test>Test</V6test>");
+                //lblResult.Text = result;
+                if (result != null && result.Contains("Dữ liệu xml đầu vào không đúng quy định"))
+                {
+                    return null;
+                }
+                else
+                {
+                    return "Fail: " + result;
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
 
         /// <summary>
@@ -2616,6 +2644,44 @@ namespace V6ThuePostManager
                 {
                     postObject.sellerInfo[item.Key] = GetValue(row0, item.Value);
                 }
+                if (metadataConfig != null)
+                {
+                    foreach (KeyValuePair<string, ConfigLine> metaItem in metadataConfig)
+                    {
+                        Dictionary<string, object> metadata = new Dictionary<string, object>();
+                        metadata["invoiceCustomFieldId"] = ObjectAndString.ObjectToInt(metaItem.Value.SL_TD1);
+                        metadata["keyTag"] = metaItem.Key;
+                        metadata["valueType"] = metaItem.Value.DataType; // text, number, date
+                        if (metaItem.Value.DataType.ToLower() == "date")
+                        {
+                            metadata["dateValue"] = GetValue(row0, metaItem.Value);
+                        }
+                        else if (metaItem.Value.DataType.ToLower() == "number")
+                        {
+                            metadata["numberValue"] = GetValue(row0, metaItem.Value);
+                        }
+                        else // if (metaItem.Value.DataType.ToLower() == "date")
+                        {
+                            metaItem.Value.DataType = "text";
+                            metadata["stringValue"] = GetValue(row0, metaItem.Value);
+                        }
+                        metadata["keyLabel"] = ObjectAndString.ObjectToString(metaItem.Value.MA_TD2);
+                        metadata["isRequired"] = ObjectAndString.ObjectToBool(metaItem.Value.SL_TD2);
+                        metadata["isSeller"] = ObjectAndString.ObjectToBool(metaItem.Value.SL_TD3);
+
+   //{
+   //   "invoiceCustomFieldId": 1135,
+   //   "keyTag": "dueDate",
+   //   "valueType": "date",
+   //   "dateValue": 1544115600000,
+   //   "keyLabel": "Hạn thanh toán",
+   //   "isRequired": false,
+   //   "isSeller": false
+   // },
+                        postObject.metadata.Add(metadata);
+                    }
+                }
+                
                 //private static Dictionary<string, XmlLine> paymentsConfig = null;
                 Dictionary<string, object> payment = new Dictionary<string, object>();
                 foreach (KeyValuePair<string, ConfigLine> item in paymentsConfig)
@@ -3310,6 +3376,7 @@ namespace V6ThuePostManager
                         return MoneyToWords(ObjectAndString.ObjectToDecimal(fieldValue), "V", row["MA_NT"].ToString().Trim());
                     case "DECIMAL":
                     case "MONEY":
+                    case "NUMBER":
                         return ObjectAndString.ObjectToDecimal(fieldValue);
                     case "INT":
                         return ObjectAndString.ObjectToInt(fieldValue);
@@ -3318,7 +3385,7 @@ namespace V6ThuePostManager
                         return ObjectAndString.ObjectToInt64(fieldValue);
                     //case "UPPER": // Chỉ dùng ở exe gọi bằng Foxpro.
                     //    return (fieldValue + "").ToUpper();
-                    default:
+                    default: // STRING, TEXT...
                         return fieldValue;
                 }
             }
@@ -3343,6 +3410,7 @@ namespace V6ThuePostManager
             generalInvoiceInfoConfig = new Dictionary<string, ConfigLine>();
             buyerInfoConfig = new Dictionary<string, ConfigLine>();
             sellerInfoConfig = new Dictionary<string, ConfigLine>();
+            metadataConfig = new Dictionary<string, ConfigLine>();
             paymentsConfig = new Dictionary<string, ConfigLine>();
             itemInfoConfig = new Dictionary<string, ConfigLine>();
             summarizeInfoConfig = new Dictionary<string, ConfigLine>();
@@ -3464,6 +3532,14 @@ namespace V6ThuePostManager
                                 }
                                 break;
                             }
+                        case "METADATA":
+                            {
+                                if (!string.IsNullOrEmpty(line.Field))
+                                {
+                                    metadataConfig.Add(line.Field, line);
+                                }
+                                break;
+                            }
                         case "PAYMENTS":
                             {
                                 if (!string.IsNullOrEmpty(line.Field))
@@ -3553,6 +3629,11 @@ namespace V6ThuePostManager
             config.Type = reader["Type"].ToString().Trim();
             config.DataType = reader["DataType"].ToString().Trim();
             //config.Format = reader["Format"].ToString().Trim();
+            config.MA_TD2 = ObjectAndString.ObjectToString(reader["MA_TD2"]);
+            config.MA_TD3 = ObjectAndString.ObjectToString(reader["MA_TD3"]);
+            config.SL_TD1 = ObjectAndString.ObjectToDecimal(reader["SL_TD1"]);
+            config.SL_TD2 = ObjectAndString.ObjectToDecimal(reader["SL_TD2"]);
+            config.SL_TD3 = ObjectAndString.ObjectToDecimal(reader["SL_TD3"]);
             return config;
         }
 

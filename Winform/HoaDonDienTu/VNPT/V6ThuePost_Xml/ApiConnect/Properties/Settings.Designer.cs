@@ -26,7 +26,7 @@ namespace V6ThuePostXmlApi.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://phattienadmindemo.vnpt-invoice.com.vn/PublishService.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://nuocbdgservicedemo.vnpt-invoice.com.vn/PublishService.asmx")]
         public string V6ThuePostApi_nuocbdgservice_PublishService {
             get {
                 return ((string)(this["V6ThuePostApi_nuocbdgservice_PublishService"]));
@@ -36,7 +36,7 @@ namespace V6ThuePostXmlApi.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://phattienadmindemo.vnpt-invoice.com.vn/PortalService.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://nuocbdgservicedemo.vnpt-invoice.com.vn/PortalService.asmx")]
         public string V6ThuePostApi_PortalService_PortalService {
             get {
                 return ((string)(this["V6ThuePostApi_PortalService_PortalService"]));
@@ -46,7 +46,7 @@ namespace V6ThuePostXmlApi.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://phattienadmindemo.vnpt-invoice.com.vn/BusinessService.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://nuocbdgservicedemo.vnpt-invoice.com.vn/BusinessService.asmx")]
         public string V6ThuePostApi_BusinessService_BusinessService {
             get {
                 return ((string)(this["V6ThuePostApi_BusinessService_BusinessService"]));

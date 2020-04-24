@@ -177,7 +177,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
 
                                 var fText = "Kết chuyển tự động ";
-                                var ketchuyenForm = new AGLCTKC_F4(_numlist, selectedNam, _program);
+                                var ketchuyenForm = new AGLCTKC_F4(_numlist, selectedNam, _reportProcedure);
 
                                 ketchuyenForm.UpdateSuccessEvent += delegate
                                 {

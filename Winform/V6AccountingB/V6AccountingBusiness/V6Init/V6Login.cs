@@ -678,6 +678,43 @@ namespace V6Init
                 Logger.WriteToLog("V6Login InsertNewClient: " + ex.Message, "V6Init");
             }
         }
+        
+        public static void AllowClient()
+        {
+            try
+            {
+                var checkCode = ObjectAndString.ObjectToString(SqlConnect.GetServerDateTime(), "yyyyMMddHH:mm:ss")
+                    .Replace(" ", "");
+                var data = new SortedDictionary<string, object>
+                {
+                    {"NAME", ClientName},
+                    {"ALLOW", "1"},
+                    {"CHECKCODE", checkCode},
+                    {"CODE_NAME", UtilityHelper.EnCrypt(ClientName+"1"+checkCode)},
+                    {"STATUS", "1"},
+                };
+                var keys = new SortedDictionary<string, object>
+                {
+                    {"NAME", ClientName}
+                };
+
+                if (GetDataMode == GetDataMode.Local)
+                {
+                    var tableName = "V6Clients";
+                    var tStruct = V6SqlconnectHelper.GetTableStruct(tableName);
+                    var sql = SqlGenerator.GenUpdateSqlSimple(UserId, tableName, tStruct, data, keys);
+                    SqlConnect.ExecuteNonQuery(CommandType.Text, sql);
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteToLog("V6Login InsertNewClient: " + ex.Message, "V6Init");
+            }
+        }
 
         public static bool CheckAllowClient(string localPath)
         {

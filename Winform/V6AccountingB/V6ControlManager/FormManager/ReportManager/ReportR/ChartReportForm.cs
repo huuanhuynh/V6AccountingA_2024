@@ -129,7 +129,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                         }
                     }
                     crystalReportViewer1.ReportSource = _rpDoc;
-                    crystalReportViewer1.Show();
+                    //crystalReportViewer1.Show();
                 }
             }
             catch (Exception ex)

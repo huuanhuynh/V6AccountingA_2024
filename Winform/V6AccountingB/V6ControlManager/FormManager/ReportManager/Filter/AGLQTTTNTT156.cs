@@ -38,6 +38,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
             SetHideFields(RTien);
             LoadAlmaubc();
+            if (V6Login.IsAdmin) chkHienTatCa.Enabled = true;
         }
 
         private DataTable maubcData;
@@ -47,7 +48,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 //ma_maubc,ten_maubc,ten_maubc2,file_maubc
                 maubcData = V6BusinessHelper.Select("ALMAUBC",
-                   "ma_maubc,ten_maubc,ten_maubc2,file_maubc,UID", "ma_maubc='" + txtma_maubc.Text.ToUpper() + "'",
+                   "*", (chkHienTatCa.Checked ? "" : "[status]='1' and ") + "ma_maubc='" + txtma_maubc.Text.ToUpper() + "'",
                    "", "[ORDER]").Data;
 
                 cboMaubc.ValueMember = "file_maubc";
@@ -409,6 +410,11 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             {
                 V6ControlFormHelper.NoRightWarning();
             }
+        }
+
+        private void chkHienTatCa_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadAlmaubc();
         }
 
         

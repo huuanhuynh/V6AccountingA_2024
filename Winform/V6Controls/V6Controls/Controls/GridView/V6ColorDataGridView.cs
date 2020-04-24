@@ -70,6 +70,48 @@ namespace V6Controls
         //    e.ThrowException = false;
         //}
 
+        public override DataObject GetClipboardContent()
+        {
+            if (use_v6_copy)
+            {
+                return GetClipboardContentV6();
+            }
+            return base.GetClipboardContent();
+        }
+
+        private DataObject GetClipboardContentV6()
+        {
+            string result = "";
+            int row_min = Rows.Count-1, row_max = 0;
+            int col_min = Columns.Count-1, col_max = 0;
+            foreach (DataGridViewCell cell in SelectedCells)
+            {
+                if (cell.RowIndex > row_max) row_max = cell.RowIndex;
+                if (cell.RowIndex < row_min) row_min = cell.RowIndex;
+                if (cell.ColumnIndex > col_max) col_max = cell.ColumnIndex;
+                if (cell.ColumnIndex < col_min) col_min = cell.ColumnIndex;
+            }
+
+            for (int i = row_min; i <= row_max; i++)
+            {
+                result += "\r\n";
+                for (int j = col_min; j <= col_max; j++)
+                {
+                    if (!Columns[j].Visible) continue;
+                    if (!result.EndsWith("\r\n")) result += "\t";
+                    result += GetCellStringValue(Rows[i].Cells[j]);
+                }
+            }
+            if (result.Length > 2) result = result.Substring(2);
+            DataObject result_do = new DataObject(result);
+            return result_do;
+        }
+
+        private string GetCellStringValue(DataGridViewCell cell)
+        {
+            return ObjectAndString.ObjectToString(cell.Value);
+        }
+
         protected override void OnDataError(bool displayErrorDialogIfNoHandler, DataGridViewDataErrorEventArgs e)
         {
             //this.WriteExLog(GetType() + ".OnDataError", e.Exception);
@@ -735,6 +777,12 @@ namespace V6Controls
         [Description("Dùng Space_Bar để thay đổi trạng thái chọn của dòng đang đứng.")]
         public bool Space_Bar { get { return space_bar; } set { space_bar = value; } }
         private bool space_bar = false;
+
+        [DefaultValue(false)]
+        [Description("Dùng hàm GetClipboardContentV6 để lấy dữ liệu khi copy.")]
+        public bool UseV6Copy { get { return use_v6_copy; } set { use_v6_copy = value; } }
+        private bool use_v6_copy = false;
+
 
         public event Action FilterChange;
         protected virtual void OnFilterChange()

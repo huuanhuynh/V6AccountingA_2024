@@ -88,22 +88,16 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         /// <returns>cKey</returns>
         public override List<SqlParameter> GetFilterParameters()
         {
-            //@StartDate varchar(8),
-            //@EndDate varchar(8),
-            //@nhom_ct int,
-            //@Condition varchar(50)
-
-            var result = new List<SqlParameter>();
-
+            String1 = (cboSendType.SelectedIndex + 1).ToString();
             V6Setting.M_ngay_ct1 = dateNgay_ct1.Date;
             V6Setting.M_ngay_ct2 = dateNgay_ct2.Date;
 
-
-            
+            var result = new List<SqlParameter>();
             result.Add(new SqlParameter("@StartDate", dateNgay_ct1.YYYYMMDD));
             result.Add(new SqlParameter("@EndDate", dateNgay_ct2.YYYYMMDD));
-            result.Add(new SqlParameter("@nhom_ct", chkNhomCt.Checked?1:0));
+            result.Add(new SqlParameter("@nhom_ct", chkNhomCt.Checked ? 1 : 0));
             result.Add(new SqlParameter("@loai", txtLoai.Text.Trim()));
+            result.Add(new SqlParameter("@MA_TD1", String1));
 
 
             var and = radAnd.Checked;
@@ -224,7 +218,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             string tableName = "V6MAPINFO";
             if (shift_is_down) tableName = "V6MAPINFO1";
             string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
-            var data = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='" + String1 + "' or ma_td1='0' or ma_td1='') order by date0,time0").Data;
+            var data = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='" + String1 + "' or ma_td1='0' or ma_td1='') order by GROUPNAME,GC_TD1").Data;
             IDictionary<string, object> defaultData = new Dictionary<string, object>();
             defaultData.Add("LOAI", "AAPPR_SOA2");
             V6ControlFormHelper.ShowDataEditorForm(this, data, tableName, null, keys, false, false, true, true, defaultData);

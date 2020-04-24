@@ -15,7 +15,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         #region Biến toàn cục
 
         protected DataRow _am;
-        protected string _numlist, _text, _program;
+        protected string _numlist, _text, _reportProcedure;
         protected int _year, _month1, _month2;
 
         //protected string _reportFileF5, _reportTitleF5, _reportTitle2F5;
@@ -45,13 +45,13 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             InitializeComponent();
         }
 
-        public AGSCTGS02_F8(string numlist, int year, int month1, int month2, string program)
+        public AGSCTGS02_F8(string numlist, int year, int month1, int month2, string reportProcedure)
         {
             _numlist = numlist;
             _year = year;
             _month1 = month1;
             _month2 = month2;
-            _program = program;
+            _reportProcedure = reportProcedure;
 
             InitializeComponent();
             MyInit();
@@ -111,7 +111,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                     };
 
-                    V6BusinessHelper.ExecuteProcedureNoneQuery(_program, plist);
+                    V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure, plist);
 
 
                     OnUpdateSuccessEvent();

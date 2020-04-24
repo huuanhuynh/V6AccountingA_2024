@@ -143,10 +143,57 @@ namespace V6Controls.Forms
             }
             
             var checkTagString = ";" + newTagString + ";";
-            control.Enabled = !checkTagString.Contains(";disable;");
+            var enabled = !checkTagString.Contains(";disable;");
             var visible = !checkTagString.Contains(";hide;");
             if (checkTagString.Contains(";invisible;")) visible = false;
             control.Visible = visible;
+
+            if (control is FilterLineBase)
+            {
+                var line = control as FilterLineBase;
+                line.checkBox1.Enabled = enabled;
+                line.comboBox1.Enabled = enabled;
+                if (control is FilterLineDynamic)
+                {
+                    var dyn = control as FilterLineDynamic;
+                    dyn.ValueControl.AddTagString(tagString);
+                }
+                else if (control is FilterLineVvarTextBox)
+                {
+                    var txt = control as FilterLineVvarTextBox;
+                    txt.VvarTextBox.AddTagString(tagString);
+                }
+                else if (control is FilterLineNumberTextBox)
+                {
+                    var txt = control as FilterLineNumberTextBox;
+                    txt.NumberTextBox.AddTagString(tagString);
+                }
+                else if (control is FilterLineDateTimeNullable)
+                {
+                    var txt = control as FilterLineDateTimeNullable;
+                    txt.DateTimeTextBox.AddTagString(tagString);
+                }
+                else if (control is FilterLineDateTimeTextBox)
+                {
+                    var txt = control as FilterLineDateTimeTextBox;
+                    txt.DateTimeTextBox.AddTagString(tagString);
+                }
+                else if (control is FilterLineLookupProc)
+                {
+                    var txt = control as FilterLineLookupProc;
+                    txt.LookupProc.AddTagString(tagString);
+                }
+                else if (control is FilterLineLookupTextBox)
+                {
+                    var txt = control as FilterLineLookupTextBox;
+                    txt.LookupTextBox.AddTagString(tagString);
+                }
+            }
+            else
+            {
+                control.Enabled = enabled;
+            }
+
             TabPage tab = control as TabPage;
             if (tab != null && visible == false)
             {
@@ -162,6 +209,7 @@ namespace V6Controls.Forms
             {
                 textbox.ReadOnly = checkTagString.Contains(";readonly;");
             }
+            
         }
 
         public static void RemoveTagString(Control control, string tagString)
@@ -7080,6 +7128,10 @@ namespace V6Controls.Forms
             else if (control is V6IndexComboBox)
             {
                 ((V6IndexComboBox)control).SelectedIndex = ObjectAndString.ObjectToInt(value);
+            }
+            else if (control is FilterLineBase)
+            {
+                ((FilterLineBase)control).SetValue(value);
             }
             else if (control is ComboBox)
             {
