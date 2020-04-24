@@ -2024,7 +2024,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             try
             {
-                ChungTu.ViewMoney(lblDocSoTien, txtTongThanhToanNt.Value, _maNt);
                 if (NotAddEdit) return;
 
                 HienThiTongSoDong(lblTongSoDong);

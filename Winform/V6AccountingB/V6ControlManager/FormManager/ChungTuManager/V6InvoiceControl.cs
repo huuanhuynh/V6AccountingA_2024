@@ -410,7 +410,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 }
                 catch (Exception ex2)
                 {
-                    this.WriteExLog(GetType() + ".SetControlReadOnlyHide ex2" + _sttRec, ex2);
+                    this.WriteExLog(GetType() + ".SetControlReadOnlyHide ex2 " + _sttRec, ex2);
                 }
 
                 //  Ẩn hiện theo quyền trong Alctct

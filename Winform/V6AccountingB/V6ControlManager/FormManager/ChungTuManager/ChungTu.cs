@@ -42,7 +42,15 @@ namespace V6ControlManager.FormManager.ChungTuManager
     {
         public static void ViewMoney(Control view, decimal money, string ma_nt)
         {
-            view.Text = V6BusinessHelper.MoneyToWords(money, V6Setting.Language, ma_nt);
+            try
+            {
+                view.Text = V6BusinessHelper.MoneyToWords(money, V6Setting.Language, ma_nt);
+            }
+            catch (Exception)
+            {
+                //
+            }
+            
         }
         public static V6Control GetChungTuContainer(string maCt, string itemId) // ALCT.TYPE_VIEW 2 = showQuickView
         {

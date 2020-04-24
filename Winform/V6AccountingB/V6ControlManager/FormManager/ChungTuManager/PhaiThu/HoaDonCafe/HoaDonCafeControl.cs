@@ -3706,7 +3706,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         {
             try
             {
-                ChungTu.ViewMoney(lblDocSoTien, txtTongThanhToanNt.Value, _maNt);
                 if (NotAddEdit) return;
             
                 HienThiTongSoDong(lblTongSoDong);

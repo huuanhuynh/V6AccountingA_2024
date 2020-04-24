@@ -2434,7 +2434,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         {
             try
             {
-                ChungTu.ViewMoney(lblDocSoTien, txtTongThanhToanNt.Value, _maNt);
                 if (NotAddEdit) return;
                 //Tính tổng thanh toán.//Tính ck xong tính ttt lại.
             

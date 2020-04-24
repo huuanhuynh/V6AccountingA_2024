@@ -2535,7 +2535,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         {
             try
             {
-                ChungTu.ViewMoney(lblDocSoTien, txtTongThanhToanNt.Value, _maNt);
                 if (NotAddEdit) return;
                 //Tính tổng thanh toán.//con phan nt va tien viet chua ro rang.
             

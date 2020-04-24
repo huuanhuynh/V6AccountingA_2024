@@ -7,7 +7,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
     public static class XuLy
     {
-        public static XuLyBase GetXuLyControl0(string itemId, string program, string procedure, string reportFile,
+        public static XuLyBase GetXuLyControl(string itemId, string program, string procedure, string reportFile,
             string reportCaption, string reportCaption2, string repFileF5, string repTitleF5, string repTitle2F5)
         {
             return GetXuLyControl(itemId, program, procedure, reportFile, reportCaption, reportCaption2, repFileF5,
@@ -244,7 +244,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             return new XuLyBase(itemId, program, procedure, reportFile, reportCaption, reportCaption2, false);
         }
 
-        public static XuLyBase0 GetXuLyControlX0(string itemId, string program, string procedure, string reportFile,
+        public static XuLyBase0 GetXuLyControlX(string itemId, string program, string procedure, string reportFile,
             string reportCaption, string reportCaption2)
         {
             return GetXuLyControlX(itemId, program, procedure, reportFile, reportCaption, reportCaption2, null);
