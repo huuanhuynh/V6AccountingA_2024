@@ -403,6 +403,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView2.Size = new System.Drawing.Size(876, 115);
             this.dataGridView2.TabIndex = 5;
+            this.dataGridView2.Tag = "cancelall";
             this.dataGridView2.DataSourceChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             this.dataGridView2.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView2_ColumnAdded);
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
@@ -1026,6 +1027,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView3.Size = new System.Drawing.Size(876, 115);
             this.dataGridView3.TabIndex = 5;
+            this.dataGridView3.Tag = "cancelall";
             this.dataGridView3.DataSourceChanged += new System.EventHandler(this.dataGridView3_SelectionChanged);
             this.dataGridView3.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView3_ColumnAdded);
             this.dataGridView3.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView3_DataError);

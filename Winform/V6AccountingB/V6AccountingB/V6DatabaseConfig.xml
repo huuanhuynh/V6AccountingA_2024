@@ -412,6 +412,25 @@
     <Type>0</Type>
     <Key>DMzPmtn50iJsK30xeTMq5T5JSkw2lgLk8CL2hgLnQRRXWoJ2T2jhlg==</Key>
   </DatabaseList>
+     <DatabaseList>
+    <Stt>23</Stt>
+    <Server>14.241.244.124,7172</Server>
+    <Server2>14.241.244.124,7172</Server2>
+    <Database>BM_THUE20</Database>
+    <Database2>BM_THUE20</Database2>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
+    <Epassword>wYAdj4ZYWkLuBA96g8cds5QDKAhleqLi</Epassword>
+    <Epassword2>wYAdj4ZYWkLuBA96g8cds5QDKAhleqLi</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <Note>Dữ liệu BESTMIX THUE ONLINE</Note>
+    <UseIsolation>1</UseIsolation>
+    <TimeOut>360</TimeOut>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>s4oXlvmQqX9ps9of/sNn1QLUz89XmoGQRux9diJdiNk=</Key>
+  </DatabaseList>
   <ServerConfig>
     <ServerName>HUUANV6</ServerName>
     <ServerIP>192.168.1.141</ServerIP>

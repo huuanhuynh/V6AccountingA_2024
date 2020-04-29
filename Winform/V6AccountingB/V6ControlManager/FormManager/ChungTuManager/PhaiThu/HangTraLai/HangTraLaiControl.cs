@@ -2314,7 +2314,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
                 //tính giam gia cho mỗi chi tiết
 
-                var tTienNt2 = V6BusinessHelper.TinhTong(AD, "TIEN_NT2");
+                var tTienNt2 = TinhTong(AD, "TIEN_NT2");
                 var tyGia = txtTyGia.Value;
                 var t_tien_nt2 = txtTongTienNt2.Value;
                 txtTongTienNt2.Value = V6BusinessHelper.Vround(tTienNt2, M_ROUND_NT);
@@ -2962,14 +2962,25 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         /// Lấy dữ liệu AD dựa vào rec, tạo 1 copy gán vào AD81
         /// </summary>
         /// <param name="sttRec"></param>
-        public void LoadAD(string sttRec)
+        public void LoadAD(string sttRec )
         {
             if (ADTables == null) ADTables = new SortedDictionary<string, DataTable>();
-            if (ADTables.ContainsKey(sttRec)) AD = ADTables[sttRec].Copy();
+            if (ADTables.ContainsKey(sttRec))
+            {
+                AD = ADTables[sttRec].Copy();
+            }
             else
             {
-                ADTables.Add(sttRec, Invoice.LoadAD(sttRec));
-                AD = ADTables[sttRec].Copy();
+                try
+                {
+                    ADTables[sttRec] = Invoice.LoadAD(sttRec);
+                    AD = ADTables[sttRec].Copy();
+                }
+                catch
+                {
+                    ADTables[sttRec] = Invoice.LoadAD(sttRec);
+                    AD = ADTables[sttRec].Copy();
+                }
             }
         }
         

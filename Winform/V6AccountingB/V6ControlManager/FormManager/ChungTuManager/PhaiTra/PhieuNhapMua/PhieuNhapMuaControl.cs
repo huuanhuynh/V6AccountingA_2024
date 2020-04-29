@@ -3504,8 +3504,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             }
             else                   //Tiền thuế cộng dồn AD2_TableName
             {
-                t_thue_nt = V6BusinessHelper.TinhTong(AD2, "T_THUE_NT");
-                t_thue = V6BusinessHelper.TinhTong(AD2, "T_THUE");
+                t_thue_nt = TinhTong(AD2, "T_THUE_NT");
+                t_thue = TinhTong(AD2, "T_THUE");
             }
             // Tuanmh 25/07/2017
             txtTongThueNt.Value = t_thue_nt;
@@ -4148,23 +4148,45 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         /// Lấy dữ liệu AD va AD2_TableName dựa vào rec, tạo 1 copy gán vào AD
         /// </summary>
         /// <param name="sttRec"></param>
-        public void LoadAD(string sttRec)
+        public void LoadAD(string sttRec )
         {
             if (ADTables == null) ADTables = new SortedDictionary<string, DataTable>();
-            if (ADTables.ContainsKey(sttRec)) AD = ADTables[sttRec].Copy();
+            if (ADTables.ContainsKey(sttRec))
+            {
+                AD = ADTables[sttRec].Copy();
+            }
             else
             {
-                ADTables.Add(sttRec, Invoice.LoadAD(sttRec));
-                AD = ADTables[sttRec].Copy();
+                try
+                {
+                    ADTables[sttRec] = Invoice.LoadAD(sttRec);
+                    AD = ADTables[sttRec].Copy();
+                }
+                catch
+                {
+                    ADTables[sttRec] = Invoice.LoadAD(sttRec);
+                    AD = ADTables[sttRec].Copy();
+                }
             }
 
             //Load AD2_TableName
             if (AD2Tables == null) AD2Tables = new SortedDictionary<string, DataTable>();
-            if (AD2Tables.ContainsKey(sttRec)) AD2 = AD2Tables[sttRec].Copy();
+            if (AD2Tables.ContainsKey(sttRec))
+            {
+                AD2 = AD2Tables[sttRec].Copy();
+            }
             else
             {
-                AD2Tables.Add(sttRec, Invoice.LoadAd2(sttRec));
-                AD2 = AD2Tables[sttRec].Copy();
+                try
+                {
+                    AD2Tables[sttRec] = Invoice.LoadAD2(sttRec);
+                    AD2 = AD2Tables[sttRec].Copy();
+                }
+                catch
+                {
+                    AD2Tables[sttRec] = Invoice.LoadAD2(sttRec);
+                    AD2 = AD2Tables[sttRec].Copy();
+                }
             }
             //Load AD3
             if (AD3Tables == null) AD3Tables = new SortedDictionary<string, DataTable>();

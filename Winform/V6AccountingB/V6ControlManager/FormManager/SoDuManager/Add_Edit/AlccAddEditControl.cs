@@ -255,30 +255,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         public void TinhTongCong()
         {
-            txttong_ng.Value = TinhTong("Nguyen_gia");
-            txttong_da_pb.Value = TinhTong("Gt_da_pb");
-            txtTong_pb_ky.Value = TinhTong("Gt_pb_ky");
-            txtTong_cl.Value = TinhTong("Gt_cl");
-        }
-        private decimal TinhTong(string colName)
-        {
-            var total = 0m;
-            try
-            {
-                if (AD != null && AD.Columns.Contains(colName))
-                {
-                    for (var j = 0; j < AD.Rows.Count; j++)
-                    {
-                        total += ObjectAndString.ObjectToDecimal(AD.Rows[j][colName]);
-                    }
-                    return total;
-                }
-                return total;
-            }
-            catch
-            {
-                return total;
-            }
+            txttong_ng.Value = V6BusinessHelper.TinhTong(AD, "Nguyen_gia");
+            txttong_da_pb.Value = V6BusinessHelper.TinhTong(AD, "Gt_da_pb");
+            txtTong_pb_ky.Value = V6BusinessHelper.TinhTong(AD, "Gt_pb_ky");
+            txtTong_cl.Value = V6BusinessHelper.TinhTong(AD, "Gt_cl");
         }
 
         private V6ColorTextBox ten_ptkt, so_luong, gia_tri;

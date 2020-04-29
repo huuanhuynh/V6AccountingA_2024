@@ -341,6 +341,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                             break;
                         case "THUE":
                             _thue = control as V6NumberTextBox;
+                            if (_thue != null)
+                            {
+                                _thue.V6LostFocus += delegate
+                                {
+                                    _tt.Value = _psno.Value + _thue.Value;
+                                };
+                            }
                             break;
                         case "TK_THUE_I":
                             _tk_thue_i = control as V6VvarTextBox;
@@ -422,6 +429,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                             break;
                         case "PS_NO":
                             _psno = (V6NumberTextBox) control;
+                            _psno.V6LostFocus += _psno_V6LostFocus;
                             _check_f_ps_no = true;
                             break;
                         case "PS_NO_NT":
@@ -1293,7 +1301,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 _tientt.Value = _tien.Value;
 
                 //10/08/2017 Tinh thue 1 chi tiet dang dung
-                _thue_nt.Value = V6BusinessHelper.Vround(_thue_suat.Value*_tienNt.Value/100, M_ROUND);
+                _thue_nt.Value = V6BusinessHelper.Vround(_thue_suat.Value*_tienNt.Value/100, M_ROUND_NT);
                 _thue.Value = V6BusinessHelper.Vround(_thue_nt.Value*txtTyGia.Value, M_ROUND);
                 if (_maNt == _mMaNt0)
                 {
@@ -1301,6 +1309,30 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 }
 
                 _tt_nt.Value = _psnoNt.Value + _thue_nt.Value;
+                _tt.Value = _psno.Value + _thue.Value;
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(
+                    string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        void _psno_V6LostFocus(object sender)
+        {
+            try
+            {
+                _tien.Value = _psno.Value;
+                //_tienNt.Value = _psnoNt.Value;
+
+                if (cboMaNt.SelectedValue.ToString() == _mMaNt0)
+                {
+                    _tien.Value = _tienNt.Value;
+                    //_psno.Value = _psnoNt.Value;
+                }
+
+                _tientt.Value = _tien.Value;
+
                 _tt.Value = _psno.Value + _thue.Value;
             }
             catch (Exception ex)
@@ -1991,26 +2023,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         public void TinhTongValues()
         {
             //TongTien
-            var tTienNt = V6BusinessHelper.TinhTong(AD, "PS_NO_NT");
+            var tTienNt = TinhTong(AD, "PS_NO_NT");
             var tPsNoNt = V6BusinessHelper.TinhTongOper(AD3, "PS_NO_NT", "OPER_TT");
             var tPsCoNt = V6BusinessHelper.TinhTongOper(AD3, "PS_CO_NT", "OPER_TT");
             txtTongTangGiamNt.Value = tPsNoNt;
             txtTongTienNt.Value = V6BusinessHelper.Vround(tTienNt, M_ROUND_NT);
 
-            var tTien = V6BusinessHelper.TinhTong(AD, "PS_NO");
+            var tTien = TinhTong(AD, "PS_NO");
             var tPsNo = V6BusinessHelper.TinhTongOper(AD3, "PS_NO", "OPER_TT");
             var tPsCo = V6BusinessHelper.TinhTongOper(AD3, "PS_CO", "OPER_TT");
             txtTongTangGiam.Value = tPsNo;
             txtTongTien.Value = V6BusinessHelper.Vround(tTien, M_ROUND);
 
             //TongThue
-            var tThueNt = chkSuaThue.Checked
-                ? V6BusinessHelper.TinhTong(AD2, "T_THUE_NT")
-                : V6BusinessHelper.TinhTong(AD, "THUE_NT");
+            var tThueNt = chkSuaThue.Checked ? TinhTong(AD2, "T_THUE_NT") : TinhTong(AD, "THUE_NT");
             txtTongThueNt.Value = V6BusinessHelper.Vround(tThueNt, M_ROUND_NT);
-            var tThue = chkSuaThue.Checked
-                ? V6BusinessHelper.TinhTong(AD2, "T_THUE")
-                : V6BusinessHelper.TinhTong(AD, "THUE");
+            var tThue = chkSuaThue.Checked ? TinhTong(AD2, "T_THUE") : TinhTong(AD, "THUE");
             txtTongThue.Value = V6BusinessHelper.Vround(tThue, M_ROUND);
 
             //TongThanhToan
@@ -2122,7 +2150,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     _thue_suat.Value = ObjectAndString.ObjectToDecimal(alThue.Data.Rows[0]["THUE_SUAT"]);
                 }
                 //Tinh thue 1 chi tiet dang dung
-                _thue_nt.Value = V6BusinessHelper.Vround(_thue_suat.Value*_tienNt.Value/100, M_ROUND);
+                _thue_nt.Value = V6BusinessHelper.Vround(_thue_suat.Value*_tienNt.Value/100, M_ROUND_NT);
                 _thue.Value = V6BusinessHelper.Vround(_thue_nt.Value*txtTyGia.Value, M_ROUND);
                 if (_maNt == _mMaNt0)
                 {
@@ -2657,22 +2685,44 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         /// Lấy dữ liệu AD dựa vào rec, tạo 1 copy gán vào AD81
         /// </summary>
         /// <param name="sttRec"></param>
-        public void LoadAD(string sttRec)
+        public void LoadAD(string sttRec )
         {
             if (ADTables == null) ADTables = new SortedDictionary<string, DataTable>();
-            if (ADTables.ContainsKey(sttRec)) AD = ADTables[sttRec].Copy();
+            if (ADTables.ContainsKey(sttRec))
+            {
+                AD = ADTables[sttRec].Copy();
+            }
             else
             {
-                ADTables.Add(sttRec, Invoice.LoadAD(sttRec));
-                AD = ADTables[sttRec].Copy();
+                try
+                {
+                    ADTables[sttRec] = Invoice.LoadAD(sttRec);
+                    AD = ADTables[sttRec].Copy();
+                }
+                catch
+                {
+                    ADTables[sttRec] = Invoice.LoadAD(sttRec);
+                    AD = ADTables[sttRec].Copy();
+                }
             }
             //Load AD2
             if (AD2Tables == null) AD2Tables = new SortedDictionary<string, DataTable>();
-            if (AD2Tables.ContainsKey(sttRec)) AD2 = AD2Tables[sttRec].Copy();
+            if (AD2Tables.ContainsKey(sttRec))
+            {
+                AD2 = AD2Tables[sttRec].Copy();
+            }
             else
             {
-                AD2Tables.Add(sttRec, Invoice.LoadAd2(sttRec));
-                AD2 = AD2Tables[sttRec].Copy();
+                try
+                {
+                    AD2Tables[sttRec] = Invoice.LoadAD2(sttRec);
+                    AD2 = AD2Tables[sttRec].Copy();
+                }
+                catch
+                {
+                    AD2Tables[sttRec] = Invoice.LoadAD2(sttRec);
+                    AD2 = AD2Tables[sttRec].Copy();
+                }
             }
             //Load AD3
             if (AD3Tables == null) AD3Tables = new SortedDictionary<string, DataTable>();

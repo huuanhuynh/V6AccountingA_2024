@@ -4232,9 +4232,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         
         public void TinhTongValues(out decimal tTienNt2)
         {
-            txtTongSoLuong1.Value = TinhTong(AD, "SO_LUONG1");
-            txtTongSoLuong.Value = TinhTong(AD, "SO_LUONG");
-
+            try
+            {
+                txtTongSoLuong1.Value = TinhTong(AD, "SO_LUONG1");
+                txtTongSoLuong.Value = TinhTong(AD, "SO_LUONG");
+            }
+            catch
+            {
+                //
+            }
+            
             decimal tPsNoNt = 0, tPsCoNt = 0;
             try
             {
@@ -4246,7 +4253,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 //
             }
-            tTienNt2 = V6BusinessHelper.TinhTong(AD, "TIEN_NT2");
+            tTienNt2 = TinhTong(AD, "TIEN_NT2");
             if (tPsNoNt != 0)
             {
                 ShowParentMessage("tPsNoNt=" + tPsNoNt);
@@ -5271,19 +5278,41 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         public void LoadAD(string sttRec)
         {
             if (ADTables == null) ADTables = new SortedDictionary<string, DataTable>();
-            if (ADTables.ContainsKey(sttRec)) AD = ADTables[sttRec].Copy();
+            if (ADTables.ContainsKey(sttRec))
+            {
+                AD = ADTables[sttRec].Copy();
+            }
             else
             {
-                ADTables.Add(sttRec, Invoice.LoadAD(sttRec));
-                AD = ADTables[sttRec].Copy();
+                try
+                {
+                    ADTables[sttRec] = Invoice.LoadAD(sttRec);
+                    AD = ADTables[sttRec].Copy();
+                }
+                catch
+                {
+                    ADTables[sttRec] = Invoice.LoadAD(sttRec);
+                    AD = ADTables[sttRec].Copy();
+                }
             }
             //Load AD3
             if (AD3Tables == null) AD3Tables = new SortedDictionary<string, DataTable>();
-            if (AD3Tables.ContainsKey(sttRec)) AD3 = AD3Tables[sttRec].Copy();
+            if (AD3Tables.ContainsKey(sttRec))
+            {
+                AD3 = AD3Tables[sttRec].Copy();
+            }
             else
             {
-                AD3Tables.Add(sttRec, Invoice.LoadAD3(sttRec));
-                AD3 = AD3Tables[sttRec].Copy();
+                try
+                {
+                    AD3Tables[sttRec] = Invoice.LoadAD3(sttRec);
+                    AD3 = AD3Tables[sttRec].Copy();
+                }
+                catch
+                {
+                    AD3Tables[sttRec] = Invoice.LoadAD3(sttRec);
+                    AD3 = AD3Tables[sttRec].Copy();
+                }
             }
         }
 
@@ -5315,21 +5344,30 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         public void ViewInvoice(int index)
         {
-            if (AM != null && AM.Rows.Count > 0)
+            try
             {
-                if (index < 0 || index >= AM.Rows.Count)
+                _fail = false;
+                if (AM != null && AM.Rows.Count > 0)
                 {
-                    index = 0;
-                }
+                    if (index < 0 || index >= AM.Rows.Count)
+                    {
+                        index = 0;
+                    }
 
-                if (index >= 0 && index < AM.Rows.Count)
-                {
-                    _sttRec = AM.Rows[index]["Stt_rec"].ToString().Trim();
-                    LoadAD(_sttRec);
-                    CurrentIndex = index;
-                    EnableNavigationButtons();
-                    ViewInvoice();
+                    if (index >= 0 && index < AM.Rows.Count)
+                    {
+                        _sttRec = AM.Rows[index]["Stt_rec"].ToString().Trim();
+                        LoadAD(_sttRec);
+                        CurrentIndex = index;
+                        EnableNavigationButtons();
+                        ViewInvoice();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                _fail = true;
+                this.ShowErrorException(GetType() + ".ViewInvoice", ex);
             }
         }
 
@@ -5421,6 +5459,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
+                _fail = false;
                 Mode = V6Mode.View;
                 V6ControlFormHelper.SetFormDataRow(this, AM.Rows[CurrentIndex]);
                 txtMaDVCS.ExistRowInTable();
@@ -5445,6 +5484,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
             catch (Exception ex)
             {
+                _fail = true;
                 this.ShowErrorException(GetType() + ".ViewInvoice " + _sttRec, ex);
             }
         }
@@ -5976,6 +6016,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
+                if (_fail)
+                {
+                    this.ShowInfoMessage(V6Text.Fail + "\r\n" + V6Text.BackAndRetry);
+                    return;
+                }
                 V6ControlFormHelper.AddRunningList(_sttRec, Invoice.Name + " " + txtSoPhieu.Text);
                 if (IsViewingAnInvoice)
                 {

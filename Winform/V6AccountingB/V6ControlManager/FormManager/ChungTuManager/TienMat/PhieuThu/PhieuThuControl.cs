@@ -1677,13 +1677,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         
         public void TinhTongValues()
         {
-            var tTienNt = V6BusinessHelper.TinhTong(AD, "TIEN_NT");
+            var tTienNt = TinhTong(AD, "TIEN_NT");
             var tPsNoNt = V6BusinessHelper.TinhTongOper(AD3, "PS_NO_NT", "OPER_TT");
             var tPsCoNt = V6BusinessHelper.TinhTongOper(AD3, "PS_CO_NT", "OPER_TT");
             txtTongTangGiamNt.Value = tPsNoNt;
             txtTongThanhToanNt.Value = V6BusinessHelper.Vround(tTienNt + tPsNoNt, M_ROUND_NT);
 
-            var tTien = V6BusinessHelper.TinhTong(AD, "TIEN");
+            var tTien = TinhTong(AD, "TIEN");
             var tPsNo = V6BusinessHelper.TinhTongOper(AD3, "PS_NO", "OPER_TT");
             var tPsCo = V6BusinessHelper.TinhTongOper(AD3, "PS_CO", "OPER_TT");
             txtTongTangGiam.Value = tPsNo;
@@ -2289,19 +2289,33 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         /// Lấy dữ liệu AD dựa vào rec, tạo 1 copy gán vào AD81
         /// </summary>
         /// <param name="sttRec"></param>
-        public void LoadAD(string sttRec)
+        public void LoadAD(string sttRec )
         {
             if (ADTables == null) ADTables = new SortedDictionary<string, DataTable>();
-            if (ADTables.ContainsKey(sttRec)) AD = ADTables[sttRec].Copy();
+            if (ADTables.ContainsKey(sttRec))
+            {
+                AD = ADTables[sttRec].Copy();
+            }
             else
             {
-                ADTables.Add(sttRec, Invoice.LoadAD(sttRec));
-                AD = ADTables[sttRec].Copy();
+                try
+                {
+                    ADTables[sttRec] = Invoice.LoadAD(sttRec);
+                    AD = ADTables[sttRec].Copy();
+                }
+                catch
+                {
+                    ADTables[sttRec] = Invoice.LoadAD(sttRec);
+                    AD = ADTables[sttRec].Copy();
+                }
             }
 
             //Load AD3
             if (AD3Tables == null) AD3Tables = new SortedDictionary<string, DataTable>();
-            if (AD3Tables.ContainsKey(sttRec)) AD3 = AD3Tables[sttRec].Copy();
+            if (AD3Tables.ContainsKey(sttRec))
+            {
+                AD3 = AD3Tables[sttRec].Copy();
+            }
             else
             {
                 AD3Tables.Add(sttRec, Invoice.LoadAd3(sttRec));

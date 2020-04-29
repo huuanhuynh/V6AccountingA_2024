@@ -3706,7 +3706,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         {
             try
             {
-                var tTienNt2 = V6BusinessHelper.TinhTong(AD, "TIEN_NT2");
+                var tTienNt2 = TinhTong(AD, "TIEN_NT2");
                 var tyGia = txtTyGia.Value;
                 var t_tien_nt2 = txtTongTienNt2.Value;
                 txtTongTienNt2.Value = V6BusinessHelper.Vround(tTienNt2, M_ROUND_NT);
@@ -3832,7 +3832,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 
                     //tính giam gia cho mỗi chi tiết
 
-                var tTienNt2 = V6BusinessHelper.TinhTong(AD, "TIEN_NT2");
+                var tTienNt2 = TinhTong(AD, "TIEN_NT2");
                 var tyGia = txtTyGia.Value;
                 var t_tien_nt2 = txtTongTienNt2.Value;
                 txtTongTienNt2.Value = V6BusinessHelper.Vround(tTienNt2, M_ROUND_NT);
@@ -4511,22 +4511,44 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         /// Lấy dữ liệu AD dựa vào rec, tạo 1 copy gán vào AD82
         /// </summary>
         /// <param name="sttRec"></param>
-        public void LoadAD(string sttRec)
+        public void LoadAD(string sttRec )
         {
             if (ADTables == null) ADTables = new SortedDictionary<string, DataTable>();
-            if (ADTables.ContainsKey(sttRec)) AD = ADTables[sttRec].Copy();
+            if (ADTables.ContainsKey(sttRec))
+            {
+                AD = ADTables[sttRec].Copy();
+            }
             else
             {
-                ADTables.Add(sttRec, Invoice.LoadAD(sttRec));
-                AD = ADTables[sttRec].Copy();
+                try
+                {
+                    ADTables[sttRec] = Invoice.LoadAD(sttRec);
+                    AD = ADTables[sttRec].Copy();
+                }
+                catch
+                {
+                    ADTables[sttRec] = Invoice.LoadAD(sttRec);
+                    AD = ADTables[sttRec].Copy();
+                }
             }
             //Load AD3
             if (AD3Tables == null) AD3Tables = new SortedDictionary<string, DataTable>();
-            if (AD3Tables.ContainsKey(sttRec)) AD3 = AD3Tables[sttRec].Copy();
+            if (AD3Tables.ContainsKey(sttRec))
+            {
+                AD3 = AD3Tables[sttRec].Copy();
+            }
             else
             {
-                AD3Tables.Add(sttRec, Invoice.LoadAD3(sttRec));
-                AD3 = AD3Tables[sttRec].Copy();
+                try
+                {
+                    AD3Tables[sttRec] = Invoice.LoadAD3(sttRec);
+                    AD3 = AD3Tables[sttRec].Copy();
+                }
+                catch
+                {
+                    AD3Tables[sttRec] = Invoice.LoadAD3(sttRec);
+                    AD3 = AD3Tables[sttRec].Copy();
+                }
             }
         }
 

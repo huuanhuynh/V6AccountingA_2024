@@ -2163,7 +2163,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
 
                 //tính giam gia cho mỗi chi tiết
 
-                var tTienNt0 = V6BusinessHelper.TinhTong(AD, "TIEN_NT0");
+                var tTienNt0 = TinhTong(AD, "TIEN_NT0");
                 var tyGia = txtTyGia.Value;
                 var t_tien_nt0 = txtTongTienNt0.Value;
                 txtTongTienNt0.Value = V6BusinessHelper.Vround(tTienNt0, M_ROUND_NT);
@@ -2715,23 +2715,45 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
         /// Lấy dữ liệu AD va AD2 dựa vào rec, tạo 1 copy gán vào AD
         /// </summary>
         /// <param name="sttRec"></param>
-        public void LoadAD(string sttRec)
+        public void LoadAD(string sttRec )
         {
             if (ADTables == null) ADTables = new SortedDictionary<string, DataTable>();
-            if (ADTables.ContainsKey(sttRec)) AD = ADTables[sttRec].Copy();
+            if (ADTables.ContainsKey(sttRec))
+            {
+                AD = ADTables[sttRec].Copy();
+            }
             else
             {
-                ADTables.Add(sttRec, Invoice.LoadAD(sttRec));
-                AD = ADTables[sttRec].Copy();
+                try
+                {
+                    ADTables[sttRec] = Invoice.LoadAD(sttRec);
+                    AD = ADTables[sttRec].Copy();
+                }
+                catch
+                {
+                    ADTables[sttRec] = Invoice.LoadAD(sttRec);
+                    AD = ADTables[sttRec].Copy();
+                }
             }
 
             //Load AD2
             if (AD2Tables == null) AD2Tables = new SortedDictionary<string, DataTable>();
-            if (AD2Tables.ContainsKey(sttRec)) AD2 = AD2Tables[sttRec].Copy();
+            if (AD2Tables.ContainsKey(sttRec))
+            {
+                AD2 = AD2Tables[sttRec].Copy();
+            }
             else
             {
-                AD2Tables.Add(sttRec, Invoice.LoadAd2(sttRec));
-                AD2 = AD2Tables[sttRec].Copy();
+                try
+                {
+                    AD2Tables[sttRec] = Invoice.LoadAD2(sttRec);
+                    AD2 = AD2Tables[sttRec].Copy();
+                }
+                catch
+                {
+                    AD2Tables[sttRec] = Invoice.LoadAD2(sttRec);
+                    AD2 = AD2Tables[sttRec].Copy();
+                }
             }
         }
 

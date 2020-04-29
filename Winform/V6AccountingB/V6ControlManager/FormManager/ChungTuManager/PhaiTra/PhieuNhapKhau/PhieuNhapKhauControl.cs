@@ -3308,8 +3308,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             }
             else                   //Tiền thuế cộng dồn AD2
             {
-                t_thue_nt = V6BusinessHelper.TinhTong(AD2, "T_THUE_NT");
-                t_thue = V6BusinessHelper.TinhTong(AD2, "T_THUE");
+                t_thue_nt = TinhTong(AD2, "T_THUE_NT");
+                t_thue = TinhTong(AD2, "T_THUE");
                 //tiền thuế = (tiền hàng - tiền giảm - chiết khấu) * thuế suất
                 //t_thue_nt = (t_tien_nt2 - t_gg_nt - t_ck_nt)*thue_suat/100;
                 //t_thue_nt = V6BusinessHelper.Vround(t_thue_nt, M_ROUND_NT);
@@ -4080,14 +4080,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         /// Lấy dữ liệu AD va AD2 dựa vào rec, tạo 1 copy gán vào AD
         /// </summary>
         /// <param name="sttRec"></param>
-        public void LoadAD(string sttRec)
+        public void LoadAD(string sttRec )
         {
             if (ADTables == null) ADTables = new SortedDictionary<string, DataTable>();
             if (ADTables.ContainsKey(sttRec)) AD = ADTables[sttRec].Copy();
             else
             {
-                ADTables.Add(sttRec, Invoice.LoadAD(sttRec));
-                AD = ADTables[sttRec].Copy();
+                try
+                {
+                    ADTables[sttRec] = Invoice.LoadAD(sttRec);
+                    AD = ADTables[sttRec].Copy();
+                }
+                catch
+                {
+                    ADTables[sttRec] = Invoice.LoadAD(sttRec);
+                    AD = ADTables[sttRec].Copy();
+                }
             }
 
             //Load AD2
@@ -4101,11 +4109,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
             //Load AD3
             if (AD3Tables == null) AD3Tables = new SortedDictionary<string, DataTable>();
-            if (AD3Tables.ContainsKey(sttRec)) AD3 = AD3Tables[sttRec].Copy();
+            if (AD3Tables.ContainsKey(sttRec))
+            {
+                AD3 = AD3Tables[sttRec].Copy();
+            }
             else
             {
-                AD3Tables.Add(sttRec, Invoice.LoadAd3(sttRec));
-                AD3 = AD3Tables[sttRec].Copy();
+                try
+                {
+                    AD3Tables[sttRec] = Invoice.LoadAD3(sttRec);
+                    AD3 = AD3Tables[sttRec].Copy();
+                }
+                catch
+                {
+                    AD3Tables[sttRec] = Invoice.LoadAD3(sttRec);
+                    AD3 = AD3Tables[sttRec].Copy();
+                }
             }
         }
 

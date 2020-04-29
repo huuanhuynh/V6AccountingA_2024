@@ -1398,6 +1398,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.tabChiTietBoSung.Padding = new System.Windows.Forms.Padding(3);
             this.tabChiTietBoSung.Size = new System.Drawing.Size(885, 194);
             this.tabChiTietBoSung.TabIndex = 2;
+            this.tabChiTietBoSung.Tag = "cancelall";
             this.tabChiTietBoSung.Text = "Chi tiết bổ sung";
             // 
             // gridViewSummary3
@@ -1445,6 +1446,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView3.Size = new System.Drawing.Size(881, 119);
             this.dataGridView3.TabIndex = 7;
+            this.dataGridView3.Tag = "cancelall";
             this.dataGridView3.DataSourceChanged += new System.EventHandler(this.dataGridView3_SelectionChanged);
             this.dataGridView3.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView3_ColumnAdded);
             this.dataGridView3.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridView3_DataError);
@@ -3563,7 +3565,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.menuBtnIn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.inPhieuHachToanMenu});
             this.menuBtnIn.Name = "menuBtnIn";
-            this.menuBtnIn.Size = new System.Drawing.Size(174, 48);
+            this.menuBtnIn.Size = new System.Drawing.Size(174, 26);
             // 
             // inPhieuHachToanMenu
             // 
