@@ -3930,8 +3930,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
 
                     txtTyGia.Enabled = true;
-                    //ShowIDs(["GIA21", "lblGIA21", "TIEN2", "lblTIEN2", "DivTienVND", "DOCSOTIEN_VND"], true);
-                    detail1.ShowIDs(new[] { "GIA21", "lblGIA21", "TIEN2", "lblTIEN2" });
+                    SetDetailControlVisible(detailControlList1, true, "GIA", "GIA01", "GIA2", "GIA21", "TIEN", "TIEN0", "TIEN2", "THUE", "CK", "GG", "TIEN_VC");
                     panelVND.Visible = true;
                     
 
@@ -3972,19 +3971,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     txtTongGiamNt.DecimalPlaces = V6Options.M_IP_TIEN_NT;
                     txtTongThanhToanNt.DecimalPlaces = V6Options.M_IP_TIEN_NT;
                     txtTongTienNt2.DecimalPlaces = V6Options.M_IP_TIEN_NT;
-
-                    // Show Dynamic control
-                    _gia2.VisibleTag();
-                    _gia21.VisibleTag();
-                    _tien2.VisibleTag();
-                    _gia21.VisibleTag();
-                    _ck.VisibleTag();
-                    _tien_vc.VisibleTag();
-                    _gg.VisibleTag();
-                    if (_gia != null) _gia.VisibleTag();
-
+                    
                     //Detail3
-                    detail3.ShowIDs(new[] { "PS_NO", "PS_CO" });
+                    SetDetailControlVisible(detailControlList3, true, "PS_NO", "PS_CO");
 
                     gridViewColumn = dataGridView3.Columns["PS_NO"];
                     if (gridViewColumn != null) gridViewColumn.Visible = true;
@@ -4005,8 +3994,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
                     txtTyGia.Enabled = false;
                     txtTyGia.Value = 1;
-                    
-                    detail1.HideIDs(new[] { "GIA21", "TIEN2" });
+
+                    SetDetailControlVisible(detailControlList1, false, "GIA", "GIA01", "GIA2", "GIA21", "TIEN", "TIEN0", "TIEN2", "THUE", "CK", "GG", "TIEN_VC");
                     panelVND.Visible = false;
                     TxtT_TIENVC.Visible = false;
                     
@@ -4044,35 +4033,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     txtTongGiamNt.DecimalPlaces = V6Options.M_IP_TIEN;
                     txtTongThanhToanNt.DecimalPlaces = V6Options.M_IP_TIEN;
                     txtTongTienNt2.DecimalPlaces = V6Options.M_IP_TIEN;
-
-                    ////Hide Dynamic control
-                    _gia2.InvisibleTag();
-                    _gia21.InvisibleTag();
-                    _tien2.InvisibleTag();
-                    _gia21.InvisibleTag();
-                    _ck.InvisibleTag();
-                    _tien_vc.InvisibleTag();
-                    _gg.InvisibleTag();
-                    if (_gia != null) _gia.InvisibleTag();
                     
                     //Detail3
-                    detail3.HideIDs(new[] { "PS_NO", "PS_CO" });
+                    SetDetailControlVisible(detailControlList3, false, "PS_NO", "PS_CO");
 
                     gridViewColumn = dataGridView3.Columns["PS_NO"];
                     if (gridViewColumn != null) gridViewColumn.Visible = false;
                     gridViewColumn = dataGridView3.Columns["PS_CO"];
                     if (gridViewColumn != null) gridViewColumn.Visible = false;
 
-                    // Show Dynamic control
-                    if(_PsNoNt_33 != null) _PsNo_33.InvisibleTag();
-                    if (_PsCo_33 != null) _PsCo_33.InvisibleTag();
                 }
 
                 FormatNumberControl();
                 FormatNumberGridView();
-                //detail1.FixControlsLocation();
-                //detail2.FixControlsLocation();
-                //detail3.FixControlsLocation();
 
                 TinhTongThanhToan(GetType() + "." + MethodBase.GetCurrentMethod().Name);
             }

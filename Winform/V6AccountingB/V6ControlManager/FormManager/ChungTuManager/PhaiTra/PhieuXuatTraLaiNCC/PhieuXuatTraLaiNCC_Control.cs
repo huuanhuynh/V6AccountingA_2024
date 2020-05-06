@@ -2688,7 +2688,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
 
 
                     txtTyGia.Enabled = true;
-                    detail1.ShowIDs(new[] { "GIA1", "lblGIA21", "TIEN", "lblTIEN2" });
+                    SetDetailControlVisible(detailControlList1, true, "GIA", "GIA1", "GIA01", "GIA2", "GIA21", "TIEN", "TIEN0", "TIEN2", "THUE", "CK", "GG", "TIEN_VC");
                     panelVND.Visible = true;
                     
 
@@ -2711,20 +2711,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                         if (dataGridViewColumn != null) dataGridViewColumn.Visible = true;
                     }
 
-
-                    // Show Dynamic control
-                    _gia1.Visible = true;
-                    _tien.Visible = true;
-                    
-                    
-                    _ck.Visible = true;
-                    if (_gia1 != null) _gia1.Visible = true;
-
-                    
-                    _ck.Tag = null;
-
-                    if (_gia1 != null) _gia1.Tag = null;
-
                 }
                 else
                 {
@@ -2738,7 +2724,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
 
                     txtTyGia.Enabled = false;
                     txtTyGia.Value = 1;
-                    detail1.HideIDs(new[] { "GIA1", "lblGIA21", "TIEN", "lblTIEN2" });
+                    SetDetailControlVisible(detailControlList1, false, "GIA", "GIA1", "GIA01", "GIA2", "GIA21", "TIEN", "TIEN0", "TIEN2", "THUE", "CK", "GG", "TIEN_VC");
                     panelVND.Visible = false;
                     
 
@@ -2759,19 +2745,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuXuatTraLaiNCC
                         if (dataGridViewColumn != null) dataGridViewColumn.Visible = false;
                     }
 
-                    ////Hide Dynamic control
-                    _gia1.Visible = false;
-                    _tien.Visible = false;
-                    _ck.Visible = false;
-
-                    if(_gia1 != null)
-                    
-                    _gia1.Tag = "hide";
-                    _tien.Tag = "hide";
-                    
-                    _ck.Tag = "hide";
-
-                    if (_gia1 != null) _gia1.Tag = "hide";
                 }
 
                 FormatNumberControl();

@@ -1830,8 +1830,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
 
                     txtTyGia.Enabled = true;
-                    //ShowIDs(["GIA21", "lblGIA21", "TIEN2", "lblTIEN2", "DivTienVND", "DOCSOTIEN_VND"], true);
-                    detail1.ShowIDs(new[] { "GIA01", "lblGIA01", "TIEN0", "lblTIEN0" });
+                    SetDetailControlVisible(detailControlList1, true, "GIA", "GIA01", "GIA2", "GIA21", "TIEN", "TIEN0", "TIEN2", "THUE", "CK", "GG", "TIEN_VC");
                     panelVND.Visible = true;
                     if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains("TIEN0"))
                     {
@@ -1872,8 +1871,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
                     txtTyGia.Enabled = false;
                     txtTyGia.Value = 1;
-                    //ShowIDs(["GIA21", "lblGIA21", "TIEN2", "lblTIEN2", "DivTienVND", "DOCSOTIEN_VND"], false);
-                    detail1.HideIDs(new[] { "GIA01", "lblGIA01", "TIEN0", "lblTIEN0" });
+                    SetDetailControlVisible(detailControlList1, false, "GIA", "GIA01", "GIA2", "GIA21", "TIEN", "TIEN0", "TIEN2", "THUE", "CK", "GG", "TIEN_VC");
                     panelVND.Visible = false;
                     if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains("TIEN0"))
                     {

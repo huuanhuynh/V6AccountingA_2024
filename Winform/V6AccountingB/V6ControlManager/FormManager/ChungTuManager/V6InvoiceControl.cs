@@ -1388,6 +1388,36 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
 
         /// <summary>
+        /// Điều khiển ẩn hiện các control chi tiết.
+        /// </summary>
+        /// <param name="detailControlList"></param>
+        /// <param name="visible">true hiện / false ẩn</param>
+        /// <param name="fieldList"></param>
+        public void SetDetailControlVisible(IDictionary<string, AlctControls> detailControlList, bool visible, params string[] fieldList)
+        {
+            try
+            {
+                foreach (string field in fieldList)
+                {
+                    string FIELD = field.Trim().ToUpper();
+                    if (detailControlList.ContainsKey(FIELD))
+                    {
+                        var item = detailControlList[FIELD];
+                        if (item.IsVisible)
+                        {
+                            if (visible) item.DetailControl.VisibleTag();
+                            else item.DetailControl.InvisibleTag();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".SetDetailControlVisible " + _sttRec, ex);
+            }
+        }
+
+        /// <summary>
         /// Gán dữ liệu liên quan của các vVar textbox.
         /// </summary>
         /// <param name="controlDic"></param>

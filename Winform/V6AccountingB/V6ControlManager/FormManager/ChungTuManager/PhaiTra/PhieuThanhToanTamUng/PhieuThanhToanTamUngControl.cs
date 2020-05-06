@@ -1371,13 +1371,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                     M_ROUND = V6Setting.RoundTien;
                     
                     txtTyGia.Enabled = true;
-                    //ShowIDs(["GIA21", "lblGIA21", "TIEN2", "lblTIEN2", "DivTienVND", "DOCSOTIEN_VND"], true);
-                    detail1.ShowIDs(new[] {"TIEN"});
+                    SetDetailControlVisible(detailControlList1, true, "GIA", "GIA01", "GIA2", "GIA21", "TIEN", "TT", "TIEN0", "TIEN2", "THUE", "CK", "GG", "TIEN_VC");
                     panelVND.Visible = true;
                     
-
-                    
-                  
                     var gridViewColumn = dataGridView1.Columns["TIEN"];
                     if (gridViewColumn != null) gridViewColumn.Visible = true;
 
@@ -1385,28 +1381,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                     txtTongThanhToanNt.DecimalPlaces = V6Options.M_IP_TIEN_NT;
                     txtTongTienNt.DecimalPlaces = V6Options.M_IP_TIEN_NT;
 
-                    _t_tien22.Visible = true;
-                    _t_thue22.Visible = true;
-
-                    // Show Dynamic control
-                    
-                    _tien.Visible = true;
-                    
-                    _tien.Tag = null;
-                    
+                    SetDetailControlVisible(detailControlList2, true, "T_TIEN", "T_THUE");
                 }
                 else
                 {
-
-
                     M_ROUND = V6Setting.RoundTien;
                     M_ROUND_NT = M_ROUND;
                     
 
                     txtTyGia.Enabled = false;
                     txtTyGia.Value = 1;
-                    
-                    detail1.HideIDs(new[] { "TIEN", "tt", "thue" });
+
+                    SetDetailControlVisible(detailControlList1, false, "GIA", "GIA01", "GIA2", "GIA21", "TIEN", "TT", "TIEN0", "TIEN2", "THUE", "CK", "GG", "TIEN_VC");
                     //SetColsVisible
                     var gridViewColumn = dataGridView1.Columns["TIEN"];
                     if (gridViewColumn != null) gridViewColumn.Visible = false;
@@ -1420,15 +1406,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                     txtTongThanhToanNt.DecimalPlaces = V6Options.M_IP_TIEN;
                     txtTongTienNt.DecimalPlaces = V6Options.M_IP_TIEN;
 
-                    _t_tien22.Visible = false;
-                    _t_thue22.Visible = false;
-
-                    // Show Dynamic control
-                   
-                    _tien.Visible = false;
-
-                   
-                    _tien.Tag = "hide";
+                    SetDetailControlVisible(detailControlList2, false, "T_TIEN", "T_THUE");
                 }
 
                 FormatNumberControl();

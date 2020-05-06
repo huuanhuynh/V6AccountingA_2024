@@ -3795,7 +3795,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
                 if (_maNt.ToUpper() != _mMaNt0.ToUpper())
                 {
-
                     M_ROUND_NT = V6Setting.RoundTienNt;
                     M_ROUND = V6Setting.RoundTien;
                     M_ROUND_GIA_NT = V6Setting.RoundGiaNt;
@@ -3803,8 +3802,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
 
                     txtTyGia.Enabled = true;
-                    //ShowIDs(["GIA21", "lblGIA21", "TIEN2", "lblTIEN2", "DivTienVND", "DOCSOTIEN_VND"], true);
-                    detail1.ShowIDs(new[] { "GIA01", "lblGIA01", "TIEN0", "lblTIEN0" });
+                    SetDetailControlVisible(detailControlList1, true, "GIA", "GIA01", "GIA2", "GIA21", "TIEN", "TIEN0", "TIEN2", "THUE", "CK", "GG", "TIEN_VC");
                     panelVND.Visible = true;
                     if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains("TIEN"))
                     {
@@ -3837,11 +3835,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     txtTongThanhToanNt.DecimalPlaces = V6Options.M_IP_TIEN_NT;
                     txtTongTienNt0.DecimalPlaces = V6Options.M_IP_TIEN_NT;
 
-                    _t_tien22.Visible = true;
-                    _t_thue22.Visible = true;
+                    SetDetailControlVisible(detailControlList2, true, "T_TIEN", "T_THUE");
 
                     //Detail3
-                    detail3.ShowIDs(new[] { "PS_NO", "PS_CO" });
+                    SetDetailControlVisible(detailControlList3, true, "PS_NO", "PS_CO");
 
                     gridViewColumn = dataGridView3.Columns["PS_NO"];
                     if (gridViewColumn != null) gridViewColumn.Visible = true;
@@ -3862,8 +3859,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
                     txtTyGia.Enabled = false;
                     txtTyGia.Value = 1;
-                    //ShowIDs(["GIA21", "lblGIA21", "TIEN2", "lblTIEN2", "DivTienVND", "DOCSOTIEN_VND"], false);
-                    detail1.HideIDs(new[] { "GIA01", "lblGIA01", "TIEN0", "lblTIEN0" });
+                    SetDetailControlVisible(detailControlList1, false, "GIA", "GIA01", "GIA2", "GIA21", "TIEN", "TIEN0", "TIEN2", "THUE", "CK", "GG", "TIEN_VC");
                     panelVND.Visible = false;
                     if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains("TIEN"))
                     {
@@ -3893,20 +3889,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                     txtTongThanhToanNt.DecimalPlaces = V6Options.M_IP_TIEN;
                     txtTongTienNt0.DecimalPlaces = V6Options.M_IP_TIEN;
 
-                    _t_tien22.Visible = false;
-                    _t_thue22.Visible = false;
+                    SetDetailControlVisible(detailControlList2, false, "T_TIEN", "T_THUE");
 
                     //Detail3
-                    detail3.HideIDs(new[] { "PS_NO", "PS_CO" });
+                    SetDetailControlVisible(detailControlList3, false, "PS_NO", "PS_CO");
 
                     gridViewColumn = dataGridView3.Columns["PS_NO"];
                     if (gridViewColumn != null) gridViewColumn.Visible = false;
                     gridViewColumn = dataGridView3.Columns["PS_CO"];
                     if (gridViewColumn != null) gridViewColumn.Visible = false;
 
-                    // Show Dynamic control
-                    if (_PsNoNt_33 != null) _PsNo_33.InvisibleTag();
-                    if (_PsCo_33 != null) _PsCo_33.InvisibleTag();
                 }
 
                 FormatNumberControl();

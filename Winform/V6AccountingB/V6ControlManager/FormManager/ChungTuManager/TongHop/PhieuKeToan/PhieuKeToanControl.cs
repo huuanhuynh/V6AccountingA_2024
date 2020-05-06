@@ -1104,7 +1104,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
 
                 if (_maNt.ToUpper() != _mMaNt0.ToUpper())
                 {
-
                     M_ROUND_NT = V6Setting.RoundTienNt;
                     M_ROUND = V6Setting.RoundTien;
                     M_ROUND_GIA_NT = V6Setting.RoundGiaNt;
@@ -1112,7 +1111,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
 
 
                     txtTyGia.Enabled = true;
-                    detail1.ShowIDs(new[] {"PS_NO", "PS_CO"});
+                    SetDetailControlVisible(detailControlList1, true, "PS_NO", "PS_CO");
                     panelVND.Visible = true;
 
                     var dataGridViewColumn = dataGridView1.Columns["PS_NO"];
@@ -1124,16 +1123,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                     txtTongPsNoNt.DecimalPlaces = V6Options.M_IP_TIEN_NT;
                     txtTongPsCoNt.DecimalPlaces = V6Options.M_IP_TIEN_NT;
 
-                    _t_tien22.Visible = true;
-                    _t_thue22.Visible = true;
-
-                    // Show Dynamic control
-                    _PsNo.Visible = true;
-                    _PsCo.Visible = true;
-
-                    _PsNo.Tag = null;
-                    _PsCo.Tag = null;
-
+                    SetDetailControlVisible(detailControlList2, true, "T_TIEN", "T_THUE");
                 }
                 else
                 {
@@ -1145,7 +1135,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
 
                     txtTyGia.Enabled = false;
                     txtTyGia.Value = 1;
-                    detail1.HideIDs(new[] {"PS_NO", "PS_CO"});
+                    SetDetailControlVisible(detailControlList1, false, "PS_NO", "PS_CO");
                     panelVND.Visible = false;
 
 
@@ -1159,15 +1149,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                     txtTongPsNoNt.DecimalPlaces = V6Options.M_IP_TIEN;
                     txtTongPsCoNt.DecimalPlaces = V6Options.M_IP_TIEN;
 
-                    _t_tien22.Visible = false;
-                    _t_thue22.Visible = false;
-
-                    // Show Dynamic control
-                    _PsNo.Visible = false;
-                    _PsCo.Visible = false;
-
-                    _PsNo.Tag = "hide";
-                    _PsCo.Tag = "hide";
+                    SetDetailControlVisible(detailControlList2, false, "T_TIEN", "T_THUE");
                 }
 
                 FormatNumberControl();

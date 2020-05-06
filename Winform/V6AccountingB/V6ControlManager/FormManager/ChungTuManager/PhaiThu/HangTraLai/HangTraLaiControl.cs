@@ -2724,11 +2724,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
 
                     txtTyGia.Enabled = true;
-                    //ShowIDs(["GIA21", "lblGIA21", "TIEN2", "lblTIEN2", "DivTienVND", "DOCSOTIEN_VND"], true);
-                    detail1.ShowIDs(new[] { "GIA21", "lblGIA21", "TIEN2", "lblTIEN2" });
+                    SetDetailControlVisible(detailControlList1, true, "GIA", "GIA01", "GIA2", "GIA21", "TIEN", "TIEN0", "TIEN2", "THUE", "CK", "GG", "TIEN_VC");
                     panelVND.Visible = true;
                     
-
                     var c = V6ControlFormHelper.GetControlByAccessibleName(detail1, "GIA21");
                     if (c != null) c.Visible = true;
                     //SetColsVisible(_GridID, ["GIA21", "TIEN2"], true); //Hien ra
@@ -2752,31 +2750,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                         dataGridViewColumn = dataGridView1.Columns["CK"];
                         if (dataGridViewColumn != null) dataGridViewColumn.Visible = true;
                     }
-
-
-                    // Show Dynamic control
-                    _gia2.Visible = true;
-                    _gia21.Visible = true;
-                    _tien2.Visible = true;
-                    _gia21.Visible = true;
-                    _thue.VisibleTag();
-                    
-                    _ck.Visible = true;
-                    if (_gia != null) _gia.Visible = true;
-
-                    _gia2.Tag = null;
-                    _gia21.Tag = null;
-                    _tien2.Tag = null;
-                    _gia21.Tag = null;
-                    _ck.Tag = null;
-
-                    if (_gia != null) _gia.Tag = null;
-
                 }
                 else
                 {
-
-
                     M_ROUND = V6Setting.RoundTien;
                     M_ROUND_GIA = V6Setting.RoundGia;
                     M_ROUND_NT = M_ROUND;
@@ -2785,13 +2761,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
                     txtTyGia.Enabled = false;
                     txtTyGia.Value = 1;
-                    //ShowIDs(["GIA21", "lblGIA21", "TIEN2", "lblTIEN2", "DivTienVND", "DOCSOTIEN_VND"], false);
-                    detail1.HideIDs(new[] { "GIA21", "lblGIA21", "TIEN2", "lblTIEN2" });
+                    SetDetailControlVisible(detailControlList1, false, "GIA", "GIA01", "GIA2", "GIA21", "TIEN", "TIEN0", "TIEN2", "THUE", "CK", "GG", "TIEN_VC");
                     panelVND.Visible = false;
-                    //SetColsVisible(_GridID, ["GIA21", "TIEN2"], false); //An di
-
                     
-
 
                     var dataGridViewColumn = dataGridView1.Columns["GIA21"];
                     if (dataGridViewColumn != null) dataGridViewColumn.Visible = false;
@@ -2813,25 +2785,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                         dataGridViewColumn = dataGridView1.Columns["CK"];
                         if (dataGridViewColumn != null) dataGridViewColumn.Visible = false;
                     }
-
-                    ////Hide Dynamic control
-                    _gia2.Visible = false;
-                    _gia21.Visible = false;
-                    _tien2.Visible = false;
-                    _gia21.Visible = false;
-                    _ck.Visible = false;
-                    _thue.InvisibleTag();
-
-                    if(_gia != null)
-                    _gia.Visible = false;
-
-                    _gia2.Tag = "hide";
-                    _gia21.Tag = "hide";
-                    _tien2.Tag = "hide";
-                    _gia21.Tag = "hide";
-                    _ck.Tag = "hide";
-
-                    if (_gia != null) _gia.Tag = "hide";
                 }
 
                 FormatNumberControl();

@@ -2582,8 +2582,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
 
 
                     txtTyGia.Enabled = true;
-                    //ShowIDs(["GIA21", "lblGIA21", "TIEN2", "lblTIEN2", "DivTienVND", "DOCSOTIEN_VND"], true);
-                    detail1.ShowIDs(new[] { "GIA01", "lblGIA01", "TIEN0", "lblTIEN0" });
+                    SetDetailControlVisible(detailControlList1, true, "GIA", "GIA01", "GIA2", "GIA21", "TIEN", "TIEN0", "TIEN2", "THUE", "CK", "GG", "TIEN_VC");
                     panelVND.Visible = true;
                     TxtT_cp_ao.Visible = true;
                     TxtT_cp.Visible = true;
@@ -2602,14 +2601,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                     txtTongThanhToanNt.DecimalPlaces = V6Options.M_IP_TIEN_NT;
                     txtTongTienNt0.DecimalPlaces = V6Options.M_IP_TIEN_NT;
 
-                    _t_tien22.Visible = true;
-                    _t_thue22.Visible = true;
+                    SetDetailControlVisible(detailControlList2, true, "T_TIEN", "T_THUE");
 
                 }
                 else
                 {
-
-
                     M_ROUND = V6Setting.RoundTien;
                     M_ROUND_GIA = V6Setting.RoundGia;
                     M_ROUND_NT = M_ROUND;
@@ -2618,13 +2614,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
 
                     txtTyGia.Enabled = false;
                     txtTyGia.Value = 1;
-                    //ShowIDs(["GIA21", "lblGIA21", "TIEN2", "lblTIEN2", "DivTienVND", "DOCSOTIEN_VND"], false);
-                    detail1.HideIDs(new[] { "GIA01", "lblGIA01", "TIEN0", "lblTIEN0" });
+                    SetDetailControlVisible(detailControlList1, false, "GIA", "GIA01", "GIA2", "GIA21", "TIEN", "TIEN0", "TIEN2", "THUE", "CK", "GG", "TIEN_VC");
                     panelVND.Visible = false;
                     TxtT_cp_ao.Visible = false;
                     TxtT_cp.Visible = false;
 
-                    //SetColsVisible(_GridID, ["GIA21", "TIEN2"], false); //An di
                     var dataGridViewColumn = dataGridView1.Columns["GIA01"];
                     if (dataGridViewColumn != null) dataGridViewColumn.Visible = false;
                     var gridViewColumn = dataGridView1.Columns["TIEN0"];
@@ -2635,9 +2629,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                     TxtT_cp_nt_ao.DecimalPlaces = V6Options.M_IP_TIEN;
                     txtTongThanhToanNt.DecimalPlaces = V6Options.M_IP_TIEN;
                     txtTongTienNt0.DecimalPlaces = V6Options.M_IP_TIEN;
-
-                    _t_tien22.Visible = false;
-                    _t_thue22.Visible = false;
+                    
+                    SetDetailControlVisible(detailControlList2, false, "T_TIEN", "T_THUE");
                 }
 
                 FormatNumberControl();

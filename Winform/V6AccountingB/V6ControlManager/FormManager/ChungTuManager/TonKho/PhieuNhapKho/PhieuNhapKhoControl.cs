@@ -2073,8 +2073,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
 
 
                     txtTyGia.Enabled = true;
-                    //ShowIDs(["GIA21", "lblGIA21", "TIEN2", "lblTIEN2", "DivTienVND", "DOCSOTIEN_VND"], true);
-                    detail1.ShowIDs(new[] { "GIA01", "lblGIA21", "TIEN0", "lblTIEN2" });
+                    SetDetailControlVisible(detailControlList1, true, "GIA", "GIA0", "GIA01", "GIA2", "GIA21", "TIEN", "TIEN0", "TIEN2", "THUE", "CK", "GG", "TIEN_VC");
                     panelVND.Visible = true;
                     if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains("TIEN"))
                     {
@@ -2093,14 +2092,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                     dataGridViewColumn = dataGridView1.Columns["TIEN0"];
                     if (dataGridViewColumn != null) dataGridViewColumn.Visible = true;
 
-                    if (_gia != null) _gia.Visible = false;
-                    if (_gia != null) _gia.Tag = "hide";
-
-                    if (_gia01 != null) _gia01.Visible = true;
-                    if (_gia01 != null) _gia01.Tag = null;
-
-                    if (_gia0 != null) _gia0.Visible = true;
-                    if (_gia0 != null) _gia0.Tag = null;
 
                 }
                 else
@@ -2115,8 +2106,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
 
                     txtTyGia.Enabled = false;
                     txtTyGia.Value = 1;
-                    
-                    detail1.HideIDs(new[] { "GIA01", "lblGIA21", "TIEN0", "lblTIEN2" });
+
+                    SetDetailControlVisible(detailControlList1, false, "GIA", "GIA0", "GIA01", "GIA2", "GIA21", "TIEN", "TIEN0", "TIEN2", "THUE", "CK", "GG", "TIEN_VC");
                     panelVND.Visible = false;
                     //SetColsVisible(_GridID, ["GIA21", "TIEN2"], false); //An di
                     if (!V6Login.IsAdmin && Invoice.GRD_HIDE.Contains("TIEN"))
@@ -2140,17 +2131,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
 
                     dataGridViewColumn = dataGridView1.Columns["GIA"];
                     if (dataGridViewColumn != null) dataGridViewColumn.Visible = false;
-
-
-                    if(_gia != null) _gia.Visible = false;
-                    if (_gia != null) _gia.Tag = "hide";
-
-                    if (_gia01 != null) _gia01.Visible = false;
-                    if (_gia01 != null) _gia01.Tag = "hide";
-
-                    if (_gia0 != null) _gia0.Visible = false;
-                    if (_gia0 != null) _gia0.Tag = "hide";
-
+                    
                 }
 
                 FormatNumberControl();

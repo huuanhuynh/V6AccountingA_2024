@@ -2912,10 +2912,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
 
                     txtTyGia.Enabled = true;
-                    //ShowIDs(["GIA21", "lblGIA21", "TIEN2", "lblTIEN2", "DivTienVND", "DOCSOTIEN_VND"], true);
-                    detail1.ShowIDs(new[] { "GIA21", "lblGIA21", "TIEN2", "lblTIEN2" });
+                    SetDetailControlVisible(detailControlList1, true, "GIA", "GIA01", "GIA2", "GIA21", "TIEN", "TIEN0", "TIEN2", "THUE", "CK", "GG", "TIEN_VC");
                     panelVND.Visible = true;
-                    
 
                     var c = V6ControlFormHelper.GetControlByAccessibleName(detail1, "GIA21");
                     if (c != null) c.Visible = true;
@@ -2940,18 +2938,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                         dataGridViewColumn = dataGridView1.Columns["CK"];
                         if (dataGridViewColumn != null) dataGridViewColumn.Visible = true;
                     }
-
-
-                    // Show Dynamic control
-                    _gia2.VisibleTag();
-                    _gia21.VisibleTag();
-                    _tien2.VisibleTag();
-                    _thue.VisibleTag();
-                    _ck.VisibleTag();
-                    _tien_vc.VisibleTag();
-                    _gg.VisibleTag();
-                    if (_gia != null) _gia.VisibleTag();
-
                 }
                 else
                 {
@@ -2965,14 +2951,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
 
                     txtTyGia.Enabled = false;
                     txtTyGia.Value = 1;
-                    //ShowIDs(["GIA21", "lblGIA21", "TIEN2", "lblTIEN2", "DivTienVND", "DOCSOTIEN_VND"], false);
-                    detail1.HideIDs(new[] { "GIA21", "lblGIA21", "TIEN2", "lblTIEN2" });
-                    panelVND.Visible = false;
-                    //SetColsVisible(_GridID, ["GIA21", "TIEN2"], false); //An di
-
                     
-
-
+                    SetDetailControlVisible(detailControlList1, false, "GIA", "GIA01", "GIA2", "GIA21", "TIEN", "TIEN0", "TIEN2", "THUE", "CK", "GG", "TIEN_VC");
+                    panelVND.Visible = false;
+                    
                     var dataGridViewColumn = dataGridView1.Columns["GIA21"];
                     if (dataGridViewColumn != null) dataGridViewColumn.Visible = false;
 
@@ -2994,16 +2976,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                         if (dataGridViewColumn != null) dataGridViewColumn.Visible = false;
                     }
 
-                    //Hide Dynamic control
-                    _gia2.InvisibleTag();
-                    _gia21.InvisibleTag();
-                    _tien2.InvisibleTag();
-                    _thue.InvisibleTag();
-                    _gia21.InvisibleTag();
-                    _ck.InvisibleTag();
-                    _tien_vc.InvisibleTag();
-                    _gg.InvisibleTag();
-                    if (_gia != null) _gia.InvisibleTag();
                 }
 
                 FormatNumberControl();

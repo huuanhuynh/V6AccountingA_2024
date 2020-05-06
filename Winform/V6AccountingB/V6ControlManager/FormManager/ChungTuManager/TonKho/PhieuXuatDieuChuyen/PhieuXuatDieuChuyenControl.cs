@@ -3426,13 +3426,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
 
                     txtTyGia.Enabled = true;
-                    //ShowIDs(["GIA21", "lblGIA21", "TIEN2", "lblTIEN2", "DivTienVND", "DOCSOTIEN_VND"], true);
-                    detail1.ShowIDs(new[] { "GIA21", "lblGIA21", "TIEN2", "lblTIEN2" });
+                    SetDetailControlVisible(detailControlList1, true, "GIA", "GIA01", "GIA2", "GIA21", "TIEN", "TIEN0", "TIEN2", "THUE", "CK", "GG", "TIEN_VC");
                     panelVND.Visible = true;
                     
                     var c = V6ControlFormHelper.GetControlByAccessibleName(detail1, "GIA21");
                     if (c != null) c.Visible = true;
-                    
                     
                     var
                     dataGridViewColumn = dataGridView1.Columns["GIA"];
@@ -3441,9 +3439,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     dataGridViewColumn = dataGridView1.Columns["TIEN"];
                     if (dataGridViewColumn != null) dataGridViewColumn.Visible = true;
                     
-                    if (_gia != null) _gia.Visible = true;
-                    if (_gia != null) _gia.Tag = null;
-
                 }
                 else
                 {
@@ -3457,11 +3452,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
                     txtTyGia.Enabled = false;
                     txtTyGia.Value = 1;
-                    //ShowIDs(["GIA21", "lblGIA21", "TIEN2", "lblTIEN2", "DivTienVND", "DOCSOTIEN_VND"], false);
-                    detail1.HideIDs(new[] { "GIA21", "lblGIA21", "TIEN2", "lblTIEN2" });
+                    SetDetailControlVisible(detailControlList1, false, "GIA", "GIA01", "GIA2", "GIA21", "TIEN", "TIEN0", "TIEN2", "THUE", "CK", "GG", "TIEN_VC");
                     panelVND.Visible = false;
-                    //SetColsVisible(_GridID, ["GIA21", "TIEN2"], false); //An di
-
                     
                     var dataGridViewColumn = dataGridView1.Columns["GIA21"];
                     if (dataGridViewColumn != null) dataGridViewColumn.Visible = false;
@@ -3477,17 +3469,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
                     dataGridViewColumn = dataGridView1.Columns["GIA"];
                     if (dataGridViewColumn != null) dataGridViewColumn.Visible = false;
-
-
-                    if(_gia != null) _gia.Visible = false;
-                    if (_gia != null) _gia.Tag = "hide";
                 }
 
                 FormatNumberControl();
                 FormatNumberGridView();
-                //detail1.FixControlsLocation();
-                //detail2.FixControlsLocation();
-                //detail3.FixControlsLocation();
 
                 TinhTongThanhToan(GetType() + "." + MethodBase.GetCurrentMethod().Name);
             }

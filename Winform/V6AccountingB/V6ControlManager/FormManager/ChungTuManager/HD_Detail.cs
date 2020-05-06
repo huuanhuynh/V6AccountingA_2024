@@ -928,39 +928,39 @@ namespace V6ControlManager.FormManager.ChungTuManager
             panel2.Width = Width - panel2.Left;
         }
 
-        /// <summary>
-        /// Hiện các control trong panel động theo AccessibleName
-        /// </summary>
-        /// <param name="strings"></param>
-        public void ShowIDs(string[] strings)
-        {
-            foreach (Control control in panelControls.Controls)
-            {
-                if (string.IsNullOrEmpty(control.AccessibleName)) continue;
-                foreach (string accessName in strings)
-                {
-                    if(control.AccessibleName.ToLower() == accessName.ToLower())
-                        control.VisibleTag();
-                }
-            }
-        }
+        ///// <summary>
+        ///// Hiện các control trong panel động theo AccessibleName
+        ///// </summary>
+        ///// <param name="strings"></param>
+        //public void ShowIDs0(string[] strings)
+        //{
+        //    foreach (Control control in panelControls.Controls)
+        //    {
+        //        if (string.IsNullOrEmpty(control.AccessibleName)) continue;
+        //        foreach (string accessName in strings)
+        //        {
+        //            if(control.AccessibleName.ToLower() == accessName.ToLower())
+        //                control.VisibleTag();
+        //        }
+        //    }
+        //}
 
-        /// <summary>
-        /// Ẩn các control trong panel động theo AccessibleName
-        /// </summary>
-        /// <param name="strings"></param>
-        public void HideIDs(string[] strings)
-        {
-            foreach (Control control in panelControls.Controls)
-            {
-                if(string.IsNullOrEmpty(control.AccessibleName)) continue;
-                foreach (string accessName in strings)
-                {
-                    if (control.AccessibleName.ToLower() == accessName.ToLower())
-                        control.InvisibleTag();
-                }
-            }
-        }
+        ///// <summary>
+        ///// Ẩn các control trong panel động theo AccessibleName
+        ///// </summary>
+        ///// <param name="strings"></param>
+        //public void HideIDs0(string[] strings)
+        //{
+        //    foreach (Control control in panelControls.Controls)
+        //    {
+        //        if(string.IsNullOrEmpty(control.AccessibleName)) continue;
+        //        foreach (string accessName in strings)
+        //        {
+        //            if (control.AccessibleName.ToLower() == accessName.ToLower())
+        //                control.InvisibleTag();
+        //        }
+        //    }
+        //}
         
         /// <summary>
         /// Tự động kiểm tra Mode và focus vào đúng nơi cần.

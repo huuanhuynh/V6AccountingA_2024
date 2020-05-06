@@ -2042,11 +2042,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     txtTyGia.Enabled = true;
 
                     if (_MA_GD == "1")
-                        detail1.ShowIDs(new[] {"lblGIA21", "lblTIEN2"});
+                        SetDetailControlVisible(detailControlList1, true, "GIA21", "TIEN2");
                     if (_MA_GD == "2" || _MA_GD == "4" || _MA_GD == "5" || _MA_GD == "6" || _MA_GD == "7" || _MA_GD == "8" || _MA_GD == "9")
-                        detail1.ShowIDs(new[] { "PS_CO", "lblGIA21", "lblTIEN2" });
+                        SetDetailControlVisible(detailControlList1, true, "PS_CO", "GIA21", "TIEN2");
                     if (_MA_GD == "3")
-                        detail1.ShowIDs(new[] { "PS_CO", "lblGIA21", "lblTIEN2" });
+                        SetDetailControlVisible(detailControlList1, true, "PS_CO", "GIA21", "TIEN2");
 
                     var c = V6ControlFormHelper.GetControlByAccessibleName(detail1, "PS_CO");
                     if (c != null) c.Visible = true;
@@ -2059,16 +2059,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     panelVND.Visible = true;
 
                     //Detail3
-                    detail3.ShowIDs(new[] {"PS_NO", "PS_CO"});
+                    SetDetailControlVisible(detailControlList3, true, "PS_NO", "PS_CO");
 
                     dataGridViewColumn = dataGridView3.Columns["PS_NO"];
                     if (dataGridViewColumn != null) dataGridViewColumn.Visible = true;
                     gridViewColumn = dataGridView3.Columns["PS_CO"];
                     if (gridViewColumn != null) gridViewColumn.Visible = true;
 
-                    // Show Dynamic control
-                    if (_PsNoNt_33 != null) _PsNo_33.VisibleTag();
-                    if (_PsCo_33 != null) _PsCo_33.VisibleTag();
                 }
                 else
                 {
@@ -2081,7 +2078,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     txtTyGia.Value = 1;
                     panelVND.Visible = false;
 
-                    detail1.HideIDs(new[] {"PS_CO", "lblGIA21", "TIEN", "lblTIEN2"});
+                    SetDetailControlVisible(detailControlList1, false, "PS_CO", "GIA21", "TIEN", "TIEN2");
 
                     //SetColsVisible(_GridID, ["GIA21", "TIEN2"], false); //An di
                     var dataGridViewColumn = dataGridView1.Columns["PS_CO"];
@@ -2092,16 +2089,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
 
                     //Detail3
-                    detail3.HideIDs(new[] {"PS_NO", "PS_CO"});
+                    SetDetailControlVisible(detailControlList3, false, "PS_NO", "PS_CO");
 
                     dataGridViewColumn = dataGridView3.Columns["PS_NO"];
                     if (dataGridViewColumn != null) dataGridViewColumn.Visible = false;
                     gridViewColumn = dataGridView3.Columns["PS_CO"];
                     if (gridViewColumn != null) gridViewColumn.Visible = false;
-
-                    // Show Dynamic control
-                    if (_PsNoNt_33 != null) _PsNo_33.InvisibleTag();
-                    if (_PsCo_33 != null) _PsCo_33.InvisibleTag();
                 }
 
                 FormatNumberControl();
