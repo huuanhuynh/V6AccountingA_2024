@@ -132,7 +132,7 @@ namespace V6ControlManager.FormManager
             IDictionary<string, object> keys = new Dictionary<string, object>();
             keys.Add("MA_BC", ma_bc);
             Alreport1Data = V6BusinessHelper.Select(V6TableName.Alreport1, keys, "*", "", "Stt_Filter").Data;
-            int i = 0;
+            int i_index = 0;
             int baseTop = 10;
             int rowHeight = 25;
             foreach (DataRow row in Alreport1Data.Rows)
@@ -149,7 +149,7 @@ namespace V6ControlManager.FormManager
 
                 DefineInfo_Data[AccessibleName_KEY.ToUpper()] = defineInfo;
                 //Label
-                var top = baseTop + i * rowHeight;
+                var top = baseTop + i_index * rowHeight;
 
                 var label = new V6Label();
                 label.Name = "lbl" + defineInfo.Field;
@@ -252,6 +252,13 @@ namespace V6ControlManager.FormManager
                         //nT.DecimalPlaces = defineInfo.Decimals;
                         NumberTextBox_Decimals[nT] = defineInfo.Decimals;
                     }
+                    else if (defineInfo.ControlType.ToUpper() == "RICHTEXTBOX")
+                    {
+                        input = new RichTextBox()
+                        {
+                            Name = "rxt" + defineInfo.Field,
+                        };
+                    }
                     else if (defineInfo.ControlType.ToUpper() == "LABEL")
                     {
                         input = new V6LabelTextBox()
@@ -323,6 +330,8 @@ namespace V6ControlManager.FormManager
                         if (defineInfo.UseLimitChars0)
                         {
                             var tb = input as V6ColorTextBox;
+                            tb.Multiline = defineInfo.MultiLine;
+                            tb.UseChangeTextOnSetFormData = defineInfo.UseChangeText;
                             tb.UseLimitCharacters0 = defineInfo.UseLimitChars0;
                             tb.LimitCharacters0 = defineInfo.LimitChars0;
                         }
@@ -343,6 +352,11 @@ namespace V6ControlManager.FormManager
                         : ObjectAndString.ObjectToInt(defineInfo.Width);
                     input.Left = 150;
                     input.Top = top;
+                    if (defineInfo.MultiLine || (defineInfo.ControlType + "").ToUpper() == "RICHTEXTBOX")
+                    {
+                        input.Height = rowHeight*2;
+                        i_index++;
+                    }
 
                     panel1.Controls.Add(input);
                     Input_Controls[defineInfo.Field.ToUpper()] = input;
@@ -578,7 +592,7 @@ namespace V6ControlManager.FormManager
                         All_Objects[labelD.Name] = labelD;
                     }
                 }
-                i++;
+                i_index++;
             }
             Event_program2 = V6ControlsHelper.CreateProgram("EventNameSpace", "EventClass", "D" + ma_bc, using_text2,
                 method_text2);

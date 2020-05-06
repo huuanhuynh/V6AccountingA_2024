@@ -316,7 +316,7 @@ namespace V6AccountingBusiness.Invoices
             
             return tbl;
         }
-        public DataTable LoadAd2(string sttRec)
+        public DataTable LoadAD2(string sttRec)
         {
             //c=AD, d=Alvt, e=ABVT13
             string sql = "SELECT * FROM " + AD2_TableName + " c ";

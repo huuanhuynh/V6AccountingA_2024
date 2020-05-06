@@ -96,6 +96,12 @@
     <Compile Include="Controls\GridView\GridViewRowEditorForm.Designer.cs">
       <DependentUpon>GridViewRowEditorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Algia2AddEditForm_A1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\DanhMuc\Add_Edit\Algia2AddEditForm_A1.Designer.cs">
+      <DependentUpon>Algia2AddEditForm_A1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm_A2.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1579,6 +1585,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Albc\FieldSelectorForm.resx">
       <DependentUpon>FieldSelectorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\Algia2AddEditForm_A1.resx">
+      <DependentUpon>Algia2AddEditForm_A1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm_A2.resx">
       <DependentUpon>VatTuAddEditForm_A2.cs</DependentUpon>

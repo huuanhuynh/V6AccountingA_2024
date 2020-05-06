@@ -183,11 +183,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 
                 //Lấy các control động
                 var dynamicControlList = GetDynamicControlsAlct(MAGD);
-                dynamicControlList.Add(9999, new AlctControls {DetailControl = _sttRecTt});
-                dynamicControlList.Add(9998, new AlctControls {DetailControl = _soSeri0});
+                dynamicControlList.Add("9999", new AlctControls {DetailControl = _sttRecTt});
+                dynamicControlList.Add("9998", new AlctControls {DetailControl = _soSeri0});
 
                 
-                foreach (KeyValuePair<int, AlctControls> item in dynamicControlList)
+                foreach (KeyValuePair<string, AlctControls> item in dynamicControlList)
                 {
                     var control = item.Value.DetailControl;
                     ApplyControlEnterStatus(control);
@@ -322,27 +322,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 if (_check_f_tien_nt == false)
                 {
                     _tienNt = V6ControlFormHelper.CreateNumberTienNt("TIEN_NT", "tiennt", M_ROUND_NT, null,10, false,false);
-                    dynamicControlList.Add(9997, new AlctControls {DetailControl = _tienNt});
+                    dynamicControlList.Add("9997", new AlctControls {DetailControl = _tienNt});
                 }
                 if (_check_f_tien == false)
                 {
                     _tien = V6ControlFormHelper.CreateNumberTien("TIEN", "tien", M_ROUND, null, 10, false, false);
-                    dynamicControlList.Add(9996, new AlctControls {DetailControl = _tien});
+                    dynamicControlList.Add("9996", new AlctControls {DetailControl = _tien});
                 }
                 if (_check_f_ps_co_nt == false)
                 {
                     _pscoNt = V6ControlFormHelper.CreateNumberTienNt("PS_CO_NT", "pscont", M_ROUND_NT, null, 10, false, false);
-                    dynamicControlList.Add(9995, new AlctControls {DetailControl = _pscoNt});
+                    dynamicControlList.Add("9995", new AlctControls {DetailControl = _pscoNt});
                 }
                 if (_check_f_ps_co == false)
                 {
                     _psCo = V6ControlFormHelper.CreateNumberTien("PS_CO", "psco", M_ROUND, null, 10, false, false);
-                    dynamicControlList.Add(9994, new AlctControls {DetailControl = _psCo});
+                    dynamicControlList.Add("9994", new AlctControls {DetailControl = _psCo});
                 }
                 if (_check_f_tien_tt == false)
                 {
                     _tientt = V6ControlFormHelper.CreateNumberTien("TIEN_TT", "tientt", M_ROUND, null, 10, false, false);
-                    dynamicControlList.Add(9993, new AlctControls {DetailControl = _tientt});
+                    dynamicControlList.Add("9993", new AlctControls {DetailControl = _tientt});
                 }
 
                 
@@ -373,11 +373,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         {
             detail3.lblName.AccessibleName = "TEN_TK";
             //Lấy các control động
-            var dynamicControlList = V6ControlFormHelper.GetDynamicControlsAlct(Invoice.Alct3, out _orderList3, out _alct3Dic);
+            detailControlList3 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct3, out _orderList3, out _alct3Dic);
             //Thêm các control động vào danh sách
-            foreach (KeyValuePair<int, Control> item in dynamicControlList)
+            foreach (KeyValuePair<string, AlctControls> item in detailControlList3)
             {
-                var control = item.Value;
+                var control = item.Value.DetailControl;
                 ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
@@ -500,7 +500,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
 
             }
 
-            foreach (Control control in dynamicControlList.Values)
+            foreach (AlctControls control in detailControlList3.Values)
             {
                 detail3.AddControl(control);
             }
@@ -978,7 +978,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         /// </summary>
         /// <param name="maGd"></param>
         /// <returns></returns>
-        public SortedDictionary<int, AlctControls> GetDynamicControlsAlct(string maGd)
+        public Dictionary<string, AlctControls> GetDynamicControlsAlct(string maGd)
         {
             DataTable alct1;
 

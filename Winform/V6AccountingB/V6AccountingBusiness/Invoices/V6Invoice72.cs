@@ -319,7 +319,7 @@ namespace V6AccountingBusiness.Invoices
             var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql, listParameters).Tables[0];
             return tbl;
         }
-        public DataTable LoadAd3(string sttRec)
+        public DataTable LoadAD3(string sttRec)
         {
             string sql = "SELECT c.*,d.Ten_tk AS Ten_tk FROM " + AD3_TableName
                 + " c LEFT JOIN Altk d ON c.Tk_i= d.Tk ";

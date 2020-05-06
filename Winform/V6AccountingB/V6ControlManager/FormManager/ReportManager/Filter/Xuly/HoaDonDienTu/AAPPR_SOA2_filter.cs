@@ -68,6 +68,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             String1 = (cboSendType.SelectedIndex + 1).ToString();
             String2 = MAU;
+            String3 = TxtMa_ct.Text;
 
             var result = new List<SqlParameter>();
             result.Add(new SqlParameter("@Ngay_ct1", dateNgay_ct1.YYYYMMDD));

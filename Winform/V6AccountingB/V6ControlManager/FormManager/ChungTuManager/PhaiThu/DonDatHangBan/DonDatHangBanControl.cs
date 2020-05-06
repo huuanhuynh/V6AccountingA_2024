@@ -134,14 +134,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         private V6NumberTextBox _ton13, _ton13Qd, _gia, _gia_nt, _tien, _tienNt, _pt_cki, _thue_suat_i, _thue_nt, _thue;
         private V6NumberTextBox _sl_qd, _sl_qd2, _tien_vcNt, _tien_vc, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4, _ggNt, _gg;
         private V6DateTimeColor _hanSd;
-        
+
         private void LoadDetailControls()
         {
             //Lấy các control động
-            var dynamicControlList = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
+            detailControlList1 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
             
             //Thêm các control động vào danh sách
-            foreach (KeyValuePair<int, AlctControls> item in dynamicControlList)
+            foreach (KeyValuePair<string, AlctControls> item in detailControlList1)
             {
                 var control = item.Value.DetailControl;
                 ApplyControlEnterStatus(control);
@@ -631,7 +631,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                 V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
             }
 
-            foreach (AlctControls item in dynamicControlList.Values)
+            foreach (AlctControls item in detailControlList1.Values)
             {
                 detail1.AddControl(item);
             }

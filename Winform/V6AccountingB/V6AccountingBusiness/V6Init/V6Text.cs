@@ -342,6 +342,7 @@ namespace V6Init
         public static string AddDenied { get { return V6Setting.Language == "V" ? "Không được thêm." : "Add denied."; } }
         public static string AddSuccess { get { return V6Setting.Language == "V" ? "Thêm xong!" : "Add success!"; }}
         public static string AddFail { get { return V6Setting.Language == "V" ? "Thêm lỗi!" : "Add fail!"; } }
+        public static string BackAndRetry { get { return V6Setting.Language == "V" ? "Quay ra và thử lại!" : "Back and retry!"; } }
         public static string BackConfirm { get { return V6Setting.Language == "V" ? "Có chắc bạn muốn quay ra?" : "Are you sure you want to go back?"; } }
         public static string Busy { get { return V6Setting.Language == "V" ? "Đang bận!" : "Busy!"; } }
         public static string Close { get { return V6Setting.Language == "V" ? "Đóng lại" : "Close"; } }

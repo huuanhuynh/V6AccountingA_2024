@@ -123,7 +123,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
         #endregion contructor
 
         #region ==== Khởi tạo Detail Form ====
-        private IDictionary<int, AlctControls> DynamicControlList1 = null;
         private V6ColorTextBox _dvt, txtPTEN_KHC, txtPONG_BAC, txtPDIEN_THOAIC;
         private V6VvarTextBox _maVt, _dvt1, _maKho, _maKhoI, _tkVt, _maLo, _ma_thue_i, txtPMA_KHC;
         private V6NumberTextBox _giaNt, _giaNt01, _tien0, _tienNt0, _gia0, _gia01, _gia, _gia_Nt0,
@@ -135,13 +134,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
         private V6VvarTextBox _ma_kh22, _tk_du22, _tk_thue_no22;
         private V6DateTimeColor _ngay_ct022;
         private V6NumberTextBox _t_tien22, _t_tien_nt22, _thue_suat22, _t_thue22, _t_thue_nt22, _gia_Nt022;
-        
+
         private void LoadDetailControls()
         {
             //Lấy các control động
-            DynamicControlList1 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
+            detailControlList1 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
             //Thêm các control động vào danh sách
-            foreach (KeyValuePair<int, AlctControls> item in DynamicControlList1)
+            foreach (KeyValuePair<string, AlctControls> item in detailControlList1)
             {
                 var control = item.Value.DetailControl;
                 ApplyControlEnterStatus(control);
@@ -593,7 +592,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
             }
 
-            foreach (AlctControls item in DynamicControlList1.Values)
+            foreach (AlctControls item in detailControlList1.Values)
             {
                 detail1.AddControl(item);
             }
@@ -616,11 +615,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
         {
             detail2.lblName.AccessibleName = "";
             //Lấy các control động
-            var dynamicControlList = V6ControlFormHelper.GetDynamicControlsAlct(Invoice.Alct2, out _orderList2, out _alct2Dic);
+            detailControlList2 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct2, out _orderList2, out _alct2Dic);
             //Thêm các control động vào danh sách
-            foreach (KeyValuePair<int, Control> item in dynamicControlList)
+            foreach (KeyValuePair<string, AlctControls> item in detailControlList2)
             {
-                var control = item.Value;
+                var control = item.Value.DetailControl;
                 ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
@@ -786,7 +785,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
 
             }
             
-            foreach (Control control in dynamicControlList.Values)
+            foreach (AlctControls control in detailControlList2.Values)
             {
                 detail2.AddControl(control);                
             }

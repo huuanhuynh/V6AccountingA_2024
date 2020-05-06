@@ -168,6 +168,9 @@
             this.label77 = new System.Windows.Forms.Label();
             this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
             this.label73 = new System.Windows.Forms.Label();
+            this.lblMultiLine = new System.Windows.Forms.Label();
+            this.txtMultiLine = new V6Controls.V6ColorTextBox();
+            this.label46 = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabThongTinThem.SuspendLayout();
@@ -812,6 +815,7 @@
             this.cboControlType.Items.AddRange(new object[] {
             "Button",
             "TextBox",
+            "RichTextBox",
             "LookupTextBox",
             "V6LookupProc",
             "VvarTextBox",
@@ -1846,7 +1850,10 @@
             this.tabThongTinKhac.Controls.Add(this.txtF2);
             this.tabThongTinKhac.Controls.Add(this.label20);
             this.tabThongTinKhac.Controls.Add(this.label19);
+            this.tabThongTinKhac.Controls.Add(this.label46);
             this.tabThongTinKhac.Controls.Add(this.label40);
+            this.tabThongTinKhac.Controls.Add(this.txtMultiLine);
+            this.tabThongTinKhac.Controls.Add(this.lblMultiLine);
             this.tabThongTinKhac.Controls.Add(this.txtToUpper);
             this.tabThongTinKhac.Controls.Add(this.label39);
             this.tabThongTinKhac.Location = new System.Drawing.Point(4, 28);
@@ -2177,6 +2184,44 @@
             this.label73.TabIndex = 0;
             this.label73.Text = "R_DataType";
             // 
+            // lblMultiLine
+            // 
+            this.lblMultiLine.AccessibleDescription = ".";
+            this.lblMultiLine.AutoSize = true;
+            this.lblMultiLine.Location = new System.Drawing.Point(7, 60);
+            this.lblMultiLine.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMultiLine.Name = "lblMultiLine";
+            this.lblMultiLine.Size = new System.Drawing.Size(64, 17);
+            this.lblMultiLine.TabIndex = 42;
+            this.lblMultiLine.Text = "MultiLine";
+            // 
+            // txtMultiLine
+            // 
+            this.txtMultiLine.AccessibleName = "MultiLine";
+            this.txtMultiLine.BackColor = System.Drawing.Color.White;
+            this.txtMultiLine.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMultiLine.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMultiLine.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMultiLine.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMultiLine.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMultiLine.LeaveColor = System.Drawing.Color.White;
+            this.txtMultiLine.LimitCharacters = "01";
+            this.txtMultiLine.Location = new System.Drawing.Point(119, 60);
+            this.txtMultiLine.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMultiLine.Name = "txtMultiLine";
+            this.txtMultiLine.Size = new System.Drawing.Size(150, 23);
+            this.txtMultiLine.TabIndex = 39;
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(283, 64);
+            this.label46.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(89, 17);
+            this.label46.TabIndex = 40;
+            this.label46.Text = "Bật MultiLine";
+            // 
             // DefineInfoEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2350,5 +2395,8 @@
         private V6ColorTextBox v6ColorTextBox6;
         private System.Windows.Forms.Label label77;
         private V6ColorTextBox v6ColorTextBox5;
+        private System.Windows.Forms.Label label46;
+        private V6ColorTextBox txtMultiLine;
+        private System.Windows.Forms.Label lblMultiLine;
     }
 }

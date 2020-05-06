@@ -20,6 +20,47 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="SearchInv">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cusCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pattern" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serial" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fromDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="toDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invNumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="invStatus" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="page" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="cussignStatus" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="payment" nillable="true" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPass" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchInvResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchInvResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCatalogView">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="invToken" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPass" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getCatalogViewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getCatalogViewResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="getInvView">
         <s:complexType>
           <s:sequence>
@@ -184,6 +225,22 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="getcatalogViewFkey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fkey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPass" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getcatalogViewFkeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getcatalogViewFkeyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="downloadInvPDFFkey">
         <s:complexType>
           <s:sequence>
@@ -213,6 +270,22 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="downloadInvPDFFkeyNoPayResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getInvViewFkeyByStaff">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fkey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPass" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getInvViewFkeyByStaffResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getInvViewFkeyByStaffResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -378,6 +451,25 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="listInvFromNoToNo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="invFromNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invToNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invPattern" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invSerial" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPass" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="listInvFromNoToNoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="listInvFromNoToNoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="listInvByCusSoapIn">
@@ -385,6 +477,18 @@
   </wsdl:message>
   <wsdl:message name="listInvByCusSoapOut">
     <wsdl:part name="parameters" element="tns:listInvByCusResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchInvSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchInv" />
+  </wsdl:message>
+  <wsdl:message name="SearchInvSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchInvResponse" />
+  </wsdl:message>
+  <wsdl:message name="getCatalogViewSoapIn">
+    <wsdl:part name="parameters" element="tns:getCatalogView" />
+  </wsdl:message>
+  <wsdl:message name="getCatalogViewSoapOut">
+    <wsdl:part name="parameters" element="tns:getCatalogViewResponse" />
   </wsdl:message>
   <wsdl:message name="getInvViewSoapIn">
     <wsdl:part name="parameters" element="tns:getInvView" />
@@ -446,6 +550,12 @@
   <wsdl:message name="listInvByCusFkeyVNPSoapOut">
     <wsdl:part name="parameters" element="tns:listInvByCusFkeyVNPResponse" />
   </wsdl:message>
+  <wsdl:message name="getcatalogViewFkeySoapIn">
+    <wsdl:part name="parameters" element="tns:getcatalogViewFkey" />
+  </wsdl:message>
+  <wsdl:message name="getcatalogViewFkeySoapOut">
+    <wsdl:part name="parameters" element="tns:getcatalogViewFkeyResponse" />
+  </wsdl:message>
   <wsdl:message name="downloadInvPDFFkeySoapIn">
     <wsdl:part name="parameters" element="tns:downloadInvPDFFkey" />
   </wsdl:message>
@@ -457,6 +567,12 @@
   </wsdl:message>
   <wsdl:message name="downloadInvPDFFkeyNoPaySoapOut">
     <wsdl:part name="parameters" element="tns:downloadInvPDFFkeyNoPayResponse" />
+  </wsdl:message>
+  <wsdl:message name="getInvViewFkeyByStaffSoapIn">
+    <wsdl:part name="parameters" element="tns:getInvViewFkeyByStaff" />
+  </wsdl:message>
+  <wsdl:message name="getInvViewFkeyByStaffSoapOut">
+    <wsdl:part name="parameters" element="tns:getInvViewFkeyByStaffResponse" />
   </wsdl:message>
   <wsdl:message name="getInvViewFkeySoapIn">
     <wsdl:part name="parameters" element="tns:getInvViewFkey" />
@@ -518,10 +634,24 @@
   <wsdl:message name="getStaffSoapOut">
     <wsdl:part name="parameters" element="tns:getStaffResponse" />
   </wsdl:message>
+  <wsdl:message name="listInvFromNoToNoSoapIn">
+    <wsdl:part name="parameters" element="tns:listInvFromNoToNo" />
+  </wsdl:message>
+  <wsdl:message name="listInvFromNoToNoSoapOut">
+    <wsdl:part name="parameters" element="tns:listInvFromNoToNoResponse" />
+  </wsdl:message>
   <wsdl:portType name="PortalServiceSoap">
     <wsdl:operation name="listInvByCus">
       <wsdl:input message="tns:listInvByCusSoapIn" />
       <wsdl:output message="tns:listInvByCusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchInv">
+      <wsdl:input message="tns:SearchInvSoapIn" />
+      <wsdl:output message="tns:SearchInvSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getCatalogView">
+      <wsdl:input message="tns:getCatalogViewSoapIn" />
+      <wsdl:output message="tns:getCatalogViewSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="getInvView">
       <wsdl:input message="tns:getInvViewSoapIn" />
@@ -563,6 +693,10 @@
       <wsdl:input message="tns:listInvByCusFkeyVNPSoapIn" />
       <wsdl:output message="tns:listInvByCusFkeyVNPSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="getcatalogViewFkey">
+      <wsdl:input message="tns:getcatalogViewFkeySoapIn" />
+      <wsdl:output message="tns:getcatalogViewFkeySoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="downloadInvPDFFkey">
       <wsdl:input message="tns:downloadInvPDFFkeySoapIn" />
       <wsdl:output message="tns:downloadInvPDFFkeySoapOut" />
@@ -570,6 +704,10 @@
     <wsdl:operation name="downloadInvPDFFkeyNoPay">
       <wsdl:input message="tns:downloadInvPDFFkeyNoPaySoapIn" />
       <wsdl:output message="tns:downloadInvPDFFkeyNoPaySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getInvViewFkeyByStaff">
+      <wsdl:input message="tns:getInvViewFkeyByStaffSoapIn" />
+      <wsdl:output message="tns:getInvViewFkeyByStaffSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="getInvViewFkey">
       <wsdl:input message="tns:getInvViewFkeySoapIn" />
@@ -611,11 +749,33 @@
       <wsdl:input message="tns:getStaffSoapIn" />
       <wsdl:output message="tns:getStaffSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="listInvFromNoToNo">
+      <wsdl:input message="tns:listInvFromNoToNoSoapIn" />
+      <wsdl:output message="tns:listInvFromNoToNoSoapOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="PortalServiceSoap" type="tns:PortalServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="listInvByCus">
       <soap:operation soapAction="http://tempuri.org/listInvByCus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchInv">
+      <soap:operation soapAction="http://tempuri.org/SearchInv" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCatalogView">
+      <soap:operation soapAction="http://tempuri.org/getCatalogView" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -713,6 +873,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getcatalogViewFkey">
+      <soap:operation soapAction="http://tempuri.org/getcatalogViewFkey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="downloadInvPDFFkey">
       <soap:operation soapAction="http://tempuri.org/downloadInvPDFFkey" style="document" />
       <wsdl:input>
@@ -724,6 +893,15 @@
     </wsdl:operation>
     <wsdl:operation name="downloadInvPDFFkeyNoPay">
       <soap:operation soapAction="http://tempuri.org/downloadInvPDFFkeyNoPay" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getInvViewFkeyByStaff">
+      <soap:operation soapAction="http://tempuri.org/getInvViewFkeyByStaff" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -821,11 +999,38 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="listInvFromNoToNo">
+      <soap:operation soapAction="http://tempuri.org/listInvFromNoToNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="PortalServiceSoap12" type="tns:PortalServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="listInvByCus">
       <soap12:operation soapAction="http://tempuri.org/listInvByCus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchInv">
+      <soap12:operation soapAction="http://tempuri.org/SearchInv" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCatalogView">
+      <soap12:operation soapAction="http://tempuri.org/getCatalogView" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -923,6 +1128,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getcatalogViewFkey">
+      <soap12:operation soapAction="http://tempuri.org/getcatalogViewFkey" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="downloadInvPDFFkey">
       <soap12:operation soapAction="http://tempuri.org/downloadInvPDFFkey" style="document" />
       <wsdl:input>
@@ -934,6 +1148,15 @@
     </wsdl:operation>
     <wsdl:operation name="downloadInvPDFFkeyNoPay">
       <soap12:operation soapAction="http://tempuri.org/downloadInvPDFFkeyNoPay" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getInvViewFkeyByStaff">
+      <soap12:operation soapAction="http://tempuri.org/getInvViewFkeyByStaff" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1031,13 +1254,22 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="listInvFromNoToNo">
+      <soap12:operation soapAction="http://tempuri.org/listInvFromNoToNo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="PortalService">
     <wsdl:port name="PortalServiceSoap" binding="tns:PortalServiceSoap">
-      <soap:address location="https://nuocbdgservicedemo.vnpt-invoice.com.vn/PortalService.asmx" />
+      <soap:address location="https://heung-aadmin.vnpt-invoice.com.vn/PortalService.asmx" />
     </wsdl:port>
     <wsdl:port name="PortalServiceSoap12" binding="tns:PortalServiceSoap12">
-      <soap12:address location="https://nuocbdgservicedemo.vnpt-invoice.com.vn/PortalService.asmx" />
+      <soap12:address location="https://heung-aadmin.vnpt-invoice.com.vn/PortalService.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

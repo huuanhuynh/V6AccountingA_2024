@@ -431,6 +431,44 @@
     <Type>0</Type>
     <Key>s4oXlvmQqX9ps9of/sNn1QLUz89XmoGQRux9diJdiNk=</Key>
   </DatabaseList>
+  <DatabaseList>
+    <Stt>24</Stt>
+    <Server>192.168.1.39\SQL2K16,7879</Server>
+    <Server2>192.168.1.39\SQL2K16,7879</Server2>
+    <Database>OTO_PT20</Database>
+    <Database2>OTO_PT20</Database2>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
+    <Epassword>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</Epassword>
+    <Epassword2>Ai0I9gx1t2Ps6nEtIe9oRenYJ0XjeDzm</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <Note>Dữ liệu OTO XEMAY SQL2016</Note>
+    <UseIsolation>1</UseIsolation>
+    <TimeOut>360</TimeOut>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>mVi7J8DnysJsK30xeTMq5T5JSkw2lgLkqttYPm8DcciUh3XKf/NB5Q==</Key>
+  </DatabaseList>
+  <DatabaseList>
+    <Stt>25</Stt>
+    <Server>118.69.226.201,7879</Server>
+    <Server2>118.69.226.201,7879</Server2>
+    <Database>HEUNGA20</Database>
+    <Database2>HEUNGA20</Database2>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
+    <Epassword>qhECiNTKiGKXerQKkHut5EgU+fqm/d1e</Epassword>
+    <Epassword2>qhECiNTKiGKXerQKkHut5EgU+fqm/d1e</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <Note>Dữ liệu HEUNGA ONLINE</Note>
+    <UseIsolation>1</UseIsolation>
+    <TimeOut>360</TimeOut>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>KDxA0Z/kswgBakDW+dtK5R0ecsSRgZSWMpOEjymSAXU=</Key>
+  </DatabaseList>
   <ServerConfig>
     <ServerName>HUUANV6</ServerName>
     <ServerIP>192.168.1.141</ServerIP>

@@ -125,10 +125,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>V6ThuePostXmlApi_V6ThuePostXmlApiS_AttachmentService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="https://nuocbdgservicedemo.vnpt-invoice.com.vn/BusinessService.asmx">
+    <WebReferenceUrl Include="https://heung-aadmin.vnpt-invoice.com.vn/BusinessService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\BusinessService\</RelPath>
-      <UpdateFromURL>https://nuocbdgservicedemo.vnpt-invoice.com.vn/BusinessService.asmx</UpdateFromURL>
+      <UpdateFromURL>https://heung-aadmin.vnpt-invoice.com.vn/BusinessService.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -136,10 +136,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>V6ThuePostApi_BusinessService_BusinessService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="https://nuocbdgservicedemo.vnpt-invoice.com.vn/PortalService.asmx">
+    <WebReferenceUrl Include="https://heung-aadmin.vnpt-invoice.com.vn/PortalService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\PortalService\</RelPath>
-      <UpdateFromURL>https://nuocbdgservicedemo.vnpt-invoice.com.vn/PortalService.asmx</UpdateFromURL>
+      <UpdateFromURL>https://heung-aadmin.vnpt-invoice.com.vn/PortalService.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -147,10 +147,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>V6ThuePostApi_PortalService_PortalService</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="https://nuocbdgservicedemo.vnpt-invoice.com.vn/PublishService.asmx">
+    <WebReferenceUrl Include="https://heung-aadmin.vnpt-invoice.com.vn/PublishService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\PublishService\</RelPath>
-      <UpdateFromURL>https://nuocbdgservicedemo.vnpt-invoice.com.vn/PublishService.asmx</UpdateFromURL>
+      <UpdateFromURL>https://heung-aadmin.vnpt-invoice.com.vn/PublishService.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

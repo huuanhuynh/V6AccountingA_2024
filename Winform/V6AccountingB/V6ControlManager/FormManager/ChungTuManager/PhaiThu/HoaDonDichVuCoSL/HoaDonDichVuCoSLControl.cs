@@ -146,21 +146,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         #endregion contructor
 
         #region ==== Khởi tạo Detail Form ====
-        private V6ColorTextBox _dvt, _so_bill;
-        private V6CheckTextBox _tang, _xuat_dd;
-        private V6VvarTextBox _maVt, _dvt1, _maKhoI, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo, _maViTri,_maTdi, _ma_thue_i, _tk_thue_i, _ma_kh_i0;
-        private V6NumberTextBox _soLuong1, _soLuong, _soNgay, _he_so1T, _he_so1M, _giaNt2, _giaNt21,_tien2, _tienNt2, _ck, _ckNt,_gia2,_gia21;
-        private V6NumberTextBox _ton13, _ton13Qd, _gia, _gia_nt, _tien, _tienNt, _pt_cki, _thue_suat_i, _thue_nt, _thue;
-        private V6NumberTextBox _sl_qd, _sl_qd2, _tien_vcNt, _tien_vc, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4,_ggNt,_gg;
-        private V6DateTimeColor _hanSd;
-        
+        public V6ColorTextBox _dvt, _so_bill;
+        public V6CheckTextBox _tang, _xuat_dd;
+        public V6VvarTextBox _maVt, _dvt1, _maKhoI, _tkDt, _tkGv, _tkCkI, _tkVt, _maLo, _maViTri, _maTdi, _ma_thue_i, _tk_thue_i, _ma_kh_i0;
+        public V6NumberTextBox _soLuong1, _soLuong, _soNgay, _he_so1T, _he_so1M, _giaNt2, _giaNt21, _tien2, _tienNt2, _ck, _ckNt, _gia2, _gia21;
+        public V6NumberTextBox _ton13, _ton13Qd, _gia, _gia_nt, _tien, _tienNt, _pt_cki, _thue_suat_i, _thue_nt, _thue;
+        public V6NumberTextBox _sl_qd, _sl_qd2, _tien_vcNt, _tien_vc, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4, _ggNt, _gg;
+        public V6DateTimeColor _hanSd;
+
         private void LoadDetailControls()
         {
             //Lấy các control động
-            var dynamicControlList = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
+            detailControlList1 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
             
             //Thêm các control động vào danh sách
-            foreach (KeyValuePair<int, AlctControls> item in dynamicControlList)
+            foreach (KeyValuePair<string, AlctControls> item in detailControlList1)
             {
                 var control = item.Value.DetailControl;
                 ApplyControlEnterStatus(control);
@@ -205,7 +205,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                             {
                                 _maLo.Enabled = false;
                             }
-                            GetTon13();
                         };
                         break;
                     case "TK_DT":
@@ -676,7 +675,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                         {
                             if (!_maLo.ReadOnly)
                             {
-                                CheckMaLoTon(_maLo.HaveValueChanged);
+                                //CheckMaLoTon(_maLo.HaveValueChanged);
                             }
                         };
                         break;
@@ -810,7 +809,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
             }
 
-            foreach (AlctControls item in dynamicControlList.Values)
+            foreach (AlctControls item in detailControlList1.Values)
             {
                 detail1.AddControl(item);
             }
@@ -862,11 +861,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         {
             detail3.lblName.AccessibleName = "TEN_TK";
             //Lấy các control động
-            var dynamicControlList = V6ControlFormHelper.GetDynamicControlsAlct(Invoice.Alct3, out _orderList3, out _alct3Dic);
+            detailControlList3 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct3, out _orderList3, out _alct3Dic);
             //Thêm các control động vào danh sách
-            foreach (KeyValuePair<int, Control> item in dynamicControlList)
+            foreach (KeyValuePair<string, AlctControls> item in detailControlList3)
             {
-                var control = item.Value;
+                var control = item.Value.DetailControl;
                 ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
@@ -989,7 +988,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
 
             }
 
-            foreach (Control control in dynamicControlList.Values)
+            foreach (AlctControls control in detailControlList3.Values)
             {
                 detail3.AddControl(control);
             }
@@ -1378,185 +1377,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             e.ThrowException = false;
         }
 
-        private void CheckMaLoTon(bool isChanged)
-        {
-            if (NotAddEdit) return;
-            if (detail1.MODE != V6Mode.Add && detail1.MODE != V6Mode.Edit) return;
-            if (!_maVt.LO_YN) return;
-            //Fix Tuanmh 15/11/2017
-            if (!_maKhoI.LO_YN) return;
-
-            try
-            {
-                Invoice.GetAlLoTon(dateNgayCT.Date, _sttRec, _maVt.Text, _maKhoI.Text);
-                FixAlLoTon(Invoice.AlLoTon, AD);
-
-                var inputUpper = _maLo.Text.Trim().ToUpper();
-                if (Invoice.AlLoTon != null && Invoice.AlLoTon.Rows.Count > 0)
-                {
-                    var check = false;
-                    foreach (DataRow row in Invoice.AlLoTon.Rows)
-                    {
-                        if (row["Ma_lo"].ToString().Trim().ToUpper() == inputUpper)
-                        {
-                            check = true;
-                        }
-
-                        if (check)
-                        {
-                            //
-                            _maLo.Tag = row;
-                            XuLyKhiNhanMaLo(row.ToDataDictionary(), isChanged);
-                            break;
-                        }
-                    }
-
-                    if (!check)
-                    {
-                        var initFilter = GetAlLoTonInitFilter();
-                        var f = new FilterView(Invoice.AlLoTon, "Ma_lo", "ALLOTON", _maLo, initFilter);
-                        if (f.ViewData != null && f.ViewData.Count > 0)
-                        {
-                            var d = f.ShowDialog(this);
-
-                            //xu ly data
-                            if (d == DialogResult.OK)
-                            {
-                                if (_maLo.Tag is DataRow)
-                                    XuLyKhiNhanMaLo(((DataRow)_maLo.Tag).ToDataDictionary(), isChanged);
-                                else if (_maLo.Tag is DataGridViewRow)
-                                    XuLyKhiNhanMaLo(((DataGridViewRow)_maLo.Tag).ToDataDictionary(), isChanged);
-                            }
-                            else
-                            {
-                                _maLo.Text = _maLo.GotFocusText;
-                            }
-                        }
-                        else
-                        {
-                            ShowParentMessage("AlLoTon" + V6Text.NoData);
-                        }
-                    }
-
-                    GetLoDate13();
-
-                    if (_maLo.GotFocusText == _maLo.LostFocusText
-                        && (V6Options.M_CHK_XUAT == "0" && (_maVt.LO_YN || _maVt.VT_TON_KHO)))
-                    {
-                        if (_soLuong1.Value > _ton13.Value)
-                        {
-                            _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
-                            TinhTienNt2();
-                        }
-                    }
-                }
-                else
-                {
-                    ShowMainMessage("AlLoTon null");
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
-
-        private void FixAlLoTon(DataTable alLoTon, DataTable ad)
-        {
-            try
-            {
-
-                string sttRec0 = _sttRec0;
-                //string maVt = _maVt.Text.Trim().ToUpper();
-                //string maKhoI = _maKhoI.Text.Trim().ToUpper();
-                //string maLo = _maLo.Text.Trim().ToUpper();
-                // string maLo = _maLo.Text.Trim().ToUpper();
-
-                // Theo doi lo moi check
-                if (!_maVt.LO_YN || !_maVt.DATE_YN || !_maKhoI.LO_YN || !_maKhoI.DATE_YN)
-                    return;
-
-                //if (maVt == "" || maKhoI == "" || maLo == "") return;
-
-                //Xử lý - tồn
-                //, Ma_kho, Ma_vt, Ma_vi_tri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
-                //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
-
-                List<DataRow> empty_rows = new List<DataRow>();
-
-                for (int i = alLoTon.Rows.Count - 1; i >= 0; i--)
-                {
-                    DataRow data_row = alLoTon.Rows[i];
-                    string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
-                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
-                    string data_maLo = data_row["Ma_lo"].ToString().Trim().ToUpper();
-                    //string data_maVi_Tri = data_row["Ma_vi_tri"].ToString().Trim().ToUpper();
-
-                    //Neu dung maVt, maKhoI, maLo, maVi_Tri
-                    //- so luong
-                    decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
-                    decimal new_soLuong = data_soLuong;
-
-                    foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
-                    {
-                        string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
-                        string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
-                        string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
-                        string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
-                        //string c_maVi_Tri = row["Ma_vi_tri"].ToString().Trim().ToUpper();
-
-                        decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]); //???
-                        if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
-                        {
-                            if (data_maVt == c_maVt && data_maKhoI == c_maKhoI && data_maLo == c_maLo)
-                            {
-                                new_soLuong -= c_soLuong;
-                            }
-                        }
-                    }
-
-                    if (new_soLuong > 0)
-                    {
-                        data_row["Ton_dau"] = new_soLuong;
-                    }
-                    else
-                    {
-                        empty_rows.Add(data_row);
-
-                    }
-                }
-
-                //remove all empty_rows
-                foreach (DataRow row in empty_rows)
-                {
-                    alLoTon.Rows.Remove(row);
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
-
-        private void XuLyKhiNhanMaLo(IDictionary<string, object> row, bool isChanged)
-        {
-            try
-            {
-                //_maLo.Text = row["MA_LO"].ToString().Trim();
-                _hanSd.Value = ObjectAndString.ObjectToDate(row["HSD"]);
-                _ton13.Value = ObjectAndString.ObjectToDecimal(row["TON_DAU"]);
-                if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E") _ton13Qd.Value = ObjectAndString.ObjectToDecimal(row["TON_DAU_QD"]);
-                _maLo.Enabled = true;
-                //_maLo.ReadOnlyTag();
-
-                if (isChanged) CheckSoLuong1();
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
-
         private void CheckMaViTri()
         {
             if (_maKhoI.Text != "")
@@ -1564,23 +1384,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 _maViTri.SetInitFilter("Ma_kho='" + _maKhoI.Text.Trim() + "'");
             }
             XuLyLayThongTinKhiChonMaVitri();
-            GetTon13();
-            if (_maVt.VITRI_YN)
-            {
-                if (_maVt.LO_YN && _maVt.DATE_YN)
-                {
-                    GetViTriLoDate13();
-                }
-                else
-                {
-                    GetViTri13();
-                }
-            }
-            else
-            {
-                GetLoDate13();
-            }
-
+            
             CheckSoLuong1();
         }
 
@@ -1921,32 +1725,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                       && (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit))) return;
 
                 _maVt.RefreshLoDateYnValue();
-                if (V6Options.M_CHK_XUAT == "0" && (_maVt.LO_YN || _maVt.VT_TON_KHO))
-                {
-                    if (_soLuong1.Value > _ton13.Value)
-                    {
-                        ShowParentMessage(V6Text.StockoutWarning);
-                        _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
-                        if (M_CAL_SL_QD_ALL == "1")
-                        {
-                            if (_hs_qd1.Value != 0)
-                                _sl_qd.Value = _soLuong1.Value / _hs_qd1.Value;
-                        }
-                        _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
-                        TinhTienNt2(null);
-                        TinhTienVon();
-                    }
-                    //if (_soLuong1.Value > _ton13.Value)
-                    //{
-                    //    ShowParentMessage(V6Text.StockoutWarning);
-                    //    _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
-                    //    //if (M_CAL_SL_QD_ALL == "1")
-                    //    //{
-                    //    //    if (_hs_qd1.Value != 0)
-                    //    //        _sl_qd.Value = _soLuong1.Value / _hs_qd1.Value;
-                    //    //}
-                    //}
-                }
+                
                 TinhTienNt2(actionControl);
                 TinhTienVon();
             }
@@ -2384,23 +2163,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         private void XuLyChonMaKhoI()
         {
             XuLyLayThongTinKhiChonMaKhoI();
-            GetTon13();
-            if (_maVt.VITRI_YN)
-            {
-                if (_maVt.LO_YN && _maVt.DATE_YN)
-                {
-                    GetViTriLoDate();
-                }
-                else
-                {
-                    GetViTri();
-                }
-            }
-            else
-            {
-                if (_maLo.Text == "") GetLoDate();
-                else GetLoDate13();
-            }
         }
 
         private void XuLyChonMaVt(string mavt)
@@ -2414,23 +2176,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             //}
 
             GetGia();
-            GetTon13();
+            //GetTon13();
             TinhTienNt2();
-            if (_maVt.VITRI_YN)
-            {
-                if (_maVt.LO_YN && _maVt.DATE_YN)
-                {
-                    GetViTriLoDate();
-                }
-                else
-                {
-                    GetViTri();
-                }
-            }
-            else
-            {
-                GetLoDate();
-            }
         }
 
         private void XuLyLayThongTinKhiChonMaKhoI()
@@ -2458,7 +2205,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                              }
                          }
                     }
+
+                    GetGia();
+                    TinhTienNt2();
                 }
+
             }
             catch (Exception ex)
             {
@@ -2498,96 +2249,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         }
 
         private DataTable _dataLoDate;
-
-        private void GetLoDate13()
-        {
-            try
-            {
-                string sttRec0 = _sttRec0;
-                string maVt = _maVt.Text.Trim().ToUpper();
-                string maKhoI = _maKhoI.Text.Trim().ToUpper();
-                string maLo = _maLo.Text.Trim().ToUpper();
-
-                // Theo doi lo moi check
-                if (!_maVt.LO_YN || !_maVt.DATE_YN || !_maKhoI.LO_YN || !_maKhoI.DATE_YN)
-                    return;
-
-                if (maVt == "" || maKhoI == "" || maLo == "") return;
-
-                _dataLoDate = V6BusinessHelper.GetLoDate13(maVt, maKhoI, maLo, _sttRec, dateNgayCT.Date);
-                if (_dataLoDate.Rows.Count == 0)
-                {
-                    ResetTonLoHsd(_ton13, _maLo, _hanSd, _ton13Qd);
-                }
-                //Xử lý - tồn
-                //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
-                //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
-
-                for (int i = _dataLoDate.Rows.Count - 1; i >= 0; i--)
-                {
-                    DataRow data_row = _dataLoDate.Rows[i];
-                    string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
-                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
-                    string data_maLo = data_row["Ma_lo"].ToString().Trim().ToUpper();
-                    if (data_maLo == "") continue;
-
-                    //Neu dung maVt va maKhoI
-                    if (maVt == data_maVt && maKhoI == data_maKhoI && maLo == data_maLo)
-                    {
-                        //- so luong
-                        decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
-                        decimal data_soLuong_qd = ObjectAndString.ObjectToDecimal(data_row["Ton_dau_qd"]);
-                        decimal new_soLuong = data_soLuong;
-                        decimal new_soLuong_qd = data_soLuong_qd;
-
-                        foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
-                        {
-
-                            string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
-                            string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
-                            string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
-                            string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
-
-                            //Add 31-07-2016
-                            //Nếu khi sửa chỉ trừ dần những dòng trên dòng đang đứng thì dùng dòng if sau:
-                            //if (detail1.MODE == V6Mode.Edit && c_sttRec0 == sttRec0) break;
-
-                            decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
-                            decimal c_soLuong_qd = ObjectAndString.ObjectToDecimal(row["SL_QD"]);
-                            if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
-                            {
-                                if (maVt == c_maVt && maKhoI == c_maKhoI && maLo == c_maLo)
-                                {
-                                    new_soLuong -= c_soLuong;
-                                    new_soLuong_qd -= c_soLuong_qd;
-                                }
-                            }
-                        }
-
-                        //if (new_soLuong < 0) new_soLuong = 0;
-                        {
-                            if (_he_so1T.Value != 0)
-                            {
-                                _ton13.Value = new_soLuong * _he_so1M.Value / _he_so1T.Value;
-                            }
-                            else
-                            {
-                                _ton13.Value = new_soLuong;
-                            }
-                            if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E") _ton13Qd.Value = new_soLuong_qd;
-                            _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
-                            break;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
-
-
+        
         private string GetFilterMaLo(DataTable dataLoDate, string sttRec0, string maVt, string maKhoI)
         {
             try
@@ -2654,168 +2316,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         }
 
 
-        private void GetLoDate()
-        {
-            try
-            {
-                string sttRec0 = _sttRec0;
-                string maVt = _maVt.Text.Trim().ToUpper();
-                string maKhoI = _maKhoI.Text.Trim().ToUpper();
-                
-                // Theo doi lo moi check
-                if (!_maVt.LO_YN || !_maVt.DATE_YN || !_maKhoI.LO_YN || !_maKhoI.DATE_YN)
-                    return;
-
-                if (maVt == "" || maKhoI == "") return;
-
-                _dataLoDate = V6BusinessHelper.GetLoDate(maVt, maKhoI, _sttRec, dateNgayCT.Date);
-                if (_dataLoDate.Rows.Count == 0)
-                {
-                    ResetTonLoHsd(_ton13, _maLo, _hanSd, _ton13Qd);
-                }
-                //Xử lý - tồn
-                //, Ma_kho, Ma_vt, Ma_vitri, Ma_lo, Hsd, Dvt, Tk_dl, Stt_ntxt,
-                //  Ten_vt, Ten_vt2, Nh_vt1, Nh_vt2, Nh_vt3, Ton_dau, Du_dau, Du_dau_nt
-
-                for (int i = _dataLoDate.Rows.Count - 1; i >= 0; i--)
-                {
-                    DataRow data_row = _dataLoDate.Rows[i];
-                    string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
-                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
-                    string data_maLo = data_row["Ma_lo"].ToString().Trim().ToUpper();
-                    if(data_maLo == "") continue;
-
-                    //Neu dung maVt va maKhoI
-                    if (maVt == data_maVt && maKhoI == data_maKhoI)
-                    {
-                        //- so luong
-                        decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton_dau"]);
-                        decimal data_soLuong_qd = ObjectAndString.ObjectToDecimal(data_row["Ton_dau_qd"]);
-                        decimal new_soLuong = data_soLuong;
-                        decimal new_soLuong_qd = data_soLuong_qd;
-
-                        foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
-                        {
-                            string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
-                            string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
-                            string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
-                            string c_maLo = row["Ma_lo"].ToString().Trim().ToUpper();
-                            decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
-                            decimal c_soLuong_qd = ObjectAndString.ObjectToDecimal(row["SL_QD"]);
-
-                            //Add 31-07-2016
-                            //Nếu khi sửa chỉ trừ dần những dòng trên dòng đang đứng thì dùng dòng if sau:
-                            //if (detail1.MODE == V6Mode.Edit && c_sttRec0 == sttRec0) break;
-
-                            if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
-                            {
-                                if (maVt == c_maVt && maKhoI == c_maKhoI && data_maLo == c_maLo)
-                                {
-                                    new_soLuong -= c_soLuong;
-                                    new_soLuong_qd -= c_soLuong_qd;
-                                }
-                            }
-                        }
-
-                        if (new_soLuong > 0)
-                        {
-                            _ton13.Value = new_soLuong * _he_so1M.Value / _he_so1T.Value;
-                            if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E") _ton13Qd.Value = new_soLuong_qd;
-                            _maLo.Text = data_row["Ma_lo"].ToString().Trim();
-                            _hanSd.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
-                            break;
-                        }
-                        else
-                        {
-                            ResetTonLoHsd(_ton13, _maLo, _hanSd, _ton13Qd);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
-
-        public void GetTon13()
-        {
-            try
-            {
-                if ((_maVt.LO_YN || _maVt.DATE_YN) && (_maKhoI.LO_YN || _maKhoI.DATE_YN))
-                    return;
-
-                string maVt = _maVt.Text.Trim().ToUpper();
-                string maKhoI = _maKhoI.Text.Trim().ToUpper();
-                // Get ton kho theo ma_kho,ma_vt 18/01/2016
-                //if (V6Options.M_CHK_XUAT == "0")
-                {
-                    _dataLoDate = Invoice.GetStock(maVt, maKhoI, _sttRec, dateNgayCT.Date);
-                    if (_dataLoDate != null && _dataLoDate.Rows.Count > 0)
-                    {
-                        string sttRec0 = _sttRec0;
-                        //Trừ dần
-                        for (int i = _dataLoDate.Rows.Count - 1; i >= 0; i--)
-                        {
-                            DataRow data_row = _dataLoDate.Rows[i];
-                            string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
-                            string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
-                            
-
-                            //Neu dung maVt va maKhoI
-                            if (maVt == data_maVt && maKhoI == data_maKhoI)
-                            {
-                                //- so luong
-                                decimal data_soLuong = ObjectAndString.ObjectToDecimal(data_row["Ton00"]);
-                                decimal data_soLuong_qd = ObjectAndString.ObjectToDecimal(data_row["Ton00QD"]);
-                                decimal new_soLuong = data_soLuong;
-                                decimal new_soLuong_qd = data_soLuong_qd;
-
-                                foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
-                                {
-                                    string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
-                                    string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
-                                    string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
-                                    
-                                    decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
-                                    decimal c_soLuong_qd = ObjectAndString.ObjectToDecimal(row["SL_QD"]);
-
-                                    //Add 31-07-2016
-                                    //Nếu khi sửa chỉ trừ dần những dòng trên dòng đang đứng thì dùng dòng if sau:
-                                    //if (detail1.MODE == V6Mode.Edit && c_sttRec0 == sttRec0) break;
-
-                                    if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
-                                    {
-                                        if (maVt == c_maVt && maKhoI == c_maKhoI)
-                                        {
-                                            new_soLuong -= c_soLuong;
-                                            new_soLuong_qd -= c_soLuong_qd;
-                                        }
-                                    }
-                                }
-
-                                //if (new_soLuong < 0) new_soLuong = 0;
-                                {
-                                    _ton13.Value = new_soLuong * _he_so1M.Value / _he_so1T.Value;
-                                    if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E") _ton13Qd.Value = new_soLuong_qd;
-                                    break;
-                                }
-                            }
-                        }
-
-                    }
-                    else
-                    {
-                        _ton13.Value = 0;
-                        if (M_CAL_SL_QD_ALL == "1" && M_TYPE_SL_QD_ALL == "1E") _ton13Qd.Value = 0;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
         public void XuLyLayThongTinKhiChonMaVt()
         {
             try
@@ -2864,6 +2364,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     {
                         _ma_thue_i.Text = (data["ma_thue"] ?? "").ToString().Trim();
                         _thue_suat_i.Value = ObjectAndString.ObjectToDecimal(data["thue_suat"]);
+
+                        var alThue = V6BusinessHelper.Select("ALTHUE", "*", "MA_THUE = '" + _ma_thue_i.Text.Trim() + "'");
+                        if (alThue.TotalRows > 0)
+                        {
+                            _tk_thue_i.Text = alThue.Data.Rows[0]["TK_THUE_CO"].ToString().Trim();
+                            txtTkThueCo.Text = _tk_thue_i.Text;
+                        }
                     }
                 }
 
@@ -2966,8 +2473,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             {
                 if (txtMaGia.Text.Trim() == "") return;
 
-                var dataGia = Invoice.GetGiaBan("MA_VT", Invoice.Mact, dateNgayCT.Date,
-                        cboMaNt.SelectedValue.ToString().Trim(), _maVt.Text, _dvt1.Text, txtMaKh.Text, txtMaGia.Text);
+                var dataGia = Invoice.GetGiaBanTheoKho("MA_VT", Invoice.Mact, dateNgayCT.Date,
+                        cboMaNt.SelectedValue.ToString().Trim(), _maVt.Text, _dvt1.Text, txtMaKh.Text, txtMaGia.Text, _maKhoI.Text);
                 _giaNt21.Value = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT2"]);
                 
                 if (_dvt.Text.ToUpper().Trim() == _dvt1.Text.ToUpper().Trim())
@@ -2978,7 +2485,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 {
                     if (_soLuong.Value != 0)
                     {
-                        _giaNt2.Value = _tienNt2.Value / _soLuong.Value;
+                        var so_ngay = _soNgay == null ? 1m : _soNgay.Value;
+                        if (so_ngay == 0) so_ngay = 1;
+                        _giaNt2.Value = _tienNt2.Value / _soLuong.Value / so_ngay;
                     }
                 }
             }
@@ -3003,13 +2512,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             if (he_soM == 0) he_soM = 1;
             _he_so1T.Value = he_soT;
             _he_so1M.Value = he_soM;
-
-            GetTon13();
-            if (_maKhoI.Text.Trim() != "" && _maLo.Text.Trim() != "")
-            {
-                GetLoDate13();
-            }
-
+            
             GetGia();
             CheckSoLuong1();
             TinhTienNt2();
@@ -3145,8 +2648,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     }
                     else
                     {
-                        _giaNt2.Value = V6BusinessHelper.Vround((_tienNt2.Value / _soLuong.Value), M_ROUND_GIA_NT);
-                        _gia2.Value = V6BusinessHelper.Vround((_tien2.Value / _soLuong.Value), M_ROUND_GIA);
+                        var so_ngay = _soNgay == null ? 1m : _soNgay.Value;
+                        if (so_ngay == 0) so_ngay = 1;
+
+                        _giaNt2.Value = V6BusinessHelper.Vround((_tienNt2.Value / _soLuong.Value / so_ngay), M_ROUND_GIA_NT);
+                        _gia2.Value = V6BusinessHelper.Vround((_tien2.Value / _soLuong.Value / so_ngay), M_ROUND_GIA);
                     }
 
                     if (_maNt == _mMaNt0)
@@ -3211,8 +2717,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 }
                 else if (_soLuong.Value != 0)
                 {
-                    _giaNt2.Value = V6BusinessHelper.Vround((_tienNt2.Value / _soLuong.Value), M_ROUND_GIA_NT);
-                    _gia2.Value = V6BusinessHelper.Vround((_tien2.Value / _soLuong.Value), M_ROUND_GIA);
+                    var so_ngay = _soNgay == null ? 1m : _soNgay.Value;
+                    if (so_ngay == 0) so_ngay = 1;
+
+                    _giaNt2.Value = V6BusinessHelper.Vround((_tienNt2.Value / _soLuong.Value / so_ngay), M_ROUND_GIA_NT);
+                    _gia2.Value = V6BusinessHelper.Vround((_tien2.Value / _soLuong.Value / so_ngay), M_ROUND_GIA);
 
                     if (_maNt == _mMaNt0)
                     {
@@ -4140,8 +3649,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         {
             try
             {
-                string filter = V6Login.GetFilterKhoByDVCS(txtMaDVCS.Text.Trim());
-                _maKhoI.SetInitFilter(filter);
+                //string filter = V6Login.GetFilterKhoByDVCS(txtMaDVCS.Text.Trim());
+                //_maKhoI.SetInitFilter(filter);
             }
             catch (Exception ex)
             {
@@ -4258,17 +3767,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     txtTongTienNt2.DecimalPlaces = V6Options.M_IP_TIEN_NT;
 
                     // Show Dynamic control
-                    _gia2.VisibleTag();
-                    _gia21.VisibleTag();
-                    _tien2.VisibleTag();
-                    _thue.VisibleTag();
-                    _gia21.VisibleTag();
-                    _ck.VisibleTag();
-                    _tien_vc.VisibleTag();
-                    _gg.VisibleTag();
-                    if (_gia != null) _gia.VisibleTag();
+                    SetDetailControlVisible(detailControlList1, true, "GIA", "GIA2", "GIA21", "TIEN2", "THUE", "CK", "GG", "TIEN_VC");
+                    //if (detailControlList1.ContainsKey(_gia.AccessibleName)) _gia.VisibleTag();
+                    //if (detailControlList1.ContainsKey(_gia2.AccessibleName)) _gia2.VisibleTag();
+                    //if (detailControlList1.ContainsKey(_gia21.AccessibleName)) _gia21.VisibleTag();
+                    //if (detailControlList1.ContainsKey(_tien2.AccessibleName)) _tien2.VisibleTag();
+                    //if (detailControlList1.ContainsKey(_thue.AccessibleName)) _thue.VisibleTag();
+                    //if (detailControlList1.ContainsKey(_ck.AccessibleName)) _ck.VisibleTag();
+                    //if (detailControlList1.ContainsKey(_tien_vc.AccessibleName)) _tien_vc.VisibleTag();
+                    //if (detailControlList1.ContainsKey(_gg.AccessibleName)) _gg.VisibleTag();
 
                     //Detail3
+                    //SetDetailControlVisible(detailControlList3, true, "PS_NO", "PS_CO");
                     detail3.ShowIDs(new[] { "PS_NO", "PS_CO" });
 
                     gridViewColumn = dataGridView3.Columns["PS_NO"];
@@ -4333,15 +3843,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     txtTongTienNt2.DecimalPlaces = V6Options.M_IP_TIEN;
 
                     ////Hide Dynamic control
-                    _gia2.InvisibleTag();
-                    _gia21.InvisibleTag();
-                    _tien2.InvisibleTag();
-                    _thue.InvisibleTag();
-                    _gia21.InvisibleTag();
-                    _ck.InvisibleTag();
-                    _tien_vc.InvisibleTag();
-                    _gg.InvisibleTag();
-                    if (_gia != null) _gia.InvisibleTag();
+                    SetDetailControlVisible(detailControlList1, false, "GIA", "GIA2", "GIA21", "TIEN2", "THUE", "CK", "GG", "TIEN_VC");
+                    //if (_gia != null) _gia.InvisibleTag();
+                    //_gia2.InvisibleTag();
+                    //_gia21.InvisibleTag();
+                    //_tien2.InvisibleTag();
+                    //_thue.InvisibleTag();
+                    //_ck.InvisibleTag();
+                    //_tien_vc.InvisibleTag();
+                    //_gg.InvisibleTag();
+                    
                     
                     //Detail3
                     detail3.HideIDs(new[] { "PS_NO", "PS_CO"});
@@ -4367,6 +3878,30 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".XuLyThayDoiMaNt " + _sttRec, ex);
+            }
+        }
+
+        public void SetDetailControlVisible(IDictionary<string, AlctControls> detailControlList, bool visible, params string[] fieldList)
+        {
+            try
+            {
+                foreach (string field in fieldList)
+                {
+                    string FIELD = field.Trim().ToUpper();
+                    if (detailControlList.ContainsKey(FIELD))
+                    {
+                        var item = detailControlList[FIELD];
+                        if (item.IsVisible)
+                        {
+                            if (visible) item.DetailControl.VisibleTag();
+                            else item.DetailControl.InvisibleTag();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".SetDetailControlVisible " + _sttRec, ex);
             }
         }
 
@@ -6318,7 +5853,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                         _maKhoI.RefreshLoDateYnValue();
                         XuLyDonViTinhKhiChonMaVt(_maVt.Text, false);
                         _maVt.Focus();
-                        GetLoDate13();
                     }
                 }
             }
@@ -7097,6 +6631,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                 foreach (DataRow row in AD.Rows)
                 {
                     var maVatTu = row["MA_VT"].ToString().Trim();
+                    var makho = row["MA_KHO_I"].ToString().Trim();
                     var dvt = row["DVT"].ToString().Trim();
                     var dvt1 = row["DVT1"].ToString().Trim();
                     var pt_cki = ObjectAndString.ObjectToDecimal(row["PT_CKI"]);
@@ -7104,8 +6639,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     var soLuong1 = ObjectAndString.ObjectToDecimal(row["SO_LUONG1"]);
                     var tienNt2 = ObjectAndString.ObjectToDecimal(row["TIEN_NT2"]);
 
-                    var dataGia = Invoice.GetGiaBan("MA_VT", Invoice.Mact, dateNgayCT.Date,
-                        cboMaNt.SelectedValue.ToString().Trim(), maVatTu, dvt1, txtMaKh.Text, txtMaGia.Text);
+                    var dataGia = Invoice.GetGiaBanTheoKho("MA_VT", Invoice.Mact, dateNgayCT.Date,
+                        cboMaNt.SelectedValue.ToString().Trim(), maVatTu, dvt1, txtMaKh.Text, txtMaGia.Text, makho);
 
                     var giaNt21 = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT2"]);
                     row["GIA_NT21"] = giaNt21;
@@ -7411,13 +6946,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                     if (!data.ContainsKey("GIA_NT21") && data.ContainsKey("MA_VT") && data.ContainsKey("DVT1"))
                     {   
                         var _maVt_Text=ObjectAndString.ObjectToString(data["MA_VT"]);
+                        var _makho_Text=ObjectAndString.ObjectToString(data["MA_KHO_I"]);
                         var _dvt1_Text = ObjectAndString.ObjectToString(data["DVT1"]);
                         decimal _giaNt21_Value = 0m, _giaNt2_Value = 0m, _gia21_Value = 0m, _gia2_Value = 0m,
                            _tienNt2_Value = 0m, _soLuong_Value = 0m, _tien2_Value = 0m;
 
 
-                        var dataGia = Invoice.GetGiaBan("MA_VT", Invoice.Mact, dateNgayCT.Date,
-                        cboMaNt.SelectedValue.ToString().Trim(), _maVt_Text, _dvt1_Text, txtMaKh.Text, txtMaGia.Text);
+                        var dataGia = Invoice.GetGiaBanTheoKho("MA_VT", Invoice.Mact, dateNgayCT.Date,
+                        cboMaNt.SelectedValue.ToString().Trim(), _maVt_Text, _dvt1_Text, txtMaKh.Text, txtMaGia.Text, _makho_Text);
 
                         _giaNt21_Value = ObjectAndString.ObjectToDecimal(dataGia["GIA_NT2"]);
 

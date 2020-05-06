@@ -54,7 +54,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     FormControl = new DonViTinhAddEditForm();
                     break;
                 case V6TableName.Algia2:
-                    FormControl = new Algia2AddEditForm();
+                    if (formCode == "ALGIA2_A1") FormControl = new Algia2AddEditForm_A1();
+                    else FormControl = new Algia2AddEditForm();
                     break;
                 case V6TableName.Algia0:
                     FormControl = new Algia0AddEditForm();

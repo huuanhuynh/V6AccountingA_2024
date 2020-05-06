@@ -130,19 +130,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         private V6ColorTextBox _dvt;
         private V6CheckTextBox _xuat_dd;
         private V6VvarTextBox _maVt, _dvt1, _maKho2, _Ma_nx_i, _tkVt, _maLo, _maKhoI, _maViTri;
+        private V6ColorTextBox _soKhung, _soMay;
         private V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_td1;
         private V6NumberTextBox _ton13, _ton13Qd, _gia, _gia_nt, _tien, _tienNt, _gia1, _gia_nt1;
         private V6DateTimeColor _hanSd;
-        
+
         private void LoadDetailControls()
         {
             try
             {
                 //Lấy các control động
-                var dynamicControlList = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
+                detailControlList1 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
                 
                 //Thêm các control động vào danh sách
-                foreach (KeyValuePair<int, AlctControls> item in dynamicControlList)
+                foreach (KeyValuePair<string, AlctControls> item in detailControlList1)
                 {
                     var control = item.Value.DetailControl;
                     ApplyControlEnterStatus(control);
@@ -606,11 +607,139 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                                 };
                             }
                             break;
+                        case "SO_KHUNG":
+                            if (control is V6VvarTextBox)
+                            {
+                                var soKhung_vvar = (V6VvarTextBox)control;
+                                _soKhung = soKhung_vvar;
+                                soKhung_vvar.Enter += (s, e) =>
+                                {
+                                    soKhung_vvar.CheckNotEmpty = _maVt.SKSM_YN;
+                                    var dataSKSM = V6BusinessHelper.GetSKSM(_maVt.Text, _maKhoI.Text, _sttRec, dateNgayCT.Date);
+                                    var filter = "Ma_vt='" + _maVt.Text.Trim() + "'";
+                                    var getFilter = GetFilterSKSM(dataSKSM, _sttRec0, _maVt.Text, _maKhoI.Text, detail1);
+                                    if (getFilter != "") filter += " and " + getFilter;
+                                    soKhung_vvar.SetInitFilter(filter);
+
+                                    soKhung_vvar.ExistRowInTable(true);
+                                };
+                                soKhung_vvar.Leave += (sender, args) =>
+                                {
+                                    if (!soKhung_vvar.ReadOnly)
+                                    {
+                                        if (soKhung_vvar.Data != null)
+                                        {
+                                            _soMay.Text = soKhung_vvar.Data["SO_MAY"].ToString().Trim();
+
+                                            if (_maVt.GIA_TON == 2 || _xuat_dd.Checked)
+                                            {
+                                                var ton_dau = ObjectAndString.ObjectToDecimal(soKhung_vvar.Data == null ? 0 : soKhung_vvar.Data["TON_DAU"]);
+                                                if (ton_dau != 0)
+                                                {
+                                                    _gia_nt.Value = ObjectAndString.ObjectToDecimal(soKhung_vvar.Data == null ? 0 : soKhung_vvar.Data["DU_DAU"]) / ton_dau;
+                                                    //_gia_nt.CallDoV6LostFocus();
+                                                    TinhTienVon();
+                                                }
+                                            }
+                                        }
+                                        //CheckSoKhungTon(soKhung_vvar.HaveValueChanged);
+                                    }
+                                };
+
+                            }
+                            else if (control is V6LookupProc)
+                            {
+                                var soKhung_proc = (V6LookupProc)control;
+                                _soKhung = soKhung_proc;
+                                soKhung_proc.MA_CT = Invoice.Mact;
+                                soKhung_proc.Enter += (s, e) =>
+                                {
+                                    soKhung_proc.CheckNotEmpty = _maVt.SKSM_YN;
+                                    var dataSKSM = V6BusinessHelper.GetSKSM(_maVt.Text, _maKhoI.Text, _sttRec, dateNgayCT.Date);
+                                    var filter = "Ma_vt='" + _maVt.Text.Trim() + "'";
+                                    var getFilter = GetFilterSKSM(dataSKSM, _sttRec0, _maVt.Text, _maKhoI.Text, detail1);
+                                    if (getFilter != "") filter += " and " + getFilter;
+                                    soKhung_proc.SetInitFilter(filter);
+
+                                    soKhung_proc.ExistRowInTable();
+                                };
+                                soKhung_proc.V6LostFocus += delegate(object sender)
+                                {
+                                    _soMay.Text = soKhung_proc.Data == null ? "" : soKhung_proc.Data["SO_MAY"].ToString().Trim();
+                                    if (_maVt.GIA_TON == 2 || _xuat_dd.Checked)
+                                    {
+                                        var ton_dau = ObjectAndString.ObjectToDecimal(soKhung_proc.Data == null ? 0 : soKhung_proc.Data["TON_DAU"]);
+                                        if (ton_dau != 0)
+                                        {
+                                            _gia_nt.Value = ObjectAndString.ObjectToDecimal(soKhung_proc.Data == null ? 0 : soKhung_proc.Data["DU_DAU"]) / ton_dau;
+                                            //_gia_nt.CallDoV6LostFocus();
+                                            TinhTienVon();
+                                        }
+                                    }
+                                };
+                            }
+                            else if (control is V6LookupData)
+                            {
+                                var soKhung_lookup = (V6LookupData)control;
+                                _soKhung = soKhung_lookup;
+                                soKhung_lookup.Enter += (s, e) =>
+                                {
+                                    soKhung_lookup.CheckNotEmpty = _maVt.SKSM_YN;
+                                    var dataSKSM = V6BusinessHelper.GetSKSM(_maVt.Text, _maKhoI.Text, _sttRec, dateNgayCT.Date);
+                                    var filter = "Ma_vt='" + _maVt.Text.Trim() + "'";
+                                    var getFilter = GetFilterSKSM(dataSKSM, _sttRec0, _maVt.Text, _maKhoI.Text, detail1);
+                                    if (getFilter != "") filter += " and " + getFilter;
+                                    soKhung_lookup.SetInitFilter(filter);
+
+                                    soKhung_lookup.LoadAutoCompleteSource(dataSKSM);
+                                    soKhung_lookup.ExistRowInData(dataSKSM);
+                                };
+                                soKhung_lookup.Leave += (sender, args) =>
+                                {
+                                    if (!soKhung_lookup.ReadOnly)
+                                    {
+                                        if (soKhung_lookup.Data != null)
+                                        {
+                                            _soMay.Text = soKhung_lookup.Data["SO_MAY"].ToString().Trim();
+                                            if (soKhung_lookup.Data.Table.Columns.Contains("MA_TD2"))
+                                            {
+                                                string ma_td2 = ObjectAndString.ObjectToString(soKhung_lookup.Data["MA_TD2"]);
+                                                if (!string.IsNullOrEmpty(ma_td2))
+                                                {
+                                                    var _ma_td2 = V6ControlFormHelper.GetControlByAccessibleName(detail1.panel2, "MA_TD2");
+                                                    if (_ma_td2 != null && _ma_td2.Visible)
+                                                    {
+                                                        _ma_td2.Text = ma_td2;
+                                                    }
+                                                }
+                                            }
+
+
+                                            if (_maVt.GIA_TON == 2 || _xuat_dd.Checked)
+                                            {
+                                                var ton_dau = ObjectAndString.ObjectToDecimal(soKhung_lookup.Data == null ? 0 : soKhung_lookup.Data["TON_DAU"]);
+                                                if (ton_dau != 0)
+                                                {
+                                                    _gia_nt.Value = ObjectAndString.ObjectToDecimal(soKhung_lookup.Data == null ? 0 : soKhung_lookup.Data["DU_DAU"]) / ton_dau;
+                                                    //_gia_nt.CallDoV6LostFocus();
+                                                    TinhTienVon();
+                                                }
+                                            }
+                                        }
+                                        //CheckSoKhungTon(soKhung_vvar.HaveValueChanged);
+                                    }
+                                };
+                            }
+
+                            break;
+                        case "SO_MAY":
+                            _soMay = (V6ColorTextBox)control;
+                            break;
                     }
                     V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
                 }
 
-                foreach (AlctControls item in dynamicControlList.Values)
+                foreach (AlctControls item in detailControlList1.Values)
                 {
                     detail1.AddControl(item);
                 }

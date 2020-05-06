@@ -120,7 +120,7 @@ namespace V6Structs
         
 
         /// <summary>
-        /// BUTTON LOOKUPTEXTBOX LABEL CHECKBOX
+        /// BUTTON LOOKUPTEXTBOX LABEL CHECKBOX TEXTBOX RICHTEXTBOX
         /// </summary>
         public string ControlType { get; set; }
 
@@ -128,6 +128,7 @@ namespace V6Structs
         /// Trường để lấy data trong vvar_data dùng cho RptExtraParameters khi Ptype = FILTER_BROTHER.
         /// </summary>
         public string Fname { get; set; }
+        public bool MultiLine { get; set; }
         /// <summary>
         /// TABLE2, PARENT, FILTER, FILTER_BROTHER, Dùng trong định nghĩa ds ExtraParameterInfo.
         /// </summary>

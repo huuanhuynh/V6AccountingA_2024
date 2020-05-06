@@ -455,6 +455,41 @@ namespace V6AccountingBusiness.Invoices
                 throw new Exception("V6Invoice82 GetGiaBan " + ex.Message);
             }
         }
+
+        public DataRow GetGiaBanTheoKho(string field, string mact, DateTime ngayct,
+            string mant, string mavt, string dvt1, string makh, string magia, string makho)
+        {
+            try
+            {
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@cField", field),
+                    new SqlParameter("@cVCID", mact),
+                    new SqlParameter("@dPrice", ngayct),
+                    new SqlParameter("@cFC", mant),
+                    new SqlParameter("@cItem", mavt),
+                    new SqlParameter("@cUOM", dvt1),
+                    new SqlParameter("@cCust", makh),
+                    new SqlParameter("@cMaGia", magia),
+                    new SqlParameter("@cMaKho", makho)
+                };
+
+                var resultData = SqlConnect.ExecuteDataset(CommandType.StoredProcedure, "VPA_GetSOIDPrice_MA_KHO", plist).Tables[0];
+                if (resultData != null && resultData.Rows.Count >= 1)
+                {
+                    return resultData.Rows[0];
+                }
+                else
+                {
+                    throw new Exception("GetGiaBan return null.");
+                }
+            }
+            catch (Exception ex)
+            {
+                //return "{gia_ban_nt:0,gia_nt2:0,error:1,message:\"GetPrice: " + ToJSstring(ex.Message) + "\"}";
+                throw new Exception("V6Invoice82 GetGiaBan " + ex.Message);
+            }
+        }
         
     }
 

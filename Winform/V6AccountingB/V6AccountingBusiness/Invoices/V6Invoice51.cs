@@ -370,7 +370,7 @@ namespace V6AccountingBusiness.Invoices
             var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql, listParameters).Tables[0];
             return tbl;
         }
-        public DataTable LoadAd2(string sttRec)
+        public DataTable LoadAD2(string sttRec)
         {
             //c=AD, d=Alvt, e=ABVT13
             string sql = "SELECT * FROM [" + AD2_TableName + "] c ";

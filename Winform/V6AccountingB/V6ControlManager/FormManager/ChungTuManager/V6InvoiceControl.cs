@@ -18,6 +18,7 @@ using V6Controls.Controls;
 using V6Controls.Controls.GridView;
 using V6Controls.Forms;
 using V6Controls.Forms.Viewer;
+using V6Controls.Structs;
 using V6Init;
 using V6Structs;
 using V6Tools;
@@ -167,7 +168,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// Cờ thêm khi nhấn Shift trong chức năng chọn.
         /// </summary>
         public bool chon_accept_flag_add;
-
+        /// <summary>
+        /// Cờ kiểm soát lỗi, nếu có lỗi thì không được chạy tiếp chức năng khác. if (_fail) {show_message; return;}
+        /// </summary>
+        public bool _fail;
         //public string MaCt { get; set; }
         public string _sttRec0 = "";
         public string _sttRec02 = "";
@@ -202,6 +206,12 @@ namespace V6ControlManager.FormManager.ChungTuManager
         /// </summary>
         public string M_TYPE_SL_QD_ALL = null;
 
+        /// <summary>
+        /// List các control trong detail
+        /// </summary>
+        public Dictionary<string, AlctControls> detailControlList1 = new Dictionary<string, AlctControls>();
+        public Dictionary<string, AlctControls> detailControlList2 = new Dictionary<string, AlctControls>();
+        public Dictionary<string, AlctControls> detailControlList3 = new Dictionary<string, AlctControls>();
         /// <summary>
         /// List thứ tự field chi tiết.
         /// </summary>
@@ -3516,6 +3526,93 @@ namespace V6ControlManager.FormManager.ChungTuManager
             return "" + ca;
         }
 
+        public string GetFilterSKSM(DataTable dataSKSM, string sttRec0, string maVt, string maKhoI, HD_Detail detail1)
+        {
+            try
+            {
+                var list_SKSM = "";
+                if (maVt == "" || maKhoI == "") return list_SKSM;
+
+                foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
+                {
+
+                    string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
+                    string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
+                    string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
+                    string c_sk = row["SO_KHUNG"].ToString().Trim().ToUpper();
+                    string c_sm = row["SO_MAY"].ToString().Trim().ToUpper();
+
+                    //Nếu khi sửa chỉ trừ dần những dòng trên dòng đang đứng thì dùng dòng if sau:
+                    //if (detail1.MODE == V6Mode.Edit && c_sttRec0 == sttRec0) break;
+
+                    //decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+                    if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
+                    {
+                        if (maVt == c_maVt && maKhoI == c_maKhoI)
+                        {
+                            //or_sksm = 0;
+                            list_SKSM += string.Format(" and (SO_KHUNG<>'{0}' and SO_MAY<>'{1}')", c_sk, c_sm);
+                        }
+                    }
+                }
+
+                if (list_SKSM.Length > 4)
+                {
+                    list_SKSM = list_SKSM.Substring(4);
+                    return "(" + list_SKSM + ")";
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+            return "(1=1)";
+        }
+
+        public string GetFilterSKSM_PXDC(DataTable dataSKSM, string sttRec0, string maVt, string maKhoX, HD_Detail detail1)
+        {
+            try
+            {
+                var list_SKSM = "";
+                if (maVt == "" || maKhoX == "") return list_SKSM;
+
+                foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
+                {
+
+                    string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
+                    string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
+                    string c_maKhoI = maKhoX;
+                    string c_sk = row["SO_KHUNG"].ToString().Trim().ToUpper();
+                    string c_sm = row["SO_MAY"].ToString().Trim().ToUpper();
+
+                    //Nếu khi sửa chỉ trừ dần những dòng trên dòng đang đứng thì dùng dòng if sau:
+                    //if (detail1.MODE == V6Mode.Edit && c_sttRec0 == sttRec0) break;
+
+                    //decimal c_soLuong = ObjectAndString.ObjectToDecimal(row["So_luong"]);
+                    if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
+                    {
+                        if (maVt == c_maVt && maKhoX == c_maKhoI)
+                        {
+                            //or_sksm = 0;
+                            list_SKSM += string.Format(" and (SO_KHUNG<>'{0}' and SO_MAY<>'{1}')", c_sk, c_sm);
+                        }
+                    }
+                }
+
+                if (list_SKSM.Length > 4)
+                {
+                    list_SKSM = list_SKSM.Substring(4);
+                    return "(" + list_SKSM + ")";
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+            return "(1=1)";
+        }
+
+
         /// <summary>
         /// No_use
         /// </summary>
@@ -4074,6 +4171,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
         }
 
         public V6ColorTextBox txtCustomInfo;
+        
+
         public void CreateCustomInfoTextBox(GroupBox group4, TextBox topLeftBase, Control bottomLeftBase)
         {
             try

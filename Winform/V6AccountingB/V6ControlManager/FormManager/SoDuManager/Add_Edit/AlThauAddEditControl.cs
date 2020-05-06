@@ -162,9 +162,9 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
             List<string> _orderList;
             SortedDictionary<string, DataRow> _alct1Dic;
-            SortedDictionary<int, AlctControls> dynamicControlList_New = V6ControlFormHelper.GetDynamicControlStructsAlct(Alct1Data, out _orderList, out _alct1Dic);
+            Dictionary<string, AlctControls> dynamicControlList_New = V6ControlFormHelper.GetDynamicControlStructsAlct(Alct1Data, out _orderList, out _alct1Dic);
             
-            foreach (KeyValuePair<int, AlctControls> item in dynamicControlList_New)
+            foreach (KeyValuePair<string, AlctControls> item in dynamicControlList_New)
             {
                 var control = item.Value.DetailControl;
 

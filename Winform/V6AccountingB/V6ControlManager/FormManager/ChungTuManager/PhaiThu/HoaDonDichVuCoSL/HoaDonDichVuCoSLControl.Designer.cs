@@ -227,16 +227,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             this.v6Label11 = new V6Controls.V6Label();
             this.lblMaKH = new V6Controls.V6Label();
             this.group2 = new System.Windows.Forms.GroupBox();
+            this.lblMauKyHieu = new V6Controls.V6Label();
+            this.txtMaMauHD = new V6Controls.V6VvarTextBox();
+            this.txtso_seri = new V6Controls.V6VvarTextBox();
             this.v6VvarTextBox2 = new V6Controls.V6VvarTextBox();
             this.v6VvarTextBox1 = new V6Controls.V6VvarTextBox();
             this.txtSoCtXuat = new V6Controls.V6VvarTextBox();
-            this.v6Label6 = new V6Controls.V6Label();
             this.v6Label7 = new V6Controls.V6Label();
             this.v6Label8 = new V6Controls.V6Label();
             this.lblMaNX = new V6Controls.V6Label();
             this.v6Label37 = new V6Controls.V6Label();
             this.txtong_ba = new V6Controls.V6VvarTextBox();
-            this.txtso_seri = new V6Controls.V6VvarTextBox();
             this.txtManx = new V6Controls.V6VvarTextBox();
             this.group1 = new System.Windows.Forms.GroupBox();
             this.txtMa_sonb = new V6Controls.V6VvarTextBox();
@@ -706,7 +707,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             this.menuBtnIn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.inPhieuHachToanMenu});
             this.menuBtnIn.Name = "menuBtnIn";
-            this.menuBtnIn.Size = new System.Drawing.Size(174, 48);
+            this.menuBtnIn.Size = new System.Drawing.Size(174, 26);
             // 
             // inPhieuHachToanMenu
             // 
@@ -3270,22 +3271,69 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             // 
             this.group2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.group2.Controls.Add(this.lblMauKyHieu);
+            this.group2.Controls.Add(this.txtMaMauHD);
+            this.group2.Controls.Add(this.txtso_seri);
             this.group2.Controls.Add(this.v6VvarTextBox2);
             this.group2.Controls.Add(this.v6VvarTextBox1);
             this.group2.Controls.Add(this.txtSoCtXuat);
-            this.group2.Controls.Add(this.v6Label6);
             this.group2.Controls.Add(this.v6Label7);
             this.group2.Controls.Add(this.v6Label8);
             this.group2.Controls.Add(this.lblMaNX);
             this.group2.Controls.Add(this.v6Label37);
             this.group2.Controls.Add(this.txtong_ba);
-            this.group2.Controls.Add(this.txtso_seri);
             this.group2.Controls.Add(this.txtManx);
             this.group2.Location = new System.Drawing.Point(425, -5);
             this.group2.Name = "group2";
             this.group2.Size = new System.Drawing.Size(474, 57);
             this.group2.TabIndex = 2;
             this.group2.TabStop = false;
+            // 
+            // lblMauKyHieu
+            // 
+            this.lblMauKyHieu.AccessibleDescription = "ASOCTSOAL00125";
+            this.lblMauKyHieu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMauKyHieu.AutoSize = true;
+            this.lblMauKyHieu.Location = new System.Drawing.Point(254, 37);
+            this.lblMauKyHieu.Name = "lblMauKyHieu";
+            this.lblMauKyHieu.Size = new System.Drawing.Size(68, 13);
+            this.lblMauKyHieu.TabIndex = 16;
+            this.lblMauKyHieu.Text = "Mẫu/Ký hiệu";
+            // 
+            // txtMaMauHD
+            // 
+            this.txtMaMauHD.AccessibleName = "MA_MAUHD";
+            this.txtMaMauHD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMaMauHD.BackColor = System.Drawing.SystemColors.Window;
+            this.txtMaMauHD.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaMauHD.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMaMauHD.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMaMauHD.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtMaMauHD.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtMaMauHD.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtMaMauHD.HoverColor = System.Drawing.Color.Yellow;
+            this.txtMaMauHD.LeaveColor = System.Drawing.Color.White;
+            this.txtMaMauHD.Location = new System.Drawing.Point(328, 33);
+            this.txtMaMauHD.Name = "txtMaMauHD";
+            this.txtMaMauHD.Size = new System.Drawing.Size(80, 20);
+            this.txtMaMauHD.TabIndex = 17;
+            // 
+            // txtso_seri
+            // 
+            this.txtso_seri.AccessibleName = "so_seri";
+            this.txtso_seri.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtso_seri.BackColor = System.Drawing.SystemColors.Window;
+            this.txtso_seri.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtso_seri.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtso_seri.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtso_seri.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtso_seri.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtso_seri.HoverColor = System.Drawing.Color.Yellow;
+            this.txtso_seri.LeaveColor = System.Drawing.Color.White;
+            this.txtso_seri.Location = new System.Drawing.Point(413, 33);
+            this.txtso_seri.Name = "txtso_seri";
+            this.txtso_seri.Size = new System.Drawing.Size(55, 20);
+            this.txtso_seri.TabIndex = 18;
             // 
             // v6VvarTextBox2
             // 
@@ -3339,17 +3387,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             this.txtSoCtXuat.Size = new System.Drawing.Size(73, 20);
             this.txtSoCtXuat.TabIndex = 2;
             this.txtSoCtXuat.TextChanged += new System.EventHandler(this.txtSoCt_TextChanged);
-            // 
-            // v6Label6
-            // 
-            this.v6Label6.AccessibleDescription = "ASOCTSOAL00035";
-            this.v6Label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6Label6.AutoSize = true;
-            this.v6Label6.Location = new System.Drawing.Point(347, 34);
-            this.v6Label6.Name = "v6Label6";
-            this.v6Label6.Size = new System.Drawing.Size(39, 13);
-            this.v6Label6.TabIndex = 7;
-            this.v6Label6.Text = "Số seri";
             // 
             // v6Label7
             // 
@@ -3407,26 +3444,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             this.txtong_ba.LeaveColor = System.Drawing.Color.White;
             this.txtong_ba.Location = new System.Drawing.Point(73, 32);
             this.txtong_ba.Name = "txtong_ba";
-            this.txtong_ba.Size = new System.Drawing.Size(257, 20);
+            this.txtong_ba.Size = new System.Drawing.Size(175, 20);
             this.txtong_ba.TabIndex = 13;
-            // 
-            // txtso_seri
-            // 
-            this.txtso_seri.AccessibleName = "so_seri";
-            this.txtso_seri.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtso_seri.BackColor = System.Drawing.SystemColors.Window;
-            this.txtso_seri.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtso_seri.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtso_seri.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtso_seri.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtso_seri.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtso_seri.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtso_seri.HoverColor = System.Drawing.Color.Yellow;
-            this.txtso_seri.LeaveColor = System.Drawing.Color.White;
-            this.txtso_seri.Location = new System.Drawing.Point(392, 31);
-            this.txtso_seri.Name = "txtso_seri";
-            this.txtso_seri.Size = new System.Drawing.Size(75, 20);
-            this.txtso_seri.TabIndex = 16;
             // 
             // txtManx
             // 
@@ -3662,12 +3681,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         private V6DateTimePicker dateNgayLCT;
         private V6Label v6Label5;
         private System.Windows.Forms.GroupBox group2;
-        private V6Label v6Label6;
         private V6Label v6Label7;
         private V6Label v6Label8;
         private V6Label lblMaNX;
         private V6VvarTextBox txtong_ba;
-        private V6VvarTextBox txtso_seri;
         private V6VvarTextBox txtManx;
         private V6Label lblMaKH;
         private V6Label v6Label13;
@@ -3852,5 +3869,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         private System.Windows.Forms.ToolStripMenuItem thayTheNhieuMenu;
         private System.Windows.Forms.ContextMenuStrip menuBtnIn;
         private System.Windows.Forms.ToolStripMenuItem inPhieuHachToanMenu;
+        private V6Label lblMauKyHieu;
+        private V6VvarTextBox txtMaMauHD;
+        private V6VvarTextBox txtso_seri;
     }
 }

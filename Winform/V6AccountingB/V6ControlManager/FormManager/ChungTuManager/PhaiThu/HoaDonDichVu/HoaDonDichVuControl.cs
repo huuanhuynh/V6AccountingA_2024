@@ -136,13 +136,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
         private V6VvarTextBox _tk_dt, _Ma_thue_i, _tk_thue_i,_ma_dvdt;
         private V6NumberTextBox _soLuong, _giaNt2,_tien2, _tienNt2,_gia2;
         private V6NumberTextBox _ThueSuatI, _Thue, _Thue_NT;
-        
+
         private void LoadDetailControls()
         {
             //Lấy các control động
-            var dynamicControlList = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
+            detailControlList1 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
             //Thêm các control động vào danh sách
-            foreach (KeyValuePair<int, AlctControls> item in dynamicControlList)
+            foreach (KeyValuePair<string, AlctControls> item in detailControlList1)
             {
                 var control = item.Value.DetailControl;
                 ApplyControlEnterStatus(control);
@@ -307,7 +307,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                 V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects, "2");
             }
 
-            foreach (AlctControls item in dynamicControlList.Values)
+            foreach (AlctControls item in detailControlList1.Values)
             {
                 detail1.AddControl(item);
             }
@@ -326,11 +326,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
         {
             detail3.lblName.AccessibleName = "TEN_TK";
             //Lấy các control động
-            var dynamicControlList = V6ControlFormHelper.GetDynamicControlsAlct(Invoice.Alct3, out _orderList3, out _alct3Dic);
+            detailControlList3 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct3, out _orderList3, out _alct3Dic);
             //Thêm các control động vào danh sách
-            foreach (KeyValuePair<int, Control> item in dynamicControlList)
+            foreach (KeyValuePair<string, AlctControls> item in detailControlList3)
             {
-                var control = item.Value;
+                var control = item.Value.DetailControl;
                 ApplyControlEnterStatus(control);
 
                 var NAME = control.AccessibleName.ToUpper();
@@ -453,7 +453,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
 
             }
 
-            foreach (Control control in dynamicControlList.Values)
+            foreach (AlctControls control in detailControlList3.Values)
             {
                 detail3.AddControl(control);
             }

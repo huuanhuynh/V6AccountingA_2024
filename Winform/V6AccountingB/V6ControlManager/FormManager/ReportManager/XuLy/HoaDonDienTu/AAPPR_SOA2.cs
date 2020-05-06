@@ -22,11 +22,25 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     /// </summary>
     public class AAPPR_SOA2 : XuLyBase
     {
+        V6InvoiceBase invoice = null;
+
         public AAPPR_SOA2(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
             InitializeComponent();
-            dataGridView1.Control_S = true;
+            MyInit2();
+        }
+
+        private void MyInit2()
+        {
+            try
+            {
+                dataGridView1.Control_S = true;
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".MyInit2", ex);
+            }
         }
 
         public override void SetStatus2Text()
@@ -38,6 +52,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             Load_Data = true;//Thay đổi cờ.
             base.MakeReport2();
+            try
+            {
+                if (FilterControl.String3 == "SOA") invoice = new V6Invoice81();
+                else if (FilterControl.String3 == "SOB") invoice = new V6Invoice82();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".MakeReport2", ex);
+            }
         }
 
         
@@ -305,7 +328,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        V6Invoice81 invoice = new V6Invoice81();
         protected override void ViewDetails(DataGridViewRow row)
         {
             try

@@ -221,11 +221,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 }
                 //Lấy các control động
                 var dynamicControlList = GetDynamicControlsAlct();
-                dynamicControlList.Add(9999, new AlctControls {DetailControl = _sttRecTt});
+                dynamicControlList.Add("9999", new AlctControls {DetailControl = _sttRecTt});
                 //dynamicControlList.Add(9998, _soSeri0);
 
                 //Thêm các control động vào danh sách
-                foreach (KeyValuePair<int, AlctControls> item in dynamicControlList)
+                foreach (KeyValuePair<string, AlctControls> item in dynamicControlList)
                 {
                     var control = item.Value.DetailControl;
                     ApplyControlEnterStatus(control);
@@ -489,27 +489,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 if (_check_f_tien_nt == false)
                 {
                     _tienNt = V6ControlFormHelper.CreateNumberTienNt("TIEN_NT", "tiennt", M_ROUND_NT, null, 10, false);
-                    dynamicControlList.Add(9997, new AlctControls {DetailControl = _tienNt});
+                    dynamicControlList.Add("9997", new AlctControls {DetailControl = _tienNt});
                 }
                 if (_check_f_tien == false)
                 {
                     _tien = V6ControlFormHelper.CreateNumberTien("TIEN", "tien", M_ROUND, null, 10, false);
-                    dynamicControlList.Add(9996, new AlctControls {DetailControl = _tien});
+                    dynamicControlList.Add("9996", new AlctControls {DetailControl = _tien});
                 }
                 if (_check_f_ps_no_nt == false)
                 {
                     _psnoNt = V6ControlFormHelper.CreateNumberTienNt("PS_NO_NT", "psnont", M_ROUND_NT, null, 10, false);
-                    dynamicControlList.Add(9995, new AlctControls {DetailControl = _psnoNt});
+                    dynamicControlList.Add("9995", new AlctControls {DetailControl = _psnoNt});
                 }
                 if (_check_f_ps_no == false)
                 {
                     _psno = V6ControlFormHelper.CreateNumberTien("PS_NO", "psno", M_ROUND, null, 10, false);
-                    dynamicControlList.Add(9994, new AlctControls {DetailControl = _psno});
+                    dynamicControlList.Add("9994", new AlctControls {DetailControl = _psno});
                 }
                 if (_check_f_tien_tt == false)
                 {
                     _tientt = V6ControlFormHelper.CreateNumberTien("TIEN_TT", "tientt", M_ROUND, null, 10, false);
-                    dynamicControlList.Add(9993, new AlctControls {DetailControl = _tientt});
+                    dynamicControlList.Add("9993", new AlctControls {DetailControl = _tientt});
                 }
 
                 detail1.RemoveControls();
@@ -536,12 +536,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             {
                 detail2.lblName.AccessibleName = "";
                 //Lấy các control động
-                var dynamicControlList = V6ControlFormHelper.GetDynamicControlsAlct(Invoice.Alct2, out _orderList2,
-                    out _alct2Dic);
+                detailControlList2 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct2, out _orderList2, out _alct2Dic);
                 //Thêm các control động vào danh sách
-                foreach (KeyValuePair<int, Control> item in dynamicControlList)
+                foreach (KeyValuePair<string, AlctControls> item in detailControlList2)
                 {
-                    var control = item.Value;
+                    var control = item.Value.DetailControl;
                     ApplyControlEnterStatus(control);
 
                     var NAME = control.AccessibleName.ToUpper();
@@ -706,7 +705,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     }
                 }
 
-                foreach (Control control in dynamicControlList.Values)
+                foreach (AlctControls control in detailControlList2.Values)
                 {
                     detail2.AddControl(control);
                 }
@@ -740,12 +739,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             detail3.lblName.AccessibleName = "TEN_TK";
             //Lấy các control động
-            var dynamicControlList = V6ControlFormHelper.GetDynamicControlsAlct(Invoice.Alct3, out _orderList3,
-                out _alct3Dic);
+            detailControlList3 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct3, out _orderList3, out _alct3Dic);
             //Thêm các control động vào danh sách
-            foreach (KeyValuePair<int, Control> item in dynamicControlList)
+            foreach (KeyValuePair<string, AlctControls> item in detailControlList3)
             {
-                var control = item.Value;
+                var control = item.Value.DetailControl;
                 ApplyControlEnterStatus(control);
                 var NAME = control.AccessibleName.ToUpper();
                 // Gán tag hide và readonly theo GRD_xxxx
@@ -868,7 +866,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
             }
 
-            foreach (Control control in dynamicControlList.Values)
+            foreach (AlctControls control in detailControlList3.Values)
             {
                 detail3.AddControl(control);
             }
@@ -1393,10 +1391,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         /// Lấy động danh sách control (textbox) từ bảng Alct
         /// </summary>
         /// <returns></returns>
-        public SortedDictionary<int, AlctControls> GetDynamicControlsAlct()
+        public Dictionary<string, AlctControls> GetDynamicControlsAlct()
         {
             //exec [VPA_GET_AUTO_COLULMN] 'SOA','','','','';//08/12/2015
-            var result = new SortedDictionary<int, Control>();
+            //var result = new Dictionary<string, Control>();
 
             DataTable alct1;
 

@@ -738,7 +738,7 @@ namespace V6Controls.Forms
         /// <param name="orderList">Dùng để xắp xếp lại gridview_columns khi cần.</param>
         /// <param name="alct1Dic">Dùng để lấy thông tin field khi cần.</param>
         /// <returns></returns>
-        public static SortedDictionary<int, Control> GetDynamicControlsAlct(DataTable alct1,
+        public static SortedDictionary<int, Control> GetDynamicControlsAlct0(DataTable alct1,
             out List<string> orderList, out SortedDictionary<string, DataRow> alct1Dic)
         {
             //exec [VPA_GET_AUTO_COLULMN] 'SOA','','','','';//08/12/2015
@@ -944,11 +944,11 @@ namespace V6Controls.Forms
         /// <param name="orderList">Dùng để xắp xếp lại gridview_columns khi cần.</param>
         /// <param name="alct1Dic">Dùng để lấy thông tin field khi cần.</param>
         /// <returns></returns>
-        public static SortedDictionary<int, AlctControls> GetDynamicControlStructsAlct(DataTable alct1,
+        public static Dictionary<string, AlctControls> GetDynamicControlStructsAlct(DataTable alct1,
             out List<string> orderList, out SortedDictionary<string, DataRow> alct1Dic)
         {
             //exec [VPA_GET_AUTO_COLULMN] 'SOA','','','','';//08/12/2015
-            var result = new SortedDictionary<int, AlctControls>();
+            var result = new Dictionary<string, AlctControls>();
 
             //var alct1 = Invoice.Alct1;
             var _orderList = new List<string>();
@@ -962,9 +962,9 @@ namespace V6Controls.Forms
                 //if (!visible) continue;
                 Config config = new Config(row.ToDataDictionary());
                 var filter_m = config.GetString("FILTER_M");
-                var fcolumn = config.GetString("fcolumn").ToUpper();
-                _orderList.Add(fcolumn);
-                _alct1Dic.Add(fcolumn, row);
+                var FCOLUMN = config.GetString("fcolumn").ToUpper();
+                _orderList.Add(FCOLUMN);
+                _alct1Dic.Add(FCOLUMN, row);
 
                 var fcaption = row[V6Setting.Language == "V" ? "caption" : "caption2"].ToString().Trim();
                 var limits = row["limits"].ToString().Trim();
@@ -983,32 +983,32 @@ namespace V6Controls.Forms
                 {
                     #region Create controls
                     case "A0":
-                        if (fcolumn == "TANG")
+                        if (FCOLUMN == "TANG")
                         {
-                            c = CreateCheckTextBox(fcolumn, "a", fcaption, limits, width, fstatus, carry);
+                            c = CreateCheckTextBox(FCOLUMN, "a", fcaption, limits, width, fstatus, carry);
                         }
-                        else if (fcolumn == "PX_GIA_DDI")
+                        else if (FCOLUMN == "PX_GIA_DDI")
                         {
-                            c = CreateCheckTextBox(fcolumn, "a", fcaption, limits, width, fstatus, carry);
+                            c = CreateCheckTextBox(FCOLUMN, "a", fcaption, limits, width, fstatus, carry);
                         }
-                        else if (fcolumn == "PN_GIA_TBI")
+                        else if (FCOLUMN == "PN_GIA_TBI")
                         {
-                            c = CreateCheckTextBox(fcolumn, "a", fcaption, limits, width, fstatus, carry);
+                            c = CreateCheckTextBox(FCOLUMN, "a", fcaption, limits, width, fstatus, carry);
                         }
                         break;
                     case "A1":
-                        c = CreateCheckTextBox(fcolumn, "a", fcaption, limits, width, fstatus, carry);
+                        c = CreateCheckTextBox(FCOLUMN, "a", fcaption, limits, width, fstatus, carry);
                         break;
                     case "C0":
                         if (fvvar != "")
                         {
                             var checkvvar = Convert.ToBoolean(row["checkvvar"]);
                             var notempty = Convert.ToBoolean(row["notempty"]);
-                            c = CreateVvarTextBox(fcolumn, fvvar, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
+                            c = CreateVvarTextBox(FCOLUMN, fvvar, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
                         }
                         else
                         {
-                            c = CreateColorTextBox(fcolumn, fcaption, limits, width, fstatus, carry);
+                            c = CreateColorTextBox(FCOLUMN, fcaption, limits, width, fstatus, carry);
                         }
                         break;
                     case "C1":  // LookupTextBox
@@ -1022,11 +1022,11 @@ namespace V6Controls.Forms
                             string text_field = ss[1];
                             string bfields = ss[2];
                             string nfields = ss[3];
-                            c = CreateLookupTextBox(fcolumn, ma_dm, value_field, text_field, bfields, nfields, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
+                            c = CreateLookupTextBox(FCOLUMN, ma_dm, value_field, text_field, bfields, nfields, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
                         }
                         else
                         {
-                            c = CreateColorTextBox(fcolumn, fcaption, limits, width, fstatus, carry);
+                            c = CreateColorTextBox(FCOLUMN, fcaption, limits, width, fstatus, carry);
                         }
                         break;
                     case "C2":  // LookupProc
@@ -1040,11 +1040,11 @@ namespace V6Controls.Forms
                             string text_field = ss[1];
                             string bfields = ss[2];
                             string nfields = ss[3];
-                            c = CreateLookupProcTextBox(fcolumn, ma_dm, value_field, text_field, bfields, nfields, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
+                            c = CreateLookupProcTextBox(FCOLUMN, ma_dm, value_field, text_field, bfields, nfields, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
                         }
                         else
                         {
-                            c = CreateColorTextBox(fcolumn, fcaption, limits, width, fstatus, carry);
+                            c = CreateColorTextBox(FCOLUMN, fcaption, limits, width, fstatus, carry);
                         }
                         break;
                     case "C3":  // LookupData
@@ -1052,42 +1052,42 @@ namespace V6Controls.Forms
                         {
                             var checkvvar = Convert.ToBoolean(row["checkvvar"]);
                             var notempty = Convert.ToBoolean(row["notempty"]);
-                            c = CreateLookupDataTextBox(fcolumn, fvvar, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
+                            c = CreateLookupDataTextBox(FCOLUMN, fvvar, fcaption, limits, width, fstatus, checkvvar, notempty, carry);
                         }
                         else
                         {
-                            c = CreateColorTextBox(fcolumn, fcaption, limits, width, fstatus, carry);
+                            c = CreateColorTextBox(FCOLUMN, fcaption, limits, width, fstatus, carry);
                         }
                         break;
                     case "N9"://Kieu so bat ky
                         decimals = row["fdecimal"] == null ? V6Setting.DecimalsNumber : ObjectAndString.ObjectToInt(row["fdecimal"]);
-                        c = CreateNumberTextBox(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
+                        c = CreateNumberTextBox(FCOLUMN, fcaption, decimals, limits, width, fstatus, carry);
 
                         break;
 
                     case "N0"://Tien
                         decimals = V6Options.M_IP_TIEN;// row["fdecimal"] == null ? V6Setting.DecilalsNumber : ObjectAndString.ObjectToInt(row["fdecimal"]);
-                        c = CreateNumberTien(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
+                        c = CreateNumberTien(FCOLUMN, fcaption, decimals, limits, width, fstatus, carry);
 
                         break;
 
                     case "N1"://Ngoai te
                         decimals = V6Options.M_IP_TIEN_NT;
 
-                        c = CreateNumberTienNt(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
+                        c = CreateNumberTienNt(FCOLUMN, fcaption, decimals, limits, width, fstatus, carry);
                         break;
                     case "N2"://so luong
 
                         decimals = V6Options.M_IP_SL;
 
-                        c = CreateNumberSoLuong(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
+                        c = CreateNumberSoLuong(FCOLUMN, fcaption, decimals, limits, width, fstatus, carry);
 
                         break;
                     case "N3"://GIA
 
                         decimals = V6Options.M_IP_GIA;
                         //Tuanmh 06/08/2017 - loi CreateNumberSoLuong
-                        c = CreateNumberGia(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
+                        c = CreateNumberGia(FCOLUMN, fcaption, decimals, limits, width, fstatus, carry);
 
 
                         break;
@@ -1095,26 +1095,26 @@ namespace V6Controls.Forms
 
                         decimals = V6Options.M_IP_GIA_NT;
                         //Tuanmh 06/08/2017 - loi CreateNumberSoLuong
-                        c = CreateNumberGiaNt(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
+                        c = CreateNumberGiaNt(FCOLUMN, fcaption, decimals, limits, width, fstatus, carry);
 
                         break;
                     case "N5"://Ty gia
                         decimals = V6Options.M_IP_TY_GIA;
 
-                        c = CreateNumberTyGia(fcolumn, fcaption, decimals, limits, width, fstatus, carry);
+                        c = CreateNumberTyGia(FCOLUMN, fcaption, decimals, limits, width, fstatus, carry);
 
                         break;
                     case "D0": // Allow null
-                        c = CreateDateTimeColor(fcolumn, fcaption, width, fstatus, carry);
+                        c = CreateDateTimeColor(FCOLUMN, fcaption, width, fstatus, carry);
                         break;
                     case "D1": // Not null
-                        c = CreateDateTimePicker(fcolumn, fcaption, width, fstatus, carry);
+                        c = CreateDateTimePicker(FCOLUMN, fcaption, width, fstatus, carry);
                         break;
                     case "D2": // Not null + time
-                        c = CreateDateTimeFullPicker(fcolumn, fcaption, width, fstatus, carry);
+                        c = CreateDateTimeFullPicker(FCOLUMN, fcaption, width, fstatus, carry);
                         break;
                     case "D3": // null + time
-                        c = CreateDateTimeFullPickerNull(fcolumn, fcaption, width, fstatus, carry);
+                        c = CreateDateTimeFullPickerNull(FCOLUMN, fcaption, width, fstatus, carry);
                         break;
                     #endregion
                 }
@@ -1139,7 +1139,7 @@ namespace V6Controls.Forms
                         lButton = new LookupButton();
                         lButton.ReferenceControl = c;
 
-                        lButton.Name = "lbt" + fcolumn;
+                        lButton.Name = "lbt" + FCOLUMN;
 
                         lButton.R_DataType = defineInfo_M.R_DataType;
                         //lButton.R_Value = defineInfo_M.R_Value;
@@ -1160,7 +1160,7 @@ namespace V6Controls.Forms
                         lButton.Visible = defineInfo_M.Visible;
                     }
 
-                    result.Add(fOrder, new AlctControls { DetailControl = c, LookupButton = lButton, IsCarry = carry });
+                    result.Add(FCOLUMN, new AlctControls { DetailControl = c, LookupButton = lButton, LabelText = fcaption, IsCarry = carry, FOrder = fOrder, IsVisible = fstatus });
                     if (carry)
                     {
                         _carryList.Add(c);
@@ -2443,11 +2443,9 @@ namespace V6Controls.Forms
                 if (canceldata||cancelset||cancelall)
                     goto CANCELALL;
                 
-                var NAME = control is RadioButton ? control.Name : control.AccessibleName;
-                if (NAME != null && NAME.ToUpper() == "MA_SONB")
-                {
-                    string A = "A";
-                }
+                var NAME = "" + (control is RadioButton ? control.Name : control.AccessibleName);
+                NAME = NAME.ToUpper();
+                
                 if (data != null && !string.IsNullOrEmpty(NAME) && data.ContainsKey(NAME.ToUpper()))
                 {
                     NAME = NAME.ToUpper();
@@ -2883,7 +2881,9 @@ namespace V6Controls.Forms
                                 }
                                 else if (!string.IsNullOrEmpty(num.NumberFormatName))
                                 {
-                                    num.DecimalPlaces = ObjectAndString.ObjectToInt(V6Options.GetValue(num.NumberFormatName));
+                                    string nf_value = V6Options.GetValue(num.NumberFormatName);
+                                    if (nf_value.StartsWith("N")) nf_value = nf_value.Substring(1);
+                                    num.DecimalPlaces = ObjectAndString.ObjectToInt(nf_value);
                                 }
                                 else
                                 {
@@ -7647,7 +7647,7 @@ namespace V6Controls.Forms
             IDictionary<string, object> keys = new Dictionary<string, object>();
             keys.Add("MA_BC", ma_bc);
             Alreport1Data = V6BusinessHelper.Select(V6TableName.Alreport1, keys, "*", "", "Stt_Filter").Data;
-            int i = 0;
+            int i_index = 0;
             int baseTop = 10;
             int rowHeight = 25;
             foreach (DataRow row in Alreport1Data.Rows)
@@ -7664,7 +7664,7 @@ namespace V6Controls.Forms
 
                 DefineInfo_Data[AccessibleName_KEY.ToUpper()] = defineInfo;
                 //Label
-                var top = baseTop + i * rowHeight;
+                var top = baseTop + i_index * rowHeight;
 
                 var label = new V6Label();
                 label.Name = "lbl" + defineInfo.Field;
@@ -7733,6 +7733,13 @@ namespace V6Controls.Forms
                             ShowTextField = defineInfo.Field2, //Trường text hiển thị
                             CheckOnLeave = true,
                             CheckNotEmpty = defineInfo.NotEmpty,
+                        };
+                    }
+                    else if (defineInfo.ControlType.ToUpper() == "RICHTEXTBOX")
+                    {
+                        input = new RichTextBox()
+                        {
+                            Name = "rxt" + defineInfo.Field,
                         };
                     }
                     else if (defineInfo.ControlType.ToUpper() == "LABEL")
@@ -7806,6 +7813,8 @@ namespace V6Controls.Forms
                         if (defineInfo.UseLimitChars0)
                         {
                             var tb = input as V6ColorTextBox;
+                            tb.Multiline = defineInfo.MultiLine;
+                            tb.UseChangeTextOnSetFormData = defineInfo.UseChangeText;
                             tb.UseLimitCharacters0 = defineInfo.UseLimitChars0;
                             tb.LimitCharacters0 = defineInfo.LimitChars0;
                         }
@@ -7826,6 +7835,11 @@ namespace V6Controls.Forms
                         : ObjectAndString.ObjectToInt(defineInfo.Width);
                     input.Left = 150;
                     input.Top = top;
+                    if (defineInfo.MultiLine || (defineInfo.ControlType + "").ToUpper() == "RICHTEXTBOX")
+                    {
+                        input.Height = rowHeight*2;
+                        i_index++;
+                    }
 
                     panel1.Controls.Add(input);
                     Input_Controls[defineInfo.Field.ToUpper()] = input;
@@ -8056,7 +8070,7 @@ namespace V6Controls.Forms
                         All_Objects[labelD.Name] = labelD;
                     }
                 }
-                i++;
+                i_index++;
             }
             Event_program2 = V6ControlsHelper.CreateProgram("EventNameSpace", "EventClass", "D" + ma_bc, using_text2,
                 method_text2);
