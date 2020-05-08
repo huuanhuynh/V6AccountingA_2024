@@ -96,6 +96,7 @@
     <Compile Include="ChuyenMaTiengViet.cs" />
     <Compile Include="V6Convert\V6JsonConverter.cs" />
     <Compile Include="V6Convert\V6XmlConverter.cs" />
+    <Compile Include="V6DllLoader.cs" />
     <Compile Include="V6Objects\V6JsonObject.cs" />
     <Compile Include="V6ToolExtensionMethods.cs" />
     <Compile Include="LunarSolar.cs" />

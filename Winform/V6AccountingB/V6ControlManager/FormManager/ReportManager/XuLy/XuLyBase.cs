@@ -967,7 +967,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 XuLyF9();
             }
-            else if (keyData == Keys.F10 && FilterControl.F10)
+            else if ((keyData & Keys.F10) == Keys.F10 && FilterControl.F10)
             {
                 XuLyF10();
             }

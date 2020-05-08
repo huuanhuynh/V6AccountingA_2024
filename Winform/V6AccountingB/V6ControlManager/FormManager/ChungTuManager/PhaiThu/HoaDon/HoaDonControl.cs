@@ -9096,6 +9096,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             InPhieuHachToan(Invoice, _sttRec, TongThanhToan, TongThanhToanNT);
         }
 
+        private void inPhieuThuTienMenu_Click(object sender, EventArgs e)
+        {
+            InPhieuThuTien(Invoice, _sttRec, TongThanhToan, TongThanhToanNT);
+        }
+
         
     }
 }

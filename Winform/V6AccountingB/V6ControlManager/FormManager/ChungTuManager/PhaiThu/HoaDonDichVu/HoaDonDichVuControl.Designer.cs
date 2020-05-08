@@ -199,6 +199,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnTim = new System.Windows.Forms.Button();
             this.lblNameT = new V6Controls.V6Label();
+            this.inPhieuThuTienMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -2568,9 +2569,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             // menuBtnIn
             // 
             this.menuBtnIn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.inPhieuHachToanMenu});
+            this.inPhieuHachToanMenu,
+            this.inPhieuThuTienMenu});
             this.menuBtnIn.Name = "menuBtnIn";
-            this.menuBtnIn.Size = new System.Drawing.Size(174, 48);
+            this.menuBtnIn.Size = new System.Drawing.Size(174, 70);
             // 
             // inPhieuHachToanMenu
             // 
@@ -2651,6 +2653,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.lblNameT.Size = new System.Drawing.Size(688, 18);
             this.lblNameT.TabIndex = 21;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // inPhieuThuTienMenu
+            // 
+            this.inPhieuThuTienMenu.AccessibleDescription = "INVOICEM00038";
+            this.inPhieuThuTienMenu.Name = "inPhieuThuTienMenu";
+            this.inPhieuThuTienMenu.Size = new System.Drawing.Size(173, 22);
+            this.inPhieuThuTienMenu.Text = "In phiếu thu tiền";
+            this.inPhieuThuTienMenu.Click += new System.EventHandler(this.inPhieuThuTienMenu_Click);
             // 
             // HoaDonDichVuControl
             // 
@@ -2877,5 +2887,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
         private System.Windows.Forms.ToolStripMenuItem thayTheNhieuMenu;
         private System.Windows.Forms.ContextMenuStrip menuBtnIn;
         private System.Windows.Forms.ToolStripMenuItem inPhieuHachToanMenu;
+        private System.Windows.Forms.ToolStripMenuItem inPhieuThuTienMenu;
     }
 }

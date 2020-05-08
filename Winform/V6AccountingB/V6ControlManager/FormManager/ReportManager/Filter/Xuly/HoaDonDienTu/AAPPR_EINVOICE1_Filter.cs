@@ -20,6 +20,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             F3 = true;
             F6 = true;
             F9 = true;
+            F10 = true;
             
             dateNgay_ct1.SetValue(V6Setting.M_ngay_ct1);
             dateNgay_ct2.SetValue(V6Setting.M_ngay_ct2);

@@ -1702,10 +1702,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
                     gridViewColumn = dataGridView3.Columns["PS_CO"];
                     if (gridViewColumn != null) gridViewColumn.Visible = true;
 
-                    // Show Dynamic control
-                    if (_PsNoNt_33 != null) _PsNo_33.VisibleTag();
-                    if (_PsCo_33 != null) _PsCo_33.VisibleTag();
-
                 }
                 else
                 {
@@ -3919,6 +3915,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
         private void inPhieuHachToanMenu_Click(object sender, EventArgs e)
         {
             InPhieuHachToan(Invoice, _sttRec, TongThanhToan, TongThanhToanNT);
+        }
+
+        private void inPhieuThuTienMenu_Click(object sender, EventArgs e)
+        {
+            InPhieuThuTien(Invoice, _sttRec, TongThanhToan, TongThanhToanNT);
         }
     }
 }

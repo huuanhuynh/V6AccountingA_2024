@@ -3388,6 +3388,43 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, sttRec_In, ex.Message));
             }
         }
+        
+        public void InPhieuThuTien(V6InvoiceBase Invoice, string sttRec_In, decimal tongThanhToan_Value, decimal tongThanhToanNT_Value)
+        {
+            try
+            {
+                string program = "APRINT_SOA_TA1";
+                string repFile = "APRINT_SOA_TA1";
+                var repTitle = "PHIẾU THU TIỀN";
+                var repTitle2 = "RECEIPTS VOUCHER";
+
+                var c = new ReportRViewBase(Invoice.Mact, program, program, repFile,
+                    repTitle, repTitle2, "", "", "");
+
+                List<SqlParameter> plist = new List<SqlParameter>();
+                plist.Add(new SqlParameter("@STT_REC", sttRec_In));
+                plist.Add(new SqlParameter("@isInvoice", "0"));
+                plist.Add(new SqlParameter("@ReportFile", repFile));
+                plist.Add(new SqlParameter("@user_id", V6Login.UserId));
+                c.FilterControl.InitFilters = plist;
+
+                //Tạo Extra parameters.
+                SortedDictionary<string, object> parameterData = new SortedDictionary<string, object>();
+                decimal TTT = tongThanhToan_Value;
+                decimal TTT_NT = tongThanhToanNT_Value;
+                string LAN = c.LAN;
+                //string MA_NT = _maNt;
+                parameterData.Add("SOTIENVIETBANGCHU", V6BusinessHelper.MoneyToWords(TTT, LAN, V6Options.M_MA_NT0));
+                parameterData.Add("SOTIENVIETBANGCHUNT", V6BusinessHelper.MoneyToWords(TTT_NT, LAN, MA_NT));
+                c.FilterControl.RptExtraParameters = parameterData;
+                c.AutoClickNhan = true;
+                c.ShowToForm(this, V6Setting.IsVietnamese ? repTitle : repTitle2, true);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, sttRec_In, ex.Message));
+            }
+        }
 
         public bool CheckEditAll(V6InvoiceBase Invoice, string status, string kieupost, string soct_sophieu, string ma_sonb,
             string ma_dvcs, string makh, string manx, DateTime ngayct_date, decimal tongThanhToan_Value, string mode_E_D)

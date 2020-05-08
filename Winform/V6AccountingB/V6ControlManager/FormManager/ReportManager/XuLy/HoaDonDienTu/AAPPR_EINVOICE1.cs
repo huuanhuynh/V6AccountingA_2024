@@ -303,6 +303,90 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
+        protected override void XuLyF10()
+        {
+            bool ctrl_is_down = (ModifierKeys & Keys.Control) == Keys.Control;
+            string result = "";//, error = "", sohoadon = "", id = "";
+            try
+            {
+                DataGridViewRow crow = dataGridView1.CurrentRow;
+                if (crow == null) return;
+                SqlParameter[] plist =
+                {
+                    new SqlParameter("@Stt_rec", (crow.Cells["Stt_rec"].Value ?? "").ToString()),
+                    new SqlParameter("@Ma_ct", (crow.Cells["Ma_ct"].Value ?? "").ToString()),
+                    new SqlParameter("@HoaDonMau","0"),
+                    new SqlParameter("@isInvoice","1"),
+                    new SqlParameter("@ReportFile",""),
+                    new SqlParameter("@MA_TD1", FilterControl.String1),
+                    new SqlParameter("@UserID", V6Login.UserId)
+                };
+
+                DataSet ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure + "F9", plist);
+                var paras = new PostManagerParams
+                {
+                    DataSet = ds,
+                    Mode = "CheckConnection",
+                    Branch = FilterControl.String1,
+                };
+                PostManager.PowerCheckConnection(paras, out result);
+                if (!string.IsNullOrEmpty(result))
+                {
+                    this.ShowInfoMessage(result);
+                    return;
+                }
+
+                if (ctrl_is_down)
+                {
+                    if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
+                    {
+                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        {
+                            if (row.IsSelect())
+                            {
+                                result += "\r\n " + UpdateCusVnpt(row.Cells["MA_KH"].Value.ToString());
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.ShowInfoMessage(V6Text.Wrong);
+                    }
+                }
+                else
+                {
+                    result += "\r\n " + UpdateCusVnpt(crow.Cells["MA_KH"].Value.ToString());
+                }
+
+                if (result != null && result.Length > 1) result = result.Substring(2);
+                
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".XuLyF10", ex);
+            }
+            this.ShowInfoMessage(result);
+        }
+
+        public string UpdateCusVnpt(string makh)
+        {
+            string result = "";//, error = "", sohoadon = "", id = "";
+            try
+            {
+                IDictionary<string, object> keys = new Dictionary<string, object>();
+                keys.Add("MA_KH", makh);
+                DataTable data = V6BusinessHelper.Select("ALKH", keys, "*").Data;
+                result += PostManager.DoUpdateCus(data);
+            }
+            catch (Exception ex)
+            {
+                result += ex.Message;
+                this.ShowErrorException(GetType() + ".XuLyF10", ex);
+            }
+            return result;
+        }
+
+
         V6Invoice81 invoice = new V6Invoice81();
         protected override void ViewDetails(DataGridViewRow row)
         {

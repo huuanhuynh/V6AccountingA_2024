@@ -1977,7 +1977,7 @@ namespace V6ThuePost
         /// <returns></returns>
         public static string DoUpdateCus(string dbf, string type = "1")
         {
-            string result = "";
+            string update_cus_result = "";
             string error = "";
             int error_count = 0, success_count = 0;
             //MessageBox.Show("Test Debug");
@@ -2011,7 +2011,7 @@ namespace V6ThuePost
                             }
                             else error_count ++;
 
-                            result += string.Format("\r\n Update {0} status: {1}", ma_kh, num);
+                            update_cus_result += string.Format("\r\n Update {0} status: {1}", ma_kh, num);
                         }
                         catch (Exception ex)
                         {
@@ -2043,7 +2043,7 @@ namespace V6ThuePost
                         Logger.WriteToLog("Preparing UpdateCus:\r\n" + xml);
                         var num = UpdateCus(xml);
                         success_count = Convert.ToInt32(num);
-                        result += "Success " + num + "/" + data.Rows.Count;
+                        update_cus_result += "Success " + num + "/" + data.Rows.Count;
                     }
                     catch (Exception ex)
                     {
@@ -2058,10 +2058,10 @@ namespace V6ThuePost
                 error += "\n" + ex.Message;
             }
             
-            if (error.Length > 0) result += "ERR: " + error;
-            Logger.WriteToLog("Program.DoUpdateCus " + result);
+            if (error.Length > 0) update_cus_result += "ERR: " + error;
+            Logger.WriteToLog("Program.DoUpdateCus " + update_cus_result);
             //return result;
-            return string.Format("Success {0}   Error {1}\n{2}", success_count, error_count, result);
+            return string.Format("Success {0}   Error {1}\n{2}", success_count, error_count, update_cus_result);
         }
 
         public static string UpdateCus(string xml)

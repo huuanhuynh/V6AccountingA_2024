@@ -243,6 +243,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.btnSua = new System.Windows.Forms.Button();
             this.btnIn = new wyDay.Controls.SplitButton();
             this.menuBtnIn = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.inPhieuThuTienMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.inPhieuHachToanMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.btnCopy = new System.Windows.Forms.Button();
             this.btnMoi = new System.Windows.Forms.Button();
@@ -3563,9 +3564,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             // menuBtnIn
             // 
             this.menuBtnIn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.inPhieuThuTienMenu,
             this.inPhieuHachToanMenu});
             this.menuBtnIn.Name = "menuBtnIn";
-            this.menuBtnIn.Size = new System.Drawing.Size(174, 26);
+            this.menuBtnIn.Size = new System.Drawing.Size(174, 48);
+            // 
+            // inPhieuThuTienMenu
+            // 
+            this.inPhieuThuTienMenu.AccessibleDescription = "INVOICEM00038";
+            this.inPhieuThuTienMenu.Name = "inPhieuThuTienMenu";
+            this.inPhieuThuTienMenu.Size = new System.Drawing.Size(173, 22);
+            this.inPhieuThuTienMenu.Text = "In phiếu thu tiền";
+            this.inPhieuThuTienMenu.Click += new System.EventHandler(this.inPhieuThuTienMenu_Click);
             // 
             // inPhieuHachToanMenu
             // 
@@ -3921,5 +3931,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private System.Windows.Forms.ToolStripMenuItem thayTheNhieuMenu;
         private System.Windows.Forms.ContextMenuStrip menuBtnIn;
         private System.Windows.Forms.ToolStripMenuItem inPhieuHachToanMenu;
+        private System.Windows.Forms.ToolStripMenuItem inPhieuThuTienMenu;
     }
 }

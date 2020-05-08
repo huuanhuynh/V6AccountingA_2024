@@ -114,6 +114,7 @@ namespace V6ThuePostManager
         private static Dictionary<string, ConfigLine> itemInfoConfig = null;
         private static Dictionary<string, ConfigLine> summarizeInfoConfig = null;
         private static Dictionary<string, ConfigLine> taxBreakdownsConfig = null;
+        private static Dictionary<string, ConfigLine> customerInfoConfig = null;
 
         //Excel config
         private static string template_xls = "template.xls";
@@ -668,6 +669,17 @@ namespace V6ThuePostManager
                 }
                 else  if (paras.Mode.StartsWith("M") || paras.Mode == "") // MSHDT//Mới Sửa Hủy ĐiềuChỉnh(S) ThayThế
                 {
+                    try // Update danh mục khách hàng.
+                    {
+                        if (customerInfoConfig != null && customerInfoConfig.Count > 0)
+                        {
+                            DoUpdateCus(am_table);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        
+                    }
                     var xml = ReadData_Vnpt();
                     //File.Create(flagFileName1).Close();
                     result = ImportAndPublishInv(xml);
@@ -774,7 +786,7 @@ namespace V6ThuePostManager
                     result += paras.Result.InvoiceNo;
                     //result += invXml;
                 }
-                else if (paras.Mode == "S")// || paras.Mode == "D")
+                else if (paras.Mode == "S")
                 {
                     var xml = ReadDataS_Vnpt();
                     result = adjustInv(xml, paras.Fkey_hd);
@@ -818,9 +830,11 @@ namespace V6ThuePostManager
                 else if (paras.Mode == "D")
                 {
                     // Danh muc??
-                    //string type = "1";
-                    //if (mode.Length > 1) type = mode[1].ToString();
-                    //result = DoUpdateCus(arg2, type);
+                    string type = "1";
+                    if (paras.Mode.Length > 1) type = paras.Mode[1].ToString();
+                    result = DoUpdateCus(am_table, type);
+                    //DataTable data = V6BusinessHelper.Select("ALKH", "*", "ISNULL([E_MAIL],'') <> ''").Data;
+                    //result = DoUpdateCus(data, type);
                 }
                 else if (paras.Mode.StartsWith("U"))//U1,U2
                 {
@@ -938,6 +952,110 @@ namespace V6ThuePostManager
 
             End:
             return result;
+        }
+
+        public static string DoUpdateCus(DataTable data, string type = "1")
+        {
+            string update_cus_result = "";
+            string error = "";
+            int error_count = 0, success_count = 0;
+            //MessageBox.Show("Test Debug");
+            try
+            {
+                //var data = ReadDbf(dbf);
+                if (type == "1")
+                {
+                    Customer cus = null;
+                    string ma_kh = null;
+                    int count = 0;
+                    foreach (DataRow row in data.Rows)
+                    {
+                        count++;
+                        try
+                        {
+                            cus = null;
+                            ma_kh = null;
+                            Customers cuss = new Customers();
+                            cus = ReadCusDataXml(row);
+                            ma_kh = row["MA_KH"].ToString().Trim();
+                            cuss.Customer_List.Add(cus);
+                            string xml = V6XmlConverter.ClassToXml(cuss);
+
+                            Logger.WriteToLog(string.Format("Preparing UpdateCus {0} {1}\r\n{2}", count, ma_kh, xml));
+                            V6Return v6return;
+                            var num = VnptWS.UpdateCus(_link_Publish_vnpt_thaison, xml, _username, _password, out v6return);
+                            if (num == "1")
+                            {
+                                success_count++;
+                                Logger.WriteToLog(string.Format("UpdateCus {0} {1} Success.", count, ma_kh));
+                            }
+                            else error_count++;
+
+                            update_cus_result += string.Format("\r\n Update {0} status: {1}", ma_kh, num);
+                        }
+                        catch (Exception ex)
+                        {
+                            error_count++;
+                            if (!string.IsNullOrEmpty(ma_kh) && cus != null)
+                            {
+                                error += "\nCustomer " + count + " " + ma_kh;
+                            }
+                            else
+                            {
+                                error += "\nCustomer " + count + " null OR no code.";
+                            }
+                            error += "\n" + ex.Message;
+                        }
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        Customers cuss = new Customers();
+                        foreach (DataRow row in data.Rows)
+                        {
+                            Customer cus = ReadCusDataXml(row);
+                            cuss.Customer_List.Add(cus);
+                        }
+                        string xml = V6XmlConverter.ClassToXml(cuss);
+
+                        Logger.WriteToLog("Preparing UpdateCus:\r\n" + xml);
+                        V6Return v6return;
+                        var num = VnptWS.UpdateCus(_link_Publish_vnpt_thaison, xml, _username, _password, out v6return);
+                        success_count = Convert.ToInt32(num);
+                        update_cus_result += "Success " + num + "/" + data.Rows.Count;
+                    }
+                    catch (Exception ex)
+                    {
+                        error += ex.Message;
+                        error_count = 1;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                error += "\n" + ex.Message;
+            }
+
+            if (error.Length > 0) update_cus_result += "ERR: " + error;
+            Logger.WriteToLog("Program.DoUpdateCus " + update_cus_result);
+            //return result;
+            return string.Format("Success {0}   Error {1}\n{2}", success_count, error_count, update_cus_result);
+        }
+
+        public static Customer ReadCusDataXml(DataRow row)
+        {
+            string result = "";
+            Customer cus = new Customer();
+
+            foreach (KeyValuePair<string, ConfigLine> item in customerInfoConfig)
+            {
+                cus.Customer_Info[item.Key] = GetValue(row, item.Value);
+            }
+
+            return cus;
         }
 
         public static string ReadData_Vnpt()
@@ -2114,7 +2232,7 @@ namespace V6ThuePostManager
                     paras.Result.InvoiceNo = so_hoa_don;
                     result += so_hoa_don;
                 }
-                else if (paras.Mode == "S" || paras.Mode == "D")
+                else if (paras.Mode == "S")
                 {
                     var xml = ReadDataS_Vnpt();
                     result = adjustInv(xml, paras.Fkey_hd);
@@ -2857,7 +2975,7 @@ namespace V6ThuePostManager
                     result += paras.Result.InvoiceNo;
                     //result += invXml;
                 }
-                else if (paras.Mode == "S")// || paras.Mode == "D")
+                else if (paras.Mode == "S")
                 {
                     var xml = ReadDataS_Vnpt();
                     result = adjustInv(xml, paras.Fkey_hd);
@@ -3129,7 +3247,7 @@ namespace V6ThuePostManager
                     result += paras.Result.InvoiceNo;
                     //result += invXml;
                 }
-                else if (paras.Mode == "S")// || paras.Mode == "D")
+                else if (paras.Mode == "S")
                 {
                     var invoice = (HoaDonEntity)ReadData_ThaiSon("S");
                     invoice.SoHoaDonGoc = paras.Fkey_hd_tt;
@@ -3415,6 +3533,7 @@ namespace V6ThuePostManager
             itemInfoConfig = new Dictionary<string, ConfigLine>();
             summarizeInfoConfig = new Dictionary<string, ConfigLine>();
             taxBreakdownsConfig = new Dictionary<string, ConfigLine>();
+            customerInfoConfig = new Dictionary<string, ConfigLine>();
 
             parameters_config = new List<ConfigLine>();
 
@@ -3569,6 +3688,14 @@ namespace V6ThuePostManager
                                 if (!string.IsNullOrEmpty(line.Field))
                                 {
                                     taxBreakdownsConfig.Add(line.Field, line);
+                                }
+                                break;
+                            }
+                        case "CUSTOMERINFO":
+                            {
+                                if (!string.IsNullOrEmpty(line.Field))
+                                {
+                                    customerInfoConfig.Add(line.Field, line);
                                 }
                                 break;
                             }

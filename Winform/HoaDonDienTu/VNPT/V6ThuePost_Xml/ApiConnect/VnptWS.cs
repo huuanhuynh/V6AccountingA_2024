@@ -189,6 +189,42 @@ namespace V6ThuePostXmlApi
             return null;
         }
 
+        public static string UpdateCus(string link_Publish, string xml, string username, string password, out V6Return v6return)
+        {
+            v6return = new V6Return();
+            int result = 0;
+            string message = "";
+            try
+            {
+                result = new PublishService.PublishService(link_Publish).UpdateCus(xml, username, password, 0);
+                message += result;
+
+                if (result == -5)
+                {
+                    message = "ERR:" + message + "\r\nCó khách hàng đã tồn tại.";
+                }
+                else if (result == -3)
+                {
+                    message = "ERR:" + message + "\r\nDữ liệu xml đầu vào không đúng quy định.";
+                }
+                else if (result == -2)
+                {
+                    message = "ERR:" + message + "\r\nKhông import được khách hàng vào database.";
+                }
+                else if (result == -1)
+                {
+                    message = "ERR:" + message + "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
+                }
+            }
+            catch (Exception ex)
+            {
+                message = "ERR:EX\r\n" + ex.Message;
+                //Logger.WriteToLog("Program.UpdateCus " + message);
+            }
+
+            return message;
+        }
+
         public static string CheckConnection()
         {
             return "false";

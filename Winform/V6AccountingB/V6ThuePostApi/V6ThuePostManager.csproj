@@ -115,6 +115,10 @@
       <Project>{5128ff85-304f-4943-853e-f8e3535dfb55}</Project>
       <Name>V6AccountingBusiness</Name>
     </ProjectReference>
+    <ProjectReference Include="..\V6Structs\V6Structs.csproj">
+      <Project>{910141a1-9fc5-4a44-b682-425100fe9023}</Project>
+      <Name>V6Structs</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

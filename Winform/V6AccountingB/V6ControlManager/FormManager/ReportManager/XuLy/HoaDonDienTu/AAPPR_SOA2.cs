@@ -225,13 +225,22 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected override void XuLyF10()
         {
+            return;
+            string result = "";//, error = "", sohoadon = "", id = "";
             try
             {
-                // Test search thong tin.
-                var row = dataGridView1.CurrentRow;
-                if (row == null) return;
+                DataGridViewRow row = dataGridView1.CurrentRow;
+                if (row != null && row.IsSelect())
+                {
+                    //string mode = row.Cells["Kieu_in"].Value.ToString();
+                    string soct = row.Cells["So_ct"].Value.ToString().Trim();
+                    string dir = row.Cells["Dir_in"].Value.ToString().Trim();
+                    string file = row.Cells["File_in"].Value.ToString().Trim();
+                    string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
+                    string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
+                    string serial = row.Cells["SO_SERI"].Value.ToString().Trim();
 
-                SqlParameter[] plist =
+                    SqlParameter[] plist =
                         {
                             new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
                             new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
@@ -242,30 +251,26 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             new SqlParameter("@UserID", V6Login.UserId)
                         };
 
-                DataSet ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure + "F10", plist);
+                    DataSet ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure + "F9", plist);
+                    //DataTable data0 = ds.Tables[0];
+                    
+                    var paras = new PostManagerParams
+                    {
+                        DataSet = ds,
+                        Mode = "D",
+                        Branch = FilterControl.String1,
+                        Dir = dir,
+                        FileName = file,
+                        Key_Down = Key_Down,
+                        RptFileFull = ReportFileFull,
+                        Fkey_hd = fkey_hd,
+                        Pattern = pattern,
+                        Serial = serial,
+                    };
+                    result = PostManager.PowerPost(paras);//, out sohoadon, out id, out error);
 
-                string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
-                string serial = row.Cells["SO_SERI"].Value.ToString().Trim();
-                string invoiceNo = serial + row.Cells["SO_CT"].Value.ToString().Trim();
-                DateTime ngayCt = ObjectAndString.ObjectToFullDateTime(row.Cells["NGAY_CT"].Value);
-                string strIssueDate = ObjectAndString.ObjectToString(row.Cells["NGAY_CT"].Value, "yyyyMMddHHmmss");
-
-                var paras = new PostManagerParams
-                {
-                    DataSet = ds,
-                    Mode = "TestView",
-                    Branch = FilterControl.String1,
-                    //Dir = dir,
-                    //FileName = file,
-                    //Key_Down = "TestView",
-                    //RptFileFull = ReportFileFull,
-                    //Fkey_hd = fkey_hd,
-                    Pattern = pattern,
-                    InvoiceNo = invoiceNo,
-                    InvoiceDate = ngayCt,
-                    strIssueDate = strIssueDate,
-                };
-                var result = PostManager.SearchInvoice(paras);
+                    
+                }
                 this.ShowInfoMessage(result.Left(200));
             }
             catch (Exception ex)
