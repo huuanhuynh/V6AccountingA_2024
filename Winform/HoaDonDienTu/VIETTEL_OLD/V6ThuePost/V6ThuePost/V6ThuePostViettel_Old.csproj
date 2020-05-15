@@ -69,7 +69,6 @@
     <Compile Include="BaseMessageForm.designer.cs">
       <DependentUpon>BaseMessageForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConfigLine.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

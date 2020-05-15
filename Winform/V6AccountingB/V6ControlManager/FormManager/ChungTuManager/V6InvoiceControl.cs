@@ -3393,8 +3393,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try
             {
-                string program = "APRINT_SOA_TA1";
-                string repFile = "APRINT_SOA_TA1";
+                string program = "APRINT_" + Invoice.Mact + "_TA1";
+                string repFile = "APRINT_" + Invoice.Mact + "_TA1";
                 var repTitle = "PHIẾU THU TIỀN";
                 var repTitle2 = "RECEIPTS VOUCHER";
 

@@ -390,6 +390,21 @@ namespace V6AccountingBusiness.Invoices
             return Alct0;
         }
 
+        public override DataTable GetCuocCont_All_Cust(string sttRec, string madvcs, DateTime ngay_ct1, DateTime ngay_ct2, string filterString)
+        {
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@stt_rec", sttRec), 
+                new SqlParameter("@ma_dvcs", madvcs),
+                new SqlParameter("@ngay_ct1", ngay_ct1.ToString("yyyyMMdd")),
+                new SqlParameter("@ngay_ct2", ngay_ct2.ToString("yyyyMMdd")),
+                new SqlParameter("@advance", filterString)
+            };
+            var result = V6BusinessHelper.ExecuteProcedure("ACACTTA1_CUSTS_CUOCCONT_InitSd", plist).Tables[0];
+            Alct0 = result;
+            return Alct0;
+        }
+
         public override DataTable GetSoDu0TK_All_Cust(string sttRec, string madvcs, DateTime ngay_ct, string filterString)
         {
             SqlParameter[] plist =

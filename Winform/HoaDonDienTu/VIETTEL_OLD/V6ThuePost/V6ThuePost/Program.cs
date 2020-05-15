@@ -351,6 +351,43 @@ namespace V6ThuePost
                 {
                     postObject.sellerInfo[item.Key] = GetValue(row0, item.Value);
                 }
+                if (metadataConfig != null)
+                {
+                    foreach (KeyValuePair<string, ConfigLine> metaItem in metadataConfig)
+                    {
+                        Dictionary<string, object> metadata = new Dictionary<string, object>();
+                        metadata["invoiceCustomFieldId"] = ObjectAndString.ObjectToInt(metaItem.Value.SL_TD1);
+                        metadata["keyTag"] = metaItem.Key;
+                        metadata["valueType"] = metaItem.Value.DataType; // text, number, date
+                        if (metaItem.Value.DataType.ToLower() == "date")
+                        {
+                            metadata["dateValue"] = GetValue(row0, metaItem.Value);
+                        }
+                        else if (metaItem.Value.DataType.ToLower() == "number")
+                        {
+                            metadata["numberValue"] = GetValue(row0, metaItem.Value);
+                        }
+                        else // if (metaItem.Value.DataType.ToLower() == "date")
+                        {
+                            metaItem.Value.DataType = "text";
+                            metadata["stringValue"] = GetValue(row0, metaItem.Value);
+                        }
+                        metadata["keyLabel"] = ObjectAndString.ObjectToString(metaItem.Value.MA_TD2);
+                        metadata["isRequired"] = ObjectAndString.ObjectToBool(metaItem.Value.SL_TD2);
+                        metadata["isSeller"] = ObjectAndString.ObjectToBool(metaItem.Value.SL_TD3);
+
+                        //{
+                        //   "invoiceCustomFieldId": 1135,
+                        //   "keyTag": "dueDate",
+                        //   "valueType": "date",
+                        //   "dateValue": 1544115600000,
+                        //   "keyLabel": "Hạn thanh toán",
+                        //   "isRequired": false,
+                        //   "isSeller": false
+                        // },
+                        postObject.metadata.Add(metadata);
+                    }
+                }
                 //private static Dictionary<string, XmlLine> paymentsConfig = null;
                 Dictionary<string, object> payment = new Dictionary<string, object>();
                 foreach (KeyValuePair<string, ConfigLine> item in paymentsConfig)
@@ -771,7 +808,7 @@ namespace V6ThuePost
         internal static Dictionary<string, ConfigLine> generalInvoiceInfoConfig = null;
         internal static Dictionary<string, ConfigLine> buyerInfoConfig = null;
         internal static Dictionary<string, ConfigLine> sellerInfoConfig = null;
-        internal static Dictionary<string, ConfigLine> metaDataConfig = null;
+        internal static Dictionary<string, ConfigLine> metadataConfig = null;
         internal static Dictionary<string, ConfigLine> paymentsConfig = null;
         internal static Dictionary<string, ConfigLine> itemInfoConfig = null;
         internal static Dictionary<string, ConfigLine> summarizeInfoConfig = null;
@@ -783,7 +820,7 @@ namespace V6ThuePost
             generalInvoiceInfoConfig = new Dictionary<string, ConfigLine>();
             buyerInfoConfig = new Dictionary<string, ConfigLine>();
             sellerInfoConfig = new Dictionary<string, ConfigLine>();
-            metaDataConfig = new Dictionary<string, ConfigLine>();
+            //metadataConfig = new Dictionary<string, ConfigLine>();
             paymentsConfig = new Dictionary<string, ConfigLine>();
             itemInfoConfig = new Dictionary<string, ConfigLine>();
             summarizeInfoConfig = new Dictionary<string, ConfigLine>();
@@ -861,10 +898,11 @@ namespace V6ThuePost
                             }
                         case "MetaData":
                             {
+                                if (metadataConfig == null) metadataConfig = new Dictionary<string, ConfigLine>();
                                 string key = reader.GetAttribute("Field");
                                 if (!string.IsNullOrEmpty(key))
                                 {
-                                    metaDataConfig.Add(key, ReadXmlLine(reader));
+                                    metadataConfig.Add(key, ReadXmlLine(reader));
                                 }
                                 break;
                             }
@@ -929,6 +967,12 @@ namespace V6ThuePost
             config.Type = reader.GetAttribute("Type");
             config.DataType = reader.GetAttribute("DataType");
             config.Format = reader.GetAttribute("Format");
+            
+            config.MA_TD2 = reader.GetAttribute("MA_TD2");
+            config.MA_TD3 = reader.GetAttribute("MA_TD3");
+            config.SL_TD1 = ObjectAndString.StringToDecimal(reader.GetAttribute("SL_TD1"));
+            config.SL_TD2 = ObjectAndString.StringToDecimal(reader.GetAttribute("SL_TD2"));
+            config.SL_TD3 = ObjectAndString.StringToDecimal(reader.GetAttribute("SL_TD3"));
             return config;
         }
 

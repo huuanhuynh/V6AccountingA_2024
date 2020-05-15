@@ -1020,6 +1020,11 @@ namespace V6AccountingBusiness.Invoices
             throw new NotImplementedException();
         }
 
+        public virtual DataTable GetCuocCont_All_Cust(string sttRec, string madvcs, DateTime ngay_ct1, DateTime ngay_ct2, string filterString)
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual DataTable GetSoDu0TK_All_Cust(string sttRec, string madvcs, DateTime ngay_ct, string filterString)
         {
             throw new NotImplementedException();

@@ -35,7 +35,7 @@ namespace V6SqlConnect
                     {
                         ColumnName = row["COLUMN_NAME"].ToString().Trim(),
                         AllowNull = "YES" == row["IS_NULLABLE"].ToString(),
-                        ColumnDefault = row["COLUMN_DEFAULT"] == null ? null : row["COLUMN_DEFAULT"].ToString().Trim(),
+                        ColumnDefault = (row["COLUMN_DEFAULT"] == null || row["COLUMN_DEFAULT"].ToString().Trim() == "" ) ? null : row["COLUMN_DEFAULT"].ToString().Trim(),
                         sql_data_type_string = row["DATA_TYPE"].ToString().Trim()
                     };
                     try

@@ -304,7 +304,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                         {
                             _thue_nt.V6LostFocus += delegate
                             {
-                                Tinh_TienThue_TheoTienThueNt(_thue_nt.Value, txtTyGia.Value, _thue, M_ROUND);
+                                //Tinh_TienThue_TheoTienThueNt(_thue_nt.Value, txtTyGia.Value, _thue, M_ROUND); !!!!!
                             };
                         }
                         break;
@@ -3404,16 +3404,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
 
             var ty_gia = txtTyGia.Value;
             var t_tien_nt2 = txtTongTienNt2.Value;
+            var t_tien2 = txtTongTien2.Value;
             var t_gg_nt = txtTongGiamNt.Value;
-            var t_vc_nt = TxtT_TIENVCNT.Value;
+            var t_gg = txtTongGiam.Value;
             var t_ck_nt = txtTongCkNt.Value;
+            var t_ck = txtTongCk.Value;
+            var t_vc_nt = TxtT_TIENVCNT.Value;
+            var t_vc = TxtT_TIENVC.Value;
+            
 
-            var t_tien_truocthue = t_tien_nt2 - t_gg_nt - t_ck_nt + t_vc_nt;
+            var t_tien_truocthue_nt = t_tien_nt2 - t_gg_nt - t_ck_nt + t_vc_nt;
+            var t_tien_truocthue = t_tien2 - t_gg - t_ck + t_vc;
 
             if (chkSuaTienThue.Checked)//Tiền thuế gõ tự do
             {
                 t_thue_nt = txtTongThueNt.Value;
-                t_thue = V6BusinessHelper.Vround(t_thue_nt * ty_gia, M_ROUND);
+                t_thue = txtTongThue.Value;
+                //t_thue = V6BusinessHelper.Vround(t_thue_nt * ty_gia, M_ROUND);
 
 
                 if (_maNt == _mMaNt0)
@@ -3423,16 +3430,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             {
                 thue_suat = txtThueSuat.Value;
                 //tiền thuế = (tiền hàng - tiền giảm - chiết khấu) * thuế suất
-                t_thue_nt = t_tien_truocthue*thue_suat/100;
+                t_thue_nt = t_tien_truocthue_nt*thue_suat/100;
+                t_thue = t_tien_truocthue*thue_suat/100;
                 t_thue_nt = V6BusinessHelper.Vround(t_thue_nt, M_ROUND_NT);
+                t_thue = V6BusinessHelper.Vround(t_thue, M_ROUND);
                 //sV("T_THUE_NT", t_thue_nt);
                 
-                
-                t_thue = V6BusinessHelper.Vround(t_thue_nt * ty_gia, M_ROUND);
+                //t_thue = V6BusinessHelper.Vround(t_thue_nt * ty_gia, M_ROUND);
                 if (_maNt == _mMaNt0)
                     t_thue = t_thue_nt;
-                
-               
             }
             // Tuanmh 25/07/2017
             txtTongThueNt.Value = t_thue_nt;
@@ -3442,48 +3448,62 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             //tính phần trăm giá trị của từng chi tiết trên tổng tiền hàng rồi nhân với tổng thuế sẽ ra thuế 
             var t_thue_nt_check = 0m;
             var t_thue_check = 0m;
+            var index_nt = -1;
             var index = -1;
             for (var i = 0; i < AD.Rows.Count; i++)
             {
-                if (t_tien_truocthue != 0)
+                if (t_tien_truocthue_nt != 0)
                 {
-                    var tien_nt2 = ObjectAndString.ObjectToDecimal(AD.Rows[i]["TIEN_NT2"])
-                        + ObjectAndString.ObjectToDecimal(AD.Rows[i]["TIEN_VC_NT"]) - ObjectAndString.ObjectToDecimal(AD.Rows[i]["CK_NT"]) - ObjectAndString.ObjectToDecimal(AD.Rows[i]["GG_NT"]);
-                    var thue_nt = V6BusinessHelper.Vround(tien_nt2 * t_thue_nt / t_tien_truocthue, M_ROUND);
+                    var tien_nt2 = ObjectAndString.ObjectToDecimal(AD.Rows[i]["TIEN_NT2"]) + ObjectAndString.ObjectToDecimal(AD.Rows[i]["TIEN_VC_NT"]) - ObjectAndString.ObjectToDecimal(AD.Rows[i]["CK_NT"]) - ObjectAndString.ObjectToDecimal(AD.Rows[i]["GG_NT"]);
+                    var thue_nt = V6BusinessHelper.Vround(tien_nt2 * t_thue_nt / t_tien_truocthue_nt, M_ROUND_NT);
                     t_thue_nt_check = t_thue_nt_check + thue_nt;
-
-                    var thue = V6BusinessHelper.Vround(thue_nt * ty_gia, M_ROUND);
-
-                    if (_maNt == _mMaNt0)
-                        thue = thue_nt;
-                    t_thue_check += thue;
-
-                    if (thue_nt != 0 && index == -1)
-                        index = i;
+                    
+                    if (thue_nt != 0 && index_nt == -1)
+                        index_nt = i;
 
                     if (!AD.Columns.Contains("Thue_nt")) AD.Columns.Add("Thue_nt", typeof(decimal));
-                    if (!AD.Columns.Contains("Thue")) AD.Columns.Add("Thue", typeof(decimal));
                     AD.Rows[i]["Thue_nt"] = thue_nt;
-                    AD.Rows[i]["Thue"] = thue;
                 }
                 else
                 {
                     AD.Rows[i]["Thue_nt"] = 0m;
+                }
+
+                if (t_tien_truocthue_nt != 0)
+                {
+                    var tien2 = ObjectAndString.ObjectToDecimal(AD.Rows[i]["TIEN2"]) + ObjectAndString.ObjectToDecimal(AD.Rows[i]["TIEN_VC"]) - ObjectAndString.ObjectToDecimal(AD.Rows[i]["CK"]) - ObjectAndString.ObjectToDecimal(AD.Rows[i]["GG"]);
+                    var thue = V6BusinessHelper.Vround(tien2 * t_thue / t_tien_truocthue, M_ROUND);
+                    t_thue_check += thue;
+
+                    if (thue != 0 && index == -1)
+                        index = i;
+
+                    if (!AD.Columns.Contains("Thue")) AD.Columns.Add("Thue", typeof(decimal));
+                    AD.Rows[i]["Thue"] = thue;
+                }
+                else
+                {
                     AD.Rows[i]["Thue"] = 0m;
+                }
+
+                if (_maNt == _mMaNt0)
+                {
+                    AD.Rows[i]["Thue"] = AD.Rows[i]["Thue_nt"];
                 }
             }
             
             // Xu ly chenh lech
             // Tìm dòng có số tiền
+            if (index_nt != -1)
+            {
+                decimal _thue_nt = ObjectAndString.ObjectToDecimal(AD.Rows[index_nt]["Thue_nt"]) + (t_thue_nt - t_thue_nt_check);
+                AD.Rows[index_nt]["Thue_nt"] = _thue_nt;
+            }
             if (index != -1)
             {
-                decimal _thue_nt = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Thue_nt"]) + (t_thue_nt - t_thue_nt_check);
-                AD.Rows[index]["Thue_nt"] = _thue_nt;
-
                 decimal _thue = ObjectAndString.ObjectToDecimal(AD.Rows[index]["Thue"]) + (t_thue - t_thue_check);
                 AD.Rows[index]["Thue"] = _thue;
             }
-
 
         }
 
@@ -3649,8 +3669,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         {
             try
             {
-                //string filter = V6Login.GetFilterKhoByDVCS(txtMaDVCS.Text.Trim());
-                //_maKhoI.SetInitFilter(filter);
+                string filter = V6Login.GetFilterKhoByDVCS(txtMaDVCS.Text.Trim());
+                _maKhoI.SetInitFilter(filter);
             }
             catch (Exception ex)
             {
@@ -3863,7 +3883,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         public void Tinh_thue_ct()
         {
             if (M_SOA_MULTI_VAT == "1")
-                Tinh_TienThueNtVaTienThue_TheoThueSuat(_thue_suat_i.Value, _tienNt2.Value - _ckNt.Value - _ggNt.Value, _tien2.Value - _ck.Value - _gg.Value, _thue_nt, _thue);
+                Tinh_TienThueNtVaTienThue_TheoThueSuat_sl(_thue_suat_i.Value, _tienNt2.Value - _ckNt.Value - _ggNt.Value, _tien2.Value - _ck.Value - _gg.Value, _thue_nt, _thue);
+        }
+        public void Tinh_TienThueNtVaTienThue_TheoThueSuat_sl(decimal thueSuat, decimal tienNt, decimal tien, V6NumberTextBox txtTienThueNt, V6NumberTextBox txtTienThue)
+        {
+            try
+            {
+                Tinh_TienThue_TheoThueSuat(thueSuat, tienNt, txtTienThueNt, M_ROUND_NT);
+                Tinh_TienThue_TheoThueSuat(thueSuat, tien, txtTienThue, M_ROUND);
+
+                if (_maNt == _mMaNt0)
+                {
+                    txtTienThue.Value = txtTienThueNt.Value;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
         }
 
         private void FormatNumberControl()
@@ -5659,7 +5696,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             try
             {
                 if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+                {
                     txtTongThueNt.ReadOnly = !chkSuaTienThue.Checked;
+                    if (_maNt != _mMaNt0)
+                    {
+                        txtTongThue.ReadOnly = !chkSuaTienThue.Checked;
+                    }
+                }
 
                 TinhTongThanhToan("ckhSuaTienThue");
             }
@@ -6732,7 +6775,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         {
             try
             {
-                txtTongThue.Value = V6BusinessHelper.Vround(txtTongThueNt.Value * txtTyGia.Value, M_ROUND);
+                //txtTongThue.Value = V6BusinessHelper.Vround(txtTongThueNt.Value * txtTyGia.Value, M_ROUND);
                 if (MA_NT == _mMaNt0)
                 {
                     txtTongThue.Value = txtTongThueNt.Value;

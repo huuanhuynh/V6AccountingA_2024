@@ -29,7 +29,8 @@ namespace V6Structs
     public class V6ColumnStruct
     {
         public bool AllowNull = true;
-        public string ColumnName = "", ColumnDefault = null;
+        public string ColumnName = "";
+        public string ColumnDefault = null;
         private int maxlength = -1;
         public int MaxLength
         {

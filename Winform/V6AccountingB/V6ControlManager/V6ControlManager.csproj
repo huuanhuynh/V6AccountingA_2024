@@ -79,11 +79,29 @@
     <Compile Include="FormManager\ChungTuManager\ChungTuQuickView.Designer.cs">
       <DependentUpon>ChungTuQuickView.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\Filter\FilterView_ABSODU0.cs">
+    <Compile Include="FormManager\ChungTuManager\Filter\FilterView_APSODU0.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\Filter\FilterView_ABSODU0.designer.cs">
-      <DependentUpon>FilterView_ABSODU0.cs</DependentUpon>
+    <Compile Include="FormManager\ChungTuManager\Filter\FilterView_APSODU0.designer.cs">
+      <DependentUpon>FilterView_APSODU0.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\Filter\FilterView_APSODU0TK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\Filter\FilterView_APSODU0TK.designer.cs">
+      <DependentUpon>FilterView_APSODU0TK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\Filter\FilterView_ARS30.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\Filter\FilterView_ARS30.designer.cs">
+      <DependentUpon>FilterView_ARS30.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\Filter\FilterView_ARSODU0_Cont.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\Filter\FilterView_ARSODU0_Cont.designer.cs">
+      <DependentUpon>FilterView_ARSODU0_Cont.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\Filter\FilterView_ARSODU0TK_LE.cs">
       <SubType>Form</SubType>
@@ -5862,8 +5880,20 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\ChungTuQuickView.resx">
       <DependentUpon>ChungTuQuickView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\Filter\FilterView_ABSODU0.resx">
-      <DependentUpon>FilterView_ABSODU0.cs</DependentUpon>
+    <EmbeddedResource Include="FormManager\ChungTuManager\Filter\FilterView_APSODU0.resx">
+      <DependentUpon>FilterView_APSODU0.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\Filter\FilterView_APSODU0TK.resx">
+      <DependentUpon>FilterView_APSODU0TK.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\Filter\FilterView_ARS30.resx">
+      <DependentUpon>FilterView_ARS30.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\Filter\FilterView_ARSODU0_Cont.resx">
+      <DependentUpon>FilterView_ARSODU0_Cont.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\Filter\FilterView_ARSODU0TK_LE.resx">

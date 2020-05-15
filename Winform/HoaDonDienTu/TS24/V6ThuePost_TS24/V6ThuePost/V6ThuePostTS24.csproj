@@ -76,7 +76,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ConfigLine.cs" />
     <Compile Include="BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +135,10 @@
     <ProjectReference Include="..\..\..\..\V6Tools\V6Tools\V6Tools.csproj">
       <Project>{4f797e67-948d-4eec-acd7-758028e9166f}</Project>
       <Name>V6Tools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\PostObjects\V6ThuePostObjects.csproj">
+      <Project>{14A2C520-1939-4B6A-B584-EE5797F26701}</Project>
+      <Name>V6ThuePostObjects</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

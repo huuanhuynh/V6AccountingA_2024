@@ -185,7 +185,7 @@ namespace V6SqlConnect
                             values += ",\n" + GenSqlStringValue(
                                 dataDictionary.ContainsKey(FIELD)
                                     ? dataDictionary[FIELD]
-                                    : "", column.sql_data_type_string, column.ColumnDefault,
+                                    : null, column.sql_data_type_string, column.ColumnDefault,
                                     column.AllowNull,
                                     column.MaxLength);
                             break;

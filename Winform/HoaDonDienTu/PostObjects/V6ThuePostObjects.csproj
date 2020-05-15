@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigLine.cs" />
     <Compile Include="ResponseObjects\V6Return.cs" />
     <Compile Include="ViettelObjects\BuyerInfo.cs" />
     <Compile Include="ViettelObjects\CreateInvoiceResponse.cs" />

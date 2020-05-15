@@ -5705,13 +5705,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
         private void ChiNoTaiKhoanToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ChiNo131();
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            ChiNo331(shift);
         }
 
-        public void ChiNo131()
+        public void ChiNo331(bool add)
         {
             try
             {
+                if (NotAddEdit) return;
+                chon_accept_flag_add = add;
+
                 if (NotAddEdit) return;
                 if (_MA_GD == "3")
                 {
@@ -5719,32 +5723,52 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
 
                     var initFilter = GetSoCt0InitFilter();
-                    var f = new FilterView_ARSODU0TK(Invoice, new V6ColorTextBox(), _sttRec, txtMaDVCS.Text, initFilter);
+                    var f = new FilterView_APSODU0TK(Invoice, new V6ColorTextBox(), _sttRec, txtMaDVCS.Text, initFilter);
                     f.MultiSeletion = true;
-                    f.ChoseEvent += data =>
+                    //f.ChoseEvent += data =>
+                    //{
+                    //    var dic = detail1.GetData();
+                    //    dic["TK_I"] = data.Cells["TK"].Value;
+                    //    dic["TIEN"] = data.Cells["DU_CO"].Value;
+                    //    dic["TIEN_NT"] = data.Cells["DU_CO"].Value;
+                    //    dic["TIEN_TT"] = data.Cells["DU_CO"].Value;
+                    //    dic["PS_NO"] = data.Cells["DU_CO"].Value;
+                    //    dic["PS_NO_NT"] = data.Cells["DU_CO"].Value;
+                    //    dic["MA_KH_I"] = data.Cells["MA_KH"].Value;
+                    //    dic["TEN_KH_I"] = data.Cells["TEN_KH"].Value;
+                    //    XuLyThemDetail(dic);
+                    //};
+                    //f.ShowDialog(this);
+                    if (f.DialogResult == DialogResult.OK)
                     {
-                        var dic = detail1.GetData();
+                        bool flag_add = chon_accept_flag_add;
+                        chon_accept_flag_add = false;
+                        if (!flag_add)
+                        {
+                            AD.Rows.Clear();
+                        }
+                        foreach (IDictionary<string, object> data in f.SelectedDataList)
+                        {
+                            var dic = detail1.GetData();
 
-                        dic["TK_I"] = data.Cells["TK"].Value;
+                            dic["TK_I"] = data["TK"];
+                            dic["TIEN"] = data["DU_CO"];
+                            dic["TIEN_NT"] = data["DU_CO"];
+                            dic["TIEN_TT"] = data["DU_CO"];
+                            dic["PS_NO"] = data["DU_CO"];
+                            dic["PS_NO_NT"] = data["DU_CO"];
 
-                        dic["TIEN"] = data.Cells["DU_NO"].Value;
-                        dic["TIEN_NT"] = data.Cells["DU_NO"].Value;
-                        dic["TIEN_TT"] = data.Cells["DU_NO"].Value;
-                        dic["PS_CO"] = data.Cells["DU_NO"].Value;
-                        dic["PS_CO_NT"] = data.Cells["DU_NO"].Value;
+                            dic["MA_KH_I"] = data["MA_KH"];
+                            dic["TEN_KH_I"] = data["TEN_KH"];
 
-
-                        dic["MA_KH_I"] = data.Cells["MA_KH"].Value;
-                        dic["TEN_KH_I"] = data.Cells["TEN_KH"].Value;
-
-                        XuLyThemDetail(dic);
-                    };
-                    f.ShowDialog(this);
+                            XuLyThemDetail(dic);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".ChiNo131 " + _sttRec, ex);
+                this.WriteExLog(GetType() + ".ChiNo331 " + _sttRec, ex);
             }
         }
 
@@ -5761,11 +5785,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 if (_tkI != null)
                 {
                     int tkcn = _tkI.Int_Data("tk_cn");
-                    data["TK_I"] = tkcn == 1 ? _tkI.Text : "131";
+                    data["TK_I"] = tkcn == 1 ? _tkI.Text : "331";
                 }
                 else
                 {
-                    data["TK_I"] = "131";
+                    data["TK_I"] = "331";
                 }
 
                 
@@ -5808,7 +5832,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     dataGridView1.UnLock();
 
                     var initFilter = GetSoCt0InitFilter();
-                    var f = new FilterView_ABSODU0(Invoice, new V6ColorTextBox(), _sttRec, txtMaDVCS.Text, initFilter);
+                    var f = new FilterView_APSODU0(Invoice, new V6ColorTextBox(), _sttRec, txtMaDVCS.Text, initFilter);
                     f.MultiSeletion = true;
                     f.ShowDialog(this);
                     if (f.DialogResult == DialogResult.OK)
