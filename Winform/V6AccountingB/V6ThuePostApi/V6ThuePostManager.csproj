@@ -66,7 +66,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>App.settings</DependentUpon>
     </Compile>
-    <Compile Include="ConfigLine.cs" />
     <Compile Include="MyJson.cs" />
     <Compile Include="PostManagerParams.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,7 +83,7 @@
       <Name>V6ThuePostBkavApi</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\HoaDonDienTu\PostObjects\V6ThuePostObjects.csproj">
-      <Project>{14A2C520-1939-4B6A-B584-EE5797F26701}</Project>
+      <Project>{14a2c520-1939-4b6a-b584-ee5797f26701}</Project>
       <Name>V6ThuePostObjects</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\HoaDonDienTu\SOFT_DREAMS\V6ThuePost_SoftDreams\ApiConnect\V6ThuePostSoftDreamsApi.csproj">

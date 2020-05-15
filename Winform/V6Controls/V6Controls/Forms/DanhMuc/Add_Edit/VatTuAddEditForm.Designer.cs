@@ -289,6 +289,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.lblMa = new System.Windows.Forms.Label();
+            this.chkREPL_YN = new V6Controls.V6CheckBox();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabTaiKhoan.SuspendLayout();
@@ -1288,6 +1289,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.tabTonKho.AccessibleDescription = "ADDEDITT00006";
             this.tabTonKho.AutoScroll = true;
             this.tabTonKho.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabTonKho.Controls.Add(this.chkREPL_YN);
             this.tabTonKho.Controls.Add(this.v6NumberTextBox37);
             this.tabTonKho.Controls.Add(this.v6NumberTextBox36);
             this.tabTonKho.Controls.Add(this.v6NumberTextBox30);
@@ -4369,6 +4371,19 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.lblMa.TabIndex = 0;
             this.lblMa.Text = "Mã vật tư";
             // 
+            // chkREPL_YN
+            // 
+            this.chkREPL_YN.AccessibleDescription = "ADDEDITC00045";
+            this.chkREPL_YN.AccessibleName = "REPL_YN";
+            this.chkREPL_YN.AutoSize = true;
+            this.chkREPL_YN.Location = new System.Drawing.Point(422, 10);
+            this.chkREPL_YN.Margin = new System.Windows.Forms.Padding(4);
+            this.chkREPL_YN.Name = "chkREPL_YN";
+            this.chkREPL_YN.Size = new System.Drawing.Size(143, 21);
+            this.chkREPL_YN.TabIndex = 38;
+            this.chkREPL_YN.Text = "Thay thế tên hàng";
+            this.chkREPL_YN.UseVisualStyleBackColor = true;
+            // 
             // VatTuAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -4662,5 +4677,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private V6DateTimeColor dateNgayS9;
         private V6DateTimeColor dateNgayS8;
         private V6DateTimeColor dateNgayS7;
+        private V6CheckBox chkREPL_YN;
     }
 }

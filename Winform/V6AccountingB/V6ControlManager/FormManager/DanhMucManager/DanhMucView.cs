@@ -28,6 +28,8 @@ namespace V6ControlManager.FormManager.DanhMucManager
     public partial class DanhMucView : V6FormControl
     {
         #region ===== VAR =====
+        private AldmConfig _aldmConfig;
+        private V6lookupConfig _v6LookupConfig;
         //private bool _aldm0;
         private readonly V6Categories _categories = new V6Categories();
         private SortedDictionary<string, string> _hideColumnDic;
@@ -35,6 +37,55 @@ namespace V6ControlManager.FormManager.DanhMucManager
         /// Tên gốc gửi vào
         /// </summary>
         private string _tableName;
+        private string CONFIG_TABLE_NAME
+        {
+            get
+            {
+                string table = _tableName;// CurrentTable.ToString();
+                // Tuanmh 01/07/2019 set TABLE_VIEW
+                //if (CurrentTable == V6TableName.Notable && _aldmConfig != null)
+                if (_aldmConfig != null && _aldmConfig.IS_ALDM)
+                {
+                    if (!string.IsNullOrEmpty(_aldmConfig.TABLE_NAME)
+                        && V6BusinessHelper.IsExistDatabaseTable(_aldmConfig.TABLE_NAME))
+                    {
+                        table = _aldmConfig.TABLE_NAME;
+                    }
+                    else
+                    {
+                        table = _tableName;
+                    }
+
+                    //if (string.IsNullOrEmpty(sortField)) sortField = aldm_config.ORDER;
+                }
+                return table;
+            }
+        }
+
+        private string LOAD_TABLE
+        {
+            get
+            {
+                string load_table = _tableName;// CurrentTable.ToString();
+                // Tuanmh 01/07/2019 set TABLE_VIEW
+                //if (CurrentTable == V6TableName.Notable && _aldmConfig != null)
+                if (_aldmConfig != null)
+                {
+                    if (!string.IsNullOrEmpty(_aldmConfig.TABLE_VIEW)
+                        && V6BusinessHelper.IsExistDatabaseTable(_aldmConfig.TABLE_VIEW))
+                    {
+                        load_table = _aldmConfig.TABLE_VIEW;
+                    }
+                    else
+                    {
+                        load_table = _tableName;
+                    }
+
+                    //if (string.IsNullOrEmpty(sortField)) sortField = aldm_config.ORDER;
+                }
+                return load_table;
+            }
+        }
         /// <summary>
         /// Tên theo enum V6TableName
         /// </summary>
@@ -473,8 +524,6 @@ namespace V6ControlManager.FormManager.DanhMucManager
             formated = true;
         }
 
-        private AldmConfig _aldmConfig;
-        private V6lookupConfig _v6LookupConfig;
         #region ==== Do method ====
 
         public override void DoHotKey(Keys keyData)
@@ -953,7 +1002,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                                 == DialogResult.Yes)
                             {
                                 confirm = true;
-                                t = _categories.Delete(CurrentTable, keys);
+                                t = _categories.Delete(CONFIG_TABLE_NAME, keys);
                             }
                         }
 
@@ -995,7 +1044,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                                 == DialogResult.Yes)
                             {
                                 confirm = true;
-                                t = _categories.Delete(_tableName, keys);
+                                t = _categories.Delete(CONFIG_TABLE_NAME, keys);
 
                                 if (t > 0)
                                 {
@@ -1162,7 +1211,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         {
                             this.ShowWarningMessage(V6Text.NoUID);
 
-                            //_categories.Delete(_tableName, _data);
+                            //_categories.Delete(CONFIG_TABLE_NAME, _data);
                         }
                     }
 
@@ -1385,31 +1434,6 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             //else comboBox1.Text = "20";//gây lỗi index changed
             LoadTable(tableName, 1, pageSize, sort, true);
-        }
-
-        private string LOAD_TABLE
-        {
-            get
-            {
-                string load_table = _tableName;// CurrentTable.ToString();
-                // Tuanmh 01/07/2019 set TABLE_VIEW
-                //if (CurrentTable == V6TableName.Notable && _aldmConfig != null)
-                if (_aldmConfig != null)
-                {
-                    if (!string.IsNullOrEmpty(_aldmConfig.TABLE_VIEW)
-                        && V6BusinessHelper.IsExistDatabaseTable(_aldmConfig.TABLE_VIEW))
-                    {
-                        load_table = _aldmConfig.TABLE_VIEW;
-                    }
-                    else
-                    {
-                        load_table = _tableName;
-                    }
-
-                    //if (string.IsNullOrEmpty(sortField)) sortField = aldm_config.ORDER;
-                }
-                return load_table;
-            }
         }
 
         private void LoadTable(V6TableName tableName, int page, int size, string sortField, bool ascending)

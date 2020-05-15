@@ -17,6 +17,24 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
     {
         protected V6Categories Categories;
         public V6TableName TableName { get; set; }
+        public string CONFIG_TABLE_NAME
+        {
+            get
+            {
+                string table = TableName.ToString();
+                // Tuanmh 01/07/2019 set TABLE_VIEW
+                //if (CurrentTable == V6TableName.Notable && _aldmConfig != null)
+                if (_aldmConfig != null && _aldmConfig.IS_ALDM)
+                {
+                    if (!string.IsNullOrEmpty(_aldmConfig.TABLE_NAME)
+                        && V6BusinessHelper.IsExistDatabaseTable(_aldmConfig.TABLE_NAME))
+                    {
+                        table = _aldmConfig.TABLE_NAME;
+                    }
+                }
+                return table;
+            }
+        }
         public V6TableStruct _TableStruct;
         public V6Mode Mode = V6Mode.Add;
         public Control _grandFatherControl;
@@ -618,7 +636,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             try
             {
                 
-                var result = Categories.Insert(TableName, DataDic);
+                var result = Categories.Insert(CONFIG_TABLE_NAME, DataDic);
                 if (result && update_stt13)
                 {
                     AddStt13();
@@ -716,7 +734,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 {
                     _keys["ID"] = DataOld["ID"];
                 }
-                var result = Categories.Update(TableName, DataDic, _keys);
+                var result = Categories.Update(CONFIG_TABLE_NAME, DataDic, _keys);
                 return result;
             }
             catch (Exception ex)

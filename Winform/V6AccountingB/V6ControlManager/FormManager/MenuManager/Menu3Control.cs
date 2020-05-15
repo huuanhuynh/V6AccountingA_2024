@@ -466,12 +466,14 @@ namespace V6ControlManager.FormManager.MenuManager
                     }
                     if (_ctrl_alt_i >= 3)
                     {
+                        return;
+                        Control c = V6ControlFormHelper.GetControlUnderMouse(FindForm());
                         if (!MenuManager.CheckPasswordV6(this)) return;
 
                         if (menuControl1.SelectedButton != null &&
                         ControlsDictionary.ContainsKey(menuControl1.SelectedButton.ItemID))
                         {
-                            V6ControlFormHelper.ShowControlsProperties(ControlsDictionary[menuControl1.SelectedButton.ItemID]);
+                            V6ControlFormHelper.ShowControlsProperties(ControlsDictionary[menuControl1.SelectedButton.ItemID], c);
                         }
                         _ctrl_alt_i = 0;
                         return;

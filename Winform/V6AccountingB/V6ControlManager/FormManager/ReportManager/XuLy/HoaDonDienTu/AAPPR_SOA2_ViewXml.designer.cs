@@ -112,7 +112,7 @@
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnNhan);
             this.Name = "AAPPR_SOA2_ViewXml";
-            this.Text = "PDF viewer";
+            this.Text = "Xml data";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AAPPR_SOA2_ViewXml_FormClosing);
             this.Load += new System.EventHandler(this.Form_Load);
             this.Controls.SetChildIndex(this.btnNhan, 0);

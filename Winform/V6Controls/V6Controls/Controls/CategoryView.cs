@@ -24,6 +24,7 @@ namespace V6Controls.Controls
     public partial class CategoryView : V6FormControl
     {
         private bool _cancel;
+
         public CategoryView()
         {
             InitializeComponent();
@@ -45,7 +46,6 @@ namespace V6Controls.Controls
             m_itemId = itemId;
             Title = title;
             _tableName = tableName;
-            _tableName_View = tableName;
             _parentData = parentData;
 
             InitializeComponent();
@@ -101,6 +101,9 @@ namespace V6Controls.Controls
             MakeStatus2Text();
         }
 
+        private AldmConfig _aldmConfig;
+        private V6lookupConfig _v6LookupConfig;
+
         private readonly V6Categories _categories = new V6Categories();
         private SortedDictionary<string, string> _hideColumnDic;
         private IDictionary<string, object> _parentData;
@@ -108,7 +111,55 @@ namespace V6Controls.Controls
         /// Tên gốc gửi vào
         /// </summary>
         private string _tableName;
-        private string _tableName_View;
+        private string CONFIG_TABLE_NAME
+        {
+            get
+            {
+                string table = _tableName;// CurrentTable.ToString();
+                // Tuanmh 01/07/2019 set TABLE_VIEW
+                //if (CurrentTable == V6TableName.Notable && _aldmConfig != null)
+                if (_aldmConfig != null && _aldmConfig.IS_ALDM)
+                {
+                    if (!string.IsNullOrEmpty(_aldmConfig.TABLE_NAME)
+                        && V6BusinessHelper.IsExistDatabaseTable(_aldmConfig.TABLE_NAME))
+                    {
+                        table = _aldmConfig.TABLE_NAME;
+                    }
+                    else
+                    {
+                        table = _tableName;
+                    }
+
+                    //if (string.IsNullOrEmpty(sortField)) sortField = aldm_config.ORDER;
+                }
+                return table;
+            }
+        }
+
+        private string LOAD_TABLE
+        {
+            get
+            {
+                string load_table = _tableName;// CurrentTable.ToString();
+                // Tuanmh 01/07/2019 set TABLE_VIEW
+                //if (CurrentTable == V6TableName.Notable && _aldmConfig != null)
+                if (_aldmConfig != null)
+                {
+                    if (!string.IsNullOrEmpty(_aldmConfig.TABLE_VIEW)
+                        && V6BusinessHelper.IsExistDatabaseTable(_aldmConfig.TABLE_VIEW))
+                    {
+                        load_table = _aldmConfig.TABLE_VIEW;
+                    }
+                    else
+                    {
+                        load_table = _tableName;
+                    }
+
+                    //if (string.IsNullOrEmpty(sortField)) sortField = aldm_config.ORDER;
+                }
+                return load_table;
+            }
+        }
         /// <summary>
         /// Tên theo enum V6TableName
         /// </summary>
@@ -225,9 +276,6 @@ namespace V6Controls.Controls
             }
             formated = true;
         }
-
-        private AldmConfig _aldmConfig;
-        private V6lookupConfig _v6LookupConfig;
 
         #region ==== Do method ====
 
@@ -638,7 +686,7 @@ namespace V6Controls.Controls
                             if (this.ShowConfirmMessage(V6Text.DeleteConfirm + "\n" + userId, V6Text.Delete)
                                 == DialogResult.Yes)
                             {
-                                var t = _categories.Delete(CurrentTable, keys);
+                                var t = _categories.Delete(CONFIG_TABLE_NAME, keys);
 
                                 if (t > 0)
                                 {
@@ -664,7 +712,7 @@ namespace V6Controls.Controls
                             if (this.ShowConfirmMessage(V6Text.DeleteConfirm + "\n" , V6Text.Delete)
                                 == DialogResult.Yes)
                             {
-                                var t = _categories.Delete(_tableName, keys);
+                                var t = _categories.Delete(CONFIG_TABLE_NAME, keys);
 
                                 if (t > 0)
                                 {
@@ -704,7 +752,7 @@ namespace V6Controls.Controls
                             if (this.ShowConfirmMessage(V6Text.DeleteConfirm + "\n" + value, "Xóa?")
                                 == DialogResult.Yes)
                             {
-                                var t = _categories.Delete(_tableName, keys);
+                                var t = _categories.Delete(CONFIG_TABLE_NAME, keys);
 
                                 if (t > 0)
                                 {
@@ -741,8 +789,8 @@ namespace V6Controls.Controls
                         else
                         {
                             this.ShowWarningMessage(V6Text.NoUID);
-                            
-                            _categories.Delete(CurrentTable, _data);
+
+                            _categories.Delete(CONFIG_TABLE_NAME, _data);
                         }
                     }
                     //PHAT 23/08/2017
@@ -863,24 +911,19 @@ namespace V6Controls.Controls
                 SaveSelectedCellLocation(dataGridView1);
                 if (page < 1) page = 1;
                 CurrentTable = tableName;
-                string load_table = _tableName;
                 if (CurrentTable == V6TableName.Notable)
                 {
-                    if(_tableName_View !="")
-                        load_table = _tableName_View;
-
                     if (string.IsNullOrEmpty(sortField))
                     {
                         if (_aldmConfig != null)
                         {
                             sortField = _aldmConfig.ORDER;
                         }
-                      
                     }
                 }
 
                 _last_filter = GetWhere();
-                var sr = _categories.SelectPaging(load_table, "*", page, size, _last_filter, sortField, @ascending);
+                var sr = _categories.SelectPaging(LOAD_TABLE, "*", page, size, _last_filter, sortField, @ascending);
 
                 SelectResult.Data = sr.Data;
                 SelectResult.Page = sr.Page;

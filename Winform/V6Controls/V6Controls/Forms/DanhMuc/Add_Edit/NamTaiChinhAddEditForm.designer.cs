@@ -125,6 +125,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.TxtNam_bd.BackColor = System.Drawing.Color.White;
             this.TxtNam_bd.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtNam_bd.DecimalPlaces = 0;
+            this.TxtNam_bd.Enabled = false;
             this.TxtNam_bd.EnterColor = System.Drawing.Color.PaleGreen;
             this.TxtNam_bd.ForeColor = System.Drawing.SystemColors.WindowText;
             this.TxtNam_bd.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -142,7 +143,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             0,
             0,
             0});
-            this.TxtNam_bd.Visible = false;
             // 
             // label4
             // 
@@ -154,7 +154,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             this.label4.Size = new System.Drawing.Size(89, 17);
             this.label4.TabIndex = 6;
             this.label4.Text = "Năm bắt đầu";
-            this.label4.Visible = false;
             // 
             // TxtNgay_dn
             // 

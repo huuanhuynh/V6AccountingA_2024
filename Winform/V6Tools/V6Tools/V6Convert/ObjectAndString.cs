@@ -120,6 +120,7 @@ namespace V6Tools.V6Convert
         /// <returns>Trả về chuổi số không còn dấu cách phần nghìn, dấu thập phân theo hệ thống máy tính.</returns>
         public static string StringToSystemDecimalSymbolStringNumber(string numberString)
         {
+            numberString = "" + numberString;
             numberString = numberString.Replace(" ", "");
             var indexOfComma = numberString.IndexOf(",", StringComparison.Ordinal);
             var indexOfDot = numberString.IndexOf(".", StringComparison.Ordinal);
@@ -390,6 +391,7 @@ namespace V6Tools.V6Convert
         public static decimal StringToDecimal(string s)
         {
             decimal v = 0;
+            if (string.IsNullOrEmpty(s)) return v;
             decimal.TryParse(StringToSystemDecimalSymbolStringNumber(s), out v);
             return v;
         }

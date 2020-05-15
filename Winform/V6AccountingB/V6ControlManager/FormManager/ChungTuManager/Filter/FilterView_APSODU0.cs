@@ -60,7 +60,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
                     Report_GRDHE_V1 = aldm_data.Rows[0][3].ToString().Trim();
                 }
 
-                taiKhoan.VvarTextBox.Text = "131";
+                taiKhoan.VvarTextBox.Text = "331";
             }
             catch (Exception ex)
             {

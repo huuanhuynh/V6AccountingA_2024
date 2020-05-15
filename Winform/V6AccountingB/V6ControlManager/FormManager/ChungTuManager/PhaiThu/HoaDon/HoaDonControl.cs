@@ -384,13 +384,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         _soLuong1 = control as V6NumberTextBox;
                         if (_soLuong1 != null)
                         {
+                            _soLuong1.TextChanged += (sender, e) =>
+                            {
+                                CheckShowTienNt2();
+                            };
                             _soLuong1.V6LostFocus += (sender) =>
                             {
                                 CheckSoLuong1(_soLuong1);
                                 chkT_THUE_NT.Checked = false;
                                 Tinh_thue_ct();
                             };
-
+                            _soLuong1.LostFocus += (sender, e) =>
+                            {
+                                CheckShowTienNt2();
+                            };
                             //_soLuong1.Leave += delegate
                             //{
                             //    CheckSoLuong1(_soLuong1);
@@ -497,6 +504,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         _giaNt21 = control as V6NumberTextBox;
                         if (_giaNt21 != null)
                         {
+                            _giaNt21.TextChanged += (sender, e) =>
+                            {
+                                CheckShowTienNt2();
+                            };
                             _giaNt21.V6LostFocus += GiaNt21_V6LostFocus;
                             if (!V6Login.IsAdmin && (Invoice.GRD_HIDE.Contains(NAME) || Invoice.GRD_HIDE.ContainsStartsWith(NAME + ":")))
                             {
@@ -2567,6 +2578,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             TinhTienNt2(_giaNt21);
             Tinh_thue_ct();
         }
+
+        private void CheckShowTienNt2()
+        {
+            if (_soLuong1.Value == 0 && _giaNt21.Value == 0)
+            {
+                _tienNt2.Enabled = true;
+                _tienNt2.ReadOnly = false;
+            }
+            else
+            {
+                _tienNt2.Enabled = false;
+            }
+        }
+
         #endregion events
 
         #region Methods
@@ -3254,6 +3279,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     SetControlValue(_tkDt, data["tk_dt"], Invoice.GetTemplateSettingAD("TK_DT"));
                     SetControlValue(_tkGv, data["tk_gv"], Invoice.GetTemplateSettingAD("TK_GV"));
                     SetControlValue(_soLuong1, data["PACKS1"], Invoice.GetTemplateSettingAD("PACKS1"));
+                    if (_maVt.REPL_YN && detailControlList1.ContainsKey("GC_TD1") && detailControlList1["GC_TD1"].IsVisible)
+                        SetControlValue(detailControlList1["GC_TD1"].DetailControl, data["TEN_VT"]);
 
                     if (M_SOA_HT_KM_CK == "1")
                     {
@@ -6546,6 +6573,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 {
                     _maVt.Focus();
                     dataGridView1.Lock();
+                    CheckShowTienNt2();
                 }
             }
             catch (Exception ex)
@@ -7159,6 +7187,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         XuLyDonViTinhKhiChonMaVt(_maVt.Text, false);
                         _maVt.Focus();
                         GetLoDate13();
+                        CheckShowTienNt2();
                     }
                 }
             }

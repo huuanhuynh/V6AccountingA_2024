@@ -722,6 +722,7 @@ namespace V6Controls
                     SKSM_YN = false;
                     DATE_YN = false;
                     VITRI_YN = false;
+                    REPL_YN = false;
                     VT_TON_KHO = false;
                     GIA_TON = 0;
                     return;
@@ -734,6 +735,8 @@ namespace V6Controls
                     DATE_YN = ObjectAndString.ObjectToInt(Data["DATE_YN"]) == 1;
                 if (Data.Table.Columns.Contains("VITRI_YN"))
                     VITRI_YN = ObjectAndString.ObjectToInt(Data["VITRI_YN"]) == 1;
+                if (Data.Table.Columns.Contains("REPL_YN"))
+                    REPL_YN = ObjectAndString.ObjectToInt(Data["REPL_YN"]) == 1;
                 if (Data.Table.Columns.Contains("VT_TON_KHO"))
                     VT_TON_KHO = ObjectAndString.ObjectToInt(Data["VT_TON_KHO"]) == 1;
                 if (Data.Table.Columns.Contains("GIA_TON"))

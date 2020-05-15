@@ -213,8 +213,10 @@ namespace V6Controls.Forms
                     _ctrl_alt_i++;
                     if (_ctrl_alt_i >= 3)
                     {
+                        Control c = V6ControlFormHelper.GetControlUnderMouse(FindForm());
                         if (new ConfirmPasswordV6().ShowDialog(this) != DialogResult.OK) return false;
-                        V6ControlFormHelper.ShowControlsProperties(this);
+
+                        V6ControlFormHelper.ShowControlsProperties(this, c);
                         _ctrl_alt_i = 0;
                         return true;
                     }

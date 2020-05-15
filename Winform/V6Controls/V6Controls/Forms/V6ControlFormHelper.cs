@@ -8101,11 +8101,11 @@ namespace V6Controls.Forms
         /// Hiện lên cây thuộc tính của tất cả các Controls [để chỉnh sửa].
         /// </summary>
         /// <param name="control"></param>
-        public static void ShowControlsProperties(Control control)
+        public static void ShowControlsProperties(Control control, Control c)
         {
             try
             {
-                ControlsPropertiesEditorForm f = new ControlsPropertiesEditorForm(control);
+                ControlsPropertiesEditorForm f = new ControlsPropertiesEditorForm(control, c);
                 f.Show(control);
             }
             catch (Exception ex)

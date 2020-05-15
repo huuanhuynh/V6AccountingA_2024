@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using V6Init;
@@ -9,15 +11,17 @@ namespace V6Controls.Forms.Editor
 {
     public partial class ControlsPropertiesEditorForm : V6Form
     {
-        private Control _control = null;
+        private Control _mainControl = null;
+        private Control _mouseControl = null;
         public ControlsPropertiesEditorForm()
         {
             InitializeComponent();
         }
 
-        public ControlsPropertiesEditorForm(Control control)
+        public ControlsPropertiesEditorForm(Control mainControl, Control mouseControl)
         {
-            _control = control;
+            _mainControl = mainControl;
+            _mouseControl = mouseControl;
             InitializeComponent();
             MyInit();
         }
@@ -26,7 +30,8 @@ namespace V6Controls.Forms.Editor
         {
             try
             {
-                AddTreeNode(_control);
+                AddTreeNode(_mainControl);
+                SetSelectedTreeNode(_mouseControl);
             }
             catch (Exception ex)
             {
@@ -41,9 +46,9 @@ namespace V6Controls.Forms.Editor
                 .Add(string.Format("{0} ({1}) [{2}] [{3}]", control.Text, control.Name, control.AccessibleName, control.AccessibleDescription));
 
             //if (parentNode == null)
-            //    newNode = treeView1.Nodes.Add(string.Format("{0} ({1}) [{2}] [{3}]", control.Text, control.Name, control.AccessibleName, control.AccessibleDescription));
+            //    newNode = treeView1.Nodes.Add(string.Format("{0} ({1}) [{2}] [{3}]", mainControl.Text, mainControl.Name, mainControl.AccessibleName, mainControl.AccessibleDescription));
             //else
-            //    newNode = parentNode.Nodes.Add(string.Format("{0} ({1}) [{2}] [{3}]", control.Text, control.Name, control.AccessibleName, control.AccessibleDescription));
+            //    newNode = parentNode.Nodes.Add(string.Format("{0} ({1}) [{2}] [{3}]", mainControl.Text, mainControl.Name, mainControl.AccessibleName, mainControl.AccessibleDescription));
 
             newNode.Tag = control;
             if (control is RichTextBox)
@@ -110,6 +115,23 @@ namespace V6Controls.Forms.Editor
             }
         }
 
+        private void SetSelectedTreeNode(Control control)
+        {
+            var node = FindNodeRecursive(treeView1.Nodes[0], control);
+            if (node != null) treeView1.SelectedNode = node;
+        }
+
+        private TreeNode FindNodeRecursive(TreeNode node, Control control)
+        {
+            if (node.Tag == control) return node;
+            foreach (TreeNode n in node.Nodes)
+            {
+                var r = FindNodeRecursive(n, control);
+                if (r != null) return r;
+            }
+            return null;
+        }
+
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             propertyGrid1.SelectedObject = e.Node.Tag;
@@ -125,11 +147,42 @@ namespace V6Controls.Forms.Editor
                 _label = label;
                 if (string.IsNullOrEmpty(_label.AccessibleDescription))
                 {
-                    panel1.Visible = false;
-                    return;
+                    if (label is V6Control || label is V6Form)
+                    {
+                        panel1.Visible = true;
+                        label1.Visible = false;
+                        textBox1.Visible = false;
+                        checkBox1.Visible = false;
+                        button1.Visible = false;
+
+                        listView1.Items.Clear();
+                        SortedDictionary<string, string> sortedDictionary = new SortedDictionary<string, string>();
+                        //foreach (PropertyInfo propertyInfo in label.GetType().GetProperties())
+                        //{
+                        //    sortedDictionary["(" + propertyInfo.Name + ")"] = "" + propertyInfo.GetValue(label, null);
+                        //}
+                        foreach (FieldInfo fieldInfo in label.GetType().GetFields())
+                        {
+                            sortedDictionary["[" + fieldInfo.Name + "]"] = "" + fieldInfo.GetValue(label);
+                        }
+                        foreach (KeyValuePair<string, string> item in sortedDictionary)
+                        {
+                            listView1.Items.Add(new ListViewItem(new[] { item.Key, item.Value }));
+                        }
+                        return;
+                    }
+                    else
+                    {
+                        panel1.Visible = false;
+                        return;    
+                    }
                 }
 
                 panel1.Visible = true;
+                label1.Visible = true;
+                textBox1.Visible = true;
+                checkBox1.Visible = true;
+                button1.Visible = true;
                 //Thay đổi nội dung text bằng tiếng Anh
                 if (V6Setting.Language != "V")
                 {
@@ -233,6 +286,16 @@ namespace V6Controls.Forms.Editor
         private void button1_Click(object sender, EventArgs e)
         {
             Accept();
+        }
+
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode != null && treeView1.SelectedNode.Parent != null)
+            {
+                treeView1.SelectedNode = treeView1.SelectedNode.Parent;
+                //Control c = treeView1.SelectedNode.Tag as Control;
+                //if (c.Parent != null) SetSelectedTreeNode(c.Parent);
+            }
         }
     }
 }

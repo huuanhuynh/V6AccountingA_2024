@@ -5739,7 +5739,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     //    XuLyThemDetail(dic);
                     //};
                     //f.ShowDialog(this);
-                    if (f.DialogResult == DialogResult.OK)
+                    if (f.ShowDialog(this) == DialogResult.OK)
                     {
                         bool flag_add = chon_accept_flag_add;
                         chon_accept_flag_add = false;

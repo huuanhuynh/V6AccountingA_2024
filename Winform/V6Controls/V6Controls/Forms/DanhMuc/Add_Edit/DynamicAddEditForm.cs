@@ -104,6 +104,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 foreach (DataRow row in Alreport1Data.Rows)
                 {
                     var define = row["Filter"].ToString().Trim();
+                    var KEY4 = row["KEY4"].ToString().Trim().ToUpper();
                     var defineInfo = new DefineInfo(define);
                     var AccessibleName_KEY = string.IsNullOrEmpty(defineInfo.AccessibleName)
                         ? defineInfo.Field.ToUpper()
@@ -119,7 +120,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     label.Top = top;
                     label.Text = defineInfo.TextLang(V6Setting.IsVietnamese);
                     label.Visible = defineInfo.Visible;
-                    panel1.Controls.Add(label);
+                    tabThongTinChinh.Controls.Add(label);
                     Label_Controls[defineInfo.Field.ToUpper()] = label;
                     All_Objects[label.Name] = label;
                     //Input
@@ -143,6 +144,24 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                 UseVisualStyleBackColor = true
                             };
                         }
+                        else if (defineInfo.ControlType.ToUpper() == "DATETIME")
+                        {
+                            input = new V6DateTimePicker()
+                            {
+                                Name = "date" + defineInfo.Field,
+                                AccessibleName = defineInfo.AccessibleName,
+                                
+                            };
+                        }
+                        else if (defineInfo.ControlType.ToUpper() == "DATETIMECOLOR")
+                        {
+                            input = new V6DateTimeColor()
+                            {
+                                Name = "date" + defineInfo.Field,
+                                AccessibleName = defineInfo.AccessibleName,
+                                
+                            };
+                        }
                         else if (defineInfo.ControlType.ToUpper() == "FILEBUTTON")
                         {
                             input = new FileButton()
@@ -156,11 +175,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         }
                         else if (defineInfo.ControlType.ToUpper() == "VVARTEXTBOX" || defineInfo.ControlType.ToUpper() == "V6VVARTEXTBOX")
                         {
+                            DoNothing();
                             input = new V6VvarTextBox()
                             {
                                 Name = "txt" + defineInfo.Field,
                                 AccessibleName = defineInfo.AccessibleName,
                                 VVar = defineInfo.Vvar,
+                                CheckOnLeave = defineInfo.NotEmpty,
+                                CheckNotEmpty = defineInfo.NotEmpty,
                             };
                         }
                         else if (defineInfo.ControlType.ToUpper() == "LOOKUPTEXTBOX")
@@ -255,6 +277,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         input = new V6VvarTextBox()
                         {
                             VVar = defineInfo.Vvar,
+                            CheckOnLeave = defineInfo.NotEmpty,
+                            CheckNotEmpty = defineInfo.NotEmpty,
                         };
                         var vV = (V6VvarTextBox)input;
                         if (defineInfo.ToUpper) vV.CharacterCasing = CharacterCasing.Upper;
@@ -313,9 +337,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             i_index++;
                         }
 
-                        panel1.Controls.Add(input);
+                        tabThongTinChinh.Controls.Add(input);
                         Input_Controls[defineInfo.Field.ToUpper()] = input;
                         All_Objects[input.Name] = input;
+                        All_Objects[defineInfo.Field.ToUpper()] = input;
                         //Sự kiện của input
                         string DMETHOD = "" + row["DMETHOD"];
                         if (!string.IsNullOrEmpty(DMETHOD))
@@ -454,10 +479,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             var tT = (V6VvarTextBox)input;
                             tT.BrotherFields = defineInfo.BField;
                             tT.BrotherFields2 = defineInfo.BField2;
+                            tT.NeighborFields = defineInfo.NField;
                             if(!string.IsNullOrEmpty(defineInfo.ShowName)) tT.ShowName = defineInfo.ShowName  == "1";
-                            tT.CheckOnLeave = defineInfo.NotEmpty;
-                            tT.CheckNotEmpty = defineInfo.NotEmpty;
-                            
+                                                        
                             var txtB = new V6LabelTextBox();
                             txtB.Name = "txt" + defineInfo.BField;
                             txtB.AccessibleName = defineInfo.BField;
@@ -469,15 +493,17 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             txtB.AddTagString("cancelset");
 
                             All_Objects[txtB.Name] = txtB;
-                            panel1.Controls.Add(txtB);
+                            tabThongTinChinh.Controls.Add(txtB);
                             left = txtB.Right + 10;
                         }
                         if (input is V6LookupTextBox && !string.IsNullOrEmpty(defineInfo.BField))
                         {
                             var tT = (V6LookupTextBox)input;
                             tT.BrotherFields = defineInfo.BField;
-                            tT.CheckOnLeave = defineInfo.NotEmpty;
-                            tT.CheckNotEmpty = defineInfo.NotEmpty;
+                            tT.BrotherFields2 = defineInfo.BField2;
+                            tT.NeighborFields = defineInfo.NField;
+                            //tT.CheckOnLeave = defineInfo.NotEmpty;
+                            //tT.CheckNotEmpty = defineInfo.NotEmpty;
                             var txtB = new V6LabelTextBox();
                             txtB.Name = "txt" + defineInfo.BField;
                             txtB.AccessibleName = defineInfo.BField;
@@ -489,7 +515,55 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             txtB.AddTagString("cancelset");
 
                             All_Objects[txtB.Name] = txtB;
-                            panel1.Controls.Add(txtB);
+                            tabThongTinChinh.Controls.Add(txtB);
+                            left = txtB.Right + 10;
+                        }
+                        if (input is V6LookupProc && !string.IsNullOrEmpty(defineInfo.BField))
+                        {
+                            var tT = (V6LookupProc)input;
+                            tT.BrotherFields = defineInfo.BField;
+                            tT.BrotherFields2 = defineInfo.BField2;
+                            tT.NeighborFields = defineInfo.NField;
+                            if (!string.IsNullOrEmpty(defineInfo.ShowName)) tT.ShowName = defineInfo.ShowName == "1";
+                            //tT.CheckOnLeave = defineInfo.NotEmpty;
+                            //tT.CheckNotEmpty = defineInfo.NotEmpty;
+
+                            var txtB = new V6LabelTextBox();
+                            txtB.Name = "txt" + defineInfo.BField;
+                            txtB.AccessibleName = defineInfo.BField;
+                            txtB.Top = top;
+                            txtB.Left = left;
+                            txtB.Width = panel1.Width - txtB.Left - 10;
+                            txtB.ReadOnly = true;
+                            txtB.TabStop = false;
+                            txtB.AddTagString("cancelset");
+
+                            All_Objects[txtB.Name] = txtB;
+                            tabThongTinChinh.Controls.Add(txtB);
+                            left = txtB.Right + 10;
+                        }
+                        if (input is V6LookupData && !string.IsNullOrEmpty(defineInfo.BField))
+                        {
+                            var tT = (V6LookupData)input;
+                            tT.BrotherFields = defineInfo.BField;
+                            tT.BrotherFields2 = defineInfo.BField2;
+                            tT.NeighborFields = defineInfo.NField;
+                            if (!string.IsNullOrEmpty(defineInfo.ShowName)) tT.ShowName = defineInfo.ShowName == "1";
+                            //tT.CheckOnLeave = defineInfo.NotEmpty;
+                            //tT.CheckNotEmpty = defineInfo.NotEmpty;
+
+                            var txtB = new V6LabelTextBox();
+                            txtB.Name = "txt" + defineInfo.BField;
+                            txtB.AccessibleName = defineInfo.BField;
+                            txtB.Top = top;
+                            txtB.Left = left;
+                            txtB.Width = panel1.Width - txtB.Left - 10;
+                            txtB.ReadOnly = true;
+                            txtB.TabStop = false;
+                            txtB.AddTagString("cancelset");
+
+                            All_Objects[txtB.Name] = txtB;
+                            tabThongTinChinh.Controls.Add(txtB);
                             left = txtB.Right + 10;
                         }
                         //Add description
@@ -502,7 +576,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             labelD.Left = left;
                             labelD.Top = top;
                             labelD.Text = description;
-                            panel1.Controls.Add(labelD);
+                            tabThongTinChinh.Controls.Add(labelD);
                             All_Objects[labelD.Name] = labelD;
                         }
                     }
@@ -841,7 +915,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                var result = Categories.Insert(TableName, DataDic);
+                var result = Categories.Insert(CONFIG_TABLE_NAME, DataDic);
                 if (result && update_stt13)
                 {
                     AddStt13();
@@ -897,7 +971,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 {
                     _keys["UID"] = DataOld["UID"];
                 }
-                var result = Categories.Update(TableName, DataDic, _keys);
+                var result = Categories.Update(CONFIG_TABLE_NAME, DataDic, _keys);
                 return result;
             }
             catch (Exception ex)

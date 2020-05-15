@@ -41,6 +41,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnUp = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,9 +96,9 @@
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(567, 12);
+            this.panel1.Location = new System.Drawing.Point(567, 43);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(344, 534);
+            this.panel1.Size = new System.Drawing.Size(344, 503);
             this.panel1.TabIndex = 7;
             // 
             // listView1
@@ -111,7 +112,7 @@
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(10, 42);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(324, 410);
+            this.listView1.Size = new System.Drawing.Size(324, 458);
             this.listView1.TabIndex = 9;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -170,11 +171,26 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "N.dung";
             // 
+            // btnUp
+            // 
+            this.btnUp.AccessibleDescription = ".";
+            this.btnUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUp.Image = global::V6Controls.Properties.Resources.Up24;
+            this.btnUp.Location = new System.Drawing.Point(567, 2);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(74, 35);
+            this.btnUp.TabIndex = 10;
+            this.btnUp.Text = "Up";
+            this.btnUp.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
+            // 
             // ControlsPropertiesEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(923, 558);
+            this.Controls.Add(this.btnUp);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.propertyGrid1);
             this.Controls.Add(this.treeView1);
@@ -184,6 +200,7 @@
             this.Controls.SetChildIndex(this.treeView1, 0);
             this.Controls.SetChildIndex(this.propertyGrid1, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
+            this.Controls.SetChildIndex(this.btnUp, 0);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -203,5 +220,6 @@
         public System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Button btnUp;
     }
 }

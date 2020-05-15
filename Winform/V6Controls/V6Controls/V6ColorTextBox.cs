@@ -72,6 +72,7 @@ namespace V6Controls
         public bool SKSM_YN = false;
         public bool DATE_YN = false;
         public bool VITRI_YN = false;
+        public bool REPL_YN = false;
         
         //{Tuanmh 02/08/2016
         public bool VT_TON_KHO = false;
