@@ -10,21 +10,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia.Loc
         public LocThongTinChiTietBaoGia()
         {
             InitializeComponent();
-            MyInit();
+            MyInit_TTCT();
         }
 
-        private void MyInit()
+        private void MyInit_TTCT()
         {
             txtMaSanPham.SetInitFilter("Loai_vt=55");
         }
 
-        public string GetFilterSql(V6TableStruct tableStruct, string tableLable,
+        public string GetFilterSql_ThongTinCT(V6TableStruct tableStruct, string tableLable,
             string oper = "=", bool and = true)
         {
             var and_or = and ? " AND " : " OR ";
             var tLable = string.IsNullOrEmpty(tableLable) ? "" : tableLable + ".";
             var result = "";
-            var keys = V6ControlFormHelper.GetFormDataDictionary(groupBox1);
+            var keys = V6ControlFormHelper.GetFormDataDictionary(grbThongTinCT);
             result = SqlGenerator.GenWhere2(tableStruct, keys, oper, and, tableLable);
 
             if (result.Length > 0)
@@ -41,7 +41,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia.Loc
             
             return result;
         }
-        public void CreateDynamicFilter2(V6TableStruct adStruct, string advAD)
+        public void CreateDynamicFilter2_ThongTinCT(V6TableStruct adStruct, string advAD)
         {
             panelFilter2.AddMultiFilterLine(adStruct, advAD);
         }

@@ -432,6 +432,7 @@
             this.v6ColorTextBox2.Name = "v6ColorTextBox2";
             this.v6ColorTextBox2.Size = new System.Drawing.Size(672, 23);
             this.v6ColorTextBox2.TabIndex = 5;
+            this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox2, "TabPage trong DynamicAddEdit");
             // 
             // label5
             // 
@@ -440,9 +441,9 @@
             this.label5.Location = new System.Drawing.Point(7, 239);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 17);
+            this.label5.Size = new System.Drawing.Size(90, 17);
             this.label5.TabIndex = 65;
-            this.label5.Text = "KEY4";
+            this.label5.Text = "KEY4 (Page)";
             // 
             // v6ColorTextBox1
             // 

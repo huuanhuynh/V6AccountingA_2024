@@ -46,7 +46,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 if (Mode == V6Mode.Edit)
                 {
 
-                    bool b = V6BusinessHelper.IsValidTwoCode_OneNumeric(TableName.ToString(), 0,
+                    bool b = V6BusinessHelper.IsValidTwoCode_OneNumeric(_MA_DM.ToString(), 0,
                         "MA_YTCP", txtma_ytcp.Text.Trim(), DataOld["MA_YTCP"].ToString(),
                         "MA_SP", TxtMa_sp.Text.Trim(), DataOld["MA_SP"].ToString(),
                         "NAM", Convert.ToInt32(TxtNam.Value), Convert.ToInt32(TxtNam.Value));
@@ -58,7 +58,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 else if (Mode == V6Mode.Add)
                 {
 
-                    bool b = V6BusinessHelper.IsValidTwoCode_OneNumeric(TableName.ToString(), 1,
+                    bool b = V6BusinessHelper.IsValidTwoCode_OneNumeric(_MA_DM.ToString(), 1,
                         "MA_YTCP", txtma_ytcp.Text.Trim(), txtma_ytcp.Text.Trim(),
                         "MA_SP", TxtMa_sp.Text.Trim(), TxtMa_sp.Text,
                         "NAM", Convert.ToInt32(TxtNam.Value), Convert.ToInt32(TxtNam.Value));

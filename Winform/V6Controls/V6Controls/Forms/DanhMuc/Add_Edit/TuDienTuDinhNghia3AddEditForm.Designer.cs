@@ -60,7 +60,6 @@
             this.txtGC_TD3 = new V6Controls.V6VvarTextBox();
             this.txtGC_TD2 = new V6Controls.V6VvarTextBox();
             this.txtGC_TD1 = new V6Controls.V6VvarTextBox();
-            this.v6VvarTextBox1 = new V6Controls.V6VvarTextBox();
             this.txtMA_TD2 = new V6Controls.V6VvarTextBox();
             this.txtMA_TD1 = new V6Controls.V6VvarTextBox();
             this.v6NumberTextBox3 = new V6Controls.V6NumberTextBox();
@@ -78,7 +77,6 @@
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
@@ -256,7 +254,6 @@
             this.tabTuDinhNghia.Controls.Add(this.txtGC_TD3);
             this.tabTuDinhNghia.Controls.Add(this.txtGC_TD2);
             this.tabTuDinhNghia.Controls.Add(this.txtGC_TD1);
-            this.tabTuDinhNghia.Controls.Add(this.v6VvarTextBox1);
             this.tabTuDinhNghia.Controls.Add(this.txtMA_TD2);
             this.tabTuDinhNghia.Controls.Add(this.txtMA_TD1);
             this.tabTuDinhNghia.Controls.Add(this.v6NumberTextBox3);
@@ -274,7 +271,6 @@
             this.tabTuDinhNghia.Controls.Add(this.label30);
             this.tabTuDinhNghia.Controls.Add(this.label31);
             this.tabTuDinhNghia.Controls.Add(this.label32);
-            this.tabTuDinhNghia.Controls.Add(this.label33);
             this.tabTuDinhNghia.Controls.Add(this.label34);
             this.tabTuDinhNghia.Controls.Add(this.label35);
             this.tabTuDinhNghia.Location = new System.Drawing.Point(4, 28);
@@ -609,22 +605,6 @@
             this.txtGC_TD1.Size = new System.Drawing.Size(567, 23);
             this.txtGC_TD1.TabIndex = 111;
             // 
-            // v6VvarTextBox1
-            // 
-            this.v6VvarTextBox1.AccessibleName = "MA_TD3";
-            this.v6VvarTextBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.v6VvarTextBox1.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6VvarTextBox1.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6VvarTextBox1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6VvarTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6VvarTextBox1.HoverColor = System.Drawing.Color.Yellow;
-            this.v6VvarTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox1.Location = new System.Drawing.Point(156, 60);
-            this.v6VvarTextBox1.Margin = new System.Windows.Forms.Padding(5);
-            this.v6VvarTextBox1.Name = "v6VvarTextBox1";
-            this.v6VvarTextBox1.Size = new System.Drawing.Size(135, 23);
-            this.v6VvarTextBox1.TabIndex = 95;
-            // 
             // txtMA_TD2
             // 
             this.txtMA_TD2.AccessibleName = "MA_TD2";
@@ -885,17 +865,6 @@
             this.label32.TabIndex = 96;
             this.label32.Text = "Ngày ĐN 1";
             // 
-            // label33
-            // 
-            this.label33.AccessibleDescription = "M_MA_TD3,MA_TD3";
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(5, 63);
-            this.label33.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(63, 17);
-            this.label33.TabIndex = 94;
-            this.label33.Text = "Mã ĐN 3";
-            // 
             // label34
             // 
             this.label34.AccessibleDescription = "M_MA_TD2,MA_TD2";
@@ -970,7 +939,6 @@
         private V6VvarTextBox txtGC_TD3;
         private V6VvarTextBox txtGC_TD2;
         private V6VvarTextBox txtGC_TD1;
-        private V6VvarTextBox v6VvarTextBox1;
         private V6VvarTextBox txtMA_TD2;
         private V6VvarTextBox txtMA_TD1;
         private V6NumberTextBox v6NumberTextBox3;
@@ -988,7 +956,6 @@
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label35;
     }

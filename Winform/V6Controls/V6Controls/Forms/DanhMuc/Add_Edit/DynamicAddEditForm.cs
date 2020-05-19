@@ -98,20 +98,43 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 IDictionary<string, object> keys = new Dictionary<string, object>();
                 keys.Add("MA_BC", TableName);
                 Alreport1Data = V6BusinessHelper.Select(V6TableName.Alreport1, keys, "*", "", "Stt_Filter").Data;
-                int i_index = 0;
-                int baseTop = 0;
+                //int i_index = 0;
+                int baseTop = 10;
                 int rowHeight = 25;
+                Dictionary<string, TabPage> tabList = new Dictionary<string, TabPage>();
+                Dictionary<string, int> indexList = new Dictionary<string, int>();
+                tabList[""] = tabThongTinChinh;
+                indexList[""] = 0;
                 foreach (DataRow row in Alreport1Data.Rows)
                 {
                     var define = row["Filter"].ToString().Trim();
-                    var KEY4 = row["KEY4"].ToString().Trim().ToUpper();
+                    var key4 = row["KEY4"].ToString().Trim();
+                    string KEY4 = "";
+                    if (key4 != "")
+                    {
+                        string[] sss = ObjectAndString.SplitString(key4);
+                        KEY4 = sss[0].Trim().ToUpper();
+                     
+                        if (!tabList.ContainsKey(KEY4))
+                        {
+                            string key4CapV = KEY4;
+                            string key4CapE = KEY4;
+                            if (sss.Length > 1) key4CapV = sss[1];
+                            if (sss.Length > 2) key4CapE = sss[2];
+                            TabPage key4Tab = new TabPage(V6Setting.IsVietnamese ? key4CapV : key4CapE);
+                            key4Tab.Name = "tab" + KEY4;
+                            tabList[KEY4] = key4Tab;
+                            v6TabControl1.TabPages.Add(key4Tab);
+                            indexList[KEY4] = 0;
+                        }
+                    }
                     var defineInfo = new DefineInfo(define);
                     var AccessibleName_KEY = string.IsNullOrEmpty(defineInfo.AccessibleName)
                         ? defineInfo.Field.ToUpper()
                         : defineInfo.AccessibleName.ToUpper();
                     DefineInfo_Data[AccessibleName_KEY.ToUpper()] = defineInfo;
                     //Label
-                    var top = baseTop + i_index * rowHeight;
+                    var top = baseTop + indexList[KEY4] * rowHeight;
 
                     var label = new V6Label();
                     label.Name = "lbl" + defineInfo.Field;
@@ -120,7 +143,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     label.Top = top;
                     label.Text = defineInfo.TextLang(V6Setting.IsVietnamese);
                     label.Visible = defineInfo.Visible;
-                    tabThongTinChinh.Controls.Add(label);
+                    tabList[KEY4].Controls.Add(label);
                     Label_Controls[defineInfo.Field.ToUpper()] = label;
                     All_Objects[label.Name] = label;
                     //Input
@@ -334,10 +357,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         if (defineInfo.MultiLine || (defineInfo.ControlType + "").ToUpper() == "RICHTEXTBOX")
                         {
                             input.Height = rowHeight*2;
-                            i_index++;
+                            indexList[KEY4]++;
                         }
 
-                        tabThongTinChinh.Controls.Add(input);
+                        tabList[KEY4].Controls.Add(input);
                         Input_Controls[defineInfo.Field.ToUpper()] = input;
                         All_Objects[input.Name] = input;
                         All_Objects[defineInfo.Field.ToUpper()] = input;
@@ -487,13 +510,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             txtB.AccessibleName = defineInfo.BField;
                             txtB.Top = top;
                             txtB.Left = left;
-                            txtB.Width = panel1.Width - txtB.Left - 10;
+                            txtB.Width = tabList[KEY4].Width - txtB.Left - 10;
                             txtB.ReadOnly = true;
                             txtB.TabStop = false;
                             txtB.AddTagString("cancelset");
 
                             All_Objects[txtB.Name] = txtB;
-                            tabThongTinChinh.Controls.Add(txtB);
+                            tabList[KEY4].Controls.Add(txtB);
                             left = txtB.Right + 10;
                         }
                         if (input is V6LookupTextBox && !string.IsNullOrEmpty(defineInfo.BField))
@@ -509,13 +532,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             txtB.AccessibleName = defineInfo.BField;
                             txtB.Top = top;
                             txtB.Left = left;
-                            txtB.Width = panel1.Width - txtB.Left - 10;
+                            txtB.Width = tabList[KEY4].Width - txtB.Left - 10;
                             txtB.ReadOnly = true;
                             txtB.TabStop = false;
                             txtB.AddTagString("cancelset");
 
                             All_Objects[txtB.Name] = txtB;
-                            tabThongTinChinh.Controls.Add(txtB);
+                            tabList[KEY4].Controls.Add(txtB);
                             left = txtB.Right + 10;
                         }
                         if (input is V6LookupProc && !string.IsNullOrEmpty(defineInfo.BField))
@@ -533,13 +556,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             txtB.AccessibleName = defineInfo.BField;
                             txtB.Top = top;
                             txtB.Left = left;
-                            txtB.Width = panel1.Width - txtB.Left - 10;
+                            txtB.Width = tabList[KEY4].Width - txtB.Left - 10;
                             txtB.ReadOnly = true;
                             txtB.TabStop = false;
                             txtB.AddTagString("cancelset");
 
                             All_Objects[txtB.Name] = txtB;
-                            tabThongTinChinh.Controls.Add(txtB);
+                            tabList[KEY4].Controls.Add(txtB);
                             left = txtB.Right + 10;
                         }
                         if (input is V6LookupData && !string.IsNullOrEmpty(defineInfo.BField))
@@ -557,13 +580,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             txtB.AccessibleName = defineInfo.BField;
                             txtB.Top = top;
                             txtB.Left = left;
-                            txtB.Width = panel1.Width - txtB.Left - 10;
+                            txtB.Width = tabList[KEY4].Width - txtB.Left - 10;
                             txtB.ReadOnly = true;
                             txtB.TabStop = false;
                             txtB.AddTagString("cancelset");
 
                             All_Objects[txtB.Name] = txtB;
-                            tabThongTinChinh.Controls.Add(txtB);
+                            tabList[KEY4].Controls.Add(txtB);
                             left = txtB.Right + 10;
                         }
                         //Add description
@@ -576,11 +599,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             labelD.Left = left;
                             labelD.Top = top;
                             labelD.Text = description;
-                            tabThongTinChinh.Controls.Add(labelD);
+                            tabList[KEY4].Controls.Add(labelD);
                             All_Objects[labelD.Name] = labelD;
                         }
                     }
-                    i_index++;
+                indexList[KEY4]++;
                 }
                 Form_program = V6ControlsHelper.CreateProgram("EventNameSpace", "EventClass", "D" + TableName, all_using_text, all_method_text);
             }
@@ -1285,18 +1308,19 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             if (errors.Length > 0) throw new Exception(errors);
         }
 
-        
-
         private void CheckVvarTextBox()
         {
             try
             {
-                foreach (Control control in panel1.Controls)
+                foreach (TabPage tabPage in v6TabControl1.TabPages)
                 {
-                    var vT = control as V6VvarTextBox;
-                    if (vT != null && !string.IsNullOrEmpty(vT.VVar))
+                    foreach (Control control in tabPage.Controls)
                     {
-                        vT.ExistRowInTable();
+                        var vT = control as V6VvarTextBox;
+                        if (vT != null && !string.IsNullOrEmpty(vT.VVar))
+                        {
+                            vT.ExistRowInTable();
+                        }
                     }
                 }
             }

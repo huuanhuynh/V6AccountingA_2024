@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -46,11 +47,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia.Loc
 
         private void MyInit()
         {
+            MyInit_ThoiGian();
+            MyInit_TT();
+            MyInit_TTCT();
             InitTuyChon();
             InitLocKetQua();
 
-            locThongTin1.CreateDynamicFilter(_formChungTu.Invoice.AMStruct, _formChungTu.Invoice.ADV_AM);
-            locThongTinChiTiet1.CreateDynamicFilter2(_formChungTu.Invoice.ADStruct, _formChungTu.Invoice.ADV_AD);
+            CreateDynamicFilter_ThongTin(_formChungTu.Invoice.AMStruct, _formChungTu.Invoice.ADV_AM);
+            CreateDynamicFilter2_ThongTinCT(_formChungTu.Invoice.ADStruct, _formChungTu.Invoice.ADV_AD);
             
             _locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
             _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
@@ -117,9 +121,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia.Loc
         }
         private void ShowLocKetQua()
         {
-            locThoiGian1.Visible = false;
-            locThongTin1.Visible = false;
-            locThongTinChiTiet1.Visible = false;
+            grbThoiGian.Visible = false;
+            grbThongTin.Visible = false;
+            grbThongTinCT.Visible = false;
             grbTuyChon.Visible = false;
 
             _locKetQua.Visible = true;
@@ -129,9 +133,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia.Loc
         public void HideLocKetQua()
         {
             _locKetQua.Visible = false;
-            locThoiGian1.Visible = true;
-            locThongTin1.Visible = true;
-            locThongTinChiTiet1.Visible = true;
+            grbThoiGian.Visible = true;
+            grbThongTin.Visible = true;
+            grbThongTinCT.Visible = true;
             grbTuyChon.Visible = true;
         }
 
@@ -216,14 +220,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia.Loc
         private void PrepareThread()
         {
             var stru = _formChungTu.Invoice.AMStruct;
-            _where0Time = locThoiGian1.GetFilterSql(stru, "", "like");
-            _where1AM = locThongTin1.GetFilterSql(stru, "", "like");
+            _where0Time = GetFilterSql_ThoiGian(stru, "", "like");
+            _where1AM = GetFilterSql_ThongTin(stru, "", "like");
             var w1 = GetAMFilterSql_TuyChon();
             if (w1.Length > 0)
                 _where1AM += (_where1AM.Length > 0 ? " and " : "") + w1;
 
             var stru2 = _formChungTu.Invoice.ADStruct;
-            _where2AD = locThongTinChiTiet1.GetFilterSql(stru2, "", "like");
+            _where2AD = GetFilterSql_ThongTinCT(stru2, "", "like");
             _w3NhomVt = GetNhVtFilterSql_TuyChon("", "like");
             var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
             _w4Dvcs = GetDvcsFilterSql_TuyChon(struDvcs, "", "like");
@@ -262,6 +266,261 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia.Loc
             {
                 Hide();
             }
+        }
+
+        private void MyInit_ThoiGian()
+        {
+            try
+            {
+                dateNgayCt1.SetValue(V6Setting.M_ngay_ct1);
+                dateNgayCt2.SetValue(V6Setting.M_ngay_ct2);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".MyInit_ThoiGian", ex);
+            }
+        }
+
+        public string GetFilterSql_ThoiGian(V6TableStruct tableStruct, string tableLable,
+            string oper = "=", bool and = true)
+        {
+            V6Setting.M_ngay_ct1 = dateNgayCt1.Date;
+            V6Setting.M_ngay_ct2 = dateNgayCt2.Date;
+
+            var result = "";
+            var keys = V6ControlFormHelper.GetFormDataDictionary(grbThoiGian);
+            result = SqlGenerator.GenWhere2(tableStruct, keys, oper, and, tableLable);
+
+            var dateFilter = string.Format("{0}ngay_ct BETWEEN '{1}' AND '{2}'",
+                tableLable.Length > 0 ? tableLable + "." : "",
+                dateNgayCt1.YYYYMMDD,
+                dateNgayCt2.YYYYMMDD
+                );
+            if (result.Length > 0)
+            {
+                result = dateFilter + " and (" + result + ")";
+            }
+            else
+            {
+                result = dateFilter;
+            }
+
+            return result;
+        }
+
+        public void Focus1()
+        {
+            dateNgayCt1.Focus();
+        }
+
+        private void MyInit_TT()
+        {
+            try
+            {
+                soTienTu.DecimalPlaces = V6Options.M_ROUND_NT;
+                soTienDen.DecimalPlaces = V6Options.M_ROUND_NT;
+
+                txtNhomKH1.SetInitFilter("LOAI_NH = 1");
+                txtNhomKH2.SetInitFilter("LOAI_NH = 2");
+                txtNhomKH3.SetInitFilter("LOAI_NH = 3");
+                txtNhomKH4.SetInitFilter("LOAI_NH = 4");
+                txtNhomKH5.SetInitFilter("LOAI_NH = 5");
+                txtNhomKH6.SetInitFilter("LOAI_NH = 6");
+                txtNhomKH7.SetInitFilter("LOAI_NH = 7");
+                txtNhomKH8.SetInitFilter("LOAI_NH = 8");
+                txtNhomKH9.SetInitFilter("LOAI_NH = 9");
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".MyInit_TT", ex);
+            }
+        }
+
+        public string GetFilterSql_ThongTin(V6TableStruct tableStruct, string tableLable = null,
+            string oper = "=", bool and = true)
+        {
+            var tbL = string.IsNullOrEmpty(tableLable) ? "" : tableLable + ".";
+
+            var and_or = and ? " AND " : " OR ";
+            var tu_so = ctTuSo.Text.Trim().Replace("'", "");
+            var den_so = ctDenSo.Text.Trim().Replace("'", "");
+
+            var result = "";
+            //so chung tu
+            if (chkLike.Checked)
+            {
+                if (tu_so != "")
+                {
+                    result += (result.Length > 0 ? and_or : "")
+                        + tbL
+                        + string.Format("so_ct like '%{0}'",
+                        tu_so + ((tu_so.Contains("_") || tu_so.Contains("%")) ? "" : "%"));
+                }
+            }
+            else
+            {
+                if (tu_so != "" && den_so == "")
+                {
+                    result += string.Format("{0} LTrim(RTrim({1}so_ct)) = '{2}'",
+                        result.Length > 0 ? and_or : "",
+                        tbL,
+                        tu_so);
+                }
+                else if (tu_so == "" && den_so != "")
+                {
+                    result += string.Format("{0} LTrim(RTrim({1}so_ct)) = '{2}'",
+                       result.Length > 0 ? and_or : "",
+                       tbL,
+                       den_so);
+                }
+                else if (tu_so != "" && den_so != "")
+                {
+                    result += string.Format("{0} (LTrim(RTrim({1}so_ct)) >= '{2}' and LTrim(RTrim({1}so_ct)) <= '{3}')",
+                        result.Length > 0 ? and_or : "",
+                        tbL,
+                        tu_so, den_so)
+                    ;
+                }
+            }
+
+
+            if (soTienTu.Value != 0)
+            {
+
+                if (soTienDen.Value != 0)
+                {
+                    result += (result.Length > 0 ? and_or : "")
+                              + tbL + "T_TT_NT >=" + soTienTu.Value.ToString(CultureInfo.InvariantCulture);
+
+                    result += (result.Length > 0 ? and_or : "")
+                              + tbL + "T_TT_NT <=" + soTienDen.Value.ToString(CultureInfo.InvariantCulture);
+                }
+                else
+                {
+                    result += (result.Length > 0 ? and_or : "")
+                   + tbL + "T_TT_NT =" + soTienTu.Value.ToString(CultureInfo.InvariantCulture);
+
+                }
+            }
+            else
+            {
+                if (soTienDen.Value != 0)
+                {
+                    result += (result.Length > 0 ? and_or : "")
+                              + tbL + "T_TT_NT <=" + soTienDen.Value.ToString(CultureInfo.InvariantCulture);
+                }
+            }
+
+            var keys = V6ControlFormHelper.GetFormDataDictionary(grbThongTin);
+            var result2 = SqlGenerator.GenWhere2_oper(tableStruct, keys, oper, and, tableLable);
+            if (result2.Length > 0)
+            {
+                if (result.Length > 0)
+                    result += and_or + "(" + result2 + ")";
+                else result = "(" + result2 + ")";
+            }
+
+            //advance
+            var rAdvance = panelFilter1.GetQueryString(tableStruct, tableLable, and);
+            var keys_Adv = panelFilter1.GetQueryKeys();//Test get key Dic
+            if (rAdvance.Length > 0)
+            {
+                result += (result.Length > 0 ? and_or : "") + " " + rAdvance;
+            }
+
+            // dien_giai
+            if (dienGiai.Text.Trim().Length > 0)
+            {
+                result += (result.Length > 0 ? and_or : "")
+                    + tbL
+                    + string.Format("dien_giai like N'%{0}%'",
+                    dienGiai.Text.Replace("'", "''"));
+            }
+
+            string where_nhkh = GetNhKhFilterSql_ThongTin(tbL, "like", true);
+            if (where_nhkh.Length > 0)
+            {
+                result += (result.Length > 0 ? and_or : "")
+                    + tbL
+                    + string.Format(" MA_KH in (Select Ma_kh from ALKH where {0})", where_nhkh);
+            }
+
+            return result;
+        }
+
+        public string GetNhKhFilterSql_ThongTin(string tableLable, string oper = "=", bool and = true)
+        {
+            var result = "";
+
+            var keys = new SortedDictionary<string, object>();
+            if (txtNhomKH1.Text.Trim() != "")
+                keys.Add("NH_KH1", txtNhomKH1.Text.Trim());
+            if (txtNhomKH2.Text.Trim() != "")
+                keys.Add("NH_KH2", txtNhomKH2.Text.Trim());
+            if (txtNhomKH3.Text.Trim() != "")
+                keys.Add("NH_KH3", txtNhomKH3.Text.Trim());
+            if (txtNhomKH4.Text.Trim() != "")
+                keys.Add("NH_KH4", txtNhomKH4.Text.Trim());
+            if (txtNhomKH5.Text.Trim() != "")
+                keys.Add("NH_KH5", txtNhomKH5.Text.Trim());
+            if (txtNhomKH6.Text.Trim() != "")
+                keys.Add("NH_KH6", txtNhomKH6.Text.Trim());
+            if (txtNhomKH7.Text.Trim() != "")
+                keys.Add("NH_KH7", txtNhomKH4.Text.Trim());
+            if (txtNhomKH8.Text.Trim() != "")
+                keys.Add("NH_KH8", txtNhomKH5.Text.Trim());
+            if (txtNhomKH9.Text.Trim() != "")
+                keys.Add("NH_KH9", txtNhomKH6.Text.Trim());
+
+            if (keys.Count > 0)
+            {
+                var struAlvt = V6BusinessHelper.GetTableStruct("ALKH");
+                result = SqlGenerator.GenWhere2(struAlvt, keys, oper, and, tableLable);
+            }
+            return result;
+        }
+
+        private void MyInit_TTCT()
+        {
+            txtMaSanPham.SetInitFilter("Loai_vt=55");
+        }
+
+        public string GetFilterSql_ThongTinCT(V6TableStruct tableStruct, string tableLable,
+            string oper = "=", bool and = true)
+        {
+            var and_or = and ? " AND " : " OR ";
+            var tLable = string.IsNullOrEmpty(tableLable) ? "" : tableLable + ".";
+            var result = "";
+            var keys = V6ControlFormHelper.GetFormDataDictionary(grbThongTinCT);
+            result = SqlGenerator.GenWhere2(tableStruct, keys, oper, and, tableLable);
+
+            if (result.Length > 0)
+            {
+                result = "(" + result + ")";
+            }
+
+            //advance
+            var rAdvance = panelFilter2.GetQueryString(tableStruct, tableLable, and);
+            if (rAdvance.Length > 0)
+            {
+                result += (result.Length > 0 ? and_or : "") + rAdvance;
+            }
+
+            return result;
+        }
+        public void CreateDynamicFilter2_ThongTinCT(V6TableStruct adStruct, string advAD)
+        {
+            panelFilter2.AddMultiFilterLine(adStruct, advAD);
+        }
+
+        public void CreateDynamicFilter_ThongTin(V6TableStruct amStruct, string advAM)
+        {
+            panelFilter1.AddMultiFilterLine(amStruct, advAM);
+        }
+
+        private void chkLike_CheckedChanged(object sender, System.EventArgs e)
+        {
+            ctDenSo.Enabled = !chkLike.Checked;
         }
 
         public string GetAMFilterSql_TuyChon()
@@ -344,7 +603,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia.Loc
 
         private void TimBaoGiaForm_Activated(object sender, EventArgs e)
         {
-            locThoiGian1.Focus();
+            Focus1();
         }
 
         private void TimBaoGiaForm_FormClosing(object sender, FormClosingEventArgs e)
