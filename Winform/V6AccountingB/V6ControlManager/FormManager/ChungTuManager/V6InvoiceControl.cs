@@ -2976,7 +2976,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 IDictionary<string, object> key = new SortedDictionary<string, object>();
                 key.Add("MA_VT", c_mavt);
                 key.Add("VT_TON_KHO", 1);
-                var lodate_data = V6BusinessHelper.Select(V6TableName.Alvt, key, "*").Data;
+                var lodate_data = V6BusinessHelper.Select("Alvt", key, "*").Data;
                 if (lodate_data.Rows.Count == 1)
                 {
                     DataRow row0 = lodate_data.Rows[0];
@@ -3094,7 +3094,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 IDictionary<string, object> key = new SortedDictionary<string, object>();
                 key.Add("MA_VT", c_mavt);
                 key.Add("VT_TON_KHO", 1);
-                var lodate_data = V6BusinessHelper.Select(V6TableName.Alvt, key, "*").Data;
+                var lodate_data = V6BusinessHelper.Select("Alvt", key, "*").Data;
                 if (lodate_data.Rows.Count == 1)
                 {
                     DataRow row0 = lodate_data.Rows[0];
@@ -3216,7 +3216,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 IDictionary<string, object> key = new SortedDictionary<string, object>();
                 key.Add("MA_VT", c_mavt);
                 key.Add("VT_TON_KHO", 1);
-                var lodate_data = V6BusinessHelper.Select(V6TableName.Alvt, key, "*").Data;
+                var lodate_data = V6BusinessHelper.Select("Alvt", key, "*").Data;
                 if (lodate_data.Rows.Count != 1)
                 {
                     continue; // Bỏ qua không kiểm tra.

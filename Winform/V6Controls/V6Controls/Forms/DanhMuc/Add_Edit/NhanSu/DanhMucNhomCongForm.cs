@@ -33,13 +33,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_NHOM",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 0, "MA_NHOM",
                  txtMaNhom.Text.Trim(), DataOld["MA_NHOM"].ToString());
                 if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblMaNhom.Text + "=" + txtMaNhom.Text;
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_NHOM",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 1, "MA_NHOM",
                  txtMaNhom.Text.Trim(), txtMaNhom.Text.Trim());
                 if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblMaNhom.Text + "=" + txtMaNhom.Text;
             }

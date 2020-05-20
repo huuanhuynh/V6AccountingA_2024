@@ -26,19 +26,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             try
             {
                 IDictionary<string, object> keys = new Dictionary<string, object>();
-                keys.Add("MA_DM", TableName);
-                var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
-                string F8_table = "";
-
-                if (aldm.Rows.Count == 1)
-                {
-                    var row = aldm.Rows[0];
-                    F8_table = row["F8_TABLE"].ToString().Trim();
-                    //code_field = row[""].ToString().Trim();
-                }
-
-
-                var v = Categories.IsExistOneCode_List(F8_table, "ID", txtID.Text);
+                keys.Add("MA_DM", _MA_DM);
+                var aldm = ConfigManager.GetAldmConfig(_MA_DM);
+                var v = Categories.IsExistOneCode_List(aldm.F8_TABLE, "ID", txtID.Text);
                 txtID.Enabled = !v;
 
             }
@@ -63,10 +53,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             txtID.Text = "" + txtID_Text;
         }
 
-        private void txtclass_TextChanged(object sender, System.EventArgs e)
-        {
-           
-        }
         public override void ValidateData()
         {
             var errors = "";
@@ -75,19 +61,17 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "NAME",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 0, "NAME",
                  txtName.Text.Trim(), DataOld["NAME"].ToString());
                 if (!b)
-                    throw new Exception(V6Init.V6Text.DataExist
-                                                    + "NAME = " + txtName.Text.Trim());
+                    throw new Exception(V6Text.DataExist + "NAME = " + txtName.Text.Trim());
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "NAME",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 1, "NAME",
                  txtName.Text.Trim(), txtName.Text.Trim());
                 if (!b)
-                    throw new Exception(V6Init.V6Text.DataExist
-                                                    + "NAME = " + txtName.Text.Trim());
+                    throw new Exception(V6Text.DataExist + "NAME = " + txtName.Text.Trim());
             }
 
             if (errors.Length > 0) throw new Exception(errors);

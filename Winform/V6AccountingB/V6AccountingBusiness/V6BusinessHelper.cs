@@ -1104,9 +1104,7 @@ namespace V6AccountingBusiness
 
         public static DataTable GetAlct(string Mact)
         {
-            var _alct = Select(V6TableName.Alct,
-                new SortedDictionary<string, object> { { "ma_ct", Mact } },
-                "", "", "").Data;
+            var _alct = Select("ALCT", new SortedDictionary<string, object> { { "ma_ct", Mact } }, "").Data;
             return _alct;
         }
         /// <summary>
@@ -1116,16 +1114,14 @@ namespace V6AccountingBusiness
         /// <returns></returns>
         public static DataTable GetAlctCt(string Mact)
         {
-            var _alct = Select(V6TableName.Alctct,
-                new SortedDictionary<string, object> { { "ma_ct", Mact }, {"User_id_ct", V6Login.UserId} },
-                "", "", "").Data;
+            var _alct = Select("ALCTCT",
+                new SortedDictionary<string, object> { { "ma_ct", Mact }, {"User_id_ct", V6Login.UserId} }, "").Data;
             return _alct;
         }
         public static DataTable GetAlctCt_TableName(string tableName)
         {
-            var _alct = Select(V6TableName.Alctct,
-                new SortedDictionary<string, object> { { "TABLE_NAME", tableName }, {"User_id_ct", V6Login.UserId} },
-                "", "", "").Data;
+            var _alct = Select("ALCTCT",
+                new SortedDictionary<string, object> { { "TABLE_NAME", tableName }, {"User_id_ct", V6Login.UserId} }, "").Data;
             return _alct;
         }
 

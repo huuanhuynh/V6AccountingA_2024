@@ -38,19 +38,19 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_NHCA",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 0, "MA_NHCA",
                     txtManhCa.Text.Trim(), DataOld["MA_NHCA"].ToString());
                 if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblMaCa.Text + "=" + txtManhCa.Text;
-                b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_CA",
+                b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 0, "MA_CA",
                     txtMa_ca.Text.Trim(), DataOld["MA_CA"].ToString());
                 if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblMaCa.Text + "=" + txtMa_ca.Text;
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_NHCA",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 1, "MA_NHCA",
                  txtManhCa.Text.Trim(), txtManhCa.Text.Trim());
                 if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblMaCa.Text + "=" + txtManhCa.Text;
-                b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_CA", txtMa_ca.Text.Trim(), txtMa_ca.Text.Trim());
+                b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 1, "MA_CA", txtMa_ca.Text.Trim(), txtMa_ca.Text.Trim());
                 if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblMaCa.Text + "=" + txtMa_ca.Text;
             }
 

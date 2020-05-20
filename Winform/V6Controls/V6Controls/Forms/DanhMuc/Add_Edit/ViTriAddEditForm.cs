@@ -56,12 +56,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_VITRI", DataDic["MA_VITRI"].ToString(), DataOld["MA_VITRI"].ToString());
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 0, "MA_VITRI", DataDic["MA_VITRI"].ToString(), DataOld["MA_VITRI"].ToString());
                 if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblMaVitri.Text + "=" + TxtMa_vitri.Text;
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_VITRI", TxtMa_vitri.Text, "");
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 1, "MA_VITRI", TxtMa_vitri.Text, "");
                 if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblMaVitri.Text + "=" + TxtMa_vitri.Text;
             }
 

@@ -44,7 +44,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                         && DataDic.ContainsKey("TK") && DataOld.ContainsKey("TK")
                         && DataDic.ContainsKey("NAM") && DataOld.ContainsKey("NAM"))
                     {
-                        bool b = V6BusinessHelper.IsValidTwoCode_OneNumeric(TableName.ToString(), 0,
+                        bool b = V6BusinessHelper.IsValidTwoCode_OneNumeric(_MA_DM.ToString(), 0,
                             "MA_DVCS", TxtMa_dvcs.Text, DataOld["MA_DVCS"].ToString(),
                             "TK", TxtTk.Text, DataOld["TK"].ToString(),
                             "NAM", Convert.ToInt32(TxtNam.Value), Convert.ToInt32(TxtNam.Value));
@@ -60,7 +60,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                          && DataDic.ContainsKey("TK") 
                          && DataDic.ContainsKey("NAM"))
                     {
-                        bool b = V6BusinessHelper.IsValidTwoCode_OneNumeric(TableName.ToString(), 1,
+                        bool b = V6BusinessHelper.IsValidTwoCode_OneNumeric(_MA_DM.ToString(), 1,
                             "MA_DVCS", TxtMa_dvcs.Text, TxtMa_dvcs.Text,
                             "TK", TxtTk.Text, TxtTk.Text,
                             "NAM", Convert.ToInt32(TxtNam.Value), Convert.ToInt32(TxtNam.Value));

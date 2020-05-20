@@ -517,9 +517,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
                                 {"UID", uid}
                             };
                         
-                        var f = _lookupConfig.V6TableName == V6TableName.Notable
-                            ? new FormAddEdit(_lookupConfig.vMa_file, V6Mode.Edit, keys, null)          // Load data vs DataOld[]
-                            : new FormAddEdit(_lookupConfig.V6TableName, V6Mode.Edit, keys, null);      // DataOld cần thêm dữ liệu AUTOID_LOAINH AUTOID_NHVALUE
+                        var f = new FormAddEdit(_lookupConfig.vMa_file, V6Mode.Edit, keys, null);          // Load data vs DataOld[]
                         f.AfterInitControl += f_AfterInitControl;
                         f.InitFormControl();
                         //f.ParentData = _senderTextBox.ParentData;
@@ -548,9 +546,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
                     data["AUTOID_LOAINH"] = comboBox1.SelectedIndex + 1;
                     data["AUTOID_NHVALUE"] = listBoxMaNh.SelectedValue.ToString().Trim().ToUpper();
 
-                    var f = _lookupConfig.V6TableName == V6TableName.Notable
-                        ? new FormAddEdit(_lookupConfig.vMa_file, V6Mode.Add, null, data)
-                        : new FormAddEdit(_lookupConfig.V6TableName, V6Mode.Add, null, data);
+                    var f = new FormAddEdit(_lookupConfig.vMa_file, V6Mode.Add, null, data);
                     f.AfterInitControl += f_AfterInitControl;
                     f.InitFormControl();
                     //f.ParentData = _senderTextBox.ParentData;
@@ -570,7 +566,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
 
         void f_AfterInitControl(object sender, EventArgs e)
         {
-            LoadAdvanceControls((Control)sender, _lookupConfig.V6TableName == V6TableName.Notable ? _lookupConfig.vMa_file : _lookupConfig.V6TableName.ToString());
+            LoadAdvanceControls((Control)sender, _lookupConfig.vMa_file);
         }
         protected void LoadAdvanceControls(Control form, string ma_ct)
         {

@@ -58,7 +58,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     _keys["UID"] = DataOld["UID"];
                 }
                 
-                var result = Categories.Update(TableName, DataDic, _keys);
+                var result = Categories.Update(_MA_DM, DataDic, _keys);
                 var name = DataDic["NAME"].ToString();
                 var value = DataDic["VAL"].ToString();
                 V6Options.SetValue(name, value);

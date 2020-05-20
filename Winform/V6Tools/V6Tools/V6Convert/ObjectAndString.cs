@@ -720,7 +720,7 @@ namespace V6Tools.V6Convert
         }
 
         /// <summary>
-        /// Loại bỏ tất cả các ký tự khoảng trắng và khoảng trắng đặc biệt ở đầu và cuối chuỗi. Loại bỏ ký tự đặc biệt bên trong chuỗi.
+        /// Loại bỏ tất cả các ký tự xuống dòng, khoảng trắng và khoảng trắng đặc biệt ở đầu và cuối chuỗi. Loại bỏ ký tự đặc biệt bên trong chuỗi.
         /// <para>Ký tự đặc biệt đang biết: \u65279 \u12288</para>
         /// </summary>
         /// <param name="toString"></param>
@@ -728,21 +728,32 @@ namespace V6Tools.V6Convert
         /// <returns></returns>
         public static string TrimSpecial(string toString, string moreSpecialChars = null)
         {
-            string specialChars = "\r﻿　" + moreSpecialChars;//"A◀﻿▶"//Sau \r là \u65279, là ký tự giữa 2 tam giác ◀﻿▶, và sau đó là \u12288
+            string specialChars = "﻿　" + moreSpecialChars;//"A◀﻿▶"//specialChars chứa \u65279, là ký tự giữa 2 tam giác ◀﻿▶, và sau đó là \u12288
             foreach (char special_char in specialChars)
             {
                 toString = toString.Replace("" + special_char, "");
             }
-            for (int i = toString.Length - 1; i >= 0; i--)
+            toString = toString.Replace("\r\n", "");
+            toString = toString.Replace("\n", "");
+            toString = toString.Replace("\r", "");
+            while (toString.Length > 0 && char.IsWhiteSpace(toString[0]))
             {
-                char i_char = toString[i];
-                if (char.IsWhiteSpace(i_char))
-                {
-                    toString = toString.Replace("" + i_char, "");
-                    if (i > toString.Length) i = toString.Length;
-                }
+                toString = toString.Substring(1);
             }
-            //toString = toString.Trim();
+            while (toString.Length > 0 && char.IsWhiteSpace(toString[toString.Length-1]))
+            {
+                toString = toString.Substring(0, toString.Length-1);
+            }
+            //for (int i = toString.Length - 1; i >= 0; i--)
+            //{
+            //    char i_char = toString[i];
+            //    if (char.IsWhiteSpace(i_char))
+            //    {
+            //        toString = toString.Replace("" + i_char, "");
+            //        if (i > toString.Length) i = toString.Length;
+            //    }
+            //}
+            toString = toString.Trim();
             
             return toString;
         }

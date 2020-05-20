@@ -394,7 +394,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAdSql);
 
                     //Update AM
-                    var amSql = SqlGenerator.GenUpdateSql(V6Login.UserId, TableName.ToString(), DataDic, keys, _TableStruct);
+                    var amSql = SqlGenerator.GenUpdateSql(V6Login.UserId, _MA_DM.ToString(), DataDic, keys, _TableStruct);
                     var insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, amSql) > 0;
                     var j = 0;
 
@@ -443,7 +443,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_THAU",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 0, "MA_THAU",
                  txtMaThau.Text.Trim(), DataOld["MA_THAU"].ToString());
                 if (!b)
                     throw new Exception(V6Text.Exist + V6Text.EditDenied
@@ -451,7 +451,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_THAU",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 1, "MA_THAU",
                  txtMaThau.Text.Trim(), txtMaThau.Text.Trim());
                 if (!b)
                     throw new Exception(V6Text.Exist + V6Text.AddDenied

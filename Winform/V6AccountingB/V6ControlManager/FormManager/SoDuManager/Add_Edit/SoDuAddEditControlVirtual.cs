@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6Controls;
-using V6Controls.Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6SqlConnect;
@@ -39,10 +37,44 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         private string _maCt;
 
-        public V6TableName TableName { get; set; }
+        public string _MA_DM { get; set; }
+        public string CONFIG_TABLE_NAME
+        {
+            get
+            {
+                string table = _MA_DM;
+                // Tuanmh 01/07/2019 set TABLE_VIEW
+                //if (CurrentTable == V6TableName.None && _aldmConfig != null)
+                if (_aldmConfig != null && _aldmConfig.IS_ALDM)
+                {
+                    if (!string.IsNullOrEmpty(_aldmConfig.TABLE_NAME)
+                        && V6BusinessHelper.IsExistDatabaseTable(_aldmConfig.TABLE_NAME))
+                    {
+                        table = _aldmConfig.TABLE_NAME;
+                    }
+                    else if (!string.IsNullOrEmpty(_aldmConfig.TABLE_NAME)
+                        && V6BusinessHelper.IsExistDatabaseTable(_aldmConfig.TABLE_NAME))
+                    {
+                        table = _aldmConfig.TABLE_NAME;
+                    }
+                }
+                return table;
+            }
+        }
         protected string _table2Name, _table3Name, _table4Name, _table5Name;
         protected V6TableStruct _TableStruct;
         public V6Mode Mode = V6Mode.Add;
+
+        public string TitleLang
+        {
+            get
+            {
+                string title = CONFIG_TABLE_NAME;
+                if (_aldmConfig.HaveInfo) title = V6Setting.IsVietnamese ? _aldmConfig.TITLE : _aldmConfig.TITLE2;
+                return title;
+            }
+        }
+
         /// <summary>
         /// Mode != V6Mode.Add && Mode != V6Mode.Edit
         /// </summary>
@@ -64,8 +96,8 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         /// <summary>
         /// Dùng khi gọi form update, chứa giá trị cũ trước khi update.
         /// </summary>
-        private IDictionary<string, object> _keys = new SortedDictionary<string, object>();
-        protected Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
+        public IDictionary<string, object> _keys = new SortedDictionary<string, object>();
+        public Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
         /// <summary>
         /// Code động từ aldmConfig.
         /// </summary>
@@ -75,6 +107,18 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         /// </summary>
         public IDictionary<string, object> DataDic { get; set; }
         public IDictionary<string, object> DataDic2 { get; set; }
+        public IDictionary<string, object> _parentData;
+        public IDictionary<string, object> ParentData
+        {
+            get
+            {
+                return _parentData;
+            }
+            set
+            {
+                _parentData = value;
+            }
+        }
 
         protected DataGridViewRow _gv1EditingRow;
         protected DataGridViewRow _gv2EditingRow;
@@ -92,6 +136,12 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         /// </summary>
         public SoDuAddEditControlVirtual()
         {
+            InitializeComponent();
+            Categories = new V6Categories();
+        }
+        public SoDuAddEditControlVirtual(AldmConfig aldmConfig)
+        {
+            _aldmConfig = aldmConfig;
             InitializeComponent();
             Categories = new V6Categories();
         }
@@ -123,19 +173,19 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="tableName">Bảng đang xử lý</param>
+        /// <param name="ma_dm">Bảng đang xử lý</param>
         /// <param name="mode">Add/Edit/View</param>
         /// <param name="keys">Nếu data null thì load bằng keys</param>
         /// <param name="data">Gán dữ liệu này lên form</param>
-        public void MyInit(V6TableName tableName, V6Mode mode,
+        public virtual void InitValues(string ma_dm, V6Mode mode,
             IDictionary<string, object> keys, IDictionary<string, object> data)
         {
-            TableName = tableName;
-            _aldmConfig = ConfigManager.GetAldmConfig(TableName.ToString());
+            _MA_DM = ma_dm.ToUpper();
+            if (_aldmConfig == null) _aldmConfig = ConfigManager.GetAldmConfig(_MA_DM);
             Mode = mode;
             _keys = keys;
             DataOld = data;
-            LoadAdvanceControls(TableName);
+            LoadAdvanceControls(_MA_DM);
             if(Mode == V6Mode.View)  V6ControlFormHelper.SetFormControlsReadOnly(this, true);
 
             All_Objects["thisForm"] = this;
@@ -254,11 +304,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         #region ===== LoadAdvanceControls =====
 
-        private void LoadAdvanceControls(V6TableName tableName)
+        private void LoadAdvanceControls(string ma_bc)
         {
             try
             {
-                FormManagerHelper.CreateAdvanceFormControls(this, tableName.ToString(), All_Objects);// CreateFormControls();
+                FormManagerHelper.CreateAdvanceFormControls(this, ma_bc, All_Objects);
             }
             catch (Exception ex)
             {
@@ -270,10 +320,10 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         
         #endregion LoadAdvanceControls
         
-        private void LoadAll()
+        public virtual void LoadAll()
         {
             LoadStruct();//MaxLength...
-            V6ControlFormHelper.LoadAndSetFormInfoDefine(TableName.ToString(), this, Parent);
+            V6ControlFormHelper.LoadAndSetFormInfoDefine(_MA_DM, this, Parent);
 
             if (Mode==V6Mode.Edit)
             {
@@ -372,11 +422,13 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
         protected virtual void SetDefaultDetail() { }
 
-        private void LoadStruct()
+        public virtual void LoadStruct()
         {
             try
             {   
-                _TableStruct = V6BusinessHelper.GetTableStruct(TableName.ToString());
+                _TableStruct = V6BusinessHelper.GetTableStruct(_MA_DM);
+                if ((_TableStruct == null || _TableStruct.Count == 0) && _aldmConfig.HaveInfo)
+                    _TableStruct = V6BusinessHelper.GetTableStruct(_aldmConfig.TABLE_NAME);
                 V6ControlFormHelper.SetFormStruct(this, _TableStruct);
             }
             catch (Exception ex)
@@ -385,32 +437,14 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
 
         }
-
-        ///// <summary>
-        ///// Tải thông tin tự định nghĩa lên form
-        ///// </summary>
-        //internal void LoadUserDefineInfo()
-        //{
-        //    try
-        //    {
-        //        var key = new SortedDictionary<string, object> {{"ma_dm", TableName.ToString()}};
-        //        var selectResult = Categories.Select(V6TableName.Altt, key);
-        //        V6ControlFormHelper.SetFormInfoDefine(this, selectResult.Data, V6Setting.Language);
-                
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        this.ShowErrorMessage(GetType() + ".Load info error!\n" + ex.Message);
-        //    }
-        //}
-
-        private void LoadData()
+        
+        public virtual void LoadData()
         {
             try
             {
                 if (_keys != null && _keys.Count > 0)
                 {
-                    var selectResult = Categories.Select(TableName, _keys);
+                    var selectResult = Categories.Select(CONFIG_TABLE_NAME, _keys);
                     if (selectResult.Data.Rows.Count == 1)
                     {
                         DataOld = selectResult.Data.Rows[0].ToDataDictionary();
@@ -432,7 +466,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
         }
         
-        public bool DoInsertOrUpdate(bool showMessage = true)
+        public virtual bool DoInsertOrUpdate(bool showMessage = true)
         {
             try
             {
@@ -513,7 +547,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 FixFormData();
                 DataDic = GetData();
                 ValidateData();
-                var result = Categories.Insert(TableName, DataDic);
+                var result = Categories.Insert(CONFIG_TABLE_NAME, DataDic);
                 return result;
             }
             catch (Exception ex)
@@ -536,7 +570,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 {
                     _keys["UID"] = DataOld["UID"];
                 }
-                var result = Categories.Update(TableName, DataDic, _keys);
+                var result = Categories.Update(CONFIG_TABLE_NAME, DataDic, _keys);
                 return result;
             }
             catch (Exception ex)
@@ -692,6 +726,85 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 this.WriteExLog(GetType() + ".ValidateData_Detail " + _sttRec, ex);
             }
             return error;
+        }
+
+        protected virtual void GetNewID()
+        {
+            try
+            {
+                if (_aldmConfig == null) _aldmConfig = ConfigManager.GetAldmConfig(_MA_DM);
+                // Get new id proc 
+                if (_aldmConfig.HaveInfo)
+                {
+                    // Trường hợp mã có phân nhóm.
+                    // DataOld cần thêm dữ liệu AUTOID_LOAINH AUTOID_NHVALUE
+                    if (DataOld != null && DataOld.ContainsKey("AUTOID_LOAINH") && DataOld.ContainsKey("AUTOID_NHVALUE"))
+                    {
+
+                        SqlParameter[] plist =
+                        {
+                            new SqlParameter("@MA_DM", _MA_DM),
+                            new SqlParameter("@Vvalue", DataOld.ContainsKey(_aldmConfig.VALUE.ToUpper()) ? DataOld[_aldmConfig.VALUE.ToUpper()].ToString().Trim() : ""),
+                            new SqlParameter("@Loai_nh", DataOld["AUTOID_LOAINH"]),
+                            new SqlParameter("@NhValue", DataOld["AUTOID_NHVALUE"]),
+                            new SqlParameter("@User_id", V6Login.UserId),
+                            
+                        };
+                        var data = V6BusinessHelper.ExecuteProcedure("VPA_GET_AUTOID_AL_ALL", plist).Tables[0];
+                        if (data.Rows.Count > 0)
+                        {
+                            string value = data.Rows[0]["Vvalue"].ToString().Trim();
+                            if (value != "")
+                            {
+                                IDictionary<string, object> value_dic = new SortedDictionary<string, object>();
+                                value_dic.Add(_aldmConfig.VALUE.ToUpper(), value);
+                                V6ControlFormHelper.SetSomeDataDictionary(this, value_dic);
+                                return;
+                            }
+                        }
+                    }
+
+
+                    {
+                        //var _dataRow = aldm.Rows[0];
+                        if (_aldmConfig.INCREASE_YN)
+                        {
+                            update_stt13 = true;
+                            var id_field = _aldmConfig.VALUE.ToUpper();
+                            var stt13 = ObjectAndString.ObjectToInt(_aldmConfig.STT13);
+                            var transform = _aldmConfig.TRANSFORM;
+                            var value = string.Format(transform, stt13 + 1);
+                            IDictionary<string, object> value_dic = new SortedDictionary<string, object>();
+                            value_dic.Add(id_field, value);
+                            V6ControlFormHelper.SetSomeDataDictionary(this, value_dic);
+                            //var control = V6ControlFormHelper.GetControlByAccesibleName(this, id_field);
+                            //if (control != null && control is TextBox)
+                            //{
+                            //    ((TextBox) control).Text = value;
+                            //}
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".GetNewID", ex);
+            }
+        }
+
+        protected bool update_stt13;
+        protected virtual void AddStt13()
+        {
+            try
+            {
+                var sql = "Update Aldm set Stt13=Stt13+1 where ma_dm=@ma_dm";
+                SqlParameter[] plist = new[] { new SqlParameter("@ma_dm", _MA_DM) };
+                V6BusinessHelper.ExecuteSqlNoneQuery(sql, plist);
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".AddStt13", ex);
+            }
         }
 
         public void AfterSaveBase()
@@ -859,20 +972,122 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
         //}
 
         /// <summary>
+        /// Bật tắt các control theo thông tin ghi chú trong Alctct
+        /// </summary>
+        protected void EnableFormControls_Alctct(string tableName)
+        {
+            try
+            {
+                var alctct = V6BusinessHelper.GetAlctCt_TableName(tableName);
+                var alctct_GRD_HIDE = new string[] { };
+                var alctct_GRD_READONLY = new string[] { };
+                if (!V6Login.IsAdmin)
+                {
+                    if (alctct != null && alctct.Rows.Count > 0)
+                    {
+                        var GRD_HIDE = alctct.Rows[0]["GRD_HIDE"].ToString().ToUpper();
+                        var GRD_READONLY = alctct.Rows[0]["GRD_READONLY"].ToString().ToUpper();
+                        alctct_GRD_HIDE = ObjectAndString.SplitString(GRD_HIDE);
+                        alctct_GRD_READONLY = ObjectAndString.SplitString(GRD_READONLY);
+                    }
+                }
+                foreach (string field_info in alctct_GRD_HIDE)
+                {
+                    var sss = field_info.Split(':');
+                    string field = sss[0];
+                    string format = sss.Length > 1 ? sss[1] : null;
+
+                    Control c = V6ControlFormHelper.GetControlByAccessibleName(this, field);
+                    if (c != null)
+                    {
+                        c.InvisibleTag();
+                    }
+                    else
+                    {
+                        c = GetControlByName(field);
+                        if (c != null) c.InvisibleTag();
+                    }
+                }
+
+                foreach (string field_info in alctct_GRD_READONLY)
+                {
+                    var sss = field_info.Split(':');
+                    string field = sss[0];
+                    string format = sss.Length > 1 ? sss[1] : null;
+
+                    Control c = V6ControlFormHelper.GetControlByAccessibleName(this, field);
+                    if (c is TextBox) ((TextBox)c).ReadOnlyTag();
+                    if (c is ComboBox) ((ComboBox)c).DisableTag();
+                    if (c is RadioButton) ((RadioButton)c).DisableTag();
+                    if (c is DateTimePicker) ((DateTimePicker)c).DisableTag();
+
+                    if (c == null)
+                    {
+                        c = GetControlByName(field);
+                        if (c != null) c.DisableTag();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "EnableFormControls_Alctct", ex);
+            }
+        }
+
+        /// <summary>
+        /// Kiểm tra thông tin bắt buộc ghi chú trong V6Valid (Hệ thống/Quản lý hệ thống/Thông tin bắt buộc khi nhập liệu).
+        /// </summary>
+        /// <param name="data">Dữ liệu cần kiểm tra.</param>
+        /// <param name="tableName">Bảng kiểm tra.</param>
+        /// <returns></returns>
+        protected string CheckV6Valid(IDictionary<string, object> data, string tableName)
+        {
+            string error = null;
+            try
+            {
+                var config = ConfigManager.GetV6ValidConfigDanhMuc(tableName);
+
+                if (config != null && config.HaveInfo)
+                {
+                    var a_fields = ObjectAndString.SplitString(config.A_field);
+                    foreach (string field in a_fields)
+                    {
+                        string FIELD = field.Trim().ToUpper();
+
+                        if (data.ContainsKey(FIELD) && (data[FIELD] == null || data[FIELD].ToString().Trim() == ""))
+                        {
+                            error += string.Format("{0} [{1}]\n", V6Text.NoInput, FIELD);
+                        }
+                    }
+                }
+                else
+                {
+                    //ShowMainMessage("No V6Valid info!");
+                }
+            }
+            catch (Exception ex)
+            {
+                //error += ex.Message;//Lỗi chương trình không liên quan lỗi nhập liệu
+                this.WriteExLog(GetType() + ".ValidateData_Detail", ex);
+            }
+            return error;
+        }
+
+        /// <summary>
         /// Kiểm tra dữ liệu để thêm hoặc sửa, Trả về chuỗi lỗi, nếu hợp lệ trả về null hoặc rỗng.
         /// </summary>
-        protected string CheckValid(string tableName, IList<string> KEY_LIST)
+        protected string CheckValid(string ma_dm, IList<string> KEY_LIST)
         {
             var keys_new = new SortedDictionary<string, object>();
             foreach (string KEY in KEY_LIST)
             {
                 keys_new.Add(KEY, DataDic[KEY].ToString().Trim());
             }
+            
+            string where_new = SqlGenerator.GenWhere(_TableStruct, keys_new);
 
-            string where_new = SqlGenerator.GenWhere(V6BusinessHelper.GetTableStruct(tableName), keys_new);
-
-            AldmConfig config = ConfigManager.GetAldmConfig(tableName);
-            bool exist_new = V6BusinessHelper.CheckDataExistStruct(tableName, keys_new, config.CHECK_LONG);
+            AldmConfig config = ConfigManager.GetAldmConfig(ma_dm);
+            bool exist_new = V6BusinessHelper.CheckDataExistStruct(ma_dm, keys_new, config.CHECK_LONG);
 
             if (Mode == V6Mode.Edit)
             {
@@ -881,7 +1096,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 {
                     keys_old.Add(KEY, DataOld[KEY].ToString().Trim());
                 }
-                string where_old = SqlGenerator.GenWhere(V6BusinessHelper.GetTableStruct(tableName), keys_old);
+                string where_old = SqlGenerator.GenWhere(_TableStruct, keys_old);
                 //bool exist_old = V6BusinessHelper.CheckDataExistStruct(TableName, keys_old);
 
                 if (where_new != where_old && exist_new)

@@ -1,4 +1,6 @@
-﻿namespace V6Controls.Forms.DanhMuc.Add_Edit
+﻿using System.Collections.Generic;
+
+namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
     public partial class NamTaiChinhAddEditForm : AddEditControlVirtual
     {
@@ -17,10 +19,15 @@
         }
         public override void ValidateData()
         {
-           
+            
         }
 
-        
+        public override SortedDictionary<string, object> GetData()
+        {
+            TxtNam_bd.Value = TxtNgay_ky1.Date.Year;
+            return base.GetData();
+        }
+
         private void TxtNgay_ky1_Leave(object sender, System.EventArgs e)
         {
             TxtNam_bd.Value = TxtNgay_ky1.Date.Year;

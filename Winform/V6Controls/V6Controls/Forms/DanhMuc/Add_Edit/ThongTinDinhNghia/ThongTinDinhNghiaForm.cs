@@ -41,7 +41,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.ThongTinDinhNghia
             try
             {
                 var key = new SortedDictionary<string, object> {{"MA_DM", MA_DM}};
-                var selectResult = V6BusinessHelper.Select(V6TableName.Altt, key, "", "", "");
+                var selectResult = V6BusinessHelper.Select("Altt", key, "");
                 if (selectResult.Data != null && selectResult.Data.Rows.Count == 1)
                 {
                     var row = selectResult.Data.Rows[0];

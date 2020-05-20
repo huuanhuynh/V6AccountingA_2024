@@ -15,7 +15,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             try
             {
                 System.Collections.Generic.IDictionary<string, object> keys = new System.Collections.Generic.Dictionary<string, object>();
-                keys.Add("MA_DM", TableName);
+                keys.Add("MA_DM", _MA_DM);
                 var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
                 string F8_table = "";
 
@@ -42,7 +42,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 errors += V6Init.V6Text.CheckInfor + " !\r\n";
 
             var KEY_LIST = new[] {"MA_TD"};
-            errors += CheckValid(TableName.ToString(), KEY_LIST);
+            errors += CheckValid(_MA_DM.ToString(), KEY_LIST);
 
             //if (Mode == V6Mode.Edit)
             //{

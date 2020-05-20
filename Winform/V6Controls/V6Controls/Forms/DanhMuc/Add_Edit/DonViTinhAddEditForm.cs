@@ -28,13 +28,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "DVT", txtDVT.Text,
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 0, "DVT", txtDVT.Text,
                     DataOld["DVT"].ToString());
                 if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblDVT.Text + "=" + txtDVT.Text;
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "DVT", txtDVT.Text, "");
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 1, "DVT", txtDVT.Text, "");
                 if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblDVT.Text + "=" + txtDVT.Text;
             }
 

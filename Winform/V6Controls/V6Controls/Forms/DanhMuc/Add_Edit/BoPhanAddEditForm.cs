@@ -49,13 +49,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_BP",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 0, "MA_BP",
                  TxtMa_bp.Text.Trim(), DataOld["MA_BP"].ToString());
                 if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblMaBp.Text + "=" + TxtMa_bp.Text;
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_BP",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 1, "MA_BP",
                  TxtMa_bp.Text.Trim(), TxtMa_bp.Text.Trim());
                 if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblMaBp.Text + "=" + TxtMa_bp.Text;
             }

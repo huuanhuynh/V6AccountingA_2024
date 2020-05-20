@@ -103,7 +103,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
                     //    //    }
 
                     //    //var _data = row.ToDataDictionary();
-                    //    var f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, null);
+                    //    var f = new FormAddEdit(CurrentTable.ToString(), V6Mode.Add, keys, null);
                     //    f.InsertSuccessEvent += f_InsertSuccess;
                     //    f.ShowDialog(this);
                     //}
@@ -111,7 +111,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
                     {
                         SortedDictionary<string, object> _data = new SortedDictionary<string, object>();
                         _data["STT_REC"] = _stt_rec;
-                        var f = new FormAddEdit(CurrentTable, V6Mode.Add, null, _data);
+                        var f = new FormAddEdit(CurrentTable.ToString(), V6Mode.Add, null, _data);
                         f.AfterInitControl += f_AfterInitControl;
                         f.InitFormControl();
                         f.InsertSuccessEvent += f_InsertSuccess;

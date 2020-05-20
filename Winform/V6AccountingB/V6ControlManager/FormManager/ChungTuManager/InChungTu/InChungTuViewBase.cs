@@ -79,7 +79,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         {
             try
             {
-                var AlbcData = V6BusinessHelper.Select(V6TableName.Albc, AlbcKeys, "*").Data;
+                var AlbcData = V6BusinessHelper.Select("ALBC", AlbcKeys, "*").Data;
                 if (AlbcData.Rows.Count == 0) return;
 
                 var dataRow = AlbcData.Rows[0];

@@ -71,7 +71,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             //Load ma_vitri theo ma_kho
             IDictionary<string, object> keys = new SortedDictionary<string, object>();
             keys.Add("MA_KHO", Ma_kho);
-            var data_vitri = V6BusinessHelper.Select(V6TableName.Alvitri, keys, "*").Data;
+            var data_vitri = V6BusinessHelper.Select("Alvitri", keys, "*").Data;
             if (data_vitri.Rows.Count == 0)
             {
                 this.ShowMainMessage(V6Text.NoData + " Vitri");

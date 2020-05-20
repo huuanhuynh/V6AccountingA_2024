@@ -4,7 +4,6 @@ using V6AccountingBusiness;
 using V6Init;
 using V6Structs;
 using V6Tools;
-using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 {
@@ -38,7 +37,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
                 keys["STT_REC"] = keyData["STT_REC"];
                 keys["STT_REC0"] = keyData["STT_REC0"];
 
-                var data = V6BusinessHelper.Select(V6TableName.Hrappfamily, keys, "*").Data;
+                var data = V6BusinessHelper.Select("Hrappfamily", keys, "*").Data;
                 if (data != null)
                 {
                     if (data.Rows.Count == 1)

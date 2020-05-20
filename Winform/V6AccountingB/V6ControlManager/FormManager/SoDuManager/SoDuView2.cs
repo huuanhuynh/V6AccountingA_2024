@@ -46,7 +46,7 @@ namespace V6ControlManager.FormManager.SoDuManager
 
 
         [DefaultValue(V6TableName.None)]
-        public V6TableName CurrentTable { get; set; }
+        public string _MA_DM { get; set; }
         //public V6TableName CurrentTable2 { get; set; }
         public V6SelectResult SelectResult { get; set; }
 
@@ -177,7 +177,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                     if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(_v6LookupConfig.vOrder))
                         SelectResult.SortField = _v6LookupConfig.vOrder;
                 }
-                CurrentTable = V6TableHelper.ToV6TableName(_alctConfig.TableNameAM);
+                _MA_DM = _alctConfig.TableNameAM.ToUpper();
 
                 GetADnameList();
                 _hideColumnDic = _categories.GetHideColumns(_alctConfig.TableNameAM);
@@ -197,7 +197,7 @@ namespace V6ControlManager.FormManager.SoDuManager
         {
             try
             {
-                LoadTable(CurrentTable, "");
+                LoadTable("");
                 FormManagerHelper.HideMainMenu();
                 dataGridView1.Focus();
                 MakeStatus2Text();
@@ -281,11 +281,11 @@ namespace V6ControlManager.FormManager.SoDuManager
                     CurrentIndex = dataGridView1.CurrentRow.Index;
                     CurrentSttRec = sttrec;
 
-                    if (CurrentTable == V6TableName.Alts)
+                    if (_MA_DM == "ALTS")
                     {
                         LoadAD(CurrentSttRec, "TS0=1");
                     }
-                    else if (CurrentTable == V6TableName.Alcc)
+                    else if (_MA_DM == "ALCC")
                     {
                         LoadAD(CurrentSttRec, "CC0=1");
                     }
@@ -339,16 +339,9 @@ namespace V6ControlManager.FormManager.SoDuManager
         {
             try
             {
-                if (CurrentTable != V6TableName.None)
-                {
-                    var f = new SoDuFormAddEdit(CurrentTable);
-                    f.InsertSuccessEvent += f_InsertSuccess;
-                    f.ShowDialog(this);
-                }
-                else
-                {
-                    V6ControlFormHelper.ShowMessage("Hãy chọn danh mục!");
-                }
+                var f = new SoDuFormAddEdit(_MA_DM);
+                f.InsertSuccessEvent += f_InsertSuccess;
+                f.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -359,40 +352,32 @@ namespace V6ControlManager.FormManager.SoDuManager
         {
             try
             {
-                if (CurrentTable == V6TableName.None)
+                DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
+
+                if (row != null)
                 {
-                    this.ShowWarningMessage("Hãy chọn danh mục!");
+                    var keys = new SortedDictionary<string, object>();
+                    if (dataGridView1.Columns.Contains("UID")) //Luôn có trong thiết kế rồi.
+                        keys.Add("UID", row.Cells["UID"].Value);
+
+                    if (KeyFields != null)
+                        foreach (var keyField in KeyFields)
+                        {
+                            if (dataGridView1.Columns.Contains(keyField))
+                            {
+                                keys[keyField] = row.Cells[keyField].Value;
+                            }
+                        }
+
+                    _data = row.ToDataDictionary();
+                    var f = new SoDuFormAddEdit(_alctConfig.TableNameAM, V6Mode.Add, keys, _data);
+                    f.InsertSuccessEvent += f_InsertSuccess;
+                    f.ShowDialog(this);
                 }
                 else
                 {
-                    DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
-
-                    if (row != null)
-                    {
-                        var keys = new SortedDictionary<string, object>();
-                        if (dataGridView1.Columns.Contains("UID"))//Luôn có trong thiết kế rồi.
-                            keys.Add("UID", row.Cells["UID"].Value);
-
-                        if (KeyFields != null)
-                            foreach (var keyField in KeyFields)
-                            {
-                                if (dataGridView1.Columns.Contains(keyField))
-                                {
-                                    keys[keyField] = row.Cells[keyField].Value;
-                                }
-                            }
-
-                        _data = row.ToDataDictionary();
-                        var f = new SoDuFormAddEdit(CurrentTable, V6Mode.Add, keys, _data);
-                        f.InsertSuccessEvent += f_InsertSuccess;
-                        f.ShowDialog(this);
-                    }
-                    else
-                    {
-                        this.ShowWarningMessage(V6Text.NoSelection);
-                    }
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
-
             }
             catch (Exception ex)
             {
@@ -403,41 +388,33 @@ namespace V6ControlManager.FormManager.SoDuManager
         {
             try
             {
-                if (CurrentTable == V6TableName.None)
+                DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
+
+                if (row != null)
                 {
-                    this.ShowWarningMessage("Hãy chọn danh mục!");
+                    var keys = new SortedDictionary<string, object>();
+                    if (dataGridView1.Columns.Contains("UID")) //Luôn có trong thiết kế rồi.
+                        keys.Add("UID", row.Cells["UID"].Value);
+
+                    if (KeyFields != null)
+                        foreach (var keyField in KeyFields)
+                        {
+                            if (dataGridView1.Columns.Contains(keyField))
+                            {
+                                keys[keyField] = row.Cells[keyField].Value;
+                            }
+                        }
+
+                    _data = row.ToDataDictionary();
+                    var f = new SoDuFormAddEdit(_MA_DM, V6Mode.Edit, keys, _data);
+
+                    f.UpdateSuccessEvent += f_UpdateSuccess;
+                    f.ShowDialog(this);
                 }
                 else
                 {
-                    DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
-
-                    if (row != null)
-                    {
-                        var keys = new SortedDictionary<string, object>();
-                        if (dataGridView1.Columns.Contains("UID"))//Luôn có trong thiết kế rồi.
-                            keys.Add("UID", row.Cells["UID"].Value);
-
-                        if (KeyFields != null)
-                            foreach (var keyField in KeyFields)
-                            {
-                                if (dataGridView1.Columns.Contains(keyField))
-                                {
-                                    keys[keyField] = row.Cells[keyField].Value;
-                                }
-                            }
-
-                        _data = row.ToDataDictionary();
-                        var f = new SoDuFormAddEdit(CurrentTable, V6Mode.Edit, keys, _data);//, AD.Copy());
-                        
-                        f.UpdateSuccessEvent += f_UpdateSuccess;
-                        f.ShowDialog(this);
-                    }
-                    else
-                    {
-                        this.ShowWarningMessage(V6Text.NoSelection);
-                    }
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
-
             }
             catch (Exception ex)
             {
@@ -477,29 +454,22 @@ namespace V6ControlManager.FormManager.SoDuManager
         {
             try
             {
-                if (CurrentTable == V6TableName.None)
+                DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
+
+                if (row != null)
                 {
-                    this.ShowWarningMessage("Hãy chọn danh mục!");
+                    _data = row.ToDataDictionary();
+
+                    var f = ChangeCodeManager.GetChangeCodeControl(_alctConfig.TableNameAM, _data);
+                    if (f != null)
+                    {
+                        f.DoChangeCodeFinish += f_DoChangeCodeFinish;
+                        f.ShowDialog(this);
+                    }
                 }
                 else
                 {
-                    DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
-
-                    if (row != null)
-                    {
-                        _data = row.ToDataDictionary();
-
-                        var f = ChangeCodeManager.GetChangeCodeControl(_alctConfig.TableNameAM, _data);
-                        if (f != null)
-                        {
-                            f.DoChangeCodeFinish += f_DoChangeCodeFinish;
-                            f.ShowDialog(this);
-                        }
-                    }
-                    else
-                    {
-                        this.ShowWarningMessage(V6Text.NoSelection);
-                    }
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)
@@ -560,7 +530,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                             }
 
                             //Xoa bang chinh
-                            var t = _categories.Delete(TRANSACTION, CurrentTable, keys);
+                            var t = _categories.Delete(TRANSACTION, _MA_DM, keys);
                             
                             if (t > 0)
                             {
@@ -614,7 +584,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                         this.ShowWarningMessage("Không có khóa STT_REC và MA_CT.");
 
                         _data = row.ToDataDictionary();
-                        _categories.Delete(CurrentTable, _data);
+                        _categories.Delete(_MA_DM, _data);
                     }
                 }
             }
@@ -630,37 +600,30 @@ namespace V6ControlManager.FormManager.SoDuManager
         {
             try
             {
-                if (CurrentTable == V6TableName.None)
+                DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
+
+                if (row != null)
                 {
-                    this.ShowWarningMessage("Hãy chọn danh mục!");
+                    var keys = new SortedDictionary<string, object>();
+                    if (dataGridView1.Columns.Contains("UID")) //Luôn có trong thiết kế rồi.
+                        keys.Add("UID", row.Cells["UID"].Value);
+
+                    if (KeyFields != null)
+                        foreach (var keyField in KeyFields)
+                        {
+                            if (dataGridView1.Columns.Contains(keyField))
+                            {
+                                keys[keyField] = row.Cells[keyField].Value;
+                            }
+                        }
+
+                    _data = row.ToDataDictionary();
+                    var f = new SoDuFormAddEdit(_MA_DM, V6Mode.View, keys, _data);
+                    f.ShowDialog(this);
                 }
                 else
                 {
-                    DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
-
-                    if (row != null)
-                    {
-                        var keys = new SortedDictionary<string, object>();
-                        if (dataGridView1.Columns.Contains("UID")) //Luôn có trong thiết kế rồi.
-                            keys.Add("UID", row.Cells["UID"].Value);
-
-                        if (KeyFields != null)
-                            foreach (var keyField in KeyFields)
-                            {
-                                if (dataGridView1.Columns.Contains(keyField))
-                                {
-                                    keys[keyField] = row.Cells[keyField].Value;
-                                }
-                            }
-
-                        _data = row.ToDataDictionary();
-                        var f = new SoDuFormAddEdit(CurrentTable, V6Mode.View, keys, _data);
-                        f.ShowDialog(this);
-                    }
-                    else
-                    {
-                        this.ShowWarningMessage(V6Text.NoSelection);
-                    }
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)
@@ -717,9 +680,8 @@ namespace V6ControlManager.FormManager.SoDuManager
         /// <summary>
         /// Được gọi từ DanhMucControl
         /// </summary>
-        /// <param name="tableName"></param>
         /// <param name="sortField"></param>
-        public void LoadTable(V6TableName tableName, string sortField)
+        public void LoadTable(string sortField)
         {
             SelectResult = new V6SelectResult();
             CloseFilterForm();
@@ -729,17 +691,16 @@ namespace V6ControlManager.FormManager.SoDuManager
                 int.TryParse(comboBox1.Text, out pageSize);
             }
             //else comboBox1.Text = "20";//gây lỗi index changed
-            LoadTable(tableName, 1, pageSize, sortField, true);
+            LoadTable(1, pageSize, sortField, true);
         }
 
-        private void LoadTable(V6TableName tableName, int page, int size, string sortField, bool ascending)
+        private void LoadTable(int page, int size, string sortField, bool ascending)
         {
             try
             {
                 SaveSelectedCellLocation(dataGridView1);
                 if (page < 1) page = 1;
-                CurrentTable = tableName;
-                if (_aldmConfig != null && CurrentTable == V6TableName.Notable)
+                if (_aldmConfig != null && _aldmConfig.HaveInfo)
                 {
                     if (string.IsNullOrEmpty(sortField)) sortField = _aldmConfig.ORDER;
                 }
@@ -767,8 +728,7 @@ namespace V6ControlManager.FormManager.SoDuManager
 
         private void LoadAtPage(int page)
         {
-            LoadTable(CurrentTable, page, SelectResult.PageSize,
-                SelectResult.SortField, SelectResult.IsSortOrderAscending);
+            LoadTable(page, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
         }
 
 
@@ -885,8 +845,9 @@ namespace V6ControlManager.FormManager.SoDuManager
 
         public void First()
         {
-            try { 
-            LoadTable(CurrentTable, 1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+            try
+            { 
+                LoadTable(1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
             }
             catch (Exception ex)
             {
@@ -896,8 +857,9 @@ namespace V6ControlManager.FormManager.SoDuManager
 
         public void Previous()
         {
-            try { 
-            LoadTable(CurrentTable, SelectResult.Page - 1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+            try
+            { 
+                LoadTable(SelectResult.Page - 1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
             }
             catch (Exception ex)
             {
@@ -910,7 +872,7 @@ namespace V6ControlManager.FormManager.SoDuManager
             try
             {
                 if (SelectResult.Page == SelectResult.TotalPages) return;
-                LoadTable(CurrentTable, SelectResult.Page + 1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+                LoadTable(SelectResult.Page + 1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
             }
             catch (Exception ex)
             {
@@ -920,8 +882,9 @@ namespace V6ControlManager.FormManager.SoDuManager
 
         public void Last()
         {
-            try { 
-            LoadTable(CurrentTable, SelectResult.TotalPages, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+            try
+            { 
+                LoadTable(SelectResult.TotalPages, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
             }
             catch (Exception ex)
             {
@@ -936,7 +899,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                 dataGridView2.DataSource = null;
                 //dataGridView2.Refresh();
 
-                LoadTable(CurrentTable, SelectResult.Page, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+                LoadTable(SelectResult.Page, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
                 //LoadAD();
                 LoadSelectedCellLocation(dataGridView1);
             }
@@ -1186,7 +1149,7 @@ namespace V6ControlManager.FormManager.SoDuManager
         {
             try
             {
-                V6TableStruct structTable = V6BusinessHelper.GetTableStruct(CurrentTable.ToString());
+                V6TableStruct structTable = V6BusinessHelper.GetTableStruct(_MA_DM.ToString());
 
                 if (!_v6LookupConfig.HaveInfo)
                 {
@@ -1328,7 +1291,7 @@ namespace V6ControlManager.FormManager.SoDuManager
                 var new_sortOrder = column.HeaderCell.SortGlyphDirection != SortOrder.Ascending;
                 var sort_field = column.DataPropertyName;
 
-                LoadTable(CurrentTable, SelectResult.Page, SelectResult.PageSize, sort_field, new_sortOrder);
+                LoadTable(SelectResult.Page, SelectResult.PageSize, sort_field, new_sortOrder);
             }
             catch
             {
@@ -1338,8 +1301,8 @@ namespace V6ControlManager.FormManager.SoDuManager
 
         private void btnDoiMa_Click_1(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowAdd("", CurrentTable.ToString().ToUpper() + "6")
-                && V6Login.UserRight.AllowEdit("", CurrentTable.ToString().ToUpper() + "6"))
+            if (V6Login.UserRight.AllowAdd("", _MA_DM.ToUpper() + "6")
+                && V6Login.UserRight.AllowEdit("", _MA_DM.ToUpper() + "6"))
             {
                 DoChangeCode();
             }

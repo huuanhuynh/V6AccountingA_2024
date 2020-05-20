@@ -273,7 +273,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                     SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, deleteAdSql);
 
                     //Update AM
-                    var amSql = SqlGenerator.GenUpdateSql(V6Login.UserId, TableName.ToString(), DataDic, keys, _TableStruct);
+                    var amSql = SqlGenerator.GenUpdateSql(V6Login.UserId, _MA_DM.ToString(), DataDic, keys, _TableStruct);
                     var insert_success = SqlConnect.ExecuteNonQuery(TRANSACTION, CommandType.Text, amSql) > 0;
                     var j = 0;
 
@@ -314,11 +314,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             if (txtMaYtcp.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblMaYTCP.Text + "!\r\n";
             if (txtMaBpht.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + lblMaBPHT.Text + "!\r\n";
             
-            AldmConfig config = ConfigManager.GetAldmConfig(TableName.ToString());
+            AldmConfig config = ConfigManager.GetAldmConfig(_MA_DM);
             if (config != null && config.HaveInfo && !string.IsNullOrEmpty(config.KEY))
             {
                 var key_list = ObjectAndString.SplitString(config.KEY);
-                errors += CheckValid(TableName.ToString(), key_list);
+                errors += CheckValid(_MA_DM, key_list);
             }
 
             if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)

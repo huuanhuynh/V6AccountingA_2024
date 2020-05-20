@@ -2651,7 +2651,7 @@ namespace V6Controls.Forms
             try
             {
                 var key = new SortedDictionary<string, object> { { "ma_dm", ma_dm } };
-                var selectResult = V6BusinessHelper.Select(V6TableName.Altt, key, "", "", "");
+                var selectResult = V6BusinessHelper.Select("Altt", key, "", "", "");
                 if (selectResult.Data.Rows.Count > 0)
                 {
                     SetFormInfoDefine(control, selectResult.Data, V6Setting.Language);
@@ -6080,15 +6080,15 @@ namespace V6Controls.Forms
             }
         }
 
-        public static int Copy_Here2Data(V6TableName tableName, V6Mode mode,
-            string keyField1, string keyField2, string keyField3,
-            string newKey1, string newKey2, string newKey3,
-            string oldKey1, string oldKey2, string oldKey3,
-            string uid)
-        {
-            return Copy_Here2Data(tableName.ToString(), mode, keyField1, keyField2, keyField3,
-                newKey1, newKey2, newKey3, oldKey1, oldKey2, oldKey3, uid);
-        }
+        //public static int Copy_Here2Data(V6TableName tableName, V6Mode mode,
+        //    string keyField1, string keyField2, string keyField3,
+        //    string newKey1, string newKey2, string newKey3,
+        //    string oldKey1, string oldKey2, string oldKey3,
+        //    string uid)
+        //{
+        //    return Copy_Here2Data(tableName.ToString(), mode, keyField1, keyField2, keyField3,
+        //        newKey1, newKey2, newKey3, oldKey1, oldKey2, oldKey3, uid);
+        //}
 
         public static int Copy_Here2Data(string tableName, V6Mode mode,
             string keyField1,string keyField2,string keyField3,
@@ -7646,7 +7646,7 @@ namespace V6Controls.Forms
             //Tạo control động
             IDictionary<string, object> keys = new Dictionary<string, object>();
             keys.Add("MA_BC", ma_bc);
-            Alreport1Data = V6BusinessHelper.Select(V6TableName.Alreport1, keys, "*", "", "Stt_Filter").Data;
+            Alreport1Data = V6BusinessHelper.Select("Alreport1", keys, "*", "", "Stt_Filter").Data;
             int i_index = 0;
             int baseTop = 10;
             int rowHeight = 25;
@@ -7660,7 +7660,7 @@ namespace V6Controls.Forms
                     ? defineInfo.Field.ToUpper()
                     : defineInfo.AccessibleName.ToUpper();
                 //Bỏ qua nếu đã tồn tại control trên form.
-                if (V6ControlFormHelper.GetControlByAccessibleName(thisForm, AccessibleName_KEY) != null) continue;
+                if (GetControlByAccessibleName(thisForm, AccessibleName_KEY) != null) continue;
 
                 DefineInfo_Data[AccessibleName_KEY.ToUpper()] = defineInfo;
                 //Label
@@ -7825,8 +7825,7 @@ namespace V6Controls.Forms
                     if (string.IsNullOrEmpty(input.Name)) input.Name = "txt" + defineInfo.Field;
                     if (!string.IsNullOrEmpty(defineInfo.DefaultValue))
                     {
-                        V6ControlFormHelper.SetControlValue(input, defineInfo.DefaultValue);
-                        //input.Text = defineInfo.DefaultValue;
+                        SetControlValue(input, defineInfo.DefaultValue);
                     }
                     input.Enabled = defineInfo.Enabled;
                     input.Visible = defineInfo.Visible;

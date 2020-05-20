@@ -376,17 +376,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                         _data = row.ToDataDictionary();
                         FormAddEdit f;
-                        if (CurrentTable == V6TableName.Notable)
-                        {
-                            f = new FormAddEdit(_tableName, V6Mode.Edit, keys, _data);
-                        }
-                        else
-                        {
-                            f = new FormAddEdit(CurrentTable, V6Mode.Edit, keys, _data);
-                        }
+                        f = new FormAddEdit(_tableName, V6Mode.Edit, keys, _data);
+
                         f.AfterInitControl += f_AfterInitControl;
                         f.InitFormControl();
-                        f.ParentData = ((DataRowView)listBoxAlvitri.SelectedItem).Row.ToDataDictionary();
+                        f.ParentData = ((DataRowView) listBoxAlvitri.SelectedItem).Row.ToDataDictionary();
                         f.UpdateSuccessEvent += f_UpdateSuccess;
                         f.CallReloadEvent += FCallReloadEvent;
                         f.ShowDialog(this);
@@ -423,7 +417,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                if (CurrentTable == V6TableName.Notable
+                if (CurrentTable == V6TableName.None
                     && !string.IsNullOrEmpty(_alvitrict_config.TABLE_VIEW)
                     && V6BusinessHelper.IsExistDatabaseTable(_alvitrict_config.TABLE_VIEW))
                 {
@@ -476,25 +470,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         //    }
 
                         _data = row.ToDataDictionary();
-                        if (CurrentTable == V6TableName.Notable)
+                        if (CurrentTable == V6TableName.None)
                         {
                             f = new FormAddEdit(_tableName, V6Mode.Add, keys, _data);
                         }
                         else
                         {
-                            f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);
+                            f = new FormAddEdit(CurrentTable.ToString(), V6Mode.Add, keys, _data);
                         }
                     }
                     else
                     {
-                        if (CurrentTable == V6TableName.Notable)
-                        {
-                            f = new FormAddEdit(_tableName);
-                        }
-                        else
-                        {
-                            f = new FormAddEdit(CurrentTable);
-                        }
+                        f = new FormAddEdit(_tableName);
                     }
                     f.AfterInitControl += f_AfterInitControl;
                     f.InitFormControl();
@@ -511,7 +498,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         void f_AfterInitControl(object sender, EventArgs e)
         {
-            LoadAdvanceControls((Control)sender, CurrentTable == V6TableName.Notable?_tableName:CurrentTable.ToString());
+            LoadAdvanceControls((Control)sender, CurrentTable == V6TableName.None?_tableName:CurrentTable.ToString());
         }
 
         protected void LoadAdvanceControls(Control form, string ma_ct)

@@ -177,51 +177,42 @@ namespace V6ReportControls
             LoadAlmaubc();
         }
 
-        V6TableName CurrentTable = V6TableName.Almaubc;
+        string CurrentTable = "Almaubc";
         private void DoAdd()
         {
             try
             {
-                if (CurrentTable == V6TableName.None)
+                if (maubcData != null)
                 {
-                    this.ShowWarningMessage("Hãy chọn danh mục!");
+                    var row0 = maubcData.Rows[cboMaubc.SelectedIndex];
+
+                    var keys = new SortedDictionary<string, object>();
+                    if (maubcData.Columns.Contains("UID"))
+                        keys.Add("UID", row0["UID"]);
+
+                    //if (KeyFields != null)
+                    //    foreach (var keyField in KeyFields)
+                    //    {
+                    //        if (dataGridView1.Columns.Contains(keyField))
+                    //        {
+                    //            keys[keyField] = row.Cells[keyField].Value;
+                    //        }
+                    //    }
+
+                    var _data = row0.ToDataDictionary();
+                    var f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);
+                    f.AfterInitControl += f_AfterInitControl;
+                    f.InitFormControl();
+                    f.InsertSuccessEvent += f_InsertSuccess;
+                    f.ShowDialog(this);
                 }
                 else
                 {
-
-
-                    if (maubcData != null)
-                    {
-                        var row0 = maubcData.Rows[cboMaubc.SelectedIndex];
-
-                        var keys = new SortedDictionary<string, object>();
-                        if (maubcData.Columns.Contains("UID"))
-                            keys.Add("UID", row0["UID"]);
-
-                        //if (KeyFields != null)
-                        //    foreach (var keyField in KeyFields)
-                        //    {
-                        //        if (dataGridView1.Columns.Contains(keyField))
-                        //        {
-                        //            keys[keyField] = row.Cells[keyField].Value;
-                        //        }
-                        //    }
-
-                        var _data = row0.ToDataDictionary();
-                        var f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);
-                        f.AfterInitControl += f_AfterInitControl;
-                        f.InitFormControl();
-                        f.InsertSuccessEvent += f_InsertSuccess;
-                        f.ShowDialog(this);
-                    }
-                    else
-                    {
-                        var f = new FormAddEdit(CurrentTable);
-                        f.AfterInitControl += f_AfterInitControl;
-                        f.InitFormControl();
-                        f.InsertSuccessEvent += f_InsertSuccess;
-                        f.ShowDialog(this);
-                    }
+                    var f = new FormAddEdit(CurrentTable);
+                    f.AfterInitControl += f_AfterInitControl;
+                    f.InitFormControl();
+                    f.InsertSuccessEvent += f_InsertSuccess;
+                    f.ShowDialog(this);
                 }
             }
             catch (Exception ex)
@@ -270,42 +261,35 @@ namespace V6ReportControls
         {
             try
             {
-                if (CurrentTable == V6TableName.None)
+                //DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
+
+                if (cboMaubc.SelectedIndex >= 0)
                 {
-                    this.ShowWarningMessage("Hãy chọn danh mục!");
+                    var row0 = maubcData.Rows[cboMaubc.SelectedIndex];
+                    var keys = new SortedDictionary<string, object>();
+                    if (maubcData.Columns.Contains("UID")) //Luôn có trong thiết kế rồi.
+                        keys.Add("UID", row0["UID"]);
+
+                    //if (KeyFields != null)
+                    //    foreach (var keyField in KeyFields)
+                    //    {
+                    //        if (dataGridView1.Columns.Contains(keyField))
+                    //        {
+                    //            keys[keyField] = row.Cells[keyField].Value;
+                    //        }
+                    //    }
+
+                    var _data = row0.ToDataDictionary();
+                    var f = new FormAddEdit(CurrentTable, V6Mode.Edit, keys, _data);
+                    f.AfterInitControl += f_AfterInitControl;
+                    f.InitFormControl();
+                    f.UpdateSuccessEvent += f_UpdateSuccess;
+                    f.CallReloadEvent += FCallReloadEvent;
+                    f.ShowDialog(this);
                 }
                 else
                 {
-                    //DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
-
-                    if (cboMaubc.SelectedIndex >= 0)
-                    {
-                        var row0 = maubcData.Rows[cboMaubc.SelectedIndex];
-                        var keys = new SortedDictionary<string, object>();
-                        if (maubcData.Columns.Contains("UID")) //Luôn có trong thiết kế rồi.
-                            keys.Add("UID", row0["UID"]);
-
-                        //if (KeyFields != null)
-                        //    foreach (var keyField in KeyFields)
-                        //    {
-                        //        if (dataGridView1.Columns.Contains(keyField))
-                        //        {
-                        //            keys[keyField] = row.Cells[keyField].Value;
-                        //        }
-                        //    }
-
-                        var _data = row0.ToDataDictionary();
-                        var f = new FormAddEdit(CurrentTable, V6Mode.Edit, keys, _data);
-                        f.AfterInitControl += f_AfterInitControl;
-                        f.InitFormControl();
-                        f.UpdateSuccessEvent += f_UpdateSuccess;
-                        f.CallReloadEvent += FCallReloadEvent;
-                        f.ShowDialog(this);
-                    }
-                    else
-                    {
-                        this.ShowWarningMessage("Hãy chọn một dòng dữ liệu!");
-                    }
+                    this.ShowWarningMessage("Hãy chọn một dòng dữ liệu!");
                 }
             }
             catch (Exception ex)

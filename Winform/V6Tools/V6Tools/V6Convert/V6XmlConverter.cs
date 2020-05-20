@@ -65,7 +65,10 @@ namespace V6Tools.V6Convert
             }
             else if (value is string || value is DBNull || value == null)
             {
-                result = FixXmlValueChar("" + value);
+                if (value is DBNull || value == null)
+                    result = "" + value;
+                else
+                    result = FixXmlCDataValue("" + value);
             }
             else if (value is DateTime)
             {
@@ -89,7 +92,7 @@ namespace V6Tools.V6Convert
                 }
                 else
                 {
-                    result = FixXmlValueChar(value.ToString());
+                    result = "" + value;
                 }
             }
             else if (value is bool)
@@ -104,10 +107,29 @@ namespace V6Tools.V6Convert
             return result;
         }
 
+        private static string FixXmlCDataValue(string xmlValue)
+        {
+            //if(ContainXmlChars(xmlValue))
+                xmlValue = "<![CDATA[" + xmlValue + "]]>";
+            return xmlValue;
+        }
+
+        private static bool ContainXmlChars(string xmlValue)
+        {
+            foreach (KeyValuePair<string, string> item in XmlChars)
+            {
+                if (xmlValue.Contains(item.Key))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         static Dictionary<string, string> XmlChars = new Dictionary<string, string>()
         {
-            //{"'", "&apos;"},    // Dấu nháy đơn (') &#39;
-            //{"\"", "&quot;"},   // Dấu nháy kép (") &#34;
+            {"'", "&apos;"},    // Dấu nháy đơn (') &#39;
+            {"\"", "&quot;"},   // Dấu nháy kép (") &#34;
             {"&", "&amp;"},     // Dấu và       (&)
             {"<", "&lt;"},      // Dấu nhỏ hơn  (<)
             {">", "&gt;"},      // Dấu lớn hơn  (>)

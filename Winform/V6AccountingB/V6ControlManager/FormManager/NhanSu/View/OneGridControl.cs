@@ -89,7 +89,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
                     SortedDictionary<string, object> _data = new SortedDictionary<string, object>();
                     _data["STT_REC"] = _stt_rec;
                     _data["STT_REC0"] = V6BusinessHelper.GetNewSttRec0(_gridViewData);
-                    var f = new FormAddEdit(CurrentTable, V6Mode.Add, null, _data);
+                    var f = new FormAddEdit(CurrentTable.ToString(), V6Mode.Add, null, _data);
                     f.AfterInitControl += f_AfterInitControl;
                     f.InitFormControl();
                     f.InsertSuccessEvent += f_InsertSuccess;
@@ -150,7 +150,7 @@ namespace V6ControlManager.FormManager.NhanSu.View
                         //    }
 
                         //var _data = row.ToDataDictionary();
-                        var f = new FormAddEdit(CurrentTable, V6Mode.Edit, keys, null);
+                        var f = new FormAddEdit(CurrentTable.ToString(), V6Mode.Edit, keys, null);
                         f.AfterInitControl += f_AfterInitControl;
                         f.InitFormControl();
                         f.UpdateSuccessEvent += f_UpdateSuccess;

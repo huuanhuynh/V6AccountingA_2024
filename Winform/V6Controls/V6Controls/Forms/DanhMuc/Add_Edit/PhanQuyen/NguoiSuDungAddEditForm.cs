@@ -204,13 +204,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
 
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "USER_NAME",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 0, "USER_NAME",
                  txtUser_name.Text.Trim(), DataOld["USER_NAME"].ToString());
                 if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblUserName.Text + "=" + txtUser_name.Text;
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "USER_NAME",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 1, "USER_NAME",
                  txtUser_name.Text.Trim(), txtUser_name.Text.Trim());
                 if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblUserName.Text + "=" + txtUser_name.Text;
             }
@@ -378,7 +378,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
                 //Hiển thị form chỉnh sửa chứng từ chi tiết cho user.
                 //IDictionary<string, object> keys = new SortedDictionary<string, object>();
                 //keys.Add("User_id_ct", TxtUser_id.Text);
-                //var data = V6BusinessHelper.Select(V6TableName.Alctct, keys, "*").Data;
+                //var data = V6BusinessHelper.Select(Alctct, keys, "*").Data;
 
                 var where0 = " WHERE d.User_id_ct='" + TxtUser_id.Text+"'";
                 var sql = string.Format("Select e.ten_ct, d.* FROM AlctCt d "

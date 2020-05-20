@@ -422,7 +422,7 @@ namespace V6Init
         public V6lookupConfig(IDictionary<string, object> data)
             : base(data)
         {
-            V6TableName = V6TableHelper.ToV6TableName(vMa_file);
+            
         }
 
         public V6lookupConfig()
@@ -442,7 +442,6 @@ namespace V6Init
                 return result.Split(';');
             }
         }
-        public V6TableName V6TableName { get; private set; }
         public string DOI_MA { get { return GetString("DOI_MA"); } }
         public string vVar { get { return GetString("vVar"); } }
         /// <summary>

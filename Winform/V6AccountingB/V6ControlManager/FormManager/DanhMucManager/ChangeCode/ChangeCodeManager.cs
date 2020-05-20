@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using V6AccountingBusiness;
+using V6Init;
 using V6Structs;
 
 namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
@@ -46,11 +46,11 @@ namespace V6ControlManager.FormManager.DanhMucManager.ChangeCode
                     //var tableName = name.ToString();
                     IDictionary<string, object> keys = new Dictionary<string, object>();
                     keys.Add("MA_DM", tableName);
-                    var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
-                    if (aldm.Rows.Count == 1)
+                    var aldmConfig = ConfigManager.GetAldmConfig(tableName);
+                    //var aldm = V6BusinessHelper.Select("Aldm", keys, "*").Data;
+                    if (aldmConfig.HaveInfo)
                     {
-                        var F6_table = aldm.Rows[0]["F6_table"];
-                        if (F6_table != null && F6_table.ToString().Trim() != "")
+                        if (aldmConfig.F6_TABLE != null && aldmConfig.F6_TABLE.Trim() != "")
                         {
                             return new AllChangeCodeForm(data, name.ToString());
                         }

@@ -82,7 +82,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             {
                 IDictionary<string, object> keys = new Dictionary<string, object>();
                 keys.Add("MA_BC", _program);
-                var AlreportData = V6BusinessHelper.Select(V6TableName.Alreport, keys, "*").Data;
+                var AlreportData = V6BusinessHelper.Select("Alreport", keys, "*").Data;
                 if (AlreportData.Rows.Count == 0) return;
 
                 var dataRow = AlreportData.Rows[0];

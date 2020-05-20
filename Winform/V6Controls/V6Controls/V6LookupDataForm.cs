@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls.Forms;
@@ -524,9 +523,7 @@ namespace V6Controls
                             {
                                 {"UID", uid}
                             };
-                            var f = _config.V6TableName == V6TableName.Notable
-                                ? new FormAddEdit(_config.vMa_file, V6Mode.View, keys, null)
-                                : new FormAddEdit(_config.V6TableName, V6Mode.View, keys, null);
+                            var f = new FormAddEdit(_config.vMa_file, V6Mode.View, keys);
                             f.AfterInitControl += f_AfterInitControl;
                             f.InitFormControl();
                             f.ParentData = _senderTextBox.ParentData;
@@ -561,9 +558,7 @@ namespace V6Controls
                             {
                                 {"UID", uid}
                             };
-                            var f = _config.V6TableName == V6TableName.Notable
-                                ? new FormAddEdit(_config.vMa_file, V6Mode.Edit, keys, null)
-                                : new FormAddEdit(_config.V6TableName, V6Mode.Edit, keys, null);
+                            var f = new FormAddEdit(_config.vMa_file, V6Mode.Edit, keys);
                             f.AfterInitControl += f_AfterInitControl;
                             f.InitFormControl();
                             f.ParentData = _senderTextBox.ParentData;
@@ -591,9 +586,7 @@ namespace V6Controls
                     {
                         DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
                         var data = row != null ? row.ToDataDictionary() : null;
-                        var f = _config.V6TableName == V6TableName.Notable
-                            ? new FormAddEdit(_config.vMa_file, V6Mode.Add, null, data)
-                            : new FormAddEdit(_config.V6TableName, V6Mode.Add, null, data);
+                        var f = new FormAddEdit(_config.vMa_file, V6Mode.Add, null, data);
                         f.AfterInitControl += f_AfterInitControl;
                         f.InitFormControl();
                         f.ParentData = _senderTextBox.ParentData;
@@ -620,7 +613,7 @@ namespace V6Controls
 
         void f_AfterInitControl(object sender, EventArgs e)
         {
-            LoadAdvanceControls((Control)sender, _config.V6TableName == V6TableName.Notable?_config.vMa_file:_config.V6TableName.ToString());
+            LoadAdvanceControls((Control)sender, _config.vMa_file);
         }
 
         protected void LoadAdvanceControls(Control form, string ma_ct)

@@ -27,18 +27,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             try
             {
                 IDictionary<string, object> keys = new Dictionary<string, object>();
-                keys.Add("MA_DM", TableName);
-                var aldm = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
-                string F8_table = "";
-
-                if (aldm.Rows.Count == 1)
-                {
-                    var row = aldm.Rows[0];
-                    F8_table = row["F8_TABLE"].ToString().Trim();
-                    //code_field = row[""].ToString().Trim();
-                }
-
-                var v = Categories.IsExistOneCode_List(F8_table, "MA_LOAI_TN", txtMa_loai_tn.Text);
+                keys.Add("MA_DM", _MA_DM);
+                var aldm = ConfigManager.GetAldmConfig(_MA_DM);
+                var v = Categories.IsExistOneCode_List(aldm.F8_TABLE, "MA_LOAI_TN", txtMa_loai_tn.Text);
                 txtMa_loai_tn.Enabled = !v;
             }
             catch (Exception ex)
@@ -56,13 +47,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_LOAI_TN", 
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 0, "MA_LOAI_TN", 
                  txtMa_loai_tn.Text.Trim(), DataOld["MA_LOAI_TN"].ToString());
                 if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblMaLoai.Text + "=" + txtMa_loai_tn.Text;
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_LOAI_TN",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 1, "MA_LOAI_TN",
                     txtMa_loai_tn.Text.Trim(), txtMa_loai_tn.Text.Trim());
                 if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblMaLoai.Text + "=" + txtMa_loai_tn.Text;
             }

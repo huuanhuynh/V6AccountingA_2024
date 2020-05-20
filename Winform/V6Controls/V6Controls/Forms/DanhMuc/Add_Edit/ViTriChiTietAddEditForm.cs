@@ -48,14 +48,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidTwoCode_Full(TableName.ToString(), 0, "MA_VITRI",
+                bool b = V6BusinessHelper.IsValidTwoCode_Full(_MA_DM.ToString(), 0, "MA_VITRI",
                     TxtMa_vitri.Text.Trim(), DataOld["MA_VITRI"].ToString(),
                     "MA_VT", Txtma_vt.Text.Trim(), DataOld["MA_VT"].ToString());
                 if (!b) errors += V6Text.EditDenied;
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidTwoCode_Full(TableName.ToString(), 1, "MA_VITRI",
+                bool b = V6BusinessHelper.IsValidTwoCode_Full(_MA_DM.ToString(), 1, "MA_VITRI",
                     TxtMa_vitri.Text.Trim(), TxtMa_vitri.Text.Trim(),
                     "MA_VT", Txtma_vt.Text.Trim(), Txtma_vt.Text.Trim());
                 if (!b) errors += V6Text.AddDenied;

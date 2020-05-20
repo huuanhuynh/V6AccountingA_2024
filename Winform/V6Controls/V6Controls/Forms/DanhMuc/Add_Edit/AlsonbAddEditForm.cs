@@ -68,13 +68,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_SONB", txtMa_sonb.Text.Trim(), DataOld["MA_SONB"].ToString());
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 0, "MA_SONB", txtMa_sonb.Text.Trim(), DataOld["MA_SONB"].ToString());
                 if (!b) throw new Exception(string.Format("{0} {1} = {2}", V6Text.DataExist, lblMa_sonb.Text, txtMa_sonb.Text));
                 
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_SONB", txtMa_sonb.Text.Trim(), txtMa_sonb.Text.Trim());
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 1, "MA_SONB", txtMa_sonb.Text.Trim(), txtMa_sonb.Text.Trim());
                 if (!b) throw new Exception(string.Format("{0} {1} = {2}", V6Text.DataExist, lblMa_sonb.Text, txtMa_sonb.Text));
             }
 

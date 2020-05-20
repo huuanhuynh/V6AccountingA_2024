@@ -14,7 +14,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             try
             {
                 System.Collections.Generic.IDictionary<string, object> keys = new System.Collections.Generic.Dictionary<string, object>();
-                keys.Add("MA_DM", TableName);
+                keys.Add("MA_DM", _MA_DM);
                 var aldm = V6BusinessHelper.Select(V6Structs.V6TableName.Aldm, keys, "*").Data;
                 string F8_table = "";
 
@@ -41,7 +41,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             if (Mode == V6Structs.V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "TT_VT",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 0, "TT_VT",
                     txtTT_VT.Text.Trim(), DataOld["TT_VT"].ToString());
                 if (!b)
                     throw new Exception(V6Init.V6Text.DataExist
@@ -49,7 +49,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             else if (Mode == V6Structs.V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "TT_VT",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 1, "TT_VT",
                     txtTT_VT.Text.Trim(), txtTT_VT.Text.Trim());
                 if (!b)
                     throw new Exception(V6Init.V6Text.DataExist

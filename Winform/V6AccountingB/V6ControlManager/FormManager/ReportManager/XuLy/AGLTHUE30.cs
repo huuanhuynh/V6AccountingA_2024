@@ -51,7 +51,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
 
                         if (V6Login.UserRight.AllowDelete("", "APV"))
-
                         {
 
                             var currentRow = dataGridView1.CurrentRow;
@@ -206,6 +205,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected override void XuLyBoSungThongTinChungTuF4()
         {
+            if (!V6Login.UserRight.AllowAdd("", "APV"))
+            {
+                V6ControlFormHelper.NoRightWarning();
+                return;
+            }
             //var currentRow = dataGridView1.CurrentRow;
 
             var f = new V6Form

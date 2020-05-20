@@ -16,14 +16,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
     public partial class AddEditControlVirtual : V6FormControl, IV6AddEditInterface
     {
         protected V6Categories Categories;
-        public V6TableName TableName { get; set; }
+        public string _MA_DM { get; set; }
         public string CONFIG_TABLE_NAME
         {
             get
             {
-                string table = TableName.ToString();
+                string table = _MA_DM;
                 // Tuanmh 01/07/2019 set TABLE_VIEW
-                //if (CurrentTable == V6TableName.Notable && _aldmConfig != null)
+                //if (CurrentTable == V6TableName.None && _aldmConfig != null)
                 if (_aldmConfig != null && _aldmConfig.IS_ALDM)
                 {
                     if (!string.IsNullOrEmpty(_aldmConfig.TABLE_NAME)
@@ -40,6 +40,15 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         public Control _grandFatherControl;
         public IDictionary<string, object> _parentData;
         public AldmConfig _aldmConfig;
+        public string TitleLang
+        {
+            get
+            {
+                string title = CONFIG_TABLE_NAME;
+                if (_aldmConfig.HaveInfo) title = V6Setting.IsVietnamese ? _aldmConfig.TITLE : _aldmConfig.TITLE2;
+                return title;
+            }
+        }
 
         /// <summary>
         /// Bật tắt tính năng gọi hàm Reload sau khi insert hoặc update thành công.
@@ -60,7 +69,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// </summary>
         public IDictionary<string, object> _keys = new SortedDictionary<string, object>();
 
-        protected Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
+        public Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
         /// <summary>
         /// Code động từ aldmConfig.
         /// </summary>
@@ -136,29 +145,27 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 DoBeforeView();
             }
 
-            EnableFormControls_Alctct(TableName.ToString());
+            EnableFormControls_Alctct(_MA_DM);
 
             InvokeFormEvent(FormDynamicEvent.INIT2);
         }
 
-        
-
         /// <summary>
         /// Khởi tạo giá trị cho control với các tham số
         /// </summary>
-        /// <param name="tableName">Bảng đang xử lý</param>
+        /// <param name="ma_dm">Mã danh mục đang xử lý</param>
         /// <param name="mode">Add/Edit/View</param>
         /// <param name="keys">Nếu data null thì load bằng keys</param>
         /// <param name="data">Gán dữ liệu này lên form</param>
-        public virtual void InitValues(V6TableName tableName, V6Mode mode,
+        public virtual void InitValues(string ma_dm, V6Mode mode,
             IDictionary<string, object> keys, IDictionary<string, object> data)
         {
-            TableName = tableName;
+            _MA_DM = ma_dm.ToUpper();
             //_aldmConfig = ConfigManager.GetAldmConfig(TableName.ToString());
             Mode = mode;
             _keys = keys;
             DataOld = data;
-            LoadAdvanceControls(TableName);
+            LoadAdvanceControls();
             if (Mode == V6Mode.View) V6ControlFormHelper.SetFormControlsReadOnly(this, true);
             
             All_Objects["thisForm"] = this;
@@ -170,14 +177,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             //virtual
             LoadDetails();
             
-            LoadTag(2, "", TableName.ToString(), ItemID);
+            LoadTag(2, "", _MA_DM, ItemID);
         }
 
-        private void LoadAdvanceControls(V6TableName tableName)
+        private void LoadAdvanceControls()
         {
             try
             {
-                //FormManagerHelper.CreateAdvanceFormControls(this, tableName.ToString(), All_Objects);
+                //FormManagerHelper.CreateAdvanceFormControls(this, _MA_DM, All_Objects);
             }
             catch (Exception ex)
             {
@@ -189,7 +196,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             LoadStruct();//MaxLength...
             //EnableFormControls_Alctct();
-            V6ControlFormHelper.LoadAndSetFormInfoDefine(TableName.ToString(), this, Parent);
+            V6ControlFormHelper.LoadAndSetFormInfoDefine(_MA_DM, this, Parent);
 
             if (Mode==V6Mode.Edit)
             {
@@ -216,7 +223,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     SetSomeData(dataOld2);
                 }
                 
-                LoadDefaultData(2, "", TableName.ToString(), m_itemId);
+                LoadDefaultData(2, "", _MA_DM, m_itemId);
             }
             else if (Mode == V6Mode.View)
             {
@@ -230,7 +237,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 }
             }
 
-            LoadTag(2, "", TableName.ToString(), m_itemId);
+            LoadTag(2, "", _MA_DM, m_itemId);
         }
 
         /// <summary>
@@ -246,7 +253,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {   
-                _TableStruct = V6BusinessHelper.GetTableStruct(TableName.ToString());
+                _TableStruct = V6BusinessHelper.GetTableStruct(_MA_DM);
                 V6ControlFormHelper.SetFormStruct(this, _TableStruct);
             }
             catch (Exception ex)
@@ -256,31 +263,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         }
 
-        ///// <summary>
-        ///// Tải thông tin tự định nghĩa lên form
-        ///// </summary>
-        //public void LoadUserDefineInfo ()
-        //{
-        //    try
-        //    {
-        //        var key = new SortedDictionary<string, object> {{"ma_dm", TableName.ToString()}};
-        //        var selectResult = Categories.Select(V6TableName.Altt, key);
-        //        V6ControlFormHelper.SetFormInfoDefine(this, selectResult.Data, V6Setting.Language);
-                
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        this.ShowErrorException(GetType() + ".Load info error!", ex);
-        //    }
-        //}
-
         public virtual void LoadData()
         {
             try
             {
                 if (_keys != null && _keys.Count > 0)
                 {
-                    var selectResult = Categories.Select(TableName, _keys);
+                    var selectResult = Categories.Select(_MA_DM, _keys);
                     if (selectResult.Data.Rows.Count == 1)
                     {
                         DataOld = selectResult.Data.Rows[0].ToDataDictionary();
@@ -472,7 +461,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 ValidateData();
                 InvokeFormEvent(FormDynamicEvent.BEFORESAVE);
                 InvokeFormEvent("BEFOREINSERTORUPDATE");
-                string checkV6Valid = CheckV6Valid(DataDic, TableName.ToString());
+                string checkV6Valid = CheckV6Valid(DataDic, _MA_DM);
                 if (!string.IsNullOrEmpty(checkV6Valid))
                 {
                     this.ShowInfoMessage(checkV6Valid, 500);
@@ -499,28 +488,28 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         AfterUpdate();
                         InvokeFormEvent(FormDynamicEvent.AFTERUPDATE);
                         
-                        if (TableName == V6TableName.V6user)
+                        if (_MA_DM == "V6USER")
                         {
                             UpdateInheritUser();
                             UpdateAdvanceInforUser();
                         }
 
-                        if (TableName == V6TableName.V6option)
+                        if (_MA_DM == "V6OPTION")
                         {
                             UpdateV6Option();
                         }
 
-                        if (TableName == V6TableName.Altk0)
+                        if (_MA_DM == "ALTK0")
                         {
                             UpdateBackTk();
                             UpdateLoaiTk("E");
                         }
-                        if (TableName == V6TableName.Alvv)
+                        if (_MA_DM == "ALVV")
                         {
                             UpdateBackVv();
                             UpdateLoaiVv("E");
                         }
-                        if (TableName == V6TableName.Hrpersonal)
+                        if (_MA_DM == "HRPERSONAL")
                         {
                             Update_Auto_From_Personal();
                         }
@@ -537,7 +526,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             var oldKey1 = newKey1;
                             var oldKey2 = newKey2;
                             var oldKey3 = newKey3;
-                            V6ControlFormHelper.Copy_Here2Data(TableName, Mode,
+                            V6ControlFormHelper.Copy_Here2Data(_MA_DM, Mode,
                                 KeyField1, KeyField2, KeyField3,
                                 newKey1, newKey2, newKey3,
                                 oldKey1, oldKey2, oldKey3,
@@ -567,24 +556,24 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         AfterSave();
                         AfterInsert();
                         InvokeFormEvent(FormDynamicEvent.AFTERINSERT);
-                        
-                        if (TableName == V6TableName.V6user)
+
+                        if (_MA_DM == "V6USER")
                         {
                             UpdateInheritUser();
                             UpdateAdvanceInforUser();
                         }
 
-                        if (TableName == V6TableName.Altk0)
+                        if (_MA_DM == "ALTK0")
                         {
                             UpdateBackTk();
                             UpdateLoaiTk("A");
                         }
-                        if (TableName == V6TableName.Alvv)
+                        if (_MA_DM == "ALVV")
                         {
                             UpdateBackVv();
                             UpdateLoaiVv("A");
                         }
-                        if (TableName == V6TableName.Hrpersonal)
+                        if (_MA_DM == "HRPERSONAL")
                         {
                             Update_Auto_From_Personal();
                         }
@@ -609,7 +598,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                 UID = DataOld.ContainsKey("UID") ? DataOld["UID"].ToString() : "";
                             }
                             
-                            V6ControlFormHelper.Copy_Here2Data(TableName, Mode,
+                            V6ControlFormHelper.Copy_Here2Data(_MA_DM, Mode,
                                 KeyField1, KeyField2, KeyField3,
                                 newKey1, newKey2, newKey3,
                                 oldKey1, oldKey2, oldKey3,
@@ -776,7 +765,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                _aldmConfig = ConfigManager.GetAldmConfig(TableName.ToString());
+                _aldmConfig = ConfigManager.GetAldmConfig(_MA_DM);
                 // Get new id proc 
                 if (_aldmConfig.HaveInfo)
                 {
@@ -787,7 +776,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                         SqlParameter[] plist =
                         {
-                            new SqlParameter("@MA_DM", TableName.ToString()),
+                            new SqlParameter("@MA_DM", _MA_DM),
                             new SqlParameter("@Vvalue", DataOld.ContainsKey(_aldmConfig.VALUE.ToUpper()) ? DataOld[_aldmConfig.VALUE.ToUpper()].ToString().Trim() : ""),
                             new SqlParameter("@Loai_nh", DataOld["AUTOID_LOAINH"]),
                             new SqlParameter("@NhValue", DataOld["AUTOID_NHVALUE"]),
@@ -842,7 +831,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             try
             {
                 var sql = "Update Aldm set Stt13=Stt13+1 where ma_dm=@ma_dm";
-                SqlParameter[] plist = new []{new SqlParameter("@ma_dm", TableName.ToString())};
+                SqlParameter[] plist = new []{new SqlParameter("@ma_dm", _MA_DM)};
                 V6BusinessHelper.ExecuteSqlNoneQuery(sql, plist);
             }
             catch (Exception ex)

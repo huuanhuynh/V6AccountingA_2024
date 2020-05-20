@@ -21,7 +21,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             {
                 btnBoSung.Enabled = true;
                 
-                V6lookupConfig v6lookup_config = V6Lookup.GetV6lookupConfigByTableName(TableName.ToString());
+                V6lookupConfig v6lookup_config = V6Lookup.GetV6lookupConfigByTableName(_MA_DM);
                 var id = v6lookup_config.vValue;
                 var id_check = v6lookup_config.DOI_MA;
                 var listTable = v6lookup_config.ListTable;
@@ -50,7 +50,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
                 keys["STT_REC"] = keyData["STT_REC"];
                 keys["STT_REC0"] = keyData["STT_REC0"];
 
-                var data = V6BusinessHelper.Select(V6TableName.Hrpersonal, keys, "*").Data;
+                var data = V6BusinessHelper.Select("Hrpersonal", keys, "*").Data;
                 if (data != null)
                 {
                     if (data.Rows.Count == 1)
@@ -99,13 +99,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
 
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "EMP_ID",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 0, "EMP_ID",
                  txtEmp_ID.Text.Trim(), DataOld["EMP_ID"].ToString());
                 if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblEmpID.Text + "=" + txtEmp_ID.Text;
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "EMP_ID",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 1, "EMP_ID",
                  txtEmp_ID.Text.Trim(), txtEmp_ID.Text.Trim());
                 if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblEmpID.Text + "=" + txtEmp_ID.Text;
             }
@@ -113,18 +113,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.NhanSu
             if (errors.Length > 0) throw new Exception(errors);
         }
         
-        private void radNam_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (IsReady) txtgender.Text = radNam.Checked ? "1" : "0";
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + ".radNam_CheckedChanged", ex);
-            }
-        }
-
         public override void AfterInsert()
         {
             if (!da_click_bo_sung)

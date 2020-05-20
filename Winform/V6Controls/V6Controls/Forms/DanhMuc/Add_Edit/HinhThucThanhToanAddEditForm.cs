@@ -42,12 +42,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_HTTT", txtMaHttt.Text.Trim(), DataOld["MA_HTTT"].ToString());
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 0, "MA_HTTT", txtMaHttt.Text.Trim(), DataOld["MA_HTTT"].ToString());
                 if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblMaHttt.Text + "=" + txtMaHttt.Text;
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_HTTT", txtMaHttt.Text.Trim(), txtMaHttt.Text.Trim());
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 1, "MA_HTTT", txtMaHttt.Text.Trim(), txtMaHttt.Text.Trim());
                 if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblMaHttt.Text + "=" + txtMaHttt.Text;
             }
 

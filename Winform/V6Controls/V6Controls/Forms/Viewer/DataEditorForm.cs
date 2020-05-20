@@ -118,7 +118,7 @@ namespace V6Controls.Forms.Viewer
             {
                 IDictionary<string, object> keys = new SortedDictionary<string, object>();
                 keys.Add("MA_DM", _tableName);
-                var getData = V6BusinessHelper.Select(V6TableName.Aldm, keys, "*").Data;
+                var getData = V6BusinessHelper.Select("ALDM", keys, "*").Data;
                 if (getData.Rows.Count == 1)
                 {
                     var row = getData.Rows[0];

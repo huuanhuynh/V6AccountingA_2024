@@ -6727,6 +6727,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         {
             TxtMa_kh_i_ao.Text = txtMaKh.Text;
             XuLyChonMaKhachHang();
+            txtManx_V6LostFocus(txtManx);
             LoadCustomInfo(dateNgayCT.Value, txtMaKh.Text);
         }
 

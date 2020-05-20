@@ -36,13 +36,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_DVCS",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 0, "MA_DVCS",
                  TxtMa_dvcs.Text.Trim(), DataOld["MA_DVCS"].ToString());
                 if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblDVCS.Text + "=" + TxtMa_dvcs.Text;
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_DVCS",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 1, "MA_DVCS",
                  TxtMa_dvcs.Text.Trim(), TxtMa_dvcs.Text.Trim());
                 if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblDVCS.Text + "=" + TxtMa_dvcs.Text;
             }

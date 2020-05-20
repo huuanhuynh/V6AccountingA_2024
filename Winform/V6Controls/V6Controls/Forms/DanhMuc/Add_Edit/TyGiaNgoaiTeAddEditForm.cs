@@ -32,7 +32,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_OneDate(TableName.ToString(), 0,
+                bool b = V6BusinessHelper.IsValidOneCode_OneDate(_MA_DM.ToString(), 0,
                     "MA_NT", "NGAY_CT",
                     txtMa_NT.Text, TxtNgay_ct.YYYYMMDD,
                     DataOld["MA_NT"].ToString(), DataOld["NGAY_CT"].ToString());
@@ -41,7 +41,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_OneDate(TableName.ToString(), 1,
+                bool b = V6BusinessHelper.IsValidOneCode_OneDate(_MA_DM.ToString(), 1,
                     "MA_NT", "NGAY_CT",
                     txtMa_NT.Text, TxtNgay_ct.YYYYMMDD,
                     txtMa_NT.Text, TxtNgay_ct.YYYYMMDD);

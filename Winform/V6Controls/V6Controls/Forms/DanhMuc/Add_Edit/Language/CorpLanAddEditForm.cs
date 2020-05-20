@@ -36,7 +36,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
         private void Form_Load(object sender, EventArgs e)
         {
-            if (TableName != V6TableName.CorpLan)
+            if (_MA_DM != "CORPLAN")
             {
                 txtCtype.Visible = false;
                 lblCtype.Visible = false;
@@ -95,7 +95,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "ID", txtID.Text.Trim(), txtID.Text.Trim());
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 1, "ID", txtID.Text.Trim(), txtID.Text.Trim());
                 if (!b) throw new Exception(string.Format("{0} {1} = {2}", V6Text.DataExist, lblID.Text, txtID.Text));
             }
 
@@ -125,7 +125,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             try
             {
                 if (!IsReady) return;
-                if (TableName != V6TableName.CorpLan) return;
+                if (_MA_DM != "CORPLAN") return;
 
                 var CType = txtCtype.Text.Trim();
                 var SFile = txtSfile.Text.Trim();

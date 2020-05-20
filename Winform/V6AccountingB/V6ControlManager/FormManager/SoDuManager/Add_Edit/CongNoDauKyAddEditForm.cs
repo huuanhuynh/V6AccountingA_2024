@@ -52,7 +52,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                          && DataDic.ContainsKey("TK") && DataOld.ContainsKey("TK")
                         && DataDic.ContainsKey("NAM") && DataOld.ContainsKey("NAM"))
                     {
-                        bool b = V6BusinessHelper.IsValidThreeCode_OneNumeric(TableName.ToString(), 0,
+                        bool b = V6BusinessHelper.IsValidThreeCode_OneNumeric(_MA_DM.ToString(), 0,
                             "MA_DVCS", TxtMa_dvcs.Text, DataOld["MA_DVCS"].ToString(),
                             "MA_KH", TxtMa_KH.Text, DataOld["MA_KH"].ToString(),
                             "TK", TxtTk.Text, DataOld["TK"].ToString(),
@@ -70,7 +70,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                          && DataDic.ContainsKey("TK") 
                         && DataDic.ContainsKey("NAM") )
                     {
-                        bool b = V6BusinessHelper.IsValidThreeCode_OneNumeric(TableName.ToString(), 1,
+                        bool b = V6BusinessHelper.IsValidThreeCode_OneNumeric(_MA_DM.ToString(), 1,
                             "MA_DVCS", TxtMa_dvcs.Text, TxtMa_dvcs.Text,
                             "MA_KH", TxtMa_KH.Text, TxtMa_KH.Text,
                             "TK", TxtTk.Text, TxtTk.Text,

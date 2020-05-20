@@ -13,11 +13,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
     {
         public Control _fatherControl;
         public AddEditControlVirtual FormControl;
-        private readonly V6TableName _tableName = V6TableName.Notable;
+        private readonly V6TableName _tableName0 = V6TableName.None;
         private V6Mode _mode;
         private IDictionary<string, object> _keys;
         private IDictionary<string, object> _data;
-        private readonly string _tableNameString;
+        private readonly string _MA_DM;
         //private string _tableView;//use _aldmConfig;
         
         public event HandleResultData InsertSuccessEvent;
@@ -45,7 +45,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             InitializeComponent();
         }
-        
+
         /// <summary>
         /// Khởi tạo form thêm/sửa
         /// </summary>
@@ -57,30 +57,28 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             IDictionary<string, object> keys = null,
             IDictionary<string, object> data = null)
         {
-            _tableName = tableName;
-            _tableNameString = tableName.ToString();
+            _MA_DM = tableName.ToString();
             _mode = mode;
             _keys = keys;
             _data = data;
 
             InitializeComponent();
-            
+
             //InitFormControl();
         }
 
         /// <summary>
         /// Sử dụng tableName string khi chưa khai báo V6TableName và table phải có khai báo is_dm trong aldm.
         /// </summary>
-        /// <param name="tableName">Tên bảng</param>
+        /// <param name="ma_dm">Tên bảng</param>
         /// <param name="mode"></param>
         /// <param name="keys">Khóa lấy dữ liệu</param>
         /// <param name="data">Hoặc dữ liệu có sẵn</param>
-        public FormAddEdit(string tableName, V6Mode mode = V6Mode.Add,
+        public FormAddEdit(string ma_dm, V6Mode mode = V6Mode.Add,
             IDictionary<string, object> keys = null,
             IDictionary<string, object> data = null)
         {
-            _tableNameString = tableName;
-            _tableName = V6TableHelper.ToV6TableName(_tableNameString);
+            _MA_DM = ma_dm;
             _mode = mode;
             _keys = keys;
             _data = data;
@@ -145,9 +143,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 //LoadAldmConfig();
 
-                FormControl = AddEditManager.Init_Control(_tableName, _tableNameString);
+                FormControl = AddEditManager.Init_Control(_MA_DM);
                 _aldmConfig = FormControl._aldmConfig;
-                Text = _mode + " - " + V6TableHelper.V6TableCaption(_tableName, V6Setting.Language);
+                Text = _mode + " - " + FormControl.TitleLang;
                 
                 if (FormControl is NoRightAddEdit)
                 {
@@ -163,7 +161,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 }
 
                 OnAfterInitControl();
-                FormControl.InitValues(_tableName, _mode, _keys, _data);
+                FormControl.InitValues(_MA_DM, _mode, _keys, _data);
 
                 panel1.Controls.Add(FormControl);
 
@@ -185,7 +183,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             try
             {
-                _aldmConfig = ConfigManager.GetAldmConfig(_tableNameString);
+                _aldmConfig = ConfigManager.GetAldmConfig(_MA_DM);
                 //if (_aldmConfig.HaveInfo)
                 //{
                 //    if (_aldmConfig.IS_ALDM)
@@ -357,8 +355,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             if (FormControl.Mode == V6Mode.Add || FormControl.Mode == V6Mode.Edit)
             {
                 V6ControlFormHelper.ProcessUserDefineInfo(
-                    string.IsNullOrEmpty(_aldmConfig.TABLE_VIEW) ? _tableNameString : _aldmConfig.TABLE_VIEW,
-                    FormControl, this, _tableName.ToString());
+                    string.IsNullOrEmpty(_aldmConfig.TABLE_VIEW) ? _MA_DM : _aldmConfig.TABLE_VIEW,
+                    FormControl, this, _MA_DM);
             }
         }
     }

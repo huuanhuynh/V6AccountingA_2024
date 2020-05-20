@@ -127,13 +127,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_VT",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 0, "MA_VT",
                  txtMaVT.Text.Trim(), DataOld["MA_VT"].ToString());
                 if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblMa.Text + "=" + txtMaVT.Text;
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_VT",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 1, "MA_VT",
                  txtMaVT.Text.Trim(), txtMaVT.Text.Trim());
                 if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblMa.Text + "=" + txtMaVT.Text;
             }

@@ -334,24 +334,6 @@
     <Compile Include="FormManager\ChungTuManager\PhaiThu\BaoGia\Loc\LocKetQuaBaoGia.Designer.cs">
       <DependentUpon>LocKetQuaBaoGia.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiThu\BaoGia\Loc\LocThoiGianBaoGia.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiThu\BaoGia\Loc\LocThoiGianBaoGia.Designer.cs">
-      <DependentUpon>LocThoiGianBaoGia.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiThu\BaoGia\Loc\LocThongTinChiTietDonDatHangBan.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiThu\BaoGia\Loc\LocThongTinChiTietDonDatHangBan.Designer.cs">
-      <DependentUpon>LocThongTinChiTietDonDatHangBan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiThu\BaoGia\Loc\LocThongTinBaoGia.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiThu\BaoGia\Loc\LocThongTinBaoGia.Designer.cs">
-      <DependentUpon>LocThongTinBaoGia.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiThu\BaoGia\Loc\TimBaoGiaForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -375,24 +357,6 @@
     </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\Loc\LocKetQuaDonDatHangBan.Designer.cs">
       <DependentUpon>LocKetQuaDonDatHangBan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\Loc\LocThoiGianDonDatHangBan.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\Loc\LocThoiGianDonDatHangBan.Designer.cs">
-      <DependentUpon>LocThoiGianDonDatHangBan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\Loc\LocThongTinChiTietDonDatHangBan.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\Loc\LocThongTinChiTietDonDatHangBan.Designer.cs">
-      <DependentUpon>LocThongTinChiTietDonDatHangBan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\Loc\LocThongTinDonDatHangBan.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\Loc\LocThongTinDonDatHangBan.Designer.cs">
-      <DependentUpon>LocThongTinDonDatHangBan.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\Loc\TimDonDatHangBanForm.cs">
       <SubType>Form</SubType>
@@ -1625,24 +1589,6 @@
     <Compile Include="FormManager\ChungTuManager\TienMat\PhieuChi\Loc\LocKetQuaPhieuChi.Designer.cs">
       <DependentUpon>LocKetQuaPhieuChi.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\TienMat\PhieuChi\Loc\LocThoiGianPhieuChi.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\TienMat\PhieuChi\Loc\LocThoiGianPhieuChi.Designer.cs">
-      <DependentUpon>LocThoiGianPhieuChi.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\TienMat\PhieuChi\Loc\LocTTChiTietPhieuChi.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\TienMat\PhieuChi\Loc\LocTTChiTietPhieuChi.Designer.cs">
-      <DependentUpon>LocTTChiTietPhieuChi.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\TienMat\PhieuChi\Loc\LocThongTinPhieuChi.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\TienMat\PhieuChi\Loc\LocThongTinPhieuChi.Designer.cs">
-      <DependentUpon>LocThongTinPhieuChi.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormManager\ChungTuManager\TienMat\PhieuChi\Loc\TimPhieuChiForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1660,24 +1606,6 @@
     </Compile>
     <Compile Include="FormManager\ChungTuManager\TienMat\PhieuThu\Loc\LocKetQuaPhieuThu.Designer.cs">
       <DependentUpon>LocKetQuaPhieuThu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\TienMat\PhieuThu\Loc\LocThoiGianPhieuThu.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\TienMat\PhieuThu\Loc\LocThoiGianPhieuThu.Designer.cs">
-      <DependentUpon>LocThoiGianPhieuThu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\TienMat\PhieuThu\Loc\LocThongTinPhieuthu.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\TienMat\PhieuThu\Loc\LocThongTinPhieuthu.Designer.cs">
-      <DependentUpon>LocThongTinPhieuthu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\TienMat\PhieuThu\Loc\LocTTChiTietPhieuThu.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ChungTuManager\TienMat\PhieuThu\Loc\LocTTChiTietPhieuThu.Designer.cs">
-      <DependentUpon>LocTTChiTietPhieuThu.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\TienMat\PhieuThu\PhieuThuControl.cs">
       <SubType>UserControl</SubType>
@@ -5601,6 +5529,12 @@
     <Compile Include="FormManager\SoDuManager\Add_Edit\AbvitriAddEditForm.designer.cs">
       <DependentUpon>AbvitriAddEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\SoDuManager\Add_Edit\SoDuAddEditControlDynamicForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\SoDuManager\Add_Edit\SoDuAddEditControlDynamicForm.Designer.cs">
+      <DependentUpon>SoDuAddEditControlDynamicForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\SoDuManager\Add_Edit\VaoChiTietTonKhoNTXTcontrol.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -6013,15 +5947,6 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\BaoGia\Loc\LocKetQuaBaoGia.resx">
       <DependentUpon>LocKetQuaBaoGia.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\BaoGia\Loc\LocThoiGianBaoGia.resx">
-      <DependentUpon>LocThoiGianBaoGia.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\BaoGia\Loc\LocThongTinChiTietDonDatHangBan.resx">
-      <DependentUpon>LocThongTinChiTietDonDatHangBan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\BaoGia\Loc\LocThongTinBaoGia.resx">
-      <DependentUpon>LocThongTinBaoGia.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\BaoGia\Loc\TimBaoGiaForm.resx">
       <DependentUpon>TimBaoGiaForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -6033,15 +5958,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\Loc\LocKetQuaDonDatHangBan.resx">
       <DependentUpon>LocKetQuaDonDatHangBan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\Loc\LocThoiGianDonDatHangBan.resx">
-      <DependentUpon>LocThoiGianDonDatHangBan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\Loc\LocThongTinChiTietDonDatHangBan.resx">
-      <DependentUpon>LocThongTinChiTietDonDatHangBan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\Loc\LocThongTinDonDatHangBan.resx">
-      <DependentUpon>LocThongTinDonDatHangBan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\DonDatHangBan\Loc\TimDonDatHangBanForm.resx">
       <DependentUpon>TimDonDatHangBanForm.cs</DependentUpon>
@@ -6661,15 +6577,6 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\TienMat\PhieuChi\Loc\LocKetQuaPhieuChi.resx">
       <DependentUpon>LocKetQuaPhieuChi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\TienMat\PhieuChi\Loc\LocThoiGianPhieuChi.resx">
-      <DependentUpon>LocThoiGianPhieuChi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\TienMat\PhieuChi\Loc\LocTTChiTietPhieuChi.resx">
-      <DependentUpon>LocTTChiTietPhieuChi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\TienMat\PhieuChi\Loc\LocThongTinPhieuChi.resx">
-      <DependentUpon>LocThongTinPhieuChi.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TienMat\PhieuChi\Loc\TimPhieuChiForm.resx">
       <DependentUpon>TimPhieuChiForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -6678,15 +6585,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TienMat\PhieuThu\Loc\LocKetQuaPhieuThu.resx">
       <DependentUpon>LocKetQuaPhieuThu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\TienMat\PhieuThu\Loc\LocThoiGianPhieuThu.resx">
-      <DependentUpon>LocThoiGianPhieuThu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\TienMat\PhieuThu\Loc\LocThongTinPhieuthu.resx">
-      <DependentUpon>LocThongTinPhieuthu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\TienMat\PhieuThu\Loc\LocTTChiTietPhieuThu.resx">
-      <DependentUpon>LocTTChiTietPhieuThu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\TienMat\PhieuThu\PhieuThuControl.resx">
       <DependentUpon>PhieuThuControl.cs</DependentUpon>
@@ -8643,6 +8541,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\SoDuManager\Add_Edit\AbvitriAddEditForm.resx">
       <DependentUpon>AbvitriAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\SoDuManager\Add_Edit\SoDuAddEditControlDynamicForm.resx">
+      <DependentUpon>SoDuAddEditControlDynamicForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\SoDuManager\Add_Edit\VaoChiTietTonKhoNTXTcontrol.resx">
       <DependentUpon>VaoChiTietTonKhoNTXTcontrol.cs</DependentUpon>

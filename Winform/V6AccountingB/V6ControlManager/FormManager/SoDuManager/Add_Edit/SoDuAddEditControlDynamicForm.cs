@@ -6,24 +6,36 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6Controls;
 using V6Controls.Controls;
+using V6Controls.Forms;
 using V6Init;
-using V6SqlConnect;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
 
-namespace V6Controls.Forms.DanhMuc.Add_Edit
+namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 {
-    public partial class DynamicAddEditForm : AddEditControlVirtual
+    public partial class SoDuAddEditControlDynamicForm : SoDuAddEditControlVirtual
     {
-        public DynamicAddEditForm()
+        public SoDuAddEditControlDynamicForm()
         {
             InitializeComponent();
         }
 
         private new string _MA_DM;//Đè kiểu cũ. Các hàm cũ đã override.
-        private new AldmConfig _aldmConfig;
+        //private new AldmConfig _aldmConfig;
+        /// <summary>
+        /// Bật tắt tính năng gọi hàm Reload sau khi insert hoặc update thành công.
+        /// </summary>
+        public bool ReloadFlag; // !!!!!
+        /// <summary>
+        /// Gán trường mã của Table trong AddEditControl.MyInit để chạy CopyData_Here2Data
+        /// </summary>
+        public string KeyField1 = "";
+        public string KeyField2 = "";
+        public string KeyField3 = "";
+
         private DataTable AlreportData = null;
         private DataTable Alreport1Data = null;
         private Dictionary<V6NumberTextBox, int> NumberTextBox_Decimals = new Dictionary<V6NumberTextBox, int>();
@@ -41,7 +53,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private Dictionary<string, Label> Label_Controls = new Dictionary<string, Label>();
         private Dictionary<string, Control> Input_Controls = new Dictionary<string, Control>(); 
 
-        public DynamicAddEditForm(string ma_dm, AldmConfig aldmConfig)
+        public SoDuAddEditControlDynamicForm(string ma_dm, AldmConfig aldmConfig)
         {
             _MA_DM = ma_dm;
             _aldmConfig = aldmConfig;
@@ -70,10 +82,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             //{
             //    this.WriteExLog(GetType() + ".Dynamic invoke INIT", ex1);
             //}
-            Disposed += DynamicAddEditForm_Disposed;
+            Disposed += SoDuAddEditControlDynamicAddEditForm_Disposed;
         }
 
-        void DynamicAddEditForm_Disposed(object sender, EventArgs e)
+        void SoDuAddEditControlDynamicAddEditForm_Disposed(object sender, EventArgs e)
         {
             //try
             //{
@@ -97,7 +109,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 //Tạo control động
                 IDictionary<string, object> keys = new Dictionary<string, object>();
                 keys.Add("MA_BC", _MA_DM);
-                Alreport1Data = V6BusinessHelper.Select("Alreport1", keys, "*", "", "Stt_Filter").Data;
+                Alreport1Data = V6BusinessHelper.Select(V6TableName.Alreport1, keys, "*", "", "Stt_Filter").Data;
                 //int i_index = 0;
                 int baseTop = 10;
                 int rowHeight = 25;
@@ -378,7 +390,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
                             foreach (DataRow event_row in data.Rows)
                             {
-                                //nơi sử dụng: QuickReportManager, DynamicAddEditForm
+                                //nơi sử dụng: QuickReportManager, SoDuAddEditControlDynamicAddEditForm
                                 try
                                 {
                                     var EVENT_NAME = event_row["event"].ToString().Trim().ToUpper();
@@ -640,7 +652,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 IDictionary<string, object> keys = new Dictionary<string, object>();
                 keys.Add("MA_BC", _MA_DM);
-                AlreportData = V6BusinessHelper.Select("Alreport", keys, "*").Data;
+                AlreportData = V6BusinessHelper.Select(V6TableName.Alreport, keys, "*").Data;
                 if (AlreportData.Rows.Count == 0) return;
 
                 var dataRow = AlreportData.Rows[0];
@@ -674,13 +686,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// <summary>
         /// Khởi tạo giá trị cho control với các tham số
         /// </summary>
-        /// <param name="ma_dm">Mã danh mục</param>
+        /// <param name="ma_dm">Bảng đang xử lý</param>
         /// <param name="mode">Add/Edit/View</param>
         /// <param name="keys">Nếu data null thì load bằng keys</param>
         /// <param name="data">Gán dữ liệu này lên form</param>
         public override void InitValues(string ma_dm, V6Mode mode,
             IDictionary<string, object> keys, IDictionary<string, object> data)
         {
+            //TableName = tableName;
             Mode = mode;
             _keys = keys;
             DataOld = data;
@@ -692,14 +705,14 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             //virtual
             LoadDetails();
 
-            LoadTag(2, "", _MA_DM, ItemID);
+            LoadTag(2, "", ma_dm, ItemID);
         }
 
-        protected override void LoadAll()
+        public override void LoadAll()
         {
             LoadStruct();//MaxLength...
             FixMaxLengFormat();
-            V6ControlFormHelper.LoadAndSetFormInfoDefine(_MA_DM, this, Parent);
+            V6ControlFormHelper.LoadAndSetFormInfoDefine(_MA_DM.ToString(), this, Parent);
 
             if (Mode == V6Mode.Edit)
             {
@@ -711,7 +724,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 else
                 {
                     if (_keys != null) LoadData();
-                    else LoadDefaultData(2, "", _MA_DM, m_itemId);
+                    else LoadDefaultData(2, "", _MA_DM.ToString(), m_itemId);
                 }
             }
             else if (Mode == V6Mode.View)
@@ -750,13 +763,11 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
-        protected override void LoadStruct()
+        public override void LoadStruct()
         {
             try
             {
-                _TableStruct = V6BusinessHelper.GetTableStruct(_MA_DM);
-                if ((_TableStruct == null || _TableStruct.Count == 0) && _aldmConfig.HaveInfo)
-                    _TableStruct = V6BusinessHelper.GetTableStruct(_aldmConfig.TABLE_NAME);
+                _TableStruct = V6BusinessHelper.GetTableStruct(_MA_DM.ToString());
                 V6ControlFormHelper.SetFormStruct(this, _TableStruct);
             }
             catch (Exception ex)
@@ -827,7 +838,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 FixFormData();
                 DataDic = GetData();
                 ValidateData();
-                string checkV6Valid = CheckV6Valid(DataDic, _MA_DM);
+                string checkV6Valid = CheckV6Valid(DataDic, _MA_DM.ToString());
                 if (!string.IsNullOrEmpty(checkV6Valid))
                 {
                     this.ShowInfoMessage(checkV6Valid);
@@ -1331,7 +1342,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
         }
 
-        private void DynamicAddEditForm_Load(object sender, EventArgs e)
+        private void SoDuAddEditControlDynamicAddEditForm_Load(object sender, EventArgs e)
         {
             CheckVvarTextBox();
             

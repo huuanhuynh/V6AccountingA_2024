@@ -65,15 +65,15 @@ namespace V6ControlManager.FormManager
                     if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift)
                     {
                         //shift_is_down = true;
-                        return new DanhMucView(itemId, code, V6TableName.CorpLan.ToString(), "", "", new AldmConfig());
+                        return new DanhMucView(itemId, code, "CorpLan", "", "", new AldmConfig());
                     }
                     else if ((Control.ModifierKeys & Keys.Control) == Keys.Control)
                     {
-                        return new DanhMucView(itemId, code, V6TableName.CorpLan1.ToString(), "", "", new AldmConfig());
+                        return new DanhMucView(itemId, code, "CorpLan1", "", "", new AldmConfig());
                     }
                     else if ((Control.ModifierKeys & Keys.Alt) == Keys.Alt)
                     {
-                        return new DanhMucView(itemId, code, V6TableName.CorpLan2.ToString(), "", "", new AldmConfig());
+                        return new DanhMucView(itemId, code, "CorpLan2", "", "", new AldmConfig());
                     }
                     else
                     {
@@ -131,7 +131,7 @@ namespace V6ControlManager.FormManager
             //Tạo control động
             IDictionary<string, object> keys = new Dictionary<string, object>();
             keys.Add("MA_BC", ma_bc);
-            Alreport1Data = V6BusinessHelper.Select(V6TableName.Alreport1, keys, "*", "", "Stt_Filter").Data;
+            Alreport1Data = V6BusinessHelper.Select("Alreport1", keys, "*", "", "Stt_Filter").Data;
             int i_index = 0;
             int baseTop = 10;
             int rowHeight = 25;

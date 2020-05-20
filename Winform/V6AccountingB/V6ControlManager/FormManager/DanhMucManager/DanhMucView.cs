@@ -36,14 +36,14 @@ namespace V6ControlManager.FormManager.DanhMucManager
         /// <summary>
         /// Tên gốc gửi vào
         /// </summary>
-        private string _tableName;
+        private string _MA_DM;
         private string CONFIG_TABLE_NAME
         {
             get
             {
-                string table = _tableName;// CurrentTable.ToString();
+                string table = _MA_DM;
                 // Tuanmh 01/07/2019 set TABLE_VIEW
-                //if (CurrentTable == V6TableName.Notable && _aldmConfig != null)
+                //if (CurrentTable == V6TableName.None && _aldmConfig != null)
                 if (_aldmConfig != null && _aldmConfig.IS_ALDM)
                 {
                     if (!string.IsNullOrEmpty(_aldmConfig.TABLE_NAME)
@@ -53,7 +53,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     }
                     else
                     {
-                        table = _tableName;
+                        table = _MA_DM;
                     }
 
                     //if (string.IsNullOrEmpty(sortField)) sortField = aldm_config.ORDER;
@@ -66,9 +66,9 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             get
             {
-                string load_table = _tableName;// CurrentTable.ToString();
+                string load_table = _MA_DM;
                 // Tuanmh 01/07/2019 set TABLE_VIEW
-                //if (CurrentTable == V6TableName.Notable && _aldmConfig != null)
+                //if (CurrentTable == V6TableName.None && _aldmConfig != null)
                 if (_aldmConfig != null)
                 {
                     if (!string.IsNullOrEmpty(_aldmConfig.TABLE_VIEW)
@@ -78,7 +78,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     }
                     else
                     {
-                        load_table = _tableName;
+                        load_table = _MA_DM;
                     }
 
                     //if (string.IsNullOrEmpty(sortField)) sortField = aldm_config.ORDER;
@@ -149,7 +149,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             {
                 if (_initFilter == null)
                 {
-                    _initFilter = V6Login.GetInitFilter(_tableName, V6ControlFormHelper.FindFilterType(this));
+                    _initFilter = V6Login.GetInitFilter(_MA_DM, V6ControlFormHelper.FindFilterType(this));
                 }
                 return ("" + _initFilter).Replace("{MA_DVCS}", "'" + V6Login.Madvcs + "'");
             }
@@ -165,15 +165,15 @@ namespace V6ControlManager.FormManager.DanhMucManager
             {
                 var result = _aldmConfig.IS_ALDM ? _aldmConfig.FILTER_FIELD : _v6LookupConfig.FILTER_FIELD;
 
-                if (string.IsNullOrEmpty(result) && CurrentTable == V6TableName.CorpLan)
+                if (string.IsNullOrEmpty(result) && _MA_DM == "CORPLAN")
                 {
                     result = "SFILE";
                 }
-                else if (string.IsNullOrEmpty(result) && CurrentTable == V6TableName.CorpLan1)
+                else if (string.IsNullOrEmpty(result) && _MA_DM == "CORPLAN1")
                 {
                     result = "SFILE";
                 }
-                else if (string.IsNullOrEmpty(result) && CurrentTable == V6TableName.CorpLan2)
+                else if (string.IsNullOrEmpty(result) && _MA_DM == "CORPLAN2")
                 {
                     result = "SFILE";
                 }
@@ -233,7 +233,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             InitializeComponent();
 
             Title = title;
-            _tableName = tableName;
+            _MA_DM = tableName.ToUpper();
             CurrentTable = V6TableHelper.ToV6TableName(tableName);
             _hideColumnDic = _categories.GetHideColumns(tableName);
             InitFilter = initFilter;
@@ -249,7 +249,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             else
             {
-                _v6LookupConfig = V6Lookup.GetV6lookupConfigByTableName(_tableName);
+                _v6LookupConfig = V6Lookup.GetV6lookupConfigByTableName(_MA_DM);
                 if (string.IsNullOrEmpty(SelectResult.SortField) && !string.IsNullOrEmpty(_v6LookupConfig.vOrder))
                     SelectResult.SortField = _v6LookupConfig.vOrder;
             }
@@ -298,7 +298,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 SqlParameter[] plist =
                 {
                     new SqlParameter("@IsAldm", _aldmConfig.IS_ALDM),
-                    new SqlParameter("@TableName", _tableName),
+                    new SqlParameter("@TableName", _MA_DM),
                     new SqlParameter("@Type", filterType),
                     new SqlParameter("@User_id", V6Login.UserId),
                 };
@@ -540,7 +540,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 }
                 else if (keyData == Keys.F9)
                 {
-                    if (!V6BusinessHelper.CheckRightKey("", "F9", _tableName))
+                    if (!V6BusinessHelper.CheckRightKey("", "F9", _MA_DM))
                     {
                         this.ShowWarningMessage(V6Text.NoRight + " F9");
                         return;
@@ -610,42 +610,19 @@ namespace V6ControlManager.FormManager.DanhMucManager
                             }
 
                         _data = row.ToDataDictionary();
-                        if (CurrentTable == V6TableName.Notable)
-                        {
-                            f = new FormAddEdit(_tableName, V6Mode.Add, keys, _data);
-                            f.AfterInitControl += f_AfterInitControl;
-                            //f.InsertSuccessEvent += f_InsertSuccess;
-                            f.InitFormControl();
-                            f.ShowDialog(this);
-                        }
-                        else
-                        {
-                            f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);
-                            f.AfterInitControl += f_AfterInitControl;
-                            //f.InsertSuccessEvent += f_InsertSuccess;
-                            f.InitFormControl();
-                            f.ShowDialog(this);
-                        }
+                        f = new FormAddEdit(_MA_DM, V6Mode.Add, keys, _data);
+                        f.AfterInitControl += f_AfterInitControl;
+                        //f.InsertSuccessEvent += f_InsertSuccess;
+                        f.InitFormControl();
+                        f.ShowDialog(this);
                     }
                     else
                     {
-                        if (CurrentTable == V6TableName.Notable)
-                        {
-                            f = new FormAddEdit(_tableName);
-                            f.AfterInitControl += f_AfterInitControl;
-                            //f.InsertSuccessEvent += f_InsertSuccess;
-                            f.InitFormControl();
-                            f.ShowDialog(this);
-                        }
-                        else
-                        {
-                            //this.ShowWarningMessage(V6Text.NoSelection);
-                            f = new FormAddEdit(CurrentTable);
-                            f.AfterInitControl += f_AfterInitControl;
-                            //f.InsertSuccessEvent += f_InsertSuccess;
-                            f.InitFormControl();
-                            f.ShowDialog(this);
-                        }
+                        f = new FormAddEdit(_MA_DM);
+                        f.AfterInitControl += f_AfterInitControl;
+                        //f.InsertSuccessEvent += f_InsertSuccess;
+                        f.InitFormControl();
+                        f.ShowDialog(this);
                     }
 
                     if (f.InsertSuccess)
@@ -656,14 +633,14 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".DoAdd " + _tableName, ex);
+                this.ShowErrorException(GetType() + ".DoAdd " + _MA_DM, ex);
             }
             SetStatus2Text();
         }
 
         void f_AfterInitControl(object sender, EventArgs e)
         {
-            LoadAdvanceControls((Control)sender, _tableName);
+            LoadAdvanceControls((Control)sender, _MA_DM);
         }
 
         protected void LoadAdvanceControls(Control form, string ma_ct)
@@ -706,22 +683,11 @@ namespace V6ControlManager.FormManager.DanhMucManager
                             }
 
                         _data = row.ToDataDictionary();
-                        if (CurrentTable == V6TableName.Notable)
-                        {
-                            var f = new FormAddEdit(_tableName, V6Mode.Add, keys, _data);
-                            f.AfterInitControl += f_AfterInitControl;
-                            f.InsertSuccessEvent += f_InsertSuccess;
-                            f.InitFormControl();
-                            f.ShowDialog(this);
-                        }
-                        else
-                        {
-                            var f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);
-                            f.AfterInitControl += f_AfterInitControl;
-                            f.InsertSuccessEvent += f_InsertSuccess;
-                            f.InitFormControl();
-                            f.ShowDialog(this);
-                        }
+                        var f = new FormAddEdit(_MA_DM, V6Mode.Add, keys, _data);
+                        f.AfterInitControl += f_AfterInitControl;
+                        f.InsertSuccessEvent += f_InsertSuccess;
+                        f.InitFormControl();
+                        f.ShowDialog(this);
                     }
                     else
                     {
@@ -731,7 +697,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".DoAddCopy " + _tableName, ex);
+                this.ShowErrorException(GetType() + ".DoAddCopy " + _MA_DM, ex);
             }
         }
 
@@ -752,7 +718,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         var keys = new SortedDictionary<string, object>();
                         if (dataGridView1.Columns.Contains("UID")) //Luôn có trong thiết kế rồi.
                             keys.Add("UID", row.Cells["UID"].Value);
-                        if (_tableName.ToUpper().StartsWith("CORPLAN"))
+                        if (_MA_DM.ToUpper().StartsWith("CORPLAN"))
                         {
                             if (dataGridView1.Columns.Contains("ID"))
                                 keys.Add("ID", row.Cells["ID"].Value);
@@ -768,25 +734,13 @@ namespace V6ControlManager.FormManager.DanhMucManager
                             }
 
                         _data = row.ToDataDictionary();
-                        FormAddEdit f;
-                        if (CurrentTable == V6TableName.Notable)
-                        {
-                            f = new FormAddEdit(_tableName, V6Mode.Edit, keys, _data);
-                            f.AfterInitControl += f_AfterInitControl;
-                            //f.UpdateSuccessEvent += f_UpdateSuccess;
-                            f.CallReloadEvent += FCallReloadEvent;
-                            f.InitFormControl();
-                            f.ShowDialog(this);
-                        }
-                        else
-                        {
-                            f = new FormAddEdit(CurrentTable, V6Mode.Edit, keys, _data);
-                            f.AfterInitControl += f_AfterInitControl;
-                            //f.UpdateSuccessEvent += f_UpdateSuccess;
-                            f.CallReloadEvent += FCallReloadEvent;
-                            f.InitFormControl();
-                            f.ShowDialog(this);
-                        }
+                        var f = new FormAddEdit(_MA_DM, V6Mode.Edit, keys, _data);
+                        f.AfterInitControl += f_AfterInitControl;
+                        //f.UpdateSuccessEvent += f_UpdateSuccess;
+                        f.CallReloadEvent += FCallReloadEvent;
+                        f.InitFormControl();
+                        f.ShowDialog(this);
+
                         if (f.UpdateSuccess)
                         {
                             f_UpdateSuccess(f.Data);
@@ -817,7 +771,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             try
             {
-                if (CurrentTable == V6TableName.Notable
+                if (CurrentTable == V6TableName.None
                     && !string.IsNullOrEmpty(_aldmConfig.TABLE_VIEW)
                     && V6BusinessHelper.IsExistDatabaseTable(_aldmConfig.TABLE_VIEW))
                 {
@@ -852,7 +806,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         return;
                     }
 
-                    var alctct = V6BusinessHelper.GetAlctCt_TableName(_tableName);
+                    var alctct = V6BusinessHelper.GetAlctCt_TableName(_MA_DM);
                     if (!V6Login.IsAdmin)
                     {
                         if (alctct != null && alctct.Rows.Count > 0)
@@ -872,7 +826,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     {
                         _data = row.ToDataDictionary();
 
-                        var f = ChangeCode.ChangeCodeManager.GetChangeCodeControl(_tableName, _data);
+                        var f = ChangeCode.ChangeCodeManager.GetChangeCodeControl(_MA_DM, _data);
                         if (f != null)
                         {
                             f.DoChangeCodeFinish += f_DoChangeCodeFinish;
@@ -887,7 +841,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _tableName, ex.Message));
+                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _MA_DM, ex.Message));
             }
         }
 
@@ -1174,7 +1128,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                                     //AfterDeleteBase
                                     if (_aldmConfig != null && _aldmConfig.HaveInfo)
                                     {
-                                        var _TableStruct = V6BusinessHelper.GetTableStruct(_tableName);
+                                        var _TableStruct = V6BusinessHelper.GetTableStruct(_MA_DM);
                                         var KEYS = ObjectAndString.SplitString(_aldmConfig.KEY.ToUpper());
                                         var datas = "";
                                         var data_old = "";
@@ -1191,7 +1145,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
                                         SqlParameter[] plist =
                                         {
-                                            new SqlParameter("@TableName", _tableName),
+                                            new SqlParameter("@TableName", _MA_DM),
                                             new SqlParameter("@Fields", _aldmConfig.KEY),
                                             new SqlParameter("@datas", datas),
                                             new SqlParameter("@UID", _data["UID"]),
@@ -1227,8 +1181,8 @@ namespace V6ControlManager.FormManager.DanhMucManager
                             V6ControlFormHelper.ShowMessage(V6Text.DeleteFail);
                         }
                     }
-                    
-                    var aev = AddEditManager.Init_Control(CurrentTable, _tableName); //ảo
+
+                    var aev = AddEditManager.Init_Control(_MA_DM); //ảo
                     if (!string.IsNullOrEmpty(aev.KeyField1))
                     {
                         var oldKey1 = _data[aev.KeyField1].ToString().Trim();
@@ -1241,7 +1195,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
                         var uid = _data.ContainsKey("UID") ? _data["UID"].ToString() : "";
 
-                        V6ControlFormHelper.Copy_Here2Data(CurrentTable, V6Mode.Delete,
+                        V6ControlFormHelper.Copy_Here2Data(CurrentTable.ToString(), V6Mode.Delete,
                             aev.KeyField1, aev.KeyField2, aev.KeyField3,
                             oldKey1, oldKey2, oldKey3,
                             oldKey1, oldKey2, oldKey3,
@@ -1251,7 +1205,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(string.Format("{0} {1}.DoDelete {2} {3}", V6Login.ClientName, GetType(), _tableName, ex.Message));
+                this.ShowErrorMessage(string.Format("{0} {1}.DoDelete {2} {3}", V6Login.ClientName, GetType(), _MA_DM, ex.Message));
             }
         }
 
@@ -1283,20 +1237,10 @@ namespace V6ControlManager.FormManager.DanhMucManager
                             }
 
                         _data = row.ToDataDictionary();
-                        if (CurrentTable == V6TableName.Notable)
-                        {
-                            var f = new FormAddEdit(_tableName, V6Mode.View, keys, _data);
-                            f.AfterInitControl += f_AfterInitControl;
-                            f.InitFormControl();
-                            f.ShowDialog(this);
-                        }
-                        else
-                        {
-                            var f = new FormAddEdit(CurrentTable, V6Mode.View, keys, _data);
-                            f.AfterInitControl += f_AfterInitControl;
-                            f.InitFormControl();
-                            f.ShowDialog(this);
-                        }
+                        var f = new FormAddEdit(_MA_DM, V6Mode.View, keys, _data);
+                        f.AfterInitControl += f_AfterInitControl;
+                        f.InitFormControl();
+                        f.ShowDialog(this);
                     }
                     else
                     {
@@ -1306,7 +1250,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _tableName, ex.Message));
+                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _MA_DM, ex.Message));
             }
         }
 
@@ -1314,11 +1258,11 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             try
             {
-                FormManagerHelper.ShowDanhMucPrint(this, _tableName, ReportFile, ReportTitle, ReportTitle2);
+                FormManagerHelper.ShowDanhMucPrint(this, _MA_DM, ReportFile, ReportTitle, ReportTitle2);
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _tableName, ex.Message));
+                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _MA_DM, ex.Message));
             }
         }
         
@@ -1326,7 +1270,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             try
             {
-                V6TableName name = V6TableHelper.ToV6TableName(_tableName);
+                V6TableName name = V6TableHelper.ToV6TableName(_MA_DM);
                 if (name == V6TableName.Alnhkh)
                 {
                     PhanNhomForm form = new PhanNhomForm("Alnhkh", "Alkh");
@@ -1403,7 +1347,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     var sss = ObjectAndString.SplitString(L_ALDM);
                     if (sss.Length >= 3)
                     {
-                        PhanNhomForm form = new PhanNhomForm(_tableName, sss[0], sss[1], sss[2]);
+                        PhanNhomForm form = new PhanNhomForm(_MA_DM, sss[0], sss[1], sss[2]);
                         form.ShowDialog(this);
                         return;
                     }
@@ -1411,7 +1355,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _tableName, ex.Message));
+                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _MA_DM, ex.Message));
             }
         }
 
@@ -1443,7 +1387,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 SaveSelectedCellLocation(dataGridView1);
                 if (page < 1) page = 1;
                 CurrentTable = tableName;
-                if (_aldmConfig != null && CurrentTable == V6TableName.Notable)
+                if (_aldmConfig != null && CurrentTable == V6TableName.None)
                 {
                     if (string.IsNullOrEmpty(sortField)) sortField = _aldmConfig.ORDER;
                 }
@@ -1465,7 +1409,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _tableName), ex);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _MA_DM), ex);
             }
         }
 
@@ -1532,7 +1476,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _tableName, ex.Message));
+                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _MA_DM, ex.Message));
             }
         }
 
@@ -1543,7 +1487,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _tableName, ex.Message));
+                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _MA_DM, ex.Message));
             }
         }
 
@@ -1556,7 +1500,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _tableName, ex.Message));
+                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _MA_DM, ex.Message));
             }
         }
 
@@ -1567,7 +1511,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _tableName, ex.Message));
+                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _MA_DM, ex.Message));
             }
         }
 
@@ -1704,7 +1648,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowAdd("", _tableName.ToUpper() + "6"))
+            if (V6Login.UserRight.AllowAdd("", _MA_DM.ToUpper() + "6"))
             {
                 DoAdd();
             }
@@ -1716,7 +1660,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowCopy("", _tableName.ToUpper() + "6"))
+            if (V6Login.UserRight.AllowCopy("", _MA_DM.ToUpper() + "6"))
             {
                 DoAddCopy();
             }
@@ -1728,7 +1672,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
         private void btnXem_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowView("", _tableName.ToUpper() + "6"))
+            if (V6Login.UserRight.AllowView("", _MA_DM.ToUpper() + "6"))
             {
                 DoView();
             }
@@ -1740,7 +1684,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
         private void btnIn_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowPrint("", _tableName.ToUpper() + "6"))
+            if (V6Login.UserRight.AllowPrint("", _MA_DM.ToUpper() + "6"))
             {
                 DoPrint();
             }
@@ -1752,7 +1696,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         
         private void btnNhom_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowEdit("", _tableName.ToUpper() + "6"))
+            if (V6Login.UserRight.AllowEdit("", _MA_DM.ToUpper() + "6"))
             {
                 DoGroup();
             }
@@ -1779,7 +1723,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         private IDictionary<string, object> _data = new SortedDictionary<string, object>();
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowEdit("", _tableName.ToUpper() + "6"))
+            if (V6Login.UserRight.AllowEdit("", _MA_DM.ToUpper() + "6"))
             {
                 DoEdit();
             }
@@ -1791,8 +1735,8 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
         private void btnDoiMa_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowAdd("", _tableName.ToUpper() + "6")
-                && V6Login.UserRight.AllowEdit("", _tableName.ToUpper() + "6"))
+            if (V6Login.UserRight.AllowAdd("", _MA_DM.ToUpper() + "6")
+                && V6Login.UserRight.AllowEdit("", _MA_DM.ToUpper() + "6"))
             {
                 DoChangeCode();
             }
@@ -1804,7 +1748,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (V6Login.UserRight.AllowDelete("", _tableName.ToUpper() + "6"))
+            if (V6Login.UserRight.AllowDelete("", _MA_DM.ToUpper() + "6"))
             {
                 DoDelete();
             }
@@ -1842,7 +1786,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             // Lọc quyền proc
             try
             {
-                string right_proc = V6BusinessHelper.GetWhereAl(_tableName);
+                string right_proc = V6BusinessHelper.GetWhereAl(_MA_DM);
                 if (!string.IsNullOrEmpty(right_proc))
                 {
                     result += string.Format("{0}({1})", result.Length > 0 ? " and " : "", right_proc);
@@ -1869,7 +1813,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             try
             {
-                V6TableStruct structTable = V6BusinessHelper.GetTableStruct(_tableName);
+                V6TableStruct structTable = V6BusinessHelper.GetTableStruct(_MA_DM);
                 if (CurrentTable == V6TableName.CorpLan || CurrentTable == V6TableName.CorpLan1 || CurrentTable == V6TableName.CorpLan2) goto next1;
                 if (_aldmConfig.IS_ALDM ? (!_aldmConfig.HaveInfo) : (!_v6LookupConfig.HaveInfo))
                 {

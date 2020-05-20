@@ -25,7 +25,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 errors += V6Text.Text("CHUANHAP") + " " + lblMaSo.Text;
 
             if (txtcach_tinh.Text.Trim() != "" &&
-                !V6BusinessHelper.CheckValidFormula(TableName.ToString(),
+                !V6BusinessHelper.CheckValidFormula(_MA_DM.ToString(),
                 "MAU_BC", "CACH_TINH", "MA_SO", txtMauBc.Text, txtcach_tinh.Text))
             {
                 errors += V6Text.Wrong + "\r\n";
@@ -33,7 +33,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
 
             IList<string> keyFields = new []{"MAU_BC", "MA_SO"};
-            errors += CheckValid(TableName.ToString(), keyFields);
+            errors += CheckValid(_MA_DM.ToString(), keyFields);
             
             if (errors.Length > 0) throw new Exception(errors);
         }

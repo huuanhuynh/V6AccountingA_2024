@@ -16,261 +16,260 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         /// <summary>
         /// Tạo control trong form.
         /// </summary>
-        /// <param name="tableName">Tên bảng có giới hạn.</param>
-        /// <param name="tableNameString">Tên bảng gốc.</param>
+        /// <param name="ma_dm">Tên bảng gốc.</param>
         /// <returns></returns>
-        public static AddEditControlVirtual Init_Control(V6TableName tableName, string tableNameString)
+        public static AddEditControlVirtual Init_Control(string ma_dm)
         {
-            AldmConfig aldm_config = ConfigManager.GetAldmConfig(tableNameString);
+            AldmConfig aldm_config = ConfigManager.GetAldmConfig(ma_dm);
             string formCode = aldm_config.FormCode;
             if (formCode != null) formCode = formCode.ToUpper();
 
             AddEditControlVirtual FormControl = null;
             //if (V6Check_Rights())
-            switch (tableName)
+            switch (ma_dm.ToUpper())
             {
-                case V6TableName.Albp:
+                case "ALBP":
                     FormControl = new BoPhanAddEditForm();
                     break;
-                case V6TableName.Albpcc:
+                case "ALBPCC":
                     FormControl = new BoPhanSuDungCongCuAddEditForm();
                     break;
-                case V6TableName.Albpht:
+                case "ALBPHT":
                     FormControl = new BoPhanHachToanAddEditForm();
                     break;
-                case V6TableName.Albpts:
+                case "ALBPTS":
                     FormControl = new BoPhanSuDungTangSuatAddEditForm();
                     break;
-                case V6TableName.Alck:
+                case "ALCK":
                     FormControl = new ChietKhauAddEditForm();
                     break;
-                case V6TableName.Alct:
+                case "ALCT":
                     FormControl = new AlctAddEditFrom();
                     break;
-                case V6TableName.Aldvcs:
+                case "ALDVCS":
                     FormControl = new DonViCoSoAddEditForm();
                     break;
-                case V6TableName.Aldvt:
+                case "ALDVT":
                     FormControl = new DonViTinhAddEditForm();
                     break;
-                case V6TableName.Algia2:
+                case "ALGIA2":
                     if (formCode == "ALGIA2_A1") FormControl = new Algia2AddEditForm_A1();
                     else FormControl = new Algia2AddEditForm();
                     break;
-                case V6TableName.Algia0:
+                case "ALGIA0":
                     FormControl = new Algia0AddEditForm();
                     break;
-                case V6TableName.Alhd:
+                case "ALHD":
                     FormControl = new HopDongAddEditForm();
                     break;
-                case V6TableName.Alhttt:
+                case "ALHTTT":
                     FormControl = new HinhThucThanhToanAddEditForm();
                     break;
-                case V6TableName.Alhtvc:
+                case "ALHTVC":
                     FormControl = new HinhThucVanChuyenAddEditForm();
                     break;
-                case V6TableName.Alkc:
+                case "ALKC":
                     FormControl = new AlkcAddEditForm();
                     break;
-                case V6TableName.Alkh:
+                case "ALKH":
                     if (formCode == "ALKH_A1") FormControl = new KhachHangAddEditFrom_A1();
                     else FormControl = new KhachHangAddEditFrom();
                     break;
-                case V6TableName.Alkhct:
+                case "ALKHCT":
                     FormControl = new KhachHangChiTietFrom();
                     break;
-                case V6TableName.Alvitrict:
+                case "ALVITRICT":
                     FormControl = new ViTriChiTietAddEditForm();
                     break;
-                case V6TableName.Alkho:
+                case "ALKHO":
                     FormControl = new KhoHangAddEditForm();
                     break;
-                case V6TableName.Alku:
+                case "ALKU":
                     FormControl = new KheUocAddEditForm();
                     break;
-                case V6TableName.Alkuct:
+                case "ALKUCT":
                     FormControl = new KheUocChiTietForm();
                     break;
-                case V6TableName.Allnx:
+                case "ALLNX":
                     FormControl = new LoaiNhapXuatAddEditForm();
                     break;
-                case V6TableName.Allo:
+                case "ALLO":
                     FormControl = new LoHangAddEditForm();
                     break;
-                case V6TableName.Alloaivc:
+                case "ALLOAIVC":
                     FormControl = new LoaiDichVuAddEditForm();
                     break;
-                case V6TableName.Almagia:
+                case "ALMAGIA":
                     FormControl = new MaGiaAddEditForm();
                     break;
-                case V6TableName.Almauhd:
+                case "ALMAUHD":
                     FormControl = new MauHoaDonAddEditForm();
                     break;
-                case V6TableName.Alnhcc:
+                case "ALNHCC":
                     FormControl = new PhanNhomCongCuAddEditForm();
                     break;
-                case V6TableName.Alnhhd:
+                case "ALNHHD":
                     FormControl = new NhomHopDongAddEditForm();
                     break;
-                case V6TableName.Alnhkh:
+                case "ALNHKH":
                     FormControl = new NhomKhachHangAddEditForm();
                     break;
-                case V6TableName.Alnhkh2:
+                case "ALNHKH2":
                     FormControl = new NhomGiaKhachHangAddEditForm();
                     break;
-                case V6TableName.Alnhku:
+                case "ALNHKU":
                     FormControl = new NhomKheUocAddEditForm();
                     break;
-                case V6TableName.Alnhphi:
+                case "ALNHPHI":
                     FormControl = new NhomKhoanMucPhiAddEditForm();
                     break;
-                case V6TableName.Alnhtk0:
+                case "ALNHTK0":
                     FormControl = new PhanLoaiCacTaiKhoanAddEditForm();
                     break;
-                case V6TableName.Alnhtk:
+                case "ALNHTK":
                     FormControl = new NhomTaiKhoanAddEditForm();
                     break;
-                case V6TableName.Alnhts:
+                case "ALNHTS":
                     FormControl = new PhanNhomTaiSanAddEditForm();
                     break;
-                case V6TableName.Alnhvt:
+                case "ALNHVT":
                     FormControl = new NhomVatTuAddEditForm();
                     break;
-                case V6TableName.Alnhvv:
+                case "ALNHVV":
                     FormControl = new NhomVuViecAddEditForm();
                     break;
-                case V6TableName.Alnhytcp:
+                case "ALNHYTCP":
                     FormControl = new NhomYeuToChiPhiAddEditForm();
                     break;
-                case V6TableName.Acosxlt_alnhytcp:
+                case "ACOSXLT_ALNHYTCP":
                     FormControl = new NhomYeuToChiPhiSXLTAddEditForm();
                     break;
-                case V6TableName.Acosxlsx_alnhytcp:
+                case "ACOSXLSX_ALNHYTCP":
                     FormControl = new NhomYeuToChiPhiSXDHAddEditForm();
                     break;
-                case V6TableName.Alnt:
+                case "ALNT":
                     FormControl = new NgoaiTeAddEditForm();
                     break;
-                case V6TableName.Alnv:
+                case "ALNV":
                     FormControl = new NguonVonAddEditForm();
                     break;
-                case V6TableName.Alnvien:
+                case "ALNVIEN":
                     FormControl = new NhanVienAddEditForm();
                     break;
-                case V6TableName.Alphi:
+                case "ALPHI":
                     FormControl = new PhiAddEditForm();
                     break;
-                case V6TableName.Alphuong:
+                case "ALPHUONG":
                     FormControl = new PhuongXaAddEditForm();
                     break;
-                case V6TableName.Alplcc:
+                case "ALPLCC":
                     FormControl = new PhanLoaiCongCuAddEditForm();
                     break;
-                case V6TableName.Alplts:
+                case "ALPLTS":
                     FormControl = new PhanLoaiTaiSanAddEditForm();
                     break;
-                case V6TableName.Alqddvt:
+                case "ALQDDVT":
                     FormControl = new QuyDoiDonViTinhAddEditForm();
                     break;
-                case V6TableName.Alqg:
+                case "ALQG":
                     FormControl = new QuocGiaAddEditForm();
                     break;
-                case V6TableName.Alquan:
+                case "ALQUAN":
                     FormControl = new QuanHuyenAddEditForm();
                     break;
-                case V6TableName.Alstt:
+                case "ALSTT":
                     FormControl = new NamTaiChinhAddEditForm();
                     break;
-                case V6TableName.Altd:
+                case "ALTD":
                     FormControl = new TuDienNguoiDungDinhNghiaAddEditForm();
                     break;
-                case V6TableName.Altd2:
+                case "ALTD2":
                     FormControl = new TuDienTuDinhNghia2AddEditForm();
                     break;
-                case V6TableName.Altd3:
+                case "ALTD3":
                     FormControl = new TuDienTuDinhNghia3AddEditForm();
                     break;
-                case V6TableName.Altgcc:
+                case "ALTGCC":
                     FormControl = new LyDoTangGiamCCDCAddEditForm();
                     break;
-                case V6TableName.Altgnt:
+                case "ALTGNT":
                     FormControl = new TyGiaNgoaiTeAddEditForm();
                     break;
-                case V6TableName.Altgts:
+                case "ALTGTS":
                     FormControl = new LyDoTangGiamTSCDAddEditForm();
                     break;
-                case V6TableName.Althue:
+                case "ALTHUE":
                     FormControl = new ThueSuatAddEditForm();
                     break;
-                case V6TableName.Altinh:
+                case "ALTINH":
                     FormControl = new TinhThanhAddEditForm();
                     break;
-                case V6TableName.Altk0:
+                case "ALTK0":
                     FormControl = new TaiKhoanAddEditForm();
                     break;
-                case V6TableName.Altk2:
+                case "ALTK2":
                     FormControl = new TieuKhoanAddEditForm();
                     break;
-                case V6TableName.Altknh:
+                case "ALTKNH":
                     FormControl = new TaiKhoanNganHangAddEditForm();
                     break;
-                case V6TableName.Alttvt:
+                case "ALTTVT":
                     FormControl = new TinhTrangDichVuAddEditForm();
                     break;
-                case V6TableName.Alvc:
+                case "ALVC":
                     FormControl = new VanChuyenAddEditForm();
                     break;
-                case V6TableName.Alvitri:
+                case "ALVITRI":
                     FormControl = new ViTriAddEditForm();
                     break;
-                case V6TableName.Alvt:
+                case "ALVT":
                     if (formCode == "ALVT_A1") FormControl = new VatTuAddEditForm_A1();
                     else if (formCode == "ALVT_A2") FormControl = new VatTuAddEditForm_A2();
                     else FormControl = new VatTuAddEditForm();
                     break;
-                case V6TableName.Alvttg:
+                case "ALVTTG":
                     FormControl = new SanPhamTrungGianAddEditForm();
                     break;
-                case V6TableName.Alvv:
+                case "ALVV":
                     FormControl = new VuViecAddEditForm();
                     break;
-                case V6TableName.Alytcp:
+                case "ALYTCP":
                     FormControl = new YeuToChiPhiAddEditForm();
                     break;
-                case V6TableName.Acosxlsx_alytcp:
+                case "ACOSXLSX_ALYTCP":
                     FormControl = new YeuToChiPhiSPDHAddEditForm();
                     break;
-                case V6TableName.Acosxlt_alytcp:
+                case "ACOSXLT_ALYTCP":
                     FormControl = new YeuToChiPhiSXLTAddEditForm();
                     break;
-                case V6TableName.V6option:
+                case "V6OPTION":
                     FormControl = new V6OptionAddEditForm();
                     break;
-                case V6TableName.V6soft:
+                case "V6SOFT":
                     FormControl = new V6SoftAddEditForm();
                     break;
-                case V6TableName.V6user:
+                case "V6USER":
                     FormControl = new NguoiSuDungAddEditForm();
                     break;
-                case V6TableName.Alct1:
+                case "ALCT1":
                     FormControl = new V6Alct1AddEditForm();
                     break;
-                case V6TableName.V6menu:
+                case "V6MENU":
                     FormControl = new V6MenuAddEditForm();
                     break;
-                case V6TableName.Althue30:
+                case "ALTHUE30":
                     FormControl = new ThueSuat30AddEditForm();
                     break;
-                case V6TableName.Alsonb:
+                case "ALSONB":
                     FormControl = new AlsonbAddEditForm();
                     break;
-                case V6TableName.Albc:
+                case "ALBC":
                     if (V6Login.IsAdmin)
                     {
                         FormControl = new AlbcAddEditForm();
                     }
                     else if ((Control.ModifierKeys & Keys.Control) == Keys.Control
-                        && (new ConfirmPasswordV6{TopMost = true}.ShowDialog() == DialogResult.OK))
+                        && (new ConfirmPasswordV6 { TopMost = true }.ShowDialog() == DialogResult.OK))
                     {
                         FormControl = new AlbcAddEditForm();
                     }
@@ -280,183 +279,180 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         FormControl.Dock = DockStyle.Fill;
                     }
                     break;
-                case V6TableName.V_alts:
+                case "V_ALTS":
                     FormControl = new ValtsAddEditForm();
                     break;
-                case V6TableName.V_alcc:
+                case "V_ALCC":
                     FormControl = new ValccAddEditForm();
                     break;
-                case V6TableName.V_alts01:
+                case "V_ALTS01":
                     FormControl = new Valts01AddEditForm();
                     break;
-                case V6TableName.V_alcc01:
+                case "V_ALCC01":
                     FormControl = new Valcc01AddEditForm();
                     break;
-                case V6TableName.CorpLan:
-                case V6TableName.CorpLan1:
-                case V6TableName.CorpLan2:
+                case "CORPLAN":
+                case "CORPLAN1":
+                case "CORPLAN2":
                     FormControl = new CorpLanAddEditForm();
                     break;
-                //case V6TableName.Hlns:
-                case V6TableName.Hrpersonal:
+                //case "HLNS":
+                case "HRPERSONAL":
                     FormControl = new NhanSuAddEditForm();
                     break;
-                case V6TableName.Alloaiyt:
+                case "ALLOAIYT":
                     FormControl = new AlloaiytAddEditForm();
                     break;
-                case V6TableName.Acosxlt_alloaiyt:
+                case "ACOSXLT_ALLOAIYT":
                     FormControl = new Acosxlt_alloaiytAddEditForm();
                     break;
-                case V6TableName.Acosxlsx_alloaiyt:
+                case "ACOSXLSX_ALLOAIYT":
                     FormControl = new Acosxlsx_alloaiytAddEditForm();
                     break;
-                case V6TableName.Alct2:
+                case "ALCT2":
                     FormControl = new V6Alct2AddEditForm();
                     break;
-                case V6TableName.Almaubc:
+                case "ALMAUBC":
                     FormControl = new Almaubc();
                     break;
-                case V6TableName.Almaubcct:
+                case "ALMAUBCCT":
                     FormControl = new AlmaubcCt();
                     break;
-                case V6TableName.Alct3:
+                case "ALCT3":
                     FormControl = new V6Alct3AddEditForm();
                     break;
-                case V6TableName.Aldm:
+                case "ALDM":
                     FormControl = new Aldm();
                     break;
-                case V6TableName.V6valid:
+                case "V6VALID":
                     FormControl = new V6valid();
                     break;
-                case V6TableName.V6lookup:
+                case "V6LOOKUP":
                     FormControl = new V6lookupForm();
                     break;
-                case V6TableName.Abnghi:
+                case "ABNGHI":
                     FormControl = new AbnghiAddEditForm();
                     break;
-                case V6TableName.Hrappfamily:
+                case "HRAPPFAMILY":
                     FormControl = new ThongTinLyLichForm();
                     break;
-                
-                case V6TableName.Hrlstrelation:
+
+                case "HRLSTRELATION":
                     FormControl = new ThongTinQuanHeForm();
                     break;
-                case V6TableName.Hrlstreligion:
+                case "HRLSTRELIGION":
                     FormControl = new ThongTinTonGiaoForm();
                     break;
-                case V6TableName.Hrimages:
+                case "HRIMAGES":
                     FormControl = new ThongTinHinhAnhChuKy();
                     break;
-               case V6TableName.Hrlstschool:
-                   FormControl = new DanhMucTruongHocForm();
+                case "HRLSTSCHOOL":
+                    FormControl = new DanhMucTruongHocForm();
                     break;
-               case V6TableName.Prhlcong:
+                case "PRHLCONG":
                     FormControl = new DanhMucKyHieuCongForm();
                     break;
-               case V6TableName.Prhlnhcong:
+                case "PRHLNHCONG":
                     FormControl = new DanhMucNhomCongForm();
                     break;
-                case V6TableName.Hrxhlnhca:
+                case "HRXHLNHCA":
                     FormControl = new DanhMucCaLamViecForm();
                     break;
-                case V6TableName.Hrxhlca:
+                case "HRXHLCA":
                     FormControl = new DanhMucChiTietCaLamViecForm();
                     break;
-                case V6TableName.PRLICHLE:
+                case "PRLICHLE":
                     FormControl = new KhaiBaoLichLe();
                     break;
-                case V6TableName.HRLSTCONTRACTTYPE:
+                case "HRLSTCONTRACTTYPE":
                     FormControl = new ThongTinHopDong();
                     break;
-                case V6TableName.Hrxky:
+                case "HRXKY":
                     FormControl = new KhaiBaoKyTinhLuong();
                     break;
-                case V6TableName.Prhlthuetn:
+                case "PRHLTHUETN":
                     FormControl = new DanhMucThueTNCN();
                     break;
-                case V6TableName.prhlphucap:
+                case "PRHLPHUCAP":
                     FormControl = new DanhMucCacKhoanPhuCap();
                     break;
-                case V6TableName.Prhlttbh:
+                case "PRHLTTBH":
                     FormControl = new DanhMucCacKhoanTraThayBHXH();
                     break;
-                case V6TableName.Prhltp:
+                case "PRHLTP":
                     FormControl = new DanhMucThuongPhat();
                     break;
-                case V6TableName.Prloailuong:
+                case "PRLOAILUONG":
                     FormControl = new KhaiBaoLoaiLuong();
                     break;
-                case V6TableName.Prhlloaitn:
+                case "PRHLLOAITN":
                     FormControl = new DanhMucLoaiThuNhapTinhThue();
                     break;
-                case V6TableName.Hrxhltg:
+                case "HRXHLTG":
                     FormControl = new DanhMucThoiGian();
                     break;
-                case V6TableName.Hrlstnational:
+                case "HRLSTNATIONAL":
                     FormControl = new ThongTinQuocGiaForm();
                     break;
-                case V6TableName.Hrlstnationality:
+                case "HRLSTNATIONALITY":
                     FormControl = new ThongTinQuocTichForm();
                     break;
-                case V6TableName.Hrlstpcs:
+                case "HRLSTPCS":
                     FormControl = new ThongTinTinhThanhForm();
                     break;
-                case V6TableName.Hrlstdegree:
+                case "HRLSTDEGREE":
                     FormControl = new ThongTinBangCapForm();
                     break;
-                case V6TableName.Hrlstcourse:
+                case "HRLSTCOURSE":
                     FormControl = new ThongTinChuyenNghanhForm();
                     break;
-                case V6TableName.hrlstlanguage:
+                case "HRLSTLANGUAGE":
                     FormControl = new ThongTinNgoaiNguForm();
                     break;
-                case V6TableName.Hrlstlang_level:
+                case "HRLSTLANG_LEVEL":
                     FormControl = new ThongTinCapDoNgoaiNguForm();
                     break;
-                case V6TableName.HRLSTLIVINGARR:
+                case "HRLSTLIVINGARR":
                     FormControl = new ThongTinDieuKienSongForm();
                     break;
-                case V6TableName.Hrlstethnic:
+                case "HRLSTETHNIC":
                     FormControl = new ThongTinDanTocForm();
                     break;
-                case V6TableName.Alreport1:
+                case "ALREPORT1":
                     FormControl = new ALREPORT1_AddEdit();
                     break;
-                case V6TableName.Alreport:
+                case "ALREPORT":
                     FormControl = new ALREPORT_AddEdit();
                     break;
-                case V6TableName.Alnhvitri:
+                case "ALNHVITRI":
                     FormControl = new NhomViTriAddEditForm();
                     break;
-                case V6TableName.Hrjobexperience:
+                case "HRJOBEXPERIENCE":
                     FormControl = new KinhNghiemLamViec();
                     break;
-                case V6TableName.Hrjobexperience2:
+                case "HRJOBEXPERIENCE2":
                     FormControl = new KinhNghiemLamViec2();
                     break;
-                case V6TableName.Notable:
-                default:
-                    
-                    
 
+                default:
                     if (aldm_config.HaveInfo)
                     {
                         if (aldm_config.IS_ALDM)
                         {
-                            FormControl = new DynamicAddEditForm(tableNameString, aldm_config);
+                            FormControl = new DynamicAddEditForm(ma_dm, aldm_config);
                             break;
                         }
                     }
 
-                    throw new ArgumentOutOfRangeException("AddEditManager.InitControl tableName");
+                    throw new ArgumentOutOfRangeException("AddEditManager.InitControl ma_dm:" + ma_dm);
                     break;
             }
             if (FormControl == null)
             {
-                throw new Exception("Chưa hỗ trợ thêm - sửa!\n" + tableName);
+                throw new Exception("Chưa hỗ trợ thêm - sửa!\n" + ma_dm);
             }
             FormControl._aldmConfig = aldm_config;
-            FormControl.TableName = tableName;
+            FormControl._MA_DM = ma_dm.ToUpper();
             return FormControl;
         }
         #endregion init control

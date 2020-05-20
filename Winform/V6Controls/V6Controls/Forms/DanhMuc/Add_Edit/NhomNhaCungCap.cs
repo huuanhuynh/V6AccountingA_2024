@@ -21,13 +21,13 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 0, "MA_NH",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 0, "MA_NH",
                  txtMaNh.Text.Trim(), DataOld["MA_NH"].ToString());
                 if (!b) errors += V6Text.DataExist + V6Text.EditDenied + lblMaNhKH.Text + "=" + txtMaNh.Text;
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(TableName.ToString(), 1, "MA_NH",
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 1, "MA_NH",
                  txtMaNh.Text.Trim(), txtMaNh.Text.Trim());
                 if (!b) errors += V6Text.DataExist + V6Text.AddDenied + lblMaNhKH.Text + "=" + txtMaNh.Text;
             }

@@ -160,7 +160,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                         //    }
 
                         var _data = row0.ToDataDictionary();
-                        var f = new FormAddEdit(CurrentTable, V6Mode.Add, keys, _data);
+                        var f = new FormAddEdit(CurrentTable.ToString(), V6Mode.Add, keys, _data);
                         f.AfterInitControl += f_AfterInitControl;
                         f.InitFormControl();
                         f.InsertSuccessEvent += f_InsertSuccess;
@@ -168,7 +168,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     }
                     else
                     {
-                        var f = new FormAddEdit(CurrentTable);
+                        var f = new FormAddEdit(CurrentTable.ToString());
                         f.AfterInitControl += f_AfterInitControl;
                         f.InitFormControl();
                         f.InsertSuccessEvent += f_InsertSuccess;
@@ -247,7 +247,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                         //    }
 
                         var _data = row0.ToDataDictionary();
-                        var f = new FormAddEdit(CurrentTable, V6Mode.Edit, keys, _data);
+                        var f = new FormAddEdit(CurrentTable.ToString(), V6Mode.Edit, keys, _data);
                         f.AfterInitControl += f_AfterInitControl;
                         f.InitFormControl();
                         f.UpdateSuccessEvent += f_UpdateSuccess;

@@ -72,7 +72,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             if (txtMaNT.Text.Trim() == "") errors += V6Text.Text("CHUANHAP") + " " + lblMaNT.Text;
 
             string[] key_list = {"MA_VT","MA_NT", "MA_GIA", "NGAY_BAN", "MA_KHO"};
-            errors += CheckValid(TableName.ToString(), key_list);
+            errors += CheckValid(_MA_DM.ToString(), key_list);
 
             if (errors.Length > 0) throw new Exception(errors);
         }

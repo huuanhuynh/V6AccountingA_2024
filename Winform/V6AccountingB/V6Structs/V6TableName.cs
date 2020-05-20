@@ -113,7 +113,6 @@ namespace V6Structs
         Acosxlt_alytcp,
         Acosxlt_aldmvt,
         Acosxlsx_aldmvt,
-        Notable,
         V6option,
         V6soft,
         Abvt,   
@@ -581,7 +580,7 @@ namespace V6Structs
                     }
                     catch (Exception)
                     {
-                        return V6TableName.Notable;
+                        return V6TableName.None;
                     }
             }
         }
@@ -834,7 +833,7 @@ namespace V6Structs
             switch (name)
             {
                 case V6TableName.None:
-                    return "None";
+                    return "..";
 
                 case V6TableName.Albp:
                     return lang == "V" ? "Danh mục bộ phận" : " Department list";
@@ -1144,9 +1143,7 @@ namespace V6Structs
                     return lang == "V" ? "Danh mục yếu tố chi phí " : "  list";
                 case V6TableName.Acosxlsx_alytcp:
                     return lang == "V" ? "Danh mục yếu tố chi phí SPDH" : "  list";
-                case V6TableName.Notable:
-                    return lang == "V" ? ".. " : " ..";
-
+                
                 case V6TableName.V6option:
                     return lang == "V" ? "Danh mục tham số hệ thống V6 " : " V6 Option list";
 
