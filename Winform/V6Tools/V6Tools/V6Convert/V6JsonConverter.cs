@@ -92,7 +92,7 @@ namespace V6Tools.V6Convert
                 }
                 else
                 {
-                    result = date.ToString(dateTimeFormat);
+                    result = "\"" + date.ToString(dateTimeFormat) + "\"";
                 }
             }
             //else if (value is Boolean)
