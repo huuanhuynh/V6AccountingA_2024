@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnSend = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
@@ -48,6 +49,8 @@
             this.btnTest = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.txtMaDVCS = new System.Windows.Forms.TextBox();
+            this.btnPDF = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // btnSend
@@ -238,11 +241,24 @@
             this.txtMaDVCS.TabIndex = 3;
             this.txtMaDVCS.Visible = false;
             // 
+            // btnPDF
+            // 
+            this.btnPDF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPDF.Enabled = false;
+            this.btnPDF.Location = new System.Drawing.Point(441, 644);
+            this.btnPDF.Name = "btnPDF";
+            this.btnPDF.Size = new System.Drawing.Size(75, 23);
+            this.btnPDF.TabIndex = 11;
+            this.btnPDF.Text = "PDF";
+            this.btnPDF.UseVisualStyleBackColor = true;
+            this.btnPDF.Click += new System.EventHandler(this.btnPDF_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(616, 679);
+            this.Controls.Add(this.btnPDF);
             this.Controls.Add(this.txtMaDVCS);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtMST);
@@ -291,6 +307,8 @@
         private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtMaDVCS;
+        private System.Windows.Forms.Button btnPDF;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

@@ -148,7 +148,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         }
                         else
                         {
-                            f9MessageAll += string.Format("\n{3} Soct:{0}, error:{1}\nResult:{2}", soct, paras.Result.ResultError, paras.Result.ResultString, V6Text.Text("COLOI"));
+                            f9MessageAll += string.Format("\n{3} Soct:{0}, error:{1}\nResult:{2}", soct, paras.Result.ResultErrorMessage, paras.Result.ResultString, V6Text.Text("COLOI"));
                         }
                         
                         remove_list_g.Add(row);
@@ -283,7 +283,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     else
                     {
                         f9MessageAll += string.Format("\n{3} Soct:{0}, error:{1}\nResult:{2}", soct,
-                            paras.Result.ResultError, paras.Result.ResultString, V6Text.Text("COLOI"));
+                            paras.Result.ResultErrorMessage, paras.Result.ResultString, V6Text.Text("COLOI"));
                     }
 
                     remove_list_g.Add(row);

@@ -1766,19 +1766,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     _psno.Value = _tien.Value;
                 }
 
-                //{Tuanmh 21/08/2016
-
-                if (Txtdien_giai.Text != "")
-                {
-                    _dien_giaii.Text = Txtdien_giai.Text.Trim() + " số " + row["SO_CT0"].ToString().Trim() + ", ngày "
-                                       + ObjectAndString.ObjectToString(row["NGAY_CT0"]);
-                }
-                else
+                // Tuanmh 21/08/2016
+                string dien_giai_option = V6Options.GetValueNull("M_DIENGIAII_CHI0");
+                if (string.IsNullOrEmpty(dien_giai_option))
                 {
                     _dien_giaii.Text = " Chi tiền theo CT số " + row["SO_CT0"].ToString().Trim() + ", ngày "
                                        + ObjectAndString.ObjectToString(row["NGAY_CT0"]);
                 }
-                //}
+                else
+                {
+                    if (dien_giai_option.Contains("{DIEN_GIAI}"))
+                    {
+                        dien_giai_option = dien_giai_option.Replace("{DIEN_GIAI}", Txtdien_giai.Text);
+                    }
+                    foreach (KeyValuePair<string, object> item in row)
+                    {
+                        dien_giai_option = dien_giai_option.Replace("{" + item.Key + "}",
+                            ObjectAndString.ObjectToString(item.Value).Trim());
+                    }
+                    _dien_giaii.Text = dien_giai_option;
+                }
 
             }
             catch (Exception ex)
@@ -3420,7 +3427,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
                     ResetForm();
                     Mode = V6Mode.Add;
-
+                    _MA_GD = (Invoice.Alct["M_MA_GD"] ?? "2").ToString().Trim().ToUpper();
+                    txtLoaiPhieu.SetInitFilter(string.Format("Ma_ct = '{0}'", Invoice.Mact));
                     txtLoaiPhieu.ChangeText(_MA_GD);
 
                     GetSttRec(Invoice.Mact);
@@ -4894,18 +4902,36 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                                     dic["PS_NO"] = tientt_Value;
                                 }
                                 //{Tuanmh 21/08/2016
-                                if (Txtdien_giai.Text != "")
-                                {
-                                    dic["DIEN_GIAII"] = Txtdien_giai.Text.Trim() + " số " +
-                                                        dic0["SO_CT0"].ToString().Trim() + ", ngày " +
-                                                        ObjectAndString.ObjectToString(ngay_ct0);
-                                }
-                                else
+                                //if (Txtdien_giai.Text != "")
+                                //{
+                                //    dic["DIEN_GIAII"] = Txtdien_giai.Text.Trim() + " số " +
+                                //                        dic0["SO_CT0"].ToString().Trim() + ", ngày " +
+                                //                        ObjectAndString.ObjectToString(ngay_ct0);
+                                //}
+                                //else
+                                //{
+                                //    dic["DIEN_GIAII"] = " Chi tiền theo CT số " + dic0["SO_CT0"].ToString().Trim() +
+                                //                        ", ngày " + ObjectAndString.ObjectToString(ngay_ct0);
+                                //}
+                                string dien_giai_option = V6Options.GetValueNull("M_DIENGIAII_CHI0");
+                                if (string.IsNullOrEmpty(dien_giai_option))
                                 {
                                     dic["DIEN_GIAII"] = " Chi tiền theo CT số " + dic0["SO_CT0"].ToString().Trim() +
                                                         ", ngày " + ObjectAndString.ObjectToString(ngay_ct0);
                                 }
-                                //}
+                                else
+                                {
+                                    if (dien_giai_option.Contains("{DIEN_GIAI}"))
+                                    {
+                                        dien_giai_option = dien_giai_option.Replace("{DIEN_GIAI}", Txtdien_giai.Text);
+                                    }
+                                    foreach (KeyValuePair<string, object> item in dic0)
+                                    {
+                                        dien_giai_option = dien_giai_option.Replace("{" + item.Key + "}",
+                                            ObjectAndString.ObjectToString(item.Value).Trim());
+                                    }
+                                    dic["DIEN_GIAII"] = dien_giai_option;
+                                }
 
                                 XuLyThemDetail(dic);
                             }
@@ -5884,15 +5910,32 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                             dic["TEN_KH_I"] = dic0["TEN_KH"];
 
                             //{Tuanmh 21/08/2016
-                            if (Txtdien_giai.Text != "")
+                            //if (Txtdien_giai.Text != "")
+                            //{
+                            //    dic["DIEN_GIAII"] = Txtdien_giai.Text.Trim() + " số " + dic0["SO_CT"].ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)dic0["NGAY_CT"]);
+                            //}
+                            //else
+                            //{
+                            //    dic["DIEN_GIAII"] = " Thu tiền bán hàng theo CT số " + dic0["SO_CT"].ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)dic0["NGAY_CT"]);
+                            //}
+                            string dien_giai_option = V6Options.GetValueNull("M_DIENGIAII_CHI");
+                            if (string.IsNullOrEmpty(dien_giai_option))
                             {
-                                dic["DIEN_GIAII"] = Txtdien_giai.Text.Trim() + " số " + dic0["SO_CT"].ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)dic0["NGAY_CT"]);
+                                dic["DIEN_GIAII"] = " Chi tiền theo CT số " + dic0["SO_CT"].ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)dic0["NGAY_CT"]);
                             }
                             else
                             {
-                                dic["DIEN_GIAII"] = " Thu tiền bán hàng theo CT số " + dic0["SO_CT"].ToString().Trim() + ", ngày " + ObjectAndString.ObjectToString((DateTime)dic0["NGAY_CT"]);
+                                if (dien_giai_option.Contains("{DIEN_GIAI}"))
+                                {
+                                    dien_giai_option = dien_giai_option.Replace("{DIEN_GIAI}", Txtdien_giai.Text);
+                                }
+                                foreach (KeyValuePair<string, object> item in dic0)
+                                {
+                                    dien_giai_option = dien_giai_option.Replace("{" + item.Key + "}",
+                                        ObjectAndString.ObjectToString(item.Value).Trim());
+                                }
+                                dic["DIEN_GIAII"] = dien_giai_option;
                             }
-                            //}
 
                             XuLyThemDetail(dic);
                         }

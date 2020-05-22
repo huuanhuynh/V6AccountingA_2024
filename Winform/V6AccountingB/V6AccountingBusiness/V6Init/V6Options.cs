@@ -241,6 +241,9 @@ namespace V6Init
             get { return Convert.ToInt32(GetValue("M_IP_R_GIANT").Substring(1)); }
         }
 
+        /// <summary>
+        /// config 2 ký tự "11" Check nguyên tắc mst / check tồn tại trong dữ liệu.
+        /// </summary>
         public static string M_QLY_MA_SO_THUE
         {
             get { return GetValue("M_QLY_MA_SO_THUE").Trim(); }

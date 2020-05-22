@@ -1064,12 +1064,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 //bool exist_old = V6BusinessHelper.CheckDataExistStruct(TableName, keys_old);
 
                 if (where_new != where_old && exist_new)
-                    return V6Text.EditDenied + " " + where_new;
+                    return V6Text.Exist + " " + V6Text.EditDenied + " " + where_new;
             }
             else if (Mode == V6Mode.Add)
             {
                 if (exist_new)
-                    return V6Text.AddDenied + " " + where_new;
+                    return V6Text.Exist + " " + V6Text.AddDenied + " " + where_new;
             }
 
             return "";

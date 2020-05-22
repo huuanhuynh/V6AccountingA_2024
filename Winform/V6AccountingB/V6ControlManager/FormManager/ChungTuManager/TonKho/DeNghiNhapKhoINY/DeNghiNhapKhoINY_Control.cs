@@ -65,6 +65,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
             txtMaKh.Upper();
             txtManx.Upper();
+            txtManx.FilterStart = true;
+            txtTkThueCo.FilterStart = true;
+            txtTkThueNo.FilterStart = true;
+            txtTkChietKhau.FilterStart = true;
+            txtTkGt.FilterStart = true;
+            txtTkThueCo.SetInitFilter("Loai_tk = 1");
+            txtTkThueNo.SetInitFilter("Loai_tk = 1");
+            txtTkChietKhau.SetInitFilter("Loai_tk = 1");
+            txtTkGt.SetInitFilter("Loai_tk = 1");
+            
             txtDiaChi2.DisableUpperLower();
 
             txtMa_sonb.Upper();

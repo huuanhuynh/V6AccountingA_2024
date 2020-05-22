@@ -24,7 +24,7 @@ namespace V6ThuePostXmlApi
             {
                 result = new BusinessService.BusinessService(_link_Business).confirmPayment(lstInvToken, userName, userPass);
                 v6return.RESULT_STRING = result;
-                if (result.StartsWith("ERR")) v6return.RESULT_ERROR = result;
+                if (result.StartsWith("ERR")) v6return.RESULT_ERROR_MESSAGE = result;
 
                 if (result.StartsWith("ERR:13"))
                 {
@@ -45,7 +45,8 @@ namespace V6ThuePostXmlApi
             }
             catch (Exception ex)
             {
-                v6return.EXCEPTION_MESSAGE = ex.Message;
+                v6return.RESULT_ERROR_CODE = "WS EXCEPTION";
+                v6return.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
                 result = "ERR:EX\r\n" + ex.Message;
             }
 
@@ -73,27 +74,28 @@ namespace V6ThuePostXmlApi
                 if (result.StartsWith("ERR:13"))
                 {
                     result += "Hóa đơn đã được gạch nợ.";
-                    v6return.RESULT_ERROR = result;
+                    v6return.RESULT_ERROR_MESSAGE = result;
                 }
                 else if (result.StartsWith("ERR:7"))
                 {
                     result += "Không gạch nợ được.";
-                    v6return.RESULT_ERROR = result;
+                    v6return.RESULT_ERROR_MESSAGE = result;
                 }
                 else if (result.StartsWith("ERR:6"))
                 {
                     result += "Không tìm thấy hóa đơn tương ứng chuỗi đưa vào.";
-                    v6return.RESULT_ERROR = result;
+                    v6return.RESULT_ERROR_MESSAGE = result;
                 }
                 else if (result.StartsWith("ERR:1"))
                 {
                     result += "Tài khoản đăng nhập sai.";
-                    v6return.RESULT_ERROR = result;
+                    v6return.RESULT_ERROR_MESSAGE = result;
                 }
             }
             catch (Exception ex)
             {
-                v6return.EXCEPTION_MESSAGE = ex.Message;
+                v6return.RESULT_ERROR_CODE = "WS EXCEPTION";
+                v6return.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
                 result = "ERR:EX\r\n" + ex.Message;
             }
 
@@ -108,7 +110,7 @@ namespace V6ThuePostXmlApi
             {
                 result = new BusinessService.BusinessService(_link_Business).UnConfirmPaymentFkey(fkey_old, userName, userPass);
                 v6return.RESULT_STRING = result;
-                if (result.StartsWith("ERR")) v6return.RESULT_ERROR = result;
+                if (result.StartsWith("ERR")) v6return.RESULT_ERROR_MESSAGE = result;
 
                 if (result.StartsWith("ERR:13"))
                 {
@@ -147,7 +149,7 @@ namespace V6ThuePostXmlApi
             {
                 result = new PortalService.PortalService(linkPortal).downloadInvPDFFkey(fkey, userName, userPass);
                 v6return.RESULT_STRING = result;
-                if (result.StartsWith("ERR")) v6return.RESULT_ERROR = result;
+                if (result.StartsWith("ERR")) v6return.RESULT_ERROR_MESSAGE = result;
 
                 if (result.StartsWith("ERR:11"))
                 {
@@ -180,7 +182,8 @@ namespace V6ThuePostXmlApi
             }
             catch (Exception ex)
             {
-                v6return.EXCEPTION_MESSAGE = ex.Message;
+                v6return.RESULT_ERROR_CODE = "WS EXCEPTION";
+                v6return.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
                 result = "ERR:EX\r\n" + ex.Message;
             }
 

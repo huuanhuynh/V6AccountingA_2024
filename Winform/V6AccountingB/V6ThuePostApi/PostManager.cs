@@ -183,7 +183,7 @@ namespace V6ThuePostManager
                     default:
                         paras.Result = new PM_Result();
                         paras.Result.V6ReturnValues = new V6Return();
-                        paras.Result.V6ReturnValues.RESULT_ERROR = V6Text.NotSupported + paras.Branch;
+                        paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE = V6Text.NotSupported + paras.Branch;
                         break;
                 }
             }
@@ -191,7 +191,8 @@ namespace V6ThuePostManager
             {
                 paras.Result = new PM_Result();
                 paras.Result.V6ReturnValues = new V6Return();
-                paras.Result.V6ReturnValues.EXCEPTION_MESSAGE = ex.Message;
+                paras.Result.V6ReturnValues.RESULT_ERROR_CODE = "EX";
+                paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE = "EX: " + ex.Message;
                 V6ControlFormHelper.WriteExLog("RequestManager.PowerPost", ex);
             }
             
@@ -291,7 +292,7 @@ namespace V6ThuePostManager
                         hoadon_entity.MauSo = "TEST";
                         //result = thaiSonWS.ImportThongTinHoaDon(hoadon_entity, out paras.Result.V6ReturnValues);
                         result = thaiSonWS.XuatHoaDonDienTu(hoadon_entity, out paras.Result.V6ReturnValues);
-                        if (result.Contains("Hóa đơn mang ký hiệu TEST,") || paras.Result.V6ReturnValues.RESULT_ERROR.Contains("Nhập sai thông tin"))
+                        if (result.Contains("Hóa đơn mang ký hiệu TEST,") || paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE.Contains("Nhập sai thông tin"))
                         {
                             result = null;
                         }
@@ -301,14 +302,14 @@ namespace V6ThuePostManager
                         }
                         break;
                     default:
-                        paras.Result.ResultError = V6Text.NotSupported + paras.Branch;
+                        paras.Result.ResultErrorMessage = V6Text.NotSupported + paras.Branch;
                         break;
                 }
             }
             catch (Exception ex)
             {
                 result += "Ex: " + ex.Message;
-                paras.Result.ExceptionMessage = ex.Message;
+                paras.Result.ResultErrorMessage = ex.Message;
                 exception = ex.Message;
                 V6ControlFormHelper.WriteExLog("PostManager.PowerDownloadPDF", ex);
             }
@@ -381,13 +382,13 @@ namespace V6ThuePostManager
                         result = thaiSonWS.GetInvoicePdf(paras.V6PartnerID, paras.Mode == "0" ? 0 : 1, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
                         break;
                     default:
-                        paras.Result.ResultError = V6Text.NotSupported + paras.Branch;
+                        paras.Result.ResultErrorMessage = V6Text.NotSupported + paras.Branch;
                         break;
                 }
             }
             catch (Exception ex)
             {
-                paras.Result.ExceptionMessage = ex.Message;
+                paras.Result.ResultErrorMessage = ex.Message;
                 error = ex.Message;
                 V6ControlFormHelper.WriteExLog("PostManager.PowerDownloadPDF", ex);
             }
@@ -426,7 +427,7 @@ namespace V6ThuePostManager
                 }
                 else if (paras.Mode == "E_G1") // Gạch nợ.
                 {
-                    paras.Result.ResultError = V6Text.NotSupported;
+                    paras.Result.ResultErrorMessage = V6Text.NotSupported;
                 }
                 else if (paras.Mode == "E_H1")
                 {
@@ -475,7 +476,7 @@ namespace V6ThuePostManager
 
                 if (result.StartsWith("ERR"))
                 {
-                    if (string.IsNullOrEmpty(paras.Result.ResultError)) paras.Result.ResultError = result;
+                    if (string.IsNullOrEmpty(paras.Result.ResultErrorMessage)) paras.Result.ResultErrorMessage = result;
                 }
                 else
                 {
@@ -484,7 +485,7 @@ namespace V6ThuePostManager
             }
             catch (Exception ex)
             {
-                paras.Result.ExceptionMessage = ex.Message;
+                paras.Result.ResultErrorMessage = ex.Message;
                 result += "ERR:EX\r\n" + ex.Message;
             }
 
@@ -637,7 +638,7 @@ namespace V6ThuePostManager
                     {
                         if (string.IsNullOrEmpty(paras.Fkey_hd))
                         {
-                            paras.Result.ResultError = "Không có Fkey_hd truyền vào.";
+                            paras.Result.ResultErrorMessage = "Không có Fkey_hd truyền vào.";
                         }
                         else
                         {
@@ -937,7 +938,7 @@ namespace V6ThuePostManager
                 if (result.StartsWith("ERR"))
                 {
                     //error += result;
-                    paras.Result.ResultError = result;
+                    paras.Result.ResultErrorMessage = result;
                 }
                 else
                 {
@@ -947,7 +948,7 @@ namespace V6ThuePostManager
             catch (Exception ex)
             {
                 result += "ERR:EX\r\n" + ex.Message;
-                paras.Result.ExceptionMessage = ex.Message;
+                paras.Result.ResultErrorMessage = ex.Message;
             }
 
             End:
@@ -2140,7 +2141,7 @@ namespace V6ThuePostManager
                         }
                         else // Đã chạy 2 lần vẫn không được.
                         {
-                            paras.Result.ResultError = resultM;
+                            paras.Result.ResultErrorMessage = resultM;
                         }
                     }
 
@@ -2380,7 +2381,7 @@ namespace V6ThuePostManager
 
                 if (result.StartsWith("ERR"))
                 {
-                    paras.Result.ResultError = result;
+                    paras.Result.ResultErrorMessage = result;
                 }
                 else
                 {
@@ -2389,7 +2390,7 @@ namespace V6ThuePostManager
             }
             catch (Exception ex)
             {
-                paras.Result.ExceptionMessage = ex.Message;
+                paras.Result.ResultErrorMessage = ex.Message;
                 result += "ERR:EX\r\n" + ex.Message;
             }
             StopAutoInputTokenPassword();
@@ -2577,7 +2578,7 @@ namespace V6ThuePostManager
                 }
                 else if (paras.Mode == "E_G1") // Gạch nợ
                 {
-                    rd.RESULT_ERROR = V6Text.NotSupported;
+                    rd.RESULT_ERROR_MESSAGE = V6Text.NotSupported;
                 }
                 else if (paras.Mode == "E_H1") // Hủy hóa đơn
                 {
@@ -2688,14 +2689,14 @@ namespace V6ThuePostManager
                     }
                     else
                     {
-                        paras.Result.V6ReturnValues.RESULT_ERROR = responseObject.description;
+                        paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE = responseObject.description;
                         paras.Result.V6ReturnValues.RESULT_ERROR_CODE = responseObject.errorCode;
                     }
                 }
                 catch (Exception ex)
                 {
-                    paras.Result.V6ReturnValues.RESULT_ERROR = ex.Message;
-                    paras.Result.V6ReturnValues.EXCEPTION_MESSAGE = ex.Message;
+                    paras.Result.V6ReturnValues.RESULT_ERROR_CODE = "CONVERT RESPONSE OBJECT EXCEPTION";
+                    paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE = "CONVERT EXCEPTION: " +  ex.Message;
                     Logger.WriteToLog("EXECUTE_VIETTEL ConverResultObjectException: " + paras.Fkey_hd + ex.Message);
                     message = "Kết quả:";
                 }
@@ -2703,8 +2704,9 @@ namespace V6ThuePostManager
             }
             catch (Exception ex)
             {
-                paras.Result.V6ReturnValues.RESULT_ERROR = ex.Message;
-                paras.Result.V6ReturnValues.EXCEPTION_MESSAGE = ex.Message;
+                paras.Result.V6ReturnValues.RESULT_ERROR_CODE = "WS EXCEPTION";
+                paras.Result.V6ReturnValues.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
+                
                 V6ControlFormHelper.WriteExLog("PostManager.EXECUTE_VIETTEL", ex);
             }
 
@@ -2915,7 +2917,7 @@ namespace V6ThuePostManager
                     {
                         if (string.IsNullOrEmpty(paras.Fkey_hd))
                         {
-                            paras.Result.ResultError = "Không có Fkey_hd truyền vào.";
+                            paras.Result.ResultErrorMessage = "Không có Fkey_hd truyền vào.";
                         }
                         else
                         {
@@ -3117,7 +3119,7 @@ namespace V6ThuePostManager
                 if (result.StartsWith("ERR"))
                 {
                     //error += result;
-                    paras.Result.ResultError = result;
+                    paras.Result.ResultErrorMessage = result;
                 }
                 else
                 {
@@ -3127,7 +3129,7 @@ namespace V6ThuePostManager
             catch (Exception ex)
             {
                 result += "ERR:EX\r\n" + ex.Message;
-                paras.Result.ExceptionMessage = ex.Message;
+                paras.Result.ResultErrorMessage = ex.Message;
             }
             StopAutoInputTokenPassword();
         End:
@@ -3165,7 +3167,7 @@ namespace V6ThuePostManager
                     {
                         if (string.IsNullOrEmpty(paras.Fkey_hd))
                         {
-                            paras.Result.ResultError = "Không có Fkey_hd truyền vào.";
+                            paras.Result.ResultErrorMessage = "Không có Fkey_hd truyền vào.";
                         }
                         else
                         {
@@ -3380,7 +3382,7 @@ namespace V6ThuePostManager
                 if (result.StartsWith("ERR"))
                 {
                     //error += result;
-                    paras.Result.ResultError = result;
+                    paras.Result.ResultErrorMessage = result;
                 }
                 else
                 {
@@ -3390,7 +3392,7 @@ namespace V6ThuePostManager
             catch (Exception ex)
             {
                 result += "ERR:EX\r\n" + ex.Message;
-                paras.Result.ExceptionMessage = ex.Message;
+                paras.Result.ResultErrorMessage = ex.Message;
             }
             StopAutoInputTokenPassword();
         End:

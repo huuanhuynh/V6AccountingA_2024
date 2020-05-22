@@ -13,6 +13,7 @@ using Spy;
 using Spy.SpyObjects;
 using V6ThuePost.MInvoiceObject.Request;
 using V6ThuePost.MInvoiceObject.Response;
+using V6ThuePost.ResponseObjects;
 using V6ThuePostMInvoiceApi;
 
 namespace V6ThuePost
@@ -121,6 +122,7 @@ namespace V6ThuePost
             if (args != null && args.Length > 0)
             {
                 string result = "";
+                V6Return v6Return = null;
                 string mode = "";
                 string arg1_xmlFile = "";
                 string arg2 = "";
@@ -136,6 +138,7 @@ namespace V6ThuePost
                 try
                 {
                     string jsonBody = "";
+                    MInvoicePostObject jsonBodyObject = null;
 
                     ReadXmlInfo(arg1_xmlFile);
                     string dbfFile = arg2;
@@ -144,10 +147,10 @@ namespace V6ThuePost
 
                     if (mode.ToUpper() == "MTEST")
                     {
-                        ReadData(arg2, "M"); // đọc để lấy tên flag.
-                        jsonBody = "";
+                        ReadData(arg2, "M", out jsonBodyObject); // đọc để lấy tên flag.
+                        jsonBody = "{}";
                         File.Create(flagFileName1).Close();
-                        result = POST_NEW(jsonBody);
+                        result = _WS.POST_NEW(jsonBodyObject, out v6Return);
                         if (result.Contains("\"errorCode\":\"TEMPLATE_NOT_FOUND\""))
                         {
                             result = "Kết nối ổn. " + result;
@@ -161,9 +164,9 @@ namespace V6ThuePost
                         
                         if (string.IsNullOrEmpty(_SERIAL_CERT))
                         {
-                            jsonBody = ReadData(dbfFile, "M");
+                            jsonBody = ReadData(dbfFile, "M", out jsonBodyObject);
                             File.Create(flagFileName1).Close();
-                            result = POST_NEW(jsonBody);
+                            result = _WS.POST_NEW(jsonBodyObject, out v6Return);
                         }
                         else // Ký số client. /InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
                         {
@@ -172,23 +175,22 @@ namespace V6ThuePost
                                 Field = "certificateSerial",
                                 Value = _SERIAL_CERT,
                             };
-                            jsonBody = ReadData(dbfFile, "M");
-                            string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
-                            _WS = new MInvoiceWS(baseUrl, username, password, ma_dvcs, _codetax);
-                            result = _WS.CreateInvoiceUsbTokenGetHash_Sign(jsonBody, templateCode, _SERIAL_CERT);
+                            jsonBody = ReadData(dbfFile, "M", out jsonBodyObject);
+                            //string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
+                            result = _WS.POST_NEW_TOKEN(jsonBody, out v6Return);
                         }
                     }
                     else if (mode.StartsWith("S"))
                     {
-                        jsonBody = ReadData(dbfFile, "S");
+                        jsonBody = ReadData(dbfFile, "S", out jsonBodyObject);
                         File.Create(flagFileName1).Close();
-                        result = POST_EDIT(jsonBody);
+                        result = _WS.POST_EDIT(jsonBodyObject, out v6Return);
                     }
                     else if (mode == "T")
                     {
-                        jsonBody = ReadData(dbfFile, "T");
+                        jsonBody = ReadData(dbfFile, "T", out jsonBodyObject);
                         File.Create(flagFileName1).Close();
-                        result = POST_NEW(jsonBody);
+                        result = _WS.POST_REPLACE(jsonBody);
                     }
                     else if (mode == "H")
                     {
@@ -197,34 +199,34 @@ namespace V6ThuePost
                         DateTime ngay_ct = ObjectAndString.StringToDate(arg4);
                         MakeFlagNames(id);
                         File.Create(flagFileName1).Close();
-                        result = _WS.CancelTransactionInvoice(id, sovb, ngay_ct, "ghi_chu");
+                        result = _WS.POST_CANCEL(id, sovb, ngay_ct, "ghi_chu");
                     }
 
                     //Phân tích result
                     string message = "";
-                    try
+                    if (v6Return != null)
                     {
-                        MInvoiceResponse responseObject = JsonConvert.DeserializeObject<MInvoiceResponse>(result);// MyJson.ConvertJson<CreateInvoiceResponse>(result);
-                        if (!string.IsNullOrEmpty(responseObject.Message))
+                        if (!string.IsNullOrEmpty(v6Return.RESULT_MESSAGE))
                         {
-                            message += " " + responseObject.Message;
+                            message += " " + v6Return.RESULT_MESSAGE;
                         }
-                        if (!string.IsNullOrEmpty(responseObject.error))
+                        if (!string.IsNullOrEmpty(v6Return.RESULT_ERROR_MESSAGE))
                         {
-                            message += " " + responseObject.error;
+                            message += " " + v6Return.RESULT_ERROR_MESSAGE;
                         }
 
+                        MInvoiceResponse responseObject = (MInvoiceResponse) v6Return.RESULT_OBJECT;
                         if (responseObject.ok == "true" && responseObject.data != null && responseObject.data.ContainsKey("inv_invoiceNumber")
                             && !string.IsNullOrEmpty((string)responseObject.data["inv_invoiceNumber"]))
                         {
                             message += " " + responseObject.data["inv_invoiceNumber"];
-                            WriteFlag(flagFileName4, "" + responseObject.data["inv_invoiceNumber"]);
+                            WriteFlag(flagFileName4, "" + responseObject.data["inv_invoiceNumber"] + ":" + v6Return.ID);
                             File.Create(flagFileName2).Close();
                         }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        Logger.WriteToLog("Program.Main ConverResultObjectException: " + ex.Message);
+                        Logger.WriteToLog("Program.Main v6Return null.");
                         message = "Kết quả:";
                     }
                     result = message + "\n" + result;
@@ -264,8 +266,9 @@ namespace V6ThuePost
         /// </summary>
         /// <param name="dbfFile"></param>
         /// <param name="mode">M mới hoặc S thay thế</param>
+        /// <param name="jsonBodyObject"></param>
         /// <returns></returns>
-        public static string ReadData(string dbfFile, string mode)
+        public static string ReadData(string dbfFile, string mode, out MInvoicePostObject jsonBodyObject)
         {
             string result = "";
             //try
@@ -347,6 +350,7 @@ namespace V6ThuePost
             {
                 //
             }
+            jsonBodyObject = postObject;
             return result;
         }
 
@@ -681,35 +685,35 @@ namespace V6ThuePost
         }
         #endregion ==== ALNT ====
 
-        public static string POST_NEW(string jsonBody)
-        {
-            string result;
-            try
-            {
-                result = _WS.POST_NEW(jsonBody);
-            }
-            catch (Exception ex)
-            {
-                result = ex.Message;
-            }
-            Logger.WriteToLog("Program.POST_NEW " + result);
-            return result;
-        }
+        //public static string POST_NEW(string jsonBody)
+        //{
+        //    string result;
+        //    try
+        //    {
+        //        result = _WS.POST_NEW(jsonBody);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result = ex.Message;
+        //    }
+        //    Logger.WriteToLog("Program.POST_NEW " + result);
+        //    return result;
+        //}
 
-        public static string POST_EDIT(string jsonBody)
-        {
-            string result;
-            try
-            {
-                result = _WS.POST_EDIT(jsonBody);
-            }
-            catch (Exception ex)
-            {
-                result = ex.Message;
-            }
-            Logger.WriteToLog("Program.POST_EDIT " + result);
-            return result;
-        }
+        //public static string POST_EDIT(string jsonBody)
+        //{
+        //    string result;
+        //    try
+        //    {
+        //        result = _WS.POST_EDIT(jsonBody);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result = ex.Message;
+        //    }
+        //    Logger.WriteToLog("Program.POST_EDIT " + result);
+        //    return result;
+        //}
 
         //private static Dictionary<string, string> sellerInfo;
         private static MInvoicePostObject postObject;

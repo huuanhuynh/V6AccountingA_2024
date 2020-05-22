@@ -68,6 +68,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             txtMaKh.Upper();
             txtManx.Upper();
             txtManx.FilterStart = true;
+            txtTkThueNo.FilterStart = true;
+            txtTkThueNo.SetInitFilter("Loai_tk=1");
             
             txtMa_sonb.Upper();
             if (V6Login.MadvcsCount == 1)

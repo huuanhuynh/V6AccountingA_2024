@@ -21,15 +21,11 @@ namespace V6ThuePost.ResponseObjects
         /// <summary>
         /// Chuỗi lỗi nếu có lỗi.
         /// </summary>
-        public string RESULT_ERROR;
+        public string RESULT_ERROR_MESSAGE;
         /// <summary>
         /// Mã lỗi của lỗi.
         /// </summary>
         public string RESULT_ERROR_CODE;
-        /// <summary>
-        /// Lỗi trong hàm WS.
-        /// </summary>
-        public string EXCEPTION_MESSAGE;
         /// <summary>
         /// Câu thông báo trả về.
         /// </summary>

@@ -832,14 +832,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         private void CheckRightReport()
         {
             bool no_print = false;
-            if (!V6Login.UserRight.AllowPrint(ItemID, ItemID))
+            if (!V6Login.UserRight.AllowPrint(ItemID, Invoice.Mact))
             {
                 no_print = true;
                 crystalReportViewer1.ShowPrintButton = false;
                 crystalReportViewer1.ShowExportButton = false;
                 contextMenuStrip1.Items.Remove(exportToPdfMenu);
             }
-            if (!V6Login.UserRight.AllowView(ItemID, ItemID))
+            if (!V6Login.UserRight.AllowView(ItemID, Invoice.Mact))
             {
                 crystalReportViewer1.InvisibleTag();
                 if (no_print)

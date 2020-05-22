@@ -66,6 +66,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             txtMaKh.Upper();
             txtManx.Upper();
             txtManx.FilterStart = true;
+            txtTkThueCo.FilterStart = true;
+            txtTkThueNo.FilterStart = true;
+            txtTkChietKhau.FilterStart = true;
+            txtTkGt.FilterStart = true;
+            txtTkThueCo.SetInitFilter("Loai_tk = 1");
+            txtTkThueNo.SetInitFilter("Loai_tk = 1");
+            txtTkChietKhau.SetInitFilter("Loai_tk = 1");
+            txtTkGt.SetInitFilter("Loai_tk = 1");
             
             txtMa_sonb.Upper();
             if (V6Login.MadvcsCount == 1)

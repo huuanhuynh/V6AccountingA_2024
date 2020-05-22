@@ -153,7 +153,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         }
                         else
                         {
-                            f9MessageAll += string.Format("\n{3} Soct:{0}, error:{1}\nResult:{2}", soct, paras.Result.ResultError, result, V6Text.Text("COLOI"));
+                            f9MessageAll += string.Format("\n{3} Soct:{0}, error:{1}\nResult:{2}", soct, paras.Result.ResultErrorMessage, result, V6Text.Text("COLOI"));
                         }
                         
                         remove_list_g.Add(row);

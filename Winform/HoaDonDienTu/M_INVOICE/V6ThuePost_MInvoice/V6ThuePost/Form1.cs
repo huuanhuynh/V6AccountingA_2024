@@ -2,7 +2,9 @@
 using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using V6ThuePost.MInvoiceObject.Request;
 using V6ThuePost.MInvoiceObject.Response;
+using V6ThuePost.ResponseObjects;
 using V6ThuePostMInvoiceApi;
 using V6Tools;
 
@@ -16,8 +18,18 @@ namespace V6ThuePost
         public Form1()
         {
             InitializeComponent();
+            MyInit();
         }
 
+        private void MyInit()
+        {
+            if (Program._TEST_)
+            {
+                toolTip1.SetToolTip(btnSend, "Bấm giữ Control để gửi object gốc.");
+            }
+        }
+
+        private MInvoicePostObject _jsonBodyObject = null;
         private void btnRead_Click(object sender, EventArgs e)
         {
             Program.ReadXmlInfo(txtXmlFile.Text);
@@ -42,7 +54,7 @@ namespace V6ThuePost
             //    Value = "" + new_uid,
             //};
 
-            string jsonBody = Program.ReadData(txtDbfFile.Text, "M");
+            string jsonBody = Program.ReadData(txtDbfFile.Text, "M", out _jsonBodyObject);
             txtUsername.Text = Program.username;
             txtPassword.Text = Program.password;
             txtMaDVCS.Text = Program.ma_dvcs;
@@ -56,49 +68,61 @@ namespace V6ThuePost
 
         private void btnTest_Click(object sender, EventArgs e)
         {
-            if (Program._WS != null)
+            if (Program._WS != null && Program._WS.IsLoggedIn)
             {
-                string result = Program._WS.POST_NEW("{}");
+                V6Return v6Return;
+                string result = Program._WS.CheckConnection(out v6Return);
                 //Phân tích result
                 string message = "";
-                try
+                if (string.IsNullOrEmpty(result))
                 {
-                    MInvoiceResponse responseObject = JsonConvert.DeserializeObject<MInvoiceResponse>(result);
-                    if (!string.IsNullOrEmpty(responseObject.Message) || !string.IsNullOrEmpty(responseObject.error))
-                    {
-                        message += "Kết nối ổn. " + responseObject.Message + responseObject.error;
-                    }
+                    message += "Kết nối ổn. " + v6Return.RESULT_STRING;
                 }
-                catch (Exception ex)
+                else
                 {
-                    Logger.WriteToLog("Program.Main ConverResultObjectException: " + ex.Message);
-                    message = "Kết quả:";
+                    message = result;
                 }
-                result = message + "\n" + result;
-                lblResult.Text = result;
+
+                lblResult.Text = message;
+                BaseMessage.Show(message, this);
             }
             else
             {
-                lblResult.Text = "Chưa khởi tạo";
+                lblResult.Text = "Chưa khởi tạo hoặc đăng nhập sai.";
+                BaseMessage.Show(lblResult.Text, this);
             }
         }
 
         private void btnSend_Click(object sender, EventArgs e)
         {
+            bool control_is_down = (ModifierKeys & Keys.Control) == Keys.Control;
             string result = null;
-
+            V6Return v6Return;
             if (string.IsNullOrEmpty(Program._SERIAL_CERT))
             {
-                result = Program._WS.POST_NEW(richTextBox1.Text);
+                if (control_is_down || !Program._TEST_)
+                {
+                    result = Program._WS.POST_NEW(_jsonBodyObject, out v6Return);
+                }
+                else
+                {
+                    result = Program._WS.POST_NEW(richTextBox1.Text, out v6Return);
+                }
+                
                 lblResult.Text = result;
             }
             else
             {
-                string templateCode = Program.generalInvoiceInfoConfig["templateCode"].Value;
-                result = Program._WS.CreateInvoiceUsbTokenGetHash_Sign(richTextBox1.Text, templateCode, Program._SERIAL_CERT);
+                result = Program._WS.POST_NEW_TOKEN(richTextBox1.Text, out v6Return);
                 lblResult.Text = result;
             }
-            
+
+            if (!string.IsNullOrEmpty(v6Return.ID))
+            {
+                btnPDF.AccessibleName = v6Return.ID;
+                btnPDF.Enabled = true;
+            }
+
             string message = "";
             try
             {
@@ -127,6 +151,18 @@ namespace V6ThuePost
             }
 
             MessageBox.Show(message + "\n" + result);
+        }
+
+        private void btnPDF_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Program._WS.DownloadInvoicePDF(btnPDF.AccessibleName, "F:\\Test");
+            }
+            catch (Exception ex)
+            {
+                BaseMessage.Show(ex.Message, this);
+            }
         }
     }//End class
 }//End namespace

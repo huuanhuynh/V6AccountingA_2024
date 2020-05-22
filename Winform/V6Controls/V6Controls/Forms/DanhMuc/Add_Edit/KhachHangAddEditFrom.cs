@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls.Controls;
 using V6Init;
+using V6SqlConnect;
 using V6Structs;
 using V6Tools;
 using V6Tools.V6Convert;
@@ -100,12 +101,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
 
             if (Mode == V6Mode.Edit)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 0,"MA_KH", txtMaKH.Text.Trim(), DataOld["MA_KH"].ToString());
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 0,"MA_KH", txtMaKH.Text.Trim(), DataOld["MA_KH"].ToString());
                 if (!b) throw new Exception(string.Format("{0} {1} = {2}", V6Text.DataExist, lblMaKH.Text, txtMaKH.Text));
             }
             else if (Mode == V6Mode.Add)
             {
-                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM.ToString(), 1, "MA_KH", txtMaKH.Text.Trim(), txtMaKH.Text.Trim());
+                bool b = V6BusinessHelper.IsValidOneCode_Full(_MA_DM, 1, "MA_KH", txtMaKH.Text.Trim(), txtMaKH.Text.Trim());
                 if (!b) throw new Exception(string.Format("{0} {1} = {2}", V6Text.DataExist, lblMaKH.Text, txtMaKH.Text));
             }
 
@@ -114,6 +115,30 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 if (!V6BusinessHelper.CheckMST(txtMaSoThueVAT.Text.Trim()))
                 {
                     errors += V6Text.CheckData + " " + txtMaSoThueVAT.AccessibleName;
+                }
+            }
+            if (txtMaSoThueVAT.Text.Trim().Length >= 10 && V6Options.M_QLY_MA_SO_THUE.Length > 1 && V6Options.M_QLY_MA_SO_THUE[1] == '1')
+            {
+                // Khi có sửa mst mà tồn tại mới bị check.
+                // errors += CheckValid(_aldmConfig.TABLE_NAME, new [] {"MA_SO_THUE"});
+
+                var keys_new = new SortedDictionary<string, object>();
+                keys_new.Add("MA_SO_THUE", DataDic["MA_SO_THUE"].ToString().Trim());
+                string where_new = SqlGenerator.GenWhere(V6BusinessHelper.GetTableStruct(_MA_DM), keys_new);
+                
+                if (Mode == V6Mode.Edit)
+                {
+                    var keys_not = new SortedDictionary<string, object>();
+                    keys_not["UID"] = DataOld["UID"];
+                    bool exist_not = V6BusinessHelper.CheckDataExistNotStruct(_MA_DM, keys_new, keys_not);
+                    if (exist_not)
+                        errors += V6Text.Exist + " " + V6Text.EditDenied + " " + where_new;
+                }
+                else if (Mode == V6Mode.Add)
+                {
+                    bool exist_new = V6BusinessHelper.CheckDataExistStruct(_MA_DM, keys_new);
+                    if (exist_new)
+                        errors += V6Text.Exist + " " + V6Text.AddDenied + " " + where_new;
                 }
             }
 

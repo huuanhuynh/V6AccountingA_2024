@@ -65,6 +65,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             txtMaKh.Upper();
             txtManx.Upper();
             txtManx.FilterStart = true;
+            txtTkThueCo.FilterStart = true;
+            txtTkThueNo.FilterStart = true;
+            txtTkThueCo.SetInitFilter("Loai_tk = 1");
+            txtTkThueNo.SetInitFilter("Loai_tk = 1");
             
             txtMa_sonb.Upper();
             if (V6Login.MadvcsCount == 1)
@@ -75,12 +79,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             {
                 txtMa_sonb.SetInitFilter("dbo.VFV_InList0('" + Invoice.Mact + "',MA_CTNB,'" + ",')=1");
             }
-
-            txtTkThueCo.FilterStart = true;
-            txtTkThueNo.FilterStart = true;
-
-            txtTkThueCo.SetInitFilter("Loai_tk = 1");
-            txtTkThueNo.SetInitFilter("Loai_tk = 1");
             
             var dataGridViewColumn = dataGridView1.Columns["UID"];
             if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (Guid);

@@ -4,7 +4,17 @@ namespace V6ThuePost
 {
     public static class BaseMessage
     {
-        public static DialogResult Show(string text, int showTime = 0, IWin32Window owner = null)
+        public static DialogResult Show(string text)
+        {
+            return Show(text, 0);
+        }
+
+        public static DialogResult Show(string text, IWin32Window owner)
+        {
+            return Show(text, 0, owner);
+        }
+
+        public static DialogResult Show(string text, int showTime, IWin32Window owner = null)
         {
             var mbox = new BaseMessageForm(text, null, showTime);
             return mbox.ShowDialog(owner);

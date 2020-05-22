@@ -761,7 +761,7 @@ namespace V6SqlConnect
         /// <param name="and"></param>
         /// <param name="tableLable"></param>
         /// <returns></returns>
-        public static string GenWhere2_oper(V6TableStruct structTable, SortedDictionary<string, object> keys,
+        public static string GenWhere2_oper(V6TableStruct structTable, IDictionary<string, object> keys,
             string oper = "=", bool and = true, string tableLable = "")
         {
             var and_or = and ? " AND " : " OR ";

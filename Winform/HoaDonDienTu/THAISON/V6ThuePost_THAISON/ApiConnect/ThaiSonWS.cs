@@ -77,7 +77,8 @@ namespace V6ThuePostThaiSonApi
             }
             catch (Exception ex)
             {
-                v6return.EXCEPTION_MESSAGE = ex.Message;
+                v6return.RESULT_ERROR_CODE = "WS EXCEPTION";
+                v6return.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
                 result = "ERR:EX\r\n" + ex.Message;
             }
             return result;
@@ -102,7 +103,7 @@ namespace V6ThuePostThaiSonApi
                 v6return.RESULT_STRING = V6XmlConverter.ClassToXml(response);
                 v6return.RESULT_MESSAGE = response.MsgError.Description;
                 v6return.RESULT_ERROR_CODE = response.MsgError.Code;
-                v6return.RESULT_ERROR = response.MsgError.Message;
+                v6return.RESULT_ERROR_MESSAGE = response.MsgError.Message;
                 v6return.ID = response.MaEinvoice;
                 v6return.SECRET_CODE = response.MaEinvoice;
                 v6return.SO_HD = response.SoHoaDon;
@@ -118,7 +119,8 @@ namespace V6ThuePostThaiSonApi
             }
             catch (Exception ex)
             {
-                v6return.EXCEPTION_MESSAGE = ex.Message;
+                v6return.RESULT_ERROR_CODE = "WS EXCEPTION";
+                v6return.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
                 result = "ERR:EX\r\n" + ex.Message;
             }
 
@@ -233,7 +235,7 @@ namespace V6ThuePostThaiSonApi
                 v6return.RESULT_STRING = V6XmlConverter.ClassToXml(response);
                 v6return.RESULT_MESSAGE = response.MsgError.Description;
                 v6return.RESULT_ERROR_CODE = response.MsgError.Code;
-                v6return.RESULT_ERROR = response.MsgError.Message;
+                v6return.RESULT_ERROR_MESSAGE = response.MsgError.Message;
                 v6return.ID = response.MaEinvoice;
                 v6return.SECRET_CODE = response.MaEinvoice;
                 v6return.SO_HD = response.SoHoaDon;
@@ -249,7 +251,8 @@ namespace V6ThuePostThaiSonApi
             }
             catch (Exception ex)
             {
-                v6return.EXCEPTION_MESSAGE = ex.Message;
+                v6return.RESULT_ERROR_CODE = "WS EXCEPTION";
+                v6return.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
                 result = "ERR:EX\r\n" + ex.Message;
             }
 
@@ -276,7 +279,7 @@ namespace V6ThuePostThaiSonApi
                 v6return.RESULT_STRING = V6XmlConverter.ClassToXml(response);
                 v6return.RESULT_MESSAGE = response.MsgError.Description;
                 v6return.RESULT_ERROR_CODE = response.MsgError.Code;
-                v6return.RESULT_ERROR = response.MsgError.Message;
+                v6return.RESULT_ERROR_MESSAGE = response.MsgError.Message;
                 v6return.ID = response.MaEinvoice;
                 v6return.SECRET_CODE = response.MaEinvoice;
                 v6return.SO_HD = response.SoHoaDon;
@@ -292,7 +295,8 @@ namespace V6ThuePostThaiSonApi
             }
             catch (Exception ex)
             {
-                v6return.EXCEPTION_MESSAGE = ex.Message;
+                v6return.RESULT_ERROR_CODE = "WS EXCEPTION";
+                v6return.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
                 result = "ERR:EX\r\n" + ex.Message;
             }
 
@@ -318,7 +322,7 @@ namespace V6ThuePostThaiSonApi
                 v6return.RESULT_STRING = V6XmlConverter.ClassToXml(response);
                 v6return.RESULT_MESSAGE = response.NoiDung;
                 v6return.RESULT_ERROR_CODE = response.MsgError.Code;
-                v6return.RESULT_ERROR = response.MsgError.Message;
+                v6return.RESULT_ERROR_MESSAGE = response.MsgError.Message;
                 v6return.ID = response.MaEinvoice;
                 v6return.SECRET_CODE = response.UserHuy;
                 v6return.SO_HD = response.SoHoaDon;
@@ -334,7 +338,8 @@ namespace V6ThuePostThaiSonApi
             }
             catch (Exception ex)
             {
-                v6return.EXCEPTION_MESSAGE = ex.Message;
+                v6return.RESULT_ERROR_CODE = "WS EXCEPTION";
+                v6return.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
                 result = "ERR:EX\r\n" + ex.Message;
             }
 
@@ -360,7 +365,7 @@ namespace V6ThuePostThaiSonApi
                 v6return.RESULT_STRING = V6XmlConverter.ClassToXml(response);
                 v6return.RESULT_MESSAGE = response.MsgError.Description;
                 v6return.RESULT_ERROR_CODE = response.MsgError.Code;
-                v6return.RESULT_ERROR = response.MsgError.Message;
+                v6return.RESULT_ERROR_MESSAGE = response.MsgError.Message;
                 v6return.ID = response.MaEinvoice;
                 v6return.SECRET_CODE = response.MaEinvoice;
                 v6return.SO_HD = response.SoHoaDon;
@@ -376,7 +381,8 @@ namespace V6ThuePostThaiSonApi
             }
             catch (Exception ex)
             {
-                v6return.EXCEPTION_MESSAGE = ex.Message;
+                v6return.RESULT_ERROR_CODE = "WS EXCEPTION";
+                v6return.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
                 result = "ERR:EX\r\n" + ex.Message;
             }
 

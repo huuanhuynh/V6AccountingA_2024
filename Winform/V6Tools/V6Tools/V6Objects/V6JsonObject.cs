@@ -15,6 +15,11 @@ namespace V6Tools.V6Objects
         {
             return V6JsonConverter.ClassToJson(this, DateTimeFormat);
         }
+
+        public virtual string ToJson(string dateTimeFormat)
+        {
+            return V6JsonConverter.ClassToJson(this, dateTimeFormat);
+        }
         
         public string ToXml()
         {

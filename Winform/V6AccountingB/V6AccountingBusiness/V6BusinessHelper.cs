@@ -605,6 +605,41 @@ namespace V6AccountingBusiness
         }
 
         /// <summary>
+        /// Kiểm tra dữ liệu có tồn tại hay không ngoại trừ data_not, dữ liệu dư được bỏ qua
+        /// </summary>
+        /// <param name="tableName">Bảng dữ liệu để kiểm tra</param>
+        /// <param name="data">Dữ liệu được kiểm tra</param>
+        /// <param name="data_not">Dữ liệu loại trừ</param>
+        /// <param name="check_long">Check lồng</param>
+        /// <returns></returns>
+        public static bool CheckDataExistNotStruct(string tableName, IDictionary<string, object> data, IDictionary<string, object> data_not, bool check_long = false)
+        {
+            try
+            {
+                string where = "";
+                string where_not = "";
+                V6TableStruct tableStruct = GetTableStruct(tableName);
+                if (check_long)
+                {
+                    where = SqlGenerator.GenWhere_CheckLong(tableStruct, data);
+                }
+                else
+                {
+                    where = SqlGenerator.GenWhere(tableStruct, data);
+                }
+                where_not = SqlGenerator.GenWhere2_oper(tableStruct, data_not, "<>");
+
+                var sql = string.Format("select COUNT(*) count0 from [{0}] where ({1}) and ({2})", tableName, @where, where_not);
+                var result = (int)SqlConnect.ExecuteScalar(CommandType.Text, sql);
+                return result >= 1;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Kiểm tra khóa số liệu. Nếu có khóa trả về 1, nếu không khóa trả về 0
         /// </summary>
         /// <param name="type">1: dùng tham số date. 2: dùng month year. 3: year</param>

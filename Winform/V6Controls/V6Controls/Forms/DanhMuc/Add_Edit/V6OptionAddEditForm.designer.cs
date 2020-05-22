@@ -158,7 +158,7 @@
             this.txtName.Location = new System.Drawing.Point(119, 17);
             this.txtName.Name = "txtName";
             this.txtName.ReadOnly = true;
-            this.txtName.Size = new System.Drawing.Size(126, 23);
+            this.txtName.Size = new System.Drawing.Size(623, 23);
             this.txtName.TabIndex = 1;
             this.txtName.TabStop = false;
             // 

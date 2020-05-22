@@ -51,7 +51,7 @@ namespace V6ThuePostBkavApi
                     default:
                         msg = "V6 not supported.";
                         v6return = new V6Return();
-                        v6return.RESULT_ERROR = msg;
+                        v6return.RESULT_ERROR_MESSAGE = msg;
                         break;
                 }
 
@@ -67,7 +67,8 @@ namespace V6ThuePostBkavApi
             catch (Exception ex)
             {
                 v6return = new V6Return();
-                v6return.EXCEPTION_MESSAGE = ex.Message;
+                v6return.RESULT_ERROR_CODE = "WS EXCEPTION";
+                v6return.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
                 result = ex.Message;
             }
             
@@ -97,7 +98,7 @@ namespace V6ThuePostBkavApi
             }
             if (msg.Length > 0)
             {
-                v6return.RESULT_ERROR = msg;
+                v6return.RESULT_ERROR_MESSAGE = msg;
                 return msg;
             }
 
@@ -106,7 +107,7 @@ namespace V6ThuePostBkavApi
             msg = Convertor.StringToObject(false, Convert.ToString(result.Object), out listInvoiceResult);
             if (msg.Length > 0)
             {
-                v6return.RESULT_ERROR = msg;
+                v6return.RESULT_ERROR_MESSAGE = msg;
                 return msg;
             }
 
@@ -122,7 +123,7 @@ namespace V6ThuePostBkavApi
                 else
                 {
                     msg = msg + "; " + invoiceResult.MessLog;
-                    v6return.RESULT_ERROR = msg.Substring(2);
+                    v6return.RESULT_ERROR_MESSAGE = msg.Substring(2);
                 }
             }
 
@@ -142,7 +143,7 @@ namespace V6ThuePostBkavApi
             v6return.RESULT_STRING = result.Object.ToString();
             if (msg.Length > 0)
             {
-                v6return.RESULT_ERROR = msg;
+                v6return.RESULT_ERROR_MESSAGE = msg;
                 return msg;
             }
 
@@ -150,7 +151,7 @@ namespace V6ThuePostBkavApi
             msg = Convertor.StringToObject(false, Convert.ToString(result.Object), out listInvoiceResult);
             if (msg.Length > 0)
             {
-                v6return.RESULT_ERROR = msg;
+                v6return.RESULT_ERROR_MESSAGE = msg;
                 return msg;
             }
 
@@ -166,7 +167,7 @@ namespace V6ThuePostBkavApi
                 else
                 {
                     msg = msg + "; " + invoiceResult.MessLog;
-                    v6return.RESULT_ERROR = msg.Substring(2);
+                    v6return.RESULT_ERROR_MESSAGE = msg.Substring(2);
                 }
             }
 
@@ -186,7 +187,7 @@ namespace V6ThuePostBkavApi
             v6return.RESULT_STRING = result.Object.ToString();
             if (msg.Length > 0)
             {
-                v6return.RESULT_ERROR = msg;
+                v6return.RESULT_ERROR_MESSAGE = msg;
                 return msg;
             }
 
@@ -194,7 +195,7 @@ namespace V6ThuePostBkavApi
             msg = Convertor.StringToObject(false, Convert.ToString(result.Object), out listInvoiceResult);
             if (msg.Length > 0)
             {
-                v6return.RESULT_ERROR = msg;
+                v6return.RESULT_ERROR_MESSAGE = msg;
                 return msg;
             }
 
@@ -211,7 +212,7 @@ namespace V6ThuePostBkavApi
                 else
                 {
                     msg = msg + "; " + invoiceResult.MessLog;
-                    v6return.RESULT_ERROR = msg.Substring(2);
+                    v6return.RESULT_ERROR_MESSAGE = msg.Substring(2);
                 }
             }
 
@@ -253,7 +254,7 @@ namespace V6ThuePostBkavApi
             v6return.RESULT_STRING = result.Object.ToString();
             if (msg.Length > 0)
             {
-                v6return.RESULT_ERROR = msg;
+                v6return.RESULT_ERROR_MESSAGE = msg;
                 return msg;
             }
 
@@ -262,7 +263,7 @@ namespace V6ThuePostBkavApi
             msg = Convertor.StringToObject(false, Convert.ToString(result.Object), out listInvoiceResult);
             if (msg.Length > 0)
             {
-                v6return.RESULT_ERROR = msg;
+                v6return.RESULT_ERROR_MESSAGE = msg;
                 return msg;
             }
 
@@ -281,7 +282,7 @@ namespace V6ThuePostBkavApi
                 else
                 {
                     msg = msg + "; " + invoiceResult.MessLog;
-                    v6return.RESULT_ERROR = msg.Substring(2);
+                    v6return.RESULT_ERROR_MESSAGE = msg.Substring(2);
                 }
             }
 
@@ -312,7 +313,7 @@ namespace V6ThuePostBkavApi
             v6return.RESULT_STRING = result.Object.ToString();
             if (msg.Length > 0)
             {
-                v6return.RESULT_ERROR = msg;
+                v6return.RESULT_ERROR_MESSAGE = msg;
                 return msg;
             }
 
@@ -321,7 +322,7 @@ namespace V6ThuePostBkavApi
             msg = Convertor.StringToObject(false, Convert.ToString(result.Object), out listInvoiceResult);
             if (msg.Length > 0)
             {
-                v6return.RESULT_ERROR = msg;
+                v6return.RESULT_ERROR_MESSAGE = msg;
                 return msg;
             }
 
@@ -341,7 +342,7 @@ namespace V6ThuePostBkavApi
                 else
                 {
                     msg = msg + "; " + invoiceResult.MessLog;
-                    v6return.RESULT_ERROR = msg.Substring(2);
+                    v6return.RESULT_ERROR_MESSAGE = msg.Substring(2);
                 }
             }
 
