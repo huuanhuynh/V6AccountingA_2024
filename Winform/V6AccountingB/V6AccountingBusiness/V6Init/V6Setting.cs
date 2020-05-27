@@ -4,6 +4,8 @@ using V6Tools;
 using System.Data;
 using System.Globalization;
 using System.IO;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using Microsoft.Win32;
 using V6SqlConnect;
 
@@ -322,6 +324,32 @@ namespace V6Init
 
         public static int YearFilter { get; set; }
         public static int MonthFilter { get; set; }
-        
+
+        public static object GetValueNull(string name)
+        {
+            try
+            {
+                string NAME = name.ToUpper();
+                Type t = typeof(V6Setting);
+                FieldInfo[] fields = t.GetFields(BindingFlags.Static | BindingFlags.Public);
+                foreach (FieldInfo fi in fields)
+                {
+                    if(fi.Name.ToUpper() == NAME)
+                    return fi.GetValue(null);
+                }
+
+                PropertyInfo[] properties = t.GetProperties(BindingFlags.Static | BindingFlags.Public);
+                foreach (PropertyInfo fi in properties)
+                {
+                    if (fi.Name.ToUpper() == NAME)
+                        return fi.GetValue(null, null);
+                }
+            }
+            catch (Exception)
+            {
+                
+            }
+            return null;
+        }
     }
 }

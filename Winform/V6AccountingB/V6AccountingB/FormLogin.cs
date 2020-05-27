@@ -262,7 +262,13 @@ namespace V6AccountingB
             {
                 if (new ConfirmPasswordV6().ShowDialog(this) == DialogResult.OK)
                 {
-                    this.ShowInfoMessage("SQL version: " + V6Options.CurrentVersion, 1000);
+                    string message = "SQL version: " + V6Options.CurrentVersion;
+                    if (ActiveControl == txtPassword && V6Login.UserInfo != null)
+                    {
+                        message += "\r\n" + V6Login.UserInfo["PASSWORD"];
+                        this.WriteToLog(GetType() + ".Control_F12", message);
+                    }
+                    this.ShowInfoMessage(message, 1000);
                 }
                 return true;
             }

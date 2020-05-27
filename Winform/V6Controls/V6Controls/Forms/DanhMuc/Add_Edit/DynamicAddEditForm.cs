@@ -344,7 +344,9 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                         if (string.IsNullOrEmpty(input.Name)) input.Name = "txt" + defineInfo.Field;
                         if (!string.IsNullOrEmpty(defineInfo.DefaultValue))
                         {
-                            SetControlValue(input, defineInfo.DefaultValue);
+                            object defaultValue = V6ControlFormHelper.GetDefaultSystemValue(defineInfo.DefaultValue);
+                            //V6Setting.DataDVCS
+                            SetControlValue(input, defaultValue);
                             //input.Text = defineInfo.DefaultValue;
                         }
                         input.Enabled = defineInfo.Enabled;

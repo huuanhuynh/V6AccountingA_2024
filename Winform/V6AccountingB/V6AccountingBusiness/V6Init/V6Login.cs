@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Reflection;
 using V6AccountingBusiness;
 using V6AccountingBusiness.V6Init.User;
 using V6SqlConnect;
@@ -810,6 +811,33 @@ namespace V6Init
                 //    reportDocumentParameters["M_" + GET_FIELD] = V6Setting.DataDVCS[GET_FIELD].ToString();
                 
             }
+        }
+
+        public static object GetValueNull(string name)
+        {
+            try
+            {
+                string NAME = name.ToUpper();
+                Type t = typeof(V6Login);
+                FieldInfo[] fields = t.GetFields(BindingFlags.Static | BindingFlags.Public);
+                foreach (FieldInfo fi in fields)
+                {
+                    if (fi.Name.ToUpper() == NAME)
+                        return fi.GetValue(null);
+                }
+
+                PropertyInfo[] properties = t.GetProperties(BindingFlags.Static | BindingFlags.Public);
+                foreach (PropertyInfo fi in properties)
+                {
+                    if (fi.Name.ToUpper() == NAME)
+                        return fi.GetValue(null, null);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            return null;
         }
     }
 
