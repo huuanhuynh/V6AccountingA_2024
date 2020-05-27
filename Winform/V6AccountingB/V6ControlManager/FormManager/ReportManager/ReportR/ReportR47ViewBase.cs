@@ -1899,6 +1899,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
+            SaveSelectedCellLocation(dataGridView1);
             if(dataGridView1.CurrentRow != null && dataGridView1.CurrentRow.Index >= 0)
             SelectedRowData = dataGridView1.CurrentRow.ToDataDictionary();
         }

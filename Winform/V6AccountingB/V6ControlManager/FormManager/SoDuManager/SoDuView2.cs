@@ -636,7 +636,7 @@ namespace V6ControlManager.FormManager.SoDuManager
         {
             try
             {
-                var f = new SoDuReportForm(_alctConfig.TableNameAM, ReportFile, ReportTitle, ReportTitle2, InitFilter);
+                var f = new SoDu2ReportForm(_alctConfig.TableNameAM, _maCt, ReportFile, ReportTitle, ReportTitle2, InitFilter);
                 f.ShowDialog(this);
             }
             catch (Exception ex)

@@ -116,7 +116,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         #region ==== Khởi tạo Detail Form ====
         private V6ColorTextBox _dvt;
         private V6CheckTextBox _xuat_dd;
-        private V6VvarTextBox _maVt, _dvt1, _maKho2, _Ma_nx_i, _tkVt, _maLo, _maViTri, _maViTriN;
+        private V6VvarTextBox _maVt, _dvt1, _maKho2, _Ma_nx_i, _tkVt, _maLo, _maViTri, _maViTri2, _maViTriN;
         private V6ColorTextBox _soKhung, _soMay;
         private V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_td1;
         private V6NumberTextBox _ton13, _ton13Qd, _gia, _gia_nt, _tien, _tienNt, _gia1, _gia_nt1;
@@ -211,8 +211,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     case "MA_KHO2":
                         _maKho2 = (V6VvarTextBox)control;
                         _maKho2.Upper();
-                        _maKho2.V6LostFocus += MaKho2V6LostFocus;
-                        _maKho2.Tag = "hide";
+                        _maKho2.LO_YN = false;
+                        _maKho2.DATE_YN = false;
+                        _maKho2.V6LostFocus += delegate(object sender)
+                        {
+                            
+                        };
                         break;
                     
                     case "TON13":
@@ -511,8 +515,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                             }
                         }
                         break;
+                    
                     case "MA_LO":
-
                         _maLo = (V6VvarTextBox)control;
                         _maLo.GotFocus += (s, e) =>
                         {
@@ -563,6 +567,34 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                                     CheckMaViTri();
                                     CheckMaVitriTon();
                                 }
+                            };
+                        }
+                        break;
+                    case "MA_VITRI2":
+                        _maViTri2 = control as V6VvarTextBox;
+                        if (_maViTri2 != null)
+                        {
+                            _maViTri2.GotFocus += (s, e) =>
+                            {
+                                _maViTri2.CheckNotEmpty = _maVt.VITRI_YN;
+                                var filter = "Ma_kho='" + _maKho2.Text.Trim() + "'";
+
+                                if (("," + V6Options.GetValue("M_LST_CT_DV") + ",").Contains(Invoice.Mact))
+                                {
+                                    var dataViTri = Invoice.GetViTri("", _maKho2.Text, _sttRec, dateNgayCT.Date);
+                                    var getFilter = GetFilterMaViTriNhap(dataViTri, _sttRec0, "", _maKho2.Text);
+                                    if (getFilter != "")
+                                    {
+                                        filter += " and " + getFilter;
+                                    }
+                                }
+
+                                _maViTri2.SetInitFilter(filter);
+                            };
+
+                            _maViTri2.V6LostFocus += sender =>
+                            {
+                                //CheckMaViTri();
                             };
                         }
                         break;
@@ -1631,10 +1663,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         }
 
         
-
-        void MaKho2V6LostFocus(object sender)
-        {
-        }
 
         private void MaVatTu_V6LostFocus(object sender)
         {

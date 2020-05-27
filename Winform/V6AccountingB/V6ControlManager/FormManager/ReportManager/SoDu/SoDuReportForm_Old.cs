@@ -21,7 +21,7 @@ using V6Tools;
 
 namespace V6ControlManager.FormManager.ReportManager.SoDu
 {
-    public partial class SoDuReportForm : V6Form
+    public partial class SoDuReportForm_Old : V6Form
     {
         #region Biến toàn cục
         DataGridViewPrinter MyDataGridViewPrinter;
@@ -127,7 +127,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 var result = _reportTitle;
                 if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
-                    var data = MauInView.ToTable();
+                    MauInView.ToTable();
                     result = MauInSelectedRow["Caption"].ToString().Trim();
                 }
                 return result;
@@ -140,7 +140,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 var result = _reportTitle2;
                 if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
-                    var data = MauInView.ToTable();
+                    MauInView.ToTable();
                     result = MauInSelectedRow["Caption2"].ToString().Trim();
                 }
                 return result;
@@ -153,7 +153,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                 var result = V6Setting.IsVietnamese ? _reportTitle : _reportTitle2;
                 if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
                 {
-                    var data = MauInView.ToTable();
+                    MauInView.ToTable();
                     result = MauInSelectedRow["Title"].ToString().Trim();
                 }
                 return result;
@@ -233,7 +233,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         private string sKey;
         #endregion 
 
-        public SoDuReportForm(string tableName, string reportFile, string reportTitle, string reportTitle2,string inifilter)
+        public SoDuReportForm_Old(string tableName, string reportFile, string reportTitle, string reportTitle2,string inifilter)
         {
             V6ControlFormHelper.AddLastAction(GetType() + " " + tableName);
             _tableName = tableName;
@@ -498,7 +498,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
                     lineControl.AddNumberTextBox();
                 }
             }
-            lineControl.Location = new Point(10, 10 + 30 * index);
+            lineControl.Location = new Point(10, 10 + 25 * index);
             panel1.Controls.Add(lineControl);
         }
 
@@ -525,14 +525,16 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
         private void GenerateKeys()
         {
             sKey = QueryString;
-            if (_inifilter.Length>0)
+            if (!string.IsNullOrEmpty(_inifilter))
             {
-                if (sKey.Length>0)
+                if (sKey.Length > 0)
                 {
-                    sKey += " and " + _inifilter;                    
+                    sKey += " and " + _inifilter;
                 }
                 else
+                {
                     sKey = _inifilter;
+                }
             }
         }
         private void AddProcParams()

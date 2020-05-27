@@ -111,6 +111,11 @@ namespace V6Controls.Forms.Viewer
             MyInit2();
         }
 
+        public void FormatGridView(string showFields, string formatStrings, string headerString)
+        {
+            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
+        }
+
         private string congthuc1 = "", congthuc2 = "", congthuc3 = "";
         private void GetCongThuc()
         {

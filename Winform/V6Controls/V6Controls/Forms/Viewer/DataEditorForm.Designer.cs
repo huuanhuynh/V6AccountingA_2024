@@ -126,9 +126,9 @@
 
         #endregion
 
-        private V6ColorDataGridView dataGridView1;
         private Controls.GridViewSummary gridViewSummary1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        public V6ColorDataGridView dataGridView1;
     }
 }

@@ -574,13 +574,8 @@ namespace V6ControlManager.FormManager.SoDuManager
 
         private void DoPrint()
         {
-            //if (CurrentTable == V6TableName.Alkh)
-            {
-
-                var f = new SoDuReportForm(_MA_DM, ReportFile, ReportTitle, ReportTitle2, InitFilter);
-                f.Show(this);
-            }
-           
+            var f = new SoDu1ReportForm(_MA_DM, ReportFile, ReportTitle, ReportTitle2, InitFilter);
+            f.Show(this);
         }
 
         #endregion do method

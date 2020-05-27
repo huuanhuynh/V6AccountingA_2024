@@ -462,90 +462,85 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 {
                     lblName.AccessibleName = null;
                 }
-
-                if (c.Tag == null || c.IsVisibleTag())
+                
+                c.TabStop = true;
+                if (c is V6ColorTextBox)
                 {
-                    c.TabStop = true;
-                    if (c is V6ColorTextBox)
+                    var vc = c as V6ColorTextBox;
+                    Label l = new Label();
+                    l.Name = "lbl" + c.AccessibleName;
+                    l.Left = vc.Left;
+                    l.Top = vc.Bottom -2;
+                    l.Width = vc.Width;
+                    l.Height = 13;
+                    l.Font = new Font(Font.FontFamily, 7f);
+                    l.ForeColor = Color.DarkGray;
+                    l.Text = vc.GrayText;
+                    l.Visible = vc.Visible;
+                    vc.GrayTextChanged += (sender, e) =>
                     {
-                        var vc = c as V6ColorTextBox;
-                        Label l = new Label();
-                        l.Name = "lbl" + c.AccessibleName;
-                        l.Left = vc.Left;
-                        l.Top = vc.Bottom -2;
-                        l.Width = vc.Width;
-                        l.Height = 13;
-                        l.Font = new Font(Font.FontFamily, 7f);
-                        l.ForeColor = Color.DarkGray;
-                        l.Text = vc.GrayText;
-                        vc.GrayTextChanged += (sender, e) =>
-                        {
-                            l.Text = ((V6ColorTextBox)sender).GrayText;
-                        };
-                        panelControls.Controls.Add(l);
-                        vc.VisibleChanged += (sender, e) =>
-                        {
-                            l.Visible = ((Control)sender).Visible;
-                            FixControlsLocation();
-                        };
-                        vc.LocationChanged += delegate
-                        {
-                            l.Left = vc.Left;
-                        };
-                        vc.Enter += (sender, e) =>
-                        {
-                            FixScrollBar((Control)sender);
-                        };
-                        vc.KeyDown += (sender, e) =>
-                        {
-                            if (vc is V6CheckTextBox)
-                            {
-                                e.Handled = true;
-                                return;
-                            }
-                            if (e.KeyCode == Keys.F12)
-                            {
-                                var info = string.Format("AccName({0}), TabStop({1}), {2}",
-                                    vc.AccessibleName, vc.ClientRectangle, vc.ToString());
-                                V6ControlFormHelper.SetStatusText(info);
-                            }
-                        };
-                    }
-                    else if (c is V6DateTimePicker)
+                        l.Text = ((V6ColorTextBox)sender).GrayText;
+                    };
+                    panelControls.Controls.Add(l);
+                    vc.VisibleChanged += (sender, e) =>
                     {
-                        var vc = c as V6DateTimePicker;
-                        Label l = new Label();
-                        l.Name = "lbl" + c.AccessibleName;
+                        l.Visible = ((Control)sender).Visible;
+                        FixControlsLocation();
+                    };
+                    vc.LocationChanged += delegate
+                    {
                         l.Left = vc.Left;
-                        l.Top = vc.Bottom -2;
-                        l.Width = vc.Width;
-                        l.Height = 13;
-                        l.Font = new Font(Font.FontFamily, 7f);
-                        l.ForeColor = Color.DarkGray;
-                        l.Text = vc.TextTitle;
-                        panelControls.Controls.Add(l);
-
-                        vc.VisibleChanged += (sender, e)=>
+                    };
+                    vc.Enter += (sender, e) =>
+                    {
+                        FixScrollBar((Control)sender);
+                    };
+                    vc.KeyDown += (sender, e) =>
+                    {
+                        if (vc is V6CheckTextBox)
                         {
-                            l.Visible = ((Control)sender).Visible;
-                            FixControlsLocation();
-                        };
-                        vc.LocationChanged += delegate
+                            e.Handled = true;
+                            return;
+                        }
+                        if (e.KeyCode == Keys.F12)
                         {
-                            l.Left = vc.Left;
-                        };
-                        vc.Enter += (sender, e) =>
-                        {
-                            FixScrollBar((Control)sender);
-                        };
-                    }
-
-                    _p = new Point(c.Right, 0);
+                            var info = string.Format("AccName({0}), TabStop({1}), {2}",
+                                vc.AccessibleName, vc.ClientRectangle, vc.ToString());
+                            V6ControlFormHelper.SetStatusText(info);
+                        }
+                    };
                 }
-                else
+                else if (c is V6DateTimePicker)
                 {
-                    c.TabStop = false;
+                    var vc = c as V6DateTimePicker;
+                    Label l = new Label();
+                    l.Name = "lbl" + c.AccessibleName;
+                    l.Left = vc.Left;
+                    l.Top = vc.Bottom -2;
+                    l.Width = vc.Width;
+                    l.Height = 13;
+                    l.Font = new Font(Font.FontFamily, 7f);
+                    l.ForeColor = Color.DarkGray;
+                    l.Text = vc.TextTitle;
+                    panelControls.Controls.Add(l);
+
+                    vc.VisibleChanged += (sender, e)=>
+                    {
+                        l.Visible = ((Control)sender).Visible;
+                        FixControlsLocation();
+                    };
+                    vc.LocationChanged += delegate
+                    {
+                        l.Left = vc.Left;
+                    };
+                    vc.Enter += (sender, e) =>
+                    {
+                        FixScrollBar((Control)sender);
+                    };
                 }
+
+                _p = new Point(c.Right, 0);
+                
             }
         }
 
@@ -568,97 +563,81 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     panelControls.Controls.Add(lb);
                 }
                 c.Location = _p;
-                
+
 
                 if (c.AccessibleName.ToUpper() == "TEN_VT")
                 {
                     lblName.AccessibleName = null;
                 }
-
-                if (c.Tag == null || c.IsVisibleTag())
+                //c.TabStop = true;
+                if (c is V6ColorTextBox)
                 {
-                    //c.TabStop = true;
-                    if (c is V6ColorTextBox)
+                    var vc = c as V6ColorTextBox;
+                    Label l = new Label();
+                    l.Name = "lbl" + c.AccessibleName;
+                    l.Left = vc.Left;
+                    l.Top = vc.Bottom - 2;
+                    l.Width = vc.Width;
+                    l.Height = 13;
+                    l.Font = new Font(Font.FontFamily, 7f);
+                    l.ForeColor = Color.DarkGray;
+                    l.Text = alctControls.LabelText;
+                    l.Visible = alctControls.IsVisible;
+                    //vc.GrayTextChanged += (sender, e) =>
+                    //{
+                    //    l.Text = ((V6ColorTextBox)sender).GrayText;
+                    //};
+                    panelControls.Controls.Add(l);
+                    vc.VisibleChanged += (sender, e) =>
                     {
-                        var vc = c as V6ColorTextBox;
-                        Label l = new Label();
-                        l.Name = "lbl" + c.AccessibleName;
-                        l.Left = vc.Left;
-                        l.Top = vc.Bottom - 2;
-                        l.Width = vc.Width;
-                        l.Height = 13;
-                        l.Font = new Font(Font.FontFamily, 7f);
-                        l.ForeColor = Color.DarkGray;
-                        l.Text = vc.GrayText;
-                        vc.GrayTextChanged += (sender, e) =>
-                        {
-                            l.Text = ((V6ColorTextBox)sender).GrayText;
-                        };
-                        panelControls.Controls.Add(l);
-                        vc.VisibleChanged += (sender, e) =>
-                        {
-                            l.Visible = ((Control)sender).Visible;
-                            FixControlsLocation();
-                        };
-                        vc.LocationChanged += delegate
-                        {
-                            l.Left = vc.Left;
-                        };
-                        vc.Enter += (sender, e) =>
-                        {
-                            FixScrollBar((Control)sender);
-                        };
-                        vc.KeyDown += (sender, e) =>
-                        {
-                            if (vc is V6CheckTextBox)
-                            {
-                                e.Handled = true;
-                                return;
-                            }
-                            if (e.KeyCode == Keys.F12)
-                            {
-                                var info = string.Format("AccName({0}), TabStop({1}), {2}",
-                                    vc.AccessibleName, vc.ClientRectangle, vc.ToString());
-                                V6ControlFormHelper.SetStatusText(info);
-                            }
-                        };
-                    }
-                    else if (c is V6DateTimePicker)
+                        l.Visible = ((Control) sender).Visible;
+                        FixControlsLocation();
+                    };
+                    vc.LocationChanged += delegate { l.Left = vc.Left; };
+                    vc.Enter += (sender, e) => { FixScrollBar((Control) sender); };
+                    vc.KeyDown += (sender, e) =>
                     {
-                        var vc = c as V6DateTimePicker;
-                        Label l = new Label();
-                        l.Name = "lbl" + c.AccessibleName;
-                        l.Left = vc.Left;
-                        l.Top = vc.Bottom - 2;
-                        l.Width = vc.Width;
-                        l.Height = 13;
-                        l.Font = new Font(Font.FontFamily, 7f);
-                        l.ForeColor = Color.DarkGray;
-                        l.Text = vc.TextTitle;
-                        panelControls.Controls.Add(l);
-
-                        vc.VisibleChanged += (sender, e) =>
+                        if (vc is V6CheckTextBox)
                         {
-                            l.Visible = ((Control)sender).Visible;
-                            FixControlsLocation();
-                        };
-                        vc.LocationChanged += delegate
+                            e.Handled = true;
+                            return;
+                        }
+                        if (e.KeyCode == Keys.F12)
                         {
-                            l.Left = vc.Left;
-                        };
-                        vc.Enter += (sender, e) =>
-                        {
-                            FixScrollBar((Control)sender);
-                        };
-                    }
-
-                    if(lb == null) _p = new Point(c.Right, 0);
-                    else _p = new Point(lb.Right, 0);
+                            var info = string.Format("AccName({0}), TabStop({1}), {2}",
+                                vc.AccessibleName, vc.ClientRectangle, vc.ToString());
+                            V6ControlFormHelper.SetStatusText(info);
+                        }
+                    };
                 }
-                else
+                else if (c is V6DateTimePicker)
                 {
-                    c.TabStop = false;
+                    var vc = c as V6DateTimePicker;
+                    Label l = new Label();
+                    l.Name = "lbl" + c.AccessibleName;
+                    l.Left = vc.Left;
+                    l.Top = vc.Bottom - 2;
+                    l.Width = vc.Width;
+                    l.Height = 13;
+                    l.Font = new Font(Font.FontFamily, 7f);
+                    l.ForeColor = Color.DarkGray;
+                    //l.Text = vc.TextTitle;
+                    l.Text = alctControls.LabelText;
+                    l.Visible = alctControls.IsVisible;
+                    panelControls.Controls.Add(l);
+
+                    vc.VisibleChanged += (sender, e) =>
+                    {
+                        l.Visible = ((Control) sender).Visible;
+                        FixControlsLocation();
+                    };
+                    vc.LocationChanged += delegate { l.Left = vc.Left; };
+                    vc.Enter += (sender, e) => { FixScrollBar((Control) sender); };
                 }
+
+                if (lb == null) _p = new Point(c.Right, 0);
+                else _p = new Point(lb.Right, 0);
+            
             }
         }
 
@@ -718,57 +697,54 @@ namespace V6ControlManager.FormManager.ChungTuManager
             c.Location = _p0;
             panel0.Controls.Add(c);
 
-            if (c.Tag == null || c.IsVisibleTag())//.Tag.ToString() != "hide")
+            
+            c.TabStop = true;
+            if (c is V6ColorTextBox)
             {
-                c.TabStop = true;
-                if (c is V6ColorTextBox)
+                var vc = c as V6ColorTextBox;
+                Label l = new Label();
+                l.Name = "lbl" + c.AccessibleName;
+                l.Left = vc.Left;
+                l.Top = vc.Bottom -2;
+                l.Width = vc.Width;
+                l.Height = 13;
+                l.Font = new Font(Font.FontFamily, 7f);
+                l.ForeColor = Color.DarkGray;
+                l.Text = vc.GrayText;
+                l.Visible = vc.Visible;
+                vc.GrayTextChanged += (sender, e) =>
                 {
-                    var vc = c as V6ColorTextBox;
-                    Label l = new Label();
-                    l.Name = "lbl" + c.AccessibleName;
-                    l.Left = vc.Left;
-                    l.Top = vc.Bottom -2;
-                    l.Width = vc.Width;
-                    l.Height = 13;
-                    l.Font = new Font(Font.FontFamily, 7f);
-                    l.ForeColor = Color.DarkGray;
-                    l.Text = vc.GrayText;
-                    vc.GrayTextChanged += (sender, e) =>
-                    {
-                        l.Text = ((V6ColorTextBox)sender).GrayText;
-                    };
-                    panel0.Controls.Add(l);
-                    vc.VisibleChanged += delegate
-                    {
-                        l.Visible = vc.Visible;
-                    };
-                }
-                else if (c is V6DateTimePicker)
+                    l.Text = ((V6ColorTextBox)sender).GrayText;
+                };
+                panel0.Controls.Add(l);
+                vc.VisibleChanged += delegate
                 {
-                    var vc = c as V6DateTimePicker;
-                    Label l = new Label();
-                    l.Name = "lbl" + c.AccessibleName;
-                    l.Left = vc.Left;
-                    l.Top = vc.Bottom -2;
-                    l.Width = vc.Width;
-                    l.Height = 13;
-                    l.Font = new Font(Font.FontFamily, 7f);
-                    l.ForeColor = Color.DarkGray;
-                    l.Text = vc.TextTitle;
-                    panel0.Controls.Add(l);
-
-                    vc.VisibleChanged += delegate
-                    {
-                        l.Visible = vc.Visible;
-                    };
-                }
-
-                _p0 = new Point(c.Right, 0);
+                    l.Visible = vc.Visible;
+                };
             }
-            else
+            else if (c is V6DateTimePicker)
             {
-                c.TabStop = false;
+                var vc = c as V6DateTimePicker;
+                Label l = new Label();
+                l.Name = "lbl" + c.AccessibleName;
+                l.Left = vc.Left;
+                l.Top = vc.Bottom -2;
+                l.Width = vc.Width;
+                l.Height = 13;
+                l.Font = new Font(Font.FontFamily, 7f);
+                l.ForeColor = Color.DarkGray;
+                l.Text = vc.TextTitle;
+                l.Visible = vc.Visible;
+                panel0.Controls.Add(l);
+
+                vc.VisibleChanged += delegate
+                {
+                    l.Visible = vc.Visible;
+                };
             }
+
+            _p0 = new Point(c.Right, 0);
+            
         }
 
         public void AddFixControl(AlctControls alctControls)
@@ -784,57 +760,58 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
             c.Location = _p0;
 
-            if (c.Tag == null || c.IsVisibleTag())//.Tag.ToString() != "hide")
+            if (c.Tag == null || c.IsVisibleTag()) //.Tag.ToString() != "hide")
             {
-                c.TabStop = true;
-                if (c is V6ColorTextBox)
-                {
-                    var vc = c as V6ColorTextBox;
-                    Label l = new Label();
-                    l.Name = "lbl" + c.AccessibleName;
-                    l.Left = vc.Left;
-                    l.Top = vc.Bottom -2;
-                    l.Width = vc.Width;
-                    l.Height = 13;
-                    l.Font = new Font(Font.FontFamily, 7f);
-                    l.ForeColor = Color.DarkGray;
-                    l.Text = vc.GrayText;
-                    vc.GrayTextChanged += (sender, e) =>
-                    {
-                        l.Text = ((V6ColorTextBox)sender).GrayText;
-                    };
-                    panel0.Controls.Add(l);
-                    vc.VisibleChanged += delegate
-                    {
-                        l.Visible = vc.Visible;
-                    };
-                }
-                else if (c is V6DateTimePicker)
-                {
-                    var vc = c as V6DateTimePicker;
-                    Label l = new Label();
-                    l.Name = "lbl" + c.AccessibleName;
-                    l.Left = vc.Left;
-                    l.Top = vc.Bottom -2;
-                    l.Width = vc.Width;
-                    l.Height = 13;
-                    l.Font = new Font(Font.FontFamily, 7f);
-                    l.ForeColor = Color.DarkGray;
-                    l.Text = vc.TextTitle;
-                    panel0.Controls.Add(l);
-
-                    vc.VisibleChanged += delegate
-                    {
-                        l.Visible = vc.Visible;
-                    };
-                }
-
-                _p0 = new Point(c.Right, 0);
+                //c.TabStop = false;
             }
-            else
+            
+            c.TabStop = true;
+            if (c is V6ColorTextBox)
             {
-                c.TabStop = false;
+                var vc = c as V6ColorTextBox;
+                Label l = new Label();
+                l.Name = "lbl" + c.AccessibleName;
+                l.Left = vc.Left;
+                l.Top = vc.Bottom -2;
+                l.Width = vc.Width;
+                l.Height = 13;
+                l.Font = new Font(Font.FontFamily, 7f);
+                l.ForeColor = Color.DarkGray;
+                l.Text = alctControls.LabelText;
+                l.Visible = alctControls.IsVisible;
+                //vc.GrayTextChanged += (sender, e) =>
+                //{
+                //    l.Text = ((V6ColorTextBox)sender).GrayText;
+                //};
+                panel0.Controls.Add(l);
+                vc.VisibleChanged += delegate
+                {
+                    l.Visible = vc.Visible;
+                };
             }
+            else if (c is V6DateTimePicker)
+            {
+                var vc = c as V6DateTimePicker;
+                Label l = new Label();
+                l.Name = "lbl" + c.AccessibleName;
+                l.Left = vc.Left;
+                l.Top = vc.Bottom -2;
+                l.Width = vc.Width;
+                l.Height = 13;
+                l.Font = new Font(Font.FontFamily, 7f);
+                l.ForeColor = Color.DarkGray;
+                l.Text = alctControls.LabelText;
+                l.Visible = alctControls.IsVisible;
+                panel0.Controls.Add(l);
+
+                vc.VisibleChanged += delegate
+                {
+                    l.Visible = vc.Visible;
+                };
+            }
+
+            _p0 = new Point(c.Right, 0);
+            
         }
 
         /// <summary>

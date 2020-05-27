@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
+using V6Tools;
 
 namespace V6Controls.Forms.Viewer
 {
@@ -15,6 +17,8 @@ namespace V6Controls.Forms.Viewer
         private DataSet _dataset = null;
         private DataTable _tbl = null;
         private int _current_index = 0;
+        public IDictionary<string, object> CurrentRowData = null;
+        public List<IDictionary<string, object>> SelectedDataList = null;
 
         public DataViewerForm(object dataObject, bool showSum = true)
         {
@@ -24,6 +28,25 @@ namespace V6Controls.Forms.Viewer
                 dataGridView1.Height = dataGridView1.Bottom - dataGridView1.Top + gridViewSummary1.Height;
                 gridViewSummary1.Visible = false;
             }
+            _data_object = dataObject;
+            MyInit();
+        }
+
+        /// <summary>
+        /// Khởi tạo DataViewForm.
+        /// </summary>
+        /// <param name="dataObject">Dữ liệu hiển thị lên gridview.</param>
+        /// <param name="showSum">Hiện dòng tổng.</param>
+        /// <param name="ctrl_s">Bật chức năng lọc dữ liệu</param>
+        public DataViewerForm(object dataObject, bool showSum, bool ctrl_s)
+        {
+            InitializeComponent();
+            if (!showSum)
+            {
+                dataGridView1.Height = dataGridView1.Bottom - dataGridView1.Top + gridViewSummary1.Height;
+                gridViewSummary1.Visible = false;
+            }
+            dataGridView1.Control_S = ctrl_s;
             _data_object = dataObject;
             MyInit();
         }
@@ -38,6 +61,11 @@ namespace V6Controls.Forms.Viewer
         {
             try
             {
+                Text += ", Ctrl + F : Find";
+                if (dataGridView1.Control_S)
+                {
+                    Text += ", Ctrl + S : Filter, Ctrl + Shift + S : reset filter";
+                }
                 if (_data_object is DataTable)
                 {
                     _tbl = (DataTable) _data_object;
@@ -56,6 +84,11 @@ namespace V6Controls.Forms.Viewer
             {
                 this.ShowErrorMessage(GetType() + ".MyInit " + ex.Message);
             }
+        }
+
+        public void FormatGridView(string showFields, string formatStrings, string headerString)
+        {
+            V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, showFields, formatStrings, headerString);
         }
 
         private void ShowData(int currentIndex)
@@ -97,6 +130,10 @@ namespace V6Controls.Forms.Viewer
                 Close();
                 return true;
             }
+            else if (keyData == Keys.Enter)
+            {
+                OK();
+            }
             else if (keyData == Keys.PageDown)
             {
                 ShowData(_current_index+1);
@@ -108,6 +145,20 @@ namespace V6Controls.Forms.Viewer
 
             OnHotKeyAction(keyData);
             return base.DoHotKey0(keyData);
+        }
+
+        private void OK()
+        {
+            try
+            {
+                CurrentRowData = dataGridView1.CurrentRow != null ? dataGridView1.CurrentRow.ToDataDictionary() : null;
+                SelectedDataList = dataGridView1.GetSelectedData();
+                DialogResult = DialogResult.OK;
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".OK", ex);
+            }
         }
         
     }

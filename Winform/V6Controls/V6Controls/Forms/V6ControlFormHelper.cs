@@ -1772,7 +1772,11 @@ namespace V6Controls.Forms
             //Dấu so sánh
             if (!string.IsNullOrEmpty(lineInfo.Oper)) lineControl.Operator = lineInfo.Oper;
             //Giá trị mặc định
-            if (!string.IsNullOrEmpty(lineInfo.DefaultValue)) lineControl.SetValue(lineInfo.DefaultValue);
+            if (!string.IsNullOrEmpty(lineInfo.DefaultValue))
+            {
+                object defaultValue = GetDefaultSystemValue(lineInfo.DefaultValue);
+                lineControl.SetValue(defaultValue);
+            }
             //LimitChar
             if (!string.IsNullOrEmpty(lineInfo.LimitChars)) lineControl.SetLimitChars(lineInfo.LimitChars);
             //NotEmpty
@@ -8146,6 +8150,39 @@ namespace V6Controls.Forms
             }
             //defaultData = result;
             return result;
+        }
+
+        public static object GetDefaultSystemValue(object defaultValue)
+        {
+            if (defaultValue is string)
+            {
+                string df = defaultValue.ToString().Trim().ToUpper();
+                if (df.StartsWith("V6SETTING."))
+                {
+                    var d_f = ObjectAndString.SplitStringBy(df, '.');
+                    if (d_f.Length > 1)
+                    {
+                        defaultValue = V6Setting.GetValueNull(d_f[1]);
+                    }
+                }
+                else if (df.StartsWith("V6LOGIN."))
+                {
+                    var d_f = ObjectAndString.SplitStringBy(df, '.');
+                    if (d_f.Length > 1)
+                    {
+                        defaultValue = V6Login.GetValueNull(d_f[1]);
+                    }
+                }
+                else if (df.StartsWith("V6OPTIONS."))
+                {
+                    var d_f = ObjectAndString.SplitStringBy(df, '.');
+                    if (d_f.Length > 1)
+                    {
+                        defaultValue = V6Options.GetValueNull(d_f[1]);
+                    }
+                }
+            }
+            return defaultValue;
         }
     }
 }

@@ -709,11 +709,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             else if (Mode == V6Mode.Add)
             {
-                if (DataOld != null) SetData(DataOld);
+                var dataOld2 = new SortedDictionary<string, object>(DataOld);
+                dataOld2["STATUS"] = "1";
+                if (DataOld != null)
+                {
+                    SetSomeData(dataOld2);
+                }
+                else if (_keys != null)
+                {
+                    LoadData();
+                }
                 else
                 {
-                    if (_keys != null) LoadData();
-                    else LoadDefaultData(2, "", _MA_DM, m_itemId);
+                    LoadDefaultData(2, "", _MA_DM, m_itemId);
+                    SetSomeData(dataOld2);
                 }
             }
             else if (Mode == V6Mode.View)
@@ -828,6 +837,10 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 FixFormData();
                 DataDic = GetData();
+                DataDic = GetData();
+                All_Objects["data"] = DataDic;
+                All_Objects["dataDic"] = DataDic;
+                All_Objects["dataOld"] = DataOld;
                 ValidateData();
                 string checkV6Valid = CheckV6Valid(DataDic, _MA_DM);
                 if (!string.IsNullOrEmpty(checkV6Valid))

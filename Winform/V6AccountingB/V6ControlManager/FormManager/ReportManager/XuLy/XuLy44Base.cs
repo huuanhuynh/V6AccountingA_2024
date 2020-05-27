@@ -1378,6 +1378,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
+                SaveSelectedCellLocation(dataGridView1);
                 var row = dataGridView1.CurrentRow;
                 if (ViewDetail && row != null && _oldIndex != row.Index)
                 {

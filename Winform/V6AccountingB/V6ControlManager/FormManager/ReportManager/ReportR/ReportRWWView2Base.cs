@@ -1722,6 +1722,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
 
         private void dataGridView1_CurrentCellChanged(object sender, EventArgs e)
         {
+            SaveSelectedCellLocation(dataGridView1);
             FilterDetail();
         }
 
