@@ -204,7 +204,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             else if(Mode == V6Mode.Add)
             {
-                var dataOld2 = new SortedDictionary<string, object>(DataOld);
+                var dataOld2 = new SortedDictionary<string, object>();
+                if (DataOld != null) dataOld2.AddRange(DataOld);
                 dataOld2["STATUS"] = "1";
                 if (DataOld != null)
                 {

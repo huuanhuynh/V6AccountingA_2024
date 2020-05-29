@@ -121,6 +121,12 @@
     <Compile Include="FormManager\ChungTuManager\Filter\FilterView_ARSODU0.designer.cs">
       <DependentUpon>FilterView_ARSODU0.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\PRINT1_FILTER.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\PRINT1_FILTER.designer.cs">
+      <DependentUpon>PRINT1_FILTER.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\AAPPR_BC1_IN1F9.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -216,6 +222,12 @@
     </Compile>
     <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\APOCTPOH.designer.cs">
       <DependentUpon>APOCTPOH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\PRINT_FILTER.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\PRINT_FILTER.designer.cs">
+      <DependentUpon>PRINT_FILTER.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\ASOCTSOB.cs">
       <SubType>UserControl</SubType>
@@ -5854,6 +5866,9 @@
       <DependentUpon>FilterView_ARSODU0.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\PRINT1_FILTER.resx">
+      <DependentUpon>PRINT1_FILTER.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\AAPPR_BC1_IN1F9.resx">
       <DependentUpon>AAPPR_BC1_IN1F9.cs</DependentUpon>
     </EmbeddedResource>
@@ -5901,6 +5916,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\APOCTPOH.resx">
       <DependentUpon>APOCTPOH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\PRINT_FILTER.resx">
+      <DependentUpon>PRINT_FILTER.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\ASOCTSOB.resx">
       <DependentUpon>ASOCTSOB.cs</DependentUpon>

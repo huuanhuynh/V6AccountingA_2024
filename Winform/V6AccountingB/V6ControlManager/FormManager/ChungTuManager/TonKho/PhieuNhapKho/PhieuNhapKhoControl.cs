@@ -1037,10 +1037,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             }
         }
 
-        public void TinhSoLuongTheoSoLuong1(V6NumberTextBox soLuong, V6NumberTextBox soLuong1, decimal he_so1T_Value, decimal he_so1M_Value)
-        {
-            soLuong.Value = soLuong1.Value * he_so1T_Value / he_so1M_Value;
-        }
         
         #endregion events
 

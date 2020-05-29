@@ -186,8 +186,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             this.TxtMa_gd = new V6Controls.V6VvarTextBox();
             this.menuDetail1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.XemPhieuNhapMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.chuaDatTen2Menu = new System.Windows.Forms.ToolStripMenuItem();
-            this.chuaDatTen3Menu = new System.Windows.Forms.ToolStripMenuItem();
+            this.xemVitriMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.xemVitri2Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.txtLoaiCt = new V6Controls.V6VvarTextBox();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
@@ -2423,32 +2423,35 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             // 
             this.menuDetail1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.XemPhieuNhapMenu,
-            this.chuaDatTen2Menu,
-            this.chuaDatTen3Menu});
+            this.xemVitriMenu,
+            this.xemVitri2Menu});
             this.menuDetail1.Name = "menuChucNang";
-            this.menuDetail1.Size = new System.Drawing.Size(162, 70);
+            this.menuDetail1.Size = new System.Drawing.Size(172, 70);
             // 
             // XemPhieuNhapMenu
             // 
             this.XemPhieuNhapMenu.AccessibleDescription = "INVOICEM00018";
             this.XemPhieuNhapMenu.Name = "XemPhieuNhapMenu";
-            this.XemPhieuNhapMenu.Size = new System.Drawing.Size(161, 22);
+            this.XemPhieuNhapMenu.Size = new System.Drawing.Size(171, 22);
             this.XemPhieuNhapMenu.Text = "Xem phiếu nhập";
             this.XemPhieuNhapMenu.Click += new System.EventHandler(this.menuXemPhieuNhap_Click);
             // 
-            // chuaDatTen2Menu
+            // xemVitriMenu
             // 
-            this.chuaDatTen2Menu.AccessibleDescription = "INVOICEM00020";
-            this.chuaDatTen2Menu.Name = "chuaDatTen2Menu";
-            this.chuaDatTen2Menu.Size = new System.Drawing.Size(161, 22);
-            this.chuaDatTen2Menu.Text = "...";
+            this.xemVitriMenu.AccessibleDescription = "INVOICEM00026";
+            this.xemVitriMenu.Name = "xemVitriMenu";
+            this.xemVitriMenu.Size = new System.Drawing.Size(171, 22);
+            this.xemVitriMenu.Text = "Xem vị trí";
+            this.xemVitriMenu.ToolTipText = "Nhấn giữ Shift khi Click chuột trên vị trí để chọn mà không xem báo cáo.";
+            this.xemVitriMenu.Click += new System.EventHandler(this.xemVitriMenu_Click);
             // 
-            // chuaDatTen3Menu
+            // xemVitri2Menu
             // 
-            this.chuaDatTen3Menu.AccessibleDescription = "INVOICEM00020";
-            this.chuaDatTen3Menu.Name = "chuaDatTen3Menu";
-            this.chuaDatTen3Menu.Size = new System.Drawing.Size(161, 22);
-            this.chuaDatTen3Menu.Text = "...";
+            this.xemVitri2Menu.AccessibleDescription = "INVOICEM00035";
+            this.xemVitri2Menu.Name = "xemVitri2Menu";
+            this.xemVitri2Menu.Size = new System.Drawing.Size(171, 22);
+            this.xemVitri2Menu.Text = "Xem vị trí hàng hư";
+            this.xemVitri2Menu.Click += new System.EventHandler(this.xemVitri2Menu_Click);
             // 
             // txtLoaiCt
             // 
@@ -2664,8 +2667,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ContextMenuStrip menuDetail1;
         private System.Windows.Forms.ToolStripMenuItem XemPhieuNhapMenu;
-        private System.Windows.Forms.ToolStripMenuItem chuaDatTen2Menu;
-        private System.Windows.Forms.ToolStripMenuItem chuaDatTen3Menu;
         private V6Controls.V6ComboBox cboChuyenData;
         private V6Label v6Label28;
         private V6VvarTextBox txtMaKH2;
@@ -2685,5 +2686,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         private V6Label lblMauKyHieu;
         private V6VvarTextBox txtMaMauHD;
         private V6VvarTextBox txtso_seri;
+        private System.Windows.Forms.ToolStripMenuItem xemVitriMenu;
+        private System.Windows.Forms.ToolStripMenuItem xemVitri2Menu;
     }
 }

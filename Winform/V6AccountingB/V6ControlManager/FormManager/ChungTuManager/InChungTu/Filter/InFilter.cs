@@ -106,6 +106,8 @@
                     #endregion In liên tục
 
             }
+            if (program.StartsWith("APRINT_")) return new PRINT_FILTER();
+            if (program.StartsWith("APRINT1_")) return new PRINT1_FILTER();
             return new InChungTuFilterBase();
         }
     }
