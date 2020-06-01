@@ -1497,5 +1497,20 @@ namespace V6AccountingBusiness.Invoices
         {
             return V6BusinessHelper.CheckRightKey(Mact, key, "");
         }
+
+        public string GetMaVtFilterByMaKH(string ma_kh, string ma_dvcs)
+        {
+            SqlParameter[] plist=
+            {
+                new SqlParameter("@Ma_ct", Mact),
+                new SqlParameter("@Ma_dvcs", ma_dvcs),
+                new SqlParameter("@Ma_kh", ma_kh),
+                new SqlParameter("@user_id", V6Login.UserId),
+                new SqlParameter("@Lan", V6Login.SelectedLanguage),
+            };
+            object where = V6BusinessHelper.ExecuteProcedureScalar("VPA_GET_WHERE_INVOICE_MAKH2MAVT", plist);
+
+            return "" + where;
+        }
     }
 }

@@ -144,6 +144,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
         private V6NumberTextBox _ton13, _ton13Qd, _gia, _gia_nt, _tien, _tienNt, _pt_cki, _thue_suat_i, _thue_nt, _thue;
         private V6NumberTextBox _sl_qd, _sl_qd2, _tien_vcNt, _tien_vc, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4, _ggNt, _gg;
         private V6DateTimeColor _hanSd;
+        
 
         private void LoadDetailControls()
         {
@@ -180,12 +181,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
                         _maVt.Upper();
                         _maVt.LO_YN = false;
                         _maVt.DATE_YN = false;
-
                         _maVt.BrotherFields = "ten_vt,ten_vt2,dvt,ma_kho,ma_qg,ma_vitri";
+                        
+                        _mavt_default_initfilter = _maVt.InitFilter;
+                        var setting = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MAKH2MAVT"));
+                        if (setting.Contains(Invoice.Mact))
+                        _maVt.Enter += (sender, args) =>
+                        {
+                            string newFilter = Invoice.GetMaVtFilterByMaKH(txtMaKh.Text, txtMaDVCS.Text);
+                            if(string.IsNullOrEmpty(_mavt_default_initfilter)) _maVt.SetInitFilter(newFilter);
+                            else if (!string.IsNullOrEmpty(newFilter))
+                            {
+                                _maVt.SetInitFilter(string.Format("({0}) and ({1})", _mavt_default_initfilter, newFilter));
+                            }
+                        };
                    
                         _maVt.V6LostFocus += MaVatTu_V6LostFocus;
-
-             
                         _maVt.V6LostFocusNoChange += delegate
                         {
                             if (_maVt.LO_YN)

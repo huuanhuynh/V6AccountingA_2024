@@ -179,6 +179,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         public string _mMaNt0 = "";
         public string _maNt = "VND";
         public bool co_chon_don_hang;
+        public string _mavt_default_initfilter;
         public string MA_NT { get { return _maNt; } }
 
         public int M_ROUND_NUM;
@@ -4239,7 +4240,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         public V6ColorTextBox txtCustomInfo;
         
-
         public void CreateCustomInfoTextBox(GroupBox group4, TextBox topLeftBase, Control bottomLeftBase)
         {
             try

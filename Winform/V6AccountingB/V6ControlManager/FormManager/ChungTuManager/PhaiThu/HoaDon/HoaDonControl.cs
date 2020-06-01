@@ -231,12 +231,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         _maVt.Upper();
                         _maVt.LO_YN = false;
                         _maVt.DATE_YN = false;
-
                         _maVt.BrotherFields = "ten_vt,ten_vt2,dvt,ma_kho,ma_qg,ma_vitri";
                    
-                        _maVt.V6LostFocus += MaVatTu_V6LostFocus;
+                        _mavt_default_initfilter = _maVt.InitFilter;
+                        var setting = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MAKH2MAVT"));
+                        if (setting.Contains(Invoice.Mact))
+                        _maVt.Enter += (sender, args) =>
+                        {
+                            string newFilter = Invoice.GetMaVtFilterByMaKH(txtMaKh.Text, txtMaDVCS.Text);
+                            if(string.IsNullOrEmpty(_mavt_default_initfilter)) _maVt.SetInitFilter(newFilter);
+                            else if (!string.IsNullOrEmpty(newFilter))
+                            {
+                                _maVt.SetInitFilter(string.Format("({0}) and ({1})", _mavt_default_initfilter, newFilter));
+                            }
+                        };
 
-                        
+                        _maVt.V6LostFocus += MaVatTu_V6LostFocus;
                         _maVt.V6LostFocusNoChange += delegate
                         {
                             if (M_SOA_MULTI_VAT == "1")

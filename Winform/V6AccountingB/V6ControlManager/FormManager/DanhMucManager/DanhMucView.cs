@@ -222,20 +222,19 @@ namespace V6ControlManager.FormManager.DanhMucManager
         /// </summary>
         /// <param name="itemId"></param>
         /// <param name="title"></param>
-        /// <param name="tableName"></param>
+        /// <param name="ma_dm"></param>
         /// <param name="initFilter">Không có thì truyền null</param>
         /// <param name="sort">Không có thì truyền null</param>
         /// <param name="aldmConfig">Có lấy thông tin quản lý dm trong aldm hay không?</param>
-        public DanhMucView(string itemId, string title, string tableName, string initFilter, string sort, AldmConfig aldmConfig)
+        public DanhMucView(string itemId, string title, string ma_dm, string initFilter, string sort, AldmConfig aldmConfig)
         {
             m_itemId = itemId;
             
             InitializeComponent();
 
             Title = title;
-            _MA_DM = tableName.ToUpper();
-            CurrentTable = V6TableHelper.ToV6TableName(tableName);
-            _hideColumnDic = _categories.GetHideColumns(tableName);
+            _MA_DM = ma_dm.ToUpper();
+            _hideColumnDic = _categories.GetHideColumns(ma_dm);
             InitFilter = initFilter;
             
             SelectResult = new V6SelectResult();
@@ -256,19 +255,19 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
             GetExtraInitFilter();
 
-            if (CurrentTable == V6TableName.V_alts || CurrentTable == V6TableName.V_alcc
-                || CurrentTable == V6TableName.V_alts01 || CurrentTable == V6TableName.V_alcc01)
+            if (_MA_DM == "V_ALTS" || _MA_DM == "V_ALCC"
+                || _MA_DM == "V_ALTS01" || _MA_DM == "V_ALCC01")
             {
                 btnCopy.Visible = false;
                 btnDoiMa.Visible = false;
                 btnIn.Visible = false;
             }
 
-            if (CurrentTable == V6TableName.Alnhkh || CurrentTable == V6TableName.Alnhvt
-                || CurrentTable == V6TableName.Alnhvv || CurrentTable == V6TableName.Alnhvitri
-                || CurrentTable == V6TableName.Alnhphi || CurrentTable == V6TableName.Alnhts
-                || CurrentTable == V6TableName.Alnhcc || CurrentTable == V6TableName.Alnhhd
-                || CurrentTable == V6TableName.Alnhtk || CurrentTable == V6TableName.Alnhku)
+            if (_MA_DM == "ALNHKH" || _MA_DM == "ALNHVT"
+                || _MA_DM == "ALNHVV" || _MA_DM == "ALNHVITRI"
+                || _MA_DM == "ALNHPHI" || _MA_DM == "ALNHTS"
+                || _MA_DM == "ALNHCC" || _MA_DM == "ALNHHD"
+                || _MA_DM == "ALNHTK" || _MA_DM == "ALNHKU")
             {
                 btnNhom.Enabled = true;
             }
@@ -350,15 +349,15 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
         private void DanhMucView_Load(object sender, EventArgs e)
         {
-            LoadTable(CurrentTable, SelectResult.SortField);
+            LoadTable(SelectResult.SortField);
             
             FormManagerHelper.HideMainMenu();
             dataGridView1.Focus();
-            if (CurrentTable == V6TableName.Alkh)
-            {
-                KeyFields = new[] {"MA_KH"};
-            }
-            else if (CurrentTable == V6TableName.CorpLan2)
+            //if (_MA_DM == "ALKH")
+            //{
+            //    KeyFields = new[] {"MA_KH"};
+            //}
+            if (_MA_DM == "CORPLAN2")
             {
                 KeyFields = new[] { "ID" };
             }
@@ -453,7 +452,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         }
                     }
 
-                if (CurrentTable == V6TableName.Altk0)
+                if (_MA_DM == "ALTK0")
                 {
                     //dataGridView1.Columns[0].DefaultCellStyle.Padding;
                     dataGridView1.CellFormatting += (s, e) =>
@@ -470,7 +469,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         }
                     };
                 }
-                else if (CurrentTable == V6TableName.Alvv)
+                else if (_MA_DM == "ALVV")
                 {
                     dataGridView1.CellFormatting += (s, e) =>
                     {
@@ -486,7 +485,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                         }
                     };
                 }
-                else if(CurrentTable == V6TableName.Almaubcct)
+                else if(_MA_DM == "ALMAUBCCT")
                 {
                     V6ControlFormHelper.FormatGridView(dataGridView1, "BOLD", "=", 1, true, false, Color.White);
                 }
@@ -586,49 +585,42 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             try
             {
-                if (CurrentTable == V6TableName.None)
+                DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
+                FormAddEdit f = null;
+                if (row != null)
                 {
-                    this.ShowWarningMessage("Hãy chọn danh mục!");
+                    var keys = new SortedDictionary<string, object>();
+                    if (dataGridView1.Columns.Contains("UID")) //Luôn có trong thiết kế rồi.
+                        keys.Add("UID", row.Cells["UID"].Value);
+
+                    if (KeyFields != null)
+                        foreach (var keyField in KeyFields)
+                        {
+                            if (dataGridView1.Columns.Contains(keyField))
+                            {
+                                keys[keyField] = row.Cells[keyField].Value;
+                            }
+                        }
+
+                    _data = row.ToDataDictionary();
+                    f = new FormAddEdit(_MA_DM, V6Mode.Add, keys, _data);
+                    f.AfterInitControl += f_AfterInitControl;
+                    //f.InsertSuccessEvent += f_InsertSuccess;
+                    f.InitFormControl();
+                    f.ShowDialog(this);
                 }
                 else
                 {
-                    DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
-                    FormAddEdit f = null;
-                    if (row != null)
-                    {
-                        var keys = new SortedDictionary<string, object>();
-                        if (dataGridView1.Columns.Contains("UID")) //Luôn có trong thiết kế rồi.
-                            keys.Add("UID", row.Cells["UID"].Value);
+                    f = new FormAddEdit(_MA_DM);
+                    f.AfterInitControl += f_AfterInitControl;
+                    //f.InsertSuccessEvent += f_InsertSuccess;
+                    f.InitFormControl();
+                    f.ShowDialog(this);
+                }
 
-                        if (KeyFields != null)
-                            foreach (var keyField in KeyFields)
-                            {
-                                if (dataGridView1.Columns.Contains(keyField))
-                                {
-                                    keys[keyField] = row.Cells[keyField].Value;
-                                }
-                            }
-
-                        _data = row.ToDataDictionary();
-                        f = new FormAddEdit(_MA_DM, V6Mode.Add, keys, _data);
-                        f.AfterInitControl += f_AfterInitControl;
-                        //f.InsertSuccessEvent += f_InsertSuccess;
-                        f.InitFormControl();
-                        f.ShowDialog(this);
-                    }
-                    else
-                    {
-                        f = new FormAddEdit(_MA_DM);
-                        f.AfterInitControl += f_AfterInitControl;
-                        //f.InsertSuccessEvent += f_InsertSuccess;
-                        f.InitFormControl();
-                        f.ShowDialog(this);
-                    }
-
-                    if (f.InsertSuccess)
-                    {
-                        f_InsertSuccess(f.Data);
-                    }
+                if (f.InsertSuccess)
+                {
+                    f_InsertSuccess(f.Data);
                 }
             }
             catch (Exception ex)
@@ -659,40 +651,33 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             try
             {
-                if (CurrentTable == V6TableName.None)
+                DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
+
+                if (row != null)
                 {
-                    this.ShowWarningMessage("Hãy chọn danh mục!");
+                    var keys = new SortedDictionary<string, object>();
+                    if (dataGridView1.Columns.Contains("UID")) //Luôn có trong thiết kế rồi.
+                        keys.Add("UID", row.Cells["UID"].Value);
+
+                    if (KeyFields != null)
+                        foreach (var keyField in KeyFields)
+                        {
+                            if (dataGridView1.Columns.Contains(keyField))
+                            {
+                                keys[keyField] = row.Cells[keyField].Value;
+                            }
+                        }
+
+                    _data = row.ToDataDictionary();
+                    var f = new FormAddEdit(_MA_DM, V6Mode.Add, keys, _data);
+                    f.AfterInitControl += f_AfterInitControl;
+                    f.InsertSuccessEvent += f_InsertSuccess;
+                    f.InitFormControl();
+                    f.ShowDialog(this);
                 }
                 else
                 {
-                    DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
-
-                    if (row != null)
-                    {
-                        var keys = new SortedDictionary<string, object>();
-                        if (dataGridView1.Columns.Contains("UID")) //Luôn có trong thiết kế rồi.
-                            keys.Add("UID", row.Cells["UID"].Value);
-
-                        if (KeyFields != null)
-                            foreach (var keyField in KeyFields)
-                            {
-                                if (dataGridView1.Columns.Contains(keyField))
-                                {
-                                    keys[keyField] = row.Cells[keyField].Value;
-                                }
-                            }
-
-                        _data = row.ToDataDictionary();
-                        var f = new FormAddEdit(_MA_DM, V6Mode.Add, keys, _data);
-                        f.AfterInitControl += f_AfterInitControl;
-                        f.InsertSuccessEvent += f_InsertSuccess;
-                        f.InitFormControl();
-                        f.ShowDialog(this);
-                    }
-                    else
-                    {
-                        this.ShowWarningMessage(V6Text.NoSelection);
-                    }
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)
@@ -705,51 +690,44 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             try
             {
-                if (CurrentTable == V6TableName.None)
+                DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
+
+                if (row != null)
                 {
-                    this.ShowWarningMessage("Hãy chọn danh mục!");
+                    var keys = new SortedDictionary<string, object>();
+                    if (dataGridView1.Columns.Contains("UID")) //Luôn có trong thiết kế rồi.
+                        keys.Add("UID", row.Cells["UID"].Value);
+                    if (_MA_DM.ToUpper().StartsWith("CORPLAN"))
+                    {
+                        if (dataGridView1.Columns.Contains("ID"))
+                            keys.Add("ID", row.Cells["ID"].Value);
+                    }
+
+                    if (KeyFields != null)
+                        foreach (var keyField in KeyFields)
+                        {
+                            if (dataGridView1.Columns.Contains(keyField))
+                            {
+                                keys[keyField] = row.Cells[keyField].Value;
+                            }
+                        }
+
+                    _data = row.ToDataDictionary();
+                    var f = new FormAddEdit(_MA_DM, V6Mode.Edit, keys, _data);
+                    f.AfterInitControl += f_AfterInitControl;
+                    //f.UpdateSuccessEvent += f_UpdateSuccess;
+                    f.CallReloadEvent += FCallReloadEvent;
+                    f.InitFormControl();
+                    f.ShowDialog(this);
+
+                    if (f.UpdateSuccess)
+                    {
+                        f_UpdateSuccess(f.Data);
+                    }
                 }
                 else
                 {
-                    DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
-
-                    if (row != null)
-                    {
-                        var keys = new SortedDictionary<string, object>();
-                        if (dataGridView1.Columns.Contains("UID")) //Luôn có trong thiết kế rồi.
-                            keys.Add("UID", row.Cells["UID"].Value);
-                        if (_MA_DM.ToUpper().StartsWith("CORPLAN"))
-                        {
-                            if (dataGridView1.Columns.Contains("ID"))
-                                keys.Add("ID", row.Cells["ID"].Value);
-                        }
-
-                        if (KeyFields != null)
-                            foreach (var keyField in KeyFields)
-                            {
-                                if (dataGridView1.Columns.Contains(keyField))
-                                {
-                                    keys[keyField] = row.Cells[keyField].Value;
-                                }
-                            }
-
-                        _data = row.ToDataDictionary();
-                        var f = new FormAddEdit(_MA_DM, V6Mode.Edit, keys, _data);
-                        f.AfterInitControl += f_AfterInitControl;
-                        //f.UpdateSuccessEvent += f_UpdateSuccess;
-                        f.CallReloadEvent += FCallReloadEvent;
-                        f.InitFormControl();
-                        f.ShowDialog(this);
-
-                        if (f.UpdateSuccess)
-                        {
-                            f_UpdateSuccess(f.Data);
-                        }
-                    }
-                    else
-                    {
-                        this.ShowWarningMessage(V6Text.NoSelection);
-                    }
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)
@@ -771,8 +749,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             try
             {
-                if (CurrentTable == V6TableName.None
-                    && !string.IsNullOrEmpty(_aldmConfig.TABLE_VIEW)
+                if (!string.IsNullOrEmpty(_aldmConfig.TABLE_VIEW)
                     && V6BusinessHelper.IsExistDatabaseTable(_aldmConfig.TABLE_VIEW))
                 {
                     ReLoad();
@@ -794,49 +771,42 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             try
             {
-                if (CurrentTable == V6TableName.None)
+                if (!_aldmConfig.F6)
                 {
-                    this.ShowWarningMessage("Hãy chọn danh mục!");
+                    this.ShowWarningMessage(V6Text.NotAllow);
+                    return;
+                }
+
+                var alctct = V6BusinessHelper.GetAlctCt_TableName(_MA_DM);
+                if (!V6Login.IsAdmin)
+                {
+                    if (alctct != null && alctct.Rows.Count > 0)
+                    {
+                        var R_F6 = ObjectAndString.ObjectToBool(alctct.Rows[0]["R_F6"]);
+                        if (!R_F6)
+                        {
+                            this.ShowWarningMessage(V6Text.NoRight);
+                            return;
+                        }
+                    }
+                }
+
+                DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
+
+                if (row != null)
+                {
+                    _data = row.ToDataDictionary();
+
+                    var f = ChangeCode.ChangeCodeManager.GetChangeCodeControl(_MA_DM, _data);
+                    if (f != null)
+                    {
+                        f.DoChangeCodeFinish += f_DoChangeCodeFinish;
+                        f.ShowDialog(this);
+                    }
                 }
                 else
                 {
-                    if (!_aldmConfig.F6)
-                    {
-                        this.ShowWarningMessage(V6Text.NotAllow);
-                        return;
-                    }
-
-                    var alctct = V6BusinessHelper.GetAlctCt_TableName(_MA_DM);
-                    if (!V6Login.IsAdmin)
-                    {
-                        if (alctct != null && alctct.Rows.Count > 0)
-                        {
-                            var R_F6 = ObjectAndString.ObjectToBool(alctct.Rows[0]["R_F6"]);
-                            if (!R_F6)
-                            {
-                                this.ShowWarningMessage(V6Text.NoRight);
-                                return;
-                            }
-                        }
-                    }
-
-                    DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
-
-                    if (row != null)
-                    {
-                        _data = row.ToDataDictionary();
-
-                        var f = ChangeCode.ChangeCodeManager.GetChangeCodeControl(_MA_DM, _data);
-                        if (f != null)
-                        {
-                            f.DoChangeCodeFinish += f_DoChangeCodeFinish;
-                            f.ShowDialog(this);
-                        }
-                    }
-                    else
-                    {
-                        this.ShowWarningMessage(V6Text.NoSelection);
-                    }
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)
@@ -861,7 +831,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 if (row != null)
                 {
                     _data = row.ToDataDictionary();
-                    if (CurrentTable == V6TableName.V_alts)
+                    if (_MA_DM == "V_ALTS")
                     {
                         var keys = new SortedDictionary<string, object> {{"UID", row.Cells["UID"].Value}};
                         SortedDictionary<string, object> data = new SortedDictionary<string, object>();
@@ -878,10 +848,10 @@ namespace V6ControlManager.FormManager.DanhMucManager
                             == DialogResult.Yes)
                         {
                             confirm = true;
-                            t = _categories.Update(CurrentTable, data, keys);
+                            t = _categories.Update(CONFIG_TABLE_NAME, data, keys);
                         }
                     }
-                    else if (CurrentTable == V6TableName.V_alcc)
+                    else if (_MA_DM == "V_ALCC")
                     {
                         var keys = new SortedDictionary<string, object> {{"UID", row.Cells["UID"].Value}};
                         SortedDictionary<string, object> data = new SortedDictionary<string, object>();
@@ -898,10 +868,10 @@ namespace V6ControlManager.FormManager.DanhMucManager
                             == DialogResult.Yes)
                         {
                             confirm = true;
-                            t = _categories.Update(CurrentTable, data, keys);
+                            t = _categories.Update(CONFIG_TABLE_NAME, data, keys);
                         }
                     }
-                    else if (CurrentTable == V6TableName.V_alts01)
+                    else if (_MA_DM == "V_ALTS01")
                     {
                         var keys = new SortedDictionary<string, object> {{"UID", row.Cells["UID"].Value}};
                         SortedDictionary<string, object> data = new SortedDictionary<string, object>();
@@ -911,10 +881,10 @@ namespace V6ControlManager.FormManager.DanhMucManager
                             == DialogResult.Yes)
                         {
                             confirm = true;
-                            t = _categories.Update(CurrentTable, data, keys);
+                            t = _categories.Update(CONFIG_TABLE_NAME, data, keys);
                         }
                     }
-                    else if (CurrentTable == V6TableName.V_alcc01)
+                    else if (_MA_DM == "V_ALCC01")
                     {
                         var keys = new SortedDictionary<string, object> {{"UID", row.Cells["UID"].Value}};
                         SortedDictionary<string, object> data = new SortedDictionary<string, object>();
@@ -924,10 +894,10 @@ namespace V6ControlManager.FormManager.DanhMucManager
                             == DialogResult.Yes)
                         {
                             confirm = true;
-                            t = _categories.Update(CurrentTable, data, keys);
+                            t = _categories.Update(CONFIG_TABLE_NAME, data, keys);
                         }
                     }
-                    else if (CurrentTable == V6TableName.V6user)
+                    else if (_MA_DM == "V6USER")
                     {
                         if (!V6Login.IsAdmin)
                         {
@@ -1002,7 +972,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
                                 if (t > 0)
                                 {
-                                    if (CurrentTable == V6TableName.Alhd)
+                                    if (_MA_DM == "ALHD")
                                     {
                                         try
                                         {
@@ -1018,9 +988,8 @@ namespace V6ControlManager.FormManager.DanhMucManager
                                             this.ShowErrorException(GetType() + ".DoDelete Alhd after", ex);
                                         }
                                     }
-                                    else if (CurrentTable == V6TableName.Altk0)
+                                    else if (_MA_DM == "ALTK0")
                                     {
-
                                         try
                                         {
                                             var tk = row.Cells["TK"].Value.ToString().Trim();
@@ -1037,11 +1006,9 @@ namespace V6ControlManager.FormManager.DanhMucManager
                                         {
                                             this.ShowErrorException(GetType() + ".DoDelete Altk0 after", ex);
                                         }
-
                                     }
-                                    else if (CurrentTable == V6TableName.Alvv)
+                                    else if (_MA_DM == "ALVV")
                                     {
-
                                         try
                                         {
                                             var ma_vv = row.Cells["MA_VV"].Value.ToString().Trim();
@@ -1058,9 +1025,8 @@ namespace V6ControlManager.FormManager.DanhMucManager
                                         {
                                             this.ShowErrorException(GetType() + ".DoDelete Alvv after", ex);
                                         }
-
                                     }
-                                    else if (CurrentTable == V6TableName.Alkh)
+                                    else if (_MA_DM == "ALKH")
                                     {
                                         try
                                         {
@@ -1076,7 +1042,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                                             this.ShowErrorException(GetType() + ".DoDelete Alkh after", ex);
                                         }
                                     }
-                                    else if (CurrentTable == V6TableName.Alreport)
+                                    else if (_MA_DM == "ALREPORT")
                                     {
                                         try
                                         {
@@ -1092,7 +1058,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                                             this.ShowErrorException(GetType() + ".DoDelete Alreport after", ex);
                                         }
                                     }
-                                    else if (CurrentTable == V6TableName.Alvt)
+                                    else if (_MA_DM == "ALVT")
                                     {
                                         try
                                         {
@@ -1108,7 +1074,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
                                             this.ShowErrorException(GetType() + ".DoDelete Alvt after", ex);
                                         }
                                     }
-                                    else if (CurrentTable == V6TableName.Alvitri)
+                                    else if (_MA_DM == "ALVITRI")
                                     {
                                         try
                                         {
@@ -1195,7 +1161,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
                         var uid = _data.ContainsKey("UID") ? _data["UID"].ToString() : "";
 
-                        V6ControlFormHelper.Copy_Here2Data(CurrentTable.ToString(), V6Mode.Delete,
+                        V6ControlFormHelper.Copy_Here2Data(CONFIG_TABLE_NAME, V6Mode.Delete,
                             aev.KeyField1, aev.KeyField2, aev.KeyField3,
                             oldKey1, oldKey2, oldKey3,
                             oldKey1, oldKey2, oldKey3,
@@ -1213,39 +1179,32 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             try
             {
-                if (CurrentTable == V6TableName.None)
+                DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
+
+                if (row != null)
                 {
-                    this.ShowWarningMessage("Hãy chọn danh mục!");
+                    var keys = new SortedDictionary<string, object>();
+                    if (dataGridView1.Columns.Contains("UID")) //Luôn có trong thiết kế rồi.
+                        keys.Add("UID", row.Cells["UID"].Value);
+
+                    if (KeyFields != null)
+                        foreach (var keyField in KeyFields)
+                        {
+                            if (dataGridView1.Columns.Contains(keyField))
+                            {
+                                keys[keyField] = row.Cells[keyField].Value;
+                            }
+                        }
+
+                    _data = row.ToDataDictionary();
+                    var f = new FormAddEdit(_MA_DM, V6Mode.View, keys, _data);
+                    f.AfterInitControl += f_AfterInitControl;
+                    f.InitFormControl();
+                    f.ShowDialog(this);
                 }
                 else
                 {
-                    DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
-
-                    if (row != null)
-                    {
-                        var keys = new SortedDictionary<string, object>();
-                        if (dataGridView1.Columns.Contains("UID")) //Luôn có trong thiết kế rồi.
-                            keys.Add("UID", row.Cells["UID"].Value);
-
-                        if (KeyFields != null)
-                            foreach (var keyField in KeyFields)
-                            {
-                                if (dataGridView1.Columns.Contains(keyField))
-                                {
-                                    keys[keyField] = row.Cells[keyField].Value;
-                                }
-                            }
-
-                        _data = row.ToDataDictionary();
-                        var f = new FormAddEdit(_MA_DM, V6Mode.View, keys, _data);
-                        f.AfterInitControl += f_AfterInitControl;
-                        f.InitFormControl();
-                        f.ShowDialog(this);
-                    }
-                    else
-                    {
-                        this.ShowWarningMessage(V6Text.NoSelection);
-                    }
+                    this.ShowWarningMessage(V6Text.NoSelection);
                 }
             }
             catch (Exception ex)
@@ -1365,9 +1324,8 @@ namespace V6ControlManager.FormManager.DanhMucManager
         /// <summary>
         /// Được gọi từ DanhMucControl
         /// </summary>
-        /// <param name="tableName"></param>
-        /// <param name="sort"></param>
-        public void LoadTable(V6TableName tableName, string sort)
+        /// <param name="sort">Order by</param>
+        public void LoadTable(string sort)
         {
             SelectResult = new V6SelectResult();
             CloseFilterForm();
@@ -1377,17 +1335,16 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 int.TryParse(comboBox1.Text, out pageSize);
             }
             //else comboBox1.Text = "20";//gây lỗi index changed
-            LoadTable(tableName, 1, pageSize, sort, true);
+            LoadTable(1, pageSize, sort, true);
         }
 
-        private void LoadTable(V6TableName tableName, int page, int size, string sortField, bool ascending)
+        private void LoadTable(int page, int size, string sortField, bool ascending)
         {
             try
             {
                 SaveSelectedCellLocation(dataGridView1);
                 if (page < 1) page = 1;
-                CurrentTable = tableName;
-                if (_aldmConfig != null && CurrentTable == V6TableName.None)
+                if (_aldmConfig != null && _aldmConfig.HaveInfo)
                 {
                     if (string.IsNullOrEmpty(sortField)) sortField = _aldmConfig.ORDER;
                 }
@@ -1415,7 +1372,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
         private void LoadAtPage(int page)
         {
-            LoadTable(CurrentTable, page, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+            LoadTable(page, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
         }
 
 
@@ -1472,7 +1429,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         public void First()
         {
             try { 
-            LoadTable(CurrentTable, 1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+            LoadTable(1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
             }
             catch (Exception ex)
             {
@@ -1483,7 +1440,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         public void Previous()
         {
             try { 
-            LoadTable(CurrentTable, SelectResult.Page - 1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+            LoadTable(SelectResult.Page - 1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
             }
             catch (Exception ex)
             {
@@ -1496,7 +1453,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             try
             {
                 if (SelectResult.Page == SelectResult.TotalPages) return;
-                LoadTable(CurrentTable, SelectResult.Page + 1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+                LoadTable(SelectResult.Page + 1, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
             }
             catch (Exception ex)
             {
@@ -1507,7 +1464,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         public void Last()
         {
             try { 
-            LoadTable(CurrentTable, SelectResult.TotalPages, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+            LoadTable(SelectResult.TotalPages, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
             }
             catch (Exception ex)
             {
@@ -1522,7 +1479,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             try
             {
-                LoadTable(CurrentTable, SelectResult.Page, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
+                LoadTable(SelectResult.Page, SelectResult.PageSize, SelectResult.SortField, SelectResult.IsSortOrderAscending);
             }
             catch (Exception ex)
             {
@@ -1814,7 +1771,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             try
             {
                 V6TableStruct structTable = V6BusinessHelper.GetTableStruct(_MA_DM);
-                if (CurrentTable == V6TableName.CorpLan || CurrentTable == V6TableName.CorpLan1 || CurrentTable == V6TableName.CorpLan2) goto next1;
+                if (_MA_DM == "CORPLAN" || _MA_DM == "CORPLAN1" || _MA_DM == "CORPLAN2") goto next1;
                 if (_aldmConfig.IS_ALDM ? (!_aldmConfig.HaveInfo) : (!_v6LookupConfig.HaveInfo))
                 {
                     this.ShowWarningMessage(V6Text.NoDefine, 500);
@@ -1823,16 +1780,16 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 next1:
                 string[] fields = _aldmConfig.IS_ALDM ? ObjectAndString.SplitString(_aldmConfig.F_SEARCH) :
                      ObjectAndString.SplitString(V6Setting.IsVietnamese ? _v6LookupConfig.vFields : _v6LookupConfig.eFields);
-                if (fields.Length == 0 && CurrentTable == V6TableName.CorpLan)
+                if (fields.Length == 0 && _MA_DM == "CORPLAN")
                 {
                     // Hỗ trợ cho CorpLan
                     fields = new[] { "Sfile", "ID", "Ctype", "D", "V", "E" };
                 }
-                else if (fields.Length == 0 && CurrentTable == V6TableName.CorpLan1)
+                else if (fields.Length == 0 && _MA_DM == "CORPLAN1")
                 {
                     fields = new[] { "ID", "Ctype", "D", "V", "E" };
                 }
-                else if (fields.Length == 0 && CurrentTable == V6TableName.CorpLan2)
+                else if (fields.Length == 0 && _MA_DM == "CORPLAN2")
                 {
                     fields = new[] { "ID", "Ctype", "D", "V", "E" };
                 }
@@ -1975,9 +1932,9 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 }
 
                 var new_sortOrder = column.HeaderCell.SortGlyphDirection != SortOrder.Ascending;
-                var sort_field = column.DataPropertyName;
+                var sort_field = "[" + column.DataPropertyName + "]";
                 
-                LoadTable(CurrentTable, SelectResult.Page, SelectResult.PageSize, sort_field, new_sortOrder);
+                LoadTable(SelectResult.Page, SelectResult.PageSize, sort_field, new_sortOrder);
             }
             catch
             {
