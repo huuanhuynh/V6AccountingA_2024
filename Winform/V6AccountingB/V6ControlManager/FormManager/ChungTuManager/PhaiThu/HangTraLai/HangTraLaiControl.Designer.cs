@@ -162,6 +162,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.v6Label11 = new V6Controls.V6Label();
             this.lblMaKH = new V6Controls.V6Label();
             this.group2 = new System.Windows.Forms.GroupBox();
+            this.txtLoaiNX_PH = new V6Controls.V6VvarTextBox();
+            this.lblLoaiNX_PH = new V6Controls.V6Label();
             this.v6VvarTextBox2 = new V6Controls.V6VvarTextBox();
             this.txtSoCt0 = new V6Controls.V6VvarTextBox();
             this.v6VvarTextBox1 = new V6Controls.V6VvarTextBox();
@@ -2324,6 +2326,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             // 
             this.group2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.group2.Controls.Add(this.txtLoaiNX_PH);
+            this.group2.Controls.Add(this.lblLoaiNX_PH);
             this.group2.Controls.Add(this.v6VvarTextBox2);
             this.group2.Controls.Add(this.txtSoCt0);
             this.group2.Controls.Add(this.v6VvarTextBox1);
@@ -2341,6 +2345,35 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.group2.TabIndex = 1;
             this.group2.TabStop = false;
             // 
+            // txtLoaiNX_PH
+            // 
+            this.txtLoaiNX_PH.AccessibleName = "MA_LNX_PH";
+            this.txtLoaiNX_PH.BackColor = System.Drawing.SystemColors.Window;
+            this.txtLoaiNX_PH.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtLoaiNX_PH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLoaiNX_PH.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtLoaiNX_PH.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtLoaiNX_PH.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtLoaiNX_PH.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtLoaiNX_PH.HoverColor = System.Drawing.Color.Yellow;
+            this.txtLoaiNX_PH.LeaveColor = System.Drawing.Color.White;
+            this.txtLoaiNX_PH.Location = new System.Drawing.Point(210, 10);
+            this.txtLoaiNX_PH.Name = "txtLoaiNX_PH";
+            this.txtLoaiNX_PH.Size = new System.Drawing.Size(59, 20);
+            this.txtLoaiNX_PH.TabIndex = 3;
+            this.txtLoaiNX_PH.VVar = "MA_LNX";
+            this.txtLoaiNX_PH.V6LostFocus += new V6Controls.ControlEventHandle(this.txtLoaiNX_PH_V6LostFocus);
+            // 
+            // lblLoaiNX_PH
+            // 
+            this.lblLoaiNX_PH.AccessibleDescription = "INVOICEL00009";
+            this.lblLoaiNX_PH.AutoSize = true;
+            this.lblLoaiNX_PH.Location = new System.Drawing.Point(139, 13);
+            this.lblLoaiNX_PH.Name = "lblLoaiNX_PH";
+            this.lblLoaiNX_PH.Size = new System.Drawing.Size(45, 13);
+            this.lblLoaiNX_PH.TabIndex = 2;
+            this.lblLoaiNX_PH.Text = "Loại NX";
+            // 
             // v6VvarTextBox2
             // 
             this.v6VvarTextBox2.AccessibleName = "ma_nvien";
@@ -2353,10 +2386,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.v6VvarTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6VvarTextBox2.HoverColor = System.Drawing.Color.Yellow;
             this.v6VvarTextBox2.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox2.Location = new System.Drawing.Point(383, 10);
+            this.v6VvarTextBox2.Location = new System.Drawing.Point(410, 10);
             this.v6VvarTextBox2.Name = "v6VvarTextBox2";
-            this.v6VvarTextBox2.Size = new System.Drawing.Size(85, 20);
-            this.v6VvarTextBox2.TabIndex = 15;
+            this.v6VvarTextBox2.Size = new System.Drawing.Size(59, 20);
+            this.v6VvarTextBox2.TabIndex = 8;
             this.v6VvarTextBox2.VVar = "ma_nvien";
             // 
             // txtSoCt0
@@ -2374,7 +2407,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.txtSoCt0.Location = new System.Drawing.Point(383, 32);
             this.txtSoCt0.Name = "txtSoCt0";
             this.txtSoCt0.Size = new System.Drawing.Size(86, 20);
-            this.txtSoCt0.TabIndex = 28;
+            this.txtSoCt0.TabIndex = 12;
             // 
             // v6VvarTextBox1
             // 
@@ -2388,10 +2421,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.v6VvarTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6VvarTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6VvarTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox1.Location = new System.Drawing.Point(254, 10);
+            this.v6VvarTextBox1.Location = new System.Drawing.Point(347, 10);
             this.v6VvarTextBox1.Name = "v6VvarTextBox1";
-            this.v6VvarTextBox1.Size = new System.Drawing.Size(85, 20);
-            this.v6VvarTextBox1.TabIndex = 14;
+            this.v6VvarTextBox1.Size = new System.Drawing.Size(59, 20);
+            this.v6VvarTextBox1.TabIndex = 7;
             this.v6VvarTextBox1.VVar = "ma_bp";
             // 
             // v6Label7
@@ -2401,7 +2434,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.v6Label7.Location = new System.Drawing.Point(2, 35);
             this.v6Label7.Name = "v6Label7";
             this.v6Label7.Size = new System.Drawing.Size(58, 13);
-            this.v6Label7.TabIndex = 2;
+            this.v6Label7.TabIndex = 4;
             this.v6Label7.Text = "Người mua";
             // 
             // v6Label8
@@ -2409,10 +2442,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.v6Label8.AccessibleDescription = "ASOCTSOFL00065";
             this.v6Label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.v6Label8.AutoSize = true;
-            this.v6Label8.Location = new System.Drawing.Point(207, 13);
+            this.v6Label8.Location = new System.Drawing.Point(282, 13);
             this.v6Label8.Name = "v6Label8";
             this.v6Label8.Size = new System.Drawing.Size(41, 13);
-            this.v6Label8.TabIndex = 4;
+            this.v6Label8.TabIndex = 6;
             this.v6Label8.Text = "BP/NV";
             // 
             // lblMaNX
@@ -2441,7 +2474,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.v6ColorTextBox1.Location = new System.Drawing.Point(73, 32);
             this.v6ColorTextBox1.Name = "v6ColorTextBox1";
             this.v6ColorTextBox1.Size = new System.Drawing.Size(132, 20);
-            this.v6ColorTextBox1.TabIndex = 13;
+            this.v6ColorTextBox1.TabIndex = 5;
             // 
             // v6ColorTextBox6
             // 
@@ -2459,7 +2492,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.v6ColorTextBox6.Location = new System.Drawing.Point(254, 32);
             this.v6ColorTextBox6.Name = "v6ColorTextBox6";
             this.v6ColorTextBox6.Size = new System.Drawing.Size(85, 20);
-            this.v6ColorTextBox6.TabIndex = 16;
+            this.v6ColorTextBox6.TabIndex = 10;
             // 
             // txtManx
             // 
@@ -2475,8 +2508,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.txtManx.LeaveColor = System.Drawing.Color.White;
             this.txtManx.Location = new System.Drawing.Point(73, 10);
             this.txtManx.Name = "txtManx";
-            this.txtManx.Size = new System.Drawing.Size(132, 20);
-            this.txtManx.TabIndex = 12;
+            this.txtManx.Size = new System.Drawing.Size(61, 20);
+            this.txtManx.TabIndex = 1;
             this.txtManx.VVar = "ma_nx";
             this.txtManx.V6LostFocusNoChange += new V6Controls.ControlEventHandle(this.txtManx_V6LostFocusNoChange);
             this.txtManx.Leave += new System.EventHandler(this.txtManx_Leave);
@@ -2489,7 +2522,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.v6Label6.Location = new System.Drawing.Point(207, 34);
             this.v6Label6.Name = "v6Label6";
             this.v6Label6.Size = new System.Drawing.Size(39, 13);
-            this.v6Label6.TabIndex = 7;
+            this.v6Label6.TabIndex = 9;
             this.v6Label6.Text = "Số seri";
             // 
             // v6Label37
@@ -2500,7 +2533,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.v6Label37.Location = new System.Drawing.Point(343, 35);
             this.v6Label37.Name = "v6Label37";
             this.v6Label37.Size = new System.Drawing.Size(39, 13);
-            this.v6Label37.TabIndex = 27;
+            this.v6Label37.TabIndex = 11;
             this.v6Label37.Text = "Số HĐ";
             // 
             // Txtma_nk
@@ -2878,7 +2911,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.menuBtnIn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.inPhieuHachToanMenu});
             this.menuBtnIn.Name = "menuBtnIn";
-            this.menuBtnIn.Size = new System.Drawing.Size(174, 48);
+            this.menuBtnIn.Size = new System.Drawing.Size(174, 26);
             // 
             // inPhieuHachToanMenu
             // 
@@ -3251,5 +3284,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         private System.Windows.Forms.ToolStripMenuItem thayTheNhieuMenu;
         private System.Windows.Forms.ContextMenuStrip menuBtnIn;
         private System.Windows.Forms.ToolStripMenuItem inPhieuHachToanMenu;
+        private V6VvarTextBox txtLoaiNX_PH;
+        private V6Label lblLoaiNX_PH;
     }
 }

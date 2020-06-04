@@ -32,9 +32,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuChucNang = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.XuatHetKhoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.TroGiupMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -186,6 +186,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.txtDiaChi = new V6Controls.V6VvarTextBox();
             this.v6Label11 = new V6Controls.V6Label();
             this.lblMaKH = new V6Controls.V6Label();
+            this.txtLoaiNX_PH = new V6Controls.V6VvarTextBox();
+            this.lblLoaiNX_PH = new V6Controls.V6Label();
             this.menuChucNang.SuspendLayout();
             this.menuDetail1.SuspendLayout();
             this.menuBtnIn.SuspendLayout();
@@ -591,7 +593,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.menuBtnIn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.inPhieuHachToanMenu});
             this.menuBtnIn.Name = "menuBtnIn";
-            this.menuBtnIn.Size = new System.Drawing.Size(174, 48);
+            this.menuBtnIn.Size = new System.Drawing.Size(174, 26);
             // 
             // inPhieuHachToanMenu
             // 
@@ -720,20 +722,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MA_VT,
@@ -745,8 +747,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(875, 205);
             this.dataGridView1.TabIndex = 1;
@@ -1645,6 +1647,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             // 
             this.group2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.group2.Controls.Add(this.txtLoaiNX_PH);
+            this.group2.Controls.Add(this.lblLoaiNX_PH);
             this.group2.Controls.Add(this.v6VvarTextBox2);
             this.group2.Controls.Add(this.v6VvarTextBox1);
             this.group2.Controls.Add(this.v6Label38);
@@ -1698,10 +1702,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             // 
             this.v6Label38.AccessibleDescription = "AINCTIXAL00031";
             this.v6Label38.AutoSize = true;
-            this.v6Label38.Location = new System.Drawing.Point(4, 37);
+            this.v6Label38.Location = new System.Drawing.Point(164, 36);
             this.v6Label38.Name = "v6Label38";
             this.v6Label38.Size = new System.Drawing.Size(94, 13);
-            this.v6Label38.TabIndex = 2;
+            this.v6Label38.TabIndex = 7;
             this.v6Label38.Text = "Người vận chuyển";
             // 
             // v6Label7
@@ -1738,10 +1742,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.v6ColorTextBox11.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6ColorTextBox11.HoverColor = System.Drawing.Color.Yellow;
             this.v6ColorTextBox11.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox11.Location = new System.Drawing.Point(103, 34);
+            this.v6ColorTextBox11.Location = new System.Drawing.Point(261, 34);
             this.v6ColorTextBox11.Name = "v6ColorTextBox11";
-            this.v6ColorTextBox11.Size = new System.Drawing.Size(363, 20);
-            this.v6ColorTextBox11.TabIndex = 3;
+            this.v6ColorTextBox11.Size = new System.Drawing.Size(205, 20);
+            this.v6ColorTextBox11.TabIndex = 8;
             // 
             // v6ColorTextBox1
             // 
@@ -2448,6 +2452,35 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.lblMaKH.TabIndex = 0;
             this.lblMaKH.Text = "Mã khách hàng";
             // 
+            // txtLoaiNX_PH
+            // 
+            this.txtLoaiNX_PH.AccessibleName = "MA_LNX_PH";
+            this.txtLoaiNX_PH.BackColor = System.Drawing.SystemColors.Window;
+            this.txtLoaiNX_PH.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtLoaiNX_PH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLoaiNX_PH.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtLoaiNX_PH.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtLoaiNX_PH.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtLoaiNX_PH.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtLoaiNX_PH.HoverColor = System.Drawing.Color.Yellow;
+            this.txtLoaiNX_PH.LeaveColor = System.Drawing.Color.White;
+            this.txtLoaiNX_PH.Location = new System.Drawing.Point(75, 34);
+            this.txtLoaiNX_PH.Name = "txtLoaiNX_PH";
+            this.txtLoaiNX_PH.Size = new System.Drawing.Size(59, 20);
+            this.txtLoaiNX_PH.TabIndex = 3;
+            this.txtLoaiNX_PH.VVar = "MA_LNX";
+            this.txtLoaiNX_PH.V6LostFocus += new V6Controls.ControlEventHandle(this.txtLoaiNX_PH_V6LostFocus);
+            // 
+            // lblLoaiNX_PH
+            // 
+            this.lblLoaiNX_PH.AccessibleDescription = "INVOICEL00009";
+            this.lblLoaiNX_PH.AutoSize = true;
+            this.lblLoaiNX_PH.Location = new System.Drawing.Point(4, 37);
+            this.lblLoaiNX_PH.Name = "lblLoaiNX_PH";
+            this.lblLoaiNX_PH.Size = new System.Drawing.Size(45, 13);
+            this.lblLoaiNX_PH.TabIndex = 2;
+            this.lblLoaiNX_PH.Text = "Loại NX";
+            // 
             // PhieuXuatKhoControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2663,5 +2696,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         private System.Windows.Forms.ToolStripMenuItem thayTheNhieuMenu;
         private System.Windows.Forms.ContextMenuStrip menuBtnIn;
         private System.Windows.Forms.ToolStripMenuItem inPhieuHachToanMenu;
+        private V6VvarTextBox txtLoaiNX_PH;
+        private V6Label lblLoaiNX_PH;
     }
 }

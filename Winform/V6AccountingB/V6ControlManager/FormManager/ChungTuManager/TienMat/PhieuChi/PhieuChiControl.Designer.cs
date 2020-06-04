@@ -1542,6 +1542,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             // 
             // ChiCongNoPhieuThuMenu
             // 
+            this.ChiCongNoPhieuThuMenu.AccessibleDescription = "INVOICEM00042";
             this.ChiCongNoPhieuThuMenu.Name = "ChiCongNoPhieuThuMenu";
             this.ChiCongNoPhieuThuMenu.Size = new System.Drawing.Size(193, 22);
             this.ChiCongNoPhieuThuMenu.Text = "Chi công nợ phiếu thu";

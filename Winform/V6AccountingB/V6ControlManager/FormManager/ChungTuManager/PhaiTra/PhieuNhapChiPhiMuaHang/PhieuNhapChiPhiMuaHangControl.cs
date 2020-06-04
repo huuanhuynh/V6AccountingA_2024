@@ -69,7 +69,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             txtTkThueNo.FilterStart = true;
             txtTkThueCo.SetInitFilter("Loai_tk = 1");
             txtTkThueNo.SetInitFilter("Loai_tk = 1");
-            
+            txtLoaiNX_PH.SetInitFilter("LOAI = 'N'");
             txtMa_sonb.Upper();
             if (V6Login.MadvcsCount == 1)
             {
@@ -125,7 +125,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
         #region ==== Khởi tạo Detail Form ====
         private V6ColorTextBox _dvt;
-        private V6VvarTextBox _maVt, _dvt1, _maKho, _maKhoI, _tkVt,_maLo;
+        private V6VvarTextBox _maVt, _Ma_lnx_i, _dvt1, _maKho, _maKhoI, _tkVt, _maLo;
         private V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _giaNt, _giaNt01, _tien0, _tienNt0,
             _ck, _ckNt, _gia0, _gia01, _gia, _gia_Nt0;
         private V6NumberTextBox _ton13, _ton13Qd, _tienNt, _tien, _mau_bc22;
@@ -197,6 +197,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                                 _maLo.Enabled = false;
                             }
                         };
+                        break;
+                    case "MA_LNX_I":
+                        _Ma_lnx_i = control as V6VvarTextBox;
+                        if (_Ma_lnx_i != null)
+                        {
+                            _Ma_lnx_i.FilterStart = true;
+                            _Ma_lnx_i.SetInitFilter("LOAI = 'N'");
+                            _Ma_lnx_i.Upper();
+                        }
                         break;
                     case "TK_VT":
                         _tkVt = (V6VvarTextBox)control;
@@ -3096,6 +3105,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
+
+        public override void SetDefaultDetail()
+        {
+            if (_Ma_lnx_i != null && txtLoaiNX_PH.Text != string.Empty)
+            {
+                _Ma_lnx_i.Text = txtLoaiNX_PH.Text;
+            }
+        }
+
         private void XuLyDetail2ClickAdd(object sender)
         {
             try
@@ -4813,6 +4831,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         private void inPhieuHachToanMenu_Click(object sender, EventArgs e)
         {
             InPhieuHachToan(Invoice, _sttRec, TongThanhToan, TongThanhToanNT);
+        }
+
+        private void txtLoaiNX_PH_V6LostFocus(object sender)
+        {
+            try
+            {
+                if (txtLoaiNX_PH.Text != string.Empty)
+                {
+                    V6ControlFormHelper.UpdateDKlist(AD, "MA_LNX_I", txtLoaiNX_PH.Text);
+                    _Ma_lnx_i.Text = txtLoaiNX_PH.Text;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
         }
 
     }

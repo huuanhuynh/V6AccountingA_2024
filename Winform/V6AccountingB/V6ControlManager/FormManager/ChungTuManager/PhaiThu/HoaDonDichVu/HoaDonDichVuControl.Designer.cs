@@ -193,8 +193,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.btnSua = new System.Windows.Forms.Button();
             this.btnIn = new wyDay.Controls.SplitButton();
             this.menuBtnIn = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.inPhieuHachToanMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.inPhieuThuTienMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.inPhieuHachToanMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.btnCopy = new System.Windows.Forms.Button();
             this.btnMoi = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
@@ -2089,9 +2089,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.v6VvarTextBox2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6VvarTextBox2.HoverColor = System.Drawing.Color.Yellow;
             this.v6VvarTextBox2.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox2.Location = new System.Drawing.Point(376, 10);
+            this.v6VvarTextBox2.Location = new System.Drawing.Point(386, 10);
             this.v6VvarTextBox2.Name = "v6VvarTextBox2";
-            this.v6VvarTextBox2.Size = new System.Drawing.Size(91, 20);
+            this.v6VvarTextBox2.Size = new System.Drawing.Size(81, 20);
             this.v6VvarTextBox2.TabIndex = 6;
             this.v6VvarTextBox2.VVar = "ma_nvien";
             // 
@@ -2107,9 +2107,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.v6VvarTextBox1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.v6VvarTextBox1.HoverColor = System.Drawing.Color.Yellow;
             this.v6VvarTextBox1.LeaveColor = System.Drawing.Color.White;
-            this.v6VvarTextBox1.Location = new System.Drawing.Point(257, 10);
+            this.v6VvarTextBox1.Location = new System.Drawing.Point(304, 10);
             this.v6VvarTextBox1.Name = "v6VvarTextBox1";
-            this.v6VvarTextBox1.Size = new System.Drawing.Size(91, 20);
+            this.v6VvarTextBox1.Size = new System.Drawing.Size(79, 20);
             this.v6VvarTextBox1.TabIndex = 5;
             this.v6VvarTextBox1.VVar = "ma_bp";
             // 
@@ -2128,7 +2128,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.v6Label8.AccessibleDescription = "AARCTAR1L00016";
             this.v6Label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.v6Label8.AutoSize = true;
-            this.v6Label8.Location = new System.Drawing.Point(210, 13);
+            this.v6Label8.Location = new System.Drawing.Point(253, 13);
             this.v6Label8.Name = "v6Label8";
             this.v6Label8.Size = new System.Drawing.Size(41, 13);
             this.v6Label8.TabIndex = 4;
@@ -2572,15 +2572,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.inPhieuThuTienMenu,
             this.inPhieuHachToanMenu});
             this.menuBtnIn.Name = "menuBtnIn";
-            this.menuBtnIn.Size = new System.Drawing.Size(174, 70);
-            // 
-            // inPhieuHachToanMenu
-            // 
-            this.inPhieuHachToanMenu.AccessibleDescription = "INVOICEM00029";
-            this.inPhieuHachToanMenu.Name = "inPhieuHachToanMenu";
-            this.inPhieuHachToanMenu.Size = new System.Drawing.Size(173, 22);
-            this.inPhieuHachToanMenu.Text = "In phiếu hạch toán";
-            this.inPhieuHachToanMenu.Click += new System.EventHandler(this.inPhieuHachToanMenu_Click);
+            this.menuBtnIn.Size = new System.Drawing.Size(174, 48);
             // 
             // inPhieuThuTienMenu
             // 
@@ -2589,6 +2581,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.inPhieuThuTienMenu.Size = new System.Drawing.Size(173, 22);
             this.inPhieuThuTienMenu.Text = "In phiếu thu tiền";
             this.inPhieuThuTienMenu.Click += new System.EventHandler(this.inPhieuThuTienMenu_Click);
+            // 
+            // inPhieuHachToanMenu
+            // 
+            this.inPhieuHachToanMenu.AccessibleDescription = "INVOICEM00029";
+            this.inPhieuHachToanMenu.Name = "inPhieuHachToanMenu";
+            this.inPhieuHachToanMenu.Size = new System.Drawing.Size(173, 22);
+            this.inPhieuHachToanMenu.Text = "In phiếu hạch toán";
+            this.inPhieuHachToanMenu.Click += new System.EventHandler(this.inPhieuHachToanMenu_Click);
             // 
             // btnCopy
             // 

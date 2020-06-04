@@ -73,6 +73,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             V6ControlFormHelper.SetFormStruct(this, Invoice.AMStruct);
             txtMaKh.Upper();
             txtMa_sonb.Upper();
+            txtLoaiNX_PH.SetInitFilter("LOAI = 'N'");
             if (V6Login.MadvcsCount == 1)
             {
                 txtMa_sonb.SetInitFilter("MA_DVCS='" + V6Login.Madvcs + "' AND dbo.VFV_InList0('" + Invoice.Mact + "',MA_CTNB,'" + ",')=1");
@@ -113,7 +114,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
 
             _maGd = (Invoice.Alct["M_MA_GD"] ?? "2").ToString().Trim();
             txtLoaiPhieu.SetInitFilter(string.Format("Ma_ct = '{0}'", Invoice.Mact));
-
             LoadAll();
             InvokeFormEvent(FormDynamicEvent.INIT);
             V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
@@ -124,7 +124,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         #region ==== Khởi tạo Detail Form ====
         public V6ColorTextBox _dvt;
         public V6CheckTextBox _nhap_tb;
-        public V6VvarTextBox _maVt, _dvt1, _maKho2, _Ma_nx_i, _tkVt, _maLo, _maKhoI, _maViTri;
+        public V6VvarTextBox _maVt, _dvt1, _maKho2, _Ma_nx_i, _Ma_lnx_i, _tkVt, _maLo, _maKhoI, _maViTri;
         public V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_td1;
         public V6NumberTextBox _sl_101, _sl_102, _sl_103, _sl_104, _sl_01, _sl_02, _sl_03, _sl_04;
         public V6NumberTextBox _ton13, _ton13Qd, _gia, _gia_nt, _gia0, _gia_nt0, _tien, _tienNt, _tien0, _tienNt0, _gia01, _gia_nt01;
@@ -188,7 +188,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                         _Ma_nx_i = (V6VvarTextBox)control;
                         _Ma_nx_i.Upper();
                         _Ma_nx_i.FilterStart=true;
-
+                        break;
+                    case "MA_LNX_I":
+                        _Ma_lnx_i = control as V6VvarTextBox;
+                        if (_Ma_lnx_i != null)
+                        {
+                            _Ma_lnx_i.FilterStart = true;
+                            _Ma_lnx_i.SetInitFilter("LOAI = 'N'");
+                            _Ma_lnx_i.Upper();
+                        }
                         break;
                    
                     case "TK_VT":
@@ -3288,6 +3296,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             }
         }
 
+        public override void SetDefaultDetail()
+        {
+            if (_Ma_lnx_i != null && txtLoaiNX_PH.Text != string.Empty)
+            {
+                _Ma_lnx_i.Text = txtLoaiNX_PH.Text;
+            }
+        }
+
         private bool XuLyThemDetail(IDictionary<string, object> data)
         {
             if (NotAddEdit)
@@ -4693,7 +4709,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             }
             catch (Exception ex)
             {
-                this.ShowErrorException("txtLoaiPhieu_TextChanged", ex);
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -4705,6 +4721,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         private void inPhieuHachToanMenu_Click(object sender, EventArgs e)
         {
             InPhieuHachToan(Invoice, _sttRec, TongThanhToan, TongThanhToanNT);
+        }
+
+        private void txtLoaiNX_PH_V6LostFocus(object sender)
+        {
+            try
+            {
+                if (txtLoaiNX_PH.Text != string.Empty)
+                {
+                    V6ControlFormHelper.UpdateDKlist(AD, "MA_LNX_I", txtLoaiNX_PH.Text);
+                    _Ma_lnx_i.Text = txtLoaiNX_PH.Text;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
         }
 
         

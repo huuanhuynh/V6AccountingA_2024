@@ -2922,7 +2922,7 @@ namespace V6Controls.Forms
                     else
                     {
                         var txt = control as V6ColorTextBox;
-                        if (txt != null && string.IsNullOrEmpty(txt.LimitCharacters))
+                        if (txt != null) // && string.IsNullOrEmpty(txt.LimitCharacters))
                         {
                             int ml = structTable[control.AccessibleName.ToUpper()].MaxLength;
                             if (ml > 0) txt.MaxLength = ml < 0 ? 32767 : ml;
