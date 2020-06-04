@@ -92,7 +92,7 @@ namespace V6Init
         {
             try
             {
-                V6OptionTypes[name.ToUpper()] = value;
+                V6OptionValues[name.ToUpper()] = value;
             }
             catch (Exception ex)
             {

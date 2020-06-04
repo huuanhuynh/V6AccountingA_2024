@@ -250,7 +250,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.PhanQuyen
             if(ready)
             if (e.NewValue == CheckState.Unchecked)
             {
-                for (int i = 1; i <= 5; i++)
+                for (int i = 1; i <= 6; i++)
                 {
                     //item.SubItems[i].Text = no;
                     SetCheckX(item, i, no);

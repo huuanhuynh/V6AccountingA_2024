@@ -1029,6 +1029,10 @@ namespace V6AccountingBusiness.Invoices
         {
             throw new NotImplementedException();
         }
+        public virtual DataTable GetSoDu0PT_All_Cust(string sttRec, string madvcs, DateTime ngay_ct, string filterString)
+        {
+            throw new NotImplementedException();
+        }
         public virtual DataTable GetSoDu0TK_TienLe(string sttRec, string madvcs, DateTime ngay_ct, decimal soTienLe, string type, string tk_du, string filterString)
         {
             throw new NotImplementedException();

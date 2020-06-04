@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
@@ -12,6 +13,7 @@ using V6ControlManager.FormManager.ChungTuManager;
 using V6Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.Editor;
+using V6Controls.Forms.Viewer;
 using V6Init;
 using V6SqlConnect;
 using V6Structs;
@@ -1598,6 +1600,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
                 var chonExcel = new LoadExcelDataForm();
                 chonExcel.CheckFields = "MA_KH_I";
+                chonExcel.LoadDataComplete += chonExcel_LoadDataComplete;
                 chonExcel.AcceptData += chonExcel_AcceptData;
                 chonExcel.ShowDialog(this);
             }
@@ -1606,20 +1609,116 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
                 this.ShowErrorException(GetType() + ".ChonTuExcel", ex);
             }
         }
+
+        void chonExcel_LoadDataComplete(object sender)
+        {
+            try
+            {
+                LoadExcelDataForm chonExcel = (LoadExcelDataForm)sender;
+                DataTable errorData = new DataTable("ErrorData");
+                List<DataGridViewRow> removeList = new List<DataGridViewRow>();
+                foreach (DataGridViewRow row in chonExcel.dataGridView1.Rows)
+                {
+                    string cMaKh_I = ("" + row.Cells["MA_KH_I"].Value).Trim();
+                    if (cMaKh_I == string.Empty)
+                    {
+                        removeList.Add(row);
+                        continue;
+                    }
+                    var exist = V6BusinessHelper.IsExistOneCode_List("ALKH", "MA_KH", cMaKh_I);
+                    if (!exist)
+                    {
+                        row.DefaultCellStyle.BackColor = Color.Red;
+                        errorData.AddRow(row.ToDataDictionary(), true);
+                    }
+                }
+                while (removeList.Count > 0)
+                {
+                    chonExcel.dataGridView1.Rows.Remove(removeList[0]);
+                    removeList.RemoveAt(0);
+                }
+                if (errorData.Rows.Count > 0)
+                {
+                    DataViewerForm viewer = new DataViewerForm(errorData);
+                    viewer.Text = V6Text.WrongData;
+                    viewer.FormClosing += (o, args) =>
+                    {
+                        if (V6ControlFormHelper.ShowConfirmMessage(V6Text.Export + " " + V6Text.WrongData + "?") == DialogResult.Yes)
+                        {
+                            V6ControlFormHelper.ExportExcel_ChooseFile(this, errorData, "errorData");
+                        }
+                    };
+                    viewer.ShowDialog(chonExcel);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
         private void ChucNang_ChonTuExcel5()
         {
             try
             {
                 if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
 
-                var chonExcel = new LoadExcelDataForm();
-                chonExcel.CheckFields = "MA_KH_I";
-                chonExcel.AcceptData += chonExcel_AcceptData5;
-                chonExcel.ShowDialog(this);
+                var chonExcel5 = new LoadExcelDataForm();
+                chonExcel5.CheckFields = "MA_KH_I";
+                chonExcel5.LoadDataComplete += chonExcel5_LoadDataComplete;
+                chonExcel5.AcceptData += chonExcel5_AcceptData;
+                chonExcel5.ShowDialog(this);
             }
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".ChonTuExcel", ex);
+            }
+        }
+
+        void chonExcel5_LoadDataComplete(object sender)
+        {
+            try
+            {
+                LoadExcelDataForm chonExcel = (LoadExcelDataForm)sender;
+                DataTable errorData = new DataTable("ErrorData");
+                List<DataGridViewRow> removeList = new List<DataGridViewRow>();
+                foreach (DataGridViewRow row in chonExcel.dataGridView1.Rows)
+                {
+                    string cMaKh_I = ("" + row.Cells["MA_KH_I"].Value).Trim();
+                    if (cMaKh_I == string.Empty)
+                    {
+                        removeList.Add(row);
+                        continue;
+                    }
+                    var exist = V6BusinessHelper.IsExistOneCode_List("ALKHO", "MA_KH", cMaKh_I);
+                    if (!exist)
+                    {
+                        row.DefaultCellStyle.BackColor = Color.Red;
+                        errorData.AddRow(row.ToDataDictionary(), true);
+                    }
+                }
+                while (removeList.Count > 0)
+                {
+                    chonExcel.dataGridView1.Rows.Remove(removeList[0]);
+                    removeList.RemoveAt(0);
+                }
+                if (errorData.Rows.Count > 0)
+                {
+                    DataViewerForm viewer = new DataViewerForm(errorData);
+                    viewer.Text = V6Text.WrongData;
+                    viewer.FormClosing += (o, args) =>
+                    {
+                        if (V6ControlFormHelper.ShowConfirmMessage(V6Text.Export + " " + V6Text.WrongData + "?") == DialogResult.Yes)
+                        {
+                            V6ControlFormHelper.ExportExcel_ChooseFile(this, errorData, "errorData");
+                        }
+                    };
+                    viewer.ShowDialog(chonExcel);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
 
@@ -1658,7 +1757,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
         }
         
-        void chonExcel_AcceptData5(DataTable table)
+        void chonExcel5_AcceptData(DataTable table)
         {
             var count = 0;
             _message = "";

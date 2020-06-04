@@ -4089,6 +4089,37 @@ namespace V6Controls.Forms
             ReorderDataGridViewColumns(dgv, orderList.ToArray(), i);
         }
 
+        public static void ExportExcel_ChooseFile(IWin32Window owner, DataTable data, string defaultSaveName)
+        {
+            if (data == null)
+            {
+                //ShowTopMessage(V6Text.NoData);
+                return;
+            }
+            try
+            {
+                var save = new SaveFileDialog
+                {
+                    Filter = "Excel files (*.xls)|*.xls|Xlsx|*.xlsx",
+                    Title = "Xuất excel.",
+                    FileName = ChuyenMaTiengViet.ToUnSign(defaultSaveName)
+                };
+                if (save.ShowDialog(owner) == DialogResult.OK)
+                {
+                    ExportData.ToExcel(data, save.FileName, "", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                var methodInfo = MethodBase.GetCurrentMethod();
+                if (methodInfo.DeclaringType != null)
+                {
+                    var address = methodInfo.DeclaringType.FullName + "." + methodInfo.Name;
+                    ShowErrorException(address, ex);
+                }
+            }
+        }
+
 
         #region ==== EXPORT EXCEL TEMPLATE ====
 

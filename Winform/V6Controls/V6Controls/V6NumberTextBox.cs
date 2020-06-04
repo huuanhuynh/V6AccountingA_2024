@@ -752,10 +752,10 @@ namespace V6Controls
             else if (e.KeyChar == '-')
             {
                 e.Handled = true;
-                if (_isNegative && SelectionStart == 0)
-                    SelectionStart = 1;
                 _isNegative = !_isNegative;
                 Write();
+
+                SelectionStart = Text.Contains("" + _decimalSymbol) ? Text.IndexOf(_decimalSymbol) : TextLength;
             }
             else if (e.KeyChar != 3 && e.KeyChar != 22)
             {

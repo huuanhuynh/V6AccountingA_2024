@@ -56,7 +56,7 @@
             this.btnHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnHuy.Image = global::V6ControlManager.Properties.Resources.Cancel;
             this.btnHuy.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnHuy.Location = new System.Drawing.Point(94, 331);
+            this.btnHuy.Location = new System.Drawing.Point(94, 531);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(88, 40);
             this.btnHuy.TabIndex = 13;
@@ -72,7 +72,7 @@
             this.btnNhan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnNhan.Image = global::V6ControlManager.Properties.Resources.Apply;
             this.btnNhan.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNhan.Location = new System.Drawing.Point(6, 331);
+            this.btnNhan.Location = new System.Drawing.Point(6, 531);
             this.btnNhan.Name = "btnNhan";
             this.btnNhan.Size = new System.Drawing.Size(88, 40);
             this.btnNhan.TabIndex = 12;
@@ -174,7 +174,7 @@
             // 
             this.v6Label3.AccessibleDescription = "XULYL00124";
             this.v6Label3.AutoSize = true;
-            this.v6Label3.Location = new System.Drawing.Point(9, 113);
+            this.v6Label3.Location = new System.Drawing.Point(9, 154);
             this.v6Label3.Name = "v6Label3";
             this.v6Label3.Size = new System.Drawing.Size(43, 13);
             this.v6Label3.TabIndex = 6;
@@ -184,7 +184,7 @@
             // 
             this.v6Label5.AccessibleDescription = "XULYL00125";
             this.v6Label5.AutoSize = true;
-            this.v6Label5.Location = new System.Drawing.Point(9, 199);
+            this.v6Label5.Location = new System.Drawing.Point(9, 303);
             this.v6Label5.Name = "v6Label5";
             this.v6Label5.Size = new System.Drawing.Size(30, 13);
             this.v6Label5.TabIndex = 8;
@@ -194,7 +194,7 @@
             // 
             this.v6Label6.AccessibleDescription = "XULYL00043";
             this.v6Label6.AutoSize = true;
-            this.v6Label6.Location = new System.Drawing.Point(9, 263);
+            this.v6Label6.Location = new System.Drawing.Point(9, 443);
             this.v6Label6.Name = "v6Label6";
             this.v6Label6.Size = new System.Drawing.Size(44, 13);
             this.v6Label6.TabIndex = 10;
@@ -228,9 +228,9 @@
             this.richTextBox1.AccessibleName = "YEU_CAU";
             this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(106, 110);
+            this.richTextBox1.Location = new System.Drawing.Point(106, 86);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(669, 80);
+            this.richTextBox1.Size = new System.Drawing.Size(669, 149);
             this.richTextBox1.TabIndex = 7;
             this.richTextBox1.Text = "";
             // 
@@ -239,9 +239,9 @@
             this.richTextBox2.AccessibleName = "GIAI_PHAP";
             this.richTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox2.Location = new System.Drawing.Point(106, 196);
+            this.richTextBox2.Location = new System.Drawing.Point(106, 243);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(669, 63);
+            this.richTextBox2.Size = new System.Drawing.Size(669, 132);
             this.richTextBox2.TabIndex = 9;
             this.richTextBox2.Text = "";
             // 
@@ -250,9 +250,9 @@
             this.richTextBox3.AccessibleName = "GHI_CHU";
             this.richTextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox3.Location = new System.Drawing.Point(106, 260);
+            this.richTextBox3.Location = new System.Drawing.Point(106, 383);
             this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(669, 63);
+            this.richTextBox3.Size = new System.Drawing.Size(669, 132);
             this.richTextBox3.TabIndex = 11;
             this.richTextBox3.Text = "";
             // 
@@ -260,7 +260,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 383);
+            this.ClientSize = new System.Drawing.Size(784, 583);
             this.Controls.Add(this.richTextBox3);
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.richTextBox1);
@@ -279,6 +279,7 @@
             this.Controls.Add(this.btnNhan);
             this.Name = "V6HELP_QA_F3F4";
             this.Load += new System.EventHandler(this.FormBaoCaoHangTonTheoKho_Load);
+            this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.v6Label1, 0);

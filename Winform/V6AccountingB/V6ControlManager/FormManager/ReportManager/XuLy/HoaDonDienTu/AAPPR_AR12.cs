@@ -195,7 +195,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         #endregion xulyF9
 
 
-        private void btnTestView_Click(object sender, EventArgs e)
+        private void btnTestViewXml_Click(object sender, EventArgs e)
         {
             try
             {
@@ -245,7 +245,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".btnTestView_Click", ex);
+                this.ShowErrorException(GetType() + ".btnTestViewXml_Click", ex);
             }
         }
 
@@ -267,32 +267,32 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private void InitializeComponent()
         {
-            this.btnTestView = new System.Windows.Forms.Button();
+            this.btnTestViewXml = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // btnTestView
+            // btnTestViewXml
             // 
-            this.btnTestView.Location = new System.Drawing.Point(190, 28);
-            this.btnTestView.Name = "btnTestView";
-            this.btnTestView.Size = new System.Drawing.Size(111, 23);
-            this.btnTestView.TabIndex = 23;
-            this.btnTestView.Text = "Xem XML";
-            this.btnTestView.UseVisualStyleBackColor = true;
-            this.btnTestView.Click += new System.EventHandler(this.btnTestView_Click);
+            this.btnTestViewXml.Location = new System.Drawing.Point(190, 28);
+            this.btnTestViewXml.Name = "btnTestViewXml";
+            this.btnTestViewXml.Size = new System.Drawing.Size(111, 23);
+            this.btnTestViewXml.TabIndex = 23;
+            this.btnTestViewXml.Text = "Xem XML";
+            this.btnTestViewXml.UseVisualStyleBackColor = true;
+            this.btnTestViewXml.Click += new System.EventHandler(this.btnTestViewXml_Click);
             // 
             // AAPPR_AR12
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.Controls.Add(this.btnTestView);
+            this.Controls.Add(this.btnTestViewXml);
             this.Name = "AAPPR_AR12";
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
-            this.Controls.SetChildIndex(this.btnTestView, 0);
+            this.Controls.SetChildIndex(this.btnTestViewXml, 0);
             this.ResumeLayout(false);
 
         }
 
-        private Button btnTestView;
+        private Button btnTestViewXml;
 
     }
 }

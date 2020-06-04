@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -18,6 +19,7 @@ using V6ControlManager.FormManager.ReportManager.XuLy;
 using V6Controls;
 using V6Controls.Controls.GridView;
 using V6Controls.Forms;
+using V6Controls.Forms.Viewer;
 using V6Controls.Structs;
 using V6Init;
 using V6Structs;
@@ -4012,8 +4014,58 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 chonExcel.DynamicFixMethodName = "DynamicFixExcel";
                 chonExcel.CheckFields = "MA_VT,MA_KHO_I,TIEN_NT0,SO_LUONG1,GIA_NT01";
                 chonExcel.MA_CT = Invoice.Mact;
+                chonExcel.LoadDataComplete += chonExcel_LoadDataComplete;
                 chonExcel.AcceptData += chonExcel_AcceptData;
                 chonExcel.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        void chonExcel_LoadDataComplete(object sender)
+        {
+            try
+            {
+                LoadExcelDataForm chonExcel = (LoadExcelDataForm) sender;
+                DataTable errorData = new DataTable("ErrorData");
+                List<DataGridViewRow> removeList = new List<DataGridViewRow>();
+                foreach (DataGridViewRow row in chonExcel.dataGridView1.Rows)
+                {
+                    string cMaVt = ("" + row.Cells["MA_VT"].Value).Trim();
+                    string cMaKhoI = ("" + row.Cells["MA_KHO_I"].Value).Trim();
+                    if (cMaVt == string.Empty && cMaKhoI == string.Empty)
+                    {
+                        removeList.Add(row);
+                        continue;
+                    }
+                    var exist = V6BusinessHelper.IsExistOneCode_List("ALVT", "MA_VT", cMaVt);
+                    var exist2 = V6BusinessHelper.IsExistOneCode_List("ALKHO", "MA_KHO", cMaKhoI);
+                    if (!exist || !exist2)
+                    {
+                        row.DefaultCellStyle.BackColor = Color.Red;
+                        errorData.AddRow(row.ToDataDictionary(), true);
+                    }
+                }
+                while (removeList.Count > 0)
+                {
+                    chonExcel.dataGridView1.Rows.Remove(removeList[0]);
+                    removeList.RemoveAt(0);
+                }
+                if (errorData.Rows.Count > 0)
+                {
+                    DataViewerForm viewer = new DataViewerForm(errorData);
+                    viewer.Text = V6Text.WrongData;
+                    viewer.FormClosing += (o, args) =>
+                    {
+                        if (V6ControlFormHelper.ShowConfirmMessage(V6Text.Export) == DialogResult.Yes)
+                        {
+                            V6ControlFormHelper.ExportExcel_ChooseFile(this, errorData, "errorData");
+                        }
+                    };
+                    viewer.ShowDialog(chonExcel);
+                }
             }
             catch (Exception ex)
             {

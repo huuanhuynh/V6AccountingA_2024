@@ -209,6 +209,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
 
         protected int _oldIndex = -1;
-
+        
     }
 }

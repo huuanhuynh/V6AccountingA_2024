@@ -59,7 +59,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private bool f9Running;
         private string f9Error = "";
         private string f9ErrorAll = "";
-        private Button btnTestView;
+        private Button btnTestViewPdf;
         private string f9MessageAll = "";
         protected override void XuLyF9()
         {
@@ -276,8 +276,14 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
         #endregion xulyF9
 
-        private void btnTestView_Click(object sender, EventArgs e)
+        private void btnTestViewPdf_Click(object sender, EventArgs e)
         {
+            bool ctrl_is_down = (ModifierKeys & Keys.Control) == Keys.Control;
+            if (ctrl_is_down)
+            {
+                btnTestViewXml_Click(sender, e);
+                return;
+            }
             try
             {
                 bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
@@ -343,7 +349,66 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".btnTestView_Click", ex);
+                this.ShowErrorException(GetType() + ".btnTestViewPdf_Click", ex);
+            }
+        }
+
+        /// <summary>
+        /// Copy từ AR12
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnTestViewXml_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dataGridView1.DataSource == null || dataGridView1.CurrentRow == null)
+                {
+                    return;
+                }
+
+                var row = dataGridView1.CurrentRow;
+
+                //string mode = row.Cells["Kieu_in"].Value.ToString();
+                string soct = row.Cells["So_ct"].Value.ToString().Trim();
+                string dir = row.Cells["Dir_in"].Value.ToString().Trim();
+                string file = row.Cells["File_in"].Value.ToString().Trim();
+                string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
+
+                SqlParameter[] plist =
+                        {
+                            new SqlParameter("@Stt_rec", (row.Cells["Stt_rec"].Value ?? "").ToString()),
+                            new SqlParameter("@Ma_ct", (row.Cells["Ma_ct"].Value ?? "").ToString()),
+                            new SqlParameter("@HoaDonMau","0"),
+                            new SqlParameter("@isInvoice","1"),
+                            new SqlParameter("@ReportFile",""),
+                            new SqlParameter("@MA_TD1", FilterControl.String1),
+                            new SqlParameter("@UserID", V6Login.UserId)
+                        };
+
+                DataSet ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure + "F9", plist);
+                //DataTable data0 = ds.Tables[0];
+                string result = "";//, error = "", sohoadon = "", id = "";
+                var paras = new PostManagerParams
+                {
+                    DataSet = ds,
+                    Mode = "TestView",
+                    Branch = FilterControl.String1,
+                    Dir = dir,
+                    FileName = file,
+                    Key_Down = "TestView",
+                    RptFileFull = ReportFileFull,
+                    Fkey_hd = fkey_hd,
+                };
+                result = PostManager.PowerPost(paras);
+                Clipboard.SetText(result);
+                //this.ShowMessage(result);
+                AAPPR_SOA2_ViewXml viewer = new AAPPR_SOA2_ViewXml(result);
+                viewer.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".btnTestViewXml_Click", ex);
             }
         }
 
@@ -365,27 +430,27 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private void InitializeComponent()
         {
-            this.btnTestView = new System.Windows.Forms.Button();
+            this.btnTestViewPdf = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // btnTestView
+            // btnTestViewPdf
             // 
-            this.btnTestView.Location = new System.Drawing.Point(190, 28);
-            this.btnTestView.Name = "btnTestView";
-            this.btnTestView.Size = new System.Drawing.Size(111, 23);
-            this.btnTestView.TabIndex = 22;
-            this.btnTestView.Text = "Xem Einvoice";
-            this.btnTestView.UseVisualStyleBackColor = true;
-            this.btnTestView.Click += new System.EventHandler(this.btnTestView_Click);
+            this.btnTestViewPdf.Location = new System.Drawing.Point(190, 28);
+            this.btnTestViewPdf.Name = "btnTestViewPdf";
+            this.btnTestViewPdf.Size = new System.Drawing.Size(111, 23);
+            this.btnTestViewPdf.TabIndex = 22;
+            this.btnTestViewPdf.Text = "Xem Einvoice";
+            this.btnTestViewPdf.UseVisualStyleBackColor = true;
+            this.btnTestViewPdf.Click += new System.EventHandler(this.btnTestViewPdf_Click);
             // 
             // AAPPR_AR13
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.Controls.Add(this.btnTestView);
+            this.Controls.Add(this.btnTestViewPdf);
             this.Name = "AAPPR_AR13";
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
-            this.Controls.SetChildIndex(this.btnTestView, 0);
+            this.Controls.SetChildIndex(this.btnTestViewPdf, 0);
             this.ResumeLayout(false);
 
         }

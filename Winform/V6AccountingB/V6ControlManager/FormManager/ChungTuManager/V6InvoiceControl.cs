@@ -3801,7 +3801,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 //Hien form chuc nang co options *-1 or input
                 if (NotAddEdit) return;
-
+                
                 var detail1 = GetControlByName("detail1") as HD_Detail;
                 if (detail1 == null)
                 {
@@ -3818,6 +3818,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 if (dataGridView1 == null)
                 {
                     ShowParentMessage(V6Text.Text("UNKNOWNOBJECT") + ": [dataGridView1].");
+                    return;
+                }
+                if (dataGridView1.CurrentRow == null)
+                {
+                    ShowParentMessage(V6Text.NoData);
                     return;
                 }
 
@@ -3841,7 +3846,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         V6ControlFormHelper.UpdateDKlistAll(data, listFieldCanReplace, AD, dataGridView1.CurrentRow.Index);
                     }
                 }
-                else // Thay thế tất cả giá trị của cột đang đứng bằng giá trị mới.
+                else // Thay thế giá trị của cột đang đứng từ dòng hiện tại trở xuống bằng giá trị mới.
                 {
                     int field_index = dataGridView1.CurrentCell.ColumnIndex;
                     string FIELD = dataGridView1.CurrentCell.OwningColumn.DataPropertyName.ToUpper();
@@ -3872,6 +3877,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         {
                             foreach (DataGridViewRow row in dataGridView1.Rows)
                             {
+                                if (row.Index < dataGridView1.CurrentRow.Index) continue;
+
                                 object newValue = ObjectAndString.ObjectTo(valueType, f.Value);
                                 if (ObjectAndString.IsDateTimeType(valueType) && newValue != null)
                                 {
@@ -3891,6 +3898,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         {
                             foreach (DataGridViewRow row in dataGridView1.Rows)
                             {
+                                if (row.Index < dataGridView1.CurrentRow.Index) continue;
+
                                 var newValue = ObjectAndString.ObjectToDecimal(row.Cells[field_index].Value)*-1;
                                 SortedDictionary<string, object> newData = new SortedDictionary<string, object>();
                                 newData.Add(FIELD, newValue);

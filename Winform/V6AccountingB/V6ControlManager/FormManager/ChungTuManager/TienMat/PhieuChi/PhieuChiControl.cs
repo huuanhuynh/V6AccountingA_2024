@@ -5845,6 +5845,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             ChucNang_ChiCongNo(shift);
         }
 
+        private void ChiCongNoPhieuThuMenu_Click(object sender, EventArgs e)
+        {
+            bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+            ChucNang_ChiCongNoPhieuThu(shift);
+        }
+
         private void ChucNang_ChiCongNo(bool add)
         {
             try
@@ -5947,6 +5953,59 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 this.ShowErrorException(GetType() + ".ChucNang_ChiCongNo " + _sttRec, ex);
             }
         }
+
+        private void ChucNang_ChiCongNoPhieuThu(bool add)
+        {
+            try
+            {
+                if (NotAddEdit) return;
+                chon_accept_flag_add = add;
+
+                if (NotAddEdit) return;
+                if (_MA_GD == "3")
+                {
+                    detail1.MODE = V6Mode.View;
+
+
+                    var initFilter = GetSoCt0InitFilter();
+                    var f = new FilterView_APSODU0PT(Invoice, new V6ColorTextBox(), _sttRec, txtMaDVCS.Text, initFilter);
+                    f.MultiSeletion = true;
+                    
+                    if (f.ShowDialog(this) == DialogResult.OK)
+                    {
+                        bool flag_add = chon_accept_flag_add;
+                        chon_accept_flag_add = false;
+                        if (!flag_add)
+                        {
+                            AD.Rows.Clear();
+                        }
+                        foreach (IDictionary<string, object> data in f.SelectedDataList)
+                        {
+                            var dic = detail1.GetData();
+
+                            dic["TK_I"] = data["TK"];
+                            dic["TIEN"] = data["DU_CO"];
+                            dic["TIEN_NT"] = data["DU_CO"];
+                            dic["TIEN_TT"] = data["DU_CO"];
+                            dic["PS_NO"] = data["DU_CO"];
+                            dic["PS_NO_NT"] = data["DU_CO"];
+
+                            dic["MA_KH_I"] = data["MA_KH"];
+                            dic["TEN_KH_I"] = data["TEN_KH"];
+                            if (data.ContainsKey("DIEN_GIAII")) dic["DIEN_GIAII"] = data["DIEN_GIAII"];
+
+                            XuLyThemDetail(dic);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".ChiNo331 " + _sttRec, ex);
+            }
+        }
+
+        
         
     }
 }

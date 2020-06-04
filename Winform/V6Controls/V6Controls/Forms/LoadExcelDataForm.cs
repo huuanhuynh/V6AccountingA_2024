@@ -18,6 +18,7 @@ namespace V6Controls.Forms
 
         private DataTable data;
         public event DataTableHandler AcceptData;
+        public event ControlEventHandle LoadDataComplete;
         public string CheckFields = null;
         /// <summary>
         /// Dùng kiểm tra thông tin khác khi tải dữ liệu Excel.
@@ -42,6 +43,13 @@ namespace V6Controls.Forms
                 this.WriteExLog(GetType() + ".Form_Load", ex);
             }
         }
+
+        protected virtual void OnLoadDataComplete()
+        {
+            var handler = LoadDataComplete;
+            if (handler != null) handler(this);
+        }
+        
         protected virtual void OnAcceptData(DataTable table)
         {
             var handler = AcceptData;
@@ -90,6 +98,7 @@ namespace V6Controls.Forms
             }
             InvokeDynamicFix();
             dataGridView1.DataSource = data;
+            OnLoadDataComplete();
         }
 
         private void btnTim_Click(object sender, EventArgs e)
