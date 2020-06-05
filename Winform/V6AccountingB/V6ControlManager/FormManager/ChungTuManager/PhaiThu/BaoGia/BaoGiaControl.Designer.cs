@@ -2968,7 +2968,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.txtma_bp.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtma_bp.HoverColor = System.Drawing.Color.Yellow;
             this.txtma_bp.LeaveColor = System.Drawing.Color.White;
-            this.txtma_bp.Location = new System.Drawing.Point(324, 10);
+            this.txtma_bp.Location = new System.Drawing.Point(324, 9);
             this.txtma_bp.Name = "txtma_bp";
             this.txtma_bp.NeighborFields = "";
             this.txtma_bp.Size = new System.Drawing.Size(62, 20);
@@ -2987,7 +2987,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.txtSoCtXuat.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtSoCtXuat.HoverColor = System.Drawing.Color.Yellow;
             this.txtSoCtXuat.LeaveColor = System.Drawing.Color.White;
-            this.txtSoCtXuat.Location = new System.Drawing.Point(202, 10);
+            this.txtSoCtXuat.Location = new System.Drawing.Point(202, 9);
             this.txtSoCtXuat.Name = "txtSoCtXuat";
             this.txtSoCtXuat.Size = new System.Drawing.Size(73, 20);
             this.txtSoCtXuat.TabIndex = 5;
@@ -3094,7 +3094,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.txtManx.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtManx.HoverColor = System.Drawing.Color.Yellow;
             this.txtManx.LeaveColor = System.Drawing.Color.White;
-            this.txtManx.Location = new System.Drawing.Point(73, 10);
+            this.txtManx.Location = new System.Drawing.Point(73, 9);
             this.txtManx.Name = "txtManx";
             this.txtManx.Size = new System.Drawing.Size(59, 20);
             this.txtManx.TabIndex = 1;

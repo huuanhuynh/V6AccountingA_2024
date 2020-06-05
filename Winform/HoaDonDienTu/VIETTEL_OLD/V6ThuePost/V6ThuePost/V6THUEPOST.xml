@@ -82,6 +82,7 @@
 	<ItemInfo	Field='taxAmount'	FieldV6='thue'	Type='Field'/>
 	<ItemInfo	Field='discount'	FieldV6='0'	Type='Field'/>
 	<ItemInfo	Field='itemDiscount'	FieldV6='ck'	Type='Field'/>
+	<ItemInfo	Field='isIncreaseItem'  Value='1'	FieldV6='isIncreaseItem'	Type='Field'  DataType='bool' Note='true: số tăng - false: số giảm vd ck là false'/>
   <!--ItemInfo	Field='selection'	FieldV6='0'	Type='Field'/-->
   <!--ItemInfo	Field='itemNote'	FieldV6='0'	Type='Field'/-->
   <!--ItemInfo	Field='batchNo'	FieldV6='0'	Type='Field'/-->

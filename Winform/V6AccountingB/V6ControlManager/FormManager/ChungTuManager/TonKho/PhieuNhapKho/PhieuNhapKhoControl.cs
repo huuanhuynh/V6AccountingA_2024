@@ -3300,7 +3300,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         {
             if (_Ma_lnx_i != null && txtLoaiNX_PH.Text != string.Empty)
             {
-                _Ma_lnx_i.Text = txtLoaiNX_PH.Text;
+                if (_Ma_lnx_i != null) _Ma_lnx_i.Text = txtLoaiNX_PH.Text;
             }
         }
 
@@ -4730,7 +4730,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 if (txtLoaiNX_PH.Text != string.Empty)
                 {
                     V6ControlFormHelper.UpdateDKlist(AD, "MA_LNX_I", txtLoaiNX_PH.Text);
-                    _Ma_lnx_i.Text = txtLoaiNX_PH.Text;
+                    if (_Ma_lnx_i != null) _Ma_lnx_i.Text = txtLoaiNX_PH.Text;
                 }
             }
             catch (Exception ex)
