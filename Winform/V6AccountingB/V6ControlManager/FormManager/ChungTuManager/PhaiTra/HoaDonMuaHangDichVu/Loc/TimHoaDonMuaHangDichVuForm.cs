@@ -207,7 +207,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             //var AD2_Struct = _hoaDonForm.Invoice.AD2Struct;
             _w3NhomVt = GetNhVtFilterSql_TuyChon("", "like");
             //var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
-            //var w4Dvcs = locTuyChon1.GetDvcsFilterSql(struDvcs, "", "like");
+            //var w4Dvcs = locTuyChon1.GetDvcsFilterSql(struDvcs, "", "start");
         }
 
         private void DoSearch()

@@ -235,7 +235,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
             _where2AD = GetFilterSql_TTChiTiet(stru2, "", "like");
             _w3NhomVt = GetNhVtFilterSql_TuyChon("", "like");
             var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
-            _w4Dvcs = GetDvcsFilterSql_TuyChon(struDvcs, "", "like");
+            _w4Dvcs = GetDvcsFilterSql_TuyChon(struDvcs, "", "start");
         }
 
         private void DoSearch()

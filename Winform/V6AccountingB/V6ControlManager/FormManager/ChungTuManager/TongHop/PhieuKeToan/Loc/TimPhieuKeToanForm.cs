@@ -213,7 +213,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
             _where2AD = locThongTinChiTiet1.GetFilterSql(AD_Struct, "", "like");
             _w3NhomVt = GetNhVtFilterSql_TuyChon("", "like");
             //var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
-            //var w4Dvcs = locTuyChon1.GetDvcsFilterSql(struDvcs, "", "like");
+            //var w4Dvcs = locTuyChon1.GetDvcsFilterSql(struDvcs, "", "start");
         }
 
         private void DoSearch()

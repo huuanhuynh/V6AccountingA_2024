@@ -215,7 +215,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuNh
             _where2AD = locThongTinChiTiet1.GetFilterSql(stru2, "", "like");
             _w3NhomVt = GetNhVtFilterSql_TuyChon("", "like");
             var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
-            _w4Dvcs = GetDvcsFilterSql_TuyChon(struDvcs, "", "like");
+            _w4Dvcs = GetDvcsFilterSql_TuyChon(struDvcs, "", "start");
             _advance = locThongTinChiTiet1.GetFilterSql_Advance(Invoice, V6BusinessHelper.GetTableStruct("ARS90"), "", "like");
         }
 

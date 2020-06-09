@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -12,6 +13,7 @@ using V6Init;
 using V6SqlConnect;
 using V6Structs;
 using V6Tools;
+using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
@@ -187,7 +189,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
         private string exMessage = "";
         private DataTable tempAM;
 
-        private string _where0Time = "", _where1AM = "", _where2AD = "", _w3NhomVt = "", _w4Dvcs = "";
+        private string _where0Time = "", _where1AM = "", _where2AD = "", _w3NhomVt = "", _w4Dvcs = "", _w4Dvcs_2 = "";
 
         private void PrepareThread()
         {
@@ -202,7 +204,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
             _where2AD = grbThongTinChiTiet_GetFilterSql(stru2, "", "like");
             _w3NhomVt = GetNhVtFilterSql_TuyChon("", "like");
             var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
-            _w4Dvcs = GetDvcsFilterSql_TuyChon(struDvcs, "", "like");
+            _w4Dvcs = GetDvcsFilterSql_TuyChon(struDvcs, "", "start");
+            var option = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MADVCS2MAKHO"));
+            if (option.Contains(_invoice.Mact))
+            {
+                _w4Dvcs_2 = _invoice.GetMaDvcsFilterByMaKho(maKhach.Text, txtMaDVCS.Text);
+            }
         }
 
         public string grbThongTinChiTiet_GetFilterSql(V6TableStruct tableStruct, string tableLable,
@@ -406,7 +413,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
         {
             try
             {
-                tempAM = _formChungTu.Invoice.SearchAM(_where0Time, _where1AM, _where2AD, _w3NhomVt, _w4Dvcs);
+                tempAM = _formChungTu.Invoice.SearchAM(_where0Time, _where1AM, _where2AD, _w3NhomVt, _w4Dvcs, _w4Dvcs_2);
                 if (tempAM != null && tempAM.Rows.Count > 0)
                 {
                     flagSearchSuccess = true;
