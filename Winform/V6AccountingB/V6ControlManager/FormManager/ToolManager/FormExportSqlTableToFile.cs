@@ -180,9 +180,16 @@ namespace V6ControlManager.FormManager.ToolManager
                     if (string.IsNullOrEmpty(saveFile)) return;
 
                     DataTable exportData = data.Clone();
-                    foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+                    //foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+                    //{
+                    //    exportData.AddRow(((DataRowView) row.DataBoundItem).Row);
+                    //}
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
-                        exportData.AddRow(((DataRowView) row.DataBoundItem).Row);
+                        if (row.IsSelect())
+                        {
+                            exportData.AddRow(((DataRowView)row.DataBoundItem).Row);
+                        }
                     }
                     //if (chkConvert.Checked)
                     //{
