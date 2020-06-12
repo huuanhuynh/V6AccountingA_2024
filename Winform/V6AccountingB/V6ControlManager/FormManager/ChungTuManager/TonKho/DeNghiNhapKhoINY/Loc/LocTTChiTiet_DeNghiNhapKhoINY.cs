@@ -12,7 +12,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY.Lo
             InitializeComponent();
             txtMaSanPham.SetInitFilter("loai_vt=55");
         }
-        public string GetFilterSql(V6TableStruct tableStruct, string tableLable,
+        public string GetFilterSql_ThongTinCT(V6TableStruct tableStruct, string tableLable,
             string oper = "=", bool and = true)
         {
             var and_or = and ? " AND " : " OR ";

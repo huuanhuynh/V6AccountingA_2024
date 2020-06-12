@@ -186,16 +186,26 @@ namespace V6AccountingBusiness.Invoices
             return false;
         }
 
-        public DataTable SearchAM(string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)
+        public DataTable SearchAM(string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, string where4Dvcs_2)
         {
             //where4Dvcs = "";//khong dung
-            var filterKho = V6Login.GetFilterKho("MA_KHO");
-            if (!string.IsNullOrEmpty(filterKho))
+            if (string.IsNullOrEmpty(where4Dvcs_2))
             {
-                where4Dvcs += (string.IsNullOrEmpty(where4Dvcs) ? "" : " and ") + filterKho;
+                var filterKho = V6Login.GetFilterKho("MA_KHO");
+                if (!string.IsNullOrEmpty(filterKho))
+                {
+                    where4Dvcs += (string.IsNullOrEmpty(where4Dvcs) ? "" : " and ") + filterKho;
+                }
+                if (where4Dvcs.Length > 0) where4Dvcs = string.Format(" Ma_kho IN (SELECT Ma_kho FROM Alkho WHERE {0})", where4Dvcs);
+                //if (where4Dvcs.Length > 0)
+                //{
+                //    where4Dvcs = string.Format("	And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
+                //}
             }
-            if (where4Dvcs.Length > 0) where4Dvcs
-                    = string.Format(" Ma_kho IN (SELECT Ma_kho FROM Alkho WHERE {0})", where4Dvcs);
+            else
+            {
+                where4Dvcs = string.Format("	And {0}", where4Dvcs_2);
+            }
 
             string template =
                 "Select a.*, b.Ma_so_thue, b.Ten_kh AS Ten_kh,f.Ten_nvien AS Ten_nvien "

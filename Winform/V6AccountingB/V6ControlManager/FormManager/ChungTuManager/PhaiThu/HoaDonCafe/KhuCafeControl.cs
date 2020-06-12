@@ -125,7 +125,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             }
             
             var whereAD = "";
-            var data_hoadon = hoadonCafe.Invoice.SearchAM("", whereAM, whereAD, "", "");
+            var data_hoadon = hoadonCafe.Invoice.SearchAM("", whereAM, whereAD, "", "", null);
             hoadonCafe.AM = data_hoadon;
 
             var MaVitri_SttRec_dic = data_hoadon.ToDataSortedDictionary("Ma_vitriPH", "Stt_rec");

@@ -23,12 +23,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         {
             try
             {
-                txtMaDVCS.Text = V6Login.Madvcs;
-                if (V6Login.MadvcsCount <= 1)
-                {
-                    txtMaDVCS.Enabled = false;
-                    txtMaDVCS.ReadOnly = true;
-                }
                 soTienTu.DecimalPlaces = V6Options.M_ROUND_NT;
                 soTienDen.DecimalPlaces = V6Options.M_ROUND_NT;
 
@@ -48,8 +42,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             }
         }
 
-        public string GetFilterSql(V6TableStruct tableStruct, string tableLable = null,
-            string oper = "=", bool and = true)
+        public string GetFilterSql_ThongTin(V6TableStruct tableStruct, string tableLable, string oper, bool and = true)
         {
             var tbL = string.IsNullOrEmpty(tableLable) ? "" : tableLable + ".";
             var and_or = and ? " AND " : " OR ";
@@ -121,7 +114,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 }
             }
 
-            var keys = V6ControlFormHelper.GetFormDataDictionary(groupBox1);
+            var keys = V6ControlFormHelper.GetFormDataDictionary(grbThongTin);
             var result2 = SqlGenerator.GenWhere2_oper(tableStruct, keys, oper, and, tableLable);
             if (result2.Length > 0)
             {
@@ -198,9 +191,5 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             ctDenSo.Enabled = !chkLike.Checked;
         }
 
-        private void LocThongTinPhieuXuatDieuChuyen_VisibleChanged(object sender, EventArgs e)
-        {
-            txtMaDVCS.Text = V6Login.Madvcs;
-        }
     }
 }

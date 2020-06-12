@@ -30,7 +30,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Loc
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grbThongTin = new System.Windows.Forms.GroupBox();
             this.txtNhomKH9 = new V6Controls.V6VvarTextBox();
             this.txtNhomKH8 = new V6Controls.V6VvarTextBox();
             this.txtNhomKH6 = new V6Controls.V6VvarTextBox();
@@ -71,59 +71,59 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Loc
             this.v6Label22 = new V6Controls.V6Label();
             this.v6Label7 = new V6Controls.V6Label();
             this.v6Label8 = new V6Controls.V6Label();
-            this.groupBox1.SuspendLayout();
+            this.grbThongTin.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // grbThongTin
             // 
-            this.groupBox1.AccessibleDescription = "SEARCHG00001";
-            this.groupBox1.Controls.Add(this.txtNhomKH9);
-            this.groupBox1.Controls.Add(this.txtNhomKH8);
-            this.groupBox1.Controls.Add(this.txtNhomKH6);
-            this.groupBox1.Controls.Add(this.txtNhomKH5);
-            this.groupBox1.Controls.Add(this.txtNhomKH7);
-            this.groupBox1.Controls.Add(this.txtNhomKH3);
-            this.groupBox1.Controls.Add(this.txtNhomKH4);
-            this.groupBox1.Controls.Add(this.txtNhomKH2);
-            this.groupBox1.Controls.Add(this.txtNhomKH1);
-            this.groupBox1.Controls.Add(this.v6Label3);
-            this.groupBox1.Controls.Add(this.v6Label2);
-            this.groupBox1.Controls.Add(this.v6Label4);
-            this.groupBox1.Controls.Add(this.soTienDen);
-            this.groupBox1.Controls.Add(this.soTienTu);
-            this.groupBox1.Controls.Add(this.panelFilter1);
-            this.groupBox1.Controls.Add(this.chkLike);
-            this.groupBox1.Controls.Add(this.txtMaBoPhan);
-            this.groupBox1.Controls.Add(this.maThanhToan);
-            this.groupBox1.Controls.Add(this.txtThueSuat);
-            this.groupBox1.Controls.Add(this.taiKhoanCo);
-            this.groupBox1.Controls.Add(this.ctDenSo);
-            this.groupBox1.Controls.Add(this.dienGiai);
-            this.groupBox1.Controls.Add(this.maNhanVien);
-            this.groupBox1.Controls.Add(this.txtTkThueNk);
-            this.groupBox1.Controls.Add(this.maKhach);
-            this.groupBox1.Controls.Add(this.maThue);
-            this.groupBox1.Controls.Add(this.ctTuSo);
-            this.groupBox1.Controls.Add(this.v6Label25);
-            this.groupBox1.Controls.Add(this.v6Label24);
-            this.groupBox1.Controls.Add(this.v6Label1);
-            this.groupBox1.Controls.Add(this.v6Label21);
-            this.groupBox1.Controls.Add(this.v6Label29);
-            this.groupBox1.Controls.Add(this.v6Label23);
-            this.groupBox1.Controls.Add(this.v6Label20);
-            this.groupBox1.Controls.Add(this.v6Label28);
-            this.groupBox1.Controls.Add(this.v6Label6);
-            this.groupBox1.Controls.Add(this.v6Label26);
-            this.groupBox1.Controls.Add(this.v6Label22);
-            this.groupBox1.Controls.Add(this.v6Label7);
-            this.groupBox1.Controls.Add(this.v6Label8);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(759, 239);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Lọc thông tin";
+            this.grbThongTin.AccessibleDescription = "SEARCHG00001";
+            this.grbThongTin.Controls.Add(this.txtNhomKH9);
+            this.grbThongTin.Controls.Add(this.txtNhomKH8);
+            this.grbThongTin.Controls.Add(this.txtNhomKH6);
+            this.grbThongTin.Controls.Add(this.txtNhomKH5);
+            this.grbThongTin.Controls.Add(this.txtNhomKH7);
+            this.grbThongTin.Controls.Add(this.txtNhomKH3);
+            this.grbThongTin.Controls.Add(this.txtNhomKH4);
+            this.grbThongTin.Controls.Add(this.txtNhomKH2);
+            this.grbThongTin.Controls.Add(this.txtNhomKH1);
+            this.grbThongTin.Controls.Add(this.v6Label3);
+            this.grbThongTin.Controls.Add(this.v6Label2);
+            this.grbThongTin.Controls.Add(this.v6Label4);
+            this.grbThongTin.Controls.Add(this.soTienDen);
+            this.grbThongTin.Controls.Add(this.soTienTu);
+            this.grbThongTin.Controls.Add(this.panelFilter1);
+            this.grbThongTin.Controls.Add(this.chkLike);
+            this.grbThongTin.Controls.Add(this.txtMaBoPhan);
+            this.grbThongTin.Controls.Add(this.maThanhToan);
+            this.grbThongTin.Controls.Add(this.txtThueSuat);
+            this.grbThongTin.Controls.Add(this.taiKhoanCo);
+            this.grbThongTin.Controls.Add(this.ctDenSo);
+            this.grbThongTin.Controls.Add(this.dienGiai);
+            this.grbThongTin.Controls.Add(this.maNhanVien);
+            this.grbThongTin.Controls.Add(this.txtTkThueNk);
+            this.grbThongTin.Controls.Add(this.maKhach);
+            this.grbThongTin.Controls.Add(this.maThue);
+            this.grbThongTin.Controls.Add(this.ctTuSo);
+            this.grbThongTin.Controls.Add(this.v6Label25);
+            this.grbThongTin.Controls.Add(this.v6Label24);
+            this.grbThongTin.Controls.Add(this.v6Label1);
+            this.grbThongTin.Controls.Add(this.v6Label21);
+            this.grbThongTin.Controls.Add(this.v6Label29);
+            this.grbThongTin.Controls.Add(this.v6Label23);
+            this.grbThongTin.Controls.Add(this.v6Label20);
+            this.grbThongTin.Controls.Add(this.v6Label28);
+            this.grbThongTin.Controls.Add(this.v6Label6);
+            this.grbThongTin.Controls.Add(this.v6Label26);
+            this.grbThongTin.Controls.Add(this.v6Label22);
+            this.grbThongTin.Controls.Add(this.v6Label7);
+            this.grbThongTin.Controls.Add(this.v6Label8);
+            this.grbThongTin.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grbThongTin.Location = new System.Drawing.Point(0, 0);
+            this.grbThongTin.Name = "grbThongTin";
+            this.grbThongTin.Size = new System.Drawing.Size(759, 239);
+            this.grbThongTin.TabIndex = 0;
+            this.grbThongTin.TabStop = false;
+            this.grbThongTin.Text = "Lọc thông tin";
             // 
             // txtNhomKH9
             // 
@@ -686,18 +686,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Loc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.grbThongTin);
             this.Name = "LocThongTinPhieuNhapKhau";
             this.Size = new System.Drawing.Size(759, 239);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.grbThongTin.ResumeLayout(false);
+            this.grbThongTin.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grbThongTin;
         private V6Controls.V6Label v6Label25;
         private V6Controls.V6Label v6Label24;
         private V6Controls.V6Label v6Label21;
@@ -717,7 +717,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Loc
         private V6Controls.V6VvarTextBox dienGiai;
         private V6Controls.V6VvarTextBox maNhanVien;
         private V6Controls.V6VvarTextBox txtTkThueNk;
-        private V6Controls.V6VvarTextBox maKhach;
+        public V6Controls.V6VvarTextBox maKhach;
         private V6Controls.V6VvarTextBox maThue;
         private V6Controls.V6VvarTextBox ctTuSo;
         private V6Controls.V6CheckBox chkLike;

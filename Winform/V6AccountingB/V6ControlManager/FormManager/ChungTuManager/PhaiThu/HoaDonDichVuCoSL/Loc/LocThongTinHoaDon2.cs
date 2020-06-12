@@ -123,7 +123,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.L
                 }
             }
 
-            var keys = V6ControlFormHelper.GetFormDataDictionary(groupBox1);
+            var keys = V6ControlFormHelper.GetFormDataDictionary(grbThongTin);
             var result2 = SqlGenerator.GenWhere2_oper(tableStruct, keys, oper, and, tableLable);
             if (result2.Length > 0)
             {

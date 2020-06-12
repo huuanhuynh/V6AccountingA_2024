@@ -3773,7 +3773,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         #region ==== AM Methods ====
         private void LoadAll()
         {
-            AM = Invoice.SearchAM("1=0", "1=0", "", "", "");//Làm AM khác null
+            AM = Invoice.SearchAM("1=0", "1=0", "", "", "", null);//Làm AM khác null
             EnableControls();
             GetSoPhieuInit();
             LoadAlnt(cboMaNt);
@@ -4295,11 +4295,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 DataTable loadAM = null;
                 if (string.IsNullOrEmpty(_sttRec))
                 {
-                    loadAM = Invoice.SearchAM("1=0", "1=0", "", "", "");
+                    loadAM = Invoice.SearchAM("1=0", "1=0", "", "", "", null);
                 }
                 else
                 {
-                    loadAM = Invoice.SearchAM("", "Stt_rec='" + _sttRec + "'", "", "", "");
+                    loadAM = Invoice.SearchAM("", "Stt_rec='" + _sttRec + "'", "", "", "", null);
                 }
 
                 if (loadAM.Rows.Count == 1)

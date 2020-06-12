@@ -209,7 +209,7 @@ namespace V6ControlManager.FormManager.VitriManager
             }
 
             var whereAD = "";
-            var data_hoadon = hoadonCafe_Invoice.SearchAM("", whereAM, whereAD, "", "");
+            var data_hoadon = hoadonCafe_Invoice.SearchAM("", whereAM, whereAD, "", "", null);
             return data_hoadon;
         }
 

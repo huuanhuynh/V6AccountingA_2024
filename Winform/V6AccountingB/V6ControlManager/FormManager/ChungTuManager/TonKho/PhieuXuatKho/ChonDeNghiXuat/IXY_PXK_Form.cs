@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
@@ -129,6 +130,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.ChonDe
             grbTuyChon.Visible = false;
 
             _locKetQua.Visible = true;
+            _locKetQua.BringToFront();
             _locKetQua.dataGridView1.Focus();
         }
 
@@ -231,29 +233,34 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.ChonDe
             }
         }
 
-        private string _where0Time = "", _where1AM = "", _where2AD = "", _w3NhomVt = "", _w4Dvcs = "", _advance = "";
+        private string _where0Time = "", _where1AM = "", _where2AD = "", _w3NhomVt = "", _w4Dvcs = "", _w4Dvcs_2 = "", _advance = "";
         private void PrepareThread()
         {
             var stru = Invoice.AMStruct;
-            _where0Time = GetFilterSql_ThoiGian(stru, "", "like");
-            _where1AM = GetFilterSql_ThongTin(stru, "", "like");
+            _where0Time = GetFilterSql_ThoiGian(stru, "", chkThoiGianStart.Checked ? "start" : "like");
+            _where1AM = GetFilterSql_ThongTin(stru, "", chkTTstart.Checked ? "start" : "like");
             var w1 = GetAMFilterSql_TuyChon();
             if (w1.Length > 0)
                 _where1AM += (_where1AM.Length > 0 ? " and " : "") + w1;
 
             var stru2 = Invoice.ADStruct;
-            _where2AD = GetFilterSql_TTChiTiet(stru2, "", "like");
-            _w3NhomVt = GetNhVtFilterSql_TuyChon("", "like");
+            _where2AD = GetFilterSql_ThongTinCT(stru2, "", chkTTCTstart.Checked ? "start" : "like");
+            _w3NhomVt = GetNhVtFilterSql_TuyChon("", chkTuyChonStart.Checked ? "start" : "like");
             var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
             _w4Dvcs = GetDvcsFilterSql_TuyChon(struDvcs, "", "start");
-            _advance = GetFilterSql_Advance(V6BusinessHelper.GetTableStruct("ARS90"), "", "like");
+            var option = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MADVCS2MAKHO"));
+            if (((IList) option).Contains(Invoice.Mact))
+            {
+                _w4Dvcs_2 = Invoice.GetMaDvcsFilterByMaKho(maKhach.Text, txtMaDVCS.Text);
+            }
+            _advance = GetFilterSql_Advance(V6BusinessHelper.GetTableStruct("ARS90"), "", chkTTCTstart.Checked ? "start" : "like");
         }
 
         private void DoSearch()
         {
             try
             {
-                tAM = Invoice.SearchDeNghiXuat_PXK(_ngayCt, _where0Time, _where1AM, _where2AD, _w3NhomVt, _w4Dvcs, _advance, out _loai_ct_chon);
+                tAM = Invoice.SearchDeNghiXuat_PXK(_ngayCt, _where0Time, _where1AM, _where2AD, _w3NhomVt, _w4Dvcs, _w4Dvcs_2, _advance, out _loai_ct_chon);
                 if (tAM != null && tAM.Rows.Count > 0)
                 {
                     flagSearchSuccess = true;
@@ -444,7 +451,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.ChonDe
         }
 
 
-        public string GetFilterSql_TTChiTiet(V6TableStruct tableStruct, string tableLable,
+        public string GetFilterSql_ThongTinCT(V6TableStruct tableStruct, string tableLable,
             string oper = "=", bool and = true)
         {
             var and_or = and ? " AND " : " OR ";

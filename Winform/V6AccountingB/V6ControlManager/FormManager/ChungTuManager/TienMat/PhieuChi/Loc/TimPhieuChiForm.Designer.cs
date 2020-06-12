@@ -30,6 +30,7 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.grbThongTinCT = new System.Windows.Forms.GroupBox();
+            this.chkTTCTstart = new V6Controls.V6CheckBox();
             this.panelFilterTTCT = new V6ReportControls.PanelFilter();
             this.v6ColorTextBox4 = new V6Controls.V6VvarTextBox();
             this.v6ColorTextBox5 = new V6Controls.V6VvarTextBox();
@@ -59,6 +60,7 @@
             this.v6Label37 = new V6Controls.V6Label();
             this.grbThongTin = new System.Windows.Forms.GroupBox();
             this.txtNhomKH9 = new V6Controls.V6VvarTextBox();
+            this.chkTTstart = new V6Controls.V6CheckBox();
             this.txtNhomKH8 = new V6Controls.V6VvarTextBox();
             this.txtNhomKH6 = new V6Controls.V6VvarTextBox();
             this.txtNhomKH5 = new V6Controls.V6VvarTextBox();
@@ -97,12 +99,14 @@
             this.grbThoiGian = new System.Windows.Forms.GroupBox();
             this.lblDenNgay = new V6Controls.V6Label();
             this.dateNgayCt2 = new V6Controls.V6DateTimePicker();
+            this.chkThoiGianStart = new V6Controls.V6CheckBox();
             this.lblTuNgay = new V6Controls.V6Label();
             this.dateNgayCt1 = new V6Controls.V6DateTimePicker();
             this.grbTuyChon = new System.Windows.Forms.GroupBox();
             this.lblStatusDescription = new V6Controls.V6Label();
             this.txtTrangThai = new V6Controls.V6ColorTextBox();
             this.chkNSD = new V6Controls.V6CheckBox();
+            this.chkTuyChonStart = new V6Controls.V6CheckBox();
             this.v6Label21 = new V6Controls.V6Label();
             this.v6Label20 = new V6Controls.V6Label();
             this.btnHuy = new System.Windows.Forms.Button();
@@ -132,6 +136,7 @@
             // grbThongTinCT
             // 
             this.grbThongTinCT.AccessibleDescription = "SEARCHG00002";
+            this.grbThongTinCT.Controls.Add(this.chkTTCTstart);
             this.grbThongTinCT.Controls.Add(this.panelFilterTTCT);
             this.grbThongTinCT.Controls.Add(this.v6ColorTextBox4);
             this.grbThongTinCT.Controls.Add(this.v6ColorTextBox5);
@@ -165,6 +170,16 @@
             this.grbThongTinCT.TabIndex = 6;
             this.grbThongTinCT.TabStop = false;
             this.grbThongTinCT.Text = "Lọc thông tin chi tiết";
+            // 
+            // chkTTCTstart
+            // 
+            this.chkTTCTstart.AutoSize = true;
+            this.chkTTCTstart.Location = new System.Drawing.Point(399, 6);
+            this.chkTTCTstart.Name = "chkTTCTstart";
+            this.chkTTCTstart.Size = new System.Drawing.Size(46, 17);
+            this.chkTTCTstart.TabIndex = 48;
+            this.chkTTCTstart.Text = "start";
+            this.chkTTCTstart.UseVisualStyleBackColor = true;
             // 
             // panelFilterTTCT
             // 
@@ -528,6 +543,7 @@
             // 
             this.grbThongTin.AccessibleDescription = "SEARCHG00001";
             this.grbThongTin.Controls.Add(this.txtNhomKH9);
+            this.grbThongTin.Controls.Add(this.chkTTstart);
             this.grbThongTin.Controls.Add(this.txtNhomKH8);
             this.grbThongTin.Controls.Add(this.txtNhomKH6);
             this.grbThongTin.Controls.Add(this.txtNhomKH5);
@@ -548,13 +564,11 @@
             this.grbThongTin.Controls.Add(this.ctDenSo);
             this.grbThongTin.Controls.Add(this.dienGiai);
             this.grbThongTin.Controls.Add(this.maNhanVien);
-            this.grbThongTin.Controls.Add(this.txtMaDVCS);
             this.grbThongTin.Controls.Add(this.soTienTu);
             this.grbThongTin.Controls.Add(this.maKhach);
             this.grbThongTin.Controls.Add(this.ctTuSo);
             this.grbThongTin.Controls.Add(this.v6Label25);
             this.grbThongTin.Controls.Add(this.v6Label24);
-            this.grbThongTin.Controls.Add(this.v6Label1);
             this.grbThongTin.Controls.Add(this.v6Label29);
             this.grbThongTin.Controls.Add(this.v6Label23);
             this.grbThongTin.Controls.Add(this.v6Label5);
@@ -587,6 +601,16 @@
             this.txtNhomKH9.Size = new System.Drawing.Size(110, 20);
             this.txtNhomKH9.TabIndex = 34;
             this.txtNhomKH9.VVar = "NH_KH";
+            // 
+            // chkTTstart
+            // 
+            this.chkTTstart.AutoSize = true;
+            this.chkTTstart.Location = new System.Drawing.Point(399, 6);
+            this.chkTTstart.Name = "chkTTstart";
+            this.chkTTstart.Size = new System.Drawing.Size(46, 17);
+            this.chkTTstart.TabIndex = 47;
+            this.chkTTstart.Text = "start";
+            this.chkTTstart.UseVisualStyleBackColor = true;
             // 
             // txtNhomKH8
             // 
@@ -911,7 +935,7 @@
             this.txtMaDVCS.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtMaDVCS.HoverColor = System.Drawing.Color.Yellow;
             this.txtMaDVCS.LeaveColor = System.Drawing.Color.White;
-            this.txtMaDVCS.Location = new System.Drawing.Point(87, 59);
+            this.txtMaDVCS.Location = new System.Drawing.Point(210, 13);
             this.txtMaDVCS.Name = "txtMaDVCS";
             this.txtMaDVCS.Size = new System.Drawing.Size(130, 20);
             this.txtMaDVCS.TabIndex = 10;
@@ -994,7 +1018,7 @@
             // 
             this.v6Label1.AccessibleDescription = "SEARCHL00043";
             this.v6Label1.AutoSize = true;
-            this.v6Label1.Location = new System.Drawing.Point(4, 62);
+            this.v6Label1.Location = new System.Drawing.Point(127, 16);
             this.v6Label1.Name = "v6Label1";
             this.v6Label1.Size = new System.Drawing.Size(55, 13);
             this.v6Label1.TabIndex = 9;
@@ -1085,6 +1109,7 @@
             this.grbThoiGian.AccessibleDescription = "SEARCHG00004";
             this.grbThoiGian.Controls.Add(this.lblDenNgay);
             this.grbThoiGian.Controls.Add(this.dateNgayCt2);
+            this.grbThoiGian.Controls.Add(this.chkThoiGianStart);
             this.grbThoiGian.Controls.Add(this.lblTuNgay);
             this.grbThoiGian.Controls.Add(this.dateNgayCt1);
             this.grbThoiGian.Location = new System.Drawing.Point(3, 1);
@@ -1117,6 +1142,16 @@
             this.dateNgayCt2.Size = new System.Drawing.Size(102, 20);
             this.dateNgayCt2.TabIndex = 3;
             // 
+            // chkThoiGianStart
+            // 
+            this.chkThoiGianStart.AutoSize = true;
+            this.chkThoiGianStart.Location = new System.Drawing.Point(399, 2);
+            this.chkThoiGianStart.Name = "chkThoiGianStart";
+            this.chkThoiGianStart.Size = new System.Drawing.Size(46, 17);
+            this.chkThoiGianStart.TabIndex = 46;
+            this.chkThoiGianStart.Text = "start";
+            this.chkThoiGianStart.UseVisualStyleBackColor = true;
+            // 
             // lblTuNgay
             // 
             this.lblTuNgay.AccessibleDescription = "SEARCHL00037";
@@ -1146,8 +1181,11 @@
             this.grbTuyChon.Controls.Add(this.lblStatusDescription);
             this.grbTuyChon.Controls.Add(this.txtTrangThai);
             this.grbTuyChon.Controls.Add(this.chkNSD);
+            this.grbTuyChon.Controls.Add(this.chkTuyChonStart);
             this.grbTuyChon.Controls.Add(this.v6Label21);
             this.grbTuyChon.Controls.Add(this.v6Label20);
+            this.grbTuyChon.Controls.Add(this.txtMaDVCS);
+            this.grbTuyChon.Controls.Add(this.v6Label1);
             this.grbTuyChon.Location = new System.Drawing.Point(4, 431);
             this.grbTuyChon.Name = "grbTuyChon";
             this.grbTuyChon.Size = new System.Drawing.Size(759, 83);
@@ -1190,6 +1228,16 @@
             this.chkNSD.Size = new System.Drawing.Size(15, 14);
             this.chkNSD.TabIndex = 3;
             this.chkNSD.UseVisualStyleBackColor = true;
+            // 
+            // chkTuyChonStart
+            // 
+            this.chkTuyChonStart.AutoSize = true;
+            this.chkTuyChonStart.Location = new System.Drawing.Point(450, 16);
+            this.chkTuyChonStart.Name = "chkTuyChonStart";
+            this.chkTuyChonStart.Size = new System.Drawing.Size(46, 17);
+            this.chkTuyChonStart.TabIndex = 49;
+            this.chkTuyChonStart.Text = "start";
+            this.chkTuyChonStart.UseVisualStyleBackColor = true;
             // 
             // v6Label21
             // 
@@ -1373,5 +1421,9 @@
         private V6Controls.V6Label v6Label33;
         private V6Controls.V6Label v6Label35;
         private V6Controls.V6Label v6Label37;
+        private V6Controls.V6CheckBox chkTTCTstart;
+        private V6Controls.V6CheckBox chkTTstart;
+        private V6Controls.V6CheckBox chkThoiGianStart;
+        private V6Controls.V6CheckBox chkTuyChonStart;
     }
 }

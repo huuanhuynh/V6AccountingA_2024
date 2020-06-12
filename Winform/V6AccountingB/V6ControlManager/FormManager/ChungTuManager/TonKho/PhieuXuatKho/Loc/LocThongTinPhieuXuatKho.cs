@@ -23,12 +23,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.Loc
         {
             try
             {
-                txtMaDVCS.Text = V6Login.Madvcs;
-                if (V6Login.MadvcsCount <= 1)
-                {
-                    txtMaDVCS.Enabled = false;
-                    txtMaDVCS.ReadOnly = true;
-                }
                 soTienTu.DecimalPlaces = V6Options.M_ROUND_NT;
                 soTienDen.DecimalPlaces = V6Options.M_ROUND_NT;
 
@@ -48,7 +42,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.Loc
             }
         }
 
-        public string GetFilterSql(V6TableStruct tableStruct, string tableLable = null,
+        public string locThongTin_GetFilterSql(V6TableStruct tableStruct, string tableLable = null,
             string oper = "=", bool and = true)
         {
             var tbL = string.IsNullOrEmpty(tableLable) ? "" : tableLable + ".";
@@ -121,7 +115,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.Loc
                 }
             }
 
-            var keys = V6ControlFormHelper.GetFormDataDictionary(groupBox1);
+            var keys = V6ControlFormHelper.GetFormDataDictionary(grbThongTin);
             var result2 = SqlGenerator.GenWhere2_oper(tableStruct, keys, oper, and, tableLable);
             if (result2.Length > 0)
             {
@@ -131,7 +125,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.Loc
             }
 
             //advance
-            var rAdvance = panelFilter1.GetQueryString(tableStruct, tableLable, and);
+            var rAdvance = panelFilterThongTin.GetQueryString(tableStruct, tableLable, and);
             if (rAdvance.Length > 0)
             {
                 result += (result.Length > 0 ? and_or : "") + " " + rAdvance;
@@ -190,7 +184,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.Loc
 
         public void CreateDynamicFilter(V6TableStruct amStruct, string advAM)
         {
-            panelFilter1.AddMultiFilterLine(amStruct, advAM);
+            panelFilterThongTin.AddMultiFilterLine(amStruct, advAM);
         }
 
         private void chkLike_CheckedChanged(object sender, System.EventArgs e)
@@ -198,9 +192,5 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.Loc
             ctDenSo.Enabled = !chkLike.Checked;
         }
 
-        private void LocThongTinPhieuXuatKho_VisibleChanged(object sender, EventArgs e)
-        {
-            txtMaDVCS.Text = V6Login.Madvcs;
-        }
     }
 }

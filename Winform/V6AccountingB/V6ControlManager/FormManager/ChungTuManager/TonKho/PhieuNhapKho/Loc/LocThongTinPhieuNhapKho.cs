@@ -23,12 +23,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.Loc
         {
             try
             {
-                txtMaDVCS.Text = V6Login.Madvcs;
-                if (V6Login.MadvcsCount <= 1)
-                {
-                    txtMaDVCS.Enabled = false;
-                    txtMaDVCS.ReadOnly = true;
-                }
                 soTienTu.DecimalPlaces = V6Options.M_ROUND_NT;
                 soTienDen.DecimalPlaces = V6Options.M_ROUND_NT;
 
@@ -48,7 +42,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.Loc
             }
         }
 
-        public string GetFilterSql(V6TableStruct tableStruct, string tableLable = null,
+        public string GetFilterSql_ThongTin(V6TableStruct tableStruct, string tableLable = null,
             string oper = "=", bool and = true)
         {
             var tbL = string.IsNullOrEmpty(tableLable) ? "" : tableLable + ".";
@@ -120,7 +114,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.Loc
                               + tbL + "T_TIEN_NT <=" + soTienDen.Value.ToString(CultureInfo.InvariantCulture);
                 }
             }
-            var keys = V6ControlFormHelper.GetFormDataDictionary(groupBox1);
+            var keys = V6ControlFormHelper.GetFormDataDictionary(grbThongTin);
             var result2 = SqlGenerator.GenWhere2_oper(tableStruct, keys, oper, and, tableLable);
             if (result2.Length > 0)
             {
@@ -197,9 +191,5 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.Loc
             ctDenSo.Enabled = !chkLike.Checked;
         }
 
-        private void LocThongTinPhieuNhapKho_VisibleChanged(object sender, EventArgs e)
-        {
-            txtMaDVCS.Text = V6Login.Madvcs;
-        }
     }
 }

@@ -2,9 +2,11 @@
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
+using V6AccountingBusiness;
 using V6Controls;
 using V6Controls.Forms;
 using V6SqlConnect;
+using V6Tools;
 
 namespace V6ControlManager.FormManager.ToolManager
 {
@@ -21,7 +23,7 @@ namespace V6ControlManager.FormManager.ToolManager
             GetDataTableList();
         }
         
-        string tbName = "";
+        string selectedTableName = "";
         
         private void GetDataTableList()
         {
@@ -50,13 +52,13 @@ namespace V6ControlManager.FormManager.ToolManager
                 if (listBoxTablesName.SelectedItems.Count <= 0)
                 {
                     if (listBoxTablesName.Items.Count > 0)
-                        tbName = listBoxTablesName.Items[0].ToString();
+                        selectedTableName = listBoxTablesName.Items[0].ToString();
                 }
                 else
                 {
-                    tbName = listBoxTablesName.SelectedItems[0].ToString();
+                    selectedTableName = listBoxTablesName.SelectedItems[0].ToString();
                 }
-                data = SqlConnect.ExecuteDataset(CommandType.Text, sqlSelectTable.Replace("{TableName}", tbName)).Tables[0];
+                data = SqlConnect.ExecuteDataset(CommandType.Text, sqlSelectTable.Replace("{TableName}", selectedTableName)).Tables[0];
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = data;
             }
@@ -77,12 +79,15 @@ namespace V6ControlManager.FormManager.ToolManager
             {
                 if (data != null)
                 {
-                    DataTable table2 = data;
-                    if(chkConvert.Checked)
+                    DataTable exportData;
+                    if (chkConvert.Checked)
                     {
                         string from = txtFrom.Text.Trim(), to = txtTo.Text.Trim();
-
-                        table2 = V6Tools.V6Convert.Data_Table.ChuyenMaTiengViet(data, from, to);
+                        exportData = V6Tools.V6Convert.Data_Table.ChuyenMaTiengViet(data, from, to);
+                    }
+                    else
+                    {
+                        exportData = data.Copy();
                     }
                     SaveFileDialog o = new SaveFileDialog();
                     o.Filter = "Excel 2003|*.xls|Excel 2007-2010|*.xlsx|DatabaseFox|*.dbf|Text file|*.txt|Xml file|*.xml";
@@ -93,27 +98,27 @@ namespace V6ControlManager.FormManager.ToolManager
                         bool no = false;
                         if (ext.StartsWith(".xls"))
                         {
-                            V6Tools.V6Export.ExportData.ToExcel(table2, o.FileName, "");
+                            V6Tools.V6Export.ExportData.ToExcel(exportData, o.FileName, "");
                         }
                         else if (ext == ".dbf")
                         {
-                            V6Tools.V6Export.ExportData.ToDbfFile(table2, o.FileName);
+                            V6Tools.V6Export.ExportData.ToDbfFile(exportData, o.FileName);
                         }
                         else if (ext == ".txt")
                         {
-                            V6Tools.V6Export.ExportData.ToTextFile(table2, o.FileName);
+                            V6Tools.V6Export.ExportData.ToTextFile(exportData, o.FileName);
                         }
                         else if (ext == ".xml")
                         {
-                            V6Tools.V6Export.ExportData.ToXmlFile(table2, o.FileName);
+                            V6Tools.V6Export.ExportData.ToXmlFile(exportData, o.FileName);
                         }
                         else
                         {
                             no = true;
                             V6Message.Show("Chưa hỗ trợ " + ext);
-                            V6Tools.V6Export.ExportData.ToTextFile(table2, o.FileName);
+                            V6Tools.V6Export.ExportData.ToTextFile(exportData, o.FileName);
                         }
-                        if (!no) V6Message.Show("Xong.");
+                        if (!no) V6Message.Show("Xong.", this);
                     }
                 }
                 else
@@ -133,39 +138,25 @@ namespace V6ControlManager.FormManager.ToolManager
             {
                 if (data != null)
                 {
-                    DataTable table2 = data;
+                    DataTable exportData;
                     if (chkConvert.Checked)
                     {
                         string from = txtFrom.Text.Trim(), to = txtTo.Text.Trim();
-
-                        table2 = V6Tools.V6Convert.Data_Table.ChuyenMaTiengViet(data, from, to);
+                        exportData = V6Tools.V6Convert.Data_Table.ChuyenMaTiengViet(data, from, to);
+                    }
+                    else
+                    {
+                        exportData = data.Copy();
                     }
                     SaveFileDialog o = new SaveFileDialog();
-                    o.Filter = "Excel 2003|*.xls|Excel 2007-2010|*.xlsx|DatabaseFox|*.dbf|Text file|*.txt";
+                    o.Filter = "Xml|*.xml";
 
                     if (o.ShowDialog(this) == DialogResult.OK && o.FileName != null)
                     {
-                        string ext = Path.GetExtension(o.FileName).ToLower();
+                        //string ext = Path.GetExtension(o.FileName).ToLower();
                         bool no = false;
-                        if (ext.StartsWith(".xls"))
-                        {
-                            V6Tools.V6Export.ExportData.ToExcel(table2, o.FileName, "");
-                        }
-                        else if (ext == ".dbf")
-                        {
-                            V6Tools.V6Export.ExportData.ToDbfFile(table2, o.FileName);
-                        }
-                        else if (ext == ".txt")
-                        {
-                            V6Tools.V6Export.ExportData.ToTextFile(table2, o.FileName);
-                        }
-                        else
-                        {
-                            no = true;
-                            V6Message.Show("Chưa hỗ trợ " + ext);
-                            V6Tools.V6Export.ExportData.ToTextFile(table2, o.FileName);
-                        }
-                        if (!no) V6Message.Show("Xong.");
+                        V6Tools.V6Export.ExportData.ToXmlFile(exportData, o.FileName);
+                        V6Message.Show("Xong.", this);
                     }
                 }
                 else
@@ -176,6 +167,80 @@ namespace V6ControlManager.FormManager.ToolManager
             catch (Exception ex)
             {
                 this.ShowErrorMessage(ex.Message);
+            }
+        }
+        
+        private void btnRowsToXml_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (data != null)
+                {
+                    string saveFile = V6ControlFormHelper.ChooseSaveFile(this, "Xml|*.xml");
+                    if (string.IsNullOrEmpty(saveFile)) return;
+
+                    DataTable exportData = data.Clone();
+                    foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+                    {
+                        exportData.AddRow(((DataRowView) row.DataBoundItem).Row);
+                    }
+                    //if (chkConvert.Checked)
+                    //{
+                    //    string from = txtFrom.Text.Trim(), to = txtTo.Text.Trim();
+                    //    exportData = V6Tools.V6Convert.Data_Table.ChuyenMaTiengViet(exportData, from, to);
+                    //}
+
+                    // Bỏ cột UID
+                    if (exportData.Columns.Contains("UID"))
+                    {
+                        exportData.Columns.Remove("UID");
+                    }
+
+                    V6Tools.V6Export.ExportData.ToXmlFile(exportData, saveFile);
+                    V6Message.Show("Xong.", this);
+                }
+                else
+                {
+                    V6Message.Show("Không có dữ liệu kết quả.");
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(ex.Message);
+            }
+        }
+        
+        private void btnImportXml_Click(object sender, EventArgs e)
+        {
+            int count = 0;
+            try
+            {
+                var openFile = V6ControlFormHelper.ChooseOpenFile(this, "Xml|*.xml");
+                if (string.IsNullOrEmpty(openFile)) return;
+                FileStream fs = new FileStream(openFile, FileMode.Open);
+                var _ds = new DataSet();
+                _ds.ReadXml(fs);
+                fs.Close();
+                if (_ds.Tables.Count > 0)
+                {
+                    var importData = _ds.Tables[0];
+                    // Bỏ cột UID
+                    if (importData.Columns.Contains("UID"))
+                    {
+                        importData.Columns.Remove("UID");
+                    }
+                    
+                    foreach (DataRow row in importData.Rows)
+                    {
+                        V6BusinessHelper.Insert(selectedTableName, row.ToDataDictionary());
+                        count++;
+                    }
+                    V6Message.Show("Xong. " + count, this);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage("Import count: " + count + "\r\n" + ex.Message);
             }
         }
 

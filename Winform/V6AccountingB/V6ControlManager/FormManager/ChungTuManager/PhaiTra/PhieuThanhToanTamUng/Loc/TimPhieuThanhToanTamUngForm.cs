@@ -46,6 +46,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
 
         private void MyInit()
         {
+            txtMaDVCS.Text = V6Login.Madvcs;
+            if (V6Login.MadvcsCount <= 1)
+            {
+                txtMaDVCS.Enabled = false;
+                txtMaDVCS.ReadOnly = true;
+            }
             InitTuyChon();
             InitLocKetQua();
 
@@ -104,6 +110,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             grbTuyChon.Visible = false;
 
             _locKetQua.Visible = true;
+            _locKetQua.BringToFront();
             _locKetQua.dataGridView1.Focus();
         }
 
@@ -193,22 +200,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             }
         }
 
-        private string _where0Time = "", _where1AM = "", _where2AD = "", _w3NhomVt = "", _w4Dvcs = "";
+        private string _where0Time = "", _where1AM = "", _where2AD = "", _w3NhomVt = "", _w4Dvcs = "", _w4Dvcs_2 = "";
 
         private void PrepareThread()
         {
             var stru = _formChungTu.Invoice.AMStruct;
-            _where0Time = locThoiGian1.GetFilterSql(stru, "", "like");
-            _where1AM = locThongTin1.GetFilterSql(stru, "", "like");
+            _where0Time = locThoiGian1.GetFilterSql(stru, "", chkThoiGianStart.Checked ? "start" : "like");
+            _where1AM = locThongTin1.GetFilterSql(stru, "", chkTTstart.Checked ? "start" : "like");
             var w1 = GetAMFilterSql_TuyChon();
             if (w1.Length > 0)
                 _where1AM += (_where1AM.Length > 0 ? " and " : "") + w1;
 
             var AD_Struct = _formChungTu.Invoice.ADStruct;
-            _where2AD = locThongTinChiTiet1.GetFilterSql(AD_Struct, "", "like");
-            _w3NhomVt = GetNhVtFilterSql_TuyChon("", "like");
-            //var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
-            //var w4Dvcs = locTuyChon1.GetDvcsFilterSql(struDvcs, "", "start");
+            _where2AD = locThongTinChiTiet1.GetFilterSql(AD_Struct, "", chkTTCTstart.Checked ? "start" : "like");
+            _w3NhomVt = GetNhVtFilterSql_TuyChon("", chkTuyChonStart.Checked ? "start" : "like");
+            var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
+            _w4Dvcs = GetDvcsFilterSql_TuyChon(struDvcs, "", "start");
         }
 
         private void DoSearch()
@@ -289,6 +296,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             return result;
         }
 
+        public string GetDvcsFilterSql_TuyChon(V6TableStruct tableStruct, string tableLable, string oper = "=", bool and = true)
+        {
+            var keys = new SortedDictionary<string, object>
+            {
+                {"MA_DVCS", txtMaDVCS.Text.Trim()}
+            };
+            var result = SqlGenerator.GenWhere2(tableStruct, keys, oper, and, tableLable);
+            return result;
+        }
+
         private void Huy()
         {
             if (!_viewMode && _locKetQua != null && _locKetQua.Visible)
@@ -363,6 +380,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                 this.WriteExLog(GetType() + ".UpdateAM", ex);
             }
             ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _formChungTu.Invoice.Mact, _formChungTu.MA_NT);
+        }
+
+        private void txtMaDVCS_VisibleChanged(object sender, EventArgs e)
+        {
+            txtMaDVCS.Text = V6Login.Madvcs;
         }
     }
 }

@@ -73,6 +73,8 @@
             this.v6Label7 = new V6Controls.V6Label();
             this.v6Label8 = new V6Controls.V6Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chkTTstart = new V6Controls.V6CheckBox();
+            this.chkThoiGianStart = new V6Controls.V6CheckBox();
             this.locThoiGian1.SuspendLayout();
             this.locThongTin1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -128,6 +130,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.locThoiGian1.Controls.Add(this.v6Label2);
             this.locThoiGian1.Controls.Add(this.v6ColorDateTimePick2);
+            this.locThoiGian1.Controls.Add(this.chkThoiGianStart);
             this.locThoiGian1.Controls.Add(this.v6Label1);
             this.locThoiGian1.Controls.Add(this.v6ColorDateTimePick1);
             this.locThoiGian1.Location = new System.Drawing.Point(3, 6);
@@ -193,6 +196,7 @@
             this.locThongTin1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.locThongTin1.Controls.Add(this.lbtMaKH);
+            this.locThongTin1.Controls.Add(this.chkTTstart);
             this.locThongTin1.Controls.Add(this.chkLike);
             this.locThongTin1.Controls.Add(this.maThanhToan);
             this.locThongTin1.Controls.Add(this.taiKhoanThue);
@@ -709,6 +713,26 @@
             this.panel1.Size = new System.Drawing.Size(775, 488);
             this.panel1.TabIndex = 17;
             // 
+            // chkTTstart
+            // 
+            this.chkTTstart.AutoSize = true;
+            this.chkTTstart.Location = new System.Drawing.Point(451, 0);
+            this.chkTTstart.Name = "chkTTstart";
+            this.chkTTstart.Size = new System.Drawing.Size(46, 17);
+            this.chkTTstart.TabIndex = 47;
+            this.chkTTstart.Text = "start";
+            this.chkTTstart.UseVisualStyleBackColor = true;
+            // 
+            // chkThoiGianStart
+            // 
+            this.chkThoiGianStart.AutoSize = true;
+            this.chkThoiGianStart.Location = new System.Drawing.Point(453, -3);
+            this.chkThoiGianStart.Name = "chkThoiGianStart";
+            this.chkThoiGianStart.Size = new System.Drawing.Size(46, 17);
+            this.chkThoiGianStart.TabIndex = 46;
+            this.chkThoiGianStart.Text = "start";
+            this.chkThoiGianStart.UseVisualStyleBackColor = true;
+            // 
             // CPN_PhieuNhapChiPhiMuaHangForm
             // 
             this.AccessibleDescription = "SEARCHL00001";
@@ -785,5 +809,7 @@
         private V6Controls.V6Label v6Label8;
         private System.Windows.Forms.Panel panel1;
         private V6Controls.Controls.LookupButton lbtMaKH;
+        private V6Controls.V6CheckBox chkThoiGianStart;
+        private V6Controls.V6CheckBox chkTTstart;
     }
 }

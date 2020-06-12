@@ -11,7 +11,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.Loc
         {
             InitializeComponent();
         }
-        public string GetFilterSql(V6TableStruct tableStruct, string tableLable,
+        public string GetFilterSql_ThongTinCT(V6TableStruct tableStruct, string tableLable,
             string oper = "=", bool and = true)
         {
             var and_or = and ? " AND " : " OR ";

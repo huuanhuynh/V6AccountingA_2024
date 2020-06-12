@@ -106,6 +106,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
             grbTuyChon.Visible = false;
 
             _locKetQua.Visible = true;
+            _locKetQua.BringToFront();
             _locKetQua.Dock = DockStyle.Fill;
             _locKetQua.dataGridView1.Focus();
         }
@@ -198,20 +199,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
             }
         }
 
-        private string _where0Time = "", _where1AM = "", _where2AD = "", _w3NhomVt = "", _w4Dvcs = "";
+        private string _where0Time = "", _where1AM = "", _where2AD = "", _w3NhomVt = "", _w4Dvcs = "", _w4Dvcs_2 = "";
 
         private void PrepareThread()
         {
             var stru = _formChungTu.Invoice.AMStruct;
-            _where0Time = locThoiGian1.GetFilterSql(stru, "", "like");
-            _where1AM = locThongTin1.GetFilterSql(stru, "", "like");
+            _where0Time = locThoiGian1.GetFilterSql(stru, "", chkThoiGianStart.Checked ? "start" : "like");
+            _where1AM = locThongTin1.GetFilterSql(stru, "", chkTTstart.Checked ? "start" : "like");
             var w1 = GetAMFilterSql_TuyChon();
             if (w1.Length > 0)
                 _where1AM += (_where1AM.Length > 0 ? " and " : "") + w1;
 
             var AD_Struct = _formChungTu.Invoice.ADStruct;
-            _where2AD = locThongTinChiTiet1.GetFilterSql(AD_Struct, "", "like");
-            _w3NhomVt = GetNhVtFilterSql_TuyChon("", "like");
+            _where2AD = locThongTinChiTiet1.GetFilterSql(AD_Struct, "", chkTTCTstart.Checked ? "start" : "like");
+            _w3NhomVt = GetNhVtFilterSql_TuyChon("", chkTuyChonStart.Checked ? "start" : "like");
             //var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
             //var w4Dvcs = locTuyChon1.GetDvcsFilterSql(struDvcs, "", "start");
         }

@@ -130,6 +130,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
             grbTuyChon.Visible = false;
 
             _locKetQua.Visible = true;
+            _locKetQua.BringToFront();
             _locKetQua.dataGridView1.Focus();
         }
 
@@ -194,15 +195,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
         private void PrepareThread()
         {
             var stru = _formChungTu.Invoice.AMStruct;
-            _where0Time = grbThoiGian_GetFilterSql(stru, "", "like");
-            _where1AM = locThongTin1_GetFilterSql(_formChungTu.Invoice, stru, "", "start");
+            _where0Time = GetFilterSql_ThoiGian(stru, "", chkThoiGianStart.Checked ? "start" : "like");
+            _where1AM = GetFilterSql_ThongTin(_formChungTu.Invoice, stru, "", chkTTstart.Checked ? "start" : "like");
             var w1 = GetAMFilterSql_TuyChon();
             if (w1.Length > 0)
                 _where1AM += (_where1AM.Length > 0 ? " and " : "") + w1;
 
             var stru2 = _formChungTu.Invoice.ADStruct;
-            _where2AD = grbThongTinChiTiet_GetFilterSql(stru2, "", "like");
-            _w3NhomVt = GetNhVtFilterSql_TuyChon("", "like");
+            _where2AD = GetFilterSql_ThongTinCT(stru2, "", chkTTCTstart.Checked ? "start" : "like");
+            _w3NhomVt = GetNhVtFilterSql_TuyChon("", chkTuyChonStart.Checked ? "start" : "like");
             var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
             _w4Dvcs = GetDvcsFilterSql_TuyChon(struDvcs, "", "start");
             var option = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MADVCS2MAKHO"));
@@ -212,7 +213,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
             }
         }
 
-        public string grbThongTinChiTiet_GetFilterSql(V6TableStruct tableStruct, string tableLable,
+        public string GetFilterSql_ThongTinCT(V6TableStruct tableStruct, string tableLable,
             string oper = "=", bool and = true)
         {
             var and_or = and ? " AND " : " OR ";
@@ -236,7 +237,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
             return result;
         }
 
-        private string grbThoiGian_GetFilterSql(V6TableStruct tableStruct, string tableLable, string oper = "=", bool and = true)
+        private string GetFilterSql_ThoiGian(V6TableStruct tableStruct, string tableLable, string oper = "=", bool and = true)
         {
             V6Setting.M_ngay_ct1 = v6ColorDateTimePick1.Date;
             V6Setting.M_ngay_ct2 = v6ColorDateTimePick2.Date;
@@ -262,7 +263,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc
             return result;
         }
 
-        public string locThongTin1_GetFilterSql(V6InvoiceBase invoice, V6TableStruct tableStruct, string tableLable = null,
+        public string GetFilterSql_ThongTin(V6InvoiceBase invoice, V6TableStruct tableStruct, string tableLable = null,
             string oper = "=", bool and = true)
         {
             var tbL = string.IsNullOrEmpty(tableLable) ? "" : tableLable + ".";

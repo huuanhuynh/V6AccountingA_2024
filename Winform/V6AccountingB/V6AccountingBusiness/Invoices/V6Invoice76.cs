@@ -194,7 +194,7 @@ namespace V6AccountingBusiness.Invoices
             }
         }
 
-        public DataTable SearchAM(string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)
+        public DataTable SearchAM(string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, string where4Dvcs_2)
         {
             string template =
                 "Select a.*, b.Ma_so_thue, b.Ten_kh AS Ten_kh,f.Ten_nvien AS Ten_nvien,g.Ten_httt AS Ten_httt "
@@ -218,8 +218,19 @@ namespace V6AccountingBusiness.Invoices
             {
                 if (where2AD.Length > 0) where2AD = "And " + where2AD;
                 if (where3NhVt.Length > 0) where3NhVt = "And " + where3NhVt;
-                if (where4Dvcs.Length > 0) where4Dvcs
-                    = string.Format("	And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
+                if (string.IsNullOrEmpty(where4Dvcs_2))
+                {
+                    if (where4Dvcs.Length > 0)
+                    {
+                        where4Dvcs = string.Format("	And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
+                    }
+                }
+                else
+                {
+                    where4Dvcs = string.Format("	And {0}", where4Dvcs_2);
+                }
+                //if (where4Dvcs.Length > 0) where4Dvcs
+                //    = string.Format("	And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
 
                 p2Template = string.Format(p2Template, where0Ngay, "", where2AD, where3NhVt, where4Dvcs);
             }
@@ -233,7 +244,7 @@ namespace V6AccountingBusiness.Invoices
             return tbl;
         }
         
-        public DataTable SearchPhieuXuat(string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, out string loai_ct_chon)
+        public DataTable SearchPhieuXuat(string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, string where4Dvcs_2, out string loai_ct_chon)
         {
             //string template =
             //    "Select d.*, d.STT_REC AS STT_REC_PX, d.STT_REC0 AS STT_REC0PX, v.ten_vt "
@@ -253,9 +264,20 @@ namespace V6AccountingBusiness.Invoices
             {
                 if (where2AD.Length > 0) where2AD = "And " + where2AD;
                 if (where3NhVt.Length > 0) where3NhVt = "And " + where3NhVt;
-                if (where4Dvcs.Length > 0)
-                    where4Dvcs
-                        = string.Format(" And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
+                if (string.IsNullOrEmpty(where4Dvcs_2))
+                {
+                    if (where4Dvcs.Length > 0)
+                    {
+                        where4Dvcs = string.Format("	And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
+                    }
+                }
+                else
+                {
+                    where4Dvcs = string.Format("	And {0}", where4Dvcs_2);
+                }
+                //if (where4Dvcs.Length > 0)
+                //    where4Dvcs
+                //        = string.Format(" And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
 
 
                 whereAD_Nhvt_Dvcs = string.Format("\n Where d.Stt_rec in (SELECT Stt_rec FROM AD81 WHERE Ma_ct = 'SOA' {0} {2}"

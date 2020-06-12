@@ -109,6 +109,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             locThongTin1.Visible = false;
 
             _locKetQua.Visible = true;
+            _locKetQua.BringToFront();
             _locKetQua.dataGridView1.Focus();
         }
 
@@ -251,13 +252,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             }
         }
 
-        private string _where0Time = "", _where1AM = "", _where2AD = "", _w3NhomVt = "", _w4Dvcs = "";
+        private string _where0Time = "", _where1AM = "", _where2AD = "", _w3NhomVt = "", _w4Dvcs = "", _w4Dvcs_2 = "";
 
         private void PrepareThread()
         {
             var stru = _hoaDonForm.Invoice.AMStruct;
-            _where0Time = locThoiGian1GetFilterSql(stru, "", "like");
-            _where1AM = locThongTin1GetFilterSql(stru, "", "like");
+            _where0Time = locThoiGian1GetFilterSql(stru, "", chkThoiGianStart.Checked ? "start" : "like");
+            _where1AM = locThongTin1GetFilterSql(stru, "", chkTTstart.Checked ? "start" : "like");
         }
 
         private void DoSearch()

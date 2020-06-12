@@ -269,8 +269,7 @@ namespace V6AccountingBusiness.Invoices
             }
         }
 
-        public DataTable SearchAM(string where0Ngay, string where1AM, string where2Dvcs,
-            string where3AD, string where4NhVt)
+        public DataTable SearchAM(string where0Ngay, string where1AM, string where2Dvcs, string where3AD, string where4NhVt)
         {
             string template =
                 "Select a.*, b.Ma_so_thue, b.Ten_kh AS Ten_kh,f.Ten_nvien AS Ten_nvien "

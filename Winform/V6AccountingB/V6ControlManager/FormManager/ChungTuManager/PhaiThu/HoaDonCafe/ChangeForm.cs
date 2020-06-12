@@ -178,7 +178,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     var whereAM = string.Format("Ngay_Ct='{0}' and MA_KHOPH = '{1}' and status in ('1','2') ",
                         day.ToString("yyyyMMdd"), SelectedKhoID);
                     var whereAD = "";
-                    var data_hoadon = hoadonCafe_Invoice.SearchAM("", whereAM, whereAD, "", "");
+                    var data_hoadon = hoadonCafe_Invoice.SearchAM("", whereAM, whereAD, "", "", null);
                     var dic_vitri = data_hoadon.ToDataSortedDictionary("Ma_vitriPH", "Stt_rec");
 
                     var not_in_list = "";

@@ -40,6 +40,8 @@
             this.btnExportXml = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.btnRowsToXml = new System.Windows.Forms.Button();
+            this.btnImportXml = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbExport.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -77,6 +79,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(175, 135);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(597, 398);
             this.dataGridView1.TabIndex = 7;
             // 
@@ -177,6 +180,27 @@
             this.richTextBox1.Text = "";
             this.richTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.richTextBox1_KeyDown);
             // 
+            // btnRowsToXml
+            // 
+            this.btnRowsToXml.Location = new System.Drawing.Point(186, 103);
+            this.btnRowsToXml.Name = "btnRowsToXml";
+            this.btnRowsToXml.Size = new System.Drawing.Size(75, 23);
+            this.btnRowsToXml.TabIndex = 8;
+            this.btnRowsToXml.Text = "Rows to Xml";
+            this.btnRowsToXml.UseVisualStyleBackColor = true;
+            this.btnRowsToXml.Click += new System.EventHandler(this.btnRowsToXml_Click);
+            // 
+            // btnImportXml
+            // 
+            this.btnImportXml.Location = new System.Drawing.Point(285, 103);
+            this.btnImportXml.Name = "btnImportXml";
+            this.btnImportXml.Size = new System.Drawing.Size(75, 23);
+            this.btnImportXml.TabIndex = 8;
+            this.btnImportXml.Text = "Import Xml";
+            this.btnImportXml.UseVisualStyleBackColor = true;
+            this.btnImportXml.Visible = false;
+            this.btnImportXml.Click += new System.EventHandler(this.btnImportXml_Click);
+            // 
             // FormExportSqlTableToFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -185,6 +209,8 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.grbExport);
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.btnImportXml);
+            this.Controls.Add(this.btnRowsToXml);
             this.Controls.Add(this.listBoxTablesName);
             this.Controls.Add(this.label5);
             this.Name = "FormExportSqlTableToFile";
@@ -192,6 +218,8 @@
             this.Load += new System.EventHandler(this.ToolExportSqlToExcel_Load);
             this.Controls.SetChildIndex(this.label5, 0);
             this.Controls.SetChildIndex(this.listBoxTablesName, 0);
+            this.Controls.SetChildIndex(this.btnRowsToXml, 0);
+            this.Controls.SetChildIndex(this.btnImportXml, 0);
             this.Controls.SetChildIndex(this.dataGridView1, 0);
             this.Controls.SetChildIndex(this.grbExport, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
@@ -219,5 +247,7 @@
         private System.Windows.Forms.Button btnExportXml;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Button btnRowsToXml;
+        private System.Windows.Forms.Button btnImportXml;
     }
 }

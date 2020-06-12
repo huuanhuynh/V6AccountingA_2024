@@ -15,7 +15,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuNh
             v6ColorDateTimePick1.SetValue(V6Setting.M_ngay_ct1);
             v6ColorDateTimePick2.SetValue(V6Setting.M_ngay_ct2);
         }
-        public string GetFilterSql(V6TableStruct tableStruct, string tableLable,
+        public string GetFilterSql_ThoiGian(V6TableStruct tableStruct, string tableLable,
             string oper = "=", bool and = true)
         {
             V6Setting.M_ngay_ct1 = v6ColorDateTimePick1.Date;

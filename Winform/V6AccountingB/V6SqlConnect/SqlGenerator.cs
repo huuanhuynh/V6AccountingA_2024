@@ -629,7 +629,7 @@ namespace V6SqlConnect
                             column.ColumnDefault,
                             column.AllowNull,
                             column.MaxLength,
-                            oper.ToLower()=="like")
+                            oper.ToLower())
                             );
                 }
             }
@@ -671,7 +671,7 @@ namespace V6SqlConnect
                             column.ColumnDefault,
                             column.AllowNull,
                             column.MaxLength,
-                            oper.ToLower()=="like")
+                            oper.ToLower())
                             );
                 }
             }
@@ -744,7 +744,7 @@ namespace V6SqlConnect
                             column.ColumnDefault,
                             column.AllowNull,
                             column.MaxLength,
-                            oper.ToLower() == "like")
+                            oper.ToLower())
                             );
                 }
             }
@@ -900,11 +900,11 @@ namespace V6SqlConnect
         /// <param name="sqltype"></param>
         /// <param name="defaultValue">Giá trị mặc định trong csdl</param>
         /// <param name="allowNull"></param>
-        /// <param name="like"></param>
+        /// <param name="oper">like hoặc start hoặc =</param>
         /// <param name="length"></param>
         /// <returns></returns>
-        public static string GenSqlStringValue(object objValue, string sqltype, string defaultValue, 
-            bool allowNull, int length, bool like = false)
+        public static string GenSqlStringValue(object objValue, string sqltype, string defaultValue,
+            bool allowNull, int length, string oper = "=")
         {
             switch (sqltype)
             {
@@ -946,7 +946,7 @@ namespace V6SqlConnect
                         text = text.Left(length);
                     }
 
-                    return GenSqlStringValueF(text, sqltype, defaultValue, allowNull, like);
+                    return GenSqlStringValueF(text, sqltype, defaultValue, allowNull, oper);
                     //break;
                 
                 default:
@@ -959,7 +959,7 @@ namespace V6SqlConnect
             
             var value = objValue==null? null:objValue.ToString();
 
-            return GenSqlStringValueF(value, sqltype, defaultValue, allowNull, like);
+            return GenSqlStringValueF(value, sqltype, defaultValue, allowNull, oper);
         }
 
         public static string GenSqlStringValue_oper(object objValue, string sqltype, string defaultValue,
@@ -1027,10 +1027,10 @@ namespace V6SqlConnect
         /// <param name="sqltype"></param>
         /// <param name="defaultValue">Giá trị mặc định trong csdl</param>
         /// <param name="allowNull"></param>
-        /// <param name="like">Chỉ dùng cho where like kiểu string</param>
+        /// <param name="like">like hoặc start hoặc =</param>
         /// <returns></returns>
         public static string GenSqlStringValueF(string value, string sqltype, string defaultValue,
-            bool allowNull, bool like)
+            bool allowNull, string like)
         {
             if (!string.IsNullOrEmpty(value))
                 value = RemoveSqlInjection(value);
@@ -1048,9 +1048,13 @@ namespace V6SqlConnect
                     case "text":
                     case "xml":
                         s = value;
-                        if (like)
+                        if (like == "like")
                         {
                             s = "N'%" + s + "%'";
+                        }
+                        else if (like == "start")
+                        {
+                            s = "N'" + s + "%'";
                         }
                         else
                         {

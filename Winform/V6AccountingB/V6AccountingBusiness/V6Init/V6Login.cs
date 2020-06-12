@@ -503,6 +503,21 @@ namespace V6Init
             return result;
         }
 
+        public static string GetMaDvcsFilterByMaKho(string ma_kh, string ma_dvcs)
+        {
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@Ma_ct", "ALL"),
+                new SqlParameter("@Ma_dvcs", ma_dvcs),
+                new SqlParameter("@Ma_kh", ma_kh),
+                new SqlParameter("@user_id", V6Login.UserId),
+                new SqlParameter("@Lan", V6Login.SelectedLanguage),
+            };
+            object where = V6BusinessHelper.ExecuteProcedureScalar("VPA_GET_WHERE_INVOICE_MADVCS2MAKHO", plist);
+
+            return "" + where;
+        }
+
         /// <summary>
         /// Lấy lại filter kho khi chọn lại dvcs.
         /// </summary>
@@ -511,6 +526,13 @@ namespace V6Init
         public static string GetFilterKhoByDVCS(string ma_dvcs)
         {
             string filter = "";
+
+            string get = GetMaDvcsFilterByMaKho("V6LOGIN", ma_dvcs);
+            if (!string.IsNullOrEmpty(get))
+            {
+                filter = get + " and (dbo.VFA_Inlist_MEMO(ma_kho, '" + UserInfo["r_kho"] + "')=1 or 1=" + (IsAdmin ? 1 : 0) + ")";
+                return filter;
+            }
 
             if (!string.IsNullOrEmpty(ma_dvcs))
             {

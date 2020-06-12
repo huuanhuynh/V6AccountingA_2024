@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6AccountingBusiness.Invoices;
 using V6Controls;
 using V6Controls.Forms;
 using V6Init;
 using V6SqlConnect;
 using V6Structs;
+using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhieuXuat
@@ -16,6 +19,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
     public partial class CPXHangTraLaiForm : V6Form
     {
         private readonly HangTraLaiControl _HangTraLaiForm;
+        private V6Invoice76 _invoice;
         private CPXKetQuaHangTraLai _locKetQua;
         private string _ma_dvcs, _ma_kh, _loai_ct_chon;
         //private bool __ready = false;
@@ -44,7 +48,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
         {
             InitializeComponent();
             _HangTraLaiForm = HangTraLaiForm;
-            //_orderListAD = orderListAD;
+            _invoice = HangTraLaiForm.Invoice;
             _ma_dvcs = ma_dvcs;
             _ma_kh = ma_kh;
             MyInit();
@@ -95,6 +99,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             grbTuyChon.Visible = false;
 
             _locKetQua.Visible = true;
+            _locKetQua.BringToFront();
             _locKetQua.dataGridView1.Focus();
         }
 
@@ -197,28 +202,34 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             }
         }
 
-        private string _where0Time = "", _where1AM = "", _where2AD = "", _w3NhomVt = "", _w4Dvcs = "";
+        private string _where0Time = "", _where1AM = "", _where2AD = "", _w3NhomVt = "", _w4Dvcs = "", _w4Dvcs_2 = "";
+        
         private void PrepareThread()
         {
             var stru = _HangTraLaiForm.Invoice.AMStruct;
-            _where0Time = locThoiGian1.GetFilterSql(stru, "", "like");
-            _where1AM = locThongTin1.GetFilterSql(stru, "", "like");
+            _where0Time = locThoiGian1.locThoiGian_GetFilterSql(stru, "", chkThoiGianStart.Checked ? "start" : "like");
+            _where1AM = locThongTin1.locThongTin_GetFilterSql(stru, "", chkTTstart.Checked ? "start" : "like");
             var w1 = GetAMFilterSql_TuyChon();
             if (w1.Length > 0)
                 _where1AM += (_where1AM.Length > 0 ? " and " : "") + w1;
 
             var stru2 = _HangTraLaiForm.Invoice.ADStruct;
-            _where2AD = locThongTinChiTiet1.GetFilterSql(stru2, "", "like");
-            _w3NhomVt = GetNhVtFilterSql_TuyChon("", "like");
+            _where2AD = locThongTinChiTiet1.locThongTinCT_GetFilterSql(stru2, "", chkTTCTstart.Checked ? "start" : "like");
+            _w3NhomVt = GetNhVtFilterSql_TuyChon("", chkTuyChonStart.Checked ? "start" : "like");
             var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
             _w4Dvcs = GetDvcsFilterSql_TuyChon(struDvcs, "", "start");
+            var option = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MADVCS2MAKHO"));
+            if (option.Contains(_invoice.Mact))
+            {
+                _w4Dvcs_2 = _invoice.GetMaDvcsFilterByMaKho(locThongTin1.maKhach.Text, txtMaDVCS.Text);
+            }
         }
 
         private void DoSearch()
         {
             try
             {
-                tAM = _HangTraLaiForm.Invoice.SearchPhieuXuat(_where0Time, _where1AM, _where2AD, _w3NhomVt, _w4Dvcs, out _loai_ct_chon);
+                tAM = _HangTraLaiForm.Invoice.SearchPhieuXuat(_where0Time, _where1AM, _where2AD, _w3NhomVt, _w4Dvcs, _w4Dvcs_2, out _loai_ct_chon);
                 if (tAM != null && tAM.Rows.Count > 0)
                 {
                     flagSearchSuccess = true;

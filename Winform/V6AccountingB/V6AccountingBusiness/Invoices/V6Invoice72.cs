@@ -255,7 +255,7 @@ namespace V6AccountingBusiness.Invoices
             }
         }
 
-        public DataTable SearchAM(string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs)
+        public DataTable SearchAM(string where0Ngay, string where1AM, string where2AD, string where3NhVt, string where4Dvcs, string where4Dvcs_2)
         {
             var filterKho = V6Login.GetFilterKho("MA_KHO");
             if (!string.IsNullOrEmpty(filterKho))
@@ -282,8 +282,19 @@ namespace V6AccountingBusiness.Invoices
             {
                 if (where2AD.Length > 0) where2AD = "And " + where2AD;
                 if (where3NhVt.Length > 0) where3NhVt = "And " + where3NhVt;
-                if (where4Dvcs.Length > 0) where4Dvcs
-                    = string.Format("	And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
+                if (string.IsNullOrEmpty(where4Dvcs_2))
+                {
+                    if (where4Dvcs.Length > 0)
+                    {
+                        where4Dvcs = string.Format("	And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
+                    }
+                }
+                else
+                {
+                    where4Dvcs = string.Format("	And {0}", where4Dvcs_2);
+                }
+                //if (where4Dvcs.Length > 0) where4Dvcs
+                //    = string.Format("	And Ma_kho_i IN (SELECT Ma_kho FROM Alkho WHERE 1 = 1 and {0})", where4Dvcs);
 
                 p2Template = string.Format(p2Template, where0Ngay, "", where2AD, where3NhVt, where4Dvcs);
             }

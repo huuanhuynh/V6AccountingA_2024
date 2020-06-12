@@ -30,7 +30,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grbThoiGian = new System.Windows.Forms.GroupBox();
             this.v6ColorTextBox2 = new V6Controls.V6ColorTextBox();
             this.v6ColorTextBox1 = new V6Controls.V6ColorTextBox();
             this.v6Label4 = new V6Controls.V6Label();
@@ -39,27 +39,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             this.v6ColorDateTimePick2 = new V6Controls.V6DateTimePicker();
             this.v6Label1 = new V6Controls.V6Label();
             this.v6ColorDateTimePick1 = new V6Controls.V6DateTimePicker();
-            this.groupBox1.SuspendLayout();
+            this.grbThoiGian.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // grbThoiGian
             // 
-            this.groupBox1.AccessibleDescription = "SEARCHG00004";
-            this.groupBox1.Controls.Add(this.v6ColorTextBox2);
-            this.groupBox1.Controls.Add(this.v6ColorTextBox1);
-            this.groupBox1.Controls.Add(this.v6Label4);
-            this.groupBox1.Controls.Add(this.v6Label3);
-            this.groupBox1.Controls.Add(this.v6Label2);
-            this.groupBox1.Controls.Add(this.v6ColorDateTimePick2);
-            this.groupBox1.Controls.Add(this.v6Label1);
-            this.groupBox1.Controls.Add(this.v6ColorDateTimePick1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(759, 48);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Lọc thời gian";
+            this.grbThoiGian.AccessibleDescription = "SEARCHG00004";
+            this.grbThoiGian.Controls.Add(this.v6ColorTextBox2);
+            this.grbThoiGian.Controls.Add(this.v6ColorTextBox1);
+            this.grbThoiGian.Controls.Add(this.v6Label4);
+            this.grbThoiGian.Controls.Add(this.v6Label3);
+            this.grbThoiGian.Controls.Add(this.v6Label2);
+            this.grbThoiGian.Controls.Add(this.v6ColorDateTimePick2);
+            this.grbThoiGian.Controls.Add(this.v6Label1);
+            this.grbThoiGian.Controls.Add(this.v6ColorDateTimePick1);
+            this.grbThoiGian.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grbThoiGian.Location = new System.Drawing.Point(0, 0);
+            this.grbThoiGian.Name = "grbThoiGian";
+            this.grbThoiGian.Size = new System.Drawing.Size(759, 48);
+            this.grbThoiGian.TabIndex = 1;
+            this.grbThoiGian.TabStop = false;
+            this.grbThoiGian.Text = "Lọc thời gian";
             // 
             // v6ColorTextBox2
             // 
@@ -161,18 +161,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.grbThoiGian);
             this.Name = "CPXThoiGianHangTraLai";
             this.Size = new System.Drawing.Size(759, 48);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.grbThoiGian.ResumeLayout(false);
+            this.grbThoiGian.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grbThoiGian;
         private V6ColorTextBox v6ColorTextBox2;
         private V6ColorTextBox v6ColorTextBox1;
         private V6Label v6Label4;

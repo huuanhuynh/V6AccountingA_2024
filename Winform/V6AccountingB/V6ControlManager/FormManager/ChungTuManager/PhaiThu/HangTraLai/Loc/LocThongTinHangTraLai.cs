@@ -42,7 +42,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.Loc
             }
         }
 
-        public string GetFilterSql(V6TableStruct tableStruct, string tableLable = null,
+        public string GetFilterSql_ThongTin(V6TableStruct tableStruct, string tableLable = null,
             string oper = "=", bool and = true)
         {
             var tbL = string.IsNullOrEmpty(tableLable) ? "" : tableLable + ".";
@@ -114,7 +114,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.Loc
                               + tbL + "T_TT_NT <=" + soTienDen.Value.ToString(CultureInfo.InvariantCulture);
                 }
             }
-            var keys = V6ControlFormHelper.GetFormDataDictionary(groupBox1);
+            var keys = V6ControlFormHelper.GetFormDataDictionary(grbThongTin);
             var result2 = SqlGenerator.GenWhere2_oper(tableStruct, keys, oper, and, tableLable);
             if (result2.Length > 0)
             {

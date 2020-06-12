@@ -122,6 +122,10 @@
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
             this.lblDocSoTien = new V6Controls.V6Label();
+            this.chkTTCTstart = new V6Controls.V6CheckBox();
+            this.chkTTstart = new V6Controls.V6CheckBox();
+            this.chkThoiGianStart = new V6Controls.V6CheckBox();
+            this.chkTuyChonStart = new V6Controls.V6CheckBox();
             this.panel1.SuspendLayout();
             this.grbThongTinChiTiet.SuspendLayout();
             this.grbThongTin.SuspendLayout();
@@ -148,6 +152,7 @@
             this.grbThongTinChiTiet.AccessibleDescription = "SEARCHG00002";
             this.grbThongTinChiTiet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grbThongTinChiTiet.Controls.Add(this.chkTTCTstart);
             this.grbThongTinChiTiet.Controls.Add(this.panelFilter2);
             this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox4);
             this.grbThongTinChiTiet.Controls.Add(this.v6ColorTextBox5);
@@ -633,6 +638,7 @@
             this.grbThongTin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grbThongTin.Controls.Add(this.lbtMaKH);
+            this.grbThongTin.Controls.Add(this.chkTTstart);
             this.grbThongTin.Controls.Add(this.panelFilter1);
             this.grbThongTin.Controls.Add(this.chkLike);
             this.grbThongTin.Controls.Add(this.taiKhoanThue);
@@ -1016,6 +1022,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grbThoiGian.Controls.Add(this.v6ColorTextBox2);
             this.grbThoiGian.Controls.Add(this.v6ColorTextBox1);
+            this.grbThoiGian.Controls.Add(this.chkThoiGianStart);
             this.grbThoiGian.Controls.Add(this.v6Label4);
             this.grbThoiGian.Controls.Add(this.v6Label3);
             this.grbThoiGian.Controls.Add(this.v6Label2);
@@ -1134,6 +1141,7 @@
             this.grbTuyChon.AccessibleDescription = "SEARCHG00003";
             this.grbTuyChon.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grbTuyChon.Controls.Add(this.chkTuyChonStart);
             this.grbTuyChon.Controls.Add(this.txtNhomVT6);
             this.grbTuyChon.Controls.Add(this.txtNhomVT5);
             this.grbTuyChon.Controls.Add(this.txtNhomVT4);
@@ -1445,6 +1453,46 @@
             this.lblDocSoTien.Text = "0";
             this.lblDocSoTien.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // chkTTCTstart
+            // 
+            this.chkTTCTstart.AutoSize = true;
+            this.chkTTCTstart.Location = new System.Drawing.Point(474, 3);
+            this.chkTTCTstart.Name = "chkTTCTstart";
+            this.chkTTCTstart.Size = new System.Drawing.Size(46, 17);
+            this.chkTTCTstart.TabIndex = 48;
+            this.chkTTCTstart.Text = "start";
+            this.chkTTCTstart.UseVisualStyleBackColor = true;
+            // 
+            // chkTTstart
+            // 
+            this.chkTTstart.AutoSize = true;
+            this.chkTTstart.Location = new System.Drawing.Point(454, 3);
+            this.chkTTstart.Name = "chkTTstart";
+            this.chkTTstart.Size = new System.Drawing.Size(46, 17);
+            this.chkTTstart.TabIndex = 47;
+            this.chkTTstart.Text = "start";
+            this.chkTTstart.UseVisualStyleBackColor = true;
+            // 
+            // chkThoiGianStart
+            // 
+            this.chkThoiGianStart.AutoSize = true;
+            this.chkThoiGianStart.Location = new System.Drawing.Point(355, 2);
+            this.chkThoiGianStart.Name = "chkThoiGianStart";
+            this.chkThoiGianStart.Size = new System.Drawing.Size(46, 17);
+            this.chkThoiGianStart.TabIndex = 46;
+            this.chkThoiGianStart.Text = "start";
+            this.chkThoiGianStart.UseVisualStyleBackColor = true;
+            // 
+            // chkTuyChonStart
+            // 
+            this.chkTuyChonStart.AutoSize = true;
+            this.chkTuyChonStart.Location = new System.Drawing.Point(230, 4);
+            this.chkTuyChonStart.Name = "chkTuyChonStart";
+            this.chkTuyChonStart.Size = new System.Drawing.Size(46, 17);
+            this.chkTuyChonStart.TabIndex = 49;
+            this.chkTuyChonStart.Text = "start";
+            this.chkTuyChonStart.UseVisualStyleBackColor = true;
+            // 
             // INY_PNKho_Form
             // 
             this.AccessibleDescription = "SEARCHL00001";
@@ -1575,5 +1623,9 @@
         private V6Controls.V6Label v6Label39;
         private V6Controls.V6Label v6Label40;
         private V6Controls.Controls.LookupButton lbtMaKH;
+        private V6Controls.V6CheckBox chkTTCTstart;
+        private V6Controls.V6CheckBox chkTTstart;
+        private V6Controls.V6CheckBox chkThoiGianStart;
+        private V6Controls.V6CheckBox chkTuyChonStart;
     }
 }
