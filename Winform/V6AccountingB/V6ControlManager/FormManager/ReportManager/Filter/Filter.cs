@@ -704,6 +704,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                 case "AINGIA_TBDD":
                     result = new AINGIA_TBDD();
                     break;
+                case "AINGIA_DD_LO":
+                    result = new AINGIA_DD_LO();
+                    break;
                 case "AINGIA_NTXT":
                     result = new AINGIA_NTXT();
                     break;

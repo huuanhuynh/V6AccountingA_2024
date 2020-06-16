@@ -299,6 +299,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return new AINGIA_TBDD(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "AINGIA_NTXT":
                     return new AINGIA_NTXT(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                case "AINGIA_DD_LO":
+                    return new AINGIA_DD_LO(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
 
                 case "AINVTBAR1":
                     return new AINVTBAR1_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);

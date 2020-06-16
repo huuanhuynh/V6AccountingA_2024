@@ -82,26 +82,42 @@ namespace V6Controls
         private DataObject GetClipboardContentV6()
         {
             string result = "";
-            int row_min = Rows.Count-1, row_max = 0;
-            int col_min = Columns.Count-1, col_max = 0;
+            SortedDictionary<int,DataGridViewRow> rows = new SortedDictionary<int, DataGridViewRow>();
+            SortedDictionary<int, DataGridViewColumn> cols = new SortedDictionary<int, DataGridViewColumn>();
             foreach (DataGridViewCell cell in SelectedCells)
             {
-                if (cell.RowIndex > row_max) row_max = cell.RowIndex;
-                if (cell.RowIndex < row_min) row_min = cell.RowIndex;
-                if (cell.ColumnIndex > col_max) col_max = cell.ColumnIndex;
-                if (cell.ColumnIndex < col_min) col_min = cell.ColumnIndex;
+                rows[cell.RowIndex] = cell.OwningRow;
+                cols[cell.OwningColumn.DisplayIndex] = cell.OwningColumn;
             }
 
-            for (int i = row_min; i <= row_max; i++)
+            // Column header
+            result += "\r\n";
+            foreach (KeyValuePair<int, DataGridViewColumn> colitem in cols)
+            {
+                if (!result.EndsWith("\r\n")) result += "\t";
+                result += colitem.Value.HeaderText;
+            }
+
+            // Data tab
+            foreach (KeyValuePair<int, DataGridViewRow> rowitem in rows)
             {
                 result += "\r\n";
-                for (int j = col_min; j <= col_max; j++)
+                foreach (KeyValuePair<int, DataGridViewColumn> colitem in cols)
                 {
-                    if (!Columns[j].Visible) continue;
                     if (!result.EndsWith("\r\n")) result += "\t";
-                    result += GetCellStringValue(Rows[i].Cells[j]);
+                    result += GetCellStringValue(rowitem.Value.Cells[colitem.Value.Index]);
                 }
             }
+            //for (int i = row_min; i <= row_max; i++)
+            //{
+            //    result += "\r\n";
+            //    for (int j = col_min; j <= col_max; j++)
+            //    {
+            //        if (!Columns[j].Visible) continue;
+            //        if (!result.EndsWith("\r\n")) result += "\t";
+            //        result += GetCellStringValue(Rows[i].Cells[j]);
+            //    }
+            //}
             if (result.Length > 2) result = result.Substring(2);
             DataObject result_do = new DataObject(result);
             return result_do;
@@ -109,6 +125,14 @@ namespace V6Controls
 
         private string GetCellStringValue(DataGridViewCell cell)
         {
+            if (ObjectAndString.IsNumberType(cell.OwningColumn.ValueType) && !string.IsNullOrEmpty(cell.OwningColumn.DefaultCellStyle.Format))
+            {
+                return ObjectAndString.ObjectToString(cell.Value, cell.OwningColumn.DefaultCellStyle.Format);
+            }
+            if (ObjectAndString.IsStringType(cell.OwningColumn.ValueType))
+            {
+                return ObjectAndString.ObjectToString(cell.Value).Replace("\t", "");
+            }
             return ObjectAndString.ObjectToString(cell.Value);
         }
 
@@ -778,10 +802,10 @@ namespace V6Controls
         public bool Space_Bar { get { return space_bar; } set { space_bar = value; } }
         private bool space_bar = false;
 
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         [Description("Dùng hàm GetClipboardContentV6 để lấy dữ liệu khi copy.")]
         public bool UseV6Copy { get { return use_v6_copy; } set { use_v6_copy = value; } }
-        private bool use_v6_copy = false;
+        private bool use_v6_copy = true;
 
 
         public event Action FilterChange;

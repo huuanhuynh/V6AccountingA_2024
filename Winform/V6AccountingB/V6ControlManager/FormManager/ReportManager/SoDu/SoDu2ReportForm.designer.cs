@@ -40,12 +40,12 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.exportToExcelTemplateMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToExcelGroupMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToXmlMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.printGrid = new System.Windows.Forms.ToolStripMenuItem();
             this.viewGridMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToPdfMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportToExcelGroupMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.grbDieuKienLoc = new System.Windows.Forms.GroupBox();
             this.dataGridView2 = new V6Controls.V6ColorDataGridView();
             this.btnIn = new System.Windows.Forms.Button();
@@ -111,6 +111,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.dataGridView1.ReadOnly = true;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(491, 90);
             this.dataGridView1.TabIndex = 14;
             this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
@@ -135,6 +136,15 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.exportToExcelTemplateMenu.Size = new System.Drawing.Size(200, 22);
             this.exportToExcelTemplateMenu.Text = "Export to Excel template";
             this.exportToExcelTemplateMenu.Click += new System.EventHandler(this.exportToExcelTemplate_Click);
+            // 
+            // exportToExcelGroupMenu
+            // 
+            this.exportToExcelGroupMenu.AccessibleDescription = "REPORTM00008";
+            this.exportToExcelGroupMenu.Name = "exportToExcelGroupMenu";
+            this.exportToExcelGroupMenu.Size = new System.Drawing.Size(200, 22);
+            this.exportToExcelGroupMenu.Text = "Export to Excel (group)";
+            this.exportToExcelGroupMenu.Visible = false;
+            this.exportToExcelGroupMenu.Click += new System.EventHandler(this.exportToExcelGroupMenu_Click);
             // 
             // exportToExcel
             // 
@@ -174,15 +184,6 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.exportToPdfMenu.Size = new System.Drawing.Size(200, 22);
             this.exportToPdfMenu.Text = "Export to PDF";
             this.exportToPdfMenu.Click += new System.EventHandler(this.exportToPdfToolStripMenuItem_Click);
-            // 
-            // exportToExcelGroupMenu
-            // 
-            this.exportToExcelGroupMenu.AccessibleDescription = "REPORTM00008";
-            this.exportToExcelGroupMenu.Name = "exportToExcelGroupMenu";
-            this.exportToExcelGroupMenu.Size = new System.Drawing.Size(200, 22);
-            this.exportToExcelGroupMenu.Text = "Export to Excel (group)";
-            this.exportToExcelGroupMenu.Visible = false;
-            this.exportToExcelGroupMenu.Click += new System.EventHandler(this.exportToExcelGroupMenu_Click);
             // 
             // grbDieuKienLoc
             // 
@@ -226,7 +227,7 @@ namespace V6ControlManager.FormManager.ReportManager.SoDu
             this.dataGridView2.ReadOnly = true;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView2.Size = new System.Drawing.Size(491, 80);
             this.dataGridView2.TabIndex = 15;
             // 

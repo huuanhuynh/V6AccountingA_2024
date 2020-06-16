@@ -316,7 +316,7 @@ namespace V6Tools.V6Convert
         /// chuyển một object thành chuỗi hiển thị.
         /// </summary>
         /// <param name="o"></param>
-        /// <param name="formatString">Chỉ có tác dụng khi o đưa vào kiểu ngày. Cần update thêm cho kiểu số</param>
+        /// <param name="formatString">vd dd/MM/yyyy  (hoặc cho kiểu số N2)</param>
         /// <returns></returns>
         public static string ObjectToString(object o, string formatString = null)
         {

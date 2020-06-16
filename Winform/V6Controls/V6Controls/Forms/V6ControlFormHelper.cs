@@ -7153,162 +7153,169 @@ namespace V6Controls.Forms
         /// <param name="value"></param>
         public static void SetControlValue(Control control, object value)
         {
-            if (control == null) return;
-            if (value == null) value = "";
-            var color = control as V6DateTimeColor;
-            if (color != null)
+            try
             {
-                color.Value = ObjectAndString.ObjectToDate(value);
-            }
-            else if (control is V6IndexComboBox)
-            {
-                ((V6IndexComboBox)control).SelectedIndex = ObjectAndString.ObjectToInt(value);
-            }
-            else if (control is FilterLineBase)
-            {
-                ((FilterLineBase)control).SetValue(value);
-            }
-            else if (control is ComboBox)
-            {
-                var com = control as ComboBox;
-                try
+                if (control == null) return;
+                if (value == null) value = "";
+                var color = control as V6DateTimeColor;
+                if (color != null)
                 {
-                    var VALUE = ObjectAndString.ObjectToString(value).TrimEnd();
-                    if (com.Items.Count > 0 && VALUE != "")
+                    color.Value = ObjectAndString.ObjectToDate(value);
+                }
+                else if (control is V6IndexComboBox)
+                {
+                    ((V6IndexComboBox) control).SelectedIndex = ObjectAndString.ObjectToInt(value);
+                }
+                else if (control is FilterLineBase)
+                {
+                    ((FilterLineBase) control).SetValue(value);
+                }
+                else if (control is ComboBox)
+                {
+                    var com = control as ComboBox;
+                    try
                     {
-                        if (string.IsNullOrEmpty(com.ValueMember))
+                        var VALUE = ObjectAndString.ObjectToString(value).TrimEnd();
+                        if (com.Items.Count > 0 && VALUE != "")
                         {
-                            com.SelectedItem = VALUE;
+                            if (string.IsNullOrEmpty(com.ValueMember))
+                            {
+                                com.SelectedItem = VALUE;
+                            }
+                            else
+                            {
+                                com.SelectedValue = VALUE;
+                            }
                         }
                         else
                         {
-                            com.SelectedValue = VALUE;
+                            if (com.Items.Count > 0)
+                                com.SelectedIndex = -1;
                         }
+                    }
+                    catch
+                    {
+                        // ignored
+                    }
+                }
+                else if (control is PictureBox)
+                {
+                    var pic = control as PictureBox;
+                    try
+                    {
+                        var objectData = value;
+                        Image picture = null;
+                        if (objectData is Image) picture = (Image) objectData;
+                        else if (objectData is byte[]) picture = Picture.ByteArrayToImage((byte[]) objectData);
+
+                        pic.Image = picture;
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.WriteToLog("V6ControlFormHelper.SetFormDataDicRecusive PictureBox " + ex.Message);
+                    }
+                }
+                else if (control is V6LookupTextBox)
+                {
+                    ((V6LookupTextBox) control).SetValue(value);
+                }
+                else if (control is V6LookupProc)
+                {
+                    ((V6LookupProc) control).SetValue(value);
+                }
+                else if (control is V6DateTimePicker) // && V6DateTimeFullPicker
+                {
+                    var object_to_date = ObjectAndString.ObjectToFullDateTime(value);
+                    ((V6DateTimePicker) control).SetValue(object_to_date);
+                }
+                else if (control is V6DateTimeFullPickerNull)
+                {
+                    var object_to_date = ObjectAndString.ObjectToDate(value);
+                    ((V6DateTimeFullPickerNull) control).Value = object_to_date;
+                }
+                else if (control is DateTimePicker)
+                {
+                    var object_to_date = ObjectAndString.ObjectToFullDateTime(value);
+                    ((DateTimePicker) control).Value = object_to_date;
+                }
+                else if (control is V6VvarTextBox) //!!!!.ChangeText()????
+                {
+                    var vvarTextBox = control as V6VvarTextBox;
+                    vvarTextBox.SetDataRow(null);
+
+                    var text = ObjectAndString.ObjectToString(value).TrimEnd();
+                    if (vvarTextBox.UseChangeTextOnSetFormData)
+                        vvarTextBox.ChangeText(text);
+                    else vvarTextBox.Text = text;
+                }
+                else if (control is V6NumberTextBox)
+                {
+                    var text_box = control as V6NumberTextBox;
+                    var value1 = ObjectAndString.ObjectToDecimal(value);
+                    if (text_box.UseChangeTextOnSetFormData)
+                        text_box.ChangeValue(value1);
+                    else text_box.Value = value1;
+                }
+                else if (control is V6CheckTextBox)
+                {
+                    ((V6CheckTextBox) control).SetStringValue(ObjectAndString.ObjectToString(value));
+                }
+                else if (control is V6ColorTextBox)
+                {
+                    var text_box = control as V6ColorTextBox;
+                    var text = ObjectAndString.ObjectToString(value).TrimEnd();
+                    if (text_box.UseChangeTextOnSetFormData)
+                        text_box.ChangeText(text);
+                    else text_box.Text = text;
+                }
+                else if (control is V6ColorMaskedTextBox)
+                {
+                    var text_box = control as V6ColorMaskedTextBox;
+                    var text = ObjectAndString.ObjectToString(value).TrimEnd();
+                    if (text_box.UseChangeTextOnSetFormData)
+                        text_box.ChangeText(text);
+                    else text_box.Text = text;
+                }
+                else if (control is FileButton)
+                {
+                    var file_button = control as FileButton;
+                    file_button.FileName = ObjectAndString.ObjectToString(value).TrimEnd();
+                }
+                else if (control is CheckBox)
+                {
+                    string value1 = value.ToString().TrimEnd();
+                    if (value1 == "1" || value1.ToLower() == "true")
+                    {
+                        ((CheckBox) control).Checked = true;
                     }
                     else
                     {
-                        if (com.Items.Count > 0)
-                            com.SelectedIndex = -1;
+                        ((CheckBox) control).Checked = false;
                     }
                 }
-                catch
+                else if (control is RadioButton)
                 {
-                    // ignored
+                    ((RadioButton) control).Checked = ObjectAndString.ObjectToBool(value);
+                    if (value.ToString().Trim() == control.Text)
+                    {
+                        ((RadioButton) control).Checked = true;
+                    }
                 }
-            }
-            else if (control is PictureBox)
-            {
-                var pic = control as PictureBox;
-                try
+                else if (control is GioiTinhControl)
                 {
-                    var objectData = value;
-                    Image picture = null;
-                    if (objectData is Image) picture = (Image)objectData;
-                    else if (objectData is byte[]) picture = Picture.ByteArrayToImage((byte[])objectData);
-
-                    pic.Image = picture;
-                }
-                catch (Exception ex)
-                {
-                    Logger.WriteToLog("V6ControlFormHelper.SetFormDataDicRecusive PictureBox " + ex.Message);
-                }
-            }
-            else if (control is V6LookupTextBox)
-            {
-                ((V6LookupTextBox) control).SetValue(value);
-            }
-            else if (control is V6LookupProc)
-            {
-                ((V6LookupProc)control).SetValue(value);
-            }
-            else if (control is V6DateTimePicker) // && V6DateTimeFullPicker
-            {
-                var object_to_date = ObjectAndString.ObjectToFullDateTime(value);
-                ((V6DateTimePicker)control).SetValue(object_to_date);
-            }
-            else if (control is V6DateTimeFullPickerNull)
-            {
-                var object_to_date = ObjectAndString.ObjectToDate(value);
-                ((V6DateTimeFullPickerNull)control).Value = object_to_date;
-            }
-            else if (control is DateTimePicker)
-            {
-                var object_to_date = ObjectAndString.ObjectToFullDateTime(value);
-                ((DateTimePicker)control).Value = object_to_date;
-            }
-            else if (control is V6VvarTextBox) //!!!!.ChangeText()????
-            {
-                var vvarTextBox = control as V6VvarTextBox;
-                vvarTextBox.SetDataRow(null);
-
-                var text = ObjectAndString.ObjectToString(value).TrimEnd();
-                if (vvarTextBox.UseChangeTextOnSetFormData)
-                    vvarTextBox.ChangeText(text);
-                else vvarTextBox.Text = text;
-            }
-            else if (control is V6NumberTextBox)
-            {
-                var text_box = control as V6NumberTextBox;
-                var value1 = ObjectAndString.ObjectToDecimal(value);
-                if (text_box.UseChangeTextOnSetFormData)
-                    text_box.ChangeValue(value1);
-                else text_box.Value = value1;
-            }
-            else if (control is V6CheckTextBox)
-            {
-                ((V6CheckTextBox)control).SetStringValue(ObjectAndString.ObjectToString(value));
-            }
-            else if (control is V6ColorTextBox)
-            {
-                var text_box = control as V6ColorTextBox;
-                var text = ObjectAndString.ObjectToString(value).TrimEnd();
-                if (text_box.UseChangeTextOnSetFormData)
-                    text_box.ChangeText(text);
-                else text_box.Text = text;
-            }
-            else if (control is V6ColorMaskedTextBox)
-            {
-                var text_box = control as V6ColorMaskedTextBox;
-                var text = ObjectAndString.ObjectToString(value).TrimEnd();
-                if (text_box.UseChangeTextOnSetFormData)
-                    text_box.ChangeText(text);
-                else text_box.Text = text;
-            }
-            else if (control is FileButton)
-            {
-                var file_button = control as FileButton;
-                file_button.FileName = ObjectAndString.ObjectToString(value).TrimEnd();
-            }
-            else if (control is CheckBox)
-            {
-                string value1 = value.ToString().TrimEnd();
-                if (value1 == "1" || value1.ToLower() == "true")
-                {
-                    ((CheckBox)control).Checked = true;
+                    bool nam = ObjectAndString.ObjectToBool(value);
+                    if (nam) ((GioiTinhControl) control).Value = "1";
+                    else ((GioiTinhControl) control).Value = "0";
                 }
                 else
                 {
-                    ((CheckBox)control).Checked = false;
+                    control.Text = ObjectAndString
+                        .ObjectToString(value).TrimEnd();
                 }
             }
-            else if (control is RadioButton)
+            catch(Exception ex)
             {
-                ((RadioButton)control).Checked = ObjectAndString.ObjectToBool(value);
-                if (value.ToString().Trim() == control.Text)
-                {
-                    ((RadioButton)control).Checked = true;
-                }
-            }
-            else if (control is GioiTinhControl)
-            {
-                bool nam = ObjectAndString.ObjectToBool(value);
-                if(nam) ((GioiTinhControl)control).Value = "1";
-                else ((GioiTinhControl)control).Value = "0";
-            }
-            else
-            {
-                control.Text = ObjectAndString
-                    .ObjectToString(value).TrimEnd();
+                control.WriteExLog("SetControlValue:" + control, ex, "SetControlValue");
             }
         }
 

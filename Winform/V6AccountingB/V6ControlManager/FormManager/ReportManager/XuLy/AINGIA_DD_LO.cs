@@ -12,11 +12,11 @@ using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
-    public class AINGIA_TB : XuLyBase0
+    public class AINGIA_DD_LO : XuLyBase0
     {
         private System.Windows.Forms.Label lblStatus;
 
-        public AINGIA_TB(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
+        public AINGIA_DD_LO(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, true)
         {
             InitializeComponent();
@@ -64,19 +64,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         return;
                     }
 
-                    var m_BigData = ObjectAndString.ObjectToString(V6Options.GetValue("M_BIG_DATA"));
-
-                    if (m_BigData == "1")
+                    //if (m_BigData == "1")
                     {
-                        var tTinhToan = new Thread(TinhGia_TB);
+                        var tTinhToan = new Thread(TinhGia_DD_LO);
                         tTinhToan.Start();
                     }
-                    else
-                    {
-                        var tTinhToan_All = new Thread(TinhGia_TB_All);
-                        tTinhToan_All.Start();
-                    }
-
+                    
                     timerViewReport.Start();
                 }
             }
@@ -86,66 +79,53 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
-        public void TinhGia_TB()
+        public void TinhGia_DD_LO()
         {
             try
             {
                 _executing = true;
 
-                var ds1 = TinhGia_TB1();
-                var MaxCal = ds1.Tables[0];
-                var count = ObjectAndString.ObjectToInt(MaxCal.Rows[0][0] ?? 0) + 2;
+                SetStatusText("Đang tính giá ... ");
 
+                var tb2 = TinhGia_DD_LO_A2().Tables[0];
+                var row = tb2.Rows[0];
+                var @Ngay_ct1 = ObjectAndString.ObjectToDate(row["Ngay_ct1"]);
+                var @Ngay_ct2 = ObjectAndString.ObjectToDate(row["Ngay_ct2"]);
+                var @Gia_vt = row["Gia_vt"];
+                var @Ma_Kho = row["Ma_Kho"];
+                var @Ma_vt = row["Ma_vt"];
+                var @Tinh_giatb = row["Tinh_giatb"];
+                var @Advance = row["Advance"].ToString().Trim();
 
-                var m_giavt = ObjectAndString.ObjectToString(V6Options.GetValue("M_GIA_VT"));
-                if (m_giavt == "1" || m_giavt == "0")
-                {
-                    count = 1;
-                }
-
-                for (int no = 0; no < count; no++)
-                {
-                    SetStatusText("Đang tính giá ... ");
-
-                    var tb2 = TinhGia_TB2().Tables[0];
-                    var row = tb2.Rows[0];
-                    var @Ngay_ct1 = ObjectAndString.ObjectToDate(row["Ngay_ct1"]);
-                    var @Ngay_ct2 = ObjectAndString.ObjectToDate(row["Ngay_ct2"]);
-                    var @Gia_vt = row["Gia_vt"];
-                    var @Ma_Kho = row["Ma_Kho"];
-                    var @Ma_vt = row["Ma_vt"];
-                    var @Tinh_giatb = row["Tinh_giatb"];
-                    var @Advance = row["Advance"].ToString().Trim();
-
-                    if (Ngay_ct1 != null)
-                        for (DateTime i = Ngay_ct1.Value; i <= Ngay_ct2; i = i.AddDays(1))
+                if (Ngay_ct1 != null)
+                    for (DateTime i = Ngay_ct1.Value; i <= Ngay_ct2; i = i.AddDays(1))
+                    {
+                        SqlParameter[] plist =
                         {
-                            SqlParameter[] plist =
-                            {
-                                new SqlParameter("@Ngay_ct1", i), 
-                                new SqlParameter("@Ngay_ct2", i), 
-                                new SqlParameter("@Gia_vt", Gia_vt), 
-                                new SqlParameter("@Ma_Kho", Ma_Kho), 
-                                new SqlParameter("@Ma_vt", Ma_vt), 
-                                new SqlParameter("@Tinh_giatb", Tinh_giatb), 
-                                new SqlParameter("@Advance", Advance), 
-                            };
-                            _message = "Đang cập nhật giá ... " + i.ToString("dd/MM/yyyy");
-                            SetStatusText(_message);
-                            TinhGia_TB3(plist);
-                        }
-                }
+                            new SqlParameter("@Ngay_ct1", i), 
+                            new SqlParameter("@Ngay_ct2", i), 
+                            new SqlParameter("@Gia_vt", Gia_vt), 
+                            new SqlParameter("@Ma_Kho", Ma_Kho), 
+                            new SqlParameter("@Ma_vt", Ma_vt), 
+                            new SqlParameter("@Tinh_giatb", Tinh_giatb), 
+                            new SqlParameter("@Advance", Advance), 
+                        };
+                        _message = "Đang cập nhật giá ... " + i.ToString("dd/MM/yyyy");
+                        SetStatusText(_message);
+                        TinhGia_DD_LO_A3(plist);
+                    }
                 
                 
-                TinhGia_TB4();
+                
+                TinhGia_DD_LO4();
                 var Dk_cl = ObjectAndString.ObjectToInt(_pList[6].Value);
                 if (Dk_cl != 0)
                 {
                     SetStatusText("Đang tạo chênh lệch ... ");
-                    TinhGia_TB5(_pList.ToArray());
+                    TinhGia_DD_LO_A5(_pList.ToArray());
                 }
                 
-                TinhGia_TB6();
+                TinhGia_DD_LO6();
                 SetStatusText(V6Text.Finish);
                 _executesuccess = true;
                 _executing = false;
@@ -154,18 +134,18 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 _executing = false;
                 _executesuccess = false;
-                Logger.WriteToLog(GetType() + ".TinhGia_TB " + ex.Message);
+                Logger.WriteToLog(GetType() + ".TinhGia_DD_LO " + ex.Message);
                 SetStatusText(string.Format("{0}: {1}", V6Text.Text("TinhLoi"), ex.Message));
             }
         }
-        public void TinhGia_TB_All()
+        public void TinhGia_DD_LO_All()
         {
             try
             {
                 _executing = true;
 
                 SetStatusText("Đang tính giá ... ");
-                var ds1 = TinhGia_TB1();
+                var ds1 = TinhGia_DD_LO_A1();
                 var MaxCal = ds1.Tables[0];
                 var count = ObjectAndString.ObjectToInt(MaxCal.Rows[0][0] ?? 0) + 2;
 
@@ -178,7 +158,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 for (int no = 0; no < count; no++)
                 {
-                    var tb2 = TinhGia_TB2().Tables[0];
+                    var tb2 = TinhGia_DD_LO_A2().Tables[0];
                     var row = tb2.Rows[0];
                     var @Ngay_ct1 = ObjectAndString.ObjectToDate(row["Ngay_ct1"]);
                     var @Ngay_ct2 = ObjectAndString.ObjectToDate(row["Ngay_ct2"]);
@@ -201,20 +181,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             };
 
                             SetStatusText("Đang cập nhật giá ... ");
-                            TinhGia_TB3_All(plist);
+                            TinhGia_DD_LO_A3_All(plist);
                       
                 }
 
 
-                TinhGia_TB4();
+                TinhGia_DD_LO4();
                 var Dk_cl = ObjectAndString.ObjectToInt(_pList[6].Value);
                 if (Dk_cl != 0)
                 {
                     SetStatusText("Đang tạo chênh lệch.. ");
-                    TinhGia_TB5(_pList.ToArray());
+                    TinhGia_DD_LO_A5(_pList.ToArray());
                 }
 
-                TinhGia_TB6();
+                TinhGia_DD_LO6();
                 SetStatusText(V6Text.Finish);
                 _executesuccess = true;
                 _executing = false;
@@ -223,7 +203,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 _executing = false;
                 _executesuccess = false;
-                Logger.WriteToLog(GetType() + ".TinhGia_TB " + ex.Message);
+                Logger.WriteToLog(GetType() + ".TinhGia_DD_LO " + ex.Message);
                 SetStatusText(string.Format("{0}: {1}", V6Text.Text("TinhLoi"), ex.Message));
             }
         }
@@ -234,7 +214,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             base.SetStatusText(text);
         }
 
-        public void TinhGia_TB6()
+        public void TinhGia_DD_LO6()
         {
             try
             {
@@ -242,23 +222,23 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                throw new Exception("TinhGia_TB6 " + ex.Message);
+                throw new Exception("TinhGia_DD_LO6 " + ex.Message);
             }
         }
 
-        public void TinhGia_TB5(SqlParameter[] plist)
+        public void TinhGia_DD_LO_A5(SqlParameter[] plist)
         {
             try
             {
-                V6BusinessHelper.ExecuteProcedure("VPA_Ingia_tb_A5", plist);
+                V6BusinessHelper.ExecuteProcedure("VPA_Ingia_DD_LO_A5", plist);
             }
             catch (Exception ex)
             {
-                throw new Exception("TinhGia_TB5 " + ex.Message);
+                throw new Exception("TinhGia_DD_LO_A5 " + ex.Message);
             }
         }
 
-        public void TinhGia_TB4()
+        public void TinhGia_DD_LO4()
         {
             try
             {
@@ -266,54 +246,54 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                throw new Exception("TinhGia_TB4 " + ex.Message);
+                throw new Exception("TinhGia_DD_LO4 " + ex.Message);
             }
         }
 
-        public void TinhGia_TB3(SqlParameter[] plist)
+        public void TinhGia_DD_LO_A3(SqlParameter[] plist)
         {
             try
             {
-                V6BusinessHelper.ExecuteProcedure("VPA_Ingia_tb_A3", plist);
+                V6BusinessHelper.ExecuteProcedure("VPA_Ingia_DD_LO_A3", plist);
             }
             catch (Exception ex)
             {
-                throw new Exception("TinhGia_TB3 " + ex.Message);
+                throw new Exception("TinhGia_DD_LO_A3 " + ex.Message);
             }
         }
-        public void TinhGia_TB3_All(SqlParameter[] plist)
+        public void TinhGia_DD_LO_A3_All(SqlParameter[] plist)
         {
             try
             {
-                V6BusinessHelper.ExecuteProcedure("VPA_Ingia_tb_A3", plist);
+                V6BusinessHelper.ExecuteProcedure("VPA_Ingia_DD_LO_A3", plist);
             }
             catch (Exception ex)
             {
-                throw new Exception("TinhGia_TB3 " + ex.Message);
-            }
-        }
-
-        private DataSet TinhGia_TB2()
-        {
-            try
-            {
-                return V6BusinessHelper.ExecuteProcedure("VPA_Ingia_tb_A2", _pList.ToArray());
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("TinhGia_TB2 " + ex.Message);
+                throw new Exception("TinhGia_DD_LO_A3 " + ex.Message);
             }
         }
 
-        private DataSet TinhGia_TB1()
+        private DataSet TinhGia_DD_LO_A2()
         {
             try
             {
-                return V6BusinessHelper.ExecuteProcedure("VPA_Ingia_tb_A1", _pList.ToArray());
+                return V6BusinessHelper.ExecuteProcedure("VPA_Ingia_DD_LO_A2", _pList.ToArray());
             }
             catch (Exception ex)
             {
-                throw new Exception("TinhGia_TB1 " + ex.Message);
+                throw new Exception("TinhGia_DD_LO_A2 " + ex.Message);
+            }
+        }
+
+        private DataSet TinhGia_DD_LO_A1()
+        {
+            try
+            {
+                return V6BusinessHelper.ExecuteProcedure("VPA_Ingia_DD_LO_A1", _pList.ToArray());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("TinhGia_DD_LO_A1 " + ex.Message);
             }
         }
 
@@ -333,11 +313,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.lblStatus.TabIndex = 4;
             this.lblStatus.Text = ".";
             // 
-            // AINGIA_TB
+            // AINGIA_DD_LO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.Controls.Add(this.lblStatus);
-            this.Name = "AINGIA_TB";
+            this.Name = "AINGIA_DD_LO";
             this.Controls.SetChildIndex(this.btnSuaTTMauBC, 0);
             this.Controls.SetChildIndex(this.btnThemMauBC, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
