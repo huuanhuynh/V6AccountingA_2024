@@ -118,7 +118,7 @@ namespace V6ControlManager.FormManager.ToolManager
                             V6Message.Show("Chưa hỗ trợ " + ext);
                             V6Tools.V6Export.ExportData.ToTextFile(exportData, o.FileName);
                         }
-                        if (!no) V6Message.Show("Xong.", this);
+                        if (!no) V6Message.Show("Xong.", 500, this);
                     }
                 }
                 else
@@ -156,7 +156,7 @@ namespace V6ControlManager.FormManager.ToolManager
                         //string ext = Path.GetExtension(o.FileName).ToLower();
                         bool no = false;
                         V6Tools.V6Export.ExportData.ToXmlFile(exportData, o.FileName);
-                        V6Message.Show("Xong.", this);
+                        V6Message.Show("Xong.", 500, this);
                     }
                 }
                 else
@@ -204,7 +204,7 @@ namespace V6ControlManager.FormManager.ToolManager
                     }
 
                     V6Tools.V6Export.ExportData.ToXmlFile(exportData, saveFile);
-                    V6Message.Show("Xong.", this);
+                    V6Message.Show("Xong.", 500, this);
                 }
                 else
                 {
@@ -242,7 +242,7 @@ namespace V6ControlManager.FormManager.ToolManager
                         V6BusinessHelper.Insert(selectedTableName, row.ToDataDictionary());
                         count++;
                     }
-                    V6Message.Show("Xong. " + count, this);
+                    V6Message.Show("Xong. " + count, 500, this);
                 }
             }
             catch (Exception ex)

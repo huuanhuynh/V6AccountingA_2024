@@ -4529,6 +4529,12 @@
     <Compile Include="FormManager\ReportManager\SoDu\SoDuReportForm_Old.designer.cs">
       <DependentUpon>SoDuReportForm_Old.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_XULY_ALL_F4.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\XuLy\AAPPR_XULY_ALL_F4.designer.cs">
+      <DependentUpon>AAPPR_XULY_ALL_F4.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\HoaDonDienTu\AAPPR_EINVOICE2.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -8074,6 +8080,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\SoDu\SoDuReportForm_Old.resx">
       <DependentUpon>SoDuReportForm_Old.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\XuLy\AAPPR_XULY_ALL_F4.resx">
+      <DependentUpon>AAPPR_XULY_ALL_F4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\HoaDonDienTu\AAPPR_EINVOICE1_F6.resx">
       <DependentUpon>AAPPR_EINVOICE1_F6.cs</DependentUpon>

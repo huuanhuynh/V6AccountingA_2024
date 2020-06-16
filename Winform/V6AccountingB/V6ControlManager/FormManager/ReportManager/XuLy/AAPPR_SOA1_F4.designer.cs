@@ -76,7 +76,7 @@
             this.btnHuy.Location = new System.Drawing.Point(94, 213);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(88, 40);
-            this.btnHuy.TabIndex = 3;
+            this.btnHuy.TabIndex = 27;
             this.btnHuy.Text = "&Hủy";
             this.btnHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnHuy.UseVisualStyleBackColor = true;
@@ -92,7 +92,7 @@
             this.btnNhan.Location = new System.Drawing.Point(6, 213);
             this.btnNhan.Name = "btnNhan";
             this.btnNhan.Size = new System.Drawing.Size(88, 40);
-            this.btnNhan.TabIndex = 2;
+            this.btnNhan.TabIndex = 26;
             this.btnNhan.Text = "&Nhận";
             this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNhan.UseVisualStyleBackColor = true;
@@ -115,7 +115,7 @@
             this.txtMa_sonb.Name = "txtMa_sonb";
             this.txtMa_sonb.ReadOnly = true;
             this.txtMa_sonb.Size = new System.Drawing.Size(100, 20);
-            this.txtMa_sonb.TabIndex = 9;
+            this.txtMa_sonb.TabIndex = 1;
             this.txtMa_sonb.TabStop = false;
             this.txtMa_sonb.VVar = "ma_sonb";
             // 
@@ -126,7 +126,7 @@
             this.v6Label2.Location = new System.Drawing.Point(-1, 32);
             this.v6Label2.Name = "v6Label2";
             this.v6Label2.Size = new System.Drawing.Size(49, 13);
-            this.v6Label2.TabIndex = 15;
+            this.v6Label2.TabIndex = 4;
             this.v6Label2.Text = "Số phiếu";
             // 
             // TxtSo_ct
@@ -144,7 +144,7 @@
             this.TxtSo_ct.Name = "TxtSo_ct";
             this.TxtSo_ct.ReadOnly = true;
             this.TxtSo_ct.Size = new System.Drawing.Size(100, 20);
-            this.TxtSo_ct.TabIndex = 10;
+            this.TxtSo_ct.TabIndex = 5;
             this.TxtSo_ct.TabStop = false;
             // 
             // dateNgayLCT
@@ -160,7 +160,7 @@
             this.dateNgayLCT.Location = new System.Drawing.Point(299, 29);
             this.dateNgayLCT.Name = "dateNgayLCT";
             this.dateNgayLCT.Size = new System.Drawing.Size(96, 20);
-            this.dateNgayLCT.TabIndex = 12;
+            this.dateNgayLCT.TabIndex = 7;
             // 
             // dateNgayCT
             // 
@@ -175,7 +175,7 @@
             this.dateNgayCT.Location = new System.Drawing.Point(299, 7);
             this.dateNgayCT.Name = "dateNgayCT";
             this.dateNgayCT.Size = new System.Drawing.Size(96, 20);
-            this.dateNgayCT.TabIndex = 11;
+            this.dateNgayCT.TabIndex = 3;
             // 
             // v6Label5
             // 
@@ -184,7 +184,7 @@
             this.v6Label5.Location = new System.Drawing.Point(210, 31);
             this.v6Label5.Name = "v6Label5";
             this.v6Label5.Size = new System.Drawing.Size(92, 13);
-            this.v6Label5.TabIndex = 14;
+            this.v6Label5.TabIndex = 6;
             this.v6Label5.Text = "Ngày lập hóa đơn";
             // 
             // v6Label3
@@ -194,7 +194,7 @@
             this.v6Label3.Location = new System.Drawing.Point(210, 10);
             this.v6Label3.Name = "v6Label3";
             this.v6Label3.Size = new System.Drawing.Size(83, 13);
-            this.v6Label3.TabIndex = 13;
+            this.v6Label3.TabIndex = 2;
             this.v6Label3.Text = "Ngày hạch toán";
             // 
             // v6Label1
@@ -204,10 +204,10 @@
             this.v6Label1.Location = new System.Drawing.Point(-1, 10);
             this.v6Label1.Name = "v6Label1";
             this.v6Label1.Size = new System.Drawing.Size(52, 13);
-            this.v6Label1.TabIndex = 8;
+            this.v6Label1.TabIndex = 0;
             this.v6Label1.Text = "Số nội bộ";
             // 
-            // txtMadvcs
+            // txtMaDVCS
             // 
             this.txtMaDVCS.AccessibleName = "MA_DVCS";
             this.txtMaDVCS.BackColor = System.Drawing.Color.AntiqueWhite;
@@ -224,7 +224,7 @@
             this.txtMaDVCS.Name = "txtMaDVCS";
             this.txtMaDVCS.ReadOnly = true;
             this.txtMaDVCS.Size = new System.Drawing.Size(100, 20);
-            this.txtMaDVCS.TabIndex = 25;
+            this.txtMaDVCS.TabIndex = 9;
             this.txtMaDVCS.TabStop = false;
             this.txtMaDVCS.VVar = "ma_dvcs";
             // 
@@ -245,7 +245,7 @@
             this.v6ColorTextBox3.Name = "v6ColorTextBox3";
             this.v6ColorTextBox3.ReadOnly = true;
             this.v6ColorTextBox3.Size = new System.Drawing.Size(361, 20);
-            this.v6ColorTextBox3.TabIndex = 32;
+            this.v6ColorTextBox3.TabIndex = 10;
             this.v6ColorTextBox3.TabStop = false;
             this.v6ColorTextBox3.Tag = "disable";
             // 
@@ -256,7 +256,7 @@
             this.lblMaDVCS.Location = new System.Drawing.Point(-1, 54);
             this.lblMaDVCS.Name = "lblMaDVCS";
             this.lblMaDVCS.Size = new System.Drawing.Size(58, 13);
-            this.lblMaDVCS.TabIndex = 31;
+            this.lblMaDVCS.TabIndex = 8;
             this.lblMaDVCS.Text = "Mã đơn vị ";
             // 
             // txtMaKh
@@ -276,7 +276,7 @@
             this.txtMaKh.Name = "txtMaKh";
             this.txtMaKh.ReadOnly = true;
             this.txtMaKh.Size = new System.Drawing.Size(100, 20);
-            this.txtMaKh.TabIndex = 26;
+            this.txtMaKh.TabIndex = 12;
             this.txtMaKh.TabStop = false;
             this.txtMaKh.VVar = "ma_kh";
             // 
@@ -297,7 +297,7 @@
             this.v6ColorTextBox9.Name = "v6ColorTextBox9";
             this.v6ColorTextBox9.ReadOnly = true;
             this.v6ColorTextBox9.Size = new System.Drawing.Size(467, 20);
-            this.v6ColorTextBox9.TabIndex = 30;
+            this.v6ColorTextBox9.TabIndex = 18;
             this.v6ColorTextBox9.TabStop = false;
             // 
             // v6Label12
@@ -307,7 +307,7 @@
             this.v6Label12.Location = new System.Drawing.Point(-1, 120);
             this.v6Label12.Name = "v6Label12";
             this.v6Label12.Size = new System.Drawing.Size(48, 13);
-            this.v6Label12.TabIndex = 24;
+            this.v6Label12.TabIndex = 17;
             this.v6Label12.Text = "Diễn giải";
             // 
             // txtMaSoThue
@@ -326,7 +326,7 @@
             this.txtMaSoThue.Name = "txtMaSoThue";
             this.txtMaSoThue.ReadOnly = true;
             this.txtMaSoThue.Size = new System.Drawing.Size(100, 20);
-            this.txtMaSoThue.TabIndex = 29;
+            this.txtMaSoThue.TabIndex = 16;
             this.txtMaSoThue.TabStop = false;
             this.txtMaSoThue.Tag = "";
             // 
@@ -347,7 +347,7 @@
             this.txtTenKh.Name = "txtTenKh";
             this.txtTenKh.ReadOnly = true;
             this.txtTenKh.Size = new System.Drawing.Size(361, 20);
-            this.txtTenKh.TabIndex = 27;
+            this.txtTenKh.TabIndex = 13;
             this.txtTenKh.TabStop = false;
             this.txtTenKh.Tag = "";
             // 
@@ -368,7 +368,7 @@
             this.txtDiaChi.Name = "txtDiaChi";
             this.txtDiaChi.ReadOnly = true;
             this.txtDiaChi.Size = new System.Drawing.Size(361, 20);
-            this.txtDiaChi.TabIndex = 28;
+            this.txtDiaChi.TabIndex = 15;
             this.txtDiaChi.TabStop = false;
             // 
             // v6Label11
@@ -378,7 +378,7 @@
             this.v6Label11.Location = new System.Drawing.Point(-1, 98);
             this.v6Label11.Name = "v6Label11";
             this.v6Label11.Size = new System.Drawing.Size(40, 13);
-            this.v6Label11.TabIndex = 23;
+            this.v6Label11.TabIndex = 14;
             this.v6Label11.Text = "Địa chỉ";
             // 
             // lblMaKH
@@ -388,7 +388,7 @@
             this.lblMaKH.Location = new System.Drawing.Point(-1, 76);
             this.lblMaKH.Name = "lblMaKH";
             this.lblMaKH.Size = new System.Drawing.Size(82, 13);
-            this.lblMaKH.TabIndex = 22;
+            this.lblMaKH.TabIndex = 11;
             this.lblMaKH.Text = "Mã khách hàng";
             // 
             // v6Label4
@@ -398,7 +398,7 @@
             this.v6Label4.Location = new System.Drawing.Point(-1, 142);
             this.v6Label4.Name = "v6Label4";
             this.v6Label4.Size = new System.Drawing.Size(53, 13);
-            this.v6Label4.TabIndex = 24;
+            this.v6Label4.TabIndex = 19;
             this.v6Label4.Text = "Ghi chú 1";
             // 
             // txtGhiChu01
@@ -418,7 +418,7 @@
             this.txtGhiChu01.Name = "txtGhiChu01";
             this.txtGhiChu01.ReadOnly = true;
             this.txtGhiChu01.Size = new System.Drawing.Size(467, 20);
-            this.txtGhiChu01.TabIndex = 30;
+            this.txtGhiChu01.TabIndex = 20;
             this.txtGhiChu01.TabStop = false;
             // 
             // v6Label6
@@ -428,7 +428,7 @@
             this.v6Label6.Location = new System.Drawing.Point(-1, 164);
             this.v6Label6.Name = "v6Label6";
             this.v6Label6.Size = new System.Drawing.Size(53, 13);
-            this.v6Label6.TabIndex = 24;
+            this.v6Label6.TabIndex = 21;
             this.v6Label6.Text = "Ghi chú 2";
             // 
             // txtGhiChu02
@@ -448,7 +448,7 @@
             this.txtGhiChu02.Name = "txtGhiChu02";
             this.txtGhiChu02.ReadOnly = true;
             this.txtGhiChu02.Size = new System.Drawing.Size(467, 20);
-            this.txtGhiChu02.TabIndex = 30;
+            this.txtGhiChu02.TabIndex = 22;
             this.txtGhiChu02.TabStop = false;
             // 
             // TxtMa_nvien
@@ -467,7 +467,7 @@
             this.TxtMa_nvien.Name = "TxtMa_nvien";
             this.TxtMa_nvien.ReadOnly = true;
             this.TxtMa_nvien.Size = new System.Drawing.Size(91, 20);
-            this.TxtMa_nvien.TabIndex = 35;
+            this.TxtMa_nvien.TabIndex = 25;
             this.TxtMa_nvien.TabStop = false;
             this.TxtMa_nvien.VVar = "ma_nvien";
             // 
@@ -487,7 +487,7 @@
             this.TxtMa_bp.Name = "TxtMa_bp";
             this.TxtMa_bp.ReadOnly = true;
             this.TxtMa_bp.Size = new System.Drawing.Size(97, 20);
-            this.TxtMa_bp.TabIndex = 34;
+            this.TxtMa_bp.TabIndex = 24;
             this.TxtMa_bp.TabStop = false;
             this.TxtMa_bp.VVar = "ma_bp";
             // 
@@ -499,7 +499,7 @@
             this.lblBPNV.Location = new System.Drawing.Point(-1, 186);
             this.lblBPNV.Name = "lblBPNV";
             this.lblBPNV.Size = new System.Drawing.Size(41, 13);
-            this.lblBPNV.TabIndex = 33;
+            this.lblBPNV.TabIndex = 23;
             this.lblBPNV.Text = "BP/NV";
             // 
             // AAPPR_SOA1_F4

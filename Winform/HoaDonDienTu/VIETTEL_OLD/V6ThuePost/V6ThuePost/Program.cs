@@ -902,7 +902,7 @@ namespace V6ThuePost
                                 string key = reader.GetAttribute("Field");
                                 if (!string.IsNullOrEmpty(key))
                                 {
-                                    metadataConfig.Add(key, ReadXmlLine(reader));
+                                    metadataConfig[key] = ReadXmlLine(reader);
                                 }
                                 break;
                             }

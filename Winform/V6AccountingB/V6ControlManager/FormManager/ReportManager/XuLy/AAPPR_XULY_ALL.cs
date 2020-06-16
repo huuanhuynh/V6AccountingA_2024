@@ -70,17 +70,16 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     var currentRow = dataGridView1.CurrentRow;
                     if (dataGridView1.Columns.Contains("Stt_rec") && dataGridView1.Columns.Contains("Ma_ct"))
                     {
-                        var selectedMaCt = currentRow.Cells
-                            ["Ma_ct"].Value.ToString().Trim();
-                        var selectedSttRec = currentRow.Cells
-                            ["Stt_rec"].Value.ToString().Trim();
+                        var selectedMaCt = currentRow.Cells["Ma_ct"].Value.ToString().Trim();
+                        var selectedSttRec = currentRow.Cells["Stt_rec"].Value.ToString().Trim();
 
                         if (!string.IsNullOrEmpty(selectedSttRec) && !string.IsNullOrEmpty(selectedMaCt))
                         {
                             var plist = new List<SqlParameter>
                             {
+                                new SqlParameter("@ma_ct", selectedMaCt),
                                 new SqlParameter("@stt_rec", selectedSttRec),
-                                new SqlParameter("@maCT", selectedMaCt)
+                                new SqlParameter("@user_id", V6Login.UserId)
                             };
                             var alctRow = V6BusinessHelper.Select("Alct", "m_phdbf,m_ctdbf",
                                 "ma_CT = '" + selectedMaCt + "'").Data.Rows[0];
@@ -88,8 +87,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                             if (amName != "")
                             {
-                                var am = V6BusinessHelper.Select(amName, "*", "STT_REC=@stt_rec and MA_CT=@maCT",
-                                    "", "", plist.ToArray()).Data;
+                                //var am = V6BusinessHelper.Select(amName, "*", "STT_REC=@stt_rec and MA_CT=@maCT",
+                                //    "", "", plist.ToArray()).Data;
+                                var am = V6BusinessHelper.ExecuteProcedure("AAPPR_XULY_ALL_AM", plist.ToArray()).Tables[0];
 
                                 var fText = V6Text.Text("GCCT");
                                 var f = new V6Form
@@ -101,9 +101,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                                 string extra_infor = "";
                                 if (EXTRA_INFOR.ContainsKey("FIELDS_F4")) extra_infor = EXTRA_INFOR["FIELDS_F4"];
-                                var hoaDonForm = new AAPPR_SOA_F4(selectedSttRec, am.Rows[0], amName, extra_infor);
+                                var hoaDonForm = new AAPPR_XULY_ALL_F4(selectedSttRec, am.Rows[0], amName, extra_infor);
                                 hoaDonForm.txtSoCtXuat.Enabled = false;
-                                hoaDonForm.txtGhiChu01.Enabled = false;
+                                //hoaDonForm.txtGhiChu01.Enabled = false;
                                 
                                 //var so_ctx = hoaDonForm.So_ctx.Trim();
                                 //if (so_ctx == "")
@@ -129,11 +129,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                                 hoaDonForm.UpdateSuccessEvent += data =>
                                 {
-                                    currentRow.Cells["GHI_CHU01"].Value = data["GHI_CHU01"];
-                                    currentRow.Cells["GHI_CHU02"].Value = data["GHI_CHU02"];
-
-                                    currentRow.Cells["SO_CTX"].Value = data["SO_CTX"];
-
                                     foreach (KeyValuePair<string, string> item in hoaDonForm._fieldDic)
                                     {
                                         string FIELD = item.Key.ToUpper();

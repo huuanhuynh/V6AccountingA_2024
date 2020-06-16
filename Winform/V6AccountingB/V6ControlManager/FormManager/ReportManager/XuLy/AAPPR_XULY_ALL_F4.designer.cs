@@ -1,6 +1,6 @@
 ﻿namespace V6ControlManager.FormManager.ReportManager.XuLy
 {
-    partial class AAPPR_POA_F4
+    partial class AAPPR_XULY_ALL_F4
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
@@ -45,17 +44,13 @@
             this.v6ColorTextBox3 = new V6Controls.V6ColorTextBox();
             this.lblMaDVCS = new V6Controls.V6Label();
             this.txtMaKh = new V6Controls.V6VvarTextBox();
-            this.v6ColorTextBox9 = new V6Controls.V6ColorTextBox();
-            this.v6Label12 = new V6Controls.V6Label();
+            this.txtDienGiai = new V6Controls.V6ColorTextBox();
+            this.lblDienGiai = new V6Controls.V6Label();
             this.txtMaSoThue = new V6Controls.V6ColorTextBox();
             this.txtTenKh = new V6Controls.V6ColorTextBox();
             this.txtDiaChi = new V6Controls.V6ColorTextBox();
             this.v6Label11 = new V6Controls.V6Label();
             this.lblMaKH = new V6Controls.V6Label();
-            this.v6Label4 = new V6Controls.V6Label();
-            this.txtGhiChu01 = new V6Controls.V6ColorTextBox();
-            this.v6Label6 = new V6Controls.V6Label();
-            this.txtGhiChu02 = new V6Controls.V6ColorTextBox();
             this.txtSoCtXuat = new V6Controls.V6ColorTextBox();
             this.v6Label7 = new V6Controls.V6Label();
             this.SuspendLayout();
@@ -75,7 +70,7 @@
             this.btnHuy.Location = new System.Drawing.Point(94, 197);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(88, 40);
-            this.btnHuy.TabIndex = 26;
+            this.btnHuy.TabIndex = 22;
             this.btnHuy.Text = "&Hủy";
             this.btnHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnHuy.UseVisualStyleBackColor = true;
@@ -91,7 +86,7 @@
             this.btnNhan.Location = new System.Drawing.Point(6, 197);
             this.btnNhan.Name = "btnNhan";
             this.btnNhan.Size = new System.Drawing.Size(88, 40);
-            this.btnNhan.TabIndex = 25;
+            this.btnNhan.TabIndex = 21;
             this.btnNhan.Text = "&Nhận";
             this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNhan.UseVisualStyleBackColor = true;
@@ -122,7 +117,7 @@
             // 
             this.v6Label2.AccessibleDescription = "XULYL00039";
             this.v6Label2.AutoSize = true;
-            this.v6Label2.Location = new System.Drawing.Point(-1, 32);
+            this.v6Label2.Location = new System.Drawing.Point(3, 32);
             this.v6Label2.Name = "v6Label2";
             this.v6Label2.Size = new System.Drawing.Size(49, 13);
             this.v6Label2.TabIndex = 6;
@@ -200,7 +195,7 @@
             // 
             this.v6Label1.AccessibleDescription = "XULYL00038";
             this.v6Label1.AutoSize = true;
-            this.v6Label1.Location = new System.Drawing.Point(-1, 10);
+            this.v6Label1.Location = new System.Drawing.Point(3, 10);
             this.v6Label1.Name = "v6Label1";
             this.v6Label1.Size = new System.Drawing.Size(52, 13);
             this.v6Label1.TabIndex = 0;
@@ -252,7 +247,7 @@
             // 
             this.lblMaDVCS.AccessibleDescription = "XULYL00040";
             this.lblMaDVCS.AutoSize = true;
-            this.lblMaDVCS.Location = new System.Drawing.Point(-1, 54);
+            this.lblMaDVCS.Location = new System.Drawing.Point(3, 54);
             this.lblMaDVCS.Name = "lblMaDVCS";
             this.lblMaDVCS.Size = new System.Drawing.Size(58, 13);
             this.lblMaDVCS.TabIndex = 10;
@@ -278,35 +273,35 @@
             this.txtMaKh.TabStop = false;
             this.txtMaKh.VVar = "ma_kh";
             // 
-            // v6ColorTextBox9
+            // txtDienGiai
             // 
-            this.v6ColorTextBox9.AccessibleName = "dien_giai";
-            this.v6ColorTextBox9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtDienGiai.AccessibleName = "dien_giai";
+            this.txtDienGiai.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.v6ColorTextBox9.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.v6ColorTextBox9.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.v6ColorTextBox9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.v6ColorTextBox9.EnterColor = System.Drawing.Color.PaleGreen;
-            this.v6ColorTextBox9.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox9.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.v6ColorTextBox9.HoverColor = System.Drawing.Color.Yellow;
-            this.v6ColorTextBox9.LeaveColor = System.Drawing.Color.White;
-            this.v6ColorTextBox9.Location = new System.Drawing.Point(89, 117);
-            this.v6ColorTextBox9.Name = "v6ColorTextBox9";
-            this.v6ColorTextBox9.ReadOnly = true;
-            this.v6ColorTextBox9.Size = new System.Drawing.Size(467, 20);
-            this.v6ColorTextBox9.TabIndex = 20;
-            this.v6ColorTextBox9.TabStop = false;
+            this.txtDienGiai.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtDienGiai.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtDienGiai.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDienGiai.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtDienGiai.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtDienGiai.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtDienGiai.HoverColor = System.Drawing.Color.Yellow;
+            this.txtDienGiai.LeaveColor = System.Drawing.Color.White;
+            this.txtDienGiai.Location = new System.Drawing.Point(89, 117);
+            this.txtDienGiai.Name = "txtDienGiai";
+            this.txtDienGiai.ReadOnly = true;
+            this.txtDienGiai.Size = new System.Drawing.Size(467, 20);
+            this.txtDienGiai.TabIndex = 20;
+            this.txtDienGiai.TabStop = false;
             // 
-            // v6Label12
+            // lblDienGiai
             // 
-            this.v6Label12.AccessibleDescription = "XULYL00019";
-            this.v6Label12.AutoSize = true;
-            this.v6Label12.Location = new System.Drawing.Point(-1, 120);
-            this.v6Label12.Name = "v6Label12";
-            this.v6Label12.Size = new System.Drawing.Size(48, 13);
-            this.v6Label12.TabIndex = 19;
-            this.v6Label12.Text = "Diễn giải";
+            this.lblDienGiai.AccessibleDescription = "XULYL00019";
+            this.lblDienGiai.AutoSize = true;
+            this.lblDienGiai.Location = new System.Drawing.Point(3, 120);
+            this.lblDienGiai.Name = "lblDienGiai";
+            this.lblDienGiai.Size = new System.Drawing.Size(48, 13);
+            this.lblDienGiai.TabIndex = 19;
+            this.lblDienGiai.Text = "Diễn giải";
             // 
             // txtMaSoThue
             // 
@@ -373,7 +368,7 @@
             // 
             this.v6Label11.AccessibleDescription = "XULYL00042";
             this.v6Label11.AutoSize = true;
-            this.v6Label11.Location = new System.Drawing.Point(-1, 98);
+            this.v6Label11.Location = new System.Drawing.Point(3, 98);
             this.v6Label11.Name = "v6Label11";
             this.v6Label11.Size = new System.Drawing.Size(40, 13);
             this.v6Label11.TabIndex = 16;
@@ -383,67 +378,11 @@
             // 
             this.lblMaKH.AccessibleDescription = "XULYL00041";
             this.lblMaKH.AutoSize = true;
-            this.lblMaKH.Location = new System.Drawing.Point(-1, 76);
+            this.lblMaKH.Location = new System.Drawing.Point(3, 76);
             this.lblMaKH.Name = "lblMaKH";
             this.lblMaKH.Size = new System.Drawing.Size(82, 13);
             this.lblMaKH.TabIndex = 13;
             this.lblMaKH.Text = "Mã khách hàng";
-            // 
-            // v6Label4
-            // 
-            this.v6Label4.AccessibleDescription = "XULYL00044";
-            this.v6Label4.AutoSize = true;
-            this.v6Label4.Location = new System.Drawing.Point(-1, 142);
-            this.v6Label4.Name = "v6Label4";
-            this.v6Label4.Size = new System.Drawing.Size(53, 13);
-            this.v6Label4.TabIndex = 21;
-            this.v6Label4.Text = "Ghi chú 1";
-            // 
-            // txtGhiChu01
-            // 
-            this.txtGhiChu01.AccessibleName = "GHI_CHU01";
-            this.txtGhiChu01.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGhiChu01.BackColor = System.Drawing.SystemColors.Window;
-            this.txtGhiChu01.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtGhiChu01.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtGhiChu01.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtGhiChu01.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtGhiChu01.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtGhiChu01.HoverColor = System.Drawing.Color.Yellow;
-            this.txtGhiChu01.LeaveColor = System.Drawing.Color.White;
-            this.txtGhiChu01.Location = new System.Drawing.Point(89, 139);
-            this.txtGhiChu01.Name = "txtGhiChu01";
-            this.txtGhiChu01.Size = new System.Drawing.Size(467, 20);
-            this.txtGhiChu01.TabIndex = 22;
-            // 
-            // v6Label6
-            // 
-            this.v6Label6.AccessibleDescription = "XULYL00045";
-            this.v6Label6.AutoSize = true;
-            this.v6Label6.Location = new System.Drawing.Point(-1, 164);
-            this.v6Label6.Name = "v6Label6";
-            this.v6Label6.Size = new System.Drawing.Size(53, 13);
-            this.v6Label6.TabIndex = 23;
-            this.v6Label6.Text = "Ghi chú 2";
-            // 
-            // txtGhiChu02
-            // 
-            this.txtGhiChu02.AccessibleName = "GHI_CHU02";
-            this.txtGhiChu02.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGhiChu02.BackColor = System.Drawing.SystemColors.Window;
-            this.txtGhiChu02.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtGhiChu02.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtGhiChu02.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtGhiChu02.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtGhiChu02.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtGhiChu02.HoverColor = System.Drawing.Color.Yellow;
-            this.txtGhiChu02.LeaveColor = System.Drawing.Color.White;
-            this.txtGhiChu02.Location = new System.Drawing.Point(89, 161);
-            this.txtGhiChu02.Name = "txtGhiChu02";
-            this.txtGhiChu02.Size = new System.Drawing.Size(467, 20);
-            this.txtGhiChu02.TabIndex = 24;
             // 
             // txtSoCtXuat
             // 
@@ -471,7 +410,7 @@
             this.v6Label7.TabIndex = 4;
             this.v6Label7.Text = "Số ct xuất";
             // 
-            // AAPPR_POA_F4
+            // AAPPR_XULY_ALL_F4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -479,12 +418,8 @@
             this.Controls.Add(this.v6ColorTextBox3);
             this.Controls.Add(this.lblMaDVCS);
             this.Controls.Add(this.txtMaKh);
-            this.Controls.Add(this.txtGhiChu02);
-            this.Controls.Add(this.v6Label6);
-            this.Controls.Add(this.txtGhiChu01);
-            this.Controls.Add(this.v6Label4);
-            this.Controls.Add(this.v6ColorTextBox9);
-            this.Controls.Add(this.v6Label12);
+            this.Controls.Add(this.txtDienGiai);
+            this.Controls.Add(this.lblDienGiai);
             this.Controls.Add(this.txtMaSoThue);
             this.Controls.Add(this.txtTenKh);
             this.Controls.Add(this.txtDiaChi);
@@ -502,7 +437,7 @@
             this.Controls.Add(this.v6Label1);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
-            this.Name = "AAPPR_POA_F4";
+            this.Name = "AAPPR_XULY_ALL_F4";
             this.Size = new System.Drawing.Size(559, 240);
             this.Load += new System.EventHandler(this.FormBaoCaoHangTonTheoKho_Load);
             this.ResumeLayout(false);
@@ -512,7 +447,6 @@
 
         #endregion
 
-        private System.Drawing.Printing.PrintDocument MyPrintDocument;
         private System.Windows.Forms.Timer timerViewReport;
         protected System.Windows.Forms.Button btnNhan;
         protected System.Windows.Forms.Button btnHuy;
@@ -528,19 +462,15 @@
         private V6Controls.V6ColorTextBox v6ColorTextBox3;
         private V6Controls.V6Label lblMaDVCS;
         private V6Controls.V6VvarTextBox txtMaKh;
-        private V6Controls.V6ColorTextBox v6ColorTextBox9;
-        private V6Controls.V6Label v6Label12;
+        private V6Controls.V6ColorTextBox txtDienGiai;
+        private V6Controls.V6Label lblDienGiai;
         private V6Controls.V6ColorTextBox txtMaSoThue;
         private V6Controls.V6ColorTextBox txtTenKh;
         private V6Controls.V6ColorTextBox txtDiaChi;
         private V6Controls.V6Label v6Label11;
         private V6Controls.V6Label lblMaKH;
-        private V6Controls.V6Label v6Label4;
-        private V6Controls.V6Label v6Label6;
         private V6Controls.V6Label v6Label7;
         public V6Controls.V6ColorTextBox txtSoCtXuat;
-        public V6Controls.V6ColorTextBox txtGhiChu01;
-        public V6Controls.V6ColorTextBox txtGhiChu02;
 
 
 
