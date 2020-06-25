@@ -857,9 +857,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 }
                 else
                 {
-                    cboMauIn.Enabled = true;
-                    btnSuaTTMauBC.Enabled = true;
-                    btnThemMauBC.Enabled = true;
+                    V6ControlFormHelper.EnableControls(cboMauIn, btnSuaTTMauBC);
+                    //cboMauIn.Enabled = true;
+                    //btnSuaTTMauBC.Enabled = true;
+                    //btnThemMauBC.Enabled = true;
                 }
             }
             catch (Exception)

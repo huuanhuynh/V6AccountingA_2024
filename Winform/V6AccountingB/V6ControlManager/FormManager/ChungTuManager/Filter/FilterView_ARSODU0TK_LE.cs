@@ -150,7 +150,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
                     var cRow = dataGridView1.CurrentRow;
                     if (cRow != null)
                     {
-                        cRow.ChangeSelect();
+                        dataGridView1.ChangeSelect(cRow);
                     }
                 }
                 else if(e.KeyData == (Keys.Control | Keys.A) && MultiSeletion)

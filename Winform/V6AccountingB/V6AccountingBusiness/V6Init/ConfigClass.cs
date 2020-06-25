@@ -48,7 +48,7 @@ namespace V6Init
             name = name.ToUpper();
             if (DATA != null && DATA.ContainsKey(name))
             {
-                return DATA[name].ToString().Trim();
+                return ("" + DATA[name]).Trim();
             }
             return null;
         }
@@ -356,7 +356,41 @@ namespace V6Init
         /// Code form tùy chỉnh cho từng khách hàng của V6 (Dùng form khác cho cùng 1 danh mục).
         /// </summary>
         public string FormCode { get { return GetString("FORMCODE"); } }
-        
+        //public string EXTRA_INFOR { get { return GetString("EXTRA_INFOR"); } }
+        public SortedDictionary<string, string> EXTRA_INFOR
+        {
+            get
+            {
+                if (_extraInfor == null || _extraInfor.Count == 0)
+                {
+                    GetExtraInfor();
+                }
+                return _extraInfor;
+            }
+        }
+        private SortedDictionary<string, string> _extraInfor = null;
+        private void GetExtraInfor()
+        {
+            _extraInfor = new SortedDictionary<string, string>();
+            string s = GetString("EXTRA_INFOR");
+            if (s != "")
+            {
+                var sss = s.Split(';');
+                foreach (string ss in sss)
+                {
+                    //var ss1 = ss.Split(':');
+                    //if (ss1.Length > 1)
+                    //{
+                    //    _extraInfor[ss1[0].ToUpper()] = ss1[1];
+                    //}
+                    int indexOf = ss.IndexOf(":", StringComparison.Ordinal);
+                    if (indexOf > 0)
+                    {
+                        _extraInfor[ss.Substring(0, indexOf).ToUpper()] = ss.Substring(indexOf + 1);
+                    }
+                }
+            }
+        }
     }
 
     public class AlreportConfig : Config

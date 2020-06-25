@@ -1516,6 +1516,7 @@ namespace V6AccountingBusiness.Invoices
 
             return "" + where;
         }
+        
         public string GetMaDvcsFilterByMaKho(string ma_kh, string ma_dvcs)
         {
             SqlParameter[] plist=
@@ -1527,6 +1528,22 @@ namespace V6AccountingBusiness.Invoices
                 new SqlParameter("@Lan", V6Login.SelectedLanguage),
             };
             object where = V6BusinessHelper.ExecuteProcedureScalar("VPA_GET_WHERE_INVOICE_MADVCS2MAKHO", plist);
+
+            return "" + where;
+        }
+
+        public string GetMaKhoFilterByMaVt(string mact1, string ma_vt, string ma_dvcs)
+        {
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@Ma_ct", Mact),
+                new SqlParameter("@Ma_ct1", mact1),
+                new SqlParameter("@Ma_dvcs", ma_dvcs),
+                new SqlParameter("@Ma_vt", ma_vt),
+                new SqlParameter("@user_id", V6Login.UserId),
+                new SqlParameter("@Lan", V6Login.SelectedLanguage),
+            };
+            object where = V6BusinessHelper.ExecuteProcedureScalar("VPA_GET_WHERE_INVOICE_MAVT2MAKHO", plist);
 
             return "" + where;
         }

@@ -96,23 +96,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
             {
                 OnAcceptSelectEvent();
             }
-            else if (e.KeyCode == Keys.Space)
-            {
-                if (dataGridView1.CurrentRow != null)
-                {
-                    dataGridView1.CurrentRow.ChangeSelect();
-                }
-
-            }
-            else if (e.KeyData == (Keys.Control | Keys.A))
-            {
-                e.Handled = true;
-                dataGridView1.SelectAllRow();
-            }
-            else if (e.KeyData == (Keys.Control | Keys.U))
-            {
-                dataGridView1.UnSelectAllRow();
-            }
         }
 
         /// <summary>

@@ -53,6 +53,7 @@ namespace V6Controls
             this.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.V6ColorDataGridView_CellPainting);
             this.CellParsing += new System.Windows.Forms.DataGridViewCellParsingEventHandler(this.V6ColorDataGridView_CellParsing);
             this.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.V6ColorDataGridView_ColumnAdded);
+            this.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.V6ColorDataGridView_ColumnHeaderMouseClick);
             this.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.V6ColorDataGridView_EditingControlShowing);
             this.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.V6ColorDataGridView_RowPostPaint);
             this.SelectionChanged += new System.EventHandler(this.V6ColorDataGridView_SelectionChanged);
@@ -60,6 +61,16 @@ namespace V6Controls
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
+        }
+
+        void V6ColorDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                var column = Columns[e.ColumnIndex];
+                V6ControlFormHelper.SetStatusText(string.Format("{0}:{1} {2}",
+                    column.DataPropertyName, column.HeaderText, column.ValueType));
+            }
         }
 
         
@@ -1036,16 +1047,36 @@ namespace V6Controls
             }
         }
 
-        public delegate void RowSelectEventHandler(object sender, DataGridViewRow row);
-
+        public delegate void RowSelectEventHandler(object sender, SelectRowEventArgs e);
+        [Description("Sự kiện bắt đầu thay đổi trạng thái select khi dùng hàm Select mở rộng.")]
+        public event RowSelectEventHandler RowSelect;
+        public virtual void OnRowSelect(SelectRowEventArgs e)
+        {
+            if (RowSelectChanged_running) return;
+            var handler = RowSelect;
+            if (handler != null)
+            {
+                try
+                {
+                    RowSelectChanged_running = true;
+                    handler(this, e);
+                    RowSelectChanged_running = false;
+                }
+                catch
+                {
+                    RowSelectChanged_running = false;
+                    throw;
+                }
+            }
+        }
         /// <summary>
         /// Sự kiện thay đổi trạng thái select khi dùng hàm Select mở rộng.
         /// </summary>
-        [Description("Sự kiện thay đổi trạng thái select khi dùng hàm Select mở rộng.")]
+        [Description("Sự kiện kết thúc thay đổi trạng thái select khi dùng hàm Select mở rộng.")]
         public event RowSelectEventHandler RowSelectChanged;
 
         private bool RowSelectChanged_running = false;
-        public virtual void OnRowSelectChanged(DataGridViewRow row)
+        public virtual void OnRowSelectChanged(SelectRowEventArgs e)
         {
             if (RowSelectChanged_running) return;
             var handler = RowSelectChanged;
@@ -1054,7 +1085,7 @@ namespace V6Controls
                 try
                 {
                     RowSelectChanged_running = true;
-                    handler(this, row);
+                    handler(this, e);
                     RowSelectChanged_running = false;
                 }
                 catch
@@ -1428,25 +1459,25 @@ namespace V6Controls
                 else if (e.KeyData == (Keys.Control | Keys.A) && Control_A)
                 {
                     e.Handled = true;
-                    this.SelectAllRow();
+                    SelectAllRow();
                 }
                 else if (e.KeyData == (Keys.Control | Keys.U))
                 {
-                    this.UnSelectAllRow();
+                    UnSelectAllRow();
                 }
                 else if (e.KeyData == (Keys.Control | Keys.Space) && Control_Space)
                 {
                     if (CurrentRow != null)
                     {
                         e.Handled = true;
-                        CurrentRow.Select();
+                        Select(CurrentRow);
                     }
                 }
                 else if (e.KeyData == (Keys.Space) && Space_Bar)
                 {
                     if (CurrentRow != null)
                     {
-                        CurrentRow.ChangeSelect();
+                        ChangeSelect(CurrentRow);
                     }
                 }
                 else if (e.KeyData == (Keys.Control | Keys.S) && Control_S)
@@ -1611,6 +1642,147 @@ namespace V6Controls
             CurrentCell = cell;
         }
 
+        /// <summary>
+        /// Hàm mở rộng, chọn dòng, đổi thành màu cam, Gán Tag = "x"
+        /// </summary>
+        /// <param name="row"></param>
+        public void Select(DataGridViewRow row)
+        {
+            if (row.DataGridView != this) return;   // Check
+
+            SelectRowEventArgs eventArgs = new SelectRowEventArgs(row){Select=true};
+            OnRowSelect(eventArgs);
+            if (eventArgs.CancelSelect) goto Cancel;
+
+            row.DefaultCellStyle.BackColor = Color.FromArgb(247, 192, 91);
+
+            if (row.DataGridView.Columns.Contains("Tag"))
+            {
+                row.Cells["Tag"].Value = "x";
+            }
+            else // Hoặc dùng HeaderCell.Tag
+            {
+                row.HeaderCell.Tag = "x";
+            }
+
+            if (row.DataGridView.CurrentRow == row)
+            {
+                row.DataGridView.DefaultCellStyle.SelectionBackColor = Color.Brown;
+                row.DataGridView.DefaultCellStyle.SelectionForeColor = Color.White;
+            }
+
+            OnRowSelectChanged(eventArgs);
+        Cancel:
+            ;
+        }
+        /// <summary>
+        /// Hàm mở rộng, bỏ chọn, gán Tag = "";
+        /// </summary>
+        /// <param name="row"></param>
+        public void UnSelect(DataGridViewRow row)
+        {
+            if (row.DataGridView != this) return;   // Check
+            SelectRowEventArgs eventArgs = new SelectRowEventArgs(row);
+            OnRowSelect(eventArgs);
+            if (eventArgs.CancelSelect) goto Cancel;
+            if (row.Index % 2 == 0)
+                row.DefaultCellStyle.BackColor = row.DataGridView
+                    .RowsDefaultCellStyle.BackColor;
+            else
+                row.DefaultCellStyle.BackColor = row.DataGridView
+                    .AlternatingRowsDefaultCellStyle.BackColor;
+
+            if (row.DataGridView.Columns.Contains("Tag"))
+            {
+                row.Cells["Tag"].Value = "";
+            }
+            else // Hoặc dùng HeaderCell.Tag
+            {
+                row.HeaderCell.Tag = "";
+            }
+
+            if (row.DataGridView.CurrentRow == row)
+            {
+                row.DataGridView.DefaultCellStyle.SelectionBackColor = SystemColors.Highlight;
+                row.DataGridView.DefaultCellStyle.SelectionForeColor = Color.White;
+            }
+
+            OnRowSelectChanged(eventArgs);
+        Cancel:
+            ;
+        }
+        /// <summary>
+        /// Hàm mở rộng, chọn theo điều kiện
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="select"></param>
+        public void Select(DataGridViewRow row, bool select)
+        {
+            if (select) Select(row);
+            else UnSelect(row);
+        }
+
+        /// <summary>
+        /// Chọn tất cả các dòng
+        /// </summary>
+        public void SelectAllRow()
+        {
+            foreach (DataGridViewRow row in Rows)
+            {
+                Select(row);
+            }
+        }
+        /// <summary>
+        /// Hàm mở rộng, chọn tất cả dòng theo điều kiện
+        /// </summary>
+        /// <param name="select"></param>
+        public void SelectAllRow(bool select)
+        {
+            if (select)
+            {
+                SelectAllRow();
+            }
+            else
+            {
+                UnSelectAllRow();
+            }
+        }
+        /// <summary>
+        /// Hàm mở rộng, bỏ chọn tất cả dòng
+        /// </summary>
+        public void UnSelectAllRow()
+        {
+            foreach (DataGridViewRow row in Rows)
+            {
+                UnSelect(row);
+            }
+        }
+
+        /// <summary>
+        /// Kiểm tra cell [Tag].Trim() != "" hoặc HeaderCell.Tag là được chọn
+        /// </summary>
+        /// <param name="row"></param>
+        /// <returns></returns>
+        private bool IsSelect(DataGridViewRow row)
+        {
+            //Có 2 trường hợp, Nếu có Cột Tag
+            if (row.DataGridView.Columns.Contains("Tag"))
+            {
+                var tag = (row.Cells["Tag"].Value ?? "").ToString().Trim();
+                return tag != "";
+            }
+            else // Hoặc dùng HeaderCell.Tag
+            {
+                if (!(row.HeaderCell.Tag is string)) return false;
+                var tag = row.HeaderCell.Tag.ToString().Trim();
+                return tag != "";
+            }
+        }
+
+        public void ChangeSelect(DataGridViewRow row)
+        {
+            Select(row, !IsSelect(row));
+        }
 
         public void ShowFilterForm()
         {
@@ -1819,7 +1991,7 @@ namespace V6Controls
                 }
             }
         }
-
+        
         /// <summary>
         /// Cho phép sửa trên những cột truyền vào.
         /// </summary>
@@ -1946,5 +2118,12 @@ namespace V6Controls
                 this.WriteExLog(GetType() + ".DoCodeEditor", ex);
             }
         }
+    }
+
+    public class SelectRowEventArgs : DataGridViewRowEventArgs
+    {
+        public SelectRowEventArgs(DataGridViewRow dataGridViewRow) : base(dataGridViewRow){}
+        public bool CancelSelect { get; set; }
+        public bool Select { get; set; }
     }
 }

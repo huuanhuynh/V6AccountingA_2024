@@ -61,7 +61,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
 
                     result = MauInData.Rows[0]["GRDS_V1"].ToString().Trim();
@@ -74,7 +74,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
 
                     result = MauInData.Rows[0]["GRDS_V2"].ToString().Trim();
@@ -87,7 +87,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
 
                     result = MauInData.Rows[0]["GRDF_V1"].ToString().Trim();
@@ -100,7 +100,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
 
                     result = MauInData.Rows[0]["GRDF_V2"].ToString().Trim();
@@ -113,7 +113,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
 
                     result = MauInData.Rows[0]["GRDHV_V1"].ToString().Trim();
@@ -126,7 +126,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
 
                     result = MauInData.Rows[0]["GRDHE_V1"].ToString().Trim();
@@ -139,7 +139,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
 
                     result = MauInData.Rows[0]["GRDHV_V2"].ToString().Trim();
@@ -152,7 +152,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
 
                     result = MauInData.Rows[0]["GRDHE_V2"].ToString().Trim();

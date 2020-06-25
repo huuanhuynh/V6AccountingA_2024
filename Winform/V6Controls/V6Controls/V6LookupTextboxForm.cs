@@ -801,7 +801,7 @@ namespace V6Controls
                     {
                         if (row.Cells[LookupInfo_F_NAME].Value.ToString().Trim().ToUpper() == s.ToUpper())
                         {
-                            row.Select();
+                            dataGridView1.Select(row);
                         }
                     }
                 }

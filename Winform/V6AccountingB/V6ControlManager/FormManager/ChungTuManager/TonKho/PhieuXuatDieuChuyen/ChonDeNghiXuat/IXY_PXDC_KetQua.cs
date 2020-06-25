@@ -88,23 +88,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             {
                 OnAcceptSelectEvent();
             }
-            else if (e.KeyCode == Keys.Space)
-            {
-                if (dataGridView1.CurrentRow != null)
-                {
-                    dataGridView1.CurrentRow.ChangeSelect();
-                }
-
-            }
-            else if (e.KeyData == (Keys.Control | Keys.A))
-            {
-                e.Handled = true;
-                dataGridView1.SelectAllRow();
-            }
-            else if (e.KeyData == (Keys.Control | Keys.U))
-            {
-                dataGridView1.UnSelectAllRow();
-            }
             else if (e.KeyCode == Keys.F4)
             {
                 dataGridView1.ShowRowEditor(ObjectAndString.SplitString(_aldmConfig.FIELD));

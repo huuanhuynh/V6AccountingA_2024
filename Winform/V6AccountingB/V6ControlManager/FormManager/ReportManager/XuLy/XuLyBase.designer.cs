@@ -275,8 +275,8 @@
         public System.Windows.Forms.Button btnNhan;
         public System.Windows.Forms.Button btnHuy;
         public V6Controls.V6ColorDataGridView dataGridView2;
-        private V6Controls.Controls.V6FormButton btnSuaTTMauBC;
-        private V6Controls.Controls.V6FormButton btnThemMauBC;
+        public V6Controls.Controls.V6FormButton btnSuaTTMauBC;
+        public V6Controls.Controls.V6FormButton btnThemMauBC;
         private V6Controls.Controls.GridViewSummary gridViewSummary1;
 
 

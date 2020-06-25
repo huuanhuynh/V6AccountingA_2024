@@ -996,7 +996,7 @@ namespace V6Controls
             {
                 if (_f2_selected.ContainsKey(row.Cells[_config.vValue].Value.ToString().Trim().ToUpper()))
                 {
-                    row.Select();
+                    dataGridView1.Select(row);
                 }
             }
         }
@@ -1006,14 +1006,14 @@ namespace V6Controls
             e.ThrowException = false;
         }
 
-        private void dataGridView1_RowSelectChanged(object sender, DataGridViewRow cRow)
+        private void dataGridView1_RowSelectChanged(object sender, SelectRowEventArgs cRow)
         {
             if (_lookupMode == LookupMode.Multi)// || _lookupMode == LookupMode.Data)
             {
                 //cRow.ChangeSelect();
-                var cRow_value = cRow.Cells[_config.vValue].Value.ToString().Trim();
+                var cRow_value = cRow.Row.Cells[_config.vValue].Value.ToString().Trim();
                 var cRow_key = cRow_value.ToUpper();
-                if (cRow.IsSelect())
+                if (cRow.Row.IsSelect())
                 {
                     _f2_selected[cRow_key] = cRow_value;
                 }

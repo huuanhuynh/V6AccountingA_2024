@@ -78,7 +78,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
                 {
                     this.ShowWarningMessage(V6Setting.IsVietnamese
                         ? "Chưa chọn dòng nào!\nDùng phím cách(space) hoặc Ctrl+A để chọn, Ctrl+U để bỏ chọn hết!"
-                        : "No row selected!\nPlease use SpaceBar or Ctrl+A, Ctrl+U for unselect all!");
+                        : "No e selected!\nPlease use SpaceBar or Ctrl+A, Ctrl+U for unselect all!");
                 }
             }
             catch (Exception ex)
@@ -305,17 +305,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
             }
         }
 
-        private void dataGridView1_RowSelectChanged(object sender, DataGridViewRow row)
+        private void dataGridView1_RowSelectChanged(object sender, SelectRowEventArgs e)
         {
             try
             {
-                bool isSelect = row.IsSelect();
-                string ma_vt0 = ("" + row.Cells["MA_VT"].Value).Trim();
-                string ma_kho0 = ("" + row.Cells["MA_KHO"].Value).Trim();
+                bool isSelect = e.Row.IsSelect();
+                string ma_vt0 = ("" + e.Row.Cells["MA_VT"].Value).Trim();
+                string ma_kho0 = ("" + e.Row.Cells["MA_KHO"].Value).Trim();
                 string code0 = ma_vt0 + ma_kho0;
-                foreach (DataGridViewRow row1 in row.DataGridView.Rows)
+                foreach (DataGridViewRow row1 in e.Row.DataGridView.Rows)
                 {
-                    if (row1 == row) continue;
+                    if (row1 == e.Row) continue;
                     string ma_vt = ("" + row1.Cells["MA_VT"].Value).Trim();
                     string code = ma_vt;
                     if (ma_kho0 != "")

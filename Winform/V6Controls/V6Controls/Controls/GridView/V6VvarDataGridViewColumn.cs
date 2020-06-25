@@ -297,6 +297,22 @@ namespace V6Controls.Controls.GridView
             }
         }
 
+        public bool CheckNotEmpty
+        {
+            get
+            {
+                IDictionary<string, object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
+                if (tagDic.ContainsKey("CHECKNOTEMPTY")) return "1" == "" + tagDic["CHECKNOTEMPTY"];
+                return false;
+            }
+            set
+            {
+                IDictionary<string, object> tagDic = ObjectAndString.ObjectToDictionary(Tag);
+                tagDic["CHECKNOTEMPTY"] = value ? "1" : "0";
+                Tag = tagDic;
+            }
+        }
+
         public override string ToString()
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder(100);
@@ -385,9 +401,11 @@ namespace V6Controls.Controls.GridView
             V6VvarTextBox txt = this.DataGridView.EditingControl as V6VvarTextBox;
             if (txt != null)
             {
-                //txt.VVar = ((V6VvarDataGridViewColumn)DataGridView.CurrentCell.OwningColumn).Tag.ToString();
-                txt.VVar = ((V6VvarDataGridViewColumn)DataGridView.CurrentCell.OwningColumn).Vvar;
-                txt.SetInitFilter(((V6VvarDataGridViewColumn)DataGridView.CurrentCell.OwningColumn).InitFilter);
+                var vvarColumn = (V6VvarDataGridViewColumn) DataGridView.CurrentCell.OwningColumn;
+                
+                txt.VVar = vvarColumn.Vvar;
+                txt.SetInitFilter(vvarColumn.InitFilter);
+                txt.CheckNotEmpty = vvarColumn.CheckNotEmpty;
                 txt.CharacterCasing = CharacterCasing.Upper;
                 txt.BorderStyle = BorderStyle.None;
                 //if (dataGridViewCellStyle.Format != null && dataGridViewCellStyle.Format.StartsWith("N"))

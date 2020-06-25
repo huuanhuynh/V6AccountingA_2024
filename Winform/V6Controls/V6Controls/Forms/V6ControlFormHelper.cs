@@ -3833,6 +3833,8 @@ namespace V6Controls.Forms
         public static string CheckDataInGridView(V6ColorDataGridView dataGridView1, string[] dataFields, string[] checkFields, string[] checkTables)
         {
             string check = null;
+            DataTable errorData = new DataTable("ErrorData");
+            
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 var max = dataFields.Length;
@@ -3849,9 +3851,25 @@ namespace V6Controls.Forms
                     {
                         check += string.Format("{0} {1}={2}", V6Text.NotExist, checkField, value);
                         row.DefaultCellStyle.BackColor = Color.Red;
+                        errorData.AddRow(row.ToDataDictionary(), true);
                     }
                 }
             }
+
+            if (errorData.Rows.Count > 0)
+            {
+                DataViewerForm viewer = new DataViewerForm(errorData);
+                viewer.Text = V6Text.WrongData;
+                viewer.FormClosing += (o, args) =>
+                {
+                    if (ShowConfirmMessage(V6Text.Export + " " + V6Text.WrongData + "?") == DialogResult.Yes)
+                    {
+                        ExportExcel_ChooseFile(viewer, errorData, "errorData");
+                    }
+                };
+                viewer.ShowDialog(dataGridView1);
+            }
+
             return check;
         }
 

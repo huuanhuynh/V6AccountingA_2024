@@ -23,7 +23,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             //MyInitBase(dataGridView1, dataGridView2, AM, AD);//???//
         }
 
-        public bool MultiSelect;
+        public bool MultiSelect { get; set; }
 
         public void SetAM(DataTable am)
         {
@@ -101,7 +101,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             {
                 if (e.KeyCode == Keys.Space)
                 {
-                    if (dataGridView1.CurrentRow != null) dataGridView1.CurrentRow.ChangeSelect();
+                    if (dataGridView1.CurrentRow != null) dataGridView1.ChangeSelect(dataGridView1.CurrentRow);
                 }
                 else if (e.KeyData == (Keys.Control | Keys.A))
                 {

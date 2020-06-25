@@ -244,7 +244,7 @@ namespace V6Controls
                 row.DataGridView.DefaultCellStyle.SelectionForeColor = Color.White;
             }
 
-            if (row.DataGridView is V6ColorDataGridView) ((V6ColorDataGridView)row.DataGridView).OnRowSelectChanged(row);
+            if (row.DataGridView is V6ColorDataGridView) ((V6ColorDataGridView)row.DataGridView).OnRowSelectChanged(new SelectRowEventArgs(row){Select = true});
         }
         /// <summary>
         /// Hàm mở rộng, bỏ chọn, gán Tag = "";
@@ -274,8 +274,9 @@ namespace V6Controls
                 row.DataGridView.DefaultCellStyle.SelectionForeColor = Color.White;
             }
 
-            if(row.DataGridView is V6ColorDataGridView) ((V6ColorDataGridView)row.DataGridView).OnRowSelectChanged(row);
+            if(row.DataGridView is V6ColorDataGridView) ((V6ColorDataGridView)row.DataGridView).OnRowSelectChanged(new SelectRowEventArgs(row));
         }
+
         /// <summary>
         /// Hàm mở rộng, chọn theo điều kiện
         /// </summary>
@@ -286,45 +287,7 @@ namespace V6Controls
             if(select) row.Select();
             else row.UnSelect();
         }
-        /// <summary>
-        /// Hàm mở rộng, Chọn tất cả các dòng
-        /// </summary>
-        /// <param name="gridView"></param>
-        public static void SelectAllRow(this DataGridView gridView)
-        {
-            foreach (DataGridViewRow row in gridView.Rows)
-            {
-                row.Select();
-            }
-        }
-        /// <summary>
-        /// Hàm mở rộng, chọn tất cả dòng theo điều kiện
-        /// </summary>
-        /// <param name="gridView"></param>
-        /// <param name="select"></param>
-        public static void SelectAllRow(this DataGridView gridView, bool select)
-        {
-            if (select)
-            {
-                gridView.SelectAllRow();
-            }
-            else
-            {
-                gridView.UnSelectAllRow();
-            }
-        }
-        /// <summary>
-        /// Hàm mở rộng, bỏ chọn tất cả dòng
-        /// </summary>
-        /// <param name="gridView"></param>
-        public static void UnSelectAllRow(this DataGridView gridView)
-        {
-            foreach (DataGridViewRow row in gridView.Rows)
-            {
-                row.UnSelect();
-            }
-        }
-
+        
         /// <summary>
         /// Kiểm tra cell [Tag].Trim() != "" hoặc HeaderCell.Tag là được chọn
         /// </summary>
@@ -351,6 +314,11 @@ namespace V6Controls
             row.Select(!row.IsSelect());
         }
 
+        /// <summary>
+        /// Hiển thị dữ liệu của DataGridView lên 1 form mới.
+        /// </summary>
+        /// <param name="gridview"></param>
+        /// <param name="title"></param>
         public static void ViewDataToNewForm(this DataGridView gridview, string title = "Data")
         {
             try
@@ -358,50 +326,6 @@ namespace V6Controls
                 var data = gridview.DataSource;
                 DataViewerForm dataViewer = new DataViewerForm(data);
                 dataViewer.ShowDialog(gridview);
-                return;
-                {
-                    var f  = new V6Form
-                    {
-                        WindowState = FormWindowState.Normal,
-                        MaximizeBox = true,
-                        MinimizeBox = false,
-                        ShowInTaskbar = false,
-                        //FormBorderStyle = FormBorderStyle.None
-                        Text = title,
-                        Size = new Size(800, 600)
-                    };
-
-                    var bounds = f.CreateGraphics().VisibleClipBounds;
-                    //child.Location = new Point(0, 0);
-                    //child.Dock = DockStyle.Fill;
-                    V6ColorDataGridView newGridView = new V6ColorDataGridView
-                    {
-                        AllowUserToAddRows = false,
-                        AllowUserToDeleteRows = false,
-                        Anchor = AnchorStyles.Top|AnchorStyles.Left|AnchorStyles.Bottom|AnchorStyles.Right,
-                        ReadOnly = true,
-                        Size = new Size((int) bounds.Width, (int) (bounds.Height-25))
-                    };
-
-                    f.Controls.Add(newGridView);
-                    newGridView.DataSource = data;
-                    //newGridView.Format();
-
-                    GridViewSummary gSum = new GridViewSummary();
-                    gSum.DataGridView = newGridView;
-
-                    f.KeyPreview = true;
-                    f.KeyDown += (s, e) =>
-                    {
-                        if (e.KeyCode == Keys.Escape)
-                        {
-                            f.Close();
-                        }
-                    };
-                    
-                    f.ShowDialog(gridview);
-                    gSum.Refresh();
-                }
             }
             catch (Exception ex)
             {

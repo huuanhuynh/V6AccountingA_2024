@@ -215,7 +215,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.Filter
                     var cRow = dataGridView1.CurrentRow;
                     if (cRow != null)
                     {
-                        cRow.ChangeSelect();
+                        dataGridView1.ChangeSelect(cRow);
                     }
                     return true;
                 }

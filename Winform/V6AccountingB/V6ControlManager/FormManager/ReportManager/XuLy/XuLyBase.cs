@@ -37,7 +37,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         protected DataSet _ds;
         protected DataTable _tbl, _tbl2;
-        private DataTable MauInData;
+
+        private DataTable _mauInData;
+        private DataTable MauInData
+        {
+            get
+            {
+                if (_mauInData ==  null) throw new Exception("MauInData null.");
+                return _mauInData;
+            }
+        }
+
         //private V6TableStruct _tStruct;
         public Thread _thread = null;
         
@@ -145,8 +155,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             get
             {
                 string result = "";
-                //if (cboMauIn.Items.Count > 0 && cboMauIn.SelectedIndex >= 0)
-                if (MauInData != null && (MauInData.Columns.Contains("RPT_DIR") && MauInSelectedRow["RPT_DIR"] != null))
+                if (MauInSelectedRow != null && (MauInData.Columns.Contains("RPT_DIR") && MauInSelectedRow["RPT_DIR"] != null))
                 {
                     string rpt_dir = MauInSelectedRow["RPT_DIR"].ToString().Trim();
                     if (rpt_dir != "") result += rpt_dir + @"\";
@@ -225,9 +234,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
-
                     result = MauInSelectedRow["GRDS_V1"].ToString().Trim();
                 }
                 return result;
@@ -238,7 +246,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
 
                     result = MauInSelectedRow["GRDS_V2"].ToString().Trim();
@@ -251,7 +259,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
 
                     result = MauInSelectedRow["GRDF_V1"].ToString().Trim();
@@ -264,7 +272,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
 
                     result = MauInSelectedRow["GRDF_V2"].ToString().Trim();
@@ -277,7 +285,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
 
                     result = MauInSelectedRow["GRDHV_V1"].ToString().Trim();
@@ -290,7 +298,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
 
                     result = MauInSelectedRow["GRDHE_V1"].ToString().Trim();
@@ -303,7 +311,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
 
                     result = MauInSelectedRow["GRDHV_V2"].ToString().Trim();
@@ -316,7 +324,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
                     result = MauInSelectedRow["GRDHE_V2"].ToString().Trim();
                 }
@@ -328,7 +336,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
                     result = MauInSelectedRow["GRDT_V1"].ToString().Trim();
                 }
@@ -340,7 +348,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
                     result = MauInSelectedRow["GRDT_V2"].ToString().Trim();
                 }
@@ -427,7 +435,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         private void LoadComboboxSource()
         {
-            MauInData = Albc.GetMauInData(_reportFile, "", "", "");
+            _mauInData = Albc.GetMauInData(_reportFile, "", "", "");
         }
 
         private void FixGridViewSize()
@@ -1274,7 +1282,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                if (MauInData != null && MauInData.Rows.Count > 0) return;
+                if (MauInSelectedRow != null) return;
 
                 ConfirmPasswordV6 f_v6 = new ConfirmPasswordV6();
                 if (f_v6.ShowDialog(this) == DialogResult.OK)

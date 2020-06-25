@@ -306,7 +306,7 @@
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Location = new System.Drawing.Point(2, 171);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(274, 331);
+            this.groupBox1.Size = new System.Drawing.Size(274, 340);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -314,11 +314,12 @@
             // panel1
             // 
             this.panel1.AutoScroll = true;
+            this.panel1.AutoSize = true;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.LeftMargin = 0;
             this.panel1.Location = new System.Drawing.Point(3, 16);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(268, 312);
+            this.panel1.Size = new System.Drawing.Size(268, 321);
             this.panel1.TabIndex = 2;
             // 
             // AARKHFilterDanhMuc

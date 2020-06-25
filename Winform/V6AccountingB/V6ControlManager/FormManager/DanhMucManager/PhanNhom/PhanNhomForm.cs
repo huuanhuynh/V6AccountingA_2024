@@ -349,14 +349,7 @@ namespace V6ControlManager.FormManager.DanhMucManager.PhanNhom
             
             if (dataGridView1.DataSource != null && dataGridView1.CurrentRow != null)
             {
-                if (e.KeyCode == Keys.Space && dataGridView1.CurrentRow != null)
-                {
-                    dataGridView1.CurrentRow.ChangeSelect();
-                }
-                else
-                {
-                    
-                }
+                
             }
         }
 

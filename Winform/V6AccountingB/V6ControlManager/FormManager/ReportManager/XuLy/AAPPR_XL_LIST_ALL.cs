@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
+using V6ControlManager.FormManager.ReportManager.ReportR;
 using V6Controls;
 using V6Controls.Forms;
+using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Init;
+using V6Structs;
+using V6Tools;
 using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
@@ -52,13 +57,105 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public override void SetStatus2Text()
         {
-            V6ControlFormHelper.SetStatusText2("F4: Ghi chú, F9: Xử lý chứng từ, F8: Hủy xử lý.");
+            V6ControlFormHelper.SetStatusText2(V6Setting.IsVietnamese ? "F3: Sửa, F5: Xem, F9: Xử lý chứng từ, F8: Hủy xử lý." : "F3: Edit, F5: View, F9: Processing, F8: Cancel processing.");
         }
 
         protected override void MakeReport2()
         {
             Load_Data = true;//Thay đổi cờ.
             base.MakeReport2();
+            _MA_DM = FilterControl.String1;
+        }
+
+        protected override void XuLyHienThiFormSuaChungTuF3()
+        {
+            //_MA_DM = FilterControl.String1;
+            if (V6Login.UserRight.AllowEdit("", _MA_DM.ToUpper() + "6"))
+            {
+                DoEdit();
+            }
+            else
+            {
+                V6ControlFormHelper.NoRightWarning();
+            }
+            SetStatus2Text();
+        }
+
+        private string _MA_DM = null;
+        private void DoEdit() // Copy từ danhmucview
+        {
+            try
+            {
+                DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
+
+                if (row != null)
+                {
+                    var keys = new SortedDictionary<string, object>();
+                    if (dataGridView1.Columns.Contains("UID")) //Luôn có trong thiết kế rồi.
+                        keys.Add("UID", row.Cells["UID"].Value);
+                    if (_MA_DM.ToUpper().StartsWith("CORPLAN"))
+                    {
+                        if (dataGridView1.Columns.Contains("ID"))
+                            keys.Add("ID", row.Cells["ID"].Value);
+                    }
+
+                    //if (KeyFields != null)
+                    //    foreach (var keyField in KeyFields)
+                    //    {
+                    //        if (dataGridView1.Columns.Contains(keyField))
+                    //        {
+                    //            keys[keyField] = row.Cells[keyField].Value;
+                    //        }
+                    //    }
+
+                    //_data = row.ToDataDictionary();
+                    var f = new FormAddEdit(_MA_DM, V6Mode.Edit, keys, null);
+                    f.AfterInitControl += f_AfterInitControl;
+                    //f.UpdateSuccessEvent += f_UpdateSuccess;
+                    //f.CallReloadEvent +=delegate(object sender, EventArgs args) { btnNhan.PerformClick(); };
+                    f.InitFormControl();
+                    f.ShowDialog(this);
+
+                    if (f.UpdateSuccess)
+                    {
+                        f_UpdateSuccess(f.Data);
+                    }
+                }
+                else
+                {
+                    this.ShowWarningMessage(V6Text.NoSelection);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".DoEdit", ex);
+            }
+        }
+
+        /// <summary>
+        /// Khi sửa thành công, cập nhập lại dòng được sửa, chưa kiểm ok cancel.
+        /// </summary>
+        /// <param name="data">Dữ liệu đã sửa</param>
+        private void f_UpdateSuccess(IDictionary<string, object> data)
+        {
+            try
+            {
+                //if (!string.IsNullOrEmpty(_aldmConfig.TABLE_VIEW)
+                //    && V6BusinessHelper.IsExistDatabaseTable(_aldmConfig.TABLE_VIEW))
+                //{
+                //    ReLoad();
+                //}
+                //else
+                {
+                    if (data == null) return;
+                    DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
+                    V6ControlFormHelper.UpdateGridViewRow(row, data);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".f_UpdateSuccess", ex);
+            }
         }
 
         protected override void XuLyBoSungThongTinChungTuF4()
@@ -150,7 +247,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 };
 
                                 f.ShowDialog(this);
-                                SetStatus2Text();
                             }
                         }
                     }
@@ -165,9 +261,146 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 this.ShowErrorException(GetType() + ".XuLyBoSungThongTinChungTuF4", ex);
             }
+            SetStatus2Text();
         }
 
-        
+
+        protected override void XuLyXemChiTietF5()
+        {
+            if (V6Login.UserRight.AllowView("", _MA_DM.ToUpper() + "6"))
+            {
+                DoView();
+            }
+            else
+            {
+                V6ControlFormHelper.NoRightWarning();
+            }
+            SetStatus2Text();
+        }
+
+        private void DoView()
+        {
+            try
+            {
+                DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
+
+                if (row != null)
+                {
+                    var keys = new SortedDictionary<string, object>();
+                    if (dataGridView1.Columns.Contains("UID")) //Luôn có trong thiết kế rồi.
+                        keys.Add("UID", row.Cells["UID"].Value);
+
+                    //if (KeyFields != null)
+                    //    foreach (var keyField in KeyFields)
+                    //    {
+                    //        if (dataGridView1.Columns.Contains(keyField))
+                    //        {
+                    //            keys[keyField] = row.Cells[keyField].Value;
+                    //        }
+                    //    }
+
+                    //var _data = row.ToDataDictionary();
+                    var f = new FormAddEdit(_MA_DM, V6Mode.View, keys, null);
+                    f.AfterInitControl += f_AfterInitControl;
+                    f.InitFormControl();
+                    f.ShowDialog(this);
+                }
+                else
+                {
+                    this.ShowWarningMessage(V6Text.NoSelection);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _MA_DM, ex.Message));
+            }
+        }
+
+        protected override void XuLyF7()
+        {
+            if (V6Login.UserRight.AllowPrint("", _MA_DM.ToUpper() + "6"))
+            {
+                DoPrint();
+            }
+            else
+            {
+                V6ControlFormHelper.NoRightWarning();
+            }
+            SetStatus2Text();
+        }
+
+        public void DoPrint()
+        {
+            try
+            {
+                DataGridViewRow row = dataGridView1.CurrentRow;
+                var rowData = row.ToDataDictionary();
+                if (row == null) return;
+                AldmConfig config = ConfigManager.GetAldmConfig(_MA_DM);
+
+                var keys = ObjectAndString.SplitString(config.KEY);
+                string values = "";
+                foreach (string field in keys)
+                {
+                    string FIELD = field.ToUpper();
+                    if (rowData.ContainsKey(FIELD))
+                    {
+                        values += "," + rowData[field.ToUpper()];
+                    }
+                    else
+                    {
+                        this.ShowErrorMessage(V6Text.NoData + ": " + FIELD);
+                        return;
+                    }
+                }
+                values = values.Substring(1);
+                string uid = "";
+                if (rowData.ContainsKey("UID")) uid = rowData["UID"] + "";
+
+                string program = _program + "_IN";
+                string proc = _program + "_IN"; // AAPPR_XL_LIST_ALL_IN
+                string repFile = _program + _MA_DM;
+                var repTitle = "LIST";
+                var repTitle2 = "LIST";
+
+                var c = new ReportRViewBase(_MA_DM, program, proc, repFile, repTitle, repTitle2, "", "", "");
+                LockSomeControls(c);
+                List<SqlParameter> plist = new List<SqlParameter>();
+                plist.Add(new SqlParameter("@MA_DM", _MA_DM));
+                plist.Add(new SqlParameter("@Fields", config.KEY));
+                plist.Add(new SqlParameter("@Values", values));
+                plist.Add(new SqlParameter("@uid", uid));
+                plist.Add(new SqlParameter("@user_id", V6Login.UserId));
+                c.FilterControl.InitFilters = plist;
+
+                c.AutoClickNhan = true;
+                c.ShowToForm(this, V6Setting.IsVietnamese ? repTitle : repTitle2, true);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _MA_DM, ex.Message));
+            }
+        }
+
+        private void LockSomeControls(V6Control c)
+        {
+            try
+            {
+                var lc = c.GetControlByName("cboMauIn");
+                if (lc != null) lc.DisableTag();
+                lc = c.GetControlByName("chkHienTatCa");
+                if (lc != null) lc.DisableTag();
+                lc = c.GetControlByName("btnSuaTTMauBC");
+                if (lc != null) lc.DisableTag();
+                lc = c.GetControlByName("btnThemMauBC");
+                if (lc != null) lc.DisableTag();
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(string.Format("{0} {1} {2} {3} {4}", V6Login.ClientName, GetType(), MethodBase.GetCurrentMethod().Name, _MA_DM, ex.Message));
+            }
+        }
+
         #region ==== Xử lý F9 ====
         
         private bool f9Running;
@@ -251,6 +484,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     + f9ErrorAll);
 
                 V6ControlFormHelper.ShowMainMessage("F9 " + V6Text.Finish);
+
             }
         }
         #endregion xulyF9

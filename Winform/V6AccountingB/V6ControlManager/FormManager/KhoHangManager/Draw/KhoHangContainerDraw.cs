@@ -49,6 +49,13 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
         private Point _p = new Point(0, 0);
         private DataTable _data;
         private DataTable MauInData;
+        public DataRow MauInSelectedRow
+        {
+            get
+            {
+                return MauInData == null || MauInData.Rows.Count == 0 ? null : MauInData.Rows[0];
+            }
+        }
         public DateTime _cuoiNgay { get; set; }
         public string _mavt { get; set; }
 
@@ -61,10 +68,10 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
 
-                    result = MauInData.Rows[0]["GRDS_V1"].ToString().Trim();
+                    result = MauInSelectedRow["GRDS_V1"].ToString().Trim();
                 }
                 return result;
             }
@@ -74,10 +81,10 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
 
-                    result = MauInData.Rows[0]["GRDS_V2"].ToString().Trim();
+                    result = MauInSelectedRow["GRDS_V2"].ToString().Trim();
                 }
                 return result;
             }
@@ -87,10 +94,10 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
 
-                    result = MauInData.Rows[0]["GRDF_V1"].ToString().Trim();
+                    result = MauInSelectedRow["GRDF_V1"].ToString().Trim();
                 }
                 return result;
             }
@@ -100,10 +107,10 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
 
-                    result = MauInData.Rows[0]["GRDF_V2"].ToString().Trim();
+                    result = MauInSelectedRow["GRDF_V2"].ToString().Trim();
                 }
                 return result;
             }
@@ -113,10 +120,10 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
 
-                    result = MauInData.Rows[0]["GRDHV_V1"].ToString().Trim();
+                    result = MauInSelectedRow["GRDHV_V1"].ToString().Trim();
                 }
                 return result;
             }
@@ -126,10 +133,10 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
 
-                    result = MauInData.Rows[0]["GRDHE_V1"].ToString().Trim();
+                    result = MauInSelectedRow["GRDHE_V1"].ToString().Trim();
                 }
                 return result;
             }
@@ -139,10 +146,10 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
 
-                    result = MauInData.Rows[0]["GRDHV_V2"].ToString().Trim();
+                    result = MauInSelectedRow["GRDHV_V2"].ToString().Trim();
                 }
                 return result;
             }
@@ -152,10 +159,10 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
             get
             {
                 var result = "";
-                if (MauInData != null && MauInData.Rows.Count > 0)
+                if (MauInSelectedRow != null)
                 {
 
-                    result = MauInData.Rows[0]["GRDHE_V2"].ToString().Trim();
+                    result = MauInSelectedRow["GRDHE_V2"].ToString().Trim();
                 }
                 return result;
             }
@@ -332,7 +339,7 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
             try
             {
                 if (MauInData == null || MauInData.Rows.Count == 0) return;
-                var row0 = MauInData.Rows[0];
+                var row0 = MauInSelectedRow;
                 var keys = new SortedDictionary<string, object>
                     {
                         {"MA_FILE", row0["MA_FILE"].ToString().Trim()},
@@ -378,7 +385,7 @@ namespace V6ControlManager.FormManager.KhoHangManager.Draw
         {
             try
             {
-                if (MauInData != null && MauInData.Rows.Count > 0) return;
+                if (MauInSelectedRow != null) return;
 
                 ConfirmPasswordV6 f_v6 = new ConfirmPasswordV6();
                 if (f_v6.ShowDialog(this) == DialogResult.OK)

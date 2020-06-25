@@ -28,8 +28,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             try
             {
                 F3 = true;
-                F4 = true;
-                F5 = false;
+                F5 = true;
+                F7 = true;
+                F8 = true;
                 F9 = true;
                 txtMaDMProc.SetInitFilter("APPR_YN='1'");
                 txtMaDMProc.Upper();
@@ -259,6 +260,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             try
             {
+                String1 = txtMaDMProc.Text.Trim();
                 LoadComboboxSource(txtMaDMProc.Text);
                 lineMa_xuly.VvarTextBox.SetInitFilter(string.Format("Ma_dm='{0}'", txtMaDMProc.Text.Trim()));
             }

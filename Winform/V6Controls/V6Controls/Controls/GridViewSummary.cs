@@ -113,7 +113,7 @@ namespace V6Controls.Controls
             CaculateSumValues();     
         }
 
-        void dgv_SelectionChanged_row(object sender, DataGridViewRow row)
+        void dgv_SelectionChanged_row(object sender, SelectRowEventArgs row)
         {
             if (_dgv.RowCount > 1) CaculateSumValues();
         }

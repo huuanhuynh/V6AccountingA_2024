@@ -106,7 +106,7 @@ namespace V6Controls.Forms.Viewer
                 }
 
                 dataGridView1.DataSource = _dataset.Tables[_current_index];
-                Text = string.Format("Data {0}/{1}. PageDown/PageUp show next data.", _current_index + 1, _dataset.Tables.Count);
+                Text = string.Format("Data {0}/{1}. Ctrl + PageDown/PageUp | Left/Right change data.", _current_index + 1, _dataset.Tables.Count);
             }
             else
             {
@@ -134,11 +134,11 @@ namespace V6Controls.Forms.Viewer
             {
                 OK();
             }
-            else if (keyData == Keys.PageDown)
+            else if (keyData == (Keys.Control | Keys.PageDown) || keyData == (Keys.Control | Keys.Right))
             {
                 ShowData(_current_index+1);
             }
-            else if (keyData == Keys.PageUp)
+            else if (keyData == (Keys.Control | Keys.PageUp) || keyData == (Keys.Control | Keys.Left))
             {
                 ShowData(_current_index-1);
             }

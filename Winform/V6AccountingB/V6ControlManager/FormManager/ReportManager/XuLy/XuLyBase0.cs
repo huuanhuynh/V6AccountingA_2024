@@ -567,7 +567,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                if (MauInData != null && MauInData.Rows.Count > 0) return;
+                if (MauInSelectedRow != null) return;
 
                 ConfirmPasswordV6 f_v6 = new ConfirmPasswordV6();
                 if (f_v6.ShowDialog(this) == DialogResult.OK)
