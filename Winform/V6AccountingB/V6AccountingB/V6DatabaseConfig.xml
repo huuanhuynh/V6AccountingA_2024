@@ -469,6 +469,25 @@
     <Type>0</Type>
     <Key>KDxA0Z/kswgBakDW+dtK5R0ecsSRgZSWMpOEjymSAXU=</Key>
   </DatabaseList>
+  <DatabaseList>
+    <Stt>26</Stt>
+    <Server>14.241.233.129,7172</Server>
+    <Server2>14.241.233.129,7172</Server2>
+    <Database>KIMSON20</Database>
+    <Database2>KIMSON20</Database2>
+    <UserId>v6admsa</UserId>
+    <UserId2>v6admsa</UserId2>
+    <Epassword>s2AgMG3vpb+clP+pHOu/x4dEutDDLQrf</Epassword>
+    <Epassword2>s2AgMG3vpb+clP+pHOu/x4dEutDDLQrf</Epassword2>
+    <Api>api</Api>
+    <Api2>api</Api2>
+    <Note>Dữ liệu NB ONLINE 2020 </Note>
+    <UseIsolation>1</UseIsolation>
+    <TimeOut>360</TimeOut>
+    <Run>1</Run>
+    <Type>0</Type>
+    <Key>5ZJ1s/YjkBhxnuzyp+HpMaE9HoOhT2FsGAiHzZXQW/4=</Key>
+  </DatabaseList>
   <ServerConfig>
     <ServerName>HUUANV6</ServerName>
     <ServerIP>192.168.1.141</ServerIP>

@@ -82,7 +82,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (_mode == V6Mode.Add)
                 {
                     TXTkieu_ctgs.Text = "1";
-                    TXTNO_CO.Value = 1;
+                    TXTNO_CO.Text = "1";
                 }
 
                 var length = V6BusinessHelper.VFV_iFsize("ARCTGS01", "SO_LO");

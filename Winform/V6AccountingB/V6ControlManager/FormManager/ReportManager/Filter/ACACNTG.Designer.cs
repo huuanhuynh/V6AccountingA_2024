@@ -221,7 +221,7 @@
             this.txtKieu_tg_gs.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtKieu_tg_gs.HoverColor = System.Drawing.Color.Yellow;
             this.txtKieu_tg_gs.LeaveColor = System.Drawing.Color.White;
-            this.txtKieu_tg_gs.LimitCharacters = "12";
+            this.txtKieu_tg_gs.LimitCharacters = "1;2";
             this.txtKieu_tg_gs.Location = new System.Drawing.Point(175, 98);
             this.txtKieu_tg_gs.MaxLength = 1;
             this.txtKieu_tg_gs.MaxNumLength = 1;

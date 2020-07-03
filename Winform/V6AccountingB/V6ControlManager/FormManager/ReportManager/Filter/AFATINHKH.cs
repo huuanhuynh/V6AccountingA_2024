@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Reflection;
 using V6AccountingBusiness;
 using V6Controls;
 using V6Init;
@@ -44,22 +45,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             result.Add(new SqlParameter("@nYear", (int)txtNam.Value));
             result.Add(new SqlParameter("@nUserID", V6Login.UserId));
             
+            V6BusinessHelper.WriteV6UserLog(ItemID, GetType() + "." + MethodBase.GetCurrentMethod().Name,
+               string.Format("TinhGia_TB nCycle:{0} nYear:{1} nUserID:{2}", txtKy.Value, txtNam.Value, V6Login.UserId));
 
-            //var and = radAnd.Checked;
-
-            //var cKey = "";
-            //var key0 = GetFilterStringByFields(new List<string>()
-            //{
-            //    "NH_VT1","NH_VT2","NH_VT3","TK_VT"
-            //}, and);
-           
-            //if (!string.IsNullOrEmpty(key0))
-            //{
-            //    cKey = string.Format(" ma_vt in (select ma_kh from alkh where {0} )", key0);
-            //}
-            
-            //result.Add(new SqlParameter("@Advance", cKey));
-            
             return result;
         }
 

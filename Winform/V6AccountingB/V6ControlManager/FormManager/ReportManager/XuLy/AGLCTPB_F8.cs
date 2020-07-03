@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls;
@@ -113,6 +114,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         new SqlParameter("@Ma_dvcs", "")
 
                     };
+                    string paramss = V6ControlFormHelper.PlistToString(plist);
+                    V6BusinessHelper.WriteV6UserLog(ItemID, GetType() + "." + MethodBase.GetCurrentMethod().Name,
+                    string.Format("reportProcedure:{0} {1}", _reportProcedure, paramss));
                     V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure, plist);
                     
                     OnUpdateSuccessEvent();

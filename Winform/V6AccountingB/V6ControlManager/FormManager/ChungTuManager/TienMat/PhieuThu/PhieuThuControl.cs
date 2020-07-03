@@ -2364,8 +2364,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 if (index >= 0 && index < AM.Rows.Count)
                 {
                     _sttRec = AM.Rows[index]["Stt_rec"].ToString().Trim();
-                    LoadAD(_sttRec);
                     CurrentIndex = index;
+                    LoadAD(_sttRec);
                     EnableNavigationButtons();
                     ViewInvoice();
                 }
@@ -2534,7 +2534,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             {
                 CheckForIllegalCrossThreadCalls = false;
 
-                if (Invoice.InsertInvoice(addDataAM, addDataAD, addDataAD3))
+                if (Invoice.InsertInvoice(readyDataAM, readyDataAD, readyDataAD3))
                 {
                     _AED_Success = true;
                     Mode = V6Mode.View;
@@ -2641,21 +2641,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
         {
             try
             {
-                addDataAD = dataGridView1.GetData(_sttRec);
-                addDataAD3 = dataGridView3.GetData(_sttRec);
+                readyDataAD = dataGridView1.GetData(_sttRec);
+                readyDataAD3 = dataGridView3.GetData(_sttRec);
             }
             catch (Exception ex)
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        public IDictionary<string, object> addDataAM;
-        public List<IDictionary<string, object>> addDataAD, addDataAD3;
+        public IDictionary<string, object> readyDataAM;
+        public List<IDictionary<string, object>> readyDataAD, readyDataAD3;
         private string addErrorMessage = "";
 #endregion add
         
         #region ==== Edit Thread ====
-        private List<IDictionary<string, object>> editDataAD, editDataAD3;
         private string editErrorMessage = "";
 
         private void DoEditThread()
@@ -2697,15 +2696,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 var am_TIME0 = AM.Rows[CurrentIndex]["Time0"];
                 var am_U_ID0 = AM.Rows[CurrentIndex]["User_id0"];
 
-                editDataAD = dataGridView1.GetData(_sttRec);
-                foreach (IDictionary<string, object> adRow in editDataAD)
+                readyDataAD = dataGridView1.GetData(_sttRec);
+                foreach (IDictionary<string, object> adRow in readyDataAD)
                 {
                     adRow["DATE0"] = am_DATE0;
                     adRow["TIME0"] = am_TIME0;
                     adRow["USER_ID0"] = am_U_ID0;
                 }
-                editDataAD3 = dataGridView3.GetData(_sttRec);
-                foreach (IDictionary<string, object> adRow in editDataAD3)
+                readyDataAD3 = dataGridView3.GetData(_sttRec);
+                foreach (IDictionary<string, object> adRow in readyDataAD3)
                 {
                     adRow["DATE0"] = am_DATE0;
                     adRow["TIME0"] = am_TIME0;
@@ -2767,7 +2766,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             {
                 CheckForIllegalCrossThreadCalls = false;
                 var keys = new SortedDictionary<string, object> { { "STT_REC", _sttRec } };
-                if (Invoice.UpdateInvoice(addDataAM, editDataAD, editDataAD3, keys))
+                if (Invoice.UpdateInvoice(readyDataAM, readyDataAD, readyDataAD3, keys))
                 {
                     _AED_Success = true;
                     ADTables.Remove(_sttRec);
@@ -2928,10 +2927,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                 else
                 {
                     V6ControlFormHelper.RemoveRunningList(_sttRec);
-                    addDataAM = PreparingDataAM(Invoice);
-                    V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD);
-                    V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD2);
-                    V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD3);
+                    readyDataAM = PreparingDataAM(Invoice);
+                    V6ControlFormHelper.UpdateDKlistAll(readyDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD);
+                    V6ControlFormHelper.UpdateDKlistAll(readyDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD2);
+                    V6ControlFormHelper.UpdateDKlistAll(readyDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD3);
 
                     if (Mode == V6Mode.Add)
                     {
@@ -3042,7 +3041,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                                     txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMaDVCS.Text.Trim(), txtMaKh.Text.Trim(),
                                     txtTk.Text, dateNgayCT.Date, txtTongThanhToan.Value, "E");
 
-                            if (check_edit == true)
+                            if (check_edit)
                             {
                                 Mode = V6Mode.Edit;
                                 detail1.MODE = V6Mode.View;
@@ -3163,41 +3162,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             }
         }
 
-        private void In0()
-        {
-            try
-            {
-                if (!IsViewingAnInvoice) return;
-                if (V6Login.UserRight.AllowPrint("", Invoice.CodeMact))
-                {
-                    var program = Invoice.PrintReportProcedure;
-                    var repFile = Invoice.Alct["FORM"].ToString().Trim();
-                    var repTitle = Invoice.Alct["TIEU_DE_CT"].ToString().Trim();
-                    var repTitle2 = Invoice.Alct["TIEU_DE2"].ToString().Trim();
 
-                    var c = new InChungTuViewBase(Invoice, program, program, repFile, repTitle, repTitle2,
-                        "", "", "", _sttRec);
-                    c.TTT = txtTongThanhToan.Value;
-                    c.TTT_NT = txtTongThanhToanNt.Value;
-                    c.MA_NT =  _maNt;
-                    c.Dock = DockStyle.Fill;
-                    c.PrintSuccess += (sender, stt_rec, hoadon_nd51) =>
-                    {
-                        if (hoadon_nd51 == 1) Invoice.IncreaseSl_inAM(stt_rec, AM_current);
-                        if (!sender.IsDisposed) sender.Dispose();
-                    };
-                    c.ShowToForm(this, Invoice.Mact == "TA1" ? V6Text.PrintTA1 : V6Text.PrintBC1, true);
-                }
-                else
-                {
-                    V6ControlFormHelper.NoRightWarning();
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
 
         private TimPhieuThuForm _timForm;
         private void Xem()

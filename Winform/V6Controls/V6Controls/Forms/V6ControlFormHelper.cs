@@ -18,6 +18,7 @@ using GSM;
 using V6AccountingBusiness;
 using V6Controls.Controls;
 using V6Controls.Controls.Label;
+using V6Controls.Forms.DanhMuc.Add_Edit;
 using V6Controls.Forms.DanhMuc.Add_Edit.ThongTinDinhNghia;
 using V6Controls.Forms.Editor;
 using V6Controls.Forms.Viewer;
@@ -2610,6 +2611,14 @@ namespace V6Controls.Forms
                 .FirstOrDefault(c => c.AccessibleName != null && c.AccessibleName.ToUpper() == accName);
         }
 
+        private static Control FindNeighborControlByAccessibleName(string accName, Control brother)
+        {
+            var form = FindParent<AddEditControlVirtual>(brother);
+            if (form == null) return null;
+            var control = GetControlByAccessibleName(form, accName);
+            return control;
+        }
+
         /// <summary>
         /// Tải, xử lý thông tin tự định nghĩa của người dùng.
         /// </summary>
@@ -2770,6 +2779,7 @@ namespace V6Controls.Forms
                         var labelField = descriptions[0];
                         var dataField = descriptions[1];
                         Control dataControl = FindBrotherControlByAccessibleName(dataField, control);
+                        if (dataControl == null) dataControl = FindNeighborControlByAccessibleName(dataField, control);
                         if (data.Columns.Contains(labelField))
                         {
                             string s = row[labelField].ToString().Trim();
@@ -3834,7 +3844,7 @@ namespace V6Controls.Forms
         {
             string check = null;
             DataTable errorData = new DataTable("ErrorData");
-            
+            SortedDictionary<int, SortedDictionary<string, bool>> not_exist_value_data = new SortedDictionary<int, SortedDictionary<string, bool>>();
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 var max = dataFields.Length;
@@ -3842,16 +3852,32 @@ namespace V6Controls.Forms
                 if (checkTables.Length < max) max = checkTables.Length;
                 for (int i = 0; i < max; i++)
                 {
+                    if(!not_exist_value_data.ContainsKey(i)) not_exist_value_data[i] = new SortedDictionary<string, bool>();
+
                     var table = checkTables[i];
                     var dataField = dataFields[i];
                     var checkField = checkFields[i];
                     var value = row.Cells[dataField].Value.ToString().Trim();
-                    var notexist = V6BusinessHelper.IsValidOneCode_Full(table, 1, checkField, value, value);
-                    if (notexist)
+                    if (not_exist_value_data[i].ContainsKey(value))
                     {
-                        check += string.Format("{0} {1}={2}", V6Text.NotExist, checkField, value);
-                        row.DefaultCellStyle.BackColor = Color.Red;
-                        errorData.AddRow(row.ToDataDictionary(), true);
+                        //var old_notexist = checkedData[i][value];
+                        //if (old_notexist)
+                        {
+                            //check += string.Format("{0} {1}={2}", V6Text.NotExist, checkField, value);
+                            row.DefaultCellStyle.BackColor = Color.Red;
+                            errorData.AddRow(row.ToDataDictionary(), true);
+                        }
+                    }
+                    else
+                    {
+                        var notexist = V6BusinessHelper.IsValidOneCode_Full(table, 1, checkField, value, value);
+                        if (notexist)
+                        {
+                            not_exist_value_data[i][value] = notexist;
+                            check += string.Format("{0} {1}={2}", V6Text.NotExist, checkField, value);
+                            row.DefaultCellStyle.BackColor = Color.Red;
+                            errorData.AddRow(row.ToDataDictionary(), true);
+                        }
                     }
                 }
             }
@@ -4157,6 +4183,7 @@ namespace V6Controls.Forms
             IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string ExcelTemplateFileFull, string defaultSaveName)
         {
+            if (ReportDocumentParameters == null) ReportDocumentParameters = new Dictionary<string, object>();
             if (data == null)
             {
                 //ShowTopMessage(V6Text.NoData);
@@ -4193,10 +4220,11 @@ namespace V6Controls.Forms
             IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string ExcelTemplateFileFull, string saveFileName)
         {
+            if (ReportDocumentParameters == null) ReportDocumentParameters = new Dictionary<string, object>();
             ExportExcelTemplate_owner = owner;
             ExportExcelTemplate_data = data.Copy();
             ExportExcelTemplate_tbl2 = tbl2.Copy();
-            ExportExcelTemplate_ReportDocumentParameters = ReportDocumentParameters;
+            ExportExcelTemplate_ReportDocumentParameters = ReportDocumentParameters.ToUpperKeys();
             ExportExcelTemplate_MAU = MAU;
             ExportExcelTemplate_LAN = LAN;
             ExportExcelTemplate_ReportFile = ReportFile;
@@ -4288,11 +4316,24 @@ namespace V6Controls.Forms
                                         var regex = new Regex("{(.+?)}");
                                         foreach (Match match in regex.Matches(content))
                                         {
-                                            var MATCH_KEY = match.Groups[1].Value.ToUpper();
-                                            if (ExportExcelTemplate_ReportDocumentParameters.ContainsKey(MATCH_KEY))
-                                                content = content.Replace(match.Groups[0].Value,
-                                                    ObjectAndString.ObjectToString(
-                                                        ExportExcelTemplate_ReportDocumentParameters[MATCH_KEY]));
+                                            var matchGroup0 = match.Groups[0].Value;
+                                            var matchContain = match.Groups[1].Value;
+                                            var matchColumn = matchContain.ToUpper();
+                                            var matchFormat = "";
+                                            if (matchContain.Contains(":"))
+                                            {
+                                                int _2dotIndex = matchContain.IndexOf(":", StringComparison.InvariantCulture);
+                                                matchColumn = matchContain.Substring(0, _2dotIndex).ToUpper();
+                                                matchFormat = matchContain.Substring(_2dotIndex + 1);
+                                            }
+                                            if (ExportExcelTemplate_ReportDocumentParameters.ContainsKey(matchColumn)
+                                                && ExportExcelTemplate_ReportDocumentParameters[matchColumn] is DateTime && matchFormat == "")
+                                            {
+                                                matchFormat = "dd/MM/yyyy";
+                                            }
+                                            if (ExportExcelTemplate_ReportDocumentParameters.ContainsKey(matchColumn))
+                                                content = content.Replace(matchGroup0,
+                                                    ObjectAndString.ObjectToString(ExportExcelTemplate_ReportDocumentParameters[matchColumn], matchFormat));
                                         }
                                         parameters.Add(KEY, content);
                                     }
@@ -4444,11 +4485,12 @@ namespace V6Controls.Forms
             IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string ExcelTemplateFileFull, string defaultSaveName, string excelColumns, string excelHeaders)
         {
+            if (ReportDocumentParameters == null) ReportDocumentParameters = new Dictionary<string, object>();
             ExportExcelTemplateD_owner = owner;
             ExportExcelTemplateD_data = data;
             ExportExcelTemplateD_tbl2 = tbl2;
             ExportExcelTemplateD_MODE = MODE;
-            ExportExcelTemplateD_ReportDocumentParameters = ReportDocumentParameters;
+            ExportExcelTemplateD_ReportDocumentParameters = ReportDocumentParameters.ToUpperKeys();
             ExportExcelTemplateD_MAU = MAU;
             ExportExcelTemplateD_LAN = LAN;
             ExportExcelTemplateD_ReportFile = ReportFile;
@@ -4550,14 +4592,38 @@ namespace V6Controls.Forms
                                         // vd chuỗi "{123} {456}". có ? được 2 nhóm. không có ? được 1.
                                         if (content.Contains("{") && content.Contains("}"))
                                         {
+                                            //var regex = new Regex("{(.+?)}");
+                                            //foreach (Match match in regex.Matches(content))
+                                            //{
+                                            //    var MATCH_KEY = match.Groups[1].Value.ToUpper();
+                                            //    if (ExportExcelTemplateD_ReportDocumentParameters.ContainsKey(MATCH_KEY))
+                                            //        content = content.Replace(
+                                            //            match.Groups[0].Value,
+                                            //            ObjectAndString.ObjectToString(ExportExcelTemplateD_ReportDocumentParameters[MATCH_KEY]));
+                                            //}
+                                            //parameters.Add(KEY, content);
+
                                             var regex = new Regex("{(.+?)}");
                                             foreach (Match match in regex.Matches(content))
                                             {
-                                                var MATCH_KEY = match.Groups[1].Value.ToUpper();
-                                                if (ExportExcelTemplateD_ReportDocumentParameters.ContainsKey(MATCH_KEY))
-                                                    content = content.Replace(
-                                                        match.Groups[0].Value,
-                                                        ObjectAndString.ObjectToString(ExportExcelTemplateD_ReportDocumentParameters[MATCH_KEY]));
+                                                var matchGroup0 = match.Groups[0].Value;
+                                                var matchContain = match.Groups[1].Value;
+                                                var matchColumn = matchContain.ToUpper();
+                                                var matchFormat = "";
+                                                if (matchContain.Contains(":"))
+                                                {
+                                                    int _2dotIndex = matchContain.IndexOf(":", StringComparison.InvariantCulture);
+                                                    matchColumn = matchContain.Substring(0, _2dotIndex).ToUpper();
+                                                    matchFormat = matchContain.Substring(_2dotIndex + 1);
+                                                }
+                                                if (ExportExcelTemplateD_ReportDocumentParameters.ContainsKey(matchColumn)
+                                                    && ExportExcelTemplateD_ReportDocumentParameters[matchColumn] is DateTime && matchFormat == "")
+                                                {
+                                                    matchFormat = "dd/MM/yyyy";
+                                                }
+                                                if (ExportExcelTemplateD_ReportDocumentParameters.ContainsKey(matchColumn))
+                                                    content = content.Replace(matchGroup0,
+                                                        ObjectAndString.ObjectToString(ExportExcelTemplateD_ReportDocumentParameters[matchColumn], matchFormat));
                                             }
                                             parameters.Add(KEY, content);
                                         }
@@ -4698,6 +4764,7 @@ namespace V6Controls.Forms
             IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string ExcelTemplateFileFull, string defaultSaveName)
         {
+            if (ReportDocumentParameters == null) ReportDocumentParameters = new Dictionary<string, object>();
             if (data == null)
             {
                 ShowMainMessage(V6Text.ExportFail + "\n" + V6Text.NoData);
@@ -4747,11 +4814,12 @@ namespace V6Controls.Forms
             IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string ExcelTemplateFileFull, string saveFileName)
         {
+            if (ReportDocumentParameters == null) ReportDocumentParameters = new Dictionary<string, object>();
             ExportExcelGroup_owner = owner;
             ExportExcelGroup_data = data;
             ExportExcelGroup_data2 = data2;
             ExportExcelGroup_tbl3 = tbl3;
-            ExportExcelGroup_ReportDocumentParameters = ReportDocumentParameters;
+            ExportExcelGroup_ReportDocumentParameters = ReportDocumentParameters.ToUpperKeys();
             ExportExcelGroup_MAU = MAU;
             ExportExcelGroup_LAN = LAN;
             ExportExcelGroup_ReportFile = ReportFile;
@@ -4842,14 +4910,38 @@ namespace V6Controls.Forms
                                     // vd chuỗi "{123} {456}". có ? được 2 nhóm. không có ? được 1.
                                     if (content.Contains("{") && content.Contains("}"))
                                     {
+                                        //var regex = new Regex("{(.+?)}");
+                                        //foreach (Match match in regex.Matches(content))
+                                        //{
+                                        //    var MATCH_KEY = match.Groups[1].Value.ToUpper();
+                                        //    if (ExportExcelGroup_ReportDocumentParameters.ContainsKey(MATCH_KEY))
+                                        //        content = content.Replace(match.Groups[0].Value,
+                                        //            ObjectAndString.ObjectToString(
+                                        //                ExportExcelGroup_ReportDocumentParameters[MATCH_KEY]));
+                                        //}
+                                        //parameters.Add(KEY, content);
+
                                         var regex = new Regex("{(.+?)}");
                                         foreach (Match match in regex.Matches(content))
                                         {
-                                            var MATCH_KEY = match.Groups[1].Value.ToUpper();
-                                            if (ExportExcelGroup_ReportDocumentParameters.ContainsKey(MATCH_KEY))
-                                                content = content.Replace(match.Groups[0].Value,
-                                                    ObjectAndString.ObjectToString(
-                                                        ExportExcelGroup_ReportDocumentParameters[MATCH_KEY]));
+                                            var matchGroup0 = match.Groups[0].Value;
+                                            var matchContain = match.Groups[1].Value;
+                                            var matchColumn = matchContain.ToUpper();
+                                            var matchFormat = "";
+                                            if (matchContain.Contains(":"))
+                                            {
+                                                int _2dotIndex = matchContain.IndexOf(":", StringComparison.InvariantCulture);
+                                                matchColumn = matchContain.Substring(0, _2dotIndex).ToUpper();
+                                                matchFormat = matchContain.Substring(_2dotIndex + 1);
+                                            }
+                                            if (ExportExcelGroup_ReportDocumentParameters.ContainsKey(matchColumn)
+                                                && ExportExcelGroup_ReportDocumentParameters[matchColumn] is DateTime && matchFormat == "")
+                                            {
+                                                matchFormat = "dd/MM/yyyy";
+                                            }
+                                            if (ExportExcelGroup_ReportDocumentParameters.ContainsKey(matchColumn))
+                                                content = content.Replace(matchGroup0,
+                                                    ObjectAndString.ObjectToString(ExportExcelGroup_ReportDocumentParameters[matchColumn], matchFormat));
                                         }
                                         parameters.Add(KEY, content);
                                     }
@@ -5016,10 +5108,11 @@ namespace V6Controls.Forms
             IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string excelTemplateFile, string saveFileName)
         {
+            if (ReportDocumentParameters == null) ReportDocumentParameters = new Dictionary<string, object>();
             //ExportExcelTemplateHTKK_owner = owner;
             ExportExcelTemplateHTKK_data = data.Copy();
             ExportExcelTemplateHTKK_tbl2 = tbl2.Copy();
-            ExportExcelTemplateHTKK_ReportDocumentParameters = ReportDocumentParameters;
+            ExportExcelTemplateHTKK_ReportDocumentParameters = ReportDocumentParameters.ToUpperKeys();
             ExportExcelTemplateHTKK_MAU = MAU;
             ExportExcelTemplateHTKK_LAN = LAN;
             ExportExcelTemplateHTKK_ReportFile = ReportFile;
@@ -5147,14 +5240,38 @@ namespace V6Controls.Forms
                                         // vd chuỗi "{123} {456}". có ? được 2 nhóm. không có ? được 1.
                                         if (content.Contains("{") && content.Contains("}"))
                                         {
+                                            //var regex = new Regex("{(.+?)}");
+                                            //foreach (Match match in regex.Matches(content))
+                                            //{
+                                            //    var MATCH_KEY = match.Groups[1].Value.ToUpper();
+                                            //    if (ExportExcelTemplateHTKK_ReportDocumentParameters.ContainsKey(MATCH_KEY))
+                                            //        content = content.Replace(match.Groups[0].Value,
+                                            //            ObjectAndString.ObjectToString(
+                                            //                ExportExcelTemplateHTKK_ReportDocumentParameters[MATCH_KEY]));
+                                            //}
+                                            //parameters.Add(KEY, content);
+
                                             var regex = new Regex("{(.+?)}");
                                             foreach (Match match in regex.Matches(content))
                                             {
-                                                var MATCH_KEY = match.Groups[1].Value.ToUpper();
-                                                if (ExportExcelTemplateHTKK_ReportDocumentParameters.ContainsKey(MATCH_KEY))
-                                                    content = content.Replace(match.Groups[0].Value,
-                                                        ObjectAndString.ObjectToString(
-                                                            ExportExcelTemplateHTKK_ReportDocumentParameters[MATCH_KEY]));
+                                                var matchGroup0 = match.Groups[0].Value;
+                                                var matchContain = match.Groups[1].Value;
+                                                var matchColumn = matchContain.ToUpper();
+                                                var matchFormat = "";
+                                                if (matchContain.Contains(":"))
+                                                {
+                                                    int _2dotIndex = matchContain.IndexOf(":", StringComparison.InvariantCulture);
+                                                    matchColumn = matchContain.Substring(0, _2dotIndex).ToUpper();
+                                                    matchFormat = matchContain.Substring(_2dotIndex + 1);
+                                                }
+                                                if (ExportExcelTemplateHTKK_ReportDocumentParameters.ContainsKey(matchColumn)
+                                                    && ExportExcelTemplateHTKK_ReportDocumentParameters[matchColumn] is DateTime && matchFormat == "")
+                                                {
+                                                    matchFormat = "dd/MM/yyyy";
+                                                }
+                                                if (ExportExcelTemplateHTKK_ReportDocumentParameters.ContainsKey(matchColumn))
+                                                    content = content.Replace(matchGroup0,
+                                                        ObjectAndString.ObjectToString(ExportExcelTemplateHTKK_ReportDocumentParameters[matchColumn], matchFormat));
                                             }
                                             parameters.Add(KEY, content);
                                         }
@@ -5265,9 +5382,10 @@ namespace V6Controls.Forms
             IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string excelTemplateFile, string saveFileName)
         {
+            if (ReportDocumentParameters == null) ReportDocumentParameters = new Dictionary<string, object>();
             ExportExcelTemplateONLINE_data = data.Copy();
             ExportExcelTemplateONLINE_tbl2 = tbl2.Copy();
-            ExportExcelTemplateONLINE_ReportDocumentParameters = ReportDocumentParameters;
+            ExportExcelTemplateONLINE_ReportDocumentParameters = ReportDocumentParameters.ToUpperKeys();
             ExportExcelTemplateONLINE_MAU = MAU;
             ExportExcelTemplateONLINE_LAN = LAN;
             ExportExcelTemplateONLINE_ReportFile = ReportFile;
@@ -5394,14 +5512,37 @@ namespace V6Controls.Forms
                                         // vd chuỗi "{123} {456}". có ? được 2 nhóm. không có ? được 1.
                                         if (content.Contains("{") && content.Contains("}"))
                                         {
+                                            //var regex = new Regex("{(.+?)}");
+                                            //foreach (Match match in regex.Matches(content))
+                                            //{
+                                            //    var MATCH_KEY = match.Groups[1].Value.ToUpper();
+                                            //    if (ExportExcelTemplateONLINE_ReportDocumentParameters.ContainsKey(MATCH_KEY))
+                                            //        content = content.Replace(match.Groups[0].Value,
+                                            //            ObjectAndString.ObjectToString(
+                                            //                ExportExcelTemplateONLINE_ReportDocumentParameters[MATCH_KEY]));
+                                            //}
+                                            //parameters.Add(KEY, content);
                                             var regex = new Regex("{(.+?)}");
                                             foreach (Match match in regex.Matches(content))
                                             {
-                                                var MATCH_KEY = match.Groups[1].Value.ToUpper();
-                                                if (ExportExcelTemplateONLINE_ReportDocumentParameters.ContainsKey(MATCH_KEY))
-                                                    content = content.Replace(match.Groups[0].Value,
-                                                        ObjectAndString.ObjectToString(
-                                                            ExportExcelTemplateONLINE_ReportDocumentParameters[MATCH_KEY]));
+                                                var matchGroup0 = match.Groups[0].Value;
+                                                var matchContain = match.Groups[1].Value;
+                                                var matchColumn = matchContain.ToUpper();
+                                                var matchFormat = "";
+                                                if (matchContain.Contains(":"))
+                                                {
+                                                    int _2dotIndex = matchContain.IndexOf(":", StringComparison.InvariantCulture);
+                                                    matchColumn = matchContain.Substring(0, _2dotIndex).ToUpper();
+                                                    matchFormat = matchContain.Substring(_2dotIndex + 1);
+                                                }
+                                                if (ExportExcelTemplateONLINE_ReportDocumentParameters.ContainsKey(matchColumn)
+                                                    && ExportExcelTemplateONLINE_ReportDocumentParameters[matchColumn] is DateTime && matchFormat == "")
+                                                {
+                                                    matchFormat = "dd/MM/yyyy";
+                                                }
+                                                if (ExportExcelTemplateONLINE_ReportDocumentParameters.ContainsKey(matchColumn))
+                                                    content = content.Replace(matchGroup0,
+                                                        ObjectAndString.ObjectToString(ExportExcelTemplateONLINE_ReportDocumentParameters[matchColumn], matchFormat));
                                             }
                                             parameters.Add(KEY, content);
                                         }
@@ -8239,6 +8380,17 @@ namespace V6Controls.Forms
                 }
             }
             return defaultValue;
+        }
+
+        public static string PlistToString(IList<SqlParameter> plist)
+        {
+            string result = "";
+            if (plist == null) return result;
+            foreach (SqlParameter sqlParameter in plist)
+            {
+                result += string.Format(" {0}:{1}", sqlParameter.ParameterName, ObjectAndString.ObjectToString(sqlParameter.Value));
+            }
+            return result;
         }
     }
 }

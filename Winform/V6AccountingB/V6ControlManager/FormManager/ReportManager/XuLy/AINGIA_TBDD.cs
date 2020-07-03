@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
 using System.Threading;
 using V6AccountingBusiness;
 using V6Controls;
@@ -36,9 +37,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     this.ShowWarningMessage(V6Text.CheckLock);
                     return;
                 }
-                // Tinh toan
-                //var tTinhToan = new Thread(TinhToan);
-                //tTinhToan.Start();
+                
+                V6BusinessHelper.WriteV6UserLog(ItemID, GetType() + "." + MethodBase.GetCurrentMethod().Name,
+                    string.Format("reportProcedure:{0} {1}", _reportProcedure, "paramss"));
 
                 var m_BigData = ObjectAndString.ObjectToString(V6Options.GetValue("M_BIG_DATA"));
 

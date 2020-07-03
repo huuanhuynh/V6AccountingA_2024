@@ -83,7 +83,7 @@ namespace V6Controls
 
         public override DataObject GetClipboardContent()
         {
-            if (use_v6_copy)
+            if (use_v6_copy && EditingCell == null && (ModifierKeys & Keys.Shift) == Keys.Shift)
             {
                 return GetClipboardContentV6();
             }
@@ -814,7 +814,7 @@ namespace V6Controls
         private bool space_bar = false;
 
         [DefaultValue(true)]
-        [Description("Dùng hàm GetClipboardContentV6 để lấy dữ liệu khi copy.")]
+        [Description("Dùng hàm GetClipboardContentV6 để lấy dữ liệu khi Shift copy.")]
         public bool UseV6Copy { get { return use_v6_copy; } set { use_v6_copy = value; } }
         private bool use_v6_copy = true;
 
@@ -1424,6 +1424,7 @@ namespace V6Controls
         
         private void V6ColorDataGridView_KeyDown(object sender, KeyEventArgs e)
         {
+            //bool ctrl = (ModifierKeys & Keys.Control) == Keys.Control;
             if (DataSource != null)
             {
                 
@@ -1431,10 +1432,20 @@ namespace V6Controls
                 {
                     DoCodeEditor();
                 }
-
+                
                 if (e.KeyData == (Keys.Control | Keys.Shift | Keys.C))
                 {
-                    object o = GetClipboardContent() ?? (object) "";
+                    //object o = GetClipboardContent() ?? (object) "";
+                    object o = null;
+                    if (use_v6_copy)
+                    {
+                        o = GetClipboardContentV6();
+                    }
+                    else
+                    {
+                        o = base.GetClipboardContent();
+                    }
+                    if (o == null) o = "";
                     Clipboard.SetDataObject(o, true);
                 }
                 else if (CurrentCell != null && e.KeyData == (Keys.Control | Keys.C))

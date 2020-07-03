@@ -735,6 +735,9 @@ namespace V6AccountingBusiness.Invoices
             }
         }
 
+        /// <summary>
+        /// 0 DoNohting 1 AutoPrint 2 AutoClick 3 AutoExportT
+        /// </summary>
         public string PrintMode
         {
             get

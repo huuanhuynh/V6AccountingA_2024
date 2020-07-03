@@ -1149,7 +1149,7 @@ namespace V6ControlManager.FormManager.SoDuManager
         {
             try
             {
-                V6TableStruct structTable = V6BusinessHelper.GetTableStruct(_MA_DM.ToString());
+                V6TableStruct structTable = V6BusinessHelper.GetTableStruct(LOAD_TABLE);
 
                 if (!_v6LookupConfig.HaveInfo)
                 {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Reflection;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Controls;
@@ -71,6 +72,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             new SqlParameter("@so_the_ts", so_the_ts),
                             new SqlParameter("@ma_nv", ma_nv)
                         };
+                        string paramss = V6ControlFormHelper.PlistToString(plist);
+                        V6BusinessHelper.WriteV6UserLog(ItemID, GetType() + "." + MethodBase.GetCurrentMethod().Name,
+                            string.Format("reportProcedure:{0} {1}", _reportProcedure, paramss));
                         var result = V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure + "_F8", plist);
                         if (result > 0)
                         {

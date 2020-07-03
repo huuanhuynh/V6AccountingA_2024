@@ -1235,7 +1235,7 @@ namespace V6Controls.Controls
         {
             try
             {
-                V6TableStruct structTable = V6BusinessHelper.GetTableStruct(_MA_DM);
+                V6TableStruct structTable = V6BusinessHelper.GetTableStruct(LOAD_TABLE);
                 if (_aldmConfig.IS_ALDM ? (!_aldmConfig.HaveInfo) : (!_v6LookupConfig.HaveInfo))
                 {
                     this.ShowWarningMessage(V6Text.NoDefine, 500);

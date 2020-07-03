@@ -127,6 +127,12 @@
     <Compile Include="FormManager\ChungTuManager\Filter\FilterView_ARSODU0.designer.cs">
       <DependentUpon>FilterView_ARSODU0.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\ASOCTIXP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\ASOCTIXP.designer.cs">
+      <DependentUpon>ASOCTIXP.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\PRINT1_FILTER.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -5890,6 +5896,9 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\Filter\FilterView_ARSODU0.resx">
       <DependentUpon>FilterView_ARSODU0.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\ASOCTIXP.resx">
+      <DependentUpon>ASOCTIXP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\PRINT1_FILTER.resx">
       <DependentUpon>PRINT1_FILTER.cs</DependentUpon>

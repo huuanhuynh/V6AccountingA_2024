@@ -4266,8 +4266,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 if (index >= 0 && index < AM.Rows.Count)
                 {
                     _sttRec = AM.Rows[index]["Stt_rec"].ToString().Trim();
-                    LoadAD(_sttRec);
                     CurrentIndex = index;
+                    LoadAD(_sttRec);
                     EnableNavigationButtons();
                     ViewInvoice();
                 }
@@ -4389,8 +4389,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             }
         }
 
-        public IDictionary<string, object> addDataAM;
-        public List<IDictionary<string, object>> addDataAD, addDataAD3;
+        public IDictionary<string, object> readyDataAM;
+        public List<IDictionary<string, object>> readyDataAD, readyDataAD3;
         private string addErrorMessage = "";
 
         private void DoAddThread()
@@ -4467,8 +4467,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
         {
             try
             {
-                addDataAD = dataGridView1.GetData(_sttRec);
-                addDataAD3 = dataGridView3.GetData(_sttRec);
+                readyDataAD = dataGridView1.GetData(_sttRec);
+                readyDataAD3 = dataGridView3.GetData(_sttRec);
             }
             catch (Exception ex)
             {
@@ -4482,7 +4482,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             {
                 CheckForIllegalCrossThreadCalls = false;
 
-                if (Invoice.InsertInvoice(addDataAM, addDataAD, addDataAD3, _post))
+                if (Invoice.InsertInvoice(readyDataAM, readyDataAD, readyDataAD3, _post))
                 {
                     _AED_Success = true;
                 }
@@ -4508,7 +4508,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 #endregion add
 
         #region ==== Edit Thread ====
-        private List<IDictionary<string, object>> editDataAD, editDataAD3;
         private string editErrorMessage = "";
 
         private void DoEditThread()
@@ -4550,15 +4549,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 var am_TIME0 = AM.Rows[CurrentIndex]["Time0"];
                 var am_U_ID0 = AM.Rows[CurrentIndex]["User_id0"];
 
-                editDataAD = dataGridView1.GetData(_sttRec);
-                foreach (IDictionary<string, object> adRow in editDataAD)
+                readyDataAD = dataGridView1.GetData(_sttRec);
+                foreach (IDictionary<string, object> adRow in readyDataAD)
                 {
                     adRow["DATE0"] = am_DATE0;
                     adRow["TIME0"] = am_TIME0;
                     adRow["USER_ID0"] = am_U_ID0;
                 }
-                editDataAD3 = dataGridView3.GetData(_sttRec);
-                foreach (IDictionary<string, object> adRow in editDataAD3)
+                readyDataAD3 = dataGridView3.GetData(_sttRec);
+                foreach (IDictionary<string, object> adRow in readyDataAD3)
                 {
                     adRow["DATE0"] = am_DATE0;
                     adRow["TIME0"] = am_TIME0;
@@ -4625,7 +4624,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             {
                 CheckForIllegalCrossThreadCalls = false;
                 var keys = new SortedDictionary<string, object> { { "STT_REC", _sttRec } };
-                if (Invoice.UpdateInvoice(addDataAM, editDataAD, editDataAD3, keys, _post))
+                if (Invoice.UpdateInvoice(readyDataAM, readyDataAD, readyDataAD3, keys, _post))
                 {
                     _AED_Success = true;
                     ADTables.Remove(_sttRec);
@@ -4807,24 +4806,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
                 var time2 = V6BusinessHelper.GetServerDateTime().ToString("HH:mm:ss");
                 Time2 = time2;
-                addDataAM = PreparingDataAM(Invoice);
-                addDataAM["TIME2"] = time2;
-                addDataAM["MA_KHOPH"] = ma_khoPH;
-                addDataAM["MA_VITRIPH"] = ma_vitriPH;
+                readyDataAM = PreparingDataAM(Invoice);
+                readyDataAM["TIME2"] = time2;
+                readyDataAM["MA_KHOPH"] = ma_khoPH;
+                readyDataAM["MA_VITRIPH"] = ma_vitriPH;
                 
                 //readyDataAM["STATUS"] = _post ? "3" : Status;
                 string save_status = _post ? "3" : Status;
                 if(AM_current != null) AM_current["STATUS"] = save_status;
-                addDataAM["STATUS"] = save_status;
+                readyDataAM["STATUS"] = save_status;
                 //Update to AM
-                V6BusinessHelper.UpdateRowToDataTable(AM, "Stt_rec", _sttRec, addDataAM);
+                V6BusinessHelper.UpdateRowToDataTable(AM, "Stt_rec", _sttRec, readyDataAM);
 
-                V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] {"SO_CT", "NGAY_CT", "MA_CT"}, AD);
-                V6ControlFormHelper.UpdateDKlist(AD, "MA_KHO_I", addDataAM["MA_KHOPH"]);
+                V6ControlFormHelper.UpdateDKlistAll(readyDataAM, new[] {"SO_CT", "NGAY_CT", "MA_CT"}, AD);
+                V6ControlFormHelper.UpdateDKlist(AD, "MA_KHO_I", readyDataAM["MA_KHOPH"]);
                 if (!string.IsNullOrEmpty(ma_vitriPH))
-                    V6ControlFormHelper.UpdateDKlist(AD, "MA_VITRI", addDataAM["MA_VITRIPH"]);
-                V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] {"SO_CT", "NGAY_CT", "MA_CT"}, AD2);
-                V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] {"SO_CT", "NGAY_CT", "MA_CT"}, AD3);
+                    V6ControlFormHelper.UpdateDKlist(AD, "MA_VITRI", readyDataAM["MA_VITRIPH"]);
+                V6ControlFormHelper.UpdateDKlistAll(readyDataAM, new[] {"SO_CT", "NGAY_CT", "MA_CT"}, AD2);
+                V6ControlFormHelper.UpdateDKlistAll(readyDataAM, new[] {"SO_CT", "NGAY_CT", "MA_CT"}, AD3);
                 //V6ControlFormHelper.UpdateDKlistAll(GetData(), new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD);
                 if (Mode == V6Mode.Add)
                 {
@@ -4976,7 +4975,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                                     txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMaDVCS.Text.Trim(), txtMaKh.Text.Trim(),
                                     txtManx.Text.Trim(), dateNgayCT.Date, txtTongThanhToan.Value, "E");
 
-                            if (check_edit == true)
+                            if (check_edit)
                             {
                                 Status = "2";
                                 //Mode = V6Mode.Edit;
@@ -5028,7 +5027,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                                 txtSoPhieu.Text.Trim(), txtMa_sonb.Text.Trim(), txtMaDVCS.Text.Trim(), txtMaKh.Text.Trim(),
                                 txtManx.Text.Trim(), dateNgayCT.Date, txtTongThanhToan.Value, "D");
 
-                        if (check_edit == true)
+                        if (check_edit)
                         {
                             DoDeleteThread();
                             ResetForm();

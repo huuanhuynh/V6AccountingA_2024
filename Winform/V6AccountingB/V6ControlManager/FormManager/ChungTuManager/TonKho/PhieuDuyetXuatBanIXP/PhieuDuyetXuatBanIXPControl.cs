@@ -3236,8 +3236,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
                 if (index >= 0 && index < AM.Rows.Count)
                 {
                     _sttRec = AM.Rows[index]["Stt_rec"].ToString().Trim();
-                    LoadAD(_sttRec);
                     CurrentIndex = index;
+                    LoadAD(_sttRec);
                     EnableNavigationButtons();
                     ViewInvoice();
                 }
@@ -3376,8 +3376,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
         #endregion view invoice
 
         #region ==== Add Thread ====
-        public IDictionary<string, object> addDataAM;
-        public List<IDictionary<string, object>> addDataAD;
+        public IDictionary<string, object> readyDataAM;
+        public List<IDictionary<string, object>> readyDataAD;
         private string addErrorMessage = "";
 
         private void DoAddThread()
@@ -3458,7 +3458,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
         {
             try
             {
-                addDataAD = dataGridView1.GetData(_sttRec);// GetAdList();
+                readyDataAD = dataGridView1.GetData(_sttRec);// GetAdList();
             }
             catch (Exception ex)
             {
@@ -3472,7 +3472,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
             {
                 CheckForIllegalCrossThreadCalls = false;
                 
-                if (Invoice.InsertInvoice(addDataAM, addDataAD))
+                if (Invoice.InsertInvoice(readyDataAM, readyDataAD))
                 {
                     _AED_Success = true;
                 }
@@ -3499,7 +3499,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
 #endregion add
 
         #region ==== Edit Thread ====
-        private List<IDictionary<string, object>> editDataAD;
         private string editErrorMessage = "";
 
         private void DoEditThread()
@@ -3540,8 +3539,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
                 var am_TIME0 = AM.Rows[CurrentIndex]["Time0"];
                 var am_U_ID0 = AM.Rows[CurrentIndex]["User_id0"];
 
-                editDataAD = dataGridView1.GetData(_sttRec);
-                foreach (IDictionary<string, object> adRow in editDataAD)
+                readyDataAD = dataGridView1.GetData(_sttRec);
+                foreach (IDictionary<string, object> adRow in readyDataAD)
                 {
                     adRow["DATE0"] = am_DATE0;
                     adRow["TIME0"] = am_TIME0;
@@ -3604,7 +3603,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
             {
                 CheckForIllegalCrossThreadCalls = false;
                 var keys = new SortedDictionary<string, object> { { "STT_REC", _sttRec } };
-                if (Invoice.UpdateInvoice(addDataAM, editDataAD, keys))
+                if (Invoice.UpdateInvoice(readyDataAM, readyDataAD, keys))
                 {
                     _AED_Success = true;
                     ADTables.Remove(_sttRec);
@@ -3763,13 +3762,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
 
                     V6ControlFormHelper.RemoveRunningList(_sttRec);
 
-                    addDataAM = PreparingDataAM(Invoice);
-                    V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD);
-                    V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD2);
-                    V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD3);
+                    readyDataAM = PreparingDataAM(Invoice);
+                    V6ControlFormHelper.UpdateDKlistAll(readyDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD);
+                    V6ControlFormHelper.UpdateDKlistAll(readyDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD2);
+                    V6ControlFormHelper.UpdateDKlistAll(readyDataAM, new[] { "SO_CT", "NGAY_CT", "MA_CT" }, AD3);
                     if (chkLoaiChietKhau.Checked)
                     {
-                        V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] { "PT_CKI"}, AD);
+                        V6ControlFormHelper.UpdateDKlistAll(readyDataAM, new[] { "PT_CKI"}, AD);
                     }
 
                     if (Mode == V6Mode.Add)

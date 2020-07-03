@@ -71,10 +71,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.chkHienTatCa = new V6Controls.V6CheckBox();
             this.gridViewSummary1 = new V6Controls.Controls.GridViewSummary();
             this.btnSuaLine = new V6Controls.Controls.V6FormButton();
-            this.btnExport2 = new V6Controls.Controls.DropDownButton();
             this.lblSummary = new System.Windows.Forms.Label();
             this.btnSuaTTMauBC = new V6Controls.Controls.V6FormButton();
             this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
+            this.btnExport3 = new wyDay.Controls.SplitButton();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbDieuKienLoc.SuspendLayout();
@@ -523,21 +523,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnSuaLine.UseVisualStyleBackColor = true;
             this.btnSuaLine.Click += new System.EventHandler(this.btnSuaLine_Click);
             // 
-            // btnExport2
-            // 
-            this.btnExport2.AccessibleDescription = ".";
-            this.btnExport2.Image = global::V6ControlManager.Properties.Resources.Export24;
-            this.btnExport2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport2.Location = new System.Drawing.Point(466, 33);
-            this.btnExport2.Menu = this.contextMenuStrip1;
-            this.btnExport2.Name = "btnExport2";
-            this.btnExport2.Size = new System.Drawing.Size(50, 30);
-            this.btnExport2.TabIndex = 16;
-            this.btnExport2.TabStop = false;
-            this.btnExport2.Tag = "cancel";
-            this.btnExport2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport2.UseVisualStyleBackColor = true;
-            // 
             // lblSummary
             // 
             this.lblSummary.AccessibleDescription = ".";
@@ -572,12 +557,30 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnThemMauBC.UseVisualStyleBackColor = true;
             this.btnThemMauBC.Click += new System.EventHandler(this.btnThemMauBC_Click);
             // 
+            // btnExport3
+            // 
+            this.btnExport3.AccessibleDescription = ".";
+            this.btnExport3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExport3.AutoSize = true;
+            this.btnExport3.ContextMenuStrip = this.contextMenuStrip1;
+            this.btnExport3.Enabled = false;
+            this.btnExport3.Image = global::V6ControlManager.Properties.Resources.Export24;
+            this.btnExport3.Location = new System.Drawing.Point(466, 33);
+            this.btnExport3.Name = "btnExport3";
+            this.btnExport3.Size = new System.Drawing.Size(50, 30);
+            this.btnExport3.SplitMenuStrip = this.contextMenuStrip1;
+            this.btnExport3.TabIndex = 18;
+            this.btnExport3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.toolTipV6FormControl.SetToolTip(this.btnExport3, "Print");
+            this.btnExport3.UseVisualStyleBackColor = true;
+            this.btnExport3.Click += new System.EventHandler(this.btnExport3_Click);
+            // 
             // ReportRViewBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnExport3);
             this.Controls.Add(this.lblSummary);
-            this.Controls.Add(this.btnExport2);
             this.Controls.Add(this.btnSuaLine);
             this.Controls.Add(this.chkHienTatCa);
             this.Controls.Add(this.btnSuaMau);
@@ -653,8 +656,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private System.Windows.Forms.ToolStripMenuItem exportToPdfMenu;
         private V6FormButton btnSuaLine;
         private System.Windows.Forms.RadioButton rCurrent;
-        private DropDownButton btnExport2;
         private System.Windows.Forms.Label lblSummary;
+        private wyDay.Controls.SplitButton btnExport3;
 
 
 

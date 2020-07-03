@@ -1561,6 +1561,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     {
                         btnIn.PerformClick();
                     }
+                    else if (PrintMode == V6PrintMode.AutoExportT)
+                    {
+                        if (exportToExcelTemplateMenu.Visible && exportToExcelTemplateMenu.Enabled)
+                        exportToExcelTemplateMenu.PerformClick();
+                    }
 
                     //dataGridView1.Focus();
                 }
@@ -2805,5 +2810,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         DoNoThing = 0,
         AutoPrint = 1,
         AutoClickPrint = 2,
+        AutoExportT = 3,
     }
 }

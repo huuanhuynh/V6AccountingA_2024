@@ -783,6 +783,18 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                             if (!key3.Contains("6")) viewDataMenu.Visible = false;
                             if (!key3.Contains("7")) exportToPdfMenu.Visible = false;
                         }
+
+                        if (key3.Length > 0)
+                        switch (key3[0])
+                        {
+                            case '1': DefaultMenuItem = exportToExcelTemplateMenu; break;
+                            case '2': DefaultMenuItem = exportToExcelView; break;
+                            case '3': DefaultMenuItem = exportToExcel; break;
+                            case '4': DefaultMenuItem = exportToXmlMenu; break;
+                            case '5': DefaultMenuItem = printGrid; break;
+                            case '6': DefaultMenuItem = viewDataMenu; break;
+                            case '7': DefaultMenuItem = exportToPdfMenu; break;
+                        }
                     }
                 }
 
@@ -796,6 +808,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 this.WriteExLog(GetType() + ".Init2 " + ReportFileFull, ex);
             }
         }
+
+        private ToolStripMenuItem DefaultMenuItem = null;
 
         private void GetSumCondition()
         {
@@ -1708,6 +1722,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 btnHuy.PerformClick();
             }
+            else if (keyData == (Keys.Control | Keys.E))
+            {
+                btnExport3.PerformClick();
+            }
             else if (keyData == (Keys.Control | Keys.Enter))
             {
                 btnNhan.PerformClick();
@@ -2086,6 +2104,12 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 this.ShowErrorMessage(GetType() + ".SuaMau_Click: " + ex.Message);
             }
+        }
+
+        private void btnExport3_Click(object sender, EventArgs e)
+        {
+            if (DefaultMenuItem != null && DefaultMenuItem.Visible && DefaultMenuItem.Enabled)
+                DefaultMenuItem.PerformClick();
         }
     }
 }

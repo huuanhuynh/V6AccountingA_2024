@@ -5423,8 +5423,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     if (index >= 0 && index < AM.Rows.Count)
                     {
                         _sttRec = AM.Rows[index]["Stt_rec"].ToString().Trim();
-                        LoadAD(_sttRec);
                         CurrentIndex = index;
+                        LoadAD(_sttRec);
                         EnableNavigationButtons();
                         ViewInvoice();
                     }
@@ -5933,7 +5933,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             //Xóa xong view lại cái khác (trong timer tick)
             try
             {
-                
                 var row = AM.Rows[CurrentIndex];
                 _sttRec = row["Stt_rec"].ToString().Trim();
                 if (Invoice.DeleteInvoice(_sttRec))
@@ -7153,6 +7152,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             V6PrintMode printMode = V6PrintMode.DoNoThing;
             if (Invoice.PrintMode == "1") printMode = V6PrintMode.AutoPrint;
             if (Invoice.PrintMode == "2") printMode = V6PrintMode.AutoClickPrint;
+            if (Invoice.PrintMode == "3") printMode = V6PrintMode.AutoExportT;
             BasePrint(Invoice, _sttRec, printMode, TongThanhToan, TongThanhToanNT, false);
         }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -100,6 +101,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 _executing = true;
                 _executing_success = false;
                 CheckForIllegalCrossThreadCalls = false;
+                V6BusinessHelper.WriteV6UserLog(ItemID, GetType() + "." + MethodBase.GetCurrentMethod().Name,
+                    string.Format("reportProcedure:{0} {1}", _reportProcedure, "paramss"));
                 var tLoadData = new Thread(Executing);
                 tLoadData.Start();
                 timerViewReport.Start();

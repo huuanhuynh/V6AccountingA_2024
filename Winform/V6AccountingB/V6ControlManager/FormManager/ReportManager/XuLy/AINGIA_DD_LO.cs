@@ -45,16 +45,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             _message = "";
             try
             {
-                //_pList:
-                //0 @Period1 int,
-                //1 @Year1 int,
-                //2 @Period2 int,
-                //3 @Year2 int,
-                //4 @Ma_kho VARCHAR(50),
-                //5 @Ma_vt VARCHAR(50),
-                //6 @Dk_cl int,
-                //7 @Tinh_giatb int,
-                //8 @Advance VARCHAR(255) = ''
                 if (GenerateProcedureParameters())
                 {
                     int check = V6BusinessHelper.CheckDataLocked("2", V6Setting.M_SV_DATE, (int)FilterControl.Number2, (int)FilterControl.Number3);
@@ -63,7 +53,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         this.ShowWarningMessage(V6Text.CheckLock);
                         return;
                     }
-
+                    string paramss = V6ControlFormHelper.PlistToString(_pList);
+                    V6BusinessHelper.WriteV6UserLog(ItemID, GetType() + "." + MethodBase.GetCurrentMethod().Name,
+                        string.Format("reportProcedure:{0} {1}", _reportProcedure, paramss));
                     //if (m_BigData == "1")
                     {
                         var tTinhToan = new Thread(TinhGia_DD_LO);

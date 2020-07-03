@@ -63,7 +63,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         this.ShowWarningMessage(V6Text.CheckLock);
                         return;
                     }
-
+                    V6BusinessHelper.WriteV6UserLog(ItemID, GetType() + "." + MethodBase.GetCurrentMethod().Name,
+                        string.Format("reportProcedure:{0} {1}", _reportProcedure, "paramss"));
                     var m_BigData = ObjectAndString.ObjectToString(V6Options.GetValue("M_BIG_DATA"));
 
                     if (m_BigData == "1")
@@ -116,7 +117,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     var @Ma_vt = row["Ma_vt"];
                     var @Tinh_giatb = row["Tinh_giatb"];
                     var @Advance = row["Advance"].ToString().Trim();
-
+                    V6BusinessHelper.WriteV6UserLog(ItemID, GetType() + "." + MethodBase.GetCurrentMethod().Name,
+                        string.Format("TinhGia_TB Ngay_ct1:{0} Ngay_ct2:{1} Gia_vt:{2} Ma_kho:{3} Ma_vt:{4}", Ngay_ct1, Ngay_ct2, Gia_vt, Ma_Kho, Ma_vt));
                     if (Ngay_ct1 != null)
                         for (DateTime i = Ngay_ct1.Value; i <= Ngay_ct2; i = i.AddDays(1))
                         {
@@ -158,6 +160,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 SetStatusText(string.Format("{0}: {1}", V6Text.Text("TinhLoi"), ex.Message));
             }
         }
+
         public void TinhGia_TB_All()
         {
             try
@@ -187,7 +190,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     var @Ma_vt = row["Ma_vt"];
                     var @Tinh_giatb = row["Tinh_giatb"];
                     var @Advance = row["Advance"].ToString().Trim();
-
+                    V6BusinessHelper.WriteV6UserLog(ItemID, GetType() + "." + MethodBase.GetCurrentMethod().Name,
+                        string.Format("TinhGia_TB_All Ngay_ct1:{0} Ngay_ct2:{1} Gia_vt:{2} Ma_kho:{3} Ma_vt:{4}", Ngay_ct1, Ngay_ct2, Gia_vt, Ma_Kho, Ma_vt));
                   
                             SqlParameter[] plist =
                             {

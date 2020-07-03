@@ -2739,8 +2739,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 {
                     if (parent is ChungTuChungContainer)
                     {
-                        ((ChungTuChungContainer) parent)
-                            .ShowMessage(message);
+                        ((ChungTuChungContainer) parent).ShowMessage(message);
                         return;
                     }
                     else
@@ -2767,8 +2766,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 if (index >= 0 && index < AM.Rows.Count)
                 {
                     _sttRec = AM.Rows[index]["Stt_rec"].ToString().Trim();
-                    LoadAD(_sttRec);
                     CurrentIndex = index;
+                    LoadAD(_sttRec);
                     EnableNavigationButtons();
                     ViewInvoice();
                 }
@@ -2929,8 +2928,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
         #region ==== Add Thread ====
 
-        public IDictionary<string, object> addDataAM;
-        public List<IDictionary<string, object>> addDataADList, addDataAD2, addDataAD3;
+        public IDictionary<string, object> readyDataAM;
+        public List<IDictionary<string, object>> readyDataAD, readyDataAD2, readyDataAD3;
         private string addErrorMessage = "";
 
         private void DoAdd()
@@ -2939,7 +2938,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             {
                 CheckForIllegalCrossThreadCalls = false; //!!!
 
-                if (Invoice.InsertInvoice(addDataAM, addDataADList, addDataAD2, addDataAD3))
+                if (Invoice.InsertInvoice(readyDataAM, readyDataAD, readyDataAD2, readyDataAD3))
                 {
                     _AED_Success = true;
                     Mode = V6Mode.View;
@@ -3050,9 +3049,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         {
             try
             {
-                addDataADList = dataGridView1.GetData(_sttRec);
-                addDataAD2 = dataGridView2.GetData(_sttRec);
-                addDataAD3 = dataGridView3.GetData(_sttRec);
+                readyDataAD = dataGridView1.GetData(_sttRec);
+                readyDataAD2 = dataGridView2.GetData(_sttRec);
+                readyDataAD3 = dataGridView3.GetData(_sttRec);
             }
             catch (Exception ex)
             {
@@ -3065,7 +3064,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
         #region ==== Edit Thread ====
 
-        private List<IDictionary<string, object>> editDataAD, editDataAD2, editDataAD3;
         private string editErrorMessage = "";
 
         private void DoEditThread()
@@ -3112,22 +3110,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 var am_TIME0 = AM.Rows[CurrentIndex]["Time0"];
                 var am_U_ID0 = AM.Rows[CurrentIndex]["User_id0"];
 
-                editDataAD = dataGridView1.GetData(_sttRec);
-                foreach (IDictionary<string, object> adRow in editDataAD)
+                readyDataAD = dataGridView1.GetData(_sttRec);
+                foreach (IDictionary<string, object> adRow in readyDataAD)
                 {
                     adRow["DATE0"] = am_DATE0;
                     adRow["TIME0"] = am_TIME0;
                     adRow["USER_ID0"] = am_U_ID0;
                 }
-                editDataAD2 = dataGridView2.GetData(_sttRec);
-                foreach (IDictionary<string, object> adRow in editDataAD2)
+                readyDataAD2 = dataGridView2.GetData(_sttRec);
+                foreach (IDictionary<string, object> adRow in readyDataAD2)
                 {
                     adRow["DATE0"] = am_DATE0;
                     adRow["TIME0"] = am_TIME0;
                     adRow["USER_ID0"] = am_U_ID0;
                 }
-                editDataAD3 = dataGridView3.GetData(_sttRec);
-                foreach (IDictionary<string, object> adRow in editDataAD3)
+                readyDataAD3 = dataGridView3.GetData(_sttRec);
+                foreach (IDictionary<string, object> adRow in readyDataAD3)
                 {
                     adRow["DATE0"] = am_DATE0;
                     adRow["TIME0"] = am_TIME0;
@@ -3194,7 +3192,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 var keys = new SortedDictionary<string, object> {{"STT_REC", _sttRec}};
                 V6ControlFormHelper.AddLastAction("\nInvoice.UpdateInvoice() Begin: " +
                                                   DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
-                if (Invoice.UpdateInvoice(addDataAM, editDataAD, editDataAD2, editDataAD3, keys))
+                if (Invoice.UpdateInvoice(readyDataAM, readyDataAD, readyDataAD2, readyDataAD3, keys))
                 {
                     V6ControlFormHelper.AddLastAction("\nInvoice.UpdateInvoice() End Succes: " +
                                                       DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
@@ -3380,10 +3378,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 {
                     V6ControlFormHelper.RemoveRunningList(_sttRec);
                     TinhToanTruocKhiLuu();
-                    addDataAM = PreparingDataAM(Invoice);
-                    V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] {"SO_CT", "NGAY_CT", "MA_CT"}, AD);
-                    V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] {"SO_CT", "NGAY_CT", "MA_CT"}, AD2);
-                    V6ControlFormHelper.UpdateDKlistAll(addDataAM, new[] {"SO_CT", "NGAY_CT", "MA_CT"}, AD3);
+                    readyDataAM = PreparingDataAM(Invoice);
+                    V6ControlFormHelper.UpdateDKlistAll(readyDataAM, new[] {"SO_CT", "NGAY_CT", "MA_CT"}, AD);
+                    V6ControlFormHelper.UpdateDKlistAll(readyDataAM, new[] {"SO_CT", "NGAY_CT", "MA_CT"}, AD2);
+                    V6ControlFormHelper.UpdateDKlistAll(readyDataAM, new[] {"SO_CT", "NGAY_CT", "MA_CT"}, AD3);
 
                     if (Mode == V6Mode.Add)
                     {

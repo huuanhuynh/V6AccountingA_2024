@@ -1348,6 +1348,10 @@ namespace V6ControlManager.FormManager.DanhMucManager
                 {
                     if (string.IsNullOrEmpty(sortField)) sortField = _aldmConfig.ORDER;
                 }
+                else
+                {
+                    if (string.IsNullOrEmpty(sortField)) sortField = "UID";
+                }
 
                 _last_filter = GetWhere();
                 var sr = _categories.SelectPaging(LOAD_TABLE, "*", page, size, _last_filter, sortField, @ascending);
@@ -1770,7 +1774,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             try
             {
-                V6TableStruct structTable = V6BusinessHelper.GetTableStruct(_MA_DM);
+                V6TableStruct structTable = V6BusinessHelper.GetTableStruct(LOAD_TABLE);
                 if (_MA_DM == "CORPLAN" || _MA_DM == "CORPLAN1" || _MA_DM == "CORPLAN2") goto next1;
                 if (_aldmConfig.IS_ALDM ? (!_aldmConfig.HaveInfo) : (!_v6LookupConfig.HaveInfo))
                 {

@@ -51,7 +51,7 @@
             this.TXTnhom_user = new V6Controls.V6ColorTextBox();
             this.TXTloai_ctgs = new V6Controls.V6ColorTextBox();
             this.v6Label16 = new V6Controls.V6Label();
-            this.TXTNO_CO = new V6Controls.NumberTien();
+            this.TXTNO_CO = new V6Controls.V6ColorTextBox();
             this.v6Label3 = new V6Controls.V6Label();
             this.txtMaDVCS = new V6Controls.V6VvarTextBox();
             this.v6Label5 = new V6Controls.V6Label();
@@ -408,7 +408,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TXTNO_CO.BackColor = System.Drawing.Color.White;
             this.TXTNO_CO.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.TXTNO_CO.DecimalPlaces = 0;
             this.TXTNO_CO.EnterColor = System.Drawing.Color.PaleGreen;
             this.TXTNO_CO.ForeColor = System.Drawing.SystemColors.WindowText;
             this.TXTNO_CO.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
@@ -416,16 +415,12 @@
             this.TXTNO_CO.LeaveColor = System.Drawing.Color.White;
             this.TXTNO_CO.LimitCharacters = "12";
             this.TXTNO_CO.Location = new System.Drawing.Point(106, 188);
+            this.TXTNO_CO.MaxLength = 1;
             this.TXTNO_CO.Name = "TXTNO_CO";
             this.TXTNO_CO.Size = new System.Drawing.Size(29, 20);
             this.TXTNO_CO.TabIndex = 8;
             this.TXTNO_CO.Text = "1";
             this.TXTNO_CO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.TXTNO_CO.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // v6Label3
             // 
@@ -437,7 +432,7 @@
             this.v6Label3.TabIndex = 20;
             this.v6Label3.Text = "1 - Ghi nợ, 2 - có";
             // 
-            // txtMaDvcs
+            // txtMaDVCS
             // 
             this.txtMaDVCS.AccessibleName = "MA_DVCS";
             this.txtMaDVCS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -710,7 +705,6 @@
         public V6Controls.V6ColorTextBox TXTnhom_user;
         public V6Controls.V6ColorTextBox TXTloai_ctgs;
         private V6Controls.V6Label v6Label16;
-        private V6Controls.NumberTien TXTNO_CO;
         private V6Controls.V6Label v6Label3;
         private V6Controls.V6VvarTextBox txtMaDVCS;
         private V6Controls.V6Label v6Label5;
@@ -725,6 +719,7 @@
         public V6Controls.V6ColorTextBox TXTkieu_ctgs;
         private System.Windows.Forms.Label label2;
         private V6Controls.V6DateTimePicker dateNgayLo;
+        private V6Controls.V6ColorTextBox TXTNO_CO;
 
 
 

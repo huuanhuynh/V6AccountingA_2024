@@ -28,7 +28,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             try
             {
-                FilterControl.GetFilterParameters();
+                var plist = FilterControl.GetFilterParameters();
                 int check = V6BusinessHelper.CheckDataLocked("3", V6Setting.M_SV_DATE, (int)FilterControl.Number2, (int)FilterControl.Number3);
                 if (check == 1)
                 {
@@ -48,6 +48,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     return;
                 }
+                string paramss = V6ControlFormHelper.PlistToString(plist);
+                V6BusinessHelper.WriteV6UserLog(ItemID, GetType() + "." + MethodBase.GetCurrentMethod().Name,
+                    string.Format("reportProcedure:{0} {1}", _reportProcedure, paramss));
                 base.Nhan();
             }
             catch (Exception ex)

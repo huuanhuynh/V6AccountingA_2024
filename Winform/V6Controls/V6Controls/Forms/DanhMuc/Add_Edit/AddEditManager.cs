@@ -443,8 +443,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             break;
                         }
                     }
-
-                    throw new ArgumentOutOfRangeException("AddEditManager.InitControl ma_dm:" + ma_dm);
+                    FormControl = new NoRightAddEdit(V6Text.NoDefine + " AddEditManager.InitControl ma_dm:" + ma_dm);
+                    //throw new ArgumentOutOfRangeException("AddEditManager.InitControl ma_dm:" + ma_dm);
                     break;
             }
             if (FormControl == null)

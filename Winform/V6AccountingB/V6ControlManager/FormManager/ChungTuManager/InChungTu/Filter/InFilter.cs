@@ -47,6 +47,8 @@
                     return new ASOCTSOH();
                 case "ASOCTIXY"://95
                     return new ASOCTIXY();
+                case "ASOCTIXP"://96
+                    return new ASOCTIXP();
 
                 case "ASOCTSOA"://81
                     return new ASOCTSOA();

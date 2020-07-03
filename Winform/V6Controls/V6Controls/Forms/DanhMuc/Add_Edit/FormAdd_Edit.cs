@@ -149,6 +149,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 
                 if (FormControl is NoRightAddEdit)
                 {
+                    FormControl.Dock = DockStyle.Fill;
                     string keys_string = "";
                     if (_keys != null)
                     {
@@ -157,6 +158,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             keys_string += " " + item.Value;
                         }
                     }
+                    if (!string.IsNullOrEmpty(keys_string))
                     ((NoRightAddEdit)FormControl).NoRightInfo = keys_string;
                 }
 

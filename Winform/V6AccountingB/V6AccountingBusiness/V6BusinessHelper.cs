@@ -2199,6 +2199,26 @@ namespace V6AccountingBusiness
             }
         }
 
+        public static void WriteV6UserLog(string item_id, string action, string content)
+        {
+            try
+            {
+                IDictionary<string, object> data = new Dictionary<string, object>();
+
+                data["DATE"] = GetServerDateTime();
+                data["USER_ID"] = V6Login.UserId;
+                data["USER_NAME"] = V6Login.UserName + " Computer:" + V6Login.ClientName;
+                data["ITEM_ID"] = item_id;
+                data["ACTION"] = action;
+                data["CONTENT"] = content;
+                InsertSimple("V6USERLOG", data);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteExLog("WriteV6UserLog " + item_id + action + content, ex);
+            }
+        }
+
         /// <summary>
         /// Kiểm tra hóa đơn đã thanh toán, ko được sửa hoặc xóa (check tồn tại)
         /// </summary>
