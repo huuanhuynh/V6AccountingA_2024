@@ -7,6 +7,7 @@ using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using V6AccountingBusiness;
@@ -152,6 +153,41 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
         }
 
+        #region ===== EXTRA_INFOR =====
+        public SortedDictionary<string, string> EXTRA_INFOR
+        {
+            get
+            {
+                //if (_extraInfor == null || _extraInfor.Count == 0)
+                {
+                    GetExtraInfor();
+                }
+                return _extraInfor;
+            }
+        }
+
+        private SortedDictionary<string, string> _extraInfor = null;
+
+        private void GetExtraInfor()
+        {
+            _extraInfor = new SortedDictionary<string, string>();
+            string s = MauInSelectedRow["EXTRA_INFOR"].ToString().Trim();
+            if (s != "")
+            {
+                var sss = s.Split(';');
+                foreach (string ss in sss)
+                {
+                    int indexOf = ss.IndexOf(":", StringComparison.Ordinal);
+                    if (indexOf > 0)
+                    {
+                        _extraInfor[ss.Substring(0, indexOf).ToUpper()] = ss.Substring(indexOf + 1);
+                    }
+                }
+            }
+        }
+
+        #endregion EXTRA_INFOR
+
         private string Report_GRDSV1
         {
             get
@@ -280,11 +316,22 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 return result;
             }
         }
+        private string ReportTitle
+        {
+            get
+            {
+                var result = V6Setting.IsVietnamese ? _reportCaption : _reportCaption2;
+                if (MauInSelectedRow != null)
+                {
+                    result = MauInSelectedRow["Title"].ToString().Trim();
+                }
+                return result;
+            }
+        }
         #endregion 
         public XuLy44Base()
         {
             InitializeComponent();
-            //MyInit();
         }
 
         public XuLy44Base(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2, bool viewDetail,
@@ -324,32 +371,54 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 LoadComboboxSource();
 
+                string key3 = "1";
+                var menuRow = V6Menu.GetRowByMact(ItemID);
+                if (menuRow != null)
+                {
+                    key3 = ("" + menuRow["Key3"]).Trim().ToUpper();
+                    if (key3 == "") key3 = "1";
+                }
+
                 if (!V6Login.IsAdmin)
                 {
-                    var menuRow = V6Menu.GetRow(ItemID);
                     if (menuRow != null)
                     {
-                        var key3 = menuRow["Key3"].ToString().Trim().ToUpper();
                         var user_acc = V6Login.UserInfo["USER_ACC"].ToString().Trim();
                         if (user_acc != "1")
                         {
                             //if (!key3.Contains("1")) exportToExcelTemplate.Visible = false;
                             //if (!key3.Contains("2")) exportToExcelView.Visible = false;
-                            if (!key3.Contains("3")) exportToExcel.Visible = false;
+                            if (!key3.Contains("3")) exportToExcelMenu.Visible = false;
                             // if (!key3.Contains("4")) exportToXmlToolStripMenuItem.Visible = false;
-                            if (!key3.Contains("5")) printGrid.Visible = false;
+                            if (!key3.Contains("5")) printGridMenu.Visible = false;
                             //if (!key3.Contains("6")) viewDataToolStripMenuItem.Visible = false;
                             //if (!key3.Contains("7")) exportToPdfToolStripMenuItem.Visible = false;
                         }
                     }
                 }
+
+                if (key3.Length > 0)
+                    switch (key3[0])
+                    {
+                        //case '1': DefaultMenuItem = exportToExcelTemplateMenu; break;
+                        //case '2': DefaultMenuItem = exportToExcelViewMenu; break;
+                        case '3': DefaultMenuItem = exportToExcelMenu; break;
+                        //case '4': DefaultMenuItem = exportToXmlMenu; break;
+                        case '5': DefaultMenuItem = printGridMenu; break;
+                        //case '6': DefaultMenuItem = viewDataMenu; break;
+                        //case '7': DefaultMenuItem = exportToPdfMenu; break;
+                    }
+
                 InvokeFormEvent(FormDynamicEvent.INIT);
+                Ready();
             }
             catch (Exception ex)
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _message), ex);
             }
         }
+
+        private ToolStripMenuItem DefaultMenuItem = null;
 
         private void AddAllControlsToAll_Objects()
         {
@@ -739,7 +808,41 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         
         #endregion Linh tinh
 
-        private void exportToExcel_Click(object sender, EventArgs e)
+        private string GetExportFileName()
+        {
+            string result = ChuyenMaTiengViet.ToUnSign(ReportTitle);
+            if (EXTRA_INFOR.ContainsKey("EXPORT")) result = EXTRA_INFOR["EXPORT"];
+            // Value
+            if (_tbl2 != null && _tbl2.Rows.Count > 0)
+            {
+                var am_data = _tbl2.Rows[0].ToDataDictionary();
+                var regex = new Regex("{(.+?)}");
+                foreach (Match match in regex.Matches(result))
+                {
+                    var matchGroup0 = match.Groups[0].Value;
+                    var matchContain = match.Groups[1].Value;
+                    var matchColumn = matchContain.ToUpper();
+                    var matchFormat = "";
+                    if (matchContain.Contains(":"))
+                    {
+                        int _2dotIndex = matchContain.IndexOf(":", StringComparison.InvariantCulture);
+                        matchColumn = matchContain.Substring(0, _2dotIndex).ToUpper();
+                        matchFormat = matchContain.Substring(_2dotIndex + 1);
+                    }
+                    if (am_data.ContainsKey(matchColumn)
+                        && am_data[matchColumn] is DateTime && matchFormat == "")
+                    {
+                        matchFormat = "yyyMMdd";
+                    }
+                    result = result.Replace(matchGroup0, am_data.ContainsKey(matchColumn) ? ObjectAndString.ObjectToString(am_data[matchColumn], matchFormat).Trim() : "");
+                }
+            }
+            // remove any invalid character from the filename.  
+            result = Regex.Replace(result.Trim(), "[^A-Za-z0-9_. ]+", "");
+            return result;
+        }
+
+        private void exportToExcelMenu_Click(object sender, EventArgs e)
         {
             var data = dataGridView1.Focused ? _tbl : _tbl2;
             if (data == null)
@@ -749,7 +852,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             try
             {
-                var save = new SaveFileDialog {Filter = @"Excel files (*.xls)|*.xls|Xlsx|*.xlsx"};
+                var save = new SaveFileDialog
+                {
+                    Filter = @"Excel files (*.xls)|*.xls|Xlsx|*.xlsx",
+                    FileName = GetExportFileName()
+                };
                 if (save.ShowDialog(this) == DialogResult.OK)
                 {
                     try
@@ -833,6 +940,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             if (keyData == Keys.Escape)
             {
                 btnHuy.PerformClick();
+            }
+            else if (keyData == (Keys.Control | Keys.E))
+            {
+                btnExport3_Click(null, null);
             }
             else if (keyData == (Keys.Control | Keys.Enter))
             {
@@ -1528,7 +1639,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         {
             btnNhan.Focus();
         }
-        
+
+        private void btnExport3_Click(object sender, EventArgs e)
+        {
+
+        }
         
     }
 }

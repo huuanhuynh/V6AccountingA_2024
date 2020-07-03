@@ -100,7 +100,12 @@ namespace V6ThuePostManager
         private static string _SERIAL_CERT = null;
         private static string _token_password_title = null;
         private static string _token_password = null;
-        private static string __pattern, pattern_field;
+
+        /// <summary>
+        /// Có sau khi ReadData VNPT THAISON SOFTDREAMS
+        /// </summary>
+        private static string __pattern;
+        private static string pattern_field;
         private static string __serial, seri_field;
         private static string convert = "0";
         private static string _signmode = "0";
@@ -1820,6 +1825,42 @@ namespace V6ThuePostManager
             return result;
         }
 
+        public static string cancelInv_VNPT_TOKEN(string fkey_old)
+        {
+            string result = null;
+            try
+            {
+                string xml = ReadData_Vnpt();
+                result = VNPTEInvoiceSignToken.CancelInvoiceWithToken(_account, _accountpassword, xml, _username,
+                    _password, __pattern, _link_Business_vnpt);
+                //result = new BusinessService(_link_Business_vnpt).cancelInv(_account, _accountpassword, fkey_old, _username, _password);
+
+                if (result.StartsWith("ERR:9"))
+                {
+                    result += "\r\nTrạng thái hóa đơn không được thay thế.";
+                }
+                else if (result.StartsWith("ERR:8"))
+                {
+                    result += "\r\nHóa đơn đã được thay thế rồi, hủy rồi.";
+                }
+                else if (result.StartsWith("ERR:2"))
+                {
+                    result += "\r\nKhông tồn tại hóa đơn cần hủy.";
+                }
+                else if (result.StartsWith("ERR:1"))
+                {
+                    result += "\r\nTài khoản đăng nhập sai hoặc không có quyền.";
+                }
+            }
+            catch (Exception ex)
+            {
+                result = "ERR:EX\r\n" + ex.Message;
+            }
+
+            Logger.WriteToLog("Program.cancelInv " + result);
+            return result;
+        }
+
         private static string GetSoHoaDon_VNPT(string invXml)
         {
             string result = "";
@@ -2275,7 +2316,7 @@ namespace V6ThuePostManager
                 else if (paras.Mode == "H")
                 {
                     //File.Create(flagFileName1).Close();
-                    result = cancelInv(fkey_old: paras.Fkey_hd);
+                    result = cancelInv_VNPT_TOKEN(fkey_old: paras.Fkey_hd);
                 }
                 else if (paras.Mode == "D")
                 {

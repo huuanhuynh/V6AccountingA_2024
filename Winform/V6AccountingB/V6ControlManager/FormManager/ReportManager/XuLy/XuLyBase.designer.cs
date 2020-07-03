@@ -36,8 +36,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.exportToExcel = new System.Windows.Forms.ToolStripMenuItem();
-            this.printGrid = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToExcelMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.printGridMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
@@ -49,6 +49,7 @@
             this.btnSuaTTMauBC = new V6Controls.Controls.V6FormButton();
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
+            this.btnExport3 = new wyDay.Controls.SplitButton();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbDieuKienLoc.SuspendLayout();
@@ -58,26 +59,26 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exportToExcel,
-            this.printGrid});
+            this.exportToExcelMenu,
+            this.printGridMenu});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(154, 48);
             // 
-            // exportToExcel
+            // exportToExcelMenu
             // 
-            this.exportToExcel.AccessibleDescription = "REPORTM00001";
-            this.exportToExcel.Name = "exportToExcel";
-            this.exportToExcel.Size = new System.Drawing.Size(153, 22);
-            this.exportToExcel.Text = "Export To Excel";
-            this.exportToExcel.Click += new System.EventHandler(this.exportToExcel_Click);
+            this.exportToExcelMenu.AccessibleDescription = "REPORTM00001";
+            this.exportToExcelMenu.Name = "exportToExcelMenu";
+            this.exportToExcelMenu.Size = new System.Drawing.Size(153, 22);
+            this.exportToExcelMenu.Text = "Export To Excel";
+            this.exportToExcelMenu.Click += new System.EventHandler(this.exportToExcelMenu_Click);
             // 
-            // printGrid
+            // printGridMenu
             // 
-            this.printGrid.AccessibleDescription = "REPORTM00007";
-            this.printGrid.Name = "printGrid";
-            this.printGrid.Size = new System.Drawing.Size(153, 22);
-            this.printGrid.Text = "Print Grid";
-            this.printGrid.Click += new System.EventHandler(this.printGrid_Click);
+            this.printGridMenu.AccessibleDescription = "REPORTM00007";
+            this.printGridMenu.Name = "printGridMenu";
+            this.printGridMenu.Size = new System.Drawing.Size(153, 22);
+            this.printGridMenu.Text = "Print Grid";
+            this.printGridMenu.Click += new System.EventHandler(this.printGrid_Click);
             // 
             // timerViewReport
             // 
@@ -185,7 +186,7 @@
             // 
             this.btnThemMauBC.AccessibleDescription = ".";
             this.btnThemMauBC.Image = global::V6ControlManager.Properties.Resources.SettingAdd24;
-            this.btnThemMauBC.Location = new System.Drawing.Point(235, 1);
+            this.btnThemMauBC.Location = new System.Drawing.Point(225, 1);
             this.btnThemMauBC.Name = "btnThemMauBC";
             this.btnThemMauBC.Size = new System.Drawing.Size(30, 30);
             this.btnThemMauBC.TabIndex = 7;
@@ -196,7 +197,7 @@
             // 
             this.btnSuaTTMauBC.AccessibleDescription = ".";
             this.btnSuaTTMauBC.Image = global::V6ControlManager.Properties.Resources.Setting24;
-            this.btnSuaTTMauBC.Location = new System.Drawing.Point(205, 1);
+            this.btnSuaTTMauBC.Location = new System.Drawing.Point(195, 1);
             this.btnSuaTTMauBC.Name = "btnSuaTTMauBC";
             this.btnSuaTTMauBC.Size = new System.Drawing.Size(30, 30);
             this.btnSuaTTMauBC.TabIndex = 6;
@@ -236,10 +237,26 @@
             this.btnNhan.UseVisualStyleBackColor = true;
             this.btnNhan.Click += new System.EventHandler(this.btnNhan_Click);
             // 
+            // btnExport3
+            // 
+            this.btnExport3.AccessibleDescription = ".";
+            this.btnExport3.AutoSize = true;
+            this.btnExport3.ContextMenuStrip = this.contextMenuStrip1;
+            this.btnExport3.Image = global::V6ControlManager.Properties.Resources.Export24;
+            this.btnExport3.Location = new System.Drawing.Point(255, 1);
+            this.btnExport3.Name = "btnExport3";
+            this.btnExport3.Size = new System.Drawing.Size(50, 30);
+            this.btnExport3.SplitMenuStrip = this.contextMenuStrip1;
+            this.btnExport3.TabIndex = 17;
+            this.btnExport3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnExport3.UseVisualStyleBackColor = true;
+            this.btnExport3.Click += new System.EventHandler(this.btnExport3_Click);
+            // 
             // XuLyBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnExport3);
             this.Controls.Add(this.gridViewSummary1);
             this.Controls.Add(this.btnThemMauBC);
             this.Controls.Add(this.btnSuaTTMauBC);
@@ -259,6 +276,7 @@
             this.grbDieuKienLoc.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -266,8 +284,8 @@
 
         private System.Windows.Forms.GroupBox grbDieuKienLoc;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem exportToExcel;
-        private System.Windows.Forms.ToolStripMenuItem printGrid;
+        private System.Windows.Forms.ToolStripMenuItem exportToExcelMenu;
+        private System.Windows.Forms.ToolStripMenuItem printGridMenu;
         private System.Drawing.Printing.PrintDocument MyPrintDocument;
         protected System.Windows.Forms.Timer timerViewReport;
         public System.Windows.Forms.Panel panel1;
@@ -278,6 +296,7 @@
         public V6Controls.Controls.V6FormButton btnSuaTTMauBC;
         public V6Controls.Controls.V6FormButton btnThemMauBC;
         private V6Controls.Controls.GridViewSummary gridViewSummary1;
+        private wyDay.Controls.SplitButton btnExport3;
 
 
 

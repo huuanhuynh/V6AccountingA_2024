@@ -41,7 +41,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.exportToExcelViewMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToExcel = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToXmlMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.printGrid = new System.Windows.Forms.ToolStripMenuItem();
+            this.printGridMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.viewDataMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToPdfMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.grbDieuKienLoc = new System.Windows.Forms.GroupBox();
@@ -77,11 +77,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.chkHienTatCa = new V6Controls.V6CheckBox();
             this.gridViewSummary1 = new V6Controls.Controls.GridViewSummary();
             this.lblSummary = new System.Windows.Forms.Label();
-            this.btnExport2 = new V6Controls.Controls.DropDownButton();
             this.btnSuaLine = new V6Controls.Controls.V6FormButton();
             this.btnSuaMau = new V6Controls.Controls.V6FormButton();
             this.btnSuaTTMauBC = new V6Controls.Controls.V6FormButton();
             this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
+            this.btnExport3 = new wyDay.Controls.SplitButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
@@ -130,7 +130,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.exportToExcelViewMenu,
             this.exportToExcel,
             this.exportToXmlMenu,
-            this.printGrid,
+            this.printGridMenu,
             this.viewDataMenu,
             this.exportToPdfMenu});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
@@ -142,7 +142,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.exportToExcelTemplateMenu.Name = "exportToExcelTemplateMenu";
             this.exportToExcelTemplateMenu.Size = new System.Drawing.Size(208, 22);
             this.exportToExcelTemplateMenu.Text = "Export to Excel (template)";
-            this.exportToExcelTemplateMenu.Click += new System.EventHandler(this.exportToExcelTemplate_Click);
+            this.exportToExcelTemplateMenu.Click += new System.EventHandler(this.exportToExcelTemplateMenu_Click);
             // 
             // exportToExcelViewMenu
             // 
@@ -158,7 +158,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.exportToExcel.Name = "exportToExcel";
             this.exportToExcel.Size = new System.Drawing.Size(208, 22);
             this.exportToExcel.Text = "Export to Excel (all)";
-            this.exportToExcel.Click += new System.EventHandler(this.exportToExcel_Click);
+            this.exportToExcel.Click += new System.EventHandler(this.exportToExcelMenu_Click);
             // 
             // exportToXmlMenu
             // 
@@ -166,15 +166,15 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.exportToXmlMenu.Name = "exportToXmlMenu";
             this.exportToXmlMenu.Size = new System.Drawing.Size(208, 22);
             this.exportToXmlMenu.Text = "Export to xml";
-            this.exportToXmlMenu.Click += new System.EventHandler(this.exportToXmlToolStripMenuItem_Click);
+            this.exportToXmlMenu.Click += new System.EventHandler(this.exportToXmlMenu_Click);
             // 
-            // printGrid
+            // printGridMenu
             // 
-            this.printGrid.AccessibleDescription = "REPORTM00007";
-            this.printGrid.Name = "printGrid";
-            this.printGrid.Size = new System.Drawing.Size(208, 22);
-            this.printGrid.Text = "Print Grid";
-            this.printGrid.Click += new System.EventHandler(this.printGrid_Click);
+            this.printGridMenu.AccessibleDescription = "REPORTM00007";
+            this.printGridMenu.Name = "printGridMenu";
+            this.printGridMenu.Size = new System.Drawing.Size(208, 22);
+            this.printGridMenu.Text = "Print Grid";
+            this.printGridMenu.Click += new System.EventHandler(this.printGrid_Click);
             // 
             // viewDataMenu
             // 
@@ -182,7 +182,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.viewDataMenu.Name = "viewDataMenu";
             this.viewDataMenu.Size = new System.Drawing.Size(208, 22);
             this.viewDataMenu.Text = "View Data";
-            this.viewDataMenu.Click += new System.EventHandler(this.viewDataToolStripMenuItem_Click);
+            this.viewDataMenu.Click += new System.EventHandler(this.viewDataMenu_Click);
             // 
             // exportToPdfMenu
             // 
@@ -599,21 +599,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.lblSummary.Text = "Summary FOOTER";
             this.lblSummary.Visible = false;
             // 
-            // btnExport2
-            // 
-            this.btnExport2.AccessibleDescription = ".";
-            this.btnExport2.Image = global::V6ControlManager.Properties.Resources.Export24;
-            this.btnExport2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport2.Location = new System.Drawing.Point(463, 33);
-            this.btnExport2.Menu = this.contextMenuStrip1;
-            this.btnExport2.Name = "btnExport2";
-            this.btnExport2.Size = new System.Drawing.Size(50, 30);
-            this.btnExport2.TabIndex = 37;
-            this.btnExport2.TabStop = false;
-            this.btnExport2.Tag = "cancel";
-            this.btnExport2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExport2.UseVisualStyleBackColor = true;
-            // 
             // btnSuaLine
             // 
             this.btnSuaLine.AccessibleDescription = ".";
@@ -660,12 +645,27 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.btnThemMauBC.UseVisualStyleBackColor = true;
             this.btnThemMauBC.Click += new System.EventHandler(this.btnThemMauBC_Click);
             // 
+            // btnExport3
+            // 
+            this.btnExport3.AccessibleDescription = ".";
+            this.btnExport3.AutoSize = true;
+            this.btnExport3.ContextMenuStrip = this.contextMenuStrip1;
+            this.btnExport3.Image = global::V6ControlManager.Properties.Resources.Export24;
+            this.btnExport3.Location = new System.Drawing.Point(463, 33);
+            this.btnExport3.Name = "btnExport3";
+            this.btnExport3.Size = new System.Drawing.Size(50, 30);
+            this.btnExport3.SplitMenuStrip = this.contextMenuStrip1;
+            this.btnExport3.TabIndex = 39;
+            this.btnExport3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnExport3.UseVisualStyleBackColor = true;
+            this.btnExport3.Click += new System.EventHandler(this.btnExport3_Click);
+            // 
             // ReportD99ViewBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnExport3);
             this.Controls.Add(this.lblSummary);
-            this.Controls.Add(this.btnExport2);
             this.Controls.Add(this.btnSuaLine);
             this.Controls.Add(this.gridViewSummary1);
             this.Controls.Add(this.chkHienTatCa);
@@ -710,7 +710,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         private System.Windows.Forms.Button btnHuy;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem exportToExcel;
-        private System.Windows.Forms.ToolStripMenuItem printGrid;
+        private System.Windows.Forms.ToolStripMenuItem printGridMenu;
         private System.Windows.Forms.GroupBox grbTienTe;
         private System.Windows.Forms.RadioButton rNgoaiTe;
         private System.Windows.Forms.RadioButton rTienViet;
@@ -749,8 +749,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         private V6FormButton btnSuaLine;
         private System.Windows.Forms.ToolStripMenuItem exportToPdfMenu;
         private System.Windows.Forms.RadioButton rCurrent;
-        private DropDownButton btnExport2;
         private System.Windows.Forms.Label lblSummary;
+        private wyDay.Controls.SplitButton btnExport3;
 
 
 
