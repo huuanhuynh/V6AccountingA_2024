@@ -206,6 +206,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                                 VVar = defineInfo.Vvar,
                                 CheckOnLeave = defineInfo.NotEmpty,
                                 CheckNotEmpty = defineInfo.NotEmpty,
+                                F2 = defineInfo.F2,
+                                FilterStart = defineInfo.FilterStart,
                             };
                         }
                         else if (defineInfo.ControlType.ToUpper() == "LOOKUPTEXTBOX")
@@ -302,6 +304,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                             VVar = defineInfo.Vvar,
                             CheckOnLeave = defineInfo.NotEmpty,
                             CheckNotEmpty = defineInfo.NotEmpty,
+                            F2 = defineInfo.F2,
+                            FilterStart = defineInfo.FilterStart,
                         };
                         var vV = (V6VvarTextBox)input;
                         if (defineInfo.ToUpper) vV.CharacterCasing = CharacterCasing.Upper;
@@ -709,7 +713,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             }
             else if (Mode == V6Mode.Add)
             {
-                var dataOld2 = new SortedDictionary<string, object>(DataOld);
+                var dataOld2 = new SortedDictionary<string, object>();
+                if (DataOld != null) dataOld2.AddRange(DataOld);
                 dataOld2["STATUS"] = "1";
                 if (DataOld != null)
                 {
