@@ -4449,6 +4449,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                     //All_Objects["SAVE_VOUCHER"] = _sttRec;
                     InvokeFormEvent(FormDynamicEvent.AFTERADDSUCCESS);
                     InvokeFormEvent(FormDynamicEvent.AFTERSAVESUCCESS);
+
+                    if (Invoice.SaveMode == "1")
+                    {
+                        btnMoi.PerformClick();
+                        ShowParentMessage(V6Text.AddSuccess + ". " + V6Text.CreateNew);
+                    }
                 }
                 else
                 {
@@ -4501,7 +4507,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
 
-            if (_print_flag == V6PrintMode.AutoClickPrint)
+            if (_print_flag)
                 Thread.Sleep(2000);
             _AED_Running = false;
         }
@@ -4608,11 +4614,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
             End:
                 ((Timer)sender).Dispose();
-                if (_post && _print_flag != V6PrintMode.DoNoThing)
+                if (_post && _print_flag)
                 {
-                    var temp = _print_flag;
-                    _print_flag = V6PrintMode.DoNoThing;
-                    BasePrint(Invoice, _sttRec_In, temp, TongThanhToan, TongThanhToanNT, true);
+                    _print_flag = false;
+                    BasePrint(Invoice, _sttRec_In, V6PrintMode.None, TongThanhToan, TongThanhToanNT, true);
                     SetStatus2Text();
                 }
             }
@@ -4644,7 +4649,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 Invoice.PostErrorLog(_sttRec, "S " + _sttRec, ex);
             }
 
-            if (_print_flag == V6PrintMode.AutoClickPrint)
+            if (_print_flag)
                 Thread.Sleep(2000);
             _AED_Running = false;
         }
@@ -5252,7 +5257,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 }
                 if (!ValidateData_Master())
                 {
-                    _print_flag = V6PrintMode.DoNoThing;
+                    _print_flag = false;
                     //ShowMainMessage(V6Text.CheckData);
                     return;
                 }
@@ -5261,7 +5266,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 var dr = payform.ShowDialog(this);
                 if (dr == DialogResult.Yes) // luu va in
                 {
-                    _print_flag = V6PrintMode.AutoPrint;
+                    _print_flag = true;
                     _sttRec_In = _sttRec;
                     txtSL_UD1.Value = payform.KhachDua;
                     
@@ -5269,7 +5274,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 }
                 else if (dr == DialogResult.OK) // luu ko in
                 {
-                    _print_flag = V6PrintMode.DoNoThing;
+                    _print_flag = false;
                     _sttRec_In = _sttRec;
                     txtSL_UD1.Value = payform.KhachDua;
                     
@@ -5630,7 +5635,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             }
         }
 
-        private bool XuLyThemDetail(IDictionary<string, object> data)
+        public override bool XuLyThemDetail(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -5889,6 +5894,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             LoadTag(1, Invoice.Mact, Invoice.Mact, m_itemId, "");
             SetStatus2Text();
             btnMoi.Focus();
+            if (ClickSuaOnLoad)
+            {
+                ClickSuaOnLoad = false;
+                btnSua.PerformClick();
+            }
         }
 
         #region ==== Command Buttons ====
@@ -6203,6 +6213,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             V6PrintMode printMode = V6PrintMode.DoNoThing;
             if (Invoice.PrintMode == "1") printMode = V6PrintMode.AutoPrint;
             if (Invoice.PrintMode == "2") printMode = V6PrintMode.AutoClickPrint;
+            if (Invoice.PrintMode == "3") printMode = V6PrintMode.AutoExportT;
+            if (!string.IsNullOrEmpty(Invoice.PrintModeCT))
+            {
+                if (Invoice.PrintModeCT == "0") printMode = V6PrintMode.DoNoThing;
+                if (Invoice.PrintModeCT == "1") printMode = V6PrintMode.AutoPrint;
+                if (Invoice.PrintModeCT == "2") printMode = V6PrintMode.AutoClickPrint;
+                if (Invoice.PrintModeCT == "3") printMode = V6PrintMode.AutoExportT;
+            }
             In(_sttRec, printMode);
             SetStatus2Text();
         }
@@ -7364,7 +7382,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
 
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
-            FixMenuChucNangItemShiftText(chonBaoGiaMenu, chonTuExcelMenu, chonDonHangBanMenu);
+            FixMenuChucNangItemShiftText(chonBaoGiaMenu, chonTuExcelMenu, chonDonHangBanMenu, importXmlMenu);
         }
 
         private void inPhieuHachToanMenu_Click(object sender, EventArgs e)
@@ -7386,6 +7404,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
+        }
+
+        private void exportXmlMenu_Click(object sender, EventArgs e)
+        {
+            ExportXml();
+        }
+
+        private void importXmlMenu_Click(object sender, EventArgs e)
+        {
+            ImportXml();
         }
     }
 }

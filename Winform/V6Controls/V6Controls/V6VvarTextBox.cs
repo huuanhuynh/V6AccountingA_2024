@@ -269,6 +269,17 @@ namespace V6Controls
             }
         }
 
+        public bool NoTextNoData
+        {
+            get
+            {
+                if (Text != string.Empty) return false;
+                var data = V6BusinessHelper.Select(LookupInfo.vMa_file, "Count("+LookupInfo.vValue+")", InitFilter).Data;
+                if (data != null && data.Rows.Count > 0 && (int)data.Rows[0][0] > 0) return false;
+                return true;
+            }
+        }
+
         /// <summary>
         /// Gán lại giá trị initFilter
         /// <para>Nếu gán giá trị khác null thì filter mặt định ở V6Login.GetInitFilter sẽ bị bỏ qua</para>
@@ -448,7 +459,8 @@ namespace V6Controls
                 }
                 else if (_checkNotEmpty && !string.IsNullOrEmpty(LookupInfo.vValue))
                 {
-                    DoLookup(LookupMode.Single);
+                    if (NoTextNoData){ ; }
+                    else { DoLookup(LookupMode.Single); }
                 }
                 else
                 {
@@ -470,6 +482,7 @@ namespace V6Controls
             }
         }
 
+        
         /// <summary>
         /// Bật chức năng kiểm tra barcode và sinh sự kiện.
         /// </summary>

@@ -123,6 +123,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.ChiNoTaiKhoanMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.ChiCongNoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.ChiCongNoPhieuThuMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportXmlMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.v6Label28 = new V6Controls.V6Label();
             this.chkSuaThue = new V6Controls.V6CheckBox();
             this.chkSuaTien = new V6Controls.V6CheckBox();
@@ -196,6 +197,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.btnTim = new System.Windows.Forms.Button();
             this.btnViewInfoData = new System.Windows.Forms.Button();
             this.lblNameT = new V6Controls.V6Label();
+            this.importXmlMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -1488,9 +1490,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.thayThe2Menu,
             this.ChiNoTaiKhoanMenu,
             this.ChiCongNoMenu,
-            this.ChiCongNoPhieuThuMenu});
+            this.ChiCongNoPhieuThuMenu,
+            this.exportXmlMenu,
+            this.importXmlMenu});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(194, 180);
+            this.menuChucNang.Size = new System.Drawing.Size(194, 224);
+            this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
             // 
             // xulyKhacMenu
             // 
@@ -1547,6 +1552,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.ChiCongNoPhieuThuMenu.Size = new System.Drawing.Size(193, 22);
             this.ChiCongNoPhieuThuMenu.Text = "Chi công nợ phiếu thu";
             this.ChiCongNoPhieuThuMenu.Click += new System.EventHandler(this.ChiCongNoPhieuThuMenu_Click);
+            // 
+            // exportXmlMenu
+            // 
+            this.exportXmlMenu.AccessibleDescription = "INVOICEM00043";
+            this.exportXmlMenu.Name = "exportXmlMenu";
+            this.exportXmlMenu.Size = new System.Drawing.Size(193, 22);
+            this.exportXmlMenu.Tag = "cancel";
+            this.exportXmlMenu.Text = "Export Xml";
+            this.exportXmlMenu.Click += new System.EventHandler(this.exportXmlMenu_Click);
             // 
             // v6Label28
             // 
@@ -2581,6 +2595,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             this.lblNameT.TabIndex = 22;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // importXmlMenu
+            // 
+            this.importXmlMenu.AccessibleDescription = "INVOICEM00044";
+            this.importXmlMenu.Name = "importXmlMenu";
+            this.importXmlMenu.Size = new System.Drawing.Size(193, 22);
+            this.importXmlMenu.Text = "Import Xml";
+            this.importXmlMenu.Click += new System.EventHandler(this.importXmlMenu_Click);
+            // 
             // PhieuChiControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2800,5 +2822,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         private ToolStripMenuItem inPhieuHachToanMenu;
         private ToolStripMenuItem ChiCongNoMenu;
         private ToolStripMenuItem ChiCongNoPhieuThuMenu;
+        private ToolStripMenuItem exportXmlMenu;
+        private ToolStripMenuItem importXmlMenu;
     }
 }

@@ -802,11 +802,7 @@ namespace V6Controls
         [Description("Dùng Control + E để chỉnh sửa code.")]
         public bool Control_E { get { return control_e; } set { control_e = value; } }
         private bool control_e = false;
-        
-        [DefaultValue(false)]
-        [Description("Dùng Control + Space để chọn dòng đang đứng.")]
-        public bool Control_Space { get { return control_space; } set { control_space = value; } }
-        private bool control_space = false;
+
         
         [DefaultValue(false)]
         [Description("Dùng Space_Bar để thay đổi trạng thái chọn của dòng đang đứng.")]
@@ -1476,15 +1472,7 @@ namespace V6Controls
                 {
                     UnSelectAllRow();
                 }
-                else if (e.KeyData == (Keys.Control | Keys.Space) && Control_Space)
-                {
-                    if (CurrentRow != null)
-                    {
-                        e.Handled = true;
-                        Select(CurrentRow);
-                    }
-                }
-                else if (e.KeyData == (Keys.Space) && Space_Bar)
+                else if (Space_Bar && (e.KeyData == (Keys.Space) || e.KeyData == (Keys.Control | Keys.Space)))
                 {
                     if (CurrentRow != null)
                     {
@@ -2103,7 +2091,6 @@ namespace V6Controls
         public void EnableSelect()
         {
             Space_Bar = true;
-            Control_Space = true;
             Control_A = true;
         }
 

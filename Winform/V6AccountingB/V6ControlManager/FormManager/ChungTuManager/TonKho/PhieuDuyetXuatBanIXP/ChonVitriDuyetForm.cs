@@ -307,23 +307,67 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
 
         private void dataGridView1_RowSelectChanged(object sender, SelectRowEventArgs e)
         {
+            if ((ModifierKeys & Keys.Control) == Keys.Control) return;
             try
             {
-                bool isSelect = e.Row.IsSelect();
-                string ma_vt0 = ("" + e.Row.Cells["MA_VT"].Value).Trim();
-                string ma_kho0 = ("" + e.Row.Cells["MA_KHO"].Value).Trim();
-                string code0 = ma_vt0 + ma_kho0;
-                foreach (DataGridViewRow row1 in e.Row.DataGridView.Rows)
+                string COLUMN = dataGridView1.CurrentCell.OwningColumn.DataPropertyName.ToUpper();
+                if (COLUMN == "MA_KHO")
                 {
-                    if (row1 == e.Row) continue;
-                    string ma_vt = ("" + row1.Cells["MA_VT"].Value).Trim();
-                    string code = ma_vt;
-                    if (ma_kho0 != "")
+                    bool isSelect = e.Row.IsSelect();
+                    string ma_kho0 = ("" + e.Row.Cells["MA_KHO"].Value).Trim();
+                    string code0 = ma_kho0;
+                    foreach (DataGridViewRow row1 in e.Row.DataGridView.Rows)
                     {
+                        if (row1 == e.Row) continue;
                         string ma_kho = ("" + row1.Cells["MA_KHO"].Value).Trim();
-                        code += ma_kho;
+                        string code = ma_kho;
+                        if (code0 == code) row1.Select(isSelect);
                     }
-                    if (code0 == code) row1.Select(isSelect);
+                }
+                else if (COLUMN == "MA_LO")
+                {
+                    bool isSelect = e.Row.IsSelect();
+                    string ma_lo0 = ("" + e.Row.Cells["MA_LO"].Value).Trim();
+                    string code0 = ma_lo0;
+                    foreach (DataGridViewRow row1 in e.Row.DataGridView.Rows)
+                    {
+                        if (row1 == e.Row) continue;
+                        string ma_lo = ("" + row1.Cells["MA_LO"].Value).Trim();
+                        string code = ma_lo;
+                        if (code0 == code) row1.Select(isSelect);
+                    }
+                }
+                else if (COLUMN == "MA_VT")
+                {
+                    bool isSelect = e.Row.IsSelect();
+                    string ma_vt0 = ("" + e.Row.Cells["MA_VT"].Value).Trim();
+                    string code0 = ma_vt0;
+                    foreach (DataGridViewRow row1 in e.Row.DataGridView.Rows)
+                    {
+                        if (row1 == e.Row) continue;
+                        string ma_vt = ("" + row1.Cells["MA_VT"].Value).Trim();
+                        string code = ma_vt;
+                        if (code0 == code) row1.Select(isSelect);
+                    }
+                }
+                else
+                {
+                    bool isSelect = e.Row.IsSelect();
+                    string ma_vt0 = ("" + e.Row.Cells["MA_VT"].Value).Trim();
+                    string ma_kho0 = ("" + e.Row.Cells["MA_KHO"].Value).Trim();
+                    string code0 = ma_vt0 + ma_kho0;
+                    foreach (DataGridViewRow row1 in e.Row.DataGridView.Rows)
+                    {
+                        if (row1 == e.Row) continue;
+                        string ma_vt = ("" + row1.Cells["MA_VT"].Value).Trim();
+                        string code = ma_vt;
+                        if (ma_kho0 != "")
+                        {
+                            string ma_kho = ("" + row1.Cells["MA_KHO"].Value).Trim();
+                            code += ma_kho;
+                        }
+                        if (code0 == code) row1.Select(isSelect);
+                    }
                 }
             }
             catch (Exception ex)

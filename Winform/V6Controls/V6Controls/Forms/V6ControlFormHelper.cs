@@ -78,7 +78,7 @@ namespace V6Controls.Forms
                 string result = "";
                 foreach (string s in LastActionList)
                 {
-                    result += "/" + s;
+                    result += "/\r\n" + s;
                 }
                 return result;
             }
@@ -1787,6 +1787,47 @@ namespace V6Controls.Forms
         }
 
         #endregion
+
+#region ==== SELECT ====
+
+        /// <summary>
+        /// Hỗ trợ chọn Fields cho textBox.
+        /// </summary>
+        /// <param name="owner">Form hoặc Control chủ chứa.</param>
+        /// <param name="sourceFieldsInfo">Thông tin fields nguồn. Có thể là chuỗi phẩy phẩy chấm phẩy, mảng chuỗi, table, gridview, List_AlbcFieldInfo</param>
+        /// <param name="targetFieldsInfo">Thông tin fields đích (đang có). Có thể là chuỗi phẩy phẩy chấm phẩy, mảng chuỗi, table, gridview, List_AlbcFieldInfo</param>
+        /// <param name="txtFields">Ô text nhận Fields sau khi chọn.</param>
+        public static void SelectFields(IWin32Window owner, object sourceFieldsInfo, object targetFieldsInfo, Control txtFields)
+        {
+            SelectFields(owner, sourceFieldsInfo, targetFieldsInfo, txtFields, null, null, null);
+        }
+
+        /// <summary>
+        /// Hỗ trợ chọn Fields cho textBox.
+        /// </summary>
+        /// <param name="owner">Form hoặc Control chủ chứa.</param>
+        /// <param name="sourceFieldsInfo">Thông tin fields nguồn. Có thể là chuỗi phẩy phẩy chấm phẩy, mảng chuỗi, table, gridview, List_AlbcFieldInfo</param>
+        /// <param name="targetFieldsInfo">Thông tin fields đích (đang có). Có thể là chuỗi phẩy phẩy chấm phẩy, mảng chuỗi, table, gridview, List_AlbcFieldInfo</param>
+        /// <param name="txtFields">Ô text nhận Fields sau khi chọn.</param>
+        /// <param name="txtFormats">Ô text nhận Formats sau khi chọn. Không dùng thì để null.</param>
+        /// <param name="txtTextV">Ô text nhận TextV sau khi chọn. Không dùng thì để null.</param>
+        /// <param name="txtTextE">Ô text nhận TextE sau khi chọn. Không dùng thì để null.</param>
+        public static void SelectFields(IWin32Window owner, object sourceFieldsInfo, object targetFieldsInfo, Control txtFields, Control txtFormats, Control txtTextV, Control txtTextE)
+        {
+            try
+            {
+                FieldSelectorForm fieldSelect = new FieldSelectorForm(sourceFieldsInfo, targetFieldsInfo, txtFields, txtFormats, txtTextV, txtTextE);
+                if (fieldSelect.ShowDialog(owner) == DialogResult.OK)
+                {
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+#endregion select
 
         #region ==== SEND ====
 
@@ -4179,7 +4220,7 @@ namespace V6Controls.Forms
         /// <param name="ReportFile">key albc</param>
         /// <param name="ExcelTemplateFileFull">File excel mẫu.</param>
         /// <param name="defaultSaveName">Tên file lưu gợi ý.</param>
-        public static void ExportExcelTemplate_ChooseFile(IWin32Window owner, DataTable data, DataTable tbl2,
+        public static string ExportExcelTemplate_ChooseFile(IWin32Window owner, DataTable data, DataTable tbl2,
             IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
             string ReportFile, string ExcelTemplateFileFull, string defaultSaveName)
         {
@@ -4187,7 +4228,7 @@ namespace V6Controls.Forms
             if (data == null)
             {
                 //ShowTopMessage(V6Text.NoData);
-                return;
+                return null;
             }
             try
             {
@@ -4202,6 +4243,7 @@ namespace V6Controls.Forms
                     ExportExcelTemplate(owner, data, tbl2,
                         ReportDocumentParameters, MAU, LAN,
                         ReportFile, ExcelTemplateFileFull, save.FileName);
+                    return save.FileName;
                 }
             }
             catch (Exception ex)
@@ -4213,6 +4255,7 @@ namespace V6Controls.Forms
                     ShowErrorException(address, ex);
                 }
             }
+            return null;
         }
         
         
@@ -7037,7 +7080,7 @@ namespace V6Controls.Forms
         private static SaveFileDialog saveFileDialog = new SaveFileDialog()
         {
             Filter = "All file|*.*",
-            Title = V6Setting.IsVietnamese ? "Chọn file lưu" : "Choose save file"
+            Title = V6Setting.IsVietnamese ? "Lưu thành..." : "Save as..."
         };
 
         /// <summary>
@@ -7080,7 +7123,7 @@ namespace V6Controls.Forms
         private static OpenFileDialog openFileDialog = new OpenFileDialog()
         {
             Filter = "All file|*.*",
-            Title = V6Setting.IsVietnamese ? "Chọn file lưu" : "Choose save file"
+            Title = V6Setting.IsVietnamese ? "Mở file" : "Choose file"
         };
 
         
@@ -8392,5 +8435,7 @@ namespace V6Controls.Forms
             }
             return result;
         }
+
+        
     }
 }

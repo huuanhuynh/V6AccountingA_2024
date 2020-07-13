@@ -50,6 +50,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.thayTheMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.thayTheNhieuMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.thayThe2Menu = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportXmlMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -253,6 +254,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label1 = new V6Controls.V6Label();
             this.txtSoPhieu = new V6Controls.V6VvarTextBox();
+            this.importXmlMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuChucNang.SuspendLayout();
             this.menuBtnIn.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -283,9 +285,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.xuLyKhacMenu,
             this.thayTheMenu,
             this.thayTheNhieuMenu,
-            this.thayThe2Menu});
+            this.thayThe2Menu,
+            this.exportXmlMenu,
+            this.importXmlMenu});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(185, 180);
+            this.menuChucNang.Size = new System.Drawing.Size(185, 246);
             this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
             // 
             // chonDonHangMuaMenu
@@ -353,6 +357,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.thayThe2Menu.Size = new System.Drawing.Size(184, 22);
             this.thayThe2Menu.Text = "Sửa nhiều dòng";
             this.thayThe2Menu.Click += new System.EventHandler(this.thayThe2Menu_Click);
+            // 
+            // exportXmlMenu
+            // 
+            this.exportXmlMenu.AccessibleDescription = "INVOICEM00043";
+            this.exportXmlMenu.Name = "exportXmlMenu";
+            this.exportXmlMenu.Size = new System.Drawing.Size(184, 22);
+            this.exportXmlMenu.Tag = "cancel";
+            this.exportXmlMenu.Text = "Export Xml";
+            this.exportXmlMenu.Click += new System.EventHandler(this.exportXmlMenu_Click);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -3642,6 +3655,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             this.txtSoPhieu.TabIndex = 1;
             this.txtSoPhieu.TextChanged += new System.EventHandler(this.txtSoPhieu_TextChanged);
             // 
+            // importXmlMenu
+            // 
+            this.importXmlMenu.AccessibleDescription = "INVOICEM00044";
+            this.importXmlMenu.Name = "importXmlMenu";
+            this.importXmlMenu.Size = new System.Drawing.Size(184, 22);
+            this.importXmlMenu.Text = "Import Xml";
+            this.importXmlMenu.Click += new System.EventHandler(this.importXmlMenu_Click);
+            // 
             // DeNghiNhapKhoINY_Control
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3926,5 +3947,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
         private System.Windows.Forms.ToolStripMenuItem inPhieuHachToanMenu;
         private V6VvarTextBox txtLoaiNX_PH;
         private V6Label lblLoaiNX_PH;
+        private System.Windows.Forms.ToolStripMenuItem exportXmlMenu;
+        private System.Windows.Forms.ToolStripMenuItem importXmlMenu;
     }
 }

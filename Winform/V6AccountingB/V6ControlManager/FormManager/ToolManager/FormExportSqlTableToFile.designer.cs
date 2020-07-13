@@ -93,7 +93,6 @@
             this.dataGridView1.Control_A = true;
             this.dataGridView1.Control_E = true;
             this.dataGridView1.Control_S = true;
-            this.dataGridView1.Control_Space = true;
             this.dataGridView1.Location = new System.Drawing.Point(175, 135);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";

@@ -62,7 +62,7 @@
 	<TuKhoa TenTuKhoa='IDictionary' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='SortedDictionary' 		MauSac = 'MediumTurquoise' 	AutoComplete = '1' />
 	   
-	<TuKhoa TenTuKhoa='SqlParameter[] plist = {new SqlParameter("@name", value),}' 		MauSac = 'Blue' 	AutoComplete = '1' />
+	<TuKhoa TenTuKhoa='SqlParameter[] plist = {new SqlParameter("@name", "value"),};' 		MauSac = 'Blue' 	AutoComplete = '1' />
   
 	<TuKhoa TenTuKhoa='string' 		MauSac = 'Blue' 	AutoComplete = '1' />
 	<TuKhoa TenTuKhoa='int' 		MauSac = 'Blue' 	AutoComplete = '1' />

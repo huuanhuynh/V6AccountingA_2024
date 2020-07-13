@@ -1748,6 +1748,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     {
                         this.ShowInfoMessage(V6Text.ExportFinish);
                     }
+                    if (PrintMode == V6PrintMode.AutoExportT)
+                    {
+                        btnHuy.PerformClick();
+                    }
                 }
             }
             catch (Exception ex)
@@ -2343,8 +2347,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
         private void exportToExcelTemplateMenu_Click(object sender, EventArgs e)
         {
-            V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, _tbl_AD, _tbl2_AM, ReportDocumentParameters,
-              MAU, LAN, ReportFile, ExcelTemplateFileFull, GetExportFileName());
+            string exportFile = V6ControlFormHelper.ExportExcelTemplate_ChooseFile(this, _tbl_AD, _tbl2_AM,
+                ReportDocumentParameters, MAU, LAN, ReportFile, ExcelTemplateFileFull, GetExportFileName());
+            if (PrintMode == V6PrintMode.AutoExportT && !string.IsNullOrEmpty(exportFile))
+            {
+                btnHuy.PerformClick();
+            }
         }
 
         private void chkCrossModify_CheckedChanged(object sender, EventArgs e)
@@ -2885,6 +2893,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
     public enum V6PrintMode
     {
+        None = -1,
         DoNoThing = 0,
         AutoPrint = 1,
         AutoClickPrint = 2,

@@ -71,7 +71,6 @@
             this.dgvctkm.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvctkm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvctkm.Control_A = true;
-            this.dgvctkm.Control_Space = true;
             this.dgvctkm.Location = new System.Drawing.Point(12, 24);
             this.dgvctkm.Name = "dgvctkm";
             this.dgvctkm.ReadOnly = true;
@@ -123,7 +122,6 @@
             this.dgvctck.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvctck.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvctck.Control_A = true;
-            this.dgvctck.Control_Space = true;
             this.dgvctck.Location = new System.Drawing.Point(12, 306);
             this.dgvctck.Name = "dgvctck";
             this.dgvctck.ReadOnly = true;

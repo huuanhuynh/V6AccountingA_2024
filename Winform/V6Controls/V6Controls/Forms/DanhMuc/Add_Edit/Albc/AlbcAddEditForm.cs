@@ -519,26 +519,15 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         {
             try
             {
-                FieldSelectorForm form = new FieldSelectorForm();
-                List<AlbcFieldInfo> targetInfoList = new List<AlbcFieldInfo>();
-                var fff = ObjectAndString.SplitString(txtExcel1.Text);
-                foreach (string field in fff)
-                {
-                    string FIELD = field.Trim().ToUpper();
-                    AlbcFieldInfo fi = new AlbcFieldInfo()
-                    {
-                        FieldName = FIELD
-                    };
-                    targetInfoList.Add(fi);
-                }
-                List<AlbcFieldInfo> sourceFields = GetSourceFieldsInfo1();
-                form.AddSourceFieldList(sourceFields);
-                form.AddTargetFieldList(targetInfoList);
-
-                if (form.ShowDialog(this) == DialogResult.OK)
-                {
-                    txtExcel1.Text = form.GetFieldsString();
-                }
+                //var targetFields = ObjectAndString.SplitString(txtExcel1.Text);
+                DataGridView dataGridView1 = V6ControlFormHelper.GetControlByName(_grandFatherControl, "dataGridView1") as DataGridView;
+                //fieldSelect.AddSourceFieldList(dataGridView1);
+                //fieldSelect.AddTargetFieldList(targetFields);
+                V6ControlFormHelper.SelectFields(this, dataGridView1, txtExcel1.Text, txtExcel1);
+                //if (fieldSelect.ShowDialog(this) == DialogResult.OK)
+                //{
+                //    txtExcel1.Text = fieldSelect.GetFieldsString();
+                //}
             }
             catch (Exception ex)
             {
@@ -660,20 +649,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         {
             try
             {
-                FieldSelectorForm form = new FieldSelectorForm();
+                //FieldSelectorForm form = new FieldSelectorForm();
                 List<AlbcFieldInfo> targetInfoList = GetTargetFieldsInfo(txtShowFields1.Text, txtFormats1.Text, txtHeaderV1.Text, txtHeaderE1.Text, txtNoSum1.Text);
                 List<AlbcFieldInfo> sourceFields = GetSourceFieldsInfo1();
-                form.AddSourceFieldList(sourceFields);
-                form.AddTargetFieldList(targetInfoList);
-
-                if (form.ShowDialog(this) == DialogResult.OK)
-                {
-                    txtShowFields1.Text = form.GetFieldsString();
-                    txtFormats1.Text = form.GetFormatsString();
-                    txtHeaderV1.Text = form.GetCaptionsStringV();
-                    txtHeaderE1.Text = form.GetCaptionsStringE();
-                    //txtNoSum1.Text = form.GetNoSumFieldsString();
-                }
+                //form.AddSourceFieldList(sourceFields);
+                //form.AddTargetFieldList(targetInfoList);
+                V6ControlFormHelper.SelectFields(this, sourceFields, targetInfoList, txtShowFields1, txtFormats1, txtHeaderV1, txtHeaderE1);
+                //if (form.ShowDialog(this) == DialogResult.OK)
+                //{
+                //    txtShowFields1.Text = form.GetFieldsString();
+                //    txtFormats1.Text = form.GetFormatsString();
+                //    txtHeaderV1.Text = form.GetCaptionsStringV();
+                //    txtHeaderE1.Text = form.GetCaptionsStringE();
+                //    //txtNoSum1.Text = form.GetNoSumFieldsString();
+                //}
             }
             catch (Exception ex)
             {
@@ -685,20 +674,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         {
             try
             {
-                FieldSelectorForm form = new FieldSelectorForm();
+                //FieldSelectorForm form = new FieldSelectorForm();
                 List<AlbcFieldInfo> targetInfoList = GetTargetFieldsInfo(txtShowFields2.Text, txtFormats2.Text, txtHeaderV2.Text, txtHeaderE2.Text, txtNoSum2.Text);
-                List<AlbcFieldInfo> sourceFields = GetSourceFieldsInfo2();
-                form.AddSourceFieldList(sourceFields);
-                form.AddTargetFieldList(targetInfoList);
-
-                if (form.ShowDialog(this) == DialogResult.OK)
-                {
-                    txtShowFields2.Text = form.GetFieldsString();
-                    txtFormats2.Text = form.GetFormatsString();
-                    txtHeaderV2.Text = form.GetCaptionsStringV();
-                    txtHeaderE2.Text = form.GetCaptionsStringE();
-                    //txtNoSum2.Text = form.GetNoSumFieldsString();
-                }
+                var dataGridView2 = V6ControlFormHelper.GetControlByName(_grandFatherControl, "dataGridView2") as DataGridView;
+                //form.AddSourceFieldList(V6ControlFormHelper.GetControlByName(_grandFatherControl, "dataGridView2") as DataGridView);
+                //form.AddTargetFieldList(targetInfoList);
+                V6ControlFormHelper.SelectFields(this, dataGridView2, targetInfoList, txtShowFields2, txtFormats2, txtHeaderV2, txtHeaderE2);
+                //if (form.ShowDialog(this) == DialogResult.OK)
+                //{
+                //    txtShowFields2.Text = form.GetFieldsString();
+                //    txtFormats2.Text = form.GetFormatsString();
+                //    txtHeaderV2.Text = form.GetCaptionsStringV();
+                //    txtHeaderE2.Text = form.GetCaptionsStringE();
+                //    //txtNoSum2.Text = form.GetNoSumFieldsString();
+                //}
             }
             catch (Exception ex)
             {
@@ -710,31 +699,21 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         {
             try
             {
-                FieldSelectorForm form = new FieldSelectorForm();
-                List<AlbcFieldInfo> targetInfoList = new List<AlbcFieldInfo>();
-                var fff = ObjectAndString.SplitString(txtNoSum.Text);
-                foreach (string field in fff)
-                {
-                    string FIELD = field.Trim().ToUpper();
-                    AlbcFieldInfo fi = new AlbcFieldInfo()
-                    {
-                        FieldName = FIELD
-                    };
-                    targetInfoList.Add(fi);
-                }
+                //FieldSelectorForm form = new FieldSelectorForm();
+                //var targetFields = ObjectAndString.SplitString(txtNoSum.Text);
                 List<AlbcFieldInfo> sourceFields0 = txtNoSum == txtNoSum1 ? GetSourceFieldsInfo1() : GetSourceFieldsInfo2();
                 var sourceFields = new List<AlbcFieldInfo>();
                 foreach (AlbcFieldInfo info in sourceFields0)
                 {
                     if (info.FieldType >= AlbcFieldType.N0 && info.FieldType <= AlbcFieldType.N5) sourceFields.Add(info);
                 }
-                form.AddSourceFieldList(sourceFields);
-                form.AddTargetFieldList(targetInfoList);
-
-                if (form.ShowDialog(this) == DialogResult.OK)
-                {
-                    txtNoSum.Text = form.GetFieldsString();
-                }
+                //form.AddSourceFieldList(sourceFields);
+                //form.AddTargetFieldList(targetFields);
+                V6ControlFormHelper.SelectFields(this, sourceFields, txtNoSum.Text, txtNoSum);
+                //if (form.ShowDialog(this) == DialogResult.OK)
+                //{
+                //    txtNoSum.Text = form.GetFieldsString();
+                //}
             }
             catch (Exception ex)
             {

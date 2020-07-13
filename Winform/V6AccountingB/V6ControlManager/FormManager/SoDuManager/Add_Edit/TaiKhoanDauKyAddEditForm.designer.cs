@@ -111,7 +111,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.txtten_tk.Location = new System.Drawing.Point(320, 39);
             this.txtten_tk.Name = "txtten_tk";
             this.txtten_tk.ReadOnly = true;
-            this.txtten_tk.Size = new System.Drawing.Size(361, 16);
+            this.txtten_tk.Size = new System.Drawing.Size(457, 16);
             this.txtten_tk.TabIndex = 4;
             this.txtten_tk.TabStop = false;
             this.txtten_tk.Tag = "readonly";
@@ -121,7 +121,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label11.AccessibleDescription = "FILTERL00109";
             this.label11.AccessibleName = "";
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(341, 7);
+            this.label11.Location = new System.Drawing.Point(452, 7);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(37, 17);
             this.label11.TabIndex = 13;
@@ -138,7 +138,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtDu_co_nt1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtDu_co_nt1.HoverColor = System.Drawing.Color.Yellow;
             this.TxtDu_co_nt1.LeaveColor = System.Drawing.Color.White;
-            this.TxtDu_co_nt1.Location = new System.Drawing.Point(493, 149);
+            this.TxtDu_co_nt1.Location = new System.Drawing.Point(604, 149);
             this.TxtDu_co_nt1.Name = "TxtDu_co_nt1";
             this.TxtDu_co_nt1.Size = new System.Drawing.Size(150, 23);
             this.TxtDu_co_nt1.TabIndex = 22;
@@ -163,7 +163,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtNam.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtNam.HoverColor = System.Drawing.Color.Yellow;
             this.TxtNam.LeaveColor = System.Drawing.Color.White;
-            this.TxtNam.Location = new System.Drawing.Point(493, 7);
+            this.TxtNam.Location = new System.Drawing.Point(604, 7);
             this.TxtNam.Name = "TxtNam";
             this.TxtNam.ReadOnly = true;
             this.TxtNam.Size = new System.Drawing.Size(150, 23);
@@ -182,7 +182,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label1.AccessibleDescription = "FILTERL00234";
             this.label1.AccessibleName = "";
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(341, 152);
+            this.label1.Location = new System.Drawing.Point(452, 152);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(127, 17);
             this.label1.TabIndex = 21;
@@ -199,7 +199,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtDu_co1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtDu_co1.HoverColor = System.Drawing.Color.Yellow;
             this.TxtDu_co1.LeaveColor = System.Drawing.Color.White;
-            this.TxtDu_co1.Location = new System.Drawing.Point(493, 121);
+            this.TxtDu_co1.Location = new System.Drawing.Point(604, 121);
             this.TxtDu_co1.Name = "TxtDu_co1";
             this.TxtDu_co1.Size = new System.Drawing.Size(150, 23);
             this.TxtDu_co1.TabIndex = 20;
@@ -217,7 +217,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label8.AccessibleDescription = "FILTERL00233";
             this.label8.AccessibleName = "";
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(341, 123);
+            this.label8.Location = new System.Drawing.Point(452, 123);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(104, 17);
             this.label8.TabIndex = 19;
@@ -334,7 +334,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtDu_co_nt00.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtDu_co_nt00.HoverColor = System.Drawing.Color.Yellow;
             this.TxtDu_co_nt00.LeaveColor = System.Drawing.Color.White;
-            this.TxtDu_co_nt00.Location = new System.Drawing.Point(493, 93);
+            this.TxtDu_co_nt00.Location = new System.Drawing.Point(604, 93);
             this.TxtDu_co_nt00.Name = "TxtDu_co_nt00";
             this.TxtDu_co_nt00.Size = new System.Drawing.Size(150, 23);
             this.TxtDu_co_nt00.TabIndex = 18;
@@ -352,7 +352,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label5.AccessibleDescription = "FILTERL00218";
             this.label5.AccessibleName = "";
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(341, 94);
+            this.label5.Location = new System.Drawing.Point(452, 94);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(68, 17);
             this.label5.TabIndex = 17;
@@ -369,7 +369,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.TxtDu_co00.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.TxtDu_co00.HoverColor = System.Drawing.Color.Yellow;
             this.TxtDu_co00.LeaveColor = System.Drawing.Color.White;
-            this.TxtDu_co00.Location = new System.Drawing.Point(493, 65);
+            this.TxtDu_co00.Location = new System.Drawing.Point(604, 65);
             this.TxtDu_co00.Name = "TxtDu_co00";
             this.TxtDu_co00.Size = new System.Drawing.Size(150, 23);
             this.TxtDu_co00.TabIndex = 16;
@@ -387,7 +387,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.label6.AccessibleDescription = "FILTERL00217";
             this.label6.AccessibleName = "";
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(341, 65);
+            this.label6.Location = new System.Drawing.Point(452, 65);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 17);
             this.label6.TabIndex = 15;
@@ -502,7 +502,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.v6TabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.v6TabControl1.Name = "v6TabControl1";
             this.v6TabControl1.SelectedIndex = 0;
-            this.v6TabControl1.Size = new System.Drawing.Size(757, 406);
+            this.v6TabControl1.Size = new System.Drawing.Size(792, 406);
             this.v6TabControl1.TabIndex = 3;
             // 
             // tabThongTinChinh
@@ -537,7 +537,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.tabThongTinChinh.Margin = new System.Windows.Forms.Padding(4);
             this.tabThongTinChinh.Name = "tabThongTinChinh";
             this.tabThongTinChinh.Padding = new System.Windows.Forms.Padding(4);
-            this.tabThongTinChinh.Size = new System.Drawing.Size(749, 374);
+            this.tabThongTinChinh.Size = new System.Drawing.Size(784, 374);
             this.tabThongTinChinh.TabIndex = 0;
             this.tabThongTinChinh.Text = "Thông tin chính";
             // 
@@ -1345,7 +1345,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "TaiKhoanDauKyAddEditForm";
-            this.Size = new System.Drawing.Size(762, 409);
+            this.Size = new System.Drawing.Size(800, 409);
             this.v6TabControl1.ResumeLayout(false);
             this.tabThongTinChinh.ResumeLayout(false);
             this.tabThongTinChinh.PerformLayout();

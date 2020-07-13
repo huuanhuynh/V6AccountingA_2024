@@ -1110,6 +1110,11 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
 
             return "";
         }
+
+        public virtual bool XuLyThemDetail(IDictionary<string, object> data)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

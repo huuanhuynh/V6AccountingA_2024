@@ -265,6 +265,7 @@ namespace V6Init
         }
         private static string _M_VITRI_CODEDAY_INDEX;
         
+
         /// <summary>
         /// Roun all-> Numeric 0,1,2...
         /// </summary>
@@ -474,6 +475,15 @@ namespace V6Init
             {
                 if (V6OptionValues == null) return "";
                 return GetValue("M_SOA_TINH_CK_KM");
+            }
+        }
+
+        public static string M_SUA_BC
+        {
+            get
+            {
+                if (V6OptionValues == null) return "";
+                return GetValueNull("M_SUA_BC");
             }
         }
 

@@ -1599,6 +1599,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                             if (alctConfig.TableNameAM != "" && alctConfig.TableNameAD != "")
                             {
                                 var hoaDonForm = ChungTuF3.GetChungTuControl(selectedMaCt, Name, selectedSttRec);
+                                if (V6Options.M_SUA_BC == "1")
+                                {
+                                    hoaDonForm.ClickSuaOnLoad = true;
+                                }
                                 hoaDonForm.ShowToForm(this, V6Setting.IsVietnamese ? alctConfig.TEN_CT : alctConfig.TEN_CT2, true);
                                 SetStatus2Text();
                             }

@@ -124,7 +124,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         #region ==== Khởi tạo Detail Form ====
         public V6ColorTextBox _dvt;
         public V6CheckTextBox _nhap_tb;
-        public V6VvarTextBox _maVt, _dvt1, _maKho2, _Ma_nx_i, _Ma_lnx_i, _tkVt, _maLo, _maKhoI, _maViTri;
+        public V6VvarTextBox _maVt, _dvt1, _maKho2, _Ma_nx_i, _Ma_lnx_i, _tkVt, _maLo, _maKhoI, _maViTri, _maViTri2;
         public V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_td1;
         public V6NumberTextBox _sl_101, _sl_102, _sl_103, _sl_104, _sl_01, _sl_02, _sl_03, _sl_04;
         public V6NumberTextBox _ton13, _ton13Qd, _gia, _gia_nt, _gia0, _gia_nt0, _tien, _tienNt, _tien0, _tienNt0, _gia01, _gia_nt01;
@@ -225,8 +225,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                     case "MA_KHO2":
                         _maKho2 = (V6VvarTextBox)control;
                         _maKho2.Upper();
-                        _maKho2.V6LostFocus += MaKho2V6LostFocus;
-                        _maKho2.Tag = "hide";
+                        _maKho2.LO_YN = false;
+                        _maKho2.DATE_YN = false;
+                        _maKho2.V6LostFocus += delegate(object sender)
+                        {
+                            
+                        };
                         break;
                     case "MA_KHO_I":
                         _maKhoI = (V6VvarTextBox)control;
@@ -671,6 +675,34 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                             };
                         }
                         break;
+                    case "MA_VITRI2":
+                        _maViTri2 = control as V6VvarTextBox;
+                        if (_maViTri2 != null)
+                        {
+                            _maViTri2.GotFocus += (s, e) =>
+                            {
+                                _maViTri2.CheckNotEmpty = _maVt.VITRI_YN;
+                                var filter = "Ma_kho='" + _maKho2.Text.Trim() + "'";
+
+                                if (("," + V6Options.GetValue("M_LST_CT_DV") + ",").Contains(Invoice.Mact))
+                                {
+                                    var dataViTri = Invoice.GetViTri("", _maKho2.Text, _sttRec, dateNgayCT.Date);
+                                    var getFilter = GetFilterMaViTriNhap2(dataViTri, _sttRec0, "", _maKho2.Text);
+                                    if (getFilter != "")
+                                    {
+                                        filter += " and " + getFilter;
+                                    }
+                                }
+
+                                _maViTri2.SetInitFilter(filter);
+                            };
+
+                            _maViTri2.V6LostFocus += sender =>
+                            {
+                                //CheckMaViTri();
+                            };
+                        }
+                        break;
                 }
                 #endregion switch
 
@@ -792,6 +824,73 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                    // string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
                     string c_maKhoI = row["Ma_kho_i"].ToString().Trim().ToUpper();
                     string c_maViTri = row["Ma_vitri"].ToString().Trim().ToUpper();
+
+                    //Add 31-07-2016
+                    //Nếu khi sửa chỉ trừ dần những dòng trên dòng đang đứng thì dùng dòng if sau:
+                    //if (detail1.MODE == V6Mode.Edit && c_sttRec0 == sttRec0) break;
+
+
+                    if (detail1.MODE == V6Mode.Add || (detail1.MODE == V6Mode.Edit && c_sttRec0 != sttRec0))
+                    {
+                        if (maKhoI == c_maKhoI)
+                        {
+                            list_maViTri += string.Format(" and Ma_vitri<>'{0}'", c_maViTri);
+                        }
+                    }
+                }
+
+                if (list_maViTri.Length > 4)
+                {
+                    list_maViTri = list_maViTri.Substring(4);
+                    list_maViTri = "(" + list_maViTri + ")";
+                    return list_maViTri;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+            return "(1=1)";
+        }
+
+        private string GetFilterMaViTriNhap2(DataTable dataViTri, string sttRec0, string maVt, string maKhoI)
+        {
+            try
+            {
+                var list_maViTri = "";
+                if (maKhoI == "") return list_maViTri;
+
+
+                for (int i = dataViTri.Rows.Count - 1; i >= 0; i--)
+                {
+                    DataRow data_row = dataViTri.Rows[i];
+                    // string data_maVt = data_row["Ma_vt"].ToString().Trim().ToUpper();
+                    string data_maKhoI = data_row["Ma_kho"].ToString().Trim().ToUpper();
+                    string data_maViTri = data_row["Ma_vitri"].ToString().Trim().ToUpper();
+                    if (data_maViTri == "") continue;
+
+                    //Neu dung maVt va maKhoI
+                    if (maKhoI == data_maKhoI)
+                    {
+
+                        list_maViTri += string.Format(" and Ma_vitri<>'{0}'", data_maViTri);
+
+                    }
+                }
+
+                //if (list_maViTri.Length > 4)
+                //{
+                //    list_maViTri = list_maViTri.Substring(4);
+                //    list_maViTri = "(" + list_maViTri + ")";
+                //}
+
+                foreach (DataRow row in AD.Rows) //Duyet qua cac dong chi tiet
+                {
+
+                    string c_sttRec0 = row["Stt_rec0"].ToString().Trim();
+                    // string c_maVt = row["Ma_vt"].ToString().Trim().ToUpper();
+                    string c_maKhoI = row["MA_KHO2"].ToString().Trim().ToUpper();
+                    string c_maViTri = row["MA_VITRI2"].ToString().Trim().ToUpper();
 
                     //Add 31-07-2016
                     //Nếu khi sửa chỉ trừ dần những dòng trên dòng đang đứng thì dùng dòng if sau:
@@ -990,10 +1089,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             XuLyChonMaKhoI();
         }
         
-        void MaKho2V6LostFocus(object sender)
-        {
-        }
-
         private void MaVatTu_V6LostFocus(object sender)
         {
             XuLyChonMaVt(_maVt.Text);
@@ -2458,6 +2553,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                     //All_Objects["SAVE_VOUCHER"] = _sttRec;
                     InvokeFormEvent(FormDynamicEvent.AFTEREDITSUCCESS);
                     InvokeFormEvent(FormDynamicEvent.AFTERSAVESUCCESS);
+
+                    if (Invoice.SaveMode == "1")
+                    {
+                        btnMoi.PerformClick();
+                        ShowParentMessage(V6Text.AddSuccess + ". " + V6Text.CreateNew);
+                    }
                 }
                 else
                 {
@@ -2467,11 +2568,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 }
 
                 ((Timer)sender).Dispose();
-                if (_print_flag != V6PrintMode.DoNoThing)
+                if (_print_flag)
                 {
-                    var temp = _print_flag;
-                    _print_flag = V6PrintMode.DoNoThing;
-                    BasePrint(Invoice, _sttRec_In, temp, TongThanhToan, TongThanhToanNT, true);
+                    
+                    _print_flag = false;
+                    BasePrint(Invoice, _sttRec_In, V6PrintMode.None, TongThanhToan, TongThanhToanNT, true);
                     SetStatus2Text();
                 }
             }
@@ -2515,7 +2616,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
 
-            if (_print_flag == V6PrintMode.AutoClickPrint)
+            if (_print_flag)
                 Thread.Sleep(2000);
             _AED_Running = false;
         }
@@ -2610,11 +2711,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 }
 
                 ((Timer)sender).Dispose();
-                if (_print_flag != V6PrintMode.DoNoThing)
+                if (_print_flag)
                 {
-                    var temp = _print_flag;
-                    _print_flag = V6PrintMode.DoNoThing;
-                    BasePrint(Invoice, _sttRec_In, temp, TongThanhToan, TongThanhToanNT, true);
+                    
+                    _print_flag = false;
+                    BasePrint(Invoice, _sttRec_In, V6PrintMode.None, TongThanhToan, TongThanhToanNT, true);
                     SetStatus2Text();
                 }
             }
@@ -2645,7 +2746,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 Invoice.PostErrorLog(_sttRec, "S " + _sttRec, ex);
             }
 
-            if (_print_flag == V6PrintMode.AutoClickPrint)
+            if (_print_flag)
                 Thread.Sleep(2000);
             _AED_Running = false;
         }
@@ -3112,7 +3213,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                     return;
                 }
 
-                _print_flag = V6PrintMode.AutoClickPrint;
+                _print_flag = true;
                 _sttRec_In = _sttRec;
                 btnLuu.Focus();
                 if (ValidateData_Master())
@@ -3122,7 +3223,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 }
                 else
                 {
-                    _print_flag = V6PrintMode.DoNoThing;
+                    _print_flag = false;
                 }
             }
             else if (Mode == V6Mode.View)
@@ -3303,7 +3404,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             }
         }
 
-        private bool XuLyThemDetail(IDictionary<string, object> data)
+        public override bool XuLyThemDetail(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -3484,6 +3585,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             LoadTag(1, Invoice.Mact, Invoice.Mact, m_itemId, "");
             SetStatus2Text();
             btnMoi.Focus();
+            if (ClickSuaOnLoad)
+            {
+                ClickSuaOnLoad = false;
+                btnSua.PerformClick();
+            }
         }
 
         #region ==== Command Buttons ====
@@ -3710,10 +3816,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
 
         private void btnIn_Click(object sender, EventArgs e)
         {
-            V6PrintMode printMode = V6PrintMode.DoNoThing;
-            if (Invoice.PrintMode == "1") printMode = V6PrintMode.AutoPrint;
-            if (Invoice.PrintMode == "2") printMode = V6PrintMode.AutoClickPrint;
-            BasePrint(Invoice, _sttRec, printMode, TongThanhToan, TongThanhToanNT, false);
+            BasePrint(Invoice, _sttRec, V6PrintMode.None, TongThanhToan, TongThanhToanNT, false);
         }
         
         private void chkSuaTien_CheckedChanged(object sender, EventArgs e)
@@ -4714,7 +4817,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
 
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
-            FixMenuChucNangItemShiftText(chonTuExcelMenu, chonDeNghiNhapMenu, chonDonHangMuaMenu);
+            FixMenuChucNangItemShiftText(chonTuExcelMenu, chonDeNghiNhapMenu, chonDonHangMuaMenu, importXmlMenu);
         }
 
         private void inPhieuHachToanMenu_Click(object sender, EventArgs e)
@@ -4736,6 +4839,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
+        }
+
+        private void exportXmlMenu_Click(object sender, EventArgs e)
+        {
+            ExportXml();
+        }
+
+        private void importXmlMenu_Click(object sender, EventArgs e)
+        {
+            ImportXml();
         }
 
         

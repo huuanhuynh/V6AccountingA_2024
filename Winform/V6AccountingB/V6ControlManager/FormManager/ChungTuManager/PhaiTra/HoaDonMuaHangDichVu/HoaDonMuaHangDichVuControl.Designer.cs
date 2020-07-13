@@ -117,6 +117,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.thayTheMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.thayTheNhieuMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.thayThe2Menu = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportXmlMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.importXmlMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.v6Label28 = new V6Controls.V6Label();
             this.chkSuaTien = new V6Controls.V6CheckBox();
             this.cboKieuPost = new V6Controls.V6ColorComboBox();
@@ -1469,9 +1471,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.xulyKhacMenu,
             this.thayTheMenu,
             this.thayTheNhieuMenu,
-            this.thayThe2Menu});
+            this.thayThe2Menu,
+            this.exportXmlMenu,
+            this.importXmlMenu});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(158, 92);
+            this.menuChucNang.Size = new System.Drawing.Size(158, 158);
+            this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
             // 
             // xulyKhacMenu
             // 
@@ -1504,6 +1509,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
             this.thayThe2Menu.Size = new System.Drawing.Size(157, 22);
             this.thayThe2Menu.Text = "Sửa nhiều dòng";
             this.thayThe2Menu.Click += new System.EventHandler(this.thayThe2toolStripMenuItem_Click);
+            // 
+            // exportXmlMenu
+            // 
+            this.exportXmlMenu.AccessibleDescription = "INVOICEM00043";
+            this.exportXmlMenu.Name = "exportXmlMenu";
+            this.exportXmlMenu.Size = new System.Drawing.Size(157, 22);
+            this.exportXmlMenu.Tag = "cancel";
+            this.exportXmlMenu.Text = "Export Xml";
+            this.exportXmlMenu.Click += new System.EventHandler(this.exportXmlMenu_Click);
+            // 
+            // importXmlMenu
+            // 
+            this.importXmlMenu.AccessibleDescription = "INVOICEM00044";
+            this.importXmlMenu.Name = "importXmlMenu";
+            this.importXmlMenu.Size = new System.Drawing.Size(157, 22);
+            this.importXmlMenu.Text = "Import Xml";
+            this.importXmlMenu.Click += new System.EventHandler(this.importXmlMenu_Click);
             // 
             // v6Label28
             // 
@@ -2872,5 +2894,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.HoaDonMuaHangDichV
         private System.Windows.Forms.ToolStripMenuItem thayTheNhieuMenu;
         private System.Windows.Forms.ContextMenuStrip menuBtnIn;
         private System.Windows.Forms.ToolStripMenuItem inPhieuHachToanMenu;
+        private System.Windows.Forms.ToolStripMenuItem exportXmlMenu;
+        private System.Windows.Forms.ToolStripMenuItem importXmlMenu;
     }
 }

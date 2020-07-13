@@ -33,12 +33,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
-            this.menuChucNang = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuChucNangKQ = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.thayTheMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.thayTheNhieuMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.gridViewSummary1 = new V6Controls.Controls.GridViewSummary();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.menuChucNang.SuspendLayout();
+            this.menuChucNangKQ.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -60,7 +60,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.ContextMenuStrip = this.menuChucNang;
+            this.dataGridView1.ContextMenuStrip = this.menuChucNangKQ;
             this.dataGridView1.Control_S = true;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
@@ -74,13 +74,13 @@
             this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
             // 
-            // menuChucNang
+            // menuChucNangKQ
             // 
-            this.menuChucNang.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuChucNangKQ.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.thayTheMenu,
             this.thayTheNhieuMenu});
-            this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(154, 48);
+            this.menuChucNangKQ.Name = "menuChucNangKQ";
+            this.menuChucNangKQ.Size = new System.Drawing.Size(154, 48);
             // 
             // thayTheMenu
             // 
@@ -117,7 +117,7 @@
             this.Name = "INY_PNKho_KetQua";
             this.Size = new System.Drawing.Size(529, 520);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.menuChucNang.ResumeLayout(false);
+            this.menuChucNangKQ.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -126,7 +126,7 @@
 
         public V6Controls.V6ColorDataGridView dataGridView1;
         private V6Controls.Controls.GridViewSummary gridViewSummary1;
-        private System.Windows.Forms.ContextMenuStrip menuChucNang;
+        private System.Windows.Forms.ContextMenuStrip menuChucNangKQ;
         private System.Windows.Forms.ToolStripMenuItem thayTheMenu;
         private System.Windows.Forms.ToolStripMenuItem thayTheNhieuMenu;
     }

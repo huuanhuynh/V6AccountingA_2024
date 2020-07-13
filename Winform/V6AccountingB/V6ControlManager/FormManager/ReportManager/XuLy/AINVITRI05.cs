@@ -97,7 +97,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.dataGridViewDetail1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewDetail1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDetail1.Control_A = true;
-            this.dataGridViewDetail1.Control_Space = true;
             this.dataGridViewDetail1.Location = new System.Drawing.Point(204, 3);
             this.dataGridViewDetail1.Name = "dataGridViewDetail1";
             this.dataGridViewDetail1.ReadOnly = true;
@@ -159,7 +158,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             this.dataGridViewAlvitri.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewAlvitri.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewAlvitri.Control_A = true;
-            this.dataGridViewAlvitri.Control_Space = true;
             this.dataGridViewAlvitri.Location = new System.Drawing.Point(3, 202);
             this.dataGridViewAlvitri.Name = "dataGridViewAlvitri";
             this.dataGridViewAlvitri.ReadOnly = true;

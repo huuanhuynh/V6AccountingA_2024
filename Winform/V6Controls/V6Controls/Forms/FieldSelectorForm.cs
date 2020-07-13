@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
+using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
 using V6Init;
+using V6Tools.V6Convert;
 
-namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
+namespace V6Controls.Forms
 {
     public partial class FieldSelectorForm : Form
     {
@@ -12,7 +14,26 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         {
             InitializeComponent();
         }
-        
+
+        public FieldSelectorForm(object sourceFieldsInfo, object targetFieldsInfo, Control txtFields, Control txtFormats, Control txtTextV, Control txtTextE)
+        {
+            InitializeComponent();
+            _txtFields = txtFields;
+            _txtFormats = txtFormats;
+            _txtTextV = txtTextV;
+            _txtTextE = txtTextE;
+            try
+            {
+                AddSourceFieldListO(sourceFieldsInfo);
+                AddTargetFieldListO(targetFieldsInfo);
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        Control _txtFields, _txtFormats, _txtTextV, _txtTextE;
         //public FieldSelectorForm(string tempTable, string keyField, string nameField, string sourceTable)
         //{
         //    InitializeComponent();
@@ -27,16 +48,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
 
         private void SelectMultiIDForm_Load(object sender, EventArgs e)
         {
-            
-        }        
-        
+
+        }
+
         private void SelectMultiIDForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            if (_txtFields != null) _txtFields.Text = GetFieldsString();
+            if (_txtFormats != null) _txtFormats.Text = GetFormatsString();
+            if (_txtTextV != null) _txtTextV.Text = GetCaptionsStringV();
+            if (_txtTextE != null) _txtTextE.Text = GetCaptionsStringE();
             this.DialogResult = DialogResult.OK;
         }
 
@@ -55,11 +80,12 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                     btnAddSelect_Click(sender, e);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 this.WriteExLog(GetType() + ".dataGridView1_KeyDown", ex);
             }
         }
+
         private void dataGridView2_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -85,6 +111,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                 }
             }
         }
+
         private void MoveSelectedRowRightToLeft()
         {
             foreach (DataGridViewRow row in dataGridView2.SelectedRows)
@@ -108,7 +135,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
 
         private void MoveDataGridViewRows(DataTable table1, DataTable table2)
         {
-            while (table1.Rows.Count>0)
+            while (table1.Rows.Count > 0)
             {
                 DataRow row1 = table1.Rows[0];
                 DataRow copy = table2.NewRow();
@@ -147,17 +174,20 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         private void btnTim_Click(object sender, EventArgs e)
         {
             //int flag = dataGridView1.Rows.Count;
-            if (dataGridView1.SelectedRows.Count==1)
+            if (dataGridView1.SelectedRows.Count == 1)
             {
                 for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
                     if (dataGridView1.Rows[i].Selected == false) continue;
-                    
+
                     for (int ii = i + 1; ii < dataGridView1.Rows.Count; ii++)
                     {
                         for (int j = 0; j < dataGridView1.Columns.Count; j++)
                         {
-                            if (dataGridView1.Rows[ii].Cells[j].Value.ToString().ToLower().Contains(txtTim.Text.Trim().ToLower()))
+                            if (
+                                dataGridView1.Rows[ii].Cells[j].Value.ToString()
+                                    .ToLower()
+                                    .Contains(txtTim.Text.Trim().ToLower()))
                             {
                                 dataGridView1.Rows[i].Selected = false;
                                 dataGridView1.Rows[ii].Selected = true;
@@ -172,7 +202,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                     return;
                 }
             }
-            else//đang chọn nhiều hoặc không chọn
+            else //đang chọn nhiều hoặc không chọn
             {
                 foreach (DataGridViewRow row in dataGridView1.SelectedRows)
                 {
@@ -182,14 +212,17 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                 {
                     for (int j = 0; j < dataGridView1.Columns.Count; j++)
                     {
-                        if (dataGridView1.Rows[i].Cells[j].Value.ToString().ToLower().Contains(txtTim.Text.Trim().ToLower()))
+                        if (
+                            dataGridView1.Rows[i].Cells[j].Value.ToString()
+                                .ToLower()
+                                .Contains(txtTim.Text.Trim().ToLower()))
                         {
                             dataGridView1.Rows[i].Selected = true;
                             dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[0];
                             return;
                         }
                     }
-                }   
+                }
             }
         }
 
@@ -198,13 +231,16 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             if (dataGridView1.Rows.Count > 0)
             {
                 dataGridView1.CurrentCell = dataGridView1.Rows[0].Cells[0];
-                
+
                 for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
                     dataGridView1.Rows[i].Selected = false;
                     for (int j = 0; j < dataGridView1.Columns.Count; j++)
                     {
-                        if (dataGridView1.Rows[i].Cells[j].Value.ToString().ToLower().Contains(txtTim.Text.Trim().ToLower()))
+                        if (
+                            dataGridView1.Rows[i].Cells[j].Value.ToString()
+                                .ToLower()
+                                .Contains(txtTim.Text.Trim().ToLower()))
                         {
                             dataGridView1.Rows[i].Selected = true;
                             break;
@@ -216,8 +252,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
 
         private void txtTim_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
-            btnTim_Click(null, null);
+            if (e.KeyCode == Keys.Enter)
+                btnTim_Click(null, null);
         }
 
         public string GetFieldsString()
@@ -230,7 +266,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             if (result.Length > 0) result = result.Substring(1);
             return result;
         }
-        
+
         //public string GetNoSumFieldsString()
         //{
         //    string result = "";
@@ -247,7 +283,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             string result = "";
             foreach (DataGridViewRow row in dataGridView2.Rows)
             {
-                string dataType = ((AlbcFieldType)row.Cells[FIELD_TYPE].Value).ToString();
+                string dataType = ((AlbcFieldType) row.Cells[FIELD_TYPE].Value).ToString();
                 string fieldWidth = row.Cells[FIELD_WIDTH].Value.ToString().Trim();
                 result += ";" + dataType;
                 if (dataType.StartsWith("N")) // N0 N1 N2...
@@ -292,14 +328,15 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
         private List<AlbcFieldInfo> _targetFieldInfoList;
         private DataTable _sourceTable;
         private DataTable _targetTable;
+
         DataTable GenTable(List<AlbcFieldInfo> fieldInfoList)
         {
             DataTable table = new DataTable("GenFieldInfoList");
-            table.Columns.Add(FIELD_NAME, typeof(string));
-            table.Columns.Add(FIELD_TYPE, typeof(AlbcFieldType));
-            table.Columns.Add(FIELD_WIDTH, typeof(int));
-            table.Columns.Add(FIELD_CAPTION_V, typeof(string));
-            table.Columns.Add(FIELD_CAPTION_E, typeof(string));
+            table.Columns.Add(FIELD_NAME, typeof (string));
+            table.Columns.Add(FIELD_TYPE, typeof (AlbcFieldType));
+            table.Columns.Add(FIELD_WIDTH, typeof (int));
+            table.Columns.Add(FIELD_CAPTION_V, typeof (string));
+            table.Columns.Add(FIELD_CAPTION_E, typeof (string));
             //table.Columns.Add(FIELD_NOSUM, typeof(string));
             foreach (AlbcFieldInfo info in fieldInfoList)
             {
@@ -315,7 +352,48 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             return table;
         }
 
-        public void AddSourceFieldList(List<AlbcFieldInfo> fieldInfoList)
+        private void AddSourceFieldListO(object fields)
+        {
+            if (fields is string) AddSourceFieldList((string)fields);
+            if (fields is string[]) AddSourceFieldList((string[])fields);
+            if (fields is DataTable) AddSourceFieldList((DataTable)fields);
+            if (fields is DataGridView) AddSourceFieldList((DataGridView)fields);
+            if (fields is List<AlbcFieldInfo>) AddSourceFieldList((List<AlbcFieldInfo>)fields);
+        }
+
+        private void AddSourceFieldList(string fields)
+        {
+            AddSourceFieldList(ObjectAndString.SplitString(fields));
+        }
+
+        private void AddSourceFieldList(string[] fields)
+        {
+            List<AlbcFieldInfo> fieldInfoList = new List<AlbcFieldInfo>();
+            foreach (string field in fields)
+            {
+                string FIELD = field.Trim().ToUpper();
+                AlbcFieldInfo fi = new AlbcFieldInfo()
+                {
+                    FieldName = FIELD
+                };
+                fieldInfoList.Add(fi);
+            }
+            
+            AddSourceFieldList(fieldInfoList);
+        }
+
+        private void AddSourceFieldList(DataTable table)
+        {
+            AddSourceFieldList(GetListFieldInfo(table));
+        }
+
+        private void AddSourceFieldList(DataGridView gridView)
+        {
+            AddSourceFieldList(GetListFieldInfo(gridView));
+        }
+
+
+        private void AddSourceFieldList(List<AlbcFieldInfo> fieldInfoList)
         {
             _sourceFieldInfoList = fieldInfoList;
             DataTable temp = GenTable(fieldInfoList);
@@ -323,8 +401,46 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             dataGridView1.DataSource = temp;
         }
 
-        public void AddTargetFieldList(List<AlbcFieldInfo> fieldInfoList)
+
+
+        private void AddTargetFieldListO(object fields)
         {
+            if (fields is string) AddTargetFieldList((string)fields);
+            if (fields is string[]) AddTargetFieldList((string[])fields);
+            if (fields is DataTable) AddTargetFieldList((DataTable)fields);
+            if (fields is DataGridView) AddTargetFieldList((DataGridView)fields);
+            if (fields is List<AlbcFieldInfo>) AddTargetFieldList((List<AlbcFieldInfo>)fields);
+        }
+
+        private void AddTargetFieldList(string fields)
+        {
+            AddTargetFieldList(ObjectAndString.SplitString(fields));
+        }
+
+        private void AddTargetFieldList(string[] fields)
+        {
+            List<AlbcFieldInfo> fieldInfoList = new List<AlbcFieldInfo>();
+            foreach (string field in fields)
+            {
+                string FIELD = field.Trim().ToUpper();
+                AlbcFieldInfo fi = new AlbcFieldInfo()
+                {
+                    FieldName = FIELD
+                };
+                fieldInfoList.Add(fi);
+            }
+
+            AddTargetFieldList(fieldInfoList);
+        }
+
+        private void AddTargetFieldList(DataTable table)
+        {
+            AddTargetFieldList(GetListFieldInfo(table));
+        }
+
+        private void AddTargetFieldList(DataGridView gridView)
+        {
+            List<AlbcFieldInfo> fieldInfoList = GetListFieldInfo(gridView);
             _targetFieldInfoList = fieldInfoList;
             DataTable temp = GenTable(fieldInfoList);
             _targetTable = temp;
@@ -346,11 +462,117 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
                     }
                 }
             }
+            while (listRow.Count > 0)
+            {
+                _sourceTable.Rows.Remove(listRow[0]);
+                listRow.RemoveAt(0);
+            }
+        }
+
+        private void AddTargetFieldList(List<AlbcFieldInfo> fieldInfoList)
+        {
+            _targetFieldInfoList = fieldInfoList;
+            DataTable temp = GenTable(fieldInfoList);
+            _targetTable = temp;
+            dataGridView2.DataSource = temp;
+
+            List<DataRow> listRow = new List<DataRow>();
+            foreach (DataRow targetRow in _targetTable.Rows)
+            {
+                foreach (DataRow sourceRow in _sourceTable.Rows)
+                {
+                    if (sourceRow[FIELD_NAME].ToString().Trim().ToUpper() == targetRow[FIELD_NAME].ToString().Trim().ToUpper())
+                    {
+                        listRow.Add(sourceRow);
+                        break;
+                    }
+                }
+            }
             while (listRow.Count>0)
             {
                 _sourceTable.Rows.Remove(listRow[0]);
                 listRow.RemoveAt(0);
             }
+        }
+
+        private List<AlbcFieldInfo> GetListFieldInfo(DataTable table)
+        {
+            List<AlbcFieldInfo> result = new List<AlbcFieldInfo>();
+            try
+            {
+                if (table == null)
+                {
+                    return result;
+                }
+
+                foreach (DataColumn column in table.Columns)
+                {
+                    AlbcFieldInfo fi = new AlbcFieldInfo();
+                    result.Add(fi);
+                    fi.FieldName = column.ColumnName.ToUpper();
+                    if (ObjectAndString.IsNumberType(column.DataType)) fi.FieldType = AlbcFieldType.N0;
+                    else if (column.DataType == typeof (DateTime)) fi.FieldType = AlbcFieldType.D;
+                    else fi.FieldType = AlbcFieldType.C;
+
+                    fi.FieldWidth = 100;
+                    fi.FieldHeaderV = CorpLan2.GetFieldHeader(fi.FieldName, "V");
+                    fi.FieldHeaderE = CorpLan2.GetFieldHeader(fi.FieldName, "E");
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".GetSourceFieldsInfo", ex);
+            }
+            return result;
+        }
+
+        private List<AlbcFieldInfo> GetListFieldInfo(DataGridView gridView)
+        {
+            List<AlbcFieldInfo> result = new List<AlbcFieldInfo>();
+            try
+            {
+                if (gridView == null)
+                {
+                    //ShowTopLeftMessage("Không tìm thấy " + dataGridViewName);
+                    return result;
+                }
+                DataTable data1 = gridView.DataSource as DataTable;
+                if (data1 == null && gridView.DataSource is DataView)
+                {
+                    data1 = ((DataView)gridView.DataSource).Table;
+                }
+
+                if (data1 != null)
+                {
+                    foreach (DataColumn column in data1.Columns)
+                    {
+                        AlbcFieldInfo fi = new AlbcFieldInfo();
+                        result.Add(fi);
+                        fi.FieldName = column.ColumnName.ToUpper();
+                        if (ObjectAndString.IsNumberType(column.DataType)) fi.FieldType = AlbcFieldType.N0;
+                        else if (column.DataType == typeof(DateTime)) fi.FieldType = AlbcFieldType.D;
+                        else fi.FieldType = AlbcFieldType.C;
+
+                        var gColumn = gridView.Columns[fi.FieldName];
+                        if (gColumn != null)
+                        {
+                            fi.FieldWidth = gColumn.Width;
+                        }
+                        else
+                        {
+                            fi.FieldWidth = 100;
+                        }
+
+                        fi.FieldHeaderV = CorpLan2.GetFieldHeader(fi.FieldName, "V");
+                        fi.FieldHeaderE = CorpLan2.GetFieldHeader(fi.FieldName, "E");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".GetSourceFieldsInfo", ex);
+            }
+            return result;
         }
 
         private void ChangeRowData(DataRow row1, DataRow row2)

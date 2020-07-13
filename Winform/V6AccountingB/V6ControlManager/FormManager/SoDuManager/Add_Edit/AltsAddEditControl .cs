@@ -847,7 +847,7 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             }
         }
 
-        private bool XuLyThemDetail(IDictionary<string, object> data)
+        public override bool XuLyThemDetail(IDictionary<string, object> data)
         {
             if (Mode != V6Mode.Add && Mode != V6Mode.Edit)
             {

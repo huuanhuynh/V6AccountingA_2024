@@ -220,12 +220,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     detail1.lblName.AccessibleName = "TEN_TK_I";
                 }
                 //Lấy các control động
-                var dynamicControlList = GetDynamicControlsAlct();
-                dynamicControlList.Add("9999", new AlctControls {DetailControl = _sttRecTt});
+                detailControlList1 = GetDynamicControlsAlct();
+                detailControlList1.Add("9999", new AlctControls { DetailControl = _sttRecTt });
                 //dynamicControlList.Add(9998, _soSeri0);
 
                 //Thêm các control động vào danh sách
-                foreach (KeyValuePair<string, AlctControls> item in dynamicControlList)
+                foreach (KeyValuePair<string, AlctControls> item in detailControlList1)
                 {
                     var control = item.Value.DetailControl;
                     ApplyControlEnterStatus(control);
@@ -489,32 +489,32 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 if (_check_f_tien_nt == false)
                 {
                     _tienNt = V6ControlFormHelper.CreateNumberTienNt("TIEN_NT", "tiennt", M_ROUND_NT, null, 10, false);
-                    dynamicControlList.Add("9997", new AlctControls {DetailControl = _tienNt});
+                    detailControlList1.Add("9997", new AlctControls { DetailControl = _tienNt });
                 }
                 if (_check_f_tien == false)
                 {
                     _tien = V6ControlFormHelper.CreateNumberTien("TIEN", "tien", M_ROUND, null, 10, false);
-                    dynamicControlList.Add("9996", new AlctControls {DetailControl = _tien});
+                    detailControlList1.Add("9996", new AlctControls { DetailControl = _tien });
                 }
                 if (_check_f_ps_no_nt == false)
                 {
                     _psnoNt = V6ControlFormHelper.CreateNumberTienNt("PS_NO_NT", "psnont", M_ROUND_NT, null, 10, false);
-                    dynamicControlList.Add("9995", new AlctControls {DetailControl = _psnoNt});
+                    detailControlList1.Add("9995", new AlctControls { DetailControl = _psnoNt });
                 }
                 if (_check_f_ps_no == false)
                 {
                     _psno = V6ControlFormHelper.CreateNumberTien("PS_NO", "psno", M_ROUND, null, 10, false);
-                    dynamicControlList.Add("9994", new AlctControls {DetailControl = _psno});
+                    detailControlList1.Add("9994", new AlctControls { DetailControl = _psno });
                 }
                 if (_check_f_tien_tt == false)
                 {
                     _tientt = V6ControlFormHelper.CreateNumberTien("TIEN_TT", "tientt", M_ROUND, null, 10, false);
-                    dynamicControlList.Add("9993", new AlctControls {DetailControl = _tientt});
+                    detailControlList1.Add("9993", new AlctControls { DetailControl = _tientt });
                 }
 
                 detail1.RemoveControls();
 
-                foreach (AlctControls item in dynamicControlList.Values)
+                foreach (AlctControls item in detailControlList1.Values)
                 {
                     detail1.AddControl(item);
                 }
@@ -2959,7 +2959,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
 
-            if (_print_flag == V6PrintMode.AutoClickPrint)
+            if (_print_flag)
                 Thread.Sleep(2000);
             _AED_Running = false;
         }
@@ -3026,6 +3026,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     //All_Objects["SAVE_VOUCHER"] = _sttRec;
                     InvokeFormEvent(FormDynamicEvent.AFTERADDSUCCESS);
                     InvokeFormEvent(FormDynamicEvent.AFTERSAVESUCCESS);
+
+                    if (Invoice.SaveMode == "1")
+                    {
+                        btnMoi.PerformClick();
+                        ShowParentMessage(V6Text.AddSuccess + ". " + V6Text.CreateNew);
+                    }
                 }
                 else
                 {
@@ -3035,11 +3041,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 }
 
                 ((Timer) sender).Dispose();
-                if (_print_flag != V6PrintMode.DoNoThing)
+                if (_print_flag)
                 {
-                    var temp = _print_flag;
-                    _print_flag = V6PrintMode.DoNoThing;
-                    BasePrint(Invoice, _sttRec_In, temp, TongThanhToan, TongThanhToanNT, true);
+                    _print_flag = false;
+                    BasePrint(Invoice, _sttRec_In, V6PrintMode.None, TongThanhToan, TongThanhToanNT, true);
                     SetStatus2Text();
                 }
             }
@@ -3217,7 +3222,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 Invoice.PostErrorLog(_sttRec, "S " + _sttRec, ex);
             }
 
-            if (_print_flag == V6PrintMode.AutoClickPrint)
+            if (_print_flag)
                 Thread.Sleep(2000);
             _AED_Running = false;
             V6ControlFormHelper.AddLastAction("\nDoEdit() End: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
@@ -3306,11 +3311,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 }
 
                 ((Timer) sender).Dispose();
-                if (_print_flag != V6PrintMode.DoNoThing)
+                if (_print_flag)
                 {
-                    var temp = _print_flag;
-                    _print_flag = V6PrintMode.DoNoThing;
-                    BasePrint(Invoice, _sttRec_In, temp, TongThanhToan, TongThanhToanNT, true);
+                    
+                    _print_flag = false;
+                    BasePrint(Invoice, _sttRec_In, V6PrintMode.None, TongThanhToan, TongThanhToanNT, true);
                     SetStatus2Text();
                 }
             }
@@ -3733,7 +3738,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     return;
                 }
 
-                _print_flag = V6PrintMode.AutoClickPrint;
+                _print_flag = true;
                 _sttRec_In = _sttRec;
                 btnLuu.Focus();
                 if (ValidateData_Master())
@@ -3743,7 +3748,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 }
                 else
                 {
-                    _print_flag = V6PrintMode.DoNoThing;
+                    _print_flag = false;
                 }
             }
             else if (Mode == V6Mode.View)
@@ -3943,7 +3948,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
         /// </summary>
         /// <param name="dic"></param>
         /// <returns></returns>
-        private bool XuLyThemDetail(IDictionary<string, object> dic)
+        public override bool XuLyThemDetail(IDictionary<string, object> dic)
         {
             if (NotAddEdit)
             {
@@ -4152,6 +4157,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             LoadTag(1, Invoice.Mact, Invoice.Mact, m_itemId, "");
             SetStatus2Text();
             btnMoi.Focus();
+            if (ClickSuaOnLoad)
+            {
+                ClickSuaOnLoad = false;
+                btnSua.PerformClick();
+            }
         }
 
         #region ==== Command Buttons ====
@@ -4181,10 +4191,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
         private void btnIn_Click(object sender, EventArgs e)
         {
-            V6PrintMode printMode = V6PrintMode.DoNoThing;
-            if (Invoice.PrintMode == "1") printMode = V6PrintMode.AutoPrint;
-            if (Invoice.PrintMode == "2") printMode = V6PrintMode.AutoClickPrint;
-            BasePrint(Invoice, _sttRec, printMode, TongThanhToan, TongThanhToanNT, false);
+            BasePrint(Invoice, _sttRec, V6PrintMode.None, TongThanhToan, TongThanhToanNT, false);
         }
 
         private void inPhieuHachToanMenu_Click(object sender, EventArgs e)
@@ -4776,16 +4783,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
 
         private void chkSuaTien_CheckedChanged(object sender, EventArgs e)
         {
-            if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
-                _tienNt.Enabled = chkSuaTien.Checked;
-            if (chkSuaTien.Checked)
+            if (NotAddEdit) return;
+            if (IsReady)
             {
-                _tienNt.Tag = null;
+                _psno.EnableTag(chkSuaTien.Checked);
+                _tienNt.EnableTag(chkSuaTien.Checked);
             }
-            else
-            {
-                _tienNt.Tag = "disable";
-            }
+            //if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
+            //    _tienNt.Enabled = chkSuaTien.Checked;
+            //if (chkSuaTien.Checked)
+            //{
+            //    _tienNt.Tag = null;
+            //}
+            //else
+            //{
+            //    _tienNt.Tag = "disable";
+            //}
         }
 
         private void phieuThuDetail1_ClickEdit(object sender, HD_Detail_Eventargs e)
@@ -6003,7 +6016,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             }
         }
 
-        
-        
+        private void exportXmlMenu_Click(object sender, EventArgs e)
+        {
+            ExportXml();
+        }
+
+        private void importXmlMenu_Click(object sender, EventArgs e)
+        {
+            ImportXml();
+        }
+
+
+        private void menuChucNang_Paint(object sender, PaintEventArgs e)
+        {
+            FixMenuChucNangItemShiftText(importXmlMenu);
+        }
     }
 }

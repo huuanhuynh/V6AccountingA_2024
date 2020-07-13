@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -45,6 +46,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         #endregion properties and fields
 
         #region ==== Contructor và Khởi tạo ====
+        //Stopwatch stw = new Stopwatch();
         public HoaDonControl()
         {
             InitializeComponent();
@@ -66,6 +68,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         public HoaDonControl(string maCt, string itemId, string sttRec)
             : base(new V6Invoice81(), itemId)
         {
+            //stw.Start();
             m_itemId = itemId;
             InitializeComponent();
             MyInit();
@@ -75,6 +78,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private void MyInit()
         {
+            //V6ControlFormHelper.AddLastAction(stw.ElapsedTicks + "\tStartMyInit");
             //InitDebug();
             //LoadTag(1, Invoice.Mact, Invoice.Mact, m_itemId, "");
             ReorderGroup1TabIndex();
@@ -161,6 +165,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             LoadAll();
             InvokeFormEvent(FormDynamicEvent.INIT);
             V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
+            //V6ControlFormHelper.AddLastAction(stw.ElapsedTicks + "\tEndMyInit");
         }
         
 
@@ -199,6 +204,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private void LoadDetailControls()
         {
+            //V6ControlFormHelper.AddLastAction(stw.ElapsedTicks + "\tStartLoadDetail");
             //Lấy các control động
             detailControlList1 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct1, out _orderList, out _alct1Dic);
             
@@ -224,7 +230,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     control.ReadOnlyTag();
                 }
                 V6ControlFormHelper.ApplyControlEventByAccessibleName(control, Event_program, All_Objects);
-
+                ////V6ControlFormHelper.AddLastAction(stw.ElapsedTicks + "\tLoadDetail: " + NAME);
                 switch (NAME)
                 {
                     case "MA_VT":
@@ -1040,6 +1046,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private void LoadDetail3Controls()
         {
+            //V6ControlFormHelper.AddLastAction(stw.ElapsedTicks + "\tStartLoadDetail3");
             detail3.lblName.AccessibleName = "TEN_TK";
             //Lấy các control động
             detailControlList3 = V6ControlFormHelper.GetDynamicControlStructsAlct(Invoice.Alct3, out _orderList3, out _alct3Dic);
@@ -4875,6 +4882,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         #region ==== AM Methods ====
         private void LoadAll()
         {
+            //V6ControlFormHelper.AddLastAction(stw.ElapsedTicks + "\tStartLoadAll");
             AM = Invoice.SearchAM("1=0", "1=0", "", "", "", null);//Làm AM khác null
             EnableControls();
             GetSoPhieuInit();
@@ -5610,17 +5618,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             if (!_AED_Running)
             {
-                if (_print_flag == V6PrintMode.DoNoThing)
+                if (!_print_flag)
                 {
                     ((Timer)sender).Stop();
                 }
                 else if (_print_flag_tick_count > 0)
                 {
                     ((Timer) sender).Stop();
-                    var temp = _print_flag;
-                    _print_flag = V6PrintMode.DoNoThing;
+                    
+                    _print_flag = false;
                     Thread.Sleep(1000);
-                    BasePrint(Invoice, _sttRec_In, temp, TongThanhToan, TongThanhToanNT, true);
+                    BasePrint(Invoice, _sttRec_In, V6PrintMode.None, TongThanhToan, TongThanhToanNT, true);
                     SetStatus2Text();
                     return;
                 }
@@ -5645,6 +5653,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     //All_Objects["SAVE_VOUCHER"] = _sttRec;
                     InvokeFormEvent(FormDynamicEvent.AFTERADDSUCCESS);
                     InvokeFormEvent(FormDynamicEvent.AFTERSAVESUCCESS);
+
+                    if (Invoice.SaveMode == "1")
+                    {
+                        btnMoi.PerformClick();
+                        ShowParentMessage(V6Text.AddSuccess + ". " + V6Text.CreateNew);
+                    }
                 }
                 else
                 {
@@ -5697,7 +5711,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
 
-            if (_print_flag == V6PrintMode.AutoClickPrint)
+            if (_print_flag)
                 Thread.Sleep(2000);
             _AED_Running = false;
         }
@@ -5805,12 +5819,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 }
 
                 ((Timer)sender).Dispose();
-                if (_print_flag != V6PrintMode.DoNoThing)
+                if (_print_flag)
                 {
-                    var temp = _print_flag;
-                    _print_flag = V6PrintMode.DoNoThing;
+                    
+                    _print_flag = false;
                     Thread.Sleep(1000);
-                    BasePrint(Invoice, _sttRec_In, temp, TongThanhToan, TongThanhToanNT, true);
+                    BasePrint(Invoice, _sttRec_In, V6PrintMode.None, TongThanhToan, TongThanhToanNT, true);
                     SetStatus2Text();
                 }
             }
@@ -5842,7 +5856,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 Invoice.PostErrorLog(_sttRec, "S " + _sttRec, ex);
             }
 
-            if (_print_flag == V6PrintMode.AutoClickPrint)
+            if (_print_flag)
                 Thread.Sleep(2000);
             _AED_Running = false;
         }
@@ -6413,7 +6427,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     return;
                 }
 
-                _print_flag = V6PrintMode.AutoClickPrint;
+                _print_flag = true;
                 _print_flag_tick_count = 0;
                 _sttRec_In = _sttRec;
                 btnLuu.Focus();
@@ -6424,7 +6438,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                 }
                 else
                 {
-                    _print_flag = V6PrintMode.DoNoThing;
+                    _print_flag = false;
                 }
             }
             else if (Mode == V6Mode.View)
@@ -6460,6 +6474,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         /// </summary>
         private void ResetForm()
         {
+            //V6ControlFormHelper.AddLastAction(stw.ElapsedTicks + "\tStartResetForm");
             try
             {
                 SetData(null);
@@ -6484,7 +6499,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private void ResetAllVars()
         {
             _sttRec = "";
-            CurrentIndex = -1;
+            //CurrentIndex = -1;
         }
 
         private void SetFormDefaultValues()
@@ -6623,7 +6638,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             }
         }
         
-        private bool XuLyThemDetail(IDictionary<string, object> data)
+        public override bool XuLyThemDetail(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -6842,9 +6857,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         #region ==== AM Events ====
         private void Form_Load(object sender, EventArgs e)
         {
+            //V6ControlFormHelper.AddLastAction(stw.ElapsedTicks + "\tStartFormLoad");
             LoadTag(1, Invoice.Mact, Invoice.Mact, m_itemId, "");
             SetStatus2Text();
             btnMoi.Focus();
+            if (ClickSuaOnLoad)
+            {
+                ClickSuaOnLoad = false;
+                btnSua.PerformClick();
+            }
+            //V6ControlFormHelper.AddLastAction(stw.ElapsedTicks + "\tEndFormLoad");
+            //this.WriteToLog("Test Load Time", V6ControlFormHelper.LastActionListString, "TestLoadTime" + stw.ElapsedTicks);
         }
 
         #region ==== Command Buttons ====
@@ -7149,11 +7172,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private void btnIn_Click(object sender, EventArgs e)
         {
-            V6PrintMode printMode = V6PrintMode.DoNoThing;
-            if (Invoice.PrintMode == "1") printMode = V6PrintMode.AutoPrint;
-            if (Invoice.PrintMode == "2") printMode = V6PrintMode.AutoClickPrint;
-            if (Invoice.PrintMode == "3") printMode = V6PrintMode.AutoExportT;
-            BasePrint(Invoice, _sttRec, printMode, TongThanhToan, TongThanhToanNT, false);
+            BasePrint(Invoice, _sttRec, V6PrintMode.None, TongThanhToan, TongThanhToanNT, false);
         }
 
         private void txtTongThanhToanNt_TextChanged(object sender, EventArgs e)
@@ -9173,7 +9192,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
-            FixMenuChucNangItemShiftText(chonBaoGiaMenu, chonTuExcelMenu, chonDeNghiXuatMenu, chonPhieuNhapMenu);
+            FixMenuChucNangItemShiftText(chonBaoGiaMenu, chonTuExcelMenu, chonDeNghiXuatMenu, chonPhieuNhapMenu, importXmlMenu);
         }
 
         private void txtMa_sonb_TextChanged(object sender, EventArgs e)
@@ -9235,6 +9254,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
+        }
+
+        private void exportXmlMenu_Click(object sender, EventArgs e)
+        {
+            base.ExportXml();
+        }
+
+        private void importXmlMenu_Click(object sender, EventArgs e)
+        {
+            base.ImportXml();
         }
 
         

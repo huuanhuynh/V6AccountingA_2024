@@ -57,6 +57,11 @@ namespace V6Init
             get { return V6Setting.Language == "V" ? "Mới" : "New"; }
         }
 
+        public static string CreateNew
+        {
+            get { return V6Setting.Language == "V" ? "Tạo mới" : "Create new"; }
+        }
+
         public static string Edit
         {
             get { return V6Setting.Language == "V" ? "Sửa" : "Edit"; }

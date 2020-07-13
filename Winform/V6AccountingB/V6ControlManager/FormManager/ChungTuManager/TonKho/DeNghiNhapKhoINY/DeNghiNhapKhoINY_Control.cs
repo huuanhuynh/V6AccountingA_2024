@@ -3001,6 +3001,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                     //All_Objects["SAVE_VOUCHER"] = _sttRec;
                     InvokeFormEvent(FormDynamicEvent.AFTERADDSUCCESS);
                     InvokeFormEvent(FormDynamicEvent.AFTERSAVESUCCESS);
+
+                    if (Invoice.SaveMode == "1")
+                    {
+                        btnMoi.PerformClick();
+                        ShowParentMessage(V6Text.AddSuccess + ". " + V6Text.CreateNew);
+                    }
                 }
                 else
                 {
@@ -3010,11 +3016,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                 }
                 
                 ((Timer)sender).Dispose();
-                if (_print_flag != V6PrintMode.DoNoThing)
+                if (_print_flag)
                 {
-                    var temp = _print_flag;
-                    _print_flag = V6PrintMode.DoNoThing;
-                    BasePrint(Invoice, _sttRec_In, temp, TongThanhToan, TongThanhToanNT, true);
+                    
+                    _print_flag = false;
+                    BasePrint(Invoice, _sttRec_In, V6PrintMode.None, TongThanhToan, TongThanhToanNT, true);
                     SetStatus2Text();
                 }
             }
@@ -3060,7 +3066,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
 
-            if (_print_flag == V6PrintMode.AutoClickPrint)
+            if (_print_flag)
                 Thread.Sleep(2000);
             _AED_Running = false;
         }
@@ -3164,11 +3170,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                 }
 
                 ((Timer)sender).Dispose();
-                if (_print_flag != V6PrintMode.DoNoThing)
+                if (_print_flag)
                 {
-                    var temp = _print_flag;
-                    _print_flag = V6PrintMode.DoNoThing;
-                    BasePrint(Invoice, _sttRec_In, temp, TongThanhToan, TongThanhToanNT, true);
+                    
+                    _print_flag = false;
+                    BasePrint(Invoice, _sttRec_In, V6PrintMode.None, TongThanhToan, TongThanhToanNT, true);
                     SetStatus2Text();
                 }
             }
@@ -3200,7 +3206,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                 Invoice.PostErrorLog(_sttRec, "S " + _sttRec, ex);
             }
 
-            if (_print_flag == V6PrintMode.AutoClickPrint)
+            if (_print_flag)
                 Thread.Sleep(2000);
             _AED_Running = false;
         }
@@ -3626,7 +3632,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                     return;
                 }
 
-                _print_flag = V6PrintMode.AutoClickPrint;
+                _print_flag = true;
                 _sttRec_In = _sttRec;
                 btnLuu.Focus();
                 if (ValidateData_Master())
@@ -3636,7 +3642,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                 }
                 else
                 {
-                    _print_flag = V6PrintMode.DoNoThing;
+                    _print_flag = false;
                 }
             }
             else if (Mode == V6Mode.View)
@@ -3881,7 +3887,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             }
         }
 
-        private bool XuLyThemDetail(IDictionary<string, object> data)
+        public override bool XuLyThemDetail(IDictionary<string, object> data)
         {
             if (NotAddEdit)
             {
@@ -4235,6 +4241,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             LoadTag(1, Invoice.Mact, Invoice.Mact, m_itemId, "");
             SetStatus2Text();
             btnMoi.Focus();
+            if (ClickSuaOnLoad)
+            {
+                ClickSuaOnLoad = false;
+                btnSua.PerformClick();
+            }
         }
 
         #region ==== Command Buttons ====
@@ -4717,10 +4728,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
 
         private void btnIn_Click(object sender, EventArgs e)
         {
-            V6PrintMode printMode = V6PrintMode.DoNoThing;
-            if (Invoice.PrintMode == "1") printMode = V6PrintMode.AutoPrint;
-            if (Invoice.PrintMode == "2") printMode = V6PrintMode.AutoClickPrint;
-            BasePrint(Invoice, _sttRec, printMode, TongThanhToan, TongThanhToanNT, false);
+            BasePrint(Invoice, _sttRec, V6PrintMode.None, TongThanhToan, TongThanhToanNT, false);
         }
 
         private void txtTongThanhToanNt_TextChanged(object sender, EventArgs e)
@@ -5746,7 +5754,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
 
         private void menuChucNang_Paint(object sender, PaintEventArgs e)
         {
-            FixMenuChucNangItemShiftText(chonDonHangBanMenu, chonDonHangMuaMenu, chonTuExcelMenu);
+            FixMenuChucNangItemShiftText(chonDonHangBanMenu, chonDonHangMuaMenu, chonTuExcelMenu, importXmlMenu);
         }
 
         private void btnApGia_Click(object sender, EventArgs e)
@@ -5940,6 +5948,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
             {
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
+        }
+
+        private void exportXmlMenu_Click(object sender, EventArgs e)
+        {
+            ExportXml();
+        }
+
+        private void importXmlMenu_Click(object sender, EventArgs e)
+        {
+            ImportXml();
         }
 
     }

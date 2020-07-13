@@ -593,6 +593,28 @@ namespace V6AccountingBusiness.Invoices
                 return "";
             }
         }
+        public string EXTRA_INFOR_CT_STRING
+        {
+            get
+            {
+                if (Alctct != null)
+                {
+                    return Alctct["EXTRA_INFOR"].ToString().Trim();
+                }
+                return "";
+            }
+        }
+        public SortedDictionary<string, string> EXTRA_INFOR_CT
+        {
+            get
+            {
+                if (_extraInforCT == null || _extraInforCT.Count == 0)
+                {
+                    GetExtraInforCT();
+                }
+                return _extraInforCT;
+            }
+        }
 
         /// <summary>
         /// Các trường ẩn [Alctct]
@@ -666,6 +688,7 @@ namespace V6AccountingBusiness.Invoices
         }
 
         private SortedDictionary<string, string> _extraInfor = null;
+        private SortedDictionary<string, string> _extraInforCT = null;
 
         private void GetExtraInfor()
         {
@@ -676,15 +699,27 @@ namespace V6AccountingBusiness.Invoices
                 var sss = s.Split(';');
                 foreach (string ss in sss)
                 {
-                    //var ss1 = ss.Split(':');
-                    //if (ss1.Length > 1)
-                    //{
-                    //    _extraInfor[ss1[0].ToUpper()] = ss1[1];
-                    //}
                     int indexOf = ss.IndexOf(":", StringComparison.Ordinal);
                     if (indexOf > 0)
                     {
                         _extraInfor[ss.Substring(0, indexOf).ToUpper()] = ss.Substring(indexOf + 1);
+                    }
+                }
+            }
+        }
+        private void GetExtraInforCT()
+        {
+            _extraInforCT = new SortedDictionary<string, string>();
+            string s = EXTRA_INFOR_CT_STRING;
+            if (s != "")
+            {
+                var sss = s.Split(';');
+                foreach (string ss in sss)
+                {
+                    int indexOf = ss.IndexOf(":", StringComparison.Ordinal);
+                    if (indexOf > 0)
+                    {
+                        _extraInforCT[ss.Substring(0, indexOf).ToUpper()] = ss.Substring(indexOf + 1);
                     }
                 }
             }
@@ -736,13 +771,33 @@ namespace V6AccountingBusiness.Invoices
         }
 
         /// <summary>
-        /// 0 DoNohting 1 AutoPrint 2 AutoClick 3 AutoExportT
+        /// 0 DoNoThing 1 AutoPrint 2 AutoClick 3 AutoExportT
         /// </summary>
         public string PrintMode
         {
             get
             {
                 if (EXTRA_INFOR.ContainsKey("PRINTMODE")) return EXTRA_INFOR["PRINTMODE"];
+                return "0";
+            }
+        }
+        public string PrintModeCT
+        {
+            get
+            {
+                if (EXTRA_INFOR_CT.ContainsKey("PRINTMODE")) return EXTRA_INFOR_CT["PRINTMODE"];
+                return "";
+            }
+        }
+
+        /// <summary>
+        /// 0 DoNoThing 1 AutoClickNew
+        /// </summary>
+        public string SaveMode
+        {
+            get
+            {
+                if (EXTRA_INFOR.ContainsKey("SAVEMODE")) return EXTRA_INFOR["SAVEMODE"];
                 return "0";
             }
         }
