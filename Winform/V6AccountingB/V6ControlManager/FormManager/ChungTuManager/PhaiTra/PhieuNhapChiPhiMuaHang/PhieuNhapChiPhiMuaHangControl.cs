@@ -2936,7 +2936,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             }
             else if (Mode == V6Mode.View)
             {
-                BasePrint(Invoice, _sttRec, V6PrintMode.AutoClickPrint, TongThanhToan, TongThanhToanNT, true);
+                BasePrint(Invoice, _sttRec, V6PrintMode.None, TongThanhToan, TongThanhToanNT, true);
             }
         }
 

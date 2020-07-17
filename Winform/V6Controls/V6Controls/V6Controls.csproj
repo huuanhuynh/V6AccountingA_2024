@@ -90,6 +90,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\GridViewTopFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\GridViewTopFilter.Designer.cs">
+      <DependentUpon>GridViewTopFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\GridView\GridViewRowEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1527,6 +1533,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Controls\FileButton.resx">
       <DependentUpon>FileButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\GridViewTopFilter.resx">
+      <DependentUpon>GridViewTopFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\GridView\GridViewRowEditorForm.resx">
       <DependentUpon>GridViewRowEditorForm.cs</DependentUpon>

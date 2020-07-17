@@ -49,11 +49,12 @@ namespace V6Controls
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.V6ColorDataGridView_CellBeginEdit);
-            this.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(V6ColorDataGridView_CellEndEdit);
+            this.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.V6ColorDataGridView_CellEndEdit);
             this.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.V6ColorDataGridView_CellPainting);
             this.CellParsing += new System.Windows.Forms.DataGridViewCellParsingEventHandler(this.V6ColorDataGridView_CellParsing);
             this.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.V6ColorDataGridView_ColumnAdded);
             this.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.V6ColorDataGridView_ColumnHeaderMouseClick);
+            this.CurrentCellChanged += new System.EventHandler(this.V6ColorDataGridView_CurrentCellChanged);
             this.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.V6ColorDataGridView_EditingControlShowing);
             this.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.V6ColorDataGridView_RowPostPaint);
             this.SelectionChanged += new System.EventHandler(this.V6ColorDataGridView_SelectionChanged);
@@ -816,7 +817,8 @@ namespace V6Controls
 
 
         public event Action FilterChange;
-        protected virtual void OnFilterChange()
+
+        public virtual void OnFilterChange()
         {
             var handler = FilterChange;
             if (handler != null) handler();
@@ -1259,7 +1261,7 @@ namespace V6Controls
                 if (aldm_data != null && aldm_data.Rows.Count > 0)
                     s = aldm_data.Rows[0][0].ToString().Trim();
                 if(!string.IsNullOrEmpty(s))
-                ShowColumns(s.Split(','));
+                    ShowColumns(s.Split(','));
             }
             catch (Exception ex)
             {
@@ -1463,6 +1465,10 @@ namespace V6Controls
                     f.Find += f_Find;
                     f.ShowDialog(this);
                 }
+                else if (e.KeyData == (Keys.Control | Keys.Shift | Keys.F))
+                {
+                    SwitchFlyingFilter();
+                }
                 else if (e.KeyData == (Keys.Control | Keys.A) && Control_A)
                 {
                     e.Handled = true;
@@ -1493,6 +1499,131 @@ namespace V6Controls
                 }
             }
         }
+
+#region ====== FLYING_FILTER ======
+
+        private V6ColorTextBox _flyingFilterTextBox = null;
+        private bool _flyingFilterActive = false;
+        private DataGridViewColumn _flyColumn;
+        private SortedDictionary<string, string> _flyingSearchText;
+        private void SwitchFlyingFilter()
+        {
+            if (_flyingFilterActive)
+            {
+                SwitchFlyingFilterOff();
+            }
+            else
+            {
+                SwitchFlyingFilterOn();
+                GetInfoFlyingTextBox();
+                RelocationFlyingFilter();
+            }
+        }
+
+        private void SwitchFlyingFilterOn()
+        {
+            if (_flyingFilterTextBox == null) CreateFlyingFilterTextBox();
+            else
+            {
+                _flyingFilterTextBox.Visible = true;
+                _flyingFilterActive = true;
+            }
+        }
+
+        private void SwitchFlyingFilterOff()
+        {
+            _flyingFilterTextBox.Visible = false;
+            _flyingFilterActive = false;
+        }
+
+        private void CreateFlyingFilterTextBox()
+        {
+            try
+            {
+                _flyingSearchText = new SortedDictionary<string, string>();
+                _flyingFilterTextBox = new V6ColorTextBox();
+                _flyingFilterTextBox.BackColor = Color.Yellow;
+                _flyingFilterTextBox.LeaveColor = Color.Yellow;
+                _flyingFilterTextBox.UseSendTabOnEnter = false;
+                _flyingFilterTextBox.KeyDown += delegate(object sender, KeyEventArgs args)
+                {
+                    if (args.KeyData == (Keys.Shift | Keys.Enter))
+                    {
+                        SaveSelectedCellLocation();
+                        RemoveFilter();
+                        LoadSelectedCellLocation();
+                    }
+                    else if (args.KeyCode == Keys.Enter)
+                    {
+                        SaveSelectedCellLocation();
+                        FilterFlyingTextBox();
+                        LoadSelectedCellLocation();
+                    }
+                };
+                Parent.Controls.Add(_flyingFilterTextBox);
+                _flyingFilterTextBox.BringToFront();
+                _flyingFilterActive = true;
+                RelocationFlyingFilter();
+                _flyingFilterTextBox.Focus();
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+
+        private void GetInfoFlyingTextBox()
+        {
+            var cell = CurrentCell;
+            if (cell == null) return;
+            _flyColumn = cell.OwningColumn;
+        }
+
+        private void FilterFlyingTextBox()
+        {
+            _flyingSearchText[_flyColumn.DataPropertyName] = _flyingFilterTextBox.Text;
+            if (ObjectAndString.IsNumberType(_flyColumn.ValueType))
+            {
+                var sss = ObjectAndString.SplitStringBy(_flyingFilterTextBox.Text, '~');
+                if (sss.Length == 0)
+                {
+                    RemoveFilter();
+                }
+                else if (sss.Length == 1)
+                {
+                    Filter(_flyColumn.DataPropertyName, "=", sss[0], null, false, false);
+                }
+                else
+                {
+                    Filter(_flyColumn.DataPropertyName, "=", sss[0], sss[1], false, false);
+                }
+            }
+            else
+            {
+                Filter(_flyColumn.DataPropertyName, "like", _flyingFilterTextBox.Text, null, false, false);
+            }
+        }
+
+        private void RelocationFlyingFilter()
+        {
+            try
+            {
+                _flyingFilterTextBox.Width = _flyColumn.Width;
+                var rec = GetColumnDisplayRectangle(_flyColumn.Index, false);
+                _flyingFilterTextBox.Top = Top;// - 25;
+                _flyingFilterTextBox.Left = Left + rec.Left;
+                _flyingFilterTextBox.GrayText = _flyColumn.HeaderText;
+                _flyingFilterTextBox.Text = _flyingSearchText.ContainsKey(_flyColumn.DataPropertyName) ? _flyingSearchText[_flyColumn.DataPropertyName] : string.Empty;
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        
+
+#endregion flying_filter
 
         private void DoCodeEditor()
         {
@@ -1789,11 +1920,11 @@ namespace V6Controls
             if (form.ShowDialog(this) == DialogResult.OK)
             {
                 if(CurrentCell.ColumnIndex>=0)
-                Filter(form.Field, form.Operator, form.Value, form.Value2, form.FindNext, form.FindOR);
+                    Filter(form.Field, form.Operator, form.Value, form.Value2, form.FindNext, form.FindOR);
             }
         }
 
-        private DataView _view;
+        public DataView _view;
         private DataGridViewColumn _filter_column;
         /// <summary>
         /// Lọc dữ liệu hiển thị trên gridView
@@ -1879,7 +2010,7 @@ namespace V6Controls
                 //_filter_column.HeaderCell.Style.BackColor = Color.Red;
                 //EnableHeadersVisualStyles = false;
                 if(!_filter_column.HeaderText.StartsWith("["))
-                _filter_column.HeaderText = string.Format("[{0}]", _filter_column.HeaderText);
+                    _filter_column.HeaderText = string.Format("[{0}]", _filter_column.HeaderText);
 
                 RecheckColor();
                 OnFilterChange();
@@ -2115,6 +2246,38 @@ namespace V6Controls
             {
                 this.WriteExLog(GetType() + ".DoCodeEditor", ex);
             }
+        }
+
+        private void V6ColorDataGridView_CurrentCellChanged(object sender, EventArgs e)
+        {
+            if (_flyingFilterActive)
+            {
+                GetInfoFlyingTextBox();
+                RelocationFlyingFilter();
+            }
+        }
+
+        protected int _rowIndex = -1;
+        protected int _cellIndex = -1;
+        public void SaveSelectedCellLocation()
+        {
+            try
+            {
+                if (CurrentCell != null)
+                {
+                    _rowIndex = CurrentCell.RowIndex;
+                    _cellIndex = CurrentCell.ColumnIndex;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorMessage(GetType() + ".SaveSelectedCellLocation " + ex.Message);
+            }
+        }
+
+        public void LoadSelectedCellLocation()
+        {
+            V6ControlFormHelper.SetGridviewCurrentCellByIndex(this, _rowIndex, _cellIndex, Parent);
         }
     }
 

@@ -815,7 +815,7 @@ namespace V6Controls
             {
                 if (e.KeyData == Keys.Enter)
                 {
-                    if (!Multiline || (ModifierKeys & Keys.Shift) == 0)
+                    if (_tab && (!Multiline || (ModifierKeys & Keys.Shift) == 0))
                     {
                         SendKeys.Send("{TAB}");
                     }
@@ -825,7 +825,7 @@ namespace V6Controls
 
             if (e.KeyData == Keys.Enter)
             {
-                if (!Multiline || (ModifierKeys & Keys.Shift) == 0)
+                if (_tab && (!Multiline || (ModifierKeys & Keys.Shift) == 0))
                 {
                     SendKeys.Send("{TAB}");
                 }
