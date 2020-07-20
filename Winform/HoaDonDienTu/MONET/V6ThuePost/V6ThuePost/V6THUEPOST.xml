@@ -1,0 +1,70 @@
+﻿<?xml version="1.0"?>
+<Root>
+	<V6Info Field='username' 	Value='YWfq6ASin+M=' Type=''/>
+	<V6Info Field='password' 	Value='v/xWvCO69tWOyuv0h+/arbSrkODoLWXQ5+RDsXd6L8Pp2CdF43g85g=='/>
+	<V6Info Field='codetax' 	Value='R9IdUR3U6ZRfjsWtfNxwCg=='/>
+	<V6Info Field='certificateSerial' 	Value='V6SOFT'/>
+	<V6Info Field='token_password_title' 	Value='Kiểm tra mã PIN'/>
+	<V6Info Field='token_password' 	Value='c0PWOMZE43dQSU1zjuEyuw=='/>
+
+	<V6Info Field='baselink' 	Value='TLa5HcR9C6SjtzEP7XkWC9Wd+FNO37Af' Type=''/>
+	<V6Info Field='createlink' 	Value='zdnmx/890afWdtpfWD5uIfdribqPSYWD' Type=''/>
+	<V6Info Field='modifylink' 	Value='zdnmx/890aezlQ/Jcf3WE+X5QNIDUyErxHnLSEYNXHE=' Type=''/>
+
+	<!--Một số ký tự web: [&apos;]=[']	[&quot;]=["]	[&lt;]=[<]	[&gt;]=[>]	[&amp;]=[&]	-->
+	<!--Các thông tin đơn vị được in trên hóa đơn-->
+	<GeneralInvoiceInfo Field='invName' 	Value='01GTKT0/001'/>
+	<GeneralInvoiceInfo Field='invSerial'	Value='DE/19E' 	FieldV6='SO_SERI' 	Type=''/>
+	<GeneralInvoiceInfo Field='templateCode' 	Value='01GTKT0/001'/>
+	<GeneralInvoiceInfo Field='invNumber' 	Value=''	Type='Field'	FieldV6='SO_CT'/>
+	<GeneralInvoiceInfo Field='invDate' 	Value='07/07/2018' FieldV6='ngay_ct' Type='Field'	DataType='Date'/>
+	<GeneralInvoiceInfo Field='invCustomer' 	Value='Khách hàng' FieldV6='MA_KH' Type='Field'/>
+	<GeneralInvoiceInfo Field='currencyCode' 	Value='VND'/>
+	<GeneralInvoiceInfo Field='invRef' 	Value='ASOCTSOA1'	FieldV6='FKEY_HD' Type='Field'/>
+	<GeneralInvoiceInfo Field='invRefDate' 	Value='07/07/2018' FieldV6='ngay_ct' Type='Field'	DataType='Date'/>
+	
+	<!--a____________Tên parameter trong report_____________Tên trường dữ liệu tương ứng_____________-->
+	<BuyerInfo Field='buyerTax' 	Value='0123456789'	FieldV6='MST' Type='Field'/>
+	<BuyerInfo Field='buyerCode' 	Value='0123456789'	FieldV6='MA_KH' Type='Field'/>
+	<BuyerInfo Field='buyerName' 	Value='Huỳnh'	FieldV6='ONG_BA' Type='Field'/>
+	<BuyerInfo Field='buyerCompany' 	Value='Công ty Huỳnh'	FieldV6='COMPANY' Type='Field'/>
+	<BuyerInfo Field='buyerAddress' 	Value='38LVH'	FieldV6='DIA_CHI' Type='Field'/>
+	<BuyerInfo Field='buyerAcc' 	Value='0123456789'	FieldV6='TK_NH' Type='Field'/>
+	<BuyerInfo Field='buyerBank' 	Value='ACB'	FieldV6='NGAN_HANG' Type='Field'/>
+	<BuyerInfo Field='buyerEmail' 	Value='@'	FieldV6='EMAIL' Type='Field'/>
+	<BuyerInfo Field='buyerPhone' 			FieldV6='DIEN_THOAI'			Type='Field'/>
+	<BuyerInfo Field='buyerFax' 			FieldV6='FAX'			Type='Field'/>
+	
+	<SummarizeInfo	Field='invSubTotal'		FieldV6='T_TIEN2'	Type='Field'/>
+	<SummarizeInfo	Field='invVatRate'		FieldV6='THUE_SUAT'	Type='Field'	DataType='string'	Note='Chuỗi 10'/>
+	<SummarizeInfo	Field='invVatAmount'		FieldV6='T_THUE'	Type='Field'/>
+	<SummarizeInfo	Field='invTotalAmount'		FieldV6='T_TT'	Type='Field'/>
+	
+	<SummarizeInfo	Field='invPayment'		Value='Tiền mặt/Chuyển khoản'	FieldV6='TEN_HTTT'	Type='Field'/>
+	<SummarizeInfo	Field='invExchangeRate'		Value='1'	FieldV6='TY_GIA'	Type='Field'/>
+	<SummarizeInfo	Field='invCurrency'		Value='VND'	FieldV6='MA_NT'	Type='Field'/>
+	<SummarizeInfo	Field='note'		Value=''	FieldV6='GHI_CHU'	Type='Field'/>
+	<SummarizeInfo	Field='invAutoSign'		Value='1'	FieldV6=''	Type='Field'/>
+	
+	
+	<SummarizeInfo0	Field='totalAmountWithTaxInWords'		FieldV6='t_tt' Type='Field' DataType='N2CMANT'/>
+	<SummarizeInfo0	Field='discountAmount'		FieldV6='T_CK'	Type='Field'/>
+	
+	
+	
+  <!--a____________Tên sử dụng trong report_____________Tên trường dữ liệu tương ứng_____________-->
+	<ItemInfo	Field='itemNo'		FieldV6='stt'	Type='Field'/>
+	<ItemInfo	Field='itemCode'	FieldV6='ma_vt'		Type='Field'/>
+	<ItemInfo	Field='itemName'	FieldV6='ma_vt+"->"+ten_vt'	Type='Field'/>
+	<ItemInfo	Field='itemPack'		FieldV6='dvtPACKS'	Type='Field'/>
+	<ItemInfo	Field='itemDate'		FieldV6='ngay_ct'	Type='Field'/>
+	<ItemInfo	Field='itemUnit'		FieldV6='dvt'	Type='Field'/>
+	<ItemInfo	Field='itemQuantity'	FieldV6='so_luong'	Type='Field'/>
+	<ItemInfo	Field='itemPrice'	FieldV6='gia2'	Type='Field'/>
+	<ItemInfo	Field='itemVatRate'	FieldV6='thue_suatI'	Type='Field'/>
+	<ItemInfo	Field='itemVatAmnt'	FieldV6='thue'	Type='Field'/>
+	<ItemInfo	Field='itemDscnAmnt'	FieldV6='0'	Type='Field'/>
+	<ItemInfo	Field='itemAmountNoVat'	FieldV6='tien2'	Type='Field'/>
+	<ItemInfo	Field='itemNote'	FieldV6=''	Type='Field'/>
+
+</Root>	

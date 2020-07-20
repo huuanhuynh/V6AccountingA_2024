@@ -3546,7 +3546,11 @@ namespace V6ThuePostManager
                         return ObjectAndString.ObjectToInt64(fieldValue);
                     //case "UPPER": // Chỉ dùng ở exe gọi bằng Foxpro.
                     //    return (fieldValue + "").ToUpper();
-                    default: // STRING, TEXT...
+                    case "INTSTRING": // Đưa kiểu số về chuỗi nguyên (không lấy phần thập phân).
+                        return ObjectAndString.ObjectToInt(fieldValue).ToString();
+                    case "STRING":
+                        return "" + fieldValue;
+                    default:    // Kiểu nguyên mẫu của dữ liệu.
                         return fieldValue;
                 }
             }

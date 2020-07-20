@@ -35,6 +35,9 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\MONET\V6ThuePost\ApiConnect\bin\Release\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.EnterpriseServices" />
@@ -51,7 +54,18 @@
     <Compile Include="MInvoiceObject\Request\MInvoicePostObject.cs" />
     <Compile Include="MInvoiceObject\Response\LoginResponse.cs" />
     <Compile Include="MInvoiceObject\Response\MInvoiceResponse.cs" />
+    <Compile Include="MONET_Objects\Request\MONET_CHECK_SIGNED_Request.cs" />
+    <Compile Include="MONET_Objects\Request\MONET_DELETE_Request.cs" />
+    <Compile Include="MONET_Objects\Response\MONET_CHECK_SIGNED_Response.cs" />
+    <Compile Include="MONET_Objects\Response\MONET_DELETE_Response.cs" />
+    <Compile Include="MONET_Objects\Response\MONET_DOWNLOAD_Response.cs" />
     <Compile Include="ResponseObjects\V6Return.cs" />
+    <Compile Include="MONET_Objects\buyerInfo.cs" />
+    <Compile Include="MONET_Objects\Response\MONET_ADD_Response.cs" />
+    <Compile Include="MONET_Objects\GetInvoice\GetInvoiceInput.cs" />
+    <Compile Include="MONET_Objects\GetInvoice\GetInvoiceRepresentationFileParameters.cs" />
+    <Compile Include="MONET_Objects\GetInvoice\GetInvoiceResponse.cs" />
+    <Compile Include="MONET_Objects\GetInvoice\GetListInvoiceDataControlParams.cs" />
     <Compile Include="ViettelObjects\BuyerInfo.cs" />
     <Compile Include="ViettelObjects\CreateInvoiceResponse.cs" />
     <Compile Include="ViettelObjects\CreateInvoiceResponse_Result.cs" />

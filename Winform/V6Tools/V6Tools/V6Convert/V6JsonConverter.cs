@@ -60,8 +60,10 @@ namespace V6Tools.V6Convert
         /// <param name="value"></param>
         /// <param name="dateTimeFormat"></param>
         /// <returns></returns>
-        private static string ObjectToJson(object value, string dateTimeFormat)
+        public static string ObjectToJson(object value, string dateTimeFormat)
         {
+            var of = DateTimeFormat;
+            DateTimeFormat = dateTimeFormat;
             if (value == null || value is DBNull) return "null";
 
             string result = "";
@@ -126,6 +128,7 @@ namespace V6Tools.V6Convert
             {
                 result = "\"" + value + "\"";
             }
+            DateTimeFormat = of;
             return result;
         }
 

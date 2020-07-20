@@ -1608,9 +1608,10 @@ namespace V6Controls
         {
             try
             {
+                _flyColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.BottomCenter;
                 _flyingFilterTextBox.Width = _flyColumn.Width;
                 var rec = GetColumnDisplayRectangle(_flyColumn.Index, false);
-                _flyingFilterTextBox.Top = Top;// - 25;
+                _flyingFilterTextBox.Top = Top + 1;// - 25;
                 _flyingFilterTextBox.Left = Left + rec.Left;
                 _flyingFilterTextBox.GrayText = _flyColumn.HeaderText;
                 _flyingFilterTextBox.Text = _flyingSearchText.ContainsKey(_flyColumn.DataPropertyName) ? _flyingSearchText[_flyColumn.DataPropertyName] : string.Empty;
