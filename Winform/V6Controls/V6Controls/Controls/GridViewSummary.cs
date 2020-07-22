@@ -59,6 +59,16 @@ namespace V6Controls.Controls
 
         public Condition SumCondition { get; set; }
 
+        public string SumConditionString
+        {
+            get
+            {
+                string result = null;
+                if (SumCondition != null && !string.IsNullOrEmpty(SumCondition.FIELD)) result = (V6Setting.IsVietnamese? "Điều kiện cộng: " : "Sum condition: ") + SumCondition;
+                return result;
+            }
+        }
+
         Pen pBoder;
         Brush bBackGround;
         Brush bTextColor;
@@ -380,5 +390,9 @@ namespace V6Controls.Controls
         public string FIELD { get; set; }
         public string OPER { get; set; }
         public string VALUE { get; set; }
+        public override string ToString()
+        {
+            return string.Format("{0} {1} {2}", FIELD, OPER, VALUE);
+        }
     }
 }

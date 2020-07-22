@@ -3827,6 +3827,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 txtManx.Text = Invoice.Alct["TK_CO"].ToString().Trim();
                 cboKieuPost.SelectedValue = Invoice.Alct["M_K_POST"].ToString().Trim();
                 TxtTk_i_ao.Text = txtManx.Text;
+
+                if (AM_old != null)
+                {
+                    GET_AM_OLD_EXTRA();
+                }
             }
             catch (Exception ex)
             {

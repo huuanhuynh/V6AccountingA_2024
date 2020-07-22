@@ -311,6 +311,10 @@ namespace V6ThuePostManager
                             result = "Kết nối lỗi.";
                         }
                         break;
+                    case "7":
+                        MONET_WS monetWS = new MONET_WS(_baseUrl, _username, _password, _codetax);
+                        result = monetWS.CheckConnection(_createInvoiceUrl);
+                        break;
                     default:
                         paras.Result.ResultErrorMessage = V6Text.NotSupported + paras.Branch;
                         break;
@@ -390,6 +394,10 @@ namespace V6ThuePostManager
                     case "6":
                         ThaiSonWS thaiSonWS = new ThaiSonWS(_baseUrl, _link_Publish_vnpt_thaison, _username, _password, _SERIAL_CERT);
                         result = thaiSonWS.GetInvoicePdf(paras.V6PartnerID, paras.Mode == "0" ? 0 : 1, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        break;
+                    case "7":
+                        MONET_WS monetWS = new MONET_WS(_baseUrl, _username, _password, _codetax);
+                        result = monetWS.CheckConnection(_createInvoiceUrl);
                         break;
                     default:
                         paras.Result.ResultErrorMessage = V6Text.NotSupported + paras.Branch;

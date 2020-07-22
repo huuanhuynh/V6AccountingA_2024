@@ -4717,5 +4717,26 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             throw new NotImplementedException();
         }
+
+        protected void GET_AM_OLD_EXTRA()
+        {
+            try
+            {
+                if (_invoice.EXTRA_INFOR.ContainsKey("AM_OLD"))
+                {
+                    var amFields = ObjectAndString.SplitString(_invoice.EXTRA_INFOR["AM_OLD"]);
+                    var amSome = new Dictionary<string, object>();
+                    foreach (string field in amFields)
+                    {
+                        if (AM_old.Table.Columns.Contains(field)) amSome[field.ToUpper()] = AM_old[field];
+                    }
+                    SetSomeData(amSome);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".GET_AM_OLD_EXTRA", ex);
+            }
+        }
     }
 }

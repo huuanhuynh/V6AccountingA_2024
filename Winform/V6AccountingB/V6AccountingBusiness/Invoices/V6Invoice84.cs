@@ -230,7 +230,7 @@ namespace V6AccountingBusiness.Invoices
                 "\n--{0}{1}\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD_TableName + " WHERE Ma_ct = '" + Mact + "' {0} {2}"
                 + (where3NhVt.Length == 0 ? "{3}" : "\n	And Ma_vt IN (SELECT Ma_vt FROM Alvt WHERE 1 = 1 {3})")
                 + "\n		{4})";
-            if (where2AD.Length > 0 || where3NhVt.Length > 0)// || where4Dvcs.Length > 0)
+            if (where2AD.Length > 0 || where3NhVt.Length > 0 || where4Dvcs.Length > 0)
             {
                 if (where2AD.Length > 0) where2AD = "And " + where2AD;
                 if (where3NhVt.Length > 0) where3NhVt = "And " + where3NhVt;

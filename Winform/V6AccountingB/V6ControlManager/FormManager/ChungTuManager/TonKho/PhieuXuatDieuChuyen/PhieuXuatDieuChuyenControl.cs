@@ -3543,6 +3543,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                             txtso_seri.Text = AM_old["SO_SERI"].ToString().Trim();
                         }
                     }
+
+                    GET_AM_OLD_EXTRA();
                 }
             }
             catch (Exception ex)

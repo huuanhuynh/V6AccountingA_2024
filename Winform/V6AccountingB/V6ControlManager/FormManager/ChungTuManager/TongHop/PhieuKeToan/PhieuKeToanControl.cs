@@ -1075,6 +1075,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
                 //M_Ma_nk
                 Txtma_nk.Text = Invoice.Alct["M_MA_NK"].ToString().Trim();
                 cboKieuPost.SelectedValue = Invoice.Alct["M_K_POST"].ToString().Trim();
+
+                if (AM_old != null)
+                {
+                    GET_AM_OLD_EXTRA();
+                }
             }
             catch (Exception ex)
             {

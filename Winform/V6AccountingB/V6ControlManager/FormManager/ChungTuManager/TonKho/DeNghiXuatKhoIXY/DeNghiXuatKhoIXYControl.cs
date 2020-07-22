@@ -2888,6 +2888,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
                     if (txtSoPhieu.Text.Trim() == "")
                         txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
 
+                    GET_AM_OLD_EXTRA();
                 }
             }
             catch (Exception ex)

@@ -2890,6 +2890,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     txtMa_sonb.Text = AM_old["Ma_sonb"].ToString().Trim();
                     if (txtSoPhieu.Text.Trim() == "")
                         txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
+
+                    GET_AM_OLD_EXTRA();
                 }
             }
             catch (Exception ex)

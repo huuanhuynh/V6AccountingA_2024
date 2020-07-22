@@ -4973,6 +4973,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             txtso_seri.Text = AM_old["SO_SERI"].ToString().Trim();
                         }
                     }
+
+                    GET_AM_OLD_EXTRA();
                 }
 
             }

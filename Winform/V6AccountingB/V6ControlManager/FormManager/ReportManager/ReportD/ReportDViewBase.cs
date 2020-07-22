@@ -763,6 +763,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                         OPER = MauInSelectedRow["OPER_S"].ToString().Trim(),
                         VALUE = MauInSelectedRow["VALUE_S"].ToString().Trim()
                     };
+                    if (!string.IsNullOrEmpty(gridViewSummary1.SumConditionString)) toolTipV6FormControl.SetToolTip(gridViewSummary1, gridViewSummary1.SumConditionString);
                 }
             }
             catch (Exception ex)
