@@ -442,47 +442,75 @@ namespace V6ThuePostMonetApi
             Logger.WriteToLog("Program.POST_NEW " + resultString);
             return objResult;
         }
-        
-        /// <summary>
-        /// Hàm giống tạo mới nhưng có khác biệt trong dữ liệu.
-        /// </summary>
-        /// <param name="_createInvoiceUrl"></param>
-        /// <param name="jsonBody"></param>
-        /// <returns></returns>
-        public string POST_REPLACE(string _createInvoiceUrl, string jsonBody)
-        {
-            string result;
-            try
-            {
-                result = POST(_createInvoiceUrl, jsonBody);
-            }
-            catch (Exception ex)
-            {
-                result = ex.Message;
-            }
-            Logger.WriteToLog("MonetWS.POST_REPLACE " + result);
-            return result;
-        }
 
         /// <summary>
         /// Gửi điều chỉnh hóa đơn.
         /// </summary>
         /// <param name="uri">Đường dẫn hàm</param>
-        /// <param name="jsonBody"></param>
+        /// <param name="v6return"></param>
+        /// <param name="option">1 Điều chỉnh 2 Điều chỉnh tăng 3 Điều chỉnh giảm 4 Thay thế</param>
         /// <returns></returns>
-        public string POST_EDIT(string uri, string jsonBody)
+        public MONET_API_Response POST_EDIT(string uri, string option, string invCodeOld, string invSignOld, string invNameOld, string invNumberBB, out V6Return v6return)
         {
-            string result;
+            string result = null;
+            v6return = new V6Return();
+            MONET_API_Response response = null;
+            MONET_EDIT_Request request = new MONET_EDIT_Request()
+            {
+                option = option,
+                invCodeOld = invCodeOld,
+                invSignOld = invSignOld,
+                invNameOld = invNameOld,
+                invNumberBB = invNumberBB
+            };
             try
             {
-                result = POST(uri, jsonBody);
+                var requestStr = request.ToJson();
+                result = POST(uri, requestStr);
+                v6return.RESULT_STRING = result;
+                response = JsonConvert.DeserializeObject<MONET_API_Response>(result);
+                v6return.RESULT_OBJECT = response;
             }
             catch (Exception ex)
             {
-                result = ex.Message;
+                v6return.RESULT_ERROR_MESSAGE = ex.Message;
             }
             Logger.WriteToLog("MonetlWS.POST_EDIT " + result);
-            return result;
+            return response;
+        }
+
+        /// <summary>
+        /// Hàm giống tạo mới nhưng có khác biệt trong dữ liệu.
+        /// </summary>
+        /// <param name="uri">Đường dẫn hàm edit.</param>
+        /// <returns></returns>
+        public MONET_API_Response POST_REPLACE(string uri, string invCodeOld, string invSignOld, string invNameOld, string invNumberBB, out V6Return v6return)
+        {
+            string result = null;
+            v6return = new V6Return();
+            MONET_API_Response response = null;
+            MONET_EDIT_Request request = new MONET_EDIT_Request()
+            {
+                option = "4",
+                invCodeOld = invCodeOld,
+                invSignOld = invSignOld,
+                invNameOld = invNameOld,
+                invNumberBB = invNumberBB
+            };
+            try
+            {
+                var requestStr = request.ToJson();
+                result = POST(uri, requestStr);
+                v6return.RESULT_STRING = result;
+                response = JsonConvert.DeserializeObject<MONET_API_Response>(result);
+                v6return.RESULT_OBJECT = response;
+            }
+            catch (Exception ex)
+            {
+                v6return.RESULT_ERROR_MESSAGE = ex.Message;
+            }
+            Logger.WriteToLog("MonetlWS.POST_REPLACE " + result);
+            return response;
         }
 
         public MONET_ADD_Response POST_NEW_TOKEN(string uri, string jsonBody, string templateCode, string token_serial,

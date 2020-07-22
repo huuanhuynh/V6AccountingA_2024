@@ -20,11 +20,11 @@ namespace V6ThuePost
         private void btnRead_Click(object sender, EventArgs e)
         {
             Program.ReadXmlInfo(txtXmlFile.Text);
-            Program.generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
-            {
-                Field = "adjustmentType",
-                Value = "1",
-            };
+            //Program.generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
+            //{
+            //    Field = "adjustmentType",
+            //    Value = "1",
+            //};
 
             if (!string.IsNullOrEmpty(Program._SERIAL_CERT))
             {

@@ -16,6 +16,11 @@ namespace V6Tools.V6Objects
             return V6JsonConverter.ClassToJson(this, DateTimeFormat);
         }
 
+        /// <summary>
+        /// Chuyển thành chuỗi json. DateTime format hoặc null hoặc VIETTEL.
+        /// </summary>
+        /// <param name="dateTimeFormat">null hoặc yyyMMdd tùy ý hoặc VIETTEL(millisecond from 1900)</param>
+        /// <returns></returns>
         public virtual string ToJson(string dateTimeFormat)
         {
             return V6JsonConverter.ClassToJson(this, dateTimeFormat);

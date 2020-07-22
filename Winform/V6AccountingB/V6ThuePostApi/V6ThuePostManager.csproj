@@ -82,6 +82,10 @@
       <Project>{3D8928F4-81C7-443E-98B3-C155EEE33927}</Project>
       <Name>V6ThuePostBkavApi</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\HoaDonDienTu\MONET\V6ThuePost\ApiConnect\V6ThuePost_MONETApi.csproj">
+      <Project>{E965C840-A433-45EA-AC23-1E3ED00ABBF6}</Project>
+      <Name>V6ThuePost_MONETApi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\HoaDonDienTu\PostObjects\V6ThuePostObjects.csproj">
       <Project>{14a2c520-1939-4b6a-b584-ee5797f26701}</Project>
       <Name>V6ThuePostObjects</Name>

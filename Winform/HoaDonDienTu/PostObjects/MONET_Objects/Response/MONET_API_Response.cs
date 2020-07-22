@@ -4,8 +4,12 @@ using Newtonsoft.Json;
 
 namespace V6ThuePost.MONET_Objects.Response
 {
-    public class MONET_ADD_Response : MONET_API_Response
+    public class MONET_API_Response
     {
+        public string action { get; set; }
+        public string returnDate { get; set; }
+        public bool isSuccess { get; set; }
+        public string errorMessage { get; set; }
         //public Dictionary<string, object> data { get; set; }
         public object data { get; set; }
         /// <summary>

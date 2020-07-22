@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{938CF42A-D1A7-46D4-866C-1222495A1C4C}</ProjectGuid>
+    <ProjectGuid>{E965C840-A433-45EA-AC23-1E3ED00ABBF6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>V6ThuePostMonetApi</RootNamespace>

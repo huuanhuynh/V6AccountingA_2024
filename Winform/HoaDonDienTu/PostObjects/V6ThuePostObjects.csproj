@@ -55,7 +55,9 @@
     <Compile Include="MInvoiceObject\Response\LoginResponse.cs" />
     <Compile Include="MInvoiceObject\Response\MInvoiceResponse.cs" />
     <Compile Include="MONET_Objects\Request\MONET_CHECK_SIGNED_Request.cs" />
+    <Compile Include="MONET_Objects\Request\MONET_EDIT_Request.cs" />
     <Compile Include="MONET_Objects\Request\MONET_DELETE_Request.cs" />
+    <Compile Include="MONET_Objects\Response\MONET_API_Response.cs" />
     <Compile Include="MONET_Objects\Response\MONET_CHECK_SIGNED_Response.cs" />
     <Compile Include="MONET_Objects\Response\MONET_DELETE_Response.cs" />
     <Compile Include="MONET_Objects\Response\MONET_DOWNLOAD_Response.cs" />

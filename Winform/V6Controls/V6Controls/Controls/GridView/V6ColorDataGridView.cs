@@ -1357,7 +1357,8 @@ namespace V6Controls
                     var eRow = Rows[e.RowIndex];
                     var eColumn = Columns[e.ColumnIndex];
                     var eCell = eRow.Cells[e.ColumnIndex];
-                    if(ObjectAndString.IsNumberType(e.Value.GetType()) && ObjectAndString.ObjectToDecimal(e.Value) == 0)
+                    if((ObjectAndString.IsNumberType(eColumn.ValueType) && ObjectAndString.ObjectToDecimal(e.Value) == 0)
+                        || (ObjectAndString.IsDateTimeType(eColumn.ValueType) && ObjectAndString.ObjectToFullDateTime(e.Value).Date == _1900))
                     {
                         e.Handled = true;
                         Color eBackColor = e.CellStyle.BackColor;
@@ -1370,7 +1371,6 @@ namespace V6Controls
                             if (SelectionMode == DataGridViewSelectionMode.CellSelect && eCell == CurrentCell
                                 || SelectionMode == DataGridViewSelectionMode.FullRowSelect)
                             {
-                                // CurrentCell đang bị vẽ số đè ở phần vẽ viền ô được chọn
                                 eBackColor = DefaultCellStyle.SelectionBackColor;
                             }
                         }
@@ -1395,6 +1395,40 @@ namespace V6Controls
                             rect.Y -= 1;
                             e.Graphics.DrawRectangle(p, rect);
                         }
+
+                        //Tô viền đỏ ô đang chọn.
+                        if (CurrentCell != null && e.ColumnIndex == CurrentCell.ColumnIndex && e.RowIndex == CurrentCell.RowIndex)
+                        {
+                            // e.Paint... là dòng vẽ giá trị 0
+                            if (ObjectAndString.IsNumberType(eColumn.ValueType))
+                                e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.Border);
+                            Color c = Focused ? Color.LightSalmon : Color.White;
+                            using (Pen p = new Pen(c, 1))
+                            {
+                                Rectangle rect = e.CellBounds;
+                                rect.Width -= 2;
+                                rect.Height -= 2;
+                                e.Graphics.DrawRectangle(p, rect);
+                            }
+                            //e.Handled = true;
+                        }
+                    }
+                    else
+                    {
+                        //Tô viền đỏ ô đang chọn.
+                        if (CurrentCell != null && e.ColumnIndex == CurrentCell.ColumnIndex && e.RowIndex == CurrentCell.RowIndex)
+                        {
+                            e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.Border);
+                            Color c = Focused ? Color.LightSalmon : Color.White;
+                            using (Pen p = new Pen(c, 1))
+                            {
+                                Rectangle rect = e.CellBounds;
+                                rect.Width -= 2;
+                                rect.Height -= 2;
+                                e.Graphics.DrawRectangle(p, rect);
+                            }
+                            e.Handled = true;
+                        }
                     }
                 }
             }
@@ -1403,22 +1437,9 @@ namespace V6Controls
                 ;
             }
             
-            //Tô viền đỏ ô đang chọn.
-            if (CurrentCell != null && e.ColumnIndex == CurrentCell.ColumnIndex && e.RowIndex == CurrentCell.RowIndex)
-            {
-                e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.Border);
-                Color c = Focused ? Color.LightSalmon : Color.White;
-                using (Pen p = new Pen(c, 1))
-                {
-                    Rectangle rect = e.CellBounds;
-                    rect.Width -= 2;
-                    rect.Height -= 2;
-                    e.Graphics.DrawRectangle(p, rect);
-                }
-                e.Handled = true;
-            }
+            
         }
-
+        private DateTime _1900 = new DateTime(1900,1,1);
         
         private void V6ColorDataGridView_KeyDown(object sender, KeyEventArgs e)
         {
@@ -2258,16 +2279,17 @@ namespace V6Controls
             }
         }
 
-        protected int _rowIndex = -1;
-        protected int _cellIndex = -1;
+        protected int _saveRowIndex = -1;
+        protected int _saveCellIndex = -1;
+        
         public void SaveSelectedCellLocation()
         {
             try
             {
                 if (CurrentCell != null)
                 {
-                    _rowIndex = CurrentCell.RowIndex;
-                    _cellIndex = CurrentCell.ColumnIndex;
+                    _saveRowIndex = CurrentCell.RowIndex;
+                    _saveCellIndex = CurrentCell.ColumnIndex;
                 }
             }
             catch (Exception ex)
@@ -2278,7 +2300,7 @@ namespace V6Controls
 
         public void LoadSelectedCellLocation()
         {
-            V6ControlFormHelper.SetGridviewCurrentCellByIndex(this, _rowIndex, _cellIndex, Parent);
+            V6ControlFormHelper.SetGridviewCurrentCellByIndex(this, _saveRowIndex, _saveCellIndex, Parent);
         }
     }
 

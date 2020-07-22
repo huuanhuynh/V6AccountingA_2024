@@ -617,7 +617,8 @@
             "BKAV",
             "VNPT_TOKEN",
             "SOFTDREAMS",
-            "THAI_SON"});
+            "THAI_SON",
+            "MONET"});
             this.cboSendType.Location = new System.Drawing.Point(11, 140);
             this.cboSendType.Name = "cboSendType";
             this.cboSendType.Size = new System.Drawing.Size(121, 21);

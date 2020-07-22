@@ -386,7 +386,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             new SqlParameter("@UserID", V6Login.UserId)
                         };
 
-                DataSet ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure + "F9", plist);
+                DataSet ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure + "F9xml", plist);
                 //DataTable data0 = ds.Tables[0];
                 string result = "";//, error = "", sohoadon = "", id = "";
                 var paras = new PostManagerParams

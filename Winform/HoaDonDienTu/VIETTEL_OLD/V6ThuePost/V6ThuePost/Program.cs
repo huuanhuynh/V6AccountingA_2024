@@ -432,7 +432,7 @@ namespace V6ThuePost
                 //    }
                 //}
 
-                result = postObject.ToJson();
+                result = postObject.ToJson("VIETTEL");
             }
             //catch (Exception ex)
             {

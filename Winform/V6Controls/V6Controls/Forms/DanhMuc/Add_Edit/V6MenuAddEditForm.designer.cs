@@ -40,7 +40,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tabThongTinChinh = new System.Windows.Forms.TabPage();
+            this.txtHotKey = new V6Controls.V6ColorTextBox();
             this.txtCode = new V6Controls.V6ColorTextBox();
+            this.lblHotKey = new System.Windows.Forms.Label();
             this.txtMaCt = new V6Controls.V6ColorTextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.txtSttBox = new V6Controls.V6NumberTextBox();
@@ -125,8 +127,6 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
-            this.lblHotKey = new System.Windows.Forms.Label();
-            this.txtHotKey = new V6Controls.V6ColorTextBox();
             this.groupBox1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabCacTuyChon.SuspendLayout();
@@ -355,9 +355,25 @@
             this.tabThongTinChinh.Margin = new System.Windows.Forms.Padding(4);
             this.tabThongTinChinh.Name = "tabThongTinChinh";
             this.tabThongTinChinh.Padding = new System.Windows.Forms.Padding(4);
-            this.tabThongTinChinh.Size = new System.Drawing.Size(742, 339);
+            this.tabThongTinChinh.Size = new System.Drawing.Size(745, 339);
             this.tabThongTinChinh.TabIndex = 0;
             this.tabThongTinChinh.Text = "Thông tin chính";
+            // 
+            // txtHotKey
+            // 
+            this.txtHotKey.AccessibleName = "HOTKEY";
+            this.txtHotKey.BackColor = System.Drawing.SystemColors.Window;
+            this.txtHotKey.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtHotKey.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtHotKey.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtHotKey.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtHotKey.HoverColor = System.Drawing.Color.Yellow;
+            this.txtHotKey.LeaveColor = System.Drawing.Color.White;
+            this.txtHotKey.Location = new System.Drawing.Point(177, 293);
+            this.txtHotKey.Margin = new System.Windows.Forms.Padding(4);
+            this.txtHotKey.Name = "txtHotKey";
+            this.txtHotKey.Size = new System.Drawing.Size(56, 23);
+            this.txtHotKey.TabIndex = 23;
             // 
             // txtCode
             // 
@@ -375,6 +391,17 @@
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(56, 23);
             this.txtCode.TabIndex = 23;
+            // 
+            // lblHotKey
+            // 
+            this.lblHotKey.AccessibleDescription = "";
+            this.lblHotKey.AutoSize = true;
+            this.lblHotKey.Location = new System.Drawing.Point(7, 296);
+            this.lblHotKey.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblHotKey.Name = "lblHotKey";
+            this.lblHotKey.Size = new System.Drawing.Size(54, 17);
+            this.lblHotKey.TabIndex = 22;
+            this.lblHotKey.Text = "HotKey";
             // 
             // txtMaCt
             // 
@@ -941,11 +968,11 @@
             this.v6TabControl1.Controls.Add(this.tabTuDinhNghia);
             this.v6TabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.v6TabControl1.ItemSize = new System.Drawing.Size(230, 24);
-            this.v6TabControl1.Location = new System.Drawing.Point(6, 108);
+            this.v6TabControl1.Location = new System.Drawing.Point(3, 108);
             this.v6TabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.v6TabControl1.Name = "v6TabControl1";
             this.v6TabControl1.SelectedIndex = 0;
-            this.v6TabControl1.Size = new System.Drawing.Size(750, 371);
+            this.v6TabControl1.Size = new System.Drawing.Size(753, 371);
             this.v6TabControl1.TabIndex = 1;
             // 
             // tabThongTinNgamDinh
@@ -1648,34 +1675,6 @@
             this.label35.Size = new System.Drawing.Size(63, 17);
             this.label35.TabIndex = 90;
             this.label35.Text = "Mã ĐN 1";
-            // 
-            // lblHotKey
-            // 
-            this.lblHotKey.AccessibleDescription = "";
-            this.lblHotKey.AutoSize = true;
-            this.lblHotKey.Location = new System.Drawing.Point(7, 296);
-            this.lblHotKey.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblHotKey.Name = "lblHotKey";
-            this.lblHotKey.Size = new System.Drawing.Size(54, 17);
-            this.lblHotKey.TabIndex = 22;
-            this.lblHotKey.Text = "HotKey";
-            // 
-            // txtHotKey
-            // 
-            this.txtHotKey.AccessibleName = "HOTKEY";
-            this.txtHotKey.BackColor = System.Drawing.SystemColors.Window;
-            this.txtHotKey.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtHotKey.Enabled = false;
-            this.txtHotKey.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtHotKey.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtHotKey.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtHotKey.HoverColor = System.Drawing.Color.Yellow;
-            this.txtHotKey.LeaveColor = System.Drawing.Color.White;
-            this.txtHotKey.Location = new System.Drawing.Point(177, 293);
-            this.txtHotKey.Margin = new System.Windows.Forms.Padding(4);
-            this.txtHotKey.Name = "txtHotKey";
-            this.txtHotKey.Size = new System.Drawing.Size(56, 23);
-            this.txtHotKey.TabIndex = 23;
             // 
             // V6MenuAddEditForm
             // 

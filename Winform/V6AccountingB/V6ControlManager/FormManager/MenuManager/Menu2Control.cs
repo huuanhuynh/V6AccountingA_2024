@@ -42,7 +42,7 @@ namespace V6ControlManager.FormManager.MenuManager
 
         private void AddTab(DataRow row)
         {
-            var tabTex = row[V6Setting.IsVietnamese ? "vbar" : "vbar2"].ToString().Trim().Replace("\\<", "");
+            var tabTex = (""+row["HOTKEY"]).Trim() +  row[V6Setting.IsVietnamese ? "vbar" : "vbar2"].ToString().Trim().Replace("\\<", "");
             TabPage tabPage = new TabPage(tabTex);
             
             tabPage.BackColor = Color.LightSkyBlue;

@@ -57,7 +57,9 @@ namespace V6ThuePostManager
         /// Mẫu hóa đơn vd:01GTKT0/001
         /// </summary>
         public string Pattern { get; set; }
-
+        /// <summary>
+        /// Ký hiệu hóa đơn vd:AA/19E
+        /// </summary>
         public string Serial { get; set; }
         public DateTime InvoiceDate { get; set; }
 
