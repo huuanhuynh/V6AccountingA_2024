@@ -2,7 +2,6 @@
 using System.IO;
 using System.Net;
 using Newtonsoft.Json;
-using V6SignToken;
 using V6ThuePost.MONET_Objects.GetInvoice;
 using V6ThuePost.MONET_Objects.Request;
 using V6ThuePost.MONET_Objects.Response;
@@ -315,20 +314,31 @@ namespace V6ThuePostMonetApi
             return path;
         }
 
+        /// <summary>
+        /// Kiểm tra kết nối. Nếu ok trả về null. Khác trả về thông báo.
+        /// </summary>
+        /// <param name="create_link">link ngắn tới hàm add. /api/invoice/add_type_1</param>
+        /// <returns></returns>
         public string CheckConnection(string create_link)
         {
-            V6Return v6return;
-            MONET_ADD_Response result = POST_NEW(create_link, "", out v6return);
-            //Phân tích result
             string message = "";
-
-            if (result.errorMessage.Contains("POST DATA EMPTY"))
+            V6Return v6return;
+            try
             {
-                message = null;
+                MONET_ADD_Response result = POST_NEW(create_link, "", out v6return);
+                //Phân tích result
+                if (result.errorMessage.Contains("POST DATA EMPTY"))
+                {
+                    message = null;
+                }
+                else
+                {
+                    message = v6return.RESULT_ERROR_MESSAGE;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                message = v6return.RESULT_ERROR_MESSAGE;
+                message = ex.Message;
             }
             
             return message;
@@ -562,30 +572,7 @@ namespace V6ThuePostMonetApi
             //    //return "{\"errorCode\": \"POST1_RESULT_NULL\",\"description\": \"Lấy hash null.\",\"result\": null}";
             //}
         }
-
-        public string CreateInvoiceUsbTokenGetHash_Sign0(string json, string templateCode, string token_serial)
-        {
-            string result = null;
-            string result2 = null;
-            result = POST("InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/" + _codetax, json);
-            CreateInvoiceResponse responseObject = JsonConvert.DeserializeObject<CreateInvoiceResponse>(result);
-
-            if (responseObject.result != null)
-            {
-                V6Sign v6sign = new V6Sign();
-                string sign = v6sign.Sign(responseObject.result.hashString, token_serial);
-                result2 = CreateInvoiceUsbTokenInsertSignature(_codetax, templateCode, responseObject.result.hashString, sign);
-            }
-            else
-            {
-                Logger.WriteToLog("" + result);
-                return "{\"errorCode\": \"POST1_RESULT_NULL\",\"description\": \"Lấy hash null.\",\"result\": null}";
-            }
-
-            return result2;
-        }
-
-
+        
         public CreateInvoiceResponse CreateInvoiceUsbTokenGetHash(string json, out string result)
         {
             result = POST("InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/" + _codetax, json);

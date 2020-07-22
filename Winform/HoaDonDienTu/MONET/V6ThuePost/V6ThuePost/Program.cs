@@ -30,7 +30,8 @@ namespace V6ThuePost
         public static string baseUrl = "";
         public static string createInvoiceUri = "";
         public static string modifyUrl = "";
-        
+        public static string pattern, pattern_field;
+        public static string seri, seri_field;
         //public static string mst = "";
         /// <summary>
         /// Tên đăng nhập vào host.
@@ -91,6 +92,7 @@ namespace V6ThuePost
         [STAThread]
         static void Main(string[] args)
         {
+            MONET_API_Response response = new MONET_API_Response();
             var startupPath = Application.StartupPath;
             var dir = new DirectoryInfo(startupPath);
             var dir_name = dir.Name.ToLower();
@@ -107,7 +109,7 @@ namespace V6ThuePost
             if (args != null && args.Length > 0)
             {
                 V6Return v6return = null;
-                string resultString = "";
+                string message = "";
                 string mode = "";
                 string arg1_xmlFile = "";
                 string arg2 = "";
@@ -141,10 +143,9 @@ namespace V6ThuePost
                         jsonBody = "";
                         File.Create(flagFileName1).Close();
                         var resultObject = _ws.POST_NEW(createInvoiceUri, jsonBody, out v6return);
-                        resultString = v6return.RESULT_STRING;
                         if (resultObject.errorMessage.Contains("POST DATA EMPTY"))
                         {
-                            resultString = "Kết nối ổn. " + resultString;
+                            message = "Kết nối ổn. " + v6return.RESULT_STRING;
                             File.Create(flagFileName2).Close();
                             goto End;
                         }
@@ -180,7 +181,6 @@ namespace V6ThuePost
                             File.Create(flagFileName1).Close();
                             resultObject = _ws.POST_NEW(createInvoiceUri, jsonBody, out v6return);
                             if (!string.IsNullOrEmpty(resultObject.invoiceNo)) WriteFlag(flagFileName4, resultObject.invoiceNo);
-                            resultString = v6return.RESULT_STRING;
                         }
                         else // Ký số client. /InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
                         {
@@ -192,46 +192,24 @@ namespace V6ThuePost
                             jsonBody = ReadData(dbfFile, "M");
                             string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
                             _ws = new MONET_WS(baseUrl, username, password, _codetax);
-                            resultObject = _ws.POST_NEW_TOKEN(createInvoiceUri, jsonBody, templateCode, _SERIAL_CERT, out v6return);
-                            resultString = v6return.RESULT_STRING;
+                            response = _ws.POST_NEW_TOKEN(createInvoiceUri, jsonBody, templateCode, _SERIAL_CERT, out v6return);
                         }
                     }
                     else if (mode.StartsWith("S"))
                     {
-                        if (mode.EndsWith("3"))
-                        {
-                            generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
-                            {
-                                Field = "adjustmentType",
-                                Value = "3",
-                            };
-                        }
-                        else if (mode.EndsWith("5"))
-                        {
-                            generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
-                            {
-                                Field = "adjustmentType",
-                                Value = "5",
-                            };
-                        }
-                        else
-                        {
-                            generalInvoiceInfoConfig["adjustmentType"] = new ConfigLine
-                            {
-                                Field = "adjustmentType",
-                                Value = "3",
-                            };
-                        }
-
                         jsonBody = ReadData(dbfFile, "S");
                         File.Create(flagFileName1).Close();
-                        resultString = _ws.POST_EDIT(_codetax, jsonBody);
+                        string option = mode.Substring(1);
+                        if (option.Length != 1) option = "1";
+                        string invCodeOld = arg3;
+                        var edit_response = _ws.POST_EDIT(modifyUrl, option, invCodeOld, seri, pattern, fkeyA, out v6return);
                     }
-                    else if (mode == "T")
+                    else if (mode == "T") // == S4
                     {
                         jsonBody = ReadData(dbfFile, "T");
                         File.Create(flagFileName1).Close();
-                        resultString = _ws.POST_REPLACE(createInvoiceUri, jsonBody);
+                        string invCodeOld = arg3;
+                        response = _ws.POST_REPLACE(modifyUrl, invCodeOld, seri, pattern, fkeyA, out v6return);
                     }
                     else if (mode == "H")
                     {
@@ -244,20 +222,12 @@ namespace V6ThuePost
 
                         MakeFlagNames(stt_rec);
                         File.Create(flagFileName1).Close();
-                        var resultObject = _ws.POST_DELETE(_SERIAL_CERT, soct, kyhieu, mauso, ghichu,sobienban, out v6return);
-                        resultString = v6return.RESULT_STRING;
+                        response = _ws.POST_DELETE(_SERIAL_CERT, soct, kyhieu, mauso, ghichu,sobienban, out v6return);
                     }
 
-                    //Phân tích result
-                    string message = "";
                     try
                     {
-                        if (!string.IsNullOrEmpty(v6return.RESULT_MESSAGE))
-                        {
-                            message += " " + v6return.RESULT_MESSAGE;
-                        }
-
-                        if (string.IsNullOrEmpty(v6return.RESULT_ERROR_MESSAGE))
+                        if (response.isSuccess)
                         {
                             File.Create(flagFileName2).Close();
                         }
@@ -267,19 +237,17 @@ namespace V6ThuePost
                         Logger.WriteToLog("Program.Main ConverResultObjectException: " + ex.Message);
                         message = "Kết quả:";
                     }
-                    resultString = message + "\n" + resultString;
-
                 }
                 catch (Exception ex)
                 {
                     StopAutoInputTokenPassword();
                     File.Create(flagFileName3).Close();
                     //MessageBox.Show(ex.Message);
-                    BaseMessage.Show(ex.Message, 500);
+                    BaseMessage.Show(ex.Message + message, 500);
                 }
             End:
                 File.Create(flagFileName9).Close();
-                BaseMessage.Show(resultString, 500);
+                BaseMessage.Show(message, 500);
             }
             else
             {
@@ -318,6 +286,8 @@ namespace V6ThuePost
                 DataRow row0 = data.Rows[0];
 
                 fkeyA = fkey0 + row0["STT_REC"];
+                pattern = row0[pattern_field].ToString().Trim();
+                seri = row0[seri_field].ToString().Trim();
                 MakeFlagNames(fkeyA);
                 //private static Dictionary<string, XmlLine> generalInvoiceInfoConfig = null;
                 foreach (KeyValuePair<string, ConfigLine> item in generalInvoiceInfoConfig)
@@ -328,7 +298,7 @@ namespace V6ThuePost
                 if (mode == "T")
                 {
                     //Lập hóa đơn thay thế:
-                    //adjustmentType = ‘3’
+                    //adjustmentType = "3"
                     //postObject["adjustmentType"] = "3";
                 }
 
@@ -772,6 +742,12 @@ namespace V6ThuePost
                                         break;
                                     case "modifylink":
                                         modifyUrl = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                        break;
+                                    case "pattern":
+                                        pattern_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                        break;
+                                    case "seri":
+                                        seri_field = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                         break;
                                 }
                                 break;
