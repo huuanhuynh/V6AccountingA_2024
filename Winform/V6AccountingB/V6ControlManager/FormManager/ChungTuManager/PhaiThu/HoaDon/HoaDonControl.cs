@@ -4973,8 +4973,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                             txtso_seri.Text = AM_old["SO_SERI"].ToString().Trim();
                         }
                     }
-
-                    GET_AM_OLD_EXTRA();
                 }
 
             }
@@ -6066,6 +6064,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                     GetTyGiaDefault();
                     GetDefault_Other();
                     SetDefaultData(Invoice);
+                    GET_AM_OLD_EXTRA();
                     Txtma_td_ph.Text = base.GetCA();
                     detail1.DoAddButtonClick( );
                     var readonly_list = SetControlReadOnlyHide(detail1, Invoice, Mode, V6Mode.Add);

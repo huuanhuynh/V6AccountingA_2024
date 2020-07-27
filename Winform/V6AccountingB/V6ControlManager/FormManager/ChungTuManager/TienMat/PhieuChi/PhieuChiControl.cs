@@ -2135,11 +2135,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                 //
                 txtTk.Text = Invoice.Alct["TK_CO"].ToString().Trim();
                 cboKieuPost.SelectedValue = Invoice.Alct["M_K_POST"].ToString().Trim();
-
-                if (AM_old != null)
-                {
-                    GET_AM_OLD_EXTRA();
-                }
             }
             catch (Exception ex)
             {
@@ -3447,6 +3442,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                     GetTyGiaDefault();
                     GetDefault_Other();
                     SetDefaultData(Invoice);
+                    GET_AM_OLD_EXTRA();
                     XuLyKhoaThongTinTheoMaGD();
                     XuLyThayDoiLoaiPhieuThu();
                     detail1.DoAddButtonClick( );

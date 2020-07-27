@@ -487,7 +487,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
         private void InitTuyChon()
         {
             chkNSD.Checked = _formChungTu.Invoice.M_LOC_NSD;
-            if (chkNSD.Checked) chkNSD.Enabled = false;
+            if (chkNSD.Checked && V6Login.Level == "05") chkNSD.Enabled = false;
             ChungTu.SetTxtStatusProperties(_formChungTu.Invoice, txtTrangThai, lblStatusDescription);
         }
 
@@ -495,9 +495,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
         {
             var result = "";
 
-            if (chkNSD.Checked)
+            if (!V6Login.IsAdmin && chkNSD.Checked)
             {
-                result += "user_id2 = " + V6Login.UserId;
+                result += string.Format("(user_id2 = {0} or user_id0 = {0})", V6Login.UserId);
             }
             if (txtTrangThai.Text.Trim() != "")
             {

@@ -1137,30 +1137,15 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             try
             {
-                var save = new SaveFileDialog
+                string fileName = V6ControlFormHelper.ExportExcel_ChooseFile(this, _tbl1, GetExportFileName(), txtReportTitle.Text);
+
+                if (V6Options.AutoOpenExcel)
                 {
-                    Filter = @"Excel files (*.xls)|*.xls|Xlsx|*.xlsx",
-                    FileName = ChuyenMaTiengViet.ToUnSign(GetExportFileName())
-                };
-                if (save.ShowDialog(this) == DialogResult.OK)
+                    V6ControlFormHelper.OpenFileProcess(fileName);
+                }
+                else
                 {
-                    try
-                    {   
-                        V6Tools.V6Export.ExportData.ToExcel(_tbl1, save.FileName, txtReportTitle.Text, true);
-                    }
-                    catch (Exception ex)
-                    {
-                        this.ShowErrorException(GetType() + ".ExportFail: ", ex);
-                        return;
-                    }
-                    if (V6Options.AutoOpenExcel)
-                    {
-                        V6ControlFormHelper.OpenFileProcess(save.FileName);
-                    }
-                    else
-                    {
-                        this.ShowInfoMessage(V6Text.ExportFinish);
-                    }
+                    this.ShowInfoMessage(V6Text.ExportFinish);
                 }
             }
             catch (Exception ex)

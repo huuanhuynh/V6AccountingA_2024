@@ -1268,22 +1268,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             }
             try
             {
-                var save = new SaveFileDialog
+                string fileName = V6ControlFormHelper.ExportExcel_ChooseFile(this, _tbl1, GetExportFileName(), txtReportTitle.Text);
+
+                if (V6Options.AutoOpenExcel)
                 {
-                    Filter = @"Excel files (*.xls)|*.xls|Xlsx|*.xlsx",
-                    FileName = ChuyenMaTiengViet.ToUnSign(GetExportFileName())
-                };
-                if (save.ShowDialog(this) == DialogResult.OK)
+                    V6ControlFormHelper.OpenFileProcess(fileName);
+                }
+                else
                 {
-                    try
-                    {   
-                        V6Tools.V6Export.ExportData.ToExcel(_tbl1, save.FileName, txtReportTitle.Text, true);
-                    }
-                    catch (Exception ex)
-                    {
-                        this.ShowErrorException(GetType() + ".ExportFail " + ReportFileFull + " " + save.FileName, ex);
-                        return;
-                    }
                     this.ShowInfoMessage(V6Text.ExportFinish);
                 }
             }

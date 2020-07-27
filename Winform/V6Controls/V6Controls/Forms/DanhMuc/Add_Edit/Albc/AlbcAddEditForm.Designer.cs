@@ -143,6 +143,7 @@
             this.chkCheckPrint = new V6Controls.V6CheckBox();
             this.txtRPT_DIR = new V6Controls.V6ColorTextBox();
             this.lblRPT_DIR = new System.Windows.Forms.Label();
+            this.dicEditButton1 = new V6Controls.Controls.DicEditButton();
             this.v6TabControl1.SuspendLayout();
             this.tabDinhDangXemVaExcel.SuspendLayout();
             this.tabDinhDangMauVaMoRong.SuspendLayout();
@@ -347,7 +348,7 @@
             this.txtExcel1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtExcel1.HoverColor = System.Drawing.Color.Yellow;
             this.txtExcel1.LeaveColor = System.Drawing.Color.White;
-            this.txtExcel1.Location = new System.Drawing.Point(130, 6);
+            this.txtExcel1.Location = new System.Drawing.Point(99, 6);
             this.txtExcel1.Name = "txtExcel1";
             this.txtExcel1.Size = new System.Drawing.Size(612, 20);
             this.txtExcel1.TabIndex = 2;
@@ -589,7 +590,7 @@
             this.txtShowFields1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtShowFields1.HoverColor = System.Drawing.Color.Yellow;
             this.txtShowFields1.LeaveColor = System.Drawing.Color.White;
-            this.txtShowFields1.Location = new System.Drawing.Point(130, 32);
+            this.txtShowFields1.Location = new System.Drawing.Point(99, 32);
             this.txtShowFields1.Name = "txtShowFields1";
             this.txtShowFields1.Size = new System.Drawing.Size(612, 20);
             this.txtShowFields1.TabIndex = 5;
@@ -689,7 +690,7 @@
             this.txtShowFields2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtShowFields2.HoverColor = System.Drawing.Color.Yellow;
             this.txtShowFields2.LeaveColor = System.Drawing.Color.White;
-            this.txtShowFields2.Location = new System.Drawing.Point(130, 146);
+            this.txtShowFields2.Location = new System.Drawing.Point(99, 146);
             this.txtShowFields2.Name = "txtShowFields2";
             this.txtShowFields2.Size = new System.Drawing.Size(612, 20);
             this.txtShowFields2.TabIndex = 17;
@@ -789,7 +790,7 @@
             this.txtNoSum2.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtNoSum2.HoverColor = System.Drawing.Color.Yellow;
             this.txtNoSum2.LeaveColor = System.Drawing.Color.White;
-            this.txtNoSum2.Location = new System.Drawing.Point(130, 234);
+            this.txtNoSum2.Location = new System.Drawing.Point(99, 234);
             this.txtNoSum2.Name = "txtNoSum2";
             this.txtNoSum2.Size = new System.Drawing.Size(612, 20);
             this.txtNoSum2.TabIndex = 26;
@@ -804,7 +805,7 @@
             this.txtNoSum1.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtNoSum1.HoverColor = System.Drawing.Color.Yellow;
             this.txtNoSum1.LeaveColor = System.Drawing.Color.White;
-            this.txtNoSum1.Location = new System.Drawing.Point(130, 120);
+            this.txtNoSum1.Location = new System.Drawing.Point(99, 120);
             this.txtNoSum1.Name = "txtNoSum1";
             this.txtNoSum1.Size = new System.Drawing.Size(612, 20);
             this.txtNoSum1.TabIndex = 14;
@@ -892,7 +893,7 @@
             this.btnGRDS_V2.AccessibleName = "";
             this.btnGRDS_V2.Enabled = false;
             this.btnGRDS_V2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnGRDS_V2.Location = new System.Drawing.Point(99, 144);
+            this.btnGRDS_V2.Location = new System.Drawing.Point(716, 144);
             this.btnGRDS_V2.Name = "btnGRDS_V2";
             this.btnGRDS_V2.Size = new System.Drawing.Size(25, 23);
             this.btnGRDS_V2.TabIndex = 16;
@@ -907,7 +908,7 @@
             this.btnGRDS_V1.AccessibleName = "";
             this.btnGRDS_V1.Enabled = false;
             this.btnGRDS_V1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnGRDS_V1.Location = new System.Drawing.Point(99, 29);
+            this.btnGRDS_V1.Location = new System.Drawing.Point(716, 29);
             this.btnGRDS_V1.Name = "btnGRDS_V1";
             this.btnGRDS_V1.Size = new System.Drawing.Size(25, 23);
             this.btnGRDS_V1.TabIndex = 4;
@@ -922,7 +923,7 @@
             this.btnNoSum2.AccessibleName = "";
             this.btnNoSum2.Enabled = false;
             this.btnNoSum2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNoSum2.Location = new System.Drawing.Point(99, 232);
+            this.btnNoSum2.Location = new System.Drawing.Point(716, 232);
             this.btnNoSum2.Name = "btnNoSum2";
             this.btnNoSum2.Size = new System.Drawing.Size(25, 23);
             this.btnNoSum2.TabIndex = 25;
@@ -937,7 +938,7 @@
             this.btnNoSum1.AccessibleName = "";
             this.btnNoSum1.Enabled = false;
             this.btnNoSum1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNoSum1.Location = new System.Drawing.Point(99, 118);
+            this.btnNoSum1.Location = new System.Drawing.Point(716, 118);
             this.btnNoSum1.Name = "btnNoSum1";
             this.btnNoSum1.Size = new System.Drawing.Size(25, 23);
             this.btnNoSum1.TabIndex = 13;
@@ -952,7 +953,7 @@
             this.btnEXCEL1.AccessibleName = "";
             this.btnEXCEL1.Enabled = false;
             this.btnEXCEL1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEXCEL1.Location = new System.Drawing.Point(99, 4);
+            this.btnEXCEL1.Location = new System.Drawing.Point(716, 4);
             this.btnEXCEL1.Name = "btnEXCEL1";
             this.btnEXCEL1.Size = new System.Drawing.Size(25, 23);
             this.btnEXCEL1.TabIndex = 1;
@@ -1073,6 +1074,7 @@
             // 
             this.tabDinhDangMauVaMoRong.AccessibleDescription = "ADDEDITT00020";
             this.tabDinhDangMauVaMoRong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabDinhDangMauVaMoRong.Controls.Add(this.dicEditButton1);
             this.tabDinhDangMauVaMoRong.Controls.Add(this.TxtSTT13);
             this.tabDinhDangMauVaMoRong.Controls.Add(this.lblFrozen);
             this.tabDinhDangMauVaMoRong.Controls.Add(this.lblThongTinThem);
@@ -1170,7 +1172,7 @@
             this.txtExtraInfo.Location = new System.Drawing.Point(97, 348);
             this.txtExtraInfo.Margin = new System.Windows.Forms.Padding(4);
             this.txtExtraInfo.Name = "txtExtraInfo";
-            this.txtExtraInfo.Size = new System.Drawing.Size(643, 20);
+            this.txtExtraInfo.Size = new System.Drawing.Size(622, 20);
             this.txtExtraInfo.TabIndex = 2;
             this.toolTipV6FormControl.SetToolTip(this.txtExtraInfo, "CODE:value;CODE2:value2");
             this.txtExtraInfo.Visible = false;
@@ -1796,6 +1798,15 @@
             this.lblRPT_DIR.Text = "RPT_DIR";
             this.lblRPT_DIR.Visible = false;
             // 
+            // dicEditButton1
+            // 
+            this.dicEditButton1.Image = ((System.Drawing.Image)(resources.GetObject("dicEditButton1.Image")));
+            this.dicEditButton1.Location = new System.Drawing.Point(719, 348);
+            this.dicEditButton1.Name = "dicEditButton1";
+            this.dicEditButton1.ReferenceControl = this.txtExtraInfo;
+            this.dicEditButton1.Size = new System.Drawing.Size(21, 21);
+            this.dicEditButton1.TabIndex = 151;
+            // 
             // AlbcAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1970,5 +1981,6 @@
         protected System.Windows.Forms.Button btnGRDS_V1;
         protected System.Windows.Forms.Button btnNoSum2;
         protected System.Windows.Forms.Button btnNoSum1;
+        private Controls.DicEditButton dicEditButton1;
     }
 }

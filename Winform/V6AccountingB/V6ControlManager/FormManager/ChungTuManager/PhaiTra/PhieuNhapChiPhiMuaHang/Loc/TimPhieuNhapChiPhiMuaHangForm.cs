@@ -263,7 +263,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             }
 
             chkNSD.Checked = _formChungTu.Invoice.M_LOC_NSD;
-            if (chkNSD.Checked) chkNSD.Enabled = false;
+            if (chkNSD.Checked && V6Login.Level == "05") chkNSD.Enabled = false;
             ChungTu.SetTxtStatusProperties(_formChungTu.Invoice, txtTrangThai, lblStatusDescription);
         }
 
@@ -271,9 +271,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         {
             var result = "";
 
-            if (chkNSD.Checked)
+            if (!V6Login.IsAdmin && chkNSD.Checked)
             {
-                result += "user_id2 = " + V6Login.UserId;
+                result += string.Format("(user_id2 = {0} or user_id0 = {0})", V6Login.UserId);
             }
             if (txtTrangThai.Text.Trim() != "")
             {
@@ -319,19 +319,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             var result = SqlGenerator.GenWhere2(tableStruct, keys, oper, and, tableLable);
             return result;
         }
-
-        private void LocTuyChonPhieuNhapChiPhiMuaHang_Load(object sender, EventArgs e)
-        {
-            txtMaDVCS.Text = V6Login.Madvcs;
-            if (V6Login.MadvcsCount <= 1)
-            {
-                txtMaDVCS.Enabled = false;
-            }
-
-            chkNSD.Checked = new V6Invoice73().M_LOC_NSD;
-            if (chkNSD.Checked) chkNSD.Enabled = false;
-        }
-
+        
         private void Huy()
         {
             if (!_viewMode && _locKetQua != null && _locKetQua.Visible)

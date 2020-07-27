@@ -935,28 +935,33 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     {
                         // Tuanmh 23/08/2017
                         //id = _aldm ? aldm_config.KEY:
-                        var id = _aldmConfig.IS_ALDM ? _aldmConfig.TABLE_KEY: _v6LookupConfig.vValue;
-
-                        var id_check = _aldmConfig.IS_ALDM ? _aldmConfig.DOI_MA : _v6LookupConfig.vValue;
-
+                        //var id_abc = _aldmConfig.IS_ALDM ? _aldmConfig.TABLE_KEY: _v6LookupConfig.vValue;
+                        var id_check = _aldmConfig.IS_ALDM ? _aldmConfig.KEY : _v6LookupConfig.vValue;
                         var listTable = _aldmConfig.IS_ALDM ? _aldmConfig.F8_TABLE : _v6LookupConfig.ListTable;
-                        var value = "";
+                        //var value = "";
                         var value_show = "";
 
-                        if (String.IsNullOrEmpty(listTable) == false)
+                        if (!string.IsNullOrEmpty(id_check) && !string.IsNullOrEmpty(listTable))
                         {
-                            value = string.IsNullOrEmpty(id) ? "" : row.Cells[id].Value.ToString().Trim();
-                            value_show = value;
-                            var v = _categories.IsExistOneCode_List(listTable, id_check, value);
+                            //value = string.IsNullOrEmpty(id_abc) ? "" : row.Cells[id_abc].Value.ToString().Trim();
+                            
+                            string cKeys = "", cValues = "";
+                            var id_check_list = ObjectAndString.SplitString(id_check);
+                            foreach (string id1 in id_check_list)
+                            {
+                                cKeys += ";" + id1;
+                                cValues += ";" + ObjectAndString.ObjectToString(row.Cells[id1].Value, "yyyyMMdd").Trim();
+                                value_show += "  " + id1 + ":" + ObjectAndString.ObjectToString(row.Cells[id1].Value, "dd/MM/yyyy").Trim();
+                            }
+
+                            cKeys = cKeys.Substring(1);
+                            cValues = cValues.Substring(1);
+                            value_show = value_show.Substring(2);
+                            var v = _categories.IsExistAllCode_List(_aldmConfig.IS_ALDM ? _MA_DM : _v6LookupConfig.vVar, cKeys, cValues);
                             if (v)
                             {
                                 this.ShowWarningMessage(V6Text.DaPhatSinh_KhongDuocXoa);
                                 return;
-                            }
-                            // Change id-> f_name
-                            if (_aldmConfig.IS_ALDM)
-                            {
-                               value_show = string.IsNullOrEmpty(_aldmConfig.F_NAME) ? "" : row.Cells[_aldmConfig.F_NAME].Value.ToString().Trim();
                             }
                         }
 

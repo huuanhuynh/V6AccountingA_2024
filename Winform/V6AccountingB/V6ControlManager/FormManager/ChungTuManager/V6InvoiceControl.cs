@@ -4722,6 +4722,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try
             {
+                if (AM_old == null) return;
                 if (_invoice.EXTRA_INFOR.ContainsKey("AM_OLD"))
                 {
                     var amFields = ObjectAndString.SplitString(_invoice.EXTRA_INFOR["AM_OLD"]);

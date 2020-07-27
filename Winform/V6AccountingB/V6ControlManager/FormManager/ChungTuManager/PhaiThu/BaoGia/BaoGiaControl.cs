@@ -2890,8 +2890,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     txtMa_sonb.Text = AM_old["Ma_sonb"].ToString().Trim();
                     if (txtSoPhieu.Text.Trim() == "")
                         txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
-
-                    GET_AM_OLD_EXTRA();
                 }
             }
             catch (Exception ex)
@@ -3832,6 +3830,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
                     GetTyGiaDefault();
                     GetDefault_Other();
                     SetDefaultData(Invoice);
+                    GET_AM_OLD_EXTRA();
                     detail1.DoAddButtonClick( );
                     var readonly_list = SetControlReadOnlyHide(detail1, Invoice, Mode, V6Mode.Add);
                     if (readonly_list.Contains(detail1.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))

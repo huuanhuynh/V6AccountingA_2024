@@ -3543,8 +3543,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                             txtso_seri.Text = AM_old["SO_SERI"].ToString().Trim();
                         }
                     }
-
-                    GET_AM_OLD_EXTRA();
                 }
             }
             catch (Exception ex)
@@ -4341,6 +4339,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     GetTyGiaDefault();
                     GetDefault_Other();
                     SetDefaultData(Invoice);
+                    GET_AM_OLD_EXTRA();
                     detail1.DoAddButtonClick( );
                     var readonly_list = SetControlReadOnlyHide(detail1, Invoice, Mode, V6Mode.Add);
                     if (readonly_list.Contains(detail1.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))

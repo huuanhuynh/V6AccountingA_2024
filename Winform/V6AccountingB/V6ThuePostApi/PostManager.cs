@@ -325,7 +325,7 @@ namespace V6ThuePostManager
                 result += "Ex: " + ex.Message;
                 paras.Result.ResultErrorMessage = ex.Message;
                 exception = ex.Message;
-                V6ControlFormHelper.WriteExLog("PostManager.PowerDownloadPDF", ex);
+                V6ControlFormHelper.WriteExLog("PostManager.PowerCheckConnection", ex);
             }
             return result;
         }

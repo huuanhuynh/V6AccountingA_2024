@@ -1795,11 +1795,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 txtManx.Text = Invoice.Alct["TK_CO"].ToString().Trim();
                 cboKieuPost.SelectedValue = Invoice.Alct["M_K_POST"].ToString().Trim();
                 TxtTk_i_ao.Text = txtManx.Text;
-
-                if (AM_old != null)
-                {
-                    GET_AM_OLD_EXTRA();
-                }
             }
             catch (Exception ex)
             {
@@ -2688,6 +2683,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     GetTyGiaDefault();
                     GetDefault_Other();
                     SetDefaultData(Invoice);
+                    GET_AM_OLD_EXTRA();
                     detail1.DoAddButtonClick( );
                     var readonly_list = SetControlReadOnlyHide(detail1, Invoice, Mode, V6Mode.Add);
                     if (readonly_list.Contains(detail1.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))

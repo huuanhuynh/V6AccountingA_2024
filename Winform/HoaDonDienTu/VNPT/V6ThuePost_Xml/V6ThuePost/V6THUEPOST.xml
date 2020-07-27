@@ -61,6 +61,7 @@
   <ItemInfo	Field='ProdPrice'	FieldV6='gia2'	Type='Field'	DataType=''/>
   <ItemInfo	Field='Amount'	FieldV6='tien2'	Type='Field'	DataType='long'/>
   <ItemInfo	Field='Total'	FieldV6='tien2'	Type='Field'/>
+  <!--Thue chi tiet-->
   <ItemInfo	Field='Discount'	FieldV6='pt_cki'	Type='Field'/>
   <ItemInfo	Field='DiscountAmount'	FieldV6='ck'	Type='Field'/>
   <ItemInfo	Field='VATRate'	FieldV6='thue_suati'	Type='Field'	DataType='long'/>

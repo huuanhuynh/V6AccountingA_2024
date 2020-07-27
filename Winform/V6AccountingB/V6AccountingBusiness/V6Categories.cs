@@ -279,6 +279,21 @@ namespace V6AccountingBusiness
 
             return false;
         }
+        
+        public bool IsExistAllCode_List(string cMadm, string cKeys, string cValues)
+        {
+            SqlParameter[] plist =
+            {
+                new SqlParameter("@cMadm", cMadm),
+                new SqlParameter("@cKeys", cKeys),
+                new SqlParameter("@cValues", cValues)
+            };
+
+            object obj = SqlConnect.ExecuteScalar(CommandType.StoredProcedure, "VPA_isExistAllCode_List", plist);
+            if (obj != null && (int)obj == 1) return true;
+
+            return false;
+        }
 
         public bool IsExistTwoCode_List(string @cInputTable_list, string @cInputField1, string @cpInput1,
               string @cInputField2, string @cpInput2)

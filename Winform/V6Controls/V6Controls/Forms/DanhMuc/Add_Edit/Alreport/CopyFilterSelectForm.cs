@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Reflection;
 using V6AccountingBusiness;
 using V6Init;
 using V6Structs;
@@ -41,7 +42,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".Load", ex);
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
             }
             Ready();
         }
@@ -73,7 +74,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Alreport
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".LoadGridView", ex);
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
             }
         }
 

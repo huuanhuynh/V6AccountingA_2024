@@ -108,8 +108,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY.Ch
                 txtMaDVCS.ReadOnly = true;
             }
 
-            chkNSD.Checked = Invoice.M_LOC_NSD;
-            if (chkNSD.Checked) chkNSD.Enabled = false;
+            //chkNSD.Checked = Invoice.M_LOC_NSD;
+            //if (chkNSD.Checked && V6Login.Level == "05") chkNSD.Enabled = false;
             ChungTu.SetTxtStatusProperties(Invoice, txtTrangThai, lblStatusDescription);
         }
         
