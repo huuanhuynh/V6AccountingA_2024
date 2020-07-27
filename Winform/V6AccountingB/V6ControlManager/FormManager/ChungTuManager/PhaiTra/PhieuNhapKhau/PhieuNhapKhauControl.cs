@@ -4961,6 +4961,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
 
 
 
+        private TimPhieuNhapKhauForm SearchForm
+        {
+            get
+            {
+                if (_timForm == null || _timForm.IsDisposed)
+                    _timForm = new TimPhieuNhapKhauForm(this);
+                return _timForm;
+            }
+        }
         private TimPhieuNhapKhauForm _timForm;
         private void Xem()
         {
@@ -4968,20 +4977,31 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
             {
                 if (IsHaveInvoice)
                 {
-                    if (_timForm == null) _timForm = new TimPhieuNhapKhauForm(this);
-                    _timForm.ViewMode = true;
-                    _timForm.Refresh0();
-                    _timForm.Visible = false;
-                    _timForm.ShowDialog(this);
+                    SearchForm.ViewMode = true;
+                    SearchForm.Refresh0();
+                    SearchForm.Visible = false;
+                    SearchForm.ShowDialog(this);
                 }
             }
             catch (Exception ex)
             {
-                 this.WriteExLog(GetType() + ".Xem " + _sttRec, ex);
+                this.WriteExLog(GetType() + ".Xem " + _sttRec, ex);
             }
         }
 
-        private void Tim()
+        /// <summary>
+        /// Tìm chứng từ.
+        /// </summary>
+        public void Tim()
+        {
+            Tim("");
+        }
+
+        /// <summary>
+        /// Tìm chứng từ với cờ. 1 Top cuối kỳ.
+        /// </summary>
+        /// <param name="flag"></param>
+        public void Tim(string flag)
         {
             try
             {
@@ -4989,11 +5009,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 {
                     FormManagerHelper.HideMainMenu();
 
-                    if (_timForm == null)
-                        _timForm = new TimPhieuNhapKhauForm(this);
-                    _timForm.ViewMode = false;
-                    _timForm.Visible = false;
-                    _timForm.ShowDialog(this);
+                    SearchForm.ViewMode = false;
+                    SearchForm.Visible = false;
+                    if (flag == "1")
+                    {
+                        SearchForm.ViewMode = true;
+                        SearchForm.SearchTopCuoiKy();
+                    }
+                    SearchForm.ShowDialog(this);
                     btnSua.Focus();
                 }
                 else
@@ -5006,6 +5029,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
                 this.WriteExLog(GetType() + ".Tim " + _sttRec, ex);
             }
         }
+
 
         private void QuayRa()
         {
@@ -7848,8 +7872,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau
         {
             ImportXml();
         }
-
         
+        private void timTopCuoiKyMenu_Click(object sender, EventArgs e)
+        {
+            Tim("1");
+        }
 
         
     }

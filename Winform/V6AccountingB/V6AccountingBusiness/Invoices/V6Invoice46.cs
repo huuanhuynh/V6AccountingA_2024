@@ -281,6 +281,42 @@ namespace V6AccountingBusiness.Invoices
             return tbl;
         }
 
+        public DataTable SearchAM_TopCuoiKy(string where0Ngay, string where1AM, string where2Dvcs, string where3AD, string where4NhVt)
+        {
+            string template =
+                "Select top " + _alctConfig.M_SL_CT0 + " a.*, b.Ma_so_thue, b.Ten_kh AS Ten_kh,f.Ten_nvien AS Ten_nvien "
+                + AMSELECTMORE
+                + "\nFROM "+AM_TableName+" a LEFT JOIN ALkh AS b ON a.Ma_kh = b.Ma_kh LEFT JOIN alnvien  AS f ON a.Ma_nvien = f.Ma_nvien "
+                + AMJOINMORE
+                + "\n JOIN "
+                + "\n (SELECT Stt_rec FROM " + AM_TableName + " WHERE Ma_ct = '" + Mact + "'"
+                + "\n {0} {1} {2} {3}) AS m ON a.Stt_rec = m.Stt_rec"
+                + "\n ORDER BY a.ngay_ct DESC, a.so_ct, a.stt_rec";
+
+            if (where0Ngay.Length > 0) where0Ngay = "And " + where0Ngay;
+            if (where1AM.Length > 0) where1AM = "And " + where1AM;
+            if (where2Dvcs.Length > 0) where2Dvcs=" And "+ where2Dvcs;
+
+
+            var p2Template ="\nAnd Stt_rec in (SELECT Stt_rec FROM " + AD_TableName + " WHERE Ma_ct = '" + Mact + "' {0} {3} {4})";
+                
+            if (where3AD.Length > 0 || where4NhVt.Length > 0 || where2Dvcs.Length > 0)
+            {
+                if (where3AD.Length > 0) where3AD = "And " + where3AD;
+                if (where4NhVt.Length > 0) where4NhVt = "And " + where4NhVt;
+
+                p2Template = string.Format(p2Template, where0Ngay, "1", "2", where3AD, where4NhVt);
+            }
+            else
+            {
+                p2Template = "";
+            }
+
+            var sql = string.Format(template, where0Ngay, where1AM, where2Dvcs, p2Template);
+            var tbl = SqlConnect.ExecuteDataset(CommandType.Text, sql).Tables[0];
+            return tbl;
+        }
+
         public override DataTable LoadAD(string sttRec)
         {
             string sql = "SELECT c.*,d.Ten_tk AS Ten_tk_i " + ADSELECTMORE + " FROM " + AD_TableName + " c LEFT JOIN Altk d ON c.tk_i= d.tk ";

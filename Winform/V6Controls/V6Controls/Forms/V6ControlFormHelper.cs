@@ -4174,25 +4174,21 @@ namespace V6Controls.Forms
             ReorderDataGridViewColumns(dgv, orderList.ToArray(), i);
         }
 
-        public static void ExportExcel_ChooseFile(IWin32Window owner, DataTable data, string defaultSaveName)
+        public static string ExportExcel_ChooseFile(IWin32Window owner, DataTable data, string defaultSaveName)
         {
-            if (data == null)
-            {
-                //ShowTopMessage(V6Text.NoData);
-                return;
-            }
+            return ExportExcel_ChooseFile(owner, data, defaultSaveName, "");
+        }
+
+        public static string ExportExcel_ChooseFile(IWin32Window owner, DataTable data, string defaultSaveName, string title)
+        {
+            string fileName = null;
+            
             try
             {
-                var save = new SaveFileDialog
-                {
-                    Filter = "Excel files (*.xls)|*.xls|Xlsx|*.xlsx",
-                    Title = "Xuất excel.",
-                    FileName = ChuyenMaTiengViet.ToUnSign(defaultSaveName)
-                };
-                if (save.ShowDialog(owner) == DialogResult.OK)
-                {
-                    ExportData.ToExcel(data, save.FileName, "", true);
-                }
+                if (data == null) return fileName;
+                fileName = ChooseSaveFile(owner, "Excel files (*.xls)|*.xls|Xlsx|*.xlsx", ChuyenMaTiengViet.ToUnSign(defaultSaveName));
+                if (string.IsNullOrEmpty(fileName)) return fileName;
+                ExportData.ToExcel(CookingDataForExcel(data), fileName, title, true);
             }
             catch (Exception ex)
             {
@@ -4203,6 +4199,8 @@ namespace V6Controls.Forms
                     ShowErrorException(address, ex);
                 }
             }
+
+            return fileName;
         }
 
 
@@ -4257,7 +4255,35 @@ namespace V6Controls.Forms
             }
             return null;
         }
-        
+
+        /// <summary>
+        /// Copy dữ liệu đưa vào, đổi date 1900 về Dbnull.
+        /// </summary>
+        /// <param name="data">Dữ liệu đầu vào.</param>
+        /// <returns>Dữ liệu kết quả.</returns>
+        public static DataTable CookingDataForExcel(DataTable data)
+        {
+            if (data == null) return null;
+            DateTime _1900 = new DateTime(1900, 1, 1);
+            DataTable result = data.Copy();
+            List<DataColumn> columnList = new List<DataColumn>();
+            foreach (DataColumn column in result.Columns)
+            {
+                if (ObjectAndString.IsDateTimeType(column.DataType))
+                {
+                    columnList.Add(column);
+                }
+            }
+
+            foreach (DataRow row in result.Rows)
+            {
+                foreach (DataColumn column in columnList)
+                {
+                    if (ObjectAndString.ObjectToFullDateTime(row[column]).Date == _1900) row[column] = DBNull.Value;
+                }
+            }
+            return result;
+        }
         
         public static void ExportExcelTemplate(IWin32Window owner, DataTable data, DataTable tbl2,
             IDictionary<string, object> ReportDocumentParameters, string MAU, string LAN,
@@ -4265,7 +4291,8 @@ namespace V6Controls.Forms
         {
             if (ReportDocumentParameters == null) ReportDocumentParameters = new Dictionary<string, object>();
             ExportExcelTemplate_owner = owner;
-            ExportExcelTemplate_data = data.Copy();
+            //ExportExcelTemplate_data = data.Copy();
+            ExportExcelTemplate_data = CookingDataForExcel(data);
             ExportExcelTemplate_tbl2 = tbl2.Copy();
             ExportExcelTemplate_ReportDocumentParameters = ReportDocumentParameters.ToUpperKeys();
             ExportExcelTemplate_MAU = MAU;
@@ -4530,7 +4557,7 @@ namespace V6Controls.Forms
         {
             if (ReportDocumentParameters == null) ReportDocumentParameters = new Dictionary<string, object>();
             ExportExcelTemplateD_owner = owner;
-            ExportExcelTemplateD_data = data;
+            ExportExcelTemplateD_data = CookingDataForExcel(data);
             ExportExcelTemplateD_tbl2 = tbl2;
             ExportExcelTemplateD_MODE = MODE;
             ExportExcelTemplateD_ReportDocumentParameters = ReportDocumentParameters.ToUpperKeys();
@@ -4859,7 +4886,7 @@ namespace V6Controls.Forms
         {
             if (ReportDocumentParameters == null) ReportDocumentParameters = new Dictionary<string, object>();
             ExportExcelGroup_owner = owner;
-            ExportExcelGroup_data = data;
+            ExportExcelGroup_data = CookingDataForExcel(data);
             ExportExcelGroup_data2 = data2;
             ExportExcelGroup_tbl3 = tbl3;
             ExportExcelGroup_ReportDocumentParameters = ReportDocumentParameters.ToUpperKeys();
@@ -5426,7 +5453,7 @@ namespace V6Controls.Forms
             string ReportFile, string excelTemplateFile, string saveFileName)
         {
             if (ReportDocumentParameters == null) ReportDocumentParameters = new Dictionary<string, object>();
-            ExportExcelTemplateONLINE_data = data.Copy();
+            ExportExcelTemplateONLINE_data = CookingDataForExcel(data);
             ExportExcelTemplateONLINE_tbl2 = tbl2.Copy();
             ExportExcelTemplateONLINE_ReportDocumentParameters = ReportDocumentParameters.ToUpperKeys();
             ExportExcelTemplateONLINE_MAU = MAU;
@@ -7087,7 +7114,7 @@ namespace V6Controls.Forms
         /// Chọn một file để lưu. Nếu không chọn trả về rỗng.
         /// </summary>
         /// <param name="owner">Form hooặc control chủ gọi hàm này.</param>
-        /// <param name="filter">Lọc file, vd: All file|*.*</param>
+        /// <param name="filter">Lọc file, vd: All file|*.* hoặc Xls(*.xls)|*.xls|Xlsx|*.xlsx</param>
         /// <param name="fileName">Tên file muốn lưu.</param>
         /// <returns></returns>
         public static string ChooseSaveFile(IWin32Window owner, string filter, string fileName = null)

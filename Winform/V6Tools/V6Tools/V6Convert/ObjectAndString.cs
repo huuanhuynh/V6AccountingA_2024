@@ -139,13 +139,14 @@ namespace V6Tools.V6Convert
         /// Trả về DateTime?
         /// </summary>
         /// <param name="o">chuỗi ngày phải có định dạng dd/MM/yyyy</param>
-        /// <param name="dateFormat">Không còn tác dụng</param>
+        /// <param name="dateFormat">Chuỗi định dạng ngày.</param>
         /// <returns></returns>
         public static DateTime? ObjectToDate(object o, string dateFormat = "dd/MM/yyyy")
         {
-            var result = DateTime.Now;
+            DateTime? result = null;
             if (o == null) return null;
             if (o == DBNull.Value) return null;
+            if (o.ToString().Trim() == string.Empty) return null;
             
             switch (o.GetType().ToString())
             {
@@ -155,27 +156,48 @@ namespace V6Tools.V6Convert
                 default:
                     try
                     {
-                        //result = DateTime.ParseExact(o.ToString().Trim(), dateFormat, null);
+                        if (string.IsNullOrEmpty(dateFormat) || dateFormat.ToUpper() == "DD/MM/YYYY")
+                        {
+                            // parse dd/MM/yyyy.
+                            var t = o.ToString().Trim();
+                            t = t.Replace("_", "");
+                            var index1 = t.IndexOf('/');
+                            var index2 = t.LastIndexOf('/');
+                            var yearString = t.Substring(index2 + 1);
+                            var monthString = t.Substring(index1 + 1, index2 - index1 - 1);
+                            var dayString = t.Substring(0, index1);
 
-                        var t = o.ToString().Trim();
-                        t = t.Replace("_", "");
-                        var index1 = t.IndexOf('/');
-                        var index2 = t.LastIndexOf('/');
-                        var yearString = t.Substring(index2 + 1);
-                        var monthString = t.Substring(index1 + 1, index2 - index1 - 1);
-                        var dayString = t.Substring(0, index1);
-                        
-                        var day = int.Parse(dayString);
-                        var month = int.Parse(monthString);
-                        var year = int.Parse(yearString);
-                        result = new DateTime(year, month, day);
+                            var day = int.Parse(dayString);
+                            var month = int.Parse(monthString);
+                            var year = int.Parse(yearString);
+                            result = new DateTime(year, month, day);
+                            return result;
+                        }
+                        if (dateFormat.Length > 1)
+                        {
+                            DateTime result1;
+                            if (DateTime.TryParseExact(o.ToString().Trim(), dateFormat, null, DateTimeStyles.None, out result1)) return result1;
+                        }
+                        {
+                            // parse dd/MM/yyyy.
+                            var t = o.ToString().Trim();
+                            t = t.Replace("_", "");
+                            var index1 = t.IndexOf('/');
+                            var index2 = t.LastIndexOf('/');
+                            var yearString = t.Substring(index2 + 1);
+                            var monthString = t.Substring(index1 + 1, index2 - index1 - 1);
+                            var dayString = t.Substring(0, index1);
+
+                            var day = int.Parse(dayString);
+                            var month = int.Parse(monthString);
+                            var year = int.Parse(yearString);
+                            result = new DateTime(year, month, day);
+                            return result;
+                        }
                     }
                     catch
                     {
-                        if (dateFormat != null && dateFormat.Length > 1)
-                        {
-                            if (!DateTime.TryParseExact(o.ToString().Trim(), dateFormat, null, DateTimeStyles.None, out result)) return null;
-                        }
+                        
                     }
                     break;
             }
@@ -680,6 +702,25 @@ namespace V6Tools.V6Convert
         public static IDictionary<string, object> StringToDictionary(string tag, char group_char = ';', char element_char = ':')
         {
             Dictionary<string,object> result = new Dictionary<string, object>();
+            string[] sss = string.IsNullOrEmpty(tag) ? new string[]{} : tag.Split(new []{group_char}, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string s in sss)
+            {
+                string[] ss = s.Split(new[] { element_char }, StringSplitOptions.RemoveEmptyEntries);
+                if (ss.Length == 1)
+                {
+                    result.Add("VALUE", ss[0]);
+                }
+                else if (ss.Length > 1)
+                {
+                    result.Add(ss[0].Trim().ToUpper(), ss[1]);
+                }
+            }
+            return result;
+        }
+        
+        public static IDictionary<string, string> StringToStringDictionary(string tag, char group_char = ';', char element_char = ':')
+        {
+            Dictionary<string, string> result = new Dictionary<string, string>();
             string[] sss = string.IsNullOrEmpty(tag) ? new string[]{} : tag.Split(new []{group_char}, StringSplitOptions.RemoveEmptyEntries);
             foreach (string s in sss)
             {

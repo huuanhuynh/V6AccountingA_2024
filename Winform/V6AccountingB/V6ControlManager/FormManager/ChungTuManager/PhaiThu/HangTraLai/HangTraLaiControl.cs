@@ -2680,8 +2680,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                     txtMa_sonb.Text = AM_old["Ma_sonb"].ToString().Trim();
                     if (txtSoPhieu.Text.Trim() == "" && txtMa_sonb.Text.Trim() != "")
                         txtSoPhieu.Text = V6BusinessHelper.GetNewSoCt(txtMa_sonb.Text, dateNgayCT.Date);
-
-                    GET_AM_OLD_EXTRA();
                 }
             }
             catch (Exception ex)
@@ -3580,6 +3578,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                     GetTyGiaDefault();
                     GetDefault_Other();
                     SetDefaultData(Invoice);
+                    GET_AM_OLD_EXTRA();
                     detail1.DoAddButtonClick( );
                     var readonly_list = SetControlReadOnlyHide(detail1, Invoice, Mode, V6Mode.Add);
                     if (readonly_list.Contains(detail1.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))
@@ -3745,6 +3744,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
 
 
+        private TimHangTraLaiForm SearchForm
+        {
+            get
+            {
+                if (_timForm == null || _timForm.IsDisposed)
+                    _timForm = new TimHangTraLaiForm(this);
+                return _timForm;
+            }
+        }
         private TimHangTraLaiForm _timForm;
         private void Xem()
         {
@@ -3752,11 +3760,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             {
                 if (IsHaveInvoice)
                 {
-                    if (_timForm == null) _timForm = new TimHangTraLaiForm(this);
-                    _timForm.ViewMode = true;
-                    _timForm.Refresh0();
-                    _timForm.Visible = false;
-                    _timForm.ShowDialog(this);
+                    SearchForm.ViewMode = true;
+                    SearchForm.Refresh0();
+                    SearchForm.Visible = false;
+                    SearchForm.ShowDialog(this);
                 }
             }
             catch (Exception ex)
@@ -3765,7 +3772,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             }
         }
 
-        private void Tim()
+        /// <summary>
+        /// Tìm chứng từ.
+        /// </summary>
+        public void Tim()
+        {
+            Tim("");
+        }
+
+        /// <summary>
+        /// Tìm chứng từ với cờ. 1 Top cuối kỳ.
+        /// </summary>
+        /// <param name="flag"></param>
+        public void Tim(string flag)
         {
             try
             {
@@ -3773,11 +3792,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 {
                     FormManagerHelper.HideMainMenu();
 
-                    if (_timForm == null)
-                        _timForm = new TimHangTraLaiForm(this);
-                    _timForm.ViewMode = false;
-                    _timForm.Visible = false;
-                    _timForm.ShowDialog(this);
+                    SearchForm.ViewMode = false;
+                    SearchForm.Visible = false;
+                    if (flag == "1")
+                    {
+                        SearchForm.ViewMode = true;
+                        SearchForm.SearchTopCuoiKy();
+                    }
+                    SearchForm.ShowDialog(this);
                     btnSua.Focus();
                 }
                 else
@@ -3790,6 +3812,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 this.WriteExLog(GetType() + ".Tim " + _sttRec, ex);
             }
         }
+
 
         private void QuayRa()
         {
@@ -5523,6 +5546,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         private void importXmlMenu_Click(object sender, EventArgs e)
         {
             ImportXml();
+        }
+
+        private void timTopCuoiKyMenu_Click(object sender, EventArgs e)
+        {
+            Tim("1");
         }
 
 

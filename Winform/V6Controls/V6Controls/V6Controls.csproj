@@ -102,6 +102,9 @@
     <Compile Include="Controls\GridView\GridViewRowEditorForm.Designer.cs">
       <DependentUpon>GridViewRowEditorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\DicEditButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\Algia2AddEditForm_A1.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -113,6 +116,12 @@
     </Compile>
     <Compile Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm_A2.Designer.cs">
       <DependentUpon>VatTuAddEditForm_A2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DicEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DicEditForm.designer.cs">
+      <DependentUpon>DicEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LookupMode.cs" />
     <Compile Include="V6ColorComboBox.cs">
@@ -1540,6 +1549,9 @@
     <EmbeddedResource Include="Controls\GridView\GridViewRowEditorForm.resx">
       <DependentUpon>GridViewRowEditorForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DicEditButton.resx">
+      <DependentUpon>DicEditButton.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Lookup\LookupButton.resx">
       <DependentUpon>LookupButton.cs</DependentUpon>
     </EmbeddedResource>
@@ -1591,6 +1603,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Label\FormChangeControlLanguageText.resx">
       <DependentUpon>FormChangeControlLanguageText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DicEditForm.resx">
+      <DependentUpon>DicEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FieldSelectorForm.resx">
       <DependentUpon>FieldSelectorForm.cs</DependentUpon>

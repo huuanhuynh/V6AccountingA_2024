@@ -119,6 +119,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.thayTheNhieuMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.thayThe2Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.exportXmlMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.importXmlMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.v6Label28 = new V6Controls.V6Label();
             this.txtTkThueNo = new V6Controls.V6VvarTextBox();
             this.chkSuaTkThue = new V6Controls.V6CheckBox();
@@ -199,9 +200,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.btnCopy = new System.Windows.Forms.Button();
             this.btnMoi = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
-            this.btnTim = new System.Windows.Forms.Button();
+            this.btnTim = new wyDay.Controls.SplitButton();
             this.lblNameT = new V6Controls.V6Label();
-            this.importXmlMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuBtnTim = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.timTopCuoiKyMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.timKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -217,6 +220,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.group2.SuspendLayout();
             this.group1.SuspendLayout();
             this.menuBtnIn.SuspendLayout();
+            this.menuBtnTim.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -1426,7 +1430,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.exportXmlMenu,
             this.importXmlMenu});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(181, 290);
+            this.menuChucNang.Size = new System.Drawing.Size(181, 268);
             this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
             // 
             // ChonDonHangBanMenu
@@ -1518,6 +1522,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.exportXmlMenu.Tag = "cancel";
             this.exportXmlMenu.Text = "Export Xml";
             this.exportXmlMenu.Click += new System.EventHandler(this.exportXmlMenu_Click);
+            // 
+            // importXmlMenu
+            // 
+            this.importXmlMenu.AccessibleDescription = "INVOICEM00044";
+            this.importXmlMenu.Name = "importXmlMenu";
+            this.importXmlMenu.Size = new System.Drawing.Size(180, 22);
+            this.importXmlMenu.Text = "Import Xml";
+            this.importXmlMenu.Click += new System.EventHandler(this.importXmlMenu_Click);
             // 
             // v6Label28
             // 
@@ -2654,11 +2666,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             // 
             this.btnTim.AccessibleDescription = "AARCTAR1R00049";
             this.btnTim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnTim.AutoSize = true;
+            this.btnTim.ContextMenuStrip = this.menuBtnTim;
             this.btnTim.Enabled = false;
             this.btnTim.Image = global::V6ControlManager.Properties.Resources.Search24;
             this.btnTim.Location = new System.Drawing.Point(499, 550);
             this.btnTim.Name = "btnTim";
-            this.btnTim.Size = new System.Drawing.Size(74, 32);
+            this.btnTim.Size = new System.Drawing.Size(76, 32);
+            this.btnTim.SplitMenuStrip = this.menuBtnTim;
             this.btnTim.TabIndex = 13;
             this.btnTim.Text = "&Tìm";
             this.btnTim.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -2676,13 +2691,28 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.lblNameT.TabIndex = 21;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // importXmlMenu
+            // menuBtnTim
             // 
-            this.importXmlMenu.AccessibleDescription = "INVOICEM00044";
-            this.importXmlMenu.Name = "importXmlMenu";
-            this.importXmlMenu.Size = new System.Drawing.Size(180, 22);
-            this.importXmlMenu.Text = "Import Xml";
-            this.importXmlMenu.Click += new System.EventHandler(this.importXmlMenu_Click);
+            this.menuBtnTim.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.timTopCuoiKyMenu,
+            this.timKhacMenu});
+            this.menuBtnTim.Name = "menuBtnIn";
+            this.menuBtnTim.Size = new System.Drawing.Size(137, 48);
+            // 
+            // timTopCuoiKyMenu
+            // 
+            this.timTopCuoiKyMenu.AccessibleDescription = "INVOICEM00045";
+            this.timTopCuoiKyMenu.Name = "timTopCuoiKyMenu";
+            this.timTopCuoiKyMenu.Size = new System.Drawing.Size(136, 22);
+            this.timTopCuoiKyMenu.Text = "Top 5 chứng từ";
+            this.timTopCuoiKyMenu.Click += new System.EventHandler(this.timTopCuoiKyMenu_Click);
+            // 
+            // timKhacMenu
+            // 
+            this.timKhacMenu.AccessibleDescription = "INVOICEM00046";
+            this.timKhacMenu.Name = "timKhacMenu";
+            this.timKhacMenu.Size = new System.Drawing.Size(136, 22);
+            this.timKhacMenu.Text = "Khác...";
             // 
             // HoaDonDichVuControl
             // 
@@ -2741,6 +2771,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             this.group1.ResumeLayout(false);
             this.group1.PerformLayout();
             this.menuBtnIn.ResumeLayout(false);
+            this.menuBtnTim.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2762,7 +2793,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
         private V6Controls.V6ColorDataGridView dataGridView1;
         private V6Label v6Label4;
         private NumberTienNt txtTongTienNt2;
-        private System.Windows.Forms.Button btnTim;
+        private wyDay.Controls.SplitButton btnTim;
         private V6DateTimePicker dateNgayLCT;
         private V6Label v6Label5;
         private System.Windows.Forms.GroupBox group2;
@@ -2912,5 +2943,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
         private System.Windows.Forms.ToolStripMenuItem inPhieuThuTienMenu;
         private System.Windows.Forms.ToolStripMenuItem exportXmlMenu;
         private System.Windows.Forms.ToolStripMenuItem importXmlMenu;
+        private System.Windows.Forms.ContextMenuStrip menuBtnTim;
+        private System.Windows.Forms.ToolStripMenuItem timTopCuoiKyMenu;
+        private System.Windows.Forms.ToolStripMenuItem timKhacMenu;
     }
 }

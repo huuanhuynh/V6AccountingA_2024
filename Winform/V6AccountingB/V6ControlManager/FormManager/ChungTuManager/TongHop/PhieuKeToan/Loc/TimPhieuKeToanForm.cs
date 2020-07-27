@@ -18,6 +18,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
     public partial class TimPhieuKeToanForm : V6Form
     {
         private readonly PhieuKeToanControl _formChungTu;
+        private readonly V6Invoice11 _invoice;
         private LocKetQuaPhieuKeToan _locKetQua;
         //private bool __ready = false;
         private List<string> _orderList2;
@@ -43,6 +44,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
         {
             InitializeComponent();
             _formChungTu = formChungTu;
+            _invoice = _formChungTu.Invoice;
             _orderList2 = orderList2;
             MyInit();
         }
@@ -52,10 +54,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
             InitTuyChon();
             InitLocKetQua();
 
-            locThongTin1.CreateDynamicFilter(_formChungTu.Invoice.AMStruct, _formChungTu.Invoice.ADV_AM);
-            locThongTinChiTiet1.CreateDynamicFilter2(_formChungTu.Invoice.ADStruct, _formChungTu.Invoice.ADV_AD);
+            locThongTin1.CreateDynamicFilter(_invoice.AMStruct, _invoice.ADV_AM);
+            locThongTinChiTiet1.CreateDynamicFilter2(_invoice.ADStruct, _invoice.ADV_AD);
 
-            LoadDefaultData(4, _formChungTu.Invoice.Mact, "SEARCH_" + _formChungTu.Invoice.Mact, ItemID);
+            LoadDefaultData(4, _invoice.Mact, "SEARCH_" + _invoice.Mact, ItemID);
             
         }
 
@@ -63,7 +65,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
         {
             try
             {
-                _locKetQua = new LocKetQuaPhieuKeToan(_formChungTu.Invoice, _formChungTu.AM, _formChungTu.AD)
+                _locKetQua = new LocKetQuaPhieuKeToan(_invoice, _formChungTu.AM, _formChungTu.AD)
                 {
                     Dock = DockStyle.Fill,
                     Visible = false
@@ -95,7 +97,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
         {
             ShowLocKetQua();
             _locKetQua.SetAM(tempAM);
-            ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _formChungTu.Invoice.Mact, _formChungTu.MA_NT);
+            ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _invoice.Mact, _formChungTu.MA_NT);
         }
 
         private void ShowLocKetQua()
@@ -143,6 +145,53 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
                 this.ShowErrorMessage(GetType() + ".Tìm chứng từ lỗi:\n" + ex.Message);
             }
         }
+
+        /// <summary>
+        /// 1 tìm top cuối kỳ.
+        /// </summary>
+        private string flag_search_topcuoiky = "";
+        public void SearchTopCuoiKy()
+        {
+            SearchThread_TopCuoiKy();
+        }
+
+        private void SearchThread_TopCuoiKy()
+        {
+            //ReadyFor
+            CheckForIllegalCrossThreadCalls = false;
+            Timer timerCheckSearch = new Timer { Interval = 500 };
+            timerCheckSearch.Tick += checkSearch_Tick;
+            flagSearchFinish = false;
+            flagSearchSuccess = false;
+            btnNhan.Enabled = false;
+            PrepareThread_TopCuoiKy();
+            flag_search_topcuoiky = "1";
+            new Thread(DoSearch)
+                {
+                    IsBackground = true
+                }
+                .Start();
+
+            timerCheckSearch.Start();
+        }
+
+        private void PrepareThread_TopCuoiKy()
+        {
+            var stru = _invoice.AMStruct;
+            _where0Time = string.Format("ngay_ct <= '{0:yyyyMMdd}'", V6Setting.M_Ngay_ck);
+            _where1AM = locThongTin1.GetFilterSql(stru, "", chkTTstart.Checked ? "start" : "like");
+            var w1 = GetAMFilterSql_TuyChon();
+            if (w1.Length > 0)
+                _where1AM += (_where1AM.Length > 0 ? " and " : "") + w1;
+
+            var AD_Struct = _invoice.ADStruct;
+            _where2AD = locThongTinChiTiet1.GetFilterSql(AD_Struct, "", chkTTCTstart.Checked ? "start" : "like");
+            _w3NhomVt = GetNhVtFilterSql_TuyChon("", chkTuyChonStart.Checked ? "start" : "like");
+            //var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
+            //var w4Dvcs = locTuyChon1.GetDvcsFilterSql(struDvcs, "", "start");
+        }
+
+
 
 
 
@@ -203,14 +252,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
 
         private void PrepareThread()
         {
-            var stru = _formChungTu.Invoice.AMStruct;
+            var stru = _invoice.AMStruct;
             _where0Time = locThoiGian1.GetFilterSql(stru, "", chkThoiGianStart.Checked ? "start" : "like");
             _where1AM = locThongTin1.GetFilterSql(stru, "", chkTTstart.Checked ? "start" : "like");
             var w1 = GetAMFilterSql_TuyChon();
             if (w1.Length > 0)
                 _where1AM += (_where1AM.Length > 0 ? " and " : "") + w1;
 
-            var AD_Struct = _formChungTu.Invoice.ADStruct;
+            var AD_Struct = _invoice.ADStruct;
             _where2AD = locThongTinChiTiet1.GetFilterSql(AD_Struct, "", chkTTCTstart.Checked ? "start" : "like");
             _w3NhomVt = GetNhVtFilterSql_TuyChon("", chkTuyChonStart.Checked ? "start" : "like");
             //var struDvcs = V6BusinessHelper.GetTableStruct("ALDVCS");
@@ -221,7 +270,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
         {
             try
             {
-                tempAM = _formChungTu.Invoice.SearchAM(_where0Time, _where1AM, _where2AD, _w3NhomVt, "");
+                if (flag_search_topcuoiky == "1")
+                {
+                    tempAM = _invoice.SearchAM_TopCuoiKy(_where0Time, _where1AM, _where2AD, _w3NhomVt, "");
+                }
+                else
+                {
+                    tempAM = _invoice.SearchAM(_where0Time, _where1AM, _where2AD, _w3NhomVt, "");
+                }
+
                 if (tempAM != null && tempAM.Rows.Count > 0)
                 {
                     flagSearchSuccess = true;
@@ -247,7 +304,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
 
             chkNSD.Checked = new V6Invoice71().M_LOC_NSD;
             if (chkNSD.Checked && V6Login.Level == "05") chkNSD.Enabled = false;
-            ChungTu.SetTxtStatusProperties(_formChungTu.Invoice, txtTrangThai, lblStatusDescription);
+            ChungTu.SetTxtStatusProperties(_invoice, txtTrangThai, lblStatusDescription);
         }
 
         public string GetAMFilterSql_TuyChon()
@@ -359,7 +416,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan.Loc
             {
                 this.WriteExLog(GetType() + ".UpdateAM", ex);
             }
-            ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _formChungTu.Invoice.Mact, _formChungTu.MA_NT);
+            ChungTu.ViewSearchSumary(this, tempAM, lblDocSoTien, _invoice.Mact, _formChungTu.MA_NT);
         }
     }
 }
