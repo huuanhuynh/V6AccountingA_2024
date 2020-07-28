@@ -175,7 +175,7 @@
             this.txtAp_tg_gd.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtAp_tg_gd.HoverColor = System.Drawing.Color.Yellow;
             this.txtAp_tg_gd.LeaveColor = System.Drawing.Color.White;
-            this.txtAp_tg_gd.LimitCharacters = "01";
+            this.txtAp_tg_gd.LimitCharacters = "0;1";
             this.txtAp_tg_gd.Location = new System.Drawing.Point(175, 74);
             this.txtAp_tg_gd.MaxLength = 1;
             this.txtAp_tg_gd.MaxNumLength = 1;
@@ -302,6 +302,7 @@
             // 
             this.txtMaDvcs.AccessibleDescription = "FILTERL00005";
             this.txtMaDvcs.AccessibleName2 = "MA_DVCS";
+            this.txtMaDvcs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
             this.txtMaDvcs.Caption = "Mã đơn vị";
             this.txtMaDvcs.FieldName = "MA_DVCS";
             this.txtMaDvcs.Location = new System.Drawing.Point(9, 44);
@@ -358,7 +359,7 @@
             0,
             0,
             0,
-            196608});
+            0});
             // 
             // v6Label17
             // 
@@ -393,7 +394,7 @@
             this.txtLoai_cl.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtLoai_cl.HoverColor = System.Drawing.Color.Yellow;
             this.txtLoai_cl.LeaveColor = System.Drawing.Color.White;
-            this.txtLoai_cl.LimitCharacters = "1345";
+            this.txtLoai_cl.LimitCharacters = "1;3;4;5";
             this.txtLoai_cl.Location = new System.Drawing.Point(175, 170);
             this.txtLoai_cl.MaxLength = 1;
             this.txtLoai_cl.MaxNumLength = 1;

@@ -80,7 +80,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 txtMaCt.Text = "S0K";
                 if (_mode == V6Mode.Add)
                 {
-                    txtma_tt.Value = 2;
+                    txtma_tt.Text = "2";
                 }
 
 

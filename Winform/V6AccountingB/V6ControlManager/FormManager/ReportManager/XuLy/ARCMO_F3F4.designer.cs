@@ -114,8 +114,6 @@
             // txtMaCt
             // 
             this.txtMaCt.AccessibleName = "MA_CT";
-            this.txtMaCt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMaCt.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaCt.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtMaCt.EnterColor = System.Drawing.Color.PaleGreen;
@@ -278,8 +276,6 @@
             // txtma_nt
             // 
             this.txtma_nt.AccessibleName = "ma_nt";
-            this.txtma_nt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtma_nt.BackColor = System.Drawing.Color.White;
             this.txtma_nt.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtma_nt.BrotherFields = "ten_nt";
@@ -300,8 +296,6 @@
             // txtdien_giai
             // 
             this.txtdien_giai.AccessibleName = "dien_giai";
-            this.txtdien_giai.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtdien_giai.BackColor = System.Drawing.Color.White;
             this.txtdien_giai.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtdien_giai.BrotherFields = "";
@@ -345,8 +339,6 @@
             // Txtt_tien
             // 
             this.Txtt_tien.AccessibleName = "t_tien";
-            this.Txtt_tien.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.Txtt_tien.BackColor = System.Drawing.Color.White;
             this.Txtt_tien.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.Txtt_tien.DecimalPlaces = 0;
@@ -400,8 +392,6 @@
             // txttk
             // 
             this.txttk.AccessibleName = "tk";
-            this.txttk.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txttk.BackColor = System.Drawing.Color.White;
             this.txttk.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txttk.BrotherFields = "Ten_Tk";
@@ -650,8 +640,6 @@
             // txtma_tt
             // 
             this.txtma_tt.AccessibleName = "ma_tt";
-            this.txtma_tt.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtma_tt.BackColor = System.Drawing.Color.White;
             this.txtma_tt.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtma_tt.DecimalPlaces = 0;
@@ -660,7 +648,7 @@
             this.txtma_tt.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
             this.txtma_tt.HoverColor = System.Drawing.Color.Yellow;
             this.txtma_tt.LeaveColor = System.Drawing.Color.White;
-            this.txtma_tt.LimitCharacters = "12";
+            this.txtma_tt.LimitCharacters = "1;2";
             this.txtma_tt.Location = new System.Drawing.Point(159, 376);
             this.txtma_tt.MaxLength = 1;
             this.txtma_tt.Name = "txtma_tt";
@@ -697,8 +685,6 @@
             // txttk_i
             // 
             this.txttk_i.AccessibleName = "tk_i";
-            this.txttk_i.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txttk_i.BackColor = System.Drawing.Color.White;
             this.txttk_i.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txttk_i.BrotherFields = "Ten_Tk";

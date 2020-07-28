@@ -79,7 +79,7 @@
             this.txtKind.HoverColor = System.Drawing.Color.Yellow;
             this.txtKind.ImeMode = System.Windows.Forms.ImeMode.On;
             this.txtKind.LeaveColor = System.Drawing.Color.White;
-            this.txtKind.LimitCharacters = "01";
+            this.txtKind.LimitCharacters = "0;1";
             this.txtKind.Location = new System.Drawing.Point(263, 3);
             this.txtKind.MaxLength = 1;
             this.txtKind.Name = "txtKind";
