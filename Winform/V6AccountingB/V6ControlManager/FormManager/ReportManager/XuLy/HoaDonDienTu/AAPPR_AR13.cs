@@ -132,7 +132,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var map_table = V6BusinessHelper.ExecuteProcedure("VPA_GET_V6MAPINFO", plist0).Tables[0];
                        
                         // Download
-                        // 1:VIETTEL 2:VNPT 3:BKAV
+                        // 1:VIETTEL 2or4:VNPT 3:BKAV
                         if (FilterControl.String1 == "1")
                         {
                             string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
@@ -159,7 +159,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 continue;
                             }
                         }
-                        else if (FilterControl.String1 == "2")
+                        else if (FilterControl.String1 == "2" || FilterControl.String1 == "4")
                         {
                             string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
                             //var download = PostManager.DownloadInvFkeyNoPay(fkey_hd);
@@ -170,6 +170,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 //InvoiceNo = invoiceNo,
                                 Fkey_hd = fkey_hd,
                                 //Pattern = pattern,
+                                Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
                             };
                             pdf_file = PostManager.PowerDownloadPDF(pmparams1, out error);
                             if (!string.IsNullOrEmpty(error))

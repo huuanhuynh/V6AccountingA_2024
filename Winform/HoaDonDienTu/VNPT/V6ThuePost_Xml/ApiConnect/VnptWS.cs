@@ -140,14 +140,28 @@ namespace V6ThuePostXmlApi
         /// <summary>
         /// Tải về file PDF hóa đơn. Trả về đường dẫn file.
         /// </summary>
+        /// <param name="linkPortal"></param>
+        /// <param name="option">0 - Bản pdf thông thường; 1 - Bản pdf chuyển đổi.</param>
+        /// <param name="fkey"></param>
+        /// <param name="userName"></param>
+        /// <param name="userPass"></param>
+        /// <param name="saveFolder"></param>
+        /// <param name="v6return"></param>
         /// <returns></returns>
-        public static string DownloadInvPDFFkey(string linkPortal, string fkey, string userName, string userPass, string saveFolder, out V6Return v6return)
+        public static string DownloadInvPDFFkey(string linkPortal, int option, string fkey, string userName, string userPass, string saveFolder, out V6Return v6return)
         {
             string result = null;
             v6return = new V6Return();
             try
             {
-                result = new PortalService.PortalService(linkPortal).downloadInvPDFFkey(fkey, userName, userPass);
+                if (option == 1)
+                {
+                    result = new PortalService.PortalService(linkPortal).convertForStoreFkey(fkey, userName, userPass);
+                }
+                else
+                {
+                    result = new PortalService.PortalService(linkPortal).downloadInvPDFFkey(fkey, userName, userPass);
+                }
                 v6return.RESULT_STRING = result;
                 if (result.StartsWith("ERR")) v6return.RESULT_ERROR_MESSAGE = result;
 

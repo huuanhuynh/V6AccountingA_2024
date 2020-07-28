@@ -382,7 +382,8 @@ namespace V6ThuePostManager
                         result = ViettelDownloadInvoicePDF(paras);
                         break;
                     case "2": case "4":
-                        result = VnptWS.DownloadInvPDFFkey(_link_Portal_vnpt, paras.Fkey_hd, _username, _password, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
+                        int option = ObjectAndString.ObjectToInt(paras.Mode);
+                        result = VnptWS.DownloadInvPDFFkey(_link_Portal_vnpt, option, paras.Fkey_hd, _username, _password, V6Setting.V6SoftLocalAppData_Directory, out paras.Result.V6ReturnValues);
                         break;
                     case "3":
                         result = BkavDownloadInvoicePDF(paras);
