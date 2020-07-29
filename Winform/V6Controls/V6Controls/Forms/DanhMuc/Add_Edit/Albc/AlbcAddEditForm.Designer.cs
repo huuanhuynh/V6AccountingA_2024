@@ -95,10 +95,11 @@
             this.v6ColorTextBox16 = new V6Controls.V6ColorTextBox();
             this.label47 = new System.Windows.Forms.Label();
             this.tabDinhDangMauVaMoRong = new System.Windows.Forms.TabPage();
+            this.dicEditButton1 = new V6Controls.Controls.DicEditButton();
+            this.txtExtraInfo = new V6Controls.V6ColorTextBox();
             this.TxtSTT13 = new V6Controls.V6NumberTextBox();
             this.lblFrozen = new System.Windows.Forms.Label();
             this.lblThongTinThem = new System.Windows.Forms.Label();
-            this.txtExtraInfo = new V6Controls.V6ColorTextBox();
             this.grbSum = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
@@ -143,7 +144,6 @@
             this.chkCheckPrint = new V6Controls.V6CheckBox();
             this.txtRPT_DIR = new V6Controls.V6ColorTextBox();
             this.lblRPT_DIR = new System.Windows.Forms.Label();
-            this.dicEditButton1 = new V6Controls.Controls.DicEditButton();
             this.v6TabControl1.SuspendLayout();
             this.tabDinhDangXemVaExcel.SuspendLayout();
             this.tabDinhDangMauVaMoRong.SuspendLayout();
@@ -1111,6 +1111,35 @@
             this.tabDinhDangMauVaMoRong.TabIndex = 1;
             this.tabDinhDangMauVaMoRong.Text = "Định dạng màu và mở rộng";
             // 
+            // dicEditButton1
+            // 
+            this.dicEditButton1.Image = ((System.Drawing.Image)(resources.GetObject("dicEditButton1.Image")));
+            this.dicEditButton1.Location = new System.Drawing.Point(719, 348);
+            this.dicEditButton1.Name = "dicEditButton1";
+            this.dicEditButton1.ReferenceControl = this.txtExtraInfo;
+            this.dicEditButton1.Size = new System.Drawing.Size(21, 21);
+            this.dicEditButton1.TabIndex = 151;
+            // 
+            // txtExtraInfo
+            // 
+            this.txtExtraInfo.AccessibleName = "EXTRA_INFOR";
+            this.txtExtraInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtExtraInfo.BackColor = System.Drawing.Color.White;
+            this.txtExtraInfo.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtExtraInfo.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtExtraInfo.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtExtraInfo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtExtraInfo.HoverColor = System.Drawing.Color.Yellow;
+            this.txtExtraInfo.LeaveColor = System.Drawing.Color.White;
+            this.txtExtraInfo.Location = new System.Drawing.Point(97, 348);
+            this.txtExtraInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExtraInfo.Name = "txtExtraInfo";
+            this.txtExtraInfo.Size = new System.Drawing.Size(622, 20);
+            this.txtExtraInfo.TabIndex = 2;
+            this.toolTipV6FormControl.SetToolTip(this.txtExtraInfo, "CODE:value;CODE2:value2");
+            this.txtExtraInfo.Visible = false;
+            // 
             // TxtSTT13
             // 
             this.TxtSTT13.AccessibleName = "FROZENV";
@@ -1156,26 +1185,6 @@
             this.lblThongTinThem.TabIndex = 1;
             this.lblThongTinThem.Text = "Thông tin thêm";
             this.lblThongTinThem.Visible = false;
-            // 
-            // txtExtraInfo
-            // 
-            this.txtExtraInfo.AccessibleName = "EXTRA_INFOR";
-            this.txtExtraInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtExtraInfo.BackColor = System.Drawing.Color.White;
-            this.txtExtraInfo.BackColorDisabled = System.Drawing.SystemColors.Control;
-            this.txtExtraInfo.EnterColor = System.Drawing.Color.PaleGreen;
-            this.txtExtraInfo.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtExtraInfo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
-            this.txtExtraInfo.HoverColor = System.Drawing.Color.Yellow;
-            this.txtExtraInfo.LeaveColor = System.Drawing.Color.White;
-            this.txtExtraInfo.Location = new System.Drawing.Point(97, 348);
-            this.txtExtraInfo.Margin = new System.Windows.Forms.Padding(4);
-            this.txtExtraInfo.Name = "txtExtraInfo";
-            this.txtExtraInfo.Size = new System.Drawing.Size(622, 20);
-            this.txtExtraInfo.TabIndex = 2;
-            this.toolTipV6FormControl.SetToolTip(this.txtExtraInfo, "CODE:value;CODE2:value2");
-            this.txtExtraInfo.Visible = false;
             // 
             // grbSum
             // 
@@ -1797,15 +1806,6 @@
             this.lblRPT_DIR.TabIndex = 14;
             this.lblRPT_DIR.Text = "RPT_DIR";
             this.lblRPT_DIR.Visible = false;
-            // 
-            // dicEditButton1
-            // 
-            this.dicEditButton1.Image = ((System.Drawing.Image)(resources.GetObject("dicEditButton1.Image")));
-            this.dicEditButton1.Location = new System.Drawing.Point(719, 348);
-            this.dicEditButton1.Name = "dicEditButton1";
-            this.dicEditButton1.ReferenceControl = this.txtExtraInfo;
-            this.dicEditButton1.Size = new System.Drawing.Size(21, 21);
-            this.dicEditButton1.TabIndex = 151;
             // 
             // AlbcAddEditForm
             // 

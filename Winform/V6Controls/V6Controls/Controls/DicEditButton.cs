@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
-using V6Controls.Forms;
+using V6Controls.Forms.Editor;
 using V6Tools.V6Convert;
 
 namespace V6Controls.Controls
@@ -46,7 +46,7 @@ namespace V6Controls.Controls
         [Category("V6")]
         [DefaultValue(";")]
         [Description("Ký tự phân cách các phần tử.")]
-        public string ItemSeparator
+        public string Separator_Item
         {
             get { return _itemSeparator;}
             set
@@ -57,9 +57,9 @@ namespace V6Controls.Controls
         private string _itemSeparator = ";";
         
         [Category("V6")]
-        [DefaultValue(";")]
+        [DefaultValue(":")]
         [Description("Ký tự phân cách các phần tử.")]
-        public string ValueSeparator
+        public string Separator_Value
         {
             get { return _valueSeparator; }
             set
@@ -67,7 +67,7 @@ namespace V6Controls.Controls
                 if (value.Length == 1) _valueSeparator = value;
             }
         }
-        private string _valueSeparator = ";";
+        private string _valueSeparator = ":";
 
         /// <summary>
         /// Kết nối với một Control
@@ -156,7 +156,7 @@ namespace V6Controls.Controls
                 DicEditForm form = new DicEditForm(source);
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
-                    ReferenceControl.Text = form.GetString(ItemSeparator, ValueSeparator);
+                    ReferenceControl.Text = form.GetString(Separator_Item, Separator_Value);
                 }
             }
             catch (Exception ex)

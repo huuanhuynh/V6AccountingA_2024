@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
 using System.Windows.Forms;
-using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
-using V6Init;
-using V6Tools.V6Convert;
 
-namespace V6Controls.Forms
+namespace V6Controls.Forms.Editor
 {
     public partial class DicEditForm : V6Form
     {
@@ -16,23 +13,89 @@ namespace V6Controls.Forms
             InitializeComponent();
         }
 
+        private DataTable _dataSource;
+
         public DicEditForm(IDictionary<string, string> sourceDic)
         {
             InitializeComponent();
+            CreateDataSource();
             AddList(sourceDic);
             Ready();
+        }
+
+        private void CreateDataSource()
+        {
+            try
+            {
+                _dataSource = new DataTable("Dic");
+                _dataSource.Columns.Add("Name", typeof(string));
+                _dataSource.Columns.Add("Value", typeof(string));
+
+                dataGridView1.DataSource = _dataSource;
+                dataGridView1.Columns[0].Width = 100;
+                dataGridView1.Columns[1].Width = 300;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
         }
 
         private void AddList(IDictionary<string, string> sourceDic)
         {
             try
             {
-                listBox1.DisplayMember = "Name";
-                listBox1.ValueMember = "Value";
-                
                 foreach (KeyValuePair<string, string> item in sourceDic)
                 {
-                    listBox1.Items.Add(new V6ListBoxItem(item.Key, item.Value));
+                    var newRow = _dataSource.NewRow();
+                    newRow["Name"] = item.Key;
+                    newRow["Value"] = item.Value;
+                    _dataSource.Rows.Add(newRow);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
+        }
+
+        private void Them()
+        {
+            try
+            {
+                var newRow = _dataSource.NewRow();
+                newRow["Name"] = txtNewKey.Text != "" ? txtNewKey.Text : "Name";
+                newRow["Value"] = "Value";
+                _dataSource.Rows.Add();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
+        }
+
+        private void UpdateListViewItemName(string name)
+        {
+            try
+            {
+                if (dataGridView1.CurrentRow != null)
+                {
+                    dataGridView1.CurrentRow.Cells["Name"].Value = name;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
+        }
+
+        private void Xoa()
+        {
+            try
+            {
+                if (dataGridView1.CurrentRow != null)
+                {
+                    dataGridView1.Rows.Remove(dataGridView1.CurrentRow);
                 }
             }
             catch (Exception ex)
@@ -100,6 +163,7 @@ namespace V6Controls.Forms
 
         private void txtName_TextChanged(object sender, EventArgs e)
         {
+            if (flag_change) return;
             UpdateListViewItemName(txtName.Text);
         }
 
@@ -108,26 +172,11 @@ namespace V6Controls.Forms
             UpdateListViewItemValue(txtValue.Text);
         }
 
-        private void UpdateListViewItemName(string key)
-        {
-            try
-            {
-                if (_currentItem != null)
-                {
-                    _currentItem.Name = key;
-                }
-            }
-            catch (Exception ex)
-            {
-                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
-            }
-        }
-
         private void UpdateListViewItemValue(string value)
         {
             try
             {
-                if (_currentItem != null) _currentItem.Value = value;
+                if (dataGridView1.CurrentRow != null) dataGridView1.CurrentRow.Cells["Value"].Value = value;
             }
             catch (Exception ex)
             {
@@ -135,22 +184,24 @@ namespace V6Controls.Forms
             }
         }
 
-        private V6ListBoxItem _currentItem;
+        private bool flag_change = false;
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            flag_change = true;
             try
             {
-                _currentItem = listBox1.SelectedItem as V6ListBoxItem;
-                if (_currentItem != null)
+                if (dataGridView1.CurrentRow != null)
                 {
-                    txtName.Text = _currentItem.Name;
-                    txtValue.Text = _currentItem.Value;
+                    txtName.Text = dataGridView1.CurrentRow.Cells["Name"].Value.ToString();
+                    txtValue.Text = dataGridView1.CurrentRow.Cells["Value"].Value.ToString();
                 }
             }
             catch (Exception ex)
             {
                 this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
             }
+
+            flag_change = false;
         }
 
         public string GetString(string itemSeparator, string valueSeparator)
@@ -158,10 +209,9 @@ namespace V6Controls.Forms
             string result = "";
             try
             {
-                foreach (object item in listBox1.Items)
+                foreach (DataRow row in _dataSource.Rows)
                 {
-                    var listItem = (V6ListBoxItem) item;
-                    result += itemSeparator + listItem.Name + valueSeparator + listItem.Value;
+                    result += itemSeparator + row["Name"] + valueSeparator + row["Value"];
                 }
 
                 if (result.Length > itemSeparator.Length) result = result.Substring(itemSeparator.Length);
@@ -173,17 +223,27 @@ namespace V6Controls.Forms
 
             return result;
         }
-    }
 
-    internal class V6ListBoxItem
-    {
-        public V6ListBoxItem(string name, string value)
+        private void btnThem_Click(object sender, EventArgs e)
         {
-            Name = name;
-            Value = value;
+            Them();
         }
 
-        public string Name { get; set; }
-        public string Value { get; set; }
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            Xoa();
+        }
     }
+
+    //internal class V6ListBoxItem
+    //{
+    //    public V6ListBoxItem(string name, string value)
+    //    {
+    //        Name = name;
+    //        Value = value;
+    //    }
+
+    //    public string Name { get; set; }
+    //    public string Value { get; set; }
+    //}
 }

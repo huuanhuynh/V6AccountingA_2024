@@ -38,6 +38,7 @@ namespace V6Controls.Controls
         /// Phần chữ đầu dòng.
         /// </summary>
         [Description("Phần chữ đầu dòng")]
+        [DefaultValue("Filter")]
         protected string SumText
         {
             get { return _sumText; }

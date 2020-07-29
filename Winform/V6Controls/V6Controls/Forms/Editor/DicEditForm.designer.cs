@@ -1,4 +1,4 @@
-﻿namespace V6Controls.Forms
+﻿namespace V6Controls.Forms.Editor
 {
     partial class DicEditForm
     {
@@ -29,8 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DicEditForm));
-            this.txtTim = new System.Windows.Forms.TextBox();
+            this.txtNewKey = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnTimTiep = new System.Windows.Forms.Button();
             this.btnTimTatCa = new System.Windows.Forms.Button();
@@ -38,19 +41,21 @@
             this.btnNhan = new System.Windows.Forms.Button();
             this.btnMove2Up = new System.Windows.Forms.Button();
             this.btnMove2Down = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.txtValue = new V6Controls.V6ColorTextBox();
             this.btnThem = new System.Windows.Forms.Button();
             this.txtName = new System.Windows.Forms.TextBox();
+            this.btnXoa = new System.Windows.Forms.Button();
+            this.dataGridView1 = new V6Controls.V6ColorDataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // txtTim
+            // txtNewKey
             // 
-            this.txtTim.Location = new System.Drawing.Point(12, 12);
-            this.txtTim.Name = "txtTim";
-            this.txtTim.Size = new System.Drawing.Size(158, 20);
-            this.txtTim.TabIndex = 0;
-            this.txtTim.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTim_KeyDown);
+            this.txtNewKey.Location = new System.Drawing.Point(12, 12);
+            this.txtNewKey.Name = "txtNewKey";
+            this.txtNewKey.Size = new System.Drawing.Size(158, 20);
+            this.txtNewKey.TabIndex = 0;
+            this.txtNewKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTim_KeyDown);
             // 
             // timer1
             // 
@@ -131,19 +136,6 @@
             this.btnMove2Down.UseVisualStyleBackColor = true;
             this.btnMove2Down.Click += new System.EventHandler(this.btnMove2Down_Click);
             // 
-            // listBox1
-            // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 24;
-            this.listBox1.Location = new System.Drawing.Point(12, 38);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(236, 412);
-            this.listBox1.TabIndex = 13;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-            // 
             // txtValue
             // 
             this.txtValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -173,7 +165,7 @@
             this.btnThem.TabIndex = 1;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = true;
-            this.btnThem.Click += new System.EventHandler(this.btnTimTatCa_Click);
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // txtName
             // 
@@ -184,23 +176,66 @@
             this.txtName.TabIndex = 0;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
+            // btnXoa
+            // 
+            this.btnXoa.Location = new System.Drawing.Point(419, 10);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Size = new System.Drawing.Size(75, 23);
+            this.btnXoa.TabIndex = 1;
+            this.btnXoa.Text = "Xóa";
+            this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Control_E = true;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 38);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.Size = new System.Drawing.Size(236, 412);
+            this.dataGridView1.TabIndex = 34;
+            this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
             // DicEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(794, 518);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtValue);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.btnMove2Down);
             this.Controls.Add(this.btnMove2Up);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnNhan);
+            this.Controls.Add(this.btnXoa);
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.btnTimTatCa);
             this.Controls.Add(this.btnTimTiep);
             this.Controls.Add(this.txtName);
-            this.Controls.Add(this.txtTim);
+            this.Controls.Add(this.txtNewKey);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "DicEditForm";
             this.ShowInTaskbar = false;
@@ -209,18 +244,20 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SelectMultiIDForm_FormClosing);
             this.Load += new System.EventHandler(this.SelectMultiIDForm_Load);
             this.SizeChanged += new System.EventHandler(this.DicEditForm_SizeChanged);
-            this.Controls.SetChildIndex(this.txtTim, 0);
+            this.Controls.SetChildIndex(this.txtNewKey, 0);
             this.Controls.SetChildIndex(this.txtName, 0);
             this.Controls.SetChildIndex(this.btnTimTiep, 0);
             this.Controls.SetChildIndex(this.btnTimTatCa, 0);
             this.Controls.SetChildIndex(this.btnThem, 0);
+            this.Controls.SetChildIndex(this.btnXoa, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.btnMove2Up, 0);
             this.Controls.SetChildIndex(this.btnMove2Down, 0);
-            this.Controls.SetChildIndex(this.listBox1, 0);
             this.Controls.SetChildIndex(this.txtValue, 0);
             this.Controls.SetChildIndex(this.lblTopMessage, 0);
+            this.Controls.SetChildIndex(this.dataGridView1, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -229,7 +266,7 @@
         #endregion
 
         //private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox txtTim;
+        private System.Windows.Forms.TextBox txtNewKey;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnTimTiep;
         private System.Windows.Forms.Button btnTimTatCa;
@@ -237,9 +274,10 @@
         protected System.Windows.Forms.Button btnNhan;
         private System.Windows.Forms.Button btnMove2Up;
         private System.Windows.Forms.Button btnMove2Down;
-        private System.Windows.Forms.ListBox listBox1;
         private V6ColorTextBox txtValue;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.Button btnXoa;
+        private V6ColorDataGridView dataGridView1;
     }
 }

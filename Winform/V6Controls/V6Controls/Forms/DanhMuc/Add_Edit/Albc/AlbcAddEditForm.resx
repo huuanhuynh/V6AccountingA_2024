@@ -120,11 +120,18 @@
   <metadata name="toolTipV6FormControl.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="v6ColorTextBox16.ToolTip" xml:space="preserve">
+    <value>Extra_para: R_MA_KH là tên parameter trong rpt,
+Field là dữ liệu table2 hoặc filterLine...
+Ptype:TABLE2, FILTER-lấy dữ liệu của filter,
+FILTER_BROTHER-lấy dữ liệu của filterLine.Data,
+PARENT - chưa định nghĩa.</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="dicEditButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAC4UAAAuFAey+RNoAAAAGYktHRAAAAAAAAPlDu38AAAAJdnBBZwAAABgAAAAYAHhM
+        YQUAAAAJcEhZcwAAC4MAAAuDAWy9AEEAAAAGYktHRAAAAAAAAPlDu38AAAAJdnBBZwAAABgAAAAYAHhM
         paYAAALOSURBVEhLvZTLaxNRFMZjFRVBlCKuxYUbRQShC4UufKzsUuumazeuhQZ1Uaog/gt1I9aFoA3d
         KAoK0qWJQm2b1+QxeU8ymcmTboTjd87cm6TO1NYqfvCRS+49v+/cM5OE/quePH18B6a9+NH83AWF2V58
         0HEc+lPFYjEJmZq6cRaYMY8WID7E6na7W9zpdKjdblOr1YJdctGE4zQpElkiy7KkhsX109M3zyicX78G
@@ -139,12 +146,5 @@
         fP/B7Es+8DeeDd97BdZxeL9QR8Tv7iGYr3caPgdfhCfgy/AkfAW+Cl+Hr6k1f3cJPg+fgsdh7j74t/Bv
         FQr9BMYszUIEM5bZAAAAAElFTkSuQmCC
 </value>
-  </data>
-  <data name="v6ColorTextBox16.ToolTip" xml:space="preserve">
-    <value>Extra_para: R_MA_KH là tên parameter trong rpt,
-Field là dữ liệu table2 hoặc filterLine...
-Ptype:TABLE2, FILTER-lấy dữ liệu của filter,
-FILTER_BROTHER-lấy dữ liệu của filterLine.Data,
-PARENT - chưa định nghĩa.</value>
   </data>
 </root>

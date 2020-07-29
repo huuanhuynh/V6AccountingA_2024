@@ -117,10 +117,10 @@
     <Compile Include="Forms\DanhMuc\Add_Edit\VatTuAddEditForm_A2.Designer.cs">
       <DependentUpon>VatTuAddEditForm_A2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DicEditForm.cs">
+    <Compile Include="Forms\Editor\DicEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DicEditForm.designer.cs">
+    <Compile Include="Forms\Editor\DicEditForm.designer.cs">
       <DependentUpon>DicEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LookupMode.cs" />
@@ -1604,7 +1604,7 @@
     <EmbeddedResource Include="Controls\Label\FormChangeControlLanguageText.resx">
       <DependentUpon>FormChangeControlLanguageText.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DicEditForm.resx">
+    <EmbeddedResource Include="Forms\Editor\DicEditForm.resx">
       <DependentUpon>DicEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FieldSelectorForm.resx">
