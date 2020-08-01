@@ -3710,7 +3710,7 @@ namespace V6Controls.Forms
         /// <returns></returns>
         public static DialogResult ShowInfoMessage(string message, int showTime, IWin32Window owner = null)
         {
-            return V6Message.Show(message, V6Setting.Language == "V" ? "Thông báo" : "Information:", showTime, MessageBoxButtons.OK, MessageBoxIcon.Information, owner);
+            return V6Message.Show(message, V6Setting.Language == "V" ? "Thông tin:" : "Information:", showTime, MessageBoxButtons.OK, MessageBoxIcon.Information, owner);
         }
         #endregion showmessage
 
@@ -3889,6 +3889,8 @@ namespace V6Controls.Forms
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 var max = dataFields.Length;
+                bool error_added = false;
+                
                 if (checkFields.Length < max) max = checkFields.Length;
                 if (checkTables.Length < max) max = checkTables.Length;
                 for (int i = 0; i < max; i++)
@@ -3906,7 +3908,8 @@ namespace V6Controls.Forms
                         {
                             //check += string.Format("{0} {1}={2}", V6Text.NotExist, checkField, value);
                             row.DefaultCellStyle.BackColor = Color.Red;
-                            errorData.AddRow(row.ToDataDictionary(), true);
+                            if (!error_added) errorData.AddRow(row.ToDataDictionary(), true);
+                            error_added = true;
                         }
                     }
                     else
@@ -3917,7 +3920,8 @@ namespace V6Controls.Forms
                             not_exist_value_data[i][value] = notexist;
                             check += string.Format("{0} {1}={2}", V6Text.NotExist, checkField, value);
                             row.DefaultCellStyle.BackColor = Color.Red;
-                            errorData.AddRow(row.ToDataDictionary(), true);
+                            if (!error_added) errorData.AddRow(row.ToDataDictionary(), true);
+                            error_added = true;
                         }
                     }
                 }
@@ -8463,6 +8467,13 @@ namespace V6Controls.Forms
             return result;
         }
 
-        
+
+        public static void ChangeColumnName(DataTable table, string oldName, string newName)
+        {
+            if (table == null) throw new ArgumentNullException("table");
+            if (table.Columns.Contains(newName)) throw new Exception("Exist newName: " + newName);
+            if (string.IsNullOrEmpty(oldName) || string.IsNullOrEmpty(newName)) return;
+            table.Columns[oldName].ColumnName = newName;
+        }
     }
 }

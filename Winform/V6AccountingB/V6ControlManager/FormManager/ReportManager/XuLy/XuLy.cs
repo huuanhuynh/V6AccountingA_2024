@@ -75,6 +75,8 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     return new XLSIXA_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "XLSSOA":
                     return new XLSSOA_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
+                case "V6IMDATA2":
+                    return new V6IMDATA2_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "XLSSOH":
                     return new XLSSOH_Control(itemId, program, procedure, reportFile, reportCaption, reportCaption2);
                 case "XLSAR1":

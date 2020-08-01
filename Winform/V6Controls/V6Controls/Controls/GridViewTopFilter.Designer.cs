@@ -28,13 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.lblHelp = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
+            // 
+            // lblHelp
+            // 
+            this.lblHelp.Image = global::V6Controls.Properties.Resources.questionwhite;
+            this.lblHelp.Location = new System.Drawing.Point(1, 1);
+            this.lblHelp.Name = "lblHelp";
+            this.lblHelp.Size = new System.Drawing.Size(21, 21);
+            this.lblHelp.TabIndex = 0;
+            this.lblHelp.Click += new System.EventHandler(this.label1_Click);
             // 
             // GridViewTopFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.lblHelp);
             this.Name = "GridViewTopFilter";
             this.Size = new System.Drawing.Size(200, 22);
             this.ResumeLayout(false);
@@ -42,5 +55,8 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Label lblHelp;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

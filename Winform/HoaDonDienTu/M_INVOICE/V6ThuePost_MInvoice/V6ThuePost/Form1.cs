@@ -12,9 +12,6 @@ namespace V6ThuePost
 {
     public partial class Form1 : Form
     {
-        //private string userName = "0100109106-997_5";
-        //private string password = "111111a@A";
-
         public Form1()
         {
             InitializeComponent();
@@ -54,12 +51,12 @@ namespace V6ThuePost
             //    Value = "" + new_uid,
             //};
 
-            string jsonBody = Program.ReadData(txtDbfFile.Text, "M", out _jsonBodyObject);
+            _jsonBodyObject = Program.ReadData_Minvoice(txtDbfFile.Text, "M");
             txtUsername.Text = Program.username;
             txtPassword.Text = Program.password;
-            txtMaDVCS.Text = Program.ma_dvcs;
+            txtMaDVCS.Text = Program._ma_dvcs;
             txtURL.Text = Program.baseUrl;
-            richTextBox1.Text = jsonBody;
+            richTextBox1.Text = _jsonBodyObject.ToJson();
             btnTest.Enabled = true;
             btnSend.Enabled = true;
 
@@ -97,24 +94,25 @@ namespace V6ThuePost
         {
             bool control_is_down = (ModifierKeys & Keys.Control) == Keys.Control;
             string result = null;
+            MInvoiceResponse responseObject = null;
             V6Return v6Return;
             if (string.IsNullOrEmpty(Program._SERIAL_CERT))
             {
                 if (control_is_down || !Program._TEST_)
                 {
-                    result = Program._WS.POST_NEW(_jsonBodyObject, out v6Return);
+                    responseObject = Program._WS.POST_NEW(_jsonBodyObject, out v6Return);
                 }
                 else
                 {
-                    result = Program._WS.POST_NEW(richTextBox1.Text, out v6Return);
+                    responseObject = Program._WS.POST_NEW(_jsonBodyObject, out v6Return);
                 }
                 
-                lblResult.Text = result;
+                lblResult.Text = v6Return.RESULT_STRING;
             }
             else
             {
-                result = Program._WS.POST_NEW_TOKEN(richTextBox1.Text, out v6Return);
-                lblResult.Text = result;
+                responseObject = Program._WS.POST_NEW_TOKEN(_jsonBodyObject, out v6Return);
+                lblResult.Text = v6Return.RESULT_STRING;
             }
 
             if (!string.IsNullOrEmpty(v6Return.ID))
@@ -126,7 +124,7 @@ namespace V6ThuePost
             string message = "";
             try
             {
-                MInvoiceResponse responseObject = JsonConvert.DeserializeObject<MInvoiceResponse>(result);// MyJson.ConvertJson<CreateInvoiceResponse>(result);
+                //responseObject = JsonConvert.DeserializeObject<MInvoiceResponse>(v6Return.RESULT_STRING);
                 if (!string.IsNullOrEmpty(responseObject.Message))
                 {
                     message += " " + responseObject.Message;

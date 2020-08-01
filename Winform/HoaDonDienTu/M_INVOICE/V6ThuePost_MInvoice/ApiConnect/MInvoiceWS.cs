@@ -231,18 +231,7 @@ namespace V6ThuePostMInvoiceApi
             string parameters =
                 string.Format("?supplierTaxCode={0}&invoiceNo={1}&strIssueDate={2}&exchangeUser={3}", codeTax, invoiceNo,
                     strIssueDate, _username);
-            //string q = objGetFile.ToJson();
-
-            //q = "{" + string.Format(
-            //        @"""supplierTaxCode"" : ""{0}"", ""invoiceNo"" : ""{1}"", ""strIssueDate"" : ""{2}"", ""exchangeUser"" : ""{3}""",
-            //        codeTax, invoiceNo, "20170907161438", "viettel") + "}";
-//                string request = @"{
-//                            ""supplierTaxCode"":""" + codeTax + @""",
-//                            ""invoiceNo"":""" + objGetFile.invoiceNo + @""",
-//                            ""pattern"":""" + objGetFile.pattern + @""",
-//                            ""transactionUuid"":""" + objGetFile.transactionUuid + @""",
-//                            ""fileType"":""" + objGetFile.fileType + @"""
-//                            }";
+           
 
             string result = GET(methodlink + parameters);
 
@@ -318,9 +307,9 @@ namespace V6ThuePostMInvoiceApi
         /// <returns></returns>
         public string CheckConnection(out V6Return v6Return)
         {
-            string result = POST_NEW(new MInvoicePostObject(), out v6Return);
-            if (result.Contains("windowid\":null")) return null;
-            return result;
+            var responseObject = POST_NEW(new MInvoicePostObject(), out v6Return);
+            if (v6Return.RESULT_STRING.Contains("windowid\":null")) return null;
+            return v6Return.RESULT_STRING;
         }
         
         /// <summary>
@@ -329,9 +318,10 @@ namespace V6ThuePostMInvoiceApi
         /// <param name="jsonBody"></param>
         /// <param name="v6return">Thông tin trả về cho V6.</param>
         /// <returns></returns>
-        public string POST_NEW(MInvoicePostObject jsonBody, out V6Return v6return)
+        public MInvoiceResponse POST_NEW(MInvoicePostObject jsonBody, out V6Return v6return)
         {
             string result;
+            MInvoiceResponse responseObject = null;
             v6return = new V6Return();
             try
             {
@@ -341,7 +331,7 @@ namespace V6ThuePostMInvoiceApi
 
                 try
                 {
-                    MInvoiceResponse responseObject = JsonConvert.DeserializeObject<MInvoiceResponse>(result);
+                    responseObject = JsonConvert.DeserializeObject<MInvoiceResponse>(result);
 
                     v6return.RESULT_OBJECT = responseObject;
                     v6return.RESULT_MESSAGE = "" + responseObject.Message;
@@ -351,8 +341,8 @@ namespace V6ThuePostMInvoiceApi
                         responseObject.data.ContainsKey("inv_invoiceNumber")
                         && !string.IsNullOrEmpty((string)responseObject.data["inv_invoiceNumber"]))
                     {
-                        v6return.ID = "" + responseObject.data["inv_InvoiceAuth_id"];
                         v6return.SO_HD = "" + responseObject.data["inv_invoiceNumber"];
+                        v6return.ID = "" + responseObject.data["inv_InvoiceAuth_id"];
                         v6return.SECRET_CODE = "" + responseObject.data["inv_InvoiceCode_id"];
                     }
                     else
@@ -373,12 +363,13 @@ namespace V6ThuePostMInvoiceApi
                 result = ex.Message;
             }
             Logger.WriteToLog("WS.POST_NEW " + result);
-            return result;
+            return responseObject;
         }
 
-        public string POST_NEW(string jsonBody, out V6Return v6return)
+        public MInvoiceResponse POST_NEW(string jsonBody, out V6Return v6return)
         {
             string result;
+            MInvoiceResponse responseObject = null;
             v6return = new V6Return();
             try
             {
@@ -389,7 +380,7 @@ namespace V6ThuePostMInvoiceApi
 
                 try
                 {
-                    MInvoiceResponse responseObject = JsonConvert.DeserializeObject<MInvoiceResponse>(result);
+                    responseObject = JsonConvert.DeserializeObject<MInvoiceResponse>(result);
 
                     v6return.RESULT_OBJECT = responseObject;
                     v6return.RESULT_MESSAGE = "" + responseObject.Message;
@@ -421,54 +412,12 @@ namespace V6ThuePostMInvoiceApi
                 result = ex.Message;
             }
             Logger.WriteToLog("WS.POST_NEW " + result);
-            return result;
+            return responseObject;
         }
 
-        public string POST_NEW_TOKEN(string jsonBody, out V6Return v6return)
+        public MInvoiceResponse POST_NEW_TOKEN(MInvoicePostObject jsonBody, out V6Return v6return)
         {
             throw new Exception("POST_NEW_TOKEN NOT SUPPORTED");
-            string result;
-            v6return = new V6Return();
-            try
-            {
-                result = POST_Bearer(_createInvoiceUrl, jsonBody);
-                v6return.RESULT_STRING = result;
-
-                try
-                {
-                    MInvoiceResponse responseObject = JsonConvert.DeserializeObject<MInvoiceResponse>(result);
-
-                    v6return.RESULT_OBJECT = responseObject;
-                    v6return.RESULT_MESSAGE = "" + responseObject.Message;
-                    v6return.RESULT_ERROR_MESSAGE = "" + responseObject.error + responseObject.Message;
-
-                    if (responseObject.ok == "true" && responseObject.data != null &&
-                        responseObject.data.ContainsKey("inv_invoiceNumber")
-                        && !string.IsNullOrEmpty((string)responseObject.data["inv_invoiceNumber"]))
-                    {
-                        v6return.SO_HD = "" + responseObject.data["inv_invoiceNumber"];
-                        v6return.SECRET_CODE = "" + responseObject.data["inv_InvoiceAuth_id"];
-                        v6return.ID = "" + responseObject.data["inv_InvoiceCode_id"];
-                    }
-                    else
-                    {
-                        
-                    }
-                }
-                catch (Exception ex)
-                {
-                    v6return.RESULT_ERROR_MESSAGE = "Convert response object error: " + ex.Message;
-                }
-            }
-            catch (Exception ex)
-            {
-                v6return.RESULT_ERROR_CODE = "WS_EXCEPTION";
-                v6return.RESULT_ERROR_MESSAGE = "WS EXCEPTION: " + ex.Message;
-
-                result = ex.Message;
-            }
-            Logger.WriteToLog("WS.POST_NEW " + result);
-            return result;
         }
 
         /// <summary>
@@ -476,12 +425,12 @@ namespace V6ThuePostMInvoiceApi
         /// </summary>
         /// <param name="jsonBody"></param>
         /// <returns></returns>
-        public string POST_REPLACE(string jsonBody)
+        public string POST_REPLACE(MInvoicePostObject jsonBody)
         {
             string result;
             try
             {
-                result = POST(_replaceInvoiceUrl, jsonBody);
+                result = POST(_replaceInvoiceUrl, jsonBody.ToJson());
             }
             catch (Exception ex)
             {
@@ -497,9 +446,10 @@ namespace V6ThuePostMInvoiceApi
         /// <param name="jsonBody"></param>
         /// <param name="v6return"></param>
         /// <returns></returns>
-        public string POST_EDIT(MInvoicePostObject jsonBody, out V6Return v6return)
+        public MInvoiceResponse POST_EDIT(MInvoicePostObject jsonBody, out V6Return v6return)
         {
             string result;
+            MInvoiceResponse responseObject = null;
             v6return = new V6Return();
             try
             {
@@ -509,7 +459,7 @@ namespace V6ThuePostMInvoiceApi
 
                 try
                 {
-                    MInvoiceResponse responseObject = JsonConvert.DeserializeObject<MInvoiceResponse>(result);
+                    responseObject = JsonConvert.DeserializeObject<MInvoiceResponse>(result);
 
                     v6return.RESULT_OBJECT = responseObject;
                     v6return.RESULT_MESSAGE = "" + responseObject.Message;
@@ -541,7 +491,7 @@ namespace V6ThuePostMInvoiceApi
                 result = ex.Message;
             }
             Logger.WriteToLog("WS.POST_NEW " + result);
-            return result;
+            return responseObject;
         }
 
         public string POST_MODIFY_t(string jsonBody, out V6Return v6return)

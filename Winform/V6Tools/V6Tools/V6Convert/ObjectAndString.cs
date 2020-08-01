@@ -617,6 +617,12 @@ namespace V6Tools.V6Convert
                 removeEmptyEntries ? StringSplitOptions.RemoveEmptyEntries : StringSplitOptions.None);
         }
 
+        public static string[] SplitStringBy(string s, char[] splitChars, bool removeEmptyEntries = true)
+        {
+            return string.IsNullOrEmpty(s) ? new string[] { } : s.Split(splitChars,
+                removeEmptyEntries ? StringSplitOptions.RemoveEmptyEntries : StringSplitOptions.None);
+        }
+
         public static float StringToFloat(string s)
         {
             return ToObject<float>(s);

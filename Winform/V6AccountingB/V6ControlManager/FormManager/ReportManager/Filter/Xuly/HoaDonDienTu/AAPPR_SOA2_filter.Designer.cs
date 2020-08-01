@@ -618,7 +618,8 @@
             "VNPT_TOKEN",
             "SOFTDREAMS",
             "THAI_SON",
-            "MONET"});
+            "MONET",
+            "M_INVOICE"});
             this.cboSendType.Location = new System.Drawing.Point(7, 140);
             this.cboSendType.Name = "cboSendType";
             this.cboSendType.Size = new System.Drawing.Size(121, 21);

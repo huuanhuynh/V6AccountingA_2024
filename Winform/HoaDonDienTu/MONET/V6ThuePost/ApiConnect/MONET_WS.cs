@@ -262,13 +262,11 @@ namespace V6ThuePostMonetApi
         /// <summary>
         /// Download bản thể hiện.
         /// </summary>
-        /// <param name="codeTax"></param>
-        /// <param name="methodlink">InvoiceAPI/InvoiceUtilsWS/getInvoiceRepresentationFile (getInvoiceRepresentationFile url part.)</param>
         /// <param name="invoiceNo">Số hóa đơn hệ thống trả về.</param>
         /// <param name="pattern"></param>
         /// <param name="savefolder"></param>
         /// <returns>Trả về đường dẫn file pdf.</returns>
-        public string DownloadInvoicePDF(string codeTax, string methodlink, string invoiceNo, string pattern, string savefolder)
+        public string DownloadInvoicePDF(string invoiceNo, string pattern, string savefolder)
         {
             GetFileRequest objGetFile = new GetFileRequest();
             objGetFile.invoiceNo = invoiceNo;
@@ -277,14 +275,13 @@ namespace V6ThuePostMonetApi
             objGetFile.transactionUuid = "";
 
             string request = @"{
-                            ""supplierTaxCode"":""" + codeTax + @""",
                             ""invoiceNo"":""" + objGetFile.invoiceNo + @""",
                             ""pattern"":""" + objGetFile.pattern + @""",
                             ""transactionUuid"":""" + objGetFile.transactionUuid + @""",
                             ""fileType"":""" + objGetFile.fileType + @"""
                             }";
 
-            string result = POST(methodlink, request);
+            string result = POST("methodlink", request);
 
             PDFFileResponse objFile = JsonConvert.DeserializeObject<PDFFileResponse>(result);
             string fileName = objFile.fileName;

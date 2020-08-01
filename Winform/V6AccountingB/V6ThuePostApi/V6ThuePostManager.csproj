@@ -86,6 +86,10 @@
       <Project>{E965C840-A433-45EA-AC23-1E3ED00ABBF6}</Project>
       <Name>V6ThuePost_MONETApi</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\HoaDonDienTu\M_INVOICE\V6ThuePost_MInvoice\ApiConnect\V6ThuePostMInvoiceApi.csproj">
+      <Project>{96FD45FD-0B6D-4EC7-88AE-DA8D387DAB37}</Project>
+      <Name>V6ThuePostMInvoiceApi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\HoaDonDienTu\PostObjects\V6ThuePostObjects.csproj">
       <Project>{14a2c520-1939-4b6a-b584-ee5797f26701}</Project>
       <Name>V6ThuePostObjects</Name>

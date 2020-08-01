@@ -2992,9 +2992,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
                     GetTyGiaDefault();
                     GetDefault_Other();
                     SetDefaultData(Invoice);
-                    GET_AM_OLD_EXTRA();
                     XuLyKhoaThongTinTheoMaGD();
                     XuLyThayDoiLoaiPhieuThu();
+                    GET_AM_OLD_EXTRA();
                     detail1.DoAddButtonClick( );
                     var readonly_list = SetControlReadOnlyHide(detail1, Invoice, Mode, V6Mode.Add);
                     if (readonly_list.Contains(detail1.btnSua.Name, StringComparer.InvariantCultureIgnoreCase))

@@ -19,12 +19,15 @@ using V6AccountingBusiness;
 using V6Controls.Forms;
 using V6Init;
 using V6ThuePost;
+using V6ThuePost.MInvoiceObject.Request;
+using V6ThuePost.MInvoiceObject.Response;
 using V6ThuePost.MONET_Objects.Response;
 using V6ThuePost.ResponseObjects;
 using V6ThuePost.ViettelObjects;
 using V6ThuePost.VnptObjects;
 using V6ThuePostBkavApi;
 using V6ThuePostBkavApi.PostObjects;
+using V6ThuePostMInvoiceApi;
 using V6ThuePostMonetApi;
 using V6ThuePostSoftDreamsApi;
 using V6ThuePostThaiSonApi;
@@ -65,6 +68,7 @@ namespace V6ThuePostManager
         public static string _username = "";
         public static string _password = "";
         public static string _codetax = "";
+        public static string _ma_dvcs = "";
         private static string _baseUrl = "", _createInvoiceUrl = "", _modifylink = "";
         /// <summary>
         /// InvoiceAPI/InvoiceUtilsWS/getInvoiceRepresentationFile (getInvoiceRepresentationFile url part.)
@@ -189,6 +193,9 @@ namespace V6ThuePostManager
                         break;
                     case "7":
                         result0 = EXECUTE_MONET(paras);
+                        break;
+                    case "8":
+                        result0 = EXECUTE_MINVOICE(paras);
                         break;
                     default:
                         paras.Result = new PM_Result();
@@ -315,6 +322,10 @@ namespace V6ThuePostManager
                         MONET_WS monetWS = new MONET_WS(_baseUrl, _username, _password, _codetax);
                         result = monetWS.CheckConnection(_createInvoiceUrl);
                         break;
+                    case "8":
+                        MInvoiceWS mInvoiceWs = new MInvoiceWS(_baseUrl, _username, _password, _ma_dvcs, _codetax);
+                        result = mInvoiceWs.CheckConnection(out paras.Result.V6ReturnValues);
+                        break;
                     default:
                         paras.Result.ResultErrorMessage = V6Text.NotSupported + paras.Branch;
                         break;
@@ -398,7 +409,11 @@ namespace V6ThuePostManager
                         break;
                     case "7":
                         MONET_WS monetWS = new MONET_WS(_baseUrl, _username, _password, _codetax);
-                        result = monetWS.CheckConnection(_createInvoiceUrl);
+                        result = monetWS.DownloadInvoicePDF(paras.V6PartnerID, paras.Pattern, V6Setting.V6SoftLocalAppData_Directory);
+                        break;
+                    case "8":
+                        MInvoiceWS mInvoiceWs = new MInvoiceWS(_baseUrl, _username, _password, _ma_dvcs, _codetax);
+                        result = mInvoiceWs.DownloadInvoicePDF(paras.V6PartnerID, V6Setting.V6SoftLocalAppData_Directory);
                         break;
                     default:
                         paras.Result.ResultErrorMessage = V6Text.NotSupported + paras.Branch;
@@ -3514,7 +3529,7 @@ namespace V6ThuePostManager
                 }
                 else if (paras.Mode == "T")
                 {
-                    var invoice = ReadData_ThaiSon("T");
+                    var invoice = ReadData_Monet("T");
                     //invoice.SoHoaDonGoc = paras.Fkey_hd_tt;
                     response = monetWS.POST_EDIT(_modifylink, "4", paras.Fkey_hd_tt, __serial, __pattern, paras.InvoiceNo, out paras.Result.V6ReturnValues);
                 }
@@ -3535,7 +3550,7 @@ namespace V6ThuePostManager
                 }
                 else if (paras.Mode == "H")
                 {
-                    var hoadon_entity = ReadData_ThaiSon(paras.Mode.Substring(0, 1));
+                    var hoadon_entity = ReadData_Monet(paras.Mode.Substring(0, 1));
                     response = monetWS.POST_DELETE(_SERIAL_CERT,paras.InvoiceNo, paras.Serial, __pattern, paras.Fkey_hd_tt, paras.Fkey_hd, out paras.Result.V6ReturnValues);
                 }
                 else if (paras.Mode.StartsWith("U"))//U1,U2
@@ -3685,6 +3700,243 @@ namespace V6ThuePostManager
         }
 
         #endregion
+
+        #region ==== MINVOICE ====
+
+        private static string EXECUTE_MINVOICE(PostManagerParams paras)
+        {
+            MInvoiceResponse response = new MInvoiceResponse();
+            paras.Result = new PM_Result();
+
+            try
+            {
+                MInvoiceWS mInvoiceWs = new MInvoiceWS(_baseUrl, _username, _password, _ma_dvcs, _codetax);
+                MInvoicePostObject jsonBodyObject = null;
+                var row0 = am_table.Rows[0];
+
+                if (paras.Mode == "TestView")
+                {
+                    jsonBodyObject = ReadData_Minvoice(paras.Mode);
+                    paras.Result.ResultString = jsonBodyObject.ToJson();
+                }
+                else if (paras.Mode.StartsWith("M"))
+                {
+                    StartAutoInputTokenPassword();
+
+                    if (string.IsNullOrEmpty(_SERIAL_CERT))
+                    {
+                        jsonBodyObject = ReadData_Minvoice("M");
+                        //File.Create(flagFileName1).Close();
+                        response = mInvoiceWs.POST_NEW(jsonBodyObject, out paras.Result.V6ReturnValues);
+                    }
+                    else // Ký số client. /InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
+                    {
+                        generalInvoiceInfoConfig["certificateSerial"] = new ConfigLine
+                        {
+                            Field = "certificateSerial",
+                            Value = _SERIAL_CERT,
+                        };
+                        jsonBodyObject = ReadData_Minvoice("M");
+                        //string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
+                        response = mInvoiceWs.POST_NEW_TOKEN(jsonBodyObject, out paras.Result.V6ReturnValues);
+                    }
+                }
+                else if (paras.Mode == "S")
+                {
+                    jsonBodyObject = ReadData_Minvoice("S");
+                    response = mInvoiceWs.POST_EDIT(jsonBodyObject, out paras.Result.V6ReturnValues);
+                }
+                else if (paras.Mode == "T")
+                {
+                    var invoice = ReadData_Minvoice("T");
+                    //invoice.SoHoaDonGoc = paras.Fkey_hd_tt;
+                    response = mInvoiceWs.POST_EDIT(jsonBodyObject, out paras.Result.V6ReturnValues);
+                }
+                else if (paras.Mode.StartsWith("G"))
+                {
+                    //if (paras.Mode == "G1") // Gạch nợ theo fkey
+                    //{
+                    //    response = monetWS.ConfirmPaymentFkey(paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                    //}
+                    //else if (paras.Mode == "G2") // Gạch nợ theo lstInvToken(01GTKT2/001;AA/13E;10)
+                    //{
+                    //    response = monetWS.ConfirmPayment(paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                    //}
+                    //else if (paras.Mode == "G3") // Hủy gạch nợ theo fkey
+                    //{
+                    //    response = monetWS.UnconfirmPaymentFkey(paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                    //}
+                }
+                else if (paras.Mode == "H")
+                {
+                    var hoadon_entity = ReadData_Minvoice(paras.Mode.Substring(0, 1));
+                    //response = mInvoiceWs.POST_DELETE(_SERIAL_CERT,paras.InvoiceNo, paras.Serial, __pattern, paras.Fkey_hd_tt, paras.Fkey_hd, out paras.Result.V6ReturnValues);
+                }
+                else if (paras.Mode.StartsWith("U"))//U1,U2
+                {
+                    
+                }
+                else if (paras.Mode.StartsWith("E"))
+                {
+                    if (paras.Mode == "E")
+                    {
+
+                    }
+                    else if (paras.Mode == "E1")
+                    {
+                        string rptFile = paras.RptFileFull;
+                        //string saveFile = arg4;
+
+                        string export_file;
+                        //ReadDataXml(arg2);
+                        string response0 = "";
+                        bool export_ok = ExportExcel(am_table, ad2_table, out export_file, ref response0);
+
+                        if (export_ok && File.Exists(export_file))
+                        {
+                            response.ok = "1";
+                        }
+                    }
+                    else if (paras.Mode == "E2")  // Xuất PDF bằng RPT
+                    {
+                        string rptFile = paras.RptFileFull;
+                        string saveFile = Path.Combine(paras.Dir, paras.FileName);// arg4;
+
+                        ReportDocument rpt = new ReportDocument();
+                        rpt.Load(rptFile);
+                        DataSet ds = new DataSet();
+                        DataTable data1 = ad_table.Copy();
+                        data1.TableName = "DataTable1";
+                        DataTable data2 = am_table.Copy();
+                        data2.TableName = "DataTable2";
+                        ds.Tables.Add(data1);
+                        ds.Tables.Add(data2);
+                        string tien_bang_chu = MoneyToWords(ObjectAndString.ObjectToDecimal(row0["T_TT"]), "V", "VND");
+                        rpt.SetDataSource(ds);
+                        rpt.SetParameterValue("SoTienVietBangChu", tien_bang_chu);
+
+                        bool export_ok = false;
+                        if (string.IsNullOrEmpty(saveFile))
+                        {
+                            export_ok = ExportRptToPdf_As(null, rpt, saveFile);
+                        }
+                        else
+                        {
+                            export_ok = ExportRptToPdf(null, rpt, saveFile);
+                        }
+
+                        if (export_ok)
+                        {
+
+                        }
+                    }
+                }
+
+                if (ObjectAndString.ObjectToBool(response.ok))
+                {
+
+                }
+                else
+                {
+                    paras.Result.ResultErrorMessage = "ERR" + paras.Result.ResultErrorMessage;
+                }
+            }
+            catch (Exception ex)
+            {
+                paras.Result.ResultErrorMessage = ex.Message;
+            }
+            StopAutoInputTokenPassword();
+        End:
+            return paras.Result.V6ReturnValues.RESULT_STRING;
+        }
+
+        public static MInvoicePostObject ReadData_Minvoice(string mode)
+        {
+            string result = "";
+            MInvoicePostObject postObject = null;
+            //try
+            {
+                postObject = new MInvoicePostObject();
+                postObject.windowid = "WIN00187";
+                if (mode.StartsWith("M")) postObject.editmode = "1";
+                if (mode.StartsWith("S")) postObject.editmode = "2";
+                postObject.data = new List<InvoiceData>();
+                InvoiceData invoiceData = new InvoiceData();
+                postObject.data.Add(invoiceData);
+                
+                //Fill data to postObject
+                DataRow row0 = am_table.Rows[0];
+
+                fkeyA = "" + row0["FKEY_HD"];
+                //MakeFlagNames(fkeyA);
+                //private static Dictionary<string, XmlLine> generalInvoiceInfoConfig = null;
+                foreach (KeyValuePair<string, ConfigLine> item in generalInvoiceInfoConfig)
+                {
+                    invoiceData[item.Key] = GetValue(row0, item.Value);
+                }
+
+                if (mode == "T")
+                {
+                    //Lập hóa đơn thay thế:
+                    //adjustmentType = '3'
+                    invoiceData["adjustmentType"] = "3";
+                    //Các trường dữ liệu về hóa đơn gốc là bắt buộc
+                    //originalInvoiceId
+                    invoiceData["originalInvoiceId"] = row0["FKEY_TT_OLD"].ToString().Trim();  // [AA/17E0003470]
+                    //originalInvoiceIssueDate
+                    invoiceData["originalInvoiceIssueDate"] = row0["NGAY_CT_OLD"];
+
+                    //Thông tin về biên bản đính kèm hóa đơn gốc:
+                    //additionalReferenceDate
+                    invoiceData["additionalReferenceDate"] = row0["NGAY_CT_OLD"];
+                    //additionalReferenceDesc
+                    invoiceData["additionalReferenceDesc"] = row0["GHI_CHU03"];
+                }
+
+                //private static Dictionary<string, XmlLine> buyerInfoConfig = null;
+                foreach (KeyValuePair<string, ConfigLine> item in buyerInfoConfig)
+                {
+                    invoiceData[item.Key] = GetValue(row0, item.Value);
+                }
+                foreach (KeyValuePair<string, ConfigLine> item in sellerInfoConfig)
+                {
+                    invoiceData[item.Key] = GetValue(row0, item.Value);
+                }
+
+                List<DetailObject> listDetailObject = new List<DetailObject>();
+                DetailObject detailObject = new DetailObject();
+                listDetailObject.Add(detailObject);
+                detailObject.tab_id = "TAB00188";
+                invoiceData["details"] = listDetailObject;
+
+                foreach (DataRow row in ad_table.Rows)
+                {
+                    if (row["STT"].ToString() == "0") continue;
+                    Dictionary<string, object> rowData = new Dictionary<string, object>();
+                    foreach (KeyValuePair<string, ConfigLine> item in itemInfoConfig)
+                    {
+                        rowData[item.Key] = GetValue(row, item.Value);
+                    }
+                    detailObject.data.Add(rowData);
+                }
+                //private static Dictionary<string, XmlLine> summarizeInfoConfig = null;
+                foreach (KeyValuePair<string, ConfigLine> item in summarizeInfoConfig)
+                {
+                    invoiceData[item.Key] = GetValue(row0, item.Value);
+                }
+
+                result = postObject.ToJson();
+            }
+            //catch (Exception ex)
+            {
+                //
+            }
+
+            return postObject;
+        }
+
+        #endregion MINVOICE
+
 
         private static object GetValue(DataRow row, ConfigLine config)
         {
@@ -3844,11 +4096,14 @@ namespace V6ThuePostManager
                                 case "username":
                                     _username = UtilityHelper.DeCrypt(line.Value);
                                     break;
+                                case "password":
+                                    _password = UtilityHelper.DeCrypt(line.Value);
+                                    break;
                                 case "codetax":
                                     _codetax = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
-                                case "password":
-                                    _password = UtilityHelper.DeCrypt(line.Value);
+                                case "ma_dvcs":
+                                    _ma_dvcs = UtilityHelper.DeCrypt(line.Value);
                                     break;
                                 case "baselink":
                                     _baseUrl = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;

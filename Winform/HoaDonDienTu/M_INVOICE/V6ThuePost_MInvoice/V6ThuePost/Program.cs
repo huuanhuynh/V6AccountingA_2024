@@ -8,7 +8,6 @@ using System.Windows.Forms;
 using System.Xml;
 using V6Tools;
 using V6Tools.V6Convert;
-using Newtonsoft.Json;
 using Spy;
 using Spy.SpyObjects;
 using V6ThuePost.MInvoiceObject.Request;
@@ -54,7 +53,7 @@ namespace V6ThuePost
         /// Password đăng nhập vào host.
         /// </summary>
         public static string password = "";
-        public static string ma_dvcs = "";
+        public static string _ma_dvcs = "";
         /// <summary>
         /// Mã số thuế.
         /// </summary>
@@ -137,21 +136,21 @@ namespace V6ThuePost
 
                 try
                 {
-                    string jsonBody = "";
                     MInvoicePostObject jsonBodyObject = null;
+                    MInvoiceResponse responseObject = null;
 
                     ReadXmlInfo(arg1_xmlFile);
                     string dbfFile = arg2;
 
-                    _WS = new MInvoiceWS(baseUrl, username, password, ma_dvcs, _codetax);
+                    _WS = new MInvoiceWS(baseUrl, username, password, _ma_dvcs, _codetax);
 
                     if (mode.ToUpper() == "MTEST")
                     {
-                        ReadData(arg2, "M", out jsonBodyObject); // đọc để lấy tên flag.
-                        jsonBody = "{}";
+                        jsonBodyObject = ReadData_Minvoice(arg2, "M"); // đọc để lấy tên flag.
+                        
                         File.Create(flagFileName1).Close();
-                        result = _WS.POST_NEW(jsonBodyObject, out v6Return);
-                        if (result.Contains("\"errorCode\":\"TEMPLATE_NOT_FOUND\""))
+                        responseObject = _WS.POST_NEW(new MInvoicePostObject(), out v6Return);
+                        if (v6Return.RESULT_STRING.Contains("\"errorCode\":\"TEMPLATE_NOT_FOUND\""))
                         {
                             result = "Kết nối ổn. " + result;
                             File.Create(flagFileName2).Close();
@@ -164,9 +163,9 @@ namespace V6ThuePost
                         
                         if (string.IsNullOrEmpty(_SERIAL_CERT))
                         {
-                            jsonBody = ReadData(dbfFile, "M", out jsonBodyObject);
+                            jsonBodyObject = ReadData_Minvoice(dbfFile, "M");
                             File.Create(flagFileName1).Close();
-                            result = _WS.POST_NEW(jsonBodyObject, out v6Return);
+                            responseObject = _WS.POST_NEW(jsonBodyObject, out v6Return);
                         }
                         else // Ký số client. /InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
                         {
@@ -175,22 +174,22 @@ namespace V6ThuePost
                                 Field = "certificateSerial",
                                 Value = _SERIAL_CERT,
                             };
-                            jsonBody = ReadData(dbfFile, "M", out jsonBodyObject);
+                            jsonBodyObject = ReadData_Minvoice(dbfFile, "M");
                             //string templateCode = generalInvoiceInfoConfig["templateCode"].Value;
-                            result = _WS.POST_NEW_TOKEN(jsonBody, out v6Return);
+                            responseObject = _WS.POST_NEW_TOKEN(jsonBodyObject, out v6Return);
                         }
                     }
                     else if (mode.StartsWith("S"))
                     {
-                        jsonBody = ReadData(dbfFile, "S", out jsonBodyObject);
+                        jsonBodyObject = ReadData_Minvoice(dbfFile, "S");
                         File.Create(flagFileName1).Close();
-                        result = _WS.POST_EDIT(jsonBodyObject, out v6Return);
+                        responseObject = _WS.POST_EDIT(jsonBodyObject, out v6Return);
                     }
                     else if (mode == "T")
                     {
-                        jsonBody = ReadData(dbfFile, "T", out jsonBodyObject);
+                        jsonBodyObject = ReadData_Minvoice(dbfFile, "T");
                         File.Create(flagFileName1).Close();
-                        result = _WS.POST_REPLACE(jsonBody);
+                        result = _WS.POST_REPLACE(jsonBodyObject);
                     }
                     else if (mode == "H")
                     {
@@ -215,7 +214,7 @@ namespace V6ThuePost
                             message += " " + v6Return.RESULT_ERROR_MESSAGE;
                         }
 
-                        MInvoiceResponse responseObject = (MInvoiceResponse) v6Return.RESULT_OBJECT;
+                        //MInvoiceResponse responseObject = (MInvoiceResponse) v6Return.RESULT_OBJECT;
                         if (responseObject.ok == "true" && responseObject.data != null && responseObject.data.ContainsKey("inv_invoiceNumber")
                             && !string.IsNullOrEmpty((string)responseObject.data["inv_invoiceNumber"]))
                         {
@@ -266,9 +265,8 @@ namespace V6ThuePost
         /// </summary>
         /// <param name="dbfFile"></param>
         /// <param name="mode">M mới hoặc S thay thế</param>
-        /// <param name="jsonBodyObject"></param>
         /// <returns></returns>
-        public static string ReadData(string dbfFile, string mode, out MInvoicePostObject jsonBodyObject)
+        public static MInvoicePostObject ReadData_Minvoice(string dbfFile, string mode)
         {
             string result = "";
             //try
@@ -297,7 +295,7 @@ namespace V6ThuePost
                 if (mode == "T")
                 {
                     //Lập hóa đơn thay thế:
-                    //adjustmentType = ‘3’
+                    //adjustmentType = '3'
                     invoiceData["adjustmentType"] = "3";
                     //Các trường dữ liệu về hóa đơn gốc là bắt buộc
                     //originalInvoiceId
@@ -350,8 +348,8 @@ namespace V6ThuePost
             {
                 //
             }
-            jsonBodyObject = postObject;
-            return result;
+            
+            return postObject;
         }
 
         private static object GetValue(DataRow row, ConfigLine config)
@@ -758,7 +756,7 @@ namespace V6ThuePost
                                         password = UtilityHelper.DeCrypt(line.Value);
                                         break;
                                     case "ma_dvcs":
-                                        ma_dvcs = UtilityHelper.DeCrypt(line.Value);
+                                        _ma_dvcs = UtilityHelper.DeCrypt(line.Value);
                                         break;
                                     case "codetax":
                                         _codetax = UtilityHelper.DeCrypt(line.Value);

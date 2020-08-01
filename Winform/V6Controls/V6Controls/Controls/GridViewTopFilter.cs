@@ -74,7 +74,6 @@ namespace V6Controls.Controls
         protected virtual void OnDataGridViewChanged(DataGridView dgv)
         {
             ConnectGridView(dgv);
-            CaculateSumValues();
             var handler = DataGridViewChanged;
             if (handler != null) handler(this, EventArgs.Empty);
         }
@@ -116,15 +115,25 @@ namespace V6Controls.Controls
             }
         }
 
+        private void DeConnectGridView()
+        {
+            if (_dgv != null)
+            {
+                MyInit();
+                //FixThisSizeLocation(dgv);
+                _dgv.Paint -= dgv_Paint;
+                _dgv.DataSourceChanged -= dgv_DataSourceChanged;
+                _dgv.Paint -= dgv_SelectionChanged;
+                _dgv.SizeChanged -= dgv_SizeChanged;
+                _dgv.LocationChanged -= dgv_LocationChanged;
+            }
+        }
+
         private void dgv_DisplayIndexChanged(object sender, DataGridViewColumnEventArgs e)
         {
             try
             {
-                if (_filterItems.ContainsKey(e.Column))
-                {
-                    if (!e.Column.Visible)
-                        _filterItems[e.Column].Visible = false;
-                }
+                //RelocationAll();
             }
             catch (Exception ex)
             {
@@ -137,9 +146,9 @@ namespace V6Controls.Controls
         {
             try
             {
-                if (_filterItems.ContainsKey(e.Column))
+                if (_filterItems.ContainsKey(e.Column.DataPropertyName.ToUpper()))
                 {
-                    RelocationFlyingFilter(e.Column);
+                    RelocationAll();
                 }
             }
             catch (Exception ex)
@@ -152,11 +161,7 @@ namespace V6Controls.Controls
         {
             try
             {
-                if (_filterItems.ContainsKey(e.Column))
-                {
-                    if (!e.Column.Visible)
-                        _filterItems[e.Column].Visible = false;
-                }
+                RelocationAll();
             }
             catch (Exception ex)
             {
@@ -169,7 +174,7 @@ namespace V6Controls.Controls
             MadeFilterItems();
         }
 
-        private Dictionary<DataGridViewColumn, V6ColorTextBox> _filterItems = new Dictionary<DataGridViewColumn, V6ColorTextBox>();
+        private Dictionary<string, V6ColorTextBox> _filterItems = new Dictionary<string, V6ColorTextBox>();
         private bool _created;
         private void MadeFilterItems()
         {
@@ -182,7 +187,7 @@ namespace V6Controls.Controls
                     {
                         if (column.Visible)
                         {
-                            AddFilterItem(column);
+                            AddFilterItem((DataGridViewTextBoxColumn)column);
                         }
                     }
                 }
@@ -197,33 +202,28 @@ namespace V6Controls.Controls
         {
             try
             {
+                string FIELD = column.DataPropertyName.ToUpper();
                 var colorTextBox = new V6ColorTextBox();
-                colorTextBox.Name = "txt" + column.DataPropertyName;
+                colorTextBox.Name = "txt" + FIELD;
                 //colorTextBox.GrayText = column.HeaderText;
-                colorTextBox.BackColor = Color.Yellow;
-                colorTextBox.LeaveColor = Color.Yellow;
+                //colorTextBox.BackColor = Color.Yellow;
+                //colorTextBox.LeaveColor = Color.Yellow;
                 colorTextBox.UseSendTabOnEnter = false;
-                _filterItems[column] = colorTextBox;
+                _filterItems[FIELD] = colorTextBox;
                 colorTextBox.KeyDown += delegate(object sender, KeyEventArgs args)
                 {
-                    if (args.KeyData == (Keys.Shift | Keys.Enter))
-                    {
-                        _dgv.SaveSelectedCellLocation();
-                        _dgv.RemoveFilter();
-                        _dgv.LoadSelectedCellLocation();
-                    }
-                    else if (args.KeyCode == Keys.Enter)
+                    if (args.KeyCode == Keys.Enter)
                     {
                         _dgv.SaveSelectedCellLocation();
                         ApplyFilter();
                         _dgv.LoadSelectedCellLocation();
                     }
                 };
+                colorTextBox.Enter += delegate(object sender, EventArgs args)
+                {
+                    RelocationAll();
+                };
                 this.Controls.Add(colorTextBox);
-                
-                //colorTextBox.BringToFront();
-                RelocationFlyingFilter(column);
-                //colorTextBox.Focus();
             }
             catch (Exception ex)
             {
@@ -243,7 +243,7 @@ namespace V6Controls.Controls
                 var _view = view ?? new DataView(table);
                 _view.RowFilter = filter_string;
                 _dgv.DataSource = _view;
-
+                toolTip1.SetToolTip(lblHelp, filter_string);
                 _dgv.RecheckColor();
                 _dgv.OnFilterChange();
             }
@@ -268,52 +268,65 @@ namespace V6Controls.Controls
         {
             string result = "";
             string operat0r = "like";
-            foreach (KeyValuePair<DataGridViewColumn, V6ColorTextBox> item in _filterItems)
+            foreach (KeyValuePair<string, V6ColorTextBox> item in _filterItems)
             {
-                DataGridViewColumn _filter_column = item.Key;
+                DataGridViewColumn _filter_column = _dgv.Columns[item.Key];
+                if (_filter_column == null||!_filter_column.Visible || item.Value.Text == string.Empty) continue;
+                string FIELD_NAME = _filter_column.DataPropertyName.ToUpper();
                 string value = item.Value.Text;
-                if (!item.Key.Visible || value == string.Empty) continue;
                 string value2 = null;
                 var sss = ObjectAndString.SplitStringBy(value, '~');
-                if (sss.Length == 2)
-                {
-                    value = sss[0];
-                    value2 = sss[1];
-                }
                 string row_filter = "";
                 if (ObjectAndString.IsStringType(_filter_column.ValueType))
                 {
                     if (string.IsNullOrEmpty(operat0r)) operat0r = "=";
                     string svalue = FormatValue(ObjectAndString.ObjectToString(value), operat0r);
                     if (operat0r == "start") operat0r = "like";
-                    row_filter = string.Format("{0} {1} '{2}'", _filter_column.DataPropertyName, operat0r, svalue);
+                    row_filter = string.Format("{0} {1} '{2}'", FIELD_NAME, operat0r, svalue);
                 }
                 else if (ObjectAndString.IsNumberType(_filter_column.ValueType))
                 {
+                    sss = ObjectAndString.SplitStringBy(value, new[] { ' ', '~', '*', '+' });
+                    value = item.Value.Text;
+                    value2 = null;
+                    if (sss.Length == 2)
+                    {
+                        value = sss[0];
+                        value2 = sss[1];
+                    }
                     var num1 = ObjectAndString.ObjectToDecimal(value);
                     var num2 = ObjectAndString.ObjectToDecimal(value2);
                     if (num1 > num2)
                     {
-                        row_filter = string.Format("{0} = {1}", _filter_column.DataPropertyName,
+                        row_filter = string.Format("{0} = {1}", FIELD_NAME,
                             num1.ToString(CultureInfo.InvariantCulture));
                     }
                     else
                     {
-                        row_filter = string.Format("({0} >= {1} and {0} <= {2})", _filter_column.DataPropertyName,
+                        row_filter = string.Format("({0} >= {1} and {0} <= {2})", FIELD_NAME,
                             num1.ToString(CultureInfo.InvariantCulture), num2.ToString(CultureInfo.InvariantCulture));
                     }
                 }
                 else if (ObjectAndString.IsDateTimeType(_filter_column.ValueType))
                 {
+                    sss = ObjectAndString.SplitStringBy(value,new []{' ','~','*','+','-'});
+                    value = item.Value.Text;
+                    value2 = null;
+                    if (sss.Length == 2)
+                    {
+                        value = sss[0];
+                        value2 = sss[1];
+                    }
+
                     var date1 = ObjectAndString.ObjectToFullDateTime(value).ToString("yyyy-MM-dd");
                     var date2 = ObjectAndString.ObjectToFullDateTime(value2).ToString("yyyy-MM-dd");
                     if (String.CompareOrdinal(date1, date2) > 0)
                     {
-                        row_filter = string.Format("{0} = #{1}#", _filter_column.DataPropertyName, date1);
+                        row_filter = string.Format("{0} = #{1}#", FIELD_NAME, date1);
                     }
                     else
                     {
-                        row_filter = string.Format("({0} >= #{1}# and {0} <= #{2}#)", _filter_column.DataPropertyName, date1, date2);
+                        row_filter = string.Format("({0} >= #{1}# and {0} <= #{2}#)", FIELD_NAME, date1, date2);
                     }
                 }
 
@@ -328,7 +341,7 @@ namespace V6Controls.Controls
         {
             try
             {
-                V6ColorTextBox colorTextBox = _filterItems[column];
+                V6ColorTextBox colorTextBox = _filterItems[column.DataPropertyName.ToUpper()];
                 colorTextBox.Width = column.Width;
                 var rec = _dgv.GetColumnDisplayRectangle(column.Index, false);
                 colorTextBox.Top = 0;
@@ -342,36 +355,54 @@ namespace V6Controls.Controls
             }
         }
 
+        private void RelocationAll()
+        {
+            try
+            {
+                if (_filterItems == null) return;
+                foreach (KeyValuePair<string, V6ColorTextBox> item in _filterItems)
+                {
+                    var column = _dgv.Columns[item.Key];
+                    if (column == null) continue;
+                    item.Value.Visible = column.Visible;
+                    V6ColorTextBox colorTextBox = item.Value;
+                    colorTextBox.Width = column.Width;
+                    var rec = _dgv.GetColumnDisplayRectangle(column.Index, false);
+                    if (rec.Width > 0)
+                    {
+                        colorTextBox.Top = 0;
+                        colorTextBox.Left = rec.X - (column.Width - rec.Width);
+                        colorTextBox.Visible = true;
+                    }
+                    else
+                    {
+                        colorTextBox.Visible = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
 
         void dgv_DataSourceChanged(object sender, EventArgs e)
         {
-            CaculateSumValues();     
+            
         }
 
         void dgv_SelectionChanged_row(object sender, SelectRowEventArgs row)
         {
-            if (_dgv.RowCount > 1) CaculateSumValues();
+            //if (_dgv.RowCount > 1) CaculateSumValues();
         }
 
         void dgv_SelectionChanged(object sender, EventArgs e)
         {
-            if (_dgv.RowCount > 1) CaculateSumValues();
+            //if (_dgv.RowCount > 1) CaculateSumValues();
         }
 
-        private void DeConnectGridView()
-        {
-            if (_dgv != null)
-            {
-                MyInit();
-                //FixThisSizeLocation(dgv);
-                _dgv.Paint -= dgv_Paint;
-                _dgv.DataSourceChanged -= dgv_DataSourceChanged;
-                _dgv.Paint -= dgv_SelectionChanged;
-                _dgv.SizeChanged -= dgv_SizeChanged;
-                _dgv.LocationChanged -= dgv_LocationChanged;
-            }
-        }
-
+        
         void dgv_LocationChanged(object sender, EventArgs e)
         {
             FixThisSizeLocation(_dgv);
@@ -390,43 +421,6 @@ namespace V6Controls.Controls
         private void DrawSummary()
         {
             return;
-            try
-            {
-                Graphics g = CreateGraphics();
-                g.FillRectangle(bBackGround, g.VisibleClipBounds);
-                if (SumCondition != null && string.IsNullOrEmpty(SumCondition.OPER)) SumCondition.OPER = "=";
-                //CaculateSumValues();
-
-                foreach (DataGridViewColumn col in _dgv.Columns)
-                {
-                    if (!col.Visible) continue;
-                    //var rec0 = _dgv.GetCellDisplayRectangle(col.Index, 1, false);
-                    var rec = _dgv.GetColumnDisplayRectangle(col.Index, false);
-                    var newRec = new Rectangle(new Point(rec.Location.X - 2, -1), new Size(rec.Width, 22));
-                    var text = "";
-                    var dataType = col.ValueType;
-                    if (ObjectAndString.IsNumberType(dataType) && !_NO_SUM_COLUMNS_FOR_CHECK.Contains(";" + col.DataPropertyName.ToUpper() + ";"))
-                    {
-                        text = SumOfSelectedRowsByColumn(_dgv, col).ToString(col.DefaultCellStyle.Format);
-                        text = text.Replace(V6Setting.SystemDecimalSeparator, "#");
-                        text = text.Replace(",", ".");
-                        text = text.Replace(" ", ".");
-                        text = text.Replace("#", V6Options.M_NUM_POINT);
-                    }
-
-                    if (rec.Right > 0)
-                    {
-                        g.DrawRectangle(pBoder, newRec);
-                        g.DrawString(text, textFont, bTextColor, newRec, stringFormat);
-                    }
-                }
-                // Draw header
-                g.DrawString(_sumText, textFont, bTextColor, g.VisibleClipBounds, new StringFormat() { LineAlignment = StringAlignment.Center });
-            }
-            catch
-            {
-                //
-            }
         }
 
         public override void Refresh()
@@ -467,139 +461,7 @@ namespace V6Controls.Controls
                 LineAlignment = StringAlignment.Center
             };
         }
-
-        private SortedDictionary<string, decimal> _sumValues; 
-        private void CaculateSumValues()
-        {
-            try
-            {
-                if (_dgv == null) return;
-                // Khởi tạo danh sách kết quả
-                _sumValues = new SortedDictionary<string, decimal>();
-                foreach (DataGridViewColumn column in _dgv.Columns)
-                {
-                    if (ObjectAndString.IsNumberType(column.ValueType))
-                    {
-                        _sumValues[column.DataPropertyName] = 0;
-                    }
-                }
-
-
-                //if ((_dgv.SelectionMode == DataGridViewSelectionMode.FullRowSelect && _dgv.SelectedRows.Count > 1)
-                //    || (_dgv.SelectionMode != DataGridViewSelectionMode.FullRowSelect && _dgv.SelectedCells.Count > 1))
-                {
-                    // Lấy những dòng được chọn để tính tổng
-                    var rows = new SortedDictionary<int, DataGridViewRow>();
-
-                    foreach (DataGridViewRow row in _dgv.Rows)
-                    {
-                        if (row.IsSelect()) rows[row.Index] = row;
-                    }
-
-                    if (rows.Count == 0)
-                        foreach (DataGridViewCell cell in _dgv.SelectedCells)
-                        {
-                            rows[cell.RowIndex] = cell.OwningRow;
-                        }
-
-                    // Trường hợp chọn từ 2 dòng trở lên
-                    if (rows.Count > 1)
-                    {
-                        foreach (DataGridViewRow row in rows.Values)
-                        {
-                            if (CheckSumCondition(row))
-                                foreach (DataGridViewCell cell in row.Cells)
-                                {
-                                    if (ObjectAndString.IsNumberType(cell.ValueType))
-                                    {
-                                        _sumValues[cell.OwningColumn.DataPropertyName] += ObjectAndString.ObjectToDecimal(cell.Value);
-                                    }
-                                }
-                        }
-                        return;
-                    }
-                }
-
-                foreach (DataGridViewRow row in _dgv.Rows)
-                {
-                    if (CheckSumCondition(row))
-                        foreach (DataGridViewCell cell in row.Cells)
-                        {
-                            if (ObjectAndString.IsNumberType(cell.ValueType))
-                            {
-                                _sumValues[cell.OwningColumn.DataPropertyName] += ObjectAndString.ObjectToDecimal(cell.Value);
-                            }
-                        }
-                }
-            }
-            catch
-            {
-                //
-            }
-            
-        }
-
-        /// <summary>
-        /// Tính tổng 1 cột của các dòng đang chọn, nếu chỉ chọn 1 dòng thì tính hết.
-        /// </summary>
-        /// <param name="dgv"></param>
-        /// <param name="col"></param>
-        /// <returns></returns>
-        private decimal SumOfSelectedRowsByColumn(DataGridView dgv, DataGridViewColumn col)
-        {
-            var sum = 0m;
-            if (_sumValues != null && _sumValues.ContainsKey(col.DataPropertyName))
-            {
-                return _sumValues[col.DataPropertyName];
-            }
-
-            if (dgv.SelectionMode == DataGridViewSelectionMode.FullRowSelect && dgv.SelectedRows.Count > 1)
-            {
-                foreach (DataGridViewRow row in dgv.SelectedRows)
-                {
-                    if (CheckSumCondition(row)) sum += ObjectAndString.ObjectToDecimal(row.Cells[col.DataPropertyName].Value);
-                }
-                return sum;
-            }
-            else if (dgv.SelectionMode == DataGridViewSelectionMode.FullRowSelect)
-            {
-                goto SumAll;
-            }
-
-            SortedDictionary<int, DataGridViewRow> rows = new SortedDictionary<int, DataGridViewRow>();
-            if (dgv.SelectedCells.Count > 1)
-            {
-                foreach (DataGridViewCell cell in dgv.SelectedCells)
-                {
-                    rows[cell.RowIndex] = cell.OwningRow;
-                }
-                if (rows.Count > 1)
-                {
-                    foreach (DataGridViewRow row in rows.Values)
-                    {
-                        if (CheckSumCondition(row)) sum += ObjectAndString.ObjectToDecimal(row.Cells[col.DataPropertyName].Value);
-                    }
-                    return sum;
-                }
-            }
-
-            SumAll:
-            foreach (DataGridViewRow row in dgv.Rows)
-            {
-                if (CheckSumCondition(row)) sum += ObjectAndString.ObjectToDecimal(row.Cells[col.DataPropertyName].Value);
-            }
-            return sum;
-        }
-
-        private bool CheckSumCondition(DataGridViewRow row)
-        {
-            if (SumCondition == null || string.IsNullOrEmpty(SumCondition.FIELD)) return true;
-            if(_dgv.Columns.Contains(SumCondition.FIELD))
-                return ObjectAndString.CheckCondition(row.Cells[SumCondition.FIELD].Value, SumCondition.OPER,SumCondition.VALUE, true);
-
-            return false;
-        }
-
+        
         internal class AConverter : ReferenceConverter
         {
             public AConverter()
@@ -608,7 +470,35 @@ namespace V6Controls.Controls
             }
         }
 
-        
+        private void label1_Click(object sender, EventArgs e)
+        {
+            ShowHelp();
+        }
+
+        private void ShowHelp()
+        {
+            try
+            {
+                string message = null;
+                if (V6Setting.IsVietnamese)
+                {
+                    message = "Tìm chữ gõ bình thường và nhấn Enter." +
+                              "\nTìm số gõ 1 số hoặc 2 số cách nhau bằng khoảng cách hoặc ~ , * , + " +
+                              "\nTìm ngày gõ ngày/tháng/năm tìm từ đó về hiện tại hoặc 2 ngày cách nhau.";
+                }
+                else
+                {
+                    message = "Find text, normal typing and press Enter." +
+                              "\nFind numbers enter 1 or 2 numbers separated by spaces or ~, *, +" +
+                              "\nFind from date enter day/month/year. Add [ day/month/year] for period.";
+                }
+                this.ShowInfoMessage(message);
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
     }
 
     //public class Condition

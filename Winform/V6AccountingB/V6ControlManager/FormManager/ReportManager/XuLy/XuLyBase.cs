@@ -27,20 +27,21 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     public partial class XuLyBase : V6FormControl
     {
         #region Biến toàn cục
-        protected DataGridViewPrinter _myDataGridViewPrinter;
-        protected List<DataGridViewRow> remove_list_g = new List<DataGridViewRow>();
-        protected List<DataRow> remove_list_d = new List<DataRow>();
+        public DataGridViewPrinter _myDataGridViewPrinter;
+        public List<DataGridViewRow> remove_list_g = new List<DataGridViewRow>();
+        public List<DataRow> remove_list_d = new List<DataRow>();
 
         public bool AutoClickNhan { get; set; }
         public string _reportProcedure, _reportFile;
-        protected string _program, _reportCaption, _reportCaption2;
-        protected string _reportFileF5, _reportTitleF5, _reportTitle2F5;
+        public string _program, _reportCaption, _reportCaption2;
+        public string _reportFileF5, _reportTitleF5, _reportTitle2F5;
 
-        protected DataSet _ds;
-        protected DataTable _tbl, _tbl2;
+        public DataSet _ds;
+        public DataTable _tbl, _tbl2;
+        public DataTable _columnsMapper;
 
-        private DataTable _mauInData;
-        private DataTable MauInData
+        public DataTable _mauInData;
+        public DataTable MauInData
         {
             get
             {
@@ -57,7 +58,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// </summary>
         private Dictionary<string, string> Event_Methods = new Dictionary<string, string>();
         private Type Form_program;
-        protected Dictionary<string, object> All_Objects = new Dictionary<string, object>();
+        public Dictionary<string, object> All_Objects = new Dictionary<string, object>();
 
         /// <summary>
         /// Gọi hàm động trong Event_Methods theo tên Event trên form.
