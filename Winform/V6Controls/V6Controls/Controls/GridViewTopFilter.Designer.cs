@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.lblHelp = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.lblReset = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblHelp
@@ -42,11 +43,23 @@
             this.lblHelp.TabIndex = 0;
             this.lblHelp.Click += new System.EventHandler(this.label1_Click);
             // 
+            // lblReset
+            // 
+            this.lblReset.Image = global::V6Controls.Properties.Resources.Refresh16;
+            this.lblReset.Location = new System.Drawing.Point(22, 1);
+            this.lblReset.Name = "lblReset";
+            this.lblReset.Size = new System.Drawing.Size(21, 21);
+            this.lblReset.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.lblReset, "Reset");
+            this.lblReset.Click += new System.EventHandler(this.lblReset_Click);
+            // 
             // GridViewTopFilter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.AliceBlue;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Controls.Add(this.lblReset);
             this.Controls.Add(this.lblHelp);
             this.Name = "GridViewTopFilter";
             this.Size = new System.Drawing.Size(200, 22);
@@ -58,5 +71,6 @@
 
         private System.Windows.Forms.Label lblHelp;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label lblReset;
     }
 }

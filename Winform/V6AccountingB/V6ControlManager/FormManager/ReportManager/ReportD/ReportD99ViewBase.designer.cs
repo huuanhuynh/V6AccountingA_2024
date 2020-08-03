@@ -82,6 +82,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.btnSuaTTMauBC = new V6Controls.Controls.V6FormButton();
             this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
             this.btnExport3 = new wyDay.Controls.SplitButton();
+            this.gridViewTopFilter1 = new V6Controls.Controls.GridViewTopFilter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
@@ -111,13 +112,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridView1.Control_S = true;
-            this.dataGridView1.Location = new System.Drawing.Point(307, 64);
+            this.dataGridView1.Location = new System.Drawing.Point(307, 86);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(662, 313);
+            this.dataGridView1.Size = new System.Drawing.Size(662, 293);
             this.dataGridView1.TabIndex = 4;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
@@ -581,7 +582,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             // 
             this.gridViewSummary1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.gridViewSummary1.DataGridView = this.dataGridView1;
-            this.gridViewSummary1.Location = new System.Drawing.Point(307, 377);
+            this.gridViewSummary1.Location = new System.Drawing.Point(307, 379);
             this.gridViewSummary1.Name = "gridViewSummary1";
             this.gridViewSummary1.Size = new System.Drawing.Size(662, 23);
             this.gridViewSummary1.SumCondition = null;
@@ -660,10 +661,22 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.btnExport3.UseVisualStyleBackColor = true;
             this.btnExport3.Click += new System.EventHandler(this.btnExport3_Click);
             // 
+            // gridViewTopFilter1
+            // 
+            this.gridViewTopFilter1.Auto = false;
+            this.gridViewTopFilter1.BackColor = System.Drawing.Color.AliceBlue;
+            this.gridViewTopFilter1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gridViewTopFilter1.DataGridView = this.dataGridView1;
+            this.gridViewTopFilter1.Location = new System.Drawing.Point(307, 84);
+            this.gridViewTopFilter1.Name = "gridViewTopFilter1";
+            this.gridViewTopFilter1.Size = new System.Drawing.Size(662, 2);
+            this.gridViewTopFilter1.TabIndex = 1;
+            // 
             // ReportD99ViewBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.gridViewTopFilter1);
             this.Controls.Add(this.btnExport3);
             this.Controls.Add(this.lblSummary);
             this.Controls.Add(this.btnSuaLine);
@@ -751,6 +764,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         private System.Windows.Forms.RadioButton rCurrent;
         private System.Windows.Forms.Label lblSummary;
         private wyDay.Controls.SplitButton btnExport3;
+        private GridViewTopFilter gridViewTopFilter1;
 
 
 

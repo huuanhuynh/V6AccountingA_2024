@@ -149,7 +149,6 @@
             this.gridViewTopFilter1.Location = new System.Drawing.Point(0, 0);
             this.gridViewTopFilter1.Name = "gridViewTopFilter1";
             this.gridViewTopFilter1.Size = new System.Drawing.Size(529, 22);
-            this.gridViewTopFilter1.SumCondition = null;
             this.gridViewTopFilter1.TabIndex = 1;
             // 
             // LocKetQuaPhieuNhapKho

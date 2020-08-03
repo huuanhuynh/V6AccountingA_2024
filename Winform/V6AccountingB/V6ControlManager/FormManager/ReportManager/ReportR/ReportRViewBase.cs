@@ -1412,6 +1412,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 dataGridView1.DataSource = _tbl1;
 
                 FormatGridView();
+                gridViewTopFilter1.MadeFilterItems();
 
                 ViewReport();
                 if (AutoPrint)

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.Reflection;
 using System.Windows.Forms;
 using V6Init;
 using V6Tools.V6Convert;
@@ -28,47 +29,26 @@ namespace V6Controls.Controls
             {
                 DeConnectGridView();
                 _dgv = value;
-                _sumText = V6Setting.IsVietnamese ? "Lọc:" : "Filter:";
                 OnDataGridViewChanged(value);
             }
         }
         private V6ColorDataGridView _dgv;
 
-        /// <summary>
-        /// Phần chữ đầu dòng.
-        /// </summary>
-        [Description("Phần chữ đầu dòng")]
-        [DefaultValue("Filter")]
-        protected string SumText
+        [Description("Tự động tạo filter hoặc phải gọi hàm MadeFilterItems")]
+        [DefaultValue(true)]
+        public bool Auto
         {
-            get { return _sumText; }
-            set { _sumText = value; }
+            get { return _auto;}
+            set { _auto = value; }
         }
-        private string _sumText = "Filter:";
-
-        /// <summary>
-        /// Những cột không tính tổng, cách nhau bởi dấu chấm phẩy(;).
-        /// </summary>
-        [DefaultValue(null)]
-        [Description("Những cột không tính tổng, cách nhau bởi dấu chấm phẩy(;).")]
-        public string NoSumColumns { get { return _noSumColumns; }
-            set
-            {
-                _noSumColumns = value.Replace(',', ';');
-                _noSumColumns = _noSumColumns.Replace(" ", "");
-                _NO_SUM_COLUMNS_FOR_CHECK = ";" + _noSumColumns.ToUpper() + ";";
-            } }
-        protected string _noSumColumns;
-        protected string _NO_SUM_COLUMNS_FOR_CHECK="";
-
-        public Condition SumCondition { get; set; }
-
-        Pen pBoder;
+        protected bool _auto = true;
+        
+        //Pen pBoder;
         Brush bBackGround;
-        Brush bTextColor;
-        Font gFont;
-        Font textFont;
-        StringFormat stringFormat;
+        //Brush bTextColor;
+        //Font gFont;
+        //Font textFont;
+        //StringFormat stringFormat;
 
         public event EventHandler DataGridViewChanged;
         protected virtual void OnDataGridViewChanged(DataGridView dgv)
@@ -85,7 +65,7 @@ namespace V6Controls.Controls
             Left = dgv.Left;
             Top = dgv.Top - Height;
             Width = dgv.Width;
-            DrawTempView();
+            //DrawTempView();
         }
 
         private void ConnectGridView(DataGridView dgv)
@@ -104,9 +84,8 @@ namespace V6Controls.Controls
                     dgv6.RowSelectChanged += dgv_SelectionChanged_row;
                 }
                 dgv.DataBindingComplete += dgv_DataBindingComplete;
-                dgv.Paint += dgv_Paint;
                 //dgv.DataSourceChanged += dgv_DataSourceChanged;
-                dgv.DataBindingComplete += dgv_DataSourceChanged;
+                
                 dgv.SizeChanged += dgv_SizeChanged;
                 //dgv.columnheaderw
                 dgv.LocationChanged += dgv_LocationChanged;
@@ -121,9 +100,6 @@ namespace V6Controls.Controls
             {
                 MyInit();
                 //FixThisSizeLocation(dgv);
-                _dgv.Paint -= dgv_Paint;
-                _dgv.DataSourceChanged -= dgv_DataSourceChanged;
-                _dgv.Paint -= dgv_SelectionChanged;
                 _dgv.SizeChanged -= dgv_SizeChanged;
                 _dgv.LocationChanged -= dgv_LocationChanged;
             }
@@ -137,7 +113,7 @@ namespace V6Controls.Controls
             }
             catch (Exception ex)
             {
-
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex, Name);
             }
         }
 
@@ -153,7 +129,7 @@ namespace V6Controls.Controls
             }
             catch (Exception ex)
             {
-                
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex, Name);
             }
         }
 
@@ -165,18 +141,21 @@ namespace V6Controls.Controls
             }
             catch (Exception ex)
             {
-
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex, Name);
             }
         }
 
         void dgv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            MadeFilterItems();
+            if(Auto) MadeFilterItems();
         }
 
         private Dictionary<string, V6ColorTextBox> _filterItems = new Dictionary<string, V6ColorTextBox>();
         private bool _created;
-        private void MadeFilterItems()
+        /// <summary>
+        /// Tạo filter input items. Chỉ tạo 1 lần.
+        /// </summary>
+        public void MadeFilterItems()
         {
             try
             {
@@ -190,11 +169,12 @@ namespace V6Controls.Controls
                             AddFilterItem((DataGridViewTextBoxColumn)column);
                         }
                     }
+                    if (!_auto) RelocationAll();
                 }
             }
             catch (Exception ex)
             {
-
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex, Name);
             }
         }
 
@@ -223,15 +203,27 @@ namespace V6Controls.Controls
                 {
                     RelocationAll();
                 };
+                //if (ObjectAndString.IsDateTimeType(column.ValueType))
+                //{
+                //    colorTextBox.KeyUp += delegate(object sender, KeyEventArgs args)
+                //    {
+                //        var txt = (V6ColorTextBox) sender;
+                //        if (txt.Text.Length < 4) return;
+                //        int i1 = txt.Text.IndexOf('/');
+                //        int i2 = txt.Text.LastIndexOf('/');
+                //        if(i)
+
+                //    };
+                //}
                 this.Controls.Add(colorTextBox);
             }
             catch (Exception ex)
             {
-                
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex, Name);
             }
         }
 
-        private void ApplyFilter()
+        public void ApplyFilter()
         {
             try
             {
@@ -249,7 +241,37 @@ namespace V6Controls.Controls
             }
             catch (Exception ex)
             {
-                
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex, Name);
+            }
+        }
+
+        public void ResetFilter()
+        {
+            try
+            {
+                if (!_created) return;
+                foreach (KeyValuePair<string, V6ColorTextBox> item in _filterItems)
+                {
+                    DataGridViewColumn _filter_column = _dgv.Columns[item.Key];
+                    if (_filter_column == null || !_filter_column.Visible || item.Value.Text == string.Empty) continue;
+                    item.Value.Text = string.Empty;
+
+                }
+
+                string filter_string = "";
+                var table = _dgv.TableSource;
+                var view = _dgv.DataSource as DataView;
+                // _view là view cũ trước đó hoặc tạo view mới nếu chưa có.
+                var _view = view ?? new DataView(table);
+                _view.RowFilter = filter_string;
+                _dgv.DataSource = _view;
+                toolTip1.SetToolTip(lblHelp, filter_string);
+                _dgv.RecheckColor();
+                _dgv.OnFilterChange();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex, Name);
             }
         }
 
@@ -286,7 +308,7 @@ namespace V6Controls.Controls
                 }
                 else if (ObjectAndString.IsNumberType(_filter_column.ValueType))
                 {
-                    sss = ObjectAndString.SplitStringBy(value, new[] { ' ', '~', '*', '+' });
+                    sss = ObjectAndString.SplitStringBy(value, '~');
                     value = item.Value.Text;
                     value2 = null;
                     if (sss.Length == 2)
@@ -295,21 +317,21 @@ namespace V6Controls.Controls
                         value2 = sss[1];
                     }
                     var num1 = ObjectAndString.ObjectToDecimal(value);
-                    var num2 = ObjectAndString.ObjectToDecimal(value2);
-                    if (num1 > num2)
+                    if (value2 == null)
                     {
                         row_filter = string.Format("{0} = {1}", FIELD_NAME,
                             num1.ToString(CultureInfo.InvariantCulture));
                     }
                     else
                     {
+                        var num2 = ObjectAndString.ObjectToDecimal(value2);
                         row_filter = string.Format("({0} >= {1} and {0} <= {2})", FIELD_NAME,
                             num1.ToString(CultureInfo.InvariantCulture), num2.ToString(CultureInfo.InvariantCulture));
                     }
                 }
                 else if (ObjectAndString.IsDateTimeType(_filter_column.ValueType))
                 {
-                    sss = ObjectAndString.SplitStringBy(value,new []{' ','~','*','+','-'});
+                    sss = ObjectAndString.SplitStringBy(value,'~');
                     value = item.Value.Text;
                     value2 = null;
                     if (sss.Length == 2)
@@ -319,13 +341,13 @@ namespace V6Controls.Controls
                     }
 
                     var date1 = ObjectAndString.ObjectToFullDateTime(value).ToString("yyyy-MM-dd");
-                    var date2 = ObjectAndString.ObjectToFullDateTime(value2).ToString("yyyy-MM-dd");
-                    if (String.CompareOrdinal(date1, date2) > 0)
+                    if (value2 == null)
                     {
                         row_filter = string.Format("{0} = #{1}#", FIELD_NAME, date1);
                     }
                     else
                     {
+                        var date2 = ObjectAndString.ObjectToFullDateTime(value2).ToString("yyyy-MM-dd");
                         row_filter = string.Format("({0} >= #{1}# and {0} <= #{2}#)", FIELD_NAME, date1, date2);
                     }
                 }
@@ -385,13 +407,7 @@ namespace V6Controls.Controls
 
             }
         }
-
-
-        void dgv_DataSourceChanged(object sender, EventArgs e)
-        {
-            
-        }
-
+        
         void dgv_SelectionChanged_row(object sender, SelectRowEventArgs row)
         {
             //if (_dgv.RowCount > 1) CaculateSumValues();
@@ -412,21 +428,10 @@ namespace V6Controls.Controls
         {
             FixThisSizeLocation(_dgv);
         }
-
-        void dgv_Paint(object sender, PaintEventArgs paintEventArgs)
-        {
-            DrawSummary();
-        }
-
-        private void DrawSummary()
-        {
-            return;
-        }
-
+        
         public override void Refresh()
         {
             //base.Refresh();
-            if(_dgv != null) DrawSummary();
         }
 
         private void DrawTempView()
@@ -434,7 +439,7 @@ namespace V6Controls.Controls
             if (_dgv == null) return;
             Graphics g = CreateGraphics();
             g.FillRectangle(bBackGround, g.VisibleClipBounds);
-            g.DrawString(_sumText, textFont, bTextColor, g.VisibleClipBounds, new StringFormat() { LineAlignment = StringAlignment.Center });
+            //g.DrawString("          GridView Top Filter", textFont, bTextColor, g.VisibleClipBounds, new StringFormat() { LineAlignment = StringAlignment.Center });
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -449,17 +454,17 @@ namespace V6Controls.Controls
 
         private void MyInit()
         {
-            pBoder = new Pen(Color.Black);
+            //pBoder = new Pen(Color.Black);
             bBackGround = new SolidBrush(Color.AliceBlue);
-            bTextColor = new SolidBrush(_dgv.ForeColor);
+            //bTextColor = new SolidBrush(_dgv.ForeColor);
 
-            gFont = _dgv.DefaultCellStyle.Font;
-            textFont = new Font(gFont.FontFamily, gFont.Size, FontStyle.Bold);
-            stringFormat = new StringFormat
-            {
-                Alignment = StringAlignment.Far,
-                LineAlignment = StringAlignment.Center
-            };
+            //gFont = _dgv.DefaultCellStyle.Font;
+            //textFont = new Font(gFont.FontFamily, gFont.Size, FontStyle.Bold);
+            //stringFormat = new StringFormat
+            //{
+            //    Alignment = StringAlignment.Far,
+            //    LineAlignment = StringAlignment.Center
+            //};
         }
         
         internal class AConverter : ReferenceConverter
@@ -483,13 +488,13 @@ namespace V6Controls.Controls
                 if (V6Setting.IsVietnamese)
                 {
                     message = "Tìm chữ gõ bình thường và nhấn Enter." +
-                              "\nTìm số gõ 1 số hoặc 2 số cách nhau bằng khoảng cách hoặc ~ , * , + " +
-                              "\nTìm ngày gõ ngày/tháng/năm tìm từ đó về hiện tại hoặc 2 ngày cách nhau.";
+                              "\nTìm số gõ 1 số hoặc 2 số cách nhau bằng ~ " +
+                              "\nTìm ngày gõ ngày/tháng/năm tìm từ đó về hiện tại hoặc 2 ngày cách nhau ~.";
                 }
                 else
                 {
                     message = "Find text, normal typing and press Enter." +
-                              "\nFind numbers enter 1 or 2 numbers separated by spaces or ~, *, +" +
+                              "\nFind numbers enter 1 or 2 numbers separated by ~ " +
                               "\nFind from date enter day/month/year. Add [ day/month/year] for period.";
                 }
                 this.ShowInfoMessage(message);
@@ -498,6 +503,13 @@ namespace V6Controls.Controls
             {
                 
             }
+        }
+
+        private void lblReset_Click(object sender, EventArgs e)
+        {
+            _dgv.SaveSelectedCellLocation();
+            ResetFilter();
+            _dgv.LoadSelectedCellLocation();
         }
     }
 

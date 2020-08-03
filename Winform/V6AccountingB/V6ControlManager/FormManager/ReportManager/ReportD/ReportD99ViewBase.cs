@@ -1146,7 +1146,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                     }
 
                     FormatGridView();
-                    
+                    gridViewTopFilter1.MadeFilterItems();
                     ViewReportIndex();
 
                     dataGridView1.Focus();

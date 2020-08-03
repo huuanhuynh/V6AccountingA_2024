@@ -2561,6 +2561,7 @@
     <None Include="Resources\typing32.png" />
     <None Include="Resources\typing75.png" />
     <None Include="Resources\Up24.png" />
+    <None Include="Resources\Refresh16.png" />
     <Content Include="Setting\TuKhoa.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
