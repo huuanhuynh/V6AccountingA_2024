@@ -489,13 +489,13 @@ namespace V6Controls.Controls
                 {
                     message = "Tìm chữ gõ bình thường và nhấn Enter." +
                               "\nTìm số gõ 1 số hoặc 2 số cách nhau bằng ~ " +
-                              "\nTìm ngày gõ ngày/tháng/năm tìm từ đó về hiện tại hoặc 2 ngày cách nhau ~.";
+                              "\nTìm 1 ngày gõ ngày/tháng/năm hoặc 2 ngày cách nhau ~.";
                 }
                 else
                 {
                     message = "Find text, normal typing and press Enter." +
                               "\nFind numbers enter 1 or 2 numbers separated by ~ " +
-                              "\nFind from date enter day/month/year. Add [ day/month/year] for period.";
+                              "\nFind in date enter day/month/year. Add ~day/month/year for period.";
                 }
                 this.ShowInfoMessage(message);
             }

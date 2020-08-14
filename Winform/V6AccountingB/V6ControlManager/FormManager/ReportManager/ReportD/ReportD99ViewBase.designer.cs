@@ -667,9 +667,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.gridViewTopFilter1.BackColor = System.Drawing.Color.AliceBlue;
             this.gridViewTopFilter1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.gridViewTopFilter1.DataGridView = this.dataGridView1;
-            this.gridViewTopFilter1.Location = new System.Drawing.Point(307, 84);
+            this.gridViewTopFilter1.Location = new System.Drawing.Point(307, 63);
             this.gridViewTopFilter1.Name = "gridViewTopFilter1";
-            this.gridViewTopFilter1.Size = new System.Drawing.Size(662, 2);
+            this.gridViewTopFilter1.Size = new System.Drawing.Size(662, 23);
             this.gridViewTopFilter1.TabIndex = 1;
             // 
             // ReportD99ViewBase

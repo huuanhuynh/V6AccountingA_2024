@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using V6SqlConnect;
 using V6Structs;
 
@@ -264,7 +265,19 @@ namespace V6Init
             }
         }
         private static string _M_VITRI_CODEDAY_INDEX;
-        
+
+
+        public static float M_R_FONTSIZE
+        {
+            get
+            {
+                if (m_r_fontsize0 > 5) return m_r_fontsize0;
+                m_r_fontsize0 = (float)Convert.ToDouble(GetValue("M_R_FONTSIZE"), CultureInfo.InvariantCulture);
+                return m_r_fontsize0;
+            }
+        }
+
+        private static float m_r_fontsize0 = 0f;
 
         /// <summary>
         /// Roun all-> Numeric 0,1,2...

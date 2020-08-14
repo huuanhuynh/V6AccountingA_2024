@@ -1488,6 +1488,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
 
         //private bool _forcePrint;
         public string PrinterName { get; set; }
+        public PrintDialog printDialog = null;
         private int _soLienIn = 1, _printCopy = 1;
         
         public int PrintCopies
@@ -2119,6 +2120,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     {
                         try
                         {
+                            if (printDialog != null)
+                            {
+                                rpDoc.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
+                                rpDoc.PrintOptions.CustomPaperSource = printDialog.Document.DefaultPageSettings.PaperSource;
+                            }
                             if (IsInvoice)
                             {
                                 rpDoc.PrintToPrinter(1, false, 1, 1);
@@ -2137,6 +2143,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         if (_soLienIn > 1)
                             try
                             {
+                                if (printDialog != null)
+                                {
+                                    rpDoc2.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
+                                    rpDoc2.PrintOptions.CustomPaperSource = printDialog.Document.DefaultPageSettings.PaperSource;
+                                }
                                 if (IsInvoice)
                                 {
                                     rpDoc2.PrintToPrinter(1, false, 1, 1);
@@ -2155,6 +2166,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         {
                             try
                             {
+                                if (printDialog != null)
+                                {
+                                    rpDoc3.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
+                                    rpDoc3.PrintOptions.CustomPaperSource = printDialog.Document.DefaultPageSettings.PaperSource;
+                                }
                                 if (IsInvoice)
                                 {
                                     rpDoc3.PrintToPrinter(1, false, 1, 1);
@@ -2174,6 +2190,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                         {
                             try
                             {
+                                if (printDialog != null)
+                                {
+                                    rpDoc4.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
+                                    rpDoc4.PrintOptions.CustomPaperSource = printDialog.Document.DefaultPageSettings.PaperSource;
+                                }
                                 if (IsInvoice)
                                 {
                                     rpDoc4.PrintToPrinter(1, false, 1, 1);
@@ -2194,6 +2215,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     {
                         try
                         {
+                            if (printDialog != null)
+                            {
+                                rpDoc.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
+                                rpDoc.PrintOptions.CustomPaperSource = printDialog.Document.DefaultPageSettings.PaperSource;
+                            }
                             if (IsInvoice)
                             {
                                 rpDoc.PrintToPrinter(_soLienIn, false, 1, 1);
@@ -2410,20 +2436,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 {
                     _oldDefaultPrinter = PrinterStatus.GetDefaultPrinterName();
 
-                    PrintDialog p = new PrintDialog();
-                    p.PrinterSettings.PrinterName = dfp;
-                    p.AllowCurrentPage = false;
-                    p.AllowPrintToFile = false;
-                    p.AllowSelection = false;
-                    p.AllowSomePages = false;
-                    p.PrintToFile = false;
-                    p.UseEXDialog = true; //Fix win7
+                    printDialog = new PrintDialog();
+                    printDialog.Document = new PrintDocument();
+                    printDialog.PrinterSettings.PrinterName = dfp;
+                    printDialog.AllowCurrentPage = false;
+                    printDialog.AllowPrintToFile = false;
+                    printDialog.AllowSelection = false;
+                    printDialog.AllowSomePages = false;
+                    printDialog.PrintToFile = false;
+                    printDialog.UseEXDialog = true; //Fix win7
 
-                    DialogResult dr = p.ShowDialog(this);
+                    DialogResult dr = printDialog.ShowDialog(this);
                     if (dr == DialogResult.OK)
                     {
-                        var selectedPrinter = p.PrinterSettings.PrinterName;
-                        _printCopy = p.PrinterSettings.Copies;
+                        var selectedPrinter = printDialog.PrinterSettings.PrinterName;
+                        _printCopy = printDialog.PrinterSettings.Copies;
 
                         V6BusinessHelper.WriteOldSelectPrinter(selectedPrinter);
                         //printting = true;
@@ -2480,20 +2507,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                 
                 _oldDefaultPrinter = PrinterStatus.GetDefaultPrinterName();
 
-                PrintDialog p = new PrintDialog();
-                p.PrinterSettings.PrinterName = dfp;
-                p.AllowCurrentPage = false;
-                p.AllowPrintToFile = false;
-                p.AllowSelection = false;
-                p.AllowSomePages = false;
-                p.PrintToFile = false;
-                p.UseEXDialog = true; //Fix win7
+                printDialog = new PrintDialog();
+                printDialog.Document = new PrintDocument();
+                printDialog.PrinterSettings.PrinterName = dfp;
+                printDialog.AllowCurrentPage = false;
+                printDialog.AllowPrintToFile = false;
+                printDialog.AllowSelection = false;
+                printDialog.AllowSomePages = false;
+                printDialog.PrintToFile = false;
+                printDialog.UseEXDialog = true; //Fix win7
 
-                DialogResult dr = p.ShowDialog(this);
+                DialogResult dr = printDialog.ShowDialog(this);
                 if (dr == DialogResult.OK)
                 {
-                    var selectedPrinter = p.PrinterSettings.PrinterName;
-                    _printCopy = p.PrinterSettings.Copies;
+                    var selectedPrinter = printDialog.PrinterSettings.PrinterName;
+                    _printCopy = printDialog.PrinterSettings.Copies;
                     var setPrinterOk = PrinterStatus.SetDefaultPrinter(selectedPrinter);
 
                     V6BusinessHelper.WriteOldSelectPrinter(selectedPrinter);
@@ -2504,6 +2532,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
                     if (sender == inLien3Menu) rpDoc = _rpDoc30;
                     if (sender == inLien4Menu) rpDoc = _rpDoc40;
                     
+                    if (printDialog != null)
+                    {
+                        rpDoc.PrintOptions.PrinterName = printDialog.PrinterSettings.PrinterName;
+                        rpDoc.PrintOptions.CustomPaperSource = printDialog.Document.DefaultPageSettings.PaperSource;
+                    }
                     if (IsInvoice)
                     {
                         rpDoc.PrintToPrinter(_printCopy, false, 1, 1);

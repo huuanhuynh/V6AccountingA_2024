@@ -773,7 +773,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
                         if (line.CheckNotEmpty && line.StringValue == "")
                         {
-                            throw new Exception(line.FieldName);
+                            throw new Exception(string.Format("{0}: {1} ({2}).", V6Text.CheckInfor, line.Text, line.FieldName));
                         }
                         last_key = line.DefineInfo.Loai_key;
 
@@ -981,7 +981,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
                         if (line.CheckNotEmpty && line.StringValue == "")
                         {
-                            throw new Exception(line.FieldName);
+                            throw new Exception(string.Format("{0}: {1} ({2}).", V6Text.CheckInfor, line.Text, line.FieldName));
                         }
                         last_key = line.DefineInfo.Loai_key;
 
