@@ -33,7 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DicEditForm));
-            this.txtNewKey = new System.Windows.Forms.TextBox();
+            this.txtNewKey = new V6Controls.V6ColorTextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnTimTiep = new System.Windows.Forms.Button();
             this.btnTimTatCa = new System.Windows.Forms.Button();
@@ -43,7 +43,7 @@
             this.btnMove2Down = new System.Windows.Forms.Button();
             this.txtValue = new V6Controls.V6ColorTextBox();
             this.btnThem = new System.Windows.Forms.Button();
-            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtName = new V6Controls.V6ColorTextBox();
             this.btnXoa = new System.Windows.Forms.Button();
             this.dataGridView1 = new V6Controls.V6ColorDataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -51,6 +51,13 @@
             // 
             // txtNewKey
             // 
+            this.txtNewKey.BackColor = System.Drawing.SystemColors.Window;
+            this.txtNewKey.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtNewKey.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtNewKey.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNewKey.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtNewKey.HoverColor = System.Drawing.Color.Yellow;
+            this.txtNewKey.LeaveColor = System.Drawing.Color.White;
             this.txtNewKey.Location = new System.Drawing.Point(12, 12);
             this.txtNewKey.Name = "txtNewKey";
             this.txtNewKey.Size = new System.Drawing.Size(158, 20);
@@ -169,7 +176,14 @@
             // 
             // txtName
             // 
+            this.txtName.BackColor = System.Drawing.SystemColors.Window;
+            this.txtName.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtName.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtName.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtName.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtName.HoverColor = System.Drawing.Color.Yellow;
+            this.txtName.LeaveColor = System.Drawing.Color.White;
             this.txtName.Location = new System.Drawing.Point(298, 38);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(453, 29);
@@ -240,7 +254,7 @@
             this.Name = "DicEditForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Chọn";
+            this.Text = "Sửa từ điển";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SelectMultiIDForm_FormClosing);
             this.Load += new System.EventHandler(this.SelectMultiIDForm_Load);
             this.SizeChanged += new System.EventHandler(this.DicEditForm_SizeChanged);
@@ -266,7 +280,7 @@
         #endregion
 
         //private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox txtNewKey;
+        private V6ColorTextBox txtNewKey;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnTimTiep;
         private System.Windows.Forms.Button btnTimTatCa;
@@ -276,7 +290,7 @@
         private System.Windows.Forms.Button btnMove2Down;
         private V6ColorTextBox txtValue;
         private System.Windows.Forms.Button btnThem;
-        private System.Windows.Forms.TextBox txtName;
+        private V6ColorTextBox txtName;
         private System.Windows.Forms.Button btnXoa;
         private V6ColorDataGridView dataGridView1;
     }

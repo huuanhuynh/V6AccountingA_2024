@@ -690,6 +690,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 CreateFormProgram();
                 CreateFormControls();
                 CheckRightReport();
+                if (V6Options.M_R_FONTSIZE > 8)
+                {
+                    dataGridView1.DefaultCellStyle.Font = new Font(dataGridView1.DefaultCellStyle.Font.FontFamily, V6Options.M_R_FONTSIZE);
+                }
                 InvokeFormEvent(FormDynamicEvent.INIT);
             }
             catch (Exception ex)

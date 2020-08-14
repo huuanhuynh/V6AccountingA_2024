@@ -39,8 +39,9 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             String3 = (comboBox2.SelectedItem??"").ToString();
             Date1 = dateNgay_ct1.Date;
             Date2 = dateNgay_ct2.Date;
-            Check1 = checkBox1.Checked;
-            Check2 = checkBox2.Checked;
+            Check1 = chkChuyenMa.Checked;
+            Check2 = chkDeleteData0.Checked;
+            Check3 = chkAutoSoCt.Checked;
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -62,7 +63,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            Check1 = checkBox1.Checked;
+            Check1 = chkChuyenMa.Checked;
             if (Check1)
             {
                 comboBox1.Enabled = true;
@@ -89,7 +90,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            Check2 = checkBox2.Checked;
+            Check2 = chkDeleteData0.Checked;
         }
 
         private void btnSuaChiTieu_Click(object sender, EventArgs e)
@@ -102,6 +103,7 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         private void btnXemMauExcel_Click(object sender, EventArgs e)
         {
+            V6ControlFormHelper.OpenExcelTemplate("ALVT_DATA2.XLS", "IMPORT_EXCEL");
             V6ControlFormHelper.OpenExcelTemplate("SOA_DATA2.XLS", "IMPORT_EXCEL");
         }
 
@@ -109,6 +111,17 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             ObjectDictionary["AUTOSOCT"] = chkAutoSoCt.Checked;
             Check3 = chkAutoSoCt.Checked;
+        }
+
+        private void chkAutoF9_CheckedChanged(object sender, EventArgs e)
+        {
+            ObjectDictionary["AUTOF9"] = chkAutoF9.Checked;
+            ObjectDictionary["AUTOF9TIME"] = numAuto1.Value;
+        }
+
+        private void numAuto1_ValueChanged(object sender, EventArgs e)
+        {
+            ObjectDictionary["AUTOF9TIME"] = numAuto1.Value;
         }
     }
 }

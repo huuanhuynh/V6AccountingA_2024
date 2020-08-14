@@ -1627,6 +1627,49 @@ namespace V6AccountingBusiness
         }
 
         /// <summary>
+        /// Tính tổng theo điều kiện field=value (không kể khoảng trắng, không phân biệt hoa thường).
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="sumColumn"></param>
+        /// <param name="conditionColumn"></param>
+        /// <param name="conditionValue"></param>
+        /// <param name="throwException"></param>
+        /// <returns></returns>
+        public static decimal TinhTongDieuKien(DataTable data, string sumColumn, string conditionColumn, object conditionValue, bool throwException = false)
+        {
+            if (throwException)
+            {
+                if (data == null) throw new ArgumentException("DataTable is null.", "data");
+                if (!data.Columns.Contains(sumColumn))
+                    throw new IndexOutOfRangeException(String.Format("No column name: \"{0}\".", sumColumn));
+                if (!data.Columns.Contains(conditionColumn))
+                    throw new IndexOutOfRangeException(String.Format("No column name: \"{0}\".", conditionColumn));
+            }
+            var total = 0m;
+            try
+            {
+                if (data != null && data.Columns.Contains(sumColumn))
+                {
+                    for (var j = 0; j < data.Rows.Count; j++)
+                    {
+                        DataRow rowj = data.Rows[j];
+                        if (ObjectAndString.ObjectToString(rowj[conditionColumn]).Trim().ToUpper() ==
+                            ObjectAndString.ObjectToString(conditionValue).Trim().ToUpper())
+                        {
+                            total += ObjectAndString.ObjectToDecimal(data.Rows[j][sumColumn]);
+                        }
+                    }
+                    return total;
+                }
+                return total;
+            }
+            catch
+            {
+                return total;
+            }
+        }
+
+        /// <summary>
         /// Tính tổng theo dấu oper, + thì cộng, - thì trừ.
         /// </summary>
         /// <param name="data">Bảng dữ liệu.</param>
@@ -2267,6 +2310,11 @@ namespace V6AccountingBusiness
             return SqlConnect.StartSqlConnect(key, iniLocation);
         }
 
+        public static void UpdateAlqddvt(string ma_vt_old, string ma_vt_new)
+        {
+            ExecuteProcedureNoneQuery("VPA_UPDATE_ALQDDVT", new SqlParameter("@cMa_vt_old", ma_vt_old), new SqlParameter("@cMa_vt_new", ma_vt_new));
+        }
+
         /// <summary>
         /// Sửa 1 dòng dữ liệu trong DataTable nếu tìm thấy keyValue trong cột keyField.
         /// Nếu không tìm thấy sẽ thêm vào dòng mới.
@@ -2343,5 +2391,6 @@ namespace V6AccountingBusiness
         }
 
 
+        
     }
 }

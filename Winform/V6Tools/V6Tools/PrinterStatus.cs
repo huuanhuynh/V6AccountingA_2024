@@ -6,6 +6,8 @@ using System.Collections.Specialized;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Drawing.Printing;
+using System.Windows.Forms;
+
 //using System.Drawing.Printing;
 
 
@@ -70,6 +72,22 @@ namespace V6Tools
             {
                 PrintDocument printDocument = new PrintDocument();
                 printDocument.PrinterSettings.PrinterName = printerName;
+                online = printDocument.PrinterSettings.IsValid;
+            }
+            catch
+            {
+                online = false;
+            }
+            return online;
+        }
+
+        public static bool CheckPrinterOnline(PrintDialog printerDialog)
+        {
+            bool online = false;
+            try
+            {
+                PrintDocument printDocument = new PrintDocument();
+                printDocument.PrinterSettings.PrinterName = printerDialog.PrinterSettings.PrinterName;
                 online = printDocument.PrinterSettings.IsValid;
             }
             catch

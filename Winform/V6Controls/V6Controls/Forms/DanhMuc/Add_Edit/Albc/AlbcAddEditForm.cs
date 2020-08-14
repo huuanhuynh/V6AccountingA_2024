@@ -394,6 +394,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
             txtExcel2View.ReadOnly = false;
             txtMa_File.ReadOnly = false;
             txtReportFileNew.ReadOnly = false;
+            txtExcel1.ReadOnly = false;
             base.V6CtrlF12Execute();
         }
 
@@ -582,87 +583,25 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit.Albc
 
         private List<AlbcFieldInfo> GetSourceFieldsInfo1()
         {
-            return GetSourceFieldsInfo("dataGridView1");
+            DataGridView dataGridView1 = V6ControlFormHelper.GetControlByName(_grandFatherControl, "dataGridView1") as DataGridView;
+            return V6ControlFormHelper.GetSourceFieldsInfo(dataGridView1);
         }
         private List<AlbcFieldInfo> GetSourceFieldsInfo2()
         {
-            return GetSourceFieldsInfo("dataGridView2");
+            DataGridView dataGridView2 = V6ControlFormHelper.GetControlByName(_grandFatherControl, "dataGridView2") as DataGridView;
+            return V6ControlFormHelper.GetSourceFieldsInfo(dataGridView2);
         }
 
-        /// <summary>
-        /// Lấy thông tin nguồn.
-        /// </summary>
-        /// <returns></returns>
-        private List<AlbcFieldInfo> GetSourceFieldsInfo(string dataGridViewName)
-        {
-            List<AlbcFieldInfo> result = new List<AlbcFieldInfo>();
-            try
-            {
-                DataGridView dataGridView1 = V6ControlFormHelper.GetControlByName(_grandFatherControl, dataGridViewName) as DataGridView;
-                if (dataGridView1 == null)
-                {
-                    //ShowTopLeftMessage("Không tìm thấy " + dataGridViewName);
-                    return result;
-                }
-                DataTable data1 = dataGridView1.DataSource as DataTable;
-                if (data1 == null && dataGridView1.DataSource is DataView)
-                {
-                    data1 = ((DataView)dataGridView1.DataSource).Table;
-                }
-                
-                if (data1 != null)
-                {
-                    foreach (DataColumn column in data1.Columns)
-                    {
-                        AlbcFieldInfo fi = new AlbcFieldInfo();
-                        result.Add(fi);
-                        fi.FieldName = column.ColumnName.ToUpper();
-                        if (ObjectAndString.IsNumberType(column.DataType)) fi.FieldType = AlbcFieldType.N0;
-                        else if (column.DataType == typeof (DateTime)) fi.FieldType = AlbcFieldType.D;
-                        else fi.FieldType = AlbcFieldType.C;
-
-                        var gColumn = dataGridView1.Columns[fi.FieldName];
-                        if (gColumn != null)
-                        {
-                            fi.FieldWidth = gColumn.Width;
-                        }
-                        else
-                        {
-                            fi.FieldWidth = 100;
-                        }
-
-                        fi.FieldHeaderV = CorpLan2.GetFieldHeader(fi.FieldName, "V");
-                        fi.FieldHeaderE = CorpLan2.GetFieldHeader(fi.FieldName, "E");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(GetType() + ".GetSourceFieldsInfo", ex);
-            }
-            return result;
-        }
-
+        
         
 
         private void btnGRDS_V1_Click(object sender, EventArgs e)
         {
             try
             {
-                //FieldSelectorForm form = new FieldSelectorForm();
                 List<AlbcFieldInfo> targetInfoList = GetTargetFieldsInfo(txtShowFields1.Text, txtFormats1.Text, txtHeaderV1.Text, txtHeaderE1.Text, txtNoSum1.Text);
                 List<AlbcFieldInfo> sourceFields = GetSourceFieldsInfo1();
-                //form.AddSourceFieldList(sourceFields);
-                //form.AddTargetFieldList(targetInfoList);
                 V6ControlFormHelper.SelectFields(this, sourceFields, targetInfoList, txtShowFields1, txtFormats1, txtHeaderV1, txtHeaderE1);
-                //if (form.ShowDialog(this) == DialogResult.OK)
-                //{
-                //    txtShowFields1.Text = form.GetFieldsString();
-                //    txtFormats1.Text = form.GetFormatsString();
-                //    txtHeaderV1.Text = form.GetCaptionsStringV();
-                //    txtHeaderE1.Text = form.GetCaptionsStringE();
-                //    //txtNoSum1.Text = form.GetNoSumFieldsString();
-                //}
             }
             catch (Exception ex)
             {

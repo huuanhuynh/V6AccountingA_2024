@@ -10,6 +10,7 @@ using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6Controls;
 using V6Controls.Forms;
+using V6Controls.Forms.Viewer;
 using V6Init;
 using V6Structs;
 using V6Tools;
@@ -25,14 +26,27 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         /// <summary>
         /// Kiem tra du lieu hop le
         /// </summary>
-        private string check = null;
+        private string check_string = null;
+        private Timer timerAutoF9;
+        private System.ComponentModel.IContainer components;
         public string M_SOA_MULTI_VAT = "0";
+        private string conString2 = null;
+
+        bool AUTOF9
+        {
+            get
+            {
+                return FilterControl.ObjectDictionary.ContainsKey("AUTOF9") &&
+                       ObjectAndString.ObjectToBool(FilterControl.ObjectDictionary["AUTOF9"]);
+            }
+        } 
 
         public V6IMDATA2_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, false)
         {
             try
             {
+                InitializeComponent();
                 M_SOA_MULTI_VAT = V6Options.GetValue("M_SOA_MULTI_VAT");
             }
             catch (Exception)
@@ -46,61 +60,216 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             V6ControlFormHelper.SetStatusText2(string.Format("F9: {0}", V6Text.Text("CHUYEN")));
         }
 
+        public DataTable _columnsMapper_AMAD;
+        public DataTable _columnsMapper_ALVT;
 
         protected override void MakeReport2()
         {
             try
             {
                 FilterControl.UpdateValues();
-                var conString = string.Format(@"Server={0};Database={1};User Id={2};Password={3};",
+
+                conString2 = string.Format(@"Server={0};Database={1};User Id={2};Password={3};",
                     UtilityHelper.DeCrypt(EXTRA_INFOR["SERVER"]), UtilityHelper.DeCrypt(EXTRA_INFOR["DATABASE"]),
                     UtilityHelper.DeCrypt(EXTRA_INFOR["USERID"]), UtilityHelper.DeCrypt(EXTRA_INFOR["PASSWORD"]));
                 //var c = DatabaseConfig.ConnectionString;
-                var ds = SqlHelper.ExecuteDataset(conString, CommandType.Text,
-                    string.Format("Select top 20 * from [{0}] Where XNGAY_CT BETWEEN '{1:yyyyMMdd}' AND '{2:yyyyMMdd}'",
+                var ds = SqlHelper.ExecuteDataset(conString2, CommandType.Text,
+                    string.Format("Select * from [{0}] Where XNGAY_CT BETWEEN '{1:yyyyMMdd}' AND '{2:yyyyMMdd}'",
                     EXTRA_INFOR["TABLENAME"], FilterControl.Date1, FilterControl.Date2));
                 _tbl = ds.Tables[0];
-               
-                // ColumnsMapper
+                
+                //var ds2 = SqlHelper.ExecuteDataset(conString2, CommandType.Text,
+                //    string.Format("Select * from [{0}] ", EXTRA_INFOR["TABLENAME_VT"]));
+                //_tbl2 = ds2.Tables[0];
+
                 string path1 = V6Login.StartupPath;
                 path1 = Path.Combine(path1, "IMPORT_EXCEL");
                 path1 = Path.Combine(path1, "SOA_DATA2.XLS");
-                if (File.Exists(path1))
+                _columnsMapper_AMAD = Excel_File.Sheet1ToDataTable(path1, 0, 5);
+                MAPPING_COLUMNS_DATATABLE(_tbl, _columnsMapper_AMAD);
+                
+                path1 = V6Login.StartupPath;
+                path1 = Path.Combine(path1, "IMPORT_EXCEL");
+                path1 = Path.Combine(path1, "ALVT_DATA2.XLS");
+                _columnsMapper_ALVT = Excel_File.Sheet1ToDataTable(path1, 0, 5);
+                //MAPPING_COLUMNS_DATATABLE(_tbl2, path1);
+                
+
+                check_string = null;
+
+                CHANGE_CODE_AU();
+
+                FIX_DATA_COLUMNS();
+
+                
+                All_Objects["_data"] = _tbl;
+                All_Objects["data"] = _tbl.Copy();
+                InvokeFormEvent(FormDynamicEvent.DYNAMICFIXEXCEL);
+                InvokeFormEvent("AFTERFIXDATA");
+                //
+                CHECK_REMOVE_DELETE_DATA();
+
+                dataGridView1.DataSource = _tbl;
+                
+                var alim2xls = V6BusinessHelper.Select("ALIM2XLS", "top 1 *", "MA_CT='SOA'").Data;
+                if (alim2xls != null && alim2xls.Rows.Count > 0)
                 {
-                    _columnsMapper = Excel_File.Sheet1ToDataTable(path1, 0, 5);
-                    if (_columnsMapper.Rows.Count > 0)
+                    var config_row = alim2xls.Rows[0];
+                    var khoa = ObjectAndString.SplitString(config_row["KHOA"].ToString().Trim());
+                    var id_check = ObjectAndString.SplitString(config_row["ID_CHECK"].ToString().Trim());
+                    var lost_fields = "";
+                    foreach (string field in khoa)
                     {
-                        DataRow mapRow = _columnsMapper.Rows[0];
-                        foreach (DataColumn V6column in _columnsMapper.Columns)
+                        if (!_tbl.Columns.Contains(field))
                         {
-                            V6ControlFormHelper.ChangeColumnName(_tbl, mapRow[V6column].ToString(), V6column.ColumnName);
+                            check_string += string.Format("{0} {1}", V6Text.NoData, field);
+                            lost_fields += ", " + field;
+                        }
+                    }
+                    // Trim khoảng trắng thừa và ký tự đặc biệt trong mã.
+                    foreach (DataRow row in _tbl.Rows)
+                    {
+                        foreach (string field in id_check)
+                        {
+                            if (_tbl.Columns.Contains(field))
+                                if (row[field] is string)
+                                {
+                                    row[field] = ObjectAndString.TrimSpecial(row[field].ToString());
+                                }
+                        }
+                    }
+                    if (lost_fields.Length > 2)
+                    {
+                        lost_fields = lost_fields.Substring(2);
+                        if (!AUTOF9) this.ShowWarningMessage(V6Text.Text("DULIEUBITHIEU") + ": " + lost_fields);
+                    }
+                }
+                else
+                {
+                    check_string += V6Text.NoDefine + " alim2xls";
+                }
+
+                
+                
+                check_string += CHECK_DATA_IN_GRIDVIEW(!AUTOF9);
+
+                if (!AUTOF9 && !string.IsNullOrEmpty(check_string))
+                {
+                    this.ShowWarningMessage(V6Text.Text("KiemTraDuLieu") + check_string);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowMainMessage("V6IMDATA2 " + ex.Message);
+                this.WriteExLog("V6IMDATA2.MakeReport2", ex);
+            }
+        }
+
+        public string CHECK_DATA_IN_GRIDVIEW(bool showErrData)
+        {
+            try
+            {
+                string[] dataFields = "MA_KH,MA_VT,MA_KHO_I".Split(',');
+                string[] checkFields = "MA_KH,MA_VT,MA_KHO".Split(',');
+                string[] checkTables = "ALKH,ALVT,ALKHO".Split(',');
+                string[] mapTables = "ALKH,ALVT,ALKHO".Split(',');
+                mapTables = ObjectAndString.SplitString(EXTRA_INFOR["MAPTABLES"]);
+                string[] mapFields = "MA_KH,MA_VT,MA_KHO".Split(',');
+                mapFields = ObjectAndString.SplitString(EXTRA_INFOR["MAPFIELDS"]);
+                string check = null;
+                DataTable errorData = new DataTable("ErrorData");
+                SortedDictionary<int, SortedDictionary<string, bool>> not_exist_insert_value_data = new SortedDictionary<int, SortedDictionary<string, bool>>();
+                //SortedDictionary<string, string> ALKH_DIC = new SortedDictionary<string, string>();
+                //SortedDictionary<string, string> ALVT_DIC = new SortedDictionary<string, string>();
+                //SortedDictionary<string, string> ALKH0_DIC = new SortedDictionary<string, string>();
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    var max = dataFields.Length;
+                    bool error_added = false;
+
+                    if (checkFields.Length < max) max = checkFields.Length;
+                    if (checkTables.Length < max) max = checkTables.Length;
+                    for (int i = 0; i < max; i++)
+                    {
+                        //Khoi tao
+                        if (!not_exist_insert_value_data.ContainsKey(i)) not_exist_insert_value_data[i] = new SortedDictionary<string, bool>();
+                        var fail_checked_DIC = not_exist_insert_value_data[i];
+                        var checkTable = checkTables[i];
+                        var mapTable = mapTables[i];
+                        var dataField = dataFields[i];
+                        var checkField = checkFields[i];
+                        var mapField = mapFields[i];
+                        var checkValue = row.Cells[dataField].Value.ToString().Trim();
+                        if (fail_checked_DIC.ContainsKey(checkValue) && fail_checked_DIC[checkValue] == false) // đã check qc pass.
+                        {
+
+                        }
+                        else if (fail_checked_DIC.ContainsKey(checkValue)) // đã check & fail.
+                        {
+                            row.DefaultCellStyle.BackColor = Color.Red;
+                            if (showErrData && !error_added) errorData.AddRow(row.ToDataDictionary(), true);
+                            error_added = true;
+                        }
+                        else // chưa check.
+                        {
+                            bool notexist = V6BusinessHelper.IsValidOneCode_Full(checkTable, 1, checkField, checkValue, checkValue);
+                            bool insert = false;
+                            if (notexist && checkTable.ToUpper() == "ALVT")
+                            {
+                                var mapData = SqlHelper.ExecuteDataset(conString2, CommandType.Text,
+                                    string.Format("Select * from [{0}] Where [{1}]='{2}'", mapTable, mapField, checkValue)).Tables[0];
+                                if (mapData.Rows.Count > 0)
+                                {
+                                    if(checkTable.ToUpper() == "ALVT") MAPPING_COLUMNS_DATATABLE(mapData, _columnsMapper_ALVT);
+                                    var selectData2 = mapData.Rows[0].ToDataDictionary();
+                                    insert = _categories.Insert(checkTable, selectData2);
+                                }
+                            }
+
+                            if (notexist && !insert)
+                            {
+                                fail_checked_DIC[checkValue] = true;
+                                check += string.Format("{0} {1}={2}", V6Text.NotExist, checkField, checkValue);
+                                row.DefaultCellStyle.BackColor = Color.Red;
+                                if (showErrData && !error_added) errorData.AddRow(row.ToDataDictionary(), true);
+                                error_added = true;
+                            }
+                            else // qc pass
+                            {
+                                fail_checked_DIC[checkValue] = false;
+                            }
                         }
                     }
                 }
 
-                //_tbl = Excel_File.Sheet1ToDataTable(FilterControl.String1, 0, V6Options.M_MAXROWS_EXCEL);
-                check = null;
-
-                //Check1: chuyen ma, String12 A to U
-                if (FilterControl.Check1)
+                if (showErrData && errorData.Rows.Count > 0)
                 {
-                    if (!string.IsNullOrEmpty(FilterControl.String2) && !string.IsNullOrEmpty(FilterControl.String3))
+                    DataViewerForm viewer = new DataViewerForm(errorData);
+                    viewer.Text = V6Text.WrongData;
+                    viewer.FormClosing += (o, args) =>
                     {
-                        var from = "A";
-                        if (FilterControl.String2.StartsWith("TCVN3")) from = "A";
-                        if (FilterControl.String2.StartsWith("VNI")) from = "V";
-                        var to = "U";
-                        if (FilterControl.String3.StartsWith("TCVN3")) to = "A";
-                        if (FilterControl.String3.StartsWith("VNI")) to = "V";
-                        _tbl = Data_Table.ChuyenMaTiengViet(_tbl, from, to);
-                    }
-                    else
-                    {
-                        V6ControlFormHelper.ShowMessage(V6Text.Text("NoFromTo"));
-                    }
+                        if (this.ShowConfirmMessage(V6Text.Export + " " + V6Text.WrongData + "?") == DialogResult.Yes)
+                        {
+                            V6ControlFormHelper.ExportExcel_ChooseFile(viewer, errorData, "errorData");
+                        }
+                    };
+                    viewer.ShowDialog(dataGridView1);
                 }
-                //FIX DATA
-                if (!_tbl.Columns.Contains("TY_GIA"))
+                return check;
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".CHECK_DATA_IN_GRIDVIEW", ex);
+                return ex.Message;
+            }
+
+            return null;
+        }
+
+        private void FIX_DATA_COLUMNS()
+        {
+            if (!_tbl.Columns.Contains("TY_GIA"))
                 {
                     _tbl.Columns.Add("TY_GIA", typeof(decimal));
                     V6ControlFormHelper.UpdateDKlist(_tbl, "TY_GIA", 1m);
@@ -156,83 +325,144 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                     }
                 }
+        }
 
-                All_Objects["_data"] = _tbl;
-                All_Objects["data"] = _tbl.Copy();
-                InvokeFormEvent(FormDynamicEvent.DYNAMICFIXEXCEL);
-                InvokeFormEvent("AFTERFIXDATA");
-                //
-
-                dataGridView1.DataSource = _tbl;
-                
-                var alim2xls = V6BusinessHelper.Select("ALIM2XLS", "top 1 *", "MA_CT='SOA'").Data;
-                if (alim2xls != null && alim2xls.Rows.Count > 0)
+        private void CHANGE_CODE_AU()
+        {
+            //Check1: chuyen ma, String12 A to U
+            if (FilterControl.Check1)
+            {
+                if (!string.IsNullOrEmpty(FilterControl.String2) && !string.IsNullOrEmpty(FilterControl.String3))
                 {
-                    var config_row = alim2xls.Rows[0];
-                    var khoa = ObjectAndString.SplitString(config_row["KHOA"].ToString().Trim());
-                    var id_check = ObjectAndString.SplitString(config_row["ID_CHECK"].ToString().Trim());
-                    var lost_fields = "";
-                    foreach (string field in khoa)
-                    {
-                        if (!_tbl.Columns.Contains(field))
-                        {
-                            check += string.Format("{0} {1}", V6Text.NoData, field);
-                            lost_fields += ", " + field;
-                        }
-                    }
-                    // Trim khoảng trắng thừa và ký tự đặc biệt trong mã.
-                    foreach (DataRow row in _tbl.Rows)
-                    {
-                        foreach (string field in id_check)
-                        {
-                            if (_tbl.Columns.Contains(field))
-                                if (row[field] is string)
-                                {
-                                    row[field] = ObjectAndString.TrimSpecial(row[field].ToString());
-                                }
-                        }
-                    }
-                    if (lost_fields.Length > 2)
-                    {
-                        lost_fields = lost_fields.Substring(2);
-                        this.ShowWarningMessage(V6Text.Text("DULIEUBITHIEU") + ": " + lost_fields);
-                    }
+                    var from = "A";
+                    if (FilterControl.String2.StartsWith("TCVN3")) from = "A";
+                    if (FilterControl.String2.StartsWith("VNI")) from = "V";
+                    var to = "U";
+                    if (FilterControl.String3.StartsWith("TCVN3")) to = "A";
+                    if (FilterControl.String3.StartsWith("VNI")) to = "V";
+                    _tbl = Data_Table.ChuyenMaTiengViet(_tbl, from, to);
                 }
                 else
                 {
-                    check += V6Text.NoDefine + " alim2xls";
+                    V6ControlFormHelper.ShowMessage(V6Text.Text("NoFromTo"));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Đổi trường của DataTable bằng cấu hình excel. dòng đầu là trường đích, dòng 2 là trường hiện tại của table.
+        /// </summary>
+        /// <param name="dataTable">Bảng dữ liệu cần mapping.</param>
+        /// <param name="columnsMapper">Bảng thông tin cấu hình 1 dòng dữ liệu. Trường chính là đích, dữ liệu là trường cần đổi.</param>
+        private void MAPPING_COLUMNS_DATATABLE(DataTable dataTable, DataTable columnsMapper)
+        {
+            if (columnsMapper.Rows.Count > 0)
+            {
+                DataRow mapRow = columnsMapper.Rows[0];
+
+                foreach (DataColumn V6column in columnsMapper.Columns)
+                {
+                    string oldName = mapRow[V6column].ToString().Trim().ToUpper();
+                    string newName = V6column.ColumnName.ToUpper();
+                    if (oldName == "V6C")
+                    {
+                        if (!dataTable.Columns.Contains(newName)) dataTable.Columns.Add(newName, typeof(string));
+                    }
+                    else if (oldName == "V6D")
+                    {
+                        if (!dataTable.Columns.Contains(newName)) dataTable.Columns.Add(newName, typeof(DateTime));
+                    }
+                    else if (oldName == "V6N")
+                    {
+                        if (!dataTable.Columns.Contains(newName)) dataTable.Columns.Add(newName, typeof(decimal));
+                    }
+                    else
+                    {
+                        V6ControlFormHelper.ChangeColumnName(dataTable, oldName, newName);
+                    }
+                }
+            }
+        }
+
+        private void CHECK_REMOVE_DELETE_DATA()
+        {
+            try
+            {
+                // Check data.
+                string REFKEY_FIELD = EXTRA_INFOR["REFKEY"];
+                SortedDictionary<string, string> testeDictionary = new SortedDictionary<string, string>();
+                List<DataRow> removeRows = new List<DataRow>();
+                foreach (DataRow row in _tbl.Rows)
+                {
+                    // select check xoas
+                    string refKey = row[REFKEY_FIELD].ToString();
+                    if (testeDictionary.ContainsKey(refKey.ToUpper()))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        testeDictionary.Add(refKey.ToUpper(), refKey);
+                        decimal SL_UD1_SUM = V6BusinessHelper.TinhTongDieuKien(_tbl, "SL_UD1", REFKEY_FIELD, refKey, true);
+                        // select check xoa
+                        var data_check_am81 = V6BusinessHelper.Select("AM81", "*", string.Format(" {0} = '{1}' and KIEU_POST<>'0'", REFKEY_FIELD, refKey)).Data;
+                        if (data_check_am81.Rows.Count > 0)
+                        {
+                            // xoa _tbl // xoa AM81 ??
+                            removeRows.Add(row);
+
+                            // XÓA KHI CHƯA NHẬN F9
+                            //if (FilterControl.Check2) // check xoa //// if filter contrl check
+                            //{
+                            //    var row_am81 = data_check_am81.Rows[0];
+                            //    decimal SL_UD1_AM81 = ObjectAndString.ObjectToDecimal(row_am81["SL_UD1"]);
+                            //    if (SL_UD1_AM81 != SL_UD1_SUM)
+                            //    {
+                            //        // xoa AM81 ???
+                            //        string stt_rec_am81 = row_am81["STT_REC"].ToString();
+                            //        string ma_ct_am81 = row_am81["MA_CT"].ToString();
+                            //        SqlParameter[] plist = new []
+                            //        {
+                            //            new SqlParameter("@Stt_rec", stt_rec_am81),
+                            //            new SqlParameter("@Ma_ct", ma_ct_am81),
+                            //            new SqlParameter("@UserID", V6Login.UserId),
+                            //        };
+                            //        V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_SOA_DELETE_MAIN", plist);
+                            //        // Delete xong không remove nữa.
+                            //        removeRows.Remove(row);
+                            //    }
+                            //}
+                        }
+                    }
+
                 }
 
-                string[] data_fields = "MA_KH,MA_VT,MA_KHO_I".Split(',');
-                string[] check_fields = "MA_KH,MA_VT,MA_KHO".Split(',');
-                string[] check_tables = "ALKH,ALVT,ALKHO".Split(',');
-                check += V6ControlFormHelper.CheckDataInGridView(dataGridView1, data_fields, check_fields, check_tables);
-
-                if (!string.IsNullOrEmpty(check))
+                while (removeRows.Count > 0)
                 {
-                    this.ShowWarningMessage(V6Text.Text("KiemTraDuLieu") + check);
-                    return;
+                    _tbl.Rows.Remove(removeRows[0]);
+                    removeRows.RemoveAt(0);
                 }
             }
             catch (Exception ex)
             {
-                this.ShowInfoMessage(ex.Message);
+                this.WriteExLog(GetType() + ".CHECK_REMOVE_DELETE_DATA", ex);
             }
         }
 
-        
+
         #region ==== Xử lý F9 ====
         protected override void XuLyF9()
         {
             try
             {
-                if (!string.IsNullOrEmpty(check))
+                if (!string.IsNullOrEmpty(check_string))
                 {
-                    this.ShowWarningMessage(V6Text.Text("KiemTraDuLieu") + check);
+                    if (!AUTOF9) this.ShowWarningMessage(V6Text.Text("KiemTraDuLieu") + check_string);
                     return;
                 }
                 if (_tbl != null)
                 {
+                    FilterControl.UpdateValues();
                     if (_tbl.Columns.Contains(ID_FIELD) && _tbl.Columns.Contains(NAME_FIELD))
                     {
                         LockButtons();
@@ -242,7 +472,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         Timer timerF9 = new Timer {Interval = 1000};
                         timerF9.Tick += tF9_Tick;
                         remove_list_d = new List<DataRow>();
-                        Thread t = new Thread(F9Thread);
+                        Thread t = new Thread(F9Thread_AMAD);
                         t.SetApartmentState(ApartmentState.STA);
                         CheckForIllegalCrossThreadCalls = false;
                         t.IsBackground = true;
@@ -252,12 +482,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     else
                     {
-                        V6ControlFormHelper.ShowMessage(string.Format("{0} {1} {2} {3}", V6Text.Text("DULIEUBITHIEU"), ID_FIELD, V6Text.Text("AND"), NAME_FIELD));
+                        V6ControlFormHelper.ShowMainMessage(string.Format("V6IMDATA2 {0} {1} {2} {3}", V6Text.Text("DULIEUBITHIEU"), ID_FIELD, V6Text.Text("AND"), NAME_FIELD));
                     }
                 }
                 else
                 {
-                    V6ControlFormHelper.ShowMessage(V6Text.Text("NODATA"));
+                    V6ControlFormHelper.ShowMainMessage("V6IMDATA2 " + V6Text.Text("NODATA"));
                 }
             }
             catch (Exception ex)
@@ -272,7 +502,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         V6Invoice81 Invoice = new V6Invoice81();
         private IDictionary<string, object> AM_DATA;
         private bool chkAutoSoCt_Checked = false;
-        private void F9Thread()
+        private void F9Thread_AMAD()
         {
             try
             {
@@ -299,15 +529,15 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     makho = row["MA_KHO_I"].ToString().Trim().ToUpper();
                     madvcs = row["MA_DVCS"].ToString().Trim().ToUpper();
 
-                    string soct_or_makh = row["SO_CT"].ToString().Trim().ToUpper();
-                    if (chkAutoSoCt_Checked)
+                    string soct_and_makh = row["SO_CT"].ToString().Trim().ToUpper();
+                    // if (chkAutoSoCt_Checked) // Luôn cộng
                     {
-                        soct_or_makh = row["MA_KH"].ToString().Trim().ToUpper();
+                        soct_and_makh += row["MA_KH"].ToString().Trim().ToUpper();
                     }
                     string ngay_ct = date.ToString("yyyyMMdd");
-                    if (soct_or_makh != "" && ngay_ct != "")
+                    if (soct_and_makh != "" && ngay_ct != "")
                     {
-                        var key = string.Format("[{0}]_[{1}]", soct_or_makh, ngay_ct);
+                        var key = string.Format("[{0}]_[{1}]", soct_and_makh, ngay_ct);
                         if (data_dictionary.ContainsKey(key))
                         {
                             data_dictionary[key].Add(row);
@@ -330,21 +560,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                 }
 
-                //Check data
-                if (FilterControl.Check2)
-                {
-                    //Delete excel data dateMin dateMax
-                    SqlParameter[] plist =
-                    {
-                        new SqlParameter("@Ngay_ct1", dateMin.Value.ToString("yyyyMMdd")),
-                        new SqlParameter("@Ngay_ct2", dateMax.Value.ToString("yyyyMMdd")),
-                        new SqlParameter("@Ma_ct", Invoice.Mact),
-                        new SqlParameter("@UserID", V6Login.UserId),
-                        new SqlParameter("@KeyAM", "IMTYPE='X'")
-                    };
-                    V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_SOA_DELETE_ALL", plist);
-                }
-
+                
                 //Xử lý từng nhóm dữ liệu
                 foreach (KeyValuePair<string, List<DataRow>> item in data_dictionary)
                 {
@@ -352,6 +568,25 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     try
                     {
                         AM_DATA = GET_AM_Data(data_rows, "SO_LUONG,SO_LUONG1,TIEN_NT2,TIEN_NT,TIEN2,TIEN,THUE_NT,THUE,CK_NT,CK,GG_NT,GG", "MA_NX");
+                        string so_ct_old = AM_DATA["SO_CT"].ToString().Trim();
+                        
+
+                        if (FilterControl.Check2) // delete
+                        {
+                            DataTable select_am = V6BusinessHelper.Select("AM81", "STT_REC", string.Format("SO_CTX='{0}' AND KIEU_POST='0'", so_ct_old)).Data;
+                            if (select_am.Rows.Count > 0)
+                            {
+                                string select_stt_rec = select_am.Rows[0]["STT_REC"].ToString().Trim();
+                                //Delete excel data dateMin dateMax
+                                SqlParameter[] plist =
+                                {
+                                    new SqlParameter("@STT_REC", select_stt_rec),
+                                    new SqlParameter("@Ma_ct", Invoice.Mact),
+                                    new SqlParameter("@UserID", V6Login.UserId),
+                                };
+                                int a = V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_SOA_DELETE_MAIN", plist);
+                            }
+                        }
 
                         var sttRec = V6BusinessHelper.GetNewSttRec(Invoice.Mact);
                         if (chkAutoSoCt_Checked) // Tự động tạo số chứng từ.
@@ -392,7 +627,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             catch (Exception ex)
             {
-                f9Message = "F9Thread: " + ex.Message;
+                f9Message = "F9Thread_AMAD: " + ex.Message;
             }
             //
             
@@ -400,6 +635,147 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
 
 
+        private const string TABLE_NAME = "ALVT", ID_FIELD_ALVT = "MA_VT", NAME_FIELD_ALVT = "TEN_VT";
+        private const string CHECK_FIELDS = "MA_VT", IDS_CHECK = "MA_VT", TYPE_CHECK = "01";//S Cách nhau bởi (;)
+        private int total, index;
+        private string f9Error = "";
+        private string f9ErrorAll = "";
+        private string[] check_field_list = { };
+        private void F9Thread_ALVT()
+        {
+            return;
+            // Đè biến
+            DataTable _tbl = this._tbl2; // đổi biến cho nhanh khi copy code.
+            try
+            {
+                f9Running = true;
+                f9ErrorAll = "";
+
+                if (_tbl == null)
+                {
+                    f9ErrorAll = V6Text.Text("INVALIDDATA");
+                    goto End;
+                }
+
+                int stt = 0;
+                total = _tbl.Rows.Count;
+                var id_list = IDS_CHECK.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+
+                for (int i = 0; i < total; i++)
+                {
+                    DataRow row = _tbl.Rows[i];
+                    index = i;
+                    stt++;
+                    try
+                    {
+                        var check_ok = true;
+                        foreach (string field in check_field_list)
+                        {
+                            if (row[field] == null || row[field] == DBNull.Value || row[field].ToString().Trim() == "")
+                            {
+                                check_ok = false;
+                                break;
+                            }
+                        }
+                        if (check_ok)
+                        {
+                            var dataDic = row.ToDataDictionary();
+                            //fix dataDic id fields.
+                            foreach (string id in id_list)
+                            {
+                                if (dataDic[id] is string)
+                                {
+                                    dataDic[id] = ObjectAndString.TrimSpecial(dataDic[id].ToString());
+                                }
+                            }
+                            foreach (string id in check_field_list)
+                            {
+                                if (dataDic[id] is string)
+                                {
+                                    dataDic[id] = ObjectAndString.TrimSpecial(dataDic[id].ToString());
+                                }
+                            }
+
+                            var ID0 = dataDic[id_list[0]].ToString().Trim();
+                            var exist = false;
+                            switch (TYPE_CHECK)
+                            {
+                                case "01":
+                                    exist = _categories.IsExistOneCode_List(TABLE_NAME, id_list[0], ID0);
+                                    break;
+                            }
+
+                            if (FilterControl.Check2) //Chỉ cập nhập mã mới.
+                            {
+                                if (!exist)
+                                {
+                                    if (V6BusinessHelper.Insert(TABLE_NAME, dataDic))
+                                    {
+                                        var ma_vt_new = dataDic["MA_VT"].ToString().Trim();
+                                        V6BusinessHelper.UpdateAlqddvt(ma_vt_new, ma_vt_new);
+                                        remove_list_d.Add(row);
+                                    }
+                                    else
+                                    {
+                                        var s = string.Format("Dòng {0,3}-ID:{1} {2}", stt, ID0, V6Text.Text("ADD0"));
+                                        f9Error += s;
+                                        f9ErrorAll += s;
+                                    }
+                                }
+                                else
+                                {
+                                }
+                            }
+                            else
+                            {
+                                if (exist) //Xóa cũ thêm mới.
+                                {
+                                    var keys = new SortedDictionary<string, object>();
+                                    foreach (string field in id_list)
+                                    {
+                                        keys.Add(field.ToUpper(), row[field]);
+                                    }
+                                    _categories.Delete(TABLE_NAME, keys);
+                                }
+
+                                if (V6BusinessHelper.Insert(TABLE_NAME, dataDic))
+                                {
+                                    var ma_vt_new = dataDic["MA_VT"].ToString().Trim();
+                                    V6BusinessHelper.UpdateAlqddvt(ma_vt_new, ma_vt_new);
+                                    remove_list_d.Add(row);
+                                }
+                                else
+                                {
+                                    var s = string.Format("Dòng {0,3}-ID:{1} {2}", stt, ID0, V6Text.Text("ADD0"));
+                                    f9Error += s;
+                                    f9ErrorAll += s;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            var s = string.Format(V6Text.Text("DONG0KOCODU1"), stt, CHECK_FIELDS);
+                            f9Error += s;
+                            f9ErrorAll += s;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        f9Error += "Dòng " + stt + ": " + ex.Message;
+                        f9ErrorAll += "Dòng " + stt + ": " + ex.Message;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                f9Error += ex.Message;
+                f9ErrorAll += ex.Message;
+            }
+
+        End: ;
+        //f9Running = false; // false ở F9Thread_AMAD
+        }
+        
         private IDictionary<string, object> GET_AM_Data(List<DataRow> dataRows, string sumColumns, string maxColumns)
         {
             try
@@ -447,14 +823,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                 //Thêm dữ liệu khác.
                 IDictionary<string, object> AM = am_row.ToDataDictionary();
-                AM["IMTYPE"] = "X";
+                AM["IMTYPE"] = "O";
                 AM["MA_CT"] = Invoice.Mact;
                 //AM["MA_NX"] = "111";
                 //AM["MA_NT"] = "VND";
                 //AM["TY_GIA"] = 1;
-                AM["KIEU_POST"] = "2";
-
-
+                
                 var datakh = V6BusinessHelper.Select(V6TableName.Alkh,
                         new SortedDictionary<string, object>() { { "MA_KH", AM["MA_KH"] } },
                         "*", "", "").Data;
@@ -687,7 +1061,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 {
                     f9Message = f9Message.Substring(cError.Length);
                     V6ControlFormHelper.SetStatusText(cError);
-                    V6ControlFormHelper.ShowMainMessage("F9 running: " + cError);
+                    V6ControlFormHelper.ShowMainMessage("V6IMDATA2 F9 running: " + cError);
                 }
             }
             else
@@ -708,9 +1082,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
 
                 //btnNhan.PerformClick();
-                V6ControlFormHelper.SetStatusText("F9 finish " + f9Message);
-                V6ControlFormHelper.ShowMainMessage("F9 finish! " + f9Message);
-                V6ControlFormHelper.ShowInfoMessage("F9 finish: " + f9MessageAll, 500, this);
+                V6ControlFormHelper.SetStatusText("V6IMDATA2 F9 finish " + f9Message);
+                V6ControlFormHelper.ShowMainMessage("V6IMDATA2 F9 finish! " + f9Message);
+                //V6ControlFormHelper.ShowInfoMessage("F9 finish: " + f9MessageAll, 500, this);
                 if (f9MessageAll.Length > 0)
                 {
                     Logger.WriteToLog(V6Login.ClientName + " " + GetType() + "XLS_SOA F9 " + f9MessageAll);
@@ -721,5 +1095,53 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         }
         #endregion xử lý F9
 
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            this.timerAutoF9 = new System.Windows.Forms.Timer(this.components);
+            this.SuspendLayout();
+            // 
+            // timerAutoF9
+            // 
+            this.timerAutoF9.Enabled = true;
+            this.timerAutoF9.Interval = 1000;
+            this.timerAutoF9.Tick += new System.EventHandler(this.timerAutoF9_Tick);
+            // 
+            // V6IMDATA2_Control
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.Name = "V6IMDATA2_Control";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        private int _autoF9count = 0;
+        private void timerAutoF9_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                _autoF9count++;
+                if (InTimeAutoF9())
+                {
+                    _autoF9count = 0;
+                    btnNhan.PerformClick();
+                    XuLyF9();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".GET_AM_Data", ex);
+            }
+        }
+
+        private bool InTimeAutoF9()
+        {
+            if (!AUTOF9) return false;
+            if (!FilterControl.ObjectDictionary.ContainsKey("AUTOF9TIME")) return false;
+            int minute = ObjectAndString.ObjectToInt(FilterControl.ObjectDictionary["AUTOF9TIME"]);
+            if (_autoF9count < minute * 60) return false;
+            return true;
+        }
     }
 }

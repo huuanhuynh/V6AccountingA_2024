@@ -38,8 +38,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
         public DataSet _ds;
         public DataTable _tbl, _tbl2;
-        public DataTable _columnsMapper;
-
+        
         public DataTable _mauInData;
         public DataTable MauInData
         {
@@ -1045,6 +1044,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             else if (keyData == Keys.F9 && FilterControl.F9)
             {
+                All_Objects["data"] = _tbl.Copy();
                 object beforeF9 = InvokeFormEvent(FormDynamicEvent.BEFOREF9);
                 if (beforeF9 != null && !(bool)beforeF9)
                 {

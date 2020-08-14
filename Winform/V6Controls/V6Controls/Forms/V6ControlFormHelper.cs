@@ -19,6 +19,7 @@ using V6AccountingBusiness;
 using V6Controls.Controls;
 using V6Controls.Controls.Label;
 using V6Controls.Forms.DanhMuc.Add_Edit;
+using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
 using V6Controls.Forms.DanhMuc.Add_Edit.ThongTinDinhNghia;
 using V6Controls.Forms.Editor;
 using V6Controls.Forms.Viewer;
@@ -1826,6 +1827,72 @@ namespace V6Controls.Forms
             {
                 
             }
+        }
+
+        /// <summary>
+        /// Lấy thông tin nguồn.
+        /// </summary>
+        /// <returns></returns>
+        public static List<AlbcFieldInfo> GetSourceFieldsInfo(DataGridView dataGridView1)
+        {
+            List<AlbcFieldInfo> result = new List<AlbcFieldInfo>();
+            try
+            {
+                if (dataGridView1 == null)
+                {
+                    //ShowTopLeftMessage("Không tìm thấy " + dataGridViewName);
+                    return result;
+                }
+                DataTable data1 = dataGridView1.DataSource as DataTable;
+                if (data1 == null && dataGridView1.DataSource is DataView)
+                {
+                    data1 = ((DataView)dataGridView1.DataSource).Table;
+                }
+
+                return GetSourceFieldsInfo(data1);
+            }
+            catch (Exception ex)
+            {
+                //this.ShowErrorException(GetType() + ".GetSourceFieldsInfo", ex);
+            }
+            return result;
+        }
+
+
+        /// <summary>
+        /// Lấy thông tin nguồn.
+        /// </summary>
+        /// <returns></returns>
+        public static List<AlbcFieldInfo> GetSourceFieldsInfo(DataTable data1)
+        {
+            List<AlbcFieldInfo> result = new List<AlbcFieldInfo>();
+            try
+            {
+                if (data1 != null)
+                {
+                    foreach (DataColumn column in data1.Columns)
+                    {
+                        AlbcFieldInfo fi = new AlbcFieldInfo();
+                        result.Add(fi);
+                        fi.FieldName = column.ColumnName.ToUpper();
+                        if (ObjectAndString.IsNumberType(column.DataType)) fi.FieldType = AlbcFieldType.N0;
+                        else if (column.DataType == typeof(DateTime)) fi.FieldType = AlbcFieldType.D;
+                        else fi.FieldType = AlbcFieldType.C;
+
+                        {
+                            fi.FieldWidth = 100;
+                        }
+
+                        fi.FieldHeaderV = CorpLan2.GetFieldHeader(fi.FieldName, "V");
+                        fi.FieldHeaderE = CorpLan2.GetFieldHeader(fi.FieldName, "E");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                
+            }
+            return result;
         }
 #endregion select
 
@@ -3883,6 +3950,20 @@ namespace V6Controls.Forms
         /// <returns>Trả về thông tin lỗi.</returns>
         public static string CheckDataInGridView(V6ColorDataGridView dataGridView1, string[] dataFields, string[] checkFields, string[] checkTables)
         {
+            return CheckDataInGridView(dataGridView1, dataFields, checkFields, checkTables, false);
+        }
+
+        /// <summary>
+        /// Kiểm tra dữ liệu có tồn tại trong danh mục hay không. Nếu không tồn tại sẽ chuyển màu đỏ.
+        /// </summary>
+        /// <param name="dataGridView1">GridView đang chứa dữ liệu kiểm tra</param>
+        /// <param name="dataFields">Trường lấy dữ liệu kiểm tra</param>
+        /// <param name="checkFields">Trường trong bảng cần kiểm tra</param>
+        /// <param name="checkTables">Các bảng cần kiểm tra</param>
+        /// <param name="showErrData">Hiển thị dữ liệu lỗi xuất Excel.</param>
+        /// <returns>Trả về thông tin lỗi.</returns>
+        public static string CheckDataInGridView(V6ColorDataGridView dataGridView1, string[] dataFields, string[] checkFields, string[] checkTables, bool showErrData)
+        {
             string check = null;
             DataTable errorData = new DataTable("ErrorData");
             SortedDictionary<int, SortedDictionary<string, bool>> not_exist_value_data = new SortedDictionary<int, SortedDictionary<string, bool>>();
@@ -3908,7 +3989,7 @@ namespace V6Controls.Forms
                         {
                             //check += string.Format("{0} {1}={2}", V6Text.NotExist, checkField, value);
                             row.DefaultCellStyle.BackColor = Color.Red;
-                            if (!error_added) errorData.AddRow(row.ToDataDictionary(), true);
+                            if (showErrData && !error_added) errorData.AddRow(row.ToDataDictionary(), true);
                             error_added = true;
                         }
                     }
@@ -3920,14 +4001,14 @@ namespace V6Controls.Forms
                             not_exist_value_data[i][value] = notexist;
                             check += string.Format("{0} {1}={2}", V6Text.NotExist, checkField, value);
                             row.DefaultCellStyle.BackColor = Color.Red;
-                            if (!error_added) errorData.AddRow(row.ToDataDictionary(), true);
+                            if (showErrData && !error_added) errorData.AddRow(row.ToDataDictionary(), true);
                             error_added = true;
                         }
                     }
                 }
             }
 
-            if (errorData.Rows.Count > 0)
+            if (showErrData && errorData.Rows.Count > 0)
             {
                 DataViewerForm viewer = new DataViewerForm(errorData);
                 viewer.Text = V6Text.WrongData;
@@ -4304,9 +4385,8 @@ namespace V6Controls.Forms
             ExportExcelTemplate_ReportFile = ReportFile;
             ExportExcelTemplate_ExcelTemplateFileFull = ExcelTemplateFileFull;
             ExportExcelTemplate_saveFileName = saveFileName;
-            ExportExcelTemplate_running = false;
-            var thread1 = new Thread(ExportExcelTemplate_Thread);
             ExportExcelTemplate_running = true;
+            var thread1 = new Thread(ExportExcelTemplate_Thread);
             thread1.Start();
             Timer timer = new Timer();
             timer.Interval = 1000;
@@ -8471,9 +8551,12 @@ namespace V6Controls.Forms
         public static void ChangeColumnName(DataTable table, string oldName, string newName)
         {
             if (table == null) throw new ArgumentNullException("table");
-            if (table.Columns.Contains(newName)) throw new Exception("Exist newName: " + newName);
             if (string.IsNullOrEmpty(oldName) || string.IsNullOrEmpty(newName)) return;
+            if (table.Columns.Contains(newName)) return;// throw new Exception("Exist newName: " + newName);
+            if (!table.Columns.Contains(oldName)) throw new Exception("NotExist oldName: " + oldName);
             table.Columns[oldName].ColumnName = newName;
         }
+
+
     }
 }

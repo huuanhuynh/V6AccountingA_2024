@@ -23,19 +23,20 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong
             InitializeComponent();
         }
 
+        private const string TABLE_NAME = "V6CLIENTS";
         private DataTable data;
         private void ClientManager_Load(object sender, EventArgs e)
         {
-            LoadData();
+            LoadData("");
         }
 
-        void LoadData()
+        public override void LoadData(string code)
         {
             try
             {
-                data = new DataTable("Clients");
+                data = new DataTable(TABLE_NAME);
                 data = V6Login.GetClientTable();
-                gridView1.DataSource = data;
+                dataGridView1.DataSource = data;
                 FormatDataGridView();
             }
             catch (Exception ex)
@@ -48,9 +49,9 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong
         {
             try
             {
-                //var column = gridView1.Columns["Name"];
+                //var column = dataGridView1.Columns["Name"];
                 //if (column != null) column.Width = 300;
-                gridView1.Format("NAME,ALLOW", "C300,N0:40", V6Setting.IsVietnamese ? "Tên máy,Cho phép" : "Name,Allow");
+                dataGridView1.Format("NAME,ALLOW", "C300,N0:40", V6Setting.IsVietnamese ? "Tên máy,Cho phép" : "Name,Allow");
             }
             catch (Exception ex)
             {
@@ -91,17 +92,17 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong
         {
             try
             {
-                var COLUMN_NAME = gridView1.Columns[e.ColumnIndex].DataPropertyName.ToUpper();
+                var COLUMN_NAME = dataGridView1.Columns[e.ColumnIndex].DataPropertyName.ToUpper();
                 
                 if (COLUMN_NAME == "ALLOW")
                 {
                     SortedDictionary<string, object> dataDic;
-                    if (e.Button == MouseButtons.Right && gridView1.Rows.Count > 0)
+                    if (e.Button == MouseButtons.Right && dataGridView1.Rows.Count > 0)
                     {
                         //Cập nhập allow tất cả các dòng giống với ô đang bấm.
                         var count = 0;
-                        var allow = gridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().Trim();
-                        foreach (DataGridViewRow row in gridView1.Rows)
+                        var allow = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().Trim();
+                        foreach (DataGridViewRow row in dataGridView1.Rows)
                         {
                             var allow2 = row.Cells["ALLOW"].ToString().Trim();
                             if(allow == allow2) continue;
@@ -119,7 +120,7 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong
                             {
                                 {"UID", row.Cells["UID"].Value}
                             };
-                            if (V6BusinessHelper.Update("V6Clients", dataDic, keys) > 0)
+                            if (V6BusinessHelper.Update(TABLE_NAME, dataDic, keys) > 0)
                             {
                                 count++;
                                 row.Cells["ALLOW"].Value = allow;
@@ -131,7 +132,7 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong
                     else
                     {
                         //Đổi allow cho ô đang bấm.
-                        var row = gridView1.Rows[e.RowIndex];
+                        var row = dataGridView1.Rows[e.RowIndex];
                         var allow = row.Cells[e.ColumnIndex].Value.ToString().Trim() == "1" ? "0" : "1";
                         var NAME = row.Cells["NAME"].Value.ToString().Trim();
                         //var checkCode = row.Cells["CHECKCODE"].Value;
@@ -146,7 +147,7 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong
                         {
                             {"UID", row.Cells["UID"].Value}
                         };
-                        if (V6BusinessHelper.Update("V6Clients", dataDic, keys) > 0)
+                        if (V6BusinessHelper.Update(TABLE_NAME, dataDic, keys) > 0)
                         {
                             row.Cells["ALLOW"].Value = allow;
                             row.Cells["CHECKCODE"].Value = checkCode;
@@ -163,12 +164,54 @@ namespace V6ControlManager.FormManager.HeThong.QuanLyHeThong
 
         private void btnAll_Click(object sender, EventArgs e)
         {
-            LoadData();
+            LoadData("");
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
             Dispose();
+        }
+
+        private void gridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F8)
+            {
+                DoDelete();
+            }
+        }
+
+        private void DoDelete()
+        {
+            try
+            {
+                DataGridViewRow row = dataGridView1.GetFirstSelectedRow();
+
+                if (row != null)
+                {
+                    //var data = row.ToDataDictionary();
+                    var keys = new SortedDictionary<string, object> { { "UID", row.Cells["UID"].Value } };
+                    if (this.ShowConfirmMessage(V6Text.DeleteConfirm + " " + row.Cells["NAME"].Value, V6Text.DeleteConfirm)
+                        == DialogResult.Yes)
+                    {
+                        int t = V6BusinessHelper.Delete(TABLE_NAME, keys);
+                        if (t > 0)
+                        {
+                            dataGridView1.SaveSelectedCellLocation();
+                            LoadData("");
+                            dataGridView1.LoadSelectedCellLocation();
+                            V6ControlFormHelper.ShowMainMessage(V6Text.Deleted);
+                        }
+                        else
+                        {
+                            V6ControlFormHelper.ShowMessage(V6Text.DeleteFail);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".DoDelete", ex);
+            }
         }
     }
 }

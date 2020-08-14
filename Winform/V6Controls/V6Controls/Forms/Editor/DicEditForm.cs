@@ -66,7 +66,7 @@ namespace V6Controls.Forms.Editor
                 var newRow = _dataSource.NewRow();
                 newRow["Name"] = txtNewKey.Text != "" ? txtNewKey.Text : "Name";
                 newRow["Value"] = "Value";
-                _dataSource.Rows.Add();
+                _dataSource.Rows.Add(newRow);
             }
             catch (Exception ex)
             {

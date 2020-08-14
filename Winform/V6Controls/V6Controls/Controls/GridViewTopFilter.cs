@@ -162,6 +162,11 @@ namespace V6Controls.Controls
                 if (!_created)
                 {
                     _created = true;
+                    if (_dgv.Font.Size > 10)
+                    {
+                        Height = (int) (Height + _dgv.Font.Size - 8);
+                        FixThisSizeLocation(_dgv);
+                    }
                     foreach (DataGridViewColumn column in _dgv.Columns)
                     {
                         if (column.Visible)
@@ -183,26 +188,80 @@ namespace V6Controls.Controls
             try
             {
                 string FIELD = column.DataPropertyName.ToUpper();
-                var colorTextBox = new V6ColorTextBox();
-                colorTextBox.Name = "txt" + FIELD;
-                //colorTextBox.GrayText = column.HeaderText;
-                //colorTextBox.BackColor = Color.Yellow;
-                //colorTextBox.LeaveColor = Color.Yellow;
-                colorTextBox.UseSendTabOnEnter = false;
-                _filterItems[FIELD] = colorTextBox;
-                colorTextBox.KeyDown += delegate(object sender, KeyEventArgs args)
+
+                if (ObjectAndString.IsDateTimeType(column.ValueType))
                 {
-                    if (args.KeyCode == Keys.Enter)
+                    var colorTextBox = new V6DateTimeColor();
+                    colorTextBox.Name = "txt" + FIELD;
+                    colorTextBox.Font = _dgv.Font;
+                    colorTextBox.Height = Height;
+                    colorTextBox.UseSendTabOnEnter = false;
+                    _filterItems[FIELD] = colorTextBox;
+                    colorTextBox.KeyDown += delegate(object sender, KeyEventArgs args)
                     {
-                        _dgv.SaveSelectedCellLocation();
-                        ApplyFilter();
-                        _dgv.LoadSelectedCellLocation();
-                    }
-                };
-                colorTextBox.Enter += delegate(object sender, EventArgs args)
+                        if (args.KeyCode == Keys.Enter)
+                        {
+                            _dgv.SaveSelectedCellLocation();
+                            ApplyFilter();
+                            _dgv.LoadSelectedCellLocation();
+                        }
+                    };
+                    colorTextBox.Enter += delegate(object sender, EventArgs args) { RelocationAll(); };
+                    this.Controls.Add(colorTextBox);
+                }
+                else if (ObjectAndString.IsNumberType(column.ValueType))
                 {
-                    RelocationAll();
-                };
+                    var colorTextBox = new V6NumberTextBox();
+                    colorTextBox.Name = "txt" + FIELD;
+                    colorTextBox.Font = _dgv.Font;
+                    if (!string.IsNullOrEmpty(column.DefaultCellStyle.Format) && column.DefaultCellStyle.Format.StartsWith("N"))
+                    {
+                        colorTextBox.DecimalPlaces =
+                            ObjectAndString.ObjectToInt(column.DefaultCellStyle.Format.Substring(1));
+                    }
+                    else
+                    {
+                        colorTextBox.DecimalPlaces = 0;
+                    }
+                    colorTextBox.Height = Height;
+                    colorTextBox.UseSendTabOnEnter = false;
+                    _filterItems[FIELD] = colorTextBox;
+                    colorTextBox.KeyDown += delegate(object sender, KeyEventArgs args)
+                    {
+                        if (args.KeyCode == Keys.Enter)
+                        {
+                            _dgv.SaveSelectedCellLocation();
+                            ApplyFilter();
+                            _dgv.LoadSelectedCellLocation();
+                        }
+                    };
+                    colorTextBox.Enter += delegate(object sender, EventArgs args) { RelocationAll(); };
+                    this.Controls.Add(colorTextBox);
+                }
+                else
+                {
+                    var colorTextBox = new V6ColorTextBox();
+                    colorTextBox.Name = "txt" + FIELD;
+                    colorTextBox.Font = _dgv.Font;
+                    colorTextBox.Height = Height;
+                    //colorTextBox.GrayText = column.HeaderText;
+                    //colorTextBox.BackColor = Color.Yellow;
+                    //colorTextBox.LeaveColor = Color.Yellow;
+                    colorTextBox.UseSendTabOnEnter = false;
+                    _filterItems[FIELD] = colorTextBox;
+                    colorTextBox.KeyDown += delegate(object sender, KeyEventArgs args)
+                    {
+                        if (args.KeyCode == Keys.Enter)
+                        {
+                            _dgv.SaveSelectedCellLocation();
+                            ApplyFilter();
+                            _dgv.LoadSelectedCellLocation();
+                        }
+                    };
+                    colorTextBox.Enter += delegate(object sender, EventArgs args) { RelocationAll(); };
+                    this.Controls.Add(colorTextBox);
+                }
+
                 //if (ObjectAndString.IsDateTimeType(column.ValueType))
                 //{
                 //    colorTextBox.KeyUp += delegate(object sender, KeyEventArgs args)
@@ -215,7 +274,7 @@ namespace V6Controls.Controls
 
                 //    };
                 //}
-                this.Controls.Add(colorTextBox);
+                
             }
             catch (Exception ex)
             {
@@ -254,8 +313,18 @@ namespace V6Controls.Controls
                 {
                     DataGridViewColumn _filter_column = _dgv.Columns[item.Key];
                     if (_filter_column == null || !_filter_column.Visible || item.Value.Text == string.Empty) continue;
-                    item.Value.Text = string.Empty;
-
+                    if (item.Value is V6DateTimeColor)
+                    {
+                        ((V6DateTimeColor) item.Value).Value = null;
+                    }
+                    else if (item.Value is V6NumberTextBox)
+                    {
+                        ((V6NumberTextBox)item.Value).Value = 0;
+                    }
+                    else
+                    {
+                        item.Value.Text = string.Empty;
+                    }
                 }
 
                 string filter_string = "";
@@ -292,64 +361,77 @@ namespace V6Controls.Controls
             string operat0r = "like";
             foreach (KeyValuePair<string, V6ColorTextBox> item in _filterItems)
             {
-                DataGridViewColumn _filter_column = _dgv.Columns[item.Key];
-                if (_filter_column == null||!_filter_column.Visible || item.Value.Text == string.Empty) continue;
-                string FIELD_NAME = _filter_column.DataPropertyName.ToUpper();
+                DataGridViewColumn column = _dgv.Columns[item.Key];
+                if (column == null||!column.Visible || item.Value.Text == string.Empty) continue;
+                string FIELD_NAME = column.DataPropertyName.ToUpper();
                 string value = item.Value.Text;
                 string value2 = null;
                 var sss = ObjectAndString.SplitStringBy(value, '~');
                 string row_filter = "";
-                if (ObjectAndString.IsStringType(_filter_column.ValueType))
+                if (ObjectAndString.IsStringType(column.ValueType))
                 {
                     if (string.IsNullOrEmpty(operat0r)) operat0r = "=";
                     string svalue = FormatValue(ObjectAndString.ObjectToString(value), operat0r);
                     if (operat0r == "start") operat0r = "like";
                     row_filter = string.Format("{0} {1} '{2}'", FIELD_NAME, operat0r, svalue);
                 }
-                else if (ObjectAndString.IsNumberType(_filter_column.ValueType))
+                else if (ObjectAndString.IsNumberType(column.ValueType))
                 {
-                    sss = ObjectAndString.SplitStringBy(value, '~');
-                    value = item.Value.Text;
-                    value2 = null;
-                    if (sss.Length == 2)
-                    {
-                        value = sss[0];
-                        value2 = sss[1];
-                    }
-                    var num1 = ObjectAndString.ObjectToDecimal(value);
-                    if (value2 == null)
-                    {
-                        row_filter = string.Format("{0} = {1}", FIELD_NAME,
-                            num1.ToString(CultureInfo.InvariantCulture));
-                    }
-                    else
-                    {
-                        var num2 = ObjectAndString.ObjectToDecimal(value2);
-                        row_filter = string.Format("({0} >= {1} and {0} <= {2})", FIELD_NAME,
-                            num1.ToString(CultureInfo.InvariantCulture), num2.ToString(CultureInfo.InvariantCulture));
-                    }
-                }
-                else if (ObjectAndString.IsDateTimeType(_filter_column.ValueType))
-                {
-                    sss = ObjectAndString.SplitStringBy(value,'~');
-                    value = item.Value.Text;
-                    value2 = null;
-                    if (sss.Length == 2)
-                    {
-                        value = sss[0];
-                        value2 = sss[1];
-                    }
+                    // TextBox mode.
 
-                    var date1 = ObjectAndString.ObjectToFullDateTime(value).ToString("yyyy-MM-dd");
-                    if (value2 == null)
-                    {
-                        row_filter = string.Format("{0} = #{1}#", FIELD_NAME, date1);
-                    }
-                    else
-                    {
-                        var date2 = ObjectAndString.ObjectToFullDateTime(value2).ToString("yyyy-MM-dd");
-                        row_filter = string.Format("({0} >= #{1}# and {0} <= #{2}#)", FIELD_NAME, date1, date2);
-                    }
+                    //sss = ObjectAndString.SplitStringBy(value, '~');
+                    //value = item.Value.Text;
+                    //value2 = null;
+                    //if (sss.Length == 2)
+                    //{
+                    //    value = sss[0];
+                    //    value2 = sss[1];
+                    //}
+                    //var num1 = ObjectAndString.ObjectToDecimal(value);
+                    //if (value2 == null)
+                    //{
+                    //    row_filter = string.Format("{0} = {1}", FIELD_NAME,
+                    //        num1.ToString(CultureInfo.InvariantCulture));
+                    //}
+                    //else
+                    //{
+                    //    var num2 = ObjectAndString.ObjectToDecimal(value2);
+                    //    row_filter = string.Format("({0} >= {1} and {0} <= {2})", FIELD_NAME,
+                    //        num1.ToString(CultureInfo.InvariantCulture), num2.ToString(CultureInfo.InvariantCulture));
+                    //}
+
+                    // NumberTextBox mode
+                    var txtNum = (V6NumberTextBox) item.Value;
+                    if (txtNum.Value == 0) continue;
+                    row_filter = string.Format("{0} = {1}", FIELD_NAME, txtNum.Value.ToString(CultureInfo.InvariantCulture));
+                }
+                else if (ObjectAndString.IsDateTimeType(column.ValueType))
+                {
+                    // TextBox mode.
+
+                    //sss = ObjectAndString.SplitStringBy(value,'~');
+                    //value = item.Value.Text;
+                    //value2 = null;
+                    //if (sss.Length == 2)
+                    //{
+                    //    value = sss[0];
+                    //    value2 = sss[1];
+                    //}
+                    //var date1 = ObjectAndString.ObjectToFullDateTime(value).ToString("yyyy-MM-dd");
+                    //if (value2 == null)
+                    //{
+                    //    row_filter = string.Format("{0} = #{1}#", FIELD_NAME, date1);
+                    //}
+                    //else
+                    //{
+                    //    var date2 = ObjectAndString.ObjectToFullDateTime(value2).ToString("yyyy-MM-dd");
+                    //    row_filter = string.Format("({0} >= #{1}# and {0} <= #{2}#)", FIELD_NAME, date1, date2);
+                    //}
+
+                    // ColorDateTime mode
+                    var txtDate = item.Value as V6DateTimeColor;
+                    if (txtDate == null || txtDate.Value == null) continue;
+                    row_filter = string.Format("{0} = #{1}#", FIELD_NAME, txtDate.Value);
                 }
 
                 result += "and " + row_filter;
@@ -458,7 +540,7 @@ namespace V6Controls.Controls
             bBackGround = new SolidBrush(Color.AliceBlue);
             //bTextColor = new SolidBrush(_dgv.ForeColor);
 
-            //gFont = _dgv.DefaultCellStyle.Font;
+            //gFont = _dgv.Font;
             //textFont = new Font(gFont.FontFamily, gFont.Size, FontStyle.Bold);
             //stringFormat = new StringFormat
             //{

@@ -147,10 +147,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 var ma_vt_new = DataDic["MA_VT"].ToString().Trim();
                 var ma_vt_old = Mode == V6Mode.Edit ? DataOld["MA_VT"].ToString().Trim() : ma_vt_new;
-
-                V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_UPDATE_ALQDDVT",
-                    new SqlParameter("@cMa_vt_old", ma_vt_old),
-                    new SqlParameter("@cMa_vt_new", ma_vt_new));
+                V6BusinessHelper.UpdateAlqddvt(ma_vt_old, ma_vt_new);
             }
             catch (Exception ex)
             {

@@ -74,6 +74,7 @@
             this.ChkVisible = new V6Controls.V6CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.tabThongTinNgamDinh = new System.Windows.Forms.TabPage();
+            this.btnGRDS_V1 = new System.Windows.Forms.Button();
             this.txtGRDHE_V1 = new V6Controls.V6ColorTextBox();
             this.txtGRDHV_V1 = new V6Controls.V6ColorTextBox();
             this.lblGRDHE_V1 = new System.Windows.Forms.Label();
@@ -106,6 +107,7 @@
             this.txtFilterField = new V6Controls.V6ColorTextBox();
             this.label33 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
+            this.v6CheckBox3 = new V6Controls.V6CheckBox();
             this.chkFormF4 = new V6Controls.V6CheckBox();
             this.chkFormF3 = new V6Controls.V6CheckBox();
             this.v6ColorTextBox8 = new V6Controls.V6ColorTextBox();
@@ -143,7 +145,6 @@
             this.lblMaDM = new System.Windows.Forms.Label();
             this.TxtForder = new V6Controls.V6NumberTextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.v6CheckBox3 = new V6Controls.V6CheckBox();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabThongTinNgamDinh.SuspendLayout();
@@ -863,6 +864,7 @@
             this.tabThongTinNgamDinh.AccessibleDescription = "ADDEDITT00009";
             this.tabThongTinNgamDinh.AutoScroll = true;
             this.tabThongTinNgamDinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinNgamDinh.Controls.Add(this.btnGRDS_V1);
             this.tabThongTinNgamDinh.Controls.Add(this.txtGRDHE_V1);
             this.tabThongTinNgamDinh.Controls.Add(this.txtGRDHV_V1);
             this.tabThongTinNgamDinh.Controls.Add(this.lblGRDHE_V1);
@@ -880,6 +882,20 @@
             this.tabThongTinNgamDinh.Size = new System.Drawing.Size(796, 408);
             this.tabThongTinNgamDinh.TabIndex = 1;
             this.tabThongTinNgamDinh.Text = "Thông tin ngầm định";
+            // 
+            // btnGRDS_V1
+            // 
+            this.btnGRDS_V1.AccessibleDescription = ".";
+            this.btnGRDS_V1.AccessibleName = "";
+            this.btnGRDS_V1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnGRDS_V1.Location = new System.Drawing.Point(759, 18);
+            this.btnGRDS_V1.Name = "btnGRDS_V1";
+            this.btnGRDS_V1.Size = new System.Drawing.Size(25, 23);
+            this.btnGRDS_V1.TabIndex = 10;
+            this.btnGRDS_V1.Text = "...";
+            this.btnGRDS_V1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnGRDS_V1.UseVisualStyleBackColor = true;
+            this.btnGRDS_V1.Click += new System.EventHandler(this.btnGRDS_V1_Click);
             // 
             // txtGRDHE_V1
             // 
@@ -990,7 +1006,7 @@
             this.txtGRDS_V1.Location = new System.Drawing.Point(171, 18);
             this.txtGRDS_V1.Margin = new System.Windows.Forms.Padding(4);
             this.txtGRDS_V1.Name = "txtGRDS_V1";
-            this.txtGRDS_V1.Size = new System.Drawing.Size(613, 23);
+            this.txtGRDS_V1.Size = new System.Drawing.Size(586, 23);
             this.txtGRDS_V1.TabIndex = 1;
             // 
             // lblGRDT_V1
@@ -1359,6 +1375,18 @@
             this.label36.Size = new System.Drawing.Size(69, 17);
             this.label36.TabIndex = 161;
             this.label36.Text = "Filter field";
+            // 
+            // v6CheckBox3
+            // 
+            this.v6CheckBox3.AccessibleName = "F6";
+            this.v6CheckBox3.AutoSize = true;
+            this.v6CheckBox3.Location = new System.Drawing.Point(613, 176);
+            this.v6CheckBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.v6CheckBox3.Name = "v6CheckBox3";
+            this.v6CheckBox3.Size = new System.Drawing.Size(152, 21);
+            this.v6CheckBox3.TabIndex = 158;
+            this.v6CheckBox3.Text = "F6 cho phép đổi mã";
+            this.v6CheckBox3.UseVisualStyleBackColor = true;
             // 
             // chkFormF4
             // 
@@ -1931,18 +1959,6 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Sắp xếp";
             // 
-            // v6CheckBox3
-            // 
-            this.v6CheckBox3.AccessibleName = "F6";
-            this.v6CheckBox3.AutoSize = true;
-            this.v6CheckBox3.Location = new System.Drawing.Point(613, 176);
-            this.v6CheckBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.v6CheckBox3.Name = "v6CheckBox3";
-            this.v6CheckBox3.Size = new System.Drawing.Size(152, 21);
-            this.v6CheckBox3.TabIndex = 158;
-            this.v6CheckBox3.Text = "F6 cho phép đổi mã";
-            this.v6CheckBox3.UseVisualStyleBackColor = true;
-            // 
             // Aldm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2087,5 +2103,6 @@
         private V6ColorTextBox txtGRDT_V1;
         private System.Windows.Forms.Label lblGRDT_V1;
         private V6CheckBox v6CheckBox3;
+        protected System.Windows.Forms.Button btnGRDS_V1;
     }
 }

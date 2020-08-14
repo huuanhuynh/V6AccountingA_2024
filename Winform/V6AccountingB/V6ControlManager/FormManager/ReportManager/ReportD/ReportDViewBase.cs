@@ -652,6 +652,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 CreateFormProgram();
                 CreateFormControls();
                 CheckRightReport();
+                if (V6Options.M_R_FONTSIZE > 8)
+                {
+                    dataGridView1.DefaultCellStyle.Font = new Font(dataGridView1.DefaultCellStyle.Font.FontFamily, V6Options.M_R_FONTSIZE);
+                }
                 InvokeFormEvent(FormDynamicEvent.INIT);
             }
             catch (Exception ex)
@@ -1570,9 +1574,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
                 //Phóng lớn dataGridView
                 dataGridView1.BringToFront();
                 gridViewSummary1.BringToFront();
-                dataGridView1.Height = Height - grbDieuKienLoc.Top - 25 - 25; // 25 cho gviewSummary, 25 cho lblSummary
+                dataGridView1.Height = Height - grbDieuKienLoc.Top - 25 - 25 - gridViewTopFilter1.Height; // 25 cho gviewSummary, 25 cho lblSummary
                 dataGridView1.Width = Width - 5;
-                dataGridView1.Top = grbDieuKienLoc.Top;
+                dataGridView1.Top = grbDieuKienLoc.Top + gridViewTopFilter1.Height;
                 dataGridView1.Left = grbDieuKienLoc.Left;
 
                 dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
@@ -1583,9 +1587,9 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             }
             else
             {
-                dataGridView1.Top = grbDieuKienLoc.Top;
+                dataGridView1.Top = grbDieuKienLoc.Top + gridViewTopFilter1.Height;
                 dataGridView1.Left = grbDieuKienLoc.Right + 5;
-                dataGridView1.Height = crystalReportViewer1.Top - grbDieuKienLoc.Top - 25 - 25;
+                dataGridView1.Height = crystalReportViewer1.Top - grbDieuKienLoc.Top - 25 - 25 - gridViewTopFilter1.Height;
                 dataGridView1.Width = crystalReportViewer1.Width;
                 dataGridView1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
 

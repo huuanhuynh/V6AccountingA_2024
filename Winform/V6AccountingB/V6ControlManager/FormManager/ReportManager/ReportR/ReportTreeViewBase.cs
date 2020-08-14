@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -692,6 +693,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 CreateFormProgram();
                 CreateFormControls();
                 CheckRightReport();
+                if (V6Options.M_R_FONTSIZE > 8)
+                {
+                    treeListViewAuto1.Font = new Font(treeListViewAuto1.Font.FontFamily, V6Options.M_R_FONTSIZE);
+                }
                 InvokeFormEvent(FormDynamicEvent.INIT);
             }
             catch (Exception ex)

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using V6AccountingBusiness;
+using V6Controls.Forms.DanhMuc.Add_Edit.Albc;
 using V6Controls.Forms.Editor;
 using V6Init;
 using V6Structs;
@@ -181,6 +184,77 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 lblTenMau.BackColor = Color.FromName(cboColorList.Text);
             }
         }
+
+        private void btnGRDS_V1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<AlbcFieldInfo> targetInfoList = GetTargetFieldsInfo(txtGRDS_V1.Text, txtGRDF_V1.Text, txtGRDHV_V1.Text, txtGRDHE_V1.Text, string.Empty);
+                List<AlbcFieldInfo> sourceFields = GetSourceFieldsInfo1();
+                V6ControlFormHelper.SelectFields(this, sourceFields, targetInfoList, txtGRDS_V1, txtGRDF_V1, txtGRDHV_V1, txtGRDHE_V1);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".btnGRDS_V1_Click", ex);
+            }
+        }
+
+        private List<AlbcFieldInfo> GetTargetFieldsInfo(string ssss, string ffff, string vvvv, string eeee, string tttt)
+        {
+            var targetInfoList = new List<AlbcFieldInfo>();
+            var sss = ObjectAndString.SplitString(ssss);
+            var fff = ObjectAndString.SplitString(ffff);    //  N0:100;C200;D250...
+            var vvv = ObjectAndString.SplitString(vvvv);
+            var eee = ObjectAndString.SplitString(eeee);
+            var ttt = ObjectAndString.SplitString(tttt);
+            for (int i = 0; i < sss.Length; i++)
+            {
+                string field = sss[i];
+                string FIELD = field.Trim().ToUpper();
+                string f = fff.Length <= i ? "C100" : fff[i];
+                string fts = f.Substring(0, 1);
+                string fws = f.Substring(1);
+                if (fts == "N")
+                {
+                    if (f.Length > 1) fts = f.Substring(0, 2);
+                    if (f.Length > 2) fws = f.Substring(3);
+                    else fws = "100";
+                }
+                var ft = EnumConvert.FromString<AlbcFieldType>(fts);
+                int fw = ObjectAndString.ObjectToInt(fws);
+                string fhv = vvv.Length <= i ? CorpLan2.GetFieldHeader(FIELD, "V") : vvv[i];
+                string fhe = eee.Length <= i ? CorpLan2.GetFieldHeader(FIELD, "E") : eee[i];
+                bool fns = ttt.Length > i && ttt.Contains(FIELD);
+
+                AlbcFieldInfo fi = new AlbcFieldInfo()
+                {
+                    FieldName = FIELD,
+                    FieldType = ft,
+                    FieldWidth = fw,
+                    FieldHeaderV = fhv,
+                    FieldHeaderE = fhe,
+                    FieldNoSum = fns,
+                };
+                targetInfoList.Add(fi);
+            }
+            return targetInfoList;
+        }
+
+        private List<AlbcFieldInfo> GetSourceFieldsInfo1()
+        {
+            try
+            {
+                DataTable data1 = V6BusinessHelper.Select(txtTable_name.Text, "top 1 *").Data;
+                return V6ControlFormHelper.GetSourceFieldsInfo(data1);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".GetSourceFieldsInfo1", ex);
+            }
+            return new List<AlbcFieldInfo>();
+        }
+
+        
 
     }
 }

@@ -153,7 +153,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 string[] data_fields = "MA_KH,MA_VT,MA_KHO_I".Split(',');
                 string[] check_fields = "MA_KH,MA_VT,MA_KHO".Split(',');
                 string[] check_tables = "ALKH,ALVT,ALKHO".Split(',');
-                check += V6ControlFormHelper.CheckDataInGridView(dataGridView1, data_fields, check_fields, check_tables);
+                check += V6ControlFormHelper.CheckDataInGridView(dataGridView1, data_fields, check_fields, check_tables, true);
 
                 if (!string.IsNullOrEmpty(check))
                 {

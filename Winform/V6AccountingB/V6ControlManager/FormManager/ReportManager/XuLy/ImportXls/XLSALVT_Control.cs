@@ -18,7 +18,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
     public class XLSALVT_Control : XuLyBase
     {
         private readonly V6Categories _categories = new V6Categories();
-        private const string TABLE_NAME = "ALVT", ID_FIELD = "MA_VT", NAME_FIELD = "TEN_VT";
+        private const string TABLE_NAME = "ALVT", ID_FIELD_ALVT = "MA_VT", NAME_FIELD_ALVT = "TEN_VT";
         private const string CHECK_FIELDS = "MA_VT", IDS_CHECK = "MA_VT", TYPE_CHECK="01";//S Cách nhau bởi (;)
         public XLSALVT_Control(string itemId, string program, string reportProcedure, string reportFile, string reportCaption, string reportCaption2)
             : base(itemId, program, reportProcedure, reportFile, reportCaption, reportCaption2, false)
@@ -72,12 +72,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 if (_tbl != null)
                 {
                     check_field_list = CHECK_FIELDS.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                    if (_tbl.Columns.Contains(ID_FIELD) && _tbl.Columns.Contains(NAME_FIELD))
+                    if (_tbl.Columns.Contains(ID_FIELD_ALVT) && _tbl.Columns.Contains(NAME_FIELD_ALVT))
                     {
                         Timer timerF9 = new Timer { Interval = 1000 };
                         timerF9.Tick += tF9_Tick;
                         remove_list_d = new List<DataRow>();
-                        Thread t = new Thread(F9Thread);
+                        Thread t = new Thread(F9Thread_ALVT);
                         t.SetApartmentState(ApartmentState.STA);
                         CheckForIllegalCrossThreadCalls = false;
                         t.IsBackground = true;
@@ -87,7 +87,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     }
                     else
                     {
-                        V6ControlFormHelper.ShowMessage(string.Format("{0} {1} {2} {3}", V6Text.Text("DULIEUBITHIEU"), ID_FIELD, V6Text.Text("AND"), NAME_FIELD));
+                        V6ControlFormHelper.ShowMessage(string.Format("{0} {1} {2} {3}", V6Text.Text("DULIEUBITHIEU"), ID_FIELD_ALVT, V6Text.Text("AND"), NAME_FIELD_ALVT));
                     }
                 }
                 else
@@ -106,8 +106,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private string f9Error = "";
         private string f9ErrorAll = "";
         private string[] check_field_list = { };
-        private void F9Thread()
+        private void F9Thread_ALVT()
         {
+            // Đè biến
+            DataTable _tbl = this._tbl;
             try
             {
                 f9Running = true;
@@ -174,7 +176,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     if (V6BusinessHelper.Insert(TABLE_NAME, dataDic))
                                     {
                                         var ma_vt_new = dataDic["MA_VT"].ToString().Trim();
-                                        UpdateAlqddvt(ma_vt_new, ma_vt_new);
+                                        V6BusinessHelper.UpdateAlqddvt(ma_vt_new, ma_vt_new);
                                         remove_list_d.Add(row);
                                     }
                                     else
@@ -203,7 +205,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 if (V6BusinessHelper.Insert(TABLE_NAME, dataDic))
                                 {
                                     var ma_vt_new = dataDic["MA_VT"].ToString().Trim();
-                                    UpdateAlqddvt(ma_vt_new, ma_vt_new);
+                                    V6BusinessHelper.UpdateAlqddvt(ma_vt_new, ma_vt_new);
                                     remove_list_d.Add(row);
                                 }
                                 else
@@ -237,24 +239,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         End:
             f9Running = false;
         }
-
-        private void UpdateAlqddvt(string ma_vt_old, string ma_vt_new)
-        {
-            try
-            {
-                //var  = DataDic["MA_VT"].ToString().Trim();
-                //var  = EditMode == V6Mode.Edit ? DataEdit["MA_VT"].ToString().Trim() : ma_vt_new;
-
-                V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_UPDATE_ALQDDVT",
-                    new SqlParameter("@cMa_vt_old", ma_vt_old),
-                    new SqlParameter("@cMa_vt_new", ma_vt_new));
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(GetType() + ".UpdateAlqddvt: " + ex.Message);
-            }
-        }
-
+        
         void tF9_Tick(object sender, EventArgs e)
         {
             if (f9Running)

@@ -534,7 +534,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                         if (_table_name.ToUpper() == "ALVT")
                                         {
                                             var ma_vt_new = dataDic["MA_VT"].ToString().Trim();
-                                            UpdateAlqddvt(ma_vt_new, ma_vt_new);
+                                            V6BusinessHelper.UpdateAlqddvt(ma_vt_new, ma_vt_new);
                                         }
                                         remove_list_d.Add(row);
                                     }
@@ -568,7 +568,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     if (_table_name.ToUpper() == "ALVT")
                                     {
                                         var ma_vt_new = dataDic["MA_VT"].ToString().Trim();
-                                        UpdateAlqddvt(ma_vt_new, ma_vt_new);
+                                        V6BusinessHelper.UpdateAlqddvt(ma_vt_new, ma_vt_new);
                                     }
                                     remove_list_d.Add(row);
                                 }
@@ -622,24 +622,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 this.WriteExLog(GetType() + ".InvokeBeforeInsert", ex);
             }
         }
-
-        private void UpdateAlqddvt(string ma_vt_old, string ma_vt_new)
-        {
-            try
-            {
-                //var  = DataDic["MA_VT"].ToString().Trim();
-                //var  = EditMode == V6Mode.Edit ? DataEdit["MA_VT"].ToString().Trim() : ma_vt_new;
-
-                V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_UPDATE_ALQDDVT",
-                    new SqlParameter("@cMa_vt_old", ma_vt_old),
-                    new SqlParameter("@cMa_vt_new", ma_vt_new));
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorMessage(GetType() + ".UpdateAlqddvt: " + ex.Message);
-            }
-        }
-
+        
         void tF9_Tick(object sender, EventArgs e)
         {
             if (f9Running)

@@ -341,7 +341,7 @@
             // txtExcel1
             // 
             this.txtExcel1.AccessibleName = "EXCEL1";
-            this.txtExcel1.BackColor = System.Drawing.Color.White;
+            this.txtExcel1.BackColor = System.Drawing.Color.AntiqueWhite;
             this.txtExcel1.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtExcel1.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtExcel1.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -350,8 +350,10 @@
             this.txtExcel1.LeaveColor = System.Drawing.Color.White;
             this.txtExcel1.Location = new System.Drawing.Point(99, 6);
             this.txtExcel1.Name = "txtExcel1";
+            this.txtExcel1.ReadOnly = true;
             this.txtExcel1.Size = new System.Drawing.Size(612, 20);
             this.txtExcel1.TabIndex = 2;
+            this.txtExcel1.TabStop = false;
             // 
             // label6
             // 
@@ -1125,7 +1127,7 @@
             this.txtExtraInfo.AccessibleName = "EXTRA_INFOR";
             this.txtExtraInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtExtraInfo.BackColor = System.Drawing.Color.White;
+            this.txtExtraInfo.BackColor = System.Drawing.Color.AntiqueWhite;
             this.txtExtraInfo.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtExtraInfo.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtExtraInfo.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -1135,8 +1137,10 @@
             this.txtExtraInfo.Location = new System.Drawing.Point(97, 348);
             this.txtExtraInfo.Margin = new System.Windows.Forms.Padding(4);
             this.txtExtraInfo.Name = "txtExtraInfo";
+            this.txtExtraInfo.ReadOnly = true;
             this.txtExtraInfo.Size = new System.Drawing.Size(622, 20);
             this.txtExtraInfo.TabIndex = 2;
+            this.txtExtraInfo.TabStop = false;
             this.toolTipV6FormControl.SetToolTip(this.txtExtraInfo, "CODE:value;CODE2:value2");
             this.txtExtraInfo.Visible = false;
             // 

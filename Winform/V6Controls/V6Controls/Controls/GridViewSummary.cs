@@ -233,7 +233,7 @@ namespace V6Controls.Controls
             bBackGround = new SolidBrush(Color.AliceBlue);
             bTextColor = new SolidBrush(_dgv.ForeColor);
 
-            gFont = _dgv.DefaultCellStyle.Font;
+            gFont = _dgv.Font;
             textFont = new Font(gFont.FontFamily, gFont.Size, FontStyle.Bold);
             stringFormat = new StringFormat
             {
@@ -248,6 +248,8 @@ namespace V6Controls.Controls
             try
             {
                 if (_dgv == null) return;
+                gFont = _dgv.Font;
+                textFont = new Font(gFont.FontFamily, gFont.Size, FontStyle.Bold);
                 // Khởi tạo danh sách kết quả
                 _sumValues = new SortedDictionary<string, decimal>();
                 foreach (DataGridViewColumn column in _dgv.Columns)
