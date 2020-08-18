@@ -5420,6 +5420,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         {
             try
             {
+                ResetForm();
                 _fail = false;
                 if (AM != null && AM.Rows.Count > 0)
                 {
@@ -5471,21 +5472,22 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
 
                     if (mode == V6Mode.Edit)
                     {
-                        var currentRow = AM.Rows[CurrentIndex];
-                        for (int i = 0; i < AM.Columns.Count; i++)
-                        {
-                            currentRow[i] = loadRow[i];
-                        }
+                        V6ControlFormHelper.UpdateDataRow(AM.Rows[CurrentIndex], loadRow.ToDataDictionary());
+                        //var currentRow = AM.Rows[CurrentIndex];
+                        //for (int i = 0; i < AM.Columns.Count; i++)
+                        //{
+                        //    currentRow[i] = loadRow[i];
+                        //}
                         ViewInvoice(CurrentIndex);
                     }
                     else if (mode == V6Mode.Add)
                     {
-                        var newRow = AM.NewRow();
-                        for (int i = 0; i < AM.Columns.Count; i++)
-                        {
-                            newRow[i] = loadRow[i];
-                        }
-                        AM.Rows.Add(newRow);
+                        //var newRow = AM.NewRow();
+                        //for (int i = 0; i < AM.Columns.Count; i++)
+                        //{
+                        //    newRow[i] = loadRow[i];
+                        //}
+                        AM.AddRow(loadRow);
                         CurrentIndex = AM.Rows.Count - 1;
                         ViewInvoice(CurrentIndex);
                     }

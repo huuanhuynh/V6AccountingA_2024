@@ -232,6 +232,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia.Loc
             flagSearchSuccess = false;
             btnNhan.Enabled = false;
             PrepareThread();
+            flag_search_topcuoiky = "0";
             new Thread(DoSearch)
             {
                 IsBackground = true

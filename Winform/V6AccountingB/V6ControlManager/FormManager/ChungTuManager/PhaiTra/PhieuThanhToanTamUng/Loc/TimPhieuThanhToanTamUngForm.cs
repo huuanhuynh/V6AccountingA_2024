@@ -210,6 +210,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
             flagSearchSuccess = false;
             btnNhan.Enabled = false;
             PrepareThread();
+            flag_search_topcuoiky = "0";
             new Thread(DoSearch)
             {
                 IsBackground = true

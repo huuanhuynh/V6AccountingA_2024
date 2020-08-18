@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows.Forms;
 using V6Controls;
 using V6Controls.Forms;
+using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ToolManager
 {
@@ -55,6 +56,10 @@ namespace V6ControlManager.FormManager.ToolManager
                         else if(ext == ".csv")
                         {
                             table1 = V6Tools.V6Reader.TextFile.ToTable(o.FileName);
+                        }
+                        else if (ext == ".xml")
+                        {
+                            table1 = Data_Table.FromXmlFile(o.FileName);
                         }
                         else
                         {
