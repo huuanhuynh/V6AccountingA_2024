@@ -56,11 +56,17 @@ namespace V6Controls.Forms
             if (handler != null) handler(table);
         }
 
+        public string ERROR = null;
         private void Nhan()
         {
             if (data == null)
             {
                 this.ShowMessage(V6Text.NoData);
+                return;
+            }
+            if (ERROR != "")
+            {
+                this.ShowErrorMessage(ERROR);
                 return;
             }
             Close();
@@ -96,9 +102,9 @@ namespace V6Controls.Forms
             {
                 //Check khác
             }
-            InvokeDynamicFix();
             dataGridView1.DataSource = data;
             OnLoadDataComplete();
+            InvokeDynamicFix();
         }
 
         private void btnTim_Click(object sender, EventArgs e)
@@ -215,6 +221,7 @@ namespace V6Controls.Forms
                 if (Program != null && !string.IsNullOrEmpty(DynamicFixMethodName))
                 {
                     All_Objects["data"] = data;
+                    All_Objects["excelForm"] = this;
                     return V6ControlsHelper.InvokeMethodDynamic(Program, DynamicFixMethodName, All_Objects);
                 }
             }

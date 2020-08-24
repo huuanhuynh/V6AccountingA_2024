@@ -8,7 +8,7 @@ using V6Tools.V6Convert;
 
 namespace V6Controls.Forms
 {
-    public partial class FieldSelectorForm : Form
+    public partial class FieldSelectorForm : V6Form
     {
         public FieldSelectorForm()
         {

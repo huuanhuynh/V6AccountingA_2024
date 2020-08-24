@@ -608,6 +608,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
         private List<IDictionary<string, object>> GET_AD2_List(List<DataRow> dataRows, string sttRec)
         {
             var result = new List<IDictionary<string, object>>();
+            if (AM_DATA["NGAY_CT0"] == null || AM_DATA["NGAY_CT0"] == DBNull.Value || AM_DATA["SO_CT0"] == null ||
+                AM_DATA["SO_CT0"].ToString().Trim() == "")
+            {
+                DoNothing();
+                return result;
+            }
             var newRow = new SortedDictionary<string,object>();
             newRow["SO_CT"] = AM_DATA["SO_CT"];
             newRow["NGAY_CT"] = AM_DATA["NGAY_CT"];
@@ -636,7 +642,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             newRow["STT_REC"] = sttRec;
             newRow["STT_REC0"] = "00001";
 
-            if (newRow.ContainsKey("T_THUE_NT") && ObjectAndString.ObjectToDecimal(newRow["T_THUE_NT"]) != 0)
             {
                 result.Add(newRow);
             }

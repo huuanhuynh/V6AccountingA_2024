@@ -63,6 +63,7 @@
             this.Controls.Add(this.lblHelp);
             this.Name = "GridViewTopFilter";
             this.Size = new System.Drawing.Size(200, 22);
+            this.Load += new System.EventHandler(this.GridViewTopFilter_Load);
             this.ResumeLayout(false);
 
         }

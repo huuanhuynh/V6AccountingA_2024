@@ -593,6 +593,18 @@ namespace V6Controls.Controls
             ResetFilter();
             _dgv.LoadSelectedCellLocation();
         }
+
+        private void GridViewTopFilter_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                toolTip1.SetToolTip(lblReset, V6Setting.IsVietnamese ? "Đặt lại ban đầu." : "Reset.");
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
     }
 
     //public class Condition

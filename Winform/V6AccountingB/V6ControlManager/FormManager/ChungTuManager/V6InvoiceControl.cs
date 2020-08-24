@@ -4739,5 +4739,106 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.ShowErrorException(GetType() + ".GET_AM_OLD_EXTRA", ex);
             }
         }
+
+        public void chonAlvt_AcceptData(DataTable table, HD_Detail detail1, V6VvarTextBox _maVt, decimal tygia, V6ColorDataGridView dataGridView1)
+        {
+            var count = 0;
+            _message = "";
+
+            if (table.Columns.Contains("MA_VT") && table.Columns.Contains("MA_KHO_I")
+                && table.Columns.Contains("SO_LUONG1"))
+            {
+                if (table.Rows.Count > 0)
+                {
+                    bool flag_add = chon_accept_flag_add;
+                    chon_accept_flag_add = false;
+                    if (!flag_add)
+                    {
+                        AD.Rows.Clear();
+                    }
+
+                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
+                    {
+                        detail1.MODE = V6Mode.Init;
+                    }
+                }
+
+                foreach (DataRow row in table.Rows)
+                {
+                    var data = row.ToDataDictionary(_sttRec);
+                    var cMaVt = data["MA_VT"].ToString().Trim();
+                    var cMaKhoI = data["MA_KHO_I"].ToString().Trim();
+                    var exist = V6BusinessHelper.IsExistOneCode_List("ALVT", "MA_VT", cMaVt);
+                    var exist2 = V6BusinessHelper.IsExistOneCode_List("ALKHO", "MA_KHO", cMaKhoI);
+
+                    //{ Tuanmh 31/08/2016 Them thong tin ALVT
+                    _maVt.Text = cMaVt;
+                    var datavt = _maVt.Data;
+
+
+                    if (datavt != null)
+                    {
+                        //Nếu dữ liệu không (!) chứa mã nào thì thêm vào dữ liệu cho mã đó.
+                        if (!data.ContainsKey("TEN_VT")) data.Add("TEN_VT", (datavt["TEN_VT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("DVT1")) data.Add("DVT1", (datavt["DVT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("DVT")) data.Add("DVT", (datavt["DVT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("TK_VT")) data.Add("TK_VT", (datavt["TK_VT"] ?? "").ToString().Trim());
+                        if (!data.ContainsKey("HE_SO1")) data.Add("HE_SO1", 1);
+                        if (!data.ContainsKey("HE_SO1T")) data.Add("HE_SO1T", 1);
+                        if (!data.ContainsKey("HE_SO1M")) data.Add("HE_SO1M", 1);
+                        if (!data.ContainsKey("SO_LUONG")) data.Add("SO_LUONG", data["SO_LUONG1"]);
+                        if (!data.ContainsKey("TIEN_NT0")) data.Add("TIEN_NT0", 0);
+                        if (!data.ContainsKey("GIA_NT01")) data.Add("GIA_NT01", 0);
+
+                        var __tien_nt0 = ObjectAndString.ToObject<decimal>(data["TIEN_NT0"]);
+                        var __gia_nt0 = ObjectAndString.ObjectToDecimal(data["GIA_NT01"]);
+                        var __tien0 = V6BusinessHelper.Vround(__tien_nt0 * tygia, M_ROUND);
+                        var __gia0 = V6BusinessHelper.Vround(__gia_nt0 * tygia, M_ROUND_GIA);
+
+                        if (!data.ContainsKey("TIEN0")) data.Add("TIEN0", __tien0);
+
+                        if (!data.ContainsKey("TIEN_NT")) data.Add("TIEN_NT", data["TIEN_NT0"]);
+                        if (!data.ContainsKey("TIEN")) data.Add("TIEN", __tien0);
+                        if (!data.ContainsKey("GIA01")) data.Add("GIA01", __gia0);
+                        if (!data.ContainsKey("GIA0")) data.Add("GIA0", __gia0);
+                        if (!data.ContainsKey("GIA")) data.Add("GIA", __gia0);
+                        if (!data.ContainsKey("GIA1")) data.Add("GIA1", __gia0);
+                        if (!data.ContainsKey("GIA_NT0")) data.Add("GIA_NT0", data["GIA_NT01"]);
+                        if (!data.ContainsKey("GIA_NT")) data.Add("GIA_NT", data["GIA_NT01"]);
+                        if (!data.ContainsKey("GIA_NT1")) data.Add("GIA_NT1", data["GIA_NT01"]);
+                    }
+
+                    if (exist && exist2)
+                    {
+                        if (XuLyThemDetail(data))
+                        {
+                            count++;
+                            All_Objects["data"] = data;
+                            InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                        }
+                    }
+                    else
+                    {
+                        if (!exist) _message += string.Format("{0} [{1}] ", V6Text.NotExist, cMaVt);
+                        if (!exist2)
+                        {
+                            if (string.IsNullOrEmpty(cMaKhoI))
+                            {
+                                _message += string.Format("{0} {1} ", dataGridView1.Columns["MA_KHO_I"].HeaderText, V6Text.Empty);
+                            }
+                            else
+                            {
+                                _message += string.Format("{0} [{1}] ", V6Text.NotExist, cMaKhoI);
+                            }
+                        }
+                    }
+                }
+                ShowParentMessage(string.Format(V6Text.Added + "[{0}].", count) + _message);
+            }
+            else
+            {
+                ShowParentMessage(V6Text.Text("LACKINFO"));
+            }
+        }
     }
 }

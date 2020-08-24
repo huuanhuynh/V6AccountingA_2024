@@ -511,19 +511,19 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             }
             return result;
         }
-        private List<IDictionary<string, object>> GET_AD2_List(List<DataRow> dataRows, string sttRec)
-        {
-            var result = new List<IDictionary<string, object>>();
-            for (int i = 0; i < dataRows.Count; i++)
-            {
-                var one = dataRows[i].ToDataDictionary(sttRec);
-                one["STT_REC0"] = ("00000" + (i + 1)).Right(5);
-                one["MA_CT"] = Invoice.Mact;
+        //private List<IDictionary<string, object>> GET_AD2_List(List<DataRow> dataRows, string sttRec)
+        //{
+        //    var result = new List<IDictionary<string, object>>();
+        //    for (int i = 0; i < dataRows.Count; i++)
+        //    {
+        //        var one = dataRows[i].ToDataDictionary(sttRec);
+        //        one["STT_REC0"] = ("00000" + (i + 1)).Right(5);
+        //        one["MA_CT"] = Invoice.Mact;
 
-                result.Add(one);
-            }
-            return result;
-        }
+        //        result.Add(one);
+        //    }
+        //    return result;
+        //}
 
 
         void tF9_Tick(object sender, EventArgs e)

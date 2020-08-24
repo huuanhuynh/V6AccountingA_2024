@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -21,7 +20,6 @@ using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuNhap;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuXuat;
 using V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.Loc;
 using V6Controls;
-using V6Controls.Controls.GridView;
 using V6Controls.Forms;
 using V6Controls.Forms.Viewer;
 using V6Controls.Structs;
@@ -247,7 +245,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
                         {
                             string newFilter = Invoice.GetMaVtFilterByMaKH(txtMaKh.Text, txtMaDVCS.Text);
                             if(string.IsNullOrEmpty(_mavt_default_initfilter)) _maVt.SetInitFilter(newFilter);
-                            else if (!string.IsNullOrEmpty(newFilter))
+                            else if (!string.IsNullOrEmpty(newFilter) && !_maVt.InitFilter.Contains(newFilter))
                             {
                                 _maVt.SetInitFilter(string.Format("({0}) and ({1})", _mavt_default_initfilter, newFilter));
                             }
@@ -9286,6 +9284,44 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
         private void timTopCuoiKyMenu_Click(object sender, EventArgs e)
         {
             Tim("1");
+        }
+
+        private void chonALVTMenu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (NotAddEdit) return;
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                chon_accept_flag_add = shift;
+                //var ma_kh = txtMaKh.Text.Trim();
+                var ma_dvcs = txtMaDVCS.Text.Trim();
+                var message = "";
+                string filter1 = _maVt.InitFilter;
+                var setting = ObjectAndString.SplitString(V6Options.GetValueNull("M_FILTER_MAKH2MAVT"));
+                if (setting.Contains(Invoice.Mact))
+                    
+                {
+                    string newFilter = Invoice.GetMaVtFilterByMaKH(txtMaKh.Text, txtMaDVCS.Text);
+                    if (string.IsNullOrEmpty(filter1))
+                    {
+                        filter1 = newFilter;
+                    }
+                    else if (!string.IsNullOrEmpty(newFilter) && !_maVt.InitFilter.Contains(newFilter))
+                    {
+                        filter1 = string.Format("({0}) and ({1})", _mavt_default_initfilter, newFilter);
+                    }
+                };
+
+                var form = new AlvtSelectorForm(Invoice.Mact, filter1);
+                if (form.ShowDialog(this) == DialogResult.OK)
+                {
+                    chonAlvt_AcceptData((DataTable)form.dataGridView2.DataSource, detail1, _maVt, txtTyGia.Value, dataGridView1);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
         }
 
         

@@ -596,7 +596,11 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             for (int i = 0; i < dataRows.Count; i++)
             {
                 var one = dataRows[i].ToDataDictionary(sttRec);
-
+                //if (AM_DATA["NGAY_CT0"] == null || AM_DATA["NGAY_CT0"] == DBNull.Value || AM_DATA["SO_CT0"] == null ||
+                //    AM_DATA["SO_CT0"].ToString().Trim() == "")
+                //{
+                //    continue;
+                //}
                 if (ObjectAndString.ObjectToDecimal(one["T_TIEN_NT"]) + ObjectAndString.ObjectToDecimal(one["T_THUE_NT"]) == 0)
                 {
                     continue;

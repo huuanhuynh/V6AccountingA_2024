@@ -124,7 +124,7 @@
             this.label28 = new System.Windows.Forms.Label();
             this.txtFfixColumn = new V6Controls.V6NumberTextBox();
             this.txtFstart = new V6Controls.V6NumberTextBox();
-            this.cboColorList = new V6Controls.Controls.V6ValueComboBox();
+            this.cboColorList = new V6Controls.V6ColorComboBox();
             this.txtFieldMax = new V6Controls.V6ColorTextBox();
             this.txtFilter = new V6Controls.V6ColorTextBox();
             this.cboColor = new V6Controls.V6CheckBox();
@@ -1934,7 +1934,7 @@
         private System.Windows.Forms.Label lblTenMau;
         private V6CheckBox cboColor;
         private V6CheckBox chkBold;
-        private Controls.V6ValueComboBox cboColorList;
+        private V6Controls.V6ColorComboBox cboColorList;
         private Controls.V6ValueComboBox cboOperV;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Button btnExcelTemplateView;

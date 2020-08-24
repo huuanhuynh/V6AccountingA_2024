@@ -79,6 +79,12 @@
     <Compile Include="FormManager\ChungTuManager\ChungTuQuickView.Designer.cs">
       <DependentUpon>ChungTuQuickView.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\ChungTuManager\AlvtSelectorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\AlvtSelectorForm.designer.cs">
+      <DependentUpon>AlvtSelectorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\Filter\FilterView_APSODU0.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5873,6 +5879,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\ChungTuQuickView.resx">
       <DependentUpon>ChungTuQuickView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\AlvtSelectorForm.resx">
+      <DependentUpon>AlvtSelectorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\Filter\FilterView_APSODU0.resx">
       <DependentUpon>FilterView_APSODU0.cs</DependentUpon>

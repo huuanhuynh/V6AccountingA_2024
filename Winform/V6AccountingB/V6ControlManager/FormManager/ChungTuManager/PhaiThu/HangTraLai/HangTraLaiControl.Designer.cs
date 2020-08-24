@@ -32,9 +32,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabChiTiet = new System.Windows.Forms.TabPage();
             this.detail1 = new V6ControlManager.FormManager.ChungTuManager.HD_Detail();
@@ -212,15 +212,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.btnMoi = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnTim = new wyDay.Controls.SplitButton();
+            this.menuBtnTim = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.timTopCuoiKyMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.timKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.lblNameT = new V6Controls.V6Label();
             this.TxtMa_gd = new V6Controls.V6VvarTextBox();
             this.menuDetail1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.XemPhieuNhapMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chuaDatTen2Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuBtnTim = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.timTopCuoiKyMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.timKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.chonALVTMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -234,8 +235,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.group2.SuspendLayout();
             this.group1.SuspendLayout();
             this.menuBtnIn.SuspendLayout();
-            this.menuDetail1.SuspendLayout();
             this.menuBtnTim.SuspendLayout();
+            this.menuDetail1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -297,20 +298,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightCyan;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightCyan;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MA_VT,
@@ -322,8 +323,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightYellow;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightYellow;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(875, 137);
             this.dataGridView1.TabIndex = 1;
@@ -1412,9 +1413,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.thayThe2Menu,
             this.chonDeNghiNhapMenu,
             this.exportXmlMenu,
-            this.importXmlMenu});
+            this.importXmlMenu,
+            this.chonALVTMenu});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(200, 158);
+            this.menuChucNang.Size = new System.Drawing.Size(200, 202);
             this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
             // 
             // xuLyKhacMenu
@@ -3010,6 +3012,29 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.btnTim.UseVisualStyleBackColor = true;
             this.btnTim.Click += new System.EventHandler(this.btnTim_Click);
             // 
+            // menuBtnTim
+            // 
+            this.menuBtnTim.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.timTopCuoiKyMenu,
+            this.timKhacMenu});
+            this.menuBtnTim.Name = "menuBtnIn";
+            this.menuBtnTim.Size = new System.Drawing.Size(156, 48);
+            // 
+            // timTopCuoiKyMenu
+            // 
+            this.timTopCuoiKyMenu.AccessibleDescription = "INVOICEM00045";
+            this.timTopCuoiKyMenu.Name = "timTopCuoiKyMenu";
+            this.timTopCuoiKyMenu.Size = new System.Drawing.Size(155, 22);
+            this.timTopCuoiKyMenu.Text = "Top 5 chứng từ";
+            this.timTopCuoiKyMenu.Click += new System.EventHandler(this.timTopCuoiKyMenu_Click);
+            // 
+            // timKhacMenu
+            // 
+            this.timKhacMenu.AccessibleDescription = "INVOICEM00046";
+            this.timKhacMenu.Name = "timKhacMenu";
+            this.timKhacMenu.Size = new System.Drawing.Size(155, 22);
+            this.timKhacMenu.Text = "Khác...";
+            // 
             // lblNameT
             // 
             this.lblNameT.AccessibleDescription = "";
@@ -3069,28 +3094,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.toolStripMenuItem3.Size = new System.Drawing.Size(161, 22);
             this.toolStripMenuItem3.Text = "...";
             // 
-            // menuBtnTim
+            // chonALVTMenu
             // 
-            this.menuBtnTim.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.timTopCuoiKyMenu,
-            this.timKhacMenu});
-            this.menuBtnTim.Name = "menuBtnIn";
-            this.menuBtnTim.Size = new System.Drawing.Size(137, 48);
-            // 
-            // timTopCuoiKyMenu
-            // 
-            this.timTopCuoiKyMenu.AccessibleDescription = "INVOICEM00045";
-            this.timTopCuoiKyMenu.Name = "timTopCuoiKyMenu";
-            this.timTopCuoiKyMenu.Size = new System.Drawing.Size(136, 22);
-            this.timTopCuoiKyMenu.Text = "Top 5 chứng từ";
-            this.timTopCuoiKyMenu.Click += new System.EventHandler(this.timTopCuoiKyMenu_Click);
-            // 
-            // timKhacMenu
-            // 
-            this.timKhacMenu.AccessibleDescription = "INVOICEM00046";
-            this.timKhacMenu.Name = "timKhacMenu";
-            this.timKhacMenu.Size = new System.Drawing.Size(136, 22);
-            this.timKhacMenu.Text = "Khác...";
+            this.chonALVTMenu.AccessibleDescription = "INVOICEM00047";
+            this.chonALVTMenu.Name = "chonALVTMenu";
+            this.chonALVTMenu.Size = new System.Drawing.Size(199, 22);
+            this.chonALVTMenu.Text = "Chọn ALVT";
+            this.chonALVTMenu.Click += new System.EventHandler(this.chonALVTMenu_Click);
             // 
             // HangTraLaiControl
             // 
@@ -3148,8 +3158,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
             this.group1.ResumeLayout(false);
             this.group1.PerformLayout();
             this.menuBtnIn.ResumeLayout(false);
-            this.menuDetail1.ResumeLayout(false);
             this.menuBtnTim.ResumeLayout(false);
+            this.menuDetail1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3343,5 +3353,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
         private System.Windows.Forms.ContextMenuStrip menuBtnTim;
         private System.Windows.Forms.ToolStripMenuItem timTopCuoiKyMenu;
         private System.Windows.Forms.ToolStripMenuItem timKhacMenu;
+        private System.Windows.Forms.ToolStripMenuItem chonALVTMenu;
     }
 }

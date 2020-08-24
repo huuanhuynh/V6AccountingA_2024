@@ -8,7 +8,7 @@ using V6Tools.V6Convert;
 namespace V6Controls
 {
 	/// <summary>
-	/// Summary description for V6ColorComboBox.
+	/// Combobox item có màu theo ColorField hoặc item Text.
 	/// </summary>
 	public class V6ColorComboBox : V6ComboBox
 	{
@@ -257,6 +257,11 @@ namespace V6Controls
 	    private Color GetItemTextColor(object itemObject)
 	    {
             Color result = Color.Black;
+            if (itemObject is string)
+            {
+                result = ObjectAndString.StringToColor(itemObject.ToString());
+                return result;
+            }
 	        DataRowView rowView = itemObject as DataRowView;
 	        if (rowView != null)
 	        {

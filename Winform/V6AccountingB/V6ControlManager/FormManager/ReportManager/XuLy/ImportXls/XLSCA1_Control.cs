@@ -335,7 +335,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     var data_rows = item.Value;
                     try
                     {
-                        AM_DATA = GET_AM_Data(data_rows, "PS_NO_NT,PS_NO", "TK", _mactF9);
+                        AM_DATA = GET_AM_Data(data_rows, "PS_NO_NT,PS_NO,THUE_NT,THUE", "TK", _mactF9);
 
                         var sttRec = V6BusinessHelper.GetNewSttRec(Invoice.Mact);
                         if (chkAutoSoCt_Checked) // Tự động tạo số chứng từ.
@@ -594,7 +594,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 var one = dataRows[i].ToDataDictionary(sttRec);
 
-                if (ObjectAndString.ObjectToDecimal(one["THUE_NT"]) == 0)
+                if (one["NGAY_CT0"] == null || one["NGAY_CT0"] == DBNull.Value || one["SO_CT0"] == null || one["SO_CT0"].ToString().Trim() == "")
                 {
                     continue;
                 }
@@ -607,18 +607,33 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 one["NGAY_LCT"] = AM_DATA["NGAY_LCT"];
 
 
-
-                one["MA_KH"] = one["MA_KH_T"];
-                one["TEN_KH"] = one["TEN_KH_T"];
-                one["DIA_CHI"] = one["DIA_CHI_T"];
-                one["MA_SO_THUE"] = one["MST_T"];
-                one["TEN_VT"] = one["TEN_VT_T"];
+                if (one.ContainsKey("MA_KH_T")) one["MA_KH"] = one["MA_KH_T"];
+                if (one.ContainsKey("TEN_KH_T")) one["TEN_KH"] = one["TEN_KH_T"];
+                if (one.ContainsKey("DIA_CHI_T")) one["DIA_CHI"] = one["DIA_CHI_T"];
+                if (one.ContainsKey("MST_T")) one["MA_SO_THUE"] = one["MST_T"];
+                if (one.ContainsKey("TEN_VT_T")) one["TEN_VT"] = one["TEN_VT_T"];
                 //Ten_vt,so_luong,gia,t_tien
 
                 one["MA_THUE"] = one["MA_THUE_I"];
                 one["TK_THUE_NO"] = one["TK_THUE_I"];
                 one["TK_DU"] = one["TK"];
-                
+
+                if (!one.ContainsKey("T_TIEN_NT"))
+                {
+                    one["T_TIEN_NT"] = one["PS_NO_NT"];
+                }
+                if (!one.ContainsKey("T_TIEN"))
+                {
+                    one["T_TIEN"] = one["PS_NO"];
+                }
+                if (!one.ContainsKey("T_THUE_NT"))
+                {
+                    one["T_THUE_NT"] = one["THUE_NT"];
+                }
+                if (!one.ContainsKey("T_THUE"))
+                {
+                    one["T_THUE"] = one["THUE"];
+                }
 
                 result.Add(one);
             }
