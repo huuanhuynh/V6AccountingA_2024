@@ -653,6 +653,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         {
                             if (_maVt.Text != "")
                             {
+                                _maVt.RefreshLoDateYnValue();
+                                _maKhoI.RefreshLoDateYnValue();
+                                _maLo.CheckNotEmpty = _maVt.LO_YN && _maKhoI.LO_YN;
                                 _maLo.SetInitFilter("Ma_vt='" + _maVt.Text.Trim() + "'");
                                 // Tuanmh 05/05/2018 sai HSD
                                 _maLo.ExistRowInTable(true);
@@ -1627,7 +1630,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         {
             try
             {
-                _maLo.RefreshLoDateYnValue();
+                _maVt.RefreshLoDateYnValue();
                 if (_maVt.LO_YN)
                 {
                     //Tuanmh 05/05/2018 Sai HSD
@@ -2581,6 +2584,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 var cell = row.Cells[e.ColumnIndex];
                 var cell_MA_VT = row.Cells["MA_VT"];
                 var cell_SO_LUONG1 = row.Cells["SO_LUONG1"];
+                decimal HE_SO1T = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1T"].Value);
+                decimal HE_SO1M = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1M"].Value);
+                if (HE_SO1T == 0) HE_SO1T = 1;
+                if (HE_SO1M == 0) HE_SO1M = 1;
+                decimal HE_SO = HE_SO1T / HE_SO1M;
 
                 ShowMainMessage("cell_end_edit: " + FIELD);
 
@@ -2602,7 +2610,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         }
 
                         //_soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
-                        row.Cells["SO_LUONG"].Value = ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value) * ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1"].Value);
+                        row.Cells["SO_LUONG"].Value = ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value) * HE_SO;
                         //TinhTienVon1(_soLuong1);
                         row.Cells["TIEN_NT0"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value)
                             * ObjectAndString.ObjectToDecimal(row.Cells["GIA_NT01"].Value), M_ROUND_NT);
@@ -2699,7 +2707,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             return;//Dùng sự kiện cell_endedit để viết lại sự kiện.
             #region ==== SO_LUONG1 ====
             //Ex:
-            //--dataGridView1.ThemCongThuc("SO_LUONG1", "SO_LUONG=SO_LUONG1*HE_SO1");
+            //--dataGridView1.ThemCongThuc("SO_LUONG1", "SO_LUONG=SO_LUONG1*HE SO1");
             //--dataGridView1.ThemCongThuc("SO_LUONG1", "THANH_TIEN=SO_LUONG*DON_GIA");
 
 
@@ -2727,12 +2735,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             {
                 f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_SL");
             }
-            f = dataGridView1.Columns["HE_SO1"];
-            if (f != null)
-            {
-                f.DefaultCellStyle.Format = "N6";
-            }
-
+            
             f = dataGridView1.Columns["GIA01"];
             if (f != null)
             {
@@ -6370,7 +6373,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         if (!data.ContainsKey("DVT1"))      data.Add("DVT1", (datavt["DVT"] ?? "").ToString().Trim());
                         if (!data.ContainsKey("DVT"))       data.Add("DVT", (datavt["DVT"] ?? "").ToString().Trim());
                         if (!data.ContainsKey("TK_VT"))     data.Add("TK_VT", (datavt["TK_VT"] ?? "").ToString().Trim());
-                        if (!data.ContainsKey("HE_SO1"))    data.Add("HE_SO1", 1);
+                        if (!data.ContainsKey("HE_SO1T"))    data.Add("HE_SO1T", 1);
+                        if (!data.ContainsKey("HE_SO1M"))    data.Add("HE_SO1M", 1);
                         if (!data.ContainsKey("SO_LUONG"))  data.Add("SO_LUONG",data["SO_LUONG1"]);
 
                         var __tien_nt0 = ObjectAndString.ToObject<decimal>(data["TIEN_NT0"]);
@@ -7894,11 +7898,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     }
                     else if (!string.IsNullOrEmpty(newFilter) && !_maVt.InitFilter.Contains(newFilter))
                     {
-                        filter1 = string.Format("({0}) and ({1})", _mavt_default_initfilter, newFilter);
+                        filter1 = string.Format("({0}) and ({1})", filter1, newFilter);
                     }
                 };
 
-                var form = new AlvtSelectorForm(Invoice.Mact, filter1);
+                var form = new AlvtSelectorForm(Invoice, filter1);
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     chonAlvt_AcceptData((DataTable)form.dataGridView2.DataSource, detail1, _maVt, txtTyGia.Value, dataGridView1);

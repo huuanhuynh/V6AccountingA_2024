@@ -16,7 +16,7 @@ namespace V6Controls.Controls.LichView
         public LichViewControl()
         {
             InitializeComponent();
-            FocusDate = DateTime.Now;
+            FocusDate = DateTime.Now.Date;
             Month = FocusDate.Month;
             Year = FocusDate.Year;
             
@@ -73,7 +73,7 @@ namespace V6Controls.Controls.LichView
                     {
                         haveHoverCell = true;
                         cellData.IsHover = true;
-                        DrawCell(g, cellData);
+                        DrawCell(g, cellData, BackColor);
                         HoverCell = cellData;
                         //if (can_break) break;
                     }
@@ -82,7 +82,7 @@ namespace V6Controls.Controls.LichView
                         //Redraw old hover cell
                         var oldCell = cellData;
                         oldCell.IsHover = false;
-                        DrawCell(g, oldCell);
+                        DrawCell(g, oldCell,BackColor);
                     }
                 }
                 if (!haveHoverCell) HoverCell = null;
@@ -178,6 +178,7 @@ namespace V6Controls.Controls.LichView
             {
                 bool mouse_on_a_cell = false;
                 LichViewCellData clickCellData = null;
+                if(DataSource != null)
                 foreach (KeyValuePair<int, LichViewCellData> item in DataSource)
                 {
                     if (item.Value.Rectangle.Contains(MouseLocation))
@@ -187,6 +188,19 @@ namespace V6Controls.Controls.LichView
                         break;
                     }
                 }
+
+                foreach (KeyValuePair<DateTime, Rectangle> item in _recList)
+                {
+                    if (item.Value.Contains(MouseLocation))
+                    {
+                        if (FocusDate != item.Key)
+                        {
+                            FocusDate = item.Key;
+                            Invalidate();
+                        }
+                    }
+                }
+                
 
                 if(mouse_on_a_cell) OnClickCellEvent(this,
                     new LichViewEventArgs()
@@ -209,13 +223,9 @@ namespace V6Controls.Controls.LichView
         /// <summary>
         /// Dữ liệu
         /// </summary>
-        public IDictionary<int, LichViewCellData> DataSource {
-            get { return _dataSource; }
-            set
-            {
-                _dataSource = value ?? new Dictionary<int, LichViewCellData>();
-            } }
-        protected IDictionary<int, LichViewCellData> _dataSource = new Dictionary<int, LichViewCellData>();
+        [DefaultValue(null)]
+        public IDictionary<int, LichViewCellData> DataSource = new Dictionary<int, LichViewCellData>();
+        protected IDictionary<int, LichViewCellData> _dataSource = null;
         public IDictionary<string, object> RowData { get; set; } 
         /// <summary>
         /// Màu viền. Không dùng chọn Color.Transparent
@@ -229,6 +239,9 @@ namespace V6Controls.Controls.LichView
         [Category("ColorSetting")]
         public Color HoverBackColor { get { return _hoverBackColor; } set { _hoverBackColor = value; } }
         private Color _hoverBackColor = Color.Aqua;
+        [Category("ColorSetting")]
+        public Color FocusBackColor { get { return _focusBackColor; } set { _focusBackColor = value; } }
+        private Color _focusBackColor = Color.Green;
         [Category("ColorSetting")]
         public Color SatudayColor { get { return _satudayColor; } set { _satudayColor = value; } }
         private Color _satudayColor = Color.Blue;
@@ -351,7 +364,7 @@ namespace V6Controls.Controls.LichView
         {
             Year = year;
             Month = month;
-            FocusDate = focusDate;
+            FocusDate = focusDate.Date;
             DataSource = data;
             RowData = rowData;
             FooterText = footerText;
@@ -465,10 +478,12 @@ namespace V6Controls.Controls.LichView
             row_height = (Height - BorderWidth * 2 - HeaderHeight - FooterHeight) / week_in_month;
         }
 
+        private Dictionary<DateTime, Rectangle> _recList = new Dictionary<DateTime, Rectangle>();
         private void DrawBody(Point basePoint, PaintEventArgs e)
         {
             try
             {
+                _recList = new Dictionary<DateTime, Rectangle>();
                 LichViewCellData todayCellData = null;
                 int col = (int)first_day_of_week - 1;
                 if (col == -1) col = 6;
@@ -493,13 +508,19 @@ namespace V6Controls.Controls.LichView
                         cellData.Col = col;
                         cellData.Row = row;
                     }
-                    if (i == FocusDate.Day)
+                    if (i == DateTime.Now.Day)
                     {
                         todayCellData = cellData;
                     }
                     Rectangle cellRectangle = new Rectangle(cellBasePoint, new Size(col_width, row_height));
+                    _recList.Add(cellData.Date, cellRectangle);
                     cellData.Rectangle = cellRectangle;
-                    DrawCell(e.Graphics, cellData);
+                    var backColor = BackColor;
+                    if (cellData.Date == FocusDate)
+                    {
+                        backColor = _focusBackColor;
+                    }
+                    DrawCell(e.Graphics, cellData, backColor);
 
                     col++;
                     if (col == 7)
@@ -534,11 +555,11 @@ namespace V6Controls.Controls.LichView
         private int week_in_month = 5;
         private DayOfWeek first_day_of_week;
         private DateTime ngay_dau_thang;
-        private void DrawCell(Graphics g, LichViewCellData cellData)//, int day)//, int col, int row)
+        private void DrawCell(Graphics g, LichViewCellData cellData, Color backColor)//, int day)//, int col, int row)
         {
             var basePoint = cellData.Rectangle.Location;
             //Draw backColor
-            Brush brush = new SolidBrush(BackColor);
+            Brush brush = new SolidBrush(backColor);
 
             var hoverRec = cellData.Rectangle;
             if (cellData.IsHover)
@@ -573,7 +594,7 @@ namespace V6Controls.Controls.LichView
             brush = new SolidBrush(cellData.Col == 5 ? _satudayColor : (cellData.Col == 6 ? _sundayColor : ForeColor));
             //Draw day
             float emSize = (float)col_width/9;
-            if (emSize < 5.5) emSize = 5.5f;
+            if (emSize < 8.5) emSize = 8.5f;
             Font dayFont = new Font(Font.FontFamily, emSize);
             g.DrawString("" + cellData.Day, dayFont, brush, cellData.Rectangle);// basePoint);
             //Draw LunarDate

@@ -18,7 +18,8 @@ namespace V6ReportControls
             Operator = "=";
             v6DateTimeTextBox1.TextChanged += delegate
             {
-                IsSelected = true;
+                if (v6DateTimeTextBox1.Value == null) IsSelected = false;
+                else IsSelected = true;
             };
         }
 

@@ -1271,11 +1271,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVu
             {
                 f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_SL");
             }
-            f = dataGridView1.Columns["HE_SO1"];
-            if (f != null)
-            {
-                f.DefaultCellStyle.Format = "N6";
-            }
             
             f = dataGridView1.Columns["GIA2"];
             if (f != null)

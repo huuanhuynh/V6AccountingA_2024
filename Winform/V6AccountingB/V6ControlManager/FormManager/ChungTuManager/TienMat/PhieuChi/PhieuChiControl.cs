@@ -2603,12 +2603,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
             {
                 f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_SL");
             }
-            f = dataGridView1.Columns["HE_SO1"];
-            if (f != null)
-            {
-                f.DefaultCellStyle.Format = "N6";
-            }
-
+            
             f = dataGridView3.Columns["GIA01"];
             if (f != null)
             {

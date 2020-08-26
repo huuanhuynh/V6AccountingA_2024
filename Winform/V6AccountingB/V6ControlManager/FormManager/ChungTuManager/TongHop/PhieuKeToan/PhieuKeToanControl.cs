@@ -102,6 +102,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             dataGridViewColumn = dataGridView1.Columns["STT_REC0"];
             if (dataGridViewColumn != null) dataGridViewColumn.ValueType = typeof (string);
 
+            SetGridViewFomular();
+            SetGridViewEvent();
             cboKieuPost.SelectedIndex = 0;
 
             All_Objects["thisForm"] = this;
@@ -748,6 +750,111 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             ReorderDataGridViewColumns();
             FormatGridView();
         }
+
+        private void SetGridViewEvent()
+        {
+            dataGridView1.CellBeginEdit += dataGridView1_CellBeginEdit;
+            dataGridView1.CellEndEdit += dataGridView1_CellEndEdit;
+        }
+
+        void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            string FIELD = null;
+            try
+            {
+                var row = dataGridView1.Rows[e.RowIndex];
+                var col = dataGridView1.Columns[e.ColumnIndex];
+                FIELD = col.DataPropertyName.ToUpper();
+                
+                var cellPS_NO_NT = row.Cells["PS_NO_NT"];
+                var cellPS_NO = row.Cells["PS_NO"];
+                var cellPS_CO_NT = row.Cells["PS_CO_NT"];
+                var cellPS_CO = row.Cells["PS_CO"];
+                
+                ShowMainMessage("cell_end_edit: " + FIELD);
+
+                switch (FIELD)
+                {
+                    case "PS_NO_NT":
+                        #region ==== PS_NO_NT ====
+
+                        cellPS_NO.Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cellPS_NO_NT.Value) * txtTyGia.Value, M_ROUND);
+                        if (ObjectAndString.ObjectToDecimal(cellPS_NO_NT.Value) != 0)
+                        {
+                            cellPS_CO_NT.Value = 0;
+                            cellPS_CO.Value = 0;
+                        }
+
+                        #endregion ==== PS_NO_NT ====
+                        break;
+
+                    case "PS_CO_NT":
+                        #region ==== PS_CO_NT ====
+                        cellPS_CO.Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cellPS_CO_NT.Value) * txtTyGia.Value, M_ROUND);
+                        if (ObjectAndString.ObjectToDecimal(cellPS_CO_NT.Value) != 0)
+                        {
+                            cellPS_NO_NT.Value = 0;
+                            cellPS_NO.Value = 0;
+                        }
+
+                        #endregion ==== PS_CO_NT ====
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+            TinhTongThanhToan("CellEndEdit_" + FIELD);
+        }
+
+        void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            string FIELD = null;
+            try
+            {
+                var row = dataGridView1.Rows[e.RowIndex];
+                var col = dataGridView1.Columns[e.ColumnIndex];
+                FIELD = col.DataPropertyName.ToUpper();
+
+                ShowMainMessage("cell_end_edit: " + FIELD);
+
+                switch (FIELD)
+                {
+                    case "SO_LUONG1":
+                        #region ==== SO_LUONG1 ====
+                        GetTonRow(row, detail1, dateNgayCT.Value);
+                        #endregion ==== SO_LUONG1 ====
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        /// <summary>
+        /// Gán công thức tính toán cho GridView theo các trường, Các công thức được tham chiếu từ các hàm xử lý (vd so_luong1.V6lostfocus...).
+        /// </summary>
+        private void SetGridViewFomular()
+        {
+            return;//Dùng sự kiện cell_endedit để viết lại sự kiện.
+            #region ==== SO_LUONG1 ====
+            //Ex:
+            //--dataGridView1.ThemCongThuc("SO_LUONG1", "SO_LUONG=SO_LUONG1*HE SO1");
+            //--dataGridView1.ThemCongThuc("SO_LUONG1", "THANH_TIEN=SO_LUONG*DON_GIA");
+            
+            #endregion ==== SO_LUONG1 ====
+
+            //--dataGridView1.ThemCongThuc("DON_GIA", "THANH_TIEN=SO_LUONG*DON_GIA");
+        }
+
+
         private void ReorderDataGridViewColumns()
         {
             V6ControlFormHelper.ReorderDataGridViewColumns(dataGridView1, _orderList);
@@ -764,11 +871,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
             if (f != null)
             {
                 f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_SL");
-            }
-            f = dataGridView1.Columns["HE_SO1"];
-            if (f != null)
-            {
-                f.DefaultCellStyle.Format = "N6";
             }
             
             f = dataGridView1.Columns["GIA01"];
@@ -3744,6 +3846,18 @@ namespace V6ControlManager.FormManager.ChungTuManager.TongHop.PhieuKeToan
         private void timTopCuoiKyMenu_Click(object sender, EventArgs e)
         {
             Tim("1");
+        }
+
+        private void chkTempSuaCT_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkTempSuaCT.Checked)
+            {
+                SetGridViewReadonly(dataGridView1, Invoice);
+            }
+            else
+            {
+                dataGridView1.ReadOnly = true;
+            }
         }
 
 

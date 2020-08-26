@@ -1058,6 +1058,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             // menuChucNang
             // 
             this.menuChucNang.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.chonALVTMenu,
             this.chonDonHangMuaMenu,
             this.TroGiupMenu,
             this.chonTuExcelMenu,
@@ -1068,8 +1069,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.chonDeNghiNhapMenu,
             this.chonPhieuXuatKhoMenu,
             this.exportXmlMenu,
-            this.importXmlMenu,
-            this.chonALVTMenu});
+            this.importXmlMenu});
             this.menuChucNang.Name = "menuChucNang";
             this.menuChucNang.Size = new System.Drawing.Size(200, 290);
             this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
@@ -1168,7 +1168,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.chonALVTMenu.AccessibleDescription = "INVOICEM00047";
             this.chonALVTMenu.Name = "chonALVTMenu";
             this.chonALVTMenu.Size = new System.Drawing.Size(199, 22);
-            this.chonALVTMenu.Text = "Chọn ALVT";
+            this.chonALVTMenu.Text = "Chọn vật tư, hàng hóa";
             this.chonALVTMenu.Click += new System.EventHandler(this.chonALVTMenu_Click);
             // 
             // chkTempSuaCT
@@ -2144,7 +2144,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             this.btnTim.Image = global::V6ControlManager.Properties.Resources.Search24;
             this.btnTim.Location = new System.Drawing.Point(513, 594);
             this.btnTim.Name = "btnTim";
-            this.btnTim.Size = new System.Drawing.Size(76, 32);
+            this.btnTim.Size = new System.Drawing.Size(90, 32);
             this.btnTim.SplitMenuStrip = this.menuBtnTim;
             this.btnTim.TabIndex = 13;
             this.btnTim.Text = "&Tìm";

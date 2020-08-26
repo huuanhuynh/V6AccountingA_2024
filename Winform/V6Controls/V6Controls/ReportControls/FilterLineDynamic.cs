@@ -90,6 +90,14 @@ namespace V6ReportControls
             {
                 IsSelected = false;
             }
+            else if (_numberTextBox != null && _numberTextBox.Value == 0)
+            {
+                IsSelected = false;
+            }
+            else if (_dateTimeColor != null && _dateTimeColor.Value == null)
+            {
+                IsSelected = false;
+            }
             else
             {
                 IsSelected = true;
@@ -309,7 +317,9 @@ namespace V6ReportControls
             Controls.Add(_vtextBox);
             Operators.Clear();
             Operators.Add("start");
-            Operators.Add("like"); Operators.Add("="); Operators.Add("<>");
+            Operators.Add("like");
+            Operators.Add("=");
+            Operators.Add("<>");
             Operators.Add("is null"); Operators.Add("is not null");
             Operator = "start";
             _vtextBox.Click += FilterLineDynamic_Click;
@@ -413,7 +423,11 @@ namespace V6ReportControls
 
             Controls.Add(_numberTextBox);
             Operators.Clear();
-            Operators.Add("="); Operators.Add("<>"); Operators.Add(">"); Operators.Add("<");
+            Operators.Add("="); Operators.Add("<>");
+            Operators.Add(">");
+            Operators.Add(">=");
+            Operators.Add("<");
+            Operators.Add("<=");
             Operators.Add("is null"); Operators.Add("is not null");
             Operator = "=";
             _numberTextBox.Click += FilterLineDynamic_Click;
@@ -440,7 +454,12 @@ namespace V6ReportControls
 
             Controls.Add(_numberTextBox);
             Operators.Clear();
-            Operators.Add("="); Operators.Add("<>"); Operators.Add(">"); Operators.Add("<");
+            Operators.Add("=");
+            Operators.Add("<>");
+            Operators.Add(">");
+            Operators.Add(">=");
+            Operators.Add("<");
+            Operators.Add("<=");
             Operators.Add("is null"); Operators.Add("is not null");
             Operator = "=";
             _numberTextBox.Click += FilterLineDynamic_Click;
@@ -467,7 +486,12 @@ namespace V6ReportControls
 
             Controls.Add(_numberTextBox);
             Operators.Clear();
-            Operators.Add("="); Operators.Add("<>"); Operators.Add(">"); Operators.Add("<");
+            Operators.Add("=");
+            Operators.Add("<>");
+            Operators.Add(">");
+            Operators.Add(">=");
+            Operators.Add("<");
+            Operators.Add("<=");
             Operators.Add("is null"); Operators.Add("is not null");
             Operator = "=";
             _numberTextBox.Click += FilterLineDynamic_Click;
@@ -493,7 +517,12 @@ namespace V6ReportControls
             _dateTimePick.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             Controls.Add(_dateTimePick);
             Operators.Clear();
-            Operators.Add("="); Operators.Add("<>"); Operators.Add(">"); Operators.Add("<");
+            Operators.Add("=");
+            Operators.Add("<>");
+            Operators.Add(">");
+            Operators.Add(">=");
+            Operators.Add("<");
+            Operators.Add("<=");
             Operators.Add("is null"); Operators.Add("is not null");
             Operator = "=";
             _dateTimePick.Click += FilterLineDynamic_Click;
@@ -515,11 +544,16 @@ namespace V6ReportControls
             //_dateTimeColor.Format = DateTimePickerFormat.Custom;
             //_dateTimeColor.CustomFormat = @"dd/MM/yyyy";
             _dateTimeColor.Location = new Point(comboBox1.Right + 5, 1);
-            _dateTimeColor.Size = new Size(Width - comboBox1.Right - 5, 20);
+            _dateTimeColor.Size = new Size(Width - comboBox1.Right - 30, 20);
             _dateTimeColor.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             Controls.Add(_dateTimeColor);
             Operators.Clear();
-            Operators.Add("="); Operators.Add("<>"); Operators.Add(">"); Operators.Add("<");
+            Operators.Add("=");
+            Operators.Add("<>");
+            Operators.Add(">");
+            Operators.Add(">=");
+            Operators.Add("<");
+            Operators.Add("<=");
             Operators.Add("is null"); Operators.Add("is not null");
             Operator = "=";
             _dateTimeColor.Click += FilterLineDynamic_Click;
@@ -532,6 +566,10 @@ namespace V6ReportControls
             _dateTimeColor.Leave += FilterLineDynamic_LostFocus;
             _dateTimeColor.V6LostFocus += FilterLineDynamic_V6LostFocus;
             _dateTimeColor.KeyDown += FilterLineDynamic_KeyDown;
+
+            DateSelectButton dsb = new DateSelectButton();
+            Controls.Add(dsb);
+            dsb.ReferenceControl = _dateTimeColor;
         }
 
         public void AddCheckBox()

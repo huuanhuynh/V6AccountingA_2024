@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FilterDanhMuc));
             this.date2 = new V6Controls.V6DateTimeColor();
             this.date1 = new V6Controls.V6DateTimeColor();
             this.label2 = new System.Windows.Forms.Label();
@@ -36,6 +37,8 @@
             this.radOr = new System.Windows.Forms.RadioButton();
             this.radAnd = new System.Windows.Forms.RadioButton();
             this.panel1 = new V6ReportControls.PanelFilter();
+            this.dateSelectButton2 = new V6Controls.Controls.DateSelectButton();
+            this.dateSelectButton1 = new V6Controls.Controls.DateSelectButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -150,11 +153,31 @@
             this.panel1.Size = new System.Drawing.Size(276, 448);
             this.panel1.TabIndex = 2;
             // 
+            // dateSelectButton2
+            // 
+            this.dateSelectButton2.Image = ((System.Drawing.Image)(resources.GetObject("dateSelectButton2.Image")));
+            this.dateSelectButton2.Location = new System.Drawing.Point(249, 32);
+            this.dateSelectButton2.Name = "dateSelectButton2";
+            this.dateSelectButton2.ReferenceControl = this.date2;
+            this.dateSelectButton2.Size = new System.Drawing.Size(21, 21);
+            this.dateSelectButton2.TabIndex = 7;
+            // 
+            // dateSelectButton1
+            // 
+            this.dateSelectButton1.Image = ((System.Drawing.Image)(resources.GetObject("dateSelectButton1.Image")));
+            this.dateSelectButton1.Location = new System.Drawing.Point(249, 6);
+            this.dateSelectButton1.Name = "dateSelectButton1";
+            this.dateSelectButton1.ReferenceControl = this.date1;
+            this.dateSelectButton1.Size = new System.Drawing.Size(21, 21);
+            this.dateSelectButton1.TabIndex = 6;
+            // 
             // FilterDanhMuc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.Controls.Add(this.dateSelectButton2);
+            this.Controls.Add(this.dateSelectButton1);
             this.Controls.Add(this.date2);
             this.Controls.Add(this.date1);
             this.Controls.Add(this.label2);
@@ -180,5 +203,7 @@
         private V6Controls.V6DateTimeColor date1;
         private V6Controls.V6DateTimeColor date2;
         private V6ReportControls.PanelFilter panel1;
+        private V6Controls.Controls.DateSelectButton dateSelectButton2;
+        private V6Controls.Controls.DateSelectButton dateSelectButton1;
     }
 }

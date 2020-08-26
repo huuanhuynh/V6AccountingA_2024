@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
+using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.DanhMucManager;
 using V6Controls;
 using V6Controls.Controls.GridView;
 using V6Controls.Forms;
 using V6Init;
+using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ChungTuManager
 {
@@ -16,16 +20,17 @@ namespace V6ControlManager.FormManager.ChungTuManager
             InitializeComponent();
         }
 
-        public AlvtSelectorForm(string ma_ct, string filter)
+        public AlvtSelectorForm(V6InvoiceBase ma_ct, string filter)
         {
             InitializeComponent();
-            _ma_ct = ma_ct;
+            _invoice = ma_ct;
             _filter = filter;
             
             MyInit();
         }
 
-        private string _ma_ct, _filter = null;
+        private V6InvoiceBase _invoice = null;
+        private string _filter = null;
         private DanhMucView _dmv;
         private V6ColorDataGridView dataGridView1;
         
@@ -78,14 +83,25 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.DialogResult = DialogResult.Cancel;
         }
 
+        public override bool DoHotKey0(Keys keyData)
+        {
+            if (dataGridView2.EditingCell != null) return base.DoHotKey0(keyData);
+            if (keyData == Keys.Enter)
+            {
+                btnNhan.PerformClick();
+                return true;
+            }
+            return base.DoHotKey0(keyData);
+        }
+
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
             try
             {
-                if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Space)
+                if (e.KeyCode == Keys.Space)
                 {
                     e.Handled = true;
-                    btnAddSelect_Click(sender, e);
+                    CopyRowLeftToRight(dataGridView1.CurrentRow);
                 }
             }
             catch (Exception ex)
@@ -127,14 +143,24 @@ namespace V6ControlManager.FormManager.ChungTuManager
             }
         }
 
-        private void RemoveCurrentRowRight()
+        private void RemoveRowsBySelectedCellsRight()
         {
             if (dataGridView2.CurrentRow == null) return;
             
-            DataRowView right_row_view = dataGridView2.CurrentRow.DataBoundItem as DataRowView;
-            if (right_row_view != null)
+            SortedDictionary<int, DataGridViewRow> rowDic = new SortedDictionary<int, DataGridViewRow>();
+            foreach (DataGridViewCell cell in dataGridView2.SelectedCells)
             {
-                _targetTable.Rows.Remove(right_row_view.Row);
+                int i = cell.RowIndex;
+                if(!rowDic.ContainsKey(i)) rowDic.Add(i, cell.OwningRow);
+            }
+
+            foreach (KeyValuePair<int, DataGridViewRow> item in rowDic)
+            {
+                DataRowView right_row_view = item.Value.DataBoundItem as DataRowView;
+                if (right_row_view != null)
+                {
+                    _targetTable.Rows.Remove(right_row_view.Row);
+                }
             }
         }
 
@@ -148,12 +174,23 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         private void btnAddSelect_Click(object sender, EventArgs e)
         {
-            CopyRowLeftToRight(dataGridView1.CurrentRow);
+            //CopyRowLeftToRight(dataGridView1.CurrentRow);
+            SortedDictionary<int, DataGridViewRow> rowDic = new SortedDictionary<int, DataGridViewRow>();
+            foreach (DataGridViewCell cell in dataGridView1.SelectedCells)
+            {
+                int i = cell.RowIndex;
+                if(!rowDic.ContainsKey(i)) rowDic.Add(i, cell.OwningRow);
+            }
+
+            foreach (KeyValuePair<int, DataGridViewRow> item in rowDic)
+            {
+                CopyRowLeftToRight(item.Value);
+            }
         }
 
         private void btnRemoveSelect_Click(object sender, EventArgs e)
         {
-            RemoveCurrentRowRight();
+            RemoveRowsBySelectedCellsRight();
         }
 
         private void btnAddAll_Click(object sender, EventArgs e)
@@ -279,7 +316,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             _targetTable.Columns.Add(MA_VT, typeof(string));
             _targetTable.Columns.Add(TEN_VT, typeof (string));
             _targetTable.Columns.Add("DVT1", typeof(string));
-            if(_ma_ct != "IXB") _targetTable.Columns.Add("MA_KHO_I", typeof(string));
+            if(_invoice.Mact != "IXB") _targetTable.Columns.Add("MA_KHO_I", typeof(string));
             _targetTable.Columns.Add(SO_LUONG1, typeof (decimal));
             _targetTable.Columns.Add(SO_LUONG, typeof (decimal));
             return _targetTable;
@@ -317,6 +354,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 dataGridView2.Width = Width - dataGridView2.Left - 50;
                 btnMove2Up.Left = dataGridView2.Right + 6;
                 btnMove2Down.Left = btnMove2Up.Left;
+                btnThayThe.Left = dataGridView2.Left;
             }
             catch (Exception ex)
             {
@@ -363,6 +401,71 @@ namespace V6ControlManager.FormManager.ChungTuManager
         private void AlvtSelectorForm_SizeChanged(object sender, EventArgs e)
         {
             FixSize();
+        }
+
+        private void btnThayThe_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dataGridView2.CurrentRow == null) return;
+                string COLUMN = dataGridView2.CurrentCell.OwningColumn.DataPropertyName.ToUpper();
+                if (!_invoice.EXTRA_INFOR.ContainsKey("CT_REPLACE"))
+                {
+                    ShowMainMessage(V6Text.NoDefine + "EXTRA_INFOR[CT_REPLACE]");
+                    return;
+                }
+                var listFieldCanReplace = ObjectAndString.SplitString(_invoice.EXTRA_INFOR["CT_REPLACE"].ToUpper());
+                if (!listFieldCanReplace.Contains(COLUMN)) return;
+
+                object currentCellValue = dataGridView2.CurrentCell.Value;
+                
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    if (row.Index < dataGridView2.CurrentRow.Index) continue;
+
+                    row.Cells[COLUMN].Value = currentCellValue;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".btnThayThe_Click", ex);
+            }
+        }
+
+        private void dataGridView2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (dataGridView2.CurrentRow == null) return;
+                var column = dataGridView2.CurrentCell.OwningColumn;
+                string COLUMN = dataGridView2.CurrentCell.OwningColumn.DataPropertyName.ToUpper();
+                if (!_invoice.EXTRA_INFOR.ContainsKey("CT_REPLACE"))
+                {
+                    ShowMainMessage(V6Text.NoDefine + "EXTRA_INFOR[CT_REPLACE]");
+                    return;
+                }
+                var listFieldCanReplace = ObjectAndString.SplitString(_invoice.EXTRA_INFOR["CT_REPLACE"].ToUpper());
+                if (!listFieldCanReplace.Contains(COLUMN)) return;
+
+                object currentCellValue = dataGridView2.CurrentCell.Value;
+                
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    if (row.Index < dataGridView2.CurrentRow.Index
+                        || row.Cells[COLUMN].Value == DBNull.Value
+                        || row.Cells[COLUMN].Value == null
+                        || ObjectAndString.ObjectToString(row.Cells[COLUMN].Value) == String.Empty
+                        || (ObjectAndString.IsNumberType(column.ValueType) && ObjectAndString.ObjectToDecimal(row.Cells[COLUMN].Value) != 0)
+                        )
+                        continue;
+
+                    row.Cells[COLUMN].Value = currentCellValue;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".btnThayThe_Click", ex);
+            }
         }
     }
 }

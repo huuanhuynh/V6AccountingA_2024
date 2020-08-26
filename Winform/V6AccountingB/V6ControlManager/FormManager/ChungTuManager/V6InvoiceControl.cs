@@ -826,7 +826,12 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 var cell_MA_VT = row.Cells["MA_VT"];
                 var cell_MA_KHO_I = row.Cells["MA_KHO_I"];
                 var cell_SO_LUONG1 = row.Cells["SO_LUONG1"];
-                var cell_HE_SO1 = row.Cells["HE_SO1"];
+                //var cell_HE_SO1 = row.Cells["HE SO1"];
+                decimal HE_SO1T = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1T"].Value);
+                decimal HE_SO1M = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1M"].Value);
+                if (HE_SO1T == 0) HE_SO1T = 1;
+                if (HE_SO1M == 0) HE_SO1M = 1;
+                decimal HE_SO = HE_SO1T / HE_SO1M;
                 var cell_TON13 = row.Cells["TON13"];
                 
 
@@ -880,7 +885,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
                                 //if (new_soLuong < 0) new_soLuong = 0;
                                 {
-                                    cell_TON13.Value = new_soLuong / ObjectAndString.ObjectToDecimal(cell_HE_SO1.Value);
+                                    cell_TON13.Value = new_soLuong / HE_SO;
                                     break;
                                 }
                             }
@@ -908,7 +913,12 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 var cell_STT_REC0 = row.Cells["STT_REC0"];
                 var cell_TON13 = row.Cells["TON13"];
                 var cell_TON13QD = row.Cells["TON13QD"];
-                var cell_HE_SO1 = row.Cells["HE_SO1"];
+                //var cell_HE_SO1 = row.Cells["HE SO1"];
+                decimal HE_SO1T = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1T"].Value);
+                decimal HE_SO1M = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1M"].Value);
+                if (HE_SO1T == 0) HE_SO1T = 1;
+                if (HE_SO1M == 0) HE_SO1M = 1;
+                decimal HE_SO = HE_SO1T / HE_SO1M;
                 var cell_MA_LO = row.Cells["MA_LO"];
                 var cell_MA_VITRI = row.Cells["MA_VITRI"];
                 var cell_HANSD = row.Cells["HSD"];
@@ -976,7 +986,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
                         if (new_soLuong > 0)
                         {
-                            cell_TON13.Value = new_soLuong / ObjectAndString.ObjectToDecimal(cell_HE_SO1.Value);
+                            cell_TON13.Value = new_soLuong / HE_SO;
                             cell_MA_LO.Value = data_row["Ma_lo"].ToString().Trim();
                             cell_MA_VITRI.Value = data_row["Ma_vitri"].ToString().Trim();
                             cell_HANSD.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
@@ -1003,7 +1013,12 @@ namespace V6ControlManager.FormManager.ChungTuManager
             {
                 var cell_STT_REC0 = row.Cells["STT_REC0"];
                 var cell_TON13 = row.Cells["TON13"];
-                var cell_HE_SO1 = row.Cells["HE_SO1"];
+                //var cell_HE_SO1 = row.Cells["HE SO1"];
+                decimal HE_SO1T = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1T"].Value);
+                decimal HE_SO1M = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1M"].Value);
+                if (HE_SO1T == 0) HE_SO1T = 1;
+                if (HE_SO1M == 0) HE_SO1M = 1;
+                decimal HE_SO = HE_SO1T / HE_SO1M;
                 var cell_MA_LO = row.Cells["MA_LO"];
                 var cell_MA_VITRI = row.Cells["MA_VITRI"];
                 var cell_HANSD = row.Cells["HSD"];
@@ -1058,7 +1073,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
                         //if (new_soLuong < 0) new_soLuong = 0;
                         {
-                            cell_TON13.Value = new_soLuong / ObjectAndString.ObjectToDecimal(cell_HE_SO1.Value);
+                            cell_TON13.Value = new_soLuong / HE_SO;
                             cell_MA_VITRI.Value = data_row["Ma_vitri"].ToString().Trim();
                             break;
                         }
@@ -1078,7 +1093,12 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 var cell_STT_REC0 = row.Cells["STT_REC0"];
                 var cell_TON13 = row.Cells["TON13"];
                 var cell_TON13QD = row.Cells["TON13QD"];
-                var cell_HE_SO1 = row.Cells["HE_SO1"];
+                //var cell_HE_SO1 = row.Cells["HE SO1"];
+                decimal HE_SO1T = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1T"].Value);
+                decimal HE_SO1M = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1M"].Value);
+                if (HE_SO1T == 0) HE_SO1T = 1;
+                if (HE_SO1M == 0) HE_SO1M = 1;
+                decimal HE_SO = HE_SO1T / HE_SO1M;
                 var cell_MA_LO = row.Cells["MA_LO"];
                 var cell_MA_VITRI = row.Cells["MA_VITRI"];
                 var cell_HANSD = row.Cells["HSD"];
@@ -1140,7 +1160,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
                         if (new_soLuong > 0)
                         {
-                            cell_TON13.Value = new_soLuong / ObjectAndString.ObjectToDecimal(cell_HE_SO1.Value);
+                            cell_TON13.Value = new_soLuong / HE_SO;
                             cell_MA_LO.Value = data_row["Ma_lo"].ToString().Trim();
                             cell_HANSD.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
                             cell_TON13QD.Value = new_soLuongQd;
@@ -1166,7 +1186,12 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 var cell_STT_REC0 = row.Cells["STT_REC0"];
                 var cell_TON13 = row.Cells["TON13"];
                 var cell_TON13QD = row.Cells["TON13QD"];
-                var cell_HE_SO1 = row.Cells["HE_SO1"];
+                //var cell_HE_SO1 = row.Cells["HE SO1"];
+                decimal HE_SO1T = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1T"].Value);
+                decimal HE_SO1M = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1M"].Value);
+                if (HE_SO1T == 0) HE_SO1T = 1;
+                if (HE_SO1M == 0) HE_SO1M = 1;
+                decimal HE_SO = HE_SO1T / HE_SO1M;
                 var cell_MA_LO = row.Cells["MA_LO"];
                 var cell_MA_VITRI = row.Cells["MA_VITRI"];
                 var cell_HANSD = row.Cells["HSD"];
@@ -1228,7 +1253,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
                         //if (new_soLuong < 0) new_soLuong = 0;
                         {
-                            cell_TON13.Value = new_soLuong / ObjectAndString.ObjectToDecimal(cell_HE_SO1.Value);
+                            cell_TON13.Value = new_soLuong / HE_SO;
                             cell_HANSD.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
                             cell_TON13QD.Value = new_soLuongQd;
                             break;
@@ -4177,6 +4202,11 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
 
                 string adFields = invoice.EXTRA_INFOR.ContainsKey("ADFIELDS") ? invoice.EXTRA_INFOR["ADFIELDS"] : "";
+                if (string.IsNullOrEmpty(adFields))
+                {
+                    adFields = "V6NOEDIT:R"; // tắt edit khi chưa có cấu hình.
+                }
+
                 string tableName = invoice.Mact + "_REPLACE";
                 var f = new DataEditorForm(this, AD, tableName, adFields, null, V6Text.Edit + " " + V6TableHelper.V6TableCaption(tableName, V6Setting.Language), false, false, true, false);
                 f.SetHideFields(invoice.GRD_HIDE);
@@ -4742,7 +4772,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         public void chonAlvt_AcceptData(DataTable table, HD_Detail detail1, V6VvarTextBox _maVt, decimal tygia, V6ColorDataGridView dataGridView1)
         {
-            var count = 0;
+            var add_count = 0;
             _message = "";
 
             if (table.Columns.Contains("MA_VT") && table.Columns.Contains("MA_KHO_I")
@@ -4763,8 +4793,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     }
                 }
 
+                int i = -1;
                 foreach (DataRow row in table.Rows)
                 {
+                    i++;
                     var data = row.ToDataDictionary(_sttRec);
                     var cMaVt = data["MA_VT"].ToString().Trim();
                     var cMaKhoI = data["MA_KHO_I"].ToString().Trim();
@@ -4783,7 +4815,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
                         if (!data.ContainsKey("DVT1")) data.Add("DVT1", (datavt["DVT"] ?? "").ToString().Trim());
                         if (!data.ContainsKey("DVT")) data.Add("DVT", (datavt["DVT"] ?? "").ToString().Trim());
                         if (!data.ContainsKey("TK_VT")) data.Add("TK_VT", (datavt["TK_VT"] ?? "").ToString().Trim());
-                        if (!data.ContainsKey("HE_SO1")) data.Add("HE_SO1", 1);
                         if (!data.ContainsKey("HE_SO1T")) data.Add("HE_SO1T", 1);
                         if (!data.ContainsKey("HE_SO1M")) data.Add("HE_SO1M", 1);
                         if (!data.ContainsKey("SO_LUONG")) data.Add("SO_LUONG", data["SO_LUONG1"]);
@@ -4812,28 +4843,28 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     {
                         if (XuLyThemDetail(data))
                         {
-                            count++;
+                            add_count++;
                             All_Objects["data"] = data;
                             InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
                         }
                     }
                     else
                     {
-                        if (!exist) _message += string.Format("{0} [{1}] ", V6Text.NotExist, cMaVt);
+                        if (!exist) _message += string.Format("{2}: {0} [{1}] ", i+1, V6Text.NotExist, cMaVt);
                         if (!exist2)
                         {
                             if (string.IsNullOrEmpty(cMaKhoI))
                             {
-                                _message += string.Format("{0} {1} ", dataGridView1.Columns["MA_KHO_I"].HeaderText, V6Text.Empty);
+                                _message += string.Format("{2}: {0} {1} ", i+1, dataGridView1.Columns["MA_KHO_I"].HeaderText, V6Text.Empty);
                             }
                             else
                             {
-                                _message += string.Format("{0} [{1}] ", V6Text.NotExist, cMaKhoI);
+                                _message += string.Format("{2}: {0} [{1}] ", i+1, V6Text.NotExist, cMaKhoI);
                             }
                         }
                     }
                 }
-                ShowParentMessage(string.Format(V6Text.Added + "[{0}].", count) + _message);
+                ShowParentMessage(string.Format(V6Text.Added + "[{0}].", add_count) + _message);
             }
             else
             {

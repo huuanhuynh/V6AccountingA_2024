@@ -482,6 +482,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                         {
                             if (_maVt.Text != "")
                             {
+                                _maVt.RefreshLoDateYnValue();
+                                _maKhoI.RefreshLoDateYnValue();
+                                _maLo.CheckNotEmpty = _maVt.LO_YN && _maKhoI.LO_YN;
                                 _maLo.SetInitFilter("Ma_vt='" + _maVt.Text.Trim() + "'");
                             }
                         };
@@ -766,15 +769,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         
         private void CheckMaLo()
         {
-           
             XuLyLayThongTinKhiChonMaLo();
-           
         }
-         private void XuLyLayThongTinKhiChonMaLo()
+
+        private void XuLyLayThongTinKhiChonMaLo()
         {
             try
             {
-                _maLo.RefreshLoDateYnValue();
+                _maVt.RefreshLoDateYnValue();
                 if (_maVt.LO_YN)
                 {
                     var data = _maLo.Data;
@@ -791,7 +793,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                 {
                     _hanSd.Value = null;
                 }
-
             }
             catch (Exception ex)
             {
@@ -1395,11 +1396,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             if (f != null)
             {
                 f.DefaultCellStyle.Format = V6Options.GetValue("M_IP_R_SL");
-            }
-            f = dataGridView1.Columns["HE_SO1"];
-            if (f != null)
-            {
-                f.DefaultCellStyle.Format = "N6";
             }
             
             f = dataGridView1.Columns["GIA01"];
@@ -4919,11 +4915,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     }
                     else if (!string.IsNullOrEmpty(newFilter) && !_maVt.InitFilter.Contains(newFilter))
                     {
-                        filter1 = string.Format("({0}) and ({1})", _mavt_default_initfilter, newFilter);
+                        filter1 = string.Format("({0}) and ({1})", filter1, newFilter);
                     }
                 };
 
-                var form = new AlvtSelectorForm(Invoice.Mact, filter1);
+                var form = new AlvtSelectorForm(Invoice, filter1);
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     chonAlvt_AcceptData((DataTable)form.dataGridView2.DataSource, detail1, _maVt, txtTyGia.Value, dataGridView1);

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AARKHFilterDanhMuc));
             this.date2 = new V6Controls.V6DateTimeColor();
             this.date1 = new V6Controls.V6DateTimeColor();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,6 +46,8 @@
             this.radOr = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel1 = new V6ReportControls.PanelFilter();
+            this.dateSelectButton1 = new V6Controls.Controls.DateSelectButton();
+            this.dateSelectButton2 = new V6Controls.Controls.DateSelectButton();
             this.groupBoxNhom.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -306,7 +309,7 @@
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Location = new System.Drawing.Point(2, 171);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(274, 340);
+            this.groupBox1.Size = new System.Drawing.Size(300, 340);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lọc";
@@ -319,14 +322,34 @@
             this.panel1.LeftMargin = 0;
             this.panel1.Location = new System.Drawing.Point(3, 16);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(268, 321);
+            this.panel1.Size = new System.Drawing.Size(294, 321);
             this.panel1.TabIndex = 2;
+            // 
+            // dateSelectButton1
+            // 
+            this.dateSelectButton1.Image = ((System.Drawing.Image)(resources.GetObject("dateSelectButton1.Image")));
+            this.dateSelectButton1.Location = new System.Drawing.Point(248, 6);
+            this.dateSelectButton1.Name = "dateSelectButton1";
+            this.dateSelectButton1.ReferenceControl = this.date1;
+            this.dateSelectButton1.Size = new System.Drawing.Size(21, 21);
+            this.dateSelectButton1.TabIndex = 6;
+            // 
+            // dateSelectButton2
+            // 
+            this.dateSelectButton2.Image = ((System.Drawing.Image)(resources.GetObject("dateSelectButton2.Image")));
+            this.dateSelectButton2.Location = new System.Drawing.Point(248, 32);
+            this.dateSelectButton2.Name = "dateSelectButton2";
+            this.dateSelectButton2.ReferenceControl = this.date2;
+            this.dateSelectButton2.Size = new System.Drawing.Size(21, 21);
+            this.dateSelectButton2.TabIndex = 7;
             // 
             // AARKHFilterDanhMuc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.Controls.Add(this.dateSelectButton2);
+            this.Controls.Add(this.dateSelectButton1);
             this.Controls.Add(this.groupBoxNhom);
             this.Controls.Add(this.date2);
             this.Controls.Add(this.date1);
@@ -334,7 +357,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.Name = "AARKHFilterDanhMuc";
-            this.Size = new System.Drawing.Size(281, 513);
+            this.Size = new System.Drawing.Size(307, 513);
             this.Load += new System.EventHandler(this.FilterDanhMuc_Load);
             this.groupBoxNhom.ResumeLayout(false);
             this.groupBoxNhom.PerformLayout();
@@ -363,5 +386,7 @@
         private System.Windows.Forms.RadioButton radOr;
         private System.Windows.Forms.GroupBox groupBox1;
         private V6ReportControls.PanelFilter panel1;
+        private V6Controls.Controls.DateSelectButton dateSelectButton1;
+        private V6Controls.Controls.DateSelectButton dateSelectButton2;
     }
 }

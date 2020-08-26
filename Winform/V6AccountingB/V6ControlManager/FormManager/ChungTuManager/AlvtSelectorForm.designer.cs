@@ -48,6 +48,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.dataGridView2 = new V6Controls.V6ColorDataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.chk2 = new V6Controls.V6CheckBox();
+            this.btnThayThe = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,7 +58,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.btnAddSelect.Location = new System.Drawing.Point(468, 25);
             this.btnAddSelect.Name = "btnAddSelect";
             this.btnAddSelect.Size = new System.Drawing.Size(28, 43);
-            this.btnAddSelect.TabIndex = 5;
+            this.btnAddSelect.TabIndex = 1;
             this.btnAddSelect.Text = ">";
             this.btnAddSelect.UseVisualStyleBackColor = true;
             this.btnAddSelect.Click += new System.EventHandler(this.btnAddSelect_Click);
@@ -68,7 +69,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.btnAddAll.Location = new System.Drawing.Point(468, 74);
             this.btnAddAll.Name = "btnAddAll";
             this.btnAddAll.Size = new System.Drawing.Size(28, 43);
-            this.btnAddAll.TabIndex = 6;
+            this.btnAddAll.TabIndex = 2;
             this.btnAddAll.Text = ">>";
             this.btnAddAll.UseVisualStyleBackColor = true;
             this.btnAddAll.Click += new System.EventHandler(this.btnAddAll_Click);
@@ -79,7 +80,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.btnRemoveSelect.Location = new System.Drawing.Point(468, 123);
             this.btnRemoveSelect.Name = "btnRemoveSelect";
             this.btnRemoveSelect.Size = new System.Drawing.Size(28, 43);
-            this.btnRemoveSelect.TabIndex = 7;
+            this.btnRemoveSelect.TabIndex = 3;
             this.btnRemoveSelect.Text = "<";
             this.btnRemoveSelect.UseVisualStyleBackColor = true;
             this.btnRemoveSelect.Click += new System.EventHandler(this.btnRemoveSelect_Click);
@@ -90,7 +91,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.btnRemoveAll.Location = new System.Drawing.Point(468, 172);
             this.btnRemoveAll.Name = "btnRemoveAll";
             this.btnRemoveAll.Size = new System.Drawing.Size(28, 43);
-            this.btnRemoveAll.TabIndex = 8;
+            this.btnRemoveAll.TabIndex = 4;
             this.btnRemoveAll.Text = "<<";
             this.btnRemoveAll.UseVisualStyleBackColor = true;
             this.btnRemoveAll.Click += new System.EventHandler(this.btnRemoveAll_Click);
@@ -106,7 +107,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.lbldsdc.Location = new System.Drawing.Point(506, 2);
             this.lbldsdc.Name = "lbldsdc";
             this.lbldsdc.Size = new System.Drawing.Size(117, 13);
-            this.lbldsdc.TabIndex = 3;
+            this.lbldsdc.TabIndex = 5;
             this.lbldsdc.Text = "Danh sách được chọn:";
             // 
             // btnHuy
@@ -120,7 +121,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.btnHuy.Location = new System.Drawing.Point(100, 472);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(88, 40);
-            this.btnHuy.TabIndex = 12;
+            this.btnHuy.TabIndex = 11;
             this.btnHuy.Tag = "Escape";
             this.btnHuy.Text = "&Hủy";
             this.btnHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -137,7 +138,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.btnNhan.Location = new System.Drawing.Point(12, 472);
             this.btnNhan.Name = "btnNhan";
             this.btnNhan.Size = new System.Drawing.Size(88, 40);
-            this.btnNhan.TabIndex = 11;
+            this.btnNhan.TabIndex = 10;
             this.btnNhan.Tag = "Return, Control";
             this.btnNhan.Text = "&Nhận";
             this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -150,7 +151,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.btnMove2Up.Location = new System.Drawing.Point(968, 25);
             this.btnMove2Up.Name = "btnMove2Up";
             this.btnMove2Up.Size = new System.Drawing.Size(28, 43);
-            this.btnMove2Up.TabIndex = 5;
+            this.btnMove2Up.TabIndex = 8;
             this.btnMove2Up.Text = "▲";
             this.btnMove2Up.UseVisualStyleBackColor = true;
             this.btnMove2Up.Click += new System.EventHandler(this.btnMove2Up_Click);
@@ -161,7 +162,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.btnMove2Down.Location = new System.Drawing.Point(968, 74);
             this.btnMove2Down.Name = "btnMove2Down";
             this.btnMove2Down.Size = new System.Drawing.Size(28, 43);
-            this.btnMove2Down.TabIndex = 6;
+            this.btnMove2Down.TabIndex = 9;
             this.btnMove2Down.Text = "▼";
             this.btnMove2Down.UseVisualStyleBackColor = true;
             this.btnMove2Down.Click += new System.EventHandler(this.btnMove2Down_Click);
@@ -191,7 +192,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView2.Size = new System.Drawing.Size(450, 441);
-            this.dataGridView2.TabIndex = 4;
+            this.dataGridView2.TabIndex = 7;
+            this.dataGridView2.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellEndEdit);
             this.dataGridView2.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView2_ColumnAdded);
             // 
             // panel1
@@ -199,27 +201,41 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Location = new System.Drawing.Point(12, 25);
+            this.panel1.Location = new System.Drawing.Point(12, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(450, 441);
-            this.panel1.TabIndex = 13;
+            this.panel1.Size = new System.Drawing.Size(450, 464);
+            this.panel1.TabIndex = 0;
             // 
             // chk2
             // 
+            this.chk2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chk2.AutoSize = true;
             this.chk2.Location = new System.Drawing.Point(629, 2);
             this.chk2.Name = "chk2";
             this.chk2.Size = new System.Drawing.Size(126, 17);
-            this.chk2.TabIndex = 27;
+            this.chk2.TabIndex = 6;
             this.chk2.TabStop = false;
             this.chk2.Text = "Cho phép chọn trùng";
             this.chk2.UseVisualStyleBackColor = true;
+            // 
+            // btnThayThe
+            // 
+            this.btnThayThe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnThayThe.Location = new System.Drawing.Point(512, 472);
+            this.btnThayThe.Name = "btnThayThe";
+            this.btnThayThe.Size = new System.Drawing.Size(102, 34);
+            this.btnThayThe.TabIndex = 12;
+            this.btnThayThe.Text = "Thay thế";
+            this.toolTipV6FormControl.SetToolTip(this.btnThayThe, "Gán giá trị ô đang chọn xuống các dòng phía dưới nó.");
+            this.btnThayThe.UseVisualStyleBackColor = true;
+            this.btnThayThe.Click += new System.EventHandler(this.btnThayThe_Click);
             // 
             // AlvtSelectorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 518);
+            this.Controls.Add(this.btnThayThe);
             this.Controls.Add(this.chk2);
             this.Controls.Add(this.btnRemoveAll);
             this.Controls.Add(this.btnRemoveSelect);
@@ -254,6 +270,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
             this.Controls.SetChildIndex(this.btnRemoveAll, 0);
             this.Controls.SetChildIndex(this.lblTopMessage, 0);
             this.Controls.SetChildIndex(this.chk2, 0);
+            this.Controls.SetChildIndex(this.btnThayThe, 0);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -276,5 +293,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
         private System.Windows.Forms.Button btnMove2Down;
         private System.Windows.Forms.Panel panel1;
         private V6CheckBox chk2;
+        private System.Windows.Forms.Button btnThayThe;
     }
 }

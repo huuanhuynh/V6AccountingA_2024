@@ -821,7 +821,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         var vt_row_data = vt_data.Rows[0].ToDataDictionary();
                         one["DVT1"] = vt_row_data["DVT"];
-                        one["HE_SO1"] = 1;
                         one["HE_SO1T"] = 1;
                         one["HE_SO1M"] = 1;
                         one["TK_VT"] = vt_row_data["TK_VT"];

@@ -13,7 +13,8 @@ namespace V6ReportControls
             InitializeComponent();
             v6NumberTextBox1.TextChanged += delegate
             {
-                IsSelected = true;
+                if (v6NumberTextBox1.Value == 0) IsSelected = false;
+                else IsSelected = true;
             };
         }
 

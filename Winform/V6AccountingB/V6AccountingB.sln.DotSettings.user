@@ -8,6 +8,7 @@
 	<s:Boolean x:Key="/Default/CodeEditing/Intellisense/CodeCompletion/IntellisenseEnabled/IntellisenseEnabledSettingTypeScript/IntellisenseEnabled/@EntryValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeEditing/Intellisense/CodeCompletion/IntellisenseEnabled/IntellisenseEnabledSettingXaml/IntellisenseEnabled/@EntryValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeEditing/Intellisense/CodeCompletion/IntellisenseEnabled/VBIntellisenseEnabled/IntellisenseEnabled/@EntryValue">False</s:Boolean>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=5156F5A7_002D9F81_002D4B41_002D83B8_002D18BF669E5DC6_002Fd_003AFormManager_002Fd_003AChungTuManager_002Fd_003APhaiThu_002Fd_003AHoaDonDichVuCoSL_002Ff_003AHoaDonDichVuCoSLControl_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=5156F5A7_002D9F81_002D4B41_002D83B8_002D18BF669E5DC6_002Fd_003AFormManager_002Fd_003AChungTuManager_002Fd_003APhaiThu_002Fd_003AHoaDon_002Ff_003AHoaDonControl_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:Boolean x:Key="/Default/CodeStyle/LiveTemplatesUseVar/PreferVar/@EntryValue">False</s:Boolean>
 	

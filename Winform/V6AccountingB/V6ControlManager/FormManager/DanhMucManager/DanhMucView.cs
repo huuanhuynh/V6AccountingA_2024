@@ -334,12 +334,23 @@ namespace V6ControlManager.FormManager.DanhMucManager
                     cboFilter.Visible = true;
                     lblFilter.Visible = true;
                 }
+                if (_aldmConfig != null && _aldmConfig.HaveInfo)
+                {
+                    if (_aldmConfig.EXTRA_INFOR.ContainsKey("PAGESIZE"))
+                    {
+                        string ps = _aldmConfig.EXTRA_INFOR["PAGESIZE"];
+                        if (comboBox1.Items.Contains(ps))
+                        {
+                            comboBox1.SelectedItem = ps;
+                        }
+                    }                    
+                }
 
                 All_Objects["thisForm"] = this;
                 CreateFormProgram();
                 V6ControlFormHelper.ApplyDynamicFormControlEvents(this, Event_program, All_Objects);
                 InvokeFormEvent(FormDynamicEvent.INIT);
-
+                Ready();
             }
             catch (Exception ex)
             {
@@ -1845,6 +1856,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (!IsReady) return;
             SelectResult.PageSize = int.Parse(comboBox1.Text);
             LoadAtPage(1);
         }
