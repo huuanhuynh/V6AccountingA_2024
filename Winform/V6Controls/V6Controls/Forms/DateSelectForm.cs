@@ -10,6 +10,12 @@ namespace V6Controls.Forms
         public DateSelectForm()
         {
             InitializeComponent();
+            MyInit();
+        }
+
+        private void MyInit()
+        {
+            if (!V6Setting.IsVietnamese) btnToday.Text = "Today";
         }
 
         public DateTime SelectedDate
@@ -77,7 +83,25 @@ namespace V6Controls.Forms
             }
             catch (Exception ex)
             {
-                this.WriteExLog(GetType() + ".Next", ex);
+                this.WriteExLog(GetType() + ".btnToday_Click", ex);
+            }
+        }
+
+        private void lichViewControl1_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (lichViewControl1._recList != null && lichViewControl1._recList.ContainsKey(lichViewControl1.FocusDate))
+                {
+                    if (lichViewControl1._recList[lichViewControl1.FocusDate].Contains(lichViewControl1.MouseLocation))
+                    {
+                        btnNhan.PerformClick();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".lichViewControl1_DoubleClick", ex);
             }
         }
     }

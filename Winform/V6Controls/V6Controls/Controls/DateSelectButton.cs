@@ -151,7 +151,15 @@ namespace V6Controls.Controls
         }
         private void DateSelectButton_Click(object sender, EventArgs e)
         {
-            OnClick0();
+            try
+            {
+                _refControl.Focus();
+                OnClick0();
+            }
+            catch (Exception ex0)
+            {
+                this.ShowErrorException(GetType() + ".DateSelectButton_Click ex0", ex0);
+            }
             try
             {
                 DateSelectForm form = new DateSelectForm();
@@ -164,6 +172,12 @@ namespace V6Controls.Controls
                     {
                         ((V6DateTimeColor) _refControl).Value = form.SelectedDate;
                     }
+                    else
+                    {
+                        _refControl.Text = ObjectAndString.ObjectToString(form.SelectedDate);
+                    }
+
+                    _refControl.Focus();
                 }
             }
             catch (Exception ex)

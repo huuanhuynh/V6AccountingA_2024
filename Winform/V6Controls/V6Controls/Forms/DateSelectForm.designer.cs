@@ -45,6 +45,7 @@
             this.lichViewControl1.HeaderHeight = 50;
             this.lichViewControl1.HoverBackColor = System.Drawing.Color.Aqua;
             this.lichViewControl1.Location = new System.Drawing.Point(0, 0);
+            this.lichViewControl1.MouseLocation = new System.Drawing.Point(0, 0);
             this.lichViewControl1.Name = "lichViewControl1";
             this.lichViewControl1.RowData = null;
             this.lichViewControl1.SatudayColor = System.Drawing.Color.Blue;
@@ -54,6 +55,7 @@
             this.lichViewControl1.TabIndex = 5;
             this.lichViewControl1.ClickNextEvent += new System.Action<V6Controls.Controls.LichView.LichViewEventArgs>(this.lichViewControl1_ClickNextEvent);
             this.lichViewControl1.ClickPreviousEvent += new System.Action<V6Controls.Controls.LichView.LichViewEventArgs>(this.lichViewControl1_ClickPreviousEvent);
+            this.lichViewControl1.DoubleClick += new System.EventHandler(this.lichViewControl1_DoubleClick);
             // 
             // btnThoat
             // 
@@ -98,7 +100,6 @@
             this.btnToday.Name = "btnToday";
             this.btnToday.Size = new System.Drawing.Size(112, 28);
             this.btnToday.TabIndex = 16;
-            this.btnToday.Tag = "Escape";
             this.btnToday.Text = "Hôm n&ay";
             this.btnToday.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnToday.UseVisualStyleBackColor = true;
@@ -106,8 +107,10 @@
             // 
             // DateSelectForm
             // 
+            this.AcceptButton = this.btnNhan;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnThoat;
             this.ClientSize = new System.Drawing.Size(550, 325);
             this.Controls.Add(this.btnToday);
             this.Controls.Add(this.btnThoat);

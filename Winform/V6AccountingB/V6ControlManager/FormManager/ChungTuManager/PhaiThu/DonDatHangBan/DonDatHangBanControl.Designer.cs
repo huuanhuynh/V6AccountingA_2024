@@ -444,7 +444,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             // 
             this.TxtT_TIENVC.AccessibleDescription = "";
             this.TxtT_TIENVC.AccessibleName = "T_TIENVC";
-            this.TxtT_TIENVC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtT_TIENVC.BackColor = System.Drawing.SystemColors.Window;
             this.TxtT_TIENVC.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.TxtT_TIENVC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -1152,7 +1151,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan
             this.txtDiaChi2.AccessibleName = "DIA_CHI2";
             this.txtDiaChi2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDiaChi2.BackColor = System.Drawing.SystemColors.Window;
+            this.txtDiaChi2.BackColor = System.Drawing.Color.White;
             this.txtDiaChi2.BackColorDisabled = System.Drawing.SystemColors.Control;
             this.txtDiaChi2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDiaChi2.CheckNotEmpty = true;

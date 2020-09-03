@@ -831,7 +831,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 decimal HE_SO1M = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1M"].Value);
                 if (HE_SO1T == 0) HE_SO1T = 1;
                 if (HE_SO1M == 0) HE_SO1M = 1;
-                decimal HE_SO = HE_SO1T / HE_SO1M;
+                //decimal HE_SO = HE_SO1T / HE_SO1M;
                 var cell_TON13 = row.Cells["TON13"];
                 
 
@@ -885,7 +885,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
                                 //if (new_soLuong < 0) new_soLuong = 0;
                                 {
-                                    cell_TON13.Value = new_soLuong / HE_SO;
+                                    cell_TON13.Value = new_soLuong * HE_SO1M / HE_SO1T; // chia hệ số
                                     break;
                                 }
                             }
@@ -918,7 +918,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 decimal HE_SO1M = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1M"].Value);
                 if (HE_SO1T == 0) HE_SO1T = 1;
                 if (HE_SO1M == 0) HE_SO1M = 1;
-                decimal HE_SO = HE_SO1T / HE_SO1M;
+                //decimal HE_SO = HE_SO1T / HE_SO1M;
                 var cell_MA_LO = row.Cells["MA_LO"];
                 var cell_MA_VITRI = row.Cells["MA_VITRI"];
                 var cell_HANSD = row.Cells["HSD"];
@@ -986,7 +986,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
                         if (new_soLuong > 0)
                         {
-                            cell_TON13.Value = new_soLuong / HE_SO;
+                            cell_TON13.Value = new_soLuong * HE_SO1M / HE_SO1T; // chia hệ số
                             cell_MA_LO.Value = data_row["Ma_lo"].ToString().Trim();
                             cell_MA_VITRI.Value = data_row["Ma_vitri"].ToString().Trim();
                             cell_HANSD.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
@@ -1018,7 +1018,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 decimal HE_SO1M = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1M"].Value);
                 if (HE_SO1T == 0) HE_SO1T = 1;
                 if (HE_SO1M == 0) HE_SO1M = 1;
-                decimal HE_SO = HE_SO1T / HE_SO1M;
+                //decimal HE_SO = HE_SO1T / HE_SO1M;
                 var cell_MA_LO = row.Cells["MA_LO"];
                 var cell_MA_VITRI = row.Cells["MA_VITRI"];
                 var cell_HANSD = row.Cells["HSD"];
@@ -1073,7 +1073,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
                         //if (new_soLuong < 0) new_soLuong = 0;
                         {
-                            cell_TON13.Value = new_soLuong / HE_SO;
+                            cell_TON13.Value = new_soLuong * HE_SO1M / HE_SO1T; // chia hệ số
                             cell_MA_VITRI.Value = data_row["Ma_vitri"].ToString().Trim();
                             break;
                         }
@@ -1098,7 +1098,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 decimal HE_SO1M = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1M"].Value);
                 if (HE_SO1T == 0) HE_SO1T = 1;
                 if (HE_SO1M == 0) HE_SO1M = 1;
-                decimal HE_SO = HE_SO1T / HE_SO1M;
+                //decimal HE_SO = HE_SO1T / HE_SO1M;
                 var cell_MA_LO = row.Cells["MA_LO"];
                 var cell_MA_VITRI = row.Cells["MA_VITRI"];
                 var cell_HANSD = row.Cells["HSD"];
@@ -1160,7 +1160,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
                         if (new_soLuong > 0)
                         {
-                            cell_TON13.Value = new_soLuong / HE_SO;
+                            cell_TON13.Value = new_soLuong * HE_SO1M / HE_SO1T; // chia hệ số
                             cell_MA_LO.Value = data_row["Ma_lo"].ToString().Trim();
                             cell_HANSD.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
                             cell_TON13QD.Value = new_soLuongQd;
@@ -1191,7 +1191,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 decimal HE_SO1M = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1M"].Value);
                 if (HE_SO1T == 0) HE_SO1T = 1;
                 if (HE_SO1M == 0) HE_SO1M = 1;
-                decimal HE_SO = HE_SO1T / HE_SO1M;
+                //decimal HE_SO = HE_SO1T / HE_SO1M;
                 var cell_MA_LO = row.Cells["MA_LO"];
                 var cell_MA_VITRI = row.Cells["MA_VITRI"];
                 var cell_HANSD = row.Cells["HSD"];
@@ -1253,7 +1253,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
                         //if (new_soLuong < 0) new_soLuong = 0;
                         {
-                            cell_TON13.Value = new_soLuong / HE_SO;
+                            cell_TON13.Value = new_soLuong * HE_SO1M / HE_SO1T; // chia hệ số
                             cell_HANSD.Value = ObjectAndString.ObjectToDate(data_row["HSD"]);
                             cell_TON13QD.Value = new_soLuongQd;
                             break;
@@ -2015,8 +2015,69 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 this.ShowErrorException(GetType() + ".TinhChietKhauChiTiet " + _sttRec, ex);
             }
         }
+
+        public void TinhChietKhauChiTiet_row(bool nhapTien, DataGridViewCell _ck_textbox, DataGridViewCell _ck_nt_textbox,
+            V6NumberTextBox txtTyGia, DataGridViewCell _tienNt2, DataGridViewCell _pt_cki)
+        {
+            try
+            {
+                if (nhapTien)
+                {
+                    if (_maNt == _mMaNt0)
+                    {
+                        _ck_textbox.Value = _ck_nt_textbox.Value;
+                    }
+                    else
+                    {
+                        _ck_textbox.Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(_ck_nt_textbox.Value) * txtTyGia.Value, M_ROUND);
+                    }
+                }
+                else
+                {
+                    _ck_nt_textbox.Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(_tienNt2.Value) * ObjectAndString.ObjectToDecimal(_pt_cki.Value) / 100, M_ROUND_NT);
+                    
+                    if (_maNt == _mMaNt0)
+                    {
+                        _ck_textbox.Value = _ck_nt_textbox.Value;
+                    }
+                    else
+                    {
+                        _ck_textbox.Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(_ck_nt_textbox.Value) * txtTyGia.Value, M_ROUND);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".TinhChietKhauChiTiet " + _sttRec, ex);
+            }
+        }
         
-        public void TinhChietKhauChiTietRow(bool nhapTien, DataGridViewRow row,
+        public void TinhChietKhauChiTiet_row_NHAP_TIEN_NT0(bool nhapTien, DataGridViewRow row,
+            Decimal txtTyGia_Value)
+        {
+            try
+            {
+                var _ck = row.Cells["CK"];
+                var _ck_nt = row.Cells["CK_NT"];
+                var _pt_cki = row.Cells["PT_CKI"];
+                var _tien_nt0 = row.Cells["TIEN_NT0"];
+                if (nhapTien)
+                {
+                    _ck.Value = _maNt == _mMaNt0 ? _ck_nt.Value : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(_ck_nt.Value) * txtTyGia_Value, M_ROUND);
+                }
+                else
+                {
+                    _ck_nt.Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(_tien_nt0.Value) * ObjectAndString.ObjectToDecimal(_pt_cki.Value) / 100, M_ROUND_NT);
+                    _ck.Value = _maNt == _mMaNt0 ? _ck_nt.Value : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(_ck_nt.Value) * txtTyGia_Value, M_ROUND);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".TinhChietKhauChiTietG " + _sttRec, ex);
+            }
+        }
+
+        public void TinhChietKhauChiTiet_row_XUAT_TIEN_NT2(bool nhapTien, DataGridViewRow row,
             Decimal txtTyGia_Value)
         {
             try

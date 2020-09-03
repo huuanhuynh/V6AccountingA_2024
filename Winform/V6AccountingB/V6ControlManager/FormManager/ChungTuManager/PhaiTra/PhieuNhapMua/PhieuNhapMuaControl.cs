@@ -164,9 +164,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         private V6ColorTextBox _dvt;
         private V6VvarTextBox _maVt, _Ma_lnx_i, _dvt1, _maKho, _maKhoI, _tkVt, _maLo, _maVt_excel, _ma_thue_i;
         private V6NumberTextBox _soLuong1, _soLuong, _he_so1T, _he_so1M, _giaNt, _giaNt01, _tien0, _tienNt0,
-            _ck, _ckNt, _gia0, _gia1, _gia_nt1, _gia01, _gia, _gia_Nt0, _pt_cki, _cpNt, _cp, _ggNt, _gg;
+            _ck, _ck_nt, _gia0, _gia1, _gia_nt1, _gia01, _gia, _gia_Nt0, _pt_cki, _cpNt, _cp, _gg_Nt, _gg;
         private V6NumberTextBox _ton13, _ton13Qd, _tienNt, _tien, _mau_bc22, _thue, _thue_nt, _thue_suat_i;
-        private V6NumberTextBox _sl_qd, _sl_qd2, _tien_vcNt, _tien_vc, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4;//, _ggNt, _gg;
+        private V6NumberTextBox _sl_qd, _sl_qd2, _tien_vc_Nt, _tien_vc, _hs_qd1, _hs_qd2, _hs_qd3, _hs_qd4;//, _gg_Nt, _gg;
         private V6DateTimeColor _hanSd;
         private V6ColorTextBox _so_ct022,_so_seri022,_ten_kh22,
             _dia_chi22,_ma_so_thue22, _ten_vt22;
@@ -594,12 +594,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         break;
                     
                     case "CK_NT":
-                        _ckNt = control as V6NumberTextBox;
-                        if (_ckNt != null)
+                        _ck_nt = control as V6NumberTextBox;
+                        if (_ck_nt != null)
                         {
-                            _ckNt.V6LostFocus += delegate
+                            _ck_nt.V6LostFocus += delegate
                             {
-                                TinhChietKhauChiTiet(true, _ck, _ckNt, txtTyGia, _tienNt0, _pt_cki);
+                                TinhChietKhauChiTiet(true, _ck, _ck_nt, txtTyGia, _tienNt0, _pt_cki);
                                 Tinh_thue_ct();
                                 TinhTienNt();
                             };
@@ -611,7 +611,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         {
                             _pt_cki.V6LostFocus += delegate
                             {
-                                TinhChietKhauChiTiet(false, _ck, _ckNt, txtTyGia, _tienNt0, _pt_cki);
+                                TinhChietKhauChiTiet(false, _ck, _ck_nt, txtTyGia, _tienNt0, _pt_cki);
                                 Tinh_thue_ct();
                                 TinhTienNt();
                             };
@@ -634,10 +634,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         }
                         break;
                     case "GG_NT":
-                        _ggNt = control as V6NumberTextBox;
-                        if (_ggNt != null)
+                        _gg_Nt = control as V6NumberTextBox;
+                        if (_gg_Nt != null)
                         {
-                            _ggNt.V6LostFocus += delegate
+                            _gg_Nt.V6LostFocus += delegate
                             {
                                 Tinh_thue_ct();
                             };
@@ -695,7 +695,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                                     chkT_THUE_NT.Checked = false;
                                     Tinh_thue_ct();
                                 }
-                                
                             };
 
                             if (!V6Login.IsAdmin && (Invoice.GRD_READONLY.Contains(NAME) || Invoice.GRD_READONLY.ContainsStartsWith(NAME + ":")))
@@ -728,16 +727,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         _hs_qd3.V6LostFocus += Hs_qd3_V6LostFocus;
                         break;
                     //case "GG_NT":
-                    //    _ggNt = (V6NumberTextBox)control;
+                    //    _gg_Nt = (V6NumberTextBox)control;
                     //    break;
                     //case "GG":
                     //    _gg = (V6NumberTextBox)control;
                     //    break;
                     case "TIEN_VC_NT":
-                        _tien_vcNt = control as V6NumberTextBox;
-                        if (_tien_vcNt != null)
+                        _tien_vc_Nt = control as V6NumberTextBox;
+                        if (_tien_vc_Nt != null)
                         {
-                            _tien_vcNt.V6LostFocus += delegate
+                            _tien_vc_Nt.V6LostFocus += delegate
                             {
                                 TinhTienNt();
                             };
@@ -774,6 +773,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         {
             TinhTienNt0(actionControl);
             Tinh_thue_ct();
+        }
+
+        public void CheckSoLuong1_row(DataGridViewRow row, decimal HE_SO1T, decimal HE_SO1M, string actionField)
+        {
+            TinhTienNt0_row(row, HE_SO1T, HE_SO1M, actionField);
+            Tinh_thue_ct_row_NHAP_TIEN0(row);
         }
 
         void Hs_qd4_V6LostFocus(object sender)
@@ -2247,7 +2252,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             {
                 //Tuanmh 19/12/2016 Chua Kiem tra Null
 
-                _tienNt.Value = _tienNt0.Value + _cpNt.Value - _ckNt.Value - _ggNt.Value + _tien_vcNt.Value;
+                _tienNt.Value = _tienNt0.Value + _cpNt.Value - _ck_nt.Value - _gg_Nt.Value + _tien_vc_Nt.Value;
                 _tien.Value = _tien0.Value + _cp.Value - _ck.Value - _gg.Value + _tien_vc.Value;
 
                 if (_maNt == _mMaNt0)
@@ -2261,6 +2266,33 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 this.ShowErrorException(GetType() + ".TinhTienNt " + _sttRec, ex);
             }
             TinhGiaNt();
+        }
+        
+        public void TinhTienNt_row(DataGridViewRow row)
+        {
+            try
+            {
+                //Tuanmh 19/12/2016 Chua Kiem tra Null
+                row.Cells["TIEN_NT"].Value = ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT0"].Value) + ObjectAndString.ObjectToDecimal(row.Cells["CP_NT"].Value)
+                                             - ObjectAndString.ObjectToDecimal(row.Cells["CK_NT"].Value) - ObjectAndString.ObjectToDecimal(row.Cells["GG_NT"].Value)
+                                             + ObjectAndString.ObjectToDecimal(row.Cells["TIEN_VC_NT"].Value);
+                if (_maNt == _mMaNt0)
+                {
+                    row.Cells["TIEN0"].Value = row.Cells["TIEN_NT0"].Value;
+                    row.Cells["TIEN"].Value = row.Cells["TIEN_NT"].Value;
+                }
+                else
+                {
+                    row.Cells["TIEN"].Value =  ObjectAndString.ObjectToDecimal(row.Cells["TIEN0"].Value) + ObjectAndString.ObjectToDecimal(row.Cells["CP"].Value)
+                                               - ObjectAndString.ObjectToDecimal(row.Cells["CK"].Value) - ObjectAndString.ObjectToDecimal(row.Cells["GG"].Value)
+                                               + ObjectAndString.ObjectToDecimal(row.Cells["TIEN_VC"].Value);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".TinhTienNt_row " + _sttRec, ex);
+            }
+            TinhGiaNt_row(row);
         }
 
         public void TinhTienNt0(Control actionControl = null)
@@ -2281,7 +2313,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 }
 
                 //Tuanmh 19/12/2016
-                TinhChietKhauChiTiet(false, _ck, _ckNt, txtTyGia, _tienNt0, _pt_cki);
+                TinhChietKhauChiTiet(false, _ck, _ck_nt, txtTyGia, _tienNt0, _pt_cki);
                 
                 TinhVanChuyen();
                 TinhGiamGiaCt();
@@ -2290,6 +2322,39 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".TinhTienNt0 " + _sttRec, ex);
+            }
+        }
+
+        public void TinhTienNt0_row(DataGridViewRow row, decimal HE_SO1T, decimal HE_SO1M, string actionField)
+        {
+            try
+            {
+                if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0_Row(row, actionField);
+                if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2_Row(row, actionField);
+                if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1_Row(row, actionField);
+
+                row.Cells["SO_LUONG"].Value = ObjectAndString.ObjectToDecimal(row.Cells["SO_LUONG1"].Value) * HE_SO1T / HE_SO1M;
+                row.Cells["TIEN_NT0"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["SO_LUONG1"].Value) * ObjectAndString.ObjectToDecimal(row.Cells["GIA_NT01"].Value), M_ROUND_NT);
+                
+                if(_maNt == _mMaNt0)
+                {
+                    row.Cells["TIEN0"].Value = row.Cells["TIEN_NT0"].Value;
+                }
+                else
+                {
+                    row.Cells["TIEN0"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT0"].Value) * txtTyGia.Value, M_ROUND);
+                }
+
+                //Tuanmh 19/12/2016
+                TinhChietKhauChiTiet_row(false, row.Cells["CK"], row.Cells["CK_NT"], txtTyGia, row.Cells["TIEN_NT0"], row.Cells["PT_CKI"]);
+                
+                TinhVanChuyen_row(row);
+                TinhGiamGiaCt_row(row);
+                TinhTienNt_row(row);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".TinhTienNt0_row " + _sttRec, ex);
             }
         }
 
@@ -2335,6 +2400,55 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".TinhGiaNt " + _sttRec, ex);
+            }
+        }
+        
+        public void TinhGiaNt_row(DataGridViewRow row)
+        {
+            try
+            {
+                decimal so_luong1_value = ObjectAndString.ObjectToDecimal(row.Cells["SO_LUONG1"].Value);
+                if (so_luong1_value != 0)
+                {
+                    if (_maNt == _mMaNt0)
+                    {
+                        row.Cells["GIA01"].Value = row.Cells["GIA_NT01"].Value;
+                    }
+                    else
+                    {
+                        row.Cells["GIA01"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["GIA_NT01"].Value) * txtTyGia.Value, M_ROUND_GIA);
+                    }
+
+                    row.Cells["GIA_NT1"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT"].Value) / so_luong1_value, M_ROUND_GIA_NT);
+                    if (_maNt == _mMaNt0)
+                    {
+                        row.Cells["GIA1"].Value = row.Cells["GIA_NT1"].Value;
+                    }
+                    else
+                    {
+                        row.Cells["GIA1"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN"].Value) / so_luong1_value, M_ROUND_GIA);
+                    }
+                }
+
+                decimal so_luong_value = ObjectAndString.ObjectToDecimal(row.Cells["SO_LUONG"].Value);
+                if (so_luong_value != 0)
+                {
+                    row.Cells["GIA_NT0"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT0"].Value) / so_luong_value,M_ROUND_GIA_NT);
+                    row.Cells["GIA0"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN0"].Value) / so_luong_value, M_ROUND_GIA);
+
+                    row.Cells["GIA_NT"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT"].Value) / so_luong_value, M_ROUND_GIA_NT);
+                    row.Cells["GIA"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN"].Value) / so_luong_value, M_ROUND_GIA);
+
+                    if (_maNt == _mMaNt0)
+                    {
+                        row.Cells["GIA0"].Value = row.Cells["GIA_NT0"].Value;
+                        row.Cells["GIA"].Value = row.Cells["GIA_NT"].Value;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
         #endregion methods
@@ -2383,7 +2497,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 //Cac truong hop khac
                 if (!readOnly)
                 {
-                    XuLyHienThiChietKhau_PhieuNhap(chkLoaiChietKhau.Checked, chkSuaTienCk.Checked, _pt_cki, _ckNt, txtTongCkNt, chkSuaPtck);
+                    XuLyHienThiChietKhau_PhieuNhap(chkLoaiChietKhau.Checked, chkSuaTienCk.Checked, _pt_cki, _ck_nt, txtTongCkNt, chkSuaPtck);
                     
                     txtPtCk.ReadOnly = !chkSuaPtck.Checked;
 
@@ -2395,7 +2509,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
                         _hs_qd4.EnableTag();
                         _gg.EnableTag();
-                        _ggNt.EnableTag();
+                        _gg_Nt.EnableTag();
                     }
                     else
                     {
@@ -2404,7 +2518,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
                         _hs_qd4.DisableTag();
                         _gg.DisableTag();
-                        _ggNt.DisableTag();
+                        _gg_Nt.DisableTag();
                     }
 
                     if (V6Options.GetValue("M_POA_GIAVC_GIAGIAM_CT") == "1" ||
@@ -2415,7 +2529,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
                         _hs_qd3.EnableTag();
                         _tien_vc.EnableTag();
-                        _tien_vcNt.EnableTag();
+                        _tien_vc_Nt.EnableTag();
                     }
                     else
                     {
@@ -2424,7 +2538,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
 
                         _hs_qd3.DisableTag();
                         _tien_vc.DisableTag();
-                        _tien_vcNt.DisableTag();
+                        _tien_vc_Nt.DisableTag();
                     }
                 }
 
@@ -2588,7 +2702,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 decimal HE_SO1M = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1M"].Value);
                 if (HE_SO1T == 0) HE_SO1T = 1;
                 if (HE_SO1M == 0) HE_SO1M = 1;
-                decimal HE_SO = HE_SO1T / HE_SO1M;
+                //decimal HE_SO = HE_SO1T / HE_SO1M;
 
                 ShowMainMessage("cell_end_edit: " + FIELD);
 
@@ -2610,7 +2724,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         }
 
                         //_soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
-                        row.Cells["SO_LUONG"].Value = ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value) * HE_SO;
+                        row.Cells["SO_LUONG"].Value = ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value) * HE_SO1T / HE_SO1M;
                         //TinhTienVon1(_soLuong1);
                         row.Cells["TIEN_NT0"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value)
                             * ObjectAndString.ObjectToDecimal(row.Cells["GIA_NT01"].Value), M_ROUND_NT);
@@ -2630,6 +2744,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         #endregion ==== SO_LUONG1 ====
                         break;
 
+                     case "SL_QD":
+                        #region ==== SL_QD ====
+                        if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0_Row(row, FIELD);
+                        if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2_Row(row, FIELD);
+                        if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1_Row(row, FIELD);
+                        row.Cells["SO_LUONG"].Value = ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value) * HE_SO1T / HE_SO1M;
+                        if (M_CAL_SL_QD_ALL == "1")
+                        {
+                            CheckSoLuong1_row(row, HE_SO1T, HE_SO1M, FIELD);
+                            chkT_THUE_NT.Checked = false;
+                            Tinh_thue_ct_row_NHAP_TIEN0(row);
+                        }
+                        #endregion ==== SL_QD ====
+                        break;
+
                     case "GIA_NT01":
                         #region ==== GIA_NT01 ====
 
@@ -2640,7 +2769,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                             ? row.Cells["TIEN_NT0"].Value
                             : V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT0"].Value) * txtTyGia.Value, M_ROUND);
                         //TinhChietKhauChiTiet
-                        TinhChietKhauChiTietRow(false, row, txtTyGia.Value);
+                        TinhChietKhauChiTiet_row_NHAP_TIEN_NT0(false, row, txtTyGia.Value);
                         //TinhGiaVon();
                         row.Cells["GIA01"].Value = _maNt == _mMaNt0
                             ? row.Cells["GIA_NT01"].Value
@@ -2656,7 +2785,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         }
                         TinhVanChuyenRow(row);
                         TinhGiamGiaCtRow(row);
-                        Tinh_thue_ct_row(row);
+                        Tinh_thue_ct_row_NHAP_TIEN0(row);
 
                         #endregion ==== GIA_NT01 ====
                         break;
@@ -2680,7 +2809,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 var col = dataGridView1.Columns[e.ColumnIndex];
                 FIELD = col.DataPropertyName.ToUpper();
                 
-                ShowMainMessage("cell_end_edit: " + FIELD);
+                ShowMainMessage("cell_begin_edit: " + FIELD);
 
                 switch (FIELD)
                 {
@@ -3417,17 +3546,39 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 if (V6Options.GetValue("M_POA_GIAVC_GIAGIAM_CT") == "2" ||
                     V6Options.GetValue("M_POA_GIAVC_GIAGIAM_CT") == "3")
                 {
-                    _ggNt.Value = V6BusinessHelper.Vround((_soLuong1.Value * _hs_qd4.Value), M_ROUND_NT);
-                    _gg.Value = V6BusinessHelper.Vround((_ggNt.Value * txtTyGia.Value), M_ROUND);
+                    _gg_Nt.Value = V6BusinessHelper.Vround((_soLuong1.Value * _hs_qd4.Value), M_ROUND_NT);
+                    _gg.Value = V6BusinessHelper.Vround((_gg_Nt.Value * txtTyGia.Value), M_ROUND);
 
                     if (_maNt == _mMaNt0)
                     {
-                        _gg.Value = _ggNt.Value;
+                        _gg.Value = _gg_Nt.Value;
 
                     }
                 }
-
-
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".TinhGiamGia " + _sttRec, ex);
+            }
+        }
+        
+        public void TinhGiamGiaCt_row(DataGridViewRow row)
+        {
+            try
+            {
+                if (V6Options.GetValue("M_POA_GIAVC_GIAGIAM_CT") == "2" ||
+                    V6Options.GetValue("M_POA_GIAVC_GIAGIAM_CT") == "3")
+                {
+                    row.Cells["GG_NT"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["SO_LUONG1"].Value) * ObjectAndString.ObjectToDecimal(row.Cells["HS_QD4"].Value), M_ROUND_NT);
+                    if (_maNt == _mMaNt0)
+                    {
+                        row.Cells["GG"].Value = row.Cells["GG_NT"].Value;
+                    }
+                    else
+                    {
+                        row.Cells["GG"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["GG_NT"].Value) * txtTyGia.Value, M_ROUND);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -3464,12 +3615,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 if (V6Options.GetValue("M_POA_GIAVC_GIAGIAM_CT") == "1" ||
                     V6Options.GetValue("M_POA_GIAVC_GIAGIAM_CT") == "3")
                 {
-                    _tien_vcNt.Value = V6BusinessHelper.Vround((_soLuong1.Value * _hs_qd3.Value), M_ROUND_NT);
-                    _tien_vc.Value = V6BusinessHelper.Vround((_tien_vcNt.Value * txtTyGia.Value), M_ROUND);
+                    _tien_vc_Nt.Value = V6BusinessHelper.Vround((_soLuong1.Value * _hs_qd3.Value), M_ROUND_NT);
+                    _tien_vc.Value = V6BusinessHelper.Vround((_tien_vc_Nt.Value * txtTyGia.Value), M_ROUND);
 
                     if (_maNt == _mMaNt0)
                     {
-                        _tien_vc.Value = _tien_vcNt.Value;
+                        _tien_vc.Value = _tien_vc_Nt.Value;
 
                     }
                 }
@@ -3477,6 +3628,30 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             catch (Exception ex)
             {
                 this.ShowErrorException(GetType() + ".TinhVanChuyen " + _sttRec, ex);
+            }
+        }
+
+        public void TinhVanChuyen_row(DataGridViewRow row)
+        {
+            try
+            {
+                if (V6Options.GetValue("M_POA_GIAVC_GIAGIAM_CT") == "1" ||
+                    V6Options.GetValue("M_POA_GIAVC_GIAGIAM_CT") == "3")
+                {
+                    row.Cells["TIEN_VC_NT"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["SO_LUONG1"].Value) * ObjectAndString.ObjectToDecimal(row.Cells["HS_QD3"].Value), M_ROUND_NT);
+                    if (_maNt == _mMaNt0)
+                    {
+                        row.Cells["TIEN_VC"].Value = row.Cells["TIEN_VC_NT"].Value;
+                    }
+                    else
+                    {
+                        row.Cells["TIEN_VC"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(row.Cells["TIEN_VC_NT"].Value) * txtTyGia.Value, M_ROUND);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".TinhVanChuyen_row " + _sttRec, ex);
             }
         }
 
@@ -3690,25 +3865,41 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 if (M_POA_VAT_WITH_CK_GG.Length > 0 && M_POA_VAT_WITH_CK_GG[0] == '1')
                 {
                     ck_value = _ck.Value;
-                    cknt_value = _ckNt.Value;
+                    cknt_value = _ck_nt.Value;
                 }
                 if (M_POA_VAT_WITH_CK_GG.Length > 1 && M_POA_VAT_WITH_CK_GG[1] == '1')
                 {
                     gg_value = _gg.Value;
-                    ggnt_value = _ggNt.Value;
+                    ggnt_value = _gg_Nt.Value;
                 }
                 Tinh_TienThueNtVaTienThue_TheoThueSuat(_thue_suat_i.Value, _tienNt0.Value - cknt_value - ggnt_value, _tien0.Value - ck_value - gg_value, _thue_nt, _thue);
                 V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - Tinh thue ct M_POA_MULTY_VAT = 1.");
             }
         }
 
-        public void Tinh_thue_ct_row(DataGridViewRow row)
+        /// <summary>
+        /// Tinh_TienThueNtVaTienThue_TheoThueSuat_Row có trừ ck hoặc gg bởi M_POA_VAT_WITH_CK_GG, THUE_SUAT_I TIEN_NT0 TIEN0
+        /// </summary>
+        /// <param name="row"></param>
+        public void Tinh_thue_ct_row_NHAP_TIEN0(DataGridViewRow row)
         {
-            V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - M_SOA_MULTI_VAT = " + M_SOA_MULTI_VAT);
             if (M_SOA_MULTI_VAT == "1")
             {
-                Tinh_TienThueNtVaTienThue_TheoThueSuat_Row(_thue_suat_i.Value, _tienNt0.Value - _ckNt.Value - _ggNt.Value, _tien0.Value - _ck.Value - _gg.Value, row);
-                V6ControlFormHelper.AddLastAction("\n" + MethodBase.GetCurrentMethod().Name + " - Tinh thue ct M_SOA_MULTY_VAT = 1.");
+                decimal ck_nt_value = 0, ck_value = 0, gg_nt_value = 0, gg_value = 0;
+                string M_POA_VAT_WITH_CK_GG = V6Options.GetValue("M_POA_VAT_WITH_CK_GG");
+                if (M_POA_VAT_WITH_CK_GG.Length > 0 && M_POA_VAT_WITH_CK_GG[0] == '1')
+                {
+                    ck_value = ObjectAndString.ObjectToDecimal(row.Cells["CK"].Value);
+                    ck_nt_value = ObjectAndString.ObjectToDecimal(row.Cells["CK_NT"].Value);
+                }
+                if (M_POA_VAT_WITH_CK_GG.Length > 1 && M_POA_VAT_WITH_CK_GG[1] == '1')
+                {
+                    gg_value = ObjectAndString.ObjectToDecimal(row.Cells["GG"].Value);
+                    gg_nt_value = ObjectAndString.ObjectToDecimal(row.Cells["GG_NT"].Value);
+                }
+                Tinh_TienThueNtVaTienThue_TheoThueSuat_Row(ObjectAndString.ObjectToDecimal(row.Cells["THUE_SUAT_I"].Value),
+                    ObjectAndString.ObjectToDecimal(row.Cells["TIEN_NT0"].Value) - ck_nt_value - gg_nt_value,
+                    ObjectAndString.ObjectToDecimal(row.Cells["TIEN0"].Value) - ck_value - gg_value, row);
             }
         }
 
@@ -4063,9 +4254,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 _tienNt.DecimalPlaces = decimalTienNt;
                 _tienNt0.DecimalPlaces = decimalTienNt;
                 if (_thue_nt != null) _thue_nt.DecimalPlaces = decimalTienNt;
-                _ggNt.DecimalPlaces = decimalTienNt;
-                _tien_vcNt.DecimalPlaces = decimalTienNt;
-                _ckNt.DecimalPlaces = decimalTienNt;
+                _gg_Nt.DecimalPlaces = decimalTienNt;
+                _tien_vc_Nt.DecimalPlaces = decimalTienNt;
+                _ck_nt.DecimalPlaces = decimalTienNt;
 
                 _t_tien_nt22.DecimalPlaces = decimalTienNt;
                 _t_thue_nt22.DecimalPlaces = decimalTienNt;
@@ -6048,7 +6239,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
-                XuLyHienThiChietKhau_PhieuNhap(chkLoaiChietKhau.Checked, chkSuaTienCk.Checked, _pt_cki, _ckNt, txtTongCkNt, chkSuaPtck);
+                XuLyHienThiChietKhau_PhieuNhap(chkLoaiChietKhau.Checked, chkSuaTienCk.Checked, _pt_cki, _ck_nt, txtTongCkNt, chkSuaPtck);
 
                 TinhTongThanhToan("LoaiChietKhau_Change");
             }
@@ -6455,7 +6646,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
         {
             if (Mode == V6Mode.Add || Mode == V6Mode.Edit)
             {
-                XuLyHienThiChietKhau_PhieuNhap(chkLoaiChietKhau.Checked, chkSuaTienCk.Checked, _pt_cki, _ckNt, txtTongCkNt, chkSuaPtck);
+                XuLyHienThiChietKhau_PhieuNhap(chkLoaiChietKhau.Checked, chkSuaTienCk.Checked, _pt_cki, _ck_nt, txtTongCkNt, chkSuaPtck);
             }
         }
 
@@ -7625,7 +7816,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                         row["tien0"] = tienNt0;
                     }
 
-                    //TinhChietKhauChiTiet(false, _ck, _ckNt, txtTyGia, _tienNt2, _pt_cki);
+                    //TinhChietKhauChiTiet(false, _ck, _ck_nt, txtTyGia, _tienNt2, _pt_cki);
                     var ck_nt = V6BusinessHelper.Vround(tienNt0 * pt_cki / 100, M_ROUND_NT);
                     row["ck_nt"] = ck_nt;
                     row["ck"] = V6BusinessHelper.Vround(ck_nt * txtTyGia.Value, M_ROUND);

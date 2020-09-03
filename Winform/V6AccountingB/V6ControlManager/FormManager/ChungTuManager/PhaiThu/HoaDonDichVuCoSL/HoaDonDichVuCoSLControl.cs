@@ -7046,9 +7046,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                         decimal HE_SO1M = data.ContainsKey("HE_SO1M") ? ObjectAndString.ObjectToDecimal(data["HE_SO1M"]) : 1;
                         if (HE_SO1T == 0) HE_SO1T = 1;
                         if (HE_SO1M == 0) HE_SO1M = 1;
-                        decimal HE_SO = HE_SO1T / HE_SO1M;
+                        //decimal HE_SO = HE_SO1T / HE_SO1M;
 
-                        _soLuong_Value = _soLuong1_Value * HE_SO;
+                        _soLuong_Value = _soLuong1_Value * HE_SO1T / HE_SO1M;
                         _tienNt2_Value = V6BusinessHelper.Vround((_soLuong1_Value * _giaNt21_Value), M_ROUND_NT);
                         _tien2_Value = V6BusinessHelper.Vround((_tienNt2_Value * txtTyGia.Value), M_ROUND);
 
@@ -7069,7 +7069,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
                         _gia21_Value = V6BusinessHelper.Vround((_giaNt21_Value * txtTyGia.Value), M_ROUND_GIA);
                         _gia2_Value = V6BusinessHelper.Vround((_giaNt2_Value * txtTyGia.Value), M_ROUND_GIA);
 
-                        if (HE_SO == 1)
+                        if (HE_SO1T / HE_SO1M == 1)
                             _giaNt2_Value = _giaNt21_Value;
 
                         if (_maNt == _mMaNt0)

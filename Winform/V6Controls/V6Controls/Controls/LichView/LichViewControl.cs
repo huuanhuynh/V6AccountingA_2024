@@ -267,7 +267,7 @@ namespace V6Controls.Controls.LichView
         /// Ngày cuối của tháng đang hiển thị (31 tượng trưng nhưng tháng 2 vẫn là 28 hoặc 29).
         /// </summary>
         public DateTime ViewDate31 { get { return new DateTime(Year, Month,  DateTime.DaysInMonth(Year, Month));} }
-        protected Point MouseLocation { get; set; }
+        public Point MouseLocation { get; set; }
         public int HeaderHeight { get; set; }
         public int FooterHeight { get; set; }
         public string FooterText { get; set; }
@@ -478,7 +478,7 @@ namespace V6Controls.Controls.LichView
             row_height = (Height - BorderWidth * 2 - HeaderHeight - FooterHeight) / week_in_month;
         }
 
-        private Dictionary<DateTime, Rectangle> _recList = new Dictionary<DateTime, Rectangle>();
+        public Dictionary<DateTime, Rectangle> _recList = new Dictionary<DateTime, Rectangle>();
         private void DrawBody(Point basePoint, PaintEventArgs e)
         {
             try

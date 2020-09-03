@@ -1324,7 +1324,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     {
                         ShowParentMessage(V6Text.StockoutWarning);
                         _soLuong1.Value = _ton13.Value < 0 ? 0 : _ton13.Value;
-                        if (M_CAL_SL_QD_ALL == "1")
+                        if (M_CAL_SL_QD_ALL == "1" && actionControl != _sl_qd)
                         {
                             if (M_TYPE_SL_QD_ALL == "1E")
                             {
@@ -2837,7 +2837,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 decimal HE_SO1M = ObjectAndString.ObjectToDecimal(row.Cells["HE_SO1M"].Value);
                 if (HE_SO1T == 0) HE_SO1T = 1;
                 if (HE_SO1M == 0) HE_SO1M = 1;
-                decimal HE_SO = HE_SO1T / HE_SO1M;
+                //decimal HE_SO = HE_SO1T / HE_SO1M;
 
                 ShowMainMessage("cell_end_edit: " + FIELD);
 
@@ -2878,7 +2878,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                         }
 
                         //_soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
-                        row.Cells["SO_LUONG"].Value = ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value) * HE_SO;
+                        row.Cells["SO_LUONG"].Value = ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value) * HE_SO1T / HE_SO1M;
                         //TinhTienVon1(_soLuong1);
                         row.Cells["TIEN_NT"].Value = V6BusinessHelper.Vround(ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value)
                             * ObjectAndString.ObjectToDecimal(row.Cells["GIA_NT1"].Value), M_ROUND_NT);
@@ -2905,7 +2905,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                                 if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2_Row(row, FIELD);
                                 if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1_Row(row, FIELD);
 
-                                cell_SO_LUONG.Value = ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value) * HE_SO;
+                                cell_SO_LUONG.Value = ObjectAndString.ObjectToDecimal(cell_SO_LUONG1.Value) * HE_SO1T / HE_SO1M;
                                 cell_TIEN_NT.Value = V6BusinessHelper.Vround(
                                     ObjectAndString.ObjectToDecimal(cell_SO_LUONG.Value) * ObjectAndString.ObjectToDecimal(cell_GIA_NT.Value), M_ROUND_NT);
                                 row.Cells["TIEN"].Value = _maNt == _mMaNt0
@@ -6163,7 +6163,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 decimal HE_SO1M = aldmvtct.Columns.Contains("HE_SO1M") ? ObjectAndString.ObjectToDecimal(data_row["HE_SO1M"]) : 1;
                 if (HE_SO1T == 0) HE_SO1T = 1;
                 if (HE_SO1M == 0) HE_SO1M = 1;
-                //decimal HE_SO = HE_SO1T / HE_SO1M;
+                ////decimal HE_SO = HE_SO1T / HE_SO1M;
                 dic["HE_SO1T"] = HE_SO1T;
                 dic["HE_SO1M"] = HE_SO1M;
 
