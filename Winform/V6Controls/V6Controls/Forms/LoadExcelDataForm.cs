@@ -56,7 +56,7 @@ namespace V6Controls.Forms
             if (handler != null) handler(table);
         }
 
-        public string ERROR = null;
+        public string ERROR = "";
         private void Nhan()
         {
             if (data == null)
@@ -64,7 +64,7 @@ namespace V6Controls.Forms
                 this.ShowMessage(V6Text.NoData);
                 return;
             }
-            if (ERROR != "")
+            if (!string.IsNullOrEmpty(ERROR))
             {
                 this.ShowErrorMessage(ERROR);
                 return;

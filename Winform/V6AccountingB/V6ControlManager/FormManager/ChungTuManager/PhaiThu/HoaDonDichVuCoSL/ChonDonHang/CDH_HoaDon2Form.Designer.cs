@@ -1,6 +1,6 @@
 ﻿namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.ChonDonHang
 {
-    partial class CDH_HoaDonDichVuCoSLForm
+    partial class CDH_SOH_HoaDonDichVuCoSLForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CDH_HoaDonDichVuCoSLForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CDH_SOH_HoaDonDichVuCoSLForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.grbThongTinChiTiet = new System.Windows.Forms.GroupBox();
             this.panelFilter2 = new V6ReportControls.PanelFilter();
@@ -1493,7 +1493,7 @@
             this.chkTuyChonStart.Text = "start";
             this.chkTuyChonStart.UseVisualStyleBackColor = true;
             // 
-            // CDH_HoaDonDichVuCoSLForm
+            // CDH_SOH_HoaDonDichVuCoSLForm
             // 
             this.AccessibleDescription = "SEARCHL00001";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1505,7 +1505,7 @@
             this.Controls.Add(this.btnHuy);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(600, 400);
-            this.Name = "CDH_HoaDonDichVuCoSLForm";
+            this.Name = "CDH_SOH_HoaDonDichVuCoSLForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Tìm chứng từ";
             this.Load += new System.EventHandler(this.Form_Load);

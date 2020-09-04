@@ -6290,8 +6290,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 var message = "";
                 if (ma_dvcs != "")
                 {
-                    CDH_PNMForm chon = new CDH_PNMForm(dateNgayCT.Date, txtMaDVCS.Text, txtMaKh.Text);
-                    _chon_px = "DH";
+                    CDHM_POH_PNMForm chon = new CDHM_POH_PNMForm(dateNgayCT.Date, txtMaDVCS.Text, txtMaKh.Text);
+                    _chon_px = "POH";
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                     chon.ShowDialog(this);
                 }
@@ -6324,6 +6324,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 int addCount = 0, failCount = 0; _message = "";
                 decimal ty_gia_soh = 0;
                 string ma_kh_soh = null, ma_nt_soh = null;
+                var AM_somedata = new Dictionary<string, object>();
+                var ad2am_dic = ObjectAndString.StringToStringDictionary(e.AD2AM, ',', ':');
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {
                     // Lấy ma_kh_soh đầu tiên.
@@ -6331,6 +6333,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     {
                         ma_kh_soh = data["MA_KH_SOH"].ToString().Trim();
                     }
+                    
+                    foreach (KeyValuePair<string, string> item in ad2am_dic)
+                    {
+                        if (data.ContainsKey(item.Key) && !AM_somedata.ContainsKey(item.Value.ToUpper()))
+                        {
+                            AM_somedata[item.Value.ToUpper()] = data[item.Key.ToUpper()];
+                        }
+                    }
+
                     if (ma_nt_soh == null && data.ContainsKey("MA_NT_SOH"))
                     {
                         ma_nt_soh = data["MA_NT_SOH"].ToString().Trim();
@@ -6416,7 +6427,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                     }
                     txtMaKh.CallDoV6LostFocus();
                 }
-
+                if (!string.IsNullOrEmpty(e.AD2AM))
+                {
+                    SetSomeData(AM_somedata);
+                }
                 All_Objects["selectedDataList"] = selectedDataList;
                 InvokeFormEvent("AFTERCHON_" + _chon_px);
 
@@ -7666,7 +7680,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
             ChonPhieuXuat_A(shift);
         }
 
-        private string _chon_px = "";
         private void ChonPhieuXuat_A(bool add = false)
         {
             try
@@ -7677,7 +7690,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 if (ma_dvcs != "")
                 {
                     CPX_PhieuNhapMuaForm chon = new CPX_PhieuNhapMuaForm(dateNgayCT.Date, txtMaDVCS.Text, txtMaKh.Text);
-                    _chon_px = "PX";
+                    _chon_px = "SOA";
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                     chon.ShowDialog(this);
                 }
@@ -8016,6 +8029,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua
                 if (ma_dvcs != "")
                 {
                     INY_PNMua_Form chon = new INY_PNMua_Form(dateNgayCT.Date.Date, txtMaDVCS.Text, txtMaKh.Text);
+                    _chon_px = "INY";
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                     chon.ShowDialog(this);
                 }

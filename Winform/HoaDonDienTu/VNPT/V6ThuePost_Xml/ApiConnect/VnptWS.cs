@@ -157,6 +157,15 @@ namespace V6ThuePostXmlApi
                 if (option == 1)
                 {
                     result = new PortalService.PortalService(linkPortal).convertForStoreFkey(fkey, userName, userPass);
+                    string fileName = fkey;
+                    string path = Path.Combine(saveFolder, fileName + ".html");
+                    File.WriteAllText(path, result);
+
+
+
+                    v6return.PATH = path;
+
+                    return path;
                 }
                 else
                 {

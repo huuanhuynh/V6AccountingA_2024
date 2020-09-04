@@ -67,9 +67,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
                 var data = GetSelectedData();
                 if (data.Count > 0)
                 {
+                    string AD2AM_string = null;
+                    if (_aldmConfig.EXTRA_INFOR.ContainsKey("AD2AM"))
+                    {
+                        AD2AM_string += _aldmConfig.EXTRA_INFOR["AD2AM"];
+                    }
                     ChonEventArgs e = new ChonEventArgs()
                     {
-                        Loai_ct = null
+                        Loai_ct = null,
+                        AD2AM = AD2AM_string
                     };
                     OnAcceptSelectEvent(data, e);
                     Close();

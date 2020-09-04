@@ -132,6 +132,12 @@
     <Compile Include="Forms\Editor\DicEditForm.designer.cs">
       <DependentUpon>DicEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Viewer\HtmlViewerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Viewer\HtmlViewerForm.Designer.cs">
+      <DependentUpon>HtmlViewerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LookupMode.cs" />
     <Compile Include="V6ColorComboBox.cs">
       <SubType>Component</SubType>
@@ -2114,6 +2120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FlyLabelForm.resx">
       <DependentUpon>FlyLabelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Viewer\HtmlViewerForm.resx">
+      <DependentUpon>HtmlViewerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Viewer\TextEditorForm.resx">
       <DependentUpon>TextEditorForm.cs</DependentUpon>

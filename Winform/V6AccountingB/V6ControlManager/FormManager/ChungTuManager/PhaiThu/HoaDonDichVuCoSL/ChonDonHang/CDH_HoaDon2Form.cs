@@ -17,7 +17,7 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.ChonDonHang
 {
-    public partial class CDH_HoaDonDichVuCoSLForm : V6Form
+    public partial class CDH_SOH_HoaDonDichVuCoSLForm : V6Form
     {
         V6Invoice91 Invoice = new V6Invoice91();
         private CDH_HoaDonDichVuCoSLKetQua _locKetQua;
@@ -40,12 +40,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
                 _viewMode = value;
             }
         }
-        public CDH_HoaDonDichVuCoSLForm()
+        public CDH_SOH_HoaDonDichVuCoSLForm()
         {
             InitializeComponent();
         }
 
-        public CDH_HoaDonDichVuCoSLForm(DateTime ngayCt, string ma_dvcs, string ma_kh)
+        public CDH_SOH_HoaDonDichVuCoSLForm(DateTime ngayCt, string ma_dvcs, string ma_kh)
         {
             InitializeComponent();
             //_PhieuNhapMuaForm = phieuNhapMuaForm;
@@ -148,9 +148,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
                     var data = _locKetQua.dataGridView1.GetSelectedData();
                     if (data.Count > 0)
                     {
+                        string AD2AM_string = null;
+                        if (_locKetQua._aldmConfig.EXTRA_INFOR.ContainsKey("AD2AM"))
+                        {
+                            AD2AM_string += _locKetQua._aldmConfig.EXTRA_INFOR["AD2AM"];
+                        }
                         ChonEventArgs e = new ChonEventArgs()
                         {
-                            Loai_ct = _loai_ct_chon
+                            Loai_ct = _loai_ct_chon,
+                            AD2AM = AD2AM_string
                         };
                         OnAcceptSelectEvent(data, e);
                         Close();

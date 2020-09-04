@@ -4524,7 +4524,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             }
         }
 
-        private string _chon_px = "";
         void chonpx_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList, ChonEventArgs e)
         {
             try
@@ -4547,6 +4546,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
                 int addCount = 0, failCount = 0;
                 string ma_kh_soh = null;
+                var AM_somedata = new Dictionary<string, object>();
+                var ad2am_dic = ObjectAndString.StringToStringDictionary(e.AD2AM, ',', ':');
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {
                     // Lấy ma_kh_soh đầu tiên.
@@ -4554,6 +4555,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                     {
                         ma_kh_soh = data["MA_KH_SOH"].ToString().Trim();
                     }
+                    
+                    foreach (KeyValuePair<string, string> item in ad2am_dic)
+                    {
+                        if (data.ContainsKey(item.Key) && !AM_somedata.ContainsKey(item.Value.ToUpper()))
+                        {
+                            AM_somedata[item.Value.ToUpper()] = data[item.Key.ToUpper()];
+                        }
+                    }
+
                     if (XuLyThemDetail(data))
                     {
                         addCount++;
@@ -4574,10 +4584,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                         txtMaKh.CallDoV6LostFocus();
                     }
                 }
-
+                
+                if (!string.IsNullOrEmpty(e.AD2AM))
+                {
+                    SetSomeData(AM_somedata);
+                }
                 All_Objects["selectedDataList"] = selectedDataList;
                 InvokeFormEvent("AFTERCHON_" + _chon_px);
-
                 V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed: {1}{2}", addCount, failCount, _message));
                 
             }

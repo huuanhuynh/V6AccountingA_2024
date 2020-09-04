@@ -11,8 +11,10 @@ using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6Controls;
 using V6Controls.Forms;
+using V6Controls.Forms.Viewer;
 using V6Init;
 using V6ThuePostManager;
+using V6Tools;
 using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
@@ -107,8 +109,9 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             //printDialog.Document.PrinterSettings.ToPage = pdfDocument1.PageCount;
             if (printDialog.ShowDialog((IWin32Window)this.FindForm()) != DialogResult.OK)
                 return;
+            WebBrowser webBrowser1 = null;
 
-            string pdf_file = "";
+            string return_file_name = "";
             string tableName = "V6MAPINFO";
             
             string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
@@ -161,7 +164,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 strIssueDate = strIssueDate,
                                 Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
                             };
-                            pdf_file = PostManager.PowerDownloadPDF(pmparams1, out error);
+                            return_file_name = PostManager.PowerDownloadPDF(pmparams1, out error);
                             if (!string.IsNullOrEmpty(error))
                             {
                                 f9Error += error;
@@ -183,7 +186,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 //Pattern = pattern,
                                 Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
                             };
-                            pdf_file = PostManager.PowerDownloadPDF(pmparams1, out error);
+                            return_file_name = PostManager.PowerDownloadPDF(pmparams1, out error);
                             if (!string.IsNullOrEmpty(error))
                             {
                                 f9Error += error;
@@ -203,7 +206,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 Fkey_hd = fkey_hd,
                                 Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
                             };
-                            pdf_file = PostManager.PowerDownloadPDF(pmparams1, out error);
+                            return_file_name = PostManager.PowerDownloadPDF(pmparams1, out error);
                             if (!string.IsNullOrEmpty(error))
                             {
                                 f9Error += error;
@@ -228,7 +231,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 Serial = serial,
                                 Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
                             };
-                            pdf_file = PostManager.PowerDownloadPDF(pmparams1, out error);
+                            return_file_name = PostManager.PowerDownloadPDF(pmparams1, out error);
                             if (!string.IsNullOrEmpty(error))
                             {
                                 f9Error += error;
@@ -247,7 +250,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 V6PartnerID = v6_partner_id,
                                 Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
                             };
-                            pdf_file = PostManager.PowerDownloadPDF(pmparams1, out error);
+                            return_file_name = PostManager.PowerDownloadPDF(pmparams1, out error);
                             if (!string.IsNullOrEmpty(error))
                             {
                                 f9Error += error;
@@ -264,23 +267,59 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         // Update
 
                         // In
-                        PdfDocument pdfDocument1 = PdfDocument.Load(pdf_file);
-                        using (PrintDocument printDocument = pdfDocument1.CreatePrintDocument(PdfPrintMode.ShrinkToMargin))
+                        string ext = Path.GetExtension(return_file_name).ToLower();
+                        if (ext == ".pdf")
                         {
-                            printDocument.PrinterSettings = printDialog.PrinterSettings;
-                            printDialog.Document = printDocument;
-                            try
+                            PdfDocument pdfDocument1 = PdfDocument.Load(return_file_name);
+                            using (PrintDocument printDocument = pdfDocument1.CreatePrintDocument(PdfPrintMode.ShrinkToMargin))
                             {
-                                if (printDialog.Document.PrinterSettings.FromPage <= pdfDocument1.PageCount)
-                                    printDialog.Document.Print();
-                            }
-                            catch(Exception ex)
-                            {
-                                f9Error += ex.Message;
-                                f9ErrorAll += ex.Message;
-                                f9MessageAll += ex.Message;
+                                printDocument.PrinterSettings = printDialog.PrinterSettings;
+                                printDialog.Document = printDocument;
+                                try
+                                {
+                                    if (printDialog.Document.PrinterSettings.FromPage <= pdfDocument1.PageCount)
+                                        printDialog.Document.Print();
+                                }
+                                catch(Exception ex)
+                                {
+                                    f9Error += ex.Message;
+                                    f9ErrorAll += ex.Message;
+                                    f9MessageAll += ex.Message;
+                                }
                             }
                         }
+                        else if (ext == ".html")
+                        {
+                            var setPrinterOk = PrinterStatus.SetDefaultPrinter(printDialog.PrinterSettings.PrinterName);
+                            HtmlViewerForm view = new HtmlViewerForm(return_file_name, return_file_name, true);
+                            view.AutoPrint = true;
+                            view.ShowDialog(this);
+
+                            //webBrowser1.Navigate(return_file_name);
+                            //while(webBrowser1.ReadyState != WebBrowserReadyState.Complete)
+                            //{
+                            //    //Application.DoEvents();
+                            //    Thread.Sleep(1000);
+                            //}
+                            //webBrowser1.Print();
+
+                            //// Create a WebBrowser instance. 
+                            //webBrowser1 = new WebBrowser();
+                            //// Add an event handler that prints the document after it loads.
+                            //webBrowser1.DocumentCompleted += (sender, args) =>
+                            //{
+                            //    // Print the document now that it is fully loaded.
+                            //    ((WebBrowser)sender).Print();
+                            //    // Dispose the WebBrowser now that the task is complete. 
+                            //    ((WebBrowser)sender).Dispose();
+                            //};
+                            //// Set the Url property to load the document.
+                            //webBrowser1.Url = new Uri(return_file_name);
+                        
+
+                        }
+
+                        
                         // Update
 
                         SqlParameter[] plist =
@@ -361,7 +400,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 //Download selected einvoice
                 //, error = "", sohoadon = "", id = "";
-                string pdf_file = "";
+                string return_file_name = "";
                 string tableName = "V6MAPINFO";
                 string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
                 //var map_table = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='" + FilterControl.String1 + "' or ma_td1='0' or ma_td1='') order by GROUPNAME,GC_TD1").Data;
@@ -395,15 +434,26 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     Mode = mode,
                 };
                 string error;
-                pdf_file = PostManager.PowerDownloadPDF(pmparams, out error);
+                return_file_name = PostManager.PowerDownloadPDF(pmparams, out error);
                 if (!string.IsNullOrEmpty(error))
                 {
                     this.ShowErrorMessage(error);
                     return;
                 }
 
-                AAPPR_SOA3_ViewPDF view = new AAPPR_SOA3_ViewPDF(pdf_file);
-                view.ShowDialog(this);
+                string ext = Path.GetExtension(return_file_name).ToLower();
+                if (ext == ".pdf")
+                {
+                    AAPPR_SOA3_ViewPDF view = new AAPPR_SOA3_ViewPDF(return_file_name);
+                    view.ShowDialog(this);
+                }
+                else if (ext == ".html")
+                {
+                    HtmlViewerForm view = new HtmlViewerForm(return_file_name, return_file_name, false);
+                    view.ShowDialog(this);
+                }
+
+                
             }
             catch (Exception ex)
             {

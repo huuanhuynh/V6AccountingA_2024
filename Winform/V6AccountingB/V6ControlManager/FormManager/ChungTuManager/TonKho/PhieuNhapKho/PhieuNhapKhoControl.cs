@@ -4362,8 +4362,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 var message = "";
                 if (ma_dvcs != "")
                 {
-                    CPX_PhieuNhapKhoForm chon = new CPX_PhieuNhapKhoForm(dateNgayCT.Date, txtMaDVCS.Text, txtMaKh.Text);
-                    _chon_px = "PX";
+                    CPX_IXA_PhieuNhapKhoForm chon = new CPX_IXA_PhieuNhapKhoForm(dateNgayCT.Date, txtMaDVCS.Text, txtMaKh.Text);
+                    _chon_px = "IXA";
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                     chon.ShowDialog(this);
                 }
@@ -4385,7 +4385,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
             }
         }
 
-        private string _chon_px = "";
         void chon_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList, ChonEventArgs e)
         {
             try
@@ -4403,6 +4402,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 _message = "";
 
                 string ma_kh_soh = null;
+                var AM_somedata = new Dictionary<string, object>();
+                var ad2am_dic = ObjectAndString.StringToStringDictionary(e.AD2AM, ',', ':');
                 List<string> inserted_mavitri = new List<string>();
                 
                 foreach (IDictionary<string, object> data in selectedDataList)
@@ -4412,6 +4413,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                     {
                         ma_kh_soh = data["MA_KH_SOH"].ToString().Trim();
                     }
+                    
+                    foreach (KeyValuePair<string, string> item in ad2am_dic)
+                    {
+                        if (data.ContainsKey(item.Key) && !AM_somedata.ContainsKey(item.Value.ToUpper()))
+                        {
+                            AM_somedata[item.Value.ToUpper()] = data[item.Key.ToUpper()];
+                        }
+                    }
+
                     string c_makh = data.ContainsKey("MA_KH") ? data["MA_KH"].ToString().Trim().ToUpper() : "";
                     if (c_makh != "" && txtMaKh.Text == "")
                     {
@@ -4654,6 +4664,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                     }
                 }
 
+                if (!string.IsNullOrEmpty(e.AD2AM))
+                {
+                    SetSomeData(AM_somedata);
+                }
                 All_Objects["selectedDataList"] = selectedDataList;
                 InvokeFormEvent("AFTERCHON_" + _chon_px);
                 V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed: {1}{2}", addCount, failCount, _message));
@@ -4783,6 +4797,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 if (ma_dvcs != "")
                 {
                     INY_PNKho_Form chon = new INY_PNKho_Form(dateNgayCT.Date.Date, txtMaDVCS.Text, txtMaKh.Text);
+                    _chon_px = "INY";
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                     chon.ShowDialog(this);
                 }
@@ -4812,6 +4827,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
                 if (ma_dvcs != "")
                 {
                     IXA_PNKho_Form chon = new IXA_PNKho_Form(dateNgayCT.Date.Date, txtMaDVCS.Text, txtMaKh.Text);
+                    _chon_px = "IXA";
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                     chon.ShowDialog(this);
                 }

@@ -17,7 +17,7 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.ChonPhieuXuat
 {
-    public partial class CPX_PhieuNhapKhoForm : V6Form
+    public partial class CPX_IXA_PhieuNhapKhoForm : V6Form
     {
         V6Invoice84 Invoice = new V6Invoice84();
         //private readonly HoaDonControl _PhieuNhapMuaForm;
@@ -41,12 +41,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.ChonPh
                 _viewMode = value;
             }
         }
-        public CPX_PhieuNhapKhoForm()
+        public CPX_IXA_PhieuNhapKhoForm()
         {
             InitializeComponent();
         }
 
-        public CPX_PhieuNhapKhoForm(DateTime ngayCt, string ma_dvcs, string ma_kh)
+        public CPX_IXA_PhieuNhapKhoForm(DateTime ngayCt, string ma_dvcs, string ma_kh)
         {
             InitializeComponent();
             //_PhieuNhapMuaForm = phieuNhapMuaForm;
@@ -153,9 +153,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho.ChonPh
                     var data = _locKetQua.dataGridView1.GetSelectedData();
                     if (data.Count > 0)
                     {
+                        string AD2AM_string = null;
+                        if (_locKetQua._aldmConfig.EXTRA_INFOR.ContainsKey("AD2AM"))
+                        {
+                            AD2AM_string += _locKetQua._aldmConfig.EXTRA_INFOR["AD2AM"];
+                        }
                         ChonEventArgs e = new ChonEventArgs()
                         {
-                            Loai_ct = _loai_ct_chon
+                            Loai_ct = _loai_ct_chon,
+                            AD2AM = AD2AM_string
                         };
                         OnAcceptSelectEvent(data, e);
                         Close();

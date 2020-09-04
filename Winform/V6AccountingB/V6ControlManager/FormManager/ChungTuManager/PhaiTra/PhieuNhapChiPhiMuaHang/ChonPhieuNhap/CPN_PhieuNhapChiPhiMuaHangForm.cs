@@ -167,9 +167,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
                             dic["CP_NT"] = 0;
                             dic["CP"] = 0;
                         }
+                        string AD2AM_string = null;
+                        if (_locKetQua._aldmConfig.EXTRA_INFOR.ContainsKey("AD2AM"))
+                        {
+                            AD2AM_string += _locKetQua._aldmConfig.EXTRA_INFOR["AD2AM"];
+                        }
                         ChonEventArgs e = new ChonEventArgs()
                         {
                             Loai_ct = _loai_ct_chon,
+                            AD2AM = AD2AM_string,
                             multiSelect = _multiSelect,
                             extraData = amData
                         };

@@ -1140,7 +1140,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 if (ma_dvcs != "")
                 {
                     CPXHangTraLaiForm chonpx = new CPXHangTraLaiForm(this, txtMaDVCS.Text, txtMaKh.Text);
-                    _chon_px = "PX";
+                    _chon_px = "SOA";
                     chonpx.AcceptSelectEvent += chonpx_AcceptSelectEvent;
                     chonpx.ShowDialog(this);
                 }
@@ -1158,7 +1158,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
         private bool co_chon_phieu_xuat { get; set; }
         private bool chonpx_flag = false;
-        private string _chon_px = "";
         void chonpx_AcceptSelectEvent(List<IDictionary<string, object>> selectedDataList, ChonEventArgs e)
         {
             chonpx_flag = true;
@@ -1175,6 +1174,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 }
                 int addCount = 0, failCount = 0;
                 string ma_kh_soh = null;
+                var AM_somedata = new Dictionary<string, object>();
+                var ad2am_dic = ObjectAndString.StringToStringDictionary(e.AD2AM, ',', ':');
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {
                     // Lấy ma_kh_soh đầu tiên.
@@ -1182,6 +1183,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                     {
                         ma_kh_soh = data["MA_KH_SOH"].ToString().Trim();
                     }
+                    
+                    foreach (KeyValuePair<string, string> item in ad2am_dic)
+                    {
+                        if (data.ContainsKey(item.Key) && !AM_somedata.ContainsKey(item.Value.ToUpper()))
+                        {
+                            AM_somedata[item.Value.ToUpper()] = data[item.Key.ToUpper()];
+                        }
+                    }
+
                     string c_makh = data.ContainsKey("MA_KH") ? data["MA_KH"].ToString().Trim().ToUpper() : "";
                     if (c_makh != "" && txtMaKh.Text == "")
                     {
@@ -1220,7 +1230,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                         txtMaKh.CallDoV6LostFocus();
                     }
                 }
-
+                
+                if (!string.IsNullOrEmpty(e.AD2AM))
+                {
+                    SetSomeData(AM_somedata);
+                }
                 All_Objects["selectedDataList"] = selectedDataList;
                 InvokeFormEvent("AFTERCHON_" + _chon_px);
                 V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed: {1}{2}", addCount, failCount, _message));
@@ -5102,6 +5116,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 if (ma_dvcs != "")
                 {
                     INY_HangTraLai_Form chon = new INY_HangTraLai_Form(dateNgayCT.Date.Date, txtMaDVCS.Text, txtMaKh.Text);
+                    _chon_px = "INY";
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                     chon.ShowDialog(this);
                 }
@@ -5135,6 +5150,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                 _message = "";
 
                 string ma_kh_soh = null;
+                var AM_somedata = new Dictionary<string, object>();
+                var ad2am_dic = ObjectAndString.StringToStringDictionary(e.AD2AM, ',', ':');
                 List<string> inserted_mavitri = new List<string>();
 
                 foreach (IDictionary<string, object> data in selectedDataList)
@@ -5144,6 +5161,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                     {
                         ma_kh_soh = data["MA_KH_SOH"].ToString().Trim();
                     }
+                    
+                    foreach (KeyValuePair<string, string> item in ad2am_dic)
+                    {
+                        if (data.ContainsKey(item.Key) && !AM_somedata.ContainsKey(item.Value.ToUpper()))
+                        {
+                            AM_somedata[item.Value.ToUpper()] = data[item.Key.ToUpper()];
+                        }
+                    }
+
                     string c_makh = data.ContainsKey("MA_KH") ? data["MA_KH"].ToString().Trim().ToUpper() : "";
                     if (c_makh != "" && txtMaKh.Text == "")
                     {
@@ -5385,7 +5411,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
                         txtMaKh.CallDoV6LostFocus();
                     }
                 }
-
+                
+                if (!string.IsNullOrEmpty(e.AD2AM))
+                {
+                    SetSomeData(AM_somedata);
+                }
                 All_Objects["selectedDataList"] = selectedDataList;
                 InvokeFormEvent("AFTERCHON_" + _chon_px);
                 V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed: {1}{2}", addCount, failCount, _message));

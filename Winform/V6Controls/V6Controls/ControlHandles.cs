@@ -38,6 +38,10 @@ namespace V6Controls
         public string Loai_ct { get; set; }
         public bool multiSelect { get;set; }
         public IDictionary<string, object> extraData { get; set; }
+        /// <summary>
+        /// AD2AM:abc:def,
+        /// </summary>
+        public string AD2AM { get; set; }
     }
 
 }

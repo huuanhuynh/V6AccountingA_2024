@@ -5845,6 +5845,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 if (ma_dvcs != "")
                 {
                     IXY_PXDC_Form chon = new IXY_PXDC_Form(dateNgayCT.Date.Date, txtMaDVCS.Text, txtMaKh.Text);
+                    _chon_px = "IXY";
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                     chon.ShowDialog(this);
                 }
@@ -5879,6 +5880,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 // biến giữ giá trị đầu tiên
                 string ma_kh_soh = null, ma_kho_s0 = null, ma_kho_n_s0 = null;
                 List<string> inserted_mavitri = new List<string>();
+                var AM_somedata = new Dictionary<string, object>();
+                var ad2am_dic = ObjectAndString.StringToStringDictionary(e.AD2AM, ',', ':');
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {
                     // Lấy ma_kh_soh đầu tiên.
@@ -5886,6 +5889,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     {
                         ma_kh_soh = data["MA_KH_SOH"].ToString().Trim();
                     }
+                    
+                    foreach (KeyValuePair<string, string> item in ad2am_dic)
+                    {
+                        if (data.ContainsKey(item.Key) && !AM_somedata.ContainsKey(item.Value.ToUpper()))
+                        {
+                            AM_somedata[item.Value.ToUpper()] = data[item.Key.ToUpper()];
+                        }
+                    }
+
                     if (ma_kho_s0 == null && data.ContainsKey("MA_KHO"))
                     {
                         ma_kho_s0 = data["MA_KHO"].ToString().Trim();
@@ -6202,6 +6214,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     }
                 }
 
+                if (!string.IsNullOrEmpty(e.AD2AM))
+                {
+                    SetSomeData(AM_somedata);
+                }
+                All_Objects["selectedDataList"] = selectedDataList;
+                InvokeFormEvent("AFTERCHON_" + _chon_px);
+
                 V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed: {1}{2}", addCount, failCount, _message));
                 //if (addCount > 0)
                 //{
@@ -6235,6 +6254,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             //{
             //    ma_kh_soh = data["MA_KH_SOH"].ToString().Trim();
             //}
+            //foreach (KeyValuePair<string, string> item in ad2am_dic)
+            //{
+            //    if (data.ContainsKey(item.Key) && !AM_somedata.ContainsKey(item.Value.ToUpper()))
+            //    {
+            //        AM_somedata[item.Value.ToUpper()] = data[item.Key.ToUpper()];
+            //    }
+            //}
+
             //string c_makh = data.ContainsKey("MA_KH") ? data["MA_KH"].ToString().Trim().ToUpper() : "";
             //if (c_makh != "" && txtMaKh.Text == "")
             //{

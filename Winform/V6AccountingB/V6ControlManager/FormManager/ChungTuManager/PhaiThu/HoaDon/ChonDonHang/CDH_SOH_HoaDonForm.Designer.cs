@@ -1,6 +1,6 @@
 ﻿namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang
 {
-    partial class CDH_HoaDonForm
+    partial class CDH_SOH_HoaDonForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CDH_HoaDonForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CDH_SOH_HoaDonForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.grbThongTinChiTiet = new System.Windows.Forms.GroupBox();
             this.panelFilter2 = new V6ReportControls.PanelFilter();
@@ -1506,7 +1506,7 @@
             this.Controls.Add(this.btnHuy);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(600, 400);
-            this.Name = "CDH_HoaDonForm";
+            this.Name = "CDH_SOH_HoaDonForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Tìm chứng từ";
             this.Load += new System.EventHandler(this.Form_Load);

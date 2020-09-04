@@ -15,15 +15,15 @@ using V6Structs;
 using V6Tools.V6Convert;
 using Timer = System.Windows.Forms.Timer;
 
-namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonDonHang
+namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang
 {
-    public partial class CDH_PNMForm : V6Form
+    public partial class CDH_SOH_HoaDonForm : V6Form
     {
-        //private readonly PhieuNhapMuaControl _PhieuNhapMuaForm;
-        private CDH_PNMKetQua _locKetQua;
-        V6Invoice92 Invoice = new V6Invoice92();
-        private DateTime _ngayCt;
+        V6Invoice91 Invoice = new V6Invoice91();
+        //private readonly HoaDonControl _PhieuNhapMuaForm;
+        private CDH_HoaDonKetQua _locKetQua;
         private string _ma_dvcs, _ma_kh, _loai_ct_chon;
+        private DateTime _ngayCt;
         //private bool __ready = false;
         private bool _viewMode;
         //private List<string> _orderListAD;
@@ -41,17 +41,17 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonD
                 _viewMode = value;
             }
         }
-        public CDH_PNMForm()
+        public CDH_SOH_HoaDonForm()
         {
             InitializeComponent();
         }
 
-        public CDH_PNMForm(DateTime ngayCt, string ma_dvcs, string ma_kh)
+        public CDH_SOH_HoaDonForm(DateTime ngayCt, string ma_dvcs, string ma_kh)
         {
             InitializeComponent();
-            _ngayCt = ngayCt;
             //_PhieuNhapMuaForm = phieuNhapMuaForm;
             //_orderListAD = orderListAD;
+            _ngayCt = ngayCt;
             _ma_dvcs = ma_dvcs;
             _ma_kh = ma_kh;
             MyInit();
@@ -64,25 +64,27 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonD
 
             panelFilter1.AddMultiFilterLine(Invoice.AMStruct, Invoice.ADV_AM);
             panelFilter2.AddMultiFilterLine(Invoice.ADStruct, Invoice.ADV_AD);
+
             maKhach.Text = _ma_kh;
             maKhach.ReadOnly = !string.IsNullOrEmpty(_ma_kh);
             txtMaDVCS.Text = _ma_dvcs;
+
+            //_locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
+            _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
+
             v6ColorDateTimePick1.SetValue(V6Setting.M_ngay_ct1);
             v6ColorDateTimePick2.SetValue(V6Setting.M_ngay_ct2);
 
-            LoadDefaultData(4, "POA", "SEARCH_POA_POH", ItemID);
-            Ready();
+            LoadDefaultData(4, Invoice.Mact, "SEARCH_SOA_" + Invoice.Mact, ItemID);
         }
 
         private void InitLocKetQua()
         {
             try
             {
-                _locKetQua = new CDH_PNMKetQua(Invoice)
+                _locKetQua = new CDH_HoaDonKetQua(Invoice)
                 {Dock = DockStyle.Fill, Visible = false};
                 panel1.Controls.Add(_locKetQua);
-                //_locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
-                _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
             }
             catch (Exception ex)
             {
@@ -116,8 +118,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonD
             ShowLocKetQua();
             _locKetQua.SetAM(tAM);
             Refresh0();
+            //ChungTu.ViewSearchSumary(this, tAM, lblDocSoTien, _f.Invoice.Mact, _formChungTu.MA_NT);
         }
-
         private void ShowLocKetQua()
         {
             grbThoiGian.Visible = false;
@@ -150,9 +152,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonD
                     var data = _locKetQua.dataGridView1.GetSelectedData();
                     if (data.Count > 0)
                     {
+                        string AD2AM_string = null;
+                        if (_locKetQua._aldmConfig.EXTRA_INFOR.ContainsKey("AD2AM"))
+                        {
+                            AD2AM_string += _locKetQua._aldmConfig.EXTRA_INFOR["AD2AM"];
+                        }
                         ChonEventArgs e = new ChonEventArgs()
                         {
-                            Loai_ct = _loai_ct_chon
+                            Loai_ct = _loai_ct_chon,
+                            AD2AM = AD2AM_string
                         };
                         OnAcceptSelectEvent(data, e);
                         Close();
@@ -195,8 +203,41 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonD
             timerCheckSearch.Start();
         }
 
-        private string _where0Time = "", _where1AM = "", _where2AD = "", _w3NhomVt = "", _w4Dvcs = "", _w4Dvcs_2 = "", _advance = "";
+        private bool flagSearchFinish;
+        private bool flagSearchSuccess;
+        private string exMessage = "";
+        public DataTable tAM;
 
+        void checkSearch_Tick(object sender, EventArgs e)
+        {
+            if (flagSearchFinish)
+            {
+                try
+                {
+                    ((Timer)sender).Stop();
+                    if (flagSearchSuccess)
+                    {
+                        SetValueAndShowLocKetQua();
+                    }
+                    else
+                    {
+                        this.ShowInfoMessage(exMessage);
+                    }
+                }
+                catch
+                {
+                    // ignored
+                }
+                btnNhan.Enabled = true;
+                ((Timer)sender).Dispose();
+            }
+            else
+            {
+                //lblStatus
+            }
+        }
+
+        private string _where0Time = "", _where1AM = "", _where2AD = "", _w3NhomVt = "", _w4Dvcs = "", _w4Dvcs_2 = "", _advance = "";
         private void PrepareThread()
         {
             var stru = Invoice.AMStruct;
@@ -232,8 +273,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonD
                 {
                     exMessage = V6Text.NoInvoiceFound;
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -241,40 +280,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonD
                 flagSearchSuccess = false;
             }
             flagSearchFinish = true;
-        }
-
-        private bool flagSearchFinish;
-        private bool flagSearchSuccess;
-        private string exMessage = "";
-        public DataTable tAM;
-
-        void checkSearch_Tick(object sender, EventArgs e)
-        {
-            if (flagSearchFinish)
-            {
-                try
-                {
-                    ((Timer)sender).Stop();
-                    if (flagSearchSuccess)
-                    {
-                        SetValueAndShowLocKetQua();
-                    }
-                    else
-                    {
-                        this.ShowInfoMessage(exMessage);
-                    }
-                }
-                catch
-                {
-                    // ignored
-                }
-                btnNhan.Enabled = true;
-                ((Timer)sender).Dispose();
-            }
-            else
-            {
-                //lblStatus
-            }
         }
 
         public string GetFilterSql_ThoiGian(V6TableStruct tableStruct, string tableLable,
@@ -313,6 +318,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonD
             var den_so = ctDenSo.Text.Trim().Replace("'", "");
 
             var result = "";
+            
             //so chung tu
             if (chkLike.Checked)
             {
@@ -354,7 +360,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonD
             if (maKhach.Text.Trim() != "")
             {
                 string makh_like_or = "", or_makhme_like = "";
-
+                
                 var makhs = ObjectAndString.SplitString(maKhach.Text);
                 foreach (string makh in makhs)
                 {
@@ -596,9 +602,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonD
             Huy();
         }
 
-        private void CDH_PNMForm_Load(object sender, EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
-            HideLocKetQua();
+            
         }
 
         private void CDH_PNMForm_VisibleChanged(object sender, EventArgs e)
@@ -616,6 +622,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.ChonD
         {
             var handler = AcceptSelectEvent;
             if (handler != null) handler(selecteddatalist, e);
+        }
+
+        private void lbtMaKH_LookupButtonF3Event(object sender, LookupEventArgs e)
+        {
+            try
+            {
+                string title = V6Text.Invoice + " " + e.MaCt;
+                var alct = ConfigManager.GetAlctConfig(e.MaCt);
+                if (alct.HaveInfo)
+                {
+                    title = V6Setting.IsVietnamese ? alct.TEN_CT : alct.TEN_CT2;
+                }
+                var hoaDonForm = ChungTuF3.GetChungTuControl(e.MaCt, "Name", e.Stt_rec);
+
+                hoaDonForm.ShowToForm(this, title, true, true, true);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + "lbtMaKH_LookupButtonF3Event", ex);
+            }
         }
     }
 }

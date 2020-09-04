@@ -183,6 +183,10 @@ namespace V6ControlManager.FormManager.ChungTuManager
         public string _maNt = "VND";
         public bool co_chon_don_hang;
         public string _mavt_default_initfilter;
+        /// <summary>
+        /// Tên loại phiếu được chọn làm căn cứ viết code động.
+        /// </summary>
+        public string _chon_px = "";
         public string MA_NT { get { return _maNt; } }
 
         public int M_ROUND_NUM;

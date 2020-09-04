@@ -5699,10 +5699,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
         private void chonDonHangMuaMenu_Click(object sender, EventArgs e)
         {
             bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
-            ChucNang_ChonDonHang(shift);
+            ChucNang_ChonDonHangBan(shift);
         }
 
-        private void ChucNang_ChonDonHang(bool add = false)
+        private void ChucNang_ChonDonHangBan(bool add = false)
         {
             try
             {
@@ -5714,12 +5714,12 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 if ( ma_dvcs != "")
                 {
                     CDHB_DonDatHangMuaForm chon = new CDHB_DonDatHangMuaForm(dateNgayCT.Date, txtMaDVCS.Text, "");
+                    _chon_px = "SOH";
                     chon.AcceptSelectEvent += chon_AcceptSelectEvent;
                     chon.ShowDialog(this);
                 }
                 else
                 {
-                    
                     if (ma_dvcs == "") message += V6Setting.IsVietnamese ? "Chưa chọn mã đơn vị." : "Agent ID can not empty!";
                     this.ShowWarningMessage(message);
                     if (ma_dvcs == "") txtMaDVCS.Focus();
@@ -5727,7 +5727,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".ChucNang_ChonDonHang " + _sttRec, ex);
+                this.ShowErrorException(GetType() + ".ChucNang_ChonDonHangBan " + _sttRec, ex);
             }
         }
 
@@ -5746,6 +5746,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                 }
                 int addCount = 0, failCount = 0;
                 string ma_kh_soh = null;
+                var AM_somedata = new Dictionary<string, object>();
+                var ad2am_dic = ObjectAndString.StringToStringDictionary(e.AD2AM, ',', ':');
                 foreach (IDictionary<string, object> data in selectedDataList)
                 {
                     // Lấy ma_kh_soh đầu tiên.
@@ -5753,6 +5755,15 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                     {
                         ma_kh_soh = data["MA_KH_SOH"].ToString().Trim();
                     }
+                    
+                    foreach (KeyValuePair<string, string> item in ad2am_dic)
+                    {
+                        if (data.ContainsKey(item.Key) && !AM_somedata.ContainsKey(item.Value.ToUpper()))
+                        {
+                            AM_somedata[item.Value.ToUpper()] = data[item.Key.ToUpper()];
+                        }
+                    }
+
                     var newData = new SortedDictionary<string, object>(data);
                     All_Objects["data"] = newData;
                     InvokeFormEvent("DONDATHANGMUA_CDHB");
@@ -5773,7 +5784,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.DonDatHangMua
                         txtMaKh.CallDoV6LostFocus();
                     }
                 }
-
+                
+                if (!string.IsNullOrEmpty(e.AD2AM))
+                {
+                    SetSomeData(AM_somedata);
+                }
+                All_Objects["selectedDataList"] = selectedDataList;
+                InvokeFormEvent("AFTERCHON_" + _chon_px);
                 V6ControlFormHelper.ShowMainMessage(string.Format("Succeed {0}. Failed: {1}{2}", addCount, failCount, _message));
                 
             }
