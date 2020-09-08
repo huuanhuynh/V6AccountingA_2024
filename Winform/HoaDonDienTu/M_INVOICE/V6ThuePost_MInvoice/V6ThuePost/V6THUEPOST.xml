@@ -35,9 +35,9 @@
   <BuyerInfo Field='inv_buyerLegalName' 			FieldV6='ten_kh' 			Type='Field'  DataType='UPPER'/>
   <BuyerInfo Field='inv_buyerTaxCode' 			FieldV6='ma_so_thue'		Type='Field'/>
   <BuyerInfo Field='inv_buyerAddressLine' 			FieldV6='dia_chi'			Type='Field'/>
-  <BuyerInfo Field='inv_buyerEmail' 			FieldV6='EMAIL'			Type='Field'/>
-  <BuyerInfo Field='inv_buyerBankAccount' 			FieldV6='EMAIL'			Type='Field'/>
-  <BuyerInfo Field='inv_buyerBankName' 			FieldV6='EMAIL'			Type='Field'/>
+  <BuyerInfo Field='inv_buyerEmail' 			FieldV6='E_MAIL'			Type='Field'/>
+  <BuyerInfo Field='inv_buyerBankAccount' 			FieldV6=''			Type='Field'/>
+  <BuyerInfo Field='inv_buyerBankName' 			FieldV6=''			Type='Field'/>
   
   <BuyerInfo Field='buyerPhoneNumber' 			FieldV6='DIEN_THOAI'			Type='Field'/>
   <BuyerInfo Field='buyerFaxNumber' 			FieldV6='FAX'			Type='Field'/>
@@ -45,8 +45,8 @@
   <BuyerInfo Field='buyerIdNo' 			FieldV6='MA_KH'			Type='Field'/>
   <BuyerInfo Field='buyerIdType' 			FieldV6='LOAI'			Type='Field'/>
   
-	<SellerInfo Field='inv_sellerBankAccount' 	Value='CÔNG TY A'/>
-	<SellerInfo Field='inv_sellerBankName' 	Value='CÔNG TY A'/>
+	<SellerInfo Field='inv_sellerBankAccount' 	Value=''/>
+	<SellerInfo Field='inv_sellerBankName' 	Value=''/>
 	
   <!--a____________Tên sử dụng trong report_____________Tên trường dữ liệu tương ứng_____________-->
 	<ItemInfo	Field='stt_rec0'		FieldV6='stt_rec0'	Type='Field'/>

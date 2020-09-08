@@ -129,7 +129,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         //Lấy giá trị
                         //string mode = row.Cells["Kieu_in"].Value.ToString();
-                        //string soct = row.Cells["So_ct"].Value.ToString().Trim();
+                        string soct = row.Cells["So_ct"].Value.ToString().Trim();
                         //string dir = row.Cells["Dir_in"].Value.ToString().Trim();
                         //string file = row.Cells["File_in"].Value.ToString().Trim();
                         //VPA_GET_V6MAPINFO @Loai   @Ma_td1 @Ma_ct  @Stt_rec    @Ma_dvcs    @User_id    @Advance
@@ -144,7 +144,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             new SqlParameter("@Advance", ""),
                         };
                         var map_table = V6BusinessHelper.ExecuteProcedure("VPA_GET_V6MAPINFO", plist0).Tables[0];
-                       
+                        
                         // Download
                         // 1:VIETTEL 2:VNPT 3:BKAV 4:VNPT_TOKEN 5:SOFT_DREAMS
                         if (FilterControl.String1 == "1")
@@ -181,7 +181,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             {
                                 DataSet = map_table.DataSet,
                                 Branch = FilterControl.String1,
-                                //InvoiceNo = invoiceNo,
+                                InvoiceNo = soct,
                                 Fkey_hd = fkey_hd,
                                 //Pattern = pattern,
                                 Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
@@ -202,7 +202,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             {
                                 DataSet = map_table.DataSet,
                                 Branch = FilterControl.String1,
-                                //InvoiceNo = invoiceNo,
+                                InvoiceNo = soct,
                                 Fkey_hd = fkey_hd,
                                 Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
                             };
@@ -225,7 +225,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             {
                                 DataSet = map_table.DataSet,
                                 Branch = FilterControl.String1,
-                                //InvoiceNo = invoiceNo,
+                                InvoiceNo = soct,
                                 Fkey_hd = fkey_hd,
                                 Pattern = pattern,
                                 Serial = serial,
@@ -247,6 +247,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             {
                                 DataSet = map_table.DataSet,
                                 Branch = FilterControl.String1,
+                                InvoiceNo = soct,
                                 V6PartnerID = v6_partner_id,
                                 Mode = V6Options.V6OptionValues["M_HDDT_TYPE_PRINT"],
                             };

@@ -139,6 +139,7 @@
   <ItemGroup>
     <Content Include="V6THUEPOST.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="VSoft.ico" />
   </ItemGroup>

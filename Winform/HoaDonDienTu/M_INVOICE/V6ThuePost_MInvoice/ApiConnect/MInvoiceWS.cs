@@ -343,7 +343,7 @@ namespace V6ThuePostMInvoiceApi
                     {
                         v6return.SO_HD = "" + responseObject.data["inv_invoiceNumber"];
                         v6return.ID = "" + responseObject.data["inv_InvoiceAuth_id"];
-                        v6return.SECRET_CODE = "" + responseObject.data["inv_InvoiceCode_id"];
+                        if (responseObject.data.ContainsKey("sobaomat")) v6return.SECRET_CODE = "" + responseObject.data["sobaomat"];
                     }
                     else
                     {
@@ -392,7 +392,8 @@ namespace V6ThuePostMInvoiceApi
                     {
                         v6return.ID = "" + responseObject.data["inv_InvoiceAuth_id"];
                         v6return.SO_HD = "" + responseObject.data["inv_invoiceNumber"];
-                        v6return.SECRET_CODE = "" + responseObject.data["inv_InvoiceCode_id"];
+                        //v6return.SECRET_CODE = "" + responseObject.data["inv_InvoiceCode_id"];
+                        if (responseObject.data.ContainsKey("sobaomat")) v6return.SECRET_CODE = "" + responseObject.data["sobaomat"];
                     }
                     else
                     {
@@ -454,6 +455,7 @@ namespace V6ThuePostMInvoiceApi
             try
             {
                 jsonBody.editmode = "2";
+                //jsonBody.data[0]["inv_invoiceNumber"] = invoiceNumber;
                 result = POST_Bearer(_createInvoiceUrl, jsonBody.ToJson());
                 v6return.RESULT_STRING = result;
 
@@ -471,7 +473,8 @@ namespace V6ThuePostMInvoiceApi
                     {
                         v6return.ID = "" + responseObject.data["inv_InvoiceAuth_id"];
                         v6return.SO_HD = "" + responseObject.data["inv_invoiceNumber"];
-                        v6return.SECRET_CODE = "" + responseObject.data["inv_InvoiceCode_id"];
+                        //v6return.SECRET_CODE = "" + responseObject.data["inv_InvoiceCode_id"];
+                        if (responseObject.data.ContainsKey("sobaomat")) v6return.SECRET_CODE = "" + responseObject.data["sobaomat"];
                     }
                     else
                     {
@@ -490,7 +493,7 @@ namespace V6ThuePostMInvoiceApi
 
                 result = ex.Message;
             }
-            Logger.WriteToLog("WS.POST_NEW " + result);
+            Logger.WriteToLog("WS.POST_EDIT " + result);
             return responseObject;
         }
 
@@ -517,7 +520,8 @@ namespace V6ThuePostMInvoiceApi
                     {
                         v6return.ID = "" + responseObject.data["inv_InvoiceAuth_id"];
                         v6return.SO_HD = "" + responseObject.data["inv_invoiceNumber"];
-                        v6return.SECRET_CODE = "" + responseObject.data["inv_InvoiceCode_id"];
+                        //v6return.SECRET_CODE = "" + responseObject.data["inv_InvoiceCode_id"];
+                        if (responseObject.data.ContainsKey("sobaomat")) v6return.SECRET_CODE = "" + responseObject.data["sobaomat"];
                     }
                     else
                     {

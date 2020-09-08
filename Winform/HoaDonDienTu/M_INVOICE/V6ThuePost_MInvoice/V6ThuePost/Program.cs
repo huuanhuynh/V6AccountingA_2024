@@ -219,7 +219,9 @@ namespace V6ThuePost
                             && !string.IsNullOrEmpty((string)responseObject.data["inv_invoiceNumber"]))
                         {
                             message += " " + responseObject.data["inv_invoiceNumber"];
-                            WriteFlag(flagFileName4, "" + responseObject.data["inv_invoiceNumber"] + ":" + v6Return.ID);
+                            string flag4_content = responseObject.data["inv_invoiceNumber"] + ":" + v6Return.ID;
+                            if(!string.IsNullOrEmpty(v6Return.SECRET_CODE)) flag4_content += ":" + v6Return.SECRET_CODE;
+                            WriteFlag(flagFileName4, flag4_content);
                             File.Create(flagFileName2).Close();
                         }
                     }
@@ -292,6 +294,10 @@ namespace V6ThuePost
                     invoiceData[item.Key] = GetValue(row0, item.Value);
                 }
 
+                if (mode.StartsWith("S"))
+                {
+                    invoiceData["inv_invoiceNumber"] = ("" + row0["SO_CT"]).Trim();
+                }
                 if (mode == "T")
                 {
                     //Lập hóa đơn thay thế:
