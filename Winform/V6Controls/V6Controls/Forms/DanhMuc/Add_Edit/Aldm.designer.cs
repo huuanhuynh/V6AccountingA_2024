@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Aldm));
             this.v6TabControl1 = new V6Controls.V6TabControl();
             this.tabThongTinChinh = new System.Windows.Forms.TabPage();
             this.v6ColorTextBox7 = new V6Controls.V6ColorTextBox();
@@ -145,6 +146,9 @@
             this.lblMaDM = new System.Windows.Forms.Label();
             this.TxtForder = new V6Controls.V6NumberTextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.dicEditButton1 = new V6Controls.Controls.DicEditButton();
+            this.txtExtraInfo = new V6Controls.V6ColorTextBox();
+            this.lblThongTinThem = new System.Windows.Forms.Label();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabThongTinNgamDinh.SuspendLayout();
@@ -864,6 +868,9 @@
             this.tabThongTinNgamDinh.AccessibleDescription = "ADDEDITT00009";
             this.tabThongTinNgamDinh.AutoScroll = true;
             this.tabThongTinNgamDinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinNgamDinh.Controls.Add(this.dicEditButton1);
+            this.tabThongTinNgamDinh.Controls.Add(this.lblThongTinThem);
+            this.tabThongTinNgamDinh.Controls.Add(this.txtExtraInfo);
             this.tabThongTinNgamDinh.Controls.Add(this.btnGRDS_V1);
             this.tabThongTinNgamDinh.Controls.Add(this.txtGRDHE_V1);
             this.tabThongTinNgamDinh.Controls.Add(this.txtGRDHV_V1);
@@ -1959,6 +1966,49 @@
             this.label6.TabIndex = 6;
             this.label6.Text = "Sắp xếp";
             // 
+            // dicEditButton1
+            // 
+            this.dicEditButton1.Image = ((System.Drawing.Image)(resources.GetObject("dicEditButton1.Image")));
+            this.dicEditButton1.Location = new System.Drawing.Point(763, 148);
+            this.dicEditButton1.Name = "dicEditButton1";
+            this.dicEditButton1.ReferenceControl = this.txtExtraInfo;
+            this.dicEditButton1.Size = new System.Drawing.Size(21, 21);
+            this.dicEditButton1.TabIndex = 12;
+            // 
+            // txtExtraInfo
+            // 
+            this.txtExtraInfo.AccessibleName = "EXTRA_INFOR";
+            this.txtExtraInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtExtraInfo.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.txtExtraInfo.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtExtraInfo.EnterColor = System.Drawing.Color.PaleGreen;
+            this.txtExtraInfo.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtExtraInfo.ForeColorDisabled = System.Drawing.SystemColors.WindowText;
+            this.txtExtraInfo.HoverColor = System.Drawing.Color.Yellow;
+            this.txtExtraInfo.LeaveColor = System.Drawing.Color.White;
+            this.txtExtraInfo.Location = new System.Drawing.Point(171, 148);
+            this.txtExtraInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.txtExtraInfo.Name = "txtExtraInfo";
+            this.txtExtraInfo.ReadOnly = true;
+            this.txtExtraInfo.Size = new System.Drawing.Size(592, 23);
+            this.txtExtraInfo.TabIndex = 11;
+            this.txtExtraInfo.TabStop = false;
+            this.toolTipV6FormControl.SetToolTip(this.txtExtraInfo, "CODE:value;CODE2:value2");
+            this.txtExtraInfo.Visible = false;
+            // 
+            // lblThongTinThem
+            // 
+            this.lblThongTinThem.AccessibleDescription = "ADDEDITL00356";
+            this.lblThongTinThem.AutoSize = true;
+            this.lblThongTinThem.Location = new System.Drawing.Point(9, 151);
+            this.lblThongTinThem.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblThongTinThem.Name = "lblThongTinThem";
+            this.lblThongTinThem.Size = new System.Drawing.Size(103, 17);
+            this.lblThongTinThem.TabIndex = 10;
+            this.lblThongTinThem.Text = "Thông tin thêm";
+            this.lblThongTinThem.Visible = false;
+            // 
             // Aldm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2104,5 +2154,8 @@
         private System.Windows.Forms.Label lblGRDT_V1;
         private V6CheckBox v6CheckBox3;
         protected System.Windows.Forms.Button btnGRDS_V1;
+        private Controls.DicEditButton dicEditButton1;
+        private V6ColorTextBox txtExtraInfo;
+        private System.Windows.Forms.Label lblThongTinThem;
     }
 }

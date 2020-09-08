@@ -79,6 +79,8 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             txtDmethod.Visible = true;
             lblXML.Visible = true;
             btnEditXml.Visible = true;
+            lblThongTinThem.Visible = true;
+            txtExtraInfo.Visible = true;
             base.V6CtrlF12Execute();
         }
 

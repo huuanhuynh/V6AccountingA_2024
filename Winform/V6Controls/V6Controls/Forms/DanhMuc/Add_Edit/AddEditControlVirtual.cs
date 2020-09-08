@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
+using System.Runtime.Remoting.Channels;
 using System.Windows.Forms;
 using V6AccountingBusiness;
 using V6Init;
@@ -647,11 +648,15 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 var KEYS = ObjectAndString.SplitString(_aldmConfig.KEY.ToUpper());
                 var data_new = "";
                 var data_old = "";
+                var key_old = new Dictionary<string, object>();
+                var key_new = new Dictionary<string, object>();
                 foreach (string KEY in KEYS)
                 {
                     if (!_TableStruct.ContainsKey(KEY)) continue;
                     var sct = _TableStruct[KEY];
                     if (!DataDic.ContainsKey(KEY)) return;
+                    key_old[KEY] = DataOld[KEY];
+                    key_new[KEY] = DataDic[KEY];
                     var s_new = SqlGenerator.GenSqlStringValue(DataDic[KEY], sct.sql_data_type_string, sct.ColumnDefault, false, sct.MaxLength);
                     if (s_new.ToUpper().StartsWith("N'")) s_new = s_new.Substring(1);
                     data_new += "|" + s_new;
@@ -674,6 +679,42 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                     new SqlParameter("@User_id", V6Login.UserId),
                 };
                 V6BusinessHelper.ExecuteProcedureNoneQuery("VPA_UPDATE_AL_ALL", plist);
+
+                // Database2
+                var EXTRA_INFOR = _aldmConfig.EXTRA_INFOR;
+                if (EXTRA_INFOR.ContainsKey("SERVER") && EXTRA_INFOR.ContainsKey("DATABASE") && EXTRA_INFOR.ContainsKey("USERID") && EXTRA_INFOR.ContainsKey("PASSWORD"))
+                {
+                    if (UtilityHelper.DeCrypt(EXTRA_INFOR["SERVER"]).ToUpper() != DatabaseConfig.Server.ToUpper()) goto EndIf;
+                        
+                    string conString2 = string.Format(@"Server={0};Database={1};User Id={2};Password={3};",
+                        UtilityHelper.DeCrypt(EXTRA_INFOR["SERVER"]), UtilityHelper.DeCrypt(EXTRA_INFOR["DATABASE"]),
+                        UtilityHelper.DeCrypt(EXTRA_INFOR["USERID"]), UtilityHelper.DeCrypt(EXTRA_INFOR["PASSWORD"]));
+                    // Delete old, Delete new, Insert new;
+                    if (Mode == V6Mode.Edit)
+                    {
+                        string delete_old_sql = SqlGenerator.GenDeleteSql(_TableStruct, key_old);
+                        SqlHelper.ExecuteNonQuery(conString2, CommandType.Text,delete_old_sql, DatabaseConfig.TimeOut);
+                    }
+                    string delete_new_sql = SqlGenerator.GenDeleteSql(_TableStruct, key_new);
+                    SqlHelper.ExecuteNonQuery(conString2, CommandType.Text, delete_new_sql, DatabaseConfig.TimeOut);
+
+                    string insert_new_sql = SqlGenerator.GenInsertSql(V6Login.UserId, _aldmConfig.TABLE_NAME, _TableStruct, DataDic);
+                    SqlHelper.ExecuteNonQuery(conString2, CommandType.Text, insert_new_sql, DatabaseConfig.TimeOut);
+
+                    SqlParameter[] plist2 =
+                    {
+                        new SqlParameter("@TableName", _aldmConfig.TABLE_NAME),
+                        new SqlParameter("@Fields", _aldmConfig.KEY),
+                        new SqlParameter("@datas_old", data_old),
+                        new SqlParameter("@datas_new", data_new),
+                        new SqlParameter("@uid", Mode == V6Mode.Edit ? DataOld["UID"].ToString() : ""),
+                        new SqlParameter("@mode", Mode == V6Mode.Add ? "M" : "S"),
+                        new SqlParameter("@User_id", V6Login.UserId),
+                    };
+                    SqlHelper.ExecuteNonQuery(conString2, CommandType.StoredProcedure, "VPA_UPDATE_AL_ALL", DatabaseConfig.TimeOut, plist2);
+                EndIf: ;
+                }
+                
             }
             catch (Exception ex)
             {
