@@ -11,7 +11,9 @@ using System.Threading;
 using System.Windows.Forms;
 using CrystalDecisions.CrystalReports.Engine;
 using V6AccountingBusiness;
+using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager;
+using V6ControlManager.FormManager.ChungTuManager.InChungTu;
 using V6ControlManager.FormManager.DanhMucManager;
 using V6ControlManager.FormManager.ReportManager.Filter;
 using V6Controls;
@@ -687,6 +689,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                             if (!key3.Contains("5")) printGridMenu.Visible = false;
                             if (!key3.Contains("6")) viewDataMenu.Visible = false;
                             if (!key3.Contains("7")) exportToPdfMenu.Visible = false;
+                            if (!key3.Contains("8")) viewDataInfoMenu.Visible = false;
                         }
                     }
                 }
@@ -701,6 +704,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                         case '5': DefaultMenuItem = printGridMenu; break;
                         case '6': DefaultMenuItem = viewDataMenu; break;
                         case '7': DefaultMenuItem = exportToPdfMenu; break;
+                        //case '8': DefaultMenuItem = viewDataInfoMenu; break;
                     }
 
                 InvokeFormEvent(FormDynamicEvent.INIT2);
@@ -1879,6 +1883,30 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         {
             if (DefaultMenuItem != null && DefaultMenuItem.Enabled)
                 DefaultMenuItem.PerformClick();
+        }
+
+        private void viewDataInfoMenu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dataGridView1.CurrentRow == null) return;
+                if (dataGridView1.Columns.Contains("MA_CT") && dataGridView1.Columns.Contains("STT_REC"))
+                {
+                    var row = dataGridView1.CurrentRow;
+                    string ma_ct = row.Cells["MA_CT"].Value.ToString().Trim();
+                    string stt_rec = row.Cells["STT_REC"].Value.ToString().Trim();
+                    if (ma_ct == String.Empty || stt_rec == String.Empty) return;
+                    new InvoiceInfosViewForm(new V6InvoiceBase(ma_ct), stt_rec, ma_ct).ShowDialog(this);
+                }
+                else
+                {
+                    this.ShowInfoMessage(V6Text.CheckData);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".viewDataInfoMenu_Click", ex);
+            }
         }
     }
 }

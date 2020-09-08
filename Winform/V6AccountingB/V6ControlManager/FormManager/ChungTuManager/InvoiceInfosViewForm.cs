@@ -12,18 +12,18 @@ using V6Init;
 using V6Tools;
 using V6Tools.V6Convert;
 
-namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
+namespace V6ControlManager.FormManager.ChungTuManager
 {
-    public partial class ViewInfoData : V6Form
+    public partial class InvoiceInfosViewForm : V6Form
     {
         public string STT_REC { get; set; }
         public string MA_CT { get; set; }
         private V6InvoiceBase Invoice;
-        public ViewInfoData()
+        public InvoiceInfosViewForm()
         {
             InitializeComponent();
         }
-        public ViewInfoData(V6InvoiceBase invoice, string sttrec, string mact)
+        public InvoiceInfosViewForm(V6InvoiceBase invoice, string sttrec, string mact)
         {
             InitializeComponent();
             Invoice = invoice;
@@ -36,7 +36,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             try
             {
                 
-                var data = V6BusinessHelper.Select("V6ViewInfo", "*", "", "", "STT").Data;
+                var data = V6BusinessHelper.Select("V6ViewInfo", "*", "loai='1'", "", "STT").Data;
                 comboBox1.ValueMember = "Procedure";
                 comboBox1.DisplayMember = V6Setting.IsVietnamese ? "Bar" : "Bar2";
                 comboBox1.DataSource = data;
@@ -140,20 +140,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         }
 
         private const string Procedure = "VPA_V6VIEW_INFOR_DATA";
+
         private void SelectFunction()
         {
             try
             {
-                if (comboBox1.SelectedItem != null)// && !(comboBox1.SelectedValue is DataRowView))
+                if (comboBox1.SelectedItem != null) // && !(comboBox1.SelectedValue is DataRowView))
                 {
                     var select = comboBox1.SelectedValue.ToString().Trim();
                     //Gen param
                     SqlParameter[] plist =
-                {
-                    new SqlParameter("@cStt_rec", STT_REC),
-                    new SqlParameter("@cTable", select), 
-                    new SqlParameter("@cMa_ct", MA_CT), 
-                };
+                    {
+                        new SqlParameter("@cStt_rec", STT_REC),
+                        new SqlParameter("@cTable", select),
+                        new SqlParameter("@cMa_ct", MA_CT),
+                    };
                     var loadData = V6BusinessHelper.ExecuteProcedure(Procedure, plist).Tables[0];
                     dataGridView1.DataSource = loadData;
                     //FormatGridView();

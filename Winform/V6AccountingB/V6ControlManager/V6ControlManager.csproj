@@ -1522,11 +1522,11 @@
     <Compile Include="FormManager\ChungTuManager\InChungTu\Filter\APOCTPOA.designer.cs">
       <DependentUpon>APOCTPOA.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\InChungTu\ViewInfoData.cs">
+    <Compile Include="FormManager\ChungTuManager\InvoiceInfosViewForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormManager\ChungTuManager\InChungTu\ViewInfoData.Designer.cs">
-      <DependentUpon>ViewInfoData.cs</DependentUpon>
+    <Compile Include="FormManager\ChungTuManager\InvoiceInfosViewForm.Designer.cs">
+      <DependentUpon>InvoiceInfosViewForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapKhau\Loc\LocKetQuaPhieuNhapKhau.cs">
       <SubType>UserControl</SubType>
@@ -6614,8 +6614,8 @@
     <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\Filter\APOCTPOA.resx">
       <DependentUpon>APOCTPOA.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ChungTuManager\InChungTu\ViewInfoData.resx">
-      <DependentUpon>ViewInfoData.cs</DependentUpon>
+    <EmbeddedResource Include="FormManager\ChungTuManager\InvoiceInfosViewForm.resx">
+      <DependentUpon>InvoiceInfosViewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiTra\PhieuNhapKhau\Loc\LocKetQuaPhieuNhapKhau.resx">
       <DependentUpon>LocKetQuaPhieuNhapKhau.cs</DependentUpon>

@@ -40,6 +40,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.exportToExcelMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.printGridMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToPdfMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewDataInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.grbDieuKienLoc = new System.Windows.Forms.GroupBox();
             this.btnLs = new System.Windows.Forms.Button();
             this.btnLt = new System.Windows.Forms.Button();
@@ -136,9 +137,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.exportToExcelTemplateMenu,
             this.exportToExcelMenu,
             this.printGridMenu,
-            this.exportToPdfMenu});
+            this.exportToPdfMenu,
+            this.viewDataInfoMenu});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 136);
             // 
             // exportToExcelTemplateMenu
             // 
@@ -171,6 +173,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.exportToPdfMenu.Size = new System.Drawing.Size(208, 22);
             this.exportToPdfMenu.Text = "Export to PDF";
             this.exportToPdfMenu.Click += new System.EventHandler(this.exportToPdfMenu_Click);
+            // 
+            // viewDataInfoMenu
+            // 
+            this.viewDataInfoMenu.Name = "viewDataInfoMenu";
+            this.viewDataInfoMenu.Size = new System.Drawing.Size(208, 22);
+            this.viewDataInfoMenu.Text = "ViewDataInfo";
+            this.viewDataInfoMenu.Click += new System.EventHandler(this.viewDataInfoMenu_Click);
             // 
             // grbDieuKienLoc
             // 
@@ -861,5 +870,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         private System.Windows.Forms.ToolStripMenuItem inLien3Menu;
         private System.Windows.Forms.ToolStripMenuItem inLien4Menu;
         private wyDay.Controls.SplitButton btnExport3;
+        private System.Windows.Forms.ToolStripMenuItem viewDataInfoMenu;
     }
 }

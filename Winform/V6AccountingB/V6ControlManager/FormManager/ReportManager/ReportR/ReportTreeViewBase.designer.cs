@@ -73,6 +73,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
             this.chkHienTatCa = new V6Controls.V6CheckBox();
             this.btnExport3 = new wyDay.Controls.SplitButton();
+            this.viewDataInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
             this.panel0.SuspendLayout();
@@ -89,9 +90,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.exportToXmlMenu,
             this.printGridMenu,
             this.viewDataMenu,
-            this.exportToPdfMenu});
+            this.exportToPdfMenu,
+            this.viewDataInfoMenu});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 158);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 202);
             // 
             // exportToExcelTemplateMenu
             // 
@@ -535,6 +537,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnExport3.UseVisualStyleBackColor = true;
             this.btnExport3.Click += new System.EventHandler(this.btnExport3_Click);
             // 
+            // viewDataInfoMenu
+            // 
+            this.viewDataInfoMenu.Name = "viewDataInfoMenu";
+            this.viewDataInfoMenu.Size = new System.Drawing.Size(208, 22);
+            this.viewDataInfoMenu.Text = "ViewDataInfo";
+            this.viewDataInfoMenu.Click += new System.EventHandler(this.viewDataInfoMenu_Click);
+            // 
             // ReportTreeViewBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -612,6 +621,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
         private ToolStripMenuItem exportToPdfMenu;
         private RadioButton rCurrent;
         private wyDay.Controls.SplitButton btnExport3;
+        private ToolStripMenuItem viewDataInfoMenu;
 
 
 

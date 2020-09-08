@@ -3748,8 +3748,7 @@ namespace V6ThuePostManager
                 }
                 else if (paras.Mode == "T")
                 {
-                    var invoice = ReadData_Minvoice("T");
-                    //invoice.SoHoaDonGoc = paras.Fkey_hd_tt;
+                    jsonBodyObject = ReadData_Minvoice("T");
                     response = mInvoiceWs.POST_EDIT(jsonBodyObject, out paras.Result.V6ReturnValues);
                 }
                 else if (paras.Mode.StartsWith("G"))
@@ -3873,6 +3872,11 @@ namespace V6ThuePostManager
                 foreach (KeyValuePair<string, ConfigLine> item in generalInvoiceInfoConfig)
                 {
                     invoiceData[item.Key] = GetValue(row0, item.Value);
+                }
+
+                if (mode.StartsWith("S"))
+                {
+                    invoiceData["inv_invoiceNumber"] = row0["SO_CT"];
                 }
 
                 if (mode == "T")

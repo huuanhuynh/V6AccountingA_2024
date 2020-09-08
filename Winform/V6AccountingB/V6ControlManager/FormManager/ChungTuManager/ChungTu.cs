@@ -178,8 +178,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     var text = ObjectAndString.NumberToString(ttt, 2, V6Options.M_NUM_POINT, ".");
                     var numWords = V6BusinessHelper.MoneyToWords(ttt, V6Setting.Language, mant);
                     var sumText = V6Setting.IsVietnamese ? "Tổng cộng" : "Total";
-                    lbl.Text = string.Format("{0} ({1}) / ({2}) {3}",
-                        sumText, text_nt, text, numWords);
+                    lbl.Text = string.Format("{0} ({1}) / ({2}) {3}", sumText, text_nt, text, numWords);
                     lbl.Visible = true;
                 }
                 else

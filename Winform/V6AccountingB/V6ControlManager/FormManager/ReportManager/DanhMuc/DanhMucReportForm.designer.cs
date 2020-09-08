@@ -72,6 +72,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             this.btnSuaTTMauBC = new V6Controls.Controls.V6FormButton();
             this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
             this.btnExport3 = new wyDay.Controls.SplitButton();
+            this.viewDataInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
@@ -116,9 +117,10 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             this.exportToXmlMenu,
             this.printGridMenu,
             this.viewGridMenu,
-            this.exportToPdfMenu});
+            this.exportToPdfMenu,
+            this.viewDataInfoMenu});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(201, 136);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(201, 180);
             // 
             // exportToExcelTemplateMenu
             // 
@@ -528,6 +530,13 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             this.btnExport3.UseVisualStyleBackColor = true;
             this.btnExport3.Click += new System.EventHandler(this.btnExport3_Click);
             // 
+            // viewDataInfoMenu
+            // 
+            this.viewDataInfoMenu.Name = "viewDataInfoMenu";
+            this.viewDataInfoMenu.Size = new System.Drawing.Size(200, 22);
+            this.viewDataInfoMenu.Text = "ViewDataInfo";
+            this.viewDataInfoMenu.Click += new System.EventHandler(this.viewDataInfoMenu_Click);
+            // 
             // DanhMucReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -627,6 +636,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         private System.Windows.Forms.ToolStripMenuItem exportToPdfMenu;
         private System.Windows.Forms.RadioButton rCurrent;
         private wyDay.Controls.SplitButton btnExport3;
+        private System.Windows.Forms.ToolStripMenuItem viewDataInfoMenu;
 
 
 

@@ -83,6 +83,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
             this.btnExport3 = new wyDay.Controls.SplitButton();
             this.gridViewTopFilter1 = new V6Controls.Controls.GridViewTopFilter();
+            this.viewDataInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
@@ -133,9 +134,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.exportToXmlMenu,
             this.printGridMenu,
             this.viewDataMenu,
-            this.exportToPdfMenu});
+            this.exportToPdfMenu,
+            this.viewDataInfoMenu});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 158);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 202);
             // 
             // exportToExcelTemplateMenu
             // 
@@ -672,6 +674,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.gridViewTopFilter1.Size = new System.Drawing.Size(662, 23);
             this.gridViewTopFilter1.TabIndex = 1;
             // 
+            // viewDataInfoMenu
+            // 
+            this.viewDataInfoMenu.Name = "viewDataInfoMenu";
+            this.viewDataInfoMenu.Size = new System.Drawing.Size(208, 22);
+            this.viewDataInfoMenu.Text = "ViewDataInfo";
+            this.viewDataInfoMenu.Click += new System.EventHandler(this.viewDataInfoMenu_Click);
+            // 
             // ReportD99ViewBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -765,6 +774,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         private System.Windows.Forms.Label lblSummary;
         private wyDay.Controls.SplitButton btnExport3;
         private GridViewTopFilter gridViewTopFilter1;
+        private System.Windows.Forms.ToolStripMenuItem viewDataInfoMenu;
 
 
 

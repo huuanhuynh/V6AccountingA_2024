@@ -1,6 +1,6 @@
-﻿namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
+﻿namespace V6ControlManager.FormManager.ChungTuManager
 {
-    partial class ViewInfoData
+    partial class InvoiceInfosViewForm
     {
         /// <summary>
         /// Required designer variable.
