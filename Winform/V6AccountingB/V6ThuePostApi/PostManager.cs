@@ -2196,7 +2196,8 @@ namespace V6ThuePostManager
                         paras.Result.InvoiceNo = GetSoHoaDon_VNPT(invXml);
                         if (!string.IsNullOrEmpty(paras.Result.InvoiceNo))
                         {
-                            paras.Result.ResultString = "OK-Đã tồn tại fkey.";
+                            result = "OK-Đã tồn tại fkey. " + resultM;
+                            paras.Result.ResultString = result;
                         }
                     }
                     else // chạy lần 2

@@ -1744,6 +1744,12 @@
     <Compile Include="FormManager\ChungTuManager\PhaiThu\HoaDon\Loc\TimHoaDonForm.Designer.cs">
       <DependentUpon>TimHoaDonForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManager\DanhMucManager\DanhMucInfosViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\DanhMucManager\DanhMucInfosViewForm.Designer.cs">
+      <DependentUpon>DanhMucInfosViewForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\DanhMucManager\PhanNhom\PhanNhomForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -6726,6 +6732,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\PhaiThu\HoaDon\Loc\TimHoaDonForm.resx">
       <DependentUpon>TimHoaDonForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\DanhMucManager\DanhMucInfosViewForm.resx">
+      <DependentUpon>DanhMucInfosViewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\DanhMucManager\PhanNhom\PhanNhomForm.resx">
       <DependentUpon>PhanNhomForm.cs</DependentUpon>

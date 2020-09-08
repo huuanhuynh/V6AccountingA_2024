@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -56,7 +57,10 @@
             this.btnThem = new System.Windows.Forms.Button();
             this.cboFilter = new V6Controls.V6ComboBox();
             this.lblFilter = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.viewDataInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -134,6 +138,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.UID});
+            this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridView1.Location = new System.Drawing.Point(3, 64);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -402,6 +407,20 @@
             this.lblFilter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblFilter.Visible = false;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.viewDataInfoMenu});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(145, 26);
+            // 
+            // viewDataInfoMenu
+            // 
+            this.viewDataInfoMenu.Name = "viewDataInfoMenu";
+            this.viewDataInfoMenu.Size = new System.Drawing.Size(144, 22);
+            this.viewDataInfoMenu.Text = "ViewDataInfo";
+            this.viewDataInfoMenu.Click += new System.EventHandler(this.viewDataInfoMenu_Click);
+            // 
             // DanhMucView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -435,6 +454,7 @@
             this.Size = new System.Drawing.Size(794, 373);
             this.Load += new System.EventHandler(this.DanhMucView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -466,5 +486,7 @@
         public System.Windows.Forms.Button btnNhom;
         private V6Controls.V6ComboBox cboFilter;
         private System.Windows.Forms.Label lblFilter;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem viewDataInfoMenu;
     }
 }

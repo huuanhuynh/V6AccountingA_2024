@@ -120,30 +120,4 @@
   <metadata name="toolTipV6FormControl.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="UID.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>190, 17</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnThem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADrwAAA68AZW8ckkAAAL2SURBVFhHvZfLTxNBHMd7MBSiAWw1Hkg8ocZ4qSZejBdj
-        TAwxRgwXTYyRqFgL8rS8Ke+HvORVihXFt140SjiJJhrDG1pqKUX/mJ/zm91ZhmUGJqbdSb4Hkp1+PvPb
-        3/52samuPbk2UA25PJtkH92YqIU/7At7d40u4CFBicQtJjDxNwjjfwIwtjEM/vgADMZ6oH+tC7qjbbxA
-        P4mLbkzUYgLBDT8E4kMwsv6YwnujHfDodyt0RJqsERiND8Lweh8MxLoNePtqIzSH66wRGIr10pL3RNuh
-        K9ICrasN0BSuhYaVSmsE+tY66ak7I80U7gtVQ/2KF6qXy6wR2FJyAq9droCqpVKoWCyyRqBt1WeUHOHe
-        pWIoX/BAybzbGgG+5AgvW7gPD+YKwDN7+/8EcINqEMCXvHTBDUVzd8E9mw8FMzcNAdUQfPbmyRSDp65Y
-        LKQlL5y7A+6ZW3B5+gKcnjwhvF4WXcBjCLDBgl2OU411eWOoRlryS9PnwfX5CBx6vxcOvkvbOW/T4MCb
-        NHC+SOUF+g0B82BpCdfT+1238tAoOcKx5LnfLsLJL8fEIHMImMJfa3DHuF0swAYL63JfqMroclbyGz/z
-        4MyUC7I+ZIhhonDw/U/tkDkqETCXvGa53Ch58fw9yPl6Do5+zBJDZKHwVHBOMHgKpA+liAVkJc//dR3O
-        Tp1Su898eHjQDhl+DZ4+KBFgJa9cKjFKfu3HFdpkQsBOQfgrDj6yCc8YlgiYS371ew4c/3RYDJAFwaTT
-        Ee54TuBPdPiAFoRnBiQ9oBohWI/oelm2CKgGN4rAGDw5+2HVUAGy8NsNv+HwD2lwg0yAlZ072SRJkN8v
-        CXLp1ytK4MtDGqEAu+cvtXvOCSA8j98vifqH6zYBU8NljpmaSwMkbm0RIHD2qDmeafBtj1cyBYyTc3B8
-        zKwRYCfXy87g2yZcsgToiwUnHA4ZhBMwnXBk4Fgi4CQdjy8WOts5OApZIrBbkiqgGnJ54gXIUpqYehT/
-        O7bZ/gFBYsFOotAh6wAAAABJRU5ErkJggg==
-</value>
-  </data>
 </root>

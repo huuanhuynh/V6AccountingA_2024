@@ -1991,6 +1991,26 @@ namespace V6ControlManager.FormManager.DanhMucManager
         {
             LoadAtPage(1);
         }
+
+        private void viewDataInfoMenu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dataGridView1.CurrentRow != null)
+                {
+                    var row = dataGridView1.CurrentRow;
+                    new DanhMucInfosViewForm(_MA_DM, row.ToDataDictionary()).ShowDialog(this);
+                }
+                else
+                {
+                    this.ShowInfoMessage(V6Text.NoData);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".viewDataInfoMenu_Click", ex);
+            }
+        }
         
         
         
