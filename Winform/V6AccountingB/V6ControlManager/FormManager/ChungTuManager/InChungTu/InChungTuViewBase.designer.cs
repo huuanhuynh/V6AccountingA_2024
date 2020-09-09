@@ -40,7 +40,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.exportToExcelMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.printGridMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToPdfMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewDataInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewInvoiceInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.grbDieuKienLoc = new System.Windows.Forms.GroupBox();
             this.btnLs = new System.Windows.Forms.Button();
             this.btnLt = new System.Windows.Forms.Button();
@@ -138,7 +138,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.exportToExcelMenu,
             this.printGridMenu,
             this.exportToPdfMenu,
-            this.viewDataInfoMenu});
+            this.viewInvoiceInfoMenu});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(209, 136);
             // 
@@ -174,12 +174,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.exportToPdfMenu.Text = "Export to PDF";
             this.exportToPdfMenu.Click += new System.EventHandler(this.exportToPdfMenu_Click);
             // 
-            // viewDataInfoMenu
+            // viewInvoiceInfoMenu
             // 
-            this.viewDataInfoMenu.Name = "viewDataInfoMenu";
-            this.viewDataInfoMenu.Size = new System.Drawing.Size(208, 22);
-            this.viewDataInfoMenu.Text = "ViewDataInfo";
-            this.viewDataInfoMenu.Click += new System.EventHandler(this.viewDataInfoMenu_Click);
+            this.viewInvoiceInfoMenu.AccessibleDescription = "INVOICEM00048";
+            this.viewInvoiceInfoMenu.Name = "viewInvoiceInfoMenu";
+            this.viewInvoiceInfoMenu.Size = new System.Drawing.Size(208, 22);
+            this.viewInvoiceInfoMenu.Text = "Xem thông tin chứng từ";
+            this.viewInvoiceInfoMenu.Click += new System.EventHandler(this.viewInvoiceInfoMenu_Click);
             // 
             // grbDieuKienLoc
             // 
@@ -870,6 +871,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
         private System.Windows.Forms.ToolStripMenuItem inLien3Menu;
         private System.Windows.Forms.ToolStripMenuItem inLien4Menu;
         private wyDay.Controls.SplitButton btnExport3;
-        private System.Windows.Forms.ToolStripMenuItem viewDataInfoMenu;
+        private System.Windows.Forms.ToolStripMenuItem viewInvoiceInfoMenu;
     }
 }

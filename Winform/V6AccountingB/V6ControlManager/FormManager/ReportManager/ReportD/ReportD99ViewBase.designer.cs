@@ -44,6 +44,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.printGridMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.viewDataMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToPdfMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewInvoiceInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.grbDieuKienLoc = new System.Windows.Forms.GroupBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.txtNumber = new V6Controls.V6ColorTextBox();
@@ -83,7 +84,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
             this.btnExport3 = new wyDay.Controls.SplitButton();
             this.gridViewTopFilter1 = new V6Controls.Controls.GridViewTopFilter();
-            this.viewDataInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewListInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
@@ -135,9 +136,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.printGridMenu,
             this.viewDataMenu,
             this.exportToPdfMenu,
-            this.viewDataInfoMenu});
+            this.viewInvoiceInfoMenu,
+            this.viewListInfoMenu});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 202);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 224);
             // 
             // exportToExcelTemplateMenu
             // 
@@ -194,6 +196,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.exportToPdfMenu.Size = new System.Drawing.Size(208, 22);
             this.exportToPdfMenu.Text = "Export to PDF";
             this.exportToPdfMenu.Click += new System.EventHandler(this.exportToPdfToolStripMenuItem_Click);
+            // 
+            // viewInvoiceInfoMenu
+            // 
+            this.viewInvoiceInfoMenu.AccessibleDescription = "INVOICEM00048";
+            this.viewInvoiceInfoMenu.Name = "viewInvoiceInfoMenu";
+            this.viewInvoiceInfoMenu.Size = new System.Drawing.Size(208, 22);
+            this.viewInvoiceInfoMenu.Text = "Xem thông tin chứng từ";
+            this.viewInvoiceInfoMenu.Click += new System.EventHandler(this.viewInvoiceInfoMenu_Click);
             // 
             // grbDieuKienLoc
             // 
@@ -674,12 +684,13 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
             this.gridViewTopFilter1.Size = new System.Drawing.Size(662, 23);
             this.gridViewTopFilter1.TabIndex = 1;
             // 
-            // viewDataInfoMenu
+            // viewListInfoMenu
             // 
-            this.viewDataInfoMenu.Name = "viewDataInfoMenu";
-            this.viewDataInfoMenu.Size = new System.Drawing.Size(208, 22);
-            this.viewDataInfoMenu.Text = "ViewDataInfo";
-            this.viewDataInfoMenu.Click += new System.EventHandler(this.viewDataInfoMenu_Click);
+            this.viewListInfoMenu.AccessibleDescription = "INVOICEM00049";
+            this.viewListInfoMenu.Name = "viewListInfoMenu";
+            this.viewListInfoMenu.Size = new System.Drawing.Size(208, 22);
+            this.viewListInfoMenu.Text = "Xem thông tin danh mục";
+            this.viewListInfoMenu.Click += new System.EventHandler(this.viewListInfoMenu_Click);
             // 
             // ReportD99ViewBase
             // 
@@ -774,7 +785,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
         private System.Windows.Forms.Label lblSummary;
         private wyDay.Controls.SplitButton btnExport3;
         private GridViewTopFilter gridViewTopFilter1;
-        private System.Windows.Forms.ToolStripMenuItem viewDataInfoMenu;
+        private System.Windows.Forms.ToolStripMenuItem viewInvoiceInfoMenu;
+        private System.Windows.Forms.ToolStripMenuItem viewListInfoMenu;
 
 
 

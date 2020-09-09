@@ -12,6 +12,7 @@ using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager;
 using V6ControlManager.FormManager.ChungTuManager.InChungTu;
+using V6ControlManager.FormManager.DanhMucManager;
 using V6ControlManager.FormManager.ReportManager.Filter;
 using V6Controls;
 using V6Controls.Forms;
@@ -768,7 +769,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                             if (!key3.Contains("5")) printGridMenu.Visible = false;
                             if (!key3.Contains("6")) viewDataMenu.Visible = false;
                             if (!key3.Contains("7")) exportToPdfMenu.Visible = false;
-                            if (!key3.Contains("8")) viewDataInfoMenu.Visible = false;
+                            if (!key3.Contains("8")) viewInvoiceInfoMenu.Visible = false;
                         }
                     }
                 }
@@ -783,7 +784,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                         case '5': DefaultMenuItem = printGridMenu; break;
                         case '6': DefaultMenuItem = viewDataMenu; break;
                         case '7': DefaultMenuItem = exportToPdfMenu; break;
-                        //case '8': DefaultMenuItem = viewDataInfoMenu; break;
+                        //case '8': DefaultMenuItem = viewInvoiceInfoMenu; break;
                     }
 
                 InvokeFormEvent(FormDynamicEvent.INIT2);
@@ -1889,27 +1890,35 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 DefaultMenuItem.PerformClick();
         }
 
-        private void viewDataInfoMenu_Click(object sender, EventArgs e)
+        private void viewInvoiceInfoMenu_Click(object sender, EventArgs e)
         {
             try
             {
                 var rowData = treeListViewAuto1.SelectedItemData;
-                if (rowData == null) return;
-                if (rowData.ContainsKey("MA_CT") && rowData.ContainsKey("STT_REC"))
-                {
-                    string ma_ct = rowData["MA_CT"].ToString().Trim();
-                    string stt_rec = rowData["STT_REC"].ToString().Trim();
-                    if (ma_ct == String.Empty || stt_rec == String.Empty) return;
-                    new InvoiceInfosViewForm(new V6InvoiceBase(ma_ct), stt_rec, ma_ct).ShowDialog(this);
-                }
-                else
-                {
-                    this.ShowInfoMessage(V6Text.CheckData);
-                }
+                if (rowData == null || !rowData.ContainsKey("MA_CT") || !rowData.ContainsKey("STT_REC")) return;
+                string ma_ct = rowData["MA_CT"].ToString().Trim();
+                string stt_rec = rowData["STT_REC"].ToString().Trim();
+                if (ma_ct == String.Empty || stt_rec == String.Empty) return;
+                new InvoiceInfosViewForm(new V6InvoiceBase(ma_ct), stt_rec, ma_ct).ShowDialog(this);
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".viewDataInfoMenu_Click", ex);
+                this.ShowErrorException(GetType() + ".viewInvoiceInfoMenu_Click", ex);
+            }
+        }
+
+        private void viewListInfoMenu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var row_data = treeListViewAuto1.SelectedItemData;
+                if (row_data == null || row_data.ContainsKey("MA_DM") || !row_data.ContainsKey("UID")) return;
+                string ma_dm = ObjectAndString.ObjectToString(row_data["MA_DM"]);
+                new DanhMucInfosViewForm(ma_dm, row_data).ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".viewListInfoMenu_Click", ex);
             }
         }
     }

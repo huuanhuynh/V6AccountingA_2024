@@ -42,6 +42,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             this.printGridMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.viewGridMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToPdfMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewInvoiceInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.grbDieuKienLoc = new System.Windows.Forms.GroupBox();
             this.btnIn = new System.Windows.Forms.Button();
             this.btnHuy = new System.Windows.Forms.Button();
@@ -72,7 +73,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             this.btnSuaTTMauBC = new V6Controls.Controls.V6FormButton();
             this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
             this.btnExport3 = new wyDay.Controls.SplitButton();
-            this.viewDataInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewListInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
@@ -118,15 +119,16 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             this.printGridMenu,
             this.viewGridMenu,
             this.exportToPdfMenu,
-            this.viewDataInfoMenu});
+            this.viewInvoiceInfoMenu,
+            this.viewListInfoMenu});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(201, 180);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(208, 202);
             // 
             // exportToExcelTemplateMenu
             // 
             this.exportToExcelTemplateMenu.AccessibleDescription = "REPORTM00003";
             this.exportToExcelTemplateMenu.Name = "exportToExcelTemplateMenu";
-            this.exportToExcelTemplateMenu.Size = new System.Drawing.Size(200, 22);
+            this.exportToExcelTemplateMenu.Size = new System.Drawing.Size(207, 22);
             this.exportToExcelTemplateMenu.Text = "Export to Excel template";
             this.exportToExcelTemplateMenu.Click += new System.EventHandler(this.exportToExcelTemplateMenu_Click);
             // 
@@ -134,7 +136,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             // 
             this.exportToExcelMenu.AccessibleDescription = "REPORTM00001";
             this.exportToExcelMenu.Name = "exportToExcelMenu";
-            this.exportToExcelMenu.Size = new System.Drawing.Size(200, 22);
+            this.exportToExcelMenu.Size = new System.Drawing.Size(207, 22);
             this.exportToExcelMenu.Text = "Export To Excel";
             this.exportToExcelMenu.Click += new System.EventHandler(this.exportToExcelMenu_Click);
             // 
@@ -142,7 +144,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             // 
             this.exportToXmlMenu.AccessibleDescription = "REPORTM00005";
             this.exportToXmlMenu.Name = "exportToXmlMenu";
-            this.exportToXmlMenu.Size = new System.Drawing.Size(200, 22);
+            this.exportToXmlMenu.Size = new System.Drawing.Size(207, 22);
             this.exportToXmlMenu.Text = "Export to xml";
             this.exportToXmlMenu.Click += new System.EventHandler(this.exportToXmlMenu_Click);
             // 
@@ -150,14 +152,14 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             // 
             this.printGridMenu.AccessibleDescription = "REPORTM00007";
             this.printGridMenu.Name = "printGridMenu";
-            this.printGridMenu.Size = new System.Drawing.Size(200, 22);
+            this.printGridMenu.Size = new System.Drawing.Size(207, 22);
             this.printGridMenu.Text = "Print Grid";
             this.printGridMenu.Click += new System.EventHandler(this.printGrid_Click);
             // 
             // viewGridMenu
             // 
             this.viewGridMenu.Name = "viewGridMenu";
-            this.viewGridMenu.Size = new System.Drawing.Size(200, 22);
+            this.viewGridMenu.Size = new System.Drawing.Size(207, 22);
             this.viewGridMenu.Text = "View";
             this.viewGridMenu.Click += new System.EventHandler(this.viewGrid_Click);
             // 
@@ -165,9 +167,17 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             // 
             this.exportToPdfMenu.AccessibleDescription = "REPORTM00006";
             this.exportToPdfMenu.Name = "exportToPdfMenu";
-            this.exportToPdfMenu.Size = new System.Drawing.Size(200, 22);
+            this.exportToPdfMenu.Size = new System.Drawing.Size(207, 22);
             this.exportToPdfMenu.Text = "Export to PDF";
             this.exportToPdfMenu.Click += new System.EventHandler(this.exportToPdfToolStripMenuItem_Click);
+            // 
+            // viewInvoiceInfoMenu
+            // 
+            this.viewInvoiceInfoMenu.AccessibleDescription = "INVOICEM00048";
+            this.viewInvoiceInfoMenu.Name = "viewInvoiceInfoMenu";
+            this.viewInvoiceInfoMenu.Size = new System.Drawing.Size(207, 22);
+            this.viewInvoiceInfoMenu.Text = "Xem thông tin chứng từ";
+            this.viewInvoiceInfoMenu.Click += new System.EventHandler(this.viewInvoiceInfoMenu_Click);
             // 
             // grbDieuKienLoc
             // 
@@ -530,12 +540,13 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             this.btnExport3.UseVisualStyleBackColor = true;
             this.btnExport3.Click += new System.EventHandler(this.btnExport3_Click);
             // 
-            // viewDataInfoMenu
+            // viewListInfoMenu
             // 
-            this.viewDataInfoMenu.Name = "viewDataInfoMenu";
-            this.viewDataInfoMenu.Size = new System.Drawing.Size(200, 22);
-            this.viewDataInfoMenu.Text = "ViewDataInfo";
-            this.viewDataInfoMenu.Click += new System.EventHandler(this.viewDataInfoMenu_Click);
+            this.viewListInfoMenu.AccessibleDescription = "INVOICEM00049";
+            this.viewListInfoMenu.Name = "viewListInfoMenu";
+            this.viewListInfoMenu.Size = new System.Drawing.Size(207, 22);
+            this.viewListInfoMenu.Text = "Xem thông tin danh mục";
+            this.viewListInfoMenu.Click += new System.EventHandler(this.viewListInfoMenu_Click);
             // 
             // DanhMucReportForm
             // 
@@ -636,7 +647,8 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
         private System.Windows.Forms.ToolStripMenuItem exportToPdfMenu;
         private System.Windows.Forms.RadioButton rCurrent;
         private wyDay.Controls.SplitButton btnExport3;
-        private System.Windows.Forms.ToolStripMenuItem viewDataInfoMenu;
+        private System.Windows.Forms.ToolStripMenuItem viewInvoiceInfoMenu;
+        private System.Windows.Forms.ToolStripMenuItem viewListInfoMenu;
 
 
 

@@ -12,7 +12,7 @@ using CrystalDecisions.CrystalReports.Engine;
 using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.ChungTuManager;
-using V6ControlManager.FormManager.ChungTuManager.InChungTu;
+using V6ControlManager.FormManager.DanhMucManager;
 using V6Controls;
 using V6Controls.Forms;
 using V6Controls.Forms.DanhMuc.Add_Edit;
@@ -522,7 +522,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                             if (!key3.Contains("5")) printGridMenu.Visible = false;
                             //if (!key3.Contains("6")) viewDataToolStripMenuItem.Visible = false;
                             if (!key3.Contains("7")) exportToPdfMenu.Visible = false;
-                            if (!key3.Contains("8")) viewDataInfoMenu.Visible = false;
+                            if (!key3.Contains("8")) viewInvoiceInfoMenu.Visible = false;
                         }
                     }
                     else//Chưa gửi ItemID
@@ -541,7 +541,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                         case '5': DefaultMenuItem = printGridMenu; break;
                         //case '6': DefaultMenuItem = viewDataMenu; break;
                         case '7': DefaultMenuItem = exportToPdfMenu; break;
-                        //case '8': DefaultMenuItem = viewDataInfoMenu; break;
+                        //case '8': DefaultMenuItem = viewInvoiceInfoMenu; break;
                     }
 
                 //InvokeFormEvent(FormDynamicEvent.INIT2);
@@ -1632,27 +1632,38 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
                 DefaultMenuItem.PerformClick();
         }
 
-        private void viewDataInfoMenu_Click(object sender, EventArgs e)
+        private void viewInvoiceInfoMenu_Click(object sender, EventArgs e)
         {
             try
             {
-                if (dataGridView1.CurrentRow == null) return;
-                if (dataGridView1.Columns.Contains("MA_CT") && dataGridView1.Columns.Contains("STT_REC"))
-                {
-                    var row = dataGridView1.CurrentRow;
-                    string ma_ct = row.Cells["MA_CT"].Value.ToString().Trim();
-                    string stt_rec = row.Cells["STT_REC"].Value.ToString().Trim();
-                    if (ma_ct == String.Empty || stt_rec == String.Empty) return;
-                    new InvoiceInfosViewForm(new V6InvoiceBase(ma_ct), stt_rec, ma_ct).ShowDialog(this);
-                }
-                else
-                {
-                    this.ShowInfoMessage(V6Text.CheckData);
-                }
+                if (dataGridView1.CurrentRow == null || !dataGridView1.Columns.Contains("MA_CT") || !dataGridView1.Columns.Contains("STT_REC")) return;
+                
+                var row = dataGridView1.CurrentRow;
+                string ma_ct = row.Cells["MA_CT"].Value.ToString().Trim();
+                string stt_rec = row.Cells["STT_REC"].Value.ToString().Trim();
+                if (ma_ct == String.Empty || stt_rec == String.Empty) return;
+                new InvoiceInfosViewForm(new V6InvoiceBase(ma_ct), stt_rec, ma_ct).ShowDialog(this);
+
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".viewDataInfoMenu_Click", ex);
+                this.ShowErrorException(GetType() + ".viewInvoiceInfoMenu_Click", ex);
+            }
+        }
+
+        private void viewListInfoMenu_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dataGridView1.CurrentRow == null || !dataGridView1.Columns.Contains("MA_DM") || !dataGridView1.Columns.Contains("UID")) return;
+
+                var row_data = dataGridView1.CurrentRow.ToDataDictionary();
+                string ma_dm = ObjectAndString.ObjectToString(row_data["MA_DM"]);
+                new DanhMucInfosViewForm(ma_dm, row_data).ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + ".viewListInfoMenu_Click", ex);
             }
         }
 

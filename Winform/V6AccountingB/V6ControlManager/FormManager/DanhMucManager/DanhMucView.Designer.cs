@@ -58,7 +58,7 @@
             this.cboFilter = new V6Controls.V6ComboBox();
             this.lblFilter = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.viewDataInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewInvoiceInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -410,16 +410,16 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.viewDataInfoMenu});
+            this.viewInvoiceInfoMenu});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(145, 26);
             // 
-            // viewDataInfoMenu
+            // viewInvoiceInfoMenu
             // 
-            this.viewDataInfoMenu.Name = "viewDataInfoMenu";
-            this.viewDataInfoMenu.Size = new System.Drawing.Size(144, 22);
-            this.viewDataInfoMenu.Text = "ViewDataInfo";
-            this.viewDataInfoMenu.Click += new System.EventHandler(this.viewDataInfoMenu_Click);
+            this.viewInvoiceInfoMenu.Name = "viewInvoiceInfoMenu";
+            this.viewInvoiceInfoMenu.Size = new System.Drawing.Size(144, 22);
+            this.viewInvoiceInfoMenu.Text = "Xem thông tin chứng từ";
+            this.viewInvoiceInfoMenu.Click += new System.EventHandler(this.viewInvoiceInfoMenu_Click);
             // 
             // DanhMucView
             // 
@@ -487,6 +487,6 @@
         private V6Controls.V6ComboBox cboFilter;
         private System.Windows.Forms.Label lblFilter;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem viewDataInfoMenu;
+        private System.Windows.Forms.ToolStripMenuItem viewInvoiceInfoMenu;
     }
 }
