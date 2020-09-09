@@ -98,12 +98,19 @@ namespace V6ThuePost
                     ReadXmlInfo(arg1_xmlFile);
                     string jsonBody = null;
                     //string dbfFile = args[1];
+                    BkavWS bkavWS = new BkavWS();
+                    ExecCommandFunc wsExecCommand = null;
+                    var webservice = new V6ThuePostBkavApi.vn.ehoadon.wsdemo.WSPublicEHoaDon(baseUrl);
+                    wsExecCommand = webservice.ExecuteCommand;
+                    uint Constants_Mode = RemoteCommand.DefaultMode;
+                    remoteCommand = new RemoteCommand(wsExecCommand, BkavPartnerGUID, BkavPartnerToken, Constants_Mode);
+                    V6Return v6return = null;
 
                     if (mode.ToUpper() == "MTEST")
                     {
                         jsonBody = "";
                         File.Create(flagFileName1).Close();
-                        result = POST(jsonBody, BkavConst._100_CreateNew);
+                        result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._100_CreateNew, out v6return);
                         if (result.Contains("Dữ liệu xml đầu vào không đúng quy định"))
                         {
                             result = "OK:" + result;
@@ -117,86 +124,61 @@ namespace V6ThuePost
                     {
                         jsonBody = ReadData(arg2, mode);
                         File.Create(flagFileName1).Close();
-                        result = POST(jsonBody, BkavConst._100_CreateNew);
-                        string sGUID = null;
-                        if (result.Contains("; ")) sGUID = result.Substring(result.IndexOf("; ", StringComparison.Ordinal) + 2);
-                        if (!string.IsNullOrEmpty(sGUID))
+                        result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._100_CreateNew, out v6return);
+                        if (!string.IsNullOrEmpty(v6return.RESULT_ERROR_MESSAGE))
                         {
-                            WriteFlag(flagFileName4, sGUID);
+                            WriteFlag(flagFileName4, v6return.SO_HD + ":" + v6return.ID + ":" + v6return.SECRET_CODE);
                         }
                     }
                     else if (mode == "M101")
                     {
                         jsonBody = ReadData(arg2, mode);
                         File.Create(flagFileName1).Close();
-                        result = POST(jsonBody, BkavConst._101_CreateEmpty);
-                        string sGUID = null;
-                        if (result.Contains("; ")) sGUID = result.Substring(result.IndexOf("; ", StringComparison.Ordinal) + 2);
-                        if (!string.IsNullOrEmpty(sGUID))
+                        result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._101_CreateEmpty, out v6return);
+                        if (!string.IsNullOrEmpty(v6return.RESULT_ERROR_MESSAGE))
                         {
-                            WriteFlag(flagFileName4, sGUID);
+                            WriteFlag(flagFileName4, v6return.SO_HD + ":" + v6return.ID + ":" + v6return.SECRET_CODE);
                         }
                     }
                     else if (mode == "M200") // update 101
                     {
                         jsonBody = ReadData(arg2, mode);
                         File.Create(flagFileName1).Close();
-                        result = POST(jsonBody, BkavConst._200_Update);
-                        string sGUID = null;
-                        if (result.Contains("; ")) sGUID = result.Substring(result.IndexOf("; ", StringComparison.Ordinal) + 2);
-                        if (!string.IsNullOrEmpty(sGUID))
+                        result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._200_Update, out v6return);
+                        if (!string.IsNullOrEmpty(v6return.RESULT_ERROR_MESSAGE))
                         {
-                            WriteFlag(flagFileName4, sGUID);
+                            WriteFlag(flagFileName4, v6return.SO_HD + ":" + v6return.ID + ":" + v6return.SECRET_CODE);
                         }
                     }
                     else if (mode == "M112")
                     {
                         jsonBody = ReadData(arg2, mode);
                         File.Create(flagFileName1).Close();
-                        result = POST(jsonBody, BkavConst._112_CreateWithParternSerial);
-                        string sGUID = null;
-                        if (result.Contains("; ")) sGUID = result.Substring(result.IndexOf("; ", StringComparison.Ordinal) + 2);
-                        if (!string.IsNullOrEmpty(sGUID))
+                        result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._112_CreateWithParternSerial, out v6return);
+                        if (!string.IsNullOrEmpty(v6return.RESULT_ERROR_MESSAGE))
                         {
-                            WriteFlag(flagFileName4, sGUID);
+                            WriteFlag(flagFileName4, v6return.SO_HD + ":" + v6return.ID + ":" + v6return.SECRET_CODE);
                         }
-
-                        //BkavWS bkavWS = new BkavWS();
-                        //ExecCommandFunc wsExecCommand = null;
-                        //var webservice = new V6ThuePostBkavApi.vn.ehoadon.wsdemo.WSPublicEHoaDon(baseUrl);
-                        //wsExecCommand = webservice.ExecuteCommand;
-                        //uint Constants_Mode = RemoteCommand.DefaultMode;
-                        //var remoteCommand = new RemoteCommand(wsExecCommand, BkavPartnerGUID, BkavPartnerToken, Constants_Mode);
-
-                        //jsonBody = ReadData(arg2, mode);
-                        //File.Create(flagFileName1).Close();
-                        //IDictionary<string, object> out_result;
-                        //result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._112_CreateWithParternSerial, out out_result);
-
-                        //string sGUID = null;
-                        //if (result.Contains("; ")) sGUID = result.Substring(result.IndexOf("; ", StringComparison.Ordinal) + 2);
-                        //if (!string.IsNullOrEmpty(sGUID))
-                        //{
-                        //    WriteFlag(flagFileName4, sGUID);
-                        //}
                     }
                     else  if (mode == "S")
                     {
                         jsonBody = ReadData(arg2, mode);
                         File.Create(flagFileName1).Close();
-                        result = POST(jsonBody, BkavConst._121_CreateAdjust);
-                        string sGUID = null;
-                        if (result.Contains("; ")) sGUID = result.Substring(result.IndexOf("; ", StringComparison.Ordinal) + 2);
-                        if (!string.IsNullOrEmpty(sGUID))
+                        result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._121_CreateAdjust, out v6return);
+                        if (!string.IsNullOrEmpty(v6return.RESULT_ERROR_MESSAGE))
                         {
-                            WriteFlag(flagFileName4, sGUID);
+                            WriteFlag(flagFileName4, v6return.SO_HD + ":" + v6return.ID + ":" + v6return.SECRET_CODE);
                         }
                     }
                     else if (mode == "T")
                     {
                         jsonBody = ReadData(arg2, mode);
                         File.Create(flagFileName1).Close();
-                        result = POST(jsonBody, BkavConst._120_CreateReplace);
+                        result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._120_CreateReplace, out v6return);
+                        if (!string.IsNullOrEmpty(v6return.RESULT_ERROR_MESSAGE))
+                        {
+                            WriteFlag(flagFileName4, v6return.SO_HD + ":" + v6return.ID + ":" + v6return.SECRET_CODE);
+                        }
                     }
                     else if (mode == "E_G1")
                     {
@@ -204,35 +186,16 @@ namespace V6ThuePost
                     }
                     else if (mode == "E_H1")
                     {
-                        //MessageBox.Show("Test mode: " + mode);
-                        BkavWS bkavWS = new BkavWS();
-
-                        ExecCommandFunc wsExecCommand = null;
-                        var webservice = new V6ThuePostBkavApi.vn.ehoadon.wsdemo.WSPublicEHoaDon(baseUrl);
-                        wsExecCommand = webservice.ExecuteCommand;
-                        uint Constants_Mode = RemoteCommand.DefaultMode;
-                        var remoteCommand = new RemoteCommand(wsExecCommand, BkavPartnerGUID, BkavPartnerToken, Constants_Mode);
-
                         ReadData(arg2, mode);
                         File.Create(flagFileName1).Close();
                         jsonBody = fkeyA;// paras.Fkey_hd;
                         //MessageBox.Show("Test jsonBody " + jsonBody);
-                        V6Return v6return;
                         result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._202_CancelInvoiceByPartnerInvoiceID, out v6return);
                     }
                     else if (mode == "E_T1")
                     {
-                        BkavWS bkavWS = new BkavWS();
-
-                        ExecCommandFunc wsExecCommand = null;
-                        var webservice = new V6ThuePostBkavApi.vn.ehoadon.wsdemo.WSPublicEHoaDon(baseUrl);
-                        wsExecCommand = webservice.ExecuteCommand;
-                        uint Constants_Mode = RemoteCommand.DefaultMode;
-                        var remoteCommand = new RemoteCommand(wsExecCommand, BkavPartnerGUID, BkavPartnerToken, Constants_Mode);
-
                         jsonBody = ReadData(arg2, "T");
                         File.Create(flagFileName1).Close();
-                        V6Return v6return;
                         result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._123_CreateReplace, out v6return);
                     }
 
@@ -724,7 +687,7 @@ namespace V6ThuePost
         }
         #endregion ==== ALNT ====
 
-        public static string POST(string jsonBody, int comandType)
+        public static string POST0(string jsonBody, int comandType)
         {
             string result = null;
             try

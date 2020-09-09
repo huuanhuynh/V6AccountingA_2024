@@ -13,7 +13,7 @@ namespace V6ThuePost
 
         private void btnTest_Click(object sender, EventArgs e)
         {
-            string result = Program.POST("", BkavConst._100_CreateNew);
+            string result = Program.POST0("", BkavConst._100_CreateNew);
             lblResult.Text = result;
             if (result != null && result.Contains("Dữ liệu tạo hóa đơn không hợp lệ"))
             {
@@ -26,7 +26,7 @@ namespace V6ThuePost
         }
         private void btnSend_Click(object sender, EventArgs e)
         {
-            string result = Program.POST(richTextBox1.Text, BkavConst._100_CreateNew);
+            string result = Program.POST0(richTextBox1.Text, BkavConst._100_CreateNew);
             lblResult.Text = result;
             V6Message.Show(result, 500, this);
         }
