@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using V6AccountingBusiness;
 using V6Init;
-using V6Structs;
-using V6Tools.V6Convert;
 
 namespace V6Controls.Forms.DanhMuc.Add_Edit
 {
@@ -23,6 +19,23 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 txtDVT.SetInitFilter("ma_vt='" + txtMaVt.Text.Trim() + "'");
             };
+            MyInit2();
+        }
+
+        private void MyInit2()
+        {
+            try
+            {
+                txtMaGia.ExistRowInTable();
+                txtMaKH.ExistRowInTable();
+                txtMaKho.ExistRowInTable();
+                txtMaVt.ExistRowInTable();
+                txtDVT.ExistRowInTable();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoBeforeEdit", ex);
+            }
         }
 
         public override void DoBeforeEdit()

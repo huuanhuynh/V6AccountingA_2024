@@ -197,7 +197,15 @@ namespace V6Tools.V6Convert
                     }
                     catch
                     {
-                        
+                        try
+                        {
+                            var d = DateTime.FromOADate(Convert.ToDouble(o));
+                            return d.Date;
+                        }
+                        catch
+                        {
+                            
+                        }
                     }
                     break;
             }

@@ -920,7 +920,14 @@ namespace V6SqlConnect
                     {
                         DateTime d = (DateTime)objValue;
                         if(d.Year>=1900 && d.Year<=2079)
-                        return "'" + d.ToString("yyyyMMdd") + "'";
+                            return "'" + d.ToString("yyyyMMdd") + "'";
+                        return "'19000101'";
+                    }
+                    else if (objValue is decimal || objValue is int || objValue is double || objValue is long)
+                    {
+                        DateTime d = DateTime.FromOADate(Convert.ToDouble(objValue));
+                        if(d.Year>=1900 && d.Year<=2079)
+                            return "'" + d.ToString("yyyyMMdd") + "'";
                         return "'19000101'";
                     }
                     break;
@@ -930,6 +937,13 @@ namespace V6SqlConnect
                         DateTime d = (DateTime)objValue;
                         if (d.Year >= 1753)
                             return "'" + d.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                        return "'17530101'";
+                    }
+                    else if (objValue is decimal || objValue is int || objValue is double || objValue is long)
+                    {
+                        DateTime d = DateTime.FromOADate(Convert.ToDouble(objValue));
+                        if(d.Year>=1900 && d.Year<=2079)
+                            return "'" + d.ToString("yyyyMMdd") + "'";
                         return "'17530101'";
                     }
                     break;
@@ -982,6 +996,13 @@ namespace V6SqlConnect
                             return "'" + d.ToString("yyyyMMdd") + "'";
                         return "'19000101'";
                     }
+                    else if (objValue is decimal || objValue is int || objValue is double || objValue is long)
+                    {
+                        DateTime d = DateTime.FromOADate(Convert.ToDouble(objValue));
+                        if(d.Year>=1900 && d.Year<=2079)
+                            return "'" + d.ToString("yyyyMMdd") + "'";
+                        return "'19000101'";
+                    }
                     break;
                 case "datetime":
                     if (objValue != null && objValue is DateTime)
@@ -989,6 +1010,13 @@ namespace V6SqlConnect
                         DateTime d = (DateTime)objValue;
                         if (d.Year >= 1753)
                             return "'" + d.ToString("yyyy-MM-dd HH:mm:ss") + "'";
+                        return "'17530101'";
+                    }
+                    else if (objValue is decimal || objValue is int || objValue is double || objValue is long)
+                    {
+                        DateTime d = DateTime.FromOADate(Convert.ToDouble(objValue));
+                        if(d.Year>=1900 && d.Year<=2079)
+                            return "'" + d.ToString("yyyyMMdd") + "'";
                         return "'17530101'";
                     }
                     break;

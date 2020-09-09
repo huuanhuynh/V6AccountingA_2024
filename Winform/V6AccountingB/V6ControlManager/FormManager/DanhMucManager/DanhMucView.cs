@@ -1992,7 +1992,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             LoadAtPage(1);
         }
 
-        private void viewInvoiceInfoMenu_Click(object sender, EventArgs e)
+        private void viewListInfoMenu_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2008,7 +2008,7 @@ namespace V6ControlManager.FormManager.DanhMucManager
             }
             catch (Exception ex)
             {
-                this.ShowErrorException(GetType() + ".viewInvoiceInfoMenu_Click", ex);
+                this.ShowErrorException(GetType() + ".viewListInfoMenu_Click", ex);
             }
         }
         

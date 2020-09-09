@@ -959,7 +959,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         /// Trừ số lượng các dòng đã chọn trong AD
         /// </summary>
         /// <param name="alLoTon"></param>
-        /// <param name="ad"></param>
         private void FixAlLoTon(DataTable alLoTon)
         {
             try
@@ -5278,7 +5277,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 if (NotAddEdit) return;
 
                 chon_accept_flag_add = add;
+                List<string> dateColumns = new List<string>();
+                foreach (DataColumn column in AD.Columns)
+                {
+                    if (ObjectAndString.IsDateTimeType(column.DataType))
+                    {
+                        dateColumns.Add(column.ColumnName);
+                    }
+                }
                 var chonExcel = new LoadExcelDataForm();
+                chonExcel.CheckDateFields = dateColumns;
                 chonExcel.Program = Event_program;
                 chonExcel.All_Objects = All_Objects;
                 chonExcel.DynamicFixMethodName = "DynamicFixExcel";
@@ -5379,7 +5387,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         {
             var count = 0;
             _message = "";
-
+            detail1.MODE = V6Mode.View;
+            dataGridView1.UnLock();
             if (table.Columns.Contains("MA_VT") && table.Columns.Contains("MA_KHO_I")
                 && table.Columns.Contains("TIEN_NT0") && table.Columns.Contains("SO_LUONG1")
                 && table.Columns.Contains("GIA_NT01"))
@@ -5395,7 +5404,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
 
                     if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
                     {
-                        detail1.MODE = V6Mode.Init;
+                        detail1.MODE = V6Mode.View;
                     }
                 }
 
@@ -5541,17 +5550,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         {
             var count = 0;
             _message = "";
-
+            detail1.MODE = V6Mode.View;
+            dataGridView1.UnLock();
             if (table.Columns.Contains("MA_VT") && table.Columns.Contains("MA_KHO"))
             {
-                if (table.Rows.Count > 0)
-                {
-                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
-                    {
-                        detail1.MODE = V6Mode.Init;
-                    }
-                }
-
                 foreach (DataRow row in table.Rows)
                 {
                     var data = row.ToDataDictionary(_sttRec);

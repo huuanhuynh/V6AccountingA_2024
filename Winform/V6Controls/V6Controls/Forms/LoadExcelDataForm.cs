@@ -11,15 +11,22 @@ namespace V6Controls.Forms
 {
     public partial class LoadExcelDataForm : V6Form
     {
+        /// <summary>
+        /// Form đọc dữ liệu từ Excel.
+        /// </summary>
         public LoadExcelDataForm()
         {
             InitializeComponent();
         }
-
+        
         private DataTable data;
         public event DataTableHandler AcceptData;
         public event ControlEventHandle LoadDataComplete;
         public string CheckFields = null;
+        /// <summary>
+        /// Các cột kiểu ngày. Sửa lỗi khi đọc ngày thành chuỗi số trên file excel.
+        /// </summary>
+        public IList<string> CheckDateFields = null;
         /// <summary>
         /// Dùng kiểm tra thông tin khác khi tải dữ liệu Excel.
         /// </summary>
@@ -86,13 +93,20 @@ namespace V6Controls.Forms
                 return;
             }
 
-            data = V6Tools.V6Convert.Excel_File.Sheet1ToDataTable(file);
+            data = Excel_File.Sheet1ToDataTable(file);
             if (chkChuyenMa.Checked && comboBox1.SelectedIndex >= 0 && comboBox2.SelectedIndex >= 0)
             {
-                data = V6Tools.V6Convert.Data_Table.ChuyenMaTiengViet(data, comboBox1.SelectedItem.ToString(),
+                data = Data_Table.ChuyenMaTiengViet(data, comboBox1.SelectedItem.ToString(),
                     comboBox2.SelectedItem.ToString());
             }
 
+            if (CheckDateFields != null)
+            {
+                foreach (string date_field in CheckDateFields)
+                {
+                    V6ControlFormHelper.FixDateColumn(data, date_field);
+                }
+            }
             if (!string.IsNullOrEmpty(CheckFields))
             {
                 if (!V6ControlFormHelper.CheckDataFields(data, ObjectAndString.SplitString(CheckFields)))

@@ -6790,7 +6790,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 if (NotAddEdit) return;
 
                 chon_accept_flag_add = add;
+                List<string> dateColumns = new List<string>();
+                foreach (DataColumn column in AD.Columns)
+                {
+                    if (ObjectAndString.IsDateTimeType(column.DataType))
+                    {
+                        dateColumns.Add(column.ColumnName);
+                    }
+                }
                 var chonExcel = new LoadExcelDataForm();
+                chonExcel.CheckDateFields = dateColumns;
                 chonExcel.Program = Event_program;
                 chonExcel.All_Objects = All_Objects;
                 chonExcel.DynamicFixMethodName = "DynamicFixExcel";

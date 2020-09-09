@@ -5147,7 +5147,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
                 if (NotAddEdit) return;
 
                 chon_accept_flag_add = add;
+                List<string> dateColumns = new List<string>();
+                foreach (DataColumn column in AD.Columns)
+                {
+                    if (ObjectAndString.IsDateTimeType(column.DataType))
+                    {
+                        dateColumns.Add(column.ColumnName);
+                    }
+                }
                 var chonExcel = new LoadExcelDataForm();
+                chonExcel.CheckDateFields = dateColumns;
                 chonExcel.Program = Event_program;
                 chonExcel.All_Objects = All_Objects;
                 chonExcel.DynamicFixMethodName = "DynamicFixExcel";
@@ -6276,14 +6285,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuDuyetXuatBanIX
                 {
                     AD.Rows.Clear();
                 }
-                //if (dataList.Count > 0)
-                //{
-                //    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
-                //    {
-                //        detail1.MODE = V6Mode.Init;
-                //    }
-                //}
-
+                
                 foreach (IDictionary<string, object> row in dataList)
                 {
                     if (row["BOLD"].ToString().Trim() == "1") continue;

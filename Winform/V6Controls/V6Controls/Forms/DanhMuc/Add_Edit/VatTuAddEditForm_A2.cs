@@ -38,6 +38,33 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         private void VatTuFrom_Load(object sender, EventArgs e)
         {
             txtMaVT.Focus();
+            MyInit2();
+        }
+
+        private void MyInit2()
+        {
+            try
+            {
+                txttk_vt.ExistRowInTable();
+                txttk_dt.ExistRowInTable();
+                txttk_gv.ExistRowInTable();
+                txttk_tl.ExistRowInTable();
+                txttk_ck.ExistRowInTable();
+                txttk_spdd.ExistRowInTable();
+                txttk_cl_vt.ExistRowInTable();
+                txttk_cp.ExistRowInTable();
+                txtpma_nvien.ExistRowInTable();
+                txtlma_nvien.ExistRowInTable();
+                txtpma_khc.ExistRowInTable();
+                txtpma_khp.ExistRowInTable();
+                txtpma_khl.ExistRowInTable();
+                //Get ALVTCT1->PHOTOGRAPH
+                LoadImageData();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoBeforeEdit", ex);
+            }
         }
 
         public override void DoBeforeEdit()
@@ -47,26 +74,6 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
                 var v = Categories.IsExistOneCode_List("ABVT,ABLO,ARI70", "Ma_vt", txtMaVT.Text);
                 txtMaVT.Enabled = !v;
                 txtDVT.Enabled = !v;
-
-                txttk_vt.ExistRowInTable();
-                txttk_dt.ExistRowInTable();
-                txttk_gv.ExistRowInTable();
-                txttk_tl.ExistRowInTable();
-                txttk_ck.ExistRowInTable();
-                txttk_spdd.ExistRowInTable();
-                txttk_cl_vt.ExistRowInTable();
-                txttk_cp.ExistRowInTable();
-
-                txtpma_nvien.ExistRowInTable();
-                txtlma_nvien.ExistRowInTable();
-
-                txtpma_khc.ExistRowInTable();
-                txtpma_khp.ExistRowInTable();
-                txtpma_khl.ExistRowInTable();
-
-                //Get ALVTCT1->PHOTOGRAPH
-                LoadImageData();
-
             }
             catch (Exception ex)
             {

@@ -22,6 +22,22 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
             {
                 txtDVT.SetInitFilter("ma_vt='" + txtMaVt.Text.Trim() + "'");
             };
+            MyInit2();
+        }
+
+        private void MyInit2()
+        {
+            try
+            {
+                txtMaGia.ExistRowInTable();
+                txtMaKH.ExistRowInTable();
+                txtMaVt.ExistRowInTable();
+                txtDVT.ExistRowInTable();
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".DoBeforeEdit", ex);
+            }
         }
 
         public override void DoBeforeEdit()

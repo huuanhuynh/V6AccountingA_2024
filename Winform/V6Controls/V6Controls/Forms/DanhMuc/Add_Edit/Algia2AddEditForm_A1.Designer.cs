@@ -93,6 +93,11 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
+            this.v6LabelTextBox3 = new V6Controls.V6LabelTextBox();
+            this.v6LabelTextBox2 = new V6Controls.V6LabelTextBox();
+            this.v6LabelTextBox1 = new V6Controls.V6LabelTextBox();
+            this.txtten_tk_gv = new V6Controls.V6LabelTextBox();
+            this.v6LabelTextBox4 = new V6Controls.V6LabelTextBox();
             this.v6TabControl1.SuspendLayout();
             this.tabThongTinChinh.SuspendLayout();
             this.tabTuDinhNghia.SuspendLayout();
@@ -179,6 +184,7 @@
             this.txtDVT.AccessibleName = "DVT";
             this.txtDVT.BackColor = System.Drawing.SystemColors.Window;
             this.txtDVT.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtDVT.BrotherFields = "TEN_DVT";
             this.txtDVT.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDVT.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtDVT.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -196,6 +202,7 @@
             this.txtMaVt.AccessibleName = "ma_vt";
             this.txtMaVt.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaVt.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaVt.BrotherFields = "TEN_VT";
             this.txtMaVt.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMaVt.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaVt.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -214,6 +221,7 @@
             this.txtMaKH.AccessibleName = "ma_kh";
             this.txtMaKH.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaKH.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaKH.BrotherFields = "TEN_KH";
             this.txtMaKH.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMaKH.EnterColor = System.Drawing.Color.PaleGreen;
             this.txtMaKH.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -231,6 +239,7 @@
             this.txtMaGia.AccessibleName = "ma_gia";
             this.txtMaGia.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaGia.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaGia.BrotherFields = "TEN_GIA";
             this.txtMaGia.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMaGia.CheckNotEmpty = true;
             this.txtMaGia.EnterColor = System.Drawing.Color.PaleGreen;
@@ -379,6 +388,11 @@
             this.tabThongTinChinh.AccessibleDescription = "ADDEDITT00001";
             this.tabThongTinChinh.AutoScroll = true;
             this.tabThongTinChinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.tabThongTinChinh.Controls.Add(this.v6LabelTextBox3);
+            this.tabThongTinChinh.Controls.Add(this.v6LabelTextBox2);
+            this.tabThongTinChinh.Controls.Add(this.v6LabelTextBox4);
+            this.tabThongTinChinh.Controls.Add(this.v6LabelTextBox1);
+            this.tabThongTinChinh.Controls.Add(this.txtten_tk_gv);
             this.tabThongTinChinh.Controls.Add(this.dateNgay_ban);
             this.tabThongTinChinh.Controls.Add(this.lblMaGia);
             this.tabThongTinChinh.Controls.Add(this.txtGiaBan);
@@ -412,6 +426,7 @@
             this.txtMaKho.AccessibleName = "MA_KHO";
             this.txtMaKho.BackColor = System.Drawing.SystemColors.Window;
             this.txtMaKho.BackColorDisabled = System.Drawing.SystemColors.Control;
+            this.txtMaKho.BrotherFields = "TEN_KHO";
             this.txtMaKho.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMaKho.CheckNotEmpty = true;
             this.txtMaKho.EnterColor = System.Drawing.Color.PaleGreen;
@@ -1125,6 +1140,71 @@
             this.label35.TabIndex = 90;
             this.label35.Text = "Mã ĐN 1";
             // 
+            // v6LabelTextBox3
+            // 
+            this.v6LabelTextBox3.AccessibleName = "TEN_DVT";
+            this.v6LabelTextBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.v6LabelTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.v6LabelTextBox3.Location = new System.Drawing.Point(294, 138);
+            this.v6LabelTextBox3.Name = "v6LabelTextBox3";
+            this.v6LabelTextBox3.ReadOnly = true;
+            this.v6LabelTextBox3.Size = new System.Drawing.Size(448, 16);
+            this.v6LabelTextBox3.TabIndex = 23;
+            this.v6LabelTextBox3.TabStop = false;
+            this.v6LabelTextBox3.Tag = "readonly";
+            // 
+            // v6LabelTextBox2
+            // 
+            this.v6LabelTextBox2.AccessibleName = "TEN_GIA";
+            this.v6LabelTextBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.v6LabelTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.v6LabelTextBox2.Location = new System.Drawing.Point(294, 17);
+            this.v6LabelTextBox2.Name = "v6LabelTextBox2";
+            this.v6LabelTextBox2.ReadOnly = true;
+            this.v6LabelTextBox2.Size = new System.Drawing.Size(448, 16);
+            this.v6LabelTextBox2.TabIndex = 24;
+            this.v6LabelTextBox2.TabStop = false;
+            this.v6LabelTextBox2.Tag = "readonly";
+            // 
+            // v6LabelTextBox1
+            // 
+            this.v6LabelTextBox1.AccessibleName = "TEN_KH";
+            this.v6LabelTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.v6LabelTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.v6LabelTextBox1.Location = new System.Drawing.Point(294, 46);
+            this.v6LabelTextBox1.Name = "v6LabelTextBox1";
+            this.v6LabelTextBox1.ReadOnly = true;
+            this.v6LabelTextBox1.Size = new System.Drawing.Size(448, 16);
+            this.v6LabelTextBox1.TabIndex = 25;
+            this.v6LabelTextBox1.TabStop = false;
+            this.v6LabelTextBox1.Tag = "readonly";
+            // 
+            // txtten_tk_gv
+            // 
+            this.txtten_tk_gv.AccessibleName = "TEN_VT";
+            this.txtten_tk_gv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.txtten_tk_gv.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtten_tk_gv.Location = new System.Drawing.Point(294, 108);
+            this.txtten_tk_gv.Name = "txtten_tk_gv";
+            this.txtten_tk_gv.ReadOnly = true;
+            this.txtten_tk_gv.Size = new System.Drawing.Size(448, 16);
+            this.txtten_tk_gv.TabIndex = 26;
+            this.txtten_tk_gv.TabStop = false;
+            this.txtten_tk_gv.Tag = "readonly";
+            // 
+            // v6LabelTextBox4
+            // 
+            this.v6LabelTextBox4.AccessibleName = "TEN_KHO";
+            this.v6LabelTextBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(246)))), ((int)(((byte)(243)))), ((int)(((byte)(226)))));
+            this.v6LabelTextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.v6LabelTextBox4.Location = new System.Drawing.Point(294, 75);
+            this.v6LabelTextBox4.Name = "v6LabelTextBox4";
+            this.v6LabelTextBox4.ReadOnly = true;
+            this.v6LabelTextBox4.Size = new System.Drawing.Size(448, 16);
+            this.v6LabelTextBox4.TabIndex = 25;
+            this.v6LabelTextBox4.TabStop = false;
+            this.v6LabelTextBox4.Tag = "readonly";
+            // 
             // Algia2AddEditForm_A1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1211,5 +1291,10 @@
         private V6DateTimeColor dateNgayS7;
         private V6VvarTextBox txtMaKho;
         private System.Windows.Forms.Label lblMaKho;
+        private V6LabelTextBox v6LabelTextBox3;
+        private V6LabelTextBox v6LabelTextBox2;
+        private V6LabelTextBox v6LabelTextBox4;
+        private V6LabelTextBox v6LabelTextBox1;
+        private V6LabelTextBox txtten_tk_gv;
     }
 }

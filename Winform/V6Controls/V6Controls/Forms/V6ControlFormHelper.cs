@@ -5929,6 +5929,30 @@ namespace V6Controls.Forms
         }
 
         /// <summary>
+        /// Fix excel date as number(string).
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="dateField"></param>
+        public static void FixDateColumn(DataTable data, string dateField)
+        {
+            if (!data.Columns.Contains(dateField)) return;
+            var col_old = data.Columns[dateField];
+            if (ObjectAndString.IsDateTimeType(col_old.DataType)) return;
+
+            string FIELD = dateField.ToUpper();
+            string OLD_FIELD = FIELD + "__OLD";
+            
+            col_old.ColumnName = OLD_FIELD;
+            var col = data.Columns.Add(FIELD, typeof(DateTime));
+            foreach (DataRow row in data.Rows)
+            {
+                DateTime? value = ObjectAndString.ObjectToDate(row[col_old]);
+                if (value == null) row[col] = DBNull.Value;
+                else row[col] = value.Value;
+            }
+        }
+
+        /// <summary>
         /// Sắp xếp thứ tự và gán formatString.
         /// </summary>
         /// <param name="dgv"></param>
@@ -8556,7 +8580,6 @@ namespace V6Controls.Forms
             if (!table.Columns.Contains(oldName)) throw new Exception("NotExist oldName: " + oldName);
             table.Columns[oldName].ColumnName = newName;
         }
-
 
     }
 }

@@ -356,9 +356,7 @@ namespace V6Controls.Forms.DanhMuc.Add_Edit
         {
             if (FormControl.Mode == V6Mode.Add || FormControl.Mode == V6Mode.Edit)
             {
-                V6ControlFormHelper.ProcessUserDefineInfo(
-                    string.IsNullOrEmpty(_aldmConfig.TABLE_VIEW) ? _MA_DM : _aldmConfig.TABLE_VIEW,
-                    FormControl, this, _MA_DM);
+                V6ControlFormHelper.ProcessUserDefineInfo(_MA_DM, FormControl, this, _MA_DM);
             }
         }
     }

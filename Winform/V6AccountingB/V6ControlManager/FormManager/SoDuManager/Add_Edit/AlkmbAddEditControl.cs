@@ -1598,7 +1598,16 @@ namespace V6ControlManager.FormManager.SoDuManager.Add_Edit
             {
                 if (Mode != V6Mode.Add && Mode != V6Mode.Edit) return;
 
+                List<string> dateColumns = new List<string>();
+                foreach (DataColumn column in AD.Columns)
+                {
+                    if (ObjectAndString.IsDateTimeType(column.DataType))
+                    {
+                        dateColumns.Add(column.ColumnName);
+                    }
+                }
                 var chonExcel = new LoadExcelDataForm();
+                chonExcel.CheckDateFields = dateColumns;
                 chonExcel.CheckFields = "MA_KH_I";
                 chonExcel.LoadDataComplete += chonExcel_LoadDataComplete;
                 chonExcel.AcceptData += chonExcel_AcceptData;

@@ -4839,7 +4839,8 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             var add_count = 0;
             _message = "";
-
+            detail1.MODE = V6Mode.View;
+            dataGridView1.UnLock();
             if (table.Columns.Contains("MA_VT") && table.Columns.Contains("MA_KHO_I")
                 && table.Columns.Contains("SO_LUONG1"))
             {
@@ -4850,11 +4851,6 @@ namespace V6ControlManager.FormManager.ChungTuManager
                     if (!flag_add)
                     {
                         AD.Rows.Clear();
-                    }
-
-                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
-                    {
-                        detail1.MODE = V6Mode.Init;
                     }
                 }
 

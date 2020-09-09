@@ -5558,7 +5558,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                 if (NotAddEdit) return;
 
                 chon_accept_flag_add = add;
+                List<string> dateColumns = new List<string>();
+                foreach (DataColumn column in AD.Columns)
+                {
+                    if (ObjectAndString.IsDateTimeType(column.DataType))
+                    {
+                        dateColumns.Add(column.ColumnName);
+                    }
+                }
                 var chonExcel = new LoadExcelDataForm();
+                chonExcel.CheckDateFields = dateColumns;
                 chonExcel.Program = Event_program;
                 chonExcel.All_Objects = All_Objects;
                 chonExcel.DynamicFixMethodName = "DynamicFixExcel";
@@ -5625,7 +5634,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
         {
             var count = 0;
             _message = "";
-
+            detail1.MODE = V6Mode.View;
+            dataGridView1.UnLock();
             if (table.Columns.Contains("MA_VT")
                 && table.Columns.Contains("TIEN_NT0") && table.Columns.Contains("SO_LUONG1")
                 && table.Columns.Contains("GIA_NT01"))
@@ -5637,11 +5647,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
                     if (!flag_add)
                     {
                         AD.Rows.Clear();
-                    }
-
-                    if (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit)
-                    {
-                        detail1.MODE = V6Mode.Init;
                     }
                 }
 
