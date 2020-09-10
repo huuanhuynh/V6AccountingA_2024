@@ -697,6 +697,32 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                             RptExtraParameters[di.Name] = V6BusinessHelper.MoneyToWords(t_tien2_in, LAN,
                                 V6Options.M_MA_NT0);
                         }
+                        // Đọc tiền bằng chữ V
+                        else if (di.Name.ToUpper() == "SOTIENVIETBANGCHUV_TIENBANNT")
+                        {
+                            var t_tien_nt2_in = ObjectAndString.ObjectToDecimal(_tbl2Row[di.Field]);
+                            var ma_nt = _tbl2Row["MA_NT"].ToString().Trim();
+                            RptExtraParameters[di.Name] = V6BusinessHelper.MoneyToWords(t_tien_nt2_in, "V", ma_nt);
+                        }
+                        else if (di.Name.ToUpper() == "SOTIENVIETBANGCHUV_TIENBAN")
+                        {
+                            var t_tien2_in = ObjectAndString.ObjectToDecimal(_tbl2Row[di.Field]);
+                            RptExtraParameters[di.Name] = V6BusinessHelper.MoneyToWords(t_tien2_in, "V",
+                                V6Options.M_MA_NT0);
+                        }
+                        // Đọc tiền bằng chữ E
+                        else if (di.Name.ToUpper() == "SOTIENVIETBANGCHUE_TIENBANNT")
+                        {
+                            var t_tien_nt2_in = ObjectAndString.ObjectToDecimal(_tbl2Row[di.Field]);
+                            var ma_nt = _tbl2Row["MA_NT"].ToString().Trim();
+                            RptExtraParameters[di.Name] = V6BusinessHelper.MoneyToWords(t_tien_nt2_in, "E", ma_nt);
+                        }
+                        else if (di.Name.ToUpper() == "SOTIENVIETBANGCHUE_TIENBAN")
+                        {
+                            var t_tien2_in = ObjectAndString.ObjectToDecimal(_tbl2Row[di.Field]);
+                            RptExtraParameters[di.Name] = V6BusinessHelper.MoneyToWords(t_tien2_in, "E",
+                                V6Options.M_MA_NT0);
+                        }
                         else
                         {
 
