@@ -1341,7 +1341,7 @@ namespace V6Controls.Controls
                 }
 
                 var new_sortOrder = column.HeaderCell.SortGlyphDirection != SortOrder.Ascending;
-                var sort_field = "[" + column.DataPropertyName + "]";
+                var sort_field = column.DataPropertyName;
                 
                 LoadTable(SelectResult.Page, SelectResult.PageSize, sort_field, new_sortOrder);
             }

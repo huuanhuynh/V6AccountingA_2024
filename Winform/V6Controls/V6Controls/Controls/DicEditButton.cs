@@ -152,7 +152,7 @@ namespace V6Controls.Controls
             OnClick0();
             try
             {
-                var source = ObjectAndString.StringToStringDictionary(ReferenceControl.Text);
+                var source = ObjectAndString.StringToStringDictionary(ReferenceControl.Text, Separator_Item[0], Separator_Value[0]);
                 DicEditForm form = new DicEditForm(source);
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {

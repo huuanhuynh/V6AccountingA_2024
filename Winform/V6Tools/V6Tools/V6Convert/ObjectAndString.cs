@@ -738,15 +738,24 @@ namespace V6Tools.V6Convert
             string[] sss = string.IsNullOrEmpty(tag) ? new string[]{} : tag.Split(new []{group_char}, StringSplitOptions.RemoveEmptyEntries);
             foreach (string s in sss)
             {
-                string[] ss = s.Split(new[] { element_char }, StringSplitOptions.RemoveEmptyEntries);
-                if (ss.Length == 1)
+                int index = s.IndexOf(element_char);
+                if (index > 0)
                 {
-                    result.Add("VALUE", ss[0]);
+                    result.Add(s.Substring(0, index), s.Substring(index+1));
                 }
-                else if (ss.Length > 1)
+                else
                 {
-                    result.Add(ss[0].Trim().ToUpper(), ss[1]);
+                    result.Add(s, s);
                 }
+                //string[] ss = s.Split(new[] { element_char }, StringSplitOptions.RemoveEmptyEntries);
+                //if (ss.Length == 1)
+                //{
+                //    result.Add("VALUE", ss[0]);
+                //}
+                //else if (ss.Length > 1)
+                //{
+                //    result.Add(ss[0].Trim().ToUpper(), ss[1]);
+                //}
             }
             return result;
         }

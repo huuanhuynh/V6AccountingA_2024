@@ -94,6 +94,7 @@
             this.lblXml = new System.Windows.Forms.Label();
             this.v6ColorTextBox16 = new V6Controls.V6ColorTextBox();
             this.label47 = new System.Windows.Forms.Label();
+            this.dicEditButton2 = new V6Controls.Controls.DicEditButton();
             this.tabDinhDangMauVaMoRong = new System.Windows.Forms.TabPage();
             this.dicEditButton1 = new V6Controls.Controls.DicEditButton();
             this.txtExtraInfo = new V6Controls.V6ColorTextBox();
@@ -351,7 +352,7 @@
             this.txtExcel1.Location = new System.Drawing.Point(99, 6);
             this.txtExcel1.Name = "txtExcel1";
             this.txtExcel1.ReadOnly = true;
-            this.txtExcel1.Size = new System.Drawing.Size(612, 20);
+            this.txtExcel1.Size = new System.Drawing.Size(620, 20);
             this.txtExcel1.TabIndex = 2;
             this.txtExcel1.TabStop = false;
             // 
@@ -594,7 +595,7 @@
             this.txtShowFields1.LeaveColor = System.Drawing.Color.White;
             this.txtShowFields1.Location = new System.Drawing.Point(99, 32);
             this.txtShowFields1.Name = "txtShowFields1";
-            this.txtShowFields1.Size = new System.Drawing.Size(612, 20);
+            this.txtShowFields1.Size = new System.Drawing.Size(620, 20);
             this.txtShowFields1.TabIndex = 5;
             // 
             // label9
@@ -694,7 +695,7 @@
             this.txtShowFields2.LeaveColor = System.Drawing.Color.White;
             this.txtShowFields2.Location = new System.Drawing.Point(99, 146);
             this.txtShowFields2.Name = "txtShowFields2";
-            this.txtShowFields2.Size = new System.Drawing.Size(612, 20);
+            this.txtShowFields2.Size = new System.Drawing.Size(620, 20);
             this.txtShowFields2.TabIndex = 17;
             // 
             // txtFormats2
@@ -794,7 +795,7 @@
             this.txtNoSum2.LeaveColor = System.Drawing.Color.White;
             this.txtNoSum2.Location = new System.Drawing.Point(99, 234);
             this.txtNoSum2.Name = "txtNoSum2";
-            this.txtNoSum2.Size = new System.Drawing.Size(612, 20);
+            this.txtNoSum2.Size = new System.Drawing.Size(620, 20);
             this.txtNoSum2.TabIndex = 26;
             // 
             // txtNoSum1
@@ -809,7 +810,7 @@
             this.txtNoSum1.LeaveColor = System.Drawing.Color.White;
             this.txtNoSum1.Location = new System.Drawing.Point(99, 120);
             this.txtNoSum1.Name = "txtNoSum1";
-            this.txtNoSum1.Size = new System.Drawing.Size(612, 20);
+            this.txtNoSum1.Size = new System.Drawing.Size(620, 20);
             this.txtNoSum1.TabIndex = 14;
             // 
             // label13
@@ -882,6 +883,7 @@
             this.tabDinhDangXemVaExcel.Controls.Add(this.label13);
             this.tabDinhDangXemVaExcel.Controls.Add(this.label15);
             this.tabDinhDangXemVaExcel.Controls.Add(this.label16);
+            this.tabDinhDangXemVaExcel.Controls.Add(this.dicEditButton2);
             this.tabDinhDangXemVaExcel.Location = new System.Drawing.Point(4, 28);
             this.tabDinhDangXemVaExcel.Name = "tabDinhDangXemVaExcel";
             this.tabDinhDangXemVaExcel.Padding = new System.Windows.Forms.Padding(3);
@@ -1057,7 +1059,7 @@
             this.v6ColorTextBox16.Location = new System.Drawing.Point(99, 290);
             this.v6ColorTextBox16.Margin = new System.Windows.Forms.Padding(4);
             this.v6ColorTextBox16.Name = "v6ColorTextBox16";
-            this.v6ColorTextBox16.Size = new System.Drawing.Size(641, 20);
+            this.v6ColorTextBox16.Size = new System.Drawing.Size(620, 20);
             this.v6ColorTextBox16.TabIndex = 30;
             this.toolTipV6FormControl.SetToolTip(this.v6ColorTextBox16, resources.GetString("v6ColorTextBox16.ToolTip"));
             // 
@@ -1071,6 +1073,17 @@
             this.label47.Size = new System.Drawing.Size(78, 13);
             this.label47.TabIndex = 29;
             this.label47.Text = "EXTRA_PARA";
+            // 
+            // dicEditButton2
+            // 
+            this.dicEditButton2.Image = ((System.Drawing.Image)(resources.GetObject("dicEditButton2.Image")));
+            this.dicEditButton2.Location = new System.Drawing.Point(719, 290);
+            this.dicEditButton2.Name = "dicEditButton2";
+            this.dicEditButton2.ReferenceControl = this.v6ColorTextBox16;
+            this.dicEditButton2.Separator_Item = "~";
+            this.dicEditButton2.Separator_Value = ";";
+            this.dicEditButton2.Size = new System.Drawing.Size(21, 21);
+            this.dicEditButton2.TabIndex = 151;
             // 
             // tabDinhDangMauVaMoRong
             // 
@@ -1565,6 +1578,8 @@
             // cboColorList
             // 
             this.cboColorList.AccessibleName = "COLORV";
+            this.cboColorList.ColorField = null;
+            this.cboColorList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cboColorList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboColorList.FormattingEnabled = true;
             this.cboColorList.Location = new System.Drawing.Point(97, 149);
@@ -1986,5 +2001,6 @@
         protected System.Windows.Forms.Button btnNoSum2;
         protected System.Windows.Forms.Button btnNoSum1;
         private Controls.DicEditButton dicEditButton1;
+        private Controls.DicEditButton dicEditButton2;
     }
 }
