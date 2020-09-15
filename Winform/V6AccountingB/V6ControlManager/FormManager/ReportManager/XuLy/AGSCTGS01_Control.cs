@@ -61,20 +61,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                         var currentRowData = dataGridView1.CurrentRow.ToDataDictionary();
 
 
-                        if (this.ShowConfirmMessage("Có chắc chắn xóa?") ==
-                            DialogResult.Yes)
+                        if (this.ShowConfirmMessage("Có chắc chắn xóa?") == DialogResult.Yes)
                         {
-                            var uid = currentRowData.ContainsKey("UID")
-                                ? ObjectAndString.ObjectToString(currentRowData["UID"])
-                                : "";
-                            var khoa = currentRowData.ContainsKey("KHOA_CTGS")
-                                ? ObjectAndString.ObjectToString(currentRowData["KHOA_CTGS"])
-                                : "";
-
                             var keys = new SortedDictionary<string, object>
                             {
-                                {"UID", uid},
-                                {"KHOA_CTGS", khoa}
+                                {"UID", currentRowData["UID"]},
+                                {"KHOA_CTGS", currentRowData["KHOA_CTGS"]}
                             };
                             var result = V6BusinessHelper.Delete(_tableName, keys);
                             if (result > 0)
@@ -92,7 +84,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         V6ControlFormHelper.NoRightWarning();
                     }
-
                 }
             }
             catch (Exception ex)

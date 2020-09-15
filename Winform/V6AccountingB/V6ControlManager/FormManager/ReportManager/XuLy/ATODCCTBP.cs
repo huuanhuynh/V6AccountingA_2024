@@ -61,89 +61,73 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (dataGridView1.CurrentRow != null)
                 {
-
                     if (V6Login.UserRight.AllowDelete("", "S02"))
-
                     {
                         var currentRowData = dataGridView1.CurrentRow.ToDataDictionary();
 
-                            int CC0 = currentRowData.ContainsKey("CC0")
-                                ? ObjectAndString.ObjectToInt(currentRowData["CC0"])
-                                : 1;
+                        int CC0 = currentRowData.ContainsKey("CC0")
+                            ? ObjectAndString.ObjectToInt(currentRowData["CC0"])
+                            : 1;
 
-                            if (CC0 == 1)
+                        if (CC0 == 1)
+                        {
+                            this.ShowWarningMessage(V6Text.DeleteDenied);
+                        }
+                        else
+                        {
+                            if (this.ShowConfirmMessage("Có chắc chắn xóa điều chuyển bộ phận ?") == DialogResult.Yes)
                             {
-                                this.ShowWarningMessage("Không được xóa phần này!");
+                                int nam = currentRowData.ContainsKey("RNAM")
+                                    ? ObjectAndString.ObjectToInt(currentRowData["RNAM"])
+                                    : 1900;
+                                int ky1 = currentRowData.ContainsKey("RKY1")
+                                    ? ObjectAndString.ObjectToInt(currentRowData["RKY1"])
+                                    : 0;
+                                int ky2 = currentRowData.ContainsKey("RKY2")
+                                    ? ObjectAndString.ObjectToInt(currentRowData["RKY2"])
+                                    : 0;
+                                string Diengiai = currentRowData.ContainsKey("RDIEN_GIAI")
+                                    ? ObjectAndString.ObjectToString(currentRowData["RDIEN_GIAI"])
+                                    : "";
+                                string Madvcs = currentRowData.ContainsKey("MA_DVCS")
+                                    ? ObjectAndString.ObjectToString(currentRowData["MA_DVCS"])
+                                    : "";
+                                string Madvcs0 = currentRowData.ContainsKey("MA_DVCS0")
+                                    ? ObjectAndString.ObjectToString(currentRowData["MA_DVCS0"])
+                                    : "";
+                                string Sothets = currentRowData.ContainsKey("SO_THE_CC")
+                                    ? ObjectAndString.ObjectToString(currentRowData["SO_THE_CC"])
+                                    : "";
 
-                            }
-                            else
-                            {
-                                if (this.ShowConfirmMessage("Có chắc chắn xóa điều chuyển bộ phận ?") == DialogResult.Yes)
+                                SqlParameter[] plist =
                                 {
-
-
-                                    int nam = currentRowData.ContainsKey("RNAM")
-                                        ? ObjectAndString.ObjectToInt(currentRowData["RNAM"])
-                                        : 1900;
-                                    int ky1 = currentRowData.ContainsKey("RKY1")
-                                        ? ObjectAndString.ObjectToInt(currentRowData["RKY1"])
-                                        : 0;
-                                    int ky2 = currentRowData.ContainsKey("RKY2")
-                                        ? ObjectAndString.ObjectToInt(currentRowData["RKY2"])
-                                        : 0;
-                                    string Diengiai = currentRowData.ContainsKey("RDIEN_GIAI")
-                                        ? ObjectAndString.ObjectToString(currentRowData["RDIEN_GIAI"])
-                                        : "";
-                                    string Madvcs = currentRowData.ContainsKey("MA_DVCS")
-                                        ? ObjectAndString.ObjectToString(currentRowData["MA_DVCS"])
-                                        : "";
-                                    string Madvcs0 = currentRowData.ContainsKey("MA_DVCS0")
-                                        ? ObjectAndString.ObjectToString(currentRowData["MA_DVCS0"])
-                                        : "";
-                                    string Sothets = currentRowData.ContainsKey("SO_THE_CC")
-                                        ? ObjectAndString.ObjectToString(currentRowData["SO_THE_CC"])
-                                        : "";
-
-
-                                    var uid = currentRowData.ContainsKey("UID")
-                                        ? ObjectAndString.ObjectToString(currentRowData["UID"])
-                                        : "";
-
-                                    SqlParameter[] plist =
-                                    {
-                                        new SqlParameter("@nam", nam),
-                                        new SqlParameter("@ky1", ky1),
-                                        new SqlParameter("@ky2", ky2),
-                                        new SqlParameter("@User_id", V6Login.UserId),
-                                        new SqlParameter("@So_the_cc", Sothets),
-                                        new SqlParameter("@Ma_dvcs", Madvcs),
-                                        new SqlParameter("@Ma_dvcs0", Madvcs0),
-                                        new SqlParameter("@uid", uid)
-
-
-
-                                    };
-                                    var result = V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure + "_F8",
-                                        plist);
-                                    if (result > 0)
-                                    {
-                                        V6ControlFormHelper.ShowMainMessage(V6Text.Deleted);
-                                        btnNhan.PerformClick();
-                                    }
-                                    else
-                                    {
-                                        V6ControlFormHelper.ShowMainMessage(V6Text.DeleteFail);
-                                    }
+                                    new SqlParameter("@nam", nam),
+                                    new SqlParameter("@ky1", ky1),
+                                    new SqlParameter("@ky2", ky2),
+                                    new SqlParameter("@User_id", V6Login.UserId),
+                                    new SqlParameter("@So_the_cc", Sothets),
+                                    new SqlParameter("@Ma_dvcs", Madvcs),
+                                    new SqlParameter("@Ma_dvcs0", Madvcs0),
+                                    new SqlParameter("@uid", currentRowData["UID"])
+                                };
+                                var result = V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure + "_F8",
+                                    plist);
+                                if (result > 0)
+                                {
+                                    V6ControlFormHelper.ShowMainMessage(V6Text.Deleted);
+                                    btnNhan.PerformClick();
+                                }
+                                else
+                                {
+                                    V6ControlFormHelper.ShowMainMessage(V6Text.DeleteFail);
                                 }
                             }
-
                         }
-                    
+                    }
                     else
                     {
                         V6ControlFormHelper.NoRightWarning();
                     }
-
                 }
             }
             catch (Exception ex)

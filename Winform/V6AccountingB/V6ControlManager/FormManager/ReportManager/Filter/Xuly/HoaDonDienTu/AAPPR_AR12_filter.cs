@@ -223,6 +223,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             try
             {
+                bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                
                 AAPPR_AR12 parentForm = FindParent<AAPPR_AR12>() as AAPPR_AR12;
                 if (parentForm == null)
                 {
@@ -248,6 +250,14 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     new SqlParameter("@Advance", ""),
                 };
                 var map_table = V6BusinessHelper.ExecuteProcedure("VPA_GET_V6MAPINFO", plist0).Tables[0];
+
+                if (shift_is_down)
+                {
+                    var site = PostManager.GetConfigBaseLink(map_table);
+                    if (string.IsNullOrEmpty(site)) return;
+                    System.Diagnostics.Process.Start(site);
+                    return;
+                }
 
                 var pmparams1 = new PostManagerParams
                 {

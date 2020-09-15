@@ -53,27 +53,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (dataGridView1.CurrentRow != null)
                 {
-
                     if (V6Login.UserRight.AllowDelete("", "S0J"))
-
                     {
                         var currentRowData = dataGridView1.CurrentRow.ToDataDictionary();
-
 
                         if (this.ShowConfirmMessage(V6Text.DeleteConfirm) ==
                             DialogResult.Yes)
                         {
-                            var uid = currentRowData.ContainsKey("UID")
-                                ? ObjectAndString.ObjectToString(currentRowData["UID"])
-                                : "";
-                            var khoa = currentRowData.ContainsKey("STT_REC")
-                                ? ObjectAndString.ObjectToString(currentRowData["STT_REC"])
-                                : "";
-
                             var keys = new SortedDictionary<string, object>
                             {
-                                {"UID", uid},
-                                {"STT_REC", khoa}
+                                {"UID", currentRowData["UID"]},
+                                {"STT_REC", currentRowData["STT_REC"]}
                             };
                             var result = V6BusinessHelper.Delete(_tableName, keys);
                             result += V6BusinessHelper.Delete(_tableName + "CT", keys);
@@ -92,7 +82,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     {
                         V6ControlFormHelper.NoRightWarning();
                     }
-
                 }
             }
             catch (Exception ex)

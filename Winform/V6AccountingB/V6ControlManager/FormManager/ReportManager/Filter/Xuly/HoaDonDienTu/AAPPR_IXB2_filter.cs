@@ -225,6 +225,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
         {
             try
             {
+                bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+
                 AAPPR_IXB2 parentForm = FindParent<AAPPR_IXB2>() as AAPPR_IXB2;
                 if (parentForm == null)
                 {
@@ -239,13 +241,13 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                     return;
                 }
 
-                string mode = row.Cells["Kieu_in"].Value.ToString();
-                string soct = row.Cells["So_ct"].Value.ToString().Trim();
-                string dir = row.Cells["Dir_in"].Value.ToString().Trim();
-                string file = row.Cells["File_in"].Value.ToString().Trim();
-                string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
-                string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
-                string serial = row.Cells["SO_SERI"].Value.ToString().Trim();
+                //string mode = row.Cells["Kieu_in"].Value.ToString();
+                //string soct = row.Cells["So_ct"].Value.ToString().Trim();
+                //string dir = row.Cells["Dir_in"].Value.ToString().Trim();
+                //string file = row.Cells["File_in"].Value.ToString().Trim();
+                //string fkey_hd = row.Cells["fkey_hd"].Value.ToString().Trim();
+                //string pattern = row.Cells["MA_MAUHD"].Value.ToString().Trim();
+                //string serial = row.Cells["SO_SERI"].Value.ToString().Trim();
 
                 SqlParameter[] plist =
                         {
@@ -259,6 +261,14 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
                         };
 
                 DataSet ds = V6BusinessHelper.ExecuteProcedure(_reportProcedure + "F9", plist);
+                
+                if (shift_is_down)
+                {
+                    var site = PostManager.GetConfigBaseLink(ds.Tables[0]);
+                    if (string.IsNullOrEmpty(site)) return;
+                    System.Diagnostics.Process.Start(site);
+                    return;
+                }
 
                 var pmparams1 = new PostManagerParams
                 {

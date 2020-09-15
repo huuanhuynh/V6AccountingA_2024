@@ -69,7 +69,7 @@ namespace V6ThuePostManager
         public static string _password = "";
         public static string _codetax = "";
         public static string _ma_dvcs = "";
-        private static string _baseUrl = "", _createInvoiceUrl = "", _modifylink = "";
+        private static string _baseUrl = "", _site = "", _createInvoiceUrl = "", _modifylink = "";
         /// <summary>
         /// InvoiceAPI/InvoiceUtilsWS/getInvoiceRepresentationFile (getInvoiceRepresentationFile url part.)
         /// </summary>
@@ -217,6 +217,14 @@ namespace V6ThuePostManager
             //id = id0;
             //error = error0;
             return result0;
+        }
+
+        public static string GetConfigBaseLink(DataTable mapTable)
+        {
+            _site = "";
+            map_table = mapTable;
+            ReadConfigInfo(mapTable);
+            return _site;
         }
 
         /// <summary>
@@ -4112,6 +4120,9 @@ namespace V6ThuePostManager
                                     break;
                                 case "baselink":
                                     _baseUrl = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
+                                    break;
+                                case "site":
+                                    _site = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;
                                     break;
                                 case "createlink":
                                     _createInvoiceUrl = line.Type == "ENCRYPT" ? UtilityHelper.DeCrypt(line.Value) : line.Value;

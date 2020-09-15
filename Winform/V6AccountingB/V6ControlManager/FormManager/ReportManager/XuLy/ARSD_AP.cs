@@ -37,9 +37,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             {
                 if (dataGridView1.CurrentRow != null)
                 {
-
                     if (V6Login.UserRight.AllowDelete("", "AR0"))
-
                     {
                         var currentRowData = dataGridView1.CurrentRow.ToDataDictionary();
 
@@ -49,15 +47,12 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
 
                         if (TS0 == 1)
                         {
-                            this.ShowWarningMessage("Không được xóa phần này!");
-
+                            this.ShowWarningMessage(V6Text.DeleteDenied);
                         }
                         else
                         {
                             if (this.ShowConfirmMessage("Có chắc chắn xóa tăng giá trị ?") == DialogResult.Yes)
                             {
-
-
                                 int nam = currentRowData.ContainsKey("RNAM")
                                     ? ObjectAndString.ObjectToInt(currentRowData["RNAM"])
                                     : 1900;
@@ -80,25 +75,17 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                     ? ObjectAndString.ObjectToString(currentRowData["SO_THE_TS"])
                                     : "";
 
-
-                                var uid = currentRowData.ContainsKey("UID")
-                                    ? ObjectAndString.ObjectToString(currentRowData["UID"])
-                                    : "";
-
                                 SqlParameter[] plist =
                                 {
-                                        new SqlParameter("@nam", nam),
-                                        new SqlParameter("@ky1", ky1),
-                                        new SqlParameter("@ky2", ky2),
-                                        new SqlParameter("@User_id", V6Login.UserId),
-                                        new SqlParameter("@So_the_ts", Sothets),
-                                        new SqlParameter("@Ma_dvcs", Madvcs),
-                                        new SqlParameter("@Ma_dvcs0", Madvcs0),
-                                        new SqlParameter("@uid", uid)
-
-
-
-                                    };
+                                    new SqlParameter("@nam", nam),
+                                    new SqlParameter("@ky1", ky1),
+                                    new SqlParameter("@ky2", ky2),
+                                    new SqlParameter("@User_id", V6Login.UserId),
+                                    new SqlParameter("@So_the_ts", Sothets),
+                                    new SqlParameter("@Ma_dvcs", Madvcs),
+                                    new SqlParameter("@Ma_dvcs0", Madvcs0),
+                                    new SqlParameter("@uid", currentRowData["UID"])
+                                };
                                 var result = V6BusinessHelper.ExecuteProcedureNoneQuery(_reportProcedure + "_F8",
                                     plist);
                                 if (result > 0)
@@ -112,9 +99,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                                 }
                             }
                         }
-
                     }
-
                     else
                     {
                         V6ControlFormHelper.NoRightWarning();
