@@ -43,6 +43,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             this.viewGridMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToPdfMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.viewInvoiceInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewListInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.grbDieuKienLoc = new System.Windows.Forms.GroupBox();
             this.btnIn = new System.Windows.Forms.Button();
             this.btnHuy = new System.Windows.Forms.Button();
@@ -73,7 +74,6 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             this.btnSuaTTMauBC = new V6Controls.Controls.V6FormButton();
             this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
             this.btnExport3 = new wyDay.Controls.SplitButton();
-            this.viewListInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.grbDieuKienLoc.SuspendLayout();
@@ -109,6 +109,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.Size = new System.Drawing.Size(763, 59);
             this.dataGridView1.TabIndex = 14;
+            this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
             // 
             // contextMenuStrip1
             // 
@@ -122,7 +123,7 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             this.viewInvoiceInfoMenu,
             this.viewListInfoMenu});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(208, 202);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(208, 180);
             // 
             // exportToExcelTemplateMenu
             // 
@@ -178,6 +179,14 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             this.viewInvoiceInfoMenu.Size = new System.Drawing.Size(207, 22);
             this.viewInvoiceInfoMenu.Text = "Xem thông tin chứng từ";
             this.viewInvoiceInfoMenu.Click += new System.EventHandler(this.viewInvoiceInfoMenu_Click);
+            // 
+            // viewListInfoMenu
+            // 
+            this.viewListInfoMenu.AccessibleDescription = "INVOICEM00049";
+            this.viewListInfoMenu.Name = "viewListInfoMenu";
+            this.viewListInfoMenu.Size = new System.Drawing.Size(207, 22);
+            this.viewListInfoMenu.Text = "Xem thông tin danh mục";
+            this.viewListInfoMenu.Click += new System.EventHandler(this.viewListInfoMenu_Click);
             // 
             // grbDieuKienLoc
             // 
@@ -539,14 +548,6 @@ namespace V6ControlManager.FormManager.ReportManager.DanhMuc
             this.btnExport3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExport3.UseVisualStyleBackColor = true;
             this.btnExport3.Click += new System.EventHandler(this.btnExport3_Click);
-            // 
-            // viewListInfoMenu
-            // 
-            this.viewListInfoMenu.AccessibleDescription = "INVOICEM00049";
-            this.viewListInfoMenu.Name = "viewListInfoMenu";
-            this.viewListInfoMenu.Size = new System.Drawing.Size(207, 22);
-            this.viewListInfoMenu.Text = "Xem thông tin danh mục";
-            this.viewListInfoMenu.Click += new System.EventHandler(this.viewListInfoMenu_Click);
             // 
             // DanhMucReportForm
             // 

@@ -6204,6 +6204,26 @@ namespace V6Controls.Forms
         }
 
         /// <summary>
+        /// Định dạng dòng đậm và màu theo program.
+        /// </summary>
+        /// <param name="dataGridView1"></param>
+        /// <param name="program"></param>
+        public static void FormatGridViewBoldColor(V6ColorDataGridView dataGridView1, string program)
+        {
+            try
+            {
+                string FIELDV, OPERV, BOLD_YN, COLOR_YN, COLORV;
+                object VALUEV;
+                V6BusinessHelper.GetFormatGridView(program, "REPORT", out FIELDV, out OPERV, out VALUEV, out BOLD_YN, out COLOR_YN, out COLORV);
+                FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1", ObjectAndString.StringToColor(COLORV));
+            }
+            catch (Exception ex)
+            {
+                WriteExLog("FormatGridViewBoldColor", ex);
+            }
+        }
+
+        /// <summary>
         /// Ẩn cột trong datagridview GRD_HIDE.
         /// </summary>
         /// <param name="dgv"></param>
@@ -8581,5 +8601,6 @@ namespace V6Controls.Forms
             table.Columns[oldName].ColumnName = newName;
         }
 
+        
     }
 }

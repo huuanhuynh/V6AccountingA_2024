@@ -2941,6 +2941,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             }
         }
 
+        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
+        }
+
         
     }
 

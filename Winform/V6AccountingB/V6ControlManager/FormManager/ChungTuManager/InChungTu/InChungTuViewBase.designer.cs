@@ -129,6 +129,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.dataGridView1.TabIndex = 4;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
+            this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
             // 
             // contextMenuStrip1
@@ -140,7 +141,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.InChungTu
             this.exportToPdfMenu,
             this.viewInvoiceInfoMenu});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 136);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 114);
             // 
             // exportToExcelTemplateMenu
             // 

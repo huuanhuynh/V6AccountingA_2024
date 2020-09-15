@@ -47,6 +47,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.viewDataMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToPdfMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.viewInvoiceInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewListInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
             this.timerViewReport = new System.Windows.Forms.Timer(this.components);
             this.cboMauIn = new V6Controls.V6ComboBox();
@@ -81,7 +82,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.btnThemMauBC = new V6Controls.Controls.V6FormButton();
             this.btnExport3 = new wyDay.Controls.SplitButton();
             this.gridViewTopFilter1 = new V6Controls.Controls.GridViewTopFilter();
-            this.viewListInfoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.grbDieuKienLoc.SuspendLayout();
@@ -105,7 +105,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.viewInvoiceInfoMenu,
             this.viewListInfoMenu});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 246);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 224);
             // 
             // exportToExcelTemplateMenu
             // 
@@ -179,6 +179,14 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.viewInvoiceInfoMenu.Size = new System.Drawing.Size(208, 22);
             this.viewInvoiceInfoMenu.Text = "Xem thông tin chứng từ";
             this.viewInvoiceInfoMenu.Click += new System.EventHandler(this.viewInvoiceInfoMenu_Click);
+            // 
+            // viewListInfoMenu
+            // 
+            this.viewListInfoMenu.AccessibleDescription = "INVOICEM00049";
+            this.viewListInfoMenu.Name = "viewListInfoMenu";
+            this.viewListInfoMenu.Size = new System.Drawing.Size(208, 22);
+            this.viewListInfoMenu.Text = "Xem thông tin danh mục";
+            this.viewListInfoMenu.Click += new System.EventHandler(this.viewListInfoMenu_Click);
             // 
             // timerViewReport
             // 
@@ -307,6 +315,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.dataGridView1.TabIndex = 13;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
+            this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
             this.dataGridView1.CurrentCellChanged += new System.EventHandler(this.dataGridView1_CurrentCellChanged);
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
             // 
@@ -629,14 +638,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.gridViewTopFilter1.Name = "gridViewTopFilter1";
             this.gridViewTopFilter1.Size = new System.Drawing.Size(662, 22);
             this.gridViewTopFilter1.TabIndex = 1;
-            // 
-            // viewListInfoMenu
-            // 
-            this.viewListInfoMenu.AccessibleDescription = "INVOICEM00049";
-            this.viewListInfoMenu.Name = "viewListInfoMenu";
-            this.viewListInfoMenu.Size = new System.Drawing.Size(208, 22);
-            this.viewListInfoMenu.Text = "Xem thông tin danh mục";
-            this.viewListInfoMenu.Click += new System.EventHandler(this.viewListInfoMenu_Click);
             // 
             // ReportRWWView2Base
             // 

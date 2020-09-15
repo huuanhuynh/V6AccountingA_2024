@@ -1216,19 +1216,25 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             //catch { }
         }
 
+        //private void FormatGridViewBoldColor()
+        //{
+        //    try
+        //    {
+        //        string FIELDV, OPERV, BOLD_YN, COLOR_YN, COLORV;
+        //        object VALUEV;
+        //        V6BusinessHelper.GetFormatGridView(_program, "REPORT", out FIELDV, out OPERV, out VALUEV, out BOLD_YN, out COLOR_YN, out COLORV);
+        //        V6ControlFormHelper.FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1", ObjectAndString.StringToColor(COLORV));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        this.WriteExLog(GetType() + ".FormatGridViewBoldColor", ex);
+        //    }
+        //}
+
         private void FormatGridView()
         {
             try
             {
-                //VPA_GetFormatGridView]@Codeform VARCHAR(50),@Type VARCHAR(20)
-                string FIELDV, OPERV, BOLD_YN, COLOR_YN, COLORV;
-                object VALUEV;
-                V6BusinessHelper.GetFormatGridView(_program, "REPORT", out FIELDV, out OPERV, out VALUEV, out BOLD_YN,
-                    out COLOR_YN, out COLORV);
-                //Color.MediumAquamarine
-                V6ControlFormHelper.FormatGridView(dataGridView1, FIELDV, OPERV, VALUEV, BOLD_YN == "1", COLOR_YN == "1",
-                    ObjectAndString.StringToColor(COLORV));
-
                 //Header
                 var fieldList = (from DataColumn column in _tbl1.Columns select column.ColumnName).ToList();
 
@@ -1418,7 +1424,8 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 dataGridView1.SetFrozen(0);
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = _tbl1;
-
+                
+                V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
                 FormatGridView();
                 gridViewTopFilter1.MadeFilterItems();
 
@@ -1795,6 +1802,11 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             {
                 e.Column.Visible = false;
             }
+        }
+
+        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            V6ControlFormHelper.FormatGridViewBoldColor(dataGridView1, _program);
         }
 
         private void btnIn_Click(object sender, EventArgs e)
@@ -2186,5 +2198,6 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
                 this.ShowErrorException(GetType() + ".viewListInfoMenu_Click", ex);
             }
         }
+
     }
 }

@@ -2581,10 +2581,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
         {
             try
             {
-                if (M_CAL_SL_QD_ALL == "0") TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
-                if (M_CAL_SL_QD_ALL == "2") TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
-                if (M_CAL_SL_QD_ALL == "1") TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
-                _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
                 var so_ngay = _soNgay == null ? 1m : _soNgay.Value;
                 if (so_ngay == 0) so_ngay = 1;
                 _tienNt2.Value = V6BusinessHelper.Vround(_soLuong1.Value * _giaNt21.Value * so_ngay, M_ROUND_NT);

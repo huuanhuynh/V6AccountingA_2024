@@ -156,13 +156,27 @@ namespace V6Tools.V6Convert
                 default:
                     try
                     {
+                        var t = o.ToString().Trim();
+                        var index1 = t.IndexOf('/');
+                        var index2 = t.LastIndexOf('/');
+                        double d0 = 0d;
+                        if (index1 == -1 && t.Length < 10 && double.TryParse(t, out d0))
+                        {
+                            try
+                            {
+                                var d = DateTime.FromOADate(d0);
+                                return d.Date;
+                            }
+                            catch
+                            {
+                                
+                            }
+                        }
+
                         if (string.IsNullOrEmpty(dateFormat) || dateFormat.ToUpper() == "DD/MM/YYYY")
                         {
-                            // parse dd/MM/yyyy.
-                            var t = o.ToString().Trim();
                             t = t.Replace("_", "");
-                            var index1 = t.IndexOf('/');
-                            var index2 = t.LastIndexOf('/');
+                            
                             var yearString = t.Substring(index2 + 1);
                             var monthString = t.Substring(index1 + 1, index2 - index1 - 1);
                             var dayString = t.Substring(0, index1);
@@ -173,17 +187,18 @@ namespace V6Tools.V6Convert
                             result = new DateTime(year, month, day);
                             return result;
                         }
+
                         if (dateFormat.Length > 1)
                         {
                             DateTime result1;
-                            if (DateTime.TryParseExact(o.ToString().Trim(), dateFormat, null, DateTimeStyles.None, out result1)) return result1;
+                            if (DateTime.TryParseExact(o.ToString().Trim(), dateFormat, null, DateTimeStyles.None, out result1))
+                                return result1;
                         }
+                        // if TryParseExact failed.
                         {
                             // parse dd/MM/yyyy.
-                            var t = o.ToString().Trim();
                             t = t.Replace("_", "");
-                            var index1 = t.IndexOf('/');
-                            var index2 = t.LastIndexOf('/');
+                            
                             var yearString = t.Substring(index2 + 1);
                             var monthString = t.Substring(index1 + 1, index2 - index1 - 1);
                             var dayString = t.Substring(0, index1);
