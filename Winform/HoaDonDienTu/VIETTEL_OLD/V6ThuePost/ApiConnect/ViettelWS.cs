@@ -390,6 +390,27 @@ namespace V6ThuePostViettelApi
         }
 
         /// <summary>
+        /// Tạo mới hoặc sửa hóa đơn nháp.
+        /// </summary>
+        /// <param name="taxCode">Mã số thuế doanh nghiệp sử dụng HĐĐT.</param>
+        /// <param name="jsonBody">Dữ liệu hóa đơn</param>
+        /// <returns></returns>
+        public string POST_NEW_DRAF(string taxCode, string jsonBody)
+        {
+            string result;
+            try
+            {
+                result = POST("/InvoiceAPI/InvoiceWS/createOrUpdateInvoiceDraft/" + taxCode, jsonBody);
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+            }
+            Logger.WriteToLog("ViettelWS.POST_NEW " + result);
+            return result;
+        }
+
+        /// <summary>
         /// Hàm giống tạo mới nhưng có khác biệt trong dữ liệu.
         /// </summary>
         /// <param name="_createInvoiceUrl"></param>

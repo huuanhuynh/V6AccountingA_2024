@@ -2695,7 +2695,14 @@ namespace V6ThuePostManager
                     if (string.IsNullOrEmpty(_SERIAL_CERT))
                     {
                         jsonBody = ReadData_Viettel(paras);
-                        result = viettel_ws.POST_NEW(_createInvoiceUrl, jsonBody);
+                        if (paras.Key_Down == "F4" || paras.Key_Down == "F6")
+                        {
+                            result = viettel_ws.POST_NEW_DRAF(_codetax, jsonBody);
+                        }
+                        else
+                        {
+                            result = viettel_ws.POST_NEW(_createInvoiceUrl, jsonBody);
+                        }
                     }
                     else // Ký số client. /InvoiceAPI/InvoiceWS/createInvoiceUsbTokenGetHash/{supplierTaxCode}
                     {

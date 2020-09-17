@@ -1767,7 +1767,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL
             {
                 if (!(IsReady && (Mode == V6Mode.Add || Mode == V6Mode.Edit)
                       && (detail1.MODE == V6Mode.Add || detail1.MODE == V6Mode.Edit))) return;
-
+                TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
+                TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
+                TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
+                _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
                 _maVt.RefreshLoDateYnValue();
                 
                 TinhTienNt2(actionControl);

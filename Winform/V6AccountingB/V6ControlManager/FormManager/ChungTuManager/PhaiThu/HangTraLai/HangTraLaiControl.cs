@@ -1020,6 +1020,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai
 
         void SoLuong1_V6LostFocus(object sender)
         {
+            TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
+            TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
+            TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
+            _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
            TinhTienNt2(_soLuong1);
         }
 

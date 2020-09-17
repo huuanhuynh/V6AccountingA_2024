@@ -1123,17 +1123,19 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuNhapKho
         {
             try
             {
+                TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
+                TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
+                TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
+                _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
                 if (_maVt.Data != null && _maVt.VITRI_YN)
                 {
                     var packs1 = ObjectAndString.ObjectToDecimal(_maVt.Data["Packs1"]);
                     if (packs1 > 0 && _soLuong1.Value > packs1)
                     {
                         _soLuong1.Value = packs1;
+                        _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
                     }
                 }
-                _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
-
-                //SetControlValue(_sl_td1, _soLuong1.Value, Invoice.GetTemplateSettingAD("SL_TD1"));
 
                 TinhTienVon1(_soLuong1);
                 TinhTienVon(_soLuong1);

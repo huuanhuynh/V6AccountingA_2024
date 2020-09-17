@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6ControlManager.FormManager.DanhMucManager;
 using V6Controls;
 using V6Controls.Controls.GridView;
 using V6Controls.Forms;
 using V6Init;
+using V6Tools;
 using V6Tools.V6Convert;
 
 namespace V6ControlManager.FormManager.ChungTuManager
@@ -101,7 +103,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 if (e.KeyCode == Keys.Space)
                 {
                     e.Handled = true;
-                    CopyRowLeftToRight(dataGridView1.CurrentRow);
+                    CopyRowLeftToRight(dataGridView1.CurrentRow.ToDataDictionary());
                 }
             }
             catch (Exception ex)
@@ -115,31 +117,64 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
         }
 
-        private void CopyRowLeftToRight(DataGridViewRow row)
+        private void CopyRowLeftToRight(IDictionary<string, object> rowData)
         {
-            if(row == null) return;
+            if(rowData == null || rowData.Count == 0) return;
 
-            DataRowView left_row_view = row.DataBoundItem as DataRowView;
-            if (left_row_view != null)
+            string ma_vt_value = rowData[MA_VT].ToString().Trim();
+            // Check
+            if (!chk2.Checked)
             {
-                DataRow left_row = left_row_view.Row;
-                string ma_vt_value = left_row[MA_VT].ToString().Trim();
-                // Check
-                if (!chk2.Checked)
+                foreach (DataRow row0 in _targetTable.Rows)
                 {
-                    foreach (DataRow row0 in _targetTable.Rows)
-                    {
-                        if (row0["MA_VT"].ToString().Trim().ToUpper() == ma_vt_value.ToUpper()) return;
-                    }
+                    if (row0["MA_VT"].ToString().Trim().ToUpper() == ma_vt_value.ToUpper()) return;
                 }
+            }
 
-                DataRow copy = _targetTable.NewRow();
-                copy[MA_VT] = left_row[MA_VT];
-                copy[TEN_VT] = left_row[TEN_VT];
-                copy["DVT1"] = left_row[DVT];
-                copy[SO_LUONG1] = 1;
-                copy[SO_LUONG] = 1;
-                _targetTable.Rows.Add(copy);
+            DataRow copy = _targetTable.NewRow();
+            copy[MA_VT] = rowData[MA_VT];
+            copy[TEN_VT] = rowData[TEN_VT];
+            copy["DVT1"] = rowData[DVT];
+            copy[SO_LUONG1] = 1;
+            copy[SO_LUONG] = 1;
+            _targetTable.Rows.Add(copy);
+            CopyRowLeftToRight_CT(rowData);
+        }
+
+        private void CopyRowLeftToRight_CT(IDictionary<string, object> rowData0)
+        {
+            try
+            {
+                var M_CMA_TD = V6Options.GetValueNull("M_CMA_TD");
+                if (string.IsNullOrEmpty(M_CMA_TD)) return;
+
+                IDictionary<string, object> keys = new Dictionary<string, object>();
+                keys["MA_VT"] = rowData0["MA_VT"];
+                var ctData = V6BusinessHelper.Select("ALVTCT2", keys, "*").Data;
+                foreach (DataRow rowData in ctData.Rows)
+                {
+                    //string ma_vt_value = rowData[MA_VT].ToString().Trim();
+                    // Check
+                    //if (!chk2.Checked)
+                    //{
+                    //    foreach (DataRow row0 in _targetTable.Rows)
+                    //    {
+                    //        if (row0["MA_VT"].ToString().Trim().ToUpper() == ma_vt_value.ToUpper()) return;
+                    //    }
+                    //}
+
+                    DataRow copy = _targetTable.NewRow();
+                    copy[MA_VT] = M_CMA_TD;// rowData[MA_VT];
+                    copy[TEN_VT] = rowData[TEN_VT];
+                    copy["DVT1"] = "rowData[DVT]";
+                    copy[SO_LUONG1] = 1;
+                    copy[SO_LUONG] = 1;
+                    _targetTable.Rows.Add(copy);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException("btnRemoveAll_Click", ex);
             }
         }
 
@@ -168,7 +203,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                CopyRowLeftToRight(row);
+                CopyRowLeftToRight(row.ToDataDictionary());
             }
         }
 
@@ -184,7 +219,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
             foreach (KeyValuePair<int, DataGridViewRow> item in rowDic)
             {
-                CopyRowLeftToRight(item.Value);
+                CopyRowLeftToRight(item.Value.ToDataDictionary());
             }
         }
 
@@ -246,9 +281,9 @@ namespace V6ControlManager.FormManager.ChungTuManager
         //    }
         //    else //đang chọn nhiều hoặc không chọn
         //    {
-        //        foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+        //        foreach (DataGridViewRow rowData in dataGridView1.SelectedRows)
         //        {
-        //            row.Selected = false;
+        //            rowData.Selected = false;
         //        }
         //        for (int i = 0; i < dataGridView1.Rows.Count; i++)
         //        {

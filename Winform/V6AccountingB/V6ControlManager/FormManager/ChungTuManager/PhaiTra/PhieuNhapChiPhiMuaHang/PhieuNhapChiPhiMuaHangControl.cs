@@ -1005,7 +1005,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
         void SoLuong1_V6LostFocus(object sender)
         {
-           TinhTienNt0();
+            //TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
+            //TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
+            //TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
+            _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
+            TinhTienNt0();
         }
 
         public void GiaNt01_V6LostFocus(object sender)
@@ -1260,7 +1264,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         {
             try
             {
-                _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
                 _tienNt0.Value = V6BusinessHelper.Vround((_soLuong1.Value * _giaNt01.Value), M_ROUND_NT);
                 _tien0.Value = V6BusinessHelper.Vround((_tienNt0.Value * txtTyGia.Value), M_ROUND);
 
