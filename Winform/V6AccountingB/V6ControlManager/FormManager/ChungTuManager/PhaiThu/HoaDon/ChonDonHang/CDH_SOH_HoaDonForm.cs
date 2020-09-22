@@ -153,7 +153,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonDonHang
                     if (data.Count > 0)
                     {
                         string AD2AM_string = null;
-                        if (_locKetQua._aldmConfig.EXTRA_INFOR.ContainsKey("AD2AM"))
+                        if (_locKetQua._aldmConfig != null && _locKetQua._aldmConfig.EXTRA_INFOR.ContainsKey("AD2AM"))
                         {
                             AD2AM_string += _locKetQua._aldmConfig.EXTRA_INFOR["AD2AM"];
                         }

@@ -515,6 +515,10 @@ namespace V6ThuePostManager
                     jsonBody = ReadData_Bkav("T");
                     result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._123_CreateReplace, out paras.Result.V6ReturnValues);
                 }
+                else
+                {
+                    result = "ERR: Mode " + paras.Mode + " " + V6Text.NotSupported;
+                }
 
                 if (result.StartsWith("ERR"))
                 {
@@ -974,7 +978,10 @@ namespace V6ThuePostManager
                         }
                     }
                 }
-
+                else
+                {
+                    result = "ERR: Mode " + paras.Mode + " " + V6Text.NotSupported;
+                }
 
 
                 if (result.StartsWith("ERR"))
@@ -2455,7 +2462,10 @@ namespace V6ThuePostManager
                         }
                     }
                 }
-
+                else
+                {
+                    result = "ERR: Mode " + paras.Mode + " " + V6Text.NotSupported;
+                }
 
 
                 if (result.StartsWith("ERR"))
@@ -3199,7 +3209,10 @@ namespace V6ThuePostManager
                         }
                     }
                 }
-
+                else
+                {
+                    result = "ERR: Mode " + paras.Mode + " " + V6Text.NotSupported;
+                }
 
 
                 if (result.StartsWith("ERR"))
@@ -3462,7 +3475,10 @@ namespace V6ThuePostManager
                         }
                     }
                 }
-
+                else
+                {
+                    result = "ERR: Mode " + paras.Mode + " " + V6Text.NotSupported;
+                }
 
 
                 if (result.StartsWith("ERR"))
@@ -4001,9 +4017,9 @@ namespace V6ThuePostManager
                     }
                     else
                     {
-                        var fields = ObjectAndString.SplitStringBy(config.FieldV6, '+');
+                        var fields = ObjectAndString.SplitStringBy(config.FieldV6.Replace("\\+", "~plus~"), '+');
 
-                        string fieldValueString = null;
+                        string fieldValueString = "";
 
                         foreach (string s in fields)
                         {
@@ -4014,15 +4030,15 @@ namespace V6ThuePostManager
                             }
                             else
                             {
-                                if (field.StartsWith("\"") && field.EndsWith("\""))
-                                {
-                                    field = field.Substring(1, field.Length - 2);
-                                }
+                                //if (field.StartsWith("\"") && field.EndsWith("\""))
+                                //{
+                                //    field = field.Substring(1, field.Length - 2);
+                                //}
                                 fieldValueString += field;
                             }
                         }
                         // Chốt.
-                        fieldValue = fieldValueString;
+                        fieldValue = fieldValueString.Replace("~plus~", "+");
                     }// end else giatribieuthuc
                 }
             }

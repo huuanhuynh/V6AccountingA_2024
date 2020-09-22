@@ -11,6 +11,7 @@ using V6AccountingBusiness;
 using V6AccountingBusiness.Invoices;
 using V6Controls;
 using V6Controls.Forms;
+using V6Controls.Forms.Viewer;
 using V6Init;
 using V6ThuePostManager;
 using V6Tools.V6Convert;
@@ -303,7 +304,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 }
                 //Download selected einvoice
                 //, error = "", sohoadon = "", id = "";
-                string pdf_file = "";
+                string return_file_name = "";
                 string tableName = "V6MAPINFO";
                 
                 string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
@@ -338,15 +339,25 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     Mode = mode,
                 };
                 string error;
-                pdf_file = PostManager.PowerDownloadPDF(pmparams, out error);
+                return_file_name = PostManager.PowerDownloadPDF(pmparams, out error);
                 if (!string.IsNullOrEmpty(error))
                 {
                     this.ShowErrorMessage(error);
                     return;
                 }
 
-                AAPPR_SOA3_ViewPDF view = new AAPPR_SOA3_ViewPDF(pdf_file);
-                view.ShowDialog(this);
+                string ext = Path.GetExtension(return_file_name).ToLower();
+                if (ext == ".pdf")
+                {
+                    AAPPR_SOA3_ViewPDF view = new AAPPR_SOA3_ViewPDF(return_file_name);
+                    view.ShowDialog(this);
+                }
+                else if (ext == ".html")
+                {
+                    HtmlViewerForm view = new HtmlViewerForm(return_file_name, return_file_name, false);
+                    view.ShowDialog(this);
+                }
+
             }
             catch (Exception ex)
             {

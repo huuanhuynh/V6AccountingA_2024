@@ -481,7 +481,7 @@ namespace V6ThuePost
                 }
                 else
                 {
-                    var fields = ObjectAndString.SplitStringBy(config.FieldV6, '+');
+                    var fields = ObjectAndString.SplitStringBy(config.FieldV6.Replace("\\+", "~plus~"), '+');
                     fieldValue = null;
                     string fieldValueString = null;
                     decimal fieldValueNumber = 0m;
@@ -528,7 +528,7 @@ namespace V6ThuePost
                     }
                     // Chốt.
                     if (still_number) fieldValue = fieldValueNumber;
-                    else fieldValue = fieldValueString;
+                    else fieldValue = fieldValueString.Replace("~plus~", "+");
                 }
             }
 

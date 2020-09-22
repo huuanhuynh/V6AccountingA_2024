@@ -14,6 +14,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         public CPNKetQuaPhieuNhapMua()
         {
             InitializeComponent();
+            MyInit();
         }
         
         public CPNKetQuaPhieuNhapMua(V6InvoiceBase invoice, DataTable AM, DataTable AD)
@@ -21,6 +22,20 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             InitializeComponent();
             _invoice = invoice;
             //MyInitBase(dataGridView1, dataGridView2, AM, AD);//???//
+            MyInit();
+        }
+
+        private void MyInit()
+        {
+            try
+            {
+                _aldmConfig = ConfigManager.GetAldmConfig("AMAD73A");
+                //if (_aldmConfig.HaveInfo) gridViewSummary1.NoSumColumns = _aldmConfig.GRDT_V1;
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".MyInit", ex);
+            }
         }
 
         public bool MultiSelect { get; set; }
@@ -35,17 +50,8 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         {
             try
             {
-                string grd_show = "", grd_format = "", grd_header = "";
-                var data = V6BusinessHelper.Select("ALDM", "*", "ma_dm='AMAD73A'").Data;
-                if (data.Rows.Count > 0)
-                {
-                    var row = data.Rows[0];
-                    grd_show = row["GRDS_V1"].ToString().Trim();
-                    grd_format = row["GRDF_V1"].ToString().Trim();
-                    grd_header = V6Setting.IsVietnamese ? row["GRDHV_V1"].ToString().Trim() : row["GRDHE_V1"].ToString().Trim();
-                }
-                V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, grd_show, grd_format, grd_header);
-
+                if (!_aldmConfig.HaveInfo) return;
+                V6ControlFormHelper.FormatGridViewAndHeader(dataGridView1, _aldmConfig.GRDS_V1, _aldmConfig.GRDF_V1, _aldmConfig.GRDH_LANG_V1);
                 FormatGridViewAD();
             }
             catch (Exception)
@@ -64,16 +70,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
         {
             try
             {
-                string grd_show = "", grd_format = "", grd_header = "";
-                var data = V6BusinessHelper.Select("ALDM", "*", "ma_dm='AMAD73ACT'").Data;
-                if (data.Rows.Count > 0)
-                {
-                    var row = data.Rows[0];
-                    grd_show = row["GRDS_V1"].ToString().Trim();
-                    grd_format = row["GRDF_V1"].ToString().Trim();
-                    grd_header = V6Setting.IsVietnamese ? row["GRDHV_V1"].ToString().Trim() : row["GRDHE_V1"].ToString().Trim();
-                }
-                V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, grd_show, grd_format, grd_header);
+                var config = ConfigManager.GetAldmConfig("AMAD73ACT");
+                if (!config.HaveInfo) return;
+                V6ControlFormHelper.FormatGridViewAndHeader(dataGridView2, config.GRDS_V1, config.GRDF_V1, config.GRDH_LANG_V1);
             }
             catch (Exception)
             {

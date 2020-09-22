@@ -202,15 +202,41 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
 
         private void btnSuaChiTieu_Click(object sender, System.EventArgs e)
         {
-            bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
-            if (new ConfirmPasswordV6().ShowDialog(this) != DialogResult.OK) return;
-            string tableName = "V6MAPINFO";
-            if (shift_is_down) tableName = "V6MAPINFO1";
-            string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
-            var data = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='" + String1 + "' or ma_td1='0' or ma_td1='') order by GROUPNAME,GC_TD1").Data;
-            IDictionary<string, object> defaultData = new Dictionary<string, object>();
-            defaultData.Add("LOAI", "AAPPR_SOA2");
-            V6ControlFormHelper.ShowDataEditorForm(this, data, tableName, null, keys, false, false, true, true, defaultData);
+            try
+            {
+                bool shift_is_down = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                bool ctrl_is_down = (ModifierKeys & Keys.Control) == Keys.Control;
+                if (new ConfirmPasswordV6().ShowDialog(this) != DialogResult.OK) return;
+                string tableName = "V6MAPINFO";
+                if (shift_is_down) tableName = "V6MAPINFO1";
+                string keys = "UID,MA_TD1";//+ma_td1   1:VIETTEL    2:VNPT    3:BKAV
+                var data = V6BusinessHelper.Select(tableName, "*", "LOAI = 'AAPPR_SOA2' and (MA_TD1='" + String1 + "' or ma_td1='0' or ma_td1='') order by GROUPNAME,GC_TD1").Data;
+                if (ctrl_is_down) // Xuất Excel
+                {
+                    if (data.Columns.Contains("UID")) data.Columns.Remove("UID");
+                    string fileName = V6ControlFormHelper.ExportExcel_ChooseFile(this, data, tableName + "_" + String1 + cboSendType.Text);
+
+                    if (V6Options.AutoOpenExcel)
+                    {
+                        V6ControlFormHelper.OpenFileProcess(fileName);
+                    }
+                    else
+                    {
+                        this.ShowInfoMessage(V6Text.ExportFinish);
+                    }
+                }
+                else
+                {
+                    IDictionary<string, object> defaultData = new Dictionary<string, object>();
+                    defaultData.Add("LOAI", "AAPPR_SOA2");
+                    V6ControlFormHelper.ShowDataEditorForm(this, data, tableName, null, keys, false, false, true, true,
+                        defaultData);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + "btnSuaChiTieu_Click", ex);
+            }
         }
 
         private void cboSendType_SelectedIndexChanged(object sender, System.EventArgs e)

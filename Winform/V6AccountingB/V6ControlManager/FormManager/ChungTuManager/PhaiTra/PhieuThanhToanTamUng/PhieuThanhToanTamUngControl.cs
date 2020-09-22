@@ -2116,6 +2116,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
                         }
                     }
 
+                    AM_old = IsViewingAnInvoice ? AM.Rows[CurrentIndex] : null;
                     ResetForm();
                     Mode = V6Mode.Add;
 

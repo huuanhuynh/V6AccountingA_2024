@@ -454,7 +454,6 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                     view.ShowDialog(this);
                 }
 
-                
             }
             catch (Exception ex)
             {

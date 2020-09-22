@@ -1148,9 +1148,9 @@ namespace V6ThuePost
                     }
                     else
                     {
-                        var fields = ObjectAndString.SplitStringBy(config.FieldV6, '+');
+                        var fields = ObjectAndString.SplitStringBy(config.FieldV6.Replace("\\+", "~plus~"), '+');
                         
-                        string fieldValueString = null;
+                        string fieldValueString = "";
                         
                         foreach (string s in fields)
                         {
@@ -1169,7 +1169,7 @@ namespace V6ThuePost
                             }
                         }
                         // Chốt.
-                        fieldValue = fieldValueString;
+                        fieldValue = fieldValueString.Replace("~plus~", "+");
                     }
                 }
             }

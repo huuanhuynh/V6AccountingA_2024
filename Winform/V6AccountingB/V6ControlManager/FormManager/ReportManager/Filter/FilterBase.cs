@@ -594,6 +594,8 @@ namespace V6ControlManager.FormManager.ReportManager.Filter
             }
         }
 
+        //public bool CancelFocusBtnNhan = false;
+
 
         public virtual void Call1(object s = null)
         {

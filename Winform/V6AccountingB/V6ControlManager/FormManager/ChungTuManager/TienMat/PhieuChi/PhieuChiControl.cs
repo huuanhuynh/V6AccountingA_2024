@@ -3423,6 +3423,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi
                         }
                     }
 
+                    AM_old = IsViewingAnInvoice ? AM.Rows[CurrentIndex] : null;
                     ResetForm();
                     Mode = V6Mode.Add;
                     _MA_GD = (Invoice.Alct["M_MA_GD"] ?? "2").ToString().Trim().ToUpper();

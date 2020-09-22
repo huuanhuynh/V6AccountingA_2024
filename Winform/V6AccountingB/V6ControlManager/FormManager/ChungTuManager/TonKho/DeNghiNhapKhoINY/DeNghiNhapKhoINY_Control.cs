@@ -642,9 +642,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
         /// </summary>
         public void CheckSoLuong1(Control actionControl)
         {
-            TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
-            TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
-            TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, _sl_qd);
+            TinhSoluongQuyDoi_0(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
+            TinhSoluongQuyDoi_2(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
+            TinhSoluongQuyDoi_1(_soLuong1, _sl_qd, _sl_qd2, _hs_qd1, _hs_qd2, actionControl);
             _soLuong.Value = _soLuong1.Value * _he_so1T.Value / _he_so1M.Value;
             TinhTienNt0(actionControl);
             Tinh_thue_ct();
@@ -3405,6 +3405,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
                         }
                     }
 
+                    AM_old = IsViewingAnInvoice ? AM.Rows[CurrentIndex] : null;
                     ResetForm();
                     Mode = V6Mode.Add;
 

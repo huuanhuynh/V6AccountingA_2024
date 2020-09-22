@@ -38,9 +38,13 @@ namespace V6ControlManager.FormManager.ChungTuManager
         
         private const string MA_VT = "MA_VT";
         private const string TEN_VT = "TEN_VT";
+        private const string GC_TD1 = "GC_TD1";
         private const string DVT = "DVT";
+        private const string DVT1 = "DVT1";
         private const string SO_LUONG1 = "SO_LUONG1";
         private const string SO_LUONG = "SO_LUONG";
+        private const string MAIN_YN = "MAIN_YN";
+        private const string SL_TD1 = "SL_TD1";
         //private const string FIELD_NOSUM = "FIELD_NOSUM";
 
         private void MyInit()
@@ -134,14 +138,15 @@ namespace V6ControlManager.FormManager.ChungTuManager
             DataRow copy = _targetTable.NewRow();
             copy[MA_VT] = rowData[MA_VT];
             copy[TEN_VT] = rowData[TEN_VT];
-            copy["DVT1"] = rowData[DVT];
+            copy[DVT1] = rowData[DVT];
             copy[SO_LUONG1] = 1;
             copy[SO_LUONG] = 1;
+            copy[MAIN_YN] = "1";
             _targetTable.Rows.Add(copy);
             CopyRowLeftToRight_CT(rowData);
         }
 
-        private void CopyRowLeftToRight_CT(IDictionary<string, object> rowData0)
+        private void CopyRowLeftToRight_CT(IDictionary<string, object> rowData_0)
         {
             try
             {
@@ -149,7 +154,7 @@ namespace V6ControlManager.FormManager.ChungTuManager
                 if (string.IsNullOrEmpty(M_CMA_TD)) return;
 
                 IDictionary<string, object> keys = new Dictionary<string, object>();
-                keys["MA_VT"] = rowData0["MA_VT"];
+                keys["MA_VT"] = rowData_0["MA_VT"];
                 var ctData = V6BusinessHelper.Select("ALVTCT2", keys, "*").Data;
                 foreach (DataRow rowData in ctData.Rows)
                 {
@@ -165,10 +170,13 @@ namespace V6ControlManager.FormManager.ChungTuManager
 
                     DataRow copy = _targetTable.NewRow();
                     copy[MA_VT] = M_CMA_TD;// rowData[MA_VT];
-                    copy[TEN_VT] = rowData[TEN_VT];
-                    copy["DVT1"] = "rowData[DVT]";
-                    copy[SO_LUONG1] = 1;
-                    copy[SO_LUONG] = 1;
+                    copy[TEN_VT] = "...";
+                    copy[GC_TD1] = rowData[TEN_VT];
+                    copy[DVT1] = rowData_0[DVT];
+                    copy[SO_LUONG1] = rowData[SL_TD1];
+                    copy[SO_LUONG] = rowData[SL_TD1];
+                    copy[MAIN_YN] = "0";
+                    copy[SL_TD1] = rowData[SL_TD1];
                     _targetTable.Rows.Add(copy);
                 }
             }
@@ -350,10 +358,13 @@ namespace V6ControlManager.FormManager.ChungTuManager
             _targetTable = new DataTable("GenFieldInfoList");
             _targetTable.Columns.Add(MA_VT, typeof(string));
             _targetTable.Columns.Add(TEN_VT, typeof (string));
+            _targetTable.Columns.Add(GC_TD1, typeof (string));
             _targetTable.Columns.Add("DVT1", typeof(string));
             if(_invoice.Mact != "IXB") _targetTable.Columns.Add("MA_KHO_I", typeof(string));
             _targetTable.Columns.Add(SO_LUONG1, typeof (decimal));
             _targetTable.Columns.Add(SO_LUONG, typeof (decimal));
+            _targetTable.Columns.Add(MAIN_YN, typeof (string));
+            _targetTable.Columns.Add(SL_TD1, typeof (decimal));
             return _targetTable;
         }
 
@@ -471,6 +482,29 @@ namespace V6ControlManager.FormManager.ChungTuManager
         {
             try
             {
+                try
+                {
+                    // Tính số lượng 1 của dòng con, Lấy so_luong1 dòng chính & sl_td1 dòng con.
+                    
+                    var editRow = _targetTable.Rows[e.RowIndex];
+                    if (editRow["MAIN_YN"] + "" == "1")
+                    {
+                        decimal so_luong1 = ObjectAndString.ObjectToDecimal(editRow[SO_LUONG1]);
+                        for (int i = e.RowIndex+1; i < _targetTable.Rows.Count; i++)
+                        {
+                            var row = _targetTable.Rows[i];
+                            if (row[MAIN_YN] + "" == "1") break;
+                            row[SO_LUONG1] = so_luong1 * ObjectAndString.ObjectToDecimal(row[SL_TD1]);
+                            row[SO_LUONG] = row[SO_LUONG1];
+                        }
+                    }
+                }
+                catch (Exception ex1)
+                {
+                    
+                }
+                
+
                 if (dataGridView2.CurrentRow == null) return;
                 var column = dataGridView2.CurrentCell.OwningColumn;
                 string COLUMN = dataGridView2.CurrentCell.OwningColumn.DataPropertyName.ToUpper();

@@ -439,6 +439,7 @@
             this.btnSuaChiTieu.Size = new System.Drawing.Size(150, 23);
             this.btnSuaChiTieu.TabIndex = 11;
             this.btnSuaChiTieu.Text = "Cấu hình dữ liệu, kết nối";
+            this.filterBaseToolTip1.SetToolTip(this.btnSuaChiTieu, "Shift:Cấu hình con, Ctrl:Xuất excel");
             this.btnSuaChiTieu.UseVisualStyleBackColor = true;
             this.btnSuaChiTieu.Click += new System.EventHandler(this.btnSuaChiTieu_Click);
             // 

@@ -4259,11 +4259,26 @@ namespace V6Controls.Forms
             ReorderDataGridViewColumns(dgv, orderList.ToArray(), i);
         }
 
+        /// <summary>
+        /// Xuất excel hỗ trợ chọn file lưu.
+        /// </summary>
+        /// <param name="owner">Form đang làm việc.</param>
+        /// <param name="data">Dữ liệu xuất Excel.</param>
+        /// <param name="defaultSaveName">Tên file chọn sẵn.</param>
+        /// <returns>Đường dẫn file lưu.</returns>
         public static string ExportExcel_ChooseFile(IWin32Window owner, DataTable data, string defaultSaveName)
         {
             return ExportExcel_ChooseFile(owner, data, defaultSaveName, "");
         }
 
+        /// <summary>
+        /// Xuất excel hỗ trợ chọn file lưu.
+        /// </summary>
+        /// <param name="owner">Form đang làm việc.</param>
+        /// <param name="data">Dữ liệu xuất Excel.</param>
+        /// <param name="defaultSaveName">Tên file chọn sẵn.</param>
+        /// <param name="title">Tiêu đề trong nội dung. Bỏ qua nếu không dùng.</param>
+        /// <returns>Đường dẫn file lưu.</returns>
         public static string ExportExcel_ChooseFile(IWin32Window owner, DataTable data, string defaultSaveName, string title)
         {
             string fileName = null;

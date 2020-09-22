@@ -2171,7 +2171,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportD
 
         private void panel1_Leave(object sender, EventArgs e)
         {
-            btnNhan.Focus();
+            //btnNhan.Focus();
         }
 
         private void exportToPdfToolStripMenuItem_Click(object sender, EventArgs e)
