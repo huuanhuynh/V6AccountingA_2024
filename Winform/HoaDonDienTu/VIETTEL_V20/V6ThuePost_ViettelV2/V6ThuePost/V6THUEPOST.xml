@@ -1,0 +1,64 @@
+﻿<?xml version="1.0"?>
+<Root>
+  <V6Info Field='username' 	Value='eRIaBh+mg1mELLE0KA1j0w==' Type=''/>
+  <V6Info Field='password' 	Value='9mBfhdLtNXLp2CdF43g85g=='/>
+  <V6Info Field='codetax' 	Value='eRIaBh+mg1mELLE0KA1j0w=='/>
+  
+	<V6Info Field='certificateSerial' 	Value='V6SOFT'/>
+  <V6Info Field='token_password_title' 	Value='Kiểm tra mã PIN'/>
+  <V6Info Field='token_password' 	Value='c0PWOMZE43dQSU1zjuEyuw=='/>
+  
+	<V6Info Field='baselink' 	Value='UQL2EugVpi0d4zvlWyCcnoUZfWxlzgKoVK4+lPA9wd4=' Type=''/>
+  <V6Info Field='baselink2' 	Value='UQL2EugVpi3P88flL6irWATg/pet0ME5C2RMFQrlA+pSdMYIun+Wzg==' Note='443'/>
+	
+	<!--Một số ký tự web: [&apos;]=[']	[&quot;]=["]	[&lt;]=[<]	[&gt;]=[>]	[&amp;]=[&]	-->
+	<!--Các thông tin đơn vị được in trên hóa đơn-->
+  <GeneralInvoiceInfo Field='inv_invoiceSeries'	Value='AB/19E' 	FieldV6='SO_SERI' 	Type=''/>
+  <GeneralInvoiceInfo Field='inv_invoiceIssuedDate' 	Value='07/07/2018' FieldV6='ngay_ct' Type='Field'	DataType='Date'/>
+  <GeneralInvoiceInfo Field='inv_currencyCode' 	Value='VND'/>
+  <GeneralInvoiceInfo Field='inv_exchangeRate' 	Value='1'   FieldV6='TY_GIA'  Type='Field'/>
+  <GeneralInvoiceInfo Field='ma_dt' 	Value='NVC'   FieldV6=''  Type='Field'/>
+  <GeneralInvoiceInfo Field='mau_hd' 	Value='01GTKT0/001'/>
+  <GeneralInvoiceInfo Field='inv_paymentMethodName' 	Value='Tiền mặt/Chuyển khoản'	Type='Field'	FieldV6='HTTT'/>
+  
+  <!--a____________Tên parameter trong report_____________Tên trường dữ liệu tương ứng_____________-->
+  <BuyerInfo Field='inv_buyerDisplayName' 	FieldV6='ong_ba'			Type='Field'/>
+  <BuyerInfo Field='inv_buyerLegalName' 			FieldV6='ten_kh' 			Type='Field'  DataType='UPPER'/>
+  <BuyerInfo Field='inv_buyerTaxCode' 			FieldV6='ma_so_thue'		Type='Field'/>
+  <BuyerInfo Field='inv_buyerAddressLine' 			FieldV6='dia_chi'			Type='Field'/>
+  <BuyerInfo Field='inv_buyerEmail' 			FieldV6='E_MAIL'			Type='Field'/>
+  <BuyerInfo Field='inv_buyerBankAccount' 			FieldV6=''			Type='Field'/>
+  <BuyerInfo Field='inv_buyerBankName' 			FieldV6=''			Type='Field'/>
+  
+  <BuyerInfo Field='buyerPhoneNumber' 			FieldV6='DIEN_THOAI'			Type='Field'/>
+  <BuyerInfo Field='buyerFaxNumber' 			FieldV6='FAX'			Type='Field'/>
+  
+  <BuyerInfo Field='buyerIdNo' 			FieldV6='MA_KH'			Type='Field'/>
+  <BuyerInfo Field='buyerIdType' 			FieldV6='LOAI'			Type='Field'/>
+  
+	<SellerInfo Field='inv_sellerBankAccount' 	Value=''/>
+	<SellerInfo Field='inv_sellerBankName' 	Value=''/>
+	
+  <!--a____________Tên sử dụng trong report_____________Tên trường dữ liệu tương ứng_____________-->
+	<ItemInfo	Field='stt_rec0'		FieldV6='stt_rec0'	Type='Field'/>
+	<ItemInfo	Field='inv_itemCode'	FieldV6='ma_vt'		Type='Field'/>
+	<ItemInfo	Field='inv_itemName'	FieldV6='ma_vt+"->"+ten_vt'	Type='Field'/>
+	<ItemInfo	Field='inv_unitCode'		FieldV6='dvt'	Type='Field'/>
+	<ItemInfo	Field='inv_unitName'		FieldV6='dvt'	Type='Field'/>
+	<ItemInfo	Field='inv_quantity'	FieldV6='so_luong'	Type='Field'/>
+	<ItemInfo	Field='inv_unitPrice'	FieldV6='gia2'	Type='Field'/>
+	<ItemInfo	Field='inv_TotalAmountWithoutVat'	FieldV6='tien2'	Type='Field'/>
+	<ItemInfo	Field='inv_vatAmount'	FieldV6='thue'	Type='Field'/>
+	<ItemInfo	Field='inv_TotalAmount'	FieldV6='TIEN2'	Type='Field'/>
+	<ItemInfo	Field='inv_promotion'	FieldV6='0'	Type='Field'/>
+	<ItemInfo	Field='inv_discountPercentage'	FieldV6='PT_CK'	Type='Field'/>
+	<ItemInfo	Field='inv_discountAmount'	FieldV6='ck'	Type='Field'/>
+  <ItemInfo	Field='ma_thue'   Value='0'	FieldV6='ma_thue'	Type='Field'/>
+  
+
+  <SummarizeInfo	Field='inv_TotalAmountWithoutVat'		FieldV6='T_TIEN2'	Type='Field'/>
+  <SummarizeInfo	Field='inv_vatAmount'		FieldV6='T_THUE'	Type='Field'/>
+  <SummarizeInfo	Field='inv_TotalAmount'		FieldV6='T_TT'	Type='Field'/>
+  <SummarizeInfo	Field='inv_discountAmount'		FieldV6='T_CK'	Type='Field'/>
+  
+</Root>	

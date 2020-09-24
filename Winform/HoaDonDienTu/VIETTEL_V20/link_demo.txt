@@ -1,0 +1,13 @@
+https://vinvoice.viettel.vn/
+0100109106-715
+12345aA@
+
+
+POST
+https://vinvoice.viettel.vn/api/auth/login
+
+body:
+{
+  "username" : "0100109106-715",
+  "password" : "12345aA@"
+}

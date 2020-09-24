@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CE245B2A-9CAF-4E2B-B015-EBC7F4E417A1}</ProjectGuid>
+    <ProjectGuid>{92801EE7-A5BA-430C-8434-7EE3A8A03414}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>V6ThuePost</RootNamespace>
-    <AssemblyName>V6ThuePostBKAV</AssemblyName>
+    <AssemblyName>V6ThuePostViettelV2</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -25,7 +25,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -35,20 +35,18 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>V6SoftMax.ico</ApplicationIcon>
+    <ApplicationIcon>VSoft.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Lib\Winform\BkavCommand35\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Git\MicrosoftSource\Framework35\Lib\Winform\BkavCommand35\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="RemoteCommand, Version=1.2.7.947, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Lib\Winform\BkavCommand35\RemoteCommand.dll</HintPath>
+    <Reference Include="Spy001">
+      <HintPath>..\..\..\..\..\Lib\Winform\V6ThuePost\VNPT_HCM\Spy001.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -58,27 +56,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForm.designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseMessage.cs" />
+    <Compile Include="BaseMessageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseMessageForm.designer.cs">
+      <DependentUpon>BaseMessageForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Form1.designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="V6Form.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="V6Form.designer.cs">
-      <DependentUpon>V6Form.cs</DependentUpon>
-    </Compile>
-    <Compile Include="V6Message.cs" />
-    <Compile Include="V6MessageForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="V6MessageForm.designer.cs">
-      <DependentUpon>V6MessageForm.cs</DependentUpon>
-    </Compile>
+    <EmbeddedResource Include="BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -92,9 +93,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="V6Form.resx">
-      <DependentUpon>V6Form.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -115,23 +113,34 @@
       <Project>{14A2C520-1939-4B6A-B584-EE5797F26701}</Project>
       <Name>V6ThuePostObjects</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ApiConnect\V6ThuePostBkavApi.csproj">
-      <Project>{3d8928f4-81c7-443e-98b3-c155eee33927}</Project>
-      <Name>V6ThuePostBkavApi</Name>
+    <ProjectReference Include="..\ApiConnect\V6ThuePostViettelV2Api.csproj">
+      <Project>{938cf42a-d1a7-46d4-866c-1222495a1c4c}</Project>
+      <Name>V6ThuePostViettelV2Api</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Error_48x48_72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Info_48x48_72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Question.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Warning_48x48_72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\V600.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="V6THUEPOST.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
     </Content>
-    <None Include="Resources\V600.png" />
-    <None Include="Resources\Error_48x48_72.png" />
-    <None Include="Resources\Info_48x48_72.png" />
-    <None Include="Resources\Question.png" />
-    <None Include="Resources\Warning.png" />
-    <None Include="Resources\Warning_48x48_72.png" />
-    <Content Include="V6SoftMax.ico" />
+    <Content Include="VSoft.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

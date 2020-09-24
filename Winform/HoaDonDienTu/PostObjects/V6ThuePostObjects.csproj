@@ -50,6 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigLine.cs" />
+    <Compile Include="ViettelV2Object\Request\InvoiceData.cs" />
+    <Compile Include="ViettelV2Object\Request\ViettelV2PostObject.cs" />
+    <Compile Include="ViettelV2Object\Response\LoginResponse.cs" />
+    <Compile Include="ViettelV2Object\Response\ViettelV2Response.cs" />
     <Compile Include="MInvoiceObject\Request\InvoiceData.cs" />
     <Compile Include="MInvoiceObject\Request\MInvoicePostObject.cs" />
     <Compile Include="MInvoiceObject\Response\LoginResponse.cs" />
