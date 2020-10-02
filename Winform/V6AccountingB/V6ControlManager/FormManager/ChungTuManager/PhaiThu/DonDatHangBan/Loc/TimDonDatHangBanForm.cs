@@ -52,20 +52,31 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.DonDatHangBan.Loc
 
         private void MyInit()
         {
-            dateNgayCt1.SetValue(V6Setting.M_ngay_ct1);
-            dateNgayCt2.SetValue(V6Setting.M_ngay_ct2);
-            MyInit_TT();
-            MyInit_TTCT();
-            InitTuyChon();
-            InitLocKetQua();
+            try
+            {
+                dateNgayCt1.SetValue(V6Setting.M_ngay_ct1);
+                dateNgayCt2.SetValue(V6Setting.M_ngay_ct2);
+                MyInit_TT();
+                MyInit_TTCT();
+                InitTuyChon();
+                InitLocKetQua();
 
-            CreateDynamicFilter_TT(_invoice.AMStruct, _invoice.ADV_AM);
-            CreateDynamicFilter2_TTCT(_invoice.ADStruct, _invoice.ADV_AD);
-            
-            _locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
-            _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
+                CreateDynamicFilter_TT(_invoice.AMStruct, _invoice.ADV_AM);
+                CreateDynamicFilter2_TTCT(_invoice.ADStruct, _invoice.ADV_AD);
 
-            LoadDefaultData(4, "SOH", "SEARCH_SOH", ItemID);
+                _locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
+                _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
+
+                LoadDefaultData(4, "SOH", "SEARCH_SOH", ItemID);
+                if (_locKetQua._aldmConfig.HaveInfo)
+                {
+                    Text = V6Setting.IsVietnamese ? _locKetQua._aldmConfig.TITLE : _locKetQua._aldmConfig.TITLE2;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".MyInit", ex);
+            }
         }
 
         private void MyInit_TT()

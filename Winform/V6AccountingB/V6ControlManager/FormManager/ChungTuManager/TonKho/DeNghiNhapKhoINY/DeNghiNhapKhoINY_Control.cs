@@ -5606,7 +5606,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY
 
         private void xuLyKhacMenu_Click(object sender, EventArgs e)
         {
-            InvokeFormEvent(FormDynamicEvent.INKHAC);
+            InvokeFormEvent(FormDynamicEvent.INKHAC) ;
         }
 
         private void thayTheMenu_Click(object sender, EventArgs e)

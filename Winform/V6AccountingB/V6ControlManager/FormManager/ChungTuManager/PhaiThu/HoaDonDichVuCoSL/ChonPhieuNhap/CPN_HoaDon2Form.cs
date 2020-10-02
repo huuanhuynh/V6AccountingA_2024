@@ -58,16 +58,28 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonDichVuCoSL.C
 
         private void MyInit()
         {
-            InitTuyChon();
-            InitLocKetQua();
+            try
+            {
+                InitTuyChon();
+                InitLocKetQua();
 
-            locThongTin1.CreateDynamicFilter(Invoice.AMStruct, Invoice.ADV_AM);
-            locThongTinChiTiet1.CreateDynamicFilter2(Invoice.ADStruct, Invoice.ADV_AD);
-            locThongTin1.maKhach.Text = _ma_kh;
-            locThongTin1.maKhach.ReadOnly = !string.IsNullOrEmpty(_ma_kh);
-            txtMaDVCS.Text = _ma_dvcs;
+                locThongTin1.CreateDynamicFilter(Invoice.AMStruct, Invoice.ADV_AM);
+                locThongTinChiTiet1.CreateDynamicFilter2(Invoice.ADStruct, Invoice.ADV_AD);
+                locThongTin1.maKhach.Text = _ma_kh;
+                locThongTin1.maKhach.ReadOnly = !string.IsNullOrEmpty(_ma_kh);
+                txtMaDVCS.Text = _ma_dvcs;
 
-            LoadDefaultData(4, "SOB", "SEARCH_SOB_IND", ItemID);
+                LoadDefaultData(4, "SOB", "SEARCH_SOB_IND", ItemID);
+                if (_locKetQua._aldmConfig.HaveInfo)
+                {
+                    Text = V6Setting.IsVietnamese ? _locKetQua._aldmConfig.TITLE : _locKetQua._aldmConfig.TITLE2;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".MyInit", ex);
+            }
+
             Ready();
         }
 

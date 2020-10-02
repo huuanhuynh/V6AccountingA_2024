@@ -1486,10 +1486,10 @@ namespace V6Controls
                     f.Find += f_Find;
                     f.ShowDialog(this);
                 }
-                else if (e.KeyData == (Keys.Control | Keys.Shift | Keys.F))
-                {
-                    SwitchFlyingFilter();
-                }
+                //else if (e.KeyData == (Keys.Control | Keys.Shift | Keys.F))
+                //{
+                //    SwitchFlyingFilter();
+                //}
                 else if (e.KeyData == (Keys.Control | Keys.A) && Control_A)
                 {
                     e.Handled = true;

@@ -23,10 +23,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuNh
         private V6Invoice74 Invoice = new V6Invoice74();
         private string _ma_dvcs, _ma_kh, _loai_ct_chon;
         private DateTime _ngayCt;
-        //private bool __ready = false;
         private bool _viewMode;
-        //private List<string> _orderListAD;
-        //public delegate void AcceptSelectDataList(List<IDictionary<string, object>> selectedDataList);
         public event ChonAcceptSelectDataList AcceptSelectEvent;
 
         public bool ViewMode
@@ -58,18 +55,29 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon.ChonPhieuNh
 
         private void MyInit()
         {
-            InitTuyChon();
-            InitLocKetQua();
+            try
+            {
+                InitTuyChon();
+                InitLocKetQua();
 
-            locThongTin1.CreateDynamicFilter(Invoice.AMStruct, Invoice.ADV_AM);
-            locThongTinChiTiet1.CreateDynamicFilter2(Invoice.ADStruct, Invoice.ADV_AD);
+                locThongTin1.CreateDynamicFilter(Invoice.AMStruct, Invoice.ADV_AM);
+                locThongTinChiTiet1.CreateDynamicFilter2(Invoice.ADStruct, Invoice.ADV_AD);
 
-            locThongTin1.maKhach.Text = _ma_kh;
-            locThongTin1.maKhach.ReadOnly = !string.IsNullOrEmpty(_ma_kh);
-            txtMaDVCS.Text = _ma_dvcs;
+                locThongTin1.maKhach.Text = _ma_kh;
+                locThongTin1.maKhach.ReadOnly = !string.IsNullOrEmpty(_ma_kh);
+                txtMaDVCS.Text = _ma_dvcs;
 
-            _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
-            LoadDefaultData(4, Invoice.Mact, "SEARCH_SOA_" + Invoice.Mact, ItemID);
+                _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
+                LoadDefaultData(4, Invoice.Mact, "SEARCH_SOA_" + Invoice.Mact, ItemID);
+                if (_locKetQua._aldmConfig.HaveInfo)
+                {
+                    Text = V6Setting.IsVietnamese ? _locKetQua._aldmConfig.TITLE : _locKetQua._aldmConfig.TITLE2;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".MyInit", ex);
+            }
             Ready();
         }
 

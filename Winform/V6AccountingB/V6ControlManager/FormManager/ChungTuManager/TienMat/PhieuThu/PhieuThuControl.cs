@@ -4508,89 +4508,84 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             }
         }
 
-        private void ChucNang_ChonTuExcel(bool add)
-        {
-            try
-            {
-                if (NotAddEdit) return;
+        //private void ChucNang_ChonTuExcel(bool add)
+        //{
+        //    try
+        //    {
+        //        if (NotAddEdit) return;
 
-                chon_accept_flag_add = add;
-                List<string> dateColumns = new List<string>();
-                foreach (DataColumn column in AD.Columns)
-                {
-                    if (ObjectAndString.IsDateTimeType(column.DataType))
-                    {
-                        dateColumns.Add(column.ColumnName);
-                    }
-                }
-                var chonExcel = new LoadExcelDataForm();
-                chonExcel.CheckDateFields = dateColumns;
-                chonExcel.Program = Event_program;
-                chonExcel.All_Objects = All_Objects;
-                chonExcel.DynamicFixMethodName = "DynamicFixExcel";
-                chonExcel.CheckFields = "MA_VT,MA_KHO_I,TIEN_NT0,SO_LUONG1,GIA_NT01";
-                chonExcel.MA_CT = Invoice.Mact;
-                chonExcel.LoadDataComplete += chonExcel_LoadDataComplete;
-                chonExcel.AcceptData += chonExcel_AcceptData;
-                chonExcel.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
+        //        chon_accept_flag_add = add;
+        //        List<string> dateColumns = new List<string>();
+        //        foreach (DataColumn column in AD.Columns)
+        //        {
+        //            if (ObjectAndString.IsDateTimeType(column.DataType))
+        //            {
+        //                dateColumns.Add(column.ColumnName);
+        //            }
+        //        }
+        //        var chonExcel = new LoadExcelDataForm();
+        //        chonExcel.CheckDateFields = dateColumns;
+        //        chonExcel.Program = Event_program;
+        //        chonExcel.All_Objects = All_Objects;
+        //        chonExcel.DynamicFixMethodName = "DynamicFixExcel";
+        //        chonExcel.CheckFields = "MA_VT,MA_KHO_I,TIEN_NT0,SO_LUONG1,GIA_NT01";
+        //        chonExcel.MA_CT = Invoice.Mact;
+        //        chonExcel.LoadDataComplete += chonExcel_LoadDataComplete;
+        //        chonExcel.AcceptData += chonExcel_AcceptData;
+        //        chonExcel.ShowDialog(this);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+        //    }
+        //}
 
-        void chonExcel_LoadDataComplete(object sender)
-        {
-            try
-            {
-                LoadExcelDataForm chonExcel = (LoadExcelDataForm)sender;
-                DataTable errorData = new DataTable("ErrorData");
-                List<DataGridViewRow> removeList = new List<DataGridViewRow>();
-                foreach (DataGridViewRow row in chonExcel.dataGridView1.Rows)
-                {
-                    string cTk_I = ("" + row.Cells["TK_I"].Value).Trim();
-                    if (cTk_I == string.Empty)
-                    {
-                        removeList.Add(row);
-                        continue;
-                    }
-                    var exist = V6BusinessHelper.IsExistOneCode_List("ALTK", "TK", cTk_I);
-                    if (!exist)
-                    {
-                        row.DefaultCellStyle.BackColor = Color.Red;
-                        errorData.AddRow(row.ToDataDictionary(), true);
-                    }
-                }
-                while (removeList.Count > 0)
-                {
-                    chonExcel.dataGridView1.Rows.Remove(removeList[0]);
-                    removeList.RemoveAt(0);
-                }
-                if (errorData.Rows.Count > 0)
-                {
-                    DataViewerForm viewer = new DataViewerForm(errorData);
-                    viewer.Text = V6Text.WrongData;
-                    viewer.FormClosing += (o, args) =>
-                    {
-                        if (V6ControlFormHelper.ShowConfirmMessage(V6Text.Export + " " + V6Text.WrongData + "?") == DialogResult.Yes)
-                        {
-                            V6ControlFormHelper.ExportExcel_ChooseFile(this, errorData, "errorData");
-                        }
-                    };
-                    viewer.ShowDialog(chonExcel);
-                }
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
-
-        void chonExcel_AcceptData(DataTable table)
-        {
-            
-        }
+        //void chonExcel_LoadDataComplete(object sender)
+        //{
+        //    try
+        //    {
+        //        LoadExcelDataForm chonExcel = (LoadExcelDataForm)sender;
+        //        DataTable errorData = new DataTable("ErrorData");
+        //        List<DataGridViewRow> removeList = new List<DataGridViewRow>();
+        //        foreach (DataGridViewRow row in chonExcel.dataGridView1.Rows)
+        //        {
+        //            string cTk_I = ("" + row.Cells["TK_I"].Value).Trim();
+        //            if (cTk_I == string.Empty)
+        //            {
+        //                removeList.Add(row);
+        //                continue;
+        //            }
+        //            var exist = V6BusinessHelper.IsExistOneCode_List("ALTK", "TK", cTk_I);
+        //            if (!exist)
+        //            {
+        //                row.DefaultCellStyle.BackColor = Color.Red;
+        //                errorData.AddRow(row.ToDataDictionary(), true);
+        //            }
+        //        }
+        //        while (removeList.Count > 0)
+        //        {
+        //            chonExcel.dataGridView1.Rows.Remove(removeList[0]);
+        //            removeList.RemoveAt(0);
+        //        }
+        //        if (errorData.Rows.Count > 0)
+        //        {
+        //            DataViewerForm viewer = new DataViewerForm(errorData);
+        //            viewer.Text = V6Text.WrongData;
+        //            viewer.FormClosing += (o, args) =>
+        //            {
+        //                if (V6ControlFormHelper.ShowConfirmMessage(V6Text.Export + " " + V6Text.WrongData + "?") == DialogResult.Yes)
+        //                {
+        //                    V6ControlFormHelper.ExportExcel_ChooseFile(this, errorData, "errorData");
+        //                }
+        //            };
+        //            viewer.ShowDialog(chonExcel);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+        //    }
+        //}
 
         private void ChucNang_ThuCongNo(bool add)
         {
@@ -4815,9 +4810,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             ChucNang_ThuCuocCont(shift);
         }
 
-        private void xuLyKhacToolStripMenuItem_Click(object sender, EventArgs e)
+        private void xuLyKhacMenu_Click(object sender, EventArgs e)
         {
-            InvokeFormEvent(FormDynamicEvent.INKHAC);
+            try
+            {
+                if (NotAddEdit) return;
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                chon_accept_flag_add = shift;
+                ReportR45SelectorForm r45Selector = new ReportR45SelectorForm(Invoice);
+                if (r45Selector.ShowDialog(this) == DialogResult.OK)
+                {
+                    chonExcel_AcceptData(r45Selector.dataGridView1.GetSelectedData());
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
         }
 
         private void txtLoaiPhieu_V6LostFocusNoChange(object sender)
@@ -4967,5 +4976,148 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu
             Tim("1");
         }
 
+        private void inKhacMenu_Click(object sender, EventArgs e)
+        {
+            InvokeFormEvent(FormDynamicEvent.INKHAC);
+        }
+
+        
+        private void ChucNang_ChonTuExcel(bool add)
+        {
+            try
+            {
+                if (NotAddEdit) return;
+
+                chon_accept_flag_add = add;
+                List<string> dateColumns = new List<string>();
+                foreach (DataColumn column in AD.Columns)
+                {
+                    if (ObjectAndString.IsDateTimeType(column.DataType))
+                    {
+                        dateColumns.Add(column.ColumnName);
+                    }
+                }
+                var chonExcel = new LoadExcelDataForm();
+                chonExcel.CheckDateFields = dateColumns;
+                chonExcel.Program = Event_program;
+                chonExcel.All_Objects = All_Objects;
+                chonExcel.DynamicFixMethodName = "DynamicFixExcel";
+                chonExcel.CheckFields = "MA_VT,MA_KHO_I,TIEN_NT0,SO_LUONG1,GIA_NT01";
+                chonExcel.MA_CT = Invoice.Mact;
+                chonExcel.LoadDataComplete += chonExcel_LoadDataComplete;
+                chonExcel.AcceptData += chonExcel_AcceptData;
+                chonExcel.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        void chonExcel_LoadDataComplete(object sender)
+        {
+            try
+            {
+                LoadExcelDataForm chonExcel = (LoadExcelDataForm)sender;
+                DataTable errorData = new DataTable("ErrorData");
+                List<DataGridViewRow> removeList = new List<DataGridViewRow>();
+                foreach (DataGridViewRow row in chonExcel.dataGridView1.Rows)
+                {
+                    string cMaVt = ("" + row.Cells["MA_VT"].Value).Trim();
+                    string cMaKhoI = ("" + row.Cells["MA_KHO_I"].Value).Trim();
+                    if (cMaVt == string.Empty && cMaKhoI == string.Empty)
+                    {
+                        removeList.Add(row);
+                        continue;
+                    }
+                    var exist = V6BusinessHelper.IsExistOneCode_List("ALVT", "MA_VT", cMaVt);
+                    var exist2 = V6BusinessHelper.IsExistOneCode_List("ALKHO", "MA_KHO", cMaKhoI);
+                    if (!exist || !exist2)
+                    {
+                        row.DefaultCellStyle.BackColor = Color.Red;
+                        errorData.AddRow(row.ToDataDictionary(), true);
+                    }
+                }
+                while (removeList.Count > 0)
+                {
+                    chonExcel.dataGridView1.Rows.Remove(removeList[0]);
+                    removeList.RemoveAt(0);
+                }
+                if (errorData.Rows.Count > 0)
+                {
+                    DataViewerForm viewer = new DataViewerForm(errorData);
+                    viewer.Text = V6Text.WrongData;
+                    viewer.FormClosing += (o, args) =>
+                    {
+                        if (V6ControlFormHelper.ShowConfirmMessage(V6Text.Export + " " + V6Text.WrongData + "?") == DialogResult.Yes)
+                        {
+                            V6ControlFormHelper.ExportExcel_ChooseFile(this, errorData, "errorData");
+                        }
+                    };
+                    viewer.ShowDialog(chonExcel);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        void chonExcel_AcceptData(DataTable table)
+        {
+            chonExcel_AcceptData(table.ToListDataDictionary());
+        }
+        void chonExcel_AcceptData(List<IDictionary<string, object>> table)
+        {
+            var count = 0;
+            _message = "";
+            detail1.MODE = V6Mode.View;
+            dataGridView1.UnLock();
+            if (table == null || table.Count == 0) return;
+            var row0 = table[0];
+            if (row0.ContainsKey("TK_I") && row0.ContainsKey("PS_CO_NT"))
+            {
+                bool flag_add = chon_accept_flag_add;
+                chon_accept_flag_add = false;
+                if (!flag_add)
+                {
+                    AD.Rows.Clear();
+                }
+                
+                foreach (IDictionary<string, object> row in table)
+                {
+                    var data = row;
+                    var cTK_I = data["TK_I"].ToString().Trim();
+                    var exist = V6BusinessHelper.IsExistOneCode_List("ALTK", "TK", cTK_I);
+                    
+                    if (!data.ContainsKey("PS_CO"))
+                    {
+                        var __PS_CO_NT = ObjectAndString.ToObject<decimal>(data["PS_CO_NT"]);
+                        var __PS_CO = V6BusinessHelper.Vround(__PS_CO_NT * txtTyGia.Value, M_ROUND);
+                        data.Add("PS_CO", __PS_CO);
+                    }
+
+
+                    if (exist)
+                    {
+                        if (XuLyThemDetail(data))
+                        {
+                            count++;
+                            All_Objects["data"] = data;
+                            InvokeFormEvent(FormDynamicEvent.AFTERADDDETAILSUCCESS);
+                        }
+                    }
+                    else
+                    {
+                        if (!exist) _message += string.Format("{0} [{1}]", V6Text.NotExist, cTK_I);
+                    }
+                }
+                ShowParentMessage(string.Format(V6Text.Added + "[{0}].", count) + _message);
+            }
+            else
+            {
+                ShowParentMessage(V6Text.Text("LACKINFO"));
+            }
+        }
     }
 }

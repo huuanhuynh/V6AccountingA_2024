@@ -52,19 +52,30 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia.Loc
 
         private void MyInit()
         {
-            MyInit_ThoiGian();
-            MyInit_TT();
-            MyInit_TTCT();
-            InitTuyChon();
-            InitLocKetQua();
+            try
+            {
+                MyInit_ThoiGian();
+                MyInit_TT();
+                MyInit_TTCT();
+                InitTuyChon();
+                InitLocKetQua();
 
-            CreateDynamicFilter_ThongTin(_invoice.AMStruct, _invoice.ADV_AM);
-            CreateDynamicFilter2_ThongTinCT(_invoice.ADStruct, _invoice.ADV_AD);
-            
-            _locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
-            _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
+                CreateDynamicFilter_ThongTin(_invoice.AMStruct, _invoice.ADV_AM);
+                CreateDynamicFilter2_ThongTinCT(_invoice.ADStruct, _invoice.ADV_AD);
 
-            LoadDefaultData(4, "SOR", "SEARCH_SOR", ItemID);
+                _locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
+                _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
+
+                LoadDefaultData(4, "SOR", "SEARCH_SOR", ItemID);
+                if (_locKetQua._aldmConfig.HaveInfo)
+                {
+                    Text = V6Setting.IsVietnamese ? _locKetQua._aldmConfig.TITLE : _locKetQua._aldmConfig.TITLE2;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".MyInit", ex);
+            }
         }
 
         private void InitLocKetQua()

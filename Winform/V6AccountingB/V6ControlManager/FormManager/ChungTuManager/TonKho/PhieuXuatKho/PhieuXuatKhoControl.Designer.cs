@@ -194,6 +194,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.txtDiaChi = new V6Controls.V6VvarTextBox();
             this.v6Label11 = new V6Controls.V6Label();
             this.lblMaKH = new V6Controls.V6Label();
+            this.inKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuChucNang.SuspendLayout();
             this.menuDetail1.SuspendLayout();
             this.menuBtnIn.SuspendLayout();
@@ -260,7 +261,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.chonTuExcelMenu.Name = "chonTuExcelMenu";
             this.chonTuExcelMenu.Size = new System.Drawing.Size(194, 22);
             this.chonTuExcelMenu.Text = "Chọn từ excel";
-            this.chonTuExcelMenu.Click += new System.EventHandler(this.chonTuExcelToolStripMenuItem_Click);
+            this.chonTuExcelMenu.Click += new System.EventHandler(this.chonTuExcelMenu_Click);
             // 
             // tinhHaoHutMenu
             // 
@@ -276,7 +277,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.xuLyKhacMenu.Name = "xuLyKhacMenu";
             this.xuLyKhacMenu.Size = new System.Drawing.Size(194, 22);
             this.xuLyKhacMenu.Text = "Xử lý khác";
-            this.xuLyKhacMenu.Click += new System.EventHandler(this.xuLyKhacToolStripMenuItem_Click);
+            this.xuLyKhacMenu.Click += new System.EventHandler(this.xuLyKhacMenu_Click);
             // 
             // thayTheMenu
             // 
@@ -626,9 +627,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             // menuBtnIn
             // 
             this.menuBtnIn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.inPhieuHachToanMenu});
+            this.inPhieuHachToanMenu,
+            this.inKhacMenu});
             this.menuBtnIn.Name = "menuBtnIn";
-            this.menuBtnIn.Size = new System.Drawing.Size(174, 26);
+            this.menuBtnIn.Size = new System.Drawing.Size(174, 70);
             // 
             // inPhieuHachToanMenu
             // 
@@ -2542,6 +2544,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             this.lblMaKH.TabIndex = 0;
             this.lblMaKH.Text = "Mã khách hàng";
             // 
+            // inKhacMenu
+            // 
+            this.inKhacMenu.Name = "inKhacMenu";
+            this.inKhacMenu.Size = new System.Drawing.Size(173, 22);
+            this.inKhacMenu.Text = "InKhac";
+            this.inKhacMenu.Click += new System.EventHandler(this.inKhacMenu_Click);
+            // 
             // PhieuXuatKhoControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2766,5 +2775,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
         private System.Windows.Forms.ToolStripMenuItem timTopCuoiKyMenu;
         private System.Windows.Forms.ToolStripMenuItem timKhacMenu;
         private System.Windows.Forms.ToolStripMenuItem chonALVTMenu;
+        private System.Windows.Forms.ToolStripMenuItem inKhacMenu;
     }
 }

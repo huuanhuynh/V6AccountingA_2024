@@ -5981,7 +5981,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
 
         private void inKhacToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            InvokeFormEvent(FormDynamicEvent.INKHAC);
+            InvokeFormEvent(FormDynamicEvent.INKHAC) ;
         }
 
         private void txtManx_Leave(object sender, EventArgs e)

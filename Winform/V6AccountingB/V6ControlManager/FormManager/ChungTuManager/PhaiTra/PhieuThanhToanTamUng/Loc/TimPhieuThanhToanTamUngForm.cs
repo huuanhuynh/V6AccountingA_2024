@@ -51,22 +51,35 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuThanhToanTamU
 
         private void MyInit()
         {
-            txtMaDVCS.Text = V6Login.Madvcs;
-            if (V6Login.MadvcsCount <= 1)
+            try
             {
-                txtMaDVCS.Enabled = false;
-                txtMaDVCS.ReadOnly = true;
+                txtMaDVCS.Text = V6Login.Madvcs;
+                if (V6Login.MadvcsCount <= 1)
+                {
+                    txtMaDVCS.Enabled = false;
+                    txtMaDVCS.ReadOnly = true;
+                }
+
+                InitTuyChon();
+                InitLocKetQua();
+
+                locThongTin1.CreateDynamicFilter(_invoice.AMStruct, _invoice.ADV_AM);
+                locThongTinChiTiet1.CreateDynamicFilter2(_invoice.ADStruct, _invoice.ADV_AD);
+
+                _locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
+                _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
+
+                LoadDefaultData(4, "AP2", "SEARCH_AP2", ItemID);
+                if (_locKetQua._aldmConfig.HaveInfo)
+                {
+                    Text = V6Setting.IsVietnamese ? _locKetQua._aldmConfig.TITLE : _locKetQua._aldmConfig.TITLE2;
+                }
             }
-            InitTuyChon();
-            InitLocKetQua();
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".MyInit", ex);
+            }
 
-            locThongTin1.CreateDynamicFilter(_invoice.AMStruct, _invoice.ADV_AM);
-            locThongTinChiTiet1.CreateDynamicFilter2(_invoice.ADStruct, _invoice.ADV_AD);
-
-            _locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
-            _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
-
-            LoadDefaultData(4, "AP2", "SEARCH_AP2", ItemID);
             Ready();
         }
 

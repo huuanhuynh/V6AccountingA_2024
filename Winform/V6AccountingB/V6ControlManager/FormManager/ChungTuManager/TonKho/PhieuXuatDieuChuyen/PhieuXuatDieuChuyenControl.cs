@@ -5613,27 +5613,30 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
         void chonExcel_AcceptData(DataTable table)
         {
+            chonExcel_AcceptData(table.ToListDataDictionary());
+        }
+        void chonExcel_AcceptData(List<IDictionary<string,object>> table)
+        {
             var count = 0;
             _message = "";
             detail1.MODE = V6Mode.View;
             dataGridView1.UnLock();
-            if (table.Columns.Contains("MA_VT")
-                && table.Columns.Contains("TIEN_NT0") && table.Columns.Contains("SO_LUONG1")
-                && table.Columns.Contains("GIA_NT01"))
+            if (table == null || table.Count == 0) return;
+            var row0 = table[0];
+            if (row0.ContainsKey("MA_VT")
+                  && row0.ContainsKey("TIEN_NT0") && row0.ContainsKey("SO_LUONG1")
+                  && row0.ContainsKey("GIA_NT01"))
             {
-                if (table.Rows.Count > 0)
+                bool flag_add = chon_accept_flag_add;
+                chon_accept_flag_add = false;
+                if (!flag_add)
                 {
-                    bool flag_add = chon_accept_flag_add;
-                    chon_accept_flag_add = false;
-                    if (!flag_add)
-                    {
-                        AD.Rows.Clear();
-                    }
+                    AD.Rows.Clear();
                 }
 
-                foreach (DataRow row in table.Rows)
+                foreach (IDictionary<string, object> row in table)
                 {
-                    var data = row.ToDataDictionary(_sttRec);
+                    var data = row;
                     var cMaVt = data["MA_VT"].ToString().Trim();
                     //var cMaKhoI = data["MA_KHO_I"].ToString().Trim();
                     var exist = V6BusinessHelper.IsExistOneCode_List("ALVT", "MA_VT", cMaVt);
@@ -5778,7 +5781,21 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
 
         private void xuLyKhacMenu_Click(object sender, EventArgs e)
         {
-            InvokeFormEvent(FormDynamicEvent.INKHAC);
+            try
+            {
+                if (NotAddEdit) return;
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                chon_accept_flag_add = shift;
+                ReportR45SelectorForm r45Selector = new ReportR45SelectorForm(Invoice);
+                if (r45Selector.ShowDialog(this) == DialogResult.OK)
+                {
+                    chonExcel_AcceptData(r45Selector.dataGridView1.GetSelectedData());
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
         }
 
         private void thayTheMenu_Click(object sender, EventArgs e)
@@ -6736,6 +6753,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatDieuChuyen
             {
                 this.ShowErrorException(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
             }
+        }
+
+        private void inKhacMenu_Click(object sender, EventArgs e)
+        {
+            InvokeFormEvent(FormDynamicEvent.INKHAC);
         }
         
     }

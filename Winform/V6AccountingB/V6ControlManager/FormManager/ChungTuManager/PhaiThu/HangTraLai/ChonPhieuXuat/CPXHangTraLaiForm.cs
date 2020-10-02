@@ -56,17 +56,29 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HangTraLai.ChonPhi
 
         private void MyInit()
         {
-            InitTuyChon();
-            InitLocKetQua();
+            try
+            {
+                InitTuyChon();
+                InitLocKetQua();
 
-            locThongTin1.CreateDynamicFilter(_HangTraLaiForm.Invoice.AMStruct, _HangTraLaiForm.Invoice.ADV_AM);
-            locThongTinChiTiet1.CreateDynamicFilter2(_HangTraLaiForm.Invoice.ADStruct, _HangTraLaiForm.Invoice.ADV_AD);
+                locThongTin1.CreateDynamicFilter(_HangTraLaiForm.Invoice.AMStruct, _HangTraLaiForm.Invoice.ADV_AM);
+                locThongTinChiTiet1.CreateDynamicFilter2(_HangTraLaiForm.Invoice.ADStruct,
+                    _HangTraLaiForm.Invoice.ADV_AD);
 
-            locThongTin1.maKhach.Text = _ma_kh;
-            locThongTin1.maKhach.ReadOnly = !string.IsNullOrEmpty(_ma_kh);
-            txtMaDVCS.Text = _ma_dvcs;
+                locThongTin1.maKhach.Text = _ma_kh;
+                locThongTin1.maKhach.ReadOnly = !string.IsNullOrEmpty(_ma_kh);
+                txtMaDVCS.Text = _ma_dvcs;
 
-            LoadDefaultData(4, "SOF", "SEARCH_SOF_SOA", ItemID);
+                LoadDefaultData(4, "SOF", "SEARCH_SOF_SOA", ItemID);
+                if (_locKetQua._aldmConfig.HaveInfo)
+                {
+                    Text = V6Setting.IsVietnamese ? _locKetQua._aldmConfig.TITLE : _locKetQua._aldmConfig.TITLE2;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".MyInit", ex);
+            }
         }
 
         private void InitLocKetQua()

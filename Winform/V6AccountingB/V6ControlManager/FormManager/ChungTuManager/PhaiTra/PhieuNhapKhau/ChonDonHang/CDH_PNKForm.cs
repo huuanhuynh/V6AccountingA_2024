@@ -56,26 +56,38 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapKhau.Chon
 
         private void MyInit()
         {
-            InitTuyChon();
-            InitLocKetQua();
+            try
+            {
+                InitTuyChon();
+                InitLocKetQua();
 
-            //locThongTin1.CreateDynamicFilter(_HangTraLaiForm.Invoice.AMStruct, _HangTraLaiForm.Invoice.ADV_AM);
-            panelFilter1.AddMultiFilterLine(Invoice.AMStruct, Invoice.ADV_AM);
+                //locThongTin1.CreateDynamicFilter(_HangTraLaiForm.Invoice.AMStruct, _HangTraLaiForm.Invoice.ADV_AM);
+                panelFilter1.AddMultiFilterLine(Invoice.AMStruct, Invoice.ADV_AM);
 
-            //locThongTinChiTiet1.CreateDynamicFilter2(_HangTraLaiForm.Invoice.ADStruct, _HangTraLaiForm.Invoice.ADV_AD);
-            panelFilter2.AddMultiFilterLine(Invoice.ADStruct, Invoice.ADV_AD);
+                //locThongTinChiTiet1.CreateDynamicFilter2(_HangTraLaiForm.Invoice.ADStruct, _HangTraLaiForm.Invoice.ADV_AD);
+                panelFilter2.AddMultiFilterLine(Invoice.ADStruct, Invoice.ADV_AD);
 
-            maKhach.Text = _ma_kh;
-            maKhach.ReadOnly = !string.IsNullOrEmpty(_ma_kh);
-            txtMaDVCS.Text = _ma_dvcs;
+                maKhach.Text = _ma_kh;
+                maKhach.ReadOnly = !string.IsNullOrEmpty(_ma_kh);
+                txtMaDVCS.Text = _ma_dvcs;
 
-            //_locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
-            _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
+                //_locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
+                _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
 
-            v6ColorDateTimePick1.SetValue(V6Setting.M_ngay_ct1);
-            v6ColorDateTimePick2.SetValue(V6Setting.M_ngay_ct2);
+                v6ColorDateTimePick1.SetValue(V6Setting.M_ngay_ct1);
+                v6ColorDateTimePick2.SetValue(V6Setting.M_ngay_ct2);
 
-            LoadDefaultData(4, "POB", "SEARCH_POB_POH", ItemID);
+                LoadDefaultData(4, "POB", "SEARCH_POB_POH", ItemID);
+                if (_locKetQua._aldmConfig.HaveInfo)
+                {
+                    Text = V6Setting.IsVietnamese ? _locKetQua._aldmConfig.TITLE : _locKetQua._aldmConfig.TITLE2;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".MyInit", ex);
+            }
+
             Ready();
         }
 

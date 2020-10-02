@@ -60,18 +60,30 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiNhapKhoINY.Ch
 
         private void MyInit()
         {
-            InitTuyChon();
-            InitLocKetQua();
+            try
+            {
+                InitTuyChon();
+                InitLocKetQua();
 
-            panelFilter1.AddMultiFilterLine(Invoice.AMStruct, Invoice.ADV_AM);
-            panelFilter2.AddMultiFilterLine(Invoice.ADStruct, Invoice.ADV_AD);
-            maKhach.Text = _ma_kh;
-            maKhach.ReadOnly = !string.IsNullOrEmpty(_ma_kh);
-            txtMaDVCS.Text = _ma_dvcs;
-            v6ColorDateTimePick1.SetValue(V6Setting.M_ngay_ct1);
-            v6ColorDateTimePick2.SetValue(V6Setting.M_ngay_ct2);
+                panelFilter1.AddMultiFilterLine(Invoice.AMStruct, Invoice.ADV_AM);
+                panelFilter2.AddMultiFilterLine(Invoice.ADStruct, Invoice.ADV_AD);
+                maKhach.Text = _ma_kh;
+                maKhach.ReadOnly = !string.IsNullOrEmpty(_ma_kh);
+                txtMaDVCS.Text = _ma_dvcs;
+                v6ColorDateTimePick1.SetValue(V6Setting.M_ngay_ct1);
+                v6ColorDateTimePick2.SetValue(V6Setting.M_ngay_ct2);
 
-            LoadDefaultData(4, "INY", "SEARCH_INY_POH", ItemID);
+                LoadDefaultData(4, "INY", "SEARCH_INY_POH", ItemID);
+                if (_locKetQua._aldmConfig.HaveInfo)
+                {
+                    Text = V6Setting.IsVietnamese ? _locKetQua._aldmConfig.TITLE : _locKetQua._aldmConfig.TITLE2;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".MyInit", ex);
+            }
+
             Ready();
         }
 

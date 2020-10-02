@@ -29,7 +29,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.ChonDe
         {
             try
             {
-                _aldmConfig = ConfigManager.GetAldmConfig("AMAD91A");
+                _aldmConfig = ConfigManager.GetAldmConfig("AMAD95A");
                 if(_aldmConfig.HaveInfo) gridViewSummary1.NoSumColumns = _aldmConfig.GRDT_V1;
             }
             catch (Exception ex)

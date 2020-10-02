@@ -54,17 +54,28 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuChi.Loc
 
         private void MyInit()
         {
-            dateNgayCt1.SetValue(V6Setting.M_ngay_ct1);
-            dateNgayCt2.SetValue(V6Setting.M_ngay_ct2);
-            MyInit_TTCT();
-            InitTuyChon();
-            InitLocKetQua();
+            try
+            {
+                dateNgayCt1.SetValue(V6Setting.M_ngay_ct1);
+                dateNgayCt2.SetValue(V6Setting.M_ngay_ct2);
+                MyInit_TTCT();
+                InitTuyChon();
+                InitLocKetQua();
 
-            CreateDynamicFilter_ThongTin(_invoice.AMStruct, _invoice.ADV_AM);
-            CreateDynamicFilter2_ThongTinCT(_invoice.ADStruct, _invoice.ADV_AD);
+                CreateDynamicFilter_ThongTin(_invoice.AMStruct, _invoice.ADV_AM);
+                CreateDynamicFilter2_ThongTinCT(_invoice.ADStruct, _invoice.ADV_AD);
 
-            LoadDefaultData(4, _invoice.Mact, "SEARCH_" + _invoice.Mact, ItemID);
-            
+                LoadDefaultData(4, _invoice.Mact, "SEARCH_" + _invoice.Mact, ItemID);
+                if (_locKetQua._aldmConfig.HaveInfo)
+                {
+                    Text = V6Setting.IsVietnamese ? _locKetQua._aldmConfig.TITLE : _locKetQua._aldmConfig.TITLE2;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".MyInit", ex);
+            }
+
             Ready();
         }
 

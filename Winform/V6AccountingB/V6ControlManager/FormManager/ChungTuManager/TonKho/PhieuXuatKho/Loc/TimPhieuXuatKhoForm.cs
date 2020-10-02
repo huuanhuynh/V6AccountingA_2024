@@ -51,19 +51,32 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.Loc
 
         private void MyInit()
         {
-            txtMaDVCS.Text = V6Login.Madvcs;
-            if (V6Login.MadvcsCount <= 1)
+            try
             {
-                txtMaDVCS.Enabled = false;
-                txtMaDVCS.ReadOnly = true;
+                txtMaDVCS.Text = V6Login.Madvcs;
+                if (V6Login.MadvcsCount <= 1)
+                {
+                    txtMaDVCS.Enabled = false;
+                    txtMaDVCS.ReadOnly = true;
+                }
+
+                InitTuyChon();
+                InitLocKetQua();
+
+                locThongTin1.CreateDynamicFilter(_invoice.AMStruct, _invoice.ADV_AM);
+                locThongTinChiTiet1.CreateDynamicFilter2(_invoice.ADStruct, _invoice.ADV_AD);
+
+                LoadDefaultData(4, "IXA", "SEARCH_IXA", ItemID);
+                if (_locKetQua._aldmConfig.HaveInfo)
+                {
+                    Text = V6Setting.IsVietnamese ? _locKetQua._aldmConfig.TITLE : _locKetQua._aldmConfig.TITLE2;
+                }
             }
-            InitTuyChon();
-            InitLocKetQua();
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".MyInit", ex);
+            }
 
-            locThongTin1.CreateDynamicFilter(_invoice.AMStruct, _invoice.ADV_AM);
-            locThongTinChiTiet1.CreateDynamicFilter2(_invoice.ADStruct, _invoice.ADV_AD);
-
-            LoadDefaultData(4, "IXA", "SEARCH_IXA", ItemID);
             Ready();
         }
 
@@ -280,12 +293,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho.Loc
             }
         }
 
-        private string flag_search = "";
         private void DoSearch()
         {
             try
             {
-                if (flag_search == "1")
+                if (flag_search_topcuoiky == "1")
                 {
                     tempAM = _invoice.SearchAM_TopCuoiKy(_where0Time, _where1AM, _where2AD, _w3NhomVt, _w4Dvcs, _w4Dvcs_2);
                 }

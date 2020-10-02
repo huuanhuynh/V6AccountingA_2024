@@ -5253,6 +5253,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             }
         }
 
+        
         private void ChucNang_ChonTuExcel(bool add)
         {
             try
@@ -5333,50 +5334,24 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
             }
         }
-        
-        private void ChucNang_XuatHetKho()
-        {
-            try
-            {
-                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
-                chon_accept_flag_add = shift;
-                var xuatHetKho = new XuatHetKhoDataForm();
-                xuatHetKho.CheckFields = "MA_VT,MA_KHO_I,TIEN_NT0,SO_LUONG1,GIA_NT01";
-                xuatHetKho.AcceptData += xuatHetKho_AcceptData;
-                xuatHetKho.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
-
-        private void ChucNang_TinhHaoHut()
-        {
-            try
-            {
-                var xuatHetKho = new TinhHaoHutDataForm();
-                xuatHetKho.CheckFields = "MA_VT,MA_KHO_I,TIEN_NT0,SO_LUONG1,GIA_NT01";
-                xuatHetKho.AcceptData += tinhHaoHut_AcceptData;
-                xuatHetKho.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
-            }
-        }
 
         void chonExcel_AcceptData(DataTable table)
+        {
+            chonExcel_AcceptData(table.ToListDataDictionary());
+        }
+        void chonExcel_AcceptData(List<IDictionary<string, object>> table)
         {
             var count = 0;
             _message = "";
             detail1.MODE = V6Mode.View;
             dataGridView1.UnLock();
-            if (table.Columns.Contains("MA_VT") && table.Columns.Contains("MA_KHO_I")
-                && table.Columns.Contains("TIEN_NT0") && table.Columns.Contains("SO_LUONG1")
-                && table.Columns.Contains("GIA_NT01"))
+            if (table == null || table.Count == 0) return;
+            var row0 = table[0];
+            if (row0.ContainsKey("MA_VT") && row0.ContainsKey("MA_KHO_I")
+               && row0.ContainsKey("TIEN_NT0") && row0.ContainsKey("SO_LUONG1")
+               && row0.ContainsKey("GIA_NT01"))
             {
-                if (table.Rows.Count > 0)
+                if (table.Count > 0)
                 {
                     bool flag_add = chon_accept_flag_add;
                     chon_accept_flag_add = false;
@@ -5391,9 +5366,9 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                     }
                 }
 
-                foreach (DataRow row in table.Rows)
+                foreach (IDictionary<string, object> row in table)
                 {
-                    var data = row.ToDataDictionary(_sttRec);
+                    var data = row;
                     var cMaVt = data["MA_VT"].ToString().Trim();
                     var cMaKhoI = data["MA_KHO_I"].ToString().Trim();
                     var exist = V6BusinessHelper.IsExistOneCode_List("ALVT", "MA_VT", cMaVt);
@@ -5458,6 +5433,40 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
                 ShowParentMessage(V6Text.Text("LACKINFO"));
             }
         }
+        
+        
+        private void ChucNang_XuatHetKho()
+        {
+            try
+            {
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                chon_accept_flag_add = shift;
+                var xuatHetKho = new XuatHetKhoDataForm();
+                xuatHetKho.CheckFields = "MA_VT,MA_KHO_I,TIEN_NT0,SO_LUONG1,GIA_NT01";
+                xuatHetKho.AcceptData += xuatHetKho_AcceptData;
+                xuatHetKho.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
+        private void ChucNang_TinhHaoHut()
+        {
+            try
+            {
+                var xuatHetKho = new TinhHaoHutDataForm();
+                xuatHetKho.CheckFields = "MA_VT,MA_KHO_I,TIEN_NT0,SO_LUONG1,GIA_NT01";
+                xuatHetKho.AcceptData += tinhHaoHut_AcceptData;
+                xuatHetKho.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
+        }
+
 
         void xuatHetKho_AcceptData(DataTable table)
         {
@@ -5598,7 +5607,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             ChucNang_TroGiup();
         }
 
-        private void chonTuExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        private void chonTuExcelMenu_Click(object sender, EventArgs e)
         {
             bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
             ChucNang_ChonTuExcel(shift);
@@ -5614,9 +5623,23 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             ChucNang_TinhHaoHut();
         }
 
-        private void xuLyKhacToolStripMenuItem_Click(object sender, EventArgs e)
+        private void xuLyKhacMenu_Click(object sender, EventArgs e)
         {
-            InvokeFormEvent(FormDynamicEvent.INKHAC);
+            try
+            {
+                if (NotAddEdit) return;
+                bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
+                chon_accept_flag_add = shift;
+                ReportR45SelectorForm r45Selector = new ReportR45SelectorForm(Invoice);
+                if (r45Selector.ShowDialog(this) == DialogResult.OK)
+                {
+                    chonExcel_AcceptData(r45Selector.dataGridView1.GetSelectedData());
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(string.Format("{0}.{1} {2}", GetType(), MethodBase.GetCurrentMethod().Name, _sttRec), ex);
+            }
         }
 
         private void thayTheMenu_Click(object sender, EventArgs e)
@@ -6322,6 +6345,11 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             {
                 this.ShowErrorException(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
             }
+        }
+
+        private void inKhacMenu_Click(object sender, EventArgs e)
+        {
+            InvokeFormEvent(FormDynamicEvent.INKHAC);
         }
 
     }

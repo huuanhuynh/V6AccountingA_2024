@@ -64,11 +64,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe.Loc
                 _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
 
                 LoadLanguage();
+                if (_locKetQua._aldmConfig.HaveInfo)
+                {
+                    Text = V6Setting.IsVietnamese ? _locKetQua._aldmConfig.TITLE : _locKetQua._aldmConfig.TITLE2;
+                }
             }
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".MyInit: " + ex.Message);
             }
+            Ready();
         }
 
         private void InitLocKetQua()

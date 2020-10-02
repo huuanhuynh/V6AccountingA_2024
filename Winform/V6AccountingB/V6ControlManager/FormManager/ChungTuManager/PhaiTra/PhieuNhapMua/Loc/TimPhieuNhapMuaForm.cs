@@ -51,18 +51,30 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapMua.Loc
 
         private void MyInit()
         {
-            v6ColorDateTimePick1.SetValue(V6Setting.M_ngay_ct1);
-            v6ColorDateTimePick2.SetValue(V6Setting.M_ngay_ct2);
-            InitTuyChon();
-            InitLocKetQua();
+            try
+            {
+                v6ColorDateTimePick1.SetValue(V6Setting.M_ngay_ct1);
+                v6ColorDateTimePick2.SetValue(V6Setting.M_ngay_ct2);
+                InitTuyChon();
+                InitLocKetQua();
 
-            locThongTin1.CreateDynamicFilter(_invoice.AMStruct, _invoice.ADV_AM);
-            locThongTinChiTiet1.CreateDynamicFilter2(_invoice.ADStruct, _invoice.ADV_AD);
-            
-            _locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
-            _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
+                locThongTin1.CreateDynamicFilter(_invoice.AMStruct, _invoice.ADV_AM);
+                locThongTinChiTiet1.CreateDynamicFilter2(_invoice.ADStruct, _invoice.ADV_AD);
 
-            LoadDefaultData(4, "POA", "SEARCH_POA", ItemID);
+                _locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
+                _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
+
+                LoadDefaultData(4, "POA", "SEARCH_POA", ItemID);
+                if (_locKetQua._aldmConfig.HaveInfo)
+                {
+                    Text = V6Setting.IsVietnamese ? _locKetQua._aldmConfig.TITLE : _locKetQua._aldmConfig.TITLE2;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".MyInit", ex);
+            }
+
             Ready();
         }
 

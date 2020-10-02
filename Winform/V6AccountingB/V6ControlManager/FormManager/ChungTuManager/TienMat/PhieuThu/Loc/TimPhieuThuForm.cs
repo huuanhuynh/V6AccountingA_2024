@@ -51,17 +51,29 @@ namespace V6ControlManager.FormManager.ChungTuManager.TienMat.PhieuThu.Loc
 
         private void MyInit()
         {
-            MyInit_ThoiGian();
-            MyInit_TT();
-            MyInit_TTCT();
-            InitTuyChon();
-            InitLocKetQua();
-            
-            CreateDynamicFilter_ThongTin(_invoice.AMStruct, _invoice.ADV_AM);
-            CreateDynamicFilter2_ThongTinCT(_invoice.ADStruct, _invoice.ADV_AD);
+            try
+            {
+                MyInit_ThoiGian();
+                MyInit_TT();
+                MyInit_TTCT();
+                InitTuyChon();
+                InitLocKetQua();
 
-            LoadDefaultData(4, _invoice.Mact, "SEARCH_" + _invoice.Mact, ItemID);
-            _ready = true;
+                CreateDynamicFilter_ThongTin(_invoice.AMStruct, _invoice.ADV_AM);
+                CreateDynamicFilter2_ThongTinCT(_invoice.ADStruct, _invoice.ADV_AD);
+
+                LoadDefaultData(4, _invoice.Mact, "SEARCH_" + _invoice.Mact, ItemID);
+                if (_locKetQua._aldmConfig.HaveInfo)
+                {
+                    Text = V6Setting.IsVietnamese ? _locKetQua._aldmConfig.TITLE : _locKetQua._aldmConfig.TITLE2;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".MyInit", ex);
+            }
+
+            Ready();
         }
 
         private void InitLocKetQua()

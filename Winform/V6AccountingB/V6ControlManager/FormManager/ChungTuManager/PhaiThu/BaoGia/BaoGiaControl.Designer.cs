@@ -141,7 +141,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.chonDonHangMuaMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.TroGiupMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chonTuExcelMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.inKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.XuLyKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.thayTheMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.thayTheNhieuMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.thayThe2Menu = new System.Windows.Forms.ToolStripMenuItem();
@@ -252,6 +252,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.timTopCuoiKyMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.timKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.lblNameT = new V6Controls.V6Label();
+            this.inKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabChiTiet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -2016,7 +2017,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.chonDonHangMuaMenu,
             this.TroGiupMenu,
             this.chonTuExcelMenu,
-            this.inKhacMenu,
+            this.XuLyKhacMenu,
             this.thayTheMenu,
             this.thayTheNhieuMenu,
             this.thayThe2Menu,
@@ -2059,13 +2060,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.chonTuExcelMenu.Text = "Chọn từ excel";
             this.chonTuExcelMenu.Click += new System.EventHandler(this.chonTuExcelToolStripMenuItem_Click);
             // 
-            // inKhacMenu
+            // XuLyKhacMenu
             // 
-            this.inKhacMenu.AccessibleDescription = "INVOICEM00010";
-            this.inKhacMenu.Name = "inKhacMenu";
-            this.inKhacMenu.Size = new System.Drawing.Size(192, 22);
-            this.inKhacMenu.Text = "Xử lý khác";
-            this.inKhacMenu.Click += new System.EventHandler(this.inKhacToolStripMenuItem_Click);
+            this.XuLyKhacMenu.AccessibleDescription = "INVOICEM00010";
+            this.XuLyKhacMenu.Name = "XuLyKhacMenu";
+            this.XuLyKhacMenu.Size = new System.Drawing.Size(192, 22);
+            this.XuLyKhacMenu.Text = "Xử lý khác";
+            this.XuLyKhacMenu.Click += new System.EventHandler(this.xuLyKhacMenu_Click);
             // 
             // thayTheMenu
             // 
@@ -3511,9 +3512,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             // menuBtnIn
             // 
             this.menuBtnIn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.inPhieuHachToanMenu});
+            this.inPhieuHachToanMenu,
+            this.inKhacMenu});
             this.menuBtnIn.Name = "menuBtnIn";
-            this.menuBtnIn.Size = new System.Drawing.Size(174, 26);
+            this.menuBtnIn.Size = new System.Drawing.Size(174, 70);
             // 
             // inPhieuHachToanMenu
             // 
@@ -3619,6 +3621,13 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
             this.lblNameT.Size = new System.Drawing.Size(708, 18);
             this.lblNameT.TabIndex = 21;
             this.lblNameT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // inKhacMenu
+            // 
+            this.inKhacMenu.Name = "inKhacMenu";
+            this.inKhacMenu.Size = new System.Drawing.Size(173, 22);
+            this.inKhacMenu.Text = "In khác";
+            this.inKhacMenu.Click += new System.EventHandler(this.inKhacMenu_Click);
             // 
             // BaoGiaControl
             // 
@@ -3883,7 +3892,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         private System.Windows.Forms.Label label1;
         private V6Controls.V6ComboBox cboChuyenData;
         private V6Label v6Label28;
-        private System.Windows.Forms.ToolStripMenuItem inKhacMenu;
+        private System.Windows.Forms.ToolStripMenuItem XuLyKhacMenu;
         private System.Windows.Forms.ToolStripMenuItem thayTheMenu;
         private System.Windows.Forms.ToolStripMenuItem thayThe2Menu;
         private NumberSoluong txtTongSoLuong;
@@ -3903,5 +3912,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.BaoGia
         private System.Windows.Forms.ToolStripMenuItem timTopCuoiKyMenu;
         private System.Windows.Forms.ToolStripMenuItem timKhacMenu;
         private System.Windows.Forms.ToolStripMenuItem chonALVTMenu;
+        private System.Windows.Forms.ToolStripMenuItem inKhacMenu;
     }
 }

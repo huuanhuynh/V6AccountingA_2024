@@ -58,15 +58,26 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
 
         private void MyInit()
         {
-            InitLocKetQua();
-            _locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
-            _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
-            _locKetQua.MultiSelect = _multiSelect;
+            try
+            {
+                InitLocKetQua();
+                _locKetQua.OnSelectAMRow += locKetQua_OnSelectAMRow;
+                _locKetQua.AcceptSelectEvent += delegate { btnNhan.PerformClick(); };
+                _locKetQua.MultiSelect = _multiSelect;
 
-            v6ColorDateTimePick1.SetValue(V6Setting.M_ngay_ct1);
-            v6ColorDateTimePick2.SetValue(V6Setting.M_ngay_ct2);
+                v6ColorDateTimePick1.SetValue(V6Setting.M_ngay_ct1);
+                v6ColorDateTimePick2.SetValue(V6Setting.M_ngay_ct2);
 
-            LoadDefaultData(4, "POC", "SEARCH_POC", ItemID);
+                LoadDefaultData(4, "POC", "SEARCH_POC", ItemID);
+                if (_locKetQua._aldmConfig.HaveInfo)
+                {
+                    Text = V6Setting.IsVietnamese ? _locKetQua._aldmConfig.TITLE : _locKetQua._aldmConfig.TITLE2;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.WriteExLog(GetType() + ".MyInit", ex);
+            }
         }
 
         private void InitLocKetQua()
