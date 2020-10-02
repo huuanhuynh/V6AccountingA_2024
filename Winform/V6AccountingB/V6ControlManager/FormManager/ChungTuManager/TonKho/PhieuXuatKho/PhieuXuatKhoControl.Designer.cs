@@ -2546,6 +2546,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.PhieuXuatKho
             // 
             // inKhacMenu
             // 
+            this.inKhacMenu.AccessibleDescription = "INVOICEM00007";
             this.inKhacMenu.Name = "inKhacMenu";
             this.inKhacMenu.Size = new System.Drawing.Size(173, 22);
             this.inKhacMenu.Text = "InKhac";

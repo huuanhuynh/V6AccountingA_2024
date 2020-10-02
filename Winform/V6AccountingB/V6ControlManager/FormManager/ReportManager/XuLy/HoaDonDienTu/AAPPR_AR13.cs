@@ -349,7 +349,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 string ext = Path.GetExtension(return_file_name).ToLower();
                 if (ext == ".pdf")
                 {
-                    AAPPR_SOA3_ViewPDF view = new AAPPR_SOA3_ViewPDF(return_file_name);
+                    PDF_ViewPrintForm view = new PDF_ViewPrintForm(return_file_name);
                     view.ShowDialog(this);
                 }
                 else if (ext == ".html")

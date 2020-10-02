@@ -35,9 +35,9 @@
             this.btnSearchInRpt = new System.Windows.Forms.Button();
             this.btnSQL = new System.Windows.Forms.Button();
             this.btnSendToV6 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
+            this.btnHTMLview = new System.Windows.Forms.Button();
+            this.btnPDF_HTMLview = new System.Windows.Forms.Button();
+            this.btnXMLXSLview = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
@@ -133,32 +133,34 @@
             this.btnSendToV6.UseVisualStyleBackColor = true;
             this.btnSendToV6.Click += new System.EventHandler(this.btnSendToV6_Click);
             // 
-            // button10
+            // btnHTMLview
             // 
-            this.button10.Location = new System.Drawing.Point(130, 48);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(118, 23);
-            this.button10.TabIndex = 10;
-            this.button10.Text = "button1";
-            this.button10.UseVisualStyleBackColor = true;
+            this.btnHTMLview.Location = new System.Drawing.Point(130, 48);
+            this.btnHTMLview.Name = "btnHTMLview";
+            this.btnHTMLview.Size = new System.Drawing.Size(118, 23);
+            this.btnHTMLview.TabIndex = 10;
+            this.btnHTMLview.Text = "NO";
+            this.btnHTMLview.UseVisualStyleBackColor = true;
             // 
-            // button11
+            // btnPDF_HTMLview
             // 
-            this.button11.Location = new System.Drawing.Point(130, 77);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(118, 23);
-            this.button11.TabIndex = 11;
-            this.button11.Text = "button1";
-            this.button11.UseVisualStyleBackColor = true;
+            this.btnPDF_HTMLview.Location = new System.Drawing.Point(130, 77);
+            this.btnPDF_HTMLview.Name = "btnPDF_HTMLview";
+            this.btnPDF_HTMLview.Size = new System.Drawing.Size(118, 23);
+            this.btnPDF_HTMLview.TabIndex = 11;
+            this.btnPDF_HTMLview.Text = "PDF HTML view";
+            this.btnPDF_HTMLview.UseVisualStyleBackColor = true;
+            this.btnPDF_HTMLview.Click += new System.EventHandler(this.btnPDF_HTMLview_Click);
             // 
-            // button12
+            // btnXMLXSLview
             // 
-            this.button12.Location = new System.Drawing.Point(130, 106);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(118, 23);
-            this.button12.TabIndex = 12;
-            this.button12.Text = "button1";
-            this.button12.UseVisualStyleBackColor = true;
+            this.btnXMLXSLview.Location = new System.Drawing.Point(130, 106);
+            this.btnXMLXSLview.Name = "btnXMLXSLview";
+            this.btnXMLXSLview.Size = new System.Drawing.Size(118, 23);
+            this.btnXMLXSLview.TabIndex = 12;
+            this.btnXMLXSLview.Text = "XML XSL zip view";
+            this.btnXMLXSLview.UseVisualStyleBackColor = true;
+            this.btnXMLXSLview.Click += new System.EventHandler(this.btnXMLXSLview_Click);
             // 
             // button13
             // 
@@ -301,14 +303,14 @@
             this.grbTools.Controls.Add(this.btnDBF);
             this.grbTools.Controls.Add(this.btnModelHelp);
             this.grbTools.Controls.Add(this.btnHdocument);
-            this.grbTools.Controls.Add(this.button12);
+            this.grbTools.Controls.Add(this.btnXMLXSLview);
             this.grbTools.Controls.Add(this.btnSearchInRpt);
             this.grbTools.Controls.Add(this.btnLogView);
             this.grbTools.Controls.Add(this.btnSQL);
-            this.grbTools.Controls.Add(this.button11);
+            this.grbTools.Controls.Add(this.btnPDF_HTMLview);
             this.grbTools.Controls.Add(this.btnSendToV6);
             this.grbTools.Controls.Add(this.button13);
-            this.grbTools.Controls.Add(this.button10);
+            this.grbTools.Controls.Add(this.btnHTMLview);
             this.grbTools.Controls.Add(this.button14);
             this.grbTools.Controls.Add(this.button15);
             this.grbTools.Location = new System.Drawing.Point(141, 157);
@@ -437,9 +439,9 @@
         private System.Windows.Forms.Button btnSQL;
         private System.Windows.Forms.Button btnTeamViewer;
         private System.Windows.Forms.Button btnSendToV6;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button btnHTMLview;
+        private System.Windows.Forms.Button btnPDF_HTMLview;
+        private System.Windows.Forms.Button btnXMLXSLview;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button15;

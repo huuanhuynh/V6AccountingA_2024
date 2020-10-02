@@ -7363,7 +7363,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDonCafe
                 if (NotAddEdit) return;
                 bool shift = (ModifierKeys & Keys.Shift) == Keys.Shift;
                 chon_accept_flag_add = shift;
-                ReportR45SelectorForm r45Selector = new ReportR45SelectorForm(Invoice);
+                ReportR45db2SelectorForm r45Selector = new ReportR45db2SelectorForm(Invoice);
                 if (r45Selector.ShowDialog(this) == DialogResult.OK)
                 {
                     chonExcel_AcceptData(r45Selector.dataGridView1.GetSelectedData());

@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using V6Controls;
 using V6Controls.Forms;
+using V6Controls.Forms.Viewer;
 using V6Init;
 using V6Tools;
 
@@ -279,6 +280,43 @@ namespace V6ControlManager.FormManager.ToolManager
             catch (Exception ex)
             {
                 this.ShowErrorMessage(GetType() + ".Close " + ex.Message);
+            }
+        }
+
+        private void btnPDF_HTMLview_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string open_file_name = V6ControlFormHelper.ChooseOpenFile(this, "PDF|*.pdf|HTML|*.html");
+                string ext = Path.GetExtension(open_file_name).ToLower();
+                if (ext == ".pdf")
+                {
+                    PDF_ViewPrintForm view = new PDF_ViewPrintForm(open_file_name);
+                    view.ShowDialog(this);
+                }
+                else if (ext == ".html")
+                {
+                    HtmlViewerForm view = new HtmlViewerForm(open_file_name, open_file_name, false);
+                    view.ShowDialog(this);
+                }
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
+            }
+        }
+
+        private void btnXMLXSLview_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string open_file_name = V6ControlFormHelper.ChooseOpenFile(this, "zip|*.zip");
+                XmlXslZipViewerForm view = new XmlXslZipViewerForm(open_file_name, "XML XSL", false);
+                view.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                this.ShowErrorException(GetType() + "." + MethodBase.GetCurrentMethod().Name, ex);
             }
         }
 

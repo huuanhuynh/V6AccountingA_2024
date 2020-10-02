@@ -63,6 +63,10 @@ namespace V6ThuePostManager
         static DataTable ad3_table;
 
         /// <summary>
+        /// Toàn bộ dữ liệu config V6Info (chưa giải mã nếu có mã hóa).
+        /// </summary>
+        public static Dictionary<string, string> V6Infos = new Dictionary<string, string>();
+        /// <summary>
         /// Tài khoản ws vnpt
         /// </summary>
         public static string _username = "";
@@ -479,10 +483,9 @@ namespace V6ThuePostManager
                 {
                     jsonBody = paras.Fkey_hd;
                     result = bkavWS.POST(remoteCommand, jsonBody, BkavConst._202_CancelInvoiceByPartnerInvoiceID, out paras.Result.V6ReturnValues);
-                    if (!result.StartsWith("ERR"))
+                    if (!result.StartsWith("ERR") && V6Infos.ContainsKey("BKAVSIGN") &&  V6Infos["BKAVSIGN"] == "1")
                     {
-                        result = bkavWS.POST(remoteCommand, paras.V6PartnerID, BkavConst._205_SignGUID, out paras.Result.V6ReturnValues);
-                        result = bkavWS.POST(remoteCommand, "0f8fad5b-d9cb-469f-a165-70867728950e", BkavConst._205_SignGUID, out paras.Result.V6ReturnValues);
+                        result = result + "\r\n" + bkavWS.SignInvoice(remoteCommand, paras.V6PartnerID, out paras.Result.V6ReturnValues);
                     }
                 }
                 else if (paras.Mode == "E_S1")
@@ -503,6 +506,11 @@ namespace V6ThuePostManager
                     else if (paras.Key_Down == "F6") commandType = BkavConst._200_Update;
 
                     result = bkavWS.POST(remoteCommand, jsonBody, commandType, out paras.Result.V6ReturnValues);
+                    if (string.IsNullOrEmpty(paras.Key_Down) && V6Infos.ContainsKey("BKAVSIGN") &&  V6Infos["BKAVSIGN"] == "1")
+                    {
+                        V6Return v6return2;
+                        result = result + "\r\n" + bkavWS.SignInvoice(remoteCommand, paras.Result.V6ReturnValues.ID, out v6return2);
+                    }
                 }
                 else if (paras.Mode == "S")
                 {
@@ -1012,7 +1020,7 @@ namespace V6ThuePostManager
             try
             {
                 //var data = ReadDbf(dbf);
-                if (type == "1")
+                if (type == "1") // 1 times 1 cus
                 {
                     Customer cus = null;
                     string ma_kh = null;
@@ -1057,7 +1065,7 @@ namespace V6ThuePostManager
                         }
                     }
                 }
-                else
+                else // 1 times all cus
                 {
                     try
                     {
@@ -2706,7 +2714,7 @@ namespace V6ThuePostManager
                         jsonBody = ReadData_Viettel(paras);
                         if (paras.Key_Down == "F4" || paras.Key_Down == "F6")
                         {
-                            result = viettel_ws.POST_NEW_DRAF(_codetax, jsonBody);
+                            result = viettel_ws.POST_DRAFT(_codetax, jsonBody);
                         }
                         else
                         {
@@ -4122,6 +4130,7 @@ namespace V6ThuePostManager
                     {
                         case "V6INFO":
                         {
+                            V6Infos[line.Field.ToUpper()] = line.Value;
                             switch (line_field)
                             {
                                 case "username":

@@ -1,6 +1,8 @@
-﻿namespace V6ControlManager.FormManager.ReportManager.XuLy
+﻿using V6Controls;
+
+namespace V6ControlManager.FormManager.ChungTuManager
 {
-    partial class AAPPR_SOA3_ViewPDF
+    partial class ReportR45SelectorForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,17 +31,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.MyPrintDocument = new System.Drawing.Printing.PrintDocument();
-            this.timerViewReport = new System.Windows.Forms.Timer(this.components);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportR45SelectorForm));
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnHuy = new System.Windows.Forms.Button();
             this.btnNhan = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.pdfViewer1 = new PdfiumViewer.PdfViewer();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // timerViewReport
+            // timer1
             // 
-            this.timerViewReport.Interval = 333;
+            this.timer1.Interval = 111;
             // 
             // btnHuy
             // 
@@ -49,14 +50,15 @@
             this.btnHuy.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnHuy.Image = global::V6ControlManager.Properties.Resources.Cancel;
             this.btnHuy.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnHuy.Location = new System.Drawing.Point(100, 650);
+            this.btnHuy.Location = new System.Drawing.Point(100, 560);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(88, 40);
-            this.btnHuy.TabIndex = 4;
+            this.btnHuy.TabIndex = 11;
+            this.btnHuy.Tag = "Escape";
             this.btnHuy.Text = "&Hủy";
             this.btnHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnHuy.UseVisualStyleBackColor = true;
-            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
+            this.btnHuy.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnNhan
             // 
@@ -65,77 +67,57 @@
             this.btnNhan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnNhan.Image = global::V6ControlManager.Properties.Resources.Apply;
             this.btnNhan.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNhan.Location = new System.Drawing.Point(6, 650);
+            this.btnNhan.Location = new System.Drawing.Point(12, 560);
             this.btnNhan.Name = "btnNhan";
             this.btnNhan.Size = new System.Drawing.Size(88, 40);
-            this.btnNhan.TabIndex = 3;
+            this.btnNhan.TabIndex = 10;
+            this.btnNhan.Tag = "Return, Control";
             this.btnNhan.Text = "&Nhận";
             this.btnNhan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNhan.UseVisualStyleBackColor = true;
-            this.btnNhan.Click += new System.EventHandler(this.btnNhan_Click);
+            this.btnNhan.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // button1
+            // panel1
             // 
-            this.button1.AccessibleName = "";
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Image = global::V6ControlManager.Properties.Resources.Print;
-            this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1.Location = new System.Drawing.Point(809, 650);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(88, 40);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Print";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // pdfViewer1
-            // 
-            this.pdfViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pdfViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pdfViewer1.Location = new System.Drawing.Point(1, 0);
-            this.pdfViewer1.Name = "pdfViewer1";
-            this.pdfViewer1.ShowToolbar = false;
-            this.pdfViewer1.Size = new System.Drawing.Size(906, 644);
-            this.pdfViewer1.TabIndex = 10;
-            this.pdfViewer1.ZoomMode = PdfiumViewer.PdfViewerZoomMode.FitWidth;
-            this.pdfViewer1.Load += new System.EventHandler(this.pdfViewer1_Load);
+            this.panel1.Location = new System.Drawing.Point(2, 2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1003, 552);
+            this.panel1.TabIndex = 0;
             // 
-            // AAPPR_SOA3_ViewPDF
+            // ReportR45SelectorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(909, 696);
-            this.Controls.Add(this.pdfViewer1);
+            this.ClientSize = new System.Drawing.Size(1008, 606);
             this.Controls.Add(this.btnHuy);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnNhan);
-            this.Name = "AAPPR_SOA3_ViewPDF";
-            this.Text = "PDF viewer";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AAPPR_SOA3_ViewPDF_FormClosing);
-            this.Load += new System.EventHandler(this.Form_Load);
+            this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimizeBox = false;
+            this.Name = "ReportR45SelectorForm";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Chọn";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SelectMultiIDForm_FormClosing);
+            this.Load += new System.EventHandler(this.SelectMultiIDForm_Load);
+            this.SizeChanged += new System.EventHandler(this.ReportR45SelectorForm_SizeChanged);
+            this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.btnNhan, 0);
-            this.Controls.SetChildIndex(this.button1, 0);
             this.Controls.SetChildIndex(this.btnHuy, 0);
             this.Controls.SetChildIndex(this.lblTopMessage, 0);
-            this.Controls.SetChildIndex(this.pdfViewer1, 0);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Drawing.Printing.PrintDocument MyPrintDocument;
-        private System.Windows.Forms.Timer timerViewReport;
-        protected System.Windows.Forms.Button btnNhan;
+        //private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Timer timer1;
         protected System.Windows.Forms.Button btnHuy;
-        protected System.Windows.Forms.Button button1;
-        private PdfiumViewer.PdfViewer pdfViewer1;
-
-
-
-
+        protected System.Windows.Forms.Button btnNhan;
+        private System.Windows.Forms.Panel panel1;
     }
 }

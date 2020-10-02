@@ -276,10 +276,20 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                             {
                                 printDocument.PrinterSettings = printDialog.PrinterSettings;
                                 printDialog.Document = printDocument;
+                                //printDialog.AllowSomePages = true;
+                                //printDialog.Document = printDocument;
+                                //printDialog.UseEXDialog = true;
+                                //printDialog.Document.PrinterSettings.FromPage = 1;
+                                //printDialog.Document.PrinterSettings.ToPage = pdfViewer1.Document.PageCount;
+                                printDialog.Document.PrinterSettings.DefaultPageSettings.PaperSize = new PaperSize("A4",810,1100);
+                                printDialog.Document.DefaultPageSettings.PaperSize = new PaperSize("A4",810,1100);
                                 try
                                 {
                                     if (printDialog.Document.PrinterSettings.FromPage <= pdfDocument1.PageCount)
+                                    {
+                                        printDialog.Document.DefaultPageSettings.PaperSize = new PaperSize("A4",810,1100);
                                         printDialog.Document.Print();
+                                    }
                                 }
                                 catch(Exception ex)
                                 {
@@ -445,7 +455,7 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
                 string ext = Path.GetExtension(return_file_name).ToLower();
                 if (ext == ".pdf")
                 {
-                    AAPPR_SOA3_ViewPDF view = new AAPPR_SOA3_ViewPDF(return_file_name);
+                    PDF_ViewPrintForm view = new PDF_ViewPrintForm(return_file_name);
                     view.ShowDialog(this);
                 }
                 else if (ext == ".html")

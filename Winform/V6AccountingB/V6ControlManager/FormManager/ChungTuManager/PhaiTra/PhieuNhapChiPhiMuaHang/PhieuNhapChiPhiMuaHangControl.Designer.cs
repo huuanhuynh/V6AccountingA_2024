@@ -3193,6 +3193,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiTra.PhieuNhapChiPhiMua
             // 
             // inKhacMenu
             // 
+            this.inKhacMenu.AccessibleDescription = "INVOICEM00007";
             this.inKhacMenu.Name = "inKhacMenu";
             this.inKhacMenu.Size = new System.Drawing.Size(173, 22);
             this.inKhacMenu.Text = "In khác";

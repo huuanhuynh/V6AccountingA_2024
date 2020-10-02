@@ -250,6 +250,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.menuBtnIn = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.inPhieuThuTienMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.inPhieuHachToanMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.inKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.btnCopy = new System.Windows.Forms.Button();
             this.btnMoi = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
@@ -257,7 +258,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.menuBtnTim = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.timTopCuoiKyMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.timKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.inKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuChucNang.SuspendLayout();
             this.menuDetail1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -3655,6 +3655,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.inPhieuHachToanMenu.Text = "In phiếu hạch toán";
             this.inPhieuHachToanMenu.Click += new System.EventHandler(this.inPhieuHachToanMenu_Click);
             // 
+            // inKhacMenu
+            // 
+            this.inKhacMenu.AccessibleDescription = "INVOICEM00007";
+            this.inKhacMenu.Name = "inKhacMenu";
+            this.inKhacMenu.Size = new System.Drawing.Size(173, 22);
+            this.inKhacMenu.Text = "In khác";
+            this.inKhacMenu.Click += new System.EventHandler(this.inKhacMenu_Click);
+            // 
             // btnCopy
             // 
             this.btnCopy.AccessibleDescription = "ASOCTSOAR00031";
@@ -3745,13 +3753,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.PhaiThu.HoaDon
             this.timKhacMenu.Name = "timKhacMenu";
             this.timKhacMenu.Size = new System.Drawing.Size(155, 22);
             this.timKhacMenu.Text = "Khác...";
-            // 
-            // inKhacMenu
-            // 
-            this.inKhacMenu.Name = "inKhacMenu";
-            this.inKhacMenu.Size = new System.Drawing.Size(173, 22);
-            this.inKhacMenu.Text = "In khác";
-            this.inKhacMenu.Click += new System.EventHandler(this.inKhacMenu_Click);
             // 
             // HoaDonControl
             // 

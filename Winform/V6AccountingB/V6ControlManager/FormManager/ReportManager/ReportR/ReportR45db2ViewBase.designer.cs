@@ -2,7 +2,7 @@
 
 namespace V6ControlManager.FormManager.ReportManager.ReportR
 {
-    partial class ReportR45ViewBase
+    partial class ReportR45db2ViewBase
     {
         /// <summary>
         /// Required designer variable.
@@ -585,7 +585,7 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.gridViewTopFilter1.Size = new System.Drawing.Size(662, 22);
             this.gridViewTopFilter1.TabIndex = 1;
             // 
-            // ReportR45ViewBase
+            // ReportR45db2ViewBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -608,10 +608,10 @@ namespace V6ControlManager.FormManager.ReportManager.ReportR
             this.Controls.Add(this.grbDieuKienLoc);
             this.Controls.Add(this.gridViewSummary1);
             this.FilterType = "4";
-            this.Name = "ReportR45ViewBase";
+            this.Name = "ReportR45db2ViewBase";
             this.Size = new System.Drawing.Size(974, 654);
             this.Load += new System.EventHandler(this.Form_Load);
-            this.VisibleChanged += new System.EventHandler(this.ReportR45ViewBase_VisibleChanged);
+            this.VisibleChanged += new System.EventHandler(this.ReportR45db2ViewBase_VisibleChanged);
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.grbDieuKienLoc.ResumeLayout(false);

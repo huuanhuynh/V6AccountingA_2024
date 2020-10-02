@@ -36,6 +36,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuChucNang = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.chonALVTMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chonDonHangBanMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chonDonHangMuaMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.chonBaoGiaMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,7 +48,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             this.thayThe2Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.exportXmlMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.importXmlMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.chonALVTMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -237,6 +237,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             this.v6Label5 = new V6Controls.V6Label();
             this.v6Label3 = new V6Controls.V6Label();
             this.v6Label1 = new V6Controls.V6Label();
+            this.inKhacMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuChucNang.SuspendLayout();
             this.menuBtnIn.SuspendLayout();
             this.menuBtnTim.SuspendLayout();
@@ -270,8 +271,16 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             this.exportXmlMenu,
             this.importXmlMenu});
             this.menuChucNang.Name = "menuChucNang";
-            this.menuChucNang.Size = new System.Drawing.Size(193, 290);
+            this.menuChucNang.Size = new System.Drawing.Size(193, 268);
             this.menuChucNang.Paint += new System.Windows.Forms.PaintEventHandler(this.menuChucNang_Paint);
+            // 
+            // chonALVTMenu
+            // 
+            this.chonALVTMenu.AccessibleDescription = "INVOICEM00047";
+            this.chonALVTMenu.Name = "chonALVTMenu";
+            this.chonALVTMenu.Size = new System.Drawing.Size(192, 22);
+            this.chonALVTMenu.Text = "Chọn vật tư, hàng hóa";
+            this.chonALVTMenu.Click += new System.EventHandler(this.chonALVTMenu_Click);
             // 
             // chonDonHangBanMenu
             // 
@@ -321,7 +330,7 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             this.xuLyKhacMenu.Name = "xuLyKhacMenu";
             this.xuLyKhacMenu.Size = new System.Drawing.Size(192, 22);
             this.xuLyKhacMenu.Text = "Xử lý khác";
-            this.xuLyKhacMenu.Click += new System.EventHandler(this.inKhacToolStripMenuItem_Click);
+            this.xuLyKhacMenu.Click += new System.EventHandler(this.xuLyKhacMenu_Click);
             // 
             // thayTheMenu
             // 
@@ -363,14 +372,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             this.importXmlMenu.Size = new System.Drawing.Size(192, 22);
             this.importXmlMenu.Text = "Import Xml";
             this.importXmlMenu.Click += new System.EventHandler(this.importXmlMenu_Click);
-            // 
-            // chonALVTMenu
-            // 
-            this.chonALVTMenu.AccessibleDescription = "INVOICEM00047";
-            this.chonALVTMenu.Name = "chonALVTMenu";
-            this.chonALVTMenu.Size = new System.Drawing.Size(192, 22);
-            this.chonALVTMenu.Text = "Chọn vật tư, hàng hóa";
-            this.chonALVTMenu.Click += new System.EventHandler(this.chonALVTMenu_Click);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -621,9 +622,10 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             // menuBtnIn
             // 
             this.menuBtnIn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.inPhieuHachToanMenu});
+            this.inPhieuHachToanMenu,
+            this.inKhacMenu});
             this.menuBtnIn.Name = "menuBtnIn";
-            this.menuBtnIn.Size = new System.Drawing.Size(174, 26);
+            this.menuBtnIn.Size = new System.Drawing.Size(174, 70);
             // 
             // inPhieuHachToanMenu
             // 
@@ -3385,6 +3387,14 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
             this.v6Label1.TabIndex = 0;
             this.v6Label1.Text = "Số nội bộ";
             // 
+            // inKhacMenu
+            // 
+            this.inKhacMenu.AccessibleDescription = "INVOICEM00007";
+            this.inKhacMenu.Name = "inKhacMenu";
+            this.inKhacMenu.Size = new System.Drawing.Size(173, 22);
+            this.inKhacMenu.Text = "In khác";
+            this.inKhacMenu.Click += new System.EventHandler(this.inKhacMenu_Click);
+            // 
             // DeNghiXuatKhoIXYControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3652,5 +3662,6 @@ namespace V6ControlManager.FormManager.ChungTuManager.TonKho.DeNghiXuatKhoIXY
         private System.Windows.Forms.ToolStripMenuItem timTopCuoiKyMenu;
         private System.Windows.Forms.ToolStripMenuItem timKhacMenu;
         private System.Windows.Forms.ToolStripMenuItem chonALVTMenu;
+        private System.Windows.Forms.ToolStripMenuItem inKhacMenu;
     }
 }

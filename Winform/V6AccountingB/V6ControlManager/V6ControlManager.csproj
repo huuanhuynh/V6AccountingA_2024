@@ -67,6 +67,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormManager\ChungTuManager\ReportR45db2SelectorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\ReportR45db2SelectorForm.designer.cs">
+      <DependentUpon>ReportR45db2SelectorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\ReportR45SelectorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManager\ChungTuManager\ReportR45SelectorForm.designer.cs">
+      <DependentUpon>ReportR45SelectorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ChungTuManager\ChungTuChungContainer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -4493,6 +4505,12 @@
       <DependentUpon>ChartReportForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\QuickReportManager.cs" />
+    <Compile Include="FormManager\ReportManager\ReportR\ReportR45db2ViewBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormManager\ReportManager\ReportR\ReportR45db2ViewBase.designer.cs">
+      <DependentUpon>ReportR45db2ViewBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManager\ReportManager\ReportR\ReportR47Container.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -4657,12 +4675,6 @@
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\HoaDonDienTu\AAPPR_IXB3.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\HoaDonDienTu\AAPPR_SOA3_ViewPDF.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormManager\ReportManager\XuLy\HoaDonDienTu\AAPPR_SOA3_ViewPDF.designer.cs">
-      <DependentUpon>AAPPR_SOA3_ViewPDF.cs</DependentUpon>
     </Compile>
     <Compile Include="FormManager\ReportManager\XuLy\HoaDonDienTu\AAPPR_SOA3_View.cs">
       <SubType>Form</SubType>
@@ -5879,6 +5891,12 @@
     <None Include="Resources\newspaperplus.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormManager\ChungTuManager\ReportR45db2SelectorForm.resx">
+      <DependentUpon>ReportR45db2SelectorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ChungTuManager\ReportR45SelectorForm.resx">
+      <DependentUpon>ReportR45SelectorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ChungTuManager\ChungTuChungContainer.resx">
       <DependentUpon>ChungTuChungContainer.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -8099,6 +8117,9 @@
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ChartReportForm.resx">
       <DependentUpon>ChartReportForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportR45db2ViewBase.resx">
+      <DependentUpon>ReportR45db2ViewBase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\ReportR\ReportR47Container.resx">
       <DependentUpon>ReportR47Container.cs</DependentUpon>
     </EmbeddedResource>
@@ -8176,9 +8197,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\HoaDonDienTu\AAPPR_SOA2_ViewXml.resx">
       <DependentUpon>AAPPR_SOA2_ViewXml.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormManager\ReportManager\XuLy\HoaDonDienTu\AAPPR_SOA3_ViewPDF.resx">
-      <DependentUpon>AAPPR_SOA3_ViewPDF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManager\ReportManager\XuLy\HoaDonDienTu\AAPPR_SOA3_View.resx">
       <DependentUpon>AAPPR_SOA3_View.cs</DependentUpon>

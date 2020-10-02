@@ -373,6 +373,10 @@ namespace V6ControlManager.FormManager.ReportManager.XuLy
             string result = "";//, error = "", sohoadon = "", id = "";
             try
             {
+                if (string.IsNullOrEmpty(makh) || makh.Trim() == string.Empty)
+                {
+                    return null;
+                }
                 IDictionary<string, object> keys = new Dictionary<string, object>();
                 keys.Add("MA_KH", makh);
                 DataTable data = V6BusinessHelper.Select("ALKH", keys, "*").Data;

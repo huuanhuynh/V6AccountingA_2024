@@ -60,6 +60,9 @@
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="DotNetZip">
+      <HintPath>..\..\..\Lib\DotNetZip\DotNetZip.dll</HintPath>
+    </Reference>
     <Reference Include="Gma.QrCodeNet.Encoding, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\QrCode.Net.0.4.0.0\lib\net35\Gma.QrCodeNet.Encoding.dll</HintPath>
       <Private>True</Private>
@@ -131,6 +134,18 @@
     </Compile>
     <Compile Include="Forms\Editor\DicEditForm.designer.cs">
       <DependentUpon>DicEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Viewer\XmlXslZipViewerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Viewer\XmlXslZipViewerForm.Designer.cs">
+      <DependentUpon>XmlXslZipViewerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Viewer\PDF_ViewPrintForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Viewer\PDF_ViewPrintForm.designer.cs">
+      <DependentUpon>PDF_ViewPrintForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Viewer\HtmlViewerForm.cs">
       <SubType>Form</SubType>
@@ -2120,6 +2135,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FlyLabelForm.resx">
       <DependentUpon>FlyLabelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Viewer\XmlXslZipViewerForm.resx">
+      <DependentUpon>XmlXslZipViewerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Viewer\PDF_ViewPrintForm.resx">
+      <DependentUpon>PDF_ViewPrintForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Viewer\HtmlViewerForm.resx">
       <DependentUpon>HtmlViewerForm.cs</DependentUpon>
