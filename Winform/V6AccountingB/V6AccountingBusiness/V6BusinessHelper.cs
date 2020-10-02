@@ -1390,7 +1390,7 @@ namespace V6AccountingBusiness
             if (!V6Login.UserRight.AllowSelect(tableName)) return new V6SelectResult();
 
             var tableStruct = GetTableStruct(tableName);
-            string where = SqlGenerator.GenWhere2(tableStruct, keys);//.GenSqlWhere(keys);
+            string where = SqlGenerator.GenWhere(tableStruct, keys);//.GenSqlWhere(keys);
             return Select(tableName, fields, @where, groupby, @orderby, pList);
         }
 
