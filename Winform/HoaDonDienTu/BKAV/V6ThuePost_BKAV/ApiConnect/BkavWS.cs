@@ -370,7 +370,18 @@ namespace V6ThuePostBkavApi
             if (pdfResult != null && pdfResult.PDF != null)
             {
                 string path = Path.Combine(savefolder, fkey_hd + ".pdf");
-                if(!File.Exists(path)) File.WriteAllBytes(path, pdfResult.PDF);
+                try
+                {
+                    if (File.Exists(path)) File.Delete(path);
+                }
+                catch
+                {
+                }
+                finally
+                {
+                    if(!File.Exists(path)) File.WriteAllBytes(path, pdfResult.PDF);
+                }
+
                 return path;
             }
 

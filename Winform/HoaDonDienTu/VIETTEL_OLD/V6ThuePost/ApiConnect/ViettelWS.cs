@@ -123,18 +123,17 @@ namespace V6ThuePostViettelApi
             }
 
             string path = Path.Combine(savefolder, fileName + ".zip");
-            if (File.Exists(path))
+            try
             {
-                try
-                {
-                    File.Delete(path);
-                }
-                catch
-                {
-                    //
-                }
+                if (File.Exists(path)) File.Delete(path);
             }
-            File.WriteAllBytes(path, objFile.fileToBytes);
+            catch
+            {
+            }
+            finally
+            {
+                if (!File.Exists(path)) File.WriteAllBytes(path, objFile.fileToBytes);
+            }
 
             return path;
         }
@@ -168,18 +167,17 @@ namespace V6ThuePostViettelApi
             }
 
             string path = Path.Combine(savefolder, fileName + ".zip");
-            if (File.Exists(path))
+            try
             {
-                try
-                {
-                    File.Delete(path);
-                }
-                catch
-                {
-                    //
-                }
+                if (File.Exists(path)) File.Delete(path);
             }
-            File.WriteAllBytes(path, objFile.fileToBytes);
+            catch
+            {
+            }
+            finally
+            {
+                if (!File.Exists(path)) File.WriteAllBytes(path, objFile.fileToBytes);
+            }
 
             return path;
         }
@@ -227,21 +225,16 @@ namespace V6ThuePostViettelApi
                 throw new Exception("Download no file!");
             }
             string path = Path.Combine(savefolder, fileName + ".pdf");
-
-            if (File.Exists(path))
+            try
             {
-                try
-                {
-                    File.Delete(path);
-                }
-                catch
-                {
-                    //
-                }
+                if (File.Exists(path)) File.Delete(path);
             }
-            if (!File.Exists(path))
+            catch
             {
-                File.WriteAllBytes(path, objFile.fileToBytes);
+            }
+            finally
+            {
+                if (!File.Exists(path)) File.WriteAllBytes(path, objFile.fileToBytes);
             }
             
             return path;
@@ -282,21 +275,16 @@ namespace V6ThuePostViettelApi
             }
 
             string path = Path.Combine(savefolder, fileName + ".pdf");
-
-            if (File.Exists(path))
+            try
             {
-                try
-                {
-                    File.Delete(path);
-                }
-                catch
-                {
-                    //
-                }
+                if (File.Exists(path)) File.Delete(path);
             }
-            if (!File.Exists(path))
+            catch
             {
-                File.WriteAllBytes(path, objFile.fileToBytes);
+            }
+            finally
+            {
+                if (!File.Exists(path)) File.WriteAllBytes(path, objFile.fileToBytes);
             }
 
             return path;

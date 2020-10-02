@@ -243,20 +243,16 @@ namespace V6ThuePostMInvoiceApi
             }
             string path = Path.Combine(savefolder, "fileName" + ".pdf");
 
-            if (File.Exists(path))
+            try
             {
-                try
-                {
-                    File.Delete(path);
-                }
-                catch
-                {
-                    //
-                }
+                if (File.Exists(path)) File.Delete(path);
             }
-            if (!File.Exists(path))
+            catch
             {
-                File.WriteAllBytes(path, null);
+            }
+            finally
+            {
+                if (!File.Exists(path)) File.WriteAllBytes(path, null);
             }
             
             return path;
@@ -281,20 +277,16 @@ namespace V6ThuePostMInvoiceApi
 
             string path = Path.Combine(savefolder, fileName + ".pdf");
 
-            if (File.Exists(path))
+            try
             {
-                try
-                {
-                    File.Delete(path);
-                }
-                catch
-                {
-                    //
-                }
+                if (File.Exists(path)) File.Delete(path);
             }
-            if (!File.Exists(path))
+            catch
             {
-                File.WriteAllBytes(path, null);
+            }
+            finally
+            {
+                if (!File.Exists(path)) File.WriteAllBytes(path, null);
             }
 
             return path;

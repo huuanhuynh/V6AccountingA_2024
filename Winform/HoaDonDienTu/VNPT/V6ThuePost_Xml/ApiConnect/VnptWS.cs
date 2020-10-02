@@ -157,12 +157,19 @@ namespace V6ThuePostXmlApi
                     result = new PortalService.PortalService(linkPortal).convertForStoreFkey(fkey, userName, userPass);
                     string fileName = fkey;
                     string path = Path.Combine(saveFolder, fileName + ".html");
-                    File.WriteAllText(path, result);
-
-
+                    try
+                    {
+                        if (File.Exists(path)) File.Delete(path);
+                    }
+                    catch
+                    {
+                    }
+                    finally
+                    {
+                        if (!File.Exists(path)) File.WriteAllText(path, result);
+                    }
 
                     v6return.PATH = path;
-
                     return path;
                 }
                 else
@@ -196,7 +203,18 @@ namespace V6ThuePostXmlApi
                 {
                     string fileName = fkey;
                     string path = Path.Combine(saveFolder, fileName + ".pdf");
-                    File.WriteAllBytes(path, Convert.FromBase64String(result));
+                    try
+                    {
+                        if (File.Exists(path)) File.Delete(path);
+                    }
+                    catch
+                    {
+                    }
+                    finally
+                    {
+                        if (!File.Exists(path)) File.WriteAllBytes(path, Convert.FromBase64String(result));
+                    }
+                    
                     v6return.PATH = path;
                     return path;
                 }
